@@ -1,0 +1,30 @@
+{
+ "case_id":"1239__rep3__S004__TERMINAL_DROP_NO_ANCHOR","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新正式Final均正确科学名称，研究A k0，历史整段EM W不覆盖。"},
+ "review_basis":"原三轮/二Call完整原文已读；四新各单轮的全部Reasoning/Final逐一读完，0新Call。原十返回槽按精确SHA复用已读全文。",
+ "pre_state":"R3@0，P有物种采用及全部识别支持，最新人口Return已补上132/2011关系；原Final不在输入，无G。",
+ "u_work":"S004原R3[0,522)将人口确认并入五项总判断，明确allcluesmatch与科学名称后构造Final，无工具。",
+ "u_state_update":"U完成由材料齐备到接受/提交；四新都再次完成该过程，未恢复任何搜索或候选替换。原实例删除不代表这个最终认知功能消失。",
+ "original_action_consequence":"原短五点确认后答案；新1扩为完整比对，新2六项确认，新3更长五点/承接，新4保持接近原短确认但Final变长。四次同正确物种。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR。","audit":"无教师G、无原Final输入；首Prompt6414与原R3相同，成本差仅续写输出，没有移除历史。"},
+ "evidence":[
+  {"id":"P_LAST_EVIDENCE","source":"original","pointer":"/tool_events/1/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"a733afb5671f6ed0 Doc85269人口真实可见。"},
+  {"id":"U_ACCEPTS","source":"original","pointer":"/rounds/2/reasoning_content","quote":"All clues match perfectly! The scientific name is Nepenthes khasiana.","use":"原R3实际接受与提交。"},
+  {"id":"N1_ACCEPTS","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"So the scientific name is **Nepenthes khasiana**","use":"新R3完整五条件后采用，直接Final。"},
+  {"id":"N2_ACCEPTS","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"All the clues match perfectly! The scientific name is Nepenthes khasiana.","use":"六项证据确认后接受。"},
+  {"id":"N3_ACCEPTS","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Now I have all the pieces of the puzzle confirmed","use":"五条件接受重做，非只Final出现答案词。"},
+  {"id":"N4_ACCEPTS","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"All the clues match perfectly with Nepenthes khasiana.","use":"原人口Return被新R3采用并直接Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"无实质判断分歧，条件确认展开较长。","state_chain":"采用人口→全条件接受→Final。","function_change":"FULL_REBUILT。","evidence":["N1_ACCEPTS"],"semantic_result":"C；553生成较原471多82，0Search/1Actor保持。"},
+  {"repeat":2,"first_divergence":"确认重列六项，候选不变。","state_chain":"证据确认→同答案。","function_change":"FULL_REBUILT。","evidence":["N2_ACCEPTS"],"semantic_result":"C；507生成多36，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"比原更长确认与答案组织，无新核验。","state_chain":"条件接受→正确Final。","function_change":"FULL_REBUILT。","evidence":["N3_ACCEPTS"],"semantic_result":"C；567生成多96，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"短总判断近原但答复略变长，未改决定。","state_chain":"同事实接受→Final。","function_change":"FULL_REBUILT。","evidence":["N4_ACCEPTS"],"semantic_result":"C；496生成多25，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类末段在P候选及证据已齐的条件下无G恢复接受/提交，原文表达实例可替换而功能仍做。四次生成更多、没有工具节省，不能将四C扩大为有计算收益的冗余。与rep2末段四次同功能更短的反向成本结果一并保留。",
+ "within_case_support":"四C、四次功能恢复，生成全增，Search/Actor全平。",
+ "mechanism_chain_checks":[{"chain":"P证据与候选齐备，无G恢复接受/答案组织，结果保持但表达略长","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ACCEPTS"],"2":["N2_ACCEPTS"],"3":["N3_ACCEPTS"],"4":["N4_ACCEPTS"]},"limits":"仅同P四次稳定，不证明接受功能可免，也不证明所有此类文字都更长。"}],
+ "counterevidence_and_limits":["rep2同类无G末段生成四降，是成本方向反例；答案稳定与篇幅变化分别解释。","无新搜索不等于没有新思考，本四条明确重新执行完整判断。","不以原U长度直接当节省，四次反而都多。"],
+ "cost_basis":"原471生成/0Search/1Actor、6414Prompt；新553/507/567/496，净+82/+36/+96/+25，Prompt全6414、G0。差在接受/Final措辞，没有其它后续任务可归因；独立续跑不加总。",
+ "next_cross_case_test":"跨题对照证据齐备的末段与B类证据缺口仍触发取证的末段，查接受动作是否实际恢复以及怎样连接提交，而非只比较阶段位置。"
+}

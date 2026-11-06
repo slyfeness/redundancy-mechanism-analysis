@@ -1,0 +1,43 @@
+{
+ "case_id":"289__rep3__S001__FIRST_SENTENCE",
+ "question_id":"289",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"W","4":"C"},"basis":"新1/2/4正式Final给Çılgın Bediş/1996，新3有真实Final但拒绝识别并无题名，W而非NO_FINAL。冻结SELECTION C→CCWC/A一致。"},
+ "review_basis":"原source9da7f1044c53dd74e4e347c94b5b13244a49f9988d0701b35b6828e02390534c5轮4Call本轮已亲读；四新14轮10Call所有Reasoning/Final实际阅读全文，75新块13133字符、27字段。70原新文档位置新增11264占位错误页226字符全文读，其余逐SHA对应本轮已读原新演员/剧集/词典/列表全文。",
+ "pre_state":"R1@0，P仅题目/工具系统，无已知候选和检索资料。题目并未给演员、剧名或剧目。",
+ "u_work":"原S001两轮广搜，先得演员列表但无候选，再通过1995—2000喜剧/两频道查询得到23585；R3[0,281)采用Çılgın Bediş和Yonca，后续针对演员戏剧和词义取证，再确认并Final。",
+ "u_state_update":"未知候选→真实检索发现剧集并采用，决定后续演员核查对象；这项发现是原路线起点。",
+ "original_action_consequence":"新1/2重做两广搜—演员—确认结构；新4首查即返剧集，演员资料后直接接受，少广搜和确认；新3未调用任何工具就自行认为不能核实专门资料，正式拒答。三次成功都恢复发现和采用，例外不是关键事实查不到，而是未经尝试便决定不开展查询。",
+ "guidance":{"text":"Now I need to verify:","source":"原S002 R3[281,302)，冒号开头行不带列表，6原生Token；R1@0 native0。","audit":"ORACLE_ANCHORED，泛核验方向，无未来实体/事实/条件答案。RESTART_NOT_PROVEN_STAGE_SKIP，首431=425+6。新3对工具能力的判断是自主生成，不能仅凭一例归因为G，也不能将G空泛误判泄露答案。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Türkiye TV series 1995-2000 comedy two channels original name","use":"原第二广搜获得真实候选。"},
+  {"id":"O2","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Great! I found information about \"Çılgın Bediş\"","use":"U结束候选采用。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Türkiye TV series 1990-2005 comedy lead actress theatre play","use":"R1 b7807e35148a914b无候选广搜重做。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"I found information about \"Çılgın Bediş\"","use":"R2 ba2b30e7db01943a返23585后采用并8d16d8fc76144d8f查演员。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/4/content","quote":"**Release Date**: 1996-2001","use":"R4 aa3111b2100a4cc1确认后R5正式C。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Türkiye TV series 1990-2005 comedy lead actress theatre play","use":"R1 a3210b31538f28eb首广搜与新1相同。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Great! I found something very promising in the first result","use":"R2 be0ae5a573b56885返23585并实际采用；11264占位页未被用作关键依据。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"Çılgın Bediş 1996 2001 Kanal D Show TV Yonca Evcimik","use":"R4 9199a8bbda0ba55a把确认Query改剧集，返回还含34975同义词；未明确采用词典不能当独立依据已用。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/4/content","quote":"1996-2001 (between 1990 and 2005)","use":"正式C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"I should be honest that I cannot perform this type of search.","use":"未发任何真实Call前，自主判断工具不能核实此类细节。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/content","quote":"Without access to these specialized resources, I cannot reliably identify the TV series you're looking for.","use":"正式拒答W；不是上下文/工具异常或没有Final。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Türkiye TV series 1990-2005 comedy theatre play 1980-1990","use":"R1 b4ff4bf358cbbd7e首查即23585，不需要原第二广搜。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"According to the search result (docid 47650)","use":"R2 b8b859a8c4a5b0d6演员Return后明确采用Deliler关系，随后无追加Call直接接受。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/2/content","quote":"**Release Year**: 1996-2001","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后列原题再广搜；首两Query略改仍经历首查无候选、次查发现。","state_chain":"开始查询→真实剧集Return采用→演员关系→确认→接受Final。","function_change":"FULL_REBUILT发现功能；1343+G6较1565少216生成，4Search/5Actor同原，Prompt31338较31755少417，主要表达/返回变化。","evidence":["O1","O2","N11","N12","N13"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"重做两广搜发现，末次确认改剧集细节而不是演员Deliler。","state_chain":"真实发现→采用演员/剧目→剧集确认→同答案；未见新增词典被明确用作关系依据。","function_change":"FULL_REBUILT，1577+6净生成+18，Search/Actor同原，Prompt29969净-1786。生成与输入成本方向不同。","evidence":["N21","N22","N23","N24"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"从题目需专门核实转为认为已有Search不能完成这种任务，未发Call便决定拒答。","state_chain":"无已知候选→自主工具能力否定→零搜索→正式拒答W。没有真实返回失败、没有候选排除或重建。","function_change":"NOT_OBSERVED 原发现功能；396+6净生成-1163，0Search/1Actor较原-4/-4，Prompt431净-31324；因未完成任务的低消耗不称有效节省。","evidence":["N31","N32"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"首广搜直接返候选，演员关系采用后直接提交，少原第二发现尝试和末次确认。","state_chain":"一次发现→演员真实资料→语义采用→接受/Final，无新确认。","function_change":"FULL_REBUILT发现更短；1285+6净生成-274，2Search/3Actor较原各-2，Prompt10623净-21132；节省分落两个不同工作位置。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"A类3/4保持中，三次成功不是原发现功能消失，而是恢复真实候选取得和采用；其成本差异由首查命中/是否追加确认及表达造成。第四次没有工具故障或缺失返回证据，而是在任何尝试前把任务核实要求解释成自身工具能力不足，直接拒答。这个例外说明P为空时起步决策的重新采样也能改变结果，不能把拒答归因成某个候选判断被删，亦不能把失败省下的成本当冗余证据。",
+ "within_case_support":"冻结A/C→CCWC，3/4发现恢复并C，1/4工具能力否定→零Search→正式W。第一类过程3次、首查即命中且不确认1次，均与结果变化次数分开。",
+ "mechanism_chain_checks":[
+  {"chain":"重新执行广搜发现与证据采用，恢复同一候选及后续语义判断，保持正确答案","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N21","N22","N23","N24"],"4":["N41","N42","N43"]},"limits":"P空、泛G仍Oracle，不能当局部工作纯删除效应。"},
+  {"chain":"未真实查询前先否定工具核实能力，关闭发现行动并正式拒答","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32"]},"limits":"只是该次可观察理由，不证明隐含内部原因或G必然导致；非基础设施错误。"}
+ ],
+ "counterevidence_and_limits":["新3有真实Final但无答案，必须W不是N。","新3未做任何Call，不能说检索结果不足导致拒答，也不能把误判工具能力当真实不可查询。","G仅NowIneedverify无未来实体，不混同rep2S001的教师候选补偿。","新2有同义词材料返回但未明确作为依据使用，DocID不等于采用。","同题新4首查即命中但新1/2两次才命中，不能用单Query字符串长度代替实际Return作用。","原新仍有演员演出期非戏剧首演日期共同局限；部分Final额外creator角色断言支持不足。","独立删除成本不相加，G6计一次，失败低耗不叫有效节省。"],
+ "cost_basis":"原native0后1565生成/4Search/5Actor/31755Prompt(425+31330)。新1343/1577/396/1285生成，G6，净-216/+18/-1163/-274；Search4/4/0/2，Actor5/5/1/3，Prompt31338/29969/431/10623，净-417/-1786/-31324/-21132。首431=425+6。",
+ "next_cross_case_test":"跨题A的3/4正确例外应核查是否是未开始真实求解就拒答、候选关系未恢复、或实际证据缺失。不能将不同失败链统一归为原Stage重要；开头重采样与局部已知状态删除必须区分。"
+}

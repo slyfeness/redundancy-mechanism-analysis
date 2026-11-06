@@ -1,0 +1,442 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0298",
+  "stage_id": "S002",
+  "sample_order": 41,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "The date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China, occurring shortly after the passing of a prominent leader whose last public appearance involved meeting with a visiting dignitary from Pakistan.?",
+    "gold": [
+      "October 6, 1976"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "October 6, 1976",
+    "adopted_answer": "October 6, 1976",
+    "outcome": "C",
+    "reason": "后继纠正人物关系、补精确日期后Submit。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@581，P已采用Mao死亡9月9及四人帮一月后被捕结束文革，但没有巴基斯坦来宾身份、会见日期或确切被捕日。仅第一次Search真实历史可见，不含以后芒果或布托Return。",
+    "evidence_states": "领袖/事件月级已提取采用，人物最后露面关系与日级日期待取证。",
+    "evidence": [
+      "O_P",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 581,
+        "end": 885
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 1072
+      }
+    ],
+    "goal": "找到Mao最后露面与巴基斯坦来宾的对应关系。",
+    "operations": "SearchMao lastpublicappearancePakistan dignitary，芒果/Hussain材料返回；R3误称1968赠送为notablelastpublic并采用Hussain。",
+    "product": "得到真实1968芒果关联，却错误提升为题目last关系；未得布托。",
+    "judgment_change": "未知来宾被错误固定为Hussain1968，后继Open该文档并反复核查。",
+    "evidence": [
+      "O_QUERY",
+      "O_WRONG"
+    ]
+  },
+  "original_followup": {
+    "use": "多次接受/排除1968后，R7会见Search终于得9541138布托；日期另多次核验后C。U错误身份产物曾影响真实芒果Open/带Pakistan检索。",
+    "evidence": [
+      "O_FIX",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "辨认来宾及最后露面关系的检索和条件解释。",
+    "state_relation": "四条均真实重建这一信息需求，所得关系与采用时间不同。两条完整改布托、另一条虽先错后改亦C；一条在未获直接替代证据时长篇反复到长度终止。",
+    "evidence": [
+      "N1_FIX",
+      "N2_LOOP",
+      "N3_FIX",
+      "N4_FIX"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "From the first search results:",
+    "source_position": "R3[1072,1102)，6派生Token。",
+    "novelty": "仅指向P已有第一次结果，无人物/事实/方向新增；不含原U芒果身份。",
+    "risk": "ORACLE_ANCHORED但未见事实泄漏。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "后期9541138及179223均采用后提交。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_FIX"
+      ],
+      "work_and_evidence_timeline": "R2先将一月后算9日，并无源猜1974Bhutto，实际带Bhutto搜，3529115直接给5月27lastforeignguest；R3采用correctMay27却实际Open10527815仅10字符；R4—8为已读到的会见日先后Open3529115 10/10/50/offset2000limit500/offset1500limit500均错窗口；R9带已知May27/Bhutto搜才得9541138直接lastpublic；R10日期泛搜未日，R11长5240字符纠结9日/6日，带6日搜得179223；R12已采用仍查conclusion，R13/14Open179223前100/再100均没到6日；R15同带6日Search再次返回同批，R16终于Submit。",
+      "first_judgment_divergence": "没有Hussain固定，先自主猜Bhutto并真实检索，Return立即替换猜测1974为1976May27。",
+      "first_actual_tool_divergence": "首Query加Bhutto，直接有效；后来对已在Search可见信息大量短Open重复。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别最后会见/来宾",
+          "original_operation": "Search及材料采用",
+          "original_product": "错Hussain1968",
+          "new_goal": "同",
+          "new_operation": "BhuttoQuery得lastforeignguest、后补直接lastpublic",
+          "new_product": "正确布托5月27",
+          "evidence": [
+            "O_QUERY",
+            "O_WRONG",
+            "N1_FIX",
+            "N1_LAST_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "关系识别完整重做，产物纠正；更好结果不等于功能消失。",
+      "judgment_action_outcome_chain": "猜Bhutto→Return修正日期并采用→仍把已知关系当待核读错窗口→直接last/日期补齐后继续确认→C，增加Open与Actor成本。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "4727生成210307Prompt15Actor6Search8Open；原3337..3538生成，差[1189,1390]；少2Search但多7Open5Actor。增量有精确位置R3—8错窗口、R12—15答案已知再查；P3982/G6。",
+      "counterevidence_and_alternatives": "R2猜1974/9日被后证纠正，不能当最终错误；工具一直正常按字符返回，不称工具故障。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R6生成10000Token长度停止，无正式Submit/Final；中间6日不充答案。",
+      "outcome_evidence": [
+        "N2_LOOP"
+      ],
+      "work_and_evidence_timeline": "R2同月后先算9日，搜会见返芒果；R3识别Hussain并日期泛搜；R4承认无last文本却先按题意接受，再查限定1968Pakistan仍芒果；R5说1968不是last但虚构January1976文化聚会，合并last/结束日期Query仍泛文革；R6整34970字符反复怀疑Mao/周/刘、虚构July15LeDuan、欲搜但无实际新Call，持续相同计划至length。未得9541138或179223。",
+      "first_judgment_divergence": "人物材料采用相似于原U，但之后缺证未被可执行的新入口解决，而在生成内不断重复拟搜索。",
+      "first_actual_tool_divergence": "先同类会见Search，后加1968限定及混合目标长Query，最后无Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "最后来宾识别",
+          "original_operation": "真实Search/芒果采用",
+          "original_product": "Hussain1968错配",
+          "new_goal": "同",
+          "new_operation": "真实会见Search、条件比较、重新质疑",
+          "new_product": "错候选采用后仍待证，无正确替代",
+          "evidence": [
+            "O_QUERY",
+            "O_WRONG",
+            "N2_QUERY",
+            "N2_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "U真实取证和错误候选采用已重做；后继未完成与功能重建分开。",
+      "judgment_action_outcome_chain": "芒果关联被当last→1968冲突反复出现→限制旧年查询不补证→混合目标仍无解→未落实下一Call而长篇生成→N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "11730生成52978Prompt5Actor4Search0Open；差[8192,8393]增加；少4Search1Open5Actor源于提前长度失败，不是有效省耗。R6单轮10000是主要增量。",
+      "counterevidence_and_alternatives": "不得把很多Search计划算Calls；最终无答案不能据中间6日判C，也无法仅凭此支证明U必要。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "后期9541138与179223采用后Submit。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_FIX"
+      ],
+      "work_and_evidence_timeline": "R2错误把事件October1976带入last会见Query返体育/出生年；R3去月份搜芒果；R4加September1976再返无关；R5/6同QuerymeetingPakistan连续两次同Return，R7确认1968notlast但Open芒果仅5字符；R8移除月份并用Pakistani语法Query得原E7，R9采用布托；R9/11两种长日期Query泛返回，中间R10Open10527815仅10；R12改短日期Query得179223；R13仍Open179223前20只有October4警告，R14区分4/6日据旧SearchSubmit。",
+      "first_judgment_divergence": "初次把事件月份错误绑定会见，后不断修查询但未立即解除旧时间限定；R9才正确采用。",
+      "first_actual_tool_divergence": "首Query加October，后September；与原首Query取到芒果相比多无关入口。",
+      "function_correspondence": [
+        {
+          "original_goal": "来宾/last关系",
+          "original_operation": "Search/采用",
+          "original_product": "Hussain1968",
+          "new_goal": "同",
+          "new_operation": "多次Search和短Open后改Query取9541138",
+          "new_product": "布托5月27",
+          "evidence": [
+            "O_QUERY",
+            "N3_BAD_QUERY",
+            "N3_FIX"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "识别工作完整重建并纠正，路径较长。",
+      "judgment_action_outcome_chain": "事件月错用于会见→无关结果→去时间限制/反复芒果→last直接句终于采用→另补日期→已足仍短Open→C，更多取证和生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "5719生成257127Prompt13Actor9Search3Open；差[2181,2382]增加，多1Search2Open3Actor。错月查询、同Query重复和已知日期短Open为增量位置。",
+      "counterevidence_and_alternatives": "Query措辞相近但有的Return不同；只按字符串不够解释失败/成功。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "先日期直接支持、后会见纠正、最终Submit。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_FIX"
+      ],
+      "work_and_evidence_timeline": "R2先补日期Search直接179223；R3搜会见返芒果；R4仍last待核，换meetingPakistani dignitary得9541138；R5采用布托但重复同日期Search再得原E10；R6已接受两证仍Open179223默认4000全文；R7全条件重复比较后Submit。",
+      "first_judgment_divergence": "先闭合主日期，再不把芒果立即当last，改Query获得正确会见。",
+      "first_actual_tool_divergence": "首Call日期而非原会见；之后会见近似Query两次才成功。",
+      "function_correspondence": [
+        {
+          "original_goal": "来宾/最后露面识别",
+          "original_operation": "Search及条件解释",
+          "original_product": "Hussain1968错配",
+          "new_goal": "同",
+          "new_operation": "R3/R4两Search、R5采用直接句",
+          "new_product": "布托5月27",
+          "evidence": [
+            "O_QUERY",
+            "N4_FIX",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整重建且较早纠正；后继确认仍有重复。",
+      "judgment_action_outcome_chain": "主日期先证实→会见保持待查而非过早确认→直接句替换芒果→重复日期+全文Open→C，少于原失败链。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2385生成78816Prompt6Actor4Search1Open，差[-1153,-952]；少4Search4Actor，Open数量同原但对象/窗口不同。省在会见较早成功及不再多轮失败，非U功能未做。",
+      "counterevidence_and_alternatives": "虽然多次确认，仍比原短，不能拿重复存在就认定总成本高。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "3C1N，4FULL信息识别工作；C三支均改为布托，N支未获真正会见证据且生成内循环。",
+    "state_action": "r1很早识别布托仍反复Open；r3较晚才找回、更多Search；r4主日期先证实且会见较快更正；r2质疑未变成可执行新取证。",
+    "cost": "三支确定生成增加、一支确定减少；恢复同功能后是否把证据状态更新用于停止/换入口决定耗费差别。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "具体身份未定时，错误月份或旧候选限定可制造无关取证；获取直接关系并采用后才能把这个缺口关掉，但采用本身不保证停止重复检查。",
+      "support": [
+        "N1_FIX",
+        "N3_BAD_QUERY",
+        "N3_FIX",
+        "N4_FIX"
+      ],
+      "limits": "r1反例：关系很早正确仍多Open，不能单靠早采用预测低成本。"
+    },
+    {
+      "proposal": "没有替代证据时，冲突可在生成内反复派发搜索计划却无真实行动，导致技术长度终止；有直接证据的路径能恢复条件但也可能继续低增量核查。",
+      "support": [
+        "N2_LOOP",
+        "N3_FIX",
+        "N4_FIX"
+      ],
+      "limits": "单条N反例，未证明删U唯一因果；原U同样错误人物接受。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G6普通开头，无实体补偿，仍Oracle续写条件。",
+    "DERIVED_CHAR_EXACT，原后缀3337..3538生成保守界；不报告原生精确节省。",
+    "R1个人臆测Bhutto在1974不是已证，后Return修正；r2从未正式Final。",
+    "本Codex审核不等于人工金标准。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The Gang of Four was arrested one month after Mao's death"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Mao Zedong last public appearance Pakistan dignitary"
+    },
+    {
+      "evidence_id": "O_WRONG",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "notable last public appearance"
+    },
+    {
+      "evidence_id": "O_FIX",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "27 May 1976"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "From the first search results:"
+    },
+    {
+      "evidence_id": "N1_FIX",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So Mao's last public appearance was on May 27, 1976"
+    },
+    {
+      "evidence_id": "N1_LAST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Mao Zedong May 27 1976 Bhutto meeting last foreign guest"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Mao Zedong last public appearance Pakistan dignitary meeting"
+    },
+    {
+      "evidence_id": "N2_LOOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The snippet doesn't explicitly say it was his last appearance."
+    },
+    {
+      "evidence_id": "N3_BAD_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Mao Zedong last public appearance Pakistan dignitary October 1976"
+    },
+    {
+      "evidence_id": "N3_FIX",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "His last public appearance was on May 27, 1976, when he met Pakistani Prime Minister Zulfikar Ali Bhutto"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N4_FIX",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Mao's last public appearance was on 27 May 1976."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0298/trajectory.json",
+      "source_sha256": "bf3197a6fec2db1bc51d22d0ee599c78abac05856a655a10fcf5e4f813b00eeb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0298.json",
+      "source_sha256": "bb0b87d53cce546f6a34f83925efd1323dffe4dd3a90b6a18c0d47e6351882f1"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "6e487c24d82f3deb4adeea3917577ae1c70459c8ef2938bebf8e67b7169f43c3"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "dc38f1f93fef105569f3269d6f249389755eccc0b7a9d3976799072f9ceee05f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "1ded246d2dc6bc132e2ba100f26149da63e8d4af2e1137d172b8d6240295ca64"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "6a489770a8dc4c669de20371f25047b3776985e8723cece637f574044c8b545d"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "5e1cc4fec292fff83a7cab82210aad03c4df96a12599924d062b2f5417ecc958"
+    }
+  }
+}

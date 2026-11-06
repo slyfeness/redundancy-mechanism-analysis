@@ -1,0 +1,528 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0331",
+  "stage_id": "S001",
+  "sample_order": 13,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0331/trajectory.json",
+      "source_sha256": "e864bfc7572515aff831c57d6ccb2bbe92c01ca3f54da1b837f41fb087d49616"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0331.json",
+      "source_sha256": "4774c8b34c639fbb34a30a5dda7041f43c8528cb57bb7c24758df3796ccf1baa"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "3f7dcb18fb6bbaa68787eca379480158dbb0cef72c7366c6361b112783d3b859"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "5eb840d43f1e36009cac39ccae56ea8398e039be851e963a2d7036afde2868be"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "74e5e45b9149793e056e2871f73412880c9e58c58547754a441ba89a39759367"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f6b1536d8cfff2a940e9cfee5cefab4340561e67e3e9638943cd15827b0f6f9f"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "46b4a933e7d0bca48f7bb1a2c99c0fddef1dc7074ab8f2a919d0a27bdb5fcf1c"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the precise unveiling date of the primary memorial structure in Kings Park, whose establishment coincided with a state centenary, and which serves as a central roll of honour for Western Australian servicemen who perished in the earliest major conflict broadly commemorated by the historical avenues of honour maintained by the group originally responsible for the Kings Park Honour Avenues plaques?",
+    "gold": "24 November 1929",
+    "gold_use": "只用于事后评价，不据Gold推断早期已知日期或补证。"
+  },
+  "read_scope": {
+    "original": "原3Round/2Search及完整Return、Final、两Stage映射完整阅读；31251字符原文视图。",
+    "new": "四条完整新Reasoning、真实Search/Open/Submit及全部Return、Final，88670字符固定视图[0,88670)已连续读完；完全相同已读返回精确引用，不省略真实事件。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "24 November 1929",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R1@0。",
+    "actual_P": "只有原Question、系统/工具模板，当前Reasoning为空；无日期、百年年份或具体建筑的工具证据。",
+    "open_gaps": "定位建筑、百年、名录/战争关系和维护组织，并提取准确揭幕日。",
+    "evidence_levels": "题目约束可见，不是已得到建筑日期。原U首次把外部日期从返回转为明确采用。",
+    "input_budget": "P515+G5=520，首请求10000生成预算，历史0Actor。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 759
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 662
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 226
+      }
+    ],
+    "actual_tools": [
+      "原R1 /tool_events/0 Search，R2可见",
+      "原R2 /tool_events/1 Search，R3可见"
+    ],
+    "goal": "从多约束定位Kings Park的建筑，并取得精确日期。",
+    "operations": "首次宽Query多为背景/无关，但取得1929百年背景；第二次Query加入WWI、unveiling后返回完整253字符RSL维护句及Cenotaph揭幕句，R3直接引用日期。",
+    "product": "Cenotaph、24 November 1929、百年和名录及维护组织相关资料；日期被提取，尚未开始独立的This matches the criteria全题接受。",
+    "judgment_change": "建筑/日期未知→把Cenotaph揭幕句作为候选答案依据。R2暂猜WWI并非已获得独立战争覆盖结论。",
+    "evidence": [
+      "O_FIRST_QUERY",
+      "O_SECOND_QUERY",
+      "O_DATE_RETURN",
+      "O_RSL_RETURN",
+      "O_DATE_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "S002 R3@226后逐条件接受建筑、百年、名录和RSL，将earliest解释为Boer War，Submit日期。没有新取证。",
+    "quality_limit": "原将名录Boer最早联到题目的avenues，未单独核实avenues主要战争范围；新路径多解释WWI。两种解释都可能保持同建筑/日期，不能拿同C说所有关系判断相同。"
+  },
+  "function_features": [
+    "首次取得并采用明确日期，非已知答案的重复确认",
+    "宽检索失败后沿题目条件调整Query，核心日期必须由实际Return提供",
+    "四次取证功能均重建，但取得日期之后的验证动作有无不同，导致成本不同"
+  ],
+  "guide_audit": {
+    "text": "This matches the criteria:",
+    "origin": "原R3 /rounds/2/reasoning_content [226,252)；冒号引导行，无列表。",
+    "tokens_derived": 5,
+    "comparison_to_complete_P": "没有实体、日期、年份、关系事实或答案；但matches是原后继接受语气，属于教师提供的组织/匹配方向。",
+    "observed_behavior": "四条都没有因为matches就直接提交，仍真实查询；r3甚至先自造错误1955再被Return纠正。",
+    "risk": "ORACLE_ANCHORED，未发现决定性事实泄漏；无纯无G对照，不能把结果保持视作无引导因果省略。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "真实R6 Submit日期，有直接揭幕句及另一centenary文档支持。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1以WWI+centenary查，得到多种公园纪念建筑、1921555提State War Memorial、1921560维护RSL；没有目标日期。R2依据该State War Memorial实际换成具体建筑Query，得到1921557日期及4796888再次明确同日期纪念WWI。",
+        "R3已引用两份日期、接受建筑/百年并用WWI解释earliest，却决定Open确认完整上下文。R3和R4连续offset0 limit50，返回完全一样且不到日期。R5说full text truncated改limit100，日期在其中，但内容仍是Search已有片段，无新增关系。",
+        "R6再次多条件确认并Submit，延续WWI解释而非原Boer。两种战争解释没改变目标Cenotaph/date，但不能称认知完全相同。"
+      ],
+      "first_judgment_divergence": "R2由返回明确State War Memorial进入精确对象，日期取得后R3认为已匹配却仍发Open；原取得日期后直接进入判断/Submit。",
+      "first_actual_tool_divergence": "R1新Query不同，R2转具体State War Memorial；获得日期之后新增3次真实Open，原没有Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "定位建筑并取日期",
+          "original_operation": "两Search→读揭幕句",
+          "original_product": "Cenotaph/date",
+          "new_goal": "同一定位/日期",
+          "new_operation": "两Search定位State War Memorial并取得两份日期句，随后多余短Open",
+          "new_product": "同建筑日期明确采用",
+          "evidence": [
+            "O_SECOND_QUERY",
+            "O_DATE_ADOPT",
+            "N1_TARGET_QUERY",
+            "N1_DATE_ADOPT",
+            "N1_OPEN_REPEAT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、真实取证和日期采用均恢复，不因Query不同就判未重建；额外Open是后续行为增量。",
+      "judgment_action_outcome_chain": "未知日期→真实定位建筑和取得日期→已接受匹配却仍把完整上下文当待办→短Open重复后仍依旧Snippet提交C；消耗增加不来自新增有效日期证据。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "1358生成/31506Prompt/2Search/3Open/6Actor；原R1起630/12521/2Search/0Open/3Actor。生成+728、Prompt+18985、Open+3、Actor+3，日期取得后短Open和重复条件说明为具体落点。P515与G5是prefill，不另算生成。",
+      "counterevidence_and_alternatives": "全C但成本全面上升，不能归A=省；WWI判断未像原转Boer，而同日期得到保持，答案稳定掩盖关系解释差异。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "R3真实Submit同日期，日期直接返回且采用。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1从知识提出Australian War Memorial或Cenotaph但未接受，实际宽Query得到原E0同完整Return。R2提取1929百年背景，再以unveiled1929查询。",
+        "R2第二Return含1921557日期及4796888重复确认，但没有1921560的完整RSL维护条目；R3采用日期、列名录战争和Arthur Lovekin/维护组的一般话，直接Submit，无Open。"
+      ],
+      "first_judgment_divergence": "R1比原较早提Cenotaph候选但仍真实搜；R3不单独展开原Boer最早判断，维护组织也较含糊，日期接受和提交仍完整。",
+      "first_actual_tool_divergence": "R2将已得1929用于Query；同样两Search，后续直接Submit，未增加取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "取准确揭幕日",
+          "original_operation": "两Search读日期",
+          "original_product": "24 November1929",
+          "new_goal": "同一日期",
+          "new_operation": "两Search，第二Return日期被采用",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_DATE_RETURN",
+            "O_DATE_ADOPT",
+            "N2_TARGET_QUERY",
+            "N2_DATE_ADOPT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心定位/日期工作恢复；原U还获得的具体RSL维护材料未见完整恢复，作为附带证据覆盖变化单列，不能以FULL抹去。",
+      "judgment_action_outcome_chain": "两Search重新取得同日期→简短条件核对即SubmitC；原来必要取证未消失，减少主要在规划/全题表述。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "514生成/12427Prompt/2Search/0Open/3Actor；生成−116、Prompt−94、工具/Actor相同。是同功能较短表达/组织，不是取消了U取证；完整RSL/earliest论证也较少。",
+      "counterevidence_and_alternatives": "答案C不证明所有辅助条件同等核实；r2缺少1921560真实Return，不能把原U的组织证据回填成新证据。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "R3真实Submit日期；R2实际完整Return提供日期和RSL，修正初始1955。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1自身说Western Australia founded1829却断言centenary1955，拟找1955 WWI memorial；真实Query未包含1955，返回空。这个自造年份没有变成真实查询参数，不夸成搜索错误1955。",
+        "R2根据空结果转查Kings Park Honour Avenues group responsible，取得与原E1完全相同的完整Return：1921560维护者与1921557Cenotaph日期。",
+        "R3直接采用1929日期/百年并列Boer War最早，纠正先前1955，真实Submit。无Open。"
+      ],
+      "first_judgment_divergence": "R1产生错误1955预设，R3实际依据返回纠正为1929；没有一直把1955当查询约束或接受条件。",
+      "first_actual_tool_divergence": "R1空结果后R2从建筑/年份组合转到维护组织入口，实际返回同时补齐建筑日期，未重查1955。",
+      "function_correspondence": [
+        {
+          "original_goal": "建筑与日期",
+          "original_operation": "先宽查再加WWI/unveiling",
+          "original_product": "日期和组织材料",
+          "new_goal": "建筑日期",
+          "new_operation": "空结果后改查维护组织，同一证据包直接采用",
+          "new_product": "日期及关系恢复，错误年份被替换",
+          "evidence": [
+            "O_DATE_RETURN",
+            "O_RSL_RETURN",
+            "N3_WRONG_YEAR",
+            "N3_ORG_QUERY",
+            "N3_DATE_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "采用不同入口取得同样日期及组织证据，完整核心成果恢复，且发生原本没有的纠错。",
+      "judgment_action_outcome_chain": "初始错误年份但未绑定实际Query→空结果转组织入口→返回有效日期及关系→实际改用1929并提交C；错误猜测没有固化成后续前提。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "642生成/5812Prompt/2Search/0Open/3Actor；生成+12，Prompt−6709，Search/Actor不变。首次空Return替代原背景大包，减少后续Prompt体量，不能全归删除U减少推理。",
+      "counterevidence_and_alternatives": "错误预设发生但可被真实Return改正，是不充分解释必然制造长期错误任务的反例；不证明G造成或修正1955。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit同日期；两份返回都明确该日期。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1返回与r1首批相同，提State War Memorial、Honour Avenues RSL。R2将具体对象转为真实Query但结果空。",
+        "R3在仍无日期时继续围绕对象，将1929加入新Query；返回1921557及4796888两份日期。R4明确采用、匹配并Submit。没有在日期已取得后额外取证。",
+        "R4用WWI作为avenues broadly commemorated最早，未按原转Boer；目标日期不因此变化。"
+      ],
+      "first_judgment_divergence": "R2已知对象而日期仍缺，空结果后R3继续实际查日期；与r1不同，取到日期后没有再派Open。",
+      "first_actual_tool_divergence": "三Search而原两次；新增一次在关键日期尚未返回时的查询，不等同r1已经有日期后的无增量Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "定位并提取日期",
+          "original_operation": "两Search",
+          "original_product": "Cenotaph/date",
+          "new_goal": "同一日期",
+          "new_operation": "三Search含一次空重试，第三Return日期采用",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_DATE_ADOPT",
+            "N4_TARGET_QUERY",
+            "N4_DATE_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "关键证据和采用恢复；多一次工具是取得证据之前的尝试，不能仅因多Call判冗余。",
+      "judgment_action_outcome_chain": "已有对象无日期→一次空结果后继续取证→实际补到日期→接受SubmitC；增加工作发生在缺口真正未解决时。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "1103生成/14748Prompt/3Search/0Open/4Actor；生成+473、Prompt+2227、Search+1、Actor+1。增加来源包含额外未解决日期查询和较长条件复盘，不是所有新工作都可谓无增量。",
+      "counterevidence_and_alternatives": "与r1都C且都更多调用，但时点不同：r4多搜为尚无日期，r1重复Open在已有日期与已接受之后；不能用统一成本标签代替解释。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "target_function_recovery": "核心建筑定位、日期真实取证和采用4/4恢复。r2附带组织证据弱于原，关系论证需单列。",
+    "same_answer_different_paths": "r1日期已采用后3Open；r2两Search后简短提交；r3错误1955被组织入口Return纠正；r4缺日期时多一次Search，得到后立即提交。",
+    "cost": "只有r2生成下降；r3Prompt显著下降而生成略增、工具相同。r1和r4成本增加但工作性质和发生时点不同。不能说全C=整Stage无新增功能。",
+    "war_relation": "原Boer、r3Boer，r1/r4WWI，r2未明说最早；相同Cenotaph/date之下存在可见解释差异。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "判断已有证据是否已经足以关闭具体缺口，会决定同样的核验形式是必要补证还是没有新产物的继续读取；必须看动作开始时的信息状态。",
+      "contrast": "r4多一次Search时日期尚未返回，随后确实得到日期；r1日期已有两份支持且已接受匹配，3次短Open只重现片段，日期与关系状态未改变。两条答案都C，成本却以不同工作增加。",
+      "scope": "本Stage1题4续跑；不是所有多次核验都低价值，也不宣称知道r1为何心理上不停止。"
+    },
+    {
+      "statement": "初始错误候选属性只有在被保留成后续行动前提时才可能锁住路径；被真实返回纠正的错误猜测是必须保留的反例。",
+      "contrast": "r3先说1955却Query不含该年，之后组织入口提供1929，R3采用并提交。不能仅从错误文字认定错误假设控制了所有实际Search。",
+      "scope": "1题1条明确纠错路径，与其他题的错误前提持续路径后续比较。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "A0/4状态变化并未证明U功能省略，四条实际重建核心取证。",
+    "r2较短伴随附带组织证据/earliest展开减少，不能称完整证据质量必定相等。",
+    "r3自造1955实际被修复，不能为了错误前提机制忽略这个反例。",
+    "原Boer与新WWI对题目修饰关系的理解不完全一致；不在本轮重写Gold或历史评价，保留待研究者判断。",
+    "R1起点可用完整usage对照，但原无nativeIDs，仍不报原生Token精确节省；所有P/G/Prompt分别计费。",
+    "ORACLE_ANCHORED的matches语气和随机路径差异存在，不能把检索变化全归独立删除因果效应。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "This matches the criteria:"
+    },
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What is the precise unveiling date of the primary memorial structure in Kings Park"
+    },
+    {
+      "evidence_id": "O_FIRST_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Kings Park memorial structure state centenary Western Australian servicemen Honour Avenues",
+      "call_id": "chatcmpl-tool-a18f6d06dc6cc1d6"
+    },
+    {
+      "evidence_id": "O_SECOND_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Kings Park Honour Avenues WWI memorial unveiling date centenary",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/1/snippet",
+      "exact_quote": "The Cenotaph was unveiled in the year of the centenary of Western Australia, on 24 November 1929",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1921557"
+    },
+    {
+      "evidence_id": "O_RSL_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "Today they are known as the Honour Avenues Group.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1921560"
+    },
+    {
+      "evidence_id": "O_DATE_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "on 24 November 1929 by the Governor William Campion"
+    },
+    {
+      "evidence_id": "N1_TARGET_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "State War Memorial Kings Park Western Australia unveiling date centenary 1929",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the precise unveiling date is 24 November 1929."
+    },
+    {
+      "evidence_id": "N1_OPEN_REPEAT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "The Cenotaph was unveiled in the year of the cente",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1921557"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-8d27e8ae25f419ed"
+    },
+    {
+      "evidence_id": "N2_TARGET_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Kings Park memorial structure unveiled 1929 centenary roll of honour",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_DATE_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The question asks for the precise unveiling date of the primary memorial structure (the Cenotaph), which is 24 November 1929."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-91269171c95c86cf"
+    },
+    {
+      "evidence_id": "N3_WRONG_YEAR",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The state centenary would be 1955 (Western Australia was founded in 1829)."
+    },
+    {
+      "evidence_id": "N3_ORG_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Kings Park Honour Avenues group responsible",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_DATE_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This was during the centenary of Western Australia (which was established in 1829)"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_TARGET_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Kings Park State War Memorial unveiling date 1929 centenary",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_DATE_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The answer is 24 November 1929."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

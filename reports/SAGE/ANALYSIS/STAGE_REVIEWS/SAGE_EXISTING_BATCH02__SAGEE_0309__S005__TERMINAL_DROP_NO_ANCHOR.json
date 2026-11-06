@@ -1,0 +1,399 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0309",
+  "stage_id": "S005",
+  "sample_order": 36,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What is the numerical difference between the publication year of Gabriel García Márquez's novel, which became his best-selling and most translated work, and the publication year of his novel whose title refers to a season and a specific title of nobility?",
+    "gold": [
+      "8"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "8",
+    "adopted_answer": "8",
+    "outcome": "C",
+    "reason": "1967/1975差8与Gold一致，Patriarch并非严格贵族爵位是题目匹配歧义。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R7@0，保留六次真实Search/Return。第一书1967与销量译数在E4；第二书1975及书名在E6，仍可见。当前推理空，旧日志采用判断不等于全部进模板，但关键文档都在。",
+    "evidence_states": "两本书与年份已返回，原日志R5采用1967、R6选择Autumn，尚无原R7差8/Final。",
+    "evidence": [
+      "O_YEAR1",
+      "O_YEAR2"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 686
+      }
+    ],
+    "goal": "接受两书条件与出版年，算差并正式提交。",
+    "operations": "整合1967和1975，1975-1967=8，实际Submit8。",
+    "product": "完整答案8及正式提交。",
+    "judgment_change": "独立片段变成联合匹配与算术产物，停止取证。",
+    "evidence": [
+      "O_CALC",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "无独立原后续Reasoning，U即末段包含Submit，Final单列。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已有证据上的条件接受、年差计算与提交。",
+    "state_relation": "四支均重新完成匹配/计算/提交，r2还加一次真实年份确认。",
+    "evidence": [
+      "N1_CALC",
+      "N2_CALC",
+      "N3_CALC",
+      "N4_CALC"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "",
+    "source_position": "NO_ANCHOR",
+    "novelty": "无G，无未来事实预填。",
+    "risk": "TERMINAL_DROP_NO_ANCHOR，属于从同P自然续跑；不是注入Final或强制结束。",
+    "evidence": [
+      "I_EMPTY"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "真实提交8。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R7从P回取两书年份，解释Patriarch是权威称谓而非严格爵位，比较其它题名后算8，直接Submit；无Search/Open。",
+      "first_judgment_divergence": "结论同原，但论证增加题名匹配与唯一候选复核。",
+      "first_actual_tool_divergence": "无工具路线分歧，仍只Submit8。",
+      "function_correspondence": [
+        {
+          "original_goal": "年差与正式答案",
+          "original_operation": "两书确认、减法、Submit",
+          "original_product": "8",
+          "new_goal": "同一联合决策",
+          "new_operation": "R7逐条件比较并减法提交",
+          "new_product": "8与较长理由",
+          "evidence": [
+            "O_CALC",
+            "N1_CALC",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "认知工作和提交完整重做。",
+      "chain": "已有两年→重新条件接受→减法→同答，不需要新取证但未跳过决策。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "482gen/12160Prompt/1Actor/0Search/0Open，对原195gen增加287，表达更长。",
+      "counterevidence_and_alternatives": "答案保持不能认定末段冗余；该工作在新路径发生。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "正式8，额外1975返回实际支持。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R7已说两书1967/1975但仍搜索Autumn publicationyear1975；E1再给815597/多来源1975。R8采用同年并整合减法Submit8。",
+      "first_judgment_divergence": "已有1975可见仍决定再证一次，而原立即计算提交。",
+      "first_actual_tool_divergence": "R7新Search取代原Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合年份算差提交",
+          "original_operation": "直接1967/1975减法",
+          "original_product": "8",
+          "new_goal": "先确认第二年再联合判断",
+          "new_operation": "真实1975Search后R8减法Submit",
+          "new_product": "8，同一支持重复返回",
+          "evidence": [
+            "O_CALC",
+            "N2_QUERY",
+            "N2_CALC",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "完整恢复且加新核查。",
+      "chain": "已知第二年仍待再确认→重复年份取证→恢复联合计算→8，更多交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "657gen/28513Prompt/2Actor/1Search/0Open；gen多462，新增Search及其后请求Prompt16353是明确增加工作。",
+      "counterevidence_and_alternatives": "Search并非新发现1975，不能将再次返回写成原本无证。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "真实8。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R7先列两本书/年算8，随后引用P中三处1975而无新Call，再减法确认Submit8。",
+      "first_judgment_divergence": "没有核心判断改变，只将第二年份的多来源证据整理得更明确。",
+      "first_actual_tool_divergence": "无，仍只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "联合年份接受及差值",
+          "original_operation": "比较并减法提交",
+          "original_product": "8",
+          "new_goal": "同一工作",
+          "new_operation": "引用旧返回交叉确认再算",
+          "new_product": "8",
+          "evidence": [
+            "O_CALC",
+            "N3_CALC",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "再次引用是计算决策内的处理，未凭新Search但完整做了原工作。",
+      "chain": "现成证据→重新接受/计算→提交8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "342gen/12160Prompt/1Actor/0Search，比原多147gen，无搜索成本变化。",
+      "counterevidence_and_alternatives": "证据组织存在并非独立真实核查Call；不能误计Search。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "8正确。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R7先第二书与1975、再第一书1967，列具体文档、重新全文核题，两次明确算8后Submit，无Search/Open。",
+      "first_judgment_divergence": "先后颠倒且篇幅更长，判断产物相同。",
+      "first_actual_tool_divergence": "无，Submit8。",
+      "function_correspondence": [
+        {
+          "original_goal": "两书匹配/年份差",
+          "original_operation": "第一书再第二书再减法",
+          "original_product": "8",
+          "new_goal": "相同",
+          "new_operation": "第二书先核、第一书后核并减法",
+          "new_product": "8与更长解释",
+          "evidence": [
+            "O_CALC",
+            "N4_CALC",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "完整认知与正式行为重建。",
+      "chain": "两事实已可见→重新组织接受→减法→同答、篇幅扩大。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "695gen/12160Prompt/1Actor/0Search，比原多500gen，落在展开条件与全文复盘。",
+      "counterevidence_and_alternatives": "没有新证据不代表没有实际认知工作；不能按结果同C称省。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "4/4完整重建，3支直接沿用旧证据，1支额外Search1975。",
+    "cost": "4支生成全增；r2Search和Actor增加，其余不变。",
+    "inference": "这是答案稳定但决策功能重新执行的A实例；不支持删除末段能绕过该工作，也没有计算下降。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "前缀已具两年和题名时，联合决策能在无新检索下恢复；是否把已见年份继续当待证决定额外交互，而重新解释篇幅可独立增加生成。",
+      "support": "四支皆8，只有r2为已知1975新增Search，其余纯重新计算。",
+      "limits": "一题四seed，无G因果纯度较高但仍仅一次截点自然采样，不等同功能可省。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "Patriarch不是严格欧洲爵位的语义保留原歧义，没有新断言其规范性已证。",
+    "原最畅销/最翻译是由50m/46languages等材料和常识采用，未穷举销售排名；共享支持范围不能夸大。",
+    "无native原IDs，标DERIVED_CHAR_EXACT；usage原195可比但非原生逐Token复现，P12160单列，G0。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 7,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_YEAR1",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/7/snippet",
+      "exact_quote": "first published in May 1967"
+    },
+    {
+      "evidence_id": "O_YEAR2",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/results/1/snippet",
+      "exact_quote": "1975 novel"
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Difference: 1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "\"The Autumn of the Patriarch\" publication year 1975"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Difference = 1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0309/trajectory.json",
+      "source_sha256": "d5b10c68a465ea04f47c7f7dc899ec8bc9f4be3926f39169affc385f866b569c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0309.json",
+      "source_sha256": "8fffc94fbd3e4dc1b6404700494c1016f067afd75d7545788bd405bb8f95ddb5"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "f70fb057fb760cbc3698a756fb6a4842576d3a7fee3a460fc96b2e0c962c0858"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "d24ba0f8f5f9287b08a7064c68b9d1f93c2ea0a3ccb124a2e43523cf991335c2"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "c0d205d0e879b221136e5b4435320ba4ea960971b0101fd0c339e72c61b16267"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "eb48423c179c9e524c751c22bf04db4df9d80c3e0be920237b87147ba118c6e5"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0309__S005__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "22e8571a52429bce09788598700546d37b9f52554d9a4b5d0f2fffa8256f078e"
+    }
+  }
+}

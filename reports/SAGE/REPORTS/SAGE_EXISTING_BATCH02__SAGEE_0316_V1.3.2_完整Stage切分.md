@@ -1,0 +1,706 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0316｜V1.3.2完整Stage切分
+
+样本序号：14；原件SHA256：`2e41034679fc642c7b29ee5e74a24995e5bc4732801f5dd63a79517838a78ab9`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What was the birth year of the scholar associated with the readership position held by Kathleen Hughes, who supervised John Bannerman's doctorate at the University of Cambridge?
+````
+
+## 完整求解过程
+
+模型先把题目拆成Bannerman导师、导师的readership及相关学者出生年的关系链，查询Bannerman。首批返回明确给出他1964年在Cambridge完成博士、导师Kathleen Hughes；R2开头直接采用这一事实。
+
+接着它转而查Hughes的readership。第一次带scholar的查询返回无关材料；R3说明本次未找到所需信息，沿用同一人物与职位检索计划，将词改成University of Cambridge再查。该次返回Hughes传记，包含1926年出生及Nora Chadwick Reader in Celtic Studies。这里两次检索没有展开独立候选比较或改变证据方法，是同一取证计划的普通重试。
+
+R4开始将Bannerman导师材料与Hughes传记并列对照，明确把职位持有人Hughes解释为题目所问的相关学者，提取其1926年出生并提交。原文没有真正查询Nora Chadwick的出生年；报告保留模型实际解释，不替它修正题意或补入另一人物的事实。submit_answer被接受，正式Final为1926，终态MODEL_FINAL_STOP。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 定位Bannerman的Cambridge博士导师并采用Hughes线索 | 导师身份被采用，readership尚待查。 | E001 |
+
+| S002 | R2 / 0 / 152 | 查Hughes的readership及人物资料，失败后按原计划重试 | Nora Chadwick Reader职位和Hughes的1926出生资料已返回。 | E002,E003 |
+
+| S003 | R4 / 0 / 0 | 比较关系链并接受Hughes出生年1926，正式提交 | VALID_FINAL，MODEL_FINAL_STOP，答案1926。 | E004 |
+
+## S001｜定位Bannerman的Cambridge博士导师并采用Hughes线索
+
+拆解关系链，搜索Bannerman博士导师，R2开头确认Kathleen Hughes指导其1964年博士。
+
+结束状态：导师身份被采用，readership尚待查。
+
+边界判断：原轨迹起点。查询准备、真实搜索及直接导师事实反馈保持完整。
+
+内部KEEP与反证：R1列出的后续任务只是计划，不提前划为已执行动作；R2首句直接解释本次返回，留在此Stage。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,437)
+
+SHA256：`3be3ed350f83c8104b6c538bb8b144f02532f46916a5d89fdacb49e73f674e9f`；原字段SHA256：`3be3ed350f83c8104b6c538bb8b144f02532f46916a5d89fdacb49e73f674e9f`。
+
+````
+This is a multi-hop question that requires me to:
+1. Find out who supervised John Bannerman's doctorate at the University of Cambridge
+2. Find out what readership position that supervisor held
+3. Find out who held that readership position (Kathleen Hughes)
+4. Find out the birth year of the scholar associated with that readership position
+
+Let me start by searching for information about John Bannerman and his supervisor at Cambridge.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "John Bannerman doctorate University of Cambridge supervisor"
+  },
+  "id": "chatcmpl-tool-821781de4b56137e",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"John Bannerman doctorate University of Cambridge supervisor\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-821781de4b56137e",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "John Bannerman doctorate University of Cambridge supervisor"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 1.004607082810253,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4914026",
+        "score": 25.882319544594974,
+        "snippet": "Scottish historian John Walter MacDonald Bannerman (13 August 1932 – 8 October 2008) was a Scottish historian, noted for his work on Gaelic Scotland. Biography. He was born in Balmaha, Stirlingshire, the son of John MacDonald Bannerman, later Lord Bannerman of Kildonan, and his wife Ray Mundell. His family was native speakers of Scottish Gaelic, and after leaving school Bannerman studied Celtic languages at the University of Glasgow. He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes. Although he considered teaching Gaelic in schools, Bannerman instead took up a post at the Celtic department of the University of Aberdeen before joining the history department at the University of Edinburgh in 1967. He took over the running of the family farm at Balmaha in 1968, shortly before his father's death, dividing his time between teaching at the university, writing, and farming. His work on Gaelic Scotland was influential. His early works on Dál Riata, the Senchus fer n-Alban, and the Iona chronicles which formed part of the later \"Chronicle of Ireland\" are contained in his 1974 book \"Studies in the History of Dalriada\". He was a major contributor to the record of \"Late Medieval Monumental Sculpture in the West Highlands\" published in 1977 and his study of the Beaton family—\"The Beatons: Medical Kindred in the ",
+        "text_characters": 1771,
+        "title": "John Bannerman (historian)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:489960",
+        "score": 23.346767901107516,
+        "snippet": "In April 1868, at the age of thirty-one, Campbell-Bannerman stood as a Liberal candidate in a by-election for the Stirling Burghs constituency, narrowly losing to fellow Liberal John Ramsay. However, at the general election in November of that year, Campbell-Bannerman defeated Ramsay and was elected to the House of Commons as the Liberal Member of Parliament for Stirling Burghs, a constituency that he would go on to represent for almost forty years. Campbell-Bannerman rose quickly through the ministerial ranks, being appointed as Financial Secretary to the War Office in Gladstone's first government in November 1871, serving in this position until 1874 under Edward Cardwell, the Secretary of State for War. When Cardwell was raised to the peerage, Campbell-Bannerman became the Liberal government's chief spokesman on defence matters in the House of Commons. He was appointed to the same position from 1880 to 1882 in Gladstone's second government, and after serving as Parliamentary and Financial Secretary to the Admiralty between 1882 and 1884, Campbell-Bannerman was promoted to the Cabinet as Chief Secretary for Ireland in 1884, an important role with ongoing Home Rule debates. In Gladstone's third and fourth governments, in 1886 and 1892 to 1894 respectively, as well as the Earl of Rosebery's government from 1894 to 1895, Campbell-Bannerman served as the Secretary of State for War. His only military experience was thirty years earlier with the 53rd Lanarkshire Rifles Volunteers.",
+        "text_characters": 2800,
+        "title": "Henry Campbell-Bannerman"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5467597",
+        "score": 21.609099867578905,
+        "snippet": "Mary Bateson (12 September 1865, Robin Hood's Bay – 30 November 1906, Cambridge) was a British historian and suffrage activist. Life. Bateson was the daughter of William Henry Bateson, Master of St John's College, Cambridge, and Anna Aikin. The geneticist William Bateson was her older brother; Anna Bateson and Margaret Heitland were her sisters. She was educated at the Perse School for Girls and Newnham College, Cambridge. She spent her entire professional life at Newnham, teaching there from 1888 and becoming a Fellow in 1903. Known for her writings in medieval history, she was supported professionally by historians Mandell Creighton and F. W. Maitland. She died of a brain haemorrhage and is buried in Histon Road Cemetery, Cambridge. Activism. As part of her suffrage activities, Bateson became the Cambridge organiser for the Central Society for Women's Suffrage in 1888. The following year she was elected to the executive committee Cambridge Women's Suffrage Association. In 1906 she participated in a deputation to Parliament where she presented Prime Minister Henry Campbell-Bannerman with a petition on behalf of ‘women who are doctors of letters, science and law in the universities of the United Kingdom and of the British colonies, in the universities also of Europe and the United States’. The petition declared that the signatories ‘believe the disenfranchisement of one sex to be injurious to both, and a national wrong in a country which pretends to be governed on a represent",
+        "text_characters": 1526,
+        "title": "Mary Bateson (historian)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5587045",
+        "score": 21.511364768190255,
+        "snippet": "Ghanaian politician (1865–1931) Thomas Hutton-Mills, born Thomas Hutton Mills (13 June 1865 – 4 March 1931) was a lawyer and nationalist leader in the Gold Coast. He is often referred to as Thomas Hutton-Mills Sr. to distinguish him from his son, the lawyer and diplomat Thomas Hutton-Mills Jr. (1894–1959). Life. Thomas Hutton Mills was born in James Town, Accra, the son of Emma Bannerman, the second daughter of Governor James Bannerman, and John Edward Hutton Mills, a James Town merchant. He was educated at the Wesleyan School in Accra and Cape Coast, the Wesleyan High School in Freetown, Sierra Leone, Harrow School and at Cambridge University in the United Kingdom. After starting work as a commercial clerk, he was a government clerk in the office of the Queen's Advocate, until dismissed for his participation in the protests of September 1886. In 1886, he married Florence Nanka-Bruce, sister of Frederick Nanka-Bruce; after her early death he married another sister, Emma Nanka-Bruce. After working as chief clerk in the office of his uncle Edmund Bannerman, a barrister and newspaper proprietor, Hutton-Mills travelled to England in 1891 to study law at the Middle Temple, returning to practise in Accra on being called to the Bar in 1894. In 1897 he was prominent in debate over the Town Council and Compulsory Labour Ordinances. In 1898 he was the first African barrister to be elected to the Legislative Council, serving on the council from 1898 to 1904, and again from 1909 to 1919.",
+        "text_characters": 1756,
+        "title": "Thomas Hutton-Mills Sr."
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1565787",
+        "score": 18.809846729770065,
+        "snippet": "British politician, 1857–1922 Charles Robert Spencer, 6th Earl Spencer, (30 October 1857 – 26 September 1922), styled The Honourable Charles Spencer until 1905 and known as Viscount Althorp between 1905 and 1910, was a British courtier and Liberal politician from the Spencer family. An MP from 1880 to 1895 and again from 1900 to 1905, he served as Vice-Chamberlain of the Household from 1892 to 1895. Raised to peerage as Viscount Althorp in 1905, he was Lord Chamberlain from 1905 to 1912 in the Liberal administrations headed by Sir Henry Campbell-Bannerman and H. H. Asquith. In 1910, he succeeded his half-brother as Earl Spencer. He was married to Margaret Baring, a member of the Baring family. Background and education. Known as \"Bobby\", Spencer was born in St. James's, Westminster, the son of Frederick Spencer, 4th Earl Spencer, by his second wife Adelaide Seymour, daughter of Horace Beauchamp Seymour and granddaughter of Lord Hugh Seymour. John Spencer, 5th Earl Spencer, was his elder half-brother. He was educated at Harrow and Trinity College, Cambridge. Political career. Spencer represented Northamptonshire North in parliament from 1880 to 1885 and Northamptonshire Mid from 1885 to 1895 and again from 1900 to 1905, from his home at Dallington Hall. In 1898, he contested Hertford. He was a Groom in Waiting to Queen Victoria between February and June 1886. In 1892, he was sworn of the Privy Council and appointed Vice-Chamberlain of the Household under William Ewart Gladstone",
+        "text_characters": 2385,
+        "title": "Charles Spencer, 6th Earl Spencer"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1346214",
+        "score": 18.792129969225613,
+        "snippet": "Edward Bannerman Ramsay, (17 January 1793– 27 December 1872), usually referred to as Dean Ramsay, was a clergyman of the Scottish Episcopal Church, and Dean of Edinburgh in that communion from 1841, has a place in literature through his \"Reminiscences of Scottish Life and Character\", which had gone through 22 editions at his death. It is a book full of the personality of the author, and preserves many traits and anecdotes. Life. Ramsay was born in Aberdeenshire on 31 January 1793, the fourth son of Elizabeth Bannerman and Sir Alexander Ramsay, Baronet of Balmain and Fasque. He spent much of his early life in Yorkshire, attending the Cathedral Grammar School in Durham from 1806. He then attended St John's College at Cambridge University, graduating in 1815. He was then appointed curate of Rodden and of Buckland Dinham, Somerset. In 1824 he came to Edinburgh to serve as curate to St George's on York Place before being appointed minister of St John's Episcopal Church on Princes Street in 1830, where he then remained until death. This appointment followed the death of Bishop Daniel Sandford, founder of the church. His house from this period was a very large townhouse on the edge of the Moray Estate, 7 Darnaway Street, only five minutes walk from his church through Charlotte Square. In 1838 he formed a new branch of the church, thereafter known as the Scottish Episcopal Church Society. In 1841 he was elected Dean of the Diocese of Edinburgh. Over and above his religious activity h",
+        "text_characters": 2534,
+        "title": "Edward Ramsay"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:775909",
+        "score": 17.211458674894097,
+        "snippet": "Morley was among the original recipients of the Order of Merit in the 1902 Coronation Honours list published on 26 June 1902, and received the order from King Edward VII at Buckingham Palace on 8 August 1902. In July 1902, he was presented by Andrew Carnegie with the late Lord Acton's valuable library, which, on 20 October, he in turn gave to the University of Cambridge. Secretary of State for India. When Sir Henry Campbell-Bannerman formed his cabinet at the end of 1905, Morley was made Secretary of State for India. He would have preferred to have been Chancellor of the Exchequer. In this position, he was conspicuous in May 1907 and afterwards for his firmness in sanctioning extreme measures for dealing with the outbreak in India of alarming symptoms of sedition. Though he was strongly opposed by some of the more extreme members of the Radical party, on the grounds of belying his democratic principles in dealing with the British Raj, his action was generally recognised as combining statesmanship with patience. While firmly opposing revolutionary propaganda, he showed his popular sympathies by appointing two distinguished native Indians to the Council of India and taking steps for a decentralisation of the administrative government. When Sir Henry Campbell-Bannerman resigned in 1908 and H. H. Asquith became prime minister, Morley retained his post in the new cabinet; but it was thought advisable to relieve him of the burden imposed by a seat in the House of Commons, and he wa",
+        "text_characters": 2636,
+        "title": "John Morley"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3465539",
+        "score": 17.101070205497216,
+        "snippet": "British peer and politician (1877–1947) William Angus Drogo Montagu, 9th Duke of Manchester PC (3 March 1877 – 9 February 1947), styled Lord Kimbolton from 1877 to 1890 and Viscount Mandeville from 1890 to 1892, was a British peer and Liberal politician. He served as Captain of the Yeomen of the Guard from 1905 to 1907 under Sir Henry Campbell-Bannerman. Early life. Manchester was born on 3 March 1877 as William Angus Drogo Montagu. He was the only legitimate son of The 8th Duke of Manchester, by his wife Consuelo Yznaga del Valle, a Cuban American heiress. His sisters were Lady Jacqueline Mary Alva Montagu and Lady Alice Eleanor Louise Montagu, who both died unmarried. His paternal grandparents were the 7th Duke of Manchester and the former Countess Louisa von Alten. After his grandfather's death in 1890, his grandmother got remarried to The 8th Duke of Devonshire, and was referred to as the \"Double Duchess\". His maternal grandfather was Don Antonio Yznaga del Valle. Among his maternal relatives was aunt Naticia Yznaga (wife of Sir John Lister-Kaye, 3rd Baronet), and uncle Fernando Yznaga (husband of Jennie Smith, sister of Alva Smith Vanderbilt Belmont). He was educated at Eton and Trinity College, Cambridge. Career. Manchester succeeded his father in the dukedom in 1892 at the age of fifteen, and took his seat on the Liberal benches in the House of Lords in June 1902. When the Liberals came to power in December 1905 under Sir Henry Campbell-Bannerman, he was appointed Capt",
+        "text_characters": 2640,
+        "title": "William Montagu, 9th Duke of Manchester"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1222013",
+        "score": 16.899869137410704,
+        "snippet": "British politician (1870–1949) Walter Runciman, 1st Viscount Runciman of Doxford, (19 November 1870 – 14 November 1949), was a prominent Liberal and later National Liberal politician in the United Kingdom. His 1938 diplomatic mission to Czechoslovakia was key to the enactment of the British policy of appeasement of Nazi Germany preceding the Second World War. Background. Runciman was the son of the shipping magnate Walter Runciman, 1st Baron Runciman. He was educated at South Shields High School and Trinity College, Cambridge, where he graduated with an MA degree in history in 1892. Political career. 1899–1913. Runciman unsuccessfully contested Gravesend in a by-election in 1898, but was elected as a member of parliament (MP) in a two-member by-election for Oldham in 1899, defeating the Conservative candidates, James Mawdsley and Winston Churchill. After winning, Runciman is reported to have commented to Churchill: \"Don't worry, I don't think this is the last the country has heard of either of us.\" The following year in the 1900 general election Churchill stood against Runciman again and defeated him. Runciman soon returned to Parliament for Dewsbury in a by-election in January 1902 and steadily rose through the ranks of the Liberal Party. A progressive, centrist reformer who supported progressive measures such as old age pensions, he was appointed Parliamentary Secretary to the Local Government Board by Sir Henry Campbell-Bannerman in 1905, a post he held until 1907. Runcima",
+        "text_characters": 2817,
+        "title": "Walter Runciman, 1st Viscount Runciman of Doxford"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3423389",
+        "score": 15.415523237970689,
+        "snippet": "British diplomat (1924–2014) Richard John McMoran Wilson, 2nd Baron Moran, (22 September 1924 – 14 February 2014), known as John Wilson, was a British diplomat. He was one of the ninety hereditary peers elected to remain in the House of Lords after the passing of the House of Lords Act 1999. Background and early life. The son of the 1st Baron Moran and Dorothy (née Dufton), he was educated at Eton College in Berkshire and King's College, Cambridge, where he received a Bachelor of Arts in history. Wilson served in the Royal Naval Reserve from 1943 to 1945. He was first Ordinary Seaman on HMS Belfast, later Sub-Lieutenant on Motor Torpedo Boats (MTB 684) and Destroyer HMS Oribi. Diplomatic career. In 1945, Wilson entered the Foreign and Commonwealth Office and held various minor offices in Ankara, Tel Aviv, Rio de Janeiro, Washington, D.C. and South Africa. From 1968 to 1973, he was Head of the West African Department of the Foreign Office, and from 1970 to 1973 concurrently non-resident British Ambassador to Chad. Wilson was British Ambassador to Hungary between 1973 and 1976 and British Ambassador to Portugal from 1976 to 1981. In 1981, he was appointed High Commissioner to Canada and held this post until 1984. On leaving his post of High Commissioner to Canada in 1984, Moran penned a frank final telegram to the British Foreign Secretary in which he was highly critical of Canadian politicians, public policies and ordinary Canadians. The telegram became public in October 2009 ",
+        "text_characters": 2587,
+        "title": "John Wilson, 2nd Baron Moran"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-821781de4b56137e"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:4914026", "title": "John Bannerman (historian)", "score": 25.882319544594974, "snippet": "Scottish historian John Walter MacDonald Bannerman (13 August 1932 – 8 October 2008) was a Scottish historian, noted for his work on Gaelic Scotland. Biography. He was born in Balmaha, Stirlingshire, the son of John MacDonald Bannerman, later Lord Bannerman of Kildonan, and his wife Ray Mundell. His family was native speakers of Scottish Gaelic, and after leaving school Bannerman studied Celtic languages at the University of Glasgow. He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes. Although he considered teaching Gaelic in schools, Bannerman instead took up a post at the Celtic department of the University of Aberdeen before joining the history department at the University of Edinburgh in 1967. He took over the running of the family farm at Balmaha in 1968, shortly before his father's death, dividing his time between teaching at the university, writing, and farming. His work on Gaelic Scotland was influential. His early works on Dál Riata, the Senchus fer n-Alban, and the Iona chronicles which formed part of the later \"Chronicle of Ireland\" are contained in his 1974 book \"Studies in the History of Dalriada\". He was a major contributor to the record of \"Late Medieval Monumental Sculpture in the West Highlands\" published in 1977 and his study of the Beaton family—\"The Beatons: Medical Kindred in the ", "text_characters": 1771, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:489960", "title": "Henry Campbell-Bannerman", "score": 23.346767901107516, "snippet": "In April 1868, at the age of thirty-one, Campbell-Bannerman stood as a Liberal candidate in a by-election for the Stirling Burghs constituency, narrowly losing to fellow Liberal John Ramsay. However, at the general election in November of that year, Campbell-Bannerman defeated Ramsay and was elected to the House of Commons as the Liberal Member of Parliament for Stirling Burghs, a constituency that he would go on to represent for almost forty years. Campbell-Bannerman rose quickly through the ministerial ranks, being appointed as Financial Secretary to the War Office in Gladstone's first government in November 1871, serving in this position until 1874 under Edward Cardwell, the Secretary of State for War. When Cardwell was raised to the peerage, Campbell-Bannerman became the Liberal government's chief spokesman on defence matters in the House of Commons. He was appointed to the same position from 1880 to 1882 in Gladstone's second government, and after serving as Parliamentary and Financial Secretary to the Admiralty between 1882 and 1884, Campbell-Bannerman was promoted to the Cabinet as Chief Secretary for Ireland in 1884, an important role with ongoing Home Rule debates. In Gladstone's third and fourth governments, in 1886 and 1892 to 1894 respectively, as well as the Earl of Rosebery's government from 1894 to 1895, Campbell-Bannerman served as the Secretary of State for War. His only military experience was thirty years earlier with the 53rd Lanarkshire Rifles Volunteers.", "text_characters": 2800, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5467597", "title": "Mary Bateson (historian)", "score": 21.609099867578905, "snippet": "Mary Bateson (12 September 1865, Robin Hood's Bay – 30 November 1906, Cambridge) was a British historian and suffrage activist. Life. Bateson was the daughter of William Henry Bateson, Master of St John's College, Cambridge, and Anna Aikin. The geneticist William Bateson was her older brother; Anna Bateson and Margaret Heitland were her sisters. She was educated at the Perse School for Girls and Newnham College, Cambridge. She spent her entire professional life at Newnham, teaching there from 1888 and becoming a Fellow in 1903. Known for her writings in medieval history, she was supported professionally by historians Mandell Creighton and F. W. Maitland. She died of a brain haemorrhage and is buried in Histon Road Cemetery, Cambridge. Activism. As part of her suffrage activities, Bateson became the Cambridge organiser for the Central Society for Women's Suffrage in 1888. The following year she was elected to the executive committee Cambridge Women's Suffrage Association. In 1906 she participated in a deputation to Parliament where she presented Prime Minister Henry Campbell-Bannerman with a petition on behalf of ‘women who are doctors of letters, science and law in the universities of the United Kingdom and of the British colonies, in the universities also of Europe and the United States’. The petition declared that the signatories ‘believe the disenfranchisement of one sex to be injurious to both, and a national wrong in a country which pretends to be governed on a represent", "text_characters": 1526, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5587045", "title": "Thomas Hutton-Mills Sr.", "score": 21.511364768190255, "snippet": "Ghanaian politician (1865–1931) Thomas Hutton-Mills, born Thomas Hutton Mills (13 June 1865 – 4 March 1931) was a lawyer and nationalist leader in the Gold Coast. He is often referred to as Thomas Hutton-Mills Sr. to distinguish him from his son, the lawyer and diplomat Thomas Hutton-Mills Jr. (1894–1959). Life. Thomas Hutton Mills was born in James Town, Accra, the son of Emma Bannerman, the second daughter of Governor James Bannerman, and John Edward Hutton Mills, a James Town merchant. He was educated at the Wesleyan School in Accra and Cape Coast, the Wesleyan High School in Freetown, Sierra Leone, Harrow School and at Cambridge University in the United Kingdom. After starting work as a commercial clerk, he was a government clerk in the office of the Queen's Advocate, until dismissed for his participation in the protests of September 1886. In 1886, he married Florence Nanka-Bruce, sister of Frederick Nanka-Bruce; after her early death he married another sister, Emma Nanka-Bruce. After working as chief clerk in the office of his uncle Edmund Bannerman, a barrister and newspaper proprietor, Hutton-Mills travelled to England in 1891 to study law at the Middle Temple, returning to practise in Accra on being called to the Bar in 1894. In 1897 he was prominent in debate over the Town Council and Compulsory Labour Ordinances. In 1898 he was the first African barrister to be elected to the Legislative Council, serving on the council from 1898 to 1904, and again from 1909 to 1919.", "text_characters": 1756, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1565787", "title": "Charles Spencer, 6th Earl Spencer", "score": 18.809846729770065, "snippet": "British politician, 1857–1922 Charles Robert Spencer, 6th Earl Spencer, (30 October 1857 – 26 September 1922), styled The Honourable Charles Spencer until 1905 and known as Viscount Althorp between 1905 and 1910, was a British courtier and Liberal politician from the Spencer family. An MP from 1880 to 1895 and again from 1900 to 1905, he served as Vice-Chamberlain of the Household from 1892 to 1895. Raised to peerage as Viscount Althorp in 1905, he was Lord Chamberlain from 1905 to 1912 in the Liberal administrations headed by Sir Henry Campbell-Bannerman and H. H. Asquith. In 1910, he succeeded his half-brother as Earl Spencer. He was married to Margaret Baring, a member of the Baring family. Background and education. Known as \"Bobby\", Spencer was born in St. James's, Westminster, the son of Frederick Spencer, 4th Earl Spencer, by his second wife Adelaide Seymour, daughter of Horace Beauchamp Seymour and granddaughter of Lord Hugh Seymour. John Spencer, 5th Earl Spencer, was his elder half-brother. He was educated at Harrow and Trinity College, Cambridge. Political career. Spencer represented Northamptonshire North in parliament from 1880 to 1885 and Northamptonshire Mid from 1885 to 1895 and again from 1900 to 1905, from his home at Dallington Hall. In 1898, he contested Hertford. He was a Groom in Waiting to Queen Victoria between February and June 1886. In 1892, he was sworn of the Privy Council and appointed Vice-Chamberlain of the Household under William Ewart Gladstone", "text_characters": 2385, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1346214", "title": "Edward Ramsay", "score": 18.792129969225613, "snippet": "Edward Bannerman Ramsay, (17 January 1793– 27 December 1872), usually referred to as Dean Ramsay, was a clergyman of the Scottish Episcopal Church, and Dean of Edinburgh in that communion from 1841, has a place in literature through his \"Reminiscences of Scottish Life and Character\", which had gone through 22 editions at his death. It is a book full of the personality of the author, and preserves many traits and anecdotes. Life. Ramsay was born in Aberdeenshire on 31 January 1793, the fourth son of Elizabeth Bannerman and Sir Alexander Ramsay, Baronet of Balmain and Fasque. He spent much of his early life in Yorkshire, attending the Cathedral Grammar School in Durham from 1806. He then attended St John's College at Cambridge University, graduating in 1815. He was then appointed curate of Rodden and of Buckland Dinham, Somerset. In 1824 he came to Edinburgh to serve as curate to St George's on York Place before being appointed minister of St John's Episcopal Church on Princes Street in 1830, where he then remained until death. This appointment followed the death of Bishop Daniel Sandford, founder of the church. His house from this period was a very large townhouse on the edge of the Moray Estate, 7 Darnaway Street, only five minutes walk from his church through Charlotte Square. In 1838 he formed a new branch of the church, thereafter known as the Scottish Episcopal Church Society. In 1841 he was elected Dean of the Diocese of Edinburgh. Over and above his religious activity h", "text_characters": 2534, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:775909", "title": "John Morley", "score": 17.211458674894097, "snippet": "Morley was among the original recipients of the Order of Merit in the 1902 Coronation Honours list published on 26 June 1902, and received the order from King Edward VII at Buckingham Palace on 8 August 1902. In July 1902, he was presented by Andrew Carnegie with the late Lord Acton's valuable library, which, on 20 October, he in turn gave to the University of Cambridge. Secretary of State for India. When Sir Henry Campbell-Bannerman formed his cabinet at the end of 1905, Morley was made Secretary of State for India. He would have preferred to have been Chancellor of the Exchequer. In this position, he was conspicuous in May 1907 and afterwards for his firmness in sanctioning extreme measures for dealing with the outbreak in India of alarming symptoms of sedition. Though he was strongly opposed by some of the more extreme members of the Radical party, on the grounds of belying his democratic principles in dealing with the British Raj, his action was generally recognised as combining statesmanship with patience. While firmly opposing revolutionary propaganda, he showed his popular sympathies by appointing two distinguished native Indians to the Council of India and taking steps for a decentralisation of the administrative government. When Sir Henry Campbell-Bannerman resigned in 1908 and H. H. Asquith became prime minister, Morley retained his post in the new cabinet; but it was thought advisable to relieve him of the burden imposed by a seat in the House of Commons, and he wa", "text_characters": 2636, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3465539", "title": "William Montagu, 9th Duke of Manchester", "score": 17.101070205497216, "snippet": "British peer and politician (1877–1947) William Angus Drogo Montagu, 9th Duke of Manchester PC (3 March 1877 – 9 February 1947), styled Lord Kimbolton from 1877 to 1890 and Viscount Mandeville from 1890 to 1892, was a British peer and Liberal politician. He served as Captain of the Yeomen of the Guard from 1905 to 1907 under Sir Henry Campbell-Bannerman. Early life. Manchester was born on 3 March 1877 as William Angus Drogo Montagu. He was the only legitimate son of The 8th Duke of Manchester, by his wife Consuelo Yznaga del Valle, a Cuban American heiress. His sisters were Lady Jacqueline Mary Alva Montagu and Lady Alice Eleanor Louise Montagu, who both died unmarried. His paternal grandparents were the 7th Duke of Manchester and the former Countess Louisa von Alten. After his grandfather's death in 1890, his grandmother got remarried to The 8th Duke of Devonshire, and was referred to as the \"Double Duchess\". His maternal grandfather was Don Antonio Yznaga del Valle. Among his maternal relatives was aunt Naticia Yznaga (wife of Sir John Lister-Kaye, 3rd Baronet), and uncle Fernando Yznaga (husband of Jennie Smith, sister of Alva Smith Vanderbilt Belmont). He was educated at Eton and Trinity College, Cambridge. Career. Manchester succeeded his father in the dukedom in 1892 at the age of fifteen, and took his seat on the Liberal benches in the House of Lords in June 1902. When the Liberals came to power in December 1905 under Sir Henry Campbell-Bannerman, he was appointed Capt", "text_characters": 2640, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1222013", "title": "Walter Runciman, 1st Viscount Runciman of Doxford", "score": 16.899869137410704, "snippet": "British politician (1870–1949) Walter Runciman, 1st Viscount Runciman of Doxford, (19 November 1870 – 14 November 1949), was a prominent Liberal and later National Liberal politician in the United Kingdom. His 1938 diplomatic mission to Czechoslovakia was key to the enactment of the British policy of appeasement of Nazi Germany preceding the Second World War. Background. Runciman was the son of the shipping magnate Walter Runciman, 1st Baron Runciman. He was educated at South Shields High School and Trinity College, Cambridge, where he graduated with an MA degree in history in 1892. Political career. 1899–1913. Runciman unsuccessfully contested Gravesend in a by-election in 1898, but was elected as a member of parliament (MP) in a two-member by-election for Oldham in 1899, defeating the Conservative candidates, James Mawdsley and Winston Churchill. After winning, Runciman is reported to have commented to Churchill: \"Don't worry, I don't think this is the last the country has heard of either of us.\" The following year in the 1900 general election Churchill stood against Runciman again and defeated him. Runciman soon returned to Parliament for Dewsbury in a by-election in January 1902 and steadily rose through the ranks of the Liberal Party. A progressive, centrist reformer who supported progressive measures such as old age pensions, he was appointed Parliamentary Secretary to the Local Government Board by Sir Henry Campbell-Bannerman in 1905, a post he held until 1907. Runcima", "text_characters": 2817, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3423389", "title": "John Wilson, 2nd Baron Moran", "score": 15.415523237970689, "snippet": "British diplomat (1924–2014) Richard John McMoran Wilson, 2nd Baron Moran, (22 September 1924 – 14 February 2014), known as John Wilson, was a British diplomat. He was one of the ninety hereditary peers elected to remain in the House of Lords after the passing of the House of Lords Act 1999. Background and early life. The son of the 1st Baron Moran and Dorothy (née Dufton), he was educated at Eton College in Berkshire and King's College, Cambridge, where he received a Bachelor of Arts in history. Wilson served in the Royal Naval Reserve from 1943 to 1945. He was first Ordinary Seaman on HMS Belfast, later Sub-Lieutenant on Motor Torpedo Boats (MTB 684) and Destroyer HMS Oribi. Diplomatic career. In 1945, Wilson entered the Foreign and Commonwealth Office and held various minor offices in Ankara, Tel Aviv, Rio de Janeiro, Washington, D.C. and South Africa. From 1968 to 1973, he was Head of the West African Department of the Foreign Office, and from 1970 to 1973 concurrently non-resident British Ambassador to Chad. Wilson was British Ambassador to Hungary between 1973 and 1976 and British Ambassador to Portugal from 1976 to 1981. In 1981, he was appointed High Commissioner to Canada and held this post until 1984. On leaving his post of High Commissioner to Canada in 1984, Moran penned a frank final telegram to the British Foreign Secretary in which he was highly critical of Canadian politicians, public policies and ordinary Canadians. The telegram became public in October 2009 ", "text_characters": 2587, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0316/R002_request.json/messages/3/content`；SHA256：`f766532681aff49a70248734208ebee864db58286777ea938749bd2aebd2bcc9`。
+
+### R2 `/rounds/1/reasoning_content` [0,152)
+
+SHA256：`bbb4f4ff42fbb1d17fab286b7417dfa1d766d342da2c02975bb20e6fcad36ad3`；原字段SHA256：`899e8b27e29919325b32b6c0487da18919efbdfb51ba2350c90dfea825ffc807`。
+
+````
+The search results confirm that John Bannerman completed his doctorate at the University of Cambridge in 1964 under the supervision of Kathleen Hughes. 
+````
+
+## S002｜查Hughes的readership及人物资料，失败后按原计划重试
+
+搜索readership position scholar；无所需返回后，将关键词改为University of Cambridge继续同一人物职位取证，取得Hughes传记及出生日期。
+
+结束状态：Nora Chadwick Reader职位和Hughes的1926出生资料已返回。
+
+边界判断：导师定位已收束，此处开始实际处理导师所持职位这一新局部工作。
+
+内部KEEP与反证：R3是前次搜索未命中后的同计划关键词调整，未实际比较其他候选或独立改变验证策略，故两次Call及完整Return同属本次持续取证。
+
+### SPLIT原文
+
+````
+The search results confirm that John Bannerman completed his doctorate at the University of Cambridge in 1964 under the supervision of Kathleen Hughes. 
+→ 切点 [1, 0, 152] →
+Now I need to find information about Kathleen Hughes, specifically her readership position and the scholar associated with that position.
+
+Let me search for Kathleen Hughes to find out more about her and the readership position.
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [152,381)
+
+SHA256：`5e87576065efab667dc654eed24bdf0efced8865d65ba9a236028e407cab13c7`；原字段SHA256：`899e8b27e29919325b32b6c0487da18919efbdfb51ba2350c90dfea825ffc807`。
+
+````
+Now I need to find information about Kathleen Hughes, specifically her readership position and the scholar associated with that position.
+
+Let me search for Kathleen Hughes to find out more about her and the readership position.
+
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Kathleen Hughes readership position scholar"
+  },
+  "id": "chatcmpl-tool-a6d33abd60eecfe7",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Kathleen Hughes readership position scholar\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-a6d33abd60eecfe7",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Kathleen Hughes readership position scholar"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 3.076405525673181,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:100176",
+        "score": 5.4568022962022456,
+        "snippet": "---\ntitle: Dictionary of Literary Biography:\ndate: 1998-01-01\n---\nA suitable discussion has taken place during the past century regarding the dominant mode of the literary arts. Although poetry might once have made undisputed claim to being the most precious form of writing, the modern prose of Gustave Flaubert, Henry James, Marcel Proust, James Joyce, and Virginia Woolf gave substance to Stendhal's assertion that \"prose was the higher art.\" Responding to the challenge issued by modern fiction, Ezra Pound, in his essay \"The Prose Tradition in Verse\" (1914), resigns himself to arguing, following the English poet and novelist Ford Madox Ford, that \"poetry should be written at least as well as prose.\" One part concession and one part exhortation, Pound's advice to the poets of his day was to practice the \"clarity and precision\" that he observed in the best prose. Such writing was culturally astute and not sentimental, efficient and not prolix, a work of \"serious art\" and not a pastime. Though the style of writing in any period undergoes continual change, Pound's preeminent concern was that verse was losing its grip on the cultural and intellectual bearings of the age. This problem--more than discussions of a marginal readership and the near exclusion from commercial publication venues--has special relevance in our postindustrial society. The challenge to modernist poetry came from the psychological novel whose protagonists expressed the anxieties and disruptions (the fragmentati",
+        "text_characters": 43271,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:98076",
+        "score": 2.597676708189586,
+        "snippet": "---\ntitle: Works Cited\ndate: 1995-11-04\n---\nWorks Cited\n\nAbate, Michelle Ann. Tomboys: A Literary and Cultural History. Philadelphia: Temple University Press, 2008a.\n\nAbate, Michelle Ann. \"Trans/Forming Girlhood: Transgenderism, the Tomboy Formula, and Gender Identity Disorder in Sharon Dennis Wyeth's Tomboy Trouble.\" The Lion and the Unicorn 32 (2008b): 40-60.\n\nAbdel-Fattah, Randa. Does My Head Look Big in This? Sydney: Pan Macmillan, 2005a.\n\nAbdel-Fattah, Randa. \"Living in a Material World.\" Griffith Review (Autumn 2005b): 199-209.\n\nAbdel-Fattah, Randa. Ten Things I Hate about Me. 2006. New York: Orchard, 2009.\n\nAbley, Mark. \"Writing the Book on Intolerance.\" Toronto Star. December 4, 2007: AA8.\n\nAda, Alma Flor. A Magical Encounter: Latino Children's Literature in the Classroom, 2d ed. Boston: Pearson Education, 2003.\n\nAdams, Gillian. \"The First Children's Literature? The Case for Sumer.\" Children's Literature 14 (1986): 1-30.\n\nAdams, Gillian. \"Medieval Children's Literature: Its Possibility and Actuality.\" Children's Literature 26 (1998): 1-24.\n\nAdams, Karen. \"Multicultural Representation in Children's Books.\" 1981. ERIC Document Reproduction Service No. ED219750.\n\nAdams, Richard. Watership Down. London: Rex Collings, 1972.\n\nAdamson, Andrew, and Vicky Jenson, directors. Shrek. Glendale, CA: DreamWorks Animation, 2001.\n\nAdorno, Theodor. Aesthetic Theory. 1970. Translated by Robert Hullot-Kentor. Minneapolis: University of Minnesota Press, 1997.\n\nAhenakew, Freda. How the Mou",
+        "text_characters": 144346,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:76869",
+        "score": 1.8874658248057183,
+        "snippet": "---\ntitle: ETD Collection for Fordham University\nauthor: Authors\ndate: 2011-01-01\n---\nETD Collection for Fordham University\n\nDissertations & Theses from 2024\n\nAcharya, Nisha A (2024) Middle School Urban General Education Teacher Beliefs Towards Supporting Students With Disabilities\n\nAladin, Meera (2024) A Cultural Perspective on the Lived Experience of South Asian American Women With PCOS\n\nAl Mamun, Mustofa Mahmud (2024) Essays in Fiscal Policy\n\nAmarante, James (2024) Adverse Childhood Experiences and Adolescent Substance Use: The Roles of Emotion Regulation and Attachment Security\n\nBartolotta, Kate (2024) Evaluating a Web-Based Curriculum Designed to Empower Adolescents to Build Mentoring Relationships With Adults\n\nBecker, Alana (2024) The Lived Experience of Female Psychology Trainees With Personal Trauma Histories Working With Trauma Patients\n\nBurgos, Nakia Z (2024) Inclusive Teaching: Comparing Afro-Latina/o and Non-Afro-Latina/o Educators\n\nCafferkey, Alan (2024) Identity Management: Jesuit Universities Preserving Mission and Identity With Online Program Managers\n\nCastellanos, Vanessa (2024) Familismo in Latine/x First Generation College Student Experiences and Balancing Discord Between Ethnic Culture and Student Culture\n\nChae, Lenia Dayeon (2024) From Invisible to Visible: Phenomenological Analysis of Living With Concealable Chronic Conditions\n\nCissé, Aïcha (2024) A Qualitative Study of the Psychosocial Impacts of the School-To-Prison Pipeline and Associated Factors\n\nCob",
+        "text_characters": 1608700,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74434",
+        "score": 1.3467917823245807,
+        "snippet": "---\ntitle: FACULTY BOOKSHELF\nauthor: Abram Van Engen\ndate: 2025-01-01\n---\nFaculty Bookshelf\n\nWord Made Fresh\n\nHave you ever read a book that turned your world upside down? What about a poem?\n\nPoetry has the power to enliven, challenge, change, and enrich our lives. But it can also feel intimidating, confusing, or simply \"not for us.\" In these joyful and wise reflections, Abram Van Engen shows readers how poetry is for everyone—and how it can reinvigorate our Christian faith.\n\nIntertwining close readings with personal storytelling, Van Engen explains how and why to read poems as a spiritual practice. Far from dry, academic instruction, his approach encourages readers to delight in poetry, even as they come to understand its form. He also opens up the meaning of poetry and parables in Scripture, revealing the deep connection between literature and theology.\n\nWord Made Fresh is more than a guide to poetry—it's an invitation to wonder, to speak up, to lament, to praise. Including dozens of poems from diverse authors, this book will inspire curious and thoughtful readers to see God and God's creation in surprising new ways.\n\nBlack Patience\n\nA bold rethinking of the Civil Rights Movement through the lens of Black theater\n\n\"Freedom, Now!\" This rallying cry became the most iconic phrase of the Civil Rights Movement, challenging the persistent command that Black people wait—in the holds of slave ships and on auction blocks, in segregated bus stops and schoolyards—for their long-deferr",
+        "text_characters": 109596,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:17746",
+        "score": 0.7414248627387524,
+        "snippet": "---\ntitle: Program | PMLA\ndate: 2025-06-09\n---\nThursday, 4 January 8:30 a.m.\n\n1. Preconvention Workshop: Become a Certified External Reviewer for the ALD\n\n8:30–11:30 a.m., Franklin 1, Marriott\n\nProgram arranged by the Association of Language Departments. Presiding: Maggie Broner, St. Olaf C; Jennifer M. William, Purdue U, West Lafayette\n\nThis workshop trains faculty members to become expert external reviewers of departments and programs of world languages, literatures, and cultures and related disciplines. Faculty members who wish to acquire experience in reviewing are strongly encouraged to attend; those with experience will also benefit from the full review of current best practices. Preregistration is required.\n\n2. Preconvention Workshop: Using X and LinkedIn to Advocate for Yourself and Your Program\n\n8:30–11:30 a.m., Franklin 10, Marriott\n\nProgram arranged by the Association of Language Departments. Presiding: Araceli Hernández-Laroche, U of South Carolina, Upstate; Americo Mendoza-Mori, Harvard U\n\nHow can academics use social media to advocate for themselves and their programs? This workshop explores X and LinkedIn as advocacy platforms for academics and offers strategies, examples, and practical guidance for building a professional presence online. Participants discuss advantages and potential concerns and risks of using social media for professional advancement. Newly acquired skills will be honed through individualized exercises. Preregistration is required.\n\n4. Preco",
+        "text_characters": 483735,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:94442",
+        "score": 0.7281164279873524,
+        "snippet": "---\ntitle: Pittwater Online News\ndate: 2012-05-06\n---\nA to L\n\nA.\n\nA Cruel Sea by Gordon Wellings Q.C., B.C.\n\nBrian Friend 'Friendly' Profile Roper Scott Lars 'Buster' Brown Profile\n\nThe Story of the making of the paintings illustrating the \"Falcon\" rescue of \"Votan\" and her crew – Sunday 9th June 1974 by Christine Hill FASMA\n\nAboriginal Support Group - Manly Warringah Pittwater\n\nThe Aboriginal Support Group Manly Warringah Pittwater (ASGMWP) - Profile\n\nASG - MWP Public Meeting 14.11.11: Misinformation and the media by Neil Evers A Night To Remember by Neil Evers\n\nASGMWP Tribal Warrior Evening by Michael Mannington Laurie Bimson's Marinated Kangaroo Recipe\n\nThe Story of Bob Waterer and his Family 1803-2010 By Nan Bosler Meeting Bob Waterer and Nan Bosler\n\nBob Waterer Profile Neil Evers Profile 8th Bush To Beach at South Narrabeen SLSC by Michael Mannington\n\nLive Life Loudly - Guringai Festival 2013 Begins with Positivity - NT Intervention Discussion and Cathy Freeman and Preston Campbell attend Peninsula Schools Gift of 'Play' to fellow schoolchildren\n\nASGMWP - Sorry Day 2013 Peninsula CommUNITY of Schools Art Exhibition\n\nNorthside Aboriginal Art and Craft Exhibition by S Evers and Michael Mannington\n\n2014 Guringai Festival - \"Wellness and Wellbeing for all People\"\n\nWater Water Water - Issue 190 Pictorial\n\nGuringai Festival 2015 – Pittwater Events\n\nGuringai Festival 2016 – Pittwater Events: May 29 to July 11\n\nBungaree was Flamboyant by Neil Evers\n\nSarah A. Biddy Lewis and Mart",
+        "text_characters": 993751,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:19034",
+        "score": 0.6497044223725112,
+        "snippet": "---\ntitle: XIII The Victorian Period\nauthor: Lois Burke\ndate: 2021-08-30\n---\n- Split View\n\n-\n\nViews\n\n-\n\nCite\n\nCite\n\nAna Alicia Garza, Lois Burke, Sally Blackburn-Daniels, William Baker, XIII The Victorian Period, The Year's Work in English Studies, Volume 100, Issue 1, 2021, Pages 775–932, \n\nClose - Share Icon Share\n\nAbstract\n\nThis chapter has five sections: 1. General and Prose, including Dickens; 2. The Novel; 3. Poetry; 4. Periodicals, Publishing History, and Drama; 5. Miscellaneous. Section 1 is by Ana Alicia Garza; section 2 is by Lois Burke; section 3 is by Sally Blackburn-Daniels; sections 4 and 5 are by William Baker. In somewhat of a departure from previous accounts, this chapter concludes with a mixed-genre section that covers Samuel Butler Thomas and Jane Welsh Carlyle, Wilkie Collins, George Eliot and George Henry Lewes, George Gissing, Richard Jefferies, William Makepeace Thackeray, and Anthony Trollope. This is followed by a section containing additional materials that came too late to be included elsewhere. These sections have been contributed by William Baker, who thanks for their assistance Dominic Edwards, Olaf Berwald, Beth Palmer, Sophie Ratcliffe, and Caroline Radcliffe.\n\n1. General and Prose\n\n(a) General\n\nThis year saw the publication of Sara Lodge's excellent biography, Inventing Edward Lear. This is a delightful study and is accompanied by a 'musical trail' which can be found at edwardlearsmusic.com. These recordings, directed by Lodge at Chawton House",
+        "text_characters": 554668,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:64916",
+        "score": 0.6017140838631646,
+        "snippet": "---\ntitle: Courses\ndate: 2022-04-07\n---\nSearch Courses\n\nReading and Writing about Language and Literatures\n\nENGL 100\n\nkeyboard_arrow_downA writing-intensive introduction to language and literary studies through the exploration of texts in their critical and theoretical contexts. Fulfills the first-year component of the Faculty of Arts Writing and Research Requirement. Open only to students in the Faculty of Arts. Recommended for students intending to become English majors. Essays are required.\n\n| Section | Term | Delivery Mode | Format | Day(s) | Time(s) | Instructor(s) | Syllabus | Details Data | Details |\n\n|---|---|---|---|---|---|---|---|---|---|\n\n| 001 | 1 | Lecture | M, W, F | 9:00 - 10:00 | Guy-bray, Stephen | Section DescriptionIn this course we'll read a selection of short stories from the last 200 years or so. We'll be especially concerned with narrators, perspectives, and the relationship of description to story-telling. Students will have the opportunity to practise essay writing and research skills. Required Text: The Norton Anthology of Short Fiction, 8th edition. | |||\n\n| 002 | 1 | Lecture | M, W, F | 10:00 - 11:00 | Baxter, Gisele Marie | Section DescriptionHaunted Houses\"What is a ghost? A tragedy condemned to repeat itself time and again? An instant of pain, perhaps. Something dead which still seems to be alive. An emotion suspended in time. Like a blurred photograph. Like an insect trapped in amber.\" – The Devil's Backbone (dir. Guillermo Del Toro) Where is ",
+        "text_characters": 774394,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:22055",
+        "score": 0.5946837432658385,
+        "snippet": "---\ntitle: BEST 250 ADVENTURES OF THE 20TH CENTURY\ndate: 2012-05-22\n---\nAs HILOBROW readers know, since 2014 I've endeavored to identify, read or re-read, and offer a few notes on the best 10 adventure novels, comics, and story collections published during each year of of the 20th century (from 1904–2003, that is, according to HILOBROW's periodization scheme). Mostly English-language, which is one of my list's many shortcomings. This page — created during the early days of the COVID pandemic — selects 1–3 favorites from each of those 100 best-of lists, in order to arrive at a meta-list of what I consider to be the era's 250 best adventures.\n\nThis page supersedes my 2013 list of The 200 Greatest Adventures (1804–1983), which received hundreds of thousands of visits… but which no longer accurately reflects my thinking.\n\nPS: Thanks go out to Boing Boing, for the shout-out; and also to the magazine Fortune, for suggesting that this list can help us through the epidemic.\n\n— JOSH GLENN (APRIL 2020/JANUARY 2021)\n\nALSO SEE THESE LISTS: 100 BEST OUGHTS ADVENTURES | 100 BEST RADIUM AGE (PROTO-)SCI-FI ADVENTURES | 100 BEST TEENS ADVENTURES | 100 BEST TWENTIES ADVENTURES | 100 BEST THIRTIES ADVENTURES | 75 BEST GOLDEN AGE SCI-FI ADVENTURES | 100 BEST FORTIES ADVENTURES | 100 BEST FIFTIES ADVENTURES | 100 BEST SIXTIES ADVENTURES | 75 BEST NEW WAVE SCI FI ADVENTURES | 100 BEST SEVENTIES ADVENTURES | 100 BEST EIGHTIES ADVENTURES | 75 BEST DIAMOND AGE SCI-FI ADVENTURES | 100 BEST NINETIES AD",
+        "text_characters": 360622,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:56943",
+        "score": 0.569783446919037,
+        "snippet": "---\ntitle: Smith in the World\ndate: 2023-01-27\n---\nSmith in the World\n\nThe annual Smith in the World Conference celebrates the incredible off-campus work students achieve through internships, community service, study abroad, and research. The conference features presentations by student panelists who reflect on their experiences and the impact those experiences have had on their academic work and future plans.\n\nAbout the Conference\n\nWhether working with Tibetan Buddhists in China, volunteering at a hospital in Zimbabwe, or providing community service in New Orleans, Smith in the World gives students an opportunity to share their stories.\n\nDisability Accommodation\n\nFor disability access information or accommodations requests, call 413-585-2407. To request a sign language interpreter, call 413-585-2071 (voice or TTY) or send email to ods@smith.edu at least 10 days before the event.\n\nNominations\n\nFaculty members may nominate students to participate in the conference. Students may also nominate themselves, with support from a faculty member who is familiar with the student's work.\n\nSmith in the World 2025\n\nCollaborative Leadership, Design, & Innovation (CLDI)\n\nTuesday, January 7, 4:30–5:30 p.m.\n\nWatch the CLDI Video Recording\n\nCollaborative Leadership, Design, & Innovation (CLDI) is an immersive internship experience for students who are looking for intensive opportunities to put collaborative leadership, design and entrepreneurial skills into practice. The program connects teams",
+        "text_characters": 582911,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-a6d33abd60eecfe7"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:100176", "title": "", "score": 5.4568022962022456, "snippet": "---\ntitle: Dictionary of Literary Biography:\ndate: 1998-01-01\n---\nA suitable discussion has taken place during the past century regarding the dominant mode of the literary arts. Although poetry might once have made undisputed claim to being the most precious form of writing, the modern prose of Gustave Flaubert, Henry James, Marcel Proust, James Joyce, and Virginia Woolf gave substance to Stendhal's assertion that \"prose was the higher art.\" Responding to the challenge issued by modern fiction, Ezra Pound, in his essay \"The Prose Tradition in Verse\" (1914), resigns himself to arguing, following the English poet and novelist Ford Madox Ford, that \"poetry should be written at least as well as prose.\" One part concession and one part exhortation, Pound's advice to the poets of his day was to practice the \"clarity and precision\" that he observed in the best prose. Such writing was culturally astute and not sentimental, efficient and not prolix, a work of \"serious art\" and not a pastime. Though the style of writing in any period undergoes continual change, Pound's preeminent concern was that verse was losing its grip on the cultural and intellectual bearings of the age. This problem--more than discussions of a marginal readership and the near exclusion from commercial publication venues--has special relevance in our postindustrial society. The challenge to modernist poetry came from the psychological novel whose protagonists expressed the anxieties and disruptions (the fragmentati", "text_characters": 43271, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:98076", "title": "", "score": 2.597676708189586, "snippet": "---\ntitle: Works Cited\ndate: 1995-11-04\n---\nWorks Cited\n\nAbate, Michelle Ann. Tomboys: A Literary and Cultural History. Philadelphia: Temple University Press, 2008a.\n\nAbate, Michelle Ann. \"Trans/Forming Girlhood: Transgenderism, the Tomboy Formula, and Gender Identity Disorder in Sharon Dennis Wyeth's Tomboy Trouble.\" The Lion and the Unicorn 32 (2008b): 40-60.\n\nAbdel-Fattah, Randa. Does My Head Look Big in This? Sydney: Pan Macmillan, 2005a.\n\nAbdel-Fattah, Randa. \"Living in a Material World.\" Griffith Review (Autumn 2005b): 199-209.\n\nAbdel-Fattah, Randa. Ten Things I Hate about Me. 2006. New York: Orchard, 2009.\n\nAbley, Mark. \"Writing the Book on Intolerance.\" Toronto Star. December 4, 2007: AA8.\n\nAda, Alma Flor. A Magical Encounter: Latino Children's Literature in the Classroom, 2d ed. Boston: Pearson Education, 2003.\n\nAdams, Gillian. \"The First Children's Literature? The Case for Sumer.\" Children's Literature 14 (1986): 1-30.\n\nAdams, Gillian. \"Medieval Children's Literature: Its Possibility and Actuality.\" Children's Literature 26 (1998): 1-24.\n\nAdams, Karen. \"Multicultural Representation in Children's Books.\" 1981. ERIC Document Reproduction Service No. ED219750.\n\nAdams, Richard. Watership Down. London: Rex Collings, 1972.\n\nAdamson, Andrew, and Vicky Jenson, directors. Shrek. Glendale, CA: DreamWorks Animation, 2001.\n\nAdorno, Theodor. Aesthetic Theory. 1970. Translated by Robert Hullot-Kentor. Minneapolis: University of Minnesota Press, 1997.\n\nAhenakew, Freda. How the Mou", "text_characters": 144346, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:76869", "title": "", "score": 1.8874658248057183, "snippet": "---\ntitle: ETD Collection for Fordham University\nauthor: Authors\ndate: 2011-01-01\n---\nETD Collection for Fordham University\n\nDissertations & Theses from 2024\n\nAcharya, Nisha A (2024) Middle School Urban General Education Teacher Beliefs Towards Supporting Students With Disabilities\n\nAladin, Meera (2024) A Cultural Perspective on the Lived Experience of South Asian American Women With PCOS\n\nAl Mamun, Mustofa Mahmud (2024) Essays in Fiscal Policy\n\nAmarante, James (2024) Adverse Childhood Experiences and Adolescent Substance Use: The Roles of Emotion Regulation and Attachment Security\n\nBartolotta, Kate (2024) Evaluating a Web-Based Curriculum Designed to Empower Adolescents to Build Mentoring Relationships With Adults\n\nBecker, Alana (2024) The Lived Experience of Female Psychology Trainees With Personal Trauma Histories Working With Trauma Patients\n\nBurgos, Nakia Z (2024) Inclusive Teaching: Comparing Afro-Latina/o and Non-Afro-Latina/o Educators\n\nCafferkey, Alan (2024) Identity Management: Jesuit Universities Preserving Mission and Identity With Online Program Managers\n\nCastellanos, Vanessa (2024) Familismo in Latine/x First Generation College Student Experiences and Balancing Discord Between Ethnic Culture and Student Culture\n\nChae, Lenia Dayeon (2024) From Invisible to Visible: Phenomenological Analysis of Living With Concealable Chronic Conditions\n\nCissé, Aïcha (2024) A Qualitative Study of the Psychosocial Impacts of the School-To-Prison Pipeline and Associated Factors\n\nCob", "text_characters": 1608700, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74434", "title": "", "score": 1.3467917823245807, "snippet": "---\ntitle: FACULTY BOOKSHELF\nauthor: Abram Van Engen\ndate: 2025-01-01\n---\nFaculty Bookshelf\n\nWord Made Fresh\n\nHave you ever read a book that turned your world upside down? What about a poem?\n\nPoetry has the power to enliven, challenge, change, and enrich our lives. But it can also feel intimidating, confusing, or simply \"not for us.\" In these joyful and wise reflections, Abram Van Engen shows readers how poetry is for everyone—and how it can reinvigorate our Christian faith.\n\nIntertwining close readings with personal storytelling, Van Engen explains how and why to read poems as a spiritual practice. Far from dry, academic instruction, his approach encourages readers to delight in poetry, even as they come to understand its form. He also opens up the meaning of poetry and parables in Scripture, revealing the deep connection between literature and theology.\n\nWord Made Fresh is more than a guide to poetry—it's an invitation to wonder, to speak up, to lament, to praise. Including dozens of poems from diverse authors, this book will inspire curious and thoughtful readers to see God and God's creation in surprising new ways.\n\nBlack Patience\n\nA bold rethinking of the Civil Rights Movement through the lens of Black theater\n\n\"Freedom, Now!\" This rallying cry became the most iconic phrase of the Civil Rights Movement, challenging the persistent command that Black people wait—in the holds of slave ships and on auction blocks, in segregated bus stops and schoolyards—for their long-deferr", "text_characters": 109596, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:17746", "title": "", "score": 0.7414248627387524, "snippet": "---\ntitle: Program | PMLA\ndate: 2025-06-09\n---\nThursday, 4 January 8:30 a.m.\n\n1. Preconvention Workshop: Become a Certified External Reviewer for the ALD\n\n8:30–11:30 a.m., Franklin 1, Marriott\n\nProgram arranged by the Association of Language Departments. Presiding: Maggie Broner, St. Olaf C; Jennifer M. William, Purdue U, West Lafayette\n\nThis workshop trains faculty members to become expert external reviewers of departments and programs of world languages, literatures, and cultures and related disciplines. Faculty members who wish to acquire experience in reviewing are strongly encouraged to attend; those with experience will also benefit from the full review of current best practices. Preregistration is required.\n\n2. Preconvention Workshop: Using X and LinkedIn to Advocate for Yourself and Your Program\n\n8:30–11:30 a.m., Franklin 10, Marriott\n\nProgram arranged by the Association of Language Departments. Presiding: Araceli Hernández-Laroche, U of South Carolina, Upstate; Americo Mendoza-Mori, Harvard U\n\nHow can academics use social media to advocate for themselves and their programs? This workshop explores X and LinkedIn as advocacy platforms for academics and offers strategies, examples, and practical guidance for building a professional presence online. Participants discuss advantages and potential concerns and risks of using social media for professional advancement. Newly acquired skills will be honed through individualized exercises. Preregistration is required.\n\n4. Preco", "text_characters": 483735, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:94442", "title": "", "score": 0.7281164279873524, "snippet": "---\ntitle: Pittwater Online News\ndate: 2012-05-06\n---\nA to L\n\nA.\n\nA Cruel Sea by Gordon Wellings Q.C., B.C.\n\nBrian Friend 'Friendly' Profile Roper Scott Lars 'Buster' Brown Profile\n\nThe Story of the making of the paintings illustrating the \"Falcon\" rescue of \"Votan\" and her crew – Sunday 9th June 1974 by Christine Hill FASMA\n\nAboriginal Support Group - Manly Warringah Pittwater\n\nThe Aboriginal Support Group Manly Warringah Pittwater (ASGMWP) - Profile\n\nASG - MWP Public Meeting 14.11.11: Misinformation and the media by Neil Evers A Night To Remember by Neil Evers\n\nASGMWP Tribal Warrior Evening by Michael Mannington Laurie Bimson's Marinated Kangaroo Recipe\n\nThe Story of Bob Waterer and his Family 1803-2010 By Nan Bosler Meeting Bob Waterer and Nan Bosler\n\nBob Waterer Profile Neil Evers Profile 8th Bush To Beach at South Narrabeen SLSC by Michael Mannington\n\nLive Life Loudly - Guringai Festival 2013 Begins with Positivity - NT Intervention Discussion and Cathy Freeman and Preston Campbell attend Peninsula Schools Gift of 'Play' to fellow schoolchildren\n\nASGMWP - Sorry Day 2013 Peninsula CommUNITY of Schools Art Exhibition\n\nNorthside Aboriginal Art and Craft Exhibition by S Evers and Michael Mannington\n\n2014 Guringai Festival - \"Wellness and Wellbeing for all People\"\n\nWater Water Water - Issue 190 Pictorial\n\nGuringai Festival 2015 – Pittwater Events\n\nGuringai Festival 2016 – Pittwater Events: May 29 to July 11\n\nBungaree was Flamboyant by Neil Evers\n\nSarah A. Biddy Lewis and Mart", "text_characters": 993751, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:19034", "title": "", "score": 0.6497044223725112, "snippet": "---\ntitle: XIII The Victorian Period\nauthor: Lois Burke\ndate: 2021-08-30\n---\n- Split View\n\n-\n\nViews\n\n-\n\nCite\n\nCite\n\nAna Alicia Garza, Lois Burke, Sally Blackburn-Daniels, William Baker, XIII The Victorian Period, The Year's Work in English Studies, Volume 100, Issue 1, 2021, Pages 775–932, \n\nClose - Share Icon Share\n\nAbstract\n\nThis chapter has five sections: 1. General and Prose, including Dickens; 2. The Novel; 3. Poetry; 4. Periodicals, Publishing History, and Drama; 5. Miscellaneous. Section 1 is by Ana Alicia Garza; section 2 is by Lois Burke; section 3 is by Sally Blackburn-Daniels; sections 4 and 5 are by William Baker. In somewhat of a departure from previous accounts, this chapter concludes with a mixed-genre section that covers Samuel Butler Thomas and Jane Welsh Carlyle, Wilkie Collins, George Eliot and George Henry Lewes, George Gissing, Richard Jefferies, William Makepeace Thackeray, and Anthony Trollope. This is followed by a section containing additional materials that came too late to be included elsewhere. These sections have been contributed by William Baker, who thanks for their assistance Dominic Edwards, Olaf Berwald, Beth Palmer, Sophie Ratcliffe, and Caroline Radcliffe.\n\n1. General and Prose\n\n(a) General\n\nThis year saw the publication of Sara Lodge's excellent biography, Inventing Edward Lear. This is a delightful study and is accompanied by a 'musical trail' which can be found at edwardlearsmusic.com. These recordings, directed by Lodge at Chawton House", "text_characters": 554668, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:64916", "title": "", "score": 0.6017140838631646, "snippet": "---\ntitle: Courses\ndate: 2022-04-07\n---\nSearch Courses\n\nReading and Writing about Language and Literatures\n\nENGL 100\n\nkeyboard_arrow_downA writing-intensive introduction to language and literary studies through the exploration of texts in their critical and theoretical contexts. Fulfills the first-year component of the Faculty of Arts Writing and Research Requirement. Open only to students in the Faculty of Arts. Recommended for students intending to become English majors. Essays are required.\n\n| Section | Term | Delivery Mode | Format | Day(s) | Time(s) | Instructor(s) | Syllabus | Details Data | Details |\n\n|---|---|---|---|---|---|---|---|---|---|\n\n| 001 | 1 | Lecture | M, W, F | 9:00 - 10:00 | Guy-bray, Stephen | Section DescriptionIn this course we'll read a selection of short stories from the last 200 years or so. We'll be especially concerned with narrators, perspectives, and the relationship of description to story-telling. Students will have the opportunity to practise essay writing and research skills. Required Text: The Norton Anthology of Short Fiction, 8th edition. | |||\n\n| 002 | 1 | Lecture | M, W, F | 10:00 - 11:00 | Baxter, Gisele Marie | Section DescriptionHaunted Houses\"What is a ghost? A tragedy condemned to repeat itself time and again? An instant of pain, perhaps. Something dead which still seems to be alive. An emotion suspended in time. Like a blurred photograph. Like an insect trapped in amber.\" – The Devil's Backbone (dir. Guillermo Del Toro) Where is ", "text_characters": 774394, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:22055", "title": "", "score": 0.5946837432658385, "snippet": "---\ntitle: BEST 250 ADVENTURES OF THE 20TH CENTURY\ndate: 2012-05-22\n---\nAs HILOBROW readers know, since 2014 I've endeavored to identify, read or re-read, and offer a few notes on the best 10 adventure novels, comics, and story collections published during each year of of the 20th century (from 1904–2003, that is, according to HILOBROW's periodization scheme). Mostly English-language, which is one of my list's many shortcomings. This page — created during the early days of the COVID pandemic — selects 1–3 favorites from each of those 100 best-of lists, in order to arrive at a meta-list of what I consider to be the era's 250 best adventures.\n\nThis page supersedes my 2013 list of The 200 Greatest Adventures (1804–1983), which received hundreds of thousands of visits… but which no longer accurately reflects my thinking.\n\nPS: Thanks go out to Boing Boing, for the shout-out; and also to the magazine Fortune, for suggesting that this list can help us through the epidemic.\n\n— JOSH GLENN (APRIL 2020/JANUARY 2021)\n\nALSO SEE THESE LISTS: 100 BEST OUGHTS ADVENTURES | 100 BEST RADIUM AGE (PROTO-)SCI-FI ADVENTURES | 100 BEST TEENS ADVENTURES | 100 BEST TWENTIES ADVENTURES | 100 BEST THIRTIES ADVENTURES | 75 BEST GOLDEN AGE SCI-FI ADVENTURES | 100 BEST FORTIES ADVENTURES | 100 BEST FIFTIES ADVENTURES | 100 BEST SIXTIES ADVENTURES | 75 BEST NEW WAVE SCI FI ADVENTURES | 100 BEST SEVENTIES ADVENTURES | 100 BEST EIGHTIES ADVENTURES | 75 BEST DIAMOND AGE SCI-FI ADVENTURES | 100 BEST NINETIES AD", "text_characters": 360622, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:56943", "title": "", "score": 0.569783446919037, "snippet": "---\ntitle: Smith in the World\ndate: 2023-01-27\n---\nSmith in the World\n\nThe annual Smith in the World Conference celebrates the incredible off-campus work students achieve through internships, community service, study abroad, and research. The conference features presentations by student panelists who reflect on their experiences and the impact those experiences have had on their academic work and future plans.\n\nAbout the Conference\n\nWhether working with Tibetan Buddhists in China, volunteering at a hospital in Zimbabwe, or providing community service in New Orleans, Smith in the World gives students an opportunity to share their stories.\n\nDisability Accommodation\n\nFor disability access information or accommodations requests, call 413-585-2407. To request a sign language interpreter, call 413-585-2071 (voice or TTY) or send email to ods@smith.edu at least 10 days before the event.\n\nNominations\n\nFaculty members may nominate students to participate in the conference. Students may also nominate themselves, with support from a faculty member who is familiar with the student's work.\n\nSmith in the World 2025\n\nCollaborative Leadership, Design, & Innovation (CLDI)\n\nTuesday, January 7, 4:30–5:30 p.m.\n\nWatch the CLDI Video Recording\n\nCollaborative Leadership, Design, & Innovation (CLDI) is an immersive internship experience for students who are looking for intensive opportunities to put collaborative leadership, design and entrepreneurial skills into practice. The program connects teams", "text_characters": 582911, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0316/R003_request.json/messages/5/content`；SHA256：`e8e396fc9dd063cb2b3483e9a6d174b7f265332835abec19af82da3ff912b54a`。
+
+### R3 `/rounds/2/reasoning_content` [0,404)
+
+SHA256：`e539775b45edb0ad4361e6c4ef8c588d021139a7902dd8551c344fb8de7168cc`；原字段SHA256：`e539775b45edb0ad4361e6c4ef8c588d021139a7902dd8551c344fb8de7168cc`。
+
+````
+The search results for "Kathleen Hughes readership position scholar" didn't yield specific information about a scholar associated with a readership position held by Kathleen Hughes. Let me try a more specific search about Kathleen Hughes and the readership position.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Kathleen Hughes readership University of Cambridge
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Kathleen Hughes readership University of Cambridge"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nKathleen Hughes readership University of Cambridge\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Kathleen Hughes readership University of Cambridge"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 0.5347591880708933,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4420275",
+        "score": 31.65904527421433,
+        "snippet": "English historian Kathleen Winifred Hughes (8 September 1926 in Middlesbrough – 20 April 1977) was an English historian, her specialisation was Irish ecclesiastical history, particularly the early Christian Church in Ireland. Hughes remains a highly regarded historian over thirty years after her early death. A mark of this respect was demonstrated with the inclusion of two of her articles in volume one of \"A New History of Ireland\", published in 2006. Despite both having been written in 1974, they were included because \"she was one of the most distinguished early Irish church historian(s) of her generation\", and as they had \"\"been heralded as forthcoming since her death. The editors therefore felt that it was only right to print the chapters as she wrote; Dr. Ann Hamlin, a friend of Kathleen Hughes, kindly undertook to complete the footnote reference and to update them where necessary.\"\" Hughes obtained her Ph.D in London, and became a fellow at Newnham College, Cambridge. She was the Nora Chadwick Reader in Celtic Studies, Department of Anglo-Saxon, Norse and Celtic, University of Cambridge. Among her best-known works was \"The Modern Traveller to the Early Irish Church\", which was co-written with Dr. Hamlin. In 1973 she delivered the British Academy's Sir John Rhŷs Memorial Lecture. \"Ireland in Early Mediaeval Europe: Studies in Memory of Kathleen Hughes\" was published in 1981 and edited by Dorothy Whitelock, Rosamond McKitterick and David Dumville. Hughes is also commemorat",
+        "text_characters": 1721,
+        "title": "Kathleen Hughes (historian)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5605442",
+        "score": 19.13462145286147,
+        "snippet": "and \"Water Babies\", and Samuel Butler, remembered for \"The Way of All Flesh\" and \"Erewhon\", are all University of Cambridge alumni. Ghost story writer M. R. James served as provost of King's College from 1905 to 1918. Novelist Amy Levy was the second Jewish woman to attend the university. Modernist writers to have attended the university include E. M. Forster, Rosamond Lehmann, Vladimir Nabokov, Christopher Isherwood, and Malcolm Lowry. Playwright J. B. Priestley, physicist and novelist C. P. Snow, and children's writer A. A. Milne are each early 20th century alumni of the university. They were followed by postmodernists Patrick White, J. G. Ballard, and early postcolonial writer E. R. Braithwaite. More recently, alumni include comedy writers Douglas Adams, Tom Sharpe and Howard Jacobson, the popular novelists A. S. Byatt, Salman Rushdie, Nick Hornby, Zadie Smith, Louise Dean, Robert Harris, and Sebastian Faulks, action writers Michael Crichton, David Gibbins, and Jin Yong, and contemporary playwrights and screenwriters, including Julian Fellowes, Stephen Poliakoff, Michael Frayn, and Peter Shaffer, as well as musical theatre writers Toby Marlow and Lucy Moss. Within poetry, University of Cambridge alumni include the poets Edmund Spenser, author of \"The Faerie Queene\", metaphysical poets John Donne, who wrote \"For Whom the Bell Tolls\", George Herbert and Andrew Marvell, and John Milton, who is renowned for \"Paradise Lost\", Restoration poet and playwright John Dryden, pre-roma",
+        "text_characters": 2499,
+        "title": "University of Cambridge"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5390399",
+        "score": 18.921173839392587,
+        "snippet": "Austrian American academic molecular and cell biologist (1967–2020) Angelika Amon (January 10, 1967 – October 29, 2020) was an Austrian American molecular and cell biologist, and the Kathleen and Curtis Marble Professor in Cancer Research at the Massachusetts Institute of Technology (MIT) in Cambridge, Massachusetts, United States. Amon's research centered on how chromosomes are regulated, duplicated, and partitioned in the cell cycle. Amon was elected to the American Academy of Arts and Sciences in 2017. Early life. Amon was born and raised in Vienna, Austria. She displayed an early interest in plant and animal biology as a child, keeping a notebook full of newspaper clippings, and was motivated to study biology after learning about Mendelian genetics and seeing time-lapse micrographs of the division of plant cells in middle school. Amon received an undergraduate degree in biology from the University of Vienna. She continued her doctoral work there beginning in 1989 under a newly hired Kim Nasmyth at the Research Institute of Molecular Pathology (IMP), receiving a PhD in 1993. Amon left Austria for the United States in 1994, joining the Whitehead Institute in Cambridge, Massachusetts as a postdoctoral researcher. She was named a Whitehead Fellow in 1996, which allowed her to start her own laboratory at the Institute. Career. Amon's independent work at the Whitehead Institute led directly to her securing a faculty appointment at the Koch Institute for Integrative Cancer Resea",
+        "text_characters": 2729,
+        "title": "Angelika Amon"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4914026",
+        "score": 17.621243590359885,
+        "snippet": "Scottish historian John Walter MacDonald Bannerman (13 August 1932 – 8 October 2008) was a Scottish historian, noted for his work on Gaelic Scotland. Biography. He was born in Balmaha, Stirlingshire, the son of John MacDonald Bannerman, later Lord Bannerman of Kildonan, and his wife Ray Mundell. His family was native speakers of Scottish Gaelic, and after leaving school Bannerman studied Celtic languages at the University of Glasgow. He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes. Although he considered teaching Gaelic in schools, Bannerman instead took up a post at the Celtic department of the University of Aberdeen before joining the history department at the University of Edinburgh in 1967. He took over the running of the family farm at Balmaha in 1968, shortly before his father's death, dividing his time between teaching at the university, writing, and farming. His work on Gaelic Scotland was influential. His early works on Dál Riata, the Senchus fer n-Alban, and the Iona chronicles which formed part of the later \"Chronicle of Ireland\" are contained in his 1974 book \"Studies in the History of Dalriada\". He was a major contributor to the record of \"Late Medieval Monumental Sculpture in the West Highlands\" published in 1977 and his study of the Beaton family—\"The Beatons: Medical Kindred in the ",
+        "text_characters": 1771,
+        "title": "John Bannerman (historian)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6032246",
+        "score": 17.58172732074082,
+        "snippet": "Chadwick took a leading role in integrating the philological study of Old English with archaeology and history and, by bringing the study of Old English from the Faculty of English to Archaeology and Anthropology in 1928, founded what was to become the Department of Anglo-Saxon, Norse and Celtic: \"Chadwick's aim ... was to keep Old English studies free from philology (as it was then practised), but also from the dominance of English Literature\". However, \"the alliance of Anglo-Saxon and archaeology suited the professor and not the students; and in the 1960s Professor Dorothy Whitelock led the Saxon flock back into the English fold\"—specifically in 1967, though the Department of Archaeology and Anthropology continues to sustain strengths in Anglo-Saxon and early medieval archaeology, with relevant archaeology papers being available to ASNaCs. The Anglo-Saxon and Kindred Studies Tripos was introduced as a single-part (two-year) Tripos in 1957, the class list being published under the title 'Anglo-Saxon'; in 1971 this was relabelled 'Anglo-Saxon, Norse and Celtic' under Peter Clemoes. In 1992, under the leadership of Michael Lapidge, ASNC became a two-part (three-year) Tripos. The Elrington and Bosworth Professor was customarily the head of the ASNaC Department, until a rotating headship system was introduced during the professorship of Simon Keynes in the early twenty-first century. The Department runs three annual public lectures: the H. M. Chadwick Lecture, the Kathleen Hughe",
+        "text_characters": 2739,
+        "title": "Department of Anglo-Saxon, Norse and Celtic, University of Cambridge"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5083159",
+        "score": 17.180084231323555,
+        "snippet": "British historian (1954–2020) Richard Sharpe, , Hon. (17 February 1954 – 22 March 2020) was a British historian and academic, who was Professor of Diplomatic at the University of Oxford and a fellow of Wadham College, Oxford. His broad interests were the history of medieval England, Ireland, Scotland and Wales. He had a special concern with first-hand work on the primary sources of medieval history, including the practices of palaeography, diplomatic and the editorial process, as well as the historical and legal contexts of medieval documents. He was the general editor of the \"Corpus of British Medieval Library Catalogues,\" and editor of a forthcoming edition of the charters of King Henry I of England. Biography. Sharpe studied at St Peter's School, York and then took his BA at Trinity College, Cambridge, studying Classics for Part I of the degree and then Anglo Saxon, Norse and Celtic for Part II, where he studied with, amongst others, Simon Keynes, Kathleen Hughes and Michael Lapidge. He graduated with a first in 1977, and published his first book, a history of Raasay the same year. Sharpe stayed in the ASNaC department for his PhD, on Latin-language Irish hagiography, which was the basis for his 1991 \"Medieval Irish Saints' Lives: an introduction to 'Vitae sanctorum Hiberniae'\". From 1981 to 1990, Sharpe was an assistant editor of the \"Dictionary of Medieval Latin from British Sources\". As the University of Oxford's 2018–2019 Lyell Reader in Bibliography, Sharpe delivered ",
+        "text_characters": 1881,
+        "title": "Richard Sharpe (historian)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5589041",
+        "score": 15.541774770344453,
+        "snippet": "Poem \"Ariel\" is a poem written by the American poet Sylvia Plath. It was written on her thirtieth birthday, October 27, 1962, and published posthumously in the collection \"Ariel\" in 1965. Despite the poem's ambiguity, it is understood to describe an early morning horse-ride towards the rising sun. Scholars and literary critics have applied various methods of interpretation to \"Ariel\". Style and structure. \"Ariel\" is composed of ten three-line stanzas with an additional single line at the end, and follows an unusual slanted rhyme scheme. Literary commentator William V. Davis notes a change in tone and break of the slanted rhyme scheme in the sixth stanza which marks a shift in the theme of the poem, from being literally about a horse ride, to more of a metaphoric experience of oneness with the horse and the act of riding itself. Context. It has been speculated that, being written on her birthday as well as using the general theme of rebirth, \"Ariel\" acted as a sort of psychic rebirth for the poet. The poem, written just five months before her eventual suicide, thus, not surprisingly given its name as well, is one of her \"Ariel\" poems. \"Ariel\" was the name of the horse Plath rode at a riding school on Dartmoor in Devon. Ted Hughes, Plath's husband, comments: ARIEL was the name of the horse on which she went riding weekly. Long before, while she was a student at Cambridge (England), she went riding with an American friend out towards Grantchester. Her horse bolted, the stirrups ",
+        "text_characters": 2304,
+        "title": "Ariel (poem)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10180568",
+        "score": 14.868293703006406,
+        "snippet": "Sir Gonne St Clair Pilcher, MC (19 September 1890 – 3 April 1966) was a British barrister and High Court judge. An Admiralty specialist, he sat in the Probate, Divorce and Admiralty Division from 1942 to 1951, and in the King's Bench Division from 1951 to 1961. Biography. Gonne Pilcher (nicknamed \"Toby\" within his family) was the eldest son of Major-General Thomas David Pilcher, CB, and Kathleen Mary, younger daughter of Colonel Thomas Gonne, of the 17th Lancers. Gonne Pilcher's aunt was Irish radical Maud Gonne, whose son, Seán MacBride, was a Clann na Poblachta politician and Irish Republican Army Chief-of-Staff. Pilcher was educated at Wellington College and Trinity College, Cambridge, where he took honours in the Mediaeval and Modern Languages tripos in 1911. He was called to the Bar by the Inner Temple in 1915. During the First World War, he served in France and Belgium, for which he was mentioned in dispatches and was awarded the Military Cross. After the war, he initially joined the chambers of William Jowitt (later Earl Jowitt), before moving to Admiralty chambers. He was Junior Counsel to the Admiralty in the Admiralty Court from 1935 to 1936, when he became a King's Counsel. He was appointed Deputy Chairman of the Somerset Quarter Sessions in 1938. During the Second World War, he was officially described as an attached officer at the War Office from September 1939 to October 1942; in reality, he was part of a group of lawyers recruited as officers by MI5. In 1942, h",
+        "text_characters": 2561,
+        "title": "Gonne Pilcher"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:38051",
+        "score": 11.199258949403092,
+        "snippet": "---\ntitle: University of Cambridge - Wikipedia\nauthor: Authority control databases\ndate: 2001-08-21\n---\nname: University of Cambridge\nimage_upright: 0.7\nlatin_name: Universitas CantabrigiensisRecord of the Jubilee Celebrations of the University of Sydney 1903 William Brooks and Co. 9781112213304 Sydney, New South Wales en-AURecords of The Tercentenary Festival of Dublin University 1894 Hodges, Figgis & Co. 9781355361602 Dublin, Ireland en-IEActes du Jubilé de 1909 1910 Georg Keck & Cie 9781360078335 Geneva, Switzerland fr-CH\nmotto: la Hinc lucem et pocula sacra\nmottoeng: Literal: From here, light and sacred draughts.Nonliteral: From this place, we gain enlightenment and precious knowledge.\nestablished: }}\nother_name: The Chancellor, Masters and Scholars of the University of Cambridge\ntype: Public research universityAncient university\nendowment: £2.62 billion (2024, excluding colleges)Reports and the Financial Statements 2024 10 Jan 2025 University of Cambridge\nbudget: £2.24 billion (2023/2024, excluding colleges)Reports and the Financial Statements 2024 10 Jan 2025 University of Cambridge\nchancellor: The Lord Sainsbury of Turville\nvice_chancellor: Deborah Prentice\nacademic_staff: 10007788 ()\nadministrative_staff: 10007788 ()\nstudents: 10007788 ()10007788 FTE ()\nundergrad: 10007788 ()\npostgrad: 10007788 ()\ncity: Cambridge\ncountry: England\ncampus_type: University town:\naffiliations: ACU, EUA, IARU, LERU, Russell Group, SES, Universities UK\ncolours: #A3C1AD Cambridge BlueIdentit",
+        "text_characters": 91639,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:30196",
+        "score": 8.432953498721234,
+        "snippet": "---\ntitle: Books by Fellows\ndate: 2024-02-01\n---\nBooks by Fellows\n\nDuring their year of residence, Fellows worked on the following published books. Many have been recognized with awards and prizes, which are listed within the bibliographic entry.\n\nRecently Published Books\n\nAll Books by Fellows\n\nAbel, Richard (NHC Fellow, 1988–89). The Ciné Goes to Town: French Cinema, 1896-1914. Berkeley: University of California Press, 1998. Centennial Book (1994); Richard Wall Memorial Award (1994) »\n\nAdelson, Joseph (NHC Fellow, 1978–79). Handbook of Adolescent Psychology. Wiley Series on Personality Processes. New York: Wiley, 1980. »\n\nAdelson, Joseph (NHC Fellow, 1978–79). Inventing Adolescence: The Political Psychology of Everyday Schooling. New Brunswick, NJ: Transaction Books, 1986. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80). The Supreme Court and Constitutional Democracy. Ithaca, NY: Cornell University Press, 1984. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80), ed. Liberty and Equality under the Constitution. Washington, D.C.: American Historical Association, 1983. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80), ed. The Humanist as Citizen: Essays on the Uses of the Humanities. Edited by John Agresto, Charles Frankel, and Peter Riesenberg. Chapel Hill: The University of North Carolina Press, 1981. »\n\nAhmed, Leila (NHC Fellow, 1982–83). Women and Gender in Islam: Historical Roots of a Modern Debate. New Haven, CT: Yale University Press, 1992. »\n\nAhmed, Rafiuddin (NHC Fellow, 1",
+        "text_characters": 321121,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:4420275", "title": "Kathleen Hughes (historian)", "score": 31.65904527421433, "snippet": "English historian Kathleen Winifred Hughes (8 September 1926 in Middlesbrough – 20 April 1977) was an English historian, her specialisation was Irish ecclesiastical history, particularly the early Christian Church in Ireland. Hughes remains a highly regarded historian over thirty years after her early death. A mark of this respect was demonstrated with the inclusion of two of her articles in volume one of \"A New History of Ireland\", published in 2006. Despite both having been written in 1974, they were included because \"she was one of the most distinguished early Irish church historian(s) of her generation\", and as they had \"\"been heralded as forthcoming since her death. The editors therefore felt that it was only right to print the chapters as she wrote; Dr. Ann Hamlin, a friend of Kathleen Hughes, kindly undertook to complete the footnote reference and to update them where necessary.\"\" Hughes obtained her Ph.D in London, and became a fellow at Newnham College, Cambridge. She was the Nora Chadwick Reader in Celtic Studies, Department of Anglo-Saxon, Norse and Celtic, University of Cambridge. Among her best-known works was \"The Modern Traveller to the Early Irish Church\", which was co-written with Dr. Hamlin. In 1973 she delivered the British Academy's Sir John Rhŷs Memorial Lecture. \"Ireland in Early Mediaeval Europe: Studies in Memory of Kathleen Hughes\" was published in 1981 and edited by Dorothy Whitelock, Rosamond McKitterick and David Dumville. Hughes is also commemorat", "text_characters": 1721, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5605442", "title": "University of Cambridge", "score": 19.13462145286147, "snippet": "and \"Water Babies\", and Samuel Butler, remembered for \"The Way of All Flesh\" and \"Erewhon\", are all University of Cambridge alumni. Ghost story writer M. R. James served as provost of King's College from 1905 to 1918. Novelist Amy Levy was the second Jewish woman to attend the university. Modernist writers to have attended the university include E. M. Forster, Rosamond Lehmann, Vladimir Nabokov, Christopher Isherwood, and Malcolm Lowry. Playwright J. B. Priestley, physicist and novelist C. P. Snow, and children's writer A. A. Milne are each early 20th century alumni of the university. They were followed by postmodernists Patrick White, J. G. Ballard, and early postcolonial writer E. R. Braithwaite. More recently, alumni include comedy writers Douglas Adams, Tom Sharpe and Howard Jacobson, the popular novelists A. S. Byatt, Salman Rushdie, Nick Hornby, Zadie Smith, Louise Dean, Robert Harris, and Sebastian Faulks, action writers Michael Crichton, David Gibbins, and Jin Yong, and contemporary playwrights and screenwriters, including Julian Fellowes, Stephen Poliakoff, Michael Frayn, and Peter Shaffer, as well as musical theatre writers Toby Marlow and Lucy Moss. Within poetry, University of Cambridge alumni include the poets Edmund Spenser, author of \"The Faerie Queene\", metaphysical poets John Donne, who wrote \"For Whom the Bell Tolls\", George Herbert and Andrew Marvell, and John Milton, who is renowned for \"Paradise Lost\", Restoration poet and playwright John Dryden, pre-roma", "text_characters": 2499, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5390399", "title": "Angelika Amon", "score": 18.921173839392587, "snippet": "Austrian American academic molecular and cell biologist (1967–2020) Angelika Amon (January 10, 1967 – October 29, 2020) was an Austrian American molecular and cell biologist, and the Kathleen and Curtis Marble Professor in Cancer Research at the Massachusetts Institute of Technology (MIT) in Cambridge, Massachusetts, United States. Amon's research centered on how chromosomes are regulated, duplicated, and partitioned in the cell cycle. Amon was elected to the American Academy of Arts and Sciences in 2017. Early life. Amon was born and raised in Vienna, Austria. She displayed an early interest in plant and animal biology as a child, keeping a notebook full of newspaper clippings, and was motivated to study biology after learning about Mendelian genetics and seeing time-lapse micrographs of the division of plant cells in middle school. Amon received an undergraduate degree in biology from the University of Vienna. She continued her doctoral work there beginning in 1989 under a newly hired Kim Nasmyth at the Research Institute of Molecular Pathology (IMP), receiving a PhD in 1993. Amon left Austria for the United States in 1994, joining the Whitehead Institute in Cambridge, Massachusetts as a postdoctoral researcher. She was named a Whitehead Fellow in 1996, which allowed her to start her own laboratory at the Institute. Career. Amon's independent work at the Whitehead Institute led directly to her securing a faculty appointment at the Koch Institute for Integrative Cancer Resea", "text_characters": 2729, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4914026", "title": "John Bannerman (historian)", "score": 17.621243590359885, "snippet": "Scottish historian John Walter MacDonald Bannerman (13 August 1932 – 8 October 2008) was a Scottish historian, noted for his work on Gaelic Scotland. Biography. He was born in Balmaha, Stirlingshire, the son of John MacDonald Bannerman, later Lord Bannerman of Kildonan, and his wife Ray Mundell. His family was native speakers of Scottish Gaelic, and after leaving school Bannerman studied Celtic languages at the University of Glasgow. He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes. Although he considered teaching Gaelic in schools, Bannerman instead took up a post at the Celtic department of the University of Aberdeen before joining the history department at the University of Edinburgh in 1967. He took over the running of the family farm at Balmaha in 1968, shortly before his father's death, dividing his time between teaching at the university, writing, and farming. His work on Gaelic Scotland was influential. His early works on Dál Riata, the Senchus fer n-Alban, and the Iona chronicles which formed part of the later \"Chronicle of Ireland\" are contained in his 1974 book \"Studies in the History of Dalriada\". He was a major contributor to the record of \"Late Medieval Monumental Sculpture in the West Highlands\" published in 1977 and his study of the Beaton family—\"The Beatons: Medical Kindred in the ", "text_characters": 1771, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6032246", "title": "Department of Anglo-Saxon, Norse and Celtic, University of Cambridge", "score": 17.58172732074082, "snippet": "Chadwick took a leading role in integrating the philological study of Old English with archaeology and history and, by bringing the study of Old English from the Faculty of English to Archaeology and Anthropology in 1928, founded what was to become the Department of Anglo-Saxon, Norse and Celtic: \"Chadwick's aim ... was to keep Old English studies free from philology (as it was then practised), but also from the dominance of English Literature\". However, \"the alliance of Anglo-Saxon and archaeology suited the professor and not the students; and in the 1960s Professor Dorothy Whitelock led the Saxon flock back into the English fold\"—specifically in 1967, though the Department of Archaeology and Anthropology continues to sustain strengths in Anglo-Saxon and early medieval archaeology, with relevant archaeology papers being available to ASNaCs. The Anglo-Saxon and Kindred Studies Tripos was introduced as a single-part (two-year) Tripos in 1957, the class list being published under the title 'Anglo-Saxon'; in 1971 this was relabelled 'Anglo-Saxon, Norse and Celtic' under Peter Clemoes. In 1992, under the leadership of Michael Lapidge, ASNC became a two-part (three-year) Tripos. The Elrington and Bosworth Professor was customarily the head of the ASNaC Department, until a rotating headship system was introduced during the professorship of Simon Keynes in the early twenty-first century. The Department runs three annual public lectures: the H. M. Chadwick Lecture, the Kathleen Hughe", "text_characters": 2739, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5083159", "title": "Richard Sharpe (historian)", "score": 17.180084231323555, "snippet": "British historian (1954–2020) Richard Sharpe, , Hon. (17 February 1954 – 22 March 2020) was a British historian and academic, who was Professor of Diplomatic at the University of Oxford and a fellow of Wadham College, Oxford. His broad interests were the history of medieval England, Ireland, Scotland and Wales. He had a special concern with first-hand work on the primary sources of medieval history, including the practices of palaeography, diplomatic and the editorial process, as well as the historical and legal contexts of medieval documents. He was the general editor of the \"Corpus of British Medieval Library Catalogues,\" and editor of a forthcoming edition of the charters of King Henry I of England. Biography. Sharpe studied at St Peter's School, York and then took his BA at Trinity College, Cambridge, studying Classics for Part I of the degree and then Anglo Saxon, Norse and Celtic for Part II, where he studied with, amongst others, Simon Keynes, Kathleen Hughes and Michael Lapidge. He graduated with a first in 1977, and published his first book, a history of Raasay the same year. Sharpe stayed in the ASNaC department for his PhD, on Latin-language Irish hagiography, which was the basis for his 1991 \"Medieval Irish Saints' Lives: an introduction to 'Vitae sanctorum Hiberniae'\". From 1981 to 1990, Sharpe was an assistant editor of the \"Dictionary of Medieval Latin from British Sources\". As the University of Oxford's 2018–2019 Lyell Reader in Bibliography, Sharpe delivered ", "text_characters": 1881, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5589041", "title": "Ariel (poem)", "score": 15.541774770344453, "snippet": "Poem \"Ariel\" is a poem written by the American poet Sylvia Plath. It was written on her thirtieth birthday, October 27, 1962, and published posthumously in the collection \"Ariel\" in 1965. Despite the poem's ambiguity, it is understood to describe an early morning horse-ride towards the rising sun. Scholars and literary critics have applied various methods of interpretation to \"Ariel\". Style and structure. \"Ariel\" is composed of ten three-line stanzas with an additional single line at the end, and follows an unusual slanted rhyme scheme. Literary commentator William V. Davis notes a change in tone and break of the slanted rhyme scheme in the sixth stanza which marks a shift in the theme of the poem, from being literally about a horse ride, to more of a metaphoric experience of oneness with the horse and the act of riding itself. Context. It has been speculated that, being written on her birthday as well as using the general theme of rebirth, \"Ariel\" acted as a sort of psychic rebirth for the poet. The poem, written just five months before her eventual suicide, thus, not surprisingly given its name as well, is one of her \"Ariel\" poems. \"Ariel\" was the name of the horse Plath rode at a riding school on Dartmoor in Devon. Ted Hughes, Plath's husband, comments: ARIEL was the name of the horse on which she went riding weekly. Long before, while she was a student at Cambridge (England), she went riding with an American friend out towards Grantchester. Her horse bolted, the stirrups ", "text_characters": 2304, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10180568", "title": "Gonne Pilcher", "score": 14.868293703006406, "snippet": "Sir Gonne St Clair Pilcher, MC (19 September 1890 – 3 April 1966) was a British barrister and High Court judge. An Admiralty specialist, he sat in the Probate, Divorce and Admiralty Division from 1942 to 1951, and in the King's Bench Division from 1951 to 1961. Biography. Gonne Pilcher (nicknamed \"Toby\" within his family) was the eldest son of Major-General Thomas David Pilcher, CB, and Kathleen Mary, younger daughter of Colonel Thomas Gonne, of the 17th Lancers. Gonne Pilcher's aunt was Irish radical Maud Gonne, whose son, Seán MacBride, was a Clann na Poblachta politician and Irish Republican Army Chief-of-Staff. Pilcher was educated at Wellington College and Trinity College, Cambridge, where he took honours in the Mediaeval and Modern Languages tripos in 1911. He was called to the Bar by the Inner Temple in 1915. During the First World War, he served in France and Belgium, for which he was mentioned in dispatches and was awarded the Military Cross. After the war, he initially joined the chambers of William Jowitt (later Earl Jowitt), before moving to Admiralty chambers. He was Junior Counsel to the Admiralty in the Admiralty Court from 1935 to 1936, when he became a King's Counsel. He was appointed Deputy Chairman of the Somerset Quarter Sessions in 1938. During the Second World War, he was officially described as an attached officer at the War Office from September 1939 to October 1942; in reality, he was part of a group of lawyers recruited as officers by MI5. In 1942, h", "text_characters": 2561, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:38051", "title": "", "score": 11.199258949403092, "snippet": "---\ntitle: University of Cambridge - Wikipedia\nauthor: Authority control databases\ndate: 2001-08-21\n---\nname: University of Cambridge\nimage_upright: 0.7\nlatin_name: Universitas CantabrigiensisRecord of the Jubilee Celebrations of the University of Sydney 1903 William Brooks and Co. 9781112213304 Sydney, New South Wales en-AURecords of The Tercentenary Festival of Dublin University 1894 Hodges, Figgis & Co. 9781355361602 Dublin, Ireland en-IEActes du Jubilé de 1909 1910 Georg Keck & Cie 9781360078335 Geneva, Switzerland fr-CH\nmotto: la Hinc lucem et pocula sacra\nmottoeng: Literal: From here, light and sacred draughts.Nonliteral: From this place, we gain enlightenment and precious knowledge.\nestablished: }}\nother_name: The Chancellor, Masters and Scholars of the University of Cambridge\ntype: Public research universityAncient university\nendowment: £2.62 billion (2024, excluding colleges)Reports and the Financial Statements 2024 10 Jan 2025 University of Cambridge\nbudget: £2.24 billion (2023/2024, excluding colleges)Reports and the Financial Statements 2024 10 Jan 2025 University of Cambridge\nchancellor: The Lord Sainsbury of Turville\nvice_chancellor: Deborah Prentice\nacademic_staff: 10007788 ()\nadministrative_staff: 10007788 ()\nstudents: 10007788 ()10007788 FTE ()\nundergrad: 10007788 ()\npostgrad: 10007788 ()\ncity: Cambridge\ncountry: England\ncampus_type: University town:\naffiliations: ACU, EUA, IARU, LERU, Russell Group, SES, Universities UK\ncolours: #A3C1AD Cambridge BlueIdentit", "text_characters": 91639, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:30196", "title": "", "score": 8.432953498721234, "snippet": "---\ntitle: Books by Fellows\ndate: 2024-02-01\n---\nBooks by Fellows\n\nDuring their year of residence, Fellows worked on the following published books. Many have been recognized with awards and prizes, which are listed within the bibliographic entry.\n\nRecently Published Books\n\nAll Books by Fellows\n\nAbel, Richard (NHC Fellow, 1988–89). The Ciné Goes to Town: French Cinema, 1896-1914. Berkeley: University of California Press, 1998. Centennial Book (1994); Richard Wall Memorial Award (1994) »\n\nAdelson, Joseph (NHC Fellow, 1978–79). Handbook of Adolescent Psychology. Wiley Series on Personality Processes. New York: Wiley, 1980. »\n\nAdelson, Joseph (NHC Fellow, 1978–79). Inventing Adolescence: The Political Psychology of Everyday Schooling. New Brunswick, NJ: Transaction Books, 1986. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80). The Supreme Court and Constitutional Democracy. Ithaca, NY: Cornell University Press, 1984. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80), ed. Liberty and Equality under the Constitution. Washington, D.C.: American Historical Association, 1983. »\n\nAgresto, John (NHC Fellow, 1978–79; 1979–80), ed. The Humanist as Citizen: Essays on the Uses of the Humanities. Edited by John Agresto, Charles Frankel, and Peter Riesenberg. Chapel Hill: The University of North Carolina Press, 1981. »\n\nAhmed, Leila (NHC Fellow, 1982–83). Women and Gender in Islam: Historical Roots of a Modern Debate. New Haven, CT: Yale University Press, 1992. »\n\nAhmed, Rafiuddin (NHC Fellow, 1", "text_characters": 321121, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0316/R004_request.json/messages/7/content`；SHA256：`91bb0911da73820b6b033def99983be879956a48ee961faa9deb16f1cd9c8eba`。
+
+## S003｜比较关系链并接受Hughes出生年1926，正式提交
+
+把导师材料与Hughes传记并列，解释题目所指学者为Hughes，接受出生年1926并submit_answer。
+
+结束状态：VALID_FINAL，MODEL_FINAL_STOP，答案1926。
+
+边界判断：从取得人物职位材料转入完整关系链判断与答案接受，R4最早开始并列证据即切。
+
+内部KEEP与反证：证据清单、持有人解释、出生年结论与提交组成一次完整接受判断，不按列表或工具协议分拆。
+
+### SPLIT原文
+
+````
+ership position scholar" didn't yield specific information about a scholar associated with a readership position held by Kathleen Hughes. Let me try a more specific search about Kathleen Hughes and the readership position.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Kathleen Hughes readership University of Cambridge
+</parameter>
+</function>
+</tool_call>
+→ 切点 [3, 0, 0] →
+The search results provide the necessary information:
+
+1. From the first search (John Bannerman): "He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes."
+
+2. From the second search (Ka
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [0,903)
+
+SHA256：`88d83a89df0c4d283fd2e3f694b360c2c0fcd665264840486fedb1505d057aec`；原字段SHA256：`88d83a89df0c4d283fd2e3f694b360c2c0fcd665264840486fedb1505d057aec`。
+
+````
+The search results provide the necessary information:
+
+1. From the first search (John Bannerman): "He then studied for a second degree in Anglo-Saxon and Kindred Studies at Emmanuel College, Cambridge, graduating in 1958 with a first, and went on to complete his doctorate there in 1964 under the supervision of Kathleen Hughes."
+
+2. From the second search (Kathleen Hughes): "English historian Kathleen Winifred Hughes (8 September 1926 in Middlesbrough – 20 April 1977) was an English historian... She was the Nora Chadwick Reader in Celtic Studies, Department of Anglo-Saxon, Norse and Celtic, University of Cambridge."
+
+So Kathleen Hughes was the scholar associated with the readership position (Nora Chadwick Reader in Celtic Studies) held by her. The question asks for the birth year of this scholar.
+
+Kathleen Hughes was born on 8 September 1926.
+
+The answer is 1926.
+
+Let me submit this answer.
+
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "answer": "1926"
+  },
+  "id": "chatcmpl-tool-ba77131b153cdf38",
+  "name": "submit_answer",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"answer\": \"1926\"}",
+      "name": "submit_answer"
+    },
+    "id": "chatcmpl-tool-ba77131b153cdf38",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "1926"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 4.061032086610794e-06,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "chatcmpl-tool-ba77131b153cdf38"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "1926",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    3
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "ACTUAL_REQUEST_VERIFIED": 3,
+    "NO_LATER_ACTOR_REQUEST": 1
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整读取4轮、3次search、1次submit与全部返回。导师检索转职位检索时SPLIT；职位检索的普通重试KEEP；R4独立关系链接受判断单独保留。全部工具归属真实执行工作，Final单独保真。
+
+R3失败后增加Cambridge可备选视为重新组织查询；主方案KEEP，因为未展开不同方法或候选判断，只沿同一职位取证计划改词。模型把Hughes而非职位所纪念人物作为相关学者，是原文真实解释，不能为修正答案而补造查询或切点。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

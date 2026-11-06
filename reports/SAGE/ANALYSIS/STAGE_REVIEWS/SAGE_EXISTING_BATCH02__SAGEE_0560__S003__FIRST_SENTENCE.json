@@ -1,0 +1,526 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0560",
+  "stage_id": "S003",
+  "sample_order": 91,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "Disillusioned by his time as an infiltrator within the Fellowship of St. Giles, a priest originally devoted to a feudalistic organization ruled by the Red King, Martin engineered the Chichen Itza confrontation during the events of \"Changes\" (published April 6, 2010), aiming to activate a bloodline curse. This curse, intended to eradicate Harry Dresden's grandfather, Ebenezer McCoy, was famously redirected by Dresden using his now fully transformed ex-girlfriend, Susan Rodriguez, as the sacrifice. This resulted in the near-total obliteration of all individuals from a specific supernatural group older than Susan, thereby creating a significant power vacuum in the supernatural world. What was the name of this supernatural group whose elder members were virtually eradicated?",
+    "gold": [
+      "Red Court"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "Red Court",
+    "adopted_answer": "Red Court",
+    "outcome": "C",
+    "reason": "S003最终实际取到2935055直接结局句，原R9采用并提交。",
+    "evidence": [
+      "O_RETURN",
+      "O_ACCEPT",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6[0,475)及此前历史保留：Martin的Red Court/Fellowship双重角色已知，Open2935054的2000字符仅到Susan开始转化，尚无结局。P自身已无依据断言Susan是Elder Fae且血咒灭Sidhe，这个错误不在被删U内。",
+    "evidence_states": "人物参与和潜伏史已返回；被消灭群体尚未直接取证/采用，错误物种推断已被写成肯定前提。",
+    "evidence": [
+      "O_P",
+      "O_OPEN"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 475,
+        "end": 740
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 570
+      },
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 326
+      }
+    ],
+    "goal": "补齐血咒究竟消灭哪个群体的直接信息。",
+    "operations": "R6/7/8三次真实Search，前两次无相关结局；R8更短血咒/Susan/Fellowship Query返回2935055的Red Court灭亡叙述。",
+    "product": "第一次明确重定向Susan→Red Court灭亡的Return，尚由下一Stage采用。",
+    "judgment_change": "U主要改变可用证据，而非在U内完成正确接受；P的Sidhe假设被后续直接证据替代。",
+    "evidence": [
+      "O_U6",
+      "O_U7",
+      "O_U8",
+      "O_RETURN"
+    ]
+  },
+  "original_followup": {
+    "use": "R9引用2935055，them指向Red Court，正确提交。U不是单纯重述已采用事实。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在错误先验仍存在时，通过继续检索取得事件结局的直接证据。",
+    "state_relation": "四次都恢复同缺口取证，但三次没有直接结局材料，一次有替代直接材料却未采用；所有退化不能概括成同一信息从未返回。",
+    "evidence": [
+      "N1_DIRECT",
+      "N1_DENY",
+      "N2_LOOP",
+      "N3_WRONG",
+      "N4_RELATION"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I found the relevant information in the snippet from \"The Dresden Files characters\" (doc_id: wiki25:2935055).",
+    "source_position": "R9[0,109)",
+    "oracle_anchored": true,
+    "novelty": "G31Token提前引入P从未见过的2935055精确DocID，并声称其中已找到相关信息；不含Red Court答案句，但有未来来源和证据充分性提示。四条没有实际Open该DocID，不能把G宣称found当真实Return。",
+    "evidence": [
+      "I_G",
+      "O_OPEN",
+      "N1_FIRST",
+      "N2_FIRST",
+      "N3_FIRST",
+      "N4_FIRST"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Fellowship of St. Giles",
+      "adopted_answer": "Fellowship of St. Giles",
+      "outcome": "W",
+      "outcome_reason": "提交潜伏组织而非Red Court；R8已返回2935034明确血咒消灭Red Court却未用于纠正。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_DIRECT",
+        "N1_DENY"
+      ],
+      "work_and_evidence_timeline": "R6承接P精灵猜测做Fellowship/年龄Query；R7认为Sidhe/Fair Folk并查询；R8猜Morrigan/Avari后又FellowshipQuery，返回2935034直接Red Court句。R9仍说具体群体未命名并错把Fellowship写成Red King统治，再做广Query。R10用潜伏150年支持Fellowship灭亡，正式W。",
+      "first_judgment_divergence": "R7将P的Sidhe推断用于真实Query；R9在直接结局证据后仍未改候选是关键后续分歧。",
+      "first_actual_tool_divergence": "R6Query改为Fellowship/年龄；原R8有效短Query未再现，替代直接证据仍在新R8返回。",
+      "function_correspondence": [
+        {
+          "original_goal": "取结局直接证据",
+          "original_operation": "三Search后2935055",
+          "original_product": "Red Court灭亡句供采用",
+          "new_goal": "同血咒群体缺口",
+          "new_operation": "四Search，R8取得2935034另一明确句",
+          "new_product": "结局信息已可见但R9否认命名、后续没采用",
+          "evidence": [
+            "O_RETURN",
+            "N1_FIRST",
+            "N1_DIRECT",
+            "N1_DENY",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "实际取证及等价直接信息可见已恢复，原后续的证据转接受没有恢复；不写NOT_OBSERVED。",
+      "judgment_action_outcome_chain": "P错误先验带方向→取到反向直接句仍以旧潜伏史解释→Fellowship被误确认为受害整体→W；这是获取与采用断开，不是所有证据缺失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1544生成105890Prompt4Search5Actor，原切点后三Search与提交；新增一次Search及R10长4138字符错误关系论证。P14722/G31预填各一次，原partial成本用表区间。",
+      "counterevidence_and_alternatives": "2935034还提Fellowship内Red Court成员，必须区分成员被杀与组织被题目指称；错误采用有原文而内部原因不能唯一确定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R8单轮10000Token、50988字符反复Fellowship结局推断，无submit/Final。",
+      "outcome_evidence": [
+        "N2_LOOP",
+        "N2_STOP"
+      ],
+      "work_and_evidence_timeline": "R6真实Sidhe Query无关返回；R7具体事件Query仅得剧情起始与Mac片段；R8把Martin长期潜伏关系误转成Fellowship被血咒灭亡，反复重读题目、重复同推断直到长度停，后无Call。",
+      "first_judgment_divergence": "R6仍用P的Sidhe设定核验；R8把缺直接结局改成由潜伏史推导答案。",
+      "first_actual_tool_divergence": "首Query已具体绑定Sidhe；两Search后停止工具改无限纯论证。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得真实结局证据",
+          "original_operation": "三Search继续取证",
+          "original_product": "直接灭Red Court资料",
+          "new_goal": "同群体缺口",
+          "new_operation": "两Search后自行推断Fellowship",
+          "new_product": "没有直接结局Return，未正式提交",
+          "evidence": [
+            "O_RETURN",
+            "N2_FIRST",
+            "N2_LOOP",
+            "N2_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "缺口搜索动作恢复但决定性产物和采用未恢复。",
+      "judgment_action_outcome_chain": "无新结局信息→潜伏组织被误作受害群体→反复以同题意证明自己→10000Token无行动耗尽，N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "10227生成54842Prompt2Search3Actor；少一次Search不等于更有效，10000生成集中R8重复论证；无G答案内容但G的found声称不能算证据。",
+      "counterevidence_and_alternatives": "工具次数减少而生成大增；没有正式答案不能将中途Fellowship猜测当W提交。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Fellowship of St. Giles",
+      "adopted_answer": "Fellowship of St. Giles",
+      "outcome": "W",
+      "outcome_reason": "R12正式接受Fellowship，依赖多次虚构Susan/Fellowship种族年龄，没有直接血咒结局支持。",
+      "outcome_evidence": [
+        "N3_WRONG",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R6扩P为Queen ofSidhe后真实Query；R7事件Query返回Mac等。R8宣称Fellowship由fae组成且符合条件，真实查Fellowship。R9改称Susan Outlander再Query；R10查Sidhe elders；R11又编1657出生、FellowshipRedKing并真实第六Query；R12称Susan oldestfae并提交W。六Search均未取决定结局。",
+      "first_judgment_divergence": "R6将P无依据物种增强为Queen，并将它用作答案类型范围。",
+      "first_actual_tool_divergence": "R6Sidhe定向；后续六次Search围绕衍生错误对象，没有OpenG指定来源。",
+      "function_correspondence": [
+        {
+          "original_goal": "取证确定受害群体",
+          "original_operation": "三Search得到直接结局",
+          "original_product": "Red Court来源",
+          "new_goal": "同群体缺口",
+          "new_operation": "六Search但逐次用虚构物种/年龄调和",
+          "new_product": "无正确结局证据，错误接受Fellowship",
+          "evidence": [
+            "O_RETURN",
+            "N3_FIRST",
+            "N3_WRONG",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "检索目标恢复但证据产物未恢复，虚构判断不是等价完成。",
+      "judgment_action_outcome_chain": "错误物种前提→把Fellowship当fae家族→查同对象未支持仍增强确定性→W；计算增加在由错误解释派生的多次查询和多轮盘点。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "2562生成175641Prompt6Search7Actor，原后3Search4Actor；多三查询、反复身份年龄解释。",
+      "counterevidence_and_alternatives": "与r1不同，这里没有观察到明确Red Court结局Return；不能统一写有证据却无视。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Fellowship of St. Giles",
+      "adopted_answer": "Fellowship of St. Giles",
+      "outcome": "W",
+      "outcome_reason": "实际得到Susan半吸血鬼资料，仍反复在群体/种类语义中排除Red Court答案而提交Fellowship。",
+      "outcome_evidence": [
+        "N4_RELATION",
+        "N4_WRONG",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R6说查Sidhe但真实事件/年龄Query；R7新误称Susan狼人并Query；R8Fellowship血咒Query，R9Fellowship结局Query返回2935011明确半吸血鬼及受害者组织。R10先采用半吸血鬼事实，随后14727字符反复承认Fellowship是人类却说题目要组织不是种类，曾说Red Court vampires又撤回，最终W。",
+      "first_judgment_divergence": "R7从P的精灵换成另一无依据狼人，后新证据仅纠正物种，未纠正组织关系。",
+      "first_actual_tool_divergence": "R7狼人Query；最后没有进一步Call解除已识别组织冲突。",
+      "function_correspondence": [
+        {
+          "original_goal": "获得受害群体结局",
+          "original_operation": "三Search取得结局关系",
+          "original_product": "Red Court",
+          "new_goal": "同结局与Susan身份",
+          "new_operation": "四Search得身份/组织资料，长论证",
+          "new_product": "物种纠正为半吸血鬼，但未得直接结局且错误选Fellowship",
+          "evidence": [
+            "O_RETURN",
+            "N4_FIRST",
+            "N4_RELATION",
+            "N4_WRONG",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "取证尝试及部分身份信息恢复，核心结局对应未完成。",
+      "judgment_action_outcome_chain": "身份新证据纠正部分猜测→组织/种类错误区分阻止把Red Court当答案→反复识别自身冲突仍不解除→长篇后W。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "3809生成112088Prompt4Search5Actor；新增一次查询和R10 3305Token反复判断是主要增量，绝非只有Search成本。",
+      "counterevidence_and_alternatives": "不能说所有新材料都没采用：半吸血鬼事实确实进入R10；问题是事实没有改变被接受的群体关系。"
+    }
+  ],
+  "four_run_comparison": "W/N/W/W；全部恢复实际血咒群体检索，无一次完整恢复原证据—采用链。r1有替代直接结局却不采用；r2/r3/r4缺同类直接结局，r4采用了身份资料仍选错关系。r2长度停而r4同样循环后最终错提交，结果不同但错误对象反复自证相近。G未来DocID没被Open。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当P里无依据的种族/组织解释已被肯定时，删除后续直接结局取证会使续跑从这个错误前提出发查询和补故事；新背景材料只纠正部分属性，并不自动纠正谁是受害群体。即使直接句已返回，也可能仍以旧潜伏史决定对象。决定正确性的是返回材料是否实际改变接受关系，额外查询或长论证可在未改变该关系时持续。",
+      "support": "r1显示取得但不采用；r3显示错误前提派生六次真实检索；r4显示新身份采用却未更新组织判断；与同题S004有充分直接P时4C对照。",
+      "limits": "一个题目，不当四题；P原错误保留、G未来来源、采样及新工具内容均为替代因素。不能由4次退化断言原三次Search每次都必要。"
+    }
+  ],
+  "counterevidence_and_limits": "162860字符六段全读，包括r2全部50988字符重复推理，未将搜索意向算Call。完整原生IDs缺失、partialR6保守区间，教师31Token与P14722另计。本文是模型语义自审。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Susan Rodriguez is an Elder Fae (Sidhe). The curse killed all the older Sidhe (Elder Fae), creating a power vacuum."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "beginning her final conversion t",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:2935054"
+      ]
+    },
+    {
+      "evidence_id": "O_U6",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/query",
+      "exact_quote": "Chichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U7",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "query",
+      "json_pointer": "/rounds/6/tool_calls/0/arguments/query",
+      "exact_quote": "Fellowship of St. Giles bloodline curse Chichen Itza Susan Rodriguez sacrifice",
+      "call_id": "chatcmpl-tool-82987fe63db043ac"
+    },
+    {
+      "evidence_id": "O_U8",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/rounds/7/tool_calls/0/arguments/query",
+      "exact_quote": "bloodline curse Susan Rodriguez Fellowship of St. Giles",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/7/observation/results/2/snippet",
+      "exact_quote": "turning the bloodline curse against the Red Court instead, and wiping them out.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:2935055"
+      ]
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "So the supernatural group that was wiped out is the **Red Court**."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Red Court"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I found the relevant information in the snippet from \"The Dresden Files characters\" (doc_id: wiki25:2935055)."
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Fellowship of St. Giles Chichen Itza bloodline curse older than Susan Rodriguez eradicated",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DIRECT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "the bloodline curse at Chichen Itza eliminates Red Court vampires including those in the Fellowship",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:2935034"
+      ]
+    },
+    {
+      "evidence_id": "N1_DENY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "the specific group that was nearly eradicated is not explicitly named in the snippets I've seen so far."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Fellowship of St. Giles"
+    },
+    {
+      "evidence_id": "N2_FIRST",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Susan Rodriguez Elder Fae Sidhe bloodline curse Chichen Itza",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_LOOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Based on the context, the supernatural group is the Fellowship of St. Giles."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_FIRST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Susan Rodriguez is a Queen of the Sidhe (Elder Fae)."
+    },
+    {
+      "evidence_id": "N3_WRONG",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Susan Rodriguez was the oldest living fae (Sidhe)."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Fellowship of St. Giles"
+    },
+    {
+      "evidence_id": "N4_FIRST",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me search for \"Sidhe\" or \"Elder Fae\""
+    },
+    {
+      "evidence_id": "N4_RELATION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/2/snippet",
+      "exact_quote": "She joined the Fellowship of St. Giles, an organization for those who have been harmed by vampires",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:2935011"
+      ]
+    },
+    {
+      "evidence_id": "N4_WRONG",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "But the question asks for the name of the group, not the type of supernatural being."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Fellowship of St. Giles"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0560/trajectory.json",
+      "source_sha256": "9d0f42bb45d748ce96bd8696f93d18b036ab1e3547cb466bf4a5b9ed4b40a6c4"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0560.json",
+      "source_sha256": "2bc487f9416a527e1b2a8e0932f968e4ce5cb432f2d5ab062dfa720a8b0f88d8"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "decb4fa870508b718585228e07ea9e0e2f345dab2e5d68fde39891fdedfd5781"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "c79e3c1f06b0534f2fa6b7106da88afdd94da603dbc4a42f64e4d46df9808c09"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "705317328a2b775a37b8b3b453c654e326ca9476cab12f4322cb7285315fcefe"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "e3b32529f247ba9c6ed1cee7b49a23f3786c7a4001ace96a5bf22125633ddc26"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0560__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "85ff9b9878f983da8b3b220b0c28123f4a92a6b4c03c9e919134aa6805b566cd"
+    }
+  }
+}

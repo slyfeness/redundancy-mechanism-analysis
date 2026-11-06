@@ -1,0 +1,488 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0908",
+  "stage_id": "S016",
+  "sample_order": 88,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "In what year did the college, where the head coach who immediately preceded the head coach of Michigan State during punter Brandon Fields' collegiate career played football, win the NAIA Football National Championship?",
+    "gold": [
+      "1962"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原17轮无Final；最后length后原stop标MISSING_FINAL_STOP。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R15@1123，已多次采用Fields2003–2006、Smith、Williams、Purdue，并多次明确Purdue非NAIA、NoPurduecoach全国冠军。R4临时MorrisWatts已返回但未用于重新定前任，R7Open支持教练Williams1958/Purdue。",
+    "evidence_states": "NAIA不符已可见且被解释，仍没改变既定人物链；新defensiveback1942/CentralState文档尚未返回，不能归入P。",
+    "evidence": [
+      "I_P",
+      "O_COACH",
+      "O_INTERIM"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/15/items",
+    "ranges": [
+      {
+        "round": 15,
+        "pointer": "/rounds/14/reasoning_content",
+        "start": 1123,
+        "end": 1857
+      }
+    ],
+    "goal": "再对题目与已采用教练—学校链作完整比较。",
+    "operations": "ActuallyIshouldreconsider后列Fields、Smith/Williams年限，再判Williams前任与Purdue，最后重述NCAAvsNAIA冲突。纯推理，无Call。",
+    "product": "没纠正前任身份、没新事实；再次把Purdue无NAIA当已知但仍待查。",
+    "judgment_change": "对旧链再确认，不是第一次识别冲突；独立展开但未改变后续核验对象。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_followup": {
+    "use": "S017真实再查Purdue两次且同类无关Return，S018长37715字符重述旧链/never/替代学校未提交。",
+    "evidence": [
+      "O_Q",
+      "O_NEXT",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "冲突背景下对人物关系与学校候选的再次完整确认。",
+    "state_relation": "W/W/N/C，四条后续均重新展开旧链比较；最后C仅年份匹配，实际把同名球员当教练。不能因B三次状态变化说U是正确链关键保障。",
+    "evidence": [
+      "O_U",
+      "N1_USE",
+      "N2_USE",
+      "N3_LOOP",
+      "N4_USE"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me search more specifically for Purdue and NAIA football.",
+    "source_position": "R15[1857,1918)",
+    "oracle_anchored": true,
+    "novelty": "12Token给定继续查PurdueNAIA的行动方向，两实体和缺口P已有，无新事实/年份/答案；但明确将重新考虑之后本可有的分岔引回旧学校搜索。四条首个Call都遵循该方向，不能当纯去复盘。",
+    "evidence": [
+      "I_G",
+      "I_P",
+      "N1_Q",
+      "N2_Q",
+      "N3_Q",
+      "N4_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Purdue University never won the NAIA Football National Championship.",
+      "adopted_answer": "Purdue从未获奖",
+      "outcome": "W",
+      "outcome_reason": "正式否定而非1962。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R15 131字符仅真实PurdueNAIAfootballchampionshipQuery，返回原E14那组篮球/其他学校；R16 17111字符重新全面排列FieldsSmithWilliamsPurdue，明确疑问是否临时教练却无新取证，继续否定可能，最终SubmitNever型答案。",
+      "first_judgment_divergence": "U整链复盘被放在一轮Search之后；冲突最终成为可提交的否定而非原继续反复到无Final。",
+      "first_actual_tool_divergence": "先G定向PurdueSearch，然后提前Submit，不执行原第二次查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "对教练链与NAIA冲突重评",
+          "original_operation": "734字符纯比较",
+          "original_product": "旧链不变+不符",
+          "new_goal": "同链重新核对",
+          "new_operation": "R16 17111字符逐项比较",
+          "new_product": "仍WilliamsPurdue，正式无奖判断W",
+          "evidence": [
+            "O_U",
+            "N1_USE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "整链与冲突判断实际重新展开，结果相同但提交状态不同。",
+      "judgment_action_outcome_chain": "P错误链和冲突已定→G先查旧学校→无增证返回→再确认链仍不查临时教练→接受题目无此年并SubmitW。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "4579生成87533Prompt1Search2Actor，对原切点保守[10120,10646]生成、2Search3段，减少一次Search与最后长论证，但新复盘仍4548Token。P41805重放、G12单列，无native精确节省。",
+      "counterevidence_and_alternatives": "完整复盘重建仍较短；错误学校未修不是因为缺失复盘文字本身。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Purdue University never won the NAIA Football National Championship.",
+      "adopted_answer": "Purdue从未获奖",
+      "outcome": "W",
+      "outcome_reason": "正式Never型错误，不是1962。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R15 reasoning仅换行但实际PurdueNAIAfootballchampionshipQuery；R16 876字符重列同五步并真实第二次PurdueNAIAfootballnationalchampionshipyear，Return与前次全相同；R17 18557字符反复旧链、Williams是否其他学校、假定题目应有年，最后仍正式否定获奖。",
+      "first_judgment_divergence": "先搜索再复盘，最终有Submit；没有候选链有效修复。",
+      "first_actual_tool_divergence": "两次实际PurdueQuery与原同需求，改字符串不视独立机制。",
+      "function_correspondence": [
+        {
+          "original_goal": "重评同教练学校链",
+          "original_operation": "纯推理完整比较",
+          "original_product": "Purdue与NAIA矛盾",
+          "new_goal": "同链重评",
+          "new_operation": "R16五步与R17完整反复",
+          "new_product": "同Purdue冲突，最终W",
+          "evidence": [
+            "O_U",
+            "N2_USE",
+            "N2_REPEAT",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原比较工作真实出现，后继两Search也都恢复，不能说未做。",
+      "judgment_action_outcome_chain": "旧链仍被当确定前提→无增证Search后只重列同约束→没有改查身份→Never正式W，退出晚于r1但早于原length。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "5324生成137514Prompt2Search3Actor；原[10120,10646]、2Search3段。两Search与段数都没省，减少主要长推理10000→5074；Prompt真实略高于原全段137208但包括重放差异，不能说四项全下降。",
+      "counterevidence_and_alternatives": "同失败证据与相同实际查询可在另一seed提前提交，何种内部停止阈值未知。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R16反复1995猜测直到10000Token，没有真正提交。",
+      "outcome_evidence": [
+        "N3_LOOP",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R15 reasoning仅换行但真实BobbyWilliamsPurduefootballNAIAQuery，返回教练旧文、Saban/Dantonio与无关球员；R16 33733字符重新排列旧链，想到其他人物/学校但没实际Search，后半数十次重复1996snippet也许1995、LetsearchPurdue；这些都是文字没有Call，lengthN。",
+      "first_judgment_divergence": "没有核实身份，而以无对应关系的1996季文触发1995猜测与重复计划。",
+      "first_actual_tool_divergence": "首Query含WilliamsPurdueNAIA；此后零实际工具，不把大量意向当执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "教练链与条件比较",
+          "original_operation": "734字符",
+          "original_product": "Purdue不符",
+          "new_goal": "同链兼猜替代年份",
+          "new_operation": "R16完整33733字符比较",
+          "new_product": "仍未改变Purdue对象，无Final",
+          "evidence": [
+            "O_U",
+            "N3_Q",
+            "N3_LOOP",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原纯推理比较完整恢复，并扩展猜测；没有Final不等于没重建。",
+      "judgment_action_outcome_chain": "冲突存在但旧关系确定性不降→再Search无新有效证→反复生成无依据替代年与查询意向→10K未提交N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "10033生成88311Prompt1Search2Actor；原[10120,10646]，少一次Search，但最后依然10000Token，近原下界；无质量改善，不称省掉冲突判断。",
+      "counterevidence_and_alternatives": "同G同P的r1/r2会退出W，r3长重复不是G唯一决定；原也同N但文字与候选猜测不同。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1962",
+      "adopted_answer": "1962",
+      "outcome": "C",
+      "outcome_reason": "年份正式1962与Gold一致；但依据是另一同名1942年生defensiveback被错误当1958年生MSU教练。保留C及证据质量失败分列，不将C当关系链修复。",
+      "outcome_evidence": [
+        "N4_RET",
+        "N4_USE",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R15 139字符PurdueNAIAhistoryQuery返回原E14；R16 7624字符反复同链后，真实改QueryBobbyWilliamsplayingcareercollegeNAIA，首结果8622663明确BobbyWilliams(defensiveback)、生1942、CentralStateEdmond并1962冠军；R17 1183字符将该球员当MSU前任教练，替换Purdue为CentralState，自称链已验证，Submit1962。没有审查与P中RobertVann1958/Purdue身份冲突。",
+      "first_judgment_divergence": "R16查询从学校冠军转人物playingcareerNAIA，检索对象实质变化；R17未鉴别同名人物而接受新学校关系。",
+      "first_actual_tool_divergence": "第二QueryBobbyWilliamsplayingcareercollegeNAIA带回原没有的8622663。",
+      "function_correspondence": [
+        {
+          "original_goal": "再比较旧链是否匹配NAIA",
+          "original_operation": "完整重列并维持Purdue",
+          "original_product": "不符仍查Purdue",
+          "new_goal": "重评旧链后重新查球员学校",
+          "new_operation": "R16长比较+新身份Query，R17采用新关系",
+          "new_product": "CentralState1962年份C，但人名同名错接未解",
+          "evidence": [
+            "O_U",
+            "O_COACH",
+            "N4_Q",
+            "N4_RET",
+            "N4_USE",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原整链比较实际恢复；随后新路径换取证对象并得到不同关系产物，功能恢复不要求判断相同。",
+      "judgment_action_outcome_chain": "Purdue冲突持续→真实换查询从学校标题转球员经历→同名球员的NAIA冠军直接材料返回→未核同一人就换学校→Gold年1962提交，但正确年份并非正确教练身份链的证据。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2177生成137921Prompt2Search3Actor；原[10120,10646]2Search3段，生成减少在R17由重复10K变282Token提交；Search数不减而第二次Query有新事实，Prompt含重放后略高原137208，不能称全资源下降。",
+      "counterevidence_and_alternatives": "这是正确终值与错误实体绑定共存的重要反例。不能为迎合改善而隐去同名冲突，也不擅改Gold；需研究者复核题目/证据链。"
+    }
+  ],
+  "four_run_comparison": "W/W/N/C。四次都在新路径重评相同链；r1/r2接受Never后提交，r3保持缺口无实际新Search而纯推理到上限，r4真实改变检索入口得到新年但错接人物。相同功能恢复不能解释成同判断、同动作或同证据质量。",
+  "conditional_mechanism": {
+    "observed_chain": "已识别条件冲突却保留未经细分的身份关系→核验持续围绕旧学校；改到人物经历入口可取得新事实，但若不检查人物身份，新事实也可能被错误绑定，产生值正确而链错误。",
+    "support_scope": "1Stage1题4路径；与S017同题不能算独立题目复现。",
+    "counterexamples": "r4C不是修复身份，r2两Search全恢复还更短；因此不能从最终值或重建标签反推U作用。",
+    "limits": "G明确指定Purdue检索方向，所有第一Call受锚定；不同seed和具体Query返回也影响后续。不修Codebook、不改原评价。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 15,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Purdue is a Big Ten school that plays in NCAA Division I, not NAIA."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 15,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me search more specifically for Purdue and NAIA football."
+    },
+    {
+      "evidence_id": "O_COACH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/6/observation/text",
+      "exact_quote": "Robert Vann Williams (born November 21, 1958)"
+    },
+    {
+      "evidence_id": "O_INTERIM",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/5/snippet",
+      "exact_quote": "interim head coach Morris Watts",
+      "doc_ids": [
+        "wiki25:6050057"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/14/reasoning_content",
+      "exact_quote": "Actually, I should reconsider."
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/14/arguments/query",
+      "exact_quote": "Purdue NAIA football championship history",
+      "call_id": "chatcmpl-tool-bdb2d3b9e1217cfc"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "The college is Purdue University."
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 17,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Purdue NAIA football championship",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_USE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms **Bobby Williams** was the head coach immediately preceding John L. Smith."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Purdue University never won the NAIA Football National Championship."
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Purdue NAIA football championship",
+      "call_id": "chatcmpl-tool-a9214d39f4ee9046"
+    },
+    {
+      "evidence_id": "N2_USE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results are not providing a clear direct link between Purdue and an NAIA football championship."
+    },
+    {
+      "evidence_id": "N2_REPEAT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Purdue NAIA football national championship year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Purdue University never won the NAIA Football National Championship."
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Bobby Williams Purdue football NAIA",
+      "call_id": "chatcmpl-tool-aa8e98f24503c5d3"
+    },
+    {
+      "evidence_id": "N3_LOOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Maybe the answer is **1995**?"
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Bobby Williams playing career college NAIA",
+      "call_id": "chatcmpl-tool-baba4bbad6ab04b9"
+    },
+    {
+      "evidence_id": "N4_RET",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "Bobby Williams (February 28, 1942 – August 10, 2012)",
+      "call_id": "chatcmpl-tool-baba4bbad6ab04b9",
+      "doc_ids": [
+        "wiki25:8622663"
+      ]
+    },
+    {
+      "evidence_id": "N4_USE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Bobby Williams, the head coach who immediately preceded John L. Smith at Michigan State, played college football at Central State College"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1962"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0908/trajectory.json",
+      "source_sha256": "c47c3cbe3840531cb431632814e8178245fca5a85ab034c8caffea8a24ac9307"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0908.json",
+      "source_sha256": "e15d939bb8894b47948038b15105542294211553bb3305589fe2912e408d4f95"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "15343458acfa06934f30430c02593eb9fe3fa862f1534c46c17e847ad6b1c423"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "cf38c541e1d42a80c88f22273094336190516157701f2aeef64560ecc69065d3"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "beea5ae70aad727a97ad47b81a7273be31862c9b16f67a6e6ff82c00002ac74c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "a6953d0fabb496fb459b953b03bdd539accdee73f6744e9440049d195e92b455"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S016__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "4425431ef4624f212ccf16f6f80fb39a9a858a32679d0caf72ca22a25a586d48"
+    }
+  }
+}

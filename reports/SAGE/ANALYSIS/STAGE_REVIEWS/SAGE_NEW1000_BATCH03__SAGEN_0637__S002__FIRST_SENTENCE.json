@@ -1,0 +1,620 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0637",
+  "stage_id": "S002",
+  "sample_order": 31,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0637/trajectory.json",
+      "source_sha256": "1d11196b11cd8205a6084999fd748f303dcd48072de5a64960f3fc898f7d513c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0637.json",
+      "source_sha256": "7fb98905c4d6b4eab55892fab789f55c4cf3350b0bba16b1a3308c24c21b1a39"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "9a6efedc429a32cd84861804254ca9864bc8d50867aa458652f73352b5851721"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "08a87b448e45d36d04ee55fd681d0e6b29e72e66394169aa9648b583a2e538e7"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "5d68d3ee062c8147d9bbc0ba5a15b84ab2e826a483d3684a7a060716fed63923"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "a6f0424c5c36dac43c3f610403002030950380e1e4eb0cf2ecff2f8d6fcd3e88"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "d0a34525be8f2b975d12434e27dcc0fe1a9264a82c5d4fe55e861fadf744d118"
+    }
+  },
+  "question_and_gold": {
+    "question": "Following the tragic incident involving Willian Thiego, what was the date of the first leg of the subsequent international club competition that his club participated in as a direct result of being declared champions of the tournament they were traveling for?",
+    "offline_gold": [
+      "4 April 2017"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整五轮原Reasoning、全部Search/Open/Submit及模型可见返回已读，S002为R2[384,906)及R3[0,653)，中间含真实事故搜索。",
+    "new": "四条全部144211字符视图按0、24000、50000、75000、100000、125000至末尾完整读取。完整相同Return通过逐内容SHA对应之前实际读过源，新增返回全部读取。",
+    "semantic_author": "Codex直接阅读、逐条撰写；程序只提取、绑定和校验证据及成本。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R2@384。当前保留推理已把Thiego当时俱乐部写成Grêmio；历史只有Thiego履历1500字符窗口，其中有早年Grêmio经历，却未到2016俱乐部。历史Reasoning消息规范化为空，不能假定旧轮推理都已重放。",
+    "evidence_state": "有球员身份与事故线索，尚无Chapecoense、所赴南美杯决赛、授冠及Recopa日期的实际返回证据。当前Grêmio是P中的错误关系，不是G新增。",
+    "gap": "需纠正事故时俱乐部，确定所赴赛事，再找授冠后赛事及首回合日期。",
+    "evidence": [
+      "I_WRONG_CLUB",
+      "O_EARLY_CAREER"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 384,
+        "end": 906
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 653
+      }
+    ],
+    "goal": "通过事故与冠军关系查明当时俱乐部及所赴赛事。",
+    "operations": [
+      "列出赛事、后继比赛和日期三个问题，实际组合LaMia事故、Grêmio和champions检索。",
+      "完整返回多名Chapecoense事故遇难者；Canela条目明确前往2016南美杯决赛。",
+      "R3直接采用Chapecoense，替换错误俱乐部，采用所赴决赛；又过早说had just won，真正授冠资料在后续才返回。"
+    ],
+    "product": "纠正俱乐部及旅行赛事，为后续资格与日期查询给出有效对象；并非全部后继关系已证实。",
+    "judgment_change": "Grêmio→Chapecoense；泛事故/履历→2016南美杯决赛，这个更新在原下一次真实Query中落实。",
+    "evidence": [
+      "O_U_QUERY",
+      "O_CANELA_RETURN",
+      "O_U_CORRECTION"
+    ]
+  },
+  "original_followup": {
+    "use": "S003重推后继赛事并猜Libertadores，S004实际查Chapecoense2016南美杯授冠，返回Recopa资格与4April。R4采用正确赛事后Open100只得标题；R5长篇赛制/最早日期比较，最后真Submit正确。",
+    "true_suffix": "切点后原生成保守2760—2970，2Search、1Open、1Submit、4生成段；未来HTTP Prompt23783，切点所在原请求Prompt1019。非原生Token切点不能伪报精确净节省。",
+    "evidence": [
+      "O_NEXT_QUERY",
+      "O_RECOPA_DATE",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "原U将错误的当前俱乐部关系改正，并将其用于真正的后继查询；这不是只复述已采用候选。",
+    "四次均恢复事故俱乐部和赛事关系，恢复时点与证据入口不同。四C只能证明本次能修复，不能把原纠错工作判为没有新增作用。",
+    "同一输入中已有Grêmio错误，反向材料能较快修复，也可能只让模型检查错误俱乐部的冠军属性，暂未改对象；恢复之后仍可能因额外最早赛事解释或重复小窗口Open增加工作。"
+  ],
+  "guide_audit": {
+    "G": "Wait, let me re-read the question carefully:",
+    "origin": "原S003 R3[653,697)，只取冒号引导行。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "没有新实体、赛事、日期或答案；只有重读问题的行动提示。P的Grêmio错误不能归因于G，后续纠正也不能说G直接给出正确候选。",
+    "evidence": [
+      "I_G",
+      "I_WRONG_CLUB"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "R8真Submit正确；新Recopa与南美杯返回支持资格和日期。中间Grêmio关系、假想对手和最早赛程多次无支持，不能因Final正确抹去。",
+      "outcome_evidence": [
+        "N1_CORRECT",
+        "N1_DATE",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2沿P错误Grêmio查2016Libertadores；返回冠军AtleticoNacional，R3仍按Grêmio冠军及CWC查。",
+        "R4实际识别冠军不一致，但继续查Grêmio2016赛事；R5才改查Thiego2016club，返回仍是未到当时俱乐部的履历窗口。",
+        "R6又查Grêmio冠军，得到大量无关Greek赛事；R7再次指出Atletico才是冠军，却仍未改事故俱乐部，转从后续比赛结构查2017Recopa。",
+        "Recopa与Cup材料明确Chapecoense获冠，R8终于采用正确俱乐部及资格链；又长篇比较firstleg/最早赛事后Submit。"
+      ],
+      "first_substantive_judgment_difference": "原U的事故关系纠正未在首批查询后发生；尽管识别赛事冠军冲突，仍把Grêmio当事故俱乐部，让新核查目标变成错误对象的赛事属性。",
+      "first_actual_tool_difference": "先查Grêmio champions 2016 Copa Libertadores first leg date，而非直接事故关系查询；之后共6Search，最终经Recopa取得事故俱乐部证据。",
+      "function_correspondence": [
+        {
+          "original_goal": "纠正事故俱乐部、识别所赴赛事",
+          "original_operation": "事故搜索后采用Chapecoense/南美杯决赛",
+          "original_product": "真实查询对象更新",
+          "new_goal": "同一关系识别",
+          "new_operation": "多轮错误俱乐部核查后，经Recopa/Cup返回纠正并采用",
+          "new_product": "最终恢复正确俱乐部和赛事，但延迟到R8",
+          "evidence": [
+            "O_U_CORRECTION",
+            "N1_WRONG_QUERY",
+            "N1_CONFLICT",
+            "N1_CORRECT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "错误俱乐部保留→冠军冲突先触发查该俱乐部属性而非改俱乐部→多次Search无关或不足→Recopa新证据终于纠正对象→C；成本增加可定位到纠正前多条真实查询及纠正后的长篇赛制判断。",
+      "costs": {
+        "new_generation": 7418,
+        "new_prompt": 71899,
+        "new_search": 6,
+        "new_open": 0,
+        "new_actor": 7,
+        "P_replay": 1106,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          4448,
+          4658
+        ]
+      },
+      "limits": "恢复时点可以观察，不能唯一证明删除导致每条错误猜测；采样与返回变化保留解释。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "R4实际Submit，事故与Cup/Recopa完整返回支持正确关系和日期。",
+      "outcome_evidence": [
+        "N2_CORRECT",
+        "N2_ADOPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2仍保留Grêmio，但实际Query同时带事故、2016赛事和冠军；返回Chapecoense遇难球员。",
+        "R3立即更正Chapecoense并采用所赴南美杯，重建原U核心；再查Chapecoense2016南美杯冠军。",
+        "新Return与原授冠查询完全相同，R4采用Recopa/日期，短重读后Submit，没有实际额外核验。"
+      ],
+      "first_substantive_judgment_difference": "核心纠错很快恢复；后续不再展开原R5长篇最早赛事歧义。",
+      "first_actual_tool_difference": "事故Query改写但目的同原；2Search与原后缀相同，无原短Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "纠正俱乐部及所赴赛事",
+          "original_operation": "事故Query/Return后更新对象",
+          "original_product": "Chapecoense/南美杯用于后续Query",
+          "new_goal": "相同",
+          "new_operation": "R2事故Query，R3采用并实际查Chapecoense冠军",
+          "new_product": "核心关系及行动更新均恢复",
+          "evidence": [
+            "O_U_CORRECTION",
+            "N2_CORRECT",
+            "N2_NEXT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "事故入口很快纠正对象→资格Search给足日期→直接提交C；减少在原短Open与长篇末轮比较，非原U纠错功能不再需要。",
+      "costs": {
+        "new_generation": 1285,
+        "new_prompt": 15674,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 1106,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -1685,
+          -1475
+        ]
+      },
+      "limits": "新旧同Return不代表少做了关系识别，实际R3恢复清楚可见。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "真Submit正确；实际取得Recopa资格/日期，额外最早赛事疑问仍反复展开。",
+      "outcome_evidence": [
+        "N3_CORRECT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2真正选择核事故而非继续查Grêmio冠军，返回与原U完整相同。",
+        "R3采用Chapecoense和所赴决赛，后继猜Libertadores，实际查其2017firstleg；返回Recopa正确日期及Libertadores7MarchZulia。",
+        "R4采用正确Recopa，但又把最早赛事作为疑问，新增Recopa日期Search。",
+        "R5再次比较多项资格与赛制后Submit正确。"
+      ],
+      "first_substantive_judgment_difference": "原U功能很快重建，后继Libertadores假设亦重现；接受日期后又重核，主要分歧在后续工作是否收束。",
+      "first_actual_tool_difference": "事故Query简化但Return相同；后用Libertadoresfirstleg查询取证，再新增RecopaSearch，共3Search，无Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "事故俱乐部和赛事识别",
+          "original_operation": "取得事故材料后更正",
+          "original_product": "Chapecoense/南美杯决赛",
+          "new_goal": "相同",
+          "new_operation": "R2同事故入口，R3采用相同直接事实",
+          "new_product": "完整恢复并用于新查询",
+          "evidence": [
+            "O_U_CORRECTION",
+            "N3_ACCIDENT_QUERY",
+            "N3_CORRECT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "事故纠错恢复→新证据把后继赛事纠回Recopa→最早赛事解释仍派发一次Search并长比较→C但生成与Search增加；不能把全部增量归于目标纠错。",
+      "costs": {
+        "new_generation": 3765,
+        "new_prompt": 29856,
+        "new_search": 3,
+        "new_open": 0,
+        "new_actor": 4,
+        "P_replay": 1106,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          795,
+          1005
+        ]
+      },
+      "limits": "firstleg与最早的解释差异不是答案主体丢失，应与必要事故纠错分开。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "R7真Submit，首轮Search已经给正确事故俱乐部、授冠、Recopa及首回合日期，R3已经采用。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2混合事故/Grêmio/南美杯Query一次返回Cup、Recopa、LaMia文章，直接给整个关系链。",
+        "R3改为Chapecoense并接受Recopa4April，随后Open100只得到标题。",
+        "R4及R5都说需全文找日期，实际两次再次原样Open100，结果相同且不含日期；没有调整窗口。",
+        "R6转具体日期Search，返回充分Recopa/Cup材料；R7短链Submit。"
+      ],
+      "first_substantive_judgment_difference": "原U纠错首轮即恢复，首Search还给出原后续日期；但日期已采用之后又执行无法取得正文日期的小窗口Open。",
+      "first_actual_tool_difference": "首Query把事故和Cup合在一起，返回足够关系；后不是原一次Open，而相同100窗口共3次，再日期Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "更正事故俱乐部并识别赛事",
+          "original_operation": "事故Return→采用Chapecoense",
+          "original_product": "可用关系对象",
+          "new_goal": "相同且同时取得后继赛事",
+          "new_operation": "混合Search返回事故、授冠与Recopa，R3采用",
+          "new_product": "原功能完整恢复，更早拿到日期",
+          "evidence": [
+            "O_U_CORRECTION",
+            "N4_FIRST_QUERY",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "混合查询一次恢复关系与日期→仍将全文日期视作必须取证→三次同窗口不解决该缺口→改Search后提交C；生成较短，但Open/Actor/Prompt更高，不能合成一个省成本结论。",
+      "costs": {
+        "new_generation": 1060,
+        "new_prompt": 33764,
+        "new_search": 2,
+        "new_open": 3,
+        "new_actor": 6,
+        "P_replay": 1106,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -1910,
+          -1700
+        ]
+      },
+      "limits": "对照同题S005-repeat4有10→20→50→2004窗口调整；本条100原样重试缺乏同样反馈更新，不能仅按Open次数归同一种策略。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "4C，四条都重新完成事故关系纠正。",
+    "shared": "P错误俱乐部不等于不可修复；实际新材料都最终使查询/答案对象变成Chapecoense和Recopa。",
+    "differences": "r2/r3很快纠正，r4首轮带回全部关系但后续重复Open，r1迟至第六次Search之后才纠回；r1/r3生成增加，r2/r4减少，r4其他资源增加。",
+    "A_class_interpretation": "结果保持来自功能恢复和可替代证据入口，不能据此断言纠错Stage无用。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "P已有错误对象时，冲突材料是否促使替换对象，或仅促使补查该对象属性，影响纠正路径长度。",
+      "support": "r1明确看到Atletico冠军冲突仍围绕Grêmio继续，r2/r3用事故入口及时更正，r4混合事故/赛事返回立即纠正。",
+      "counterexample": "r1虽多次未改对象，后来独立Recopa入口仍可恢复并答对；错误前提不必然永久锁死。",
+      "scope": "单题四路径内部支持，须跨题比较后才统计为共性。"
+    },
+    {
+      "claim": "候选和日期已采用，不等于后续取证缺口已关闭；同样C可由必要纠错完成后继续付出低增量核验产生。",
+      "support": "r4R3已接受4April，后3次同窗口Open后才Search；r2则直接Submit。",
+      "counterexample": "r3再次Search确实取得额外不同完整资料；不能把所有重复核验都算完全无新增。",
+      "scope": "分开必要纠错、后续取证操作和最终判定，不把成本差都归目标U。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "G只给重读提示，但仍ORACLE_ANCHORED；不是无引导因果实验。",
+    "原U的had just won早于真实授冠证据，不把原路径也当全程无错误。",
+    "四C并不抹除新路径无来源赛程或关系猜测；必要结论有真实返回，局部解释质量仍有限。",
+    "没有原始native IDs，只报告生成变化保守区间、分项真实成本，独立分支不能求和节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_WRONG_CLUB",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "He was a player for Grêmio."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Wait, let me re-read the question carefully:"
+    },
+    {
+      "evidence_id": "O_EARLY_CAREER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Grêmio",
+      "doc_id": "wiki25:4062278",
+      "call_id": "chatcmpl-tool-8b211315383e8b45"
+    },
+    {
+      "evidence_id": "O_U_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "LaMia Airlines Flight 2933 crash Grêmio champions tournament",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_CANELA_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "when Chapecoense were en route to the first leg of the 2016 Copa Sudamericana Finals to play against Atlético Nacional",
+      "doc_id": "wiki25:8595677",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U_CORRECTION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Willian Thiego was a Brazilian footballer who played for Chapecoense."
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Chapecoense 2016 Copa Sudamericana champions declared",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RECOPA_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/2/snippet",
+      "exact_quote": "4 April 2017",
+      "doc_id": "wiki25:8468342",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_WRONG_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Grêmio champions 2016 Copa Libertadores first leg date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_CONFLICT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results show information about Atlético Nacional winning the 2016 Copa Libertadores and going to the FIFA Club World Cup. But Willian Thiego played for Grêmio, not Atlético Nacional."
+    },
+    {
+      "evidence_id": "N1_CORRECT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "So the club is Chapecoense. The tournament they were traveling for was the 2016 Copa Sudamericana Final."
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/results/1/snippet",
+      "exact_quote": "4 April 2017",
+      "doc_id": "wiki25:8468342",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "chatcmpl-tool-babcfc3cba23015f"
+    },
+    {
+      "evidence_id": "N2_CORRECT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Willian Thiego was a player for Chapecoense who died in the LaMia Airlines Flight 2933 crash on November 28, 2016."
+    },
+    {
+      "evidence_id": "N2_NEXT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Chapecoense Copa Sudamericana 2016 champions",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The first leg of the 2017 Recopa Sudamericana was hosted by Chapecoense at Arena Condá in Chapecó on April 4, 2017."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "chatcmpl-tool-9a622bf866eaaaa3"
+    },
+    {
+      "evidence_id": "N3_ACCIDENT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "LaMia Airlines Flight 2933 crash Grêmio",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_CORRECT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results confirm that Willian Thiego was a victim of the LaMia Airlines Flight 2933 crash on November 28, 2016, while playing for Chapecoense."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "chatcmpl-tool-8c4dcb780476939f"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "LaMia Flight 2933 Grêmio Copa Sudamericana 2016",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "the first leg was hosted by Chapecoense at Arena Condá in Chapecó on 4 April 2017."
+    },
+    {
+      "evidence_id": "N4_RETRY1",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "I need to get the full text of the 2017 Recopa Sudamericana document to find the date of the first leg."
+    },
+    {
+      "evidence_id": "N4_RETRY2",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I need to get the full text of the 2017 Recopa Sudamericana document to find the date of the first leg."
+    },
+    {
+      "evidence_id": "N4_RETRY_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "The 2017 CONMEBOL Recopa was the 25th edition of",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:8468342"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: source SHA, exact evidence, source-side, Round/Call ID/DocID metadata, Stage field ranges and four actual cost ledgers checked. Codex semantic self-review is not independent human gold."
+}

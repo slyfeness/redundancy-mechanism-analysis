@@ -1,0 +1,409 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0008",
+  "stage_id": "S011",
+  "sample_order": 98,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What was the date of the maiden flight of the second prototype of the German flying boat, whose initial version was flown by Flight Captain Erich Gundermann, and which was designed by the company that also developed an experimental aircraft in the 1950s to test a tilting-propeller system for STOL, a concept initially explored with the pre-World War II Dornier Do 10?",
+    "gold": [
+      "23 November 1938"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "23 November 1938",
+    "adopted_answer": "23 November 1938",
+    "outcome": "C",
+    "reason": "正式提交V2日期，与Gold和真实Do26全文一致。",
+    "evidence": [
+      "O_F",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R13尚空。R11 Open2528已读Do26全文，V1 Gundermann 21May1938和V2 Egon Fath 23November1938清楚；R12开头已经提取采用V2日期，接着查1950s厂家支线，返回Do29及1950s tilting-propeller直接支持。Do10在R2已返回用于STOL事实。",
+    "evidence_states": "V2日期已返回、提取、采用，1950s支线Return刚进入本轮前历史尚未作本轮综合，所有链条有直接材料可用。",
+    "evidence": [
+      "O_DATE",
+      "O_ACCEPT",
+      "O_29"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/10/items",
+    "ranges": [
+      {
+        "round": 13,
+        "pointer": "/rounds/12/reasoning_content",
+        "start": 0,
+        "end": 1251
+      }
+    ],
+    "goal": "整合Do10、Do29、Do26三条证据后正式提交日期。",
+    "operations": "按题目线索复盘，采用Do29返回，与Do26日期和飞行员区别组合，submit_answer。",
+    "product": "正式23November1938。",
+    "judgment_change": "把刚返回厂家证据纳入已接受日期，完成提交。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "U为末段并提交，无后续Reasoning。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已确定目标日期后，将最后旁线证据并入全题一致性判断并提交。",
+    "state_relation": "四条均重新完成多线索整合，实际全部仅submit；既有证据可用使新取证为零，但认知整合没有跳过。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "TERMINAL无后继引导",
+    "oracle_anchored": false,
+    "novelty": "无G，不注入原Final；从同P自然续写，单列TERMINAL条件。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "明确区别V1与V2并采用正确日期正式submit。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R13 1577字符逐条Gundermann/V1、Do29、Do10，重引Do26日期；说checking again实际只是回读P，唯一Call submit，0Search/Open。",
+      "first_judgment_divergence": "没有实质候选变化，只增加再次核对已见文本。",
+      "first_actual_tool_divergence": "无取证差异，同唯一submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合全线索并提交",
+          "original_operation": "组合Do10/29/26与V2日期",
+          "original_product": "正式日期C",
+          "new_goal": "同全题整合",
+          "new_operation": "R13三线索比较与回引日期",
+          "new_product": "同正式日期C",
+          "evidence": [
+            "O_U",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全部核心证据关系和正式提交重现。",
+      "judgment_action_outcome_chain": "P已知正确日期+补齐旁线→重新整合接受→直接submitC，不新增工具。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "461生成19468Prompt1Actor0Search/Open，原413生成同1Actor，增加48来自较长全题复盘；P19468/G0。",
+      "counterevidence_and_alternatives": "正确且无新搜索仍不代表U未重建，也不代表生成节省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "原文重引Do26/10/29，V2日期正确。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R13 3310字符分五要求、重引日期段，另逐段复述Do10与Do29，对齐全部线索后submit。0新取证。",
+      "first_judgment_divergence": "同结论但明显扩大逐条件证据重引。",
+      "first_actual_tool_divergence": "无，同submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全条件整合",
+          "original_operation": "三文档关系复盘提交",
+          "original_product": "正确日期",
+          "new_goal": "同整合",
+          "new_operation": "R13五要求与三来源逐段重读",
+          "new_product": "同C",
+          "evidence": [
+            "O_U",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "认知整合及提交都实际发生。",
+      "judgment_action_outcome_chain": "已知证据充分→重复完整复盘→同候选无新取证C，篇幅变长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "997生成19468Prompt1Actor，原413，增加584来自Do10/29完整引用和五条件复盘。Search/Open同0。",
+      "counterevidence_and_alternatives": "检查文档again不是新Open；不把文字verify当工具增加。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "六项比较后正式正确日期。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R13 1679字符六点连接飞行员、公司、Do29、Do10、第二原型与日期，明确all information needed，只有submit。",
+      "first_judgment_divergence": "没有证据/候选实质差异，整合展开稍长。",
+      "first_actual_tool_divergence": "无，同submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "证据整合与接受提交",
+          "original_operation": "匹配线索、区分原型",
+          "original_product": "C日期",
+          "new_goal": "同全题判断",
+          "new_operation": "六点比较接受",
+          "new_product": "同C日期",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原整合判断和正式提交完整恢复。",
+      "judgment_action_outcome_chain": "刚返Do29被整合到既知日期→全线索确认→C，不查新证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "497生成19468Prompt1Actor，增加84，均在本次整合表达。",
+      "counterevidence_and_alternatives": "更多字数不意味着新知识或质量增益。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "整合全部线索并明确V2而非V1日期提交。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R13 1379字符四点厂家/飞行员/Do29/Do10，重引V2日期后submit；没有Search/Open。",
+      "first_judgment_divergence": "没有实质改变，略少整合文字。",
+      "first_actual_tool_divergence": "无，同submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题接受提交",
+          "original_operation": "整合三来源",
+          "original_product": "C日期",
+          "new_goal": "同判断",
+          "new_operation": "四点复盘后提交",
+          "new_product": "同C日期",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际整合完整，不能因少12Token说功能跳过。",
+      "judgment_action_outcome_chain": "足够证据在P→相同整合较短表达→直接C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "401生成19468Prompt1Actor，相对413少12，其余成本相同，省仅在整合表达而非工具/交互。",
+      "counterevidence_and_alternatives": "少量篇幅变化没有证明末段冗余，三条反而更长。"
+    }
+  ],
+  "four_run_comparison": "4C、4FULL且均无新Search/Open；不同的是整理篇幅，三条生成增加，一条少12。P中日期已采用、最后厂家线索已返回，所以重新整合即可回答；不等于整合和提交功能没有执行。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "目标事实已采用且最后旁线证据可见时，末段删后可直接重新整合而无需取证；正确性稳定来自可用证据及判断恢复，成本由本次整合的展开长度变化。",
+      "support_evidence": [
+        "O_DATE",
+        "O_ACCEPT",
+        "O_29",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "同题四次，不能跨题泛化，且不是教师首句条件。"
+    }
+  ],
+  "counterevidence_and_limits": "三条生成↑是对末段删掉自动节省反例。原native IDs缺失，R13首点用完整响应413计数，非原生精确节省声明。",
+  "evidence": [
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "So the second prototype (V2) had its maiden flight on 23 November 1938."
+    },
+    {
+      "evidence_id": "O_29",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/0/snippet",
+      "exact_quote": "in the 1950s, used to test a tilting-propeller system",
+      "doc_ids": [
+        "wiki25:5808524"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "In the 1950s, Dornier developed the Do 29"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 13,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the aircraft in question is the Dornier Do 26"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So all the clues match:"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I have all the information needed to submit the answer."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the second prototype (V2) had its maiden flight on 23 November 1938."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0008/trajectory.json",
+      "source_sha256": "cc74e26e4a5b1f1ebf5742a00f51d948daa3ab611f6070f8629fbaa065d87a50"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0008.json",
+      "source_sha256": "7fc501e9424351c2e6478a20bea5c3a57722b59bc1de64b5ca3c3b7db254e595"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "1eb7ab72bd42a277a8eebcc79750491f8c20d2f836efa5a5577220b35f8ac5c9"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "daf0a6e0420f3de10e28846b2674c44dc6900aadecd561fbad9c7c574133920d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "4776f02f42799b73290a521c65ca5a7855670ce8a599f66554f851f9d0577962"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "73fe2a87a826d3e620246c2cf06a53939a97c8edd23c98ff0a3d25b06da62df9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0008__S011__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "7cc909e4fbbb9e6b2db6ffba8f9e3440a78adb765f927a5f567266f23472eaba"
+    }
+  }
+}

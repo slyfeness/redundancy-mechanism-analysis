@@ -1,0 +1,32 @@
+{
+ "case_id":"506__rep4__S006__TERMINAL_DROP_NO_ANCHOR","question_id":"506","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四条均真实Final正确片名，无搜索；完整解释和真实证据分审。"},
+ "review_basis":"完整原5Round4Call与Return/Final、四新一Round全Reasoning及Final已亲读；新Call/Return均0，不把P中的历史Return算新取证。",
+ "pre_state":"R5@524前主体技术规格、建筑身份、生平教育资料均已返回并采用，声音教育刚被认为吻合；没有该人物与影片的直接合作关系，母亲试镜照顾儿子仍无完整剧情直接支持。",
+ "u_work":"原R5[524,1094)把六项条件整合为全题确认并选定片名，随后正式Final。无新事实或查询，是提交前的完整判断。",
+ "u_state_update":"四新均再次形成条件确认并正式提交，题名不变；new3/4额外把同地或时间先后关系说成合作确认，没有取得新证据。",
+ "original_action_consequence":"被删整体判断没有从新路径消失，而是四次在同一现有资料上重新生成；两条额外的关系推断与更长Final解释增加生成。P中已具明确主体和教育采用使无搜索即可回答，但不保证每项关系都充分。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，原R5@524保留139原生Token，NATIVE_TOKEN_EXACT。","audit":"无G，无未来教师补偿。P保留原S005成功生平采用，不得当新模型自己重新检索所得。非从空P重新采样。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/4/reasoning_content","quote":"Now I have confirmed all the clues match \"Patision Avenue\"","use":"原U整体接受。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Now I have confirmed all the clues match \"Patision Avenue\"","use":"真实新生成基本重现整体判断。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Now I have all the clues confirmed:","use":"另一表达重建完整判断，非无需思考直接Final。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"since this is the sound designer who works in Athens, Greece, and the film Patision Avenue is also Greek and was made in Athens, this confirms that Alejandro Cabrera Zuniga is the sound designer for Patision Avenue.","use":"同地匹配被提升合作确认，无真实新Call支持。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"since he started his Audio Engineering studies in Athens in 2010, and the film Patision Avenue was made in 2018, this confirms he worked on this film.","use":"先后时间被当作合作证明，额外判断不等于新增支持。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/content","quote":"with complete certainty.","use":"确信增强与实际证据充分性分开。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"没有重要候选或取证分歧，直接重建相似六项确认并提交。","state_chain":"P生平已采用→整体接受恢复→C。","function_change":"完整认知功能重新执行，无新Call；更长文字导致比原增加48Token。","evidence":["N11"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"用另一措辞重建六项清单并提交。","state_chain":"P各条件已采用→重新全题确认→C。","function_change":"功能恢复；没有省Search/Actor，生成比原增加32。","evidence":["N21"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"先用人物工作地与影片所在地一致确认合作，再做完整接受。","state_chain":"共地→错误提升为合作证明→全题确认→C片名。","function_change":"整体判断重建且新增未被直接证据支持的关系推导，生成增130。","evidence":["N31"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"先用2010学习早于2018拍片当合作证明，再完整确认。","state_chain":"时间兼容→误作合作充分依据→全题确定接受→C片名。","function_change":"判断重建并添加过强证明和确信，生成增133。","evidence":["N41","N42"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"材料与主体采用已经在P完成时，终段删除后的正确回答可以通过重新生成整体判断实现，而不是无需这项判断。恢复相同判断的不同表述也可增加成本；另两条还把弱关联提升为确认，主体正确掩盖新解释风险。此处没有观察到可压缩的真实净消耗。",
+ "within_case_support":"4/4无G、0新Search、整体判断重建且C；2/4显式以地理/时间兼容作合作确认；4/4生成增加。答案不变本身不足以支持工作多余。",
+ "mechanism_chain_checks":[
+  {"chain":"P证据采用与候选已明确，终段整体判断重新执行后题名保持，文字长短改变成本","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11"],"2":["N21"],"3":["N31"],"4":["N41","N42"]},"limits":"只观察到恢复，不证明任何整体判断都不可省；原支持仍有合作与剧情缺口。"}
+ ],
+ "counterevidence_and_limits":["无G降低教师补偿这一混杂，但独立采样仍不构成单Stage必要性的因果证明。","new1/2基本相同判断重现可解释主体保持，不能把未查新资料说成认知工作没做。","new3/4关系推断更强且无新增证据，属于对主体正确等于解释可靠的反例。","全四生成更高，仅说明这些运行未实现净节省，不说明原用词长度最优。"],
+ "cost_basis":"原NATIVE精确后缀441gen/0Search/1Actor、Prompt12220。新489/473/571/574gen，G0，净差+48/+32/+130/+133；Search均0、Actor均1；Prompt均12359，增加139正好是重放P原生Token，应单列预填，不归给新增事实或搜索。",
+ "next_cross_case_test":"与相似P已有充分采用而终段直接短Final、或增加搜索的其他题对照，判断认知功能恢复、关系推断强度和真实表达成本的区别。"
+}

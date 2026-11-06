@@ -1,0 +1,450 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0376",
+  "stage_id": "S008",
+  "sample_order": 38,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "In what year did the Parisian institution, which was initially named 'École centrale des travaux publics' and later hosted Joseph Louis Gay-Lussac, a chemist and physicist from Saint-Léonard-de-Noblat, as a demonstrator, adopt its official motto under Emperor Napoléon Bonaparte?",
+    "gold": [
+      "1805"
+    ],
+    "gold_source": "冻结Gold，仅离线审阅。"
+  },
+  "original_outcome": {
+    "actual_final": "1805",
+    "adopted_answer": "1805",
+    "outcome": "C",
+    "reason": "正式Submit1805；645742明确1805授校训，不是1804军事化。",
+    "evidence": [
+      "O_FINAL",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1—R7工具历史和R8当前[0,228)。当前P已明确学校原名、1805迁校授校训；E4搜索和E7Open500实际可见同授校训句，E5 Hassenfratz6578399直接校名同一性。Gay184336第一返回1500字符止ÉcolePo，已有角色/1804，但学校全名仍有截断解释。历史Reasoning不等同全部模板可见。",
+    "evidence_states": "学校同一性、校训年份已返回、提取、采用且查询/读取已执行；尚未正式提交。不能把后续再搜Gay说成首次取得全部关系，也不把截断学校名当无歧义完整引文。",
+    "evidence": [
+      "O_P",
+      "O_NAME",
+      "O_DATE",
+      "O_GAY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/7/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 228,
+        "end": 2098
+      },
+      {
+        "round": 8,
+        "pointer": "/rounds/7/content",
+        "start": 0,
+        "end": 524
+      }
+    ],
+    "goal": "最后对应旧名、示范员与校训年份并正式提交。",
+    "operations": "反复回引6578399旧名和184336角色，将645742的1805句对应题意，排定学校为Polytechnique；content解释并真实Submit1805，没有Search/Open。",
+    "product": "正确Final，未新增文档。",
+    "judgment_change": "把已形成的学校和年份判断再次整合为提交决定；当前P已经写日期/同一性，所以不是第一次采用1805。",
+    "evidence": [
+      "O_U",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "use": "末Stage内完成content和Submit，之后无新推理。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在已采用的学校与年份上最后做线索关系核对、接受并作答。",
+    "state_relation": "四条都重做全题接受，r1/r4只用P旧证据，r2/r3又真实搜示范员关系。完整判断恢复后结果同C，成本是否增加取决于是否再次派发本已有材料的核验。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "",
+    "source_position": "原R8@228，I#/anchor_text空，NO_ANCHOR。",
+    "novelty": "无G，年份直接在当前P及旧Return中。",
+    "risk": "TERMINAL_DROP_NO_ANCHOR；四C不等于最后判断没有用，它在四条中都实际恢复。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "正式Submit正确授校训年。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8 1572字符以旧名证据6578399、Gay截断角色184336及645742授校训句完成全题核对，直接Submit。0Search/Open，没有获得新证据。",
+      "first_judgment_divergence": "无实质候选/年份分歧，原最后全条件对应重新发生。",
+      "first_actual_tool_divergence": "原新均直接Submit，无取证变化。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题接受并提交1805",
+          "original_operation": "比三线索、引用旧证据、Submit",
+          "original_product": "C",
+          "new_goal": "同",
+          "new_operation": "同三线索整合及Submit",
+          "new_product": "同C",
+          "evidence": [
+            "O_U",
+            "O_DATE",
+            "N1_J",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际全题比较/提交重现，不因无Search就判未执行。",
+      "judgment_action_outcome_chain": "P已有日期与身份关系→再比较三线索→无新冲突→SubmitC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "423生成20266Prompt1Actor0Search0Open1Submit；原当前Round730包含前228字符，生成差区间[-307,423]，不能精确声称少307。原新工具相同，可能只表达篇幅不同。P20266/G0。",
+      "counterevidence_and_alternatives": "没有消解Gay学校截断的新证据，仍采用已有上下文解释，不能称证据链完全加固。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "真实Submit1805正确。",
+      "outcome_evidence": [
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8说需确认Gay示范员，真实Search小写polytechnique，完整Return恰与原E1相同仍止ÉcolePo。R9 3097字符重列六线索、承认旧名同一性已有Hassenfratz支持、解释截断学校名，反复核对后Submit。年份始终1805，无新的日期事实。",
+      "first_judgment_divergence": "已知年份仍不直接结束，先把Gay角色/学校联系列为需再次真实取证，再用同旧片段解释确认。",
+      "first_actual_tool_divergence": "原直接Submit，新先加1Search，随后下一RoundSubmit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题关系与提交",
+          "original_operation": "旧材料比较后Submit",
+          "original_product": "正确日期",
+          "new_goal": "同并重核Gay",
+          "new_operation": "1Search回原同材料后完整比较/Submit",
+          "new_product": "同日期，有新增检索但未扩展相关片段",
+          "evidence": [
+            "O_U",
+            "O_GAY",
+            "N2_CALL",
+            "N2_J",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全题接受/Submit完整恢复，另加取证并未替代其认知工作。",
+      "judgment_action_outcome_chain": "日期已确认→角色联系仍被当下一项核验→相同片段再次返回→解释仍足以接受学校链→SubmitC但多交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "937生成44040Prompt2Actor1Search0Open1Submit；保守生成差[207,937]至少增加207，多1Search1Actor，成本来自角色重查及R9长条件清单/复盘。P20266/G0。",
+      "counterevidence_and_alternatives": "相同Return不是新独立角色证据，不把搜索执行等同信息进展。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "真实Submit1805正确。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8 1847字符先整合旧名/校训年，同时把Gay截断示范员学校视为待核，Search大写Polytechnique。新Return含184336同一截断片段，也有Despretz1818在Polytechnique受Gay指导、Frémy等，不直接扩展Gay1804任职完整句。R9重新将旧名、示范员和校训三条件称已确认，Submit1805。",
+      "first_judgment_divergence": "全题判断进行到一半又启动角色检索；不是候选丢失，而是同候选的未闭合联系继续派发一次工作。",
+      "first_actual_tool_divergence": "新增GaySearch，返回与r2小写Query不同批次内容，不能假定同DocID全Return一致。",
+      "function_correspondence": [
+        {
+          "original_goal": "最后整合与提交",
+          "original_operation": "三约束对应/Submit",
+          "original_product": "1805C",
+          "new_goal": "同",
+          "new_operation": "认知比较→额外1Search→重新全条件比较/Submit",
+          "new_product": "同C，Gay目标句仍截断",
+          "evidence": [
+            "O_U",
+            "O_GAY",
+            "N3_CALL",
+            "N3_J",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全局判断及作答完整重建；额外搜索和两轮判断增加工作。",
+      "judgment_action_outcome_chain": "候选与日期未改变→角色联系仍驱动补查→相关背景但无完整目标句→用原链解释接受→SubmitC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "848生成45002Prompt2Actor1Search0Open1Submit；保守生成差[118,848]，至少增118，额外Search/Return及前后两段比较增加成本。P20266/G0。",
+      "counterevidence_and_alternatives": "Despretz在Gay指导下任教不等于证明Gay在1804本人任示范员，不把关系方向反用。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "正式Submit正确年。",
+      "outcome_evidence": [
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8 2282字符再读Gay转校/assistant与1804示范员关系，确认旧名由6578399支持，反复将645742授校训句对应问题，最终Submit；没有Search/Open。",
+      "first_judgment_divergence": "没有学校或年份变化，疑问仅通过旧材料比较处理，未像r2/r3启动新取证。",
+      "first_actual_tool_divergence": "原新均只有Submit，无取证分歧。",
+      "function_correspondence": [
+        {
+          "original_goal": "全线索核对后提交",
+          "original_operation": "已有证据整合及Submit",
+          "original_product": "C",
+          "new_goal": "同",
+          "new_operation": "更长地比较原校名/截断角色/日期后Submit",
+          "new_product": "C",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同判断和提交真实恢复，比较并未因被删而消失。",
+      "judgment_action_outcome_chain": "P已有答案→角色/旧名疑问用旧材料解释→接受1805→SubmitC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "625生成20266Prompt1Actor0Search0Open1Submit；保守生成差[-105,625]，不能确定减少；工具同原，篇幅与原最终content解释/推理安排不同。P20266/G0。",
+      "counterevidence_and_alternatives": "反复核对但无真实Call，不能称重复检索。"
+    }
+  ],
+  "four_run_comparison": "四C且四次全局判断均重建；r1/r4旧证据直接结束，r2/r3把角色联系再派发Search后也用截断片段和旧名证据结束。相同答案不是相同路径，后两条至少额外生成和1Search/Actor，未改候选或年份。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "已有明确答案和主体身份时，最后整合易从保留证据恢复；同一个角色关系疑问，有时只在已有材料中解释，有时触发再次Search。后者若返回未扩展目标句，答案不变但增加取证/复盘成本。决定成本差别的可见环节是该疑问是否继续派发真实行动，不是候选是否找回。",
+      "support_evidence": [
+        "O_P",
+        "O_DATE",
+        "N1_J",
+        "N2_CALL",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "单题四路，不能证明角色核验普遍多余；截断联系有合理核验需求，暂无足够证据把它一概称低价值。"
+    }
+  ],
+  "counterevidence_and_limits": "原75304与新37692字符全部顺序读完，所有相关真实Return完整核对。无G，生产档位/采样仍是替代解释。学校年份有直接依据，但Gay任职字段截断局限保留。原切点无nativeIDs，仅保守区间，不加总独立分支差值。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The document `wiki25:645742` states that in 1805, Emperor Napoléon I transferred the school"
+    },
+    {
+      "evidence_id": "O_NAME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "École Polytechnique (first known as \"École centrale des travaux publics\").",
+      "doc_ids": [
+        "wiki25:6578399"
+      ]
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/6/observation/text",
+      "exact_quote": "In 1805, Emperor Napoléon I transferred the school",
+      "doc_ids": [
+        "wiki25:645742"
+      ]
+    },
+    {
+      "evidence_id": "O_GAY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "In 1804 he was appointed répétiteur (demonstrator) to Antoine François Fourcroy at the École Po",
+      "doc_ids": [
+        "wiki25:184336"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "It adopted its official motto in 1805 under Napoleon."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So yes, the École Polytechnique was initially named École centrale des travaux publics."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N2_CALL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Joseph Louis Gay-Lussac demonstrator École polytechnique",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the institution is the École Polytechnique."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N3_CALL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Joseph Louis Gay-Lussac demonstrator École Polytechnique",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The document states this happened in 1805."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The document `wiki25:645742` clearly states the motto was given in 1805."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0376/trajectory.json",
+      "source_sha256": "785322fe80b9e62b2b47426e5ef4667681ca84a4f7f05b6f132ad59113032200"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0376.json",
+      "source_sha256": "fe1bd6d78eb7bbe4700be16751354353884175bcd6f330ec39a27a1f09c852bd"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "7e929999a05aadda924750c6ee17a90f09d8197a2c9f8ff85116b701870a9c85"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "3eedebe72daa4ba9528822412905cd535ab451239574f53b7e800f67ec7806be"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "d6c6580ab16b4d56cddc384600aa35f55744c756cfd6334180c83323beb46c68"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "ed6b60ddab9422eb3e8633346133f2a81a6a488b6ca393c7173a54be96423ecd"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0376__S008__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "c21cb6d00c745543c03604cdbbbb31fe5390632b1fd09a47c32cb9700ac13fbd"
+    }
+  }
+}

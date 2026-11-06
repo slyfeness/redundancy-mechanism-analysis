@@ -1,0 +1,146 @@
+{
+  "case_id":"21__step2__S004",
+  "category":"A",
+  "trajectory_id":"21__step2",
+  "stage_id":"S004",
+  "main_problem_id":"21",
+  "official_subproblem_id":"21.2",
+  "intervention":"FIRST_SENTENCE",
+  "review_status":"COMPLETE",
+  "evidence_index":"RESOLVED_EVIDENCE.json",
+  "objective_cost_table":"OBJECTIVE_COSTS.json",
+  "sources":{
+    "original_read":"21__step2原两子题完整原文此前在S003/S005阅读；本组重读第二题R2全部5694字符及write、R3独立再分析与真实inline测试、R4完整submit。定位器核验同一source SHA，不引用不同target轨迹替代。",
+    "new_read":"四条完整新轨迹逐轮阅读，共4/7/6/3轮和20个Call/Return，包含全部write/test/read/submit的实际版本；拒绝的脚本与实际运行的脚本分开记录。",
+    "input_read":"切点21.2 R2@0，当前draft空，R1完整草稿及read空结果仍在P；G为原R3[0,27)的6Token泛泛分析承接。核对完整原INPUT与派生九字段，不将派生SHA当原件SHA。"
+  },
+  "original":{
+    "pre_state":"P已具有m_eff提交实现、完整吸收公式、nm单位和一份尚未保存的eV差草稿。当前draft仍空，前轮只执行read_code。题目带隙表为‘+ x’，电荷和hbar系数缺失，因此存在源题歧义。证据已见不等于候选已落盘。",
+    "U_goal":"重新解释残缺带隙和能量单位，形成J单位能量差版并首次保存可执行吸收函数。",
+    "U_operations":"比较常见GaAs/AlAs带隙与残缺表，最终仍选Eg=x eV；omega=2pi c/lambda，Eg转J，采用标准物理常数，write完整m_eff+alpha_eff。",
+    "U_product":"首次保存1915字符f9a5de8b...，从eV差草稿变为J差候选；不能叫再次确认一个已经保存的相同实现。",
+    "judgment_before_after":"把能量差统一为J并明确Eg=x，判断进入实际write；前文有公式和草稿但尚无当前可执行候选。",
+    "original_suffix_use":"R3又分析同一物理式，将系数改为hbar=1e-34、e=1e-19，inline重定义m_eff和alpha后真实测试输出1.9379273995857474e-26；R4提交该测试版89d349dc...。原U标准常数并非最终逐字保留，核心J差/2pi/Eg=x得到沿用，Z本身再次做了实现判断。",
+    "evidence":["O_UNIT","O_GAP","O_WRITE","O_Z_CONSTANT","O_Z_TEST","O_FINAL"]
+  },
+  "guide_audit":{
+    "G":"Let me analyze the problem:",
+    "P_relation":"P上一轮已在分析相同公式，G无新实体、参数、带隙公式、单位换算或答案，只要求再次分析。",
+    "novelty":"普通分析承接方向，没有把原U的J单位选择或Eg判断提前给新路径。",
+    "risk":"ORACLE_ANCHORED，6Token计上下文预填且不算自主首句；没有关键科学事实泄漏的可见证据。",
+    "evidence":["I_G","O_UNIT","O_GAP"],
+    "uncertainty":"无同seed无引导对照，不能将不同带隙解释和工具策略唯一归因于删除；源题残缺增加多种解释的可能。"
+  },
+  "rollouts":[
+    {
+      "branch_id":"21__step2__S004__FIRST_SENTENCE__rep1",
+      "official_state":"C",
+      "first_material_divergence":"R1重新采用Eg=x与J差，以h=6.626e-34算光子能量后保存；没有跳过原U的数学实现。R2从prev_subproblems导入被拒，之后把失败错误归因numpy。",
+      "work_reconstruction":{
+        "goal":"吸收公式和当前代码保存恢复。",
+        "operation":"write numpy J差版→非法模块测试被拒→等价math重写→submit回最初numpy版本。",
+        "product":"最终6e4358ae...与首次write同SHA，Eg=x、2pi和J差恢复，标准常数与原最终简化常数不同。中途math候选没有成为提交。",
+        "assessment":"FULL_REBUILT原U的核心单位判断/带隙选择/保存；不宣称与原最终常数逐值等价。"
+      },
+      "judgment_change":"数学判断恢复；工具反馈明确是prev_subproblems模块入口，却被解释为numpy不允许，生成了一次无关依赖改写，最终又回原版本。",
+      "action_chain":"重建J差函数→入口拒绝→无关math改写→回提交初版→旧C。",
+      "result_explanation":"旧C与核心公式恢复相容，不能证明首次实现多余。数值验证没有成功，最终版本不是被真实测试通过的版本。",
+      "cost_localization":"生成3664对原3784少120，含G6保守少114；Prompt9510对6559多2951；4Actor/4工具对原3/3各多1。压缩原反复物理分析和长提交文本减少生成，但新增入口拒绝与改写使交互/累计输入增加，不是全资源节省。",
+      "evidence":["N1_FORMULA","N1_ROOT","N1_DIAG","N1_RETURN"],
+      "counterevidence":"math重写不代表提交代码改为math；同SHA证明最后回numpy。工具拒绝不等于公式失败。",
+      "unknowns":"标准常数和原简化常数的实际容差由旧评价决定，本轮不重评分。"
+    },
+    {
+      "branch_id":"21__step2__S004__FIRST_SENTENCE__rep2",
+      "official_state":"C",
+      "first_material_divergence":"R1认为缺失带隙应补成1.424+1.247x，保存实现；sqrt实际使用eV差而非J差，未恢复原U的关键单位产物。",
+      "work_reconstruction":{
+        "goal":"实现吸收函数/保存/提交仍发生。",
+        "operation":"numpy写入→sys入口拒→math重写→sys入口再拒→inline只测一个输出0点→read→submit。",
+        "product":"34814db4...提交保留Eg=1.424+1.247x和sqrt(eV差)，不同于原U/原最终Eg=x及J差。",
+        "assessment":"PARTIAL_REBUILT实现与保存，关键带隙判断及J单位未恢复。"
+      },
+      "judgment_change":"用外部常见材料关系补残题，使候选阈值改变；虽然文字提到J一致性，实际sqrt却以eV为单位。两次sys入口失败被归到numpy/依赖问题；唯一成功点落在零输出区，不能检验非零吸收振幅。",
+      "action_chain":"补带隙关系→单位实现偏离→入口失败与无关改写→单零点真测→认为已验证→旧C。",
+      "result_explanation":"旧C不是功能等价的充分证据；目标正式提交存在，但测试只返回0，不能支持原J差功能已经恢复或质量完整保持。题目残缺意味着新带隙解释也不能在本轮直接判为不符Gold。",
+      "cost_localization":"4434生成对原3784多650，含G6多656；Prompt19720多13161；7Actor/工具对3各多4。新增两次非法sys测试、一次math改写、read及额外解释是可见增耗，成功测试只覆盖零区。",
+      "evidence":["N2_GAP","N2_ROOT","N2_DIAG","N2_ZERO","N2_FORMULA","N2_RETURN"],
+      "counterevidence":"R5真实run成功，不说完全未测试；但成功执行与验证完整公式不同。正式旧C保留，不因本次语义差异擅改W。",
+      "unknowns":"缺失题面完整表达和官方测试容差未在这些日志中说明；不能由旧C推断哪一种带隙应为正确。"
+    },
+    {
+      "branch_id":"21__step2__S004__FIRST_SENTENCE__rep3",
+      "official_state":"C",
+      "first_material_divergence":"R1再次选择Eg=x、标准hbar和J差后保存；R2从tools导入失败，R3错误归因为numpy而换math。",
+      "work_reconstruction":{
+        "goal":"原U核心数学和保存恢复。",
+        "operation":"write J差版→tools入口拒→math等价重写→sys入口再拒→read→submit。",
+        "product":"77fec963...math提交，Eg=x、Eg_J=x*e、omega2pi和J差恢复，标准常数与原最终不同；没有成功数值运行。",
+        "assessment":"FULL_REBUILT原U关键判断/实现/保存，原Z成功验证未恢复。"
+      },
+      "judgment_change":"单位关系正确恢复；把工具入口限制误认为科学依赖限制，未纠正入口就再次选sys，失败后改为read确认保存再提交。",
+      "action_chain":"重建公式→错误诊断入口→换依赖→另一入口拒→读保存文本→提交C。",
+      "result_explanation":"C可与核心数学恢复相容，但read代码不是数值检验。不能把测试意向或拒绝脚本中的样例当已验证证据。",
+      "cost_localization":"3939生成多155，含G6多161；Prompt15462多8903；6Actor/工具多3。两次错误入口、一次math重写和read增加交互，比原一次成功inline测试更长；不存在净全项下降。",
+      "evidence":["N3_FORMULA","N3_ROOT","N3_DIAG","N3_SYS","N3_RETURN"],
+      "counterevidence":"R3包含正确J差代码，不能因测试入口失败说数学未恢复；R5仅read不是运行。",
+      "unknowns":"没有实际执行反馈判断数值边界和类型兼容性，不补测。"
+    },
+    {
+      "branch_id":"21__step2__S004__FIRST_SENTENCE__rep4",
+      "official_state":"C",
+      "first_material_divergence":"R1明确用GaAs/AlAs常见值补成Eg=1.42+.74x，既改变原U的Eg=x也改变阈值；保留J差和2pi，直接写入。",
+      "work_reconstruction":{
+        "goal":"恢复吸收函数实现/保存并提交。",
+        "operation":"write→合法__main__测试→比较实际输出与自定带隙→同SHA提交。",
+        "product":"38e53f39...包含新带隙关系和J差，成功输出包括非零/零吸收；原Eg=x判断未恢复。",
+        "assessment":"PARTIAL_REBUILT原U数学实现与J差，带隙选择用另一假设完成。"
+      },
+      "judgment_change":"以常见物理关系补残题后，选取的800nm/.3阈值输出0与500nm/.3非零匹配该假设。测试脚本曾将500nm写成belowgap，收到非零后R3解释为高于带隙，没有因此改坏公式。",
+      "action_chain":"补带隙→写J差候选→合法真测→依据输出修正样例文字解释→原样提交C。",
+      "result_explanation":"旧C与真实测试存在，但测试验证的是新假设下的局部行为；不能据此断言原带隙判断不必要或新旧全等价。",
+      "cost_localization":"2623生成少1161，含G6少1155；Prompt7341仍多782；3Actor/3工具与原相同，一次run均成功。少的是原反复分析和长版推导表达，非取消实现/测试/提交，也不是全项资源下降。",
+      "evidence":["N4_GAP","N4_FORMULA","N4_TEST","N4_FEEDBACK","N4_RETURN"],
+      "counterevidence":"测试注释错但后续反馈实际纠正，不是据错注释继续接受；新带隙无原题完整支持，保留源题局限。",
+      "unknowns":"缺失题面不能唯一裁定标准带隙表达；本次不新增测试判对错。"
+    }
+  ],
+  "cross_rollout_comparison":{
+    "same_changes":"四条均重新实现、保存并正式提交；没有一条完全跳过原实现功能。G不提供单位和带隙答案。四C掩盖了不同带隙和单位产物。",
+    "different_paths_same_result":"1/3重建Eg=x与J差但经历入口误诊；2换带隙并在sqrt用eV差，只有零点真测；4换带隙而保持J差并真测多点。均旧C，不可当完全相同工作和质量。",
+    "mechanism_strength":"可直接追踪的局部作用是单位/带隙假设决定具体算式，入口反馈解释决定换依赖、换测试或提交。原Stage的首次保存作用四次都恢复；没有支持其功能不必要的四次对照。源题残缺及旧评价分辨率限制答案作用解释。",
+    "counterexamples":"rep4用不同带隙仍C且合法测试，不支持恢复原判断是旧C必要条件；rep2同样C但单位产物不同，不能以C说明所有正确性均保持。rep1和rep4生成下降，四条Prompt均不降，rep2和rep3生成反而增加。"
+  },
+  "stage_function":"把残缺物理参数和能量单位的解释转成首次保存的可执行吸收函数，属于实现前的约束与单位决定，不是已保存候选的重复确认。",
+  "candidate_mechanism_chain":"P含公式及未保存eV草稿、题面残缺→U选择Eg=x并把差转J/保存→Z再次调整系数后测试提交。删除后四次恢复实现，但对残缺参数的补全不同→阈值/单位算式不同；工具入口失败若被归为依赖禁用，又派生无关重写/重复测试→交互和输入增加。旧C不能区分这些产物，故本例只能支持‘恢复/替代实现和反馈解释影响工作量’，不支持原功能可省。",
+  "limits":["原题带隙和常数系数缺失，不能唯一归因删除导致解释差异。","保留原C评价与代码非等价并列，不更改旧评分，不以C替代科学验证。","全分支为RECONSTRUCTED_CHAR_EXACT；即使cut@0上下界相同也不称原生Token精确节省。","成本从R2截点到目标提交，生成与6Token教师预填分列，Prompt为累计请求非唯一上下文或GPU耗时；独立分支差额不相加。","无无引导对照，未排除采样路径影响，不把单次P+G当纯删除因果证明。"],
+  "evidence_specs":[
+    {"id":"I_G","source_key":"G1","json_pointer":"/G","exact_quote":"Let me analyze the problem:"},
+    {"id":"O_UNIT","source_key":"ORIGINAL","json_pointer":"/steps/1/rounds/1/reasoning_content","exact_quote":"But I need to convert the bandgap from eV to Joules:\nE_g_Joules = E_g_eV * e"},
+    {"id":"O_GAP","source_key":"ORIGINAL","json_pointer":"/steps/1/rounds/1/reasoning_content","exact_quote":"Given the context, I'll assume the bandgap is E_g = x eV (this is a simplified model)."},
+    {"id":"O_WRITE","source_key":"ORIGINAL","json_pointer":"/steps/1/tool_events/1/model_visible_return/code_sha256","exact_quote":"f9a5de8b9ba7045670558fcd24658cb9095c28ca88db07fc0027ca3d6ee11bca"},
+    {"id":"O_Z_CONSTANT","source_key":"ORIGINAL","json_pointer":"/steps/1/rounds/2/tool_calls/0/arguments/code","exact_quote":"h_bar = 1e-34  # Reduced Planck constant J*s"},
+    {"id":"O_Z_TEST","source_key":"ORIGINAL","json_pointer":"/steps/1/tool_events/2/model_visible_return/stdout","exact_quote":"Absorption coefficient at lambda=800.0nm, x=0.3, C=1.0: 1.9379273995857474e-26\n"},
+    {"id":"O_FINAL","source_key":"ORIGINAL","json_pointer":"/steps/1/tool_events/3/model_visible_return/code_sha256","exact_quote":"89d349dc9a62a640dc3f0eef83b8abda38686c56de9c836ed62b693bec19093e"},
+    {"id":"N1_FORMULA","source_key":"NEW1","json_pointer":"/steps/0/rounds/0/tool_calls/0/arguments/code","exact_quote":"alpha_x = C * m_r * np.sqrt(E_photon_J - E_g_eV * e) / omega"},
+    {"id":"N1_ROOT","source_key":"NEW1","json_pointer":"/steps/0/tool_events/1/model_visible_return/validation/root","exact_quote":"prev_subproblems"},
+    {"id":"N1_DIAG","source_key":"NEW1","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The import of numpy is causing an issue because the validation is checking against \"prev_subproblems\"."},
+    {"id":"N1_RETURN","source_key":"NEW1","json_pointer":"/steps/0/tool_events/3/model_visible_return/code_sha256","exact_quote":"6e4358aeae205fbd34732c29001796bbb232728ac7e4d2108f6e796c8898711e"},
+    {"id":"N2_GAP","source_key":"NEW2","json_pointer":"/steps/0/rounds/6/tool_calls/0/arguments/code","exact_quote":"E_g_eV = 1.424 + 1.247 * x"},
+    {"id":"N2_ROOT","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/model_visible_return/validation/root","exact_quote":"sys"},
+    {"id":"N2_DIAG","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"Actually, looking at the error, it says \"IMPORT_DENIED\" with root \"sys\". This might be a security issue with the import statement. Let me rewrite the code without using numpy imports if possible, or use it more carefully."},
+    {"id":"N2_ZERO","source_key":"NEW2","json_pointer":"/steps/0/tool_events/4/model_visible_return/stdout","exact_quote":"0.0\n"},
+    {"id":"N2_FORMULA","source_key":"NEW2","json_pointer":"/steps/0/rounds/6/tool_calls/0/arguments/code","exact_quote":"alpha_x = C * m_r * math.sqrt(hbar_omega_eV - E_g_eV) / omega"},
+    {"id":"N2_RETURN","source_key":"NEW2","json_pointer":"/steps/0/tool_events/6/model_visible_return/code_sha256","exact_quote":"34814db48a56629335ed46a2662e348db89ff188472cfb6ff82313d43e7492f9"},
+    {"id":"N3_FORMULA","source_key":"NEW3","json_pointer":"/steps/0/rounds/5/tool_calls/0/arguments/code","exact_quote":"alpha_x = (C * m_r * math.sqrt(photon_energy_J - E_g_J)) / omega"},
+    {"id":"N3_ROOT","source_key":"NEW3","json_pointer":"/steps/0/tool_events/1/model_visible_return/validation/root","exact_quote":"tools"},
+    {"id":"N3_DIAG","source_key":"NEW3","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The validation failed because I'm using `import numpy as np` which is not allowed. I need to use only standard numerical Python modules."},
+    {"id":"N3_SYS","source_key":"NEW3","json_pointer":"/steps/0/tool_events/3/model_visible_return/validation/root","exact_quote":"sys"},
+    {"id":"N3_RETURN","source_key":"NEW3","json_pointer":"/steps/0/tool_events/5/model_visible_return/code_sha256","exact_quote":"77fec963660f5b2b37e5b9e86cfabbfa75f688d547b46e0dfdb3feba9e68c5dc"},
+    {"id":"N4_GAP","source_key":"NEW4","json_pointer":"/steps/0/rounds/0/reasoning_content","exact_quote":"So E_g(x) = 1.42 + (2.16 - 1.42) * x = 1.42 + 0.74 * x"},
+    {"id":"N4_FORMULA","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"alpha_x = C * mr * np.sqrt(delta_E) / omega"},
+    {"id":"N4_TEST","source_key":"NEW4","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"alpha_eff(800, 0, 1.0) = 4.634258601831504e-27\nalpha_eff(800, 0.3, 1.0) = 0.0\nm_eff(0) = 0.07486117104048595\nm_eff(0.3) = 0.1006970026747672\nalpha_eff(500, 0.3, 1.0) = 9.808323848226123e-27\n"},
+    {"id":"N4_FEEDBACK","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"For x=0.3 at 500nm, the photon energy is well above the bandgap, so there's absorption"},
+    {"id":"N4_RETURN","source_key":"NEW4","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"38e53f392f411e89891f0f169528ee5c9233ebe9785e01812dcff1566d72ecd4"}
+  ]
+}

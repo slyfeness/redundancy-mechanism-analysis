@@ -1,0 +1,571 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0730",
+  "stage_id": "S001",
+  "sample_order": 17,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0730/trajectory.json",
+      "source_sha256": "7d00003a6edd3c6bb23be5491cc0dbd24f83a87298aa0d747fbcd2ba896a22c0"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0730.json",
+      "source_sha256": "1ff16e5920273956670230403534a98674f081debbcc98ed9d7d10536b0ac4b4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "69faaed6f65f5e42edf2ac04f10163ccdbae1ad59d771a7c142a8b2aa6833459"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "6af7aa6289b6b08cee3c9e4ede2491c8ce5e63765438d9aacc9fd06b1abada88"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a1e95606e21aae5555a8d94385bc1e70f39d36b1a2bc4a0d18010e88caf82f78"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "c61b1ecc9c2456f203f708bbd3b9233400beb12dc50edfa21783e56d239d0a6a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "6f4702f10906ead22b909c88a1a450e5bd8e6ae2e42f28d23519b3ef87d01caf"
+    }
+  },
+  "question_and_gold": {
+    "question": "On what specific date did the 1983 Heisman Trophy winner, whose professional career included playing for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons, appear on the television show \"Family Feud\" with family members?",
+    "gold": "October 22, 2013",
+    "gold_use": "仅事后评价。"
+  },
+  "read_scope": {
+    "original": "原9Round、全部5Search/3Open/Submit及完整Return已读，73800字符原文视图全读。",
+    "new": "四条完整Reasoning、全部真实Call和Return、Final/停止原因；235120字符固定新视图[0,235120)连续全读。完全相同已读文档/Return只作精确显示引用，不省略事件。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "October 22, 2013",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R1@0。",
+    "actual_P": "只有Question及工具系统模板，没有候选、履历证据或节目日期。",
+    "work_state": "需要先找到1983Heisman及四队履历的人，再查Family Feud日期。没有既有失败反馈。",
+    "budget": "历史0Actor，P494+G27=首请求521；初轮10000。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 349
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 369
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 384
+      },
+      {
+        "round": 4,
+        "json_pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 47
+      }
+    ],
+    "actual_tools": [
+      "原R1 E0 年份+四队Query，返回多为1983出生球员等",
+      "原R2 E1 1983 Heisman Trophy winner，未直接列出答案",
+      "原R3 E2与R2完全相同Query/Return"
+    ],
+    "goal": "从奖项年份入口识别目标球员。",
+    "operations": "拆分人物/节目日期需求，宽查再简化奖项Query，评价无直接球员后原样重试。",
+    "product": "三次尝试未明确采用候选。仍需定位球员；没有Mike、日期或独立排除特定候选。原R4首47字符是旧失败反馈。",
+    "judgment_change": "未观察到人物身份更新，只确认当前入口没有直接解决问题。不能把S002后来Mike身份反记为U产物。",
+    "evidence": [
+      "O_COMBINED_QUERY",
+      "O_AWARD_QUERY",
+      "O_AWARD_RETRY",
+      "O_FAILED_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R4@47重选四队履历Query，去掉奖项年份，实际返回965709/964559等Mike材料；R5采用Mike后查节目，R6日期采用，再3Open后R9Submit。",
+    "specific_transition": "前3次奖项检索未定位→实际四队履历入口成功→姓名被用于节目Query。失败反馈与重选入口连续可见，但不能证明三次失败每一次都因果必要。"
+  },
+  "function_features": [
+    "未解决人物身份的奖项入口取证尝试与失败反馈",
+    "没有新增答案事实的搜索仍可能影响后续入口选择，但本组多次未因此及时改变方法",
+    "4条都再次真实执行奖项/球队检索；核心取证尝试功能重现，具体次数不同"
+  ],
+  "guide_audit": {
+    "text": "Let me try a more specific search focusing on the teams mentioned: Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons.",
+    "origin": "原R4 /rounds/3/reasoning_content [47,190)。",
+    "tokens_derived": 27,
+    "P_comparison": "全部四队在Question已出现；没有Mike Rozier、Family Feud日期或新关系。新增的是优先从球队组合搜索的行动选择，原先在失败之后才形成。",
+    "actual_use": "四条首Call仍将1983奖项与球队混在一起，r1/r2另带节目，均返回原首批同样无关材料；不是G一写teams就等于执行了原成功的去年份四队Query。",
+    "risk": "ORACLE_ANCHORED行动提示；不能由无新实体推论G无作用，也不能由后继方向提示推论目标尝试已被真正跳过。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION",
+      "N1_FIRST_QUERY",
+      "N4_FIRST_QUERY"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R9实际Submit，日期真实Return支持；Falcons仍未独立补齐。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1联合年份四队节目Query返回与原E0同文；R2/R3/R4连续同奖项Query与同Return，都未定位。删除的普通失败取证不是没重做，次数反增。",
+        "R5猜Eric Dickerson并Search，Return实际说Heisman第三；R6改猜Herschel Walker并Search，得到明确1982相关材料。R7识别Walker与球队不匹配，实际转去不带年份的四队履历Query，与原成功E3同Return。",
+        "R8采用Mike并实际查询Family Feud，得到965710日期；R9说明Falcons在片段没见但凭已知履历/题目接受，不另查，真实Submit。原后续3Open未再做。"
+      ],
+      "first_judgment_divergence": "原R4已经换入口；新R4仍重复奖项，R5/R6引入错误Eric/Walker候选，R7才真正让球队不匹配促使换Query。",
+      "first_actual_tool_divergence": "首Query新增FamilyFeud但Return相同；实质路径差为R4多一次同奖项、R5/R6错误候选Search，R7才恢复原四队入口。",
+      "function_correspondence": [
+        {
+          "original_goal": "奖项入口定位人物",
+          "original_operation": "组合Search及奖项Query重复，反馈未定位",
+          "original_product": "未取得姓名",
+          "new_goal": "同一人物定位",
+          "new_operation": "R1组合，R2–R4奖项Query重复并评价无直接结果",
+          "new_product": "相同未定位状态，之后另换入口才Mike",
+          "evidence": [
+            "O_AWARD_QUERY",
+            "O_FAILED_FEEDBACK",
+            "N1_AWARD_RETRY",
+            "N1_TEAMS_QUERY",
+            "N1_MIKE_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U实际的取证尝试/失败处理均重新发生，不把S002取得Mike误当U必须已成功的产物。",
+      "judgment_action_outcome_chain": "原失败尝试重做→额外错误候选查询→球队冲突促使实际换入口→Mike被采用并查询节目→C；答案保持来自后来修复而非全程判断稳定。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "1763生成/152939Prompt/8Search/0Open/9Actor；原全后缀1068/127981/5Search/3Open/9Actor。生成+695、Search+3、Open−3、Actor不变；额外重复奖项/错误人查询和R9长说明抵消取消Open的收益。",
+      "counterevidence_and_alternatives": "A中的C可包含错误猜测和延迟修复，不是被删内容没影响后续；但尚无唯一删除因果解释。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R14真实Submit；长时间错候选后最终采用Mike和真实日期Return。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "首Query同类无关；R2先猜Walker，R3实际查Herschel1983。R4已明确看到Walker1982且Generals不是Maulers，返回奖项Query；R5又猜Eric，实际Query。R6继续奖项。",
+        "R7–R10重新把Walker当题目人，实际四次Walker Family Feud查询，Return无节目日期。R8甚至断言已established四队，R9同时承认won1982，识别过的冲突没有持续约束接受/真实查询对象。",
+        "R11再次承认Walker四队都不符，实际四队Heisman Query返回Mike资料；R12把1984 USFL Draft误作Mike Heisman年份，继续奖项Query；R13又明确Mike1983并真正把姓名用于FamilyFeud date Search。",
+        "R14真实日期Return后Submit；未执行原日期3Open，Falcons具体支持仍不足。"
+      ],
+      "first_judgment_divergence": "R2较早采用错误Walker；决定额外路线的是R4冲突已识别后R7重新接受同人并执行节目查询，R11才重新约束候选。",
+      "first_actual_tool_divergence": "R2从原纯奖项改带Walker四队；R7–R10四次错误人物节目Search是明确后果。",
+      "function_correspondence": [
+        {
+          "original_goal": "人物定位尝试",
+          "original_operation": "真实奖项检索、失败反馈",
+          "original_product": "仍未确定人物",
+          "new_goal": "同一定位",
+          "new_operation": "R1组合、R4/R6/R12纯奖项等真实尝试，另有错误候选检索",
+          "new_product": "定位迟至R13才能用于日期行动",
+          "evidence": [
+            "O_AWARD_QUERY",
+            "N2_CONFLICT",
+            "N2_REACCEPT",
+            "N2_WRONG_PERSON_QUERY",
+            "N2_MIKE_ACTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原失败取证功能被真实重做，额外重复/错误接受并不是目标尝试缺失。",
+      "judgment_action_outcome_chain": "取证不直接定位→猜Walker→识别年份/球队冲突但重新接受→围错误人补节目日期→四队入口才取得Mike，又短暂错绑Draft年份→恢复Mike1983并实际改查节目→C；多次纠错后恢复，消耗大增。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "2803生成/373545Prompt/13Search/0Open/14Actor；生成+1735、Search+8、Open−3、Actor+5。增加在错误候选查证、四次错误节目Query、年份重判，不以最后C抹去这些工作。",
+      "counterevidence_and_alternatives": "冲突被识别≠后续持续排除；本条最终修复C，是冲突后重新接受一定终错的反例；同Query反复Return不能证明新信息增加。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": null,
+      "terminal": "CONTEXT_LIMIT_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "14次真实Search后R15输入预检56277+10000+256>65536，未发送下一请求；无Final，不能从已识别Mike补日期。",
+      "outcome_evidence": [
+        "N3_MIKE_ADOPT",
+        "N3_LAST_QUERY"
+      ],
+      "work_and_evidence_timeline": [
+        "R1组合、R2/R3同奖项未定位。R4猜Gary Anderson并实际查，R5无依据编出四队履历后直接查GaryFamilyFeud；Return包括同名placekicker/作曲家/设计师等，未提供所求日期。",
+        "R6在Walker/Steve Owens间纠结又奖项Query；R7猜John Cappelletti并查四队，R8真实查其career，返回明确1973、Rams/Chargers。R9排除JohnRiggins的球队假设后，实际缩为Heisman1983+Maulers+USFL，返回Michael Trope精确1983 Mike句。",
+        "R10明确采用Mike身份，开始查职业履历：Mike Rozier professional career Jacksonville Bulls Houston Oilers Atlanta Falcons。该Query返回NFL赛季与比赛表，没有Mike关系证据。",
+        "R10–R14五次同Query、同完整Return，仍说未核齐三队所以继续同一职业工作；姓名保持Mike，却从未实际转到FamilyFeud Query。R15上下文预检阻塞，不是20Actor用尽。"
+      ],
+      "first_judgment_divergence": "R4猜错Gary并接受虚构履历；后来R10已经正确Mike，但剩余三队证据要求持续驱动同一无效Query，身份恢复没有转化为目标节目日期行动。",
+      "first_actual_tool_divergence": "错误Gary节目Query为早期偏航；晚期关键为R10取得Mike后选择含三队长careerQuery并连续重试5次，而非原立即转节目。",
+      "function_correspondence": [
+        {
+          "original_goal": "人物定位取证尝试",
+          "original_operation": "奖项Query重复，未定位",
+          "original_product": "未定位反馈",
+          "new_goal": "同一人物",
+          "new_operation": "真实组合/奖项重复及失败反馈，再换候选/入口",
+          "new_product": "原取证尝试恢复，后于R10采用Mike",
+          "evidence": [
+            "O_AWARD_QUERY",
+            "N3_WRONG_GARY",
+            "N3_MIKE_ADOPT",
+            "N3_CAREER_QUERY",
+            "N3_LAST_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U的真实失败检索与处理恢复；N不是没有查人物，也不是始终没找回Mike。",
+      "judgment_action_outcome_chain": "失败取证重做并错误猜人→实际换入口找回Mike→把剩余职业条件视为先决缺口→同Query不产出关系却反复执行、未转节目→上下文耗尽N；明确的下游阻断在身份恢复之后。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "2604生成/373084Prompt/14Search/0Open/14Actor；生成+1536、Search+9、Open−3、Actor+5。末5个相同careerQuery每次追加无关大Return导致累计Prompt上升及上下文停止；不是少提交/少Open就算省耗。",
+      "counterevidence_and_alternatives": "所需职业证据确实未返回，不能断言核查目标本身无必要；低增量在未改策略的重复方法。未能找到日期与无Final是新缺失，不是正式答错。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R7真实Submit日期，日期直接返回并再次返回。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1同原组合无关，R2查奖项仍未定位。R3及时用1983Heisman+PittsburghMaulers缩小组合，得到与r3 R9同完整Return，其中Michael Trope精确联到Mike。R3把USFL叫UFL是错误称谓，但Query没有该缩写。",
+        "R4采用Mike并实际转查节目日期；R5直接引用日期，却Open965710 limit100，仅家庭开头。R6仍已知道日期，改用带日期Search再次确认，Return虽大多数同姓噪声，但包含同一737字符Mike日期文本，没有独立新增日期证据。",
+        "R7再次接受四队和日期后Submit。比原少了后面两Open，但保留一次日期已知后的Open和另一次确认Search。"
+      ],
+      "first_judgment_divergence": "R3没有再原样奖项重试或引入错误人物，而将失败反馈落实成缩小到奖项+一支球队的新入口；Mike取得后立即转节目。",
+      "first_actual_tool_divergence": "R3奖项+MaulersQuery提前有效定位；后半段由原3Open变成1Open+1日期确认Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "奖项人物定位",
+          "original_operation": "三次尝试未定位",
+          "original_product": "失败反馈",
+          "new_goal": "同一人物",
+          "new_operation": "R1组合和R2奖项尝试后R3重选更小组合",
+          "new_product": "原功能恢复且更早实际定位Mike",
+          "evidence": [
+            "O_AWARD_QUERY",
+            "O_FAILED_FEEDBACK",
+            "N4_BETTER_QUERY",
+            "N4_MIKE_ACTION",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "人物取证功能恢复，不要求重放相同3次失败才算功能；减少执行次数单列。",
+      "judgment_action_outcome_chain": "首两次不直接定位→将失败用于新约束组合→真实Mike信息立即用于节目Search→日期采用后仍有限重查→SubmitC，较早对象更新与更少后续读取使成本下降。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "993生成/80361Prompt/5Search/1Open/7Actor；对原生成−75、Prompt−47620、Search相同、Open−2、Actor−2。既减少早期无效尝试，也有后续确认方式替换；不能全差值归被删S001长度。",
+      "counterevidence_and_alternatives": "仍有已知日期后的低增量Open/Search，不能把这条较省说成完全消除重复。Falcons仍无独立直接支持，答案C和全条件质量分开。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "N",
+      "C"
+    ],
+    "screen_group": "A",
+    "state_changes_from_original_C": 1,
+    "function_recovery": "4/4原取证尝试功能重建；原U本身未产出人物，不能把其结果写成姓名。",
+    "key_internal_contrast": "r1/r2错人后晚纠正C，r3也找回Mike却连续职业条件Query不转节目而N，r4早将失败反馈落实为更小有效入口并立刻查节目C。身份是否最终找回不能独自解释C/N，采用之后哪项缺口驱动下一步才是晚期差异。",
+    "cost": "只有r4生成下降；r1/r2/r3生成增加，r1取消Open却Search补上、总调用没少；r2/r3额外误人/缺口重试增加5Actor。A不是低成本统一组。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "没有新增事实的失败反馈只有在改变实际证据入口时才可能推进求解；持续重复或把记忆猜测升成候选前提，会延长人物定位。",
+      "support_and_contrast": "原R4实际换四队；新r4 R3换奖项+Maulers、很快Mike；r1继续同奖项三次才经错人后换四队；r2识别Walker冲突后仍再次查其节目，最终晚修复。",
+      "scope": "1Stage/1题/4路径，需跨题验证而非把所有检索失败归此机制。"
+    },
+    {
+      "statement": "候选恢复与任务完成是分开的环节：正确身份被采用以后，剩余条件若继续触发没有增量且不调整方法的取证，仍可能阻止答案属性查询与提交。",
+      "contrast": "r3 R10已采用Mike，R10–R14同careerQuery无关系产物，未查节目而N；r2在真实资料未独立补齐Falcons时改查节目得日期C；r4更早迈向节目，有限确认后C。",
+      "limits": "这不证明Falcons等身份条件不用核查。同题S005新2和S003四路径可实际补齐该关系并C，说明可行核查方式与不退出的重复方法要区分。不能把C但证据欠缺的路径简单推荐为最佳。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G行动方向并未保证首Call是成功入口：四条都组合奖项与球队，Return与原相同；不能只按G词义判目标已跳过。",
+    "A3C不意味着原判断没作用或后续相同；错人、冲突后重接受、年份错绑、查询顺序均有真实差异。",
+    "r2冲突识别不持续，仍最后C；r3身份找回仍N，两者反驳简单二元解释。",
+    "r3末尾职业证据确实缺，不说所有补证无必要；具体无增量为相同Query/Return反复且不改方法。",
+    "原和多条新Falcons未有直接文档句，C不等于证据完全充分。",
+    "所有成本从R1@0整个后续usage，原native IDs缺失；不可将多个独立删除分支的节省相加。",
+    "ORACLE_ANCHORED和采样/检索差异仍在，不能把每个观测链都宣称被删U的唯一因果效应。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me try a more specific search focusing on the teams mentioned: Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons."
+    },
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons"
+    },
+    {
+      "evidence_id": "O_COMBINED_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons",
+      "call_id": "chatcmpl-tool-8b913ef3ffe852b0"
+    },
+    {
+      "evidence_id": "O_AWARD_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_AWARD_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FAILED_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The search results didn't identify the player."
+    },
+    {
+      "evidence_id": "N1_FIRST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons Family Feud",
+      "call_id": "chatcmpl-tool-8e818a7243be0150"
+    },
+    {
+      "evidence_id": "N1_AWARD_RETRY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_TEAMS_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons player",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_MIKE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "I need to find when he appeared on \"Family Feud\" with family members."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/8/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_CONFLICT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Herschel Walker is the 1982 Heisman Trophy winner (not 1983)"
+    },
+    {
+      "evidence_id": "N2_REACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "I have established he is the 1983 Heisman winner and played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons."
+    },
+    {
+      "evidence_id": "N2_WRONG_PERSON_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Herschel Walker Family Feud episode date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_MIKE_ACTION",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/12/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 14,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_WRONG_GARY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Gary Anderson Family Feud date",
+      "call_id": "recovered_call_1"
+    },
+    {"evidence_id": "N3_TROPE_RETURN", "source_ref": "N3", "source_side": "NEW", "round_id": 9, "event_type": "search_return", "json_pointer": "/tool_events/8/observation/results/0/snippet", "exact_quote": "1983 Heisman winner and first overall draft pick in the United States Football League Mike Rozier Pittsburgh Maulers", "call_id": "recovered_call_1", "doc_id": "wiki25:6658580"},
+    {"evidence_id": "N3_CAREER_NOISE", "source_ref": "N3", "source_side": "NEW", "round_id": 10, "event_type": "search_return", "json_pointer": "/tool_events/9/observation/results/0/snippet", "exact_quote": "Week Fifteen: Atlanta Falcons at Jacksonville Jaguars", "call_id": "recovered_call_1", "doc_id": "wiki25:7797834"},
+    {
+      "evidence_id": "N3_MIKE_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "This confirms that Mike Rozier is the 1983 Heisman Trophy winner who played for the Pittsburgh Maulers (USFL)."
+    },
+    {
+      "evidence_id": "N3_CAREER_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/9/arguments/query",
+      "exact_quote": "Mike Rozier professional career Jacksonville Bulls Houston Oilers Atlanta Falcons",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LAST_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 14,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Mike Rozier professional career Jacksonville Bulls Houston Oilers Atlanta Falcons",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons",
+      "call_id": "chatcmpl-tool-a4ec29635da03ba0"
+    },
+    {
+      "evidence_id": "N4_BETTER_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "1983 Heisman Trophy winner Pittsburgh Maulers",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_MIKE_ACTION",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-b61eb42f61aba9a5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

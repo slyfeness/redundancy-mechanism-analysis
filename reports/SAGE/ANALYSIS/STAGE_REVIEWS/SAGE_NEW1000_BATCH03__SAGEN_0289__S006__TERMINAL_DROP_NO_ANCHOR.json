@@ -1,0 +1,397 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0289",
+  "stage_id": "S006",
+  "sample_order": 61,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0289/trajectory.json",
+      "source_sha256": "79fe9a45b937d41313730f9254a8ac4657eb9c0bb501a8ed95937071b200cb5a"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0289.json",
+      "source_sha256": "5a69308283c17d91f1982c8a833f4bde5761de1abbf1f58d257d029dc8dce939"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "82c2ca9a37ae7f74e08780ac389ae0a68ba713b5edc4d87243deae222459f336"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "7de8f55bc31f03e16d771a01d710567443e4700c22745d26291b53899e433735"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "52154e1b3c061bde549760e523e3f8521e18429c6b88591f66688e3687b37478"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "ca783bf346e3d5584783b24a6f8753f4e04c98b97cb00486412548a6ac9a6ff1"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "3b706a764db461da9711a0f7fdd1486b95b449f96168937f4018c566843f3ef1"
+    }
+  },
+  "question_and_gold": {
+    "question": "Moses Schorr ministered a significant religious institution in Warsaw. In what year was the official report, compiled by the SS-Gruppenführer responsible for the destruction of that institution, submitted by Poland to the international organization for culture and heritage, for inclusion in their specific program dedicated to documentary heritage?",
+    "gold": [
+      "2017"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "2017",
+    "adopted_answer": "2017年",
+    "outcome": "C",
+    "reason": "有正式Submit，2017由原最后Report真实返回直接支持。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R15@0当前reasoning为空，实际30条历史消息含14次Search全部Return，最后Report5097291明确2017；已记录的旧R14判断不作为历史reasoning假定保留，但相关人物、机构、年份的返回本身真实存在。P30537Token。",
+    "evidence_states": "全部关键事实已返回，旧日志R14已采用人物；当前新模型仍须从真实Return重新组织链条和决定提交，不能说原最终判断已在当前prefix。",
+    "evidence": [
+      "I_DATE",
+      "I_ROLE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items，R15[0,475)及Submit Call/Return。",
+    "ranges": [
+      {
+        "round": 15,
+        "pointer": "/rounds/14/reasoning_content",
+        "start": 0,
+        "end": 475
+      }
+    ],
+    "goal": "将已得到的关系与2017组成最终答案并正式提交。",
+    "operations": "简短全题链条接受，提交2017；没有Search/Open。",
+    "product": "正式答案2017。",
+    "judgment_change": "证据足够→接受题目链条并正式提交。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "Submit终止，无原未来推理；被删本身就是最后证据接受及提交。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "基于已返回证据组织完整条件关系，形成提交选择并输出答案。",
+    "information_state_dependence": "目标值已在P，但正式接受及提交尚需执行。删后C可由此功能重建而来，不自动证明最终思考可免。",
+    "first_update": "没有新取证；新增是全题接受/正式输出。"
+  },
+  "guide_audit": {
+    "text": "",
+    "source": "NO_ANCHOR",
+    "oracle_status": "NO_TEACHER_GUIDE",
+    "P_comparison": "TERMINAL无G；不输入旧Final/原R15推理，所用2017来自P既有真实Report Return。",
+    "evidence": [
+      "I_DATE"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "明确采用P中2017并正式Submit。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R15重建Schorr接任Great Synagogue、Stroop毁坏、报告UNESCO2017六项判断，随后再做一次简短全题检查，Submit；无新Search/Open。",
+      "first_judgment_divergence": "无关键候选或年份差异；原简短串联被扩成逐项说明与复查。",
+      "first_actual_tool_divergence": "唯一新Call仍Submit2017，未新增取证。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "已得材料→完整链条接受→Submit2017。",
+          "new_goal_operation_product": "从实际P逐项取材重组全部链条，再复查并Submit同年；接受与答案组织功能完整恢复。",
+          "evidence": [
+            "O_ACCEPT",
+            "N1_ACCEPT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "整体证据判断和正式输出均真实出现，不只Final重述。",
+      "judgment_action_outcome_chain": "P直接日期和人物关系→新逐项接受题目链条→无需新工具即可提交C；增加在同一证据的展开和再列条件，并非消除了判断工作。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "545生成、30537Prompt、0Search0Open1Actor，原115生成同Prompt同工具轮数，生成+430；多在六项说明及第二遍条件检查。",
+      "counterevidence_and_alternatives": "有材料不等不需组织；这里组织确实重建而且更长，不能从C判冗余或更省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "引用Report提交/纳入2017，正式答对。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R15列机构、负责人、组织、年份；至少两次完整重列条件，多次追问submitted是否就是2017，重引同一句而未查新材料，最后Submit。",
+      "first_judgment_divergence": "目标年份一直2017；不确定转到题目的submitted和included关系，纯内部反复解释后停止。",
+      "first_actual_tool_divergence": "无新增Search，唯一Submit和原相同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "用已返回2017完成接受和提交。",
+          "new_goal_operation_product": "同证据完成接受，进一步内部解释submitted措辞，再Submit；目标/操作/产物恢复且展开更多。",
+          "evidence": [
+            "O_ACCEPT",
+            "I_DATE",
+            "N2_ACCEPT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "重复问措辞仍属于真实判断重建，未取新证据不是无功能。",
+      "judgment_action_outcome_chain": "直接日期已给→仍将提交与入选措辞视需澄清→不断回引同句，无新的候选/行动变化→最终接受同年C；篇幅增加在证据解释/确认，而非Search增量。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "839生成、30537Prompt、0S0O1Actor，原115，生成+724；更多两次完整列表及提交/登记语义反复确认。",
+      "counterevidence_and_alternatives": "需要区分日期事件本来合理，额外确认是否必要不能仅以结论相同断言；同证据其他三条更短构成比较，不是强因果证明。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "P里Report2017原句被明确采用并Submit。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R15先六项对应具体关系，再重复检查列表及四步推导；所有新处理只消费已有返回，无Search/Open，正式2017。",
+      "first_judgment_divergence": "无目标关系或年份变化，变为更长的多遍说明。",
+      "first_actual_tool_divergence": "无工具路径分歧，仅Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "关系链接受及答案提交。",
+          "new_goal_operation_product": "逐项引用P材料，完成同链条接受并提交，功能全恢复。",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_ACCEPT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原全部认知和提交功能都可在新路径定位。",
+      "judgment_action_outcome_chain": "已有完整证据→重建链条并重复展示→接受2017→C；成本主要受对相同判断的展开长度影响。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "735生成、30537Prompt、0S0O1Actor，原115，生成+620；多在六项展开、再次列表、最后四步总结，非新的取证工作。",
+      "counterevidence_and_alternatives": "与rep1同样正确但长度不同；相同C不意味着删除干预让功能消失。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "Report直接2017用于正式答案，尽管继任方向有局部自相矛盾。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R15先接受2017，再四项检查；第一项称Schorr被Poznański接替，却同句引用真实相反继任句，未展开纠正或新查询；其他链条保持，Submit2017。",
+      "first_judgment_divergence": "关系解释出现局部继任反转，但未改变所用会堂、Stroop、报告或最终年份，未导致可见新行动。",
+      "first_actual_tool_divergence": "无新增取证，仍唯一Submit2017。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "总体接受机构—负责人—报告—年份并提交。",
+          "new_goal_operation_product": "核心链条与2017接受/提交恢复，额外人物继任细节虽错，未改变原目标判定与产物。",
+          "evidence": [
+            "O_ACCEPT",
+            "N4_ACCEPT",
+            "N4_ROLE",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "功能全恢复不等所有解释都正确；具体继任错误单独保留，不能因C忽略。",
+      "judgment_action_outcome_chain": "年份P已直证→直接采用并检查核心链条→局部继任方向错但没有改变当前机构与查询/提交选择→仍C；额外错误未进入行动，所以不能把出现错误一概等同改答案。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "202生成、30537Prompt、0S0O1Actor，原115，生成+87。较另三新条短但仍比原长，核心功能恢复而非省掉。",
+      "counterevidence_and_alternatives": "这条是关系文本错误未改变结果的明确反例；缺少外部对照不能证明任何角色错误只要不影响年份都无害。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "无G，四条都由P材料重建整体判断并SubmitC，没有任何新Search；三条长篇重列，一条较短但继任细节反转。",
+    "costs": "四条生成均比原115高；Prompt均30537、Search0Open0Actor1相同。不能解释为删后更省或最终判断未重建。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题充分证据已在P的无G末段四续跑",
+      "chain": "关键日期与人物材料已返回→删除最终接受段后自然生成重新组织同一链条→无新取证也可稳定C；原答案功能仍完整执行，消耗差别落在同证据被解释和重复检查的篇幅，而非信息缺口增减。",
+      "limits": "本题四新反而都更长，反驳A类=原功能可有可无或删除必省；有一条继任错未变行动，只支持错误未进入核心决策的局部边界。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四条完整19498字符已亲读；原R15及全部前文/Return已读。",
+    "无G，不归教师ORACLE分支；末段删除仍需重新形成答案，C不能独立说明Stage被有效跳过。",
+    "切点为Round开头可比较整响应使用量，但原生生成IDs未保存，不冒充NATIVE_TOKEN_EXACT净省；此处所有生成增加，独立分支不相加。",
+    "原T.7/topk20/MTP2与新T1/topk0/GraphPrefix/MTPoff等档位、最大Actor预算差异照旧保留。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_DATE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 14,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/29/content",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "I_ROLE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/3/content",
+      "exact_quote": "He was succeeded at the Great Synagogue by Moses Schorr in 1923.",
+      "doc_id": "wiki25:3645578"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/13/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "doc_id": "wiki25:5097291",
+      "call_id": "chatcmpl-tool-ae9c3c5708f0b77f"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/14/reasoning_content",
+      "exact_quote": "The report was submitted by Poland to UNESCO's Memory of the World Register in 2017."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Therefore, the year is 2017."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Wait, did it say submitted in 2017? Yes:"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The logic holds up."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The search results clearly state that the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register in 2017."
+    },
+    {
+      "evidence_id": "N4_ROLE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "he was succeeded as head of the Great Synagogue by Samuel Poznański"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

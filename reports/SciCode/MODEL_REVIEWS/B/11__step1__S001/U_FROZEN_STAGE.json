@@ -1,0 +1,25 @@
+{
+  "stage_id": "S001",
+  "start": [
+    0,
+    0,
+    ""
+  ],
+  "name": "解释三类基矢输入并形成首次实现草稿",
+  "result": "形成初始函数草稿，但单基矢和张量积分支使用零向量，尚无真实写入。",
+  "why": "输入接口和索引选择服务于同一次首次方案形成；不因scalar/list三个分支拆开。",
+  "segments": [
+    {
+      "pointer": "/steps/0/rounds/0/reasoning_content",
+      "start": 0,
+      "end": 2391,
+      "text": "Let me understand this subproblem. I need to write a function `ket` that:\n\n1. If `dim` is an int and `args` is an int (or list representing a single index), it should return a standard basis vector $|j\\rangle$ in $d$-dimensional space.\n\n2. If `dim` is an int and `args` is a list $[j_1, j_2, \\dots, j_n]$, it should return the tensor product $|j_1\\rangle|j_2\\rangle\\cdots|j_n\\rangle$ of $d$-dimensional basis vectors.\n\n3. If `dim` is a list $[d_1, d_2, \\dots, d_n]$ and `args` is a list $[j_1, j_2, \\dots, j_n]$, it should return $|j_1\\rangle|j_2\\rangle\\cdots|j_n\\rangle$ as tensor product of $d_1$, $d_2$, ..., and $d_n$ dimensional basis vectors.\n\nSo the function signature is:\n```python\ndef ket(dim, args):\n```\n\nWhere:\n- `dim`: int or list (dimension(s))\n- `args`: int or list (index/indices for the basis vectors)\n\nLet me think about the implementation:\n\n1. First, I need to handle the case where `dim` is an int and `args` is an int (or single element). In this case, I return a column vector with 1 at position `args` (0-indexed or 1-indexed? Let me check the problem statement... it says $|j\\rangle$ which typically uses 0-indexing in programming, but the mathematical notation often uses 1-indexing. Looking at the tensor product formula, it seems like indices are just positions. I'll assume 0-indexed for consistency with Python).\n\n2. If `dim` is an int and `args` is a list, I need to compute the tensor product of `len(args)` copies of the basis vector.\n \n3. When `dim` is a list, I'll create basis vectors of different dimensions and take their tensor product.\n\nI'll start implementing the function to handle these cases systematically.\n\n```python\nimport numpy as np\n\ndef ket(dim, args):\n    # Handle single-dimensional case\n    if isinstance(dim, int):\n        if isinstance(args, int):\n            # Single basis vector\n            return np.zeros(dim, dtype=float)\n        else:\n            # Tensor product of multiple basis vectors\n            result = np.zeros(dim, dtype=float)\n            for j in args:\n                result = np.kron(result, np.zeros(dim, dtype=float))\n            return result\n    else:\n        # Multi-dimensional case\n        result = np.array([1.0])\n        for i, (d, j) in enumerate(zip(dim, args)):\n            basis = np.zeros(d, dtype=float)\n            basis[j] = 1.0\n            result = np.kron(result, basis)\n        return result\n```\n\n",
+      "sha256": "52fceaa59bf612fb24f94c0e68d5a5ca4eae3b8626260a16cf0ab4c543ad61bc",
+      "step": 1,
+      "round": 1
+    }
+  ],
+  "events": [],
+  "code_before": "EMPTY_CURRENT_DRAFT",
+  "code_after": "EMPTY_CURRENT_DRAFT"
+}

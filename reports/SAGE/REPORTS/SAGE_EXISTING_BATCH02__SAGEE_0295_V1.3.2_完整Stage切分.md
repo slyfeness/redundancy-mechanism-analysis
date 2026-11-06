@@ -1,0 +1,2468 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0295｜V1.3.2完整Stage切分
+
+样本序号：21；原件SHA256：`103824d3180be9a982f96d762456d98916f488eb440f590066b3a94569d217c3`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What was the date when the designation prefix given to the naval fleet of the country where the Royal New Zealand Foundation of the Blind is based was formally approved by the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind?
+````
+
+## 完整求解过程
+
+模型先查询盲人机构所在国，得到New Zealand及1890年Jubilee Institute前身，R2直接采用。随后实际查授予机构Royal称号的君主，R2—R4三次同计划查询或轻微加date，返回机构背景和无关材料，未找到授予者。
+
+R5不只是再次列缺口，而是展开题意关系解释：把国家海军认作Royal New Zealand Navy，把舰队designation prefix解释为Royal，并推导需要同一君主批准海军Royal的日期。这个解释由模型推断，返回没有直接支持具体海军前缀或授予日期。
+
+形成这一路径后，它又恢复机构Royal授予者搜索。R5—R14十次同类查询，反复用机构新旧名及date、monarch换序，返回同一批材料。后续多次全题清单只是重复刚才关系并指出同一未解授予者，没有实际采用具体君主、比较日期、转到海军文档或作出答案判断。R15无生成内容，因上下文限制停止，无正式Final。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 查盲人机构所在地并采用New Zealand及Jubilee前身 | 国家及机构身份已采用。 | E001 |
+
+| S002 | R2 / 0 / 233 | 查授予机构Royal称号的君主，按原计划改名与加词重试 | 未得到君主或授予时间。 | E002,E003,E004 |
+
+| S003 | R5 / 0 / 0 | 重新解释海军designation与同一君主关系，采用Royal前缀假设 | 形成接下来应查询的关系框架，未得到日期。 |  |
+
+| S004 | R5 / 0 / 1081 | 恢复机构Royal授予者取证，十次普通重试后上下文终止 | 仍无君主、批准日期或Final，CONTEXT_LIMIT_STOP。 | E005,E006,E007,E008,E009,E010,E011,E012,E013,E014 |
+
+## S001｜查盲人机构所在地并采用New Zealand及Jubilee前身
+
+拆题后搜机构所在国，R2直接提取New Zealand和1890前身。
+
+结束状态：国家及机构身份已采用。
+
+边界判断：轨迹起点与直接返回解释。
+
+内部KEEP与反证：后续舰队、称号与君主只是初始任务计划，不提前标已执行。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,546)
+
+SHA256：`ef941bc35ce3cfbed6bacee7d62b7d36d30a7a9fa2da27857e43cd5483b98e92`；原字段SHA256：`ef941bc35ce3cfbed6bacee7d62b7d36d30a7a9fa2da27857e43cd5483b98e92`。
+
+````
+This is a complex multi-hop question. Let me break it down:
+
+1. First, I need to find out where the Royal New Zealand Foundation of the Blind is based (which country)
+2. Then find out what naval fleet designation prefix was given to that country's naval fleet
+3. Find out when that prefix was formally approved by the monarch
+4. The monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind
+
+Let me start by searching for information about the Royal New Zealand Foundation of the Blind.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Royal New Zealand Foundation of the Blind based country"
+  },
+  "id": "chatcmpl-tool-8cef6308b759369a",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Royal New Zealand Foundation of the Blind based country\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-8cef6308b759369a",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Royal New Zealand Foundation of the Blind based country"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 1.097249876242131,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 20.764648087685952,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8495677",
+        "score": 18.49857013723875,
+        "snippet": "Military unit Authority was granted under New Zealand Defence Forces General Order 90 to raise the New Zealand Army Ordnance Section with effect from 1 April 1915. The section was very small, consisting of eight members and was under command for administration of the Officer Commanding Royal New Zealand Artillery (RNZA). Foundation members were: Members of the section were classed as non-combatants, and were to be employed wholly on their own special work and were not to be detailed for any other duty or work whatsoever. Based at Fort Ballance on Wellington's Miramar Peninsula, the section's main duties were the assembling of ammunition components for the artillery. Its members wore a variation of the badge of the RNZA with the difference between the badge worn by the Ordnance section and the Artillery was that the word \"UBIQUE\" was replaced by the initials \"NZ\". The New Zealand Army Ordnance Corps (NZAOC) and a New Zealand Army Ordnance Department (NZAOD) were gazetted on 1 April 1917, and the Ordnance Stores Section was absorbed into the new Ordnance organisation and this small unit was the foundation of what was evolve into the Royal New Zealand Army Ordnance Corps in later years. References.",
+        "text_characters": 1214,
+        "title": "New Zealand Army Ordnance Section"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8602768",
+        "score": 18.43872263711905,
+        "snippet": "Sir David Russell Hay (8 December 1927 – 3 December 2016) was a New Zealand cardiologist and anti-smoking campaigner. Biography. Born in Christchurch, Hay was one of four children of philanthropist Sir James Hay, including his identical twin brother Sir Hamish Hay and older sister Dame Laurie Salas. Educated at St Andrew's College, he spent 1945 at Canterbury University College, before going on to study medicine at the University of Otago, graduating MB ChB in 1951. Hay then trained as a cardiologist in Britain, where he was influenced by the work of epidemiologist Sir Richard Doll linking smoking to adverse health outcomes. He returned to Christchurch in 1955. In Christchurch in 1958, Hay married Jocelyn Valerie Bell, whom he had met while they were both studying medicine at Otago. The couple went on to have two children. Hay graduated MD from the University of Otago in 1960. From 1959 to 1984, Hay was employed by the North Canterbury Hospital Board, becoming a prominent cardiologist. He was also a clinical academic at the University of Otago's Christchurch School of Medicine from 1973 to 1988. He was a long-time campaigner against smoking and the tobacco industry in his role as inaugural medical director of the New Zealand Heart Foundation (1977–92). In 1999, Hay retired from the New Zealand Heart Foundation after 30 years, having served as its president from 1996 to 1999. Hay held a range of positions on professional bodies, including vice president of the Royal Australasi",
+        "text_characters": 2708,
+        "title": "David Hay (cardiologist)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7684906",
+        "score": 18.255864060993463,
+        "snippet": "New Zealand mathematician and academic physicist (1919–2012) Alister George McLellan (4 June 1919 – 1 July 2012) was a New Zealand mathematician and physicist. Academic career. Born in Christchurch and brought up in Westport, McLellan attended Nelson College and then the University of Otago, from where he graduated with a BSc and an MSc in mathematics and science. He joined the Department of Scientific and Industrial Research doing war work and after the war went to Edinburgh to do a PhD under Max Born. His thesis was entitled \"The radial distribution function and its application to the properties of fluids.\" McLellan returned to the University of Otago and the University of Canterbury where he rose in the ranks of university administration in parallel with his research, becoming head of department in 1955, foundation chair of the new University Grants Committee. He was made a Fellow of the Royal Society of New Zealand in 1961 and Nuffield Foundation Commonwealth Bursary. He served as president of the Canterbury Branch of the Royal Society of New Zealand. He retired in 1985. References.",
+        "text_characters": 1103,
+        "title": "Alister McLellan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6599012",
+        "score": 17.86851218415893,
+        "snippet": "Cyril Charles William White (7 September 1909 – 5 July 1984) was a New Zealand piano tuner and repairer, advocate and worker for the blind. He was born in Hastings, New Zealand, in 1909. In the 1975 Queen's Birthday Honours, White was appointed an Officer of the Order of the British Empire, for services to the blind, especially the Royal New Zealand Foundation for the Blind. References.",
+        "text_characters": 389,
+        "title": "Cyril White (advocate)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10230580",
+        "score": 17.842832146054732,
+        "snippet": "In 2017, Royal was awarded a Churchill Fellowship to travel to Cincinnati, to undertake choreographic research with Exhale Dance Tribe to start developing a united choreographic language and voice. In 2023, he received an Arts Foundation of New Zealand Laureate Award. References.",
+        "text_characters": 280,
+        "title": "Taiaroa Royal"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8418227",
+        "score": 17.66295743712616,
+        "snippet": "2008 – Science Entrepreneur of the Year award at KuDos, the Hamilton Science Excellence Awards, appointment to Board New Zealand Foundation for Research Science and Technology. 2007 – Invitation to present Sir Holmes Miller Lecture, Wellington Branch New Zealand Antarctic Society, 22 November 2007. 2005 – Elected Fellow of The Royal Society of New Zealand. 1998 – Elected to the Academy Board of International Academy of Wood Science (1998–2004). 1990 – Elected Fellow of International Academy of Wood Science References.",
+        "text_characters": 523,
+        "title": "Roberta Farrell"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7891966",
+        "score": 17.547805775763003,
+        "snippet": "Robert Burkall Marsh (born 1950) is a Welsh-born painter who moved to New Zealand as a child. His style has moved from photo-realist to expressionist. Born in Cardiff, Wales in 1950, Marsh emigrated with his family to Auckland, New Zealand, where he was educated at Westlake Boys' High School. He then attended the Elam School of Fine Arts at the University of Auckland from 1967 to 1970, where he obtained a Diploma of Fine Arts. From 1975 to 1978 he studied at the Royal College of Art in London, gaining a MA in painting. A prizewinner in the John Moores Liverpool Exhibition, Marsh has taught at Southwark College. His solo exhibitions, mainly in London and New Zealand, have included the Mertz Gallery and the Royal College of Pathologists. Examples of his works are in collections including the National Theatre, the Granada Foundation, and the Royal College of Art. References.",
+        "text_characters": 884,
+        "title": "Robert Burkall Marsh"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8951067",
+        "score": 17.52083617149011,
+        "snippet": "New Zealand journalism and film academic specialising in documentaries Anne Veronica Goldson is a New Zealand journalism and film academic specialising in documentaries. Her films include Punitive Damage, Georgie Girl, Brother Number One and Kim Dotcom: \"Caught in the Web\". Career. Goldson has a BSc from Otago University, a Diploma in Journalism from Canterbury University, a Master of Arts from New York University and a PhD from the University of Auckland. The title of her doctoral thesis was \"A claim to truth: documentary, politics, production\". She is currently a professor of Media and Communication at the University of Auckland. Honours and awards. Goldson was made an Officer of the New Zealand Order of Merit in 2007 for services to film and was elected a Fellow of the Royal Society of New Zealand in 2007. She was awarded the Humanities Aronui Medal by Royal Society Te Apārangi in 2021. In 2023, she received an Arts Foundation of New Zealand Laureate Award. References.",
+        "text_characters": 986,
+        "title": "Annie Goldson"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:11157815",
+        "score": 17.334272008259482,
+        "snippet": "New Zealand opera singer Madeleine Pierard is a New Zealand lyric soprano opera singer and teacher. She holds the Dame Malvina Major Chair in Opera at the University of Waikato. Early life and education. Pierard grew up in Napier. She was diagnosed with Non-Hodgkin lymphoma at the age of six, and spent two years in hospital. She enrolled in a biomedical degree, but soon found she preferred studying music, having studied piano. She started singing lessons whilst studying composition with Jack Body. Pierard sang in the New Zealand Youth Choir, The Tudor Consort and Voices New Zealand chamber choir. Pierard earned a Bachelor of Music with Honours in performance and composition from Victoria University of Wellington, and a Master of music from the Royal College of Music in London, where she studied with Lillian Watson. Opera career. International performances include Richard Strauss's \"Four Last Songs\" with the English National Ballet at Sadler's Wells, Meleagro in \"Atalanta\" in the London Handel Festival, Justice in \"The First Commandment\" with the Classical Opera Company, Das erste Blumenmädchen in \"Parsifal\", Marzelline in \"Fidelio\", with the Auckland Philharmonia and New Zealand Opera, and Musetta in \"La Boheme\" with Longborough Festival Opera. Pierard sang Sandman in \"Hänsel und Gretel,\" High Priestess in \"Aida\" and Noémie in \"Cendrillon\", all with The Royal Opera. She has appeared with Kiri Te Kanawa and Jonathan Lemalu, and performed a number of oratorios, including \"Carmi",
+        "text_characters": 2651,
+        "title": "Madeleine Pierard"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-8cef6308b759369a"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 20.764648087685952, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8495677", "title": "New Zealand Army Ordnance Section", "score": 18.49857013723875, "snippet": "Military unit Authority was granted under New Zealand Defence Forces General Order 90 to raise the New Zealand Army Ordnance Section with effect from 1 April 1915. The section was very small, consisting of eight members and was under command for administration of the Officer Commanding Royal New Zealand Artillery (RNZA). Foundation members were: Members of the section were classed as non-combatants, and were to be employed wholly on their own special work and were not to be detailed for any other duty or work whatsoever. Based at Fort Ballance on Wellington's Miramar Peninsula, the section's main duties were the assembling of ammunition components for the artillery. Its members wore a variation of the badge of the RNZA with the difference between the badge worn by the Ordnance section and the Artillery was that the word \"UBIQUE\" was replaced by the initials \"NZ\". The New Zealand Army Ordnance Corps (NZAOC) and a New Zealand Army Ordnance Department (NZAOD) were gazetted on 1 April 1917, and the Ordnance Stores Section was absorbed into the new Ordnance organisation and this small unit was the foundation of what was evolve into the Royal New Zealand Army Ordnance Corps in later years. References.", "text_characters": 1214, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8602768", "title": "David Hay (cardiologist)", "score": 18.43872263711905, "snippet": "Sir David Russell Hay (8 December 1927 – 3 December 2016) was a New Zealand cardiologist and anti-smoking campaigner. Biography. Born in Christchurch, Hay was one of four children of philanthropist Sir James Hay, including his identical twin brother Sir Hamish Hay and older sister Dame Laurie Salas. Educated at St Andrew's College, he spent 1945 at Canterbury University College, before going on to study medicine at the University of Otago, graduating MB ChB in 1951. Hay then trained as a cardiologist in Britain, where he was influenced by the work of epidemiologist Sir Richard Doll linking smoking to adverse health outcomes. He returned to Christchurch in 1955. In Christchurch in 1958, Hay married Jocelyn Valerie Bell, whom he had met while they were both studying medicine at Otago. The couple went on to have two children. Hay graduated MD from the University of Otago in 1960. From 1959 to 1984, Hay was employed by the North Canterbury Hospital Board, becoming a prominent cardiologist. He was also a clinical academic at the University of Otago's Christchurch School of Medicine from 1973 to 1988. He was a long-time campaigner against smoking and the tobacco industry in his role as inaugural medical director of the New Zealand Heart Foundation (1977–92). In 1999, Hay retired from the New Zealand Heart Foundation after 30 years, having served as its president from 1996 to 1999. Hay held a range of positions on professional bodies, including vice president of the Royal Australasi", "text_characters": 2708, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7684906", "title": "Alister McLellan", "score": 18.255864060993463, "snippet": "New Zealand mathematician and academic physicist (1919–2012) Alister George McLellan (4 June 1919 – 1 July 2012) was a New Zealand mathematician and physicist. Academic career. Born in Christchurch and brought up in Westport, McLellan attended Nelson College and then the University of Otago, from where he graduated with a BSc and an MSc in mathematics and science. He joined the Department of Scientific and Industrial Research doing war work and after the war went to Edinburgh to do a PhD under Max Born. His thesis was entitled \"The radial distribution function and its application to the properties of fluids.\" McLellan returned to the University of Otago and the University of Canterbury where he rose in the ranks of university administration in parallel with his research, becoming head of department in 1955, foundation chair of the new University Grants Committee. He was made a Fellow of the Royal Society of New Zealand in 1961 and Nuffield Foundation Commonwealth Bursary. He served as president of the Canterbury Branch of the Royal Society of New Zealand. He retired in 1985. References.", "text_characters": 1103, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6599012", "title": "Cyril White (advocate)", "score": 17.86851218415893, "snippet": "Cyril Charles William White (7 September 1909 – 5 July 1984) was a New Zealand piano tuner and repairer, advocate and worker for the blind. He was born in Hastings, New Zealand, in 1909. In the 1975 Queen's Birthday Honours, White was appointed an Officer of the Order of the British Empire, for services to the blind, especially the Royal New Zealand Foundation for the Blind. References.", "text_characters": 389, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10230580", "title": "Taiaroa Royal", "score": 17.842832146054732, "snippet": "In 2017, Royal was awarded a Churchill Fellowship to travel to Cincinnati, to undertake choreographic research with Exhale Dance Tribe to start developing a united choreographic language and voice. In 2023, he received an Arts Foundation of New Zealand Laureate Award. References.", "text_characters": 280, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8418227", "title": "Roberta Farrell", "score": 17.66295743712616, "snippet": "2008 – Science Entrepreneur of the Year award at KuDos, the Hamilton Science Excellence Awards, appointment to Board New Zealand Foundation for Research Science and Technology. 2007 – Invitation to present Sir Holmes Miller Lecture, Wellington Branch New Zealand Antarctic Society, 22 November 2007. 2005 – Elected Fellow of The Royal Society of New Zealand. 1998 – Elected to the Academy Board of International Academy of Wood Science (1998–2004). 1990 – Elected Fellow of International Academy of Wood Science References.", "text_characters": 523, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7891966", "title": "Robert Burkall Marsh", "score": 17.547805775763003, "snippet": "Robert Burkall Marsh (born 1950) is a Welsh-born painter who moved to New Zealand as a child. His style has moved from photo-realist to expressionist. Born in Cardiff, Wales in 1950, Marsh emigrated with his family to Auckland, New Zealand, where he was educated at Westlake Boys' High School. He then attended the Elam School of Fine Arts at the University of Auckland from 1967 to 1970, where he obtained a Diploma of Fine Arts. From 1975 to 1978 he studied at the Royal College of Art in London, gaining a MA in painting. A prizewinner in the John Moores Liverpool Exhibition, Marsh has taught at Southwark College. His solo exhibitions, mainly in London and New Zealand, have included the Mertz Gallery and the Royal College of Pathologists. Examples of his works are in collections including the National Theatre, the Granada Foundation, and the Royal College of Art. References.", "text_characters": 884, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8951067", "title": "Annie Goldson", "score": 17.52083617149011, "snippet": "New Zealand journalism and film academic specialising in documentaries Anne Veronica Goldson is a New Zealand journalism and film academic specialising in documentaries. Her films include Punitive Damage, Georgie Girl, Brother Number One and Kim Dotcom: \"Caught in the Web\". Career. Goldson has a BSc from Otago University, a Diploma in Journalism from Canterbury University, a Master of Arts from New York University and a PhD from the University of Auckland. The title of her doctoral thesis was \"A claim to truth: documentary, politics, production\". She is currently a professor of Media and Communication at the University of Auckland. Honours and awards. Goldson was made an Officer of the New Zealand Order of Merit in 2007 for services to film and was elected a Fellow of the Royal Society of New Zealand in 2007. She was awarded the Humanities Aronui Medal by Royal Society Te Apārangi in 2021. In 2023, she received an Arts Foundation of New Zealand Laureate Award. References.", "text_characters": 986, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:11157815", "title": "Madeleine Pierard", "score": 17.334272008259482, "snippet": "New Zealand opera singer Madeleine Pierard is a New Zealand lyric soprano opera singer and teacher. She holds the Dame Malvina Major Chair in Opera at the University of Waikato. Early life and education. Pierard grew up in Napier. She was diagnosed with Non-Hodgkin lymphoma at the age of six, and spent two years in hospital. She enrolled in a biomedical degree, but soon found she preferred studying music, having studied piano. She started singing lessons whilst studying composition with Jack Body. Pierard sang in the New Zealand Youth Choir, The Tudor Consort and Voices New Zealand chamber choir. Pierard earned a Bachelor of Music with Honours in performance and composition from Victoria University of Wellington, and a Master of music from the Royal College of Music in London, where she studied with Lillian Watson. Opera career. International performances include Richard Strauss's \"Four Last Songs\" with the English National Ballet at Sadler's Wells, Meleagro in \"Atalanta\" in the London Handel Festival, Justice in \"The First Commandment\" with the Classical Opera Company, Das erste Blumenmädchen in \"Parsifal\", Marzelline in \"Fidelio\", with the Auckland Philharmonia and New Zealand Opera, and Musetta in \"La Boheme\" with Longborough Festival Opera. Pierard sang Sandman in \"Hänsel und Gretel,\" High Priestess in \"Aida\" and Noémie in \"Cendrillon\", all with The Royal Opera. She has appeared with Kiri Te Kanawa and Jonathan Lemalu, and performed a number of oratorios, including \"Carmi", "text_characters": 2651, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R002_request.json/messages/3/content`；SHA256：`b567627e1f5ce4837ed37880bbcb2a50b5a7ac59a5f14d260d1aadb87c166ec0`。
+
+### R2 `/rounds/1/reasoning_content` [0,233)
+
+SHA256：`214d748d6cc93b7f149cc5b69373cd4d934a2beecc8ad38e3324763fdca1a83f`；原字段SHA256：`f1eb565b6e67a02c9ec61bf4d880f817745bee45db82ba324a6ca65ce67f9ca2`。
+
+````
+The search results indicate that the Royal New Zealand Foundation of the Blind is based in New Zealand. The first result mentions "The Foundation began in 1890 as the Jubilee Institute for the Blind". So the country is New Zealand.
+
+
+````
+
+## S002｜查授予机构Royal称号的君主，按原计划改名与加词重试
+
+实际查询机构Royal授予者，改用Jubilee旧名、加入date重试，共三Call。
+
+结束状态：未得到君主或授予时间。
+
+边界判断：国家已确定，开始另一关系缺口的取证。
+
+内部KEEP与反证：R3—R4复述已知机构与同一缺口，没有候选核验或证据入口变化；三个查询属于普通重试。
+
+### SPLIT原文
+
+````
+The search results indicate that the Royal New Zealand Foundation of the Blind is based in New Zealand. The first result mentions "The Foundation began in 1890 as the Jubilee Institute for the Blind". So the country is New Zealand.
+
+
+→ 切点 [1, 0, 233] →
+Now I need to find:
+1. The naval fleet of New Zealand
+2. The designation prefix given to that naval fleet
+3. When that prefix was formally approved by the monarch who granted the Royal prefix to the institution
+
+Let me search for information about the Royal New Zealand Foundation of the Blind and who granted the Royal prefix.
+
+<tool_call>
+<function=search>
+<
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [233,718)
+
+SHA256：`f0d931dfa21c6939cd79d8a7911824c528f2d6e1a6c5eccf41e95c4f51a2b0cd`；原字段SHA256：`f1eb565b6e67a02c9ec61bf4d880f817745bee45db82ba324a6ca65ce67f9ca2`。
+
+````
+Now I need to find:
+1. The naval fleet of New Zealand
+2. The designation prefix given to that naval fleet
+3. When that prefix was formally approved by the monarch who granted the Royal prefix to the institution
+
+Let me search for information about the Royal New Zealand Foundation of the Blind and who granted the Royal prefix.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Royal New Zealand Foundation of the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Royal New Zealand Foundation of the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nRoyal New Zealand Foundation of the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Royal New Zealand Foundation of the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 0.1462911581620574,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 20.764648087685952,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8495677",
+        "score": 18.49857013723875,
+        "snippet": "Military unit Authority was granted under New Zealand Defence Forces General Order 90 to raise the New Zealand Army Ordnance Section with effect from 1 April 1915. The section was very small, consisting of eight members and was under command for administration of the Officer Commanding Royal New Zealand Artillery (RNZA). Foundation members were: Members of the section were classed as non-combatants, and were to be employed wholly on their own special work and were not to be detailed for any other duty or work whatsoever. Based at Fort Ballance on Wellington's Miramar Peninsula, the section's main duties were the assembling of ammunition components for the artillery. Its members wore a variation of the badge of the RNZA with the difference between the badge worn by the Ordnance section and the Artillery was that the word \"UBIQUE\" was replaced by the initials \"NZ\". The New Zealand Army Ordnance Corps (NZAOC) and a New Zealand Army Ordnance Department (NZAOD) were gazetted on 1 April 1917, and the Ordnance Stores Section was absorbed into the new Ordnance organisation and this small unit was the foundation of what was evolve into the Royal New Zealand Army Ordnance Corps in later years. References.",
+        "text_characters": 1214,
+        "title": "New Zealand Army Ordnance Section"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8602768",
+        "score": 18.43872263711905,
+        "snippet": "Sir David Russell Hay (8 December 1927 – 3 December 2016) was a New Zealand cardiologist and anti-smoking campaigner. Biography. Born in Christchurch, Hay was one of four children of philanthropist Sir James Hay, including his identical twin brother Sir Hamish Hay and older sister Dame Laurie Salas. Educated at St Andrew's College, he spent 1945 at Canterbury University College, before going on to study medicine at the University of Otago, graduating MB ChB in 1951. Hay then trained as a cardiologist in Britain, where he was influenced by the work of epidemiologist Sir Richard Doll linking smoking to adverse health outcomes. He returned to Christchurch in 1955. In Christchurch in 1958, Hay married Jocelyn Valerie Bell, whom he had met while they were both studying medicine at Otago. The couple went on to have two children. Hay graduated MD from the University of Otago in 1960. From 1959 to 1984, Hay was employed by the North Canterbury Hospital Board, becoming a prominent cardiologist. He was also a clinical academic at the University of Otago's Christchurch School of Medicine from 1973 to 1988. He was a long-time campaigner against smoking and the tobacco industry in his role as inaugural medical director of the New Zealand Heart Foundation (1977–92). In 1999, Hay retired from the New Zealand Heart Foundation after 30 years, having served as its president from 1996 to 1999. Hay held a range of positions on professional bodies, including vice president of the Royal Australasi",
+        "text_characters": 2708,
+        "title": "David Hay (cardiologist)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7684906",
+        "score": 18.255864060993463,
+        "snippet": "New Zealand mathematician and academic physicist (1919–2012) Alister George McLellan (4 June 1919 – 1 July 2012) was a New Zealand mathematician and physicist. Academic career. Born in Christchurch and brought up in Westport, McLellan attended Nelson College and then the University of Otago, from where he graduated with a BSc and an MSc in mathematics and science. He joined the Department of Scientific and Industrial Research doing war work and after the war went to Edinburgh to do a PhD under Max Born. His thesis was entitled \"The radial distribution function and its application to the properties of fluids.\" McLellan returned to the University of Otago and the University of Canterbury where he rose in the ranks of university administration in parallel with his research, becoming head of department in 1955, foundation chair of the new University Grants Committee. He was made a Fellow of the Royal Society of New Zealand in 1961 and Nuffield Foundation Commonwealth Bursary. He served as president of the Canterbury Branch of the Royal Society of New Zealand. He retired in 1985. References.",
+        "text_characters": 1103,
+        "title": "Alister McLellan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6599012",
+        "score": 17.86851218415893,
+        "snippet": "Cyril Charles William White (7 September 1909 – 5 July 1984) was a New Zealand piano tuner and repairer, advocate and worker for the blind. He was born in Hastings, New Zealand, in 1909. In the 1975 Queen's Birthday Honours, White was appointed an Officer of the Order of the British Empire, for services to the blind, especially the Royal New Zealand Foundation for the Blind. References.",
+        "text_characters": 389,
+        "title": "Cyril White (advocate)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10230580",
+        "score": 17.842832146054732,
+        "snippet": "In 2017, Royal was awarded a Churchill Fellowship to travel to Cincinnati, to undertake choreographic research with Exhale Dance Tribe to start developing a united choreographic language and voice. In 2023, he received an Arts Foundation of New Zealand Laureate Award. References.",
+        "text_characters": 280,
+        "title": "Taiaroa Royal"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8418227",
+        "score": 17.66295743712616,
+        "snippet": "2008 – Science Entrepreneur of the Year award at KuDos, the Hamilton Science Excellence Awards, appointment to Board New Zealand Foundation for Research Science and Technology. 2007 – Invitation to present Sir Holmes Miller Lecture, Wellington Branch New Zealand Antarctic Society, 22 November 2007. 2005 – Elected Fellow of The Royal Society of New Zealand. 1998 – Elected to the Academy Board of International Academy of Wood Science (1998–2004). 1990 – Elected Fellow of International Academy of Wood Science References.",
+        "text_characters": 523,
+        "title": "Roberta Farrell"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7891966",
+        "score": 17.547805775763003,
+        "snippet": "Robert Burkall Marsh (born 1950) is a Welsh-born painter who moved to New Zealand as a child. His style has moved from photo-realist to expressionist. Born in Cardiff, Wales in 1950, Marsh emigrated with his family to Auckland, New Zealand, where he was educated at Westlake Boys' High School. He then attended the Elam School of Fine Arts at the University of Auckland from 1967 to 1970, where he obtained a Diploma of Fine Arts. From 1975 to 1978 he studied at the Royal College of Art in London, gaining a MA in painting. A prizewinner in the John Moores Liverpool Exhibition, Marsh has taught at Southwark College. His solo exhibitions, mainly in London and New Zealand, have included the Mertz Gallery and the Royal College of Pathologists. Examples of his works are in collections including the National Theatre, the Granada Foundation, and the Royal College of Art. References.",
+        "text_characters": 884,
+        "title": "Robert Burkall Marsh"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8951067",
+        "score": 17.52083617149011,
+        "snippet": "New Zealand journalism and film academic specialising in documentaries Anne Veronica Goldson is a New Zealand journalism and film academic specialising in documentaries. Her films include Punitive Damage, Georgie Girl, Brother Number One and Kim Dotcom: \"Caught in the Web\". Career. Goldson has a BSc from Otago University, a Diploma in Journalism from Canterbury University, a Master of Arts from New York University and a PhD from the University of Auckland. The title of her doctoral thesis was \"A claim to truth: documentary, politics, production\". She is currently a professor of Media and Communication at the University of Auckland. Honours and awards. Goldson was made an Officer of the New Zealand Order of Merit in 2007 for services to film and was elected a Fellow of the Royal Society of New Zealand in 2007. She was awarded the Humanities Aronui Medal by Royal Society Te Apārangi in 2021. In 2023, she received an Arts Foundation of New Zealand Laureate Award. References.",
+        "text_characters": 986,
+        "title": "Annie Goldson"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:11157815",
+        "score": 17.334272008259482,
+        "snippet": "New Zealand opera singer Madeleine Pierard is a New Zealand lyric soprano opera singer and teacher. She holds the Dame Malvina Major Chair in Opera at the University of Waikato. Early life and education. Pierard grew up in Napier. She was diagnosed with Non-Hodgkin lymphoma at the age of six, and spent two years in hospital. She enrolled in a biomedical degree, but soon found she preferred studying music, having studied piano. She started singing lessons whilst studying composition with Jack Body. Pierard sang in the New Zealand Youth Choir, The Tudor Consort and Voices New Zealand chamber choir. Pierard earned a Bachelor of Music with Honours in performance and composition from Victoria University of Wellington, and a Master of music from the Royal College of Music in London, where she studied with Lillian Watson. Opera career. International performances include Richard Strauss's \"Four Last Songs\" with the English National Ballet at Sadler's Wells, Meleagro in \"Atalanta\" in the London Handel Festival, Justice in \"The First Commandment\" with the Classical Opera Company, Das erste Blumenmädchen in \"Parsifal\", Marzelline in \"Fidelio\", with the Auckland Philharmonia and New Zealand Opera, and Musetta in \"La Boheme\" with Longborough Festival Opera. Pierard sang Sandman in \"Hänsel und Gretel,\" High Priestess in \"Aida\" and Noémie in \"Cendrillon\", all with The Royal Opera. She has appeared with Kiri Te Kanawa and Jonathan Lemalu, and performed a number of oratorios, including \"Carmi",
+        "text_characters": 2651,
+        "title": "Madeleine Pierard"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 20.764648087685952, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8495677", "title": "New Zealand Army Ordnance Section", "score": 18.49857013723875, "snippet": "Military unit Authority was granted under New Zealand Defence Forces General Order 90 to raise the New Zealand Army Ordnance Section with effect from 1 April 1915. The section was very small, consisting of eight members and was under command for administration of the Officer Commanding Royal New Zealand Artillery (RNZA). Foundation members were: Members of the section were classed as non-combatants, and were to be employed wholly on their own special work and were not to be detailed for any other duty or work whatsoever. Based at Fort Ballance on Wellington's Miramar Peninsula, the section's main duties were the assembling of ammunition components for the artillery. Its members wore a variation of the badge of the RNZA with the difference between the badge worn by the Ordnance section and the Artillery was that the word \"UBIQUE\" was replaced by the initials \"NZ\". The New Zealand Army Ordnance Corps (NZAOC) and a New Zealand Army Ordnance Department (NZAOD) were gazetted on 1 April 1917, and the Ordnance Stores Section was absorbed into the new Ordnance organisation and this small unit was the foundation of what was evolve into the Royal New Zealand Army Ordnance Corps in later years. References.", "text_characters": 1214, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8602768", "title": "David Hay (cardiologist)", "score": 18.43872263711905, "snippet": "Sir David Russell Hay (8 December 1927 – 3 December 2016) was a New Zealand cardiologist and anti-smoking campaigner. Biography. Born in Christchurch, Hay was one of four children of philanthropist Sir James Hay, including his identical twin brother Sir Hamish Hay and older sister Dame Laurie Salas. Educated at St Andrew's College, he spent 1945 at Canterbury University College, before going on to study medicine at the University of Otago, graduating MB ChB in 1951. Hay then trained as a cardiologist in Britain, where he was influenced by the work of epidemiologist Sir Richard Doll linking smoking to adverse health outcomes. He returned to Christchurch in 1955. In Christchurch in 1958, Hay married Jocelyn Valerie Bell, whom he had met while they were both studying medicine at Otago. The couple went on to have two children. Hay graduated MD from the University of Otago in 1960. From 1959 to 1984, Hay was employed by the North Canterbury Hospital Board, becoming a prominent cardiologist. He was also a clinical academic at the University of Otago's Christchurch School of Medicine from 1973 to 1988. He was a long-time campaigner against smoking and the tobacco industry in his role as inaugural medical director of the New Zealand Heart Foundation (1977–92). In 1999, Hay retired from the New Zealand Heart Foundation after 30 years, having served as its president from 1996 to 1999. Hay held a range of positions on professional bodies, including vice president of the Royal Australasi", "text_characters": 2708, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7684906", "title": "Alister McLellan", "score": 18.255864060993463, "snippet": "New Zealand mathematician and academic physicist (1919–2012) Alister George McLellan (4 June 1919 – 1 July 2012) was a New Zealand mathematician and physicist. Academic career. Born in Christchurch and brought up in Westport, McLellan attended Nelson College and then the University of Otago, from where he graduated with a BSc and an MSc in mathematics and science. He joined the Department of Scientific and Industrial Research doing war work and after the war went to Edinburgh to do a PhD under Max Born. His thesis was entitled \"The radial distribution function and its application to the properties of fluids.\" McLellan returned to the University of Otago and the University of Canterbury where he rose in the ranks of university administration in parallel with his research, becoming head of department in 1955, foundation chair of the new University Grants Committee. He was made a Fellow of the Royal Society of New Zealand in 1961 and Nuffield Foundation Commonwealth Bursary. He served as president of the Canterbury Branch of the Royal Society of New Zealand. He retired in 1985. References.", "text_characters": 1103, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6599012", "title": "Cyril White (advocate)", "score": 17.86851218415893, "snippet": "Cyril Charles William White (7 September 1909 – 5 July 1984) was a New Zealand piano tuner and repairer, advocate and worker for the blind. He was born in Hastings, New Zealand, in 1909. In the 1975 Queen's Birthday Honours, White was appointed an Officer of the Order of the British Empire, for services to the blind, especially the Royal New Zealand Foundation for the Blind. References.", "text_characters": 389, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10230580", "title": "Taiaroa Royal", "score": 17.842832146054732, "snippet": "In 2017, Royal was awarded a Churchill Fellowship to travel to Cincinnati, to undertake choreographic research with Exhale Dance Tribe to start developing a united choreographic language and voice. In 2023, he received an Arts Foundation of New Zealand Laureate Award. References.", "text_characters": 280, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8418227", "title": "Roberta Farrell", "score": 17.66295743712616, "snippet": "2008 – Science Entrepreneur of the Year award at KuDos, the Hamilton Science Excellence Awards, appointment to Board New Zealand Foundation for Research Science and Technology. 2007 – Invitation to present Sir Holmes Miller Lecture, Wellington Branch New Zealand Antarctic Society, 22 November 2007. 2005 – Elected Fellow of The Royal Society of New Zealand. 1998 – Elected to the Academy Board of International Academy of Wood Science (1998–2004). 1990 – Elected Fellow of International Academy of Wood Science References.", "text_characters": 523, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7891966", "title": "Robert Burkall Marsh", "score": 17.547805775763003, "snippet": "Robert Burkall Marsh (born 1950) is a Welsh-born painter who moved to New Zealand as a child. His style has moved from photo-realist to expressionist. Born in Cardiff, Wales in 1950, Marsh emigrated with his family to Auckland, New Zealand, where he was educated at Westlake Boys' High School. He then attended the Elam School of Fine Arts at the University of Auckland from 1967 to 1970, where he obtained a Diploma of Fine Arts. From 1975 to 1978 he studied at the Royal College of Art in London, gaining a MA in painting. A prizewinner in the John Moores Liverpool Exhibition, Marsh has taught at Southwark College. His solo exhibitions, mainly in London and New Zealand, have included the Mertz Gallery and the Royal College of Pathologists. Examples of his works are in collections including the National Theatre, the Granada Foundation, and the Royal College of Art. References.", "text_characters": 884, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8951067", "title": "Annie Goldson", "score": 17.52083617149011, "snippet": "New Zealand journalism and film academic specialising in documentaries Anne Veronica Goldson is a New Zealand journalism and film academic specialising in documentaries. Her films include Punitive Damage, Georgie Girl, Brother Number One and Kim Dotcom: \"Caught in the Web\". Career. Goldson has a BSc from Otago University, a Diploma in Journalism from Canterbury University, a Master of Arts from New York University and a PhD from the University of Auckland. The title of her doctoral thesis was \"A claim to truth: documentary, politics, production\". She is currently a professor of Media and Communication at the University of Auckland. Honours and awards. Goldson was made an Officer of the New Zealand Order of Merit in 2007 for services to film and was elected a Fellow of the Royal Society of New Zealand in 2007. She was awarded the Humanities Aronui Medal by Royal Society Te Apārangi in 2021. In 2023, she received an Arts Foundation of New Zealand Laureate Award. References.", "text_characters": 986, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:11157815", "title": "Madeleine Pierard", "score": 17.334272008259482, "snippet": "New Zealand opera singer Madeleine Pierard is a New Zealand lyric soprano opera singer and teacher. She holds the Dame Malvina Major Chair in Opera at the University of Waikato. Early life and education. Pierard grew up in Napier. She was diagnosed with Non-Hodgkin lymphoma at the age of six, and spent two years in hospital. She enrolled in a biomedical degree, but soon found she preferred studying music, having studied piano. She started singing lessons whilst studying composition with Jack Body. Pierard sang in the New Zealand Youth Choir, The Tudor Consort and Voices New Zealand chamber choir. Pierard earned a Bachelor of Music with Honours in performance and composition from Victoria University of Wellington, and a Master of music from the Royal College of Music in London, where she studied with Lillian Watson. Opera career. International performances include Richard Strauss's \"Four Last Songs\" with the English National Ballet at Sadler's Wells, Meleagro in \"Atalanta\" in the London Handel Festival, Justice in \"The First Commandment\" with the Classical Opera Company, Das erste Blumenmädchen in \"Parsifal\", Marzelline in \"Fidelio\", with the Auckland Philharmonia and New Zealand Opera, and Musetta in \"La Boheme\" with Longborough Festival Opera. Pierard sang Sandman in \"Hänsel und Gretel,\" High Priestess in \"Aida\" and Noémie in \"Cendrillon\", all with The Royal Opera. She has appeared with Kiri Te Kanawa and Jonathan Lemalu, and performed a number of oratorios, including \"Carmi", "text_characters": 2651, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R003_request.json/messages/5/content`；SHA256：`b567627e1f5ce4837ed37880bbcb2a50b5a7ac59a5f14d260d1aadb87c166ec0`。
+
+### R3 `/rounds/2/reasoning_content` [0,714)
+
+SHA256：`98ec8551fb536d456479dab968dbb8efe489a1a70c66a824d63786f9099d2006`；原字段SHA256：`98ec8551fb536d456479dab968dbb8efe489a1a70c66a824d63786f9099d2006`。
+
+````
+The search results confirm that the Royal New Zealand Foundation of the Blind is based in New Zealand. The institution originally began as the Jubilee Institute for the Blind.
+
+Now I need to find out:
+1. Who granted the Royal prefix to the institution (the Jubilee Institute for the Blind / Royal New Zealand Foundation of the Blind)?
+2. What naval fleet of New Zealand has a designation prefix?
+3. When was that prefix formally approved by the monarch?
+
+Let me search for information about the Royal prefix being granted to the institution and the monarch involved.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 0.7499228492379189,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R004_request.json/messages/7/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R4 `/rounds/3/reasoning_content` [0,674)
+
+SHA256：`e3de679ef22a52bf9394ce9a2005f2f0ab56f8a1946b8cd0154339a0cba0fa2b`；原字段SHA256：`e3de679ef22a52bf9394ce9a2005f2f0ab56f8a1946b8cd0154339a0cba0fa2b`。
+
+````
+The search results confirm that the Royal New Zealand Foundation of the Blind is based in New Zealand. The institution originally began as the Jubilee Institute for the Blind. The Royal prefix was granted to the institution (Jubilee Institute for the Blind became Royal New Zealand Foundation of the Blind). I need to find out who granted the Royal prefix to the institution.
+
+Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind in New Zealand, and who granted it.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch date
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch date"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch date\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch date"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.3313207463361323,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R005_request.json/messages/9/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+## S003｜重新解释海军designation与同一君主关系，采用Royal前缀假设
+
+逐项推导New Zealand Navy为Royal New Zealand Navy、designation为Royal，建立同一君主授予机构与批准海军前缀的关系。
+
+结束状态：形成接下来应查询的关系框架，未得到日期。
+
+边界判断：此处实际新增并展开海军前缀含义解释，不只是重列尚缺授予者；完整关系推导单独保留。
+
+内部KEEP与反证：五项拆解与后续trace是同一次题意推导，不按列表、换段或句子机械切碎。
+
+### SPLIT原文
+
+````
+ to find out who granted the Royal prefix to the institution.
+
+Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind in New Zealand, and who granted it.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch date
+</parameter>
+</function>
+</tool_call>
+→ 切点 [4, 0, 0] →
+The user is asking for a specific date related to a naval fleet designation prefix. Let me break down the question step by step:
+
+1. "the Royal New Zealand Foundation of the Blind is based" - This is in New Zealand (from the search results).
+
+2. "the country where the Royal New Zealand Foundation of the Blind is based" - New Zealand.
+
+3. "the naval fleet of 
+````
+
+### R5 `/rounds/4/reasoning_content` [0,1081)
+
+SHA256：`a1ab863a2bca34f7d2e8dbcf2daa2bb2a0b0322b5425bfffe6d186ef89dcddfb`；原字段SHA256：`f74ed4ba454440a8876c7810bb6e552bb9ed8461766c12cfd4eaf79e8cef08e6`。
+
+````
+The user is asking for a specific date related to a naval fleet designation prefix. Let me break down the question step by step:
+
+1. "the Royal New Zealand Foundation of the Blind is based" - This is in New Zealand (from the search results).
+
+2. "the country where the Royal New Zealand Foundation of the Blind is based" - New Zealand.
+
+3. "the naval fleet of the country" - This would be the Royal New Zealand Navy.
+
+4. "the designation prefix given to the naval fleet" - The Royal New Zealand Navy's designation prefix is "Royal".
+
+5. "was formally approved by the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind"
+
+Let me trace this:
+- The Jubilee Institute for the Blind became the Royal New Zealand Foundation of the Blind.
+- The "Royal" prefix was granted to this institution.
+- I need to find out which monarch granted the "Royal" prefix to the Jubilee Institute for the Blind.
+- Then I need to find when that same monarch formally approved the designation prefix "Royal" for the New Zealand naval fleet.
+
+
+````
+
+## S004｜恢复机构Royal授予者取证，十次普通重试后上下文终止
+
+实际仍搜索Jubilee Royal granted monarch，R6—R14沿相同计划重复或轻微改词，完整保存十次Call/Return。
+
+结束状态：仍无君主、批准日期或Final，CONTEXT_LIMIT_STOP。
+
+边界判断：关系解释完成后重新执行此前被打断的君主查询，恢复为新的连续实例。
+
+内部KEEP与反证：重点审核十Call长Stage：后续题意清单只是既有解释与未解授予者复述，没有新君主候选、实质比较、日期接受或海军独立查询。不能仅因多Round/多Call强制切分；所有执行位置仍可分别定位。空R15保留终态，不补Stage。
+
+### SPLIT原文
+
+````
+stitute for the Blind became the Royal New Zealand Foundation of the Blind.
+- The "Royal" prefix was granted to this institution.
+- I need to find out which monarch granted the "Royal" prefix to the Jubilee Institute for the Blind.
+- Then I need to find when that same monarch formally approved the designation prefix "Royal" for the New Zealand naval fleet.
+
+
+→ 切点 [4, 0, 1081] →
+Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind, and when the Royal prefix was granted to the New Zealand naval fleet.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 10,
+    "batch_id": "B010",
+    "call_pointers": [
+      "/rounds/9/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/9"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 11,
+    "batch_id": "B011",
+    "call_pointers": [
+      "/rounds/10/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/10"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 12,
+    "batch_id": "B012",
+    "call_pointers": [
+      "/rounds/11/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/11"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 13,
+    "batch_id": "B013",
+    "call_pointers": [
+      "/rounds/12/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/12"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 14,
+    "batch_id": "B014",
+    "call_pointers": [
+      "/rounds/13/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/13"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [1081,1408)
+
+SHA256：`56a3771f934aa70a4009586fc20a264f2c7af1bb7317200e0705bf11a5e66a85`；原字段SHA256：`f74ed4ba454440a8876c7810bb6e552bb9ed8461766c12cfd4eaf79e8cef08e6`。
+
+````
+Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind, and when the Royal prefix was granted to the New Zealand naval fleet.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.5610768240876496,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R006_request.json/messages/11/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R6 `/rounds/5/reasoning_content` [0,793)
+
+SHA256：`80a500002244c38738cb101c324f72ed1c92ba7886382533f9e51c54737e3182`；原字段SHA256：`80a500002244c38738cb101c324f72ed1c92ba7886382533f9e51c54737e3182`。
+
+````
+The Royal New Zealand Foundation of the Blind is based in New Zealand. The question asks about the designation prefix given to the naval fleet of New Zealand. The "Royal" prefix was granted to the institution (Jubilee Institute for the Blind) by a monarch. I need to find out which monarch granted the Royal prefix to the Jubilee Institute for the Blind, and then find the date when the designation prefix (Royal) was formally approved by that monarch for the New Zealand naval fleet.
+
+Let me search for information about the Royal prefix being granted to the Jubilee Institute for the Blind and the Royal prefix for the New Zealand naval fleet.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 0.45923082111403346,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R007_request.json/messages/13/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R7 `/rounds/6/reasoning_content` [0,1206)
+
+SHA256：`4620cae9276d4ce8c36cf81532c5746f95ba3c2e68e3b40458960be42e0a3557`；原字段SHA256：`4620cae9276d4ce8c36cf81532c5746f95ba3c2e68e3b40458960be42e0a3557`。
+
+````
+The user is asking for a specific date. Let's break down the question:
+
+1. "the country where the Royal New Zealand Foundation of the Blind is based" -> New Zealand
+2. "the naval fleet of the country" -> Royal New Zealand Navy
+3. "the designation prefix given to the naval fleet" -> "Royal"
+4. "formally approved by the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind"
+   - The institution that originally began as the Jubilee Institute for the Blind is the Royal New Zealand Foundation of the Blind.
+   - The Royal prefix was granted to this institution. I need to find out when the Royal prefix was granted to the Jubilee Institute for the Blind (now Royal New Zealand Foundation of the Blind).
+   - Then, find the monarch who granted that Royal prefix.
+   - Then, find the date when the "Royal" designation prefix was formally approved for the Royal New Zealand Navy by that same monarch.
+
+Let me search for when the Royal prefix was granted to the Jubilee Institute for the Blind.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted date monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted date monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 0.4566824156790972,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R008_request.json/messages/15/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R8 `/rounds/7/reasoning_content` [0,1346)
+
+SHA256：`a3a2105e9982c748ddd2abe5c01157bc208fff7ccb0265ef8ab4a5e4321da28c`；原字段SHA256：`a3a2105e9982c748ddd2abe5c01157bc208fff7ccb0265ef8ab4a5e4321da28c`。
+
+````
+The user is asking for a specific date. Let's break down the question:
+
+1. "the Royal New Zealand Foundation of the Blind is based" -> This is in New Zealand.
+2. "the naval fleet of the country" -> New Zealand's naval fleet.
+3. "the designation prefix given to the naval fleet" -> This would be the prefix like "Royal New Zealand Navy" or similar.
+4. "was formally approved by the monarch" -> The monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind.
+
+From the search results, I know:
+- The Royal New Zealand Foundation of the Blind began in 1890 as the Jubilee Institute for the Blind.
+- The "Royal New Zealand Foundation of the Blind Act 2002" allows for the Foundation to become an incorporated society.
+- The institution originally began as the Jubilee Institute for the Blind.
+
+The question mentions "the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind". So I need to find out when the Jubilee Institute for the Blind was granted the "Royal" prefix.
+
+Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 0.26188474195078015,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R009_request.json/messages/17/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R9 `/rounds/8/reasoning_content` [0,1015)
+
+SHA256：`b1d315ee48b33aed80efa614f57a8d5660ee32e5c45c870b44bedaecbf0a5801`；原字段SHA256：`b1d315ee48b33aed80efa614f57a8d5660ee32e5c45c870b44bedaecbf0a5801`。
+
+````
+The user is asking for a specific date. Let me break down the question:
+
+1. "Royal New Zealand Foundation of the Blind is based" - This is in New Zealand.
+2. "the naval fleet of the country" - New Zealand's naval fleet.
+3. "designation prefix given to the naval fleet" - The Royal New Zealand Navy (RNZN) has the "Royal" prefix.
+4. "formally approved by the monarch" - The monarch who granted the Royal prefix to the institution.
+5. "institution that originally began as the Jubilee Institute for the Blind" - The Royal New Zealand Foundation of the Blind began as the Jubilee Institute for the Blind.
+6. "monarch who granted the Royal prefix to the institution" - I need to find out when the Jubilee Institute for the Blind was granted the Royal prefix.
+
+Let me search for information about when the Jubilee Institute for the Blind was granted the Royal prefix.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted date monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted date monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 0.21447983710095286,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：10；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R010_request.json/messages/19/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R10 `/rounds/9/reasoning_content` [0,961)
+
+SHA256：`c62f8d78d4a89aa38859eb3d7ca0ed462bc860b86d5b5367e3738778037ea8b2`；原字段SHA256：`c62f8d78d4a89aa38859eb3d7ca0ed462bc860b86d5b5367e3738778037ea8b2`。
+
+````
+The user is asking for a specific date. Let me break down the question:
+
+1. "Royal New Zealand Foundation of the Blind is based" - This is in New Zealand.
+2. "naval fleet of the country" - New Zealand's naval fleet.
+3. "designation prefix given to the naval fleet" - This would be "Royal New Zealand" or something similar.
+4. "monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind" - The Royal New Zealand Foundation of the Blind originally began as the Jubilee Institute for the Blind. I need to find out when it was granted the "Royal" prefix and by which monarch.
+
+Let me search for information about when the Royal prefix was granted to the Royal New Zealand Foundation of the Blind (or its predecessor, the Jubilee Institute for the Blind).
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted date monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R10 Call `/rounds/9/tool_calls/0` → Return `/tool_events/9`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted date monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "batch_id": "B010",
+  "batch_ordinal": 1,
+  "event_id": "E010",
+  "latency_seconds": 0.360901334322989,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：11；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R011_request.json/messages/21/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R11 `/rounds/10/reasoning_content` [0,894)
+
+SHA256：`26fcb0d61ff86345dc3406a661e0c1f144fda0ef967d50c27ebb2edd3261cad8`；原字段SHA256：`26fcb0d61ff86345dc3406a661e0c1f144fda0ef967d50c27ebb2edd3261cad8`。
+
+````
+The user is asking for a specific date. Let me break down the question:
+
+1. "Royal New Zealand Foundation of the Blind is based" - This is in New Zealand.
+2. "naval fleet of the country" - New Zealand's naval fleet.
+3. "designation prefix given to the naval fleet" - This would be "Royal New Zealand" or "RNZN" (Royal New Zealand Navy).
+4. "monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind" - The Jubilee Institute for the Blind became the Royal New Zealand Foundation of the Blind. I need to find out which monarch granted the "Royal" prefix to this institution.
+
+Let me search for information about when the Jubilee Institute for the Blind was granted the "Royal" prefix.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch date
+</parameter>
+</function>
+</tool_call>
+````
+
+### R11 Call `/rounds/10/tool_calls/0` → Return `/tool_events/10`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch date"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch date\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch date"
+  },
+  "batch_id": "B011",
+  "batch_ordinal": 1,
+  "event_id": "E011",
+  "latency_seconds": 0.21523555601015687,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：12；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R012_request.json/messages/23/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R12 `/rounds/11/reasoning_content` [0,1222)
+
+SHA256：`e3684f34455fc10c6a4bbba9c7760e22b9e7932a18636337af2e6958286f0118`；原字段SHA256：`e3684f34455fc10c6a4bbba9c7760e22b9e7932a18636337af2e6958286f0118`。
+
+````
+The user is asking for a specific date. Let's break down the question:
+1.  **Country where the Royal New Zealand Foundation of the Blind is based:** The foundation is in New Zealand (as seen in the search results).
+2.  **Naval fleet of that country:** New Zealand has a naval fleet, specifically the Royal New Zealand Navy (RNZN).
+3.  **Designation prefix given to the naval fleet:** The prefix is "Royal".
+4.  **Monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind:** The Jubilee Institute for the Blind is the Royal New Zealand Foundation of the Blind. I need to find out when it was granted the "Royal" prefix and by which monarch.
+5.  **Date when the designation prefix given to the naval fleet was formally approved by that monarch:** I need to find the date when the monarch who granted the "Royal" prefix to the Jubilee Institute also approved the "Royal" prefix for the New Zealand naval fleet.
+
+Let's start by searching for when the Jubilee Institute for the Blind was granted the "Royal" prefix.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted date monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R12 Call `/rounds/11/tool_calls/0` → Return `/tool_events/11`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted date monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted date monarch"
+  },
+  "batch_id": "B012",
+  "batch_ordinal": 1,
+  "event_id": "E012",
+  "latency_seconds": 0.1692316560074687,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：13；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R013_request.json/messages/25/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R13 `/rounds/12/reasoning_content` [0,1378)
+
+SHA256：`b195530325a87b9c3af5ad4cf605aebf2be493b1b75fc93168dfccaa94de9040`；原字段SHA256：`b195530325a87b9c3af5ad4cf605aebf2be493b1b75fc93168dfccaa94de9040`。
+
+````
+The user is asking for a specific date. Let's break down the question:
+
+1.  **Country where the Royal New Zealand Foundation of the Blind is based:** The foundation is in New Zealand (as seen in the search results).
+2.  **Naval fleet of that country:** New Zealand has a naval fleet, likely the Royal New Zealand Navy.
+3.  **Designation prefix given to that naval fleet:** The prefix is "Royal".
+4.  **Monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind:**
+    *   The Jubilee Institute for the Blind is the original name of the Royal New Zealand Foundation of the Blind.
+    *   I need to find out who granted the "Royal" prefix to this institution.
+    *   Then, I need to find out which monarch granted that prefix.
+5.  **Date when the designation prefix given to the naval fleet of that country was formally approved by that monarch:**
+    *   The monarch is the one who granted the Royal prefix to the Jubilee Institute.
+    *   I need to find the date when this same monarch formally approved the "Royal" designation for the New Zealand naval fleet.
+
+Let's search for information about the Royal New Zealand Foundation of the Blind receiving the Royal prefix.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R13 Call `/rounds/12/tool_calls/0` → Return `/tool_events/12`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B013",
+  "batch_ordinal": 1,
+  "event_id": "E013",
+  "latency_seconds": 0.15232209116220474,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：14；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8881980", "title": "Alice Law", "score": 24.007925094265108, "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a", "text_characters": 2138, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1360094", "title": "Jubilee quartet", "score": 22.849248507136014, "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ", "text_characters": 2124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4091169", "title": "Royal New Zealand Foundation of the Blind", "score": 22.306854538598564, "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.", "text_characters": 1380, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5357984", "title": "Clutha Mackenzie", "score": 20.51450267086979, "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio", "text_characters": 1753, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:688061", "title": "Mary Walsh (actress)", "score": 19.21457483295535, "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.", "text_characters": 1443, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1675037", "title": "The Blind Boys of Alabama", "score": 18.756777668547834, "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i", "text_characters": 2425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2376004", "title": "Sir Dorabji Tata and Allied Trusts", "score": 18.296171383863616, "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin", "text_characters": 2710, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4176324", "title": "Golden Slippers", "score": 18.103411802407074, "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.", "text_characters": 2085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10883996", "title": "Statue of Queen Victoria, Auckland", "score": 16.555555423990587, "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond", "text_characters": 2813, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2252955", "title": "Laxmanrao Kirloskar", "score": 16.155541986382453, "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh", "text_characters": 2757, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0295/R014_request.json/messages/27/content`；SHA256：`bcf53703b93f913abcf446bbb7ad0796b9701e0ae67462dbd9c55e06d5d85494`。
+
+### R14 `/rounds/13/reasoning_content` [0,1075)
+
+SHA256：`528dc2fe68e158327cd9c8e18199f2b63e67a17da7536a9424c65e564e0b2f82`；原字段SHA256：`528dc2fe68e158327cd9c8e18199f2b63e67a17da7536a9424c65e564e0b2f82`。
+
+````
+The user is asking for a specific date. Let's break down the question:
+
+1. "the Royal New Zealand Foundation of the Blind is based" -> This is in New Zealand.
+2. "the naval fleet of the country" -> New Zealand's naval fleet.
+3. "the designation prefix given to the naval fleet" -> This is likely "Royal" (e.g., Royal New Zealand Navy).
+4. "was formally approved by the monarch" -> The monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind.
+
+The Jubilee Institute for the Blind became the Royal New Zealand Foundation of the Blind. The "Royal" prefix was granted by a monarch. I need to find out which monarch granted the "Royal" prefix to the Jubilee Institute for the Blind (or its successor organization).
+
+Let me search for information about the Royal prefix being granted to the Jubilee Institute for the Blind or the Royal New Zealand Foundation of the Blind.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Jubilee Institute for the Blind Royal prefix granted monarch
+</parameter>
+</function>
+</tool_call>
+````
+
+### R14 Call `/rounds/13/tool_calls/0` → Return `/tool_events/13`
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nJubilee Institute for the Blind Royal prefix granted monarch\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Jubilee Institute for the Blind Royal prefix granted monarch"
+  },
+  "batch_id": "B014",
+  "batch_ordinal": 1,
+  "event_id": "E014",
+  "latency_seconds": 0.4030148871243,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8881980",
+        "score": 24.007925094265108,
+        "snippet": "New Zealand music teacher for the blind (1870–1942) Alice Easton Law (23 October 1870 – 28 August 1942) was a New Zealand music teacher for the visually impaired at the Jubilee Institute for the Blind who was involved in fundraising for the Institute and ensured that her female students gained the same resources and support as male students. Early life. Law was born in Burntisland, Fife, Scotland on 23 October 1870, to Catharine Morton and her husband William Law, a commercial traveller. Her sister Mary Blythe Law was born in 1873. In the early 1880s Law moved to New Zealand with her mother and sister. Law assisted her mother who ran a ladies' seminary in Remuera. Law studied piano under Professor Carl Gustav Schmitt, and violin under Herr Von Zimmerman, and became a music teacher herself. She won the Amateur Opera Club's scholarship in harmony. She went to England to continue her studies, and became a licentiate of the Royal Academy of Music, London. She returned to New Zealand to teach. Career. Law was a music teacher in Auckland and Devonport. In 1902 Law gained a part-time position working as a music teacher at the Jubilee Institute for the Blind, where her sister already worked. The Institute was the first organisation in New Zealand to provide education services for the visually impaired, and included residential care, education, and skills training, to enable blind people to increase their independence. Law taught the piano and used braille to help her students study a",
+        "text_characters": 2138,
+        "title": "Alice Law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1360094",
+        "score": 22.849248507136014,
+        "snippet": "Jubilee quartets were popular African-American religious musical groups in the first half of the 20th century. The name derives from the Fisk Jubilee Singers, a group of singers organized by George L. White at Fisk University in 1871 to sing Negro spirituals. The members of the original Fisk Jubilee Quartet (1909–1916) were Alfred G. King (first bass), James A. Myers (second tenor), Noah W. Ryder (second bass), and John W. Work II (first tenor). Students at other historically black schools, such as Hampton Institute, Tuskegee Institute and Wilberforce University, followed suit. Many independent jubilee troupes also found inspiration in the Fisk Jubilee Singers, such as the Original Nashville Students. The early jubilee quartets featured close harmonies, formal arrangements and a \"flatfooted\" style of singing that emphasized restrained musical expression and technique derived from Western musical traditions. Early quartets reinforced their respectable image by adopting uniforms that a university glee club might wear and discouraging improvisation. In time, however, the popularity of the jubilee style spread from the universities to black churches, where quartets, singing before audiences with a tradition of enthusiastic response, began to absorb much of the energy and freedom of Gospel music coming out of Holiness churches. Groups such as the Golden Gate Quartet—originally named the Golden Gate Jubilee Quartet—infused their performances of spirituals with the rhythmic beat of ",
+        "text_characters": 2124,
+        "title": "Jubilee quartet"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4091169",
+        "score": 22.306854538598564,
+        "snippet": "The Royal New Zealand Foundation of the Blind or Blind Foundation, now publicly branded as Blind Low Vision NZ, is a provider of services to blind, deafblind and people with vision-impairment in New Zealand. History. The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland. Sheltered workshops and hostels were provided for many years. These were phased out at the end of the twentieth century in favour of mainstreaming, members' greater integration into the community. A school run by the Foundation became part of the public school system. The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society. After a rebranding consultation process, the public name of the Royal New Zealand Foundation of the Blind, changed to Blind Foundation in December 2013. Services. Blind Low Vision NZ's website lists the following services: emotional support, equipment, financial assistance, volunteer assistance, mobility, guide dogs, employment assistance, peer support, recreation, reading and writing in audio, braille and other formats, library, Telephone Information Service, accessible formats (braille, audio, electronic text and large print), adaptive communications and technology. The majority of the organisation's funding comes from public donations. References.",
+        "text_characters": 1380,
+        "title": "Royal New Zealand Foundation of the Blind"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5357984",
+        "score": 20.51450267086979,
+        "snippet": "New Zealand politician Sir Clutha Nantes Mackenzie (11 February 1895 – 30 March 1966) was a New Zealand politician and worker for the blind. He was briefly a Reform Party Member of Parliament. Biography. ! scope=\"col\" style=\"width: 125px;\" | Years ! scope=\"col\" style=\"width: 35px;\" | Term ! scope=\"col\" colspan=\"2\" style=\"width: 160px;\" | Electorate ! scope=\"col\" colspan=\"2\" style=\"width: 150px;\" | Party –1922 Mackenzie was born in Balclutha in 1895. He was the youngest child of Sir Thomas Mackenzie, who was High Commissioner in London and was previously a Liberal politician (and Prime Minister in 1912). Mackenzie Jr. enlisted in the Army in World War I. He was blinded at Chunuk Bair during the Gallipoli campaign and was sent to the No. 2 New Zealand General Hospital at Walton-on-Thames to convalesce. At the hospital he was one of the patients of his sister Mary, who was a member of the Voluntary Aid Detachment here. After recovering he was sent to the live with other blind soldiers in a house in Portland before attending St Dunstan's, the Institute for the Blind Soldiers and Sailors. At the institute he learnt Braille as well as how to type. He was active in organisations for the blind; he was attached to the UN and was Chairman of the World Braille Council. He was appointed a Knight Bachelor in the 1935 New Year Honours. Later that year he was awarded the King George V Silver Jubilee Medal. Mackenzie won the Auckland East electorate in a 1921 by-election after the resignatio",
+        "text_characters": 1753,
+        "title": "Clutha Mackenzie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:688061",
+        "score": 19.21457483295535,
+        "snippet": "Walsh received a Governor General's Performing Arts Award for Lifetime Artistic Achievement, Canada's highest honour in the performing arts, in 2012. Charity and activism. A sufferer of macular degeneration, she has served from time to time as a spokesperson for the Canadian National Institute for the Blind (CNIB). In 1993, Walsh was chosen to deliver the prestigious Graham Spry lecture which was broadcast nationally on CBC Radio. In 1994, Walsh addressed the United Nations Global Conference on Development in New York. She has also served as a spokesperson for Oxfam, Canada's human rights campaign, and in 2010 received Oxfam's Spirit of Change Award, in recognition of her years of dedication to eradicating poverty and ensuring public services for all. On May 29, 1998, Mary Walsh received an Honorary Doctor of Laws from Trent University. McGill University honoured Walsh with an honorary doctorate during the November 2008 convocation ceremony. Her speech to the class of 2008 focused on political satire. National Honours. Mary Walsh was appointed as a Member of the Order of Canada on 27 April 2000. This gave her the Post Nominal Letters \"CM\" for Life. She was awarded the Canadian Version of the Queen Elizabeth II Golden Jubilee Medal in 2002. She was awarded the Canadian Version of the Queen Elizabeth II Diamond Jubilee Medal in 2012. Bibliography. \"Crying for the Moon: A Novel\" (April 18, 2017 HarperCollins, ) References.",
+        "text_characters": 1443,
+        "title": "Mary Walsh (actress)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1675037",
+        "score": 18.756777668547834,
+        "snippet": "American gospel group The Blind Boys of Alabama, also billed as The Five Blind Boys of Alabama, and Clarence Fountain and the Blind Boys of Alabama, is an American gospel group. The group was founded in 1939 in Talladega, Alabama, and has featured a changing roster of musicians over its history, the majority of whom are or were vision impaired. The Blind Boys found mainstream success following their appearance in the 1983 Obie Award-winning musical \"The Gospel at Colonus\". Since then, the group has toured internationally and has performed and recorded with such artists as Prince, Lou Reed, Peter Gabriel, Bonnie Raitt, Ben Harper, Bon Iver, and Amadou & Mariam. The group's cover of the Tom Waits song \"Way Down in the Hole\" was used as the theme song for the first season of the HBO series \"The Wire\". The Blind Boys have won five Grammy Awards in addition to being presented with a Grammy Lifetime Achievement Award in 2009. They were endowed with a National Heritage Fellowship from the National Endowment for the Arts in 1994, they were inducted into the Gospel Music Hall of Fame in 2003, and they were inducted into the Alabama Music Hall of Fame in 2010. The group was also invited to the White House during the Bill Clinton, George W. Bush, and Barack Obama administrations. Group member Ricky McKinnie said in a 2011 interview with the magazine \"Mother Jones\": \"Our disability doesn't have to be a handicap. It's not about what you \"can't\" do. It's about what you do. And what we do i",
+        "text_characters": 2425,
+        "title": "The Blind Boys of Alabama"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2376004",
+        "score": 18.296171383863616,
+        "snippet": "Non-sectarian philanthropic organisation in India The Sir Dorabji Tata Trust was established by Sir Dorab Tata (fondly called \"Sir Dorabji\"), the elder son of Tata Group founder Jamsetji Tata. Founded in 1932, it is one of the oldest non-sectarian philanthropic organisations in India. History. Like his father, Sir Dorabji believed that one must make use of the wealth one had acquired for constructive purposes. So, in less than a year after his wife Meherbai's death, he donated all his wealth to the trust, insisting that it must be used \"without any distinction of place, nationality or creed\", for the advancement of learning and research, the relief of distress and other charitable purposes. He died three months later. The wealth that he turned over to the trust comprised his substantial share holdings in Tata Sons, Indian Hotels and allied companies, his landed properties and 21 pieces of jewellery left by his wife, including the famous Jubilee Diamond, estimated then to be of the value of Rs 10 million. Today, these would be worth more than Rs 500 million. Mission. As the trust got formed and the trustees deliberated on the policy aspects and finalised them, it decided to adopt a broad framework—that it should undertake such projects, which are too large for individuals to handle and that each of these projects should have a genuine relevance to the welfare of the country. The trust is mandated to: Notable national institutes. The trust is best known for promoting and settin",
+        "text_characters": 2710,
+        "title": "Sir Dorabji Tata and Allied Trusts"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4176324",
+        "score": 18.103411802407074,
+        "snippet": "\"Golden Slippers\" is a spiritual popularized in the years following the American Civil War by the Fisk Jubilee Singers. The song is also known by its opening line, \"What Kind of Shoes You Gwine (Going) To Wear\". The song became the basis for a minstrel show parody song, \"Oh, Dem Golden Slippers\", which itself became an American musical standard. The parody song is also frequently referred to as \"Golden Slippers\". Song. As presented in its earliest recordings, \"Golden Slippers\" is a stirring and proud song, considerably different than its rather jaunty parody. In it, the lead singer asks the choir what kind of finery they will wear in going to join the Heavenly choir. The lyrics for the first stanza are: What kind of shoes you goin’ to wear? / Golden slippers! / What kind of shoes you goin’ to wear? / Golden slippers! Golden slippers I’m bound to wear, / To outshine the glittering sun. / Oh, yes, yes, yes my Lord, / I’m going to join the Heavenly choir. / Yes, yes, yes my Lord, / Soldier of the cross. Although there are variations between existing recordings, subsequent stanzas involve a \"long white robe\" (as in \"Oh, Dem Golden Slippers\"), a \"starry crown\", a \"new song\", and a \"golden harp\". Over the first half of the twentieth century, various recordings of the song as \"Golden Slippers\" were made by the Fisk Jubilee Singers, the Golden Echo Quartet, the Tuskegee Institute (University) Singers, Wood's Famous Blind Jubilee Singers & Cotton Belt Quartet, and the Wiseman Quartet.",
+        "text_characters": 2085,
+        "title": "Golden Slippers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10883996",
+        "score": 16.555555423990587,
+        "snippet": "Bronze statue in Auckland, New Zealand A statue of Queen Victoria was erected at Albert Park, Auckland, in 1899. The second monument to Queen Victoria in New Zealand, the bronze statue was funded by public donations encouraged by Auckland politicians and the \"New Zealand Herald\" in celebration of the Queen's Diamond Jubilee. Following applications from various British and New Zealand artists, the statue was commissioned to British portrait sculptor Francis John Williamson. It was one of nine variants of his 1887 statue erected at the Royal College of Surgeons, allegedly a favourite of the future Edward VII. The statue is approximately tall including the granite pedestal, small compared to other statues of Victoria in New Zealand. Erected on the former location of the Albert Barracks, the statue was a central point for various imperial and patriotic observances, such as Empire Day, which gradually declined over the twentieth century. Later in the century, it became a frequent site for protests due to cultural associations with imperialism and colonialism. Background. Queen Victoria was the monarch of the United Kingdom and the broader British Empire from 1837 to 1901. The earliest monument to Queen Victoria in New Zealand was a relatively obscure wooden bust of the queen erected in 1874 at the Māori village of Ohinemutu. Celebrations and increased popularity following her Golden Jubilee initiated a wave of public monuments to her across the Empire in the late 1800s, correspond",
+        "text_characters": 2813,
+        "title": "Statue of Queen Victoria, Auckland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2252955",
+        "score": 16.155541986382453,
+        "snippet": "Indian businessman (1869–1956) Laxmanrao Kashinath Kirloskar (20 June 1869 – 26 September 1956) was an Indian businessman. He was the founder of the Kirloskar Group. Biography. Laxmanrao was born on 20 June 1869, in a Maharashtrian family in Gurlahosur, a village in Belgaum district of the erstwhile Bombay Presidency. He was a Maharashtrian Karhade Brahmin and his father Kashinathpant was a Vedant-Pandit. Therefore, the society also expected Laxmanrao to follow in the foot steps of his father. However, he broke away from the traditions and entered the field of engineering and technology. Laxmanrao was fond of two things: mechanical objects and painting. Against his father’s wish and with financial support from his eldest brother Ramuanna, Laxmanrao joined J J School of Art in Bombay in 1885. Unfortunately, he had to quit after 2 years as he was found to be partially color-blind. He gave up painting but continued to study mechanical drawing at the institute. This skill came handy and lead him to a position of Assistant Teacher of Mechanical Drawing at Victoria Jubilee Technical Institute (VJTI) on a salary of Rs. 45 per month. Sometime in early 1890s Laxmanrao started bicycle dealership – he would buy bicycles in Bombay and send them to his brother Ramuanna in Belgaum where he would sell them. For a cycle of Rs. 700 to 1000 Ramuanna would also charge Rs. 15 for teaching how to ride. His first venture – a small bicycle repair shop at Belgaum. The road on which he started the sh",
+        "text_characters": 2757,
+        "title": "Laxmanrao Kirloskar"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": null,
+  "final_validity_state": "MISSING_FINAL",
+  "stop_reason": "CONTEXT_LIMIT_STOP",
+  "submission_event_indices": []
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "ACTUAL_REQUEST_VERIFIED": 13,
+    "NO_LATER_ACTOR_REQUEST": 1
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整读取15轮记录及14search与全部返回。国家定位、君主取证、R5实质题意解释和恢复取证清晰分开；后续重复清单不冒充独立全题接受，未执行的海军核查不伪造Call。
+
+R5可备选视为君主取证中的较长背景复述而KEEP；主方案SPLIT，因为首次明确推导舰队designation就是Royal，并实际建立跨机构同君主关系。R6以后只重复该框架，主方案KEEP，不为每次近似重述增加边界。原前缀解释正确与否属于原推理事实，不在本次改写。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

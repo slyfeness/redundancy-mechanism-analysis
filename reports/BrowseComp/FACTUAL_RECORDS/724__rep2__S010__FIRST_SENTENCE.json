@@ -1,0 +1,46 @@
+{
+ "case_id":"724__rep2__S010__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原正式拒答W，新1/3/4CONTEXT_BLOCKED，新2GENERATION_LENGTH_STOP，四条无FinalN。"},
+ "review_basis":"原完整17轮与Call/Return已亲读。本组91个新不同推理块15014字符全文及43字段全部顺序已读，包括新2末轮42268字符的精确已读块有序复现；20真实Call/Return已核对，180文档槽位9新增不同Return全文读，其余同SHA已读材料复用。输入检查20配对17真实后续Actor、3仅guard。",
+ "pre_state":"R13@1039前已经12次检索，未识别目标医生；P不断转名医、创会和朋友，已有Holmes/Osler关系但没有符合1970s医生。当前余下原5Actor4Search后拒答。",
+ "u_work":"U R13后部实际查Philadelphia40年+创会，包含R14前1822字符直接未找到反馈及多候选/方法备选，没有选定符合全部条件的人物。",
+ "u_state_update":"未完成身份更新；城市取证缺口保持未解，原后继转Harvard朋友再名医组合，最终拒答。",
+ "original_action_consequence":"删后多数仍做类似城市/朋友/组织工作，不能将原一次Query的省略等同缺口消失。新2只发两次真实Call后转长篇纯计划；其他三支实际继续Search至上下文止。原U未提供正确判断，不把四N解释成正确候选丢失。",
+ "guidance":{"text":"Actually, let me try searching for information about doctors who were friends with Harvard PhD holders.","source":"S011 R14@1822首句18Token；native截点R13@1039，保留200原生Token。","audit":"P已有朋友约束及多次相关取证，G只重新提示下一工作方向，无新实体/事实/答案。新1首Call确沿此方向引入RobertH.Davis，另三支首Call转人物/组织或年代。ORACLE，不能把G本身当自主行为。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/12/exact_arguments","quote":"doctor practiced Philadelphia 40 years founding member organization","use":"被删的具体城市核查。"},
+  {"id":"O2","source":"original","pointer":"/rounds/16/content","quote":"I was unable to find a specific doctor","use":"原正式拒答W。"},
+  {"id":"N11","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"doctor friend Harvard PhD Robert H. Davis","use":"新生成具体名字进入真实Query，没有G提供该名。"},
+  {"id":"N12","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"doctor died 1975 Boston practicing 40 years","use":"城市长期执业的部分操作恢复。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/5/reasoning_content","quote":"Donald M. Davis (mathematician) who got his PhD from Stanford, not Harvard","use":"认识返回不是所需Harvard对象，仍继续RobertH.Davis查证。"},
+  {"id":"N14","source":"new1","pointer":"/tool_events/5/exact_arguments","quote":"Robert H. Davis born 1920s Harvard PhD","use":"最后继续未确认对象的属性查询，返回仅guard。"},
+  {"id":"N21","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"William Osler doctor born died university","use":"首轮长备选最后只执行Osler。"},
+  {"id":"N22","source":"new2","pointer":"/tool_events/1/exact_result","quote":"Harvey Cushing","use":"第二真实Cushing返回进入末轮，随后没有新Call。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Actually, I found that Harvey Cushing died in 1939, not in the 1970s.","use":"实际排除认识出现，不能说没有结果分析。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Let me try searching for \"Robert Hooke\" or other famous physicians who might match these criteria.","use":"其后多次Hooke/Kellogg等备选循环，末轮10000Token但tool_calls空。"},
+  {"id":"N31","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"doctor born 1922 died 1976 practiced Philadelphia 40 years","use":"Philadelphia工作部分恢复，但加未证精确年代。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/3/exact_arguments","quote":"Charles Best doctor 1899 1978 scholarship medicine university","use":"候选比较真正落实为Best取证。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"I've tried searching for Charles Best but haven't found specific information about him matching all the criteria.","use":"对具体尝试直接反馈，后实际换Apgar。"},
+  {"id":"N34","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"Virginia Apgar 1909 1974 doctor scholarship","use":"真实由反馈换人物，不应一概称所有反馈均不改变行动。"},
+  {"id":"N35","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"American College of Physicians 1915 founding members doctor list","use":"最后恢复P以前尝试的组织入口，返回guard。"},
+  {"id":"N41","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"American College of Physicians founded 1915 founding members","use":"首轮回到P已试组织，而非照G朋友方向。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"James O. Watson DO was mentioned. But he died in 1969, not the 1970s.","use":"认识冲突但不是实际WatsonCall，本轮执行Weinstein。"},
+  {"id":"N43","source":"new4","pointer":"/tool_events/3/exact_arguments","quote":"Louis Weinstein doctor Boston university scholarship","use":"实际行动与备选区分。"},
+  {"id":"N44","source":"new4","pointer":"/tool_events/5/exact_arguments","quote":"Chester Keefer Boston University doctor born died","use":"末两次真查Keefer，未形成接受或Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首轮朋友方向加入RobertH.Davis，途中Boston/年代/ACP后又回Davis；明确返回DonaldM.Davis是Stanford非Harvard，仍查未确认RobertH.Davis，N。","state_chain":"未来方向提示→自行提出名字→不匹配人物返回未证实该名→仍补该名年代/学位→未形成身份到上下文止。","function_change":"城市长期执业部分恢复，非全部U消失；6Search6Actor比原4/5多2/1。1544+18生成少928，Prompt269964比原217862多。","evidence":["N11","N12","N13","N14"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"G后连续备选但实际先Osler再Cushing；R15明示Cushing1939不符，随后重复Hooke/Kellogg/其他人计划到10K，整末轮无Call也无Final，N。","state_chain":"真实返回产生冲突排除→没有落实新的单一取证决定→重复候选/计划措辞→纯生成消耗上限。","function_change":"Philadelphia操作未观察到，朋友广搜也未真实恢复；2Search3Actor少2/2，Prompt121005少，但10587+18生成多8115。节省工具不等于减少计算或任务保持。","evidence":["N21","N22","N23","N24"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"先年代/创会/NewYork，再Philadelphia1922/1976，实际试Best和Apgar，各反馈未满足再换对象，最后回ACP1915，N。","state_chain":"持续条件未闭合→具体名医部分匹配→有真实反馈改变取证对象→仍无符合者，转回已试组织到上下文止。","function_change":"城市取证部分重建，另重复P的组织工作；6Search6Actor多2/1，3469+18生成多997，Prompt271626也多。","evidence":["N31","N32","N33","N34","N35"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"先旧ACP，再已知Osler1919、精确年份，认识Watson1969不符而实际查Weinstein，再Keefer两次，N。","state_chain":"P旧组织/名医仍反复入备选→个别冲突认识后换对象→师承人名成为新核查对象→仍未找到身份继续至上下文止。","function_change":"原Philadelphia实际Call未重演，其他Boston/组织/人物部分替代；6Search6Actor多2/1，2448+18生成少24，但Prompt271380增加。","evidence":["N41","N42","N43","N44"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"本组四N里不能只归纳重建/未重建：新1不匹配返回后仍维持未证名字作为查询前提，新3反馈确改变人物却仍未得答案，新2在明确排除Cushing后没有形成可执行下一步而纯计划循环。原一次城市查询没有身份产物，新增消耗来自这些后续具体选择与停滞，不是被删长度的直接差值。",
+ "within_case_support":"纯计划无Call只新2；名字前提持续只新1；新3是多次真实换对象也失败的反例。原正式拒答与新无Final的状态差，不提供正确候选必要性证据。",
+ "mechanism_chain_checks":[
+  {"chain":"明确候选冲突后没有落实新行动，反复备选与搜索计划，最后生成上限而非更多真实检索","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N21","N22","N23","N24"]},"limits":"这不是相同Query再次执行；新3明确反馈后能换真实人物Call仍N，是不同过程的对照。"},
+  {"chain":"收到不符所需学位/名字的结果后仍未撤销自提姓名，后续继续补其属性而没有身份证据","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N11","N13","N14"]},"limits":"返回Donald不证明Robert不存在；只记录该假设持续及查证未成功，不猜隐性信心。"}
+ ],
+ "counterevidence_and_limits":["原W拒答，四N不说明正确U丢失；冻结B标签不重分。","G朋友方向无新实体，但仍未来提示且会影响起始选择。","新2真正认识1939冲突，不能说完全没处理返回；末轮无Call的10K计划不算Search。","新3反馈真实改变对象但仍失败，不能用最终N认定动作没有价值。","新4Watson只是排除/备选没有实际Call；不能按出现名字计搜索或接受。","四新无Gold姓名Return，不写正确材料未采用。","新2Search/Actor/Prompt减少却生成剧增，四维成本不能合成统一节省；独立分支不相加。"],
+ "cost_basis":"nativeR13@1039，当前P200，G18。原2490生成4Search5Actor，Prompt37011+180851=217862。新1544/10587/3469/2448，含G净−928/+8115/+997/−24；Search6/2/6/6，Actor6/3/6/6；Prompt269964/121005/271626/271380。新2末R15实际10000生成0Call，之前2Call返回均进入Actor；原同轮前缀延迟不伪精确扣除。",
+ "next_cross_case_test":"对A/B分开比较：失败反馈后能否从备选收束成真实行动，或者仍只是长篇计划；同时核对换对象是否基于证据而非新猜测，不以更多或更少Call直接评功能价值。"
+}

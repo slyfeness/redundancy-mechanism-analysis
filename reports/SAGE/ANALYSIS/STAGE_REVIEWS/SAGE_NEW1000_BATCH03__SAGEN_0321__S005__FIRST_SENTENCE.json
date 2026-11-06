@@ -1,0 +1,403 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0321",
+  "stage_id": "S005",
+  "sample_order": 83,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical result of adding the full lifespan, in years, of Laurance Labadie's father, Joseph Labadie, to the full lifespan, in years, of Benjamin Tucker, the editor of the anarchist periodical \"Liberty\", and then subtracting the total duration, in years, that \"Liberty\" was published?",
+    "gold": [
+      "141"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "141",
+    "adopted_answer": "141",
+    "outcome": "C",
+    "reason": "Gold年差口径一致，精确月份/完整年有原始歧义。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3[0,6172)实际保留，多次明确父亲Jo=Joseph、83/85和27vs26.67，最终已经选择wholeyears和141。旧Search children关系也仍在。",
+    "evidence_states": "证据不只可见，身份已提取采用、计算与口径选择已完成；当前U是再次确认同一关系。",
+    "evidence": [
+      "O_P",
+      "O_PREANSWER"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 6172,
+        "end": 6546
+      }
+    ],
+    "goal": "再确认Jo确为Laurance父亲。",
+    "operations": "无Call；重读/引用旧Search childrenLauraCharlotteLaurance，接受相同亲子关系。",
+    "product": "重复确认原来已经采用的同人/父亲关系，没有新日期或新候选。",
+    "judgment_change": "维持已有判断，没有可观察新行动更新。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_followup": {
+    "use": "S006再算83/85/27与141，重述精确/整数问题，再Submit141；U没有改变查询对象，也未新增Call。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已采用且已用于计算的父子关系进行一次无工具再确认。",
+    "state_relation": "这里不同于S002首次采用：关系和结果已经在实际当前P中，不需要再次恢复同一判断才能沿用141。",
+    "evidence": [
+      "O_PREANSWER",
+      "O_U"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "So the calculation is correct:",
+    "source_position": "原R3[6546,6576)",
+    "novelty": "6Token不含答案/新事实/实体，但明确加强计算正确性并引向提交。P已多次141，故非第一次灌入正确结论，仍可能缩短重考；ORACLE_ANCHORED。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "O_PREANSWER"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "直接沿用P141正式提交，无新取证。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 3,
+          "work": "只补141、说提交，真实Submit141，无亲子复核或Search/Open。",
+          "evidence": [
+            "N1_TEXT",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "未再将已接受亲子作为疑问，直接接受已有结果。",
+      "first_actual_tool_divergence": "无Search/Open差异，均只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "再以children句确认父亲。",
+          "new_goal_operation_product": "没有展开或引用亲子检查，直接使用P结论；原判断维持但这次操作未再现。",
+          "evidence": [
+            "O_U",
+            "N1_TEXT",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "未重做原关系评估，不把提交同答案当重建核查。",
+      "judgment_action_outcome_chain": "亲子/运算已明确→删去重复父亲确认→G承接正确计算→直接提交C，后续长篇口径重述也未再现。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "42生成12779Prompt0Search0Open1Actor；新Reasoning142字符对原剩3871字符明显短，但原Round无法切出精确Token，净差保守[-3391,42]跨0，不给精确节省。",
+      "counterevidence_and_alternatives": "G明确说计算正确可能补偿信心/承接，不能作无引导纯删除因果证明。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "沿用正确身份和年差，最后141。",
+      "outcome_evidence": [
+        "N2_TEXT",
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 3,
+          "work": "1661字符重新盘点日期、141及26年8月/27口径，虽说Open但随后明确alreadyhave，无实际Search/Open；没有children亲子比较。Submit141。",
+          "evidence": [
+            "N2_TEXT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "没再确认亲子，仍保留更短的日期/单位运算复盘。",
+      "first_actual_tool_divergence": "只有Submit，与原同；未执行Open意向。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "重复父亲身份确认。",
+          "new_goal_operation_product": "重算数值但未展开同人/children核验，结果继续用P身份。",
+          "evidence": [
+            "O_U",
+            "N2_TEXT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "数值复算属于后续别项工作，不自动算父子判断重建。",
+      "judgment_action_outcome_chain": "关系已用于141→这次关系复核未再现→单位口径仍简短重考并采用27→C；减少父亲检查和后续重复推算展开，必要计算仍在。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "624生成12779Prompt0S0O1A；原剩Reasoning3871字符，新1661，无工具净差；生成保守[-2809,624]，无法精确量化Token下降。",
+      "counterevidence_and_alternatives": "本路径仍有多次重复141和months比较，不声称全部重复消失；G肯定承接影响保留。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "简短(83+85)-27=141后正式提交。",
+      "outcome_evidence": [
+        "N3_TEXT",
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 3,
+          "work": "只复写已有算式并Submit141，没有亲子比较和取证。",
+          "evidence": [
+            "N3_TEXT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "不重开父亲关系，已有结果直接进入提交。",
+      "first_actual_tool_divergence": "无新核查，只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "旧children材料再次确认父亲。",
+          "new_goal_operation_product": "没有关系判断，只有已知算式及答案。",
+          "evidence": [
+            "O_U",
+            "N3_TEXT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "算式不是重新判断身份的证据。",
+      "judgment_action_outcome_chain": "前文已采用且计算完成→跳过再次确认→只重述算式→C；关系功能此前已完成，不靠新证据恢复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "55生成12779Prompt0S0O1A，新Reasoning158字符，明显少于原切点后3871字符；Token保守[-3378,55]跨0，不冒称native节省。",
+      "counterevidence_and_alternatives": "无新外部事实支持，质量按相同Gold口径；精确月份歧义未解决，原也未解决。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "补141并正式Submit，保持原结果。",
+      "outcome_evidence": [
+        "N4_TEXT",
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 3,
+          "work": "33字符Reasoning只补141和提交意向，实际Submit141，无新Search/Open或身份判断。",
+          "evidence": [
+            "N4_TEXT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "已有关系及结果直接沿用，不重考身份。",
+      "first_actual_tool_divergence": "只有Submit，无其他Call。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "再确认父亲。",
+          "new_goal_operation_product": "没有展开再确认，直接提交前文结果。",
+          "evidence": [
+            "O_U",
+            "N4_TEXT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有该项具体认知操作的原文，不将隐含沿用等同重新执行。",
+      "judgment_action_outcome_chain": "已有判断足以继续→G肯定承接→不再触发父亲核查/长篇口径讨论→C；原确认没有产生可见的新判断更新。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "44生成12779Prompt0S0O1A；原切后3871字符变33，工具不变，保守Token[-3389,44]无法精确净减。",
+      "counterevidence_and_alternatives": "单次引导采样四次仍非无引导实验；G确定性增强需单列。"
+    }
+  ],
+  "four_run_comparison": "四C、四NOT_OBSERVED父亲再次确认，无Search/Open。r1/3/4直接提交，r2保留较短单位/计算复盘。与本题S002首次身份采用四FULL重建相比，同表面身份确认在S005前已完成且用于结果，所以不用再次执行也可继续；不把S002与S005一概称相同冗余。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "具体关系已经采用并实际用于明确结果→一次重复确认不改变候选、输入或下一步→删后沿用现成判断即可提交，重确认与后续长篇复盘未再现。",
+      "support_scope": "本Stage四条无父亲重检且四C，邻接S002对照是首次采用需恢复。",
+      "limits": "G肯定计算正确、Gold口径真歧义、原Token切点非native，故只作有条件低新增作用证据，不宣布严格可省因果结论。"
+    }
+  ],
+  "counterevidence_and_limits": "原切后精确Token不存，保守区间均跨0；P12773/G6为预填，Prompt不以全文原总量直接相减。四分支节省不得相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 3,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "So the calculation is correct:"
+    },
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This seems to be the Joseph Labadie in question."
+    },
+    {
+      "evidence_id": "O_PREANSWER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the final answer is: (83 + 85) - 27 = 141."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So yes, Jo Labadie (Charles Joseph Antoine Labadie) is the father of Laurance Labadie."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    },
+    {
+      "evidence_id": "N1_TEXT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me submit this answer."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "141",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_TEXT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, I already have the information from the search results, and it seems clear:"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "141",
+      "call_id": "chatcmpl-tool-b516417a3911e56a"
+    },
+    {
+      "evidence_id": "N3_TEXT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "(83 + 85) - 27 = 141."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "141",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_TEXT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me submit the answer."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "141",
+      "call_id": "chatcmpl-tool-9af65a39752902c3"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0321/trajectory.json",
+      "source_sha256": "604846d0b8f0bb5003a10a51ef05ff6c5e74715a7b2956c72d1d48816a7a3fc6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0321.json",
+      "source_sha256": "b0aaa2d9e58c9af2578542dddcaf0e8a9536608355496b6aa495cc3530bd3e0c"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "d4fb402be72b4b03c97cfcd78108edb006383733e4fd13430f311935ff21c621"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "71c70de509e6ebcdbaf79a1805477c2b47b464820c3351cacad7eeaf8e09a046"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "560af939e934b32b06b69df3178ad7a894995c33890f431394496db85ba4c9ad"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "939d337f51b8622e1f524fb8e881e8d06843b1be48e4a11bd9d9251b7c8fc4c9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "6b3740f5443d725eb4bba477ceb4d7b1544a11cbe1217a2df263d69cd1e3a1b6"
+    }
+  }
+}

@@ -1,0 +1,551 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0289",
+  "stage_id": "S001",
+  "sample_order": 61,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0289/trajectory.json",
+      "source_sha256": "79fe9a45b937d41313730f9254a8ac4657eb9c0bb501a8ed95937071b200cb5a"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0289.json",
+      "source_sha256": "5a69308283c17d91f1982c8a833f4bde5761de1abbf1f58d257d029dc8dce939"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "376ad5e44f54916e3b1f9ac81c249125e3c749cfd56ea99ecc7d28d9f4114ece"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "9770b16d0544017e0c1edda2932a555bc5ef413c8db5bdfb65a97f4bd5d71e41"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "f1be67c72f0f9f750b90e2db24219e412f7d8033be0434ae10292edf602452de"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "2f1a71efdfb697972eb29ffc9b761be39fd3e104bc62086dc63412db3cd01cd0"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "5a45ea0f8d276ffb8a5c62a80fabafe17f0521f4194952ee6afdd53853b9356e"
+    }
+  },
+  "question_and_gold": {
+    "question": "Moses Schorr ministered a significant religious institution in Warsaw. In what year was the official report, compiled by the SS-Gruppenführer responsible for the destruction of that institution, submitted by Poland to the international organization for culture and heritage, for inclusion in their specific program dedicated to documentary heritage?",
+    "gold": [
+      "2017"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "2017",
+    "adopted_answer": "2017年",
+    "outcome": "C",
+    "reason": "真实Stroop Report返回直接说明波兰2017提交并入UNESCO Memory of the World；正式年份一致。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0仅问题和协议，当前推理空；P504Token，尚无具体机构或报告人。",
+    "evidence_states": "问题已给Schorr与Warsaw但未指名Great Synagogue；无Stroop、2017。",
+    "evidence": [
+      "I_EMPTY",
+      "O_QUESTION"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items；R1[0,596)+E001+R2[0,403)。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 596
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 403
+      }
+    ],
+    "goal": "从Schorr履历识别题目所指的宗教机构。",
+    "operations": "拆解多跳，真实Search Schorr机构；返回现代Schorr Centre、大学/图书馆/Institute和Poznański任职文；R2区分宗教机构，采用Great Synagogue而不是现代Centre。",
+    "product": "以Great Synagogue为被毁对象，交给下一工作查SS负责人。",
+    "judgment_change": "机构未知→原材料中有多个关联实体→采用会堂作为宗教机构和下一Query对象。",
+    "evidence": [
+      "O_QUERY",
+      "O_RELATION",
+      "O_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2—4会堂毁坏查询SS-Gruppenführer等给无关字表或遗产材料；R5回查Schorr关系；R6—12重复组合仍同无关Return。R13首次加1943 SS获得会堂毁坏和Warsaw Ghetto文中Stroop；R14采用人名查报告得2017，R15Submit。R7中继承方向一度说反但仍查会堂。",
+    "evidence": [
+      "O_BAD_QUERY",
+      "O_NEW_QUERY",
+      "O_STROOP",
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在多关联机构材料中确定题目所指对象，使下一跳检索针对正确实体。",
+    "information_state_dependence": "原为空P首次采用，不是重复确认；教师却预给会堂，削弱了检验独立识别的能力。",
+    "first_update": "原最先将Great Synagogue提升为实际后续毁坏者查询对象。"
+  },
+  "guide_audit": {
+    "text": "Let me search for information about the destruction of the Great Synagogue in Warsaw and the SS-Gruppenführer responsible for it.",
+    "source": "O#/rounds/1/reasoning_content[403,532)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "27Token新增Great Synagogue具体实体及其毁坏者核查方向，相当于提前提示原U应识别的机构；不含Stroop或2017。四条仍自主查Schorr，可记录重建但不能去除G事实/路线补偿。",
+    "evidence": [
+      "I_G",
+      "O_QUESTION"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "正式年份正确有Report直证；机构角色仍混淆，答案C不等于桥接解释正确。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_LIBRARY",
+        "N1_DATE"
+      ],
+      "work_and_evidence_timeline": "R1同原Query/Return；R2把继任方向说反，仍核查Schorr；R3根据建设图书馆句认定题指Main Judaic Library，R3/R4实际查图书馆毁坏/SS报告，无新负责人。R5猜Bach-Zelewski但真实Query转回会堂；R6长4520字符重审角色、纠正继任方向，仍在会堂/图书馆间未唯一选择，自知识提出Stroop并实际查Stroop报告；E6回直接2017，R7仍称目标Main Judaic Library却SubmitC。",
+      "first_judgment_divergence": "R2角色继任说反后，R3将参与图书馆建设误等同ministered的宗教机构，把原会堂选择换成图书馆。",
+      "first_actual_tool_divergence": "首Call同原，第二Call改为Schorr关联复查，第三/四Call实际查Main Judaic Library毁坏，原均围绕会堂。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取Schorr材料并识别Great Synagogue作为被毁宗教机构。",
+          "new_goal_operation_product": "取同材料、比较角色恢复，但机构产物一度变图书馆且最终仍保留错误；后面用知识Stroop+报告直证绕到正确年份，不算同机构判断完整恢复。",
+          "evidence": [
+            "O_ACCEPT",
+            "N1_LIBRARY",
+            "N1_LIBRARY_QUERY",
+            "N1_RETHINK",
+            "N1_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "实际材料与角色分析恢复，正确机构唯一认定未稳定建立；不是仅凭同Final记FULL。",
+      "judgment_action_outcome_chain": "同Schorr证据→建设图书馆被当宗教任职→查询图书馆毁坏产生支路→重新解释并凭知识提出Stroop绕开未稳机构→报告2017直证→C；中间错绑确实改变行动，但后续修复/旁路截断了错误传播。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2174生成/85917Prompt/6Search0Open7Actor，对原2470/238473/14S0O15A，生成-296、Search/Actor各-8。省主要在R6用Stroop知识入口替代原长会堂SS头衔组合，虽有两次新增图书馆查询与长自审仍净少，不能归为原机构功能全省。",
+      "counterevidence_and_alternatives": "原也最终把会堂与图书馆角色混说，非新独有质量缺口；正确年份可能由更直接报告入口补救，G给会堂/采样/旧新配置混杂。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "正式年份正确，Report直接2017支持。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_ACCEPT"
+      ],
+      "work_and_evidence_timeline": "R1同SchorrReturn；R2先说反继任随即No纠正Poznański被Schorr继任，真实Open全文确认；R3明确会堂。毁坏头衔Query无关，R5改destroyed1943SS取得原R13同Return并采用Stroop；R6/R7人名加SS头衔及R8加会堂仍字表，R9改Report题名不带头衔拿2017，R10Submit。",
+      "first_judgment_divergence": "继任误读在同R2立即纠正且有全文Open，正确机构较稳定；后续更早实际改变检索入口。",
+      "first_actual_tool_divergence": "R2真实Open Poznański替代原毁坏Query，后期毁坏Query加1943提前8轮取得同线索。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "从履历关系选中会堂用于下一跳。",
+          "new_goal_operation_product": "同材料关系被完整识别、纠错、Open确认并实际查会堂毁坏，目标产物全恢复。",
+          "evidence": [
+            "O_RELATION",
+            "O_ACCEPT",
+            "N2_CORRECT",
+            "N2_OPEN",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "明确继任角色纠错与会堂采用，实际查询对应；额外Open非原必要操作。",
+      "judgment_action_outcome_chain": "材料关系纠正→会堂确定→坏查询反馈促使加1943进入有效文档→Stroop已知但含头衔Query仍低效→删头衔以Report题名查询取得2017→C，减少原大量前段失败搜索而保留后段几次失败。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1442生成/84570Prompt/8Search1Open10Actor；原2470/238473/14S0O15A，生成-1028、Search-6、Open+1、Actor-5。省在更早取得Stroop及题名入口，新增关系确认Open并未消耗完所省交互。",
+      "counterevidence_and_alternatives": "明知正确机构仍会执行数次无效头衔Query，机构恢复不是充分高效条件；四次正确均非所有中间断言无误。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "有真实2017文档和Submit，继任文字末尾矛盾另列。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_DATE"
+      ],
+      "work_and_evidence_timeline": "R1同Schorr材料，R2明确采用会堂并查毁坏，E2字表。R3又说机构不清，R4回查Schorr但Return仍同初始；R5再次采用会堂，R6/R7长重审却同SS头衔组合字表；R8由知识提出Stroop Report并实际用题名，E8首次取得Report、Stroop/2017等完整材料，R9Submit。未实际取得原R13毁坏Query才能继续，也可知识候选后查证。",
+      "first_judgment_divergence": "机构已经接受后又反复称还需识别，实际回查Schorr同材料；R8不是新的机构证据，而凭知识换到报告题名入口。",
+      "first_actual_tool_divergence": "初始Query加synagogue但Return同；R4回查Schorr提前，R8题名Search替代原第13轮才通过毁坏文档找人名。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "履历取证→采用会堂→下一跳。",
+          "new_goal_operation_product": "相同材料中选会堂并多次实际用于Query，功能全重建；同判断再重复不取消首次恢复。",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_ACCEPT",
+            "N3_REPORT_QUERY",
+            "N3_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际采用与行动都有，最后继任方向又矛盾不等于机构对象没有恢复。",
+      "judgment_action_outcome_chain": "正确机构恢复→无关返回未使前半查询及时改变，反复重置机构缺口→知识Stroop假设成为新的实际题名Query→第一次进入有效报告资料、立即接受2017→C；省在更早跳出原低效组合词路径。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2239生成/98643Prompt/8Search0Open9Actor；原2470/238473/14S0O15A，生成-231、SearchActor各-6；R6/7/8长重述增加篇幅但少交互仍净降，不把所有省给U初查。",
+      "counterevidence_and_alternatives": "机构判断已恢复却仍重复查询，不支持功能恢复自动省成本；新Report材料有直接SS身份，较rep1质量强，不能四C一概同过程。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "正式年份正确，R12Report返回支持；无关页面2003未最终接受为答案。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_2003",
+        "N4_STROOP"
+      ],
+      "work_and_evidence_timeline": "R1联合Schorr/会堂/SS长Query字表，R2缩成SchorrWarsawsynagogue回原履历材料；R3明确会堂。R3—6多个头衔组合均字表，R6猜Stroop但实际仍长组合，R7把无关字表头date2003当strongclue而实际带2003查询，仍无相关；R8再头衔查、R9猜Brandt/1944、R10回Schorr，R11去头衔加1943拿毁坏与Stroop，R12才实际以Report题名查2017，R13Submit。",
+      "first_judgment_divergence": "首联合Query失败后补初查；后续把无关网页元日期提升为提交年份线索、猜错人物和事件年，但这些猜测最终被有效Stroop材料替代。",
+      "first_actual_tool_divergence": "首Query加入毁坏/头衔致失效，R2才回简单人物Query；R7带无关2003，R11有效1943入口比原早2轮。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "履历初查与会堂采用。",
+          "new_goal_operation_product": "首查失败后R2实际补回同原Return，R3完整会堂采用及后续查询恢复。",
+          "evidence": [
+            "O_RELATION",
+            "O_ACCEPT",
+            "N4_ACCEPT",
+            "N4_2003",
+            "N4_STROOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是只从G接受会堂，真实履历返回和明确采用全在；后续错误假设是新增支路。",
+      "judgment_action_outcome_chain": "初查功能恢复→仍查不明毁坏者→无关网页日期被当线索而派新2003Query→失效后改1943SS取得Stroop→报告入口纠正前猜测得到2017→C；正确来自后续有效证据纠偏，非中间错绑毫无行动影响。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2406生成/155678Prompt/12Search0Open13Actor，原2470/238473/14S0O15A，生成仅-64、SearchActor各-2；多支错猜仍省在有效1943入口比原提前2轮，不是初查取消。",
+      "counterevidence_and_alternatives": "说要查2003/1944与实际Query需分开，R6未真查所说2003，R7才实际带2003；提Stroop但没在Query用时仍不能算入口已更新。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "初查三条FULL，一条关系解释/机构产物PARTIAL但靠Report旁路答对；同C包含错误图书馆对象、及时纠正继任、反复重置机构缺口、无关网页2003错提示等不同过程。真正促成后续进展的是何时实际以Stroop报告题名查询，不是嘴上已提过Stroop。",
+    "costs": "四条生成PromptSearchActor均下降，rep2额外Open1；减少主要在原后续长SS头衔组合搜索被较早Report入口取代，不能全归初始Stage内容冗余。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "一题机构关系判断与四次完整新路径",
+      "chain": "履历多实体关系→U把材料变成会堂查询对象→删后多次重建但一些误绑图书馆或无关网页年份→这些判断实际派生相应支路→只有具体Stroop/Report被落实进Query才取得决定性提交年→C恢复；净成本由这一有效入口启动的早晚及之前失败重试决定。",
+      "limits": "教师预给会堂、知识猜测与原新配置干扰，不足断言删除初查导致捷径；机构错绑未必改最终年份，因为报告路径可修复/绕过。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原100213字符、四新150407字符全部阅读；完整重复Return仅引用已读相同源，实际各分支独立真实调用。",
+    "四C并不等于四个机构解释一致或完整质量保持，原本机构/图书馆也有混说，须区分共享与新增缺口。",
+    "原R1整usage2470可比较但无原生IDs，非NATIVE_TOKEN_EXACT；P504与G27已入实际Prompt，G不重复计生成；分支净差不可相加。",
+    "原SAGE/续跑温度、MTP、Actor上限及Graph档位不同，G ORACLE_ANCHORED，不把A结论当无引导因果冗余。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "empty_guide",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me search for information about the destruction of the Great Synagogue in Warsaw and the SS-Gruppenführer responsible for it."
+    },
+    {
+      "evidence_id": "O_QUESTION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "Moses Schorr ministered a significant religious institution in Warsaw."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Moses Schorr Warsaw religious institution",
+      "call_id": "chatcmpl-tool-9d4cd514fe7329e4"
+    },
+    {
+      "evidence_id": "O_RELATION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/9/snippet",
+      "exact_quote": "He was succeeded at the Great Synagogue by Moses Schorr in 1923.",
+      "call_id": "chatcmpl-tool-9d4cd514fe7329e4",
+      "doc_id": "wiki25:3645578"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The Great Synagogue in Warsaw was a significant religious institution."
+    },
+    {
+      "evidence_id": "O_BAD_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Great Synagogue Warsaw destruction SS-Gruppenführer",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_NEW_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/12/arguments/query",
+      "exact_quote": "Great Synagogue Warsaw destruction 1943 SS",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_STROOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "The SS force that destroyed the ghetto and the synagogue was led by Jürgen Stroop."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/13/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "chatcmpl-tool-ae9c3c5708f0b77f",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N1_LIBRARY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This is the \"significant religious institution\" in Warsaw that was destroyed."
+    },
+    {
+      "evidence_id": "N1_LIBRARY_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Main Judaic Library Warsaw destruction SS report UNESCO Memory of the World",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RETHINK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let's assume the institution is the **Great Synagogue of Warsaw** or the **Main Judaic Library**"
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Stroop report UNESCO Memory of the World Register Poland submitted year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N2_CORRECT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "No, it says Poznański was succeeded by Moses Schorr in 1923."
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:3645578",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3645578"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the religious institution is the Great Synagogue in Warsaw."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the institution is the Great Synagogue in Warsaw."
+    },
+    {
+      "evidence_id": "N3_REPORT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Stroop Report Warsaw Ghetto UNESCO Memory of the World submission year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_DATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "Therefore, the year is 2017."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The \"significant religious institution\" is the Great Synagogue in Warsaw."
+    },
+    {
+      "evidence_id": "N4_2003",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The snippet \"date: 2003-04-01\" is a strong clue."
+    },
+    {
+      "evidence_id": "N4_STROOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 12,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "Stroop report UNESCO Memory of the World Poland year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

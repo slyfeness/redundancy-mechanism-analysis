@@ -1,0 +1,523 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0449",
+  "stage_id": "S005",
+  "sample_order": 94,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the year of construction of the original convention center, established to host the film festival conceived as a democratic counterpoint to a politically biased international event, in the city where the first Korean artist invited to perform at MIDEM made his appearance?",
+    "gold": [
+      "1949"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "R11 43774字符反复电影节对抗描述和待查计划，无实际Call/正式Final，真实MISSING_FINAL_STOP。",
+    "evidence": [
+      "O_LAST",
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5[0,3476)及R1—4历史。Cannes地点已有多源Return且采用；Juniel2013与Loro2015被比较，但未证首位。P已经想到Palais，甚至1949可能及当前1982，同时反复不确定电影节民主对抗史。",
+    "evidence_states": "Cannes已返回/提取/采用，Palais与1949/1982只是无直接文档的假设，没有实际建筑Query；不能把P已有1949猜测当已取证。",
+    "evidence": [
+      "O_P_CITY",
+      "O_P_YEAR",
+      "O_P_PLAN"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 3476,
+        "end": 3718
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 3706
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 2353
+      },
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 2553
+      },
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 3043
+      },
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 2493
+      }
+    ],
+    "goal": "确认电影节民主对抗的具体描述再推进会展中心年份。",
+    "operations": "R5—10六次真实相同长Query，Return重复政治/电影不相关材料；每轮重新盘点艺人first、电影节可能，始终未改成真实建筑查询。",
+    "product": "没有新相关事实，没有确认建筑年代；缺口继续开放。",
+    "judgment_change": "Cannes和Palais假设已知却没有变成实查对象，描述性中间线索一直占据行动优先。",
+    "evidence": [
+      "O_QUERY5",
+      "O_QUERY10",
+      "O_REPEAT",
+      "O_P_PLAN"
+    ]
+  },
+  "original_followup": {
+    "use": "R11又明确想到Palais查询但不执行，长期重复Cannes/Venice/Berlin比较，最终N。旧失败反馈没有观察到实际入口更新。",
+    "evidence": [
+      "O_LAST",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对电影节身份描述持续确认及中间线索缺口管理。",
+    "state_relation": "删后四条都重新做描述核验，三条随后实际转建筑属性Query获新证据并C，一条恢复广查/艺人核验后无建筑Query，最终以新馆1982代原馆W。改善不是从未再查这项工作，而是没有继续同等次数无增量查。",
+    "evidence": [
+      "N1_ACCEPT",
+      "N2_QUERY",
+      "N2_ACCEPT",
+      "N3_QUERY",
+      "N3_ACCEPT",
+      "N4_QUERY",
+      "N4_ACCEPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "The user is asking a complex multi-hop question.",
+    "source_position": "R11[0,48)",
+    "oracle_anchored": true,
+    "novelty": "10Token一般重述多跳复杂性，无新实体/事实/年份/建筑入口，也没有直接指定放弃电影节查询；仍保留教师锚定标记。",
+    "evidence": [
+      "I_G",
+      "O_P_CITY",
+      "O_P_YEAR"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1982",
+      "adopted_answer": "1982",
+      "outcome": "W",
+      "outcome_reason": "选择当前第二建筑开馆年份，未取得第一建筑1949直接文档。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R5长3570字符想到具体建筑年Query但真实Call仍民主描述，返回空（28秒）。R6MIDEM/电影节Query返回Midem地点与旧新Palais史但无建年。R7查2013前首艺人返回韩国电影人物；R8联合Query、R9原first艺人Query回旧片段；R10 16008字符自编Maison desArtistes/柏林Nazi史，反复认为Palais1982是firstpurposebuilt，最终submit1982。5Search，0Open。",
+      "first_judgment_divergence": "R5加Cannes改写描述但没有实查已想到的建筑；R10将当前标志建筑等同原会展中心。",
+      "first_actual_tool_divergence": "R5Query改为Cannes描述，随后R6混入MIDEM，未执行建筑名Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认电影节描述",
+          "original_operation": "重复同Query六次",
+          "original_product": "未解决",
+          "new_goal": "同描述/城市与艺人first",
+          "new_operation": "五个广窄Query含两次first复核",
+          "new_product": "Cannes维持，描述及原馆年份没直接补足，错用1982",
+          "evidence": [
+            "O_QUERY5",
+            "O_REPEAT",
+            "N1_FIRST",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原核验功能真实重做但没有重复原六次同Query，不能因无有用产物称工作未恢复。",
+      "judgment_action_outcome_chain": "已知地点仍持续背景/艺人核验→建筑属性查询只停计划→无法区分原馆与当前馆→长论证以现代conventioncenter限定排旧→W。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "6413生成148477Prompt5Search6Actor；原切点后六Search及最后10K无Call。新少1Search、少末轮10K重复但新增多次first艺人核验与R10 3984Token错误论证。保守生成差见成本表，不把全部净值归U。P18458/G10另计。",
+      "counterevidence_and_alternatives": "原N→W也是CWN改变但不是成功改善；r1空Return与28秒延迟必须保留，不假设检索返回恒定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1949",
+      "adopted_answer": "1949",
+      "outcome": "C",
+      "outcome_reason": "真实R6建筑Query返回3638239明确first1949、second1982，R7采用提交。",
+      "outcome_evidence": [
+        "N2_RETURN",
+        "N2_ACCEPT",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R5同原长Query得到同无关Return。R6 6431字符重新比较但终于真实查Palais constructionyear inaugurated；取得3638239。R7 5933字符明确original1949，并说明艺人first未绝对证明但地点已明确，提交C。2Search。",
+      "first_judgment_divergence": "R6将已在P提出的Palais当可直接查询对象，不再要求描述词先闭合。",
+      "first_actual_tool_divergence": "R6真正执行建筑名+年份Query，原同位置仍长电影节Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "电影节身份描述确认",
+          "original_operation": "六次普通重试",
+          "original_product": "无新增支持",
+          "new_goal": "先同描述再查建筑属性",
+          "new_operation": "一次同Query及R6改证据入口",
+          "new_product": "描述仍靠推断，真实建筑证据闭合直接答案",
+          "evidence": [
+            "O_QUERY5",
+            "O_REPEAT",
+            "N2_QUERY",
+            "N2_RETURN",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核验描述实际再做一次，后不同入口完成最终需求；功能恢复不要求复制原六次。",
+      "judgment_action_outcome_chain": "Cannes/Palais已知→不再让背景描述阻断建筑取证→直接得到两代建筑区分→采用1949并提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "3448生成64811Prompt2Search3Actor，减少四次同类重试及R11纯10000Token；仍有R6/R7长论证，不把减少全部归目标字符。",
+      "counterevidence_and_alternatives": "first艺人并未补出绝对first文档；C的直接年份证据充分，完整多跳链质量仍需分列。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1949",
+      "adopted_answer": "1949",
+      "outcome": "C",
+      "outcome_reason": "R9真正查询建筑得同3638239，R10明确区分第一/第二建筑提交。",
+      "outcome_evidence": [
+        "N3_QUERY",
+        "N3_ACCEPT",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R5同原长Query、R6带引号democratic Query得Naqvi与无关资料，R7/8Cannes联合描述仍旧电影片段；R9 5409字符盘点first/male疑点，最后实际建筑constructionQuery取直接年证；R10 5552字符采用1949并提交。5Search。",
+      "first_judgment_divergence": "R6尝试精确短语新入口失败，R9才把城市稳定作为继续查建筑的足够条件。",
+      "first_actual_tool_divergence": "R6引号短语不同，关键R9建筑Query不同。",
+      "function_correspondence": [
+        {
+          "original_goal": "补描述缺口",
+          "original_operation": "同Query重试六次",
+          "original_product": "无新增",
+          "new_goal": "同描述及目标建筑",
+          "new_operation": "四背景重试后实查建筑",
+          "new_product": "多次失败后取得直接年证，C",
+          "evidence": [
+            "O_REPEAT",
+            "N3_QUERY",
+            "N3_ACCEPT",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "背景核验反复发生；最终换入口，不算目标功能未观察。",
+      "judgment_action_outcome_chain": "背景缺口仍在→短语和城市变体仍无关→转实查已知建筑→新旧馆区分压过无据1982→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "4616生成169352Prompt5Search6Actor；少一次实际Search，主要生成下降来自没有原末轮10K无Call复盘；新R9/R10仍较长。",
+      "counterevidence_and_alternatives": "比r2多3Search，机制可同而成本不等；不能把只有低次数查询定义为正确路径。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1949",
+      "adopted_answer": "1949",
+      "outcome": "C",
+      "outcome_reason": "R8建筑名Query实际返回first1949，R9采用纠正此前原馆1982猜测。",
+      "outcome_evidence": [
+        "N4_QUERY",
+        "N4_ACCEPT",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R5引号描述、R6首艺人2013、R7原会展中心泛Query返回空且28秒。R8仍错称原馆1982却实际查Palais constructionyear original，取得3638239；R9引用first1949纠错，说明即使艺人未完全确认地点不变，正式C。4Search。",
+      "first_judgment_divergence": "R7直接把目标年份列为真实取证，第一次返回空后换具体建筑名而不是放弃或只自证1982。",
+      "first_actual_tool_divergence": "R7原馆construction Query，R8具体Palais Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "描述确认以推进年份",
+          "original_operation": "六同Query",
+          "original_product": "停滞",
+          "new_goal": "描述核验后年份",
+          "new_operation": "一次描述查与first复查，再两建筑查询",
+          "new_product": "空反馈后换入口取得直接区分，C",
+          "evidence": [
+            "O_QUERY5",
+            "N4_QUERY",
+            "N4_ACCEPT",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "描述核验实际执行，后转目标事实并完成；旧工作少执行几次不等于功能没恢复。",
+      "judgment_action_outcome_chain": "无据1982仍存在→实际建筑取证提供反证→明确接受1949→C；关键是先验可被新返回纠正，r1没有这条文档。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2542生成123380Prompt4Search5Actor；少2Search及最后纯推理长循环，增加一次空建筑Query和具体名Query，不能省略失败尝试。",
+      "counterevidence_and_alternatives": "空查询未直接证明假设错；有意义变化是改对象措辞后取得有效资料。"
+    }
+  ],
+  "four_run_comparison": "W/C/C/C。四条都重做电影节背景核验，三C均真正执行建筑年份Query并拿到同3638239、采用first1949，次数与时点不同；W无建筑Query、仅计划后以现代馆定义自证1982。三C仍未证明绝对first艺人，最终年份支持与多跳每条件全验不能混同。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "在中间线索已足以稳定城市、目标建筑已被提出时，尚未闭合的背景措辞可能反复抢占下一次真实检索。把已提出对象变成具体属性Query可取得区分旧/新建筑的证据并纠正猜测；只口头提出Query或用现代馆印象自证不会完成这个变化。计算下降主要是取消低增量重试和最终纯论证，原取证功能可仍恢复。",
+      "support": "本切点四路径：三条实际建筑取证后C，一条没有且1982W；同题，不称跨题定律。",
+      "limits": "不能推断背景条件永远可省，正确city/建筑假设是前提；G一般承接、采样和真实返回差异保留，空Return可能基础设施原因未定。"
+    }
+  ],
+  "counterevidence_and_limits": "169492字符四条完整读完；原144492字符全读，真实原终态MISSING_FINAL_STOP而不是擅改GENERATION_LENGTH_STOP。partialR5保守成本、无原生精确节省，P/G分别列，独立分支不加总。模型自审非研究者金标准。",
+  "evidence": [
+    {
+      "evidence_id": "O_P_CITY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The city is **Cannes**."
+    },
+    {
+      "evidence_id": "O_P_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The Palais des Festivals was built for the 1949 Cannes Film Festival?"
+    },
+    {
+      "evidence_id": "O_P_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let's search for \"Cannes convention center construction year\" or \"Palais des Festivals construction year\"."
+    },
+    {
+      "evidence_id": "O_QUERY5",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "query",
+      "json_pointer": "/rounds/4/tool_calls/0/arguments/query",
+      "exact_quote": "film festival conceived as a democratic counterpoint to a politically biased international event",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_QUERY10",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "query",
+      "json_pointer": "/rounds/9/tool_calls/0/arguments/query",
+      "exact_quote": "film festival conceived as a democratic counterpoint to a politically biased international event",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_REPEAT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "Let me search for the film festival description first."
+    },
+    {
+      "evidence_id": "O_LAST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "Let me search for \"Palais des Festivals Cannes construction year\"."
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking a complex multi-hop question."
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Cannes Film Festival conceived as a democratic counterpoint politically biased",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The Palais is the first purpose-built convention center for the festival."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1982"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Palais des Festivals Cannes construction year inaugurated",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "The first \"Palais des Festivals et des Congrès\" was built in 1949 to host the Cannes Film Festival.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:3638239"
+      ]
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The construction year of the *original* building is 1949."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1949"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "query",
+      "json_pointer": "/rounds/4/tool_calls/0/arguments/query",
+      "exact_quote": "Palais des Festivals et des Congrès Cannes construction year established to host film festival",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the original one is 1949."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1949"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/rounds/3/tool_calls/0/arguments/query",
+      "exact_quote": "Palais des Festivals Cannes construction year original",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "According to the search result for \"Palais des Festivals et des Congrès\", the first building was built in **1949**"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1949"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0449/trajectory.json",
+      "source_sha256": "0da06a072550a0834bacf2cc877a3994e22761119020a724fae4d54dcde11770"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0449.json",
+      "source_sha256": "0e23af563695375733ee311c17f85a0ea0591e1327ea96344f1069044147bbfe"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "6ab7d380f90c46ac39a87f0c33e26ece9a1b37e6ffc81e06eb20d368feaa0718"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "75e23c8bac64fef470529a33e9c5a92bf1cb9cee67b6a35aa2174da2533c35ba"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "24dd1b103def93845fd955502e3e8359ccb79dbc4445d6b798eed0f8fecfd97a"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "038ff674431b514fc86f77172a9ccca568cc3914f0f5a2d04d3813dd782b2a78"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0449__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "229bd219ef5b573619a6ccd2e2352fd34884e72033ce6b9c4bd7e8966431cb1b"
+    }
+  }
+}

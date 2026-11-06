@@ -1,0 +1,45 @@
+{
+ "case_id":"724__rep2__S003__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原正式拒答W/REFUSAL_NO_ENTITY；四新CONTEXT_BLOCKED无FinalN，推理中人物不能冒充回答。"},
+ "review_basis":"原17轮全部推理及16Call/完整Return已经亲读；本组四新16轮各自全部Reasoning、真实Call参数和返回按实际顺序读，64Call。新3同494字符字段逐轮精确相等，只复用已全文读的字段，全部不同Call逐一读。400文档槽位、27新增不同完整Return全文读，关键Edgar9043另完整重读；无未读全文用摘要补充。",
+ "pre_state":"R4@368前只有三次宽泛/组织/城市搜索和无匹配反馈，没有已采用医生；完整P消息与当前推理前缀中没有Oliver Wendell Holmes或Holmes。不能用原R4之后的档案材料倒填早期知识。",
+ "u_work":"U R4[368,541)实际改用去世年代/奖学金/Harvard朋友Query，完整返回R5可见，包括43597中的Oliver Wendell Holmes及其他档案、博士名单；R5[0,187)反馈仍未匹配。U没有接受Holmes，也没有发现Gold。",
+ "u_state_update":"U产生了一个随后会被提及的医生姓名，但没有条件符合判断。后继把Holmes当可能入口实际查，仍未找到目标。原后续广搜最终拒答。",
+ "original_action_consequence":"原U的可见作用是给后继名医入口，不是完成必要身份确认。原随后没有用出生死亡排除有清晰进展，最后未识别。新第一Call均按G查Holmes，不能说模型自主从P重新发现该实体。",
+ "guidance":{"text":"Let me try searching for \"Oliver Wendell Holmes\" who was mentioned in one of the results, or search for doctors who were founding members of organizations before 1950.","source":"后继S004 R5@187，38Token；nativeR4@368，保留95当前轮Token。","audit":"Holmes在完整P没有出现，来自被删U返回后的后继，G提前给新候选实体及查找方向，并声称先前已提及；不是Gold但属于未来候选线索补偿。ORACLE_ANCHORED，不将四次首Query视无引导功能重建证据。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"doctor died 1970s scholarship medicine Harvard PhD friend","use":"U唯一真实Call，不能当Holmes专门核验。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/3/exact_result","quote":"A poem by Oliver Wendell Holmes","use":"U返回才有姓名；P前三次尚未给这一实体。"},
+  {"id":"O3","source":"original","pointer":"/rounds/16/content","quote":"I was unable to find a specific doctor","use":"原拒答，非正确人物被删除。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"born in 1809 and died in 1894","use":"收到真实材料后明确Holmes年代不符并离开，不把四支统一候选固着。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"I found information about W.E.B. Du Bois","use":"真实朋友线索采用，后续加Philadelphia未获目标。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/11/reasoning_content","quote":"he was an architect, not a doctor","use":"R15排Edgar职业，不说一直没有识别冲突。"},
+  {"id":"N14","source":"new1","pointer":"/tool_events/12/exact_arguments","quote":"Edgar doctor MD 1974 died scholarship medicine university","use":"排除职业后仍借姓名另觅医生，未正式重新接受该建筑师。"},
+  {"id":"N15","source":"new1","pointer":"/rounds/15/reasoning_content","quote":"younger brother of the poet William Carlos Williams","use":"末轮利用返回兄弟关系换人，最后Return尚未Actor消费。"},
+  {"id":"N21","source":"new2","pointer":"/tool_events/2/exact_arguments","quote":"doctor born 1920s died 1970s university established 1750 scholarship medicine","use":"没有具体身份支持时加入狭窄出生/大学年代。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/14/reasoning_content","quote":"Charles Best","use":"晚期具体人查证确实发生，不称全程只是同一Query。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/15/reasoning_content","quote":"I realize I need to be more systematic.","use":"末端仍继续找Apgar而未接受或提交。"},
+  {"id":"N31","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Oliver Wendell Holmes MD 1809 1894 Harvard University scholarship medicine","use":"工具参数中已包含不符死亡年代，却没有明确排除判断。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/8/exact_arguments","quote":"Harvard Medical School founded 1782 physician born 1925 died 1975 Boston","use":"从宽条件固定具体学校/出生死亡/城市，R12—19连续真实同Query。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/15/reasoning_content","quote":"The criteria are quite specific and I need to find information about a doctor","use":"反复七条件字段没有反映具体返回变化，直至N。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/10/reasoning_content","quote":"I found something interesting! Matthew Arnum Barnor","use":"后续真实采用新人物，不是G候选一直维持。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/13/reasoning_content","quote":"I found Oku Ampofo","use":"Barnor材料不闭合时又转实际支持的奖学金人物。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/14/reasoning_content","quote":"died in 1985, not in the 1970s","use":"明确排Susan后继续Oku，条件反馈有实际作用。"},
+  {"id":"N44","source":"new4","pointer":"/tool_events/15/exact_arguments","quote":"Oku Ampofo 1976 death 1977 1978 1979 1980 Kumasi Accra","use":"末端仍围绕候选未解死亡/地点查证，未形成Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"按G首查Holmes，真实排其1894死亡；后来采用DuBois朋友线索，再Apgar、WalterWilliams、Edgar。明确Edgar建筑师仍借姓名找医生，末轮转其兄William，N。","state_chain":"G新实体→材料排除→多线索试探→排职业却保留名字为搜索入口→另人物关系引发末次Query→上下文N。","function_change":"被删条件取证功能恢复，Holmes实体来自G而非自主发现；16Search16Actor多3/2，生成2482+38少1648但Prompt更高。","evidence":["N11","N12","N13","N14","N15"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"首查G人物后回组织/年代组合，无具体匹配时把出生1920s、大学1750写入Query，后查Best仍不匹配，末回Apgar，N。","state_chain":"G入口未成身份→条件组合逐渐具体化→列未试/已试名医继续查→无接受或停止至N。","function_change":"原取证功能恢复，具体年代限制不是原题事实；16Search16Actor多3/2，3440+38生成少690，Prompt更多。","evidence":["N21","N22","N23"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"G实体引发Holmes查询，随后参数含1809/1894未明确排除，再从Harvard朋友条件变成Harvard医学院/1782/Boston和1925/1975组合。R12—19同Query，R7—19同七条件推理。","state_chain":"未匹配→把朋友学校与题目对象条件组合成固定入口→反复同Return与同反馈→不采用人物或修订Query→N。","function_change":"初始取证工作恢复但后续长期真实重复检索；16Search16Actor多3/2，2753+38生成少1377，Prompt更多，不能以文字较短说净资源少。","evidence":["N31","N32","N33"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"首查Holmes后多入口，R14真实采用Barnor，R17换Oku奖学金线索，R18排Susan死亡1985；仍不知Oku死亡等核心条件而查至N。","state_chain":"宽搜→部分匹配候选采用→换另候选→对旁支执行条件排除→主要缺口未闭合→预算先耗尽N。","function_change":"原按条件寻找与候选核验恢复，反馈不是全部无效；16Search16Actor多3/2，2123+38生成少2007但Prompt高。","evidence":["N41","N42","N43","N44"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"四N不共享一个作用链。3有固定的未证学校/年份/城市Query与相同条件复述，反馈未推进；1实际排除但把相近姓名仍作取证入口；4持续采用新人物及排除旁支，因真实关键缺口未解而耗尽。G提前给被删返回中的Holmes，四首Call都由此出发，不能把这视为U完全无影响或自主恢复。",
+ "within_case_support":"明确固定检索与无状态更新主要是3；4是重要反例，确有新候选/排除仍N，不能统一称循环。1职业排除后搜索同名，不足证明正式重新接受建筑师，保持这一解释界限。",
+ "mechanism_chain_checks":[
+  {"chain":"加入未证具体学校/年代/城市作为搜索前提后，未匹配反馈持续触发完全同Query而不更新","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33"]},"limits":"2也有不充分收窄但仍改查法/具体人物；不把所有Query变化与精确循环混合。"},
+  {"chain":"不断采用新的部分匹配人物并真实排除不符旁支，但主要缺口持续未解而先耗尽上下文","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44"]},"limits":"4未正确不证明核查无作用，反证仅以N推断没有状态更新。"}
+ ],
+ "counterevidence_and_limits":["新G含完整P没有的Holmes实体，真实未来线索审计不可省。","所有FirstCallHolmes不能作为独立重发现计数。","原正式拒答非正确，四N不是四次正确退化。","27个新Return全文与400槽位位置保留，最后guard不冒作Actor消费。","新1排Edgar后使用名字再搜不能直接判重新接受同一建筑师；新4有有效排除而仍N。","检索字符串不是硬过滤，不声称其具体年词必然导致找不到Gold。"],
+ "cost_basis":"nativeR4@368，原4168生成13Search14Actor，Prompt9514+402841=412355；当前轮重放95P Token。G38。新生成2482/3440/2753/2123，加G净−1648/−690/−1377/−2007；Search四支16、Actor四支16，都多3/2，Prompt511968/505618/511006/503452均增加。分开生成和工具/Prompt，不累加独立分支节省。",
+ "next_cross_case_test":"核查其他B固定Query之前何种未证关系变成搜索前提，同时保留A中真正反馈改变查法或停止的路径；G先给实体的样本与无此补偿样本分开。"
+}

@@ -1,0 +1,43 @@
+{
+ "case_id":"773__rep3__S003__FIRST_SENTENCE","question_id":"773","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"W","3":"W","4":"W"},"basis":"四条均有正式白色Final，与Red不同；原无Final。N→W不是由正确到错误。"},
+ "review_basis":"完整原轨迹同SHA已读，本组56新不同原文块13047字符及20新字段有序映射、8真实Call全部读；135Return文档槽位均匹配已全文读过的同SHA，没有新增未读Return。四支都没有补齐多年事件身份。",
+ "pre_state":"R4@67前已实际搜2018、多个失踪事件与2014同行三名青少年；仍没找到具体个案。P有Karlie十月白T恤和明确不匹配反馈，没有目标身份或红色结论。",
+ "u_work":"原U尝试2018年初16岁失踪警察衣物描述，真实Query却已经加入white shirt；返回后R5前67字符仍未找到。没有新成功判断，也没有纠正身份。",
+ "u_state_update":"选择从早年事件回到2018衣物，但将未证颜色写成取证前提。原后续继续多年事件、Mono County/Karlie并反复查询至上下文上限，不提交白色。",
+ "original_action_consequence":"新四支全部重新开展2018衣物真实查询，所以原行动并未真正绕过；差异在于极短后续即把最相关而未匹配身份的71687用于正式回答。某些支重申时间冲突仍接受，说明重复反馈存在不等于其约束了提交。",
+ "guidance":{"text":"The question describes a very specific pattern:","source":"S004 R5@67，8Token；实际在R4@67续写。","audit":"G是冒号引出的原首行，仅8Token，不含清单其余正文、Karlie、颜色或新事实。P已包含题目模式，普通方向承接但仍Oracle。切点落Token内，保留13原生Token再补空格ID220成14，严格字符精确，不冒称原生精确。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"missing 16 year old early 2018 police description white shirt","use":"原U本来也将未证white写入取证。"},
+  {"id":"O2","source":"original","pointer":"/rounds/4/reasoning_content","quote":"I'm still not finding the specific case mentioned in the question.","use":"原U结束仍无身份闭合。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"missing person 16 year old 2018 white shirt gray sweatpants police description","use":"新首Call实际恢复衣物检索，并更具体使用未确认裤子。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"but I need to find more information to confirm this pattern","use":"最终轮仍知道多人事件关系未证。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Actually, looking at the question more carefully, it asks \"what color shirt were they last wearing when they went missing in 2018?\"","use":"把问题收窄为颜色问句，忽略先完成身份链。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/2/content","quote":"The person in question is Karlie","use":"正式采用未闭合身份，不只是列候选。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"missing person 2014 13 year old found with two other teens","use":"确实恢复早年条件核查，不能用没查来解释全部错答。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"While the search results don't show all the details about the multiple missing incidents","use":"完整匹配缺口仍在。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/3/content","quote":"**According to the police's description, the 16-year-old was last wearing a white t-shirt**","use":"实际白色Final。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"October 2018 would be late 2018, not early 2018","use":"时间冲突明确重新识别。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Karlie missing 2018 Mono County white t-shirt","use":"识别冲突后实际仍定向同候选。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"But this is the closest match I've found to the details in the question.","use":"最接近替代了符合全部身份条件。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/2/content","quote":"**Answer: White t-shirt**","use":"正式错答。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Mono County missing 16 year old 2018 white t-shirt","use":"唯一新Call便限定P中的部分候选。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"I don't have information in my search results about the 2014 and 2015 incidents","use":"先承认缺证，随后仍答。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/content","quote":"reported missing in early 2018","use":"最终将十月案例写为early，下一句仍十月，矛盾未消解。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"新首Call重做2018衣物，第二Call查Karlie多年失踪；R6仍说需确认但转看题目只问颜色，正式接受Karlie并白色。","state_chain":"未证衣物作为Query限定→身份补查未解决→把最终所问属性与身份条件脱钩→提前错答。","function_change":"原具体取证操作与未找到反馈部分恢复；2Search3Actor比原16/16少14/13，Prompt36172比495489少。生成1131加G8，但非精确切点仅保守原4003—4004，不报伪精确净Token。","evidence":["N11","N12","N13","N14"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"先2018白T恤，实际查2014同行事件，又回一般2018衣物，三Call后说缺多年细节但最相关，R7提交。","state_chain":"局部搜索及历史补查均发生→缺口没有闭合→改以最相关为答案标准→错答。","function_change":"原2018操作实质恢复而非跳过，其他核查少执行；3Search4Actor、Prompt54380；978生成+8G，非精确差仅区间。","evidence":["N21","N22","N23"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"首Call原2018方向恢复，次轮明确October不是early，随后仍真实查Karlie/white。R6再承认时间冲突，因最接近而提交。","state_chain":"冲突识别恢复→未限制后续候选Query→最接近局部候选被用于Final→错误。","function_change":"操作重建不能证明原约束功能有效恢复，2Search3Actor、Prompt35916；1026生成+8G。原尚未正确，所以不说删U造成正确性丢失。","evidence":["N31","N32","N33","N34"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"只一次MonoCounty2018白T恤查询，R5先比较完整题目、承认2014/15无资料，接着将最相关衣物直接作为Final。","state_chain":"已有候选部分材料再取得→没有补早年关系→用属性存在替代身份核实→更早错答。","function_change":"2018取证重建但早年确认未执行；1Search2Actor、Prompt21403；709生成+8G，节省主要其他原后续核查未开展。","evidence":["N41","N42","N43"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"四支都重新执行了2018衣物取证，但未完成身份链便提交同一颜色。与原一直保留未知并继续到N相比，减少成本主要落在后面的长期核查没有再执行，而不是该一次取证功能被省掉。新3甚至明确恢复时间冲突，又因最接近接受同人，显示反馈被说出与反馈真正改变候选/提交不是一回事。",
+ "within_case_support":"四W/四查，支持功能重建与短路径仍可同时发生，但不支持有效冗余。新2实际2014补查、新4没有，是不同操作路径最终同错的内部对照。三组S001/S002/S003均同题，不能当三个不同问题支持。",
+ "mechanism_chain_checks":[
+  {"chain":"2018取证恢复后，仍以未闭合身份的局部衣物描述作正式答案","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13","N14"],"2":["N21","N22","N23"],"3":["N31","N32","N33","N34"],"4":["N41","N42","N43"]},"limits":"原为N，非删掉已证明的正确决定。重复操作不保证同等证据充分性。"},
+  {"chain":"直接识别October不符合early，但仍查询并正式采用同候选","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33","N34"]},"limits":"其他支有多年缺口认识，不能强称它们都明确进行了相同时间冲突比较。"}
+ ],
+ "counterevidence_and_limits":["四支重做搜索不代表原执行篇幅不可省；但此处省下成本没有维持正确性。","原也把white写入Query，不能把错误收窄只归因删除。","新3的冲突认识并未被新有效文档消解，接受依据为closest，不猜内部心理。","P并无正确身份与Red证据，不能从Gold补成已获得目标。","G8Token是冒号首行，不含完整后继清单/答案；仍有教师方向和随机性限制。","CHAR_EXACT_RETOKENIZED空格不按原生精确报节省，四分支独立不可加。"],
+ "cost_basis":"R4@67保留13native+空格重编码1=14，G8。原后缀生成保守4003—4004（R4原85Token，其后3932），Search16Actor16，Prompt9224+486265=495489。新1131/978/1026/709生成，G各8，Search2/3/2/1，Actor3/4/3/2，Prompt36172/54380/35916/21403；精确净生成变化为null，不将区间冒充精确。",
+ "next_cross_case_test":"查其他A/B：对题目最终所问属性的直接命中，是否掩盖身份/关系的必要前提；为何类似短答在A有充分P而在此未满足。将直接反馈存在与实际Query/提交受其约束分开。"
+}

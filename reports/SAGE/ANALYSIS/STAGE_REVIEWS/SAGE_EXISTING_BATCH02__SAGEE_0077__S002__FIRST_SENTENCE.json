@@ -1,0 +1,400 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0077",
+  "stage_id": "S002",
+  "sample_order": 42,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the name of the recipient of the Turing Award for foundational work in operating systems, particularly related to the development of Unix, who is an alumnus of a university located in the same state as the city of Pinole?",
+    "gold": [
+      "Ken Thompson"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "Ken Thompson",
+    "adopted_answer": "Ken Thompson",
+    "outcome": "C",
+    "reason": "原正式Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@236只保留Ken与Dennis共同获奖陈述。首Search同时给Ken Berkeley与Dennis Harvard；没有Pinole工具来源，尚未在保留前缀比较学校。",
+    "evidence_states": "材料已返回；获奖已提取采用，学校事实虽可见但本切点的同州排他比较尚未发生。",
+    "evidence": [
+      "I_P",
+      "O_ED"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 236,
+        "end": 1109
+      }
+    ],
+    "goal": "用城市州别排除共同获奖者之一。",
+    "operations": "知识给PinoleCalifornia，提取两人学历，比较BerkeleyCalifornia与HarvardMassachusetts并接受Ken。",
+    "product": "第一次完整的唯一候选选择。",
+    "judgment_change": "两名共同获奖者变成Ken单独满足条件；其后查Ken原文。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_followup": {
+    "use": "接受Ken后短Open、PinoleSearch与学校确认反复，但没有转向其他答案，最后提交Ken。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "从共同获奖候选中执行学校州别约束筛选。",
+    "state_relation": "四条均重新比较Ken/Dennis或明确同州筛选，全部FULL_REBUILT；有些先取城市来源，有些直接知识补条件，G先突出Ken。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Let me verify this information by opening the Ken Thompson document to confirm.",
+    "source_position": "R2[1109,1188)，14派生Token。",
+    "novelty": "Ken实体本已出现，但G把未完成比较的二选一提前聚焦到Ken文档；不含学校和Pinole州别事实，却提供接受后核验方向。",
+    "risk": "ORACLE_ANCHORED选择方向补偿，不作无提示纯删除证据。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "城市Return加学校证据完成比较提交。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_J"
+      ],
+      "work_and_evidence_timeline": "R2沿GOpenKen默认4000，全2673字符一次读出教育；R3采用学校并SearchPinolecitystate；R4逐项对照Ken和Dennis，正式Submit。",
+      "first_judgment_divergence": "原先比较在首Open之前，新先选Ken读全，再补城市、比较。",
+      "first_actual_tool_divergence": "Open默认4000代原之后短100，避免多次截断读取。",
+      "function_correspondence": [
+        {
+          "original_goal": "两候选学校州别筛选",
+          "original_operation": "知识城市与学历比较",
+          "original_product": "Ken",
+          "new_goal": "同",
+          "new_operation": "完整Open及城市Search后比较",
+          "new_product": "Ken有真实城市来源",
+          "evidence": [
+            "O_U",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "比较与唯一性结论实际出现，位置后移。",
+      "chain": "G先选Ken文档→一次完整读避免短窗口→城市真实补证→恢复比较→C且少交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "434生成19136Prompt3Actor1Search1Open；少原后继多次Open和无关学校Search，目标比较仍完整。P4556/G14预填分列。",
+      "counterevidence_and_alternatives": "G可能促进先选Ken，默认Open窗口改变也影响成本，不能仅归因少一次比较。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "城市查询后完整排除Dennis，Submit。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_J"
+      ],
+      "work_and_evidence_timeline": "R2没有照GOpen，而自主列旧学历并决定先查Pinole；真实城市Search返回California标题；R3比较Harvard与Berkeley并采用Ken，引用旧教育句直接Submit。",
+      "first_judgment_divergence": "自主不执行G的Open，先解决独立城市来源再比较。",
+      "first_actual_tool_divergence": "首CallPinoleSearch，无Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "同州筛选",
+          "original_operation": "两人学历比较",
+          "original_product": "Ken",
+          "new_goal": "同",
+          "new_operation": "PinoleSearch后比较两学校",
+          "new_product": "Ken正式答案",
+          "evidence": [
+            "O_U",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原约束筛选完全恢复，而非只答案词相同。",
+      "chain": "学校已知→城市真实核验→比较唯一候选→C，无额外学校取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "504生成13261Prompt2Actor1Search0Open；省的是原后继五Open/学校Search，不是比较功能。",
+      "counterevidence_and_alternatives": "G不是强制执行命令，本支实际违背Open方向而仍成功。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "知识城市加旧学历比较，正式Submit，缺新城市来源。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_J"
+      ],
+      "work_and_evidence_timeline": "R2OpenKen0/10只American c；R3从原Search引用学校，凭知识说PinoleCalifornia，排除DennisHarvard，称verify但没有真实查城市，直接Submit。",
+      "first_judgment_divergence": "Open极短仍旧Search足够，城市直接知识补齐而没原后继的工具核验。",
+      "first_actual_tool_divergence": "Open10后Submit，无Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "学校州别筛选",
+          "original_operation": "知识比较",
+          "original_product": "Ken",
+          "new_goal": "同",
+          "new_operation": "旧Search与知识比较",
+          "new_product": "Ken，无新城市证据",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U本来也是知识城市比较；该认知工作恢复，但完整原后继城市来源没恢复。",
+      "chain": "G焦点Ken→短Open不添资料→旧学校加常识完成比较→C，证据来源较完整原后继少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "322生成9170Prompt2Actor0Search1Open；取消城市/教育Search和多次学校读文，质量支持差异单列。",
+      "counterevidence_and_alternatives": "C不代表新增城市证据存在；不能把verify口述计作真实Search。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "城市返回支持后学校约束排除Dennis并Submit。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_J"
+      ],
+      "work_and_evidence_timeline": "R2Open另一Ken分片5245551默认4000，完整奖项/Go无学校；R3用旧学校，真实QueryPinoleCaliforniacitystate，返回LouisFrancis明确PinoleCalifornia、城市标题等；R4比较两学校并再确认其他共同得主不符，提交。",
+      "first_judgment_divergence": "先聚焦Ken奖项分片，再补地理并恢复学校比较。",
+      "first_actual_tool_divergence": "Open5245551非原5245548，内容角色不同；随后真实城市Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "约束筛选唯一候选",
+          "original_operation": "学历/州别比较",
+          "original_product": "Ken",
+          "new_goal": "同",
+          "new_operation": "城市Search及旧教育比较",
+          "new_product": "Ken，城市有来源",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同州条件和排除判断均实际执行。",
+      "chain": "G选Ken→奖项原文确认→地理Search→旧学校比较→C，避免短Open学校链。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "504生成18555Prompt3Actor1Search1Open；新Search语句包含California但它是模型自主知识，不是G输入事实。",
+      "counterevidence_and_alternatives": "先给城市词可能影响召回，但真实来源内容支持；不能误记为Gold引导。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C、4FULL_REBUILT比较。",
+    "shared_and_different": "三支按G先Open但窗口/分片不同，一支先Search城市；三支城市真实补证，一支知识替代。比较功能全恢复，原后继扩读并未全恢复。",
+    "cost": "生成434/504/322/504，Search1/1/0/1，Open1/0/1/1；真实切点原部分Round成本区间见表，不能与全轨迹1330直接减。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "材料已含两候选的排他学校关系时，删除首次比较仍可在后继恢复比较；G先聚焦Ken提供方向补偿。恢复不必重复原先五次短Open，完整窗口或直接旧事实足以支持后续决策。",
+      "support": [
+        "O_ED",
+        "O_U",
+        "I_G",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limits": "同题4支，不证明原比较不重要；比较全部恢复、G方向不能排除，城市证据质量也不完全同等。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "不能因4C说未重建；四条都明确同州筛选。",
+    "G的实体不是新候选，但从两个已知候选突出一个是方向信息。",
+    "历史Reasoning缺失与当前P实际236字符已核对；成本DERIVED_CHAR_EXACT。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Ken Thompson and Dennis Ritchie jointly received the Turing Award in 1983"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this information by opening the Ken Thompson document to confirm."
+    },
+    {
+      "evidence_id": "O_ED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "from the University of California, Berkeley"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Since Pinole is in California, Ken Thompson is the recipient"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Harvard is in Massachusetts."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Dennis Ritchie graduated from Harvard University (in Massachusetts)."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Dennis Ritchie graduated from Harvard, which is in Massachusetts."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Ritchie attended Harvard (Massachusetts), and Thompson attended UC Berkeley (California)."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0077/trajectory.json",
+      "source_sha256": "e1e902213f72dc1a72f9dd348144bdf9dcd971521e40a270b32f170167e82996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0077.json",
+      "source_sha256": "cea37db1dfec82fd5e8947bfd971aae59dfc528a2bd063097221bc522aecf877"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "10109a6f08ec37865a2a2b19c66f3c44f431c0cd780865c6835471258446aa29"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "1e3ffaced733aa7f486d482eaf3ce11486a245ef7bfd2efe2b85afbcaa3942e8"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9abf2b93d6299793cba6b8267646ad34ca67186e139986d3341eb7862e12077a"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "30c8611b1666df556b8586217e58a4faee7545c07fcf1eb77281ebfe8c3f61a5"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "5194d2c635cbbbf37f1d89703e91b190c90c64d0a2c3c263faacbca0ff1e0a74"
+    }
+  }
+}

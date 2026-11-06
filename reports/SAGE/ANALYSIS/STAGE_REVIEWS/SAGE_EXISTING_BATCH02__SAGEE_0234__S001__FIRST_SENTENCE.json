@@ -1,0 +1,490 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0234",
+  "stage_id": "S001",
+  "sample_order": 99,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What year did the \"Badenia\" steam locomotive, built by the founder of the company that manufactured the cars for the Stuttgart funicular railway—a system operated by the same entity as the Stuttgart Stadtbahn and whose cars were manufactured by a firm founded in 1846—begin its experimental service?",
+    "gold": [
+      "1841"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "1841",
+    "adopted_answer": "1841",
+    "outcome": "C",
+    "reason": "原后续通过ME、Kessler、1841及BadenIb试验服役关系提交Gold。",
+    "evidence": [
+      "O_F",
+      "O_SERVICE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，只有题目和冻结工具说明，没有历史候选或搜索材料。Question未出现ME、SSB或Kessler名字。",
+    "evidence_states": "各关系均待找，不能把G给ME当P已知。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 603
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 283
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 299
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 235
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 281
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 180
+      }
+    ],
+    "goal": "解析多跳问题并找出缆车运营者、车辆制造商。",
+    "operations": "起始manufacturerQuery回无关词表，operatorQuery反复三次仍无效；R5去掉修饰以缆车本名搜得Standseilbahn/SSB等，R6前180字符采用SSB/ME。",
+    "product": "SSB同运营及ME制造商变成具体后续线索。",
+    "judgment_change": "由尚未知厂商变为ME，开始可执行创办人查询。",
+    "evidence": [
+      "O_RETRY",
+      "O_ADOPT",
+      "O_RETURN"
+    ]
+  },
+  "original_followup": {
+    "use": "R6据ME查创办人，才获得Kessler与1841，R7Open及R8/9事件查询最终补服务关系。",
+    "evidence": [
+      "O_NEXT",
+      "O_SERVICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "解析关系链，选择证据入口，首次辨认运营者和厂商并推进人物追查。",
+    "state_relation": "四条均重新查并采用SSB/ME；其中r3虽G先给ME仍回来核对。G确实提前提供被删U才得实体，所以初始路线和成本不能作为纯无引导删除效果。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find information about Maschinenfabrik Esslingen, specifically who founded it and when.",
+    "source_position": "原R6[180,281)，I#/anchor_text；20派生Token。",
+    "novelty": "相对只有Question的P，新增ME厂商候选实体及查其创办人的行动方向，隐含该公司是应追查者。没有给Kessler或1841。r3首Call直接采纳ME，另三仍先核缆车关系。",
+    "risk": "ORACLE_ANCHORED；新候选/关系方向泄漏，不能以更少初始查证作为严格可省证据。起始删除还包含整段探索，接近有提示重启，功能跳过未证。",
+    "evidence": [
+      "I_G",
+      "N3_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R8实际依据BadenIb试验服役句整合1841并submit。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_J"
+      ],
+      "work_and_evidence_timeline": "R1重新分解Question，同B001联合发manufacturer与同运营者两Search；第二Query立即得SSB/ME。R2采用后同B002联合发ME1846与Badenia事件两Search；R3–6 OpenKessler50/100/200/500，未覆盖关键内容，R7带1841事件Search得BadenIb，R8submit。批内两Query均先决策，未伪造读第一返回再定第二。",
+      "first_judgment_divergence": "未沿G直接跳过厂商证明，重新拆题；同运营关系成为更有效查询入口。",
+      "first_actual_tool_divergence": "R1原单manufacturer变两Search同批，其中第二立即有效。",
+      "function_correspondence": [
+        {
+          "original_goal": "辨认运营者及制造商",
+          "original_operation": "反复关键词Search到厂商采用",
+          "original_product": "SSB/ME",
+          "new_goal": "同关系辨认",
+          "new_operation": "两Query联合取证后采用",
+          "new_product": "同关系用于MEQuery",
+          "evidence": [
+            "O_ADOPT",
+            "N1_J",
+            "N1_Q"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际证据获取、采用和行动均重新发生，只是更早成功；后续Open多次不是被删功能。",
+      "judgment_action_outcome_chain": "同运营者查询获正确入口→SSB/ME采用→人物年份→小Open反复无增量→直接事件Query闭合→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1584生成80235Prompt8Actor5Search4Open，原2099生成145546Prompt10Actor8Search1Open，记录生成少515、Search少3、Actor少2但Open多3。初始有效检索提前与后续小范围Open增耗相抵，不能仅按净差推断每项必要性。P506/G20。",
+      "counterevidence_and_alternatives": "G先给ME、档位/采样及联合批次均是替代解释；Open四次直接反馈仍无服务句。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R8完整条件与BadenIb服务句，真实提交1841。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1manufacturer+1846回Deffner等不符杂项，未采用为厂商；R2同运营者关系Query得SSB/ME，R3查ME founded1846只得ME关系，R4机车+创办人Query得1841；R5Open50，R6扩到2000全文，R7长条件/事件差别后带年Query得BadenIb，R8submit。",
+      "first_judgment_divergence": "首加1846不成功后转同运营关系，没有把杂项年代相符当身份确认。",
+      "first_actual_tool_divergence": "R1Query加入成立年，R2更换入口即获实际厂商，省原重复operatorQuery。",
+      "function_correspondence": [
+        {
+          "original_goal": "找厂商/运营者",
+          "original_operation": "检索并采用",
+          "original_product": "ME/SSB",
+          "new_goal": "同",
+          "new_operation": "失败后运营关系Query",
+          "new_product": "同链用于人物查证",
+          "evidence": [
+            "O_ADOPT",
+            "N2_J",
+            "N2_Q"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实厂商关系重新取证、采用，非仅G直接替代。",
+      "judgment_action_outcome_chain": "无关返回未定身份→换查询关系→确立厂商→追人物和事件→C，完整链仍发生。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "2013生成68038Prompt8Actor5Search2Open，记录生成少86、Search少3、Actor少2、Open多1。初始搜索缩短，后续长全条件盘点使生成仅微减；不能说所有维度大幅省。",
+      "counterevidence_and_alternatives": "R8把服务句说成也在Kessler上下文，实际句来自BadenIb；来源表述轻微混用但实际证据确已返回。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R5实际有服务句并区分1841上下文，提交。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R1直接按G搜ME founded1846，R2已得创办人但仍回查缆车/同运营关系，R3确认SSB/ME并实际Query拼Emil Kessen而非推理中的Kessler，仍返回Kessler/Baillie；R4带1841事件Query命中BadenIb；R5 3005字符多次整合最终submit。无Open。",
+      "first_judgment_divergence": "G先给公司使创办人检索提前，随后仍补回厂商身份支持，关系核验顺序反转。",
+      "first_actual_tool_divergence": "首Call ME而非缆车Query；R3实际工具拼写Kessen必须与reasoning计划区分。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认厂商及运营关系",
+          "original_operation": "先查缆车后查人",
+          "original_product": "SSB/ME有效线索",
+          "new_goal": "同身份核验",
+          "new_operation": "先借G查厂商成立，再回查缆车",
+          "new_product": "独立返回确认SSB/ME，随后真实用于机车追查",
+          "evidence": [
+            "O_ADOPT",
+            "N3_Q",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "虽实体由G提前，U关系证据与采用实际补回；不能按跳过原先顺序判未重建。",
+      "judgment_action_outcome_chain": "G提供ME→人物链先行→回查确认公司角色→直接事件Query→长整合后C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "1509生成25893Prompt5Actor4Search0Open，比原少590记录生成、4Search1Open5Actor。省原失败重试和Kessler无新增Open，G给对象也是部分缩短来源，不作为严格无泄漏节省。",
+      "counterevidence_and_alternatives": "同4C但这一条受G最直接，不能把独立找到厂商归给新模型；新模型确实后来查证了角色。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R9采用BadenIb服务关系/1841，正式提交。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R1初始一度把厂商误说成运营者但未实际采用该关系，前3Query回无关资料；R4改同运营者Query才得SSB/ME，R5查founder，R6Open全文，R7 3994字符长讨论仍未服务关系后泛Search，R8具体1841Search，R9 2538字符多次完整复盘提交。",
+      "first_judgment_divergence": "初题拆解短暂角色误述后由真实返回纠正，前三次查询仍失败；有效关系入口出现在R4而原R5。",
+      "first_actual_tool_divergence": "首Query加入1846；第三仍manufacturer+operator失败，第四加Stadtbahn才成功。",
+      "function_correspondence": [
+        {
+          "original_goal": "找SSB/ME关系",
+          "original_operation": "多次尝试后采用",
+          "original_product": "有效身份链入口",
+          "new_goal": "同",
+          "new_operation": "三次无关反馈后换同运营关系入口",
+          "new_product": "SSB/ME恢复并用于founderQuery",
+          "evidence": [
+            "O_ADOPT",
+            "N4_J",
+            "N4_Q"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "整个识别和采用功能重执行，未靠G省掉实际检索。",
+      "judgment_action_outcome_chain": "无效查询持续→关系入口更换才得身份→人物/建造→服务缺口长论证后两Search→C而生成增。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2914生成111997Prompt9Actor7Search1Open，记录生成比原多815，Search少1Actor少1Open相同。查询稍少但R7/R9反复全链/建造服务推断增篇幅，不能用Search少推总计算省。",
+      "counterevidence_and_alternatives": "四C但不同成本，早一轮取得厂商未保证更短推理；原U不是唯一影响后续盘点的变量。"
+    }
+  ],
+  "four_run_comparison": "4C4FULL厂商关系工作；r1联合Query更快得入口却多4次小Open，r2换同运营入口并有两Open，r3G实体使顺序反转仍回查角色且零Open，r4失败重试较多并长盘点致生成增加。四C不能区分原功能必要性，四条均重执行而成本依入口与后续篇幅不同。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "未知厂商时，单搜制造商词组反复无关，改用同运营者关系使返回真正产生可用身份，身份才进入人物查询。删除后即使G提前给实体，多数路径仍核查公司角色；节省可来自更早找到有效关系入口而非关系核验消失。后续事件缺口处理和反复整合能抵消搜索减少。",
+      "support_evidence": [
+        "O_RETRY",
+        "O_ADOPT",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "新实体G明显补偿与首次Stage重启，不能做严格删除必要性推断；只记录可观察行动转变。"
+    }
+  ],
+  "counterevidence_and_limits": "完整98508字符视图已逐段读完；相同Return按精确文本引用已读原件。首轮同批工具保持联合决策。原无nativeIDs，整原Response2099为记录总量可比而不宣称原生精确节省。成本不得相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let me try a more direct search for the funicular railway itself."
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The cars were manufactured by Maschinenfabrik Esslingen."
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "Maschinenfabrik Esslingen",
+      "doc_ids": [
+        "wiki25:1960486"
+      ]
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SERVICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/2/snippet",
+      "exact_quote": "then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about Maschinenfabrik Esslingen, specifically who founded it and when."
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Stuttgart Stadtbahn operated by same entity as funicular",
+      "call_id": "chatcmpl-tool-9f9a653a5d8252a8"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The funicular cars were manufactured by Maschinenfabrik Esslingen."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Stuttgart funicular railway operator Stuttgart Stadtbahn",
+      "call_id": "chatcmpl-tool-838248323136fe2e"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The cars were manufactured by Maschinenfabrik Esslingen."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founded 1846",
+      "call_id": "chatcmpl-tool-b92e23972823de8c"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The funicular cars were manufactured by Maschinenfabrik Esslingen."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Stuttgart funicular railway operated by Stuttgart Stadtbahn",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "operated by Stuttgarter Straßenbahnen AG (SSB)"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0234/trajectory.json",
+      "source_sha256": "a25b2fa8fe293960549afd48775dd9ec8b997053ae9fdd769c5da309c323562e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0234.json",
+      "source_sha256": "b3a0858646e452cdd66043a5deb30f7e0852ee701b9555f4561292e4f4cf5eba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "767dc524a843b06c0a44b63fd0a6adf37ee2a69e948487dd25e8151473dae94d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "c1d1d9dde3bfa72983c4bbac228409219de724e265b6de34850d22307f782073"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a3353dfeecf8e30bc61755b43b3c02df6de8794b6a69560f93d810a871bfe0f0"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "fd849617778321951f07ea213735c96ccee68518b1da80922a90e3acca55889f"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "bcd34c7f118d0b02d1541d44c42eff41f0486ba2de75015b086b6401c2cb612b"
+    }
+  }
+}

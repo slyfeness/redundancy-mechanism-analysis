@@ -1,0 +1,1644 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0036｜V1.3.2完整Stage切分
+
+样本序号：2；原件SHA256：`f93eef140f3e1fb14578c06cae83e178bcb314dc7ee00eb5ae53a1ad243f4cb0`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+Which specific German institution sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement, an empire whose opposing commander was defeated by a military leader mentioned in the initial document?
+````
+
+## 完整求解过程
+
+模型将问题拆成萨珊首都的拱顶建筑、德国考察赞助机构，以及“初始文档”中军事人物关联。先做宽泛建筑检索，再凭已有认识将建筑定位为Ctesiphon的Taq-i Kisra，查询德国考察。结果提供Walter Andrae等线索，模型改从考古人员入口查询，得到Herzfeld相关材料；随后指出仍未找到机构，改用institution词检索，第一次取得Ctesiphon片段：1928—29年的German Oriental Society考察，以及1931—32年German State Museums与Metropolitan Museum的联合考察。
+
+模型在下一轮完整复盘条件，采用后一个联合考察中的German State Museums作为答案候选。但没有立即提交，而是open该Ctesiphon文档。实际open仅返回前500字符，未覆盖考察段落；模型明确评价片段不完整，再以机构名查询，重新取得包含赞助机构的片段并明确采用。
+
+它接着实际转向此前未查清的军史关系，将题意解释为萨珊军事领袖击败罗马统帅，查询Shapur，返回Edessa之战和Shapur条目。下一轮将Shapur击败Valerian与建筑考察关系一起盘点，重新接受German State Museums；又执行一次带Taq-i Kisra和1931年的机构确认检索。该次返回多为无关艺术人物、Berlin博物馆和Kühnel资料，没有直接重返完整考察段落。最后模型仍依据早先Ctesiphon片段复盘并提交German State Museums，submit_answer接受后VALID_FINAL结束。
+
+报告保留原模型对“opposing commander”和“initial document”的解释，不替它补造缺失的初始文档，也不将后来Shapur结果视为此前已知。全程实际7次search、1次open、1次submit；没有执行它在最终推理中仅口头说出的另一项核查。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 由萨珊首都建筑描述开展首次定位 | 取得萨珊建筑等背景，未直接确定赞助机构。 | E001 |
+
+| S002 | R2 / 0 / 0 | 采用Taq-i Kisra建筑候选并搜索德国考察 | 返回Walter Andrae及其他相关背景，仍无赞助机构。 | E002 |
+
+| S003 | R3 / 0 / 0 | 沿Walter Andrae考古人员线索追索考察机构 | 确认人物材料涉及Ctesiphon，但赞助机构未解决。 | E003 |
+
+| S004 | R4 / 0 / 935 | 从人员材料转为直接检索机构名称 | 首次取得Ctesiphon考察段：German Oriental Society及German State Museums两批考察。 | E004 |
+
+| S005 | R5 / 0 / 0 | 比较建筑与联合考察材料并接受German State Museums候选 | 已形成明确机构答案判断，军事关联仍说需要核查。 |  |
+
+| S006 | R5 / 0 / 1004 | 打开Ctesiphon原条目核对考察细节 | open只返回前500字符，没有覆盖考察段。 | E005 |
+
+| S007 | R6 / 0 / 45 | 以German State Museums名称重新取得考察关联 | 恢复了包含考察段的直接返回，机构关系获得支持。 | E006 |
+
+| S008 | R7 / 0 / 860 | 转向Shapur与罗马统帅的军事关联核查 | 得到Edessa、Valerian与Shapur相关材料。 | E007 |
+
+| S009 | R8 / 0 / 0 | 将军史关系与建筑考察证据合并作答案判断 | 形成明确机构答案，仍决定再确认考察资料。 |  |
+
+| S010 | R8 / 0 / 1274 | 在接受机构答案后再次检索1931年考察 | 主要返回艺术人物和博物馆资料，未新增完整考察关系直接证明。 | E008 |
+
+| S011 | R9 / 0 / 0 | 依据既有考察与军史材料作最终接受并提交机构名 | VALID_FINAL，MODEL_FINAL_STOP，接受回执true。 | E009 |
+
+## S001｜由萨珊首都建筑描述开展首次定位
+
+拆解题目，查询great vaulted hall与Sasanian capital，完整保留首次返回。
+
+结束状态：取得萨珊建筑等背景，未直接确定赞助机构。
+
+边界判断：轨迹开始；尚未采用具体建筑及考察对象。
+
+内部KEEP与反证：问题理解与第一次建筑入口查询为同一次定位动作，待办中提及军史不标成已经执行。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,566)
+
+SHA256：`005e8ab1009afe7bf180f2dbd4703c6f013dd848664a068ce524cd6cb1a861ab`；原字段SHA256：`005e8ab1009afe7bf180f2dbd4703c6f013dd848664a068ce524cd6cb1a861ab`。
+
+````
+This is a complex multi-hop question that requires me to:
+1. First understand what the "initial document" refers to - I need to search for it
+2. Find a military leader mentioned in that document
+3. Identify the Sasanian capital's primary architectural achievement (the great vaulted hall)
+4. Find which German institution sponsored an expedition to document it
+5. The Sasanian empire had an opposing commander who was defeated by the military leader mentioned
+
+Let me start by searching for information about the Sasanian capital and its architectural achievements.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian capital great vaulted hall architectural achievement"
+  },
+  "id": "chatcmpl-tool-8cd4e9573fd3f732",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Sasanian capital great vaulted hall architectural achievement\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-8cd4e9573fd3f732",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian capital great vaulted hall architectural achievement"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 2.1899192109704018,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2012441",
+        "score": 25.30144211149109,
+        "snippet": "Architecture of the Sassanid Empire Sasanian architecture refers to the Persian architectural style that reached a peak in its development during the Sasanian era. In many ways the Sasanian Empire period (224–651 CE) witnessed the highest achievement of Iranian civilization, and constituted the last great pre-Islamic Persian Empire before the Muslim conquest. Much of Sasanian architecture was adopted by Muslims and became part of Islamic architecture. The Sasanian dynasty, like the Achaemenid Empire, originated in the province of Persis (Fars). They saw themselves as successors to the Achaemenians, after the Hellenistic and Parthian dynasty interlude, and perceived it as their role to restore the greatness of Persia. Origins. In reviving the glories of the Achaemenian past, the Sasanians were no mere imitators. The art of this period reveals an astonishing virility. In certain respects it anticipates features later developed during the Islamic period. The conquest of Persia by Alexander the Great had inaugurated the spread of Hellenistic art into Western Asia; but if the East accepted the outward form of this art, it never really assimilated its spirit. Already in the Parthian period Hellenistic art was being interpreted freely by the peoples of the Near East and throughout the Sasanian period there was a continuing process of reaction against it. Sasanian art revived forms and traditions native to Persia; and in the Islamic period these reached the shores of the Mediterranea",
+        "text_characters": 2898,
+        "title": "Sasanian architecture"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3193811",
+        "score": 17.216225615187994,
+        "snippet": "The squinches have been linked to Sasanian architecture, such as the chahartaq fire-temple of Neyasar. David Marshall Lang argued that the Armenian contribution was in transmitting the \"crude and perishable mud brick prototypes\" as seen in Iran into \"perfectly chiselled, durable and scientifically assembled masonry, which would not crumble away, but would stand the test of time.\" Maranci argued that comparisons between the squinches at Hripsime and in Iran (Sarvistan and Firuzabad) provides only \"a very crude resemblance, and certainly does not offer a direct source.\" She instead suggested that the churches of Cappadocia, namely Kizil Kilise, can provide stronger and more meaningful comparisons with structural and decorative similarities. Type. The tetraconch type of St. Hripsime is shared by a group of churches in Armenia and Georgia. The most important examples are St. Hripsime and Jvari in Mtskheta, which are similar in terms of the core of its design, especially the ground plan, but significant differences in their executions. Antony Eastmond describes their forms as \"sophisticated plays on geometry and spatial volumes that sought to reconcile the circularity of a central dome within a rectilinear ground plan.\" Anatoly Yakobson called the type exemplified by Hripsime and Jvari the \"fully mature and perfected\" form of centrally domed style and \"a major achievement of medieval architecture\". Dickran Kouymjian describes it as \"the most developed central plan and the one cons",
+        "text_characters": 2896,
+        "title": "Saint Hripsime Church"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:12696",
+        "score": 4.742929255136176,
+        "snippet": "---\ntitle: 21 Tombs Around the World\ndate: 2023-07-18\n---\nA tomb, according to Britannica's entry, is \"a home or house for the dead.\" Here are 21 tombs (or sites of many individual tombs) from around the world that show the varied ways that different cultures at different times have housed and honored their dead.\n\nEarlier versions of the descriptions of these tombs first appeared in 1001 Amazing Places You Must See Before You Die, edited by Richard Cavendish (2016). Writers' names appear in parentheses.\n\nTomb of Kazanlak (Kazanlak, Bulgaria)\n\nDating from the 4th century BCE, this ancient tomb is probably that of an important chieftain of the Odrysae—a tribe that occupied the southern part of the ancient Thracian territory in what is now central Bulgaria—and it is located only 5 miles (8 km) from the Thracian capital of Seuthopolis. The site was discovered by chance and was not excavated until 1944. The tomb is a tholos—also known as a beehive tomb because of its resemblance to a traditional tapered dome beehive—and it is likely to have been inspired by the earlier Mycenean tholos tombs on the Greek mainland, of which the so-called Treasury of Atreus at Mycenae itself is the best-known example.\n\nThis Thracian tomb is on a much smaller scale, however, with the main burial chamber only 10.5 feet (3.2 meters) high, compared with the Treasury of Atreus, which reaches 42.6 feet (13 meters) at its highest point. As with the other Thracian tholoi in the area, this well-preserved tomb",
+        "text_characters": 35123,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:49962",
+        "score": 4.171069558312071,
+        "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\n- Minaret and Archaeological Remains of Jam\n\nThe 65m-tall Minaret of Jam is a graceful, soaring structure, dating back to the 12th century. Covered in elaborate brickwork with a blue tile inscription at the top, it is noteworthy for the quality of its architecture and decoration, which represent the culmination of an architectural and artistic tradition in this region. Its impact is heightened by its dramatic setting, a deep river valley between towering mountains in the heart of the Ghur province.\n\n- Cultural Landscape and Archaeological Remains of the Bamiyan Valley\n\nThe cultural landscape and archaeological remains of the Bamiyan Valley represent the artistic and religious developments which from the 1st to the 13th centuries characterized ancient Bakhtria, integrating various cultural influences into the Gandhara school of Buddhist art. The area contains numerous Buddhist monastic ensembles and sanctuaries, as well as fortified edifices from the Islamic period. The site is also testimony to the tragic destruction by the Taliban of the two standing Buddha statues, which shook the world in March 2001.\n\nAlbania\n\n- Natural and Cultural Heritage of the Ohrid region\n\n*\n\n1\n\nA superlative natural phenomenon, Lake Ohrid provides a refuge for numerous endemic species of freshwater fauna and flora dating from the Tertiary period. Situated on the shores of the lake, the town of Ohrid is one of the o",
+        "text_characters": 851727,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:11777",
+        "score": 3.426383496523595,
+        "snippet": "---\ntitle: Art History (ARTH)\ndate: 2020-04-02\n---\nArt History (ARTH)\n\nARTH 0127 The Material Past in a Digital World\n\nThe material remains of the human past -objects and spaces- provide tangible evidence of past people's lives. Today's information technologies improve our ability to document, study, and present these materials. But what does it mean to deal with material evidence in a virtual context? In this class, students will learn basic digital methods for studying the past while working with objects, including those in the collections of the Penn Museum. This class will teach relational database design and 3D object modeling. As we learn about acquiring and managing data, we will gain valuable experience in the evaluation and use of digital tools. The digital humanities are a platform both for learning the basic digital literacy students need to succeed in today's world and for discussing the human consequences of these new technologies and data. We will discuss information technology's impact on the study and presentation of the past, including topics such as public participation in archaeological projects, educational technologies in museum galleries, and the issues raised by digitizing and disseminating historic texts and objects. Finally, we will touch on technology's role in the preservation of the past in today's turbulent world. No prior technical experience is required, but we hope students will share an enthusiasm for the past.\n\nAlso Offered As: ANTH 1303, CLS",
+        "text_characters": 270294,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:1390",
+        "score": 3.0547375380676067,
+        "snippet": "---\ntitle: Assyria - Wikipedia\nauthor: Authority control databases\ndate: 2001-10-04\n---\nconventional_long_name: Assyria\ncommon_name: Assyria\nnative_name: akk x16pxx16pxx16pxx16px\nimage_flag: Ashur symbol Nimrud.png\nflag_border: no\nflag_size: 150\nflag_type: Symbol of Ashur, the ancient Assyrian national deity\nyear_start: 2025 BC\nyear_end: 609 BC\np1: Third Dynasty of Ur\ns1: Neo-Babylonian Empire\ns2: Median Empire\nimage_map: Assyrie general en.jpg\nimage_map_caption: The ancient Assyrian heartland (red) and the Neo-Assyrian Empire in the 7th century BC (orange)\ncapital: * Assur( 2025–1233 BC), * ( 1233–1207 BC), * Assur( 1207–879 BC), * Nimrud(879–706 BC), * Dur-Sharrukin(706–705 BC), * Nineveh(705–612 BC), * Harran(612–609 BC)\nofficial_languages: * Akkadian, * Sumerian, * Aramaic\nreligion: Ancient Mesopotamian religion\ngovernment_type: Monarchy\ntitle_leader: Notable kings\nyear_leader1: 2025 BC\nleader1: Puzur-Ashur I (first)\nyear_leader2: 1974–1935 BC\nleader2: Erishum I\nyear_leader3: 1808–1776 BC\nleader3: Shamshi-Adad I\nyear_leader4: 1700–1691 BC\nleader4: Bel-bani\nyear_leader5: 1363–1328 BC\nleader5: Ashur-uballit I\nyear_leader6: 1243–1207 BC\nleader6: Tukulti-Ninurta I\nyear_leader7: 1114–1076 BC\nleader7: Tiglath-Pileser I\nyear_leader8: 883–859 BC\nleader8: Ashurnasirpal II\nyear_leader9: 745–727 BC\nleader9: Tiglath-Pileser III\nyear_leader10: 705–681 BC\nleader10: Sennacherib\nyear_leader11: 681–669 BC\nleader11: Esarhaddon\nyear_leader12: 669–631 BC\nleader12: Ashurbanipal\nyear_leader13:",
+        "text_characters": 89207,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:49204",
+        "score": 2.4682373016286965,
+        "snippet": "---\ntitle: World Heritage Site\ndate: 2015-01-01\n---\n|\n\nAfghanistan |\n\n|\n\nMinaret of Jam |\n\n|\n\n|\n\n|\n\nThe Minaret and Archaeological Remains of Jam comprise a masterwork of Islamic architecture and decoration.\n\nThe well-preserved minaret and its surrounding remains are the products of the Ghurid civilization, which in the 12th and 13th centuries controlled not only Afghanistan but also parts of eastern Iran, Northern India and parts of Pakistan. The 65-metre-high minaret is built entirely of baked bricks, with intricate brick, stucco and glazed tile decorations such as alternating bands of calligraphy, geometric patterns, and verses from the Qur'an.\n\nCommunity Perspective: this site has been rarely visited in the past. Since the most recent takeover by the Taliban in 2021, tourists have been reaching it again. Wojciech was the first to capture a visit in a review. |\n\n|\n\nBamiyan Valley |\n\n|\n\n|\n\n|\n\nThe Cultural Landscape and Archaeological Remains of the Bamiyan Valley is an outstanding representation of Gandharan Buddhist art and culture in Central Asia.\n\nThe kingdom of Bamiyan was a Buddhist state strategically located on the Silk Road and an important pilgrimage center. The site has eight components, including caves with painted decorations and Buddha statues carved into the cliffs. The cliffs held two standing Buddhas, measuring 55 and 37 meters high respectively, that were the largest examples of standing Buddha carvings in the world. They were deliberately destructed in Mar",
+        "text_characters": 1063038,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:19368",
+        "score": 1.587093711278748,
+        "snippet": "---\ntitle: Hagia Sophia - Wikipedia\nauthor: Authority control databases\ndate: 2002-03-04\n---\nmonument_name: Hagia Sophia\nnative_name: | ||}}\nnative_name_lang: Turkish\nimage_size: 300px\nlocation: Fatih, Istanbul, Turkey\ncoordinates: 41 00 30 28 58 48 type:landmark_region:TR-34 inline, title\ndesigner: Isidore of Miletus, Anthemius of Tralles\ntype: * Eastern Orthodox church (360 AD–1204, 1261–1453), * Roman Catholic church (1204–1261), * Sunni Muslim mosque (1453–1934, 2020–present), * Museum (1935–2020)\nmaterial: Ashlar, Roman brick\nlength: 82 ft\nwidth: 73 ft\nheight: 55 ft\nbegin: 346\ncomplete: 360\ndedicated_to: The Holy Wisdom, a reference to the second person of the Trinity, or Jesus ChristCurta Florin Holt Andrew Great Events in Religion: An Encyclopedia of Pivotal Events in Religious History [3 volumes] 2016 ABC-CLIO 978-1-61069-566-4 299 en Hagia Sophia was consecrated on December 27, 537, five years after construction had begun. The church was dedicated to the Wisdom of God, referring to the Logos (the second entity of the Trinity) or, alternatively, Christ as the Logos incarnate.\nmap_name: Constantinople Fatih\nmap_caption: Location in the Fatih district of Constantinople\nmapframe-wikidata: yes\nrestore: 415, 23 February 532 – 27 February 537, 1847–1849, 2002–2006\ndedicated: 15 February 360\nextra: Historic Areas of Istanbul Cultural: i, ii, iii, iv 356 1985\n\npart_of: Historic Areas of Istanbul\ncriteria: Cultural: i, ii, iii, iv\nid: 356\nyear: 1985\nchild: yes\n\nHagia Sophia (;",
+        "text_characters": 101189,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:31185",
+        "score": 1.116775908995318,
+        "snippet": "---\ntitle: Object of the Day\ndate: 2002-03-01\n---\nJune 6, 2025\n\nTea Table, from the Dining Room of the Hôtel Guimard, Paris, France\n\nHector Guimard animated his designs with abstract clusters of buds, unfurling plant forms, and writhing tendrils as seen on the legs of this tea table. Nature was the primary source of inspiration for Guimard, a French architect and designer, who embraced a new mode of expression that broke from historical styles. Rather than applying ornament as separate decorative elements, he worked like a sculptor, fusing structure and ornament, often creating bold, curving lines that convey movement and energy. In the early 20th century, architects such as Guimard worked in a variety of materials, designing not only entire buildings and architectural ornaments but their interiors and furnishings as well.\n\nJune 5, 2025\n\nVessel with Painted Motifs (olla)\n\nThe repeating spiral and stepped motifs seen here relate to a particular ceramic style produced in northern Arizona and New Mexico called Tularosa black-on-white. The complex composition of the black designs complements the large size of the vessel form. With its rounded body and narrow neck, this vessel is referred to as an olla.\n\nTypically used for storing water and other liquids, ollas have a small opening that prevents evaporation in the desert heat. Ollas were also used for cooking; the thin walls of the vessel allowed for changes in heating temperatures while the shape helped retain moisture in food. W",
+        "text_characters": 676100,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18948",
+        "score": 0.2893738196280313,
+        "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ",
+        "text_characters": 3245458,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-8cd4e9573fd3f732"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2012441", "title": "Sasanian architecture", "score": 25.30144211149109, "snippet": "Architecture of the Sassanid Empire Sasanian architecture refers to the Persian architectural style that reached a peak in its development during the Sasanian era. In many ways the Sasanian Empire period (224–651 CE) witnessed the highest achievement of Iranian civilization, and constituted the last great pre-Islamic Persian Empire before the Muslim conquest. Much of Sasanian architecture was adopted by Muslims and became part of Islamic architecture. The Sasanian dynasty, like the Achaemenid Empire, originated in the province of Persis (Fars). They saw themselves as successors to the Achaemenians, after the Hellenistic and Parthian dynasty interlude, and perceived it as their role to restore the greatness of Persia. Origins. In reviving the glories of the Achaemenian past, the Sasanians were no mere imitators. The art of this period reveals an astonishing virility. In certain respects it anticipates features later developed during the Islamic period. The conquest of Persia by Alexander the Great had inaugurated the spread of Hellenistic art into Western Asia; but if the East accepted the outward form of this art, it never really assimilated its spirit. Already in the Parthian period Hellenistic art was being interpreted freely by the peoples of the Near East and throughout the Sasanian period there was a continuing process of reaction against it. Sasanian art revived forms and traditions native to Persia; and in the Islamic period these reached the shores of the Mediterranea", "text_characters": 2898, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3193811", "title": "Saint Hripsime Church", "score": 17.216225615187994, "snippet": "The squinches have been linked to Sasanian architecture, such as the chahartaq fire-temple of Neyasar. David Marshall Lang argued that the Armenian contribution was in transmitting the \"crude and perishable mud brick prototypes\" as seen in Iran into \"perfectly chiselled, durable and scientifically assembled masonry, which would not crumble away, but would stand the test of time.\" Maranci argued that comparisons between the squinches at Hripsime and in Iran (Sarvistan and Firuzabad) provides only \"a very crude resemblance, and certainly does not offer a direct source.\" She instead suggested that the churches of Cappadocia, namely Kizil Kilise, can provide stronger and more meaningful comparisons with structural and decorative similarities. Type. The tetraconch type of St. Hripsime is shared by a group of churches in Armenia and Georgia. The most important examples are St. Hripsime and Jvari in Mtskheta, which are similar in terms of the core of its design, especially the ground plan, but significant differences in their executions. Antony Eastmond describes their forms as \"sophisticated plays on geometry and spatial volumes that sought to reconcile the circularity of a central dome within a rectilinear ground plan.\" Anatoly Yakobson called the type exemplified by Hripsime and Jvari the \"fully mature and perfected\" form of centrally domed style and \"a major achievement of medieval architecture\". Dickran Kouymjian describes it as \"the most developed central plan and the one cons", "text_characters": 2896, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:12696", "title": "", "score": 4.742929255136176, "snippet": "---\ntitle: 21 Tombs Around the World\ndate: 2023-07-18\n---\nA tomb, according to Britannica's entry, is \"a home or house for the dead.\" Here are 21 tombs (or sites of many individual tombs) from around the world that show the varied ways that different cultures at different times have housed and honored their dead.\n\nEarlier versions of the descriptions of these tombs first appeared in 1001 Amazing Places You Must See Before You Die, edited by Richard Cavendish (2016). Writers' names appear in parentheses.\n\nTomb of Kazanlak (Kazanlak, Bulgaria)\n\nDating from the 4th century BCE, this ancient tomb is probably that of an important chieftain of the Odrysae—a tribe that occupied the southern part of the ancient Thracian territory in what is now central Bulgaria—and it is located only 5 miles (8 km) from the Thracian capital of Seuthopolis. The site was discovered by chance and was not excavated until 1944. The tomb is a tholos—also known as a beehive tomb because of its resemblance to a traditional tapered dome beehive—and it is likely to have been inspired by the earlier Mycenean tholos tombs on the Greek mainland, of which the so-called Treasury of Atreus at Mycenae itself is the best-known example.\n\nThis Thracian tomb is on a much smaller scale, however, with the main burial chamber only 10.5 feet (3.2 meters) high, compared with the Treasury of Atreus, which reaches 42.6 feet (13 meters) at its highest point. As with the other Thracian tholoi in the area, this well-preserved tomb", "text_characters": 35123, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:49962", "title": "", "score": 4.171069558312071, "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\n- Minaret and Archaeological Remains of Jam\n\nThe 65m-tall Minaret of Jam is a graceful, soaring structure, dating back to the 12th century. Covered in elaborate brickwork with a blue tile inscription at the top, it is noteworthy for the quality of its architecture and decoration, which represent the culmination of an architectural and artistic tradition in this region. Its impact is heightened by its dramatic setting, a deep river valley between towering mountains in the heart of the Ghur province.\n\n- Cultural Landscape and Archaeological Remains of the Bamiyan Valley\n\nThe cultural landscape and archaeological remains of the Bamiyan Valley represent the artistic and religious developments which from the 1st to the 13th centuries characterized ancient Bakhtria, integrating various cultural influences into the Gandhara school of Buddhist art. The area contains numerous Buddhist monastic ensembles and sanctuaries, as well as fortified edifices from the Islamic period. The site is also testimony to the tragic destruction by the Taliban of the two standing Buddha statues, which shook the world in March 2001.\n\nAlbania\n\n- Natural and Cultural Heritage of the Ohrid region\n\n*\n\n1\n\nA superlative natural phenomenon, Lake Ohrid provides a refuge for numerous endemic species of freshwater fauna and flora dating from the Tertiary period. Situated on the shores of the lake, the town of Ohrid is one of the o", "text_characters": 851727, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:11777", "title": "", "score": 3.426383496523595, "snippet": "---\ntitle: Art History (ARTH)\ndate: 2020-04-02\n---\nArt History (ARTH)\n\nARTH 0127 The Material Past in a Digital World\n\nThe material remains of the human past -objects and spaces- provide tangible evidence of past people's lives. Today's information technologies improve our ability to document, study, and present these materials. But what does it mean to deal with material evidence in a virtual context? In this class, students will learn basic digital methods for studying the past while working with objects, including those in the collections of the Penn Museum. This class will teach relational database design and 3D object modeling. As we learn about acquiring and managing data, we will gain valuable experience in the evaluation and use of digital tools. The digital humanities are a platform both for learning the basic digital literacy students need to succeed in today's world and for discussing the human consequences of these new technologies and data. We will discuss information technology's impact on the study and presentation of the past, including topics such as public participation in archaeological projects, educational technologies in museum galleries, and the issues raised by digitizing and disseminating historic texts and objects. Finally, we will touch on technology's role in the preservation of the past in today's turbulent world. No prior technical experience is required, but we hope students will share an enthusiasm for the past.\n\nAlso Offered As: ANTH 1303, CLS", "text_characters": 270294, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:1390", "title": "", "score": 3.0547375380676067, "snippet": "---\ntitle: Assyria - Wikipedia\nauthor: Authority control databases\ndate: 2001-10-04\n---\nconventional_long_name: Assyria\ncommon_name: Assyria\nnative_name: akk x16pxx16pxx16pxx16px\nimage_flag: Ashur symbol Nimrud.png\nflag_border: no\nflag_size: 150\nflag_type: Symbol of Ashur, the ancient Assyrian national deity\nyear_start: 2025 BC\nyear_end: 609 BC\np1: Third Dynasty of Ur\ns1: Neo-Babylonian Empire\ns2: Median Empire\nimage_map: Assyrie general en.jpg\nimage_map_caption: The ancient Assyrian heartland (red) and the Neo-Assyrian Empire in the 7th century BC (orange)\ncapital: * Assur( 2025–1233 BC), * ( 1233–1207 BC), * Assur( 1207–879 BC), * Nimrud(879–706 BC), * Dur-Sharrukin(706–705 BC), * Nineveh(705–612 BC), * Harran(612–609 BC)\nofficial_languages: * Akkadian, * Sumerian, * Aramaic\nreligion: Ancient Mesopotamian religion\ngovernment_type: Monarchy\ntitle_leader: Notable kings\nyear_leader1: 2025 BC\nleader1: Puzur-Ashur I (first)\nyear_leader2: 1974–1935 BC\nleader2: Erishum I\nyear_leader3: 1808–1776 BC\nleader3: Shamshi-Adad I\nyear_leader4: 1700–1691 BC\nleader4: Bel-bani\nyear_leader5: 1363–1328 BC\nleader5: Ashur-uballit I\nyear_leader6: 1243–1207 BC\nleader6: Tukulti-Ninurta I\nyear_leader7: 1114–1076 BC\nleader7: Tiglath-Pileser I\nyear_leader8: 883–859 BC\nleader8: Ashurnasirpal II\nyear_leader9: 745–727 BC\nleader9: Tiglath-Pileser III\nyear_leader10: 705–681 BC\nleader10: Sennacherib\nyear_leader11: 681–669 BC\nleader11: Esarhaddon\nyear_leader12: 669–631 BC\nleader12: Ashurbanipal\nyear_leader13:", "text_characters": 89207, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:49204", "title": "", "score": 2.4682373016286965, "snippet": "---\ntitle: World Heritage Site\ndate: 2015-01-01\n---\n|\n\nAfghanistan |\n\n|\n\nMinaret of Jam |\n\n|\n\n|\n\n|\n\nThe Minaret and Archaeological Remains of Jam comprise a masterwork of Islamic architecture and decoration.\n\nThe well-preserved minaret and its surrounding remains are the products of the Ghurid civilization, which in the 12th and 13th centuries controlled not only Afghanistan but also parts of eastern Iran, Northern India and parts of Pakistan. The 65-metre-high minaret is built entirely of baked bricks, with intricate brick, stucco and glazed tile decorations such as alternating bands of calligraphy, geometric patterns, and verses from the Qur'an.\n\nCommunity Perspective: this site has been rarely visited in the past. Since the most recent takeover by the Taliban in 2021, tourists have been reaching it again. Wojciech was the first to capture a visit in a review. |\n\n|\n\nBamiyan Valley |\n\n|\n\n|\n\n|\n\nThe Cultural Landscape and Archaeological Remains of the Bamiyan Valley is an outstanding representation of Gandharan Buddhist art and culture in Central Asia.\n\nThe kingdom of Bamiyan was a Buddhist state strategically located on the Silk Road and an important pilgrimage center. The site has eight components, including caves with painted decorations and Buddha statues carved into the cliffs. The cliffs held two standing Buddhas, measuring 55 and 37 meters high respectively, that were the largest examples of standing Buddha carvings in the world. They were deliberately destructed in Mar", "text_characters": 1063038, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:19368", "title": "", "score": 1.587093711278748, "snippet": "---\ntitle: Hagia Sophia - Wikipedia\nauthor: Authority control databases\ndate: 2002-03-04\n---\nmonument_name: Hagia Sophia\nnative_name: | ||}}\nnative_name_lang: Turkish\nimage_size: 300px\nlocation: Fatih, Istanbul, Turkey\ncoordinates: 41 00 30 28 58 48 type:landmark_region:TR-34 inline, title\ndesigner: Isidore of Miletus, Anthemius of Tralles\ntype: * Eastern Orthodox church (360 AD–1204, 1261–1453), * Roman Catholic church (1204–1261), * Sunni Muslim mosque (1453–1934, 2020–present), * Museum (1935–2020)\nmaterial: Ashlar, Roman brick\nlength: 82 ft\nwidth: 73 ft\nheight: 55 ft\nbegin: 346\ncomplete: 360\ndedicated_to: The Holy Wisdom, a reference to the second person of the Trinity, or Jesus ChristCurta Florin Holt Andrew Great Events in Religion: An Encyclopedia of Pivotal Events in Religious History [3 volumes] 2016 ABC-CLIO 978-1-61069-566-4 299 en Hagia Sophia was consecrated on December 27, 537, five years after construction had begun. The church was dedicated to the Wisdom of God, referring to the Logos (the second entity of the Trinity) or, alternatively, Christ as the Logos incarnate.\nmap_name: Constantinople Fatih\nmap_caption: Location in the Fatih district of Constantinople\nmapframe-wikidata: yes\nrestore: 415, 23 February 532 – 27 February 537, 1847–1849, 2002–2006\ndedicated: 15 February 360\nextra: Historic Areas of Istanbul Cultural: i, ii, iii, iv 356 1985\n\npart_of: Historic Areas of Istanbul\ncriteria: Cultural: i, ii, iii, iv\nid: 356\nyear: 1985\nchild: yes\n\nHagia Sophia (;", "text_characters": 101189, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:31185", "title": "", "score": 1.116775908995318, "snippet": "---\ntitle: Object of the Day\ndate: 2002-03-01\n---\nJune 6, 2025\n\nTea Table, from the Dining Room of the Hôtel Guimard, Paris, France\n\nHector Guimard animated his designs with abstract clusters of buds, unfurling plant forms, and writhing tendrils as seen on the legs of this tea table. Nature was the primary source of inspiration for Guimard, a French architect and designer, who embraced a new mode of expression that broke from historical styles. Rather than applying ornament as separate decorative elements, he worked like a sculptor, fusing structure and ornament, often creating bold, curving lines that convey movement and energy. In the early 20th century, architects such as Guimard worked in a variety of materials, designing not only entire buildings and architectural ornaments but their interiors and furnishings as well.\n\nJune 5, 2025\n\nVessel with Painted Motifs (olla)\n\nThe repeating spiral and stepped motifs seen here relate to a particular ceramic style produced in northern Arizona and New Mexico called Tularosa black-on-white. The complex composition of the black designs complements the large size of the vessel form. With its rounded body and narrow neck, this vessel is referred to as an olla.\n\nTypically used for storing water and other liquids, ollas have a small opening that prevents evaporation in the desert heat. Ollas were also used for cooking; the thin walls of the vessel allowed for changes in heating temperatures while the shape helped retain moisture in food. W", "text_characters": 676100, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18948", "title": "", "score": 0.2893738196280313, "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ", "text_characters": 3245458, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R002_request.json/messages/3/content`；SHA256：`30257099d09e8efb5502f69fa21dd5d07ebef50275b3a2a5d774b516113f4cf7`。
+
+## S002｜采用Taq-i Kisra建筑候选并搜索德国考察
+
+由建筑描述定位Ctesiphon的Taq-i Kisra，实际检索该建筑与German expedition。
+
+结束状态：返回Walter Andrae及其他相关背景，仍无赞助机构。
+
+边界判断：从宽泛建筑入口转为明确建筑及德国考察的取证对象；不是因Round变化切分。
+
+内部KEEP与反证：候选名称只是本次具体查询的选择，没有独立多条件评估，故不把采用建筑再拆为纯判断Stage。
+
+### SPLIT原文
+
+````
+ the Sasanian capital's primary architectural achievement (the great vaulted hall)
+4. Find which German institution sponsored an expedition to document it
+5. The Sasanian empire had an opposing commander who was defeated by the military leader mentioned
+
+Let me start by searching for information about the Sasanian capital and its architectural achievements.
+
+→ 切点 [1, 0, 0] →
+The user is asking about a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement. The question also mentions that the empire's opposing commander was defeated by a military leader mentioned in the initial document.
+
+Let me first search for information about the 
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [0,691)
+
+SHA256：`9ce20be2c4084c8a8ec8e3f121d9baab65a69d8b6a9ea1ccafa79c593c41f281`；原字段SHA256：`9ce20be2c4084c8a8ec8e3f121d9baab65a69d8b6a9ea1ccafa79c593c41f281`。
+
+````
+The user is asking about a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement. The question also mentions that the empire's opposing commander was defeated by a military leader mentioned in the initial document.
+
+Let me first search for information about the Sasanian capital's primary architectural achievement, which is likely the Taq-i Kisra (Great Hall of Ctesiphon). I need to find information about expeditions to document this hall and which German institution sponsored it.
+
+Let me search for more specific information about the Sasanian capital and its architectural achievements.
+
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian capital Ctesiphon Taq-i Kisra German expedition"
+  },
+  "id": "chatcmpl-tool-a8885171cb827869",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Sasanian capital Ctesiphon Taq-i Kisra German expedition\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-a8885171cb827869",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian capital Ctesiphon Taq-i Kisra German expedition"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 6.324969596695155,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2020959",
+        "score": 24.748643782757227,
+        "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns",
+        "text_characters": 2818,
+        "title": "Iwan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1982215",
+        "score": 22.608023525821743,
+        "snippet": "Ardashir's ascension was supported by both the \"Pahlav\", \"Parsig\", and a third major faction named the \"Nimruzi\". However, sometime in 629, the \"Nimruzi\" withdrew their support for the king, and started to conspire with the distinguished Iranian general Shahrbaraz to overthrow him. The \"Pahlav\", under their leader Farrukh Hormizd of the Ispahbudhan clan, began supporting Boran as the new ruler of Iran, who subsequently started minting coins in the \"Pahlav\" areas of Amol, Nishapur, Gurgan and Ray. On 27 April 630, Ardashir III was killed by Shahrbaraz, who in turn was murdered, after a reign of forty days, in a coup by Farrukh Hormizd. Farrukh Hormizd then helped Boran ascend the throne, sometime in late June 630. Her accession was most likely due to her being the only remaining legitimate heir of the empire able to rule, along with Azarmidokht. First reign. Boran was the first queen to rule the Sasanian Empire. However, it was not unusual for royal women to occupy political offices in the management of the country, and many such women before Boran had risen to prominence. A 5th-century Sasanian queen, Denag, had temporarily ruled as regent of the empire from its capital, Ctesiphon, during the dynastic struggle for the throne between her sons Hormizd III (r. 457 – 459) and Peroz I (r. 459 – 484) in 457–459. The German classical scholar Josef Wiesehöfer also highlights the role of noblewomen in Sasanian Iran, stating that \"Iranian records of the third century (inscriptions, rel",
+        "text_characters": 2551,
+        "title": "Boran"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18743",
+        "score": 8.602119338783723,
+        "snippet": "---\ntitle: Elegy for Hatra: The City of the Sun God\nauthor: Judith Weingarten\ndate: 2015-05-21\n---\nI began writing this post after the Islamicists' rampage through the Mosul Museum, but now news reports are coming in that ISIL bulldozers are also on their way to destroy the ancient city of Hatra some 80 km away.*\n\nThe spectacular ruins of Hatra are located in Jazirah (the area between the rivers Euphrates and Tigris) in Iraq, to the southwest of Mosul. To get an idea of the site, have a look at this great video produced by UNESCO.\n\nThe fortress city of Hatra arose in the Jazirah desert where it guarded the two main caravan routes connecting Mesopotamia with Syria and Anatolia. The city was an independent small kingdom (including not only the town but a wide territory around it) on the fringe of the Parthian Empire. By the first century BCE it had grown into a strongly fortified city, one of several such cities which sprung up in the space between Parthia and the Roman Empire. Hatra, Palmyra, Petra and Dura-Europos all made their fortune as trading stops between east and west. These cities were client states of either Rome or Parthia, with Hatra choosing Parthia. The city was ruled by lords, later called kings, who were vassals of the Parthian King of Kings. Inscriptions refer to Hatrene rulers as 'King of Arab' and the territory is named as 'Arab', with the nomadic population that roamed the steppe known as 'Arabs'.\n\nHatra (in Aramaic htr` ) is undoubtedly our best preserved ",
+        "text_characters": 7890,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.7907619206323749,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18948",
+        "score": 0.5995279423471829,
+        "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ",
+        "text_characters": 3245458,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-a8885171cb827869"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2020959", "title": "Iwan", "score": 24.748643782757227, "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns", "text_characters": 2818, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1982215", "title": "Boran", "score": 22.608023525821743, "snippet": "Ardashir's ascension was supported by both the \"Pahlav\", \"Parsig\", and a third major faction named the \"Nimruzi\". However, sometime in 629, the \"Nimruzi\" withdrew their support for the king, and started to conspire with the distinguished Iranian general Shahrbaraz to overthrow him. The \"Pahlav\", under their leader Farrukh Hormizd of the Ispahbudhan clan, began supporting Boran as the new ruler of Iran, who subsequently started minting coins in the \"Pahlav\" areas of Amol, Nishapur, Gurgan and Ray. On 27 April 630, Ardashir III was killed by Shahrbaraz, who in turn was murdered, after a reign of forty days, in a coup by Farrukh Hormizd. Farrukh Hormizd then helped Boran ascend the throne, sometime in late June 630. Her accession was most likely due to her being the only remaining legitimate heir of the empire able to rule, along with Azarmidokht. First reign. Boran was the first queen to rule the Sasanian Empire. However, it was not unusual for royal women to occupy political offices in the management of the country, and many such women before Boran had risen to prominence. A 5th-century Sasanian queen, Denag, had temporarily ruled as regent of the empire from its capital, Ctesiphon, during the dynastic struggle for the throne between her sons Hormizd III (r. 457 – 459) and Peroz I (r. 459 – 484) in 457–459. The German classical scholar Josef Wiesehöfer also highlights the role of noblewomen in Sasanian Iran, stating that \"Iranian records of the third century (inscriptions, rel", "text_characters": 2551, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18743", "title": "", "score": 8.602119338783723, "snippet": "---\ntitle: Elegy for Hatra: The City of the Sun God\nauthor: Judith Weingarten\ndate: 2015-05-21\n---\nI began writing this post after the Islamicists' rampage through the Mosul Museum, but now news reports are coming in that ISIL bulldozers are also on their way to destroy the ancient city of Hatra some 80 km away.*\n\nThe spectacular ruins of Hatra are located in Jazirah (the area between the rivers Euphrates and Tigris) in Iraq, to the southwest of Mosul. To get an idea of the site, have a look at this great video produced by UNESCO.\n\nThe fortress city of Hatra arose in the Jazirah desert where it guarded the two main caravan routes connecting Mesopotamia with Syria and Anatolia. The city was an independent small kingdom (including not only the town but a wide territory around it) on the fringe of the Parthian Empire. By the first century BCE it had grown into a strongly fortified city, one of several such cities which sprung up in the space between Parthia and the Roman Empire. Hatra, Palmyra, Petra and Dura-Europos all made their fortune as trading stops between east and west. These cities were client states of either Rome or Parthia, with Hatra choosing Parthia. The city was ruled by lords, later called kings, who were vassals of the Parthian King of Kings. Inscriptions refer to Hatrene rulers as 'King of Arab' and the territory is named as 'Arab', with the nomadic population that roamed the steppe known as 'Arabs'.\n\nHatra (in Aramaic htr` ) is undoubtedly our best preserved ", "text_characters": 7890, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.7907619206323749, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18948", "title": "", "score": 0.5995279423471829, "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ", "text_characters": 3245458, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R003_request.json/messages/5/content`；SHA256：`1fb63e4966dbddef8e9da35688998b264e3d3c18e1b32c4410aab24605fd938d`。
+
+## S003｜沿Walter Andrae考古人员线索追索考察机构
+
+围绕初始文档及军史背景做有限假设，实际采用Walter Andrae作为新的查询入口；读取Herzfeld等结果后指出仍缺具体机构。
+
+结束状态：确认人物材料涉及Ctesiphon，但赞助机构未解决。
+
+边界判断：上一建筑考察搜索已返回，实际改从具体考古人员入口寻找机构。
+
+内部KEEP与反证：Heraclius与Alexander仅为未核查的简短备选，不作独立候选评估切分；R4关于Walter与Herzfeld的直接结果评价留在此段。
+
+### SPLIT原文
+
+````
+ch for information about the Sasanian capital's primary architectural achievement, which is likely the Taq-i Kisra (Great Hall of Ctesiphon). I need to find information about expeditions to document this hall and which German institution sponsored it.
+
+Let me search for more specific information about the Sasanian capital and its architectural achievements.
+
+→ 切点 [2, 0, 0] →
+The user mentions "the initial document" which likely refers to a document I need to find or that was provided. The question asks about:
+1. A German institution that sponsored an expedition
+2. To document the great vaulted hall of the Sasanian capital's primary architectural achievement
+3. The Sasanian capital's primary architectural achievement is likely th
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R3 `/rounds/2/reasoning_content` [0,1205)
+
+SHA256：`73007bcc1e465d233672cb84dc0a98dad20c2fa85eb24f5a6fbb19fa43702564`；原字段SHA256：`73007bcc1e465d233672cb84dc0a98dad20c2fa85eb24f5a6fbb19fa43702564`。
+
+````
+The user mentions "the initial document" which likely refers to a document I need to find or that was provided. The question asks about:
+1. A German institution that sponsored an expedition
+2. To document the great vaulted hall of the Sasanian capital's primary architectural achievement
+3. The Sasanian capital's primary architectural achievement is likely the Taq-i Kisra (arch of Ctesiphon), which is the great vaulted hall
+4. The empire's opposing commander was defeated by a military leader mentioned in the initial document
+
+Let me search for more specific information about German expeditions to Ctesiphon/Taq-i Kisra and the military leader who defeated the opposing commander of the Sasanian Empire.
+
+The Sasanian Empire's main opponent was the Roman/Byzantine Empire. The great military leader who defeated Sasanian commanders would likely be someone like Heraclius (who defeated Khosrow II) or possibly Alexander the Great (who defeated Darius III).
+
+Let me search for more specific information about German expeditions to Ctesiphon and the Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German expedition Ctesiphon Taq-i Kisra Walter Andrae
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "German expedition Ctesiphon Taq-i Kisra Walter Andrae"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nGerman expedition Ctesiphon Taq-i Kisra Walter Andrae\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "German expedition Ctesiphon Taq-i Kisra Walter Andrae"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 3.4315886637195945,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2302859",
+        "score": 16.84626232416811,
+        "snippet": "German archaeologist Ernst Emil Herzfeld (23 July 1879 – 20 January 1948) was a German archaeologist and Iranologist. Life. Herzfeld was born in Celle, Province of Hanover. He studied architecture in Munich and Berlin, while also taking classes in Assyriology, ancient history and art history. From 1903 to 1905 he was assistant to Walter Andrae in the acclaimed excavations of Assur, and later traveled widely in Iraq and Iran at the beginning of the twentieth century. He surveyed and documented many historical sites in Turkey, Syria, Persia (later Iran) and most importantly in Iraq (e.g. Baghdad, Ctesiphon). At Samarra he carried out the first excavations of an Islamic period site in 1911–13. After military service during World War I he was appointed full professor of \"Landes- und Altertumskunde des Orients\" (approximately: Studies of the Ancient and modern Near East) in Berlin in 1920. This was the first professorship for Near/Middle Eastern archaeology in the world. From 1923 to 1925 he started explorations in Persia and described many of the country's most important ruins for the first time. In 1925 he moved to Tehran and stayed there most of the time until 1934. He was instrumental in creating a Persian law of antiquities and excavated in the Achaemenid capitals Pasargadae and Persepolis. He left Iran at the end of 1934 for a year in London but never returned. In 1935 he was forced to leave his position in Germany because of his Jewish descent and became a faculty member of",
+        "text_characters": 2272,
+        "title": "Ernst Herzfeld"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3369565",
+        "score": 14.775465286726096,
+        "snippet": "\"To a public that knew little of his charming personality and influential labors in the interest of art Mr. Drake was known chiefly as a collector. In that field he was distinctly a creator, for he awakened the perception that objects of common use often enshrine the basic lineaments of beauty.\". Pallbearers at his funeral included Walter Leighton Clark, Charles Dana Gibson and Robert Underwood Johnson, among others. Drake Art Collection. A hint of his collection skills is given in a printed catalog of the Alexander Wilson Drake Collection, which was sold at public auction in 1913. The collection included “…Antique samplers and needlework, fragments of old printed chintz, bandboxes, wallpaper, glass bottles, pottery, china, pewter, engraved pledge glasses, antique silver cups and ladles, an extraordinary collection of old finger rings, silver, enameled and pearl snuff boxes, patch boxes and vinaigrettes, old paintings and prints.” Dr. George Frederick Kunz wrote: “The extensive and remarkable collection of the late Alexander Wilson Drake, which was disposed of by the American Art Galleries of New York, March 10th to 17th, 1913, comprised a fine collection of finger rings, illustrating a large variety of forms and periods. There were in all nearly 800 examples, set and unset. There were betrothal rings, memorials rings, gimmal rings, puzzle rings, rings of Roman, French, German, Italian, Spanish, Russian, Irish Scandinavian, English and American workmanship, and many Oriental ",
+        "text_characters": 2619,
+        "title": "Alexander Wilson Drake"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2020959",
+        "score": 14.189600759509242,
+        "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns",
+        "text_characters": 2818,
+        "title": "Iwan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18743",
+        "score": 7.165505629575939,
+        "snippet": "---\ntitle: Elegy for Hatra: The City of the Sun God\nauthor: Judith Weingarten\ndate: 2015-05-21\n---\nI began writing this post after the Islamicists' rampage through the Mosul Museum, but now news reports are coming in that ISIL bulldozers are also on their way to destroy the ancient city of Hatra some 80 km away.*\n\nThe spectacular ruins of Hatra are located in Jazirah (the area between the rivers Euphrates and Tigris) in Iraq, to the southwest of Mosul. To get an idea of the site, have a look at this great video produced by UNESCO.\n\nThe fortress city of Hatra arose in the Jazirah desert where it guarded the two main caravan routes connecting Mesopotamia with Syria and Anatolia. The city was an independent small kingdom (including not only the town but a wide territory around it) on the fringe of the Parthian Empire. By the first century BCE it had grown into a strongly fortified city, one of several such cities which sprung up in the space between Parthia and the Roman Empire. Hatra, Palmyra, Petra and Dura-Europos all made their fortune as trading stops between east and west. These cities were client states of either Rome or Parthia, with Hatra choosing Parthia. The city was ruled by lords, later called kings, who were vassals of the Parthian King of Kings. Inscriptions refer to Hatrene rulers as 'King of Arab' and the territory is named as 'Arab', with the nomadic population that roamed the steppe known as 'Arabs'.\n\nHatra (in Aramaic htr` ) is undoubtedly our best preserved ",
+        "text_characters": 7890,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:99187",
+        "score": 2.1330312109272525,
+        "snippet": "---\ntitle: Timeline of Christianity - Wikipedia\ndate: 2004-07-22\n---\nThe purpose of this timeline is to give a detailed account of Christianity from the beginning of the current era (AD) to the present. Question marks ('?') on dates indicate approximate dates.\n\nThe year one is the first year in the Christian calendar (there is no year zero), which is the calendar presently used (in unison with the Gregorian calendar) almost everywhere in the world. Traditionally, this was held to be the year Jesus was born; however, most modern scholars argue for an earlier or later date, the most agreed upon being between 6 BC and 4 BC.\n\nBackground historical timeline\n\n*6 AD Herod Archelaus deposed by Augustus; Samaria, Judea and Idumea annexed as Iudaea Province under direct Roman administration, capital at Caesarea. Quirinius became Legate (Governor) of Syria, conducted Census of Quirinius, opposed by ZealotsFlavius Josephus: Antiquities of the Jews - Book XVIII (JA18), earlyjewishwritings.com, accessed 2024-11-13 (, )\n*7–26 Brief period of peace, relatively free of revolt and bloodshed in Judea and GalileeJohn P. Meier's A Marginal Jew, v. 1, ch. 11; also H.H. Ben-Sasson, A History of the Jewish People, Harvard University Press, 1976, , page 251: \"But after the first agitation (which occurred in the wake of the first Roman census) had faded out, we no longer hear of bloodshed in Judea until the days of Pilate.\"\n*9 Pharisee leader Hillel the Elder dies, temporary rise of Shammai\n*14–37 Tib",
+        "text_characters": 97853,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:81610",
+        "score": 1.6867069409963964,
+        "snippet": "---\ntitle: ROME AND ROMANIA,27 BC-1453 AD\ndate: 2007-04-06\n---\n27 BC-1453 AD\n\nByzantine Empires; Princes, Kings, and\n\nTsars of Numidia, Judaea, Bulgaria,\n\nSerbia, Wallachia, & Moldavia;\n\nand the Sulṭāns of Rūm\n\nDie Römer waren ja die Starken und Vornehmen,\n\nwie sie stärker und vornehmer bisher auf Erden nie dagewesen,\n\nselbst niemals geträumt worden sind.The Romans were indeed the strong and noble,\n\njust as those stronger and nobler hitherto on earth never existed,\n\nnever even would have been dreamt.Friedrich Nietzsche, \"The Genealogy of Morals,\" Zur Genealogie der Moral\n\n[1887, Philipp Reclam Verlag, Stuttgart, 1988, p.42; editor's translation]\n\nἩ Ῥωμανία πῶς σοι φαίνεται;\n\nΣτήκει ὡς τὸ ἀπ᾽ ἀρχῆς ἢ ἠλαττώθη;How does Romania look to you?\n\nDoes it stand as from the beginning,\n\nor has it diminished?Doctrina Jacobi nuper baptizati, Διδασκαλία Ἰακώβου νεοβαπτίστου, 634 AD, A.H.M. Jones, The Later Roman Empire, 284-602 [The Johns Hopkins University Press, 1986, p. 316, translation modified], Greek text, \"Doctrina Jacobi Nuper Baptizati,\" Édition et traduction par Vincent Déroche, Travaux et Mémoires, 11 [Collège de France Centre de Recherche d'Histoire et Civilisation de Byzance, De Boccard, Paris, 1991, p.167, see]\n\nNec minore cura Graeca studia secutus est, amorem praestantiamque linguae occasione omni professus. Cuidam barbaro Graece ac Latine disserenti: \"Cum utroque,\" inquit, \"sermone nostro sis paratus\"...\n\n[Claudius] gave no less attention to Greek studies, taking every occ",
+        "text_characters": 1050545,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:93703",
+        "score": 1.5788771317831383,
+        "snippet": "---\ntitle: List of coups and coup attempts by country - Wikipedia\ndate: 2005-11-27\n---\nThis is a list of coups d'état and coup attempts by country, listed in chronological order. A coup is an attempt to illegally overthrow a country's government. Scholars generally consider a coup successful when the usurpers are able to maintain control of the government for at least seven days.Powell, Jonathan M.; Thyne, Clayton L. (1 March 2011). \"Global instances of coups from 1950 to 2010 A new dataset\" (PDF). Journal of Peace Research(Preprint). 48 (2): 249–259. doi:10.1177/0022343310397436. ISSN 0022-3433. S2CID 9066792. Retrieved 20 June 2022. Coups may be undertaken by any elite who is part of the state apparatus. These can include non-civilian members of the military and security services, or civilian members of government.\n\nAbkhazia\n\n# 2014: Abkhazian Revolution\n\nAfghanistan\n\n#February 20, 1919: Nasrullah Khan overthrew Habibullah Khan.\n#February 28, 1919: Amanullah Khan overthrew Nasrullah Khan.\n#January 17, 1929: Habibullah Kalakani overthrew Inayatullah Khan.\n#October 16, 1929: Mohammed Nadir Shah overthew Habibullāh Kalakāni.\n#July 17, 1973: Mohammed Daoud Khan overthrew Mohammed Zahir Shah.\n#December 9, 1976: Qiyam-i Islami (Islamic Uprising) attempted and failed to overthrow Mohammed Daoud Khan.\n#April 30, 1978: Abdul Qadir overthrew Mohammed Daoud Khan.\n#September 16, 1979: Hafizullah Amin overthrew Nur Muhammad Taraki.\n#December 27, 1979: Babrak Karmal overthrew Hafizullah ",
+        "text_characters": 155057,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 1.2948469352814311,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:19869",
+        "score": 1.0445171977134162,
+        "snippet": "---\ntitle: blocknoun1\nauthor: W Caxton\ndate: 2025-01-01\n---\nblocknoun1\n\nMeaning & use\n\n- I.A mass; a unit.\n\n- I.i.A solid or bulky piece of something; a mass.\n\n- I.i.1.a.1323–A log or bulky piece of wood; (formerly also) †part of the trunk of a tree, a stump, a stock (obsolete).Recorded earliest in blockboard n. (a).In later use merged in sense I.i.3a; in the specific sense 'a log of wood' now regional.\n\n- 1323–4\n\nItem in vj. bord. de blokbord. empt.\n\nin F. R. Chapman, Sacrist Rolls of Ely (1907) vol. II. 40 - c1390\n\nWhon crist was knit with corde on a stok, His bodi bledde aȝein þat blok.\n\nin F. J. Furnivall, Minor Poems of Vernon Manuscript (1901) ii. 620 (Middle English Dictionary) - 1481\n\nThey..drewe hym ouer stones and ouer blockes wythout the village.\n\nHistory of Reynard Fox (1970) 27, translation of - 1594\n\n[No] more motion or feeling then is in a blocke or stone.\n\nFrench Academie vol. II. 131, translation of P. de la Primaudaye, - 1663\n\nIn the oxestalle..one parcell of strawe 5s 0d. one parcell of blocks 5s 0d.\n\nin J. S. Moore, Goods & Chattels of Forefathers (1976) 89 - 1705\n\nHe provides himself of a large Block, the which he laid in his Chimney, and when he was Cold, he put just as much Fire under, as he thought would not kindle it.\n\nFugitive 18 - 1830\n\nI looked at the wood fire and thought of the blazing blocks in the hall at Bradenham.\n\nHome Letters x. 84, - 1855\n\nSitting patient on a big block—huge stump of a tree-root.\n\nLetter 10 August in J. A. Froude, Thomas C",
+        "text_characters": 66124,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18948",
+        "score": 0.6536091264665769,
+        "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ",
+        "text_characters": 3245458,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2302859", "title": "Ernst Herzfeld", "score": 16.84626232416811, "snippet": "German archaeologist Ernst Emil Herzfeld (23 July 1879 – 20 January 1948) was a German archaeologist and Iranologist. Life. Herzfeld was born in Celle, Province of Hanover. He studied architecture in Munich and Berlin, while also taking classes in Assyriology, ancient history and art history. From 1903 to 1905 he was assistant to Walter Andrae in the acclaimed excavations of Assur, and later traveled widely in Iraq and Iran at the beginning of the twentieth century. He surveyed and documented many historical sites in Turkey, Syria, Persia (later Iran) and most importantly in Iraq (e.g. Baghdad, Ctesiphon). At Samarra he carried out the first excavations of an Islamic period site in 1911–13. After military service during World War I he was appointed full professor of \"Landes- und Altertumskunde des Orients\" (approximately: Studies of the Ancient and modern Near East) in Berlin in 1920. This was the first professorship for Near/Middle Eastern archaeology in the world. From 1923 to 1925 he started explorations in Persia and described many of the country's most important ruins for the first time. In 1925 he moved to Tehran and stayed there most of the time until 1934. He was instrumental in creating a Persian law of antiquities and excavated in the Achaemenid capitals Pasargadae and Persepolis. He left Iran at the end of 1934 for a year in London but never returned. In 1935 he was forced to leave his position in Germany because of his Jewish descent and became a faculty member of", "text_characters": 2272, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3369565", "title": "Alexander Wilson Drake", "score": 14.775465286726096, "snippet": "\"To a public that knew little of his charming personality and influential labors in the interest of art Mr. Drake was known chiefly as a collector. In that field he was distinctly a creator, for he awakened the perception that objects of common use often enshrine the basic lineaments of beauty.\". Pallbearers at his funeral included Walter Leighton Clark, Charles Dana Gibson and Robert Underwood Johnson, among others. Drake Art Collection. A hint of his collection skills is given in a printed catalog of the Alexander Wilson Drake Collection, which was sold at public auction in 1913. The collection included “…Antique samplers and needlework, fragments of old printed chintz, bandboxes, wallpaper, glass bottles, pottery, china, pewter, engraved pledge glasses, antique silver cups and ladles, an extraordinary collection of old finger rings, silver, enameled and pearl snuff boxes, patch boxes and vinaigrettes, old paintings and prints.” Dr. George Frederick Kunz wrote: “The extensive and remarkable collection of the late Alexander Wilson Drake, which was disposed of by the American Art Galleries of New York, March 10th to 17th, 1913, comprised a fine collection of finger rings, illustrating a large variety of forms and periods. There were in all nearly 800 examples, set and unset. There were betrothal rings, memorials rings, gimmal rings, puzzle rings, rings of Roman, French, German, Italian, Spanish, Russian, Irish Scandinavian, English and American workmanship, and many Oriental ", "text_characters": 2619, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2020959", "title": "Iwan", "score": 14.189600759509242, "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns", "text_characters": 2818, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18743", "title": "", "score": 7.165505629575939, "snippet": "---\ntitle: Elegy for Hatra: The City of the Sun God\nauthor: Judith Weingarten\ndate: 2015-05-21\n---\nI began writing this post after the Islamicists' rampage through the Mosul Museum, but now news reports are coming in that ISIL bulldozers are also on their way to destroy the ancient city of Hatra some 80 km away.*\n\nThe spectacular ruins of Hatra are located in Jazirah (the area between the rivers Euphrates and Tigris) in Iraq, to the southwest of Mosul. To get an idea of the site, have a look at this great video produced by UNESCO.\n\nThe fortress city of Hatra arose in the Jazirah desert where it guarded the two main caravan routes connecting Mesopotamia with Syria and Anatolia. The city was an independent small kingdom (including not only the town but a wide territory around it) on the fringe of the Parthian Empire. By the first century BCE it had grown into a strongly fortified city, one of several such cities which sprung up in the space between Parthia and the Roman Empire. Hatra, Palmyra, Petra and Dura-Europos all made their fortune as trading stops between east and west. These cities were client states of either Rome or Parthia, with Hatra choosing Parthia. The city was ruled by lords, later called kings, who were vassals of the Parthian King of Kings. Inscriptions refer to Hatrene rulers as 'King of Arab' and the territory is named as 'Arab', with the nomadic population that roamed the steppe known as 'Arabs'.\n\nHatra (in Aramaic htr` ) is undoubtedly our best preserved ", "text_characters": 7890, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:99187", "title": "", "score": 2.1330312109272525, "snippet": "---\ntitle: Timeline of Christianity - Wikipedia\ndate: 2004-07-22\n---\nThe purpose of this timeline is to give a detailed account of Christianity from the beginning of the current era (AD) to the present. Question marks ('?') on dates indicate approximate dates.\n\nThe year one is the first year in the Christian calendar (there is no year zero), which is the calendar presently used (in unison with the Gregorian calendar) almost everywhere in the world. Traditionally, this was held to be the year Jesus was born; however, most modern scholars argue for an earlier or later date, the most agreed upon being between 6 BC and 4 BC.\n\nBackground historical timeline\n\n*6 AD Herod Archelaus deposed by Augustus; Samaria, Judea and Idumea annexed as Iudaea Province under direct Roman administration, capital at Caesarea. Quirinius became Legate (Governor) of Syria, conducted Census of Quirinius, opposed by ZealotsFlavius Josephus: Antiquities of the Jews - Book XVIII (JA18), earlyjewishwritings.com, accessed 2024-11-13 (, )\n*7–26 Brief period of peace, relatively free of revolt and bloodshed in Judea and GalileeJohn P. Meier's A Marginal Jew, v. 1, ch. 11; also H.H. Ben-Sasson, A History of the Jewish People, Harvard University Press, 1976, , page 251: \"But after the first agitation (which occurred in the wake of the first Roman census) had faded out, we no longer hear of bloodshed in Judea until the days of Pilate.\"\n*9 Pharisee leader Hillel the Elder dies, temporary rise of Shammai\n*14–37 Tib", "text_characters": 97853, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:81610", "title": "", "score": 1.6867069409963964, "snippet": "---\ntitle: ROME AND ROMANIA,27 BC-1453 AD\ndate: 2007-04-06\n---\n27 BC-1453 AD\n\nByzantine Empires; Princes, Kings, and\n\nTsars of Numidia, Judaea, Bulgaria,\n\nSerbia, Wallachia, & Moldavia;\n\nand the Sulṭāns of Rūm\n\nDie Römer waren ja die Starken und Vornehmen,\n\nwie sie stärker und vornehmer bisher auf Erden nie dagewesen,\n\nselbst niemals geträumt worden sind.The Romans were indeed the strong and noble,\n\njust as those stronger and nobler hitherto on earth never existed,\n\nnever even would have been dreamt.Friedrich Nietzsche, \"The Genealogy of Morals,\" Zur Genealogie der Moral\n\n[1887, Philipp Reclam Verlag, Stuttgart, 1988, p.42; editor's translation]\n\nἩ Ῥωμανία πῶς σοι φαίνεται;\n\nΣτήκει ὡς τὸ ἀπ᾽ ἀρχῆς ἢ ἠλαττώθη;How does Romania look to you?\n\nDoes it stand as from the beginning,\n\nor has it diminished?Doctrina Jacobi nuper baptizati, Διδασκαλία Ἰακώβου νεοβαπτίστου, 634 AD, A.H.M. Jones, The Later Roman Empire, 284-602 [The Johns Hopkins University Press, 1986, p. 316, translation modified], Greek text, \"Doctrina Jacobi Nuper Baptizati,\" Édition et traduction par Vincent Déroche, Travaux et Mémoires, 11 [Collège de France Centre de Recherche d'Histoire et Civilisation de Byzance, De Boccard, Paris, 1991, p.167, see]\n\nNec minore cura Graeca studia secutus est, amorem praestantiamque linguae occasione omni professus. Cuidam barbaro Graece ac Latine disserenti: \"Cum utroque,\" inquit, \"sermone nostro sis paratus\"...\n\n[Claudius] gave no less attention to Greek studies, taking every occ", "text_characters": 1050545, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:93703", "title": "", "score": 1.5788771317831383, "snippet": "---\ntitle: List of coups and coup attempts by country - Wikipedia\ndate: 2005-11-27\n---\nThis is a list of coups d'état and coup attempts by country, listed in chronological order. A coup is an attempt to illegally overthrow a country's government. Scholars generally consider a coup successful when the usurpers are able to maintain control of the government for at least seven days.Powell, Jonathan M.; Thyne, Clayton L. (1 March 2011). \"Global instances of coups from 1950 to 2010 A new dataset\" (PDF). Journal of Peace Research(Preprint). 48 (2): 249–259. doi:10.1177/0022343310397436. ISSN 0022-3433. S2CID 9066792. Retrieved 20 June 2022. Coups may be undertaken by any elite who is part of the state apparatus. These can include non-civilian members of the military and security services, or civilian members of government.\n\nAbkhazia\n\n# 2014: Abkhazian Revolution\n\nAfghanistan\n\n#February 20, 1919: Nasrullah Khan overthrew Habibullah Khan.\n#February 28, 1919: Amanullah Khan overthrew Nasrullah Khan.\n#January 17, 1929: Habibullah Kalakani overthrew Inayatullah Khan.\n#October 16, 1929: Mohammed Nadir Shah overthew Habibullāh Kalakāni.\n#July 17, 1973: Mohammed Daoud Khan overthrew Mohammed Zahir Shah.\n#December 9, 1976: Qiyam-i Islami (Islamic Uprising) attempted and failed to overthrow Mohammed Daoud Khan.\n#April 30, 1978: Abdul Qadir overthrew Mohammed Daoud Khan.\n#September 16, 1979: Hafizullah Amin overthrew Nur Muhammad Taraki.\n#December 27, 1979: Babrak Karmal overthrew Hafizullah ", "text_characters": 155057, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 1.2948469352814311, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:19869", "title": "", "score": 1.0445171977134162, "snippet": "---\ntitle: blocknoun1\nauthor: W Caxton\ndate: 2025-01-01\n---\nblocknoun1\n\nMeaning & use\n\n- I.A mass; a unit.\n\n- I.i.A solid or bulky piece of something; a mass.\n\n- I.i.1.a.1323–A log or bulky piece of wood; (formerly also) †part of the trunk of a tree, a stump, a stock (obsolete).Recorded earliest in blockboard n. (a).In later use merged in sense I.i.3a; in the specific sense 'a log of wood' now regional.\n\n- 1323–4\n\nItem in vj. bord. de blokbord. empt.\n\nin F. R. Chapman, Sacrist Rolls of Ely (1907) vol. II. 40 - c1390\n\nWhon crist was knit with corde on a stok, His bodi bledde aȝein þat blok.\n\nin F. J. Furnivall, Minor Poems of Vernon Manuscript (1901) ii. 620 (Middle English Dictionary) - 1481\n\nThey..drewe hym ouer stones and ouer blockes wythout the village.\n\nHistory of Reynard Fox (1970) 27, translation of - 1594\n\n[No] more motion or feeling then is in a blocke or stone.\n\nFrench Academie vol. II. 131, translation of P. de la Primaudaye, - 1663\n\nIn the oxestalle..one parcell of strawe 5s 0d. one parcell of blocks 5s 0d.\n\nin J. S. Moore, Goods & Chattels of Forefathers (1976) 89 - 1705\n\nHe provides himself of a large Block, the which he laid in his Chimney, and when he was Cold, he put just as much Fire under, as he thought would not kindle it.\n\nFugitive 18 - 1830\n\nI looked at the wood fire and thought of the blazing blocks in the hall at Bradenham.\n\nHome Letters x. 84, - 1855\n\nSitting patient on a big block—huge stump of a tree-root.\n\nLetter 10 August in J. A. Froude, Thomas C", "text_characters": 66124, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18948", "title": "", "score": 0.6536091264665769, "snippet": "---\ntitle: this is a placeholder Datasets: not-lain / wikipedia this is a placeholder this is a placeholder like 4\ndate: 2024-04-16\n---\nid\n\nstringlengths 2\n\n7\n\n| url\n\nstringlengths 31\n\n119\n\n| title\n\nstringlengths 1\n\n69\n\n| text\n\nstringlengths 80\n\n123k\n\n|\n\n|---|---|---|---|\n\n12 |  | Anarchism | Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\n\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several ", "text_characters": 3245458, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R004_request.json/messages/7/content`；SHA256：`7a5ac364d580c6d5ca73a87f63d888cae325e0e15d4d7fb26827f19724b78c34`。
+
+### R4 `/rounds/3/reasoning_content` [0,935)
+
+SHA256：`77b7c9b152b106b3614d5531397e5f6f90379cbfdd650db063905bebe0c8184a`；原字段SHA256：`fb2b3f58417f883a0b37c12435e9105d80709c925db4620242601985052fddc6`。
+
+````
+The user is asking about a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement. The Sasanian capital is Ctesiphon, and its primary architectural achievement is the Taq-i Kisra (Arch of Ctesiphon), which is a great vaulted hall (iwan).
+
+The question also mentions "an empire whose opposing commander was defeated by a military leader mentioned in the initial document." This seems to refer to the Roman Empire (or possibly the Byzantine Empire) opposing the Sasanian Empire, and a military leader who defeated a commander. However, the question is primarily asking about the German institution.
+
+From the search results, I see mentions of German archaeologists like Walter Andrae and Ernst Herzfeld who worked in Ctesiphon and documented Sasanian sites. But I need to find the specific German institution that sponsored an expedition.
+
+
+````
+
+## S004｜从人员材料转为直接检索机构名称
+
+明确人物资料未补足机构缺口后，用institution重新查询考察关系，接收E004。
+
+结束状态：首次取得Ctesiphon考察段：German Oriental Society及German State Museums两批考察。
+
+边界判断：R4前文是上一人员搜索的收尾；新查询明确改为机构入口，起点定位到实际重选搜索的位置。
+
+内部KEEP与反证：这不是纯词数变化：前文已判断人员信息不足，随后更换证据对象为机构关系；E004完整返回不拆。
+
+### SPLIT原文
+
+````
+nd a military leader who defeated a commander. However, the question is primarily asking about the German institution.
+
+From the search results, I see mentions of German archaeologists like Walter Andrae and Ernst Herzfeld who worked in Ctesiphon and documented Sasanian sites. But I need to find the specific German institution that sponsored an expedition.
+
+
+→ 切点 [3, 0, 935] →
+Let me search more specifically for German expeditions to Ctesiphon or Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German expedition Ctesiphon Taq-i Kisra institution
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [935,1157)
+
+SHA256：`915ff19cb8c95a06b0eb2efcb92722cdcc58959f722181f61c609c4c3fc26058`；原字段SHA256：`fb2b3f58417f883a0b37c12435e9105d80709c925db4620242601985052fddc6`。
+
+````
+Let me search more specifically for German expeditions to Ctesiphon or Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German expedition Ctesiphon Taq-i Kisra institution
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "German expedition Ctesiphon Taq-i Kisra institution"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nGerman expedition Ctesiphon Taq-i Kisra institution\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "German expedition Ctesiphon Taq-i Kisra institution"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.6427184231579304,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:161740",
+        "score": 33.65139429119007,
+        "snippet": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab capture of the metropolis. However, a portion of Persians remained there, and some important figures of these people are known to have provided Ali with presents, which he, however, refused to take. In the ninth century, the surviving Manicheans fled and displaced their patriarchate up the Silk Road, in Samarkand. Archaeology. A German Oriental Society expedition led by Oscar Reuther excavated at Ctesiphon in 1928–29 mainly at Qasr bint al-Qadi on the western part of the site. In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel. In the late 1960s and early 1970s, an Italian team from the University of Turin directed by Antonio Invernizzi and Giorgio Gullini worked at the part of the site on the other side of the Tigris, which they identified as Ve",
+        "text_characters": 1684,
+        "title": "Ctesiphon"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2020959",
+        "score": 28.85487147942508,
+        "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns",
+        "text_characters": 2818,
+        "title": "Iwan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9216607",
+        "score": 24.118293111695223,
+        "snippet": "At the time, he was one of the very few people in Iraq who knew how to develop color photographs. He hired an assistant, Halim al-Khatat, who later became a well-known photographer. His department published the magazine, \"New Iraq\", (in five languages: Arabic, Kurdish, English, French and German) which was distributed to foreign diplomatic communities and international organizations operating in Iraq. During this period, al-Ani travelled extensively documenting Iraqi social life and culture, industry, agriculture, workers, machinery and development. This type of work was not only a good fit with al-Ani's own preoccupations, but also fitted with the government’s socialist agenda. Al-Ani explains his motivations: \"It started with the revolution of 1958. This past is being deleted; it has been deleted. I felt there would be no stability. Men were eaten up and newcomers came. Pandora’s box was opened and ignorant people came to rule, who had no culture or understanding of the power they held. Fear was a major motive to document everything as it was. I did all that I could to document, to safeguard that time.\" For his role in chronicling the so-called golden age of Iraq, al-Ani has been labelled as the \"father of Iraqi photography\". In the 1970s, he was appointed the Head of photography at the Iraqi News Agency. This provided further opportunities to document the social and cultural life of Iraq. Throughout his career, he felt compelled to record a way of life that he feared was b",
+        "text_characters": 2600,
+        "title": "Latif al-Ani"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.21840483264716612,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:161740", "title": "Ctesiphon", "score": 33.65139429119007, "snippet": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab capture of the metropolis. However, a portion of Persians remained there, and some important figures of these people are known to have provided Ali with presents, which he, however, refused to take. In the ninth century, the surviving Manicheans fled and displaced their patriarchate up the Silk Road, in Samarkand. Archaeology. A German Oriental Society expedition led by Oscar Reuther excavated at Ctesiphon in 1928–29 mainly at Qasr bint al-Qadi on the western part of the site. In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel. In the late 1960s and early 1970s, an Italian team from the University of Turin directed by Antonio Invernizzi and Giorgio Gullini worked at the part of the site on the other side of the Tigris, which they identified as Ve", "text_characters": 1684, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2020959", "title": "Iwan", "score": 28.85487147942508, "snippet": "What seems to be a palace courtyard had iwans on each side, which remained a common features well into Islamic times. The second iwan building is located across a courtyard, and Walter Andrae, a German archaeologist, suggested that it served as an administrative building rather than as a religious center because there is no evidence of inscriptions or wall carvings. Although the absence of inscriptions or carvings does not equate necessarily to a civic function, it was not uncommon for iwans to serve a secular use, as they were frequently incorporated into palaces and community spaces. Other early sites including Parthian iwans include Hatra, the Parthian ruins at Dura Europos, and Uruk. Sasanian iwans. The Sasanian Empire also favored the iwan form, and adopted it into much of their architecture; however, they transformed the function. The Parthian iwan led to other spaces, but its primary function served as a room itself. In contrast, the Sasanian iwan served as a grand entranceway to a larger, more elegant space which was usually domed. Both the Parthian and Sasanian iwans were often elaborately decorated with inscriptions and sculpted reliefs including scenes of hunting, vegetal motifs, abstract, geometric patterns, and animal scenes. The reliefs’ style shows a blend of influences including other Near Eastern cultures, Roman, and Byzantine decorative traditions. For instance, the rock-cut iwan at Taq-i Bustan features Roman style figures, Eastern-inspired vegetal patterns", "text_characters": 2818, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9216607", "title": "Latif al-Ani", "score": 24.118293111695223, "snippet": "At the time, he was one of the very few people in Iraq who knew how to develop color photographs. He hired an assistant, Halim al-Khatat, who later became a well-known photographer. His department published the magazine, \"New Iraq\", (in five languages: Arabic, Kurdish, English, French and German) which was distributed to foreign diplomatic communities and international organizations operating in Iraq. During this period, al-Ani travelled extensively documenting Iraqi social life and culture, industry, agriculture, workers, machinery and development. This type of work was not only a good fit with al-Ani's own preoccupations, but also fitted with the government’s socialist agenda. Al-Ani explains his motivations: \"It started with the revolution of 1958. This past is being deleted; it has been deleted. I felt there would be no stability. Men were eaten up and newcomers came. Pandora’s box was opened and ignorant people came to rule, who had no culture or understanding of the power they held. Fear was a major motive to document everything as it was. I did all that I could to document, to safeguard that time.\" For his role in chronicling the so-called golden age of Iraq, al-Ani has been labelled as the \"father of Iraqi photography\". In the 1970s, he was appointed the Head of photography at the Iraqi News Agency. This provided further opportunities to document the social and cultural life of Iraq. Throughout his career, he felt compelled to record a way of life that he feared was b", "text_characters": 2600, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.21840483264716612, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R005_request.json/messages/9/content`；SHA256：`33de398fe2f4067ae089e7ff0e8d402c53e53b4d86df419f42e06939d0461553`。
+
+## S005｜比较建筑与联合考察材料并接受German State Museums候选
+
+逐条件盘点建筑、考察、机构，从1931—32年联合考察中采用德国机构作为答案。
+
+结束状态：已形成明确机构答案判断，军事关联仍说需要核查。
+
+边界判断：不只复述单个返回，而是重建问题条件并明确Based on the text接受候选，认知工作独立成立。
+
+内部KEEP与反证：证据列举与机构选择是一次完整比较，保留结论；不因后面继续核验而吞并这次判断。
+
+### SPLIT原文
+
+````
+Let me search more specifically for German expeditions to Ctesiphon or Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German expedition Ctesiphon Taq-i Kisra institution
+</parameter>
+</function>
+</tool_call>
+→ 切点 [4, 0, 0] →
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. Sasanian capital's primary architectural achievement - This is likely the Taq-i Kisra (Great Arch) at Ctesiphon
+2. The empire whose opposing comma
+````
+
+### R5 `/rounds/4/reasoning_content` [0,1004)
+
+SHA256：`193f5181a50aab0261369e0908828bc2834cd31e0ce55b48abd2a62a2cd2019e`；原字段SHA256：`bec09837b1d1a238d78354d4ebca70ae0726d181e8b642ab13d74e4d33cdbc21`。
+
+````
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. Sasanian capital's primary architectural achievement - This is likely the Taq-i Kisra (Great Arch) at Ctesiphon
+2. The empire whose opposing commander was defeated by a military leader mentioned in the initial document
+3. A German institution that sponsored an expedition to document this
+
+From the search results, I can see:
+- The Sasanian capital is Ctesiphon
+- The great vaulted hall is the Taq-i Kisra (great arch)
+- There was a German expedition led by Ernst Kühnel in 1931-1932
+- The expedition was a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art
+
+The question asks for the "specific German institution" that sponsored the expedition. Based on the text, it was the "German State Museums (Staatliche Museen zu Berlin)".
+
+
+````
+
+## S006｜打开Ctesiphon原条目核对考察细节
+
+实际open wiki25:161740，offset=0、limit=500；下一轮直接反馈片段不完整。
+
+结束状态：open只返回前500字符，没有覆盖考察段。
+
+边界判断：上一候选已被接受，这里实际另选open方法重新核实；不是把未执行军史计划算工具。
+
+内部KEEP与反证：R6首句The document snippet provided is incomplete是本次open的失败反馈，必须留在本动作。
+
+### SPLIT原文
+
+````
+ a German expedition led by Ernst Kühnel in 1931-1932
+- The expedition was a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art
+
+The question asks for the "specific German institution" that sponsored the expedition. Based on the text, it was the "German State Museums (Staatliche Museen zu Berlin)".
+
+
+→ 切点 [4, 0, 1004] →
+However, I need to verify this by opening the document to get more details and also check about the "military leader mentioned in the initial document" part.
+
+Let me open the Ctesiphon document to get more details.
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [1004,1219)
+
+SHA256：`0bd458bcdedd7e11122d97e1d7690c1538463e51cd8e953604a61bdfc06f4dc1`；原字段SHA256：`bec09837b1d1a238d78354d4ebca70ae0726d181e8b642ab13d74e4d33cdbc21`。
+
+````
+However, I need to verify this by opening the document to get more details and also check about the "military leader mentioned in the initial document" part.
+
+Let me open the Ctesiphon document to get more details.
+
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:161740",
+    "limit": 500,
+    "offset": 0
+  },
+  "id": "chatcmpl-tool-a5f94dbaa52fd234",
+  "name": "open",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"doc_id\": \"wiki25:161740\", \"limit\": 500, \"offset\": 0}",
+      "name": "open"
+    },
+    "id": "chatcmpl-tool-a5f94dbaa52fd234",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:161740",
+    "limit": 500,
+    "offset": 0
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.0040842997841537,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:161740",
+    "limit": 500,
+    "offset": 0,
+    "text": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab captu",
+    "title": "Ctesiphon",
+    "total_text_characters": 1684
+  },
+  "tool_call_id": "chatcmpl-tool-a5f94dbaa52fd234"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:161740", "title": "Ctesiphon", "offset": 0, "limit": 500, "text": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab captu", "total_text_characters": 1684, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R006_request.json/messages/11/content`；SHA256：`f1931fa0baaa55416c814118a183c42c60b4e4dc71095ebae1e6ea5403cdd496`。
+
+### R6 `/rounds/5/reasoning_content` [0,45)
+
+SHA256：`52889b1170ea1e41bf8df58c92d87690a8bc46f704ae413723d0edea5872f099`；原字段SHA256：`24f77623d648b7924f0f290f895102e3f485cc53b734d6d280a3d56c7956942e`。
+
+````
+The document snippet provided is incomplete. 
+````
+
+## S007｜以German State Museums名称重新取得考察关联
+
+open不足后改回search，查询机构全名与建筑；R7引用返回并明确German State Museums。
+
+结束状态：恢复了包含考察段的直接返回，机构关系获得支持。
+
+边界判断：已评价open失败，改证据入口开展真实新取证，区别于同操作自动翻页。
+
+内部KEEP与反证：R7开头的机构引用是E006直接解释；尚未开始独立军史核查，不因篇幅长或列出引文另切。
+
+### SPLIT原文
+
+````
+The document snippet provided is incomplete. 
+→ 切点 [5, 0, 45] →
+Let me search for more specific information about the German expedition to Ctesiphon and the Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German State Museums Staatliche Museen zu Berlin Ctesiphon Taq-i Kisra expedition
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [45,319)
+
+SHA256：`8702078b1720a4bfacc9e3f63c23117ba1a9d1fc70c791293e01d77f062c85d0`；原字段SHA256：`24f77623d648b7924f0f290f895102e3f485cc53b734d6d280a3d56c7956942e`。
+
+````
+Let me search for more specific information about the German expedition to Ctesiphon and the Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+German State Museums Staatliche Museen zu Berlin Ctesiphon Taq-i Kisra expedition
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "query": "German State Museums Staatliche Museen zu Berlin Ctesiphon Taq-i Kisra expedition"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nGerman State Museums Staatliche Museen zu Berlin Ctesiphon Taq-i Kisra expedition\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "German State Museums Staatliche Museen zu Berlin Ctesiphon Taq-i Kisra expedition"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 1.409459491726011,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:161740",
+        "score": 32.66224321959895,
+        "snippet": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab capture of the metropolis. However, a portion of Persians remained there, and some important figures of these people are known to have provided Ali with presents, which he, however, refused to take. In the ninth century, the surviving Manicheans fled and displaced their patriarchate up the Silk Road, in Samarkand. Archaeology. A German Oriental Society expedition led by Oscar Reuther excavated at Ctesiphon in 1928–29 mainly at Qasr bint al-Qadi on the western part of the site. In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel. In the late 1960s and early 1970s, an Italian team from the University of Turin directed by Antonio Invernizzi and Giorgio Gullini worked at the part of the site on the other side of the Tigris, which they identified as Ve",
+        "text_characters": 1684,
+        "title": "Ctesiphon"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7980714",
+        "score": 20.736932514629135,
+        "snippet": "Museum in Berlin, Germany The Museum of Islamic Art () is located in the Pergamon Museum and is part of the Staatliche Museen zu Berlin. Collection. The museum exhibits diverse works of Islamic art from the 7th century to the 19th century from the area between Spain and India. Excavation activity in Ctesiphon, Samarra and Tabgha, as well as acquisition opportunities, led to Egypt, the Foreign Orient and Iran in particular being important focal points. Other regions are represented by important collection objects or groups, such as the calligraphy and miniature painting from the Mughal Empire or the sicilian ivory works of art. Important objects of the collection. The most notable pieces of the collection, which are kept variously because of their size, historical significance, or popularity with museum visitors, are: In addition to the permanent exhibition, the museum also shows exhibitions of modern art from the Islamic world, in 2008, for example, \"Turkish Delight\" (contemporary Turkish design) and \"Naqsh\" (gender and role models in Iran). In 2009, the museum received on permanent loan a collection of Islamic art from the London collector Edmund de Unger (1918–2011), the so-called \"Keir Collection\", formerly housed in his home in Ham, Surrey. The collection, assembled over more than 50 years, comprises some 1,500 works of art spanning 2,000 years and is one of the largest private collections of Islamic art. More than one hundred exhibits from the Keir Collection were first ",
+        "text_characters": 2722,
+        "title": "Museum of Islamic Art, Berlin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.23580749787790026,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:161740", "title": "Ctesiphon", "score": 32.66224321959895, "snippet": "Several religions were also practiced in the metropolis, which included Christianity, Judaism and Zoroastrianism. In 497, the first Nestorian patriarch Mar Babai I, fixed his see at Seleucia-Ctesiphon, supervising their mission east, with the Merv metropolis as pivot. The population also included Manicheans, a dualist church, who continued to be mentioned in Ctesiphon during Umayyad rule fixing their \"patriarchate of Babylon\" there. Much of the population fled from Ctesiphon after the Arab capture of the metropolis. However, a portion of Persians remained there, and some important figures of these people are known to have provided Ali with presents, which he, however, refused to take. In the ninth century, the surviving Manicheans fled and displaced their patriarchate up the Silk Road, in Samarkand. Archaeology. A German Oriental Society expedition led by Oscar Reuther excavated at Ctesiphon in 1928–29 mainly at Qasr bint al-Qadi on the western part of the site. In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel. In the late 1960s and early 1970s, an Italian team from the University of Turin directed by Antonio Invernizzi and Giorgio Gullini worked at the part of the site on the other side of the Tigris, which they identified as Ve", "text_characters": 1684, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7980714", "title": "Museum of Islamic Art, Berlin", "score": 20.736932514629135, "snippet": "Museum in Berlin, Germany The Museum of Islamic Art () is located in the Pergamon Museum and is part of the Staatliche Museen zu Berlin. Collection. The museum exhibits diverse works of Islamic art from the 7th century to the 19th century from the area between Spain and India. Excavation activity in Ctesiphon, Samarra and Tabgha, as well as acquisition opportunities, led to Egypt, the Foreign Orient and Iran in particular being important focal points. Other regions are represented by important collection objects or groups, such as the calligraphy and miniature painting from the Mughal Empire or the sicilian ivory works of art. Important objects of the collection. The most notable pieces of the collection, which are kept variously because of their size, historical significance, or popularity with museum visitors, are: In addition to the permanent exhibition, the museum also shows exhibitions of modern art from the Islamic world, in 2008, for example, \"Turkish Delight\" (contemporary Turkish design) and \"Naqsh\" (gender and role models in Iran). In 2009, the museum received on permanent loan a collection of Islamic art from the London collector Edmund de Unger (1918–2011), the so-called \"Keir Collection\", formerly housed in his home in Ham, Surrey. The collection, assembled over more than 50 years, comprises some 1,500 works of art spanning 2,000 years and is one of the largest private collections of Islamic art. More than one hundred exhibits from the Keir Collection were first ", "text_characters": 2722, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.23580749787790026, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R007_request.json/messages/13/content`；SHA256：`07a7a0866cbef55fe0c9908459b6b571c211949a16891f8b93a65c1daf6c02e1`。
+
+### R7 `/rounds/6/reasoning_content` [0,860)
+
+SHA256：`0c0c04c8c63252edd875d1018e5051237176c92a3bbe8fab245b3893c8d005f9`；原字段SHA256：`59cc2d3720eb84d01d7c859b4e3445677c5f6f9bc9d3f096921610b7b9e8921f`。
+
+````
+The user is asking about a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement. The Sasanian capital is Ctesiphon, and its primary architectural achievement is the Taq-i Kisra (the Great Arch), which is a great vaulted hall (iwan).
+
+From the search results, I found that in the Ctesiphon article (wiki25:161740), it mentions: "In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel."
+
+The question asks for the "specific German institution". The text mentions "German State Museums (Staatliche Museen zu Berlin)".
+
+
+````
+
+## S008｜转向Shapur与罗马统帅的军事关联核查
+
+解释尚未解决的军事条件，真实查询Shapur击败Roman commander并接收E007。
+
+结束状态：得到Edessa、Valerian与Shapur相关材料。
+
+边界判断：赞助机构已经核对，这里实际处理不同关系条件并发起专门检索。
+
+内部KEEP与反证：该段对题意的推断与军史搜索准备为一次完整工作；保留其原始解释，不纠正或补造初始文档。
+
+### SPLIT原文
+
+````
+aatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel."
+
+The question asks for the "specific German institution". The text mentions "German State Museums (Staatliche Museen zu Berlin)".
+
+
+→ 切点 [6, 0, 860] →
+Now I need to verify the other part of the question: "an empire whose opposing commander was defeated by a military leader mentioned in the initial document". This seems to be a reference to the Roman-Sasanian wars. The Sasanian Empire's opposing commander would be a Roman commander who was defeated by a Sasanian military leader. The "initial document" likel
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R7 `/rounds/6/reasoning_content` [860,1584)
+
+SHA256：`3e586d68b4e75482baf816b1084094db72bfcdff0aa77f64b535433552dd833d`；原字段SHA256：`59cc2d3720eb84d01d7c859b4e3445677c5f6f9bc9d3f096921610b7b9e8921f`。
+
+````
+Now I need to verify the other part of the question: "an empire whose opposing commander was defeated by a military leader mentioned in the initial document". This seems to be a reference to the Roman-Sasanian wars. The Sasanian Empire's opposing commander would be a Roman commander who was defeated by a Sasanian military leader. The "initial document" likely refers to a document that mentions a military leader who defeated a Roman commander.
+
+Let me search for more context about the Sasanian Empire and its military leaders, particularly those who defeated Roman commanders.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sasanian military leader defeated Roman commander Shapur
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian military leader defeated Roman commander Shapur"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSasanian military leader defeated Roman commander Shapur\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sasanian military leader defeated Roman commander Shapur"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 5.7616862477734685,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6956221",
+        "score": 38.97746790096241,
+        "snippet": "Zruanduxt was a Sasanian Princess from Persia who lived in the 4th century. She became queen consort to King Khosrov IV of Armenia. Background. Zruanduxt was the daughter of the Sasanian King Shapur II who reigned from 309 until 379 and was the father of the Sasanian King Shapur III who reigned from 383 until 388 by a mother whose name is unknown. Zruanduxt was born and raised in Ctesiphon, the capital of the Sasanian Empire. Little is known on her life prior to marrying the King Khosrov IV of Armenia. Partition. In 387, from the Sasanian invasions of Armenia, led the Roman emperor Theodosius I and the Sasanian King Shapur III to negotiate into a treaty called the Peace of Acilisene. This led the whole Roman Client Armenian Kingdom to be partitioned into two empires: Western Armenia to be under Roman rule and Eastern Armenia to be under Sasanian rule. Later in 387, the last Roman Client Armenian King Arsaces III (Arshak III) who ruled in Western Armenia died leaving no heir. Western Armenia was annexed and became a province of the Byzantine Empire. Armenians that lived in Western Armenia moved into Eastern Armenia which included many of the Nakharars. The Armenians that lived under Sasanian rule, requested to Shapur III from him an Arsacid King. Shapur III delighted from the request of the Armenians and with their consent appointed the Arsacid prince Khosrov IV as King of Armenia. After the appointment of Khosrov IV, Shapur III put a crown on the head of the youth. Marriage. ",
+        "text_characters": 2672,
+        "title": "Zruanduxt"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2838180",
+        "score": 38.744714134527136,
+        "snippet": "Battle between Sasanian Persians and Romans (252) The Battle of Barbalissos was fought between the Sasanians and Romans at Barbalissos. Shapur I used Roman incursions into Armenia as pretext and resumed hostilities with the Romans. The Sassanids attacked a Roman force of 60,000 strong at Barbalissos and the Roman army was destroyed. The defeat of this large Roman force left the Roman east open to attack and led to the eventual capture of Antioch and Dura Europos three years later. This battle is only known through Shapur I's inscription at Naqsh-e Rostam. Overview. The battle was fought between the Sasanian Persians and Romans at Barbalissos, an old Roman town near Aleppo in modern-day Syria and close to the Euphrates River. The battle was fought in 252 when Shapur I (239-270 AD), King of the Sasanian Empire led his army from the Euphrates River and met with a Roman army 60,000 strong of legionaries, archers, and Roman cavalry. Although the number of forces of the Sasanian army are unclear, through tactics and use of strategy Shapur I managed to win the battle and open a way through the Syrian cities and castles. The defeat was very costly for Valerian who appointed many more armies to stop Shapur I from quick advance into Roman soil and later decided to lead an army of 70,000 legionaries himself in what became known as the Battle of Edessa. References.",
+        "text_characters": 1375,
+        "title": "Battle of Barbalissos"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2805489",
+        "score": 38.27546267848044,
+        "snippet": "He crushed the Central Asian tribes, and annexed the area as a new province. In the east around 325, Shapur II regained the upper hand against the Kushano-Sasanian Kingdom and took control of large territories in areas now known as Afghanistan and Pakistan. Cultural expansion followed this victory, and Sasanian art penetrated Transoxiana, reaching as far as China. Shapur, along with the nomad King Grumbates, started his second campaign against the Romans in 359 and soon succeeded in retaking Singara and Amida. In response the Roman emperor Julian struck deep into Persian territory and defeated Shapur's forces at Ctesiphon. He failed to take the capital, however, and was killed while trying to retreat to Roman territory. His successor Jovian, trapped on the east bank of the Tigris, had to hand over all the provinces the Persians had ceded to Rome in 298, as well as Nisibis and Singara, to secure safe passage for his army out of Persia. From around 370, however, towards the end of the reign of Shapur II, the Sasanians lost the control of Bactria to invaders from the north: first the Kidarites, then the Hephthalites and finally the Alchon Huns, who would follow up with an invasion of India. These invaders initially issued coins based on Sasanian designs. Various coins minted in Bactria and based on Sasanian designs are extant, often with busts imitating Sassanian kings Shapur II (r. 309 to 379) and Shapur III (r. 383 to 388), adding the Alchon Tamgha and the name \"Alchono\" in Ba",
+        "text_characters": 2540,
+        "title": "Sasanian Empire"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2096757",
+        "score": 38.19187505817449,
+        "snippet": "260 Sasanian victory over Rome The Battle of Edessa took place between the armies of the Roman Empire under the command of Emperor Valerian and the Sasanian Empire under Shapur I, in Edessa (now the Turkish city of Urfa) in 260. The Roman army was defeated and captured in its entirety by the Sasanian forces; for the first time, a Roman emperor was taken prisoner. Background and prelude. Prior to the battle, Shapur I had penetrated several times deeply into Roman territory, conquering and plundering Antioch in Syria in 253 or 256. After defeating the usurper Aemilianus and assuming imperial power for himself, Valerian arrived in the eastern provinces as soon as he could (254 or 255) and gradually restored order. Soon he had to confront a naval Gothic invasion in northern Asia Minor. The Goths ravaged Pontus and moved south into Cappadocia. An attempt by Valerian and his army in Antiocheia to intercept them failed because of the plague. While Valerian's army was in that weakened state, Shapur invaded northern Mesopotamia in 260, probably in early spring. Battle. In his sixties, the aged Valerian marched eastward to the Sasanian borders. According to Shapur I's inscription at the Ka'ba-ye Zartosht, Valerian's army comprised men from almost every part of the Roman Empire as well as Germanic allies. The two armies met between Carrhae and Edessa and the Romans were thoroughly defeated, with Valerian being captured alongside the remnant of his forces. According to Roman sources, whi",
+        "text_characters": 2713,
+        "title": "Battle of Edessa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:379850",
+        "score": 38.04736729127178,
+        "snippet": "Sasanian king of kings from 309 to 379 Shapur II ( , 309–379), also known as Shapur the Great, was the tenth King of Kings (Shahanshah) of Sasanian Iran. He took the title at birth and held it until his death at age 70, making him the longest-reigning monarch in Iranian history. He was the son of Hormizd II (r. 302 – 309). His reign saw the military resurgence of the country and the expansion of its territory, which marked the start of the first Sasanian golden era. Thus, along with Shapur I, Kavad I and Khosrow I, he is regarded as one of the most illustrious Sasanian kings. His three direct successors, on the other hand, were less successful. At the age of 16, he launched enormously successful military campaigns against Arab insurrections and tribes, who knew him as \"Dhu'l-Aktaf\" 'he who pierces shoulders'. Shapur II pursued a harsh religious policy. Under his reign, the collection of the Avesta, the sacred texts of Zoroastrianism, was completed, heresy and apostasy were punished, and Christians were persecuted. The latter was a reaction against the Christianization of the Roman Empire by Constantine the Great. Shapur II, like Shapur I, was amicable towards Jews, who lived in relative freedom and gained many advantages in his period (\"see also Rava\"). At the time of Shapur's death, the Sasanian Empire was stronger than ever, with its enemies to the east pacified and Armenia under Sasanian control. Etymology. \"Shapur\" was a popular name in Sasanian Iran, being used by three ",
+        "text_characters": 2293,
+        "title": "Shapur II"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:379840",
+        "score": 37.76761769826689,
+        "snippet": "Ruler of the Sasanian Empire from c. 240 to c. 270 Shapur I (also spelled Shabuhr I; ) was the second Sasanian King of Kings of Iran. The precise dating of his reign is disputed, but it is generally agreed that he ruled from 240 to 270, with his father Ardashir I as co-regent until the death of the latter in 242. During his co-regency, he helped his father with the conquest and destruction of the city of Hatra, whose fall was facilitated, according to Islamic tradition, by the actions of his future wife al-Nadirah. Shapur also consolidated and expanded the empire of Ardashir I, waged war against the Roman Empire, and seized its cities of Nisibis and Carrhae while he was advancing as far as Roman Syria. Although he was defeated at the Battle of Resaena in 243 by Roman emperor Gordian III (r. 238 – 244), he was the following year able to win the Battle of Misiche and force the new Roman emperor Philip the Arab (r. 244 – 249) to sign a favorable peace treaty that was regarded by the Romans as \"a most shameful treaty\". Shapur later took advantage of the political turmoil within the Roman Empire by undertaking a second expedition against it in 252/3–256, sacking the cities of Antioch and Dura-Europos. In 260, during his third campaign, he defeated and captured the Roman emperor, Valerian. He did not seem interested in permanently occupying the Roman provinces, choosing instead to resort to plundering and pillaging, gaining vast amounts of riches. The captives of Antioch, for examp",
+        "text_characters": 2617,
+        "title": "Shapur I"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:379852",
+        "score": 37.64522106136603,
+        "snippet": "The Zoroastrian scripture \"Bundahishn\" also mentions the Arabian campaign of Shapur II: During the rulership of Shapur (II), the son of Hormizd, the Arabs came; they took Khorig Rudbar; for many years with contempt (they) rushed until Shapur came to rulership; he destroyed the Arabs and took the land and destroyed many Arab rulers and pulled out many number of shoulders. With Eastern Arabia more firmly under Sasanian control, and with the establishment of Sasanian garrison troops, the way for Zoroastrianism was opened. Pre-Islamic Arabian poets often makes mention of Zoroastrian practices, which they must have made contact with either in Asoristan or Eastern Arabia. The Lakhmid ruler Imru' al-Qays ibn 'Amr, who was originally a vassal of the Sasanians, may have suffered from Shapur II's raids in Peninsula. He seemingly swore fealty to the Romans, possibly after the incident. War with the Romans. Objectives. Ever since the \"humiliating\" Peace of Nisibis concluded between Shapur's grandfather Narseh and the Roman emperor Diocletian in 298, the borders between the two empires had changed largely in favor of the Romans, who in the treaty received a handful of provinces in Mesopotamia, changing the border from the Euphrates to the Tigris, close to the Sasanian capital of Ctesiphon. The Romans also received control over the kingdoms of Iberia and Armenia, and gained control over parts of upper Media in Iran proper. Shapur's primary objective was thus to nullify the treaty, which he",
+        "text_characters": 2699,
+        "title": "Shapur II"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9092576",
+        "score": 37.63087700469703,
+        "snippet": "Wars between Rome and Persia The Perso-Roman wars of 337–361 were a series of military conflicts fought between the Roman Empire and the Sasanian Empire between 337 and 361. They were a result of long-standing competition between the rival powers over influence in the border kingdoms of Armenia and Iberia, as well as the desire of Shapur II, after his Arab campaign, to revoke the unfavorable terms of the Treaty of Nisibis, which had concluded the previous war between the empires. Though the Romans under Constantius II were defeated in several sanguinary encounters, Shapur was unable to secure a decisive victory. Events. First war: 337–350. In 335, Emperor Constantine sent his son Constantius in preparation for a campaign against the Sasanid Empire. Constantius recruited and drafted new soldiers, implemented training and drills, expanded the cavalry, and stockpiled supplies. These preparations did not go unnoticed by the Sasanids. In 336, Shapur II sent his general Narses to invade Armenia. Narses, however, was later defeated and killed. Following Constantine the Great's death, Shapur besieged Nisibis, which was then regarded as the key to Mesopotamia. After sixty days, no closer to taking Nisibis and with a plague hampering his army, he lifted the siege and returned to Persia. Although he lost at Nisibis, Shapur collected tribute from the Armenian king Khosrov starting in the year 345–6. In 343–4, Constantius met Shapur's forces near Singara or Alaina. The date of this battle",
+        "text_characters": 2665,
+        "title": "Perso-Roman wars of 337–361"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8243165",
+        "score": 37.57791884734773,
+        "snippet": "He relates that Gordian departed from Antioch and was killed in a decisive battle at Misiche in 242/4 on the border of Sasanian-ruled Mesopotamia. Shapur mentions that Misiche was subsequently renamed Misiche-Peroz-Shapur, which translates as \"Misiche-(where)-Shapur-is-victorious\". In relation to Philip the Arab; Shapur mentions that negotiations in 244 resulted in Philip being forced to pay 500,000 \"denarii\" to the Sasanians. In addition, the Romans promised that they would surrender Armenia to Shapur. However, Shapur relates that the Philip the Arab did not keep his promise and tried to reinvade Armenia. As a result, another battle was fought in 252-256 at Barbalissos, against a 60,000-strong Roman army. Shapur was victorious, and he mentions that he captured 36 Roman cities. Shapur also mentions his major victory at the Battle of Edessa, which resulted in Valerian being captured by the Sasanian ruler, \"along with the Praefectus Praetorio, senators, and chiefs of the army\". He furthermore relates that Roman captives were settled in the province of Pars (i.e. Persis). The \"Oxford Dictionary of Late Antiquity\" notes that this particular part of the inscription, where Shapur mentions the capture of Valerian and his deeds in general, is reminiscent of the \"Persian epic tradition\". In the following part of the inscription, Shapur mentions the Zoroastrian sacred fires he established under his rule to honor each member of the royal family. He also mentions detail of \"sacrifices an",
+        "text_characters": 1731,
+        "title": "Shapur I's inscription at the Ka'ba-ye Zartosht"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:379875",
+        "score": 37.37650535516797,
+        "snippet": "Sasanian emperor, 379–383 Ardashir II (), was the Sasanian King of Kings () of Iran from 379 to 383. He was the brother of his predecessor, Shapur II (r. 309 – 379), under whom he had served as vassal king of Adiabene, where he fought alongside his brother against the Romans. Ardashir II was appointed as his brother's successor to rule interimly till the latter's son Shapur III reached adulthood. Ardashir II's short reign was largely uneventful, with the Sasanians unsuccessfully trying to maintain rule over Armenia. Ardashir II was seemingly a strong-willed character, and is known in some sources by the epithet of \"nihoukar\" (\"the beneficent\"). Name. \"Ardashir\" is the Middle Persian form of the Old Persian \"Ṛtaxšira\" (also spelled \"Artaxšaçā\", meaning \"whose reign is through truth\"). The Latin variant of the name is \"\". Three kings of the Achaemenid Empire were known to have the same name. Background. Ardashir was the son of shah Hormizd II (r. 302 – 309), who was killed by the Iranian nobility whilst hunting. He was succeeded by Adur Narseh, who, after a brief reign which only lasted a few months, was also killed by the nobles, who then proceeded to blind the second, and imprison the third (Hormizd, who later managed to escape to the Roman Empire). Ardashir's infant half-brother Shapur II, who was only slightly older than him, was crowned as king by the nobles so that they could gain greater control of the empire, which they were able to do until Shapur II reached his majori",
+        "text_characters": 2450,
+        "title": "Ardashir II"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:6956221", "title": "Zruanduxt", "score": 38.97746790096241, "snippet": "Zruanduxt was a Sasanian Princess from Persia who lived in the 4th century. She became queen consort to King Khosrov IV of Armenia. Background. Zruanduxt was the daughter of the Sasanian King Shapur II who reigned from 309 until 379 and was the father of the Sasanian King Shapur III who reigned from 383 until 388 by a mother whose name is unknown. Zruanduxt was born and raised in Ctesiphon, the capital of the Sasanian Empire. Little is known on her life prior to marrying the King Khosrov IV of Armenia. Partition. In 387, from the Sasanian invasions of Armenia, led the Roman emperor Theodosius I and the Sasanian King Shapur III to negotiate into a treaty called the Peace of Acilisene. This led the whole Roman Client Armenian Kingdom to be partitioned into two empires: Western Armenia to be under Roman rule and Eastern Armenia to be under Sasanian rule. Later in 387, the last Roman Client Armenian King Arsaces III (Arshak III) who ruled in Western Armenia died leaving no heir. Western Armenia was annexed and became a province of the Byzantine Empire. Armenians that lived in Western Armenia moved into Eastern Armenia which included many of the Nakharars. The Armenians that lived under Sasanian rule, requested to Shapur III from him an Arsacid King. Shapur III delighted from the request of the Armenians and with their consent appointed the Arsacid prince Khosrov IV as King of Armenia. After the appointment of Khosrov IV, Shapur III put a crown on the head of the youth. Marriage. ", "text_characters": 2672, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2838180", "title": "Battle of Barbalissos", "score": 38.744714134527136, "snippet": "Battle between Sasanian Persians and Romans (252) The Battle of Barbalissos was fought between the Sasanians and Romans at Barbalissos. Shapur I used Roman incursions into Armenia as pretext and resumed hostilities with the Romans. The Sassanids attacked a Roman force of 60,000 strong at Barbalissos and the Roman army was destroyed. The defeat of this large Roman force left the Roman east open to attack and led to the eventual capture of Antioch and Dura Europos three years later. This battle is only known through Shapur I's inscription at Naqsh-e Rostam. Overview. The battle was fought between the Sasanian Persians and Romans at Barbalissos, an old Roman town near Aleppo in modern-day Syria and close to the Euphrates River. The battle was fought in 252 when Shapur I (239-270 AD), King of the Sasanian Empire led his army from the Euphrates River and met with a Roman army 60,000 strong of legionaries, archers, and Roman cavalry. Although the number of forces of the Sasanian army are unclear, through tactics and use of strategy Shapur I managed to win the battle and open a way through the Syrian cities and castles. The defeat was very costly for Valerian who appointed many more armies to stop Shapur I from quick advance into Roman soil and later decided to lead an army of 70,000 legionaries himself in what became known as the Battle of Edessa. References.", "text_characters": 1375, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2805489", "title": "Sasanian Empire", "score": 38.27546267848044, "snippet": "He crushed the Central Asian tribes, and annexed the area as a new province. In the east around 325, Shapur II regained the upper hand against the Kushano-Sasanian Kingdom and took control of large territories in areas now known as Afghanistan and Pakistan. Cultural expansion followed this victory, and Sasanian art penetrated Transoxiana, reaching as far as China. Shapur, along with the nomad King Grumbates, started his second campaign against the Romans in 359 and soon succeeded in retaking Singara and Amida. In response the Roman emperor Julian struck deep into Persian territory and defeated Shapur's forces at Ctesiphon. He failed to take the capital, however, and was killed while trying to retreat to Roman territory. His successor Jovian, trapped on the east bank of the Tigris, had to hand over all the provinces the Persians had ceded to Rome in 298, as well as Nisibis and Singara, to secure safe passage for his army out of Persia. From around 370, however, towards the end of the reign of Shapur II, the Sasanians lost the control of Bactria to invaders from the north: first the Kidarites, then the Hephthalites and finally the Alchon Huns, who would follow up with an invasion of India. These invaders initially issued coins based on Sasanian designs. Various coins minted in Bactria and based on Sasanian designs are extant, often with busts imitating Sassanian kings Shapur II (r. 309 to 379) and Shapur III (r. 383 to 388), adding the Alchon Tamgha and the name \"Alchono\" in Ba", "text_characters": 2540, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2096757", "title": "Battle of Edessa", "score": 38.19187505817449, "snippet": "260 Sasanian victory over Rome The Battle of Edessa took place between the armies of the Roman Empire under the command of Emperor Valerian and the Sasanian Empire under Shapur I, in Edessa (now the Turkish city of Urfa) in 260. The Roman army was defeated and captured in its entirety by the Sasanian forces; for the first time, a Roman emperor was taken prisoner. Background and prelude. Prior to the battle, Shapur I had penetrated several times deeply into Roman territory, conquering and plundering Antioch in Syria in 253 or 256. After defeating the usurper Aemilianus and assuming imperial power for himself, Valerian arrived in the eastern provinces as soon as he could (254 or 255) and gradually restored order. Soon he had to confront a naval Gothic invasion in northern Asia Minor. The Goths ravaged Pontus and moved south into Cappadocia. An attempt by Valerian and his army in Antiocheia to intercept them failed because of the plague. While Valerian's army was in that weakened state, Shapur invaded northern Mesopotamia in 260, probably in early spring. Battle. In his sixties, the aged Valerian marched eastward to the Sasanian borders. According to Shapur I's inscription at the Ka'ba-ye Zartosht, Valerian's army comprised men from almost every part of the Roman Empire as well as Germanic allies. The two armies met between Carrhae and Edessa and the Romans were thoroughly defeated, with Valerian being captured alongside the remnant of his forces. According to Roman sources, whi", "text_characters": 2713, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:379850", "title": "Shapur II", "score": 38.04736729127178, "snippet": "Sasanian king of kings from 309 to 379 Shapur II ( , 309–379), also known as Shapur the Great, was the tenth King of Kings (Shahanshah) of Sasanian Iran. He took the title at birth and held it until his death at age 70, making him the longest-reigning monarch in Iranian history. He was the son of Hormizd II (r. 302 – 309). His reign saw the military resurgence of the country and the expansion of its territory, which marked the start of the first Sasanian golden era. Thus, along with Shapur I, Kavad I and Khosrow I, he is regarded as one of the most illustrious Sasanian kings. His three direct successors, on the other hand, were less successful. At the age of 16, he launched enormously successful military campaigns against Arab insurrections and tribes, who knew him as \"Dhu'l-Aktaf\" 'he who pierces shoulders'. Shapur II pursued a harsh religious policy. Under his reign, the collection of the Avesta, the sacred texts of Zoroastrianism, was completed, heresy and apostasy were punished, and Christians were persecuted. The latter was a reaction against the Christianization of the Roman Empire by Constantine the Great. Shapur II, like Shapur I, was amicable towards Jews, who lived in relative freedom and gained many advantages in his period (\"see also Rava\"). At the time of Shapur's death, the Sasanian Empire was stronger than ever, with its enemies to the east pacified and Armenia under Sasanian control. Etymology. \"Shapur\" was a popular name in Sasanian Iran, being used by three ", "text_characters": 2293, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:379840", "title": "Shapur I", "score": 37.76761769826689, "snippet": "Ruler of the Sasanian Empire from c. 240 to c. 270 Shapur I (also spelled Shabuhr I; ) was the second Sasanian King of Kings of Iran. The precise dating of his reign is disputed, but it is generally agreed that he ruled from 240 to 270, with his father Ardashir I as co-regent until the death of the latter in 242. During his co-regency, he helped his father with the conquest and destruction of the city of Hatra, whose fall was facilitated, according to Islamic tradition, by the actions of his future wife al-Nadirah. Shapur also consolidated and expanded the empire of Ardashir I, waged war against the Roman Empire, and seized its cities of Nisibis and Carrhae while he was advancing as far as Roman Syria. Although he was defeated at the Battle of Resaena in 243 by Roman emperor Gordian III (r. 238 – 244), he was the following year able to win the Battle of Misiche and force the new Roman emperor Philip the Arab (r. 244 – 249) to sign a favorable peace treaty that was regarded by the Romans as \"a most shameful treaty\". Shapur later took advantage of the political turmoil within the Roman Empire by undertaking a second expedition against it in 252/3–256, sacking the cities of Antioch and Dura-Europos. In 260, during his third campaign, he defeated and captured the Roman emperor, Valerian. He did not seem interested in permanently occupying the Roman provinces, choosing instead to resort to plundering and pillaging, gaining vast amounts of riches. The captives of Antioch, for examp", "text_characters": 2617, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:379852", "title": "Shapur II", "score": 37.64522106136603, "snippet": "The Zoroastrian scripture \"Bundahishn\" also mentions the Arabian campaign of Shapur II: During the rulership of Shapur (II), the son of Hormizd, the Arabs came; they took Khorig Rudbar; for many years with contempt (they) rushed until Shapur came to rulership; he destroyed the Arabs and took the land and destroyed many Arab rulers and pulled out many number of shoulders. With Eastern Arabia more firmly under Sasanian control, and with the establishment of Sasanian garrison troops, the way for Zoroastrianism was opened. Pre-Islamic Arabian poets often makes mention of Zoroastrian practices, which they must have made contact with either in Asoristan or Eastern Arabia. The Lakhmid ruler Imru' al-Qays ibn 'Amr, who was originally a vassal of the Sasanians, may have suffered from Shapur II's raids in Peninsula. He seemingly swore fealty to the Romans, possibly after the incident. War with the Romans. Objectives. Ever since the \"humiliating\" Peace of Nisibis concluded between Shapur's grandfather Narseh and the Roman emperor Diocletian in 298, the borders between the two empires had changed largely in favor of the Romans, who in the treaty received a handful of provinces in Mesopotamia, changing the border from the Euphrates to the Tigris, close to the Sasanian capital of Ctesiphon. The Romans also received control over the kingdoms of Iberia and Armenia, and gained control over parts of upper Media in Iran proper. Shapur's primary objective was thus to nullify the treaty, which he", "text_characters": 2699, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9092576", "title": "Perso-Roman wars of 337–361", "score": 37.63087700469703, "snippet": "Wars between Rome and Persia The Perso-Roman wars of 337–361 were a series of military conflicts fought between the Roman Empire and the Sasanian Empire between 337 and 361. They were a result of long-standing competition between the rival powers over influence in the border kingdoms of Armenia and Iberia, as well as the desire of Shapur II, after his Arab campaign, to revoke the unfavorable terms of the Treaty of Nisibis, which had concluded the previous war between the empires. Though the Romans under Constantius II were defeated in several sanguinary encounters, Shapur was unable to secure a decisive victory. Events. First war: 337–350. In 335, Emperor Constantine sent his son Constantius in preparation for a campaign against the Sasanid Empire. Constantius recruited and drafted new soldiers, implemented training and drills, expanded the cavalry, and stockpiled supplies. These preparations did not go unnoticed by the Sasanids. In 336, Shapur II sent his general Narses to invade Armenia. Narses, however, was later defeated and killed. Following Constantine the Great's death, Shapur besieged Nisibis, which was then regarded as the key to Mesopotamia. After sixty days, no closer to taking Nisibis and with a plague hampering his army, he lifted the siege and returned to Persia. Although he lost at Nisibis, Shapur collected tribute from the Armenian king Khosrov starting in the year 345–6. In 343–4, Constantius met Shapur's forces near Singara or Alaina. The date of this battle", "text_characters": 2665, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8243165", "title": "Shapur I's inscription at the Ka'ba-ye Zartosht", "score": 37.57791884734773, "snippet": "He relates that Gordian departed from Antioch and was killed in a decisive battle at Misiche in 242/4 on the border of Sasanian-ruled Mesopotamia. Shapur mentions that Misiche was subsequently renamed Misiche-Peroz-Shapur, which translates as \"Misiche-(where)-Shapur-is-victorious\". In relation to Philip the Arab; Shapur mentions that negotiations in 244 resulted in Philip being forced to pay 500,000 \"denarii\" to the Sasanians. In addition, the Romans promised that they would surrender Armenia to Shapur. However, Shapur relates that the Philip the Arab did not keep his promise and tried to reinvade Armenia. As a result, another battle was fought in 252-256 at Barbalissos, against a 60,000-strong Roman army. Shapur was victorious, and he mentions that he captured 36 Roman cities. Shapur also mentions his major victory at the Battle of Edessa, which resulted in Valerian being captured by the Sasanian ruler, \"along with the Praefectus Praetorio, senators, and chiefs of the army\". He furthermore relates that Roman captives were settled in the province of Pars (i.e. Persis). The \"Oxford Dictionary of Late Antiquity\" notes that this particular part of the inscription, where Shapur mentions the capture of Valerian and his deeds in general, is reminiscent of the \"Persian epic tradition\". In the following part of the inscription, Shapur mentions the Zoroastrian sacred fires he established under his rule to honor each member of the royal family. He also mentions detail of \"sacrifices an", "text_characters": 1731, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:379875", "title": "Ardashir II", "score": 37.37650535516797, "snippet": "Sasanian emperor, 379–383 Ardashir II (), was the Sasanian King of Kings () of Iran from 379 to 383. He was the brother of his predecessor, Shapur II (r. 309 – 379), under whom he had served as vassal king of Adiabene, where he fought alongside his brother against the Romans. Ardashir II was appointed as his brother's successor to rule interimly till the latter's son Shapur III reached adulthood. Ardashir II's short reign was largely uneventful, with the Sasanians unsuccessfully trying to maintain rule over Armenia. Ardashir II was seemingly a strong-willed character, and is known in some sources by the epithet of \"nihoukar\" (\"the beneficent\"). Name. \"Ardashir\" is the Middle Persian form of the Old Persian \"Ṛtaxšira\" (also spelled \"Artaxšaçā\", meaning \"whose reign is through truth\"). The Latin variant of the name is \"\". Three kings of the Achaemenid Empire were known to have the same name. Background. Ardashir was the son of shah Hormizd II (r. 302 – 309), who was killed by the Iranian nobility whilst hunting. He was succeeded by Adur Narseh, who, after a brief reign which only lasted a few months, was also killed by the nobles, who then proceeded to blind the second, and imprison the third (Hormizd, who later managed to escape to the Roman Empire). Ardashir's infant half-brother Shapur II, who was only slightly older than him, was crowned as king by the nobles so that they could gain greater control of the empire, which they were able to do until Shapur II reached his majori", "text_characters": 2450, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R008_request.json/messages/15/content`；SHA256：`2c2fdd1c31cd5f8213477e3d4a17e17ca5acfce47cfc98f55507829c87d8c0df`。
+
+## S009｜将军史关系与建筑考察证据合并作答案判断
+
+重新比较题目条件，采用Shapur击败Valerian并引用机构考察段，接受German State Museums。
+
+结束状态：形成明确机构答案，仍决定再确认考察资料。
+
+边界判断：E007后展开全题对照并明确So the German institution is，不仅是军史局部反馈。
+
+内部KEEP与反证：军史材料的采用、建筑回顾与机构选择共同构成一次全题评估，不拆成每个条件的小段。
+
+### SPLIT原文
+
+````
+fers to a document that mentions a military leader who defeated a Roman commander.
+
+Let me search for more context about the Sasanian Empire and its military leaders, particularly those who defeated Roman commanders.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sasanian military leader defeated Roman commander Shapur
+</parameter>
+</function>
+</tool_call>
+→ 切点 [7, 0, 0] →
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. "Great vaulted hall of the Sasanian capital's primary architectural achievement" - This refers to the Taq-i Kisra (Arch of Ctesiphon), which is th
+````
+
+### R8 `/rounds/7/reasoning_content` [0,1274)
+
+SHA256：`eed8d0f9590cb1cfb06f62f2911fd1994efcea4d29d5cf8dbb7da24306a3f1cb`；原字段SHA256：`137744df3b541e702e16f914de8d335d41ec40765c5df3162a9da6db0ec69549`。
+
+````
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. "Great vaulted hall of the Sasanian capital's primary architectural achievement" - This refers to the Taq-i Kisra (Arch of Ctesiphon), which is the great vaulted hall (iwan) in Ctesiphon, the capital of the Sasanian Empire.
+2. "An empire whose opposing commander was defeated by a military leader mentioned in the initial document" - The Sasanian Empire's opposing commander would be a Roman emperor defeated by a Sasanian military leader. From the documents, Shapur I defeated Emperor Valerian at the Battle of Edessa (260 AD).
+
+Now I need to find which German institution sponsored an expedition to document the Taq-i Kisra.
+
+From the Ctesiphon document I found:
+"In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel."
+
+So the German institution is the "German State Museums" or "Staatliche Museen zu Berlin".
+
+
+````
+
+## S010｜在接受机构答案后再次检索1931年考察
+
+真实查询Taq-i Kisra、German State Museums、1931，保留E008完整返回。
+
+结束状态：主要返回艺术人物和博物馆资料，未新增完整考察关系直接证明。
+
+边界判断：完整答案判断已收束，随后实际另发确认查询；不能因为候选没变就把本次重新执行抹掉。
+
+内部KEEP与反证：查询选择与全部返回为同一次取证；没有新一轮查询决策，不按每篇文档拆分。
+
+### SPLIT原文
+
+````
+edition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel."
+
+So the German institution is the "German State Museums" or "Staatliche Museen zu Berlin".
+
+
+→ 切点 [7, 0, 1274] →
+Let me verify this by searching for more specific information about the expedition to Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Taq-i Kisra German State Museums expedition 1931
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R8 `/rounds/7/reasoning_content` [1274,1508)
+
+SHA256：`1a40666e9e1c36596b94c92911a64ed2e8957b3e2770422843855416d98df92b`；原字段SHA256：`137744df3b541e702e16f914de8d335d41ec40765c5df3162a9da6db0ec69549`。
+
+````
+Let me verify this by searching for more specific information about the expedition to Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Taq-i Kisra German State Museums expedition 1931
+</parameter>
+</function>
+</tool_call>
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "Taq-i Kisra German State Museums expedition 1931"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nTaq-i Kisra German State Museums expedition 1931\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Taq-i Kisra German State Museums expedition 1931"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 0.6802396299317479,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8860887",
+        "score": 19.782584709510417,
+        "snippet": "German Jewish industrialist and art collector Alfred Hess (19 May 1879 – 24 December 1931) was a German Jewish industrialist and art collector. Career. Hess was a shoe manufacturer in Erfurt, Thuringia. M & L Hess Schuhfabrik had four factories in Erfurt. He was keen on art and German expressionism. His portrait was made into a woodcut by Max Pechstein in 1919 when he was one of the artists who stayed at the Hess house. Hess made donations to local museums and his visitors' books were so lavishly decorated that illustrations were published as a book in 1957. Hess's factory was forcibly Aryanised under the Nazis. A memorial plaque for Alfred Hess has been erected at the Hess villa in Alfred-Hess-Straße, Erfurt; the street was named after him in 1992. Art collection. With his wife Thekla (1884–1968), née Pauson, he had an art collection of around 4,000 works that contained important German Expressionist works. Hess was a philanthropist, donating numerous artworks to museums in Germany. Gifts included the Johannes Driesch (1901 - 1930) drawing, \"Familie und Liebespaar\", and Lionel Feiniger's \"Viadukt\" to the Museum für Kunst und Heimatgeschichte in Enfert, He also loaned artworks to museums, such as \"Landungssteg\" by Lionel Feiniger and \"Tänzerinnen\" by Erich Henkel. These and other gifts and loans he made to museums were later seized by the Nazis, as were works from his private collection. Others were sold to finance the escape and survival of his family Hess' death and the fam",
+        "text_characters": 2450,
+        "title": "Alfred Hess"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7980736",
+        "score": 18.95766938012487,
+        "snippet": "German art historian Ernst Kühnel (1882−1964) was a German art historian who specialized in Islamic art. He was notable for his research on the connection between Islamic and Coptic art, particularly in textiles. Kühnel served as director of the Museum of Islamic Art (part of the Berlin State Museums) from 1931 to 1951, and was a professor at the University of Berlin from 1935 to 1954. He was also a consultant for the Textile Museum in Washington, D.C., and president of Deutsche Orient-Gesellschaft (German Oriental Society). In 1960, Ernst Kühnel became the second person to be awarded the Charles Lang Freer Medal by the Smithsonian Institution. Kühnel died on 12 August 1964, at the age of 81. References.",
+        "text_characters": 713,
+        "title": "Ernst Kühnel"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6816624",
+        "score": 18.67664005248358,
+        "snippet": "Russian painter German Pavlovich Yegoshin () (April 4, 1931, Leningrad — October 2, 2009, Saint Petersburg) was a Russian and Soviet painter and art educator, an Honored Artist of the Russian Federation, who lived and worked in Saint Petersburg (former Leningrad). He was a member of the Leningrad Union of Soviet Artists, and was regarded as one of the representatives of the Leningrad School of Painting. Biography. German Pavlovich Yegoshin was born April 4, 1931, in Leningrad. From 1949 to 1950 he studied in Tavricheskaya Art school, and in 1950 to 1953 in Secondary Art School. From 1953 to 1959 he studied on Department of Paintings of the Repin Institute of Arts, as a pupil of Boris Ioganson. In 1959 he began to participate in art exhibitions. He painted portraits, genre composition, landscapes, and still lifes. In 1961 he was admitted to the Leningrad Union of Soviet Artists. FromIn 1960-1970, Yegoshin taught at the art college and the Vera Mukhina Art Institute. Yegoshin died on October 2, 2009, at age 78. His paintings reside in the Russian Museum, the Tretyakov Gallery, and in art museums and private collections in Russia, Ukraine, Japan, Germany, France, and other countries. References.",
+        "text_characters": 1211,
+        "title": "German Yegoshin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5343175",
+        "score": 18.667425376980482,
+        "snippet": "German maritime painter Patrick von Kalckreuth (1892–1970), born Patrick Dunbar, was a leading German maritime painter. He was the son of a German naval officer. After a brief career as a seaman, he enrolled in the Prussian Academy of Arts in Berlin and studied with the German painter Hugo Schnars-Alquist. Kalckreuth lived in both Düsseldorf and Berlin, but frequently spent summers by the North Sea in Cuxhaven. His works generally feature scenes from the North Sea, both scenes of waves crashing along beaches and ships at sea. Kalckreuth's early works, primarily of ships at sea, are heavily influenced by Schnars-Alquist. Later in his career, he focused more on the sea itself, frequently painting seascapes highlighted by crashing waves and sunsets. After his father's death, his mother remarried Richard von Kalckreuth in 1931. His stepfather adopted Patrick, despite him being aged almost forty, and as a result he changed his last name. Thus, early works of Kalckreuth are signed as Patrick Dunbar, whereas his paintings after 1931 are signed as Patrick von Kalckreuth. Considered a master maritime painter, his paintings are displayed in several museums and galleries in Hamburg and in the North of Germany, including the Historiches Museum in Bremerhaven. Patrick von Kalckreuth died in 1970. References.",
+        "text_characters": 1316,
+        "title": "Patrick von Kalckreuth"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1990196",
+        "score": 17.48867859450155,
+        "snippet": "German archaeologist (1864–1936) Theodor Wiegand (30 October 1864 – 19 December 1936) was a German archaeologist. Wiegand was born in Bendorf, Rhenish Prussia. He studied at the universities of Munich, Berlin, and Freiburg. In 1894 he worked under Wilhelm Dörpfeld at the excavation of the Athenian Acropolis. From 1895 until 1899 he excavated the ancient Greek city of Priene, and from 1899 to 1911 he worked at Miletus. He took part in the excavations of the sanctuary of Didyma (1905–11) and of Samos (1910–11). In Pergamon he discovered, in 1927, the arsenals of the castle at the acropolis and excavated the large sanctuary of Asklepios outside the city. He also finished the excavations at Baalbek in Lebanon and published the results. From 1899 until 1911, he worked for the museums of Berlin as a foreign director in Constantinople, the capital of the Ottoman Empire, and was the science attaché of the German Embassy there. From 1912 to 1930 he worked as the director of the Department of Antiquities in the museums of Berlin, when they built the Pergamon Museum for ancient architecture that houses part of the Antikensammlung collection, along with the Altes Museum. In 1922, Wiegand was accepted as a full member of the Prussian Academy of Sciences. In 1930, the year he retired from the Prussian civil service, he was elected a member of the Göttingen Academy of Sciences. In 1931 he was made a member of the civil order Pour le Mérite for Science and Art and, in 1932, he was elected to",
+        "text_characters": 1964,
+        "title": "Theodor Wiegand"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8450297",
+        "score": 16.893550853306206,
+        "snippet": "Following his return, he created a number of paintings based on his experiences including \"Southern Water and Northern Land\" (\"Nansen hokuba\"), exhibited at the third Teiten in 1921; \"Watching the Tide at Haining\" (\"Kainei kanchō\"), exhibited at the fourth Teiten in 1922; and \"The Fallen Hairpin\" (\"Dakinsaizu\"); exhibited at the second exhibition of the Japan Nanga Institute ( 日本南画院) in 1922. On his return to Japan, Suiun was invited to join the Japan Nanga Institute (Nihon Nangain), a collective founded in Kyoto 1921 by a group of six artists, Mizuta Chikuho (1883–1958), Kōno Shūson (1890–1987), Mitsui Hanzan (1881–1934), Yamada Kaidō (1870–1924), Ikeda Keisen (1863–1931), and Tajika Chikuson (1864–1922). Suiun assumed leadership of the group until disbanding it in 1936 due to internal disagreements. The final annual exhibition of the Japan Nanga Institute was attended by French artist and writer Jean Cocteau (1889–1963). Suiun was selected to travel to Berlin as the main representative of the Japan-German Friendship Special Envoy on the occasion of the German government's exhibition, Contemporary Nihonga (Jp. : Gendai Nihonga Ten, Ger. : Werke Lebender Japanischer Maler), held from January 17 to February 28, 1931, at the Prussian Academy of Arts. He exhibited a diptych, \"Insect Choir\" (\"Kiin nidai\"), now in the collection of the Asian Art Museum, National Museums in Berlin. After his official duties were completed, Suiun traveled to France, Italy, Egypt, Ceylon (Sri Lanka),",
+        "text_characters": 2397,
+        "title": "Komuro Suiun"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4847186",
+        "score": 16.502979412841416,
+        "snippet": "Buildings by Ludwig Mies van der Rohe Haus Lange and Haus Esters are two residential houses designed by Ludwig Mies van der Rohe in Krefeld, Germany, for German industrialists Hermann Lange and Josef Esters. They were built between 1928 and 1930 in the Bauhaus style. The houses have now been converted into museums for Contemporary art. History. Hermann Lange and Josef Esters established in 1920 the \"Vereinigte Seidenwebereien AG\" (United Silk Weaving Mills Company), or Verseidag. Verseidag commissioned at the end of 1930 to Ludwig Mies van der Rohe the realisation of an office and warehouse building in the Verseidag factory buildings in Krefeld. The so-called Verseidag Färberei and HE building were completed in 1931. In 1927, Josef Esters and Hermann Lange commissioned the design of two adjoining houses to the architect Ludwig Mies van der Rohe. The two houses were built between 1928 and 1930 after the ideas from Bauhaus and other Modernists. They are not identical, but very similar in their geometric appearance and the use of backed brick as a building material. Closed on the street side, both have high windows that open onto a landscaped garden. The gardens alternate grassed areas, paths and flowerbeds according to geometric principles that evoke the continuity of interior and exterior spaces. In 1955, the heir of Hermann Lange decided to present his father's collections in the Lange House and organized contemporary art exhibitions before donating them to the city of Krefel",
+        "text_characters": 1831,
+        "title": "Haus Lange and Haus Esters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10281661",
+        "score": 16.490799257698193,
+        "snippet": "The paintings were hung in French museums, and the story remained secret for seventy years until the French researcher Emmanuelle Polack was hired in 2020 by the Louvre to investigate the provenance of its artworks and immediately found ten Nazi-looted paintings in its collections. Claims for restitution. Some artworks from Dorville's collection turned up in the stash of Cornelius Gurlitt, the son of one of Hitler's official art dealers, Hildebrand Gurlitt. On January 22, 2020 in Berlin, in the presence of Monika Grütters, German Minister of Culture, two paintings by the painter Jean-Louis Forain (1852-1931) and one by Constantin Guys (1802-1892) were to be officially returned to Dorville's heirs. In 2021, two private collectors from Nice returned a small painting attributed to de Nittis to Dorville's heirs As of March 2021 French museums still held eighteen artworks from the Dorville collection. Other paintings, including Henri Fantin-Latour's \"Still Life with Roses and Fruit\", acquired at the Hotel de Savoy, Nice auction in 1942, are currently in European or American museums or in private collections. The Louvre restituted to the Dorville family the twelve paintings purchased directly by Huyghes at the 1942 Hotel de Savoy Nice auction. However, according to The Art Newspaper, the official position of the French state is that the Dorville auction was not linked to Nazi persecution of Jews and that there is no reason for restitution: \"\"Once again, French museums are heading t",
+        "text_characters": 2524,
+        "title": "Armand Dorville"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9206604",
+        "score": 16.42935934714593,
+        "snippet": "German zoologist and ichthyologist Otto Schindler (1906–1959) was a German zoologist who specialised in ichthyology. In 1931 he joined the Bavarian State Collection of Zoology (Zoologische Staatssammlung München) as an assistant curator of ichthyology, to work on the specimens collected by the III German Grand Chaco Expedition to East Paraguay. In 1937 he joined the IV expedition to Brazil which lasted 6 months. After the Second World War he was appointed Curator of Ichthyology and restored and ordered the collection of fish which had survived the war. It is known that he visited Stockholm in the 1950s, bringing some specimens from the museums there back to Munich. He also obtained specimens from Vienna as part of his efforts to rebuild the ZSM collection. He returned to South America in 1953-54, travelling to Bolivia with Walter Forster; during this expedition Schindler was appointed to negotiate the fishing quotas on Lake Titicaca with Peru by the Bolivian Ministry of Agriculture; the Peruvian negotiator was another German, Hans Wilhem Koepcke. He collected many specimens from Lake Titicaca and he sampled in the vicinity of Cochabamba and in the Amazon lowlands with the amateur entomologist Rudolf Zischka. During the expeditions he collected the types of \"Aphyocharacidium bolivianum\", \"Oligosarcus schindleri\" and \"Characidium schindleri\". Schindler has the goby genus \"Schindleria\" named after him. He described the type species as \"Hemipramphus praematurus\" and Louis Pierre ",
+        "text_characters": 1584,
+        "title": "Otto Schindler (zoologist)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5790527",
+        "score": 15.726112302127891,
+        "snippet": "Viennese zoologist (1903–1979) Max Beier (6 April 1903 in Spittal an der Drau – 4 July 1979 in Vienna) was an Austrian arachnologist and entomologist. He studied zoology at the University of Vienna, and obtained his doctorate there in 1927. He took up a post at the Natural History Museum in Vienna, in the same year, developing an expertise in pseudoscorpions. He was appointed Director of the zoological department of the Vienna Museum in 1962, and retired in 1968. A list of Beier's 398 scientific papers was published, with an obituary, in \"Annalen des Naturhistorischen Museums in Wien\". 252 were on pseudoscorpions. He described and named over 1200 pseudoscorpion species of which 1180 were still valid in 2007. He was editor of the \"Orthopterorum Catalogus\" and an updated edition of the volume on insects in the \"\". Awards. Beier was awarded the Fabricius Medal in January 1967 of (German entomology society). In July 1968 he was granted an honorary doctorate by the University of Innsbruck. Personal life. Beier and his wife, Irmgard were married in 1931. His death on 4 July 1979 was unexpected. References.",
+        "text_characters": 1117,
+        "title": "Max Beier"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8860887", "title": "Alfred Hess", "score": 19.782584709510417, "snippet": "German Jewish industrialist and art collector Alfred Hess (19 May 1879 – 24 December 1931) was a German Jewish industrialist and art collector. Career. Hess was a shoe manufacturer in Erfurt, Thuringia. M & L Hess Schuhfabrik had four factories in Erfurt. He was keen on art and German expressionism. His portrait was made into a woodcut by Max Pechstein in 1919 when he was one of the artists who stayed at the Hess house. Hess made donations to local museums and his visitors' books were so lavishly decorated that illustrations were published as a book in 1957. Hess's factory was forcibly Aryanised under the Nazis. A memorial plaque for Alfred Hess has been erected at the Hess villa in Alfred-Hess-Straße, Erfurt; the street was named after him in 1992. Art collection. With his wife Thekla (1884–1968), née Pauson, he had an art collection of around 4,000 works that contained important German Expressionist works. Hess was a philanthropist, donating numerous artworks to museums in Germany. Gifts included the Johannes Driesch (1901 - 1930) drawing, \"Familie und Liebespaar\", and Lionel Feiniger's \"Viadukt\" to the Museum für Kunst und Heimatgeschichte in Enfert, He also loaned artworks to museums, such as \"Landungssteg\" by Lionel Feiniger and \"Tänzerinnen\" by Erich Henkel. These and other gifts and loans he made to museums were later seized by the Nazis, as were works from his private collection. Others were sold to finance the escape and survival of his family Hess' death and the fam", "text_characters": 2450, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7980736", "title": "Ernst Kühnel", "score": 18.95766938012487, "snippet": "German art historian Ernst Kühnel (1882−1964) was a German art historian who specialized in Islamic art. He was notable for his research on the connection between Islamic and Coptic art, particularly in textiles. Kühnel served as director of the Museum of Islamic Art (part of the Berlin State Museums) from 1931 to 1951, and was a professor at the University of Berlin from 1935 to 1954. He was also a consultant for the Textile Museum in Washington, D.C., and president of Deutsche Orient-Gesellschaft (German Oriental Society). In 1960, Ernst Kühnel became the second person to be awarded the Charles Lang Freer Medal by the Smithsonian Institution. Kühnel died on 12 August 1964, at the age of 81. References.", "text_characters": 713, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6816624", "title": "German Yegoshin", "score": 18.67664005248358, "snippet": "Russian painter German Pavlovich Yegoshin () (April 4, 1931, Leningrad — October 2, 2009, Saint Petersburg) was a Russian and Soviet painter and art educator, an Honored Artist of the Russian Federation, who lived and worked in Saint Petersburg (former Leningrad). He was a member of the Leningrad Union of Soviet Artists, and was regarded as one of the representatives of the Leningrad School of Painting. Biography. German Pavlovich Yegoshin was born April 4, 1931, in Leningrad. From 1949 to 1950 he studied in Tavricheskaya Art school, and in 1950 to 1953 in Secondary Art School. From 1953 to 1959 he studied on Department of Paintings of the Repin Institute of Arts, as a pupil of Boris Ioganson. In 1959 he began to participate in art exhibitions. He painted portraits, genre composition, landscapes, and still lifes. In 1961 he was admitted to the Leningrad Union of Soviet Artists. FromIn 1960-1970, Yegoshin taught at the art college and the Vera Mukhina Art Institute. Yegoshin died on October 2, 2009, at age 78. His paintings reside in the Russian Museum, the Tretyakov Gallery, and in art museums and private collections in Russia, Ukraine, Japan, Germany, France, and other countries. References.", "text_characters": 1211, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5343175", "title": "Patrick von Kalckreuth", "score": 18.667425376980482, "snippet": "German maritime painter Patrick von Kalckreuth (1892–1970), born Patrick Dunbar, was a leading German maritime painter. He was the son of a German naval officer. After a brief career as a seaman, he enrolled in the Prussian Academy of Arts in Berlin and studied with the German painter Hugo Schnars-Alquist. Kalckreuth lived in both Düsseldorf and Berlin, but frequently spent summers by the North Sea in Cuxhaven. His works generally feature scenes from the North Sea, both scenes of waves crashing along beaches and ships at sea. Kalckreuth's early works, primarily of ships at sea, are heavily influenced by Schnars-Alquist. Later in his career, he focused more on the sea itself, frequently painting seascapes highlighted by crashing waves and sunsets. After his father's death, his mother remarried Richard von Kalckreuth in 1931. His stepfather adopted Patrick, despite him being aged almost forty, and as a result he changed his last name. Thus, early works of Kalckreuth are signed as Patrick Dunbar, whereas his paintings after 1931 are signed as Patrick von Kalckreuth. Considered a master maritime painter, his paintings are displayed in several museums and galleries in Hamburg and in the North of Germany, including the Historiches Museum in Bremerhaven. Patrick von Kalckreuth died in 1970. References.", "text_characters": 1316, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1990196", "title": "Theodor Wiegand", "score": 17.48867859450155, "snippet": "German archaeologist (1864–1936) Theodor Wiegand (30 October 1864 – 19 December 1936) was a German archaeologist. Wiegand was born in Bendorf, Rhenish Prussia. He studied at the universities of Munich, Berlin, and Freiburg. In 1894 he worked under Wilhelm Dörpfeld at the excavation of the Athenian Acropolis. From 1895 until 1899 he excavated the ancient Greek city of Priene, and from 1899 to 1911 he worked at Miletus. He took part in the excavations of the sanctuary of Didyma (1905–11) and of Samos (1910–11). In Pergamon he discovered, in 1927, the arsenals of the castle at the acropolis and excavated the large sanctuary of Asklepios outside the city. He also finished the excavations at Baalbek in Lebanon and published the results. From 1899 until 1911, he worked for the museums of Berlin as a foreign director in Constantinople, the capital of the Ottoman Empire, and was the science attaché of the German Embassy there. From 1912 to 1930 he worked as the director of the Department of Antiquities in the museums of Berlin, when they built the Pergamon Museum for ancient architecture that houses part of the Antikensammlung collection, along with the Altes Museum. In 1922, Wiegand was accepted as a full member of the Prussian Academy of Sciences. In 1930, the year he retired from the Prussian civil service, he was elected a member of the Göttingen Academy of Sciences. In 1931 he was made a member of the civil order Pour le Mérite for Science and Art and, in 1932, he was elected to", "text_characters": 1964, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8450297", "title": "Komuro Suiun", "score": 16.893550853306206, "snippet": "Following his return, he created a number of paintings based on his experiences including \"Southern Water and Northern Land\" (\"Nansen hokuba\"), exhibited at the third Teiten in 1921; \"Watching the Tide at Haining\" (\"Kainei kanchō\"), exhibited at the fourth Teiten in 1922; and \"The Fallen Hairpin\" (\"Dakinsaizu\"); exhibited at the second exhibition of the Japan Nanga Institute ( 日本南画院) in 1922. On his return to Japan, Suiun was invited to join the Japan Nanga Institute (Nihon Nangain), a collective founded in Kyoto 1921 by a group of six artists, Mizuta Chikuho (1883–1958), Kōno Shūson (1890–1987), Mitsui Hanzan (1881–1934), Yamada Kaidō (1870–1924), Ikeda Keisen (1863–1931), and Tajika Chikuson (1864–1922). Suiun assumed leadership of the group until disbanding it in 1936 due to internal disagreements. The final annual exhibition of the Japan Nanga Institute was attended by French artist and writer Jean Cocteau (1889–1963). Suiun was selected to travel to Berlin as the main representative of the Japan-German Friendship Special Envoy on the occasion of the German government's exhibition, Contemporary Nihonga (Jp. : Gendai Nihonga Ten, Ger. : Werke Lebender Japanischer Maler), held from January 17 to February 28, 1931, at the Prussian Academy of Arts. He exhibited a diptych, \"Insect Choir\" (\"Kiin nidai\"), now in the collection of the Asian Art Museum, National Museums in Berlin. After his official duties were completed, Suiun traveled to France, Italy, Egypt, Ceylon (Sri Lanka),", "text_characters": 2397, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4847186", "title": "Haus Lange and Haus Esters", "score": 16.502979412841416, "snippet": "Buildings by Ludwig Mies van der Rohe Haus Lange and Haus Esters are two residential houses designed by Ludwig Mies van der Rohe in Krefeld, Germany, for German industrialists Hermann Lange and Josef Esters. They were built between 1928 and 1930 in the Bauhaus style. The houses have now been converted into museums for Contemporary art. History. Hermann Lange and Josef Esters established in 1920 the \"Vereinigte Seidenwebereien AG\" (United Silk Weaving Mills Company), or Verseidag. Verseidag commissioned at the end of 1930 to Ludwig Mies van der Rohe the realisation of an office and warehouse building in the Verseidag factory buildings in Krefeld. The so-called Verseidag Färberei and HE building were completed in 1931. In 1927, Josef Esters and Hermann Lange commissioned the design of two adjoining houses to the architect Ludwig Mies van der Rohe. The two houses were built between 1928 and 1930 after the ideas from Bauhaus and other Modernists. They are not identical, but very similar in their geometric appearance and the use of backed brick as a building material. Closed on the street side, both have high windows that open onto a landscaped garden. The gardens alternate grassed areas, paths and flowerbeds according to geometric principles that evoke the continuity of interior and exterior spaces. In 1955, the heir of Hermann Lange decided to present his father's collections in the Lange House and organized contemporary art exhibitions before donating them to the city of Krefel", "text_characters": 1831, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10281661", "title": "Armand Dorville", "score": 16.490799257698193, "snippet": "The paintings were hung in French museums, and the story remained secret for seventy years until the French researcher Emmanuelle Polack was hired in 2020 by the Louvre to investigate the provenance of its artworks and immediately found ten Nazi-looted paintings in its collections. Claims for restitution. Some artworks from Dorville's collection turned up in the stash of Cornelius Gurlitt, the son of one of Hitler's official art dealers, Hildebrand Gurlitt. On January 22, 2020 in Berlin, in the presence of Monika Grütters, German Minister of Culture, two paintings by the painter Jean-Louis Forain (1852-1931) and one by Constantin Guys (1802-1892) were to be officially returned to Dorville's heirs. In 2021, two private collectors from Nice returned a small painting attributed to de Nittis to Dorville's heirs As of March 2021 French museums still held eighteen artworks from the Dorville collection. Other paintings, including Henri Fantin-Latour's \"Still Life with Roses and Fruit\", acquired at the Hotel de Savoy, Nice auction in 1942, are currently in European or American museums or in private collections. The Louvre restituted to the Dorville family the twelve paintings purchased directly by Huyghes at the 1942 Hotel de Savoy Nice auction. However, according to The Art Newspaper, the official position of the French state is that the Dorville auction was not linked to Nazi persecution of Jews and that there is no reason for restitution: \"\"Once again, French museums are heading t", "text_characters": 2524, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9206604", "title": "Otto Schindler (zoologist)", "score": 16.42935934714593, "snippet": "German zoologist and ichthyologist Otto Schindler (1906–1959) was a German zoologist who specialised in ichthyology. In 1931 he joined the Bavarian State Collection of Zoology (Zoologische Staatssammlung München) as an assistant curator of ichthyology, to work on the specimens collected by the III German Grand Chaco Expedition to East Paraguay. In 1937 he joined the IV expedition to Brazil which lasted 6 months. After the Second World War he was appointed Curator of Ichthyology and restored and ordered the collection of fish which had survived the war. It is known that he visited Stockholm in the 1950s, bringing some specimens from the museums there back to Munich. He also obtained specimens from Vienna as part of his efforts to rebuild the ZSM collection. He returned to South America in 1953-54, travelling to Bolivia with Walter Forster; during this expedition Schindler was appointed to negotiate the fishing quotas on Lake Titicaca with Peru by the Bolivian Ministry of Agriculture; the Peruvian negotiator was another German, Hans Wilhem Koepcke. He collected many specimens from Lake Titicaca and he sampled in the vicinity of Cochabamba and in the Amazon lowlands with the amateur entomologist Rudolf Zischka. During the expeditions he collected the types of \"Aphyocharacidium bolivianum\", \"Oligosarcus schindleri\" and \"Characidium schindleri\". Schindler has the goby genus \"Schindleria\" named after him. He described the type species as \"Hemipramphus praematurus\" and Louis Pierre ", "text_characters": 1584, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5790527", "title": "Max Beier", "score": 15.726112302127891, "snippet": "Viennese zoologist (1903–1979) Max Beier (6 April 1903 in Spittal an der Drau – 4 July 1979 in Vienna) was an Austrian arachnologist and entomologist. He studied zoology at the University of Vienna, and obtained his doctorate there in 1927. He took up a post at the Natural History Museum in Vienna, in the same year, developing an expertise in pseudoscorpions. He was appointed Director of the zoological department of the Vienna Museum in 1962, and retired in 1968. A list of Beier's 398 scientific papers was published, with an obituary, in \"Annalen des Naturhistorischen Museums in Wien\". 252 were on pseudoscorpions. He described and named over 1200 pseudoscorpion species of which 1180 were still valid in 2007. He was editor of the \"Orthopterorum Catalogus\" and an updated edition of the volume on insects in the \"\". Awards. Beier was awarded the Fabricius Medal in January 1967 of (German entomology society). In July 1968 he was granted an honorary doctorate by the University of Innsbruck. Personal life. Beier and his wife, Irmgard were married in 1931. His death on 4 July 1979 was unexpected. References.", "text_characters": 1117, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0036/R009_request.json/messages/17/content`；SHA256：`161f91a26942237d730caa4723e56e881146c6364d1ce572f50c8817463a252c`。
+
+## S011｜依据既有考察与军史材料作最终接受并提交机构名
+
+复盘全题条件、引用既有Ctesiphon证据，接受并submit_answer German State Museums。
+
+结束状态：VALID_FINAL，MODEL_FINAL_STOP，接受回执true。
+
+边界判断：并未继续分析E008个别人名，而是完整重述条件并决定最终答案，实际展开新的全题接受工作。
+
+内部KEEP与反证：最终口头Let me verify没有执行新工具，仅核对既有文字；不机械给未执行意向另建Stage。
+
+### SPLIT原文
+
+````
+Let me verify this by searching for more specific information about the expedition to Taq-i Kisra.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Taq-i Kisra German State Museums expedition 1931
+</parameter>
+</function>
+</tool_call>
+→ 切点 [8, 0, 0] →
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. "Sasanian capital's primary architectural achievement" - This refers to Ctesiphon and its Taq-i Kisra (the great vaulted hall)
+2. "German institut
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R9 `/rounds/8/reasoning_content` [0,1902)
+
+SHA256：`d771f9832fc55291190bfd3c4224fbad19297d471432de2b3dd98b8f5df6b3a1`；原字段SHA256：`d771f9832fc55291190bfd3c4224fbad19297d471432de2b3dd98b8f5df6b3a1`。
+
+````
+The user is asking for a specific German institution that sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement.
+
+Let me break down the question:
+1. "Sasanian capital's primary architectural achievement" - This refers to Ctesiphon and its Taq-i Kisra (the great vaulted hall)
+2. "German institution sponsored an expedition to document" - Need to find which German institution sponsored this
+3. "an empire whose opposing commander was defeated by a military leader mentioned in the initial document" - This is a bit tricky. The Sasanian Empire's opposing commander (Roman) was defeated by Shapur I (who defeated Valerian at the Battle of Edessa).
+
+From the search results, I found that:
+- In the Ctesiphon document (wiki25:161740), it mentions: "In winter of 1931–1932 a joint expedition of the German State Museums (Staatliche Museen zu Berlin) and The Metropolitan Museum of Art continued excavations at the site, focusing on the areas of Ma'aridh, Tell Dheheb, the Taq-i Kisra, Selman Pak and Umm ez-Za'tir under the direction of Ernst Kühnel."
+
+So the German institution that sponsored the expedition to document the Taq-i Kisra (the great vaulted hall) was the German State Museums (Staatliche Museen zu Berlin).
+
+The question also mentions "an empire whose opposing commander was defeated by a military leader mentioned in the initial document." The Sasanian Empire's opposing commander was the Roman Empire. Shapur I defeated Valerian (Roman emperor) at the Battle of Edessa. This information is in the search results (Battle of Edessa, Shapur I documents).
+
+Let me verify the answer by checking if there's any other German institution mentioned. The document clearly states "German State Museums (Staatliche Museen zu Berlin)".
+
+So the answer is: German State Museums (Staatliche Museen zu Berlin) or simply German State Museums.
+
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "answer": "German State Museums (Staatliche Museen zu Berlin)"
+  },
+  "id": "chatcmpl-tool-ba42aa9dbc79c79f",
+  "name": "submit_answer",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"answer\": \"German State Museums (Staatliche Museen zu Berlin)\"}",
+      "name": "submit_answer"
+    },
+    "id": "chatcmpl-tool-ba42aa9dbc79c79f",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "German State Museums (Staatliche Museen zu Berlin)"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 2.062879502773285e-05,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "chatcmpl-tool-ba42aa9dbc79c79f"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "German State Museums (Staatliche Museen zu Berlin)",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    8
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 8
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+已完整阅读9轮、7次search、1次open及1次submit。R5和R8均先独立接受候选再重新取证，分别保留；R6的open失败反馈留在上一Stage，R7工具解释与军史新目标分开。所有短Stage均有具体对象或工作转换依据。
+
+R2与R3同属考察赞助缺口，若把加入Walter Andrae视为普通关键词重试，可备选KEEP；主方案SPLIT因为实际改为人物作为证据入口，后续还明确评估人物材料不足才转向机构。R7长篇机构回顾主方案作为刚返回材料的直接解释，备选独立候选重接受，但没有多条件新增比较，不强制再切。军事关联是否足够证明题目关系属于原轨迹证据问题，不由Stage切分裁定正确性。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

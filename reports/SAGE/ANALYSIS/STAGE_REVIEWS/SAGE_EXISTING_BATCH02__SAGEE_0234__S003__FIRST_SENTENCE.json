@@ -1,0 +1,461 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0234",
+  "stage_id": "S003",
+  "sample_order": 99,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What year did the \"Badenia\" steam locomotive, built by the founder of the company that manufactured the cars for the Stuttgart funicular railway—a system operated by the same entity as the Stuttgart Stadtbahn and whose cars were manufactured by a firm founded in 1846—begin its experimental service?",
+    "gold": [
+      "1841"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "1841",
+    "adopted_answer": "1841",
+    "outcome": "C",
+    "reason": "原路径最后依据BadenIb建造年及随后试验服役的关系接受1841，与Gold相符；直接关系晚于本U返回。",
+    "evidence": [
+      "O_SERVICE",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R7[0,404)五项身份链在当前保留推理中：SSB、Stadtbahn、ME、1846创办人Kessler、1841建造Badenia均已提取并采用。历史Search的Kessler内容也在实际工具历史中，不能说只因未Open就不知道建造年。",
+    "evidence_states": "建造年已返回、提取、采用；试验服役关系尚未取得，不能把建造直接等同服役。",
+    "evidence": [
+      "O_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 404,
+        "end": 1011
+      }
+    ],
+    "goal": "区分建造年份与试验服役年份，读取创办人文档以找更明确时间关系。",
+    "operations": "明确两种事件不同，Open4593167 offset0 limit2000，实际全文1575字符。",
+    "product": "重新得到完整传记和1841建造句，没有试验服役原句，缺口未解决。",
+    "judgment_change": "把1841从已知建造年转为需要核验是否亦为服役年的候选，不是取得新答案。",
+    "evidence": [
+      "O_U",
+      "O_OPEN"
+    ]
+  },
+  "original_followup": {
+    "use": "R8反复比较身份链并暂接受同年推断，随后仍两次Search；R9带1841的查询取得BadenIb试验服役句，R10采用后正式提交。Open没有直接提供最终新增的事件关系。",
+    "evidence": [
+      "O_SERVICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已采用年份进行事件归属核验，并检查既有来源是否提供额外细节。",
+    "state_relation": "已有建造事实充分，U的读全文并未闭合事件缺口；删除后可重新读、换来源核实或略过核实，这三者不能仅因四C而视为同一功能变化。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I have the information I need.",
+    "source_position": "原R8[0,30)，I#/anchor_text；7派生Token。",
+    "novelty": "没有新实体、日期或关系，但把原后继的证据充分性态度提前放到尚未核验试验服役的位置。P只有建造年，此句可能补偿或诱导提前接受，不能当自主判断。",
+    "risk": "ORACLE_ANCHORED；存在充分性/提交方向提示，四路径仅一次直接照此提交，其余仍自主重新核验。",
+    "evidence": [
+      "I_G",
+      "O_P",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R10实际采用BadenIb试验服役原句与1841建造上下文，再submit。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R7先明确建造不等于服务，Search实验服役但无直接句；R8列五项关系后OpenKessler全文；R9再次识别缺口，带1841具体Search，取得BadenIb；R10六项关系与服役句整合后提交。全部新Call/Return已读。",
+      "first_judgment_divergence": "G说信息足够但模型立即重新界定事件差别，保留核验需求。",
+      "first_actual_tool_divergence": "R7 Search代替原Open，原Open移至R8，后来补查仍发生。",
+      "function_correspondence": [
+        {
+          "original_goal": "从Kessler全文核实试验年份",
+          "original_operation": "Open2000并对照事件",
+          "original_product": "全文只有建造年",
+          "new_goal": "同事件归属核验",
+          "new_operation": "先Search后Open同全文，再具体Search",
+          "new_product": "先恢复U失败反馈，随后由BadenIb补齐关系",
+          "evidence": [
+            "O_OPEN",
+            "N1_OPEN",
+            "N1_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同一全文实际重读，建造/服役判断也重新展开；不是只凭文档重合。",
+      "judgment_action_outcome_chain": "保留事件差别→首Search未解决→Open仍未解决→带年份更具体Search补证→采用关系并C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1331生成99988Prompt4Actor2Search1Open；原同切点4生成段2Search1Open，生成差区间[-205,67]，无法证明下降，主要为同功能换顺序。P重放21539、G7另列。",
+      "counterevidence_and_alternatives": "同四C的r3完全不核验，不能把r1功能恢复套给其他；G并未保证结束。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "正式1841正确，但R12明确没有试验服务原文，依建造年推断。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R7先说1841后重新质疑建造/服役，Open50；R8 Open200；R9 Open500；R10长盘点仍发出Open500，实际事件存在而非仅计划；R11因截断转Search，不带1841，回Kessler/Baillie而无BadenIb；R12承认事件缺口后按通常同年提交。",
+      "first_judgment_divergence": "没有因G直接停止，反而把来源截断当作持续Open理由。",
+      "first_actual_tool_divergence": "首Open limit50而非2000，后200/500/500没有覆盖到所需后文。",
+      "function_correspondence": [
+        {
+          "original_goal": "读创办人全文核验服役年",
+          "original_operation": "一次Open2000得1575全文",
+          "original_product": "知道全文只证建造",
+          "new_goal": "同年份核验",
+          "new_operation": "四次小范围Open后一次Search",
+          "new_product": "恢复了检查意图和建造事实，但未完成同全文读取，也未获得直接服役支持",
+          "evidence": [
+            "O_OPEN",
+            "N2_OPEN",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "实际反复读文但最大只500，不能把四次Open误写完成原全文核查；最终以推断结束。",
+      "judgment_action_outcome_chain": "截断→继续同入口扩大但不充分→同500重复→转泛Search仍缺事件关系→以建造年替代服役年提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1669生成134936Prompt6Actor1Search4Open，生成差[133,405]确定增加；Open比原多3、Search少1、Actor多2。增量落在小范围重复读取及缺口反复盘点，不是答案变化。",
+      "counterevidence_and_alternatives": "C不代表支持充分；首50可能受采样而非单纯删除影响，不归因原U独有必要性。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "直接正式1841匹配Gold，但没有任何新服务年核查。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R7仅208字符，断言Badenia在1841试验服役，实际submit；无Search/Open，无新返回用于事实核查。",
+      "first_judgment_divergence": "直接把已知建造年提升为服务年，不再显式保留两事件差别。",
+      "first_actual_tool_divergence": "首Call submit代替Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "核验事件年份是否相同",
+          "original_operation": "读全文并保留缺口",
+          "original_product": "只有建造年，仍需核",
+          "new_goal": "直接作答",
+          "new_operation": "没有事件核查，直接提交",
+          "new_product": "相同1841但少了原后续取得的服役关系支持",
+          "evidence": [
+            "O_U",
+            "O_OPEN",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "全部新路径只有一次提交，未观察任何U式核验或替代证据取得。",
+      "judgment_action_outcome_chain": "P建造年+G信息充分→直接断言同年服务→C，独立服务支持缺失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "57生成21546Prompt1Actor0Search0Open，生成差[-1479,-1207]；省原Open、两次Search和后续盘点，不能把全部节省归U自身，也不能当完整证据质量保持。",
+      "counterevidence_and_alternatives": "G有明确充分性提示；这不是无引导删除证据，Gold恰与建造年同年。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "真实具体Search取得BadenIb，R8采用试验服役关系并submit1841。",
+      "outcome_evidence": [
+        "N4_RETURN",
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R7先说1841继而明确建造不等于服务，直接用1841约束Search；返回BadenIb；R8六项链条、服役原句及上下文年份整合后正式提交。无Open。",
+      "first_judgment_divergence": "不按G停止，重新识别事件缺口；跳过原全文入口选择更直接的特定对象查询。",
+      "first_actual_tool_divergence": "首Call带年份Search替Open和原先泛Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "核实建造/服役关系",
+          "original_operation": "Kessler全文核验",
+          "original_product": "缺口未解",
+          "new_goal": "同关系核验",
+          "new_operation": "具体年份Search取得另一来源",
+          "new_product": "直接服务关系证据，比U原产物更充分",
+          "evidence": [
+            "O_U",
+            "O_OPEN",
+            "N4_Q",
+            "N4_RETURN",
+            "N4_J"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核验目标和事件区别恢复，但没有执行原Kessler全文操作；以更直接Search替代完成需求，不能称原动作全部重放。",
+      "judgment_action_outcome_chain": "已知建造年作查询约束→一次直接命中服务关系→整合提交C，省掉无增量全文与较泛搜索。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "635生成44214Prompt2Actor1Search0Open，生成差[-901,-629]；少1Search1Open2Actor段，节省包含原取证路线重排及长判断压缩，不只是U长度。",
+      "counterevidence_and_alternatives": "与r3同C均省但证据不同：本条实际补齐关系；G没有给1841或BadenIb，P已有建造年。"
+    }
+  ],
+  "four_run_comparison": "四C但四种实际路线：同全文重读并补查、截断反复读取后推断、直接提交、直接特定查询替代。只有第一条完整重执行原动作，第二部分恢复且增耗，第三无恢复且减证，第四替代取证且证据闭合。不能以4C或Search减少直接宣布U没有作用。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "已经采用建造年但题目问服务年时，核验工作影响的是是否仍把两事件作为待澄清关系，以及选择全文还是直接事件查询。删除后保留这个区分的路径可换源补证；丢掉区分的路径可用同年假设直接C但证据减少；把缺口解释为读取截断会反复读同入口而增耗。",
+      "support_evidence": [
+        "O_U",
+        "O_OPEN",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_Q",
+        "N4_J"
+      ],
+      "limit": "同一题四路径内部对照，不单独宣称跨题机制成立；G、采样和档位差异仍在。"
+    }
+  ],
+  "counterevidence_and_limits": "原切点无原生IDs，保守区间而非精确Token节省。G仅7Token却引入充分性态度。原实际P当前列表可见，较早历史reasoning不可因日志存在就认定渲染保留。BadenIb是建造1841之后then服务的上下文关系，不伪称单独明确日期字段。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Emil Kessler built the \"Badenia\" steam locomotive in 1841."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "However, I need to verify if 1841 was the year it began experimental service"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/6/observation/text",
+      "exact_quote": "in 1841 he built his first steam locomotive, the \"Badenia\"",
+      "doc_ids": [
+        "wiki25:4593167"
+      ]
+    },
+    {
+      "evidence_id": "O_SERVICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/2/snippet",
+      "exact_quote": "then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have the information I need."
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "in 1841 he built his first steam locomotive, the \"Badenia\"",
+      "doc_ids": [
+        "wiki25:4593167"
+      ]
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The snippet from `wiki25:5040730` states:"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/doc_id",
+      "exact_quote": "wiki25:4593167",
+      "call_id": "chatcmpl-tool-b962677a62b92f25",
+      "doc_ids": [
+        "wiki25:4593167"
+      ]
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Since I don't have more specific information about \"experimental service\" in the documents, and the construction year is 1841, I'll go with 1841 as the answer."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The \"Badenia\" steam locomotive began its experimental service in 1841."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Badenia steam locomotive 1841 experimental service",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I have found the necessary information to answer the question."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0234/trajectory.json",
+      "source_sha256": "a25b2fa8fe293960549afd48775dd9ec8b997053ae9fdd769c5da309c323562e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0234.json",
+      "source_sha256": "b3a0858646e452cdd66043a5deb30f7e0852ee701b9555f4561292e4f4cf5eba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "62cedbebb56cb40a6be13300ab4da862c40e192e8c64000417588bb6d2619d1e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3076edfd5f78f542a428e0cebc481ec17f4bc7e5d70be1f8e02f8e7cab31dc58"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "8fb22abc8b5e36e2bb2dd835a6a2689c5a49d07d339de8bc04900dda3524218e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "400d10ff3feb0363f1936a7a3b6136a964b6b8583a1d777a9142ed3289fb2a58"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "ddc5372da9e70b8b1e41f67c75452ab2f78167c98a91bc77285b867993465994"
+    }
+  }
+}

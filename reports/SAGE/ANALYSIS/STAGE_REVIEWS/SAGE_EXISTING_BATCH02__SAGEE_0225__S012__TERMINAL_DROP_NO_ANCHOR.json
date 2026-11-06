@@ -1,0 +1,422 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0225",
+  "stage_id": "S012",
+  "sample_order": 87,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What is the numerical difference in years between the César Award for Best Director won by the director of 'Quest for Fire', and the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose', a film starring the actor who played Daniel Dravot in the 1975 cinematic adaptation of Rudyard Kipling's 'The Man Who Would Be King'?",
+    "gold": [
+      "5"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "5",
+    "adopted_answer": "5",
+    "outcome": "C",
+    "reason": "正式5匹配，但典礼年份主要依据惯例推断，原没有完整直接典礼年份证据。",
+    "evidence": [
+      "O_F",
+      "O_CHOICE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R9@0；原R1–8实际Search/Open返回在历史，794119有Annaud双导演、首作BlackWhite1976、Quest1981及获奖。R8额外两奖年Query未增证；旧日志R7/R8已反复算5但当前R9为空，不等同旧reasoning必全在模型输入。",
+    "evidence_states": "电影身份/上映年返回且原曾采用，颁奖年份没直接文档证据，靠典礼次年惯例推；历次句法混淆已经纠回导演首作但又反复。",
+    "evidence": [
+      "I_BOUNDARY",
+      "O_FACTS",
+      "O_PAST"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/11/items",
+    "ranges": [
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 5107
+      }
+    ],
+    "goal": "最后整理同一导演两奖年份、确认比较口径并提交差值。",
+    "operations": "重读题意、上映/颁奖口径反复，曾误说1或2，最后两边同用次年1982/1977得5，实际Submit。",
+    "product": "5正式答案，没有新检索或新日期文档。",
+    "judgment_change": "将仍不完全确定的典礼年推断接受为可提交5；非首次得到5。",
+    "evidence": [
+      "O_CHOICE",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use": "U即最后正式提交，无后续取证。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在已有影片身份和年份材料上统一时间口径、解释句法、运算并作提交决定。",
+    "state_relation": "四条重新完成相同接受/算差/提交功能；三条同5，一条混用上映与颁奖口径4，结果稳定不代表功能消失。",
+    "evidence": [
+      "O_CHOICE",
+      "O_SUBMIT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "末段无后继，无引导",
+    "oracle_anchored": false,
+    "novelty": "TERMINAL_DROP_NO_ANCHOR，未预填Final/事实；不能解释为FIRST_SENTENCE。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "两边按典礼次年1982/1977，正式5。",
+      "outcome_evidence": [
+        "N1_CALC",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R9完整5003chars逐身份、首作、奖年推断；重复确定题目要典礼年，保持两边一致，未实际搜索，直接Submit。",
+      "first_judgment_divergence": "未复现原末段1或2误算；未改变最终两边次年口径。",
+      "first_actual_tool_divergence": "无Search/Open，唯一Submit5，与原末段操作一致。",
+      "function_correspondence": [
+        {
+          "original_goal": "统一奖年算差并提交",
+          "original_operation": "长复盘算差Submit",
+          "original_product": "5",
+          "new_goal": "同接受/计算",
+          "new_operation": "5003chars复盘，同两边次年，Submit",
+          "new_product": "5，没有新增日期证据",
+          "evidence": [
+            "O_CHOICE",
+            "O_SUBMIT",
+            "N1_CALC",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "计算、判断与正式提交均重新完成，没有绕过该功能。",
+      "judgment_action_outcome_chain": "保留上映年1981/1976→两边同推次年→差5稳定→Submit；中间复盘主要重述不改变查询对象或证据。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "1382gen39973P0Search0Open1Actor，原末段仅一生成/Submit；新5003chars与原5107接近，未出现明显功能压缩，不按整原8504宣称节省。",
+      "counterevidence_and_alternatives": "文档未直接典礼年、惯例推断仍在。无G也反复，不能将重复归教师。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "两边一致1982/1977正式5；段内误称1977为50th ceremony，实际核心年份差仍正确。",
+      "outcome_evidence": [
+        "N2_CALC",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R9 4248chars先全链整理再确认附加演员线索描述Rose，不影响导演首作；两边按典礼次年重复验算，直接Submit。无新Search。",
+      "first_judgment_divergence": "明确附加角色线索只用来确认电影，未回错查演员处女作。",
+      "first_actual_tool_divergence": "仅Submit，无新取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "题意接受和统一年份计算",
+          "original_operation": "多次重述5并提交",
+          "original_product": "5",
+          "new_goal": "同题意和年份闭合",
+          "new_operation": "缩短复盘但保留身份、定语、两边典礼年",
+          "new_product": "5，未取得新年份证据",
+          "evidence": [
+            "O_CHOICE",
+            "O_SUBMIT",
+            "N2_CALC",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "所有终段判断功能恢复，篇幅略短不是功能未做。",
+      "judgment_action_outcome_chain": "两个导演同一人、处女作既定→角色定语不再改变对象→一致典礼年算差→C；计算减少只可能段内少重述，未省搜索。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "1219gen39973P0Search0Open1Actor；新4248字符比原5107短，但具体usage以成本表原末轮为准，无native精确声明。",
+      "counterevidence_and_alternatives": "既有身份材料足够选对象，不意味着每项附加事实均直接证实；典礼序号错不当作答案4/5。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "4",
+      "adopted_answer": "4",
+      "outcome": "W",
+      "outcome_reason": "明确1981−1977=4并正式Submit4，与Gold5不同；不是没有Final。",
+      "outcome_evidence": [
+        "N3_MIX",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R9 5732chars全链重新整理，知道César通常次年却把‘1981’s Quest’强读为获奖1981；Oscar仍以1976片的1977典礼。纠正定语归Rose但没有纠正两边时间口径，直接Submit4，0Search。",
+      "first_judgment_divergence": "在同一生平句上选择César上映1981作awardyear，Oscar选次年1977；实际比较变量改变，不是减法错误。",
+      "first_actual_tool_divergence": "没有新Search/Open，仅Submit参数由5变4。",
+      "function_correspondence": [
+        {
+          "original_goal": "比较相同意义奖年",
+          "original_operation": "确认两边典礼年再算",
+          "original_product": "5",
+          "new_goal": "同奖年比较",
+          "new_operation": "实质重做全部计算/题意，却两边混用事件年份",
+          "new_product": "4错误，未新增反证",
+          "evidence": [
+            "O_CHOICE",
+            "O_SUBMIT",
+            "N3_MIX",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "接受/计算/提交工作全部真执行，但判断产物不相同；FULL指工作重新执行，不指正确判断恢复。",
+      "judgment_action_outcome_chain": "同一文档上映年+获奖并列→César被当同年、Oscar按次年→比较对象口径不一致→4W。题意定语已纠对仍错，关系解析恢复不足以保证时间处理一致。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "1556gen39973P0Search0Open1Actor；5732字符更长，重复没有增加年份证据，仍W。不把错误结果用作严格省证据。",
+      "counterevidence_and_alternatives": "无G、相同P下3C1W；原典礼年无直接证据，采样对未证具体年份推断的翻转可解释，不能断言删原段因果必要。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "R10两边典礼年一致1982/1977，正式5；新增Search均无直接日期支持。",
+      "outcome_evidence": [
+        "N4_CALC",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R9重建两奖、推1982/1977但决定再查，联合César1982与Oscar1977两Query；Return是无关Hurley/孟加拉等与原Oscar无关结果；R10 4654chars仍从794119上映年和惯例推，同差5提交。",
+      "first_judgment_divergence": "已可算5后选择实际再查，不像原R9直接Submit；新Return没改变候选/年份。",
+      "first_actual_tool_divergence": "R9新联合两Search原末段没有，R10才Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "最终年份接受、算差提交",
+          "original_operation": "单段复盘Submit",
+          "original_product": "5",
+          "new_goal": "同目标并再核奖年",
+          "new_operation": "联合两Search没增证，重建接受/算差Submit",
+          "new_product": "5，仍非直接日期文档闭合",
+          "evidence": [
+            "O_CHOICE",
+            "O_SUBMIT",
+            "N4_Q",
+            "N4_CALC",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "计算接受完整恢复还新增取证，功能未省。",
+      "judgment_action_outcome_chain": "仍缺精确典礼年触发查证→结果无关→未改判断或换入口→按原可用年和惯例提交；新增查询没有可观察增量，正确性保持不能说新证据替代了U。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "2038gen85429P2Search0Open2Actor，新增一整批Search/Return与下一Actor，主要成本增加可定位，未用整原轨迹作基准。",
+      "counterevidence_and_alternatives": "查询里写1982/1977不代表返回确认；此处两Search失败仍C，不能以Search次数推证据质量。"
+    }
+  ],
+  "four_run_comparison": "四条均重建整体解释和计算、正式提交，三C一W；r3核心差异是两边年份口径混用不是没有算差，r4再查没有新增证据但使交互翻倍。无G下也反复单位/年份，原末段不是简单多余文本；A多数结果保持可能是同功能恢复，而不是该功能可完全省。",
+  "conditional_mechanism_proposals": [
+    "当基础材料给出作品上映年及获奖事实而没有典礼年份，最后判断需维持两侧同一事件口径。相同材料和已知差5也可能在重新解释时一侧用上映、一侧用典礼，造成4；重复文本多少、角色定语是否纠正都不能单独解释该变化。额外精确年份查询若未返回日期，可能只增加开销而不改变已有推断。"
+  ],
+  "counterevidence_and_limits": [
+    "只一个问题一末Stage，不能外推普遍冗余；同P四采样无G但没有随机无干预因果对照。",
+    "典礼年具体日期原未直接返回，C只核心差5，原错说部分角色和年份应保留；两边同用上映1981/1976也巧合同差5，不能据C证明完整推导正确。",
+    "原Round开始usage可比较但原生IDs从未保存，不能称native exact。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 9,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 9,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_FACTS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Annaud's first film, \"Black and White in Color\" (1976), received an Academy Award for Best Foreign Language Film.",
+      "call_id": "chatcmpl-tool-88d834317b28fa78",
+      "doc_ids": [
+        "wiki25:794119"
+      ]
+    },
+    {
+      "evidence_id": "O_PAST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "So the difference in years would be: 1982 - 1977 = 5 years."
+    },
+    {
+      "evidence_id": "O_CHOICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "If we take the years of the films (1981 and 1976), the difference is 5 years.\nIf we take the years of the awards (1982 and 1977), the difference is 5 years."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/14/arguments/answer",
+      "exact_quote": "5",
+      "call_id": "chatcmpl-tool-b0bfd6bd1d1d4411"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The difference is: 1982 - 1977 = **5 years**."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This is just additional context to confirm we're talking about the right film."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N3_MIX",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The numerical difference is 1981 - 1977 = 4 years."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "4"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "César Award 1982 Best Director Quest for Fire",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Difference: 1982 - 1977 = 5 years"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0225/trajectory.json",
+      "source_sha256": "dad7c40bf4b24d3bb344e38664adaf8ba508a9f3e53e7354edca180e9e4e181d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0225.json",
+      "source_sha256": "94db9aff7cea271430a33afb2f46e01d04c5e65847880b4c69b1de0cda8bac45"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "979fdbf5f30c01b5fe06cca6d0b35cbea2b512ce406f95fa5027fc4a00a6f161"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "4390501f56f737d62cc690f7a049129be8340ff7648176e7fe3eca9c2aac76e9"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "3a8b146695f8683e60c5a8865bd4f5009e48385e81f8d689c029e52194f5132e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "53eee8915c54d33506cfb0ca20c8b311fd78b324e4a848492e9f2f1339f232fa"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0225__S012__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "b2468baa41cdd7fdc4854d9ccc85905f7dd970f5fe8608f56664528070e2fb9e"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0309",
+  "stage_id": "S004",
+  "sample_order": 36,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference between the publication year of Gabriel García Márquez's novel, which became his best-selling and most translated work, and the publication year of his novel whose title refers to a season and a specific title of nobility?",
+    "gold": [
+      "8"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "8",
+    "adopted_answer": "8",
+    "outcome": "C",
+    "reason": "1967与1975差8；爵位措辞非严格匹配为共享疑点。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@151保留第一书1967已确认，工具E4的作者/第一书文档与书目列表仍在，列表已提Autumn题名但无该书出版年。先前日志曾猜Autumn，不能把历史reasoning当仍可见；本轮前缀未带第二书决定。",
+    "evidence_states": "第一书信息已返回提取采用；第二书名可见但年待证、题名条件待比较。",
+    "evidence": [
+      "I_P",
+      "O_LIST"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/3/items",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 151,
+        "end": 758
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 1108
+      }
+    ],
+    "goal": "匹配season/nobility题名并核实第二书年份。",
+    "operations": "列季节与爵位，承认Patriarch非严格爵位但选择Autumn；先泛Search只得噪声，R6比较其它书后真实查具体Autumn，取得815597直接1975。",
+    "product": "第二书及1975被文档支持，待最后联合减法。",
+    "judgment_change": "题名猜测转成实际查询对象及年证据。",
+    "evidence": [
+      "O_MATCH",
+      "O_YEAR"
+    ]
+  },
+  "original_followup": {
+    "use": "R7用1975和1967算8并Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "将题名约束解释落实为具体候选查证。",
+    "state_relation": "四支都恢复比较与真实Autumn查年；区别为是否重做泛Search、接受Patriarch宽义的篇幅。",
+    "evidence": [
+      "N1_QUERY",
+      "N2_QUERY",
+      "N3_QUERY",
+      "N4_QUERY"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The first novel is \"One Hundred Years of Solitude\", published in 1967.",
+    "source_position": "O R7[0,70)",
+    "novelty": "与当前P已经采用的第一书和年份相同，无第二书/1975/8新事实；重复确定第一项，未替代第二项。",
+    "risk": "ORACLE_ANCHORED承接强化，未见关键未来事实；仍非纯删除对照。",
+    "evidence": [
+      "I_P",
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "真实8，题名宽义疑点反复存在。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R5逐书排除，反复承认Patriarch非严格爵位，实际同原泛Search得同噪声；R6仍将其按权威称谓接受并具体Search，取得同批1975；R7长5538字符反复题名/爵位疑点、列其它书与多次减法，最后真实Submit8，无新增Call。",
+      "first_judgment_divergence": "操作几乎恢复原样，但接受后并未立即收束，反复处理同一词义疑点。",
+      "first_actual_tool_divergence": "无主要目标分歧，两个Search同原。",
+      "function_correspondence": [
+        {
+          "original_goal": "题名匹配/年份",
+          "original_operation": "泛Search再具体书Search",
+          "original_product": "Autumn1975",
+          "new_goal": "同一",
+          "new_operation": "同两步且同Return",
+          "new_product": "Autumn1975后仍重复接受判断",
+          "evidence": [
+            "O_MATCH",
+            "O_YEAR",
+            "N1_QUERY",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "目标、比较、实际查询、年份产物均恢复。",
+      "chain": "词义疑点→泛查无效→宽义接受并查1975→同一疑点反复重新接受→8但长篇生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2231gen/27978Prompt/3Actor/2Search/0Open；原gen[480,673]，多[1558,1751]，主要R7的1612gen，不是多Search。",
+      "counterevidence_and_alternatives": "没有证据让Patriarch成为严格爵位，只是模型接受题目宽义；不能把词义冲突消除写成已证。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "两年证据支持差8。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R5较长比较，甚至说Autumn可能不符爵位，泛Search无用；R6又按leadership接受并查具体Autumn，Return同1975；R7简洁采用减法Submit。",
+      "first_judgment_divergence": "与r1同样保留词义疑问，但取得年份后很快停止反复比较。",
+      "first_actual_tool_divergence": "仍泛再具体，省略The的Query返回同批。",
+      "function_correspondence": [
+        {
+          "original_goal": "第二书核实",
+          "original_operation": "比较后两Search",
+          "original_product": "1975",
+          "new_goal": "相同",
+          "new_operation": "R5泛/R6具体Search",
+          "new_product": "1975实际采用",
+          "evidence": [
+            "O_YEAR",
+            "N2_QUERY",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "工作和产物全部恢复。",
+      "chain": "同一词义疑点→无效泛查→具体查年→接受差8并结束，较r1更短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "820gen/27978Prompt/3Actor/2Search；gen多[147,340]，Call数与原不变，成本增在R5比较/最终组织。",
+      "counterevidence_and_alternatives": "正确终态不能证明原候选核验省略，它完整重建。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "实际1975返回并8提交。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R5比较其它题名后直接接受Autumn宽义，跳过原泛Search，只发具体AutumnQuery得同批1975；R6采用1975与1967算8Submit。列出的部分其它书并无返回支持，不视作已实际检索。",
+      "first_judgment_divergence": "候选由题名比较直接成为可核查对象，不再先搜泛爵位线索。",
+      "first_actual_tool_divergence": "R5首Call具体Autumn查年，而原泛season/nobility。",
+      "function_correspondence": [
+        {
+          "original_goal": "比较第二书并查年份",
+          "original_operation": "泛Search加具体Search",
+          "original_product": "Autumn1975",
+          "new_goal": "同一完整功能",
+          "new_operation": "比较后一个具体Search",
+          "new_product": "同一1975证据并采用",
+          "evidence": [
+            "O_YEAR",
+            "N3_QUERY",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "功能完整，减少的是无效泛查执行方式，不要求原每次操作逐一复制。",
+      "chain": "从知识/可见题名比较足以选查询对象→直接取得年→8，少一次无效泛取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "516gen/19183Prompt/2Actor/1Search，比原少1Search/Actor；gen差[-157,36]跨0，不能宣称精确生成下降。",
+      "counterevidence_and_alternatives": "书名/语义匹配功能并没消失；严格爵位疑点仍共享，G仅强化第一书。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "8正确，宽义匹配。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R5反复说Patriarch非爵位却未提出其它匹配候选，改泛seasonQuery无效，Return与原第一批噪声相同；R6接受Autumn并具体Search得到1975，R7两书年与销量译数比较后Submit。",
+      "first_judgment_divergence": "删去泛Query中的nobility没有产生有效新证，最终依旧知识选择具体Autumn。",
+      "first_actual_tool_divergence": "首Queryseason而非seasonnobility，但同属泛题名。",
+      "function_correspondence": [
+        {
+          "original_goal": "选具体题名/核年",
+          "original_operation": "泛查再具体",
+          "original_product": "1975",
+          "new_goal": "同一",
+          "new_operation": "无效泛查再具体",
+          "new_product": "1975并差8",
+          "evidence": [
+            "O_YEAR",
+            "N4_QUERY",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "实际比较、选择与年份证据恢复。",
+      "chain": "语义不确定→泛查仍无推进→知识接受宽义候选→具体年份返回→8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "864gen/28826Prompt/3Actor/2Search；gen多[191,384]，无工具次数减少，泛Return长度不同多848Prompt于r1/2。",
+      "counterevidence_and_alternatives": "不能把泛Search噪声当支持Autumn身份，真正年证据来自具体Query。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "4/4完整第二书功能重建。",
+    "difference": "r3跳泛查少1Search/Actor，r1/2/4重做两Search；r1最终反复词义比较导致1612gen。",
+    "inference": "同一功能可用较短取证路线恢复，少动作不等于功能可无；相同查询与证据也可能伴随不同生成篇幅。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "若具体题名已经能由线索/知识提出，泛线索检索未必承担必需中间产物，直接查候选年份可完成同一功能；但对题名词义的接受是否收束会独立增加表达。",
+      "support": "r3同1975/8少一次泛Query；r1/r2同两Search但R7篇幅相差明显。",
+      "limits": "仅本题，titleofnobility歧义未获消解；不能推广为泛Search一概无用。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四路径Return/Reasoning全文实际已阅，分析为Codex直接写出。",
+    "G20派生Token和P7612单列，原切点gen区间[480,673]，无native精确节省。",
+    "独立删除分支成本不能相加；FULL表示目标产物恢复，不指完全复制查询。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 5,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "published in 1967."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The first novel is \"One Hundred Years of Solitude\", published in 1967."
+    },
+    {
+      "evidence_id": "O_LIST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/6/snippet",
+      "exact_quote": "The Autumn of the Patriarch"
+    },
+    {
+      "evidence_id": "O_MATCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The Autumn of the Patriarch"
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/results/1/snippet",
+      "exact_quote": "1975 novel"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "The Autumn of the Patriarch publication year"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "While \"Patriarch\" isn't strictly a peerage title"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Autumn of the Patriarch publication year"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "The Autumn of the Patriarch publication year"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "published in 1975"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "The Autumn of the Patriarch publication year"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0309/trajectory.json",
+      "source_sha256": "d5b10c68a465ea04f47c7f7dc899ec8bc9f4be3926f39169affc385f866b569c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0309.json",
+      "source_sha256": "8fffc94fbd3e4dc1b6404700494c1016f067afd75d7545788bd405bb8f95ddb5"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "58acdd22a46d528844b7cbca2764f5db6a07de8ddc5aee87546a83c24af809e5"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "49e17256eecfd9aad4c03642befffb1754daa908a669da54da92a4101bca8824"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "d436fa52464675fd3210969ac4c13720289c76b38158c2ba5aaaeba2ffabb8af"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "53eab76fd85d6f9a501bd0e8a89109ded0471433a29c83292d3ec1d79f77e48a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "7cf38cbf855001d3424e7627fc9f519530852da5789ea1864135a2d73df6dd70"
+    }
+  }
+}

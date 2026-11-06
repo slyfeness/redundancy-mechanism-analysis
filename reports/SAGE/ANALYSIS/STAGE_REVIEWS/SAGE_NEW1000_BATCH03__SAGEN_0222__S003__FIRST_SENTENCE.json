@@ -1,0 +1,432 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0222",
+  "stage_id": "S003",
+  "sample_order": 72,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0222/trajectory.json",
+      "source_sha256": "cc3cf5435a2af194f17d23bbc0e224a7d96ad13298cedb06ab2b38a297c42c93"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0222.json",
+      "source_sha256": "e6ff232c344dd03661623388f153db18b8f210b7e0d75b78c8c1c8f680ea0488"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "50aeb715a582681e21fa312a0e175117155c0aee9079872573b84a6111334c1c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "d71b31694e4a222def491af225e2e254e2c8f2ec90e2650950f2dcb587f09ba0"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "98bbb52717d6c721394be94ee1da95fd1e085af889e2c706662695188ccee2b9"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "93b815fdc66f80e1e19babd549766ab81f364ebfa2eb7e9c2d348506bc4716f1"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "ddf0f1895b44860bab146721cc4b81f7ac98e71fc95df6a4ba40aa9c4565c323"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the individual who served as director of cinematics for the \"Halo\" game that introduced reusable armor abilities, and who subsequently worked on the game \"Destiny\" whose soundtrack composer also worked on its \"The Taken King\" expansion, rejoined Microsoft Studios as a senior creative director?",
+    "gold": [
+      "January 9, 2014"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0222/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "January 9, 2014",
+    "adopted_answer": "January 9, 2014",
+    "outcome": "C",
+    "reason": "正式日期正确且直接文证；音乐/游戏桥接仍未完整证实。",
+    "evidence": [
+      "O_FINAL",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R4@135，真实normalized history有前三次工具Return、旧assistant content空；当前保留明确采用Joseph的135字符。P10260派生Token；还没有3245334及重返日期。",
+    "evidence_states": "Joseph系列职务在E3已返回且当前采用，Destiny团队证据已返回。Martin O'Donnell/Michael Salvatori已经在E3 Halo Original Soundtrack片段出现，不是G首次引入姓名。没有证明其TakenKing关系。",
+    "evidence": [
+      "I_P",
+      "I_MODE",
+      "O_COMPOSER_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items；R4[135,455)+E4 Search日期完整Return、R5[0,286)，结束R5@286。",
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 135,
+        "end": 455
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 286
+      }
+    ],
+    "goal": "找到已采用Joseph重新加入微软指定职务的日期。",
+    "operations": "姓名+rejoined/senior creative director/date实际Query；3245334直接返回January9,2014。R5前段转述人物/音乐但未明确引用日期。",
+    "product": "准确日期已外部取得，后续R6明确采用；具体日期不是P原有。",
+    "judgment_change": "人物已知日期未知→日期证据到达，尚需与后续采用分开。",
+    "evidence": [
+      "O_QUERY",
+      "O_DATE"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R5先音乐Query；R6引用3245334日期，Open同文2000完整日期；R7提交。首次日期返回、明确采用、重复确认分别可定位。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对稳定人物候选获取最终所问属性的直接证据。",
+    "information_state_dependence": "P有身份无日期，四条都必须且确实重新取得日期；顺序转成先音乐再日期。不能把四C当日期取证不必要。",
+    "first_update": "日期首次在被删E4，后续新路径各自E2恢复。"
+  },
+  "guide_audit": {
+    "text": "I need to check if Martin O'Donnell also worked on \"The Taken King\" expansion of Destiny.",
+    "source": "O#/rounds/4/reasoning_content[286,375)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "G22Token，先前Return已有Martin姓名，题目已有Destiny/TakenKing；G新选择Martin作为共同作曲关系核验对象，非首次引入实体、更非已证实共同创作事实，也不含日期。四新首Call一致跟随此方向，随后自主恢复日期需求。重放P10260、首输入10282。",
+    "evidence": [
+      "I_G",
+      "O_COMPOSER_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "新R5实际日期Query得3245334，R6准确提交。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_DATE"
+      ],
+      "work_and_evidence_timeline": "R4按G查Martin/Destiny/TakenKing，得音乐及Salvatori片段。R5把片段中缺失扩展标题自行补成TakenKing/HouseofWolves，并称O'Donnell也参与；仍明确日期缺失，实际查Joseph rejoined date得直接文；R6两遍整链后提交C。",
+      "first_judgment_divergence": "先把音乐作为当前实际工作，而非原先立即查日期；之后重新识别日期未知。",
+      "first_actual_tool_divergence": "首新Call音乐Query取代原日期Query；R5才执行日期Call。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实查询Joseph重返日期并获得Jan9,2014。",
+          "new_goal_operation_product": "R5明确日期尚缺，真实姓名日期Search取得同3245334，R6采用并提交。",
+          "evidence": [
+            "O_QUERY",
+            "N1_DATE",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "取日期工作真实重做，顺序后移但产物及采用恢复。",
+      "judgment_action_outcome_chain": "G先派音乐核验→人物已知仍日期未知→自主恢复缺口并真实查→C；删后不再重复日期Open，整体表达较短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "764生成/43611Prompt/2Search0Open3Actor；原切后2S1O4段，少日期Open及1Actor，生成差-169..-76。较短路径不是日期证据被省略。",
+      "counterevidence_and_alternatives": "音乐片段中的书名/扩展名被补字，不能把C说成所有证据准确；G决定先音乐顺序，非纯删除。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "新日期真实返回并准确采用，正式C。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_DATE"
+      ],
+      "work_and_evidence_timeline": "R4先音乐Query得与r1完全相同Return；R5明确人物传只member Publishing而缺具体日期，真实原式日期Query；R6简短逐条件并引文日期后Submit。无Open、无额外重复搜索。",
+      "first_judgment_divergence": "先音乐后日期；没有把音乐返回当日期已经证实。",
+      "first_actual_tool_divergence": "R4实际音乐Query替代日期Query，R5再查日期。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得重返日期直接证据。",
+          "new_goal_operation_product": "R5真实日期Query→R6准确引用Jan9→正式Submit。",
+          "evidence": [
+            "O_QUERY",
+            "N2_DATE",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同事实缺口有真实取证、采用和提交，非教师提供日期。",
+      "judgment_action_outcome_chain": "对音乐作宽泛接受→仍独立指出具体日期缺失→查日期后不再Open→较短C，动作减少在确认而非功能消失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "490生成/43611Prompt/2Search0Open3Actor，少1Open/1Actor，生成差-443..-350；R5/6比较比r1短，工具相同也有篇幅差。",
+      "counterevidence_and_alternatives": "最短不等于音乐条件有更好证明，仍共享过度确认；另两路同C更贵。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "日期Search与1000字符Open均含实际日期，正式C。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_OPEN"
+      ],
+      "work_and_evidence_timeline": "R4音乐真实Query→同r1/r2音乐Return；R5恢复日期缺口并查原式日期Query；R6已采用日期仍Open3245334 limit1000，确实包含日期。R7 4584字符/1117生成反复讨论O'Donnell离职早于扩展、音乐沿用是否算参与，未执行新Search，最后认为身份/date足够而Submit。",
+      "first_judgment_divergence": "日期获得后没有像r1/2停止，保留原式日期Open并展开音乐语义争议。",
+      "first_actual_tool_divergence": "第一步先音乐，日期后Open1000而非原2000。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "日期外部取证及后续采用。",
+          "new_goal_operation_product": "R5日期Search、R6采用及Open再次直接证实，R7最终提交准确日期。",
+          "evidence": [
+            "O_QUERY",
+            "N3_DATE",
+            "N3_OPEN",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整恢复而重复确认，音乐角色疑虑未使日期丢失。",
+      "judgment_action_outcome_chain": "日期已得→补Open→音乐关系被重新质疑但未新取证→长篇解释以主身份稳定为理由接受→C；增长主要是判断/反复确认篇幅，不是Search更多。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1785生成/62766Prompt/2Search1Open4Actor，工具及Actor与原切后同；生成差+852..945。R7独1117生成是明确增长位置，Open短于原但不代表总体省。",
+      "counterevidence_and_alternatives": "察觉O'Donnell时间冲突仍接受复用音乐解释，未证明同作曲条件完全错误/正确；不能以Gold正确掩盖不确定。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "R5真实日期返回，最终R7同Gold；游戏作品和音乐参与关系仍未可靠闭合。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_DATE"
+      ],
+      "work_and_evidence_timeline": "R4跟G音乐Query；R5 3768字符讨论O'Donnell离职/可能另一作曲者，最后转主日期Search；R6已读日期又查Halo reusable；R7 11537字符/2963生成反复承认introduced in空白、O'Donnell离职与是否算worked，又靠身份日期强匹配接受，未执行所写新查计划，SubmitC。",
+      "first_judgment_divergence": "音乐查询后不立即稳定接受，扩展参与方式/游戏身份成为持续重新解释任务；但核心日期依然恢复。",
+      "first_actual_tool_divergence": "首音乐，随后日期，第三个真实Call是游戏能力Search替代原日期Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得Joseph重返日期。",
+          "new_goal_operation_product": "R5明确需要日期并实际查得3245334，R6/7持续引用准确日期并提交。",
+          "evidence": [
+            "O_QUERY",
+            "N4_DATE",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原日期工作恢复；另有大量独立附带条件推演，并非日期没找到。",
+      "judgment_action_outcome_chain": "核心日期证据可用→附带身份/音乐仍反复作为待确认对象→一次游戏Search和长篇自行解释→仍C但生成大增。正确日期不足以消除对旁支的工作触发，也未真正纠正旁支。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "4393生成/66587Prompt/3Search0Open4Actor；相对原切后多1Search少1Open、Actor同，生成差+3460..3553，R7独2963与R5独886构成主要可见篇幅。",
+      "counterevidence_and_alternatives": "写Let me verify不是额外实际Call；日期C不能解释为音乐冲突完全解决，G顺序和采样因素不能排除。"
+    }
+  ],
+  "four_run_comparison": "四条都先遵G做音乐，再主动发现日期仍缺、执行真实日期Search，四C且全部FULL。r1/r2不做原后续日期Open较省；r3重复Open后长篇讨论，r4换游戏查后更长反复解释。相同核心功能恢复、结果一致，仍有明显不同的附带条件处理和表达消耗。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "P稳定候选但缺最终属性→G暂时切到旁支→新模型重新定位主问题的日期缺口→定向Search补回→答案保持；这是功能恢复，不是属性取证冗余。",
+      "support": "本Stage四路径。"
+    },
+    {
+      "chain": "核心属性已直接证实，未证辅助关系仍触发查询/重解释→交互或篇幅增加；若接受主身份而不重开Open则更短。",
+      "support": "r1/r2与r3/r4对照，未据此称辅助条件都不需核。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G的Martin不是新实体，但新选定关系和当前行动方向，必须分开。",
+    "同Gold不证明Halo4职务与音乐参与论证准确；Return的空白链接不能由模型补词充证。",
+    "P10260和G22为派生预填，原IDs缺失、R4部分切点只给保守生成差；不能对独立分支差额相加。",
+    "旧原生产档与新采样/Actor预算不同，ORACLE引导非纯因果效应；无GPU/重新检索。四新57830字符视图全读。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "I found Joseph Staten, who was the director of cinematics for Halo games (including Halo 4 which introduced reusable armor abilities). "
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 4,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to check if Martin O'Donnell also worked on \"The Taken King\" expansion of Destiny."
+    },
+    {
+      "evidence_id": "O_COMPOSER_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "Martin O'Donnell",
+      "doc_ids": [
+        "wiki25:2346472"
+      ]
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Joseph Staten rejoined Microsoft Studios senior creative director date"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "as a senior creative director on January 9, 2014",
+      "doc_ids": [
+        "wiki25:3245334"
+      ]
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Joseph Staten rejoined Microsoft Studios date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Staten rejoined Microsoft Studios as a member of the Microsoft Publishing team, but I need to find the specific date he rejoined as a senior creative director"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N3_DATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Joseph Staten rejoined Microsoft Studios senior creative director date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "as a senior creative director on January 9, 2014",
+      "call_id": "chatcmpl-tool-a5ce40f1cd905ebe",
+      "doc_ids": [
+        "wiki25:3245334"
+      ]
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N4_DATE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Joseph Staten rejoined Microsoft Studios senior creative director date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N4_GAP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Wait, the snippet cuts off."
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

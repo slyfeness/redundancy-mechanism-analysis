@@ -1,0 +1,90 @@
+{
+  "schema_version":"SAGE100_FUNCTION_MECHANISM_V1","unit_id":"SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR","trajectory_id":"SAGE_EXISTING_BATCH02__SAGEE_0036","stage_id":"S011","sample_order":2,"condition":"TERMINAL_DROP_NO_ANCHOR",
+  "source_files":{
+    "O":{"source_file":"RAW/SAGE_EXISTING_BATCH02__SAGEE_0036/trajectory.json","source_sha256":"f93eef140f3e1fb14578c06cae83e178bcb314dc7ee00eb5ae53a1ad243f4cb0"},
+    "M":{"source_file":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0036.json","source_sha256":"4f73ed72bb21eac0678701f32975b5a2c90c2eee74111c6da836bc1ed3ce9de2"},
+    "I":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json","source_sha256":"c93f21a9f1de204ee5737320cd752fb8790175ca565d4e69cce0b12984a80e1a"},
+    "N1":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json","source_sha256":"4833f9ba463f21fba8e14bb7db320d0573a6ad16b7839984c5c97032c7a06bab"},
+    "N2":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json","source_sha256":"3b11d02c90263225e04c748ebdc297ea134bd7b060b1975df4537c096c657a7f"},
+    "N3":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json","source_sha256":"c9c36506e62e9e4dce6776d4ba58819c0a7775b58757cf38e7a2131806d6e9b2"},
+    "N4":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json","source_sha256":"1616ccd0b4e6efe7bc017cb652ac888a1ef9b36b67590600fef12703d7ce7f55"}
+  },
+  "question_and_gold":{"question":"Which specific German institution sponsored an expedition to document the great vaulted hall of the Sasanian capital's primary architectural achievement, an empire whose opposing commander was defeated by a military leader mentioned in the initial document?","gold":["Staatliche Museen zu Berlin"],"gold_reference":"EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0036/0/answer/0"},
+  "read_scope":"原路径9轮及全部Call/Return完整重读，见原始工作笔记；新四路径compact-references视图[0,18000)、[18000,36000)、[36000,45327)完整读取。新出现的军史片段和500字符Kühnel Open全文实际已读；只有完全相同的文档内容引用原已读位置。",
+  "original_outcome":{"actual_final":"German State Museums (Staatliche Museen zu Berlin)","adopted_answer":"Staatliche Museen zu Berlin","outcome":"C","decision_file":"ANALYSIS/ORIGINAL_OUTCOME_DECISIONS/SAGE_EXISTING_BATCH02__SAGEE_0036.json","reason":"原正式答案明确是Gold所指机构，机构考察关系有直接Ctesiphon文字；initial document的指代仍未唯一证明，主答案正确不等于所有辅助链完备。"},
+  "prestate":{"actor_visible":"R9@0当前前缀为空，P已有E004/E006考察段、E007 Shapur/Valerian军史和最新E008艺术人物资料；没有原R9最后复盘或Final。","returned":"German State Museums与1931—32/Taq-i Kisra直接关系早已返回两次；军史材料直接描述Shapur击败/俘获Valerian。最新E008有Kühnel博物馆任职但没新增考察赞助关系。","extracted":"原R5/R7/R8已明确提取机构和考察，原R8已采用军史关系。","adopted":"原日志多次接受该机构，R8已形成全题答案；但这些旧Reasoning不在规范化P，当前可见的是支持它们的真实工具记录。","action_updated":"曾用机构全名重新查询、核军史、再搜1931；这些真实行动保留。","prior_logged_not_retained":"不能说原R8总体接受作为文字被保留到新R9；只能说支持材料已在P、原日志接受曾发生。","evidence":["I_EXPEDITION","I_MILITARY"]},
+  "original_U":{"full_text_reference":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0036.json#/stages/10/items","ranges":[{"json_pointer":"/rounds/8/reasoning_content","round_id":9,"start":0,"end":1902},{"json_pointer":"/tool_events/8","event_id":"E009"}],"goal":"根据已获得考察及军史材料结束核验，接受机构并正式提交。","operations":"再次拆题，引用旧Ctesiphon考察段，采用Shapur/Valerian关系，将德国一方确认为German State Museums并submit。没有新增Search/Open。","output":"正式机构Final；并没有真正找出题中initial document独立指向的文档。","judgment_before_after":"有机构证据与已发生接受、仍有模糊文档指代→不再新核查，正式提交原机构。","evidence":["O_ACCEPT","O_FINAL"]},
+  "original_followup":"末段提交accepted后没有后续Actor。",
+  "function_features":"在机构已有直接支持、辅助历史指代仍模糊时，重新对照并决定可以提交。它的作用包括停止继续取证；不能仅用机构是否找回衡量是否恢复原工作，更不能由新同机构Final推断仍有同样的证据闭环。",
+  "guide_audit":{"text":"","source_pointer":null,"source_range":null,"derived_token_count":0,"compared_complete_P":true,"status":"NO_ANCHOR","new_entities_or_facts":"没有G、没有原Final或Gold注入。","new_action_direction":"无教师方向。","full_successor_prefill":false,"limits":"这是末段自然重生成，模型并未被强迫跳过接受/提交功能；不与FIRST_SENTENCE结果混合。","evidence":["I_NO_G"]},
+  "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts":[
+    {
+      "repeat_id":1,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat01","actual_final":"German State Museums (Staatliche Museen zu Berlin)","terminal":"MODEL_FINAL_STOP","adopted_answer":"Staatliche Museen zu Berlin","outcome":"C","outcome_reason":"实际提交与Gold同一机构，R9/R10均引用既有考察段；额外军史Search仍没证明initial document唯一指代，保留共享缺口。","outcome_evidence":["N1_REOPEN","N1_FINAL"],
+      "work_and_evidence_timeline":"新R9先准确采用机构，随后将initial document视为待核缺口，真实再查Shapur I/Valerian；新Return增加军史细节但首项Edessa与原已返内容相同。R10推测initial document可能是最初Sasanian architecture，未得到实际文档证明，仍据旧考察段和既有军史关系提交。",
+      "first_judgment_divergence":"原R9决定已有信息足够提交；新R9在机构相同前提下将模糊文档指代重新作为应核任务。",
+      "first_actual_tool_divergence":"原只有submit，新R9先实际Search军史，再R10提交。",
+      "function_correspondence":[{"original":"从考察证据选择German State Museums","new":"R9立即从同段材料采用同机构","evidence":["O_ACCEPT","N1_REOPEN"]},{"original":"整体匹配并停止取证/正式提交","new":"R10再次匹配并提交，但先多核一轮军史，未真正解决文档指代","evidence":["O_FINAL","N1_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"机构判断、条件比较和正式提交全部恢复，停止决定延后一轮；新增核查不能抹掉已经恢复的判断。",
+      "judgment_action_outcome_chain":"机构有直接支持→仍将initial document不明视为下一任务→新增军史Search主要确认已知胜负而不解决文档身份→再接受机构并提交。正确主答案不变，消耗增加可定位到辅助缺口重新派发一轮取证和两次整体组织；不能断言隐藏停止阈值。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR.json#/records/0","cost_work_locations":"1053生成、52955Prompt、1Search/2Actor；原末轮481生成、24474Prompt、0Search/1Actor。新增军史Search与R10的28481Prompt为实增量，首次P重放24474另列。",
+      "counterevidence_and_alternatives":"核查真实有相关军史文档，不能说完全无信息；但未发现新内容改变机构或解决initial document指代。结果C也不能把共享证据缺口算修复。"
+    },
+    {
+      "repeat_id":2,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat02","actual_final":"German State Museums","terminal":"MODEL_FINAL_STOP","adopted_answer":"Staatliche Museen zu Berlin","outcome":"C","outcome_reason":"正式英文机构名是Gold德文名的同一机构，R10明确用括号对应证明它的实际所指；不是拿解释里的另一个候选强行改答案。","outcome_evidence":["N2_ACCEPT","N2_ALIAS","N2_FINAL"],
+      "work_and_evidence_timeline":"R9列六项关系后已认定German State Museums，再Open最新历史中的Ernst Kühnel500字符。返回给其Berlin State Museums职务和其他任职，没有考察赞助句。R10又列机构、军史与建筑，仍依靠旧Ctesiphon考察段，提交英文名。附带把Ctesiphon Palace与Bisotun/Madain混称缺少返回支持，不能因答案C忽略解释问题。",
+      "first_judgment_divergence":"已接受机构后仍选择核领导人资料；不再把initial document当成实际新Search任务。",
+      "first_actual_tool_divergence":"原直接submit，新先Open Kühnel，属于新增人物核查，未获得新的考察资助证明。",
+      "function_correspondence":[{"original":"全题对应并采用机构","new":"R9六点列表及R10机构段都作实际对应","evidence":["O_ACCEPT","N2_ACCEPT","N2_ALIAS"]},{"original":"正式提交机构","new":"R10提交其英文别名，语义同一","evidence":["O_FINAL","N2_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"最终接受和提交完整恢复，额外领导人Open延缓而非替代了它。",
+      "judgment_action_outcome_chain":"已有考察段足以指向机构→接受后改核负责人→Open只支持职务关系而非新增考察赞助→仍凭旧考察段提交同机构。新增Open和一次重新组织造成成本增加，不能视为恢复原不存在的负责人缺口。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR.json#/records/1","cost_work_locations":"733生成、49161Prompt、0Search/1Open/2Actor；较原增1Open/1Actor。新增R10预填24687，首次P24474单列。与repeat01不同，核查对象是考古负责人而非军事人物，不能因都多一轮就叫相同机制。",
+      "counterevidence_and_alternatives":"原E008已给Kühnel全snippet，Open500并未增加关键资助关系；但它确实真实执行且给职务内容，不伪称空Return。主机构正确与附带地名错误/未证指代分开。"
+    },
+    {
+      "repeat_id":3,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat03","actual_final":"German State Museums (Staatliche Museen zu Berlin)","terminal":"MODEL_FINAL_STOP","adopted_answer":"Staatliche Museen zu Berlin","outcome":"C","outcome_reason":"实际提交同一机构，考察关系由P明确支持；新军史核查没有更换机构。","outcome_evidence":["N3_REOPEN","N3_ACCEPT","N3_FINAL"],
+      "work_and_evidence_timeline":"R9已选机构但再次要求确认initial document的军事人物/胜利，执行Valerian Shapur I Battle of Edessa...Search；Edessa等既有片段再次返回，也有Valerian新片段。R10正确采用Shapur/Valerian并引用旧考察，提交同机构。未真正找到指代为哪篇最初文档。",
+      "first_judgment_divergence":"把未唯一定位的initial document重新列为要cross-reference的缺口；原末段不再开展该工作。",
+      "first_actual_tool_divergence":"R9先做军史Search，原直接submit；与repeat01Query措辞不同但同一待核关系，Return实际重叠很大。",
+      "function_correspondence":[{"original":"采用机构并作全题接受","new":"R9已采用、R10再整合军史与考察接受","evidence":["O_ACCEPT","N3_REOPEN","N3_ACCEPT"]},{"original":"结束取证并提交","new":"加一轮军史后R10真实submit","evidence":["O_FINAL","N3_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"所有原末段功能恢复，结束时间推迟一轮，非单纯机构找回而未形成Final。",
+      "judgment_action_outcome_chain":"直接机构支持未变→辅助文档指代触发再核军事胜负→返回支持已知胜负而非初始文档身份→仍以同机构完成提交。不同Query但与repeat01具有相似的缺口—行动—未解决指代—最后提交链，只有本Stage两次支持，尚非跨题机制。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR.json#/records/2","cost_work_locations":"952生成、52980Prompt、1Search/2Actor。相比原多471完整响应生成，新增R10预填28506；増量对应R9长缺口解释、一次军史Search及R10再比较。",
+      "counterevidence_and_alternatives":"新Return确有新人物简介，不能按同DocID粗判全重复；关键是它未被用于改变机构，也没证明initial document来源。"
+    },
+    {
+      "repeat_id":4,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR__repeat04","actual_final":"German State Museums (Staatliche Museen zu Berlin)","terminal":"MODEL_FINAL_STOP","adopted_answer":"Staatliche Museen zu Berlin","outcome":"C","outcome_reason":"明确提交Gold所指机构，P考察段直接支持；无新Return，仍不能认定initial document已解决。","outcome_evidence":["N4_AMBIGUITY","N4_REVERSED_ASIDE","N4_FINAL"],
+      "work_and_evidence_timeline":"R9反复引用同一考察段，列Shapur/Valerian等，指出不清楚题中initial document。多次说search/check却没有实际Search/Open，最后接受机构并submit。还写Julian was defeated at Ctesiphon，而旧Sasanian Empire实际返回是Julian defeated Shapur's forces，出现辅助关系方向错误，主机构未改变。",
+      "first_judgment_divergence":"从原较短最终接受变成较长的文档指代猜测、检查计划和重复机构确认；没有新证据消解。",
+      "first_actual_tool_divergence":"没有新增真实工具工作，唯一Call仍submit。所有search/check措辞只算未执行计划，不能登记Search。",
+      "function_correspondence":[{"original":"对照考察及军史后采用机构","new":"R9多次对照并采用同机构，辅助指代仍悬而未定","evidence":["O_ACCEPT","N4_AMBIGUITY"]},{"original":"不再核查并正式提交","new":"虽提核查计划，最终未执行新核查即提交","evidence":["O_FINAL","N4_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"接受和提交都实质发生，更多中间计划没有执行，不能据字面意向标部分重建或多Search。",
+      "judgment_action_outcome_chain":"已有机构直接支持→识别辅助文档指代不清→在文字中反复猜测/复核→没有新行动闭合该缺口→仍提交同机构。正确主结果保持，但生成增长来自未执行计划与重复组织，另有辅助关系错误，不能称完整质量相同。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0036__S011__TERMINAL_DROP_NO_ANCHOR.json#/records/3","cost_work_locations":"914生成、24474Prompt、1Actor、0Search/Open，与原工具/预填相同，生成增加433。差额完全在这轮文字展开，不能说多查几次造成。",
+      "counterevidence_and_alternatives":"本条是repeat01/03的反例：同样initial document不明，没有实际再Search也能提交正确机构。但它不能证明不核军史在任何题中安全，更不能因没有Search就判无独立认知工作。"
+    }
+  ],
+  "four_run_comparison":"四条正式答案语义均为同一Gold机构，原末段功能全部恢复；两条新增军史Search，一条新增负责人Open，一条只有文字中反复检查而无新Call。各新末段生成均高于原481，工具增加与纯表达增长分别定位。辅助initial document来源原新都未唯一证明，不能将共享缺口混成新增质量退化，也不能说额外核查已完成缺口。",
+  "conditional_mechanism_proposals":[{"proposal":"当核心机构关系已被直接证据支持、但题面辅助指代仍不明确时，重生成可把这个未闭合指代再次转成军事核查任务；若实际Query只确认已有胜负而未识别文档来源，可能增加计算却不改变机构和指代状态。","support_scope":"本Stage repeat01/03，两次同题支持；其他题要检查是否相同缺口及同样无状态推进，不自动与一般再确认合并。","counterevidence":"repeat04同样识别指代缺口却没有新Call而仍提交；repeat02实际转负责人Open，不能作为同一军史机制支持。"},{"proposal":"相同正确Final与完整功能重建可以伴随额外取证或只是更长表达；需要对每条路径分别定位判断是否改变真实动作，不把核查意向当执行。","support_scope":"本Stage四次；可与首题末段作功能层对照，但本题还有未证指代和解释错误，不能宣称前态完全相同。","not_established":"没有无干预同seed对照，原新T/top_k等也不同，未证明原末段独立造成停止选择。"}],
+  "counterevidence_and_limits":"TERMINAL无G，不存在G事实泄漏；仍是重生成，不是明确指令跳过功能。四次均重建并耗费更多生成，不支持本组严格可省。正确性按明确机构语义而非完整Final字符串；其余关系证据质量单独列。原R9@0可报完整响应usage差但没有原生Token切点证明，P回放另列，不加总四次成本节省。",
+  "evidence":[
+    {"evidence_id":"I_EXPEDITION","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":9,"event_type":"historical_return_in_actual_P","json_pointer":"/actual_normalized_history/9/content","exact_quote":"German State Museums (Staatliche Museen zu Berlin)"},
+    {"evidence_id":"I_MILITARY","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":9,"event_type":"historical_return_in_actual_P","json_pointer":"/actual_normalized_history/15/content","exact_quote":"Shapur I"},
+    {"evidence_id":"I_NO_G","source_ref":"I","source_side":"GUIDE","round_id":9,"event_type":"empty_guide","json_pointer":"/anchor_text","exact_quote":""},
+    {"evidence_id":"O_ACCEPT","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/8/reasoning_content","exact_quote":"So the answer is: German State Museums (Staatliche Museen zu Berlin) or simply German State Museums."},
+    {"evidence_id":"O_FINAL","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":9,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"German State Museums (Staatliche Museen zu Berlin)"},
+    {"evidence_id":"N1_REOPEN","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Now I need to verify the \"initial document\" reference about the opposing commander who was defeated by a military leader."},
+    {"evidence_id":"N1_SEARCH","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":9,"event_type":"actual_tool_call","json_pointer":"/tool_events/0/arguments/query","exact_quote":"Shapur I defeated Roman emperor Valerian military leader","call_id":"chatcmpl-tool-8744fb724991cf43"},
+    {"evidence_id":"N1_FINAL","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":10,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"German State Museums (Staatliche Museen zu Berlin)"},
+    {"evidence_id":"N2_ACCEPT","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"So the specific German institution that sponsored the expedition was the German State Museums (Staatliche Museen zu Berlin)."},
+    {"evidence_id":"N2_ALIAS","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":10,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"So the answer is: **German State Museums** (or **Staatliche Museen zu Berlin**)."},
+    {"evidence_id":"N2_FINAL","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":10,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"German State Museums"},
+    {"evidence_id":"N3_REOPEN","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"I'll need to carefully cross-reference the initial document to confirm the precise military leader and their victory details."},
+    {"evidence_id":"N3_ACCEPT","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":10,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"So the answer should be the German State Museums (Staatliche Museen zu Berlin)."},
+    {"evidence_id":"N3_FINAL","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":10,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"German State Museums (Staatliche Museen zu Berlin)"},
+    {"evidence_id":"N4_AMBIGUITY","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"But I don't see a clear \"initial document\" mentioned in the question."},
+    {"evidence_id":"N4_REVERSED_ASIDE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Julian was defeated at Ctesiphon"},
+    {"evidence_id":"N4_FINAL","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":9,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"German State Museums (Staatliche Museen zu Berlin)"}
+  ],
+  "reviewer":"Codex model","review_status":"CODEX_MODEL_REVIEW_COMPLETE","human_gold_claimed":false
+}

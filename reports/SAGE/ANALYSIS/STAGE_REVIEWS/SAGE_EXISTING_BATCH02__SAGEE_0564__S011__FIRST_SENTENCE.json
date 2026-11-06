@@ -1,0 +1,577 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0564",
+  "stage_id": "S011",
+  "sample_order": 34,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0564/trajectory.json",
+      "source_sha256": "35d81c30d265492cb6920db32a09423c606953071f6f4b6c4af51f9d90b9f9f2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0564.json",
+      "source_sha256": "ca2f5eb61384529b5f184b6174b00f7baf3a8da0b4c96ee555b9fcb69d71ad84"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "4ec8486e5c0b088a7905ce5e7f935c168fc1a83ecb8731c181be2a7feb7db31d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "0f427a3956568d2198dfcaa35b66a5cd95ad0a71758f0b4f741921dee341d6e8"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9d641f8de76b17202feb2f6abb0cc5411da571bbfd1b27f59642717fb9908d13"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "e49ea03484b62335c6bfaba84b88bbacc5794abdc8e5638a890775ee7f659b08"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "2b9d518925bcc977eae3e9347395ab26393d58c035b8f8b12c23b6c3a1c33d75"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the dollar amount, rounded to the nearest million, of the 3D contribution to the opening weekend gross of the Marvel Cinematic Universe film directed by the individual who also directed the movie for which Jennifer Carpenter received the 2006 MTV Movie Award for 'Best Frightened Performance'?",
+    "offline_gold": [
+      "24 million"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原109213字符、14Round、全部11Search2Open和Submit已读；目标U是R13[2999,5957)及获奖Query/完整返回。",
+    "new": "108442字符四支按0—28000—56000—84000—108442完整阅读；实际新Carpenter与奖项材料及两种票房Open全文已读，相同观察按SHA引用。",
+    "semantic_author": "Codex实际阅读和逐项直接撰写。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R13@2999，当前P已完整盘点电影、导演、MCU和3D24，并明确采用整数百万24；同时仍说须确认Carpenter获奖。历史Reasoning规范化为空，但当前2999字符及全部旧实际Return保留。",
+    "evidence_state": "金额7461444直接支持、ScottMCU关系有实际材料；Carpenter奖项只有别人的提名和EmilyRose评论，无她获2006类别的直接信息。",
+    "gap": "候选和金额已定，前置获奖关系未直接证实，是否仍驱动真实Search还是可条件接受。",
+    "evidence": [
+      "I_ACCEPT_AMOUNT",
+      "O_DIRECT_AMOUNT",
+      "O_P_GAP"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 13,
+        "json_pointer": "/rounds/12/reasoning_content",
+        "start": 2999,
+        "end": 5957
+      },
+      {
+        "round": 13,
+        "json_pointer": "/tool_events/12",
+        "event": "实际2006奖项winner查询及完整相同返回"
+      }
+    ],
+    "goal": "采用金额后重新检查Carpenter是否获奖以及是否足以维持导演链。",
+    "operations": [
+      "重新比较其他提名者和题目received措辞，多次猜Carpenter或Hilton。",
+      "又采用题目前提认为同EmilyRose/Scott/DoctorStrange即可，但随即仍真实查2006奖项winner。",
+      "Return与原第一批完全相同，未补她获奖事实。"
+    ],
+    "product": "确认信息缺口仍在、重复得到旧材料；未新增金额或直接获奖证据。",
+    "judgment_change": "金额已可答→获奖关系仍需核；局部暂接受和真实重查交替，不能把文本已准备答当真提交。",
+    "evidence": [
+      "O_U_REOPEN",
+      "O_U_QUERY",
+      "O_NEXT_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R14明确未直接获奖证据，认为无论提名/获奖都指同电影，于是长篇接受链并Submit24million；不是用U的新事实，因为U没有新事实。",
+    "true_suffix": "原后缀保守2017—3669生成、1Search0Open1Submit、2生成段、未来HTTP Prompt48212；不可用整条10405作比较。",
+    "evidence": [
+      "O_NEXT_ACCEPT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "被删的是正确金额已采用后的前置关系重评与新检索实例；信息缺口真实存在，但这次Search未补齐。",
+    "四条都重新评估该关系，三条又实际Search，只有r3省去真实获奖调用而以条件链直接提交。",
+    "r2真实改查询后得到Carpenter因EmilyRose获MTV奖的新证据并明确使用；其余正确答案不能因此当同等证据质量。"
+  ],
+  "guide_audit": {
+    "G": "The user is asking for the dollar amount (rounded to the nearest million) of the 3D contribution to the opening weekend gross of a specific Marvel Cinematic Universe (MCU) film.",
+    "origin": "原S012 R14[0,177)，39派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "只重述问题金额需求，不给电影名、导演、金额或获奖结论；P已有24，不能说G泄漏24。",
+    "evidence": [
+      "I_G",
+      "I_ACCEPT_AMOUNT"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat01",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R14真Submit正确金额；奖项关系仍无直接新证据，其他导演/作品猜测中有无支持项。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R13长篇重评Carpenter和其他提名者、导演是否有MCU；多次说可接受24，但实际仍发奖项winnerSearch。",
+        "Return完全同原旧材料，不补获奖。R14再长篇比较received/nomination与同电影，最后条件接受并Submit。"
+      ],
+      "first_substantive_judgment_difference": "原U功能完整恢复，但扩展了更多导演作品及同样结论复述；新Query前已经8226字符，后一轮又8534字符。",
+      "first_actual_tool_difference": "首Search增加JenniferCarpenter名字，相比原全奖项winner入口，完整Return仍同；1Search2Actor同原生成段数。",
+      "function_correspondence": [
+        {
+          "original_goal": "金额已采用后核前置获奖关系",
+          "original_operation": "重评并实际Search",
+          "original_product": "旧材料、缺口未补",
+          "new_goal": "相同",
+          "new_operation": "长篇重评同关系，实际人物限定Query仍同Return",
+          "new_product": "重建同缺口处理，最后条件接受",
+          "evidence": [
+            "O_U_REOPEN",
+            "O_U_QUERY",
+            "N1_QUERY",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "金额稳定→前置奖项仍被当待查→重评和Search未增信息→再次长篇条件接受→C；工具没增，生成多905—2557，增加落在反复论证而非U必要证据。",
+      "costs": {
+        "new_generation": 4574,
+        "new_prompt": 93067,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 44778,
+        "G_prefill": 39,
+        "conservative_new_minus_original_generation_interval": [
+          905,
+          2557
+        ]
+      },
+      "limits": "只列多次Search意向不计实际调用，首轮最终只有一个。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat02",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R16实际Submit；新奖项文章支持EmilyRose表演获MTV奖，仍无该snippet直接年份/类别，但比原评论更有支持；Open1000实际含24。",
+      "outcome_evidence": [
+        "N2_NEW_AWARD_RETURN",
+        "N2_ADOPT_AWARD",
+        "N2_OPEN_AMOUNT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R13长评后实际winnerQuery，Return仍旧；R14继续纠结，真实简化为JenniferCarpenter MTVMovieAward winner2006。",
+        "第二Search首次给Carpenter人物1946452与奖项11090925，后一篇明确EmilyRose赢MTV和Scream。",
+        "R15明确说searchresultsindicateshewon，并引用既有24后Open1000票房；实际Open含金额。",
+        "R16准确引用新奖项文本，但仍反复重新讨论提名/年份/类别，长篇后Submit。"
+      ],
+      "first_substantive_judgment_difference": "真正从原反复旧材料推进到Carpenter个人/奖项证据，且后来实际采用，不只DocID出现。",
+      "first_actual_tool_difference": "首Query调序同Return，第二简化Query得到新证据；新增Open1000确认已有24。",
+      "function_correspondence": [
+        {
+          "original_goal": "核Carpenter奖项与电影关系",
+          "original_operation": "原winnerQuery未得新支持",
+          "original_product": "缺口仍在",
+          "new_goal": "相同",
+          "new_operation": "两Search中第二换词取得奖项文献，R15/16明确采用",
+          "new_product": "一般获奖关系获得新支持，具体2006类别仍由上下文推",
+          "evidence": [
+            "O_U_QUERY",
+            "N2_NEW_QUERY",
+            "N2_NEW_AWARD_RETURN",
+            "N2_ADOPT_AWARD"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "原缺口继续驱动核验→换入口终于拿到相关获奖关系→采用但仍反复论证→Open已有金额→C；更多工作提升一项支持，2Search1Open4Actor和多1479—3131生成不是全冗余。",
+      "costs": {
+        "new_generation": 5148,
+        "new_prompt": 199138,
+        "new_search": 2,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 44778,
+        "G_prefill": 39,
+        "conservative_new_minus_original_generation_interval": [
+          1479,
+          3131
+        ]
+      },
+      "limits": "新文献有MTV奖而非精确年/类别，不把增强支持夸成完整逐约束验实。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat03",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "首轮真Submit正确金额；获奖无新证据，多处断言她没赢/题目可能错误又条件接受，不能以C验证这些断言。",
+      "outcome_evidence": [
+        "N3_CONDITIONAL",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R13重新比较获奖/提名、2006名称，反复说要Search但没有实际Search。",
+        "反复假设她没获奖、可能他人，并以题目前提或无论提名/获奖仍同EmilyRose电影链恢复24。",
+        "同一12867字符推理最终直接Submit，无新Return。"
+      ],
+      "first_substantive_judgment_difference": "原U的实质关系重新评估恢复，但真实获奖取证没有执行；由条件推理直接关闭缺口进入Submit。",
+      "first_actual_tool_difference": "原首CallSearch，新首CallSubmit，省1Search1Actor；没有未执行计划冒作工具。",
+      "function_correspondence": [
+        {
+          "original_goal": "金额采用后重评并核获奖关系",
+          "original_operation": "重评+Search",
+          "original_product": "关系未证实、旧Return",
+          "new_goal": "同一关系重评",
+          "new_operation": "长篇条件比较、无实际Search，直接用旧证据与题目前提接受",
+          "new_product": "评估功能重建，取证操作未再执行",
+          "evidence": [
+            "O_U_REOPEN",
+            "O_U_QUERY",
+            "N3_CONDITIONAL",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "已有金额→重评缺口但不执行查询→以同电影关系接受→C；减少一调用但没有新奖项支持，生成变化[-108,1544]含0，不能声称确定省生成。",
+      "costs": {
+        "new_generation": 3561,
+        "new_prompt": 44817,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 44778,
+        "G_prefill": 39,
+        "conservative_new_minus_original_generation_interval": [
+          -108,
+          1544
+        ]
+      },
+      "limits": "大量准备查询语句不算真实Search；更少交互不代表表达更短或证据全好。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S011__FIRST_SENTENCE__repeat04",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R16Submit正确，采用的是较早Search完整24句；R15Open500实际截在with之前，没有3D24，不能误写新Open补得金额。",
+      "outcome_evidence": [
+        "N4_RETRY",
+        "N4_OPEN_CUTOFF",
+        "N4_OLD_SOURCE",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R13明说奖项未证，真实查2006winner；R14同缺口再发完全相同Query，Return相同。",
+        "R15继续同关系盘点后接受DoctorStrange与24，转Open500。",
+        "Open500只有总85.1/IMAX12.2，恰未到3D24；R16明确引用previousSearch完整金额而非该Open，并短链Submit。"
+      ],
+      "first_substantive_judgment_difference": "原U重新评估与Search完整恢复，之后还再次同Query；最终转核已有金额，没有补获奖直接证据。",
+      "first_actual_tool_difference": "两次完全相同winnerSearch而原一次，新增Open500，4Actor而原2生成段。",
+      "function_correspondence": [
+        {
+          "original_goal": "获奖关系重评及实际核查",
+          "original_operation": "1Search旧材料",
+          "original_product": "缺口未补",
+          "new_goal": "相同",
+          "new_operation": "连续2Search完整相同Return，然后用已有电影链接受",
+          "new_product": "功能恢复但无新增获奖支持",
+          "evidence": [
+            "O_U_QUERY",
+            "N4_QUERY1",
+            "N4_RETRY",
+            "N4_OLD_SOURCE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "奖项未解决→同操作再查仍无支持→转票房Open又截断关键数→仍能用P旧Search金额提交C；工具/Prompt增加，生成区间[-1404,248]含0不能伪精确节省。",
+      "costs": {
+        "new_generation": 2265,
+        "new_prompt": 198180,
+        "new_search": 2,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 44778,
+        "G_prefill": 39,
+        "conservative_new_minus_original_generation_interval": [
+          -1404,
+          248
+        ]
+      },
+      "limits": "最终正确用旧Search不等新Open有效，必须区分获取来源与实际采用来源。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "4C，目标后续缺口处理均被重新展开；3支有真实获奖Search、1支仅思考。",
+    "shared": "P已有正确金额、G不补事实；答案保持可由旧直接证据与电影链维持，不表示前置奖项完整核完。",
+    "differences": "r2获得且采用真正新获奖文章，r1/4重复材料后接受，r3不查但长篇条件推理；成本按分项/保守区间分别，不能用4C同一标签抹平。",
+    "A_class_interpretation": "这一类可观察为金额已定后的关系重评/再取证，作用可能增加支持，也可能重复未闭合缺口；不将所有重复核验先归冗余。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "已采用最终量后，前置关系缺口仍能独立派发取证；返回是否真正改变该关系，决定是得到新支持还是仅延后提交。",
+      "support": "r2简化人物获奖Query拿到11090925并R15/16采用，r1/4查询仍相同旧观察后只能条件接受；r3以条件推理直接提交。",
+      "counterexample": "r2新一般获奖信息仍未让推理立即收束，R16继续长讨论；有新证据不保证更少计算。",
+      "scope": "同题四条支持取证产物/采用/停止分离，跨题归纳后再确定普遍性。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "r2反驳获奖Search都没用：确实出现新支持但尚非精确类别。",
+    "r3反驳真实Search是当前正确金额必要条件：P足以支持金额，但其前置关系接受仍有限。",
+    "更多核查也可能生成错误导演作品表，r1的JulioRichter/KingdomofHeaven等不受实际Return支持，不以正确金额认可全部陈述。",
+    "Teacher仅重述题意仍是ORACLE_ANCHORED；没有多分支纯因果排除采样解释。",
+    "无原nativeIDs，P44778/G39派生计入上下文，生成差只给区间，独立分支不得相加节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_ACCEPT_AMOUNT",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 13,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So the 3D contribution is $24 million."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 13,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the dollar amount (rounded to the nearest million) of the 3D contribution to the opening weekend gross of a specific Marvel Cinematic Universe (MCU) film."
+    },
+    {
+      "evidence_id": "O_DIRECT_AMOUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/4/snippet",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_P_GAP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "I need to confirm who *won* the award in 2006."
+    },
+    {
+      "evidence_id": "O_U_REOPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "Let's double check the Jennifer Carpenter award."
+    },
+    {
+      "evidence_id": "O_U_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "call",
+      "json_pointer": "/tool_events/12/arguments/query",
+      "exact_quote": "2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_NEXT_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "If she received a nomination, the movie is still \"The Exorcism of Emily Rose\". If she won, it's the same movie."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-81b4ad4283e1221c"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Jennifer Carpenter 2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "chatcmpl-tool-b5353edb706ed0d3"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "However, based on the prompt's premise, I must accept that she received the award."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "chatcmpl-tool-836ddc81e057193d"
+    },
+    {
+      "evidence_id": "N2_NEW_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Jennifer Carpenter MTV Movie Award winner 2006",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_NEW_AWARD_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/1/snippet",
+      "exact_quote": "Her breakout performance as the film's title character won her a MTV Movie & TV Award and a Scream Award.",
+      "doc_id": "wiki25:11090925",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT_AWARD",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Snippet `wiki25:11090925`: \"Her breakout performance as the film's title character won her a MTV Movie & TV Award and a Scream Award.\""
+    },
+    {
+      "evidence_id": "N2_OPEN_AMOUNT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "chatcmpl-tool-8e4035d9381f59ef"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_CONDITIONAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "If the search results don't explicitly state she won, but the question states she \"received\" the award, I will proceed with the Scott Derrickson -> Doctor Strange path."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "chatcmpl-tool-94952ec138dd3b9a"
+    },
+    {
+      "evidence_id": "N4_QUERY1",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RETRY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_OPEN_CUTOFF",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "IMAX contributed $12.2 million to the opening weekend gross, wit",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_OLD_SOURCE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "From the previous search result (doc_id: wiki25:7461444), the text snippet says:"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "chatcmpl-tool-97ebc0b857087a2a"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA, exact evidence quotes and source sides, Round/Call ID/DocID metadata, frozen original ranges and four actual cost ledgers. Codex semantics are not independent human gold."
+}

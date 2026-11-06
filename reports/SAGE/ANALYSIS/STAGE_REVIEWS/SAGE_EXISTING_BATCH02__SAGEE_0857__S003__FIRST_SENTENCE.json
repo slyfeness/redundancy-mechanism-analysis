@@ -1,0 +1,568 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0857",
+  "stage_id": "S003",
+  "sample_order": 20,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0857/trajectory.json",
+      "source_sha256": "7ded54490fd523ab26cb16a2fea096b730cd4ebc3fa5915f6f6c26137e7304f7"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0857.json",
+      "source_sha256": "26c59ff9b685cf8df2862e86fe2ed8b8976603192547b9a02fe1fc616ce12757"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "1168c011ebf425210b3d09b15e7d4ec510330d4c26f90a8cd0a13858b0f22494"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ff8f89eed3e1d3d52b76d80ab2631423affdb0f5810dde8fb20fe48f347b3533"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "94f01fc4d38a192d0c7d39e95dc7a3836977ca2701a371eea4897f7126306253"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "e41d3822ac82a4d531836766ddcf15809ed95750810a8485500f15e96dfc804c"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "4cb2fdcfabc303ed26a852e33cd30e0b44f0fab5264993a1e7c03aebede8f87a"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the reported acquisition price, in millions of U.S. dollars, for the cloud security company whose product was rebranded as Microsoft Cloud App Security, and whose founders were former members of the Israeli Intelligence Corps' Unit 8200, given that the acquisition occurred after the launch of Microsoft's Trustworthy Computing Initiative?",
+    "gold": [
+      "320"
+    ],
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整原3轮/全部真实Call和Return，ROOT_020_ORIGINAL_PROCESS.md。",
+    "new": "36607字符四条完整路径，12轮12实际工具事件及完整新Return，精确已读全文引用不替代新Reasoning阅读。",
+    "actual_input": "当前R2[0,319)完整保留：已列Adallom、改名、Unit8200和320/July2015。原Search片段全部可见，未注入后继Open/Final。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "known": "公司身份和题目前三约束/价格/收购日期已从同一7476796 Search片段取出，并在实际当前P列出采用。",
+    "unresolved": "倡议启动时间还没有直接文档材料；已有Adallom片段未涉及它。",
+    "evidence": [
+      "I_ADOPTED",
+      "O_SEARCH_PRICE",
+      "O_SEARCH_FOUNDERS"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 319,
+        "end": 613
+      }
+    ],
+    "goal": "打开Adallom原文核对已采用的公司/价格/创始人资料，并考虑时间条件。",
+    "operations": "真实Open7476796 offset0 limit2000，一次覆盖原Search已有的身份/改名/创始人/320/2015；没有倡议启动时间。",
+    "product": "较长原文重复确认公司及价格，不新增时间条件证据。",
+    "judgment_change": "已采用资料得到同文档更长读取；不是首次公司选择/首次价格发现。",
+    "evidence": [
+      "O_OPEN_PLAN",
+      "O_OPEN_RETURN"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R3引用已知身份/价格，用记忆2002与2015比较后Submit320；没有再检索倡议。",
+    "evidence": [
+      "O_YEAR_MEMORY",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "已采用公司价格之后的原文重复确认",
+    "重复读取的执行和取到相应内容必须分开",
+    "真正剩余时间缺口需要另一来源，而非把原公司文档无限打开"
+  ],
+  "guide_audit": {
+    "text": "The search results provide the answer.",
+    "tokens": 7,
+    "source": {
+      "round": 3,
+      "pointer": "/rounds/2/reasoning_content",
+      "start": 0,
+      "end": 38
+    },
+    "compared_with_complete_actual_P": true,
+    "new_entity": "无",
+    "new_fact": "无，320及身份已在P。",
+    "new_action_direction": "答案可得/接受提示，未强制直接Submit；四条实际仍先Open。",
+    "certainty_effect": "相对P seems to match有确认性增强，但未给时间证据。",
+    "information_risk": "ORACLE_ANCHORED，不把G当模型自主认定答案充分。",
+    "evidence": [
+      "I_GUIDE",
+      "I_ADOPTED"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit320。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2仍OpenAdallom50，只得到云安全公司半句，未取得原Open2000的价格/创始人段；R3明确Search snippet already contains relevantinformation，回用P三条件和价格。",
+        "R3把真正未核的倡议时间转为Search，取得1591203 January15,2002；R4采用时间先后后Submit。"
+      ],
+      "first_judgment_divergence": "不扩原文读取范围，用已有片段支持价格，转查真正缺失的倡议时间。",
+      "first_actual_tool_divergence": "原一次Open2000，新先Open50后Search不同对象。",
+      "function_correspondence": [
+        {
+          "original_goal": "重读公司原文确认价格等",
+          "original_operation": "Open2000完整覆盖目标段",
+          "original_product": "同公司/价格原文确认",
+          "new_goal": "重读确认意向相同",
+          "new_operation": "Open50只有头部，目标内容改用旧Search；随后另Search时间",
+          "new_product": "读取尝试恢复，但没有由该Open获得公司/价格确认；另有真实时间补证",
+          "evidence": [
+            "O_OPEN_RETURN",
+            "I_ADOPTED",
+            "N1_OPEN_HEADER",
+            "N1_USE_OLD",
+            "N1_TIME_QUERY",
+            "N1_TIME_RETURN",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "真实重启原读取动作但范围不足，没有原Open产品；不能按同Doc或Call出现判完整，也不能称完全没执行。",
+      "judgment_action_outcome_chain": "价格已采用→短Open未增目标证据→承认旧片段足够→把未证时间转真Search并采用→同C且时间支持提升，增加一轮取证。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "528生成/15758Prompt/1S1O3A；原切后0S1O2A，生成差[163,335]，Search/Actor各+1。增加发生短Open说明、时间Query与整合，不是日期丢失。",
+      "counterevidence_and_alternatives": "公司原文未完整重读不妨碍价格有P直接证据；新增查证有真实产物不能统一称循环。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R5真实Submit，价格原新直接证据一致。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2和R3两次Open同Doc offset0 limit100，实际Return完全相同头部，均不含价格或时间。R3说getfulltext却未扩大，是实际计划与参数不一致。",
+        "R4说higheroffset但实际offset仍0、limit2500，终于全文2429覆盖公司/价格段；没有倡议时间。",
+        "R5明确documentdoesnotmentioninitiative，转用记忆2002<2015后Submit，未进行真实时间Search。"
+      ],
+      "first_judgment_divergence": "原一次完整读取，新先重复同短范围，再识别需要更多文本并扩大limit；最终承认文档没有时间而用记忆。",
+      "first_actual_tool_divergence": "一次Open2000变100/100/2500三个真实Open，前两内容完全相同。",
+      "function_correspondence": [
+        {
+          "original_goal": "原文确认公司和价格",
+          "original_operation": "一次Open2000",
+          "original_product": "原文目标段",
+          "new_goal": "同目标",
+          "new_operation": "两次短Open后扩大2500全文读取，R5采用同内容",
+          "new_product": "原产品完整恢复，时间条件仍只记忆",
+          "evidence": [
+            "O_OPEN_RETURN",
+            "N2_OPEN_REPEAT",
+            "N2_OPEN_FULL",
+            "N2_MISSING_TIME",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是只看同Doc：最终全文确实取到并在R5使用相同价格/条件；额外两个短Open仍单列。",
+      "judgment_action_outcome_chain": "P价格已采用→以原文确认/时间为理由两次重复短头部→扩大范围取得公司目标段但不含时间→接受旧年份记忆提交C；增加成本主要在失败短读取及重述，非得到新价格。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "620生成/16617Prompt/0S3O4A；较原多2Open2Actor，生成差[255,427]，新增读取事件可定位。",
+      "counterevidence_and_alternatives": "第三Open确实修复截断，不能把三次都叫无效；但全文不含时间，不能因读完整称所有条件已查清。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R3实际Submit320。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2 Open50只头部；R3明确旧Search已含关键事实，重新列价格/产品/创始人，考虑时间但用记忆2002直接接受，不做Search，Submit。"
+      ],
+      "first_judgment_divergence": "不恢复完整原文读取，对短Open无关键内容后回用旧片段；时间也不转实际取证。",
+      "first_actual_tool_divergence": "Open2000改Open50，之后同Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "重读确认已有事实",
+          "original_operation": "Open覆盖目标段",
+          "original_product": "同事实原文确认",
+          "new_goal": "相同读取尝试",
+          "new_operation": "仅Open50，无目标段，使用P旧片段",
+          "new_product": "读取尝试部分恢复，核心答案保持依赖P",
+          "evidence": [
+            "O_OPEN_RETURN",
+            "N3_HEADER",
+            "N3_OLD_SUFFICIENT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "有真实同对象Open，但原目标段未返回，旧证据重新使用不是新Open的产物。",
+      "judgment_action_outcome_chain": "已知价格→短Open无目标内容→接受旧片段/记忆时间→同C，工具数同但读取内容更少；不宣称U功能完全绕过。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "314生成/7855Prompt/0S1O2A，与原工具/Actor数相同；生成差[-51,121]跨0，不能判确切生成节省；Prompt少361但含重放P3920/G7。",
+      "counterevidence_and_alternatives": "相同C而无时间补证是原共享证据限制，不能全归删除；工具数量相同也不代表读取完成同工作。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit320，时间条件有真实返回和采用。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2 OpenAdallom100只头部；R3重新引用P旧价格/身份，明确需要查倡议时间，真实Query同新1。",
+        "Return同1591203日期；R4 2883字符/786生成展开题目、文档、条件、单位、多次接受后Submit。实际时间条件已闭合，后半多为已有证据重述，不新增工具。"
+      ],
+      "first_judgment_divergence": "将时间缺口明确转独立取证而非期待Adallom原文解决；接受后复盘比新1长。",
+      "first_actual_tool_divergence": "原Open2000后Submit，新Open100后Search时间再Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "原文确认公司价格",
+          "original_operation": "完整Open2000",
+          "original_product": "公司目标段",
+          "new_goal": "先尝试同读取，然后补时间",
+          "new_operation": "Open100不足，旧Search支撑价格，真实Search新时间条件",
+          "new_product": "原读取只部分恢复，其他取证真实补齐时间支持",
+          "evidence": [
+            "O_OPEN_RETURN",
+            "N4_HEADER",
+            "N4_TIME_QUERY",
+            "N4_TIME_RETURN",
+            "N4_TIME_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "公司文档完整重读未发生，时间Search不能算同功能；保留新增质量产物。",
+      "judgment_action_outcome_chain": "P公司价格已定→短Open不增事实→识别真正时间缺口并Search→证据采用闭合条件→较长全题/单位复盘后C；成本增加含合理补证与可定位的重复表达，两者不能合并判断。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "1119生成/15782Prompt/1S1O3A；生成差[754,926]，多1Search/Actor。新1同时间Query/Return仅528生成，本条多591主要R4额外复盘而非搜索数量差。",
+      "counterevidence_and_alternatives": "把倡议时间称notstrictlynecessary是模型自述，不替研究者免除题目条件；这里只记录有支持且价格不变。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "1FULL最终取得公司完整目标段；3PARTIAL只短Open而使用P旧片段。",
+    "specific_difference": "三条虽Call同Doc但未读到目标段；其中两条改查缺失时间并真补证。另一条通过两次重复短Open后扩大limit恢复原读取但不补时间。",
+    "cost": "新1/2/4生成区间正，新3跨0；无一可据现有切点称确定净生成下降。两条同Query真补证仍有不同复盘成本。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "已有证据采用后，再读同一文档是否恢复功能取决于返回范围是否覆盖所核内容。若真实缺口属于另一事件，反复读原公司头部不能解决；切换到该事件直接来源才增加所缺支持。答案同C可以来自旧证据，不能把短读取后C当新返回已验证。",
+      "chain": "P公司/价格已采用、倡议日期未证→四条再Open范围不同→一条扩大读公司目标段，三条用旧价格片段；两条另查倡议日期→同C但证据支持和成本不同。",
+      "support": [
+        "I_ADOPTED",
+        "N1_USE_OLD",
+        "N2_OPEN_REPEAT",
+        "N2_OPEN_FULL",
+        "N2_MISSING_TIME",
+        "N4_TIME_RETURN",
+        "N4_TIME_ADOPT"
+      ],
+      "scope": "1Stage/1题四路径；可与第18题正确Doc短读取未触及关系句比较，跨题支持统计待全量。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G仅确认型句，事实都在P但存在接受方向影响，ORACLE_ANCHORED保留。",
+    "PARTIAL不是按工具次数判断：真实Open尝试恢复但产物不相同；FULL新2有原新目标/操作/产物证据。",
+    "额外时间Search确实有新支持，不因核心价格不变就叫冗余；长篇后续复盘另定位。",
+    "原nativeIDs缺失，生成差给保守区间，P重放和G7单列，不累加独立分支节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_ADOPTED",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Acquired by Microsoft for $320 million in July 2015"
+    },
+    {
+      "evidence_id": "I_GUIDE",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The search results provide the answer."
+    },
+    {
+      "evidence_id": "O_SEARCH_PRICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_SEARCH_FOUNDERS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "former members of the Israeli Intelligence Corps’ Unit 8200",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_OPEN_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Let me open this document to get more details and verify the information about the Trustworthy Computing Initiative timing."
+    },
+    {
+      "evidence_id": "O_OPEN_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_YEAR_MEMORY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Microsoft's Trustworthy Computing Initiative was launched in 2002"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-aca62874f1cbb61e"
+    },
+    {
+      "evidence_id": "N1_OPEN_HEADER",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Israeli technology company Adallom is a cloud secu",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N1_USE_OLD",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search result snippet for Adallom (doc_id: wiki25:7476796) already contains the relevant information:"
+    },
+    {
+      "evidence_id": "N1_TIME_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Microsoft Trustworthy Computing Initiative launch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_TIME_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "with a January 15, 2002 memo",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1591203"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_OPEN_REPEAT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "Israeli technology company Adallom is a cloud security company based in Menlo Park, California. It s",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N2_OPEN_FULL",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N2_MISSING_TIME",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I don't see explicit mention of the Trustworthy Computing Initiative in the document"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-8a3919ea0ab3ec64"
+    },
+    {
+      "evidence_id": "N3_HEADER",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Israeli technology company Adallom is a cloud secu",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N3_OLD_SUFFICIENT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search result for Adallom already contains the key information needed."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-82ae4871d9ac46e5"
+    },
+    {
+      "evidence_id": "N4_HEADER",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Israeli technology company Adallom is a cloud security company based in Menlo Park, California. It s",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N4_TIME_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Microsoft Trustworthy Computing Initiative launch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_TIME_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "with a January 15, 2002 memo",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1591203"
+    },
+    {
+      "evidence_id": "N4_TIME_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Yes (2015 > 2002)."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

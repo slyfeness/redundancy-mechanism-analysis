@@ -1,0 +1,423 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0234",
+  "stage_id": "S005",
+  "sample_order": 99,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What year did the \"Badenia\" steam locomotive, built by the founder of the company that manufactured the cars for the Stuttgart funicular railway—a system operated by the same entity as the Stuttgart Stadtbahn and whose cars were manufactured by a firm founded in 1846—begin its experimental service?",
+    "gold": [
+      "1841"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "1841",
+    "adopted_answer": "1841",
+    "outcome": "C",
+    "reason": "原路径正式1841，与Gold一致，后续取得试验服役直接表述。",
+    "evidence": [
+      "O_SERV",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8[0,2120)已完整比较身份链、1841建造与试验服役差别，多次准备提交并以通常建造年即服役年推1841；实际文档仍没有试验服役句。",
+    "evidence_states": "1841已提取并明确采用为最可能答案，完整身份链已确认；试验服役时间关系仍是推断而非直接表述已返回。",
+    "evidence": [
+      "O_P",
+      "O_GAP"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 2120,
+        "end": 2396
+      },
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 1474
+      }
+    ],
+    "goal": "在已接受1841后补齐试验服役而非仅建造的直接证据。",
+    "operations": "R8真实Badenia experimental service Query多无关同名对象/Baillie旁证；R9仍缺直接关系，加入1841重试，真正返回5040730建造后试验服役句。",
+    "product": "答案未变，但试验服役关系从假设转成文档明确支持。",
+    "judgment_change": "未更新候选年份；更新的是支持关系而不是1841名称。",
+    "evidence": [
+      "O_U",
+      "O_SERV"
+    ]
+  },
+  "original_followup": {
+    "use": "R10引用BadenIb新句，把建造与随后实验服役语境接到1841，提交。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已采用答案补齐特定事件关系的直接证据，避免将相近事件时间直接替代。",
+    "state_relation": "四次都不重建补证，沿P既有1841推断直接提交。确实减少取证/解释，但证据关系没恢复，不能用4C说该核验无新增质量作用。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I have gathered the following information:",
+    "source_position": "O R10[0,42)，I#/anchor_text，7Token，冒号开行不含后续清单。",
+    "novelty": "无实体、年份、事件关系新事实；是引向已有证据汇总的结构/行动提示，可能促进直接回答。",
+    "risk": "ORACLE_ANCHORED；没有把原后继事实清单或新服役Return填入。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "正式1841与Gold一致，明确用likely而没有直接试验服役证据。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R8 707字符列五项已知身份/建造事实，断1841 likely experimental service，直接submit。无Search/Open。",
+      "first_judgment_divergence": "原R8此处重新补证，新路径不改变P已经接受年份，改为仅重述并提交。",
+      "first_actual_tool_divergence": "R8 submit替原Search，无新增取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "补特定服役关系证据",
+          "original_operation": "两次真实Search",
+          "original_product": "试验服役直接句",
+          "new_goal": "回答已倾向年份",
+          "new_operation": "仅汇总P建造事实并推断",
+          "new_product": "1841Final但没有服役句证据",
+          "evidence": [
+            "O_U",
+            "O_SERV",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整新路径无取证，未明确获得/采用原新服役材料，只保留推断。",
+      "judgment_action_outcome_chain": "P已接受1841→G引向汇总→建造年被当可能服役年→直接C，事件关系支持比原少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "193生成22407Prompt1Actor0Search0Open；原后续708–1264生成3段2Search，差[-1071,-515]，少2Search2Actor。减少目标两搜索及后续新证据解释，P22400/G7分开。",
+      "counterevidence_and_alternatives": "答案保持不足以证明完整质量保持；没有直接否定1841事实，只是证据不足以独立确认同年服役。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "实际选择1841，仍承认原文不明说experimental service。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R8 730字符四项事实，明确While document doesn't explicitly mention experimental service，继而presumably began service，submit。无取证。",
+      "first_judgment_divergence": "保留已知证据缺口但不再让缺口派发Search，采用先前推断提交。",
+      "first_actual_tool_divergence": "原Search改submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "服役直接支持",
+          "original_operation": "Search补证",
+          "original_product": "placed experimentally句",
+          "new_goal": "提交已有年份",
+          "new_operation": "承认证据缺口后沿推断",
+          "new_product": "1841，无直接支持恢复",
+          "evidence": [
+            "O_SERV",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有原功能取证/产物，说明明确承认缺口不能等同完成核验。",
+      "judgment_action_outcome_chain": "缺口被承认→已有年份仍被接受→不再取证→C而支持关系缺失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "190生成22407Prompt1Actor0Search，差[-1074,-518]；少两Search及后两Actor，多轮Prompt不再堆积。",
+      "counterevidence_and_alternatives": "没有新Return替代证据，G也不含事实；省成本同时少完成原证据工作。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "正式1841，建造年到服务年的推断没有新证。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R8 674字符五项旧事实，写likely when began service includingexperimental，再submit。无任何新Search/Open。",
+      "first_judgment_divergence": "将原要验证的事件关系保持为likely，直接进入正式答案。",
+      "first_actual_tool_divergence": "submit替Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "事件时间核验",
+          "original_operation": "Search/返回",
+          "original_product": "直接服役关系",
+          "new_goal": "已有候选提交",
+          "new_operation": "短整理推断",
+          "new_product": "同答案但缺支持",
+          "evidence": [
+            "O_SERV",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "未实际补证或得到等价资料。",
+      "judgment_action_outcome_chain": "已有答案推断未改变→清单短复述→直接提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "177生成22407Prompt1Actor0Search，差[-1087,-531]；目标两次检索与独立后续接受轮均省，非更高效地做同证据工作。",
+      "counterevidence_and_alternatives": "最短不等于最充分，不能标严格可省。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "同年份正确，明确说资料不含试验服役原词，仍presumably。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R8 824字符五项旧事实，承认证据只建造年，再推断服务年并提交。无Call除了submit。",
+      "first_judgment_divergence": "完整复盘未触发补证，沿原P已接受年份完成。",
+      "first_actual_tool_divergence": "不搜索而submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "服役事件关系补证",
+          "original_operation": "两Search",
+          "original_product": "明文关系",
+          "new_goal": "回答已有年份",
+          "new_operation": "已有事实汇总/推断",
+          "new_product": "1841但关系仍未证",
+          "evidence": [
+            "O_SERV",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有取证或等价产物。",
+      "judgment_action_outcome_chain": "已有1841足以驱动提交→不再执行缺口核验→C，新增缺口相对于原完整成功证据被保留。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "215生成22407Prompt1Actor0Search，差[-1049,-493]；省两Search两后Actor及相应Prompt，较其他三条稍长只是解释长度。",
+      "counterevidence_and_alternatives": "四次相似不等同必然正确机制，原Gold正好与建造年一致，换事件可能推断失效。"
+    }
+  ],
+  "four_run_comparison": "四C四NOT_OBSERVED，均没有补回实验服役直接表述，均把P里已接受的建造1841推作服务1841。没有一条走替代取证或重建，省的是明确两Search及后续展开；质量审查必须保留支持关系比原少，不能把4C包装为核验完全多余。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "候选答案在P已经被接受、剩余缺口是相近事件关系的直接支持时，删补证可能让模型直接沿旧推断提交，结果保持且真实成本下降；但缺口不再驱动行动不等于缺口获得解决。",
+      "support_evidence": [
+        "O_P",
+        "O_GAP",
+        "O_SERV",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "仅此题同年推断恰合Gold，不能扩为所有补证可省；需要跨题反例检验建造/服役不同年。"
+    }
+  ],
+  "counterevidence_and_limits": "无G事实泄漏但汇总方向提示仍混杂。NATIVE不可精确，差值仅保守范围。原新C同而支持不同，功能未重建不是独立严格可省证明。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "I'll submit 1841 as the answer."
+    },
+    {
+      "evidence_id": "O_GAP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "It doesn't explicitly mention experimental service."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Badenia steam locomotive experimental service year"
+    },
+    {
+      "evidence_id": "O_SERV",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/2/snippet",
+      "exact_quote": "Kessler built this engine together with his partner Martiensen at his own expense and then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "So the Badenia was built in 1841 and placed experimentally in service in 1841."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 10,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have gathered the following information:"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "which is likely when it began its experimental service."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "While the document doesn't explicitly mention \"experimental service,\" 1841 is the year it was built and presumably began service."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "which is likely when it began service (including experimental service)."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "While the document doesn't explicitly mention \"experimental service,\" the year 1841 is when the locomotive was built and presumably began service."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0234/trajectory.json",
+      "source_sha256": "a25b2fa8fe293960549afd48775dd9ec8b997053ae9fdd769c5da309c323562e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0234.json",
+      "source_sha256": "b3a0858646e452cdd66043a5deb30f7e0852ee701b9555f4561292e4f4cf5eba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "fc05c17d063d41a9a0e32bb798a7686912969eda59287a77595495184c863ea1"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "c9e43d2ef92b5218ede142c95e9503e4df192af84aa6c34c8f7cfeec679d021e"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "8fdf910bfde9e75b89afb46ec6b1ccb911b75243fedf53c8521ffb16f30eb160"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "02b88901928cfccbaa45374e480b1bb7c5f5d38b29031bf31b01670155f1a4f9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "400c9e66e16ae934a4608052a5b57e9ab7d3ffd955577801ce6281eb2c0f139d"
+    }
+  }
+}

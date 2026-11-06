@@ -1,0 +1,38 @@
+{
+ "case_id":"495__rep3__S003__FIRST_SENTENCE","question_id":"495","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"W","4":"N"},"basis":"原2015,Gutierrez正式W，新3实际Final2016,Aquino W，另三长度无FinalN。不能用Reasoning末2015替换正式2016，也不能按年份落题窗判正确。"},
+ "review_basis":"原同一34500字符/0Call完整路径已读；四新单轮全部Reasoning20523/19300/16008/20230字符与唯一新3正式Final分段实际阅读全文，四条全部0Call/Return。截断工具显示的段落均补读完整后再裁定。",
+ "pre_state":"R1@16015前已把soap opera联想菲律宾，反复列Kris/Sharon等候选，所用家庭日期等没有实际文档。P已推断2021文章表示individual仍活着，尚未识别任何正确人物。Sharon在P中已被提及，不是G首次引入实体。",
+ "u_work":"U R1[16015,16840)具体比较Carmen Soriano：自称她2019去世，与2021文章仍表达喜好不符，故排除；随后简提Janice/Vic。逻辑是把“individual必须2021活着”的已知判断用于排候选，但2019死亡事实未经来源核实。",
+ "u_state_update":"U只排一个无源候选，没有增真事实或选择正确对象。原后续继续多个候选猜测，曾纠正grandmother/parent关系，最后无据Candy/Gutierrez W。新四条没有再实质核验Carmen，但沿同地区/年龄/关系继续猜，三条耗尽生成，唯一新3把自认不合的Kris重新接受并猜2016。",
+ "original_action_consequence":"Carmen排除未复现而其余探索仍广泛重建，没有证据显示该排除决定正确答案。实际分歧在是否在无源候选/日期冲突仍未消解时强行猜答并提交。原与新3都是这种无证提交，但人物/年份不同；其余三条停在反复解释区间，不能称删后准确性下降。",
+ "guidance":{"text":"Wait, perhaps the individual is a poet and soap opera actress named Sharon Cuneta.","source":"同R1后继S004@16840首句17Token；P保留4351原生Token，NATIVE_TOKEN_EXACT。","audit":"ORACLE_ANCHORED。Sharon在完整P已提，G不引入新名字或答案；把她称poet/soap actress是未经验证的属性提议，相对P的歌手演员背景增加具体探索方向。四新首段都接Sharon但构造不同子女/丈夫关系，不能说G已提供可靠事实。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"If Carmen died in 2019, she couldn't have done that. So that doesn't fit.","use":"U候选排除动作完整，事实前提无Return。"},
+  {"id":"O2","source":"original","pointer":"/rounds/0/reasoning_content","quote":"So Carmen is out.","use":"U明确收束，不把单纯未提Carmen当已重做排除。"},
+  {"id":"O3","source":"original","pointer":"/rounds/0/content","quote":"The child lost the parent in **2015**, and the child's last name is **Gutierrez**.","use":"原正式W，不能与先前猜Aquino混淆。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Her husband, Alejandro De Mesa, died in 2018. That's within 2010-2017? No, 2018 is after 2017.","use":"G后自编Sharon家庭资料作排除，无真取证。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let's re-express the problem:","use":"多次把同区间/父母关系再说明，直到长度，无新信息。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"She has children: Dawn Currier (born 1994).","use":"与new1不同无源家庭构造，仍非Carmen判断恢复。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"But this is just a guess.","use":"反复2015/Aquino猜测但未正式提交；所有Query仅计划。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"the individual is likely Kris Aquino, but the timeline doesn't fit.","use":"已经明确冲突，后未有任何取证消解。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Assuming the individual is Kris Aquino, even if the timeline doesn't perfectly fit, perhaps the answer is 2016 and Aquino.","use":"冲突未解被转成仍可猜接受理由，真实行为不是G直接给2016。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/0/content","quote":"The individual's child lost their parent in **2016**, and the child's last name is **Aquino**.","use":"正式W，自相矛盾的死亡年解释不影响其实际主答案明确错误。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"So the child's other parent died between 2010-2017.","use":"已在P作过的角色推导反复重做，仍无人物证据。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The year is 2010.","use":"后提出Lorna/Tolentino无源新猜，随后又退回Aquino，终态长度N，不当Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"从G的Sharon开始编丈夫2018并排除，接着重复年龄/关系分析，未查Carmen。","state_chain":"替代候选无证排除→回Kris及多人物→无法定位采访→重复区间推理→长度N。","function_change":"Carmen具体排除未观察，通用候选比较/约束推导重建；没形成正确证据或Final。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"Sharon被编成Dawn母亲且丈夫仍活，排除后持续多假候选。","state_chain":"无源家庭匹配→不合再猜→既有年龄计算反复→自知只能猜→未提交长度N。","function_change":"目标具体候选工作未重做，换对象重复同类比较，生成仍达到剩余轮上限。","evidence":["N21","N22"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"从Sharon/Rainie假关系出发，后回Kris且反复识别其时间不合。","state_chain":"已识别冲突→无新证据→以最可能/educated guess重新接受Kris→选择2016→正式W。","function_change":"Carmen判断未恢复，其他候选比较重做但把冲突放宽来提交；生成较短不等于省去不必要验证并保持质量。","evidence":["N31","N32","N33"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"G后重讨论角色与时间，多次回Kris及新Lorna假家庭，未查Carmen。","state_chain":"父母/祖母角色反复解释→新猜Lorna2010/Tolentino→不能确认又回其他猜→长度N。","function_change":"同类认知劳动多次恢复，具体Carmen排除未出现，不是绕过后直接得正确答案。","evidence":["N41","N42"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"原一次具体候选排除没有在四新复现，但它用的是未经查证的Carmen日期，且P已完成同一活着/失亲角色前提。四新改为其他具体对象比较，仍不能从区间推到唯一身份；三条在此反复至长度，一条承认Kris时间不合后仍以最可能猜法接受并提交。作用差别不是简单有无排除，而是排除基于什么事实、冲突是否真正约束接受、未证实猜测什么时候变成正式回答。",
+ "within_case_support":"四次都没有Carmen重核，但一般比较都恢复；只new3有冲突已识别仍接受并正式提交链，其他三不是同机制变错。原本也错误提交，因此结果状态k3不能证此U是正确答案关键。",
+ "mechanism_chain_checks":[
+  {"chain":"明知Kris时间不合而无新消解，仍以最可能猜测接受并正式提交","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"],"3":["N31","N32","N33"],"4":["N41","N42"]},"limits":"三N也有多次猜测，但没有正式接受提交，不用相似措辞自动标同链。"}
+ ],
+ "counterevidence_and_limits":["原U排除的前提2019死亡本身无文档；不能把逻辑上条件比较称客观已证候选排除。","所有原新Call0，所谓search/query句子只是思考，不能归实际重复搜索。","G提Sharon是P已有候选，但其poet属性仍未证，不可把它当真事实补齐。","新3Final自相矛盾仍明确主答2016,Aquino错误，不从Reasoning2015判半正确。","仅一道题，不能从此推出候选排除一般可省；后续比较替代和预算占用都保留。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R1@16015，4351保留ID，G17。原后缀5598gen/0Search/1Actor、原Prompt523；新gen5649/5649/4840/5649，加G差+68/+68/−741/+68。全部Search0、Actor1；新Prompt4891=523+4351+17，旧P重放单列，不能拿523对比4891说必要历史凭空新成本，也不拿整9949算节省。",
+ "next_cross_case_test":"比较真实有来源的候选排除与这种纯假资料比较：具体排除是否首次改变下一行动，P已完成的角色逻辑是否只是再述；保留删后换其他对象而未解决问题的反例。"
+}

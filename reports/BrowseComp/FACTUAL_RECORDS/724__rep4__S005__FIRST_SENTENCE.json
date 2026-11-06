@@ -1,0 +1,40 @@
+{
+ "case_id":"724__rep4__S005__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"W","3":"N","4":"N"},"basis":"原正式拒答W；新2正式错误实体Apgar W，新1/4上下文止，新3生成上限止，N。W相同并非实际答案相同。"},
+ "review_basis":"rep4原完整18轮/17工具/Final已阅读，本组34新增不同推理块6608字符全文、55字段全部有序复现及29Call参数已读。230文档槽位3新不同Return全文读，其余同SHA文本已读。新3末R16长46604字符，精确已读五段计划有序复现并保留首尾，全部精确块/顺序已核对，真实无Call。29Call配对27真实后续Actor、2仅guard。",
+ "pre_state":"R11@447前有十次检索，Apgar已在P被试过一次但奖学金/创会未证。原又从名医列表生卒选她准备医学教育复查，尚无符合全部条件的身份。",
+ "u_work":"U R11后部再次依1909/1974部分匹配选Apgar，真实查询其奖学金/大学/医学教育，完整E11及R12前141字符未获信息反馈；没有新支持产物。",
+ "u_state_update":"Apgar背景仍未知，原随后组织、Crile、DuBois等路线，最终拒答，没有确认该候选全部条件。",
+ "original_action_consequence":"删后目标操作在新2、4实际恢复，在1部分恢复朋友核查，3不重现；后续差异仍在未知条件被如何处理。新2从强候选变全部条件满足并提交，甚至其Final写组织1951却称1950前满足；其他支仍查或只反复计划到N。",
+ "guidance":{"text":"Let me try a different approach - searching for information about doctors who were founding members of organizations before 1950 and practiced in cities for extended periods.","source":"S006 R12@141首句32Token；native截点R11@447保留93Token。","audit":"仅题目已有创会/城市方向，无实体/新事实/答案；ORACLE行动提示保留。新2/4仍重新查Apgar，不把G指令当实际独立工作。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/10/exact_arguments","quote":"Virginia Apgar 1909 1974 scholarship university medical school","use":"目标具体复查。"},
+  {"id":"O2","source":"original","pointer":"/rounds/17/content","quote":"I was unable to find a specific doctor","use":"原正式拒答。"},
+  {"id":"N11","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"doctor 1909 1974 Virginia Apgar Harvard friend","use":"实际仅部分恢复Apgar朋友核查，非医学教育全功能。"},
+  {"id":"N12","source":"new1","pointer":"/tool_events/7/exact_arguments","quote":"doctor born 1910 died 1972 practice 40 years university founded 1791 Philadelphia scholarship friend Harvard","use":"末两次同Query，未证精确年月组合成为固定入口。"},
+  {"id":"N21","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"Virginia Apgar 1909 1974 Columbia University medical school scholarship","use":"目标教育核查真实恢复。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/7/reasoning_content","quote":"Virginia Apgar (1909-1974) seems to be a strong candidate","use":"未找到全条件后改为强候选接受依据。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/7/content","quote":"Society for Obstetric Anesthesia and Perinatology (SOAP), established in 1951","use":"自身Final列1951，直接与题目1950前冲突却仍声称符合，不需要外部事实反证。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/7/content","quote":"She was friends with Dr. Charles Drew (1904-1950), who received his Ph.D. from Harvard University","use":"没有实际返回或前置核查支持的关系填充，不能用Final自证。"},
+  {"id":"N31","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"founding member medical organization 1945 doctor practiced Philadelphia 45 years","use":"最后真实Search，接着才进入无Call长生成。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/5/reasoning_content","quote":"Let me search for information about doctors who were founding members of organizations before 1950 and practiced in cities for extended periods.","use":"末R16重复计划五段块，没有实际Search或Final。"},
+  {"id":"N41","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Virginia Apgar scholarship medical school university founded organization before 1950","use":"目标工作真实恢复。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"Let me search for more specific information about Virginia Apgar.","use":"从部分生卒匹配转为持续传记/教育查询。"},
+  {"id":"N43","source":"new4","pointer":"/tool_events/6/exact_arguments","quote":"Virginia Apgar Columbia University School of Medicine 1932 New York City practiced 40 years","use":"末两次固定同Query，无身份闭合或停止。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"第一Call虽G换方向仍查Apgar朋友，随后精确出生/死亡/大学年代+Philadelphia组合，末两次同Query无身份N。","state_chain":"缺信息反馈→不断添加未证精确年份地点→复合Query固定→没有状态推进仍实际检索。","function_change":"目标朋友方面部分恢复，教育操作未全重演；9Search9Actor比原7/8多2/1，1512+32生成少634，Prompt375333增加。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"真实重查Apgar教育并继续广条件，最后承认没有全匹配却说Apgar强候选，Final填入SOAP1951/CharlesDrew关系并称全部满足，W。","state_chain":"部分匹配保留→重复核查未支持完整条件→接受标准从全匹配变强候选→未知与冲突条件在Final被肯定化→错误提交。","function_change":"原具体Apgar教育核查及未匹配反馈重建；7Search8Actor与原相同，2583+32生成多437，Prompt328768比326861多1907。没有成本收益，更非质量保持。","evidence":["N21","N22","N23","N24"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"Harvard/精确年代/Philadelphia五次真查后，R16反复将要查创会/城市与未找到反馈，10K长度上限无Call，N。","state_chain":"没有身份更新→仍安排同类查询却没形成执行→反复计划到生成上限。","function_change":"目标Apgar操作未观察，其他取证替代也未成功；5Search6Actor少2/2，Prompt226098少，但11070+32生成多8924。末轮计划次数不算Search。","evidence":["N31","N32"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"先创会/精确年份，R13回Apgar并持续Columbia教育，附加1932/NYC/40年，末两同Query到上下文止，N。","state_chain":"生卒部分匹配→需要更多背景→增加属性并重复教育Query→未获全条件，不接受也不拒答。","function_change":"目标取证与结果反馈恢复，未恢复原最后拒答；8Search8Actor多1/0，1737+32生成少409，Prompt329632多2771。","evidence":["N41","N42","N43"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"功能实际恢复仍可能两种去向：新2重查Apgar后把未证强候选提升为答案，并在Final肯定与时间要求直接冲突的1951组织；新4同人背景缺口持续引发查询却不提交。另1未证年代复合Query、3无执行计划停滞是其他链。不能用重建标签解释何以答案改变，必须追接受标准与实际条件如何变形。",
+ "within_case_support":"2/4都真实恢复目标核查却一个错误提交一个N，说明是否恢复不是充分解释。1/3不完整恢复也N，不支持Apgar工作被删必有某一结果。新2自身Final1951与要求冲突是可核的具体行为差异。",
+ "mechanism_chain_checks":[
+  {"chain":"全条件未获支持后以强候选替代接受标准，Final将未知关系填成事实并未执行自身年代约束","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N21","N22","N23","N24"]},"limits":"仅该支、同题重复观察；不引外部真实SOAP/Drew资料替代源内证据，也不据一次干预证明原U因果必要。"},
+  {"chain":"相同候选核查缺口未闭合，但反馈继续触发同人更具体Query而没有接受或停止","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43"]},"limits":"需区分真实必要缺口与重复取得相同材料，不以Query数判每次必然无用。"}
+ ],
+ "counterevidence_and_limits":["原拒答W与新2错误姓名W的粗状态相同，不等于结果/证据质量保持。","G不含候选新事实但仍引导未来入口，随机生成/预算未隔离。","新2SOAP1951是模型自身Final断言，不能拿它当客观组织历史；这里只核其与题目要求的内部冲突。","没有来源支持的新朋友关系不因Final陈述而成证据。","新3减少Search/Prompt却大增生成，不能整体称省耗；另外两N生成少但输入/工具增。","四新无正确姓名Return，不写已返回正确医生未采用；同题多支不是多题支持。"],
+ "cost_basis":"nativeR11@447，P93，G32。原2178生成7Search8Actor，Prompt30175+296686=326861。新1512/2583/11070/1737，含G净−634/+437/+8924/−409；Search9/7/5/8，Actor9/8/6/8；Prompt375333/328768/226098/329632。新3末轮10000生成0Call，真实工具已逐个计；独立支差不相加。",
+ "next_cross_case_test":"对A/B分别比较真实核查恢复后是否保持硬条件、弱化为强候选或继续不停止；用原文确认哪个判断影响下一行动和正式提交，而非只看同名或Query重合。"
+}

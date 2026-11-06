@@ -1,0 +1,516 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0154",
+  "stage_id": "S001",
+  "sample_order": 76,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0154/trajectory.json",
+      "source_sha256": "b8d515903ae4239b3715604ba499c973eb9f38aceea5d24156a48c7a76a693b4"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0154.json",
+      "source_sha256": "a8fc277dcd653d18fc6b06248c5785bfb39adc00d0d1cd4a2e36c3da25284cdc"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "334edf9b8c0e11597c1d77d6ee8f8ce913a3c4c17095f540e9b262542d8a99a2"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "77704da8dd71b8418de83cb8ec9ab55d49ca71d380363ad1a14e04205d84a10d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "51a5c83270070016ee5a6cf9bb9dd7ddf72f3c00bfe374e123eac890af8cb351"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "824de9e82a01ecbbebaacb53f6d10e1712dbd4013a57efaf0ed61c91c41f03ce"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "0dc9f5a300c0d7e000f9e34c9b9ee25baf05752da5547f769aac0f40c32469a8"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the primary historical reason, eventually embraced by the engineer responsible for a major 19th-century railway tunnel near the planned future home of Lightship 2000, for his withdrawal from the earliest attempt to build a rail link between Great Britain and continental Europe?",
+    "gold": [
+      "Compromising Britain's national defences"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0154/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "He became convinced that the tunnel would not be to the advantage of Great Britain.",
+    "adopted_answer": "认为隧道对英国不利，未提交军事入侵或国防原因",
+    "outcome": "W",
+    "reason": "题目要求primary historical reason；Final只给一般不利结论。R8虽推及军事实质，正式提交没有该原因，不能从未提交推理补答案。这个评价边界需保留原文，非字面EM。",
+    "evidence": [
+      "O_FINAL",
+      "O_MILITARY"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，原问题和system，尚无证据、候选或真实查询；派生P499Token。",
+    "evidence_states": "Newnham不在原题，U首次从6120451取得并R2采用；当前P没有该地点及任何Return。",
+    "evidence": [
+      "I_QUESTION",
+      "I_BOUNDARY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items：R1[0,542)+E1+R2[0,414)",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 542
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 414
+      }
+    ],
+    "goal": "把Lightship计划去处作为后续铁路隧道及人物查找的地点入口。",
+    "operations": "拆多跳任务，实际Search计划去处，6120451返回Newnham on Severn，R2明确采用。",
+    "product": "确定计划浮动博物馆地点Newnham，未确定具体工程师或撤退原因。",
+    "judgment_change": "地点未知→确定Newnham并准备查附近隧道。",
+    "evidence": [
+      "O_LOCATION",
+      "O_USE"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2地点Query、R3 Severn Tunnel engineer带回1285495，R4采用Hawkshaw并查询撤退原因；R5采用不利于英国说法，Open500仅证实一般不利。R6和R7再查，R6 Return与E4完全相同；R8将20298的1883入侵忧虑作为likely原因，但Submit仅一般不利。原阶段地点作用被使用，真正不足发生在更后面的原因具体化及提交。",
+    "evidence": [
+      "O_USE",
+      "O_HAWKSHAW",
+      "O_MILITARY",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "多跳题的首个地点关系取证及采用，为之后对象核查提供入口。",
+    "information_state_dependence": "地点原P未知、U首次取得；但G提前给出地点，四次仍重新查询Lightship，不能把后续变化解释成地点功能直接缺失。",
+    "first_update": "首次地点采用。"
+  },
+  "guide_audit": {
+    "text": "Now I need to find information about a major 19th-century railway tunnel near Newnham on Severn.",
+    "source": "O#/rounds/1/reasoning_content[414,510)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "G24Token引入原题/P没有的Newnham，并把附近铁路隧道作为下一行动；这是U产物实体/方向补偿。P499+G24首Prompt523。没有预填工程师或国防原因。四条均实际重新检索Lightship，不能仅凭G已给地点判未重建。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION",
+      "O_LOCATION"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Fears raised by the British military that an underwater tunnel might be used as an invasion route.",
+      "adopted_answer": "担心海底隧道成为入侵路线",
+      "outcome": "C",
+      "outcome_reason": "Final明确国防/入侵原因，与Gold同义；实际人物链错误仍单列，不把C等同完整推理正确。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1实际Lightship+Severn Query重新取得6120451，R2采用Newnham；猜Cubitt/Brassey并查，R3转泛Channel Tunnel Query返回20298入侵原因，R4明确提取却继续核工程师。R5至R11反复把William Low放进Severn Query，多个完整Return相同且不支持其角色；R10说要先查工程师，实际仍同名Query。R12转Low Channel 1883再次取得入侵原因；R13错误把Low与Severn关联当记忆事实，Open20298前1000未达到入侵段；R14保持错误人物但正式提交入侵原因。",
+      "first_judgment_divergence": "R1由G地点联想到Severn，R2加入猜测人名Cubitt/Brassey；原先按地点→泛Severn工程师得到Hawkshaw。",
+      "first_actual_tool_divergence": "R1 Lightship 2000 Severn Tunnel engineer railway tunnel，实际重新执行地点取证。",
+      "function_correspondence": [
+        {
+          "original": "查Lightship并取得/采用计划地点",
+          "new": "R1真实Search返回同6120451，R2采用Newnham，实际功能全部重建且G已提前给地点",
+          "evidence": [
+            "O_LOCATION",
+            "O_USE",
+            "N1_LOCATION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、真实操作和地点产物都恢复；原地点函数本身没丢。",
+      "judgment_action_outcome_chain": "地点恢复→错误人物假设进入后续查询并反复补角色→角色没有验证却被记忆断言接受→一般Channel材料的入侵原因进入Final，得到C。不能把本次正确归功于人物关系纠错，因为它未纠正。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "3373生成332878Prompt12Search1Open14Actor，对原2523/97479/6Search1Open8Actor；完整response生成差+850，非native精确。额外消耗主要William Low的低增量重复及其历史Prefill，不是重复Lightship一次可解释全部。G24为Prefill已记一次。",
+      "counterevidence_and_alternatives": "结果改善但身份错误，证明C不能反推关系链可靠；军事原因R3已返回，晚到R14提交，反复人名搜索不是获得该答案的必然条件。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R9生成满10000无Submit；不能从中间猜测补Final。",
+      "outcome_evidence": [
+        "N2_STOP"
+      ],
+      "work_and_evidence_timeline": "R1搜Lightship，E1含正确地点；R2采用地点后泛Severn工程师Query返回Richardson、Hawkshaw、Walker及1810旧计划。R3泛跨海铁路Query空；R4列三人物再查关系，R5近似泛Query仍空。R6错误把1810本地Severn当英欧工程，Open100；R7识别截断真实扩大2091，正确完成打开操作。R8明确纠正本地≠英欧，却再次发出先前空Query。R9约40249字符/10000Token反复候选、财务原因与搜索计划，无任何真实新Call，终止N。",
+      "first_judgment_divergence": "地点仍正确，R3先采用Richardson，后跨海关系未补；R6混同两个工程。",
+      "first_actual_tool_divergence": "R1短Query Lightship 2000，与原计划去处Query不同但相同工作；R3首次跨海泛Query空后重试。",
+      "function_correspondence": [
+        {
+          "original": "取得并采用Lightship计划去处",
+          "new": "R1取得同6120451，R2明确Newnham，后续一直保留",
+          "evidence": [
+            "O_LOCATION",
+            "O_USE",
+            "N2_LOCATION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是没恢复地点导致N；被卡住的是下游工程师/跨海工程对应。",
+      "judgment_action_outcome_chain": "地点恢复、工程师候选多→跨海关系Query无结果→临时混入1810本地工程并Open→识别不符后未形成有效的新取证→在一轮里反复计划而未执行，耗尽生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "12301生成90445Prompt6Search2Open9Actor；完整response生成差+9778，Prompt反而低于原。主要增加R9纯推演10K，非Search次数增加；Open100→2091是真实修正而非所有重复Open均无用。",
+      "counterevidence_and_alternatives": "R8已经正确识别Severn≠英欧仍N，冲突识别不自动产生行动更新。P只有原题且G补地点，重新采样影响未排除。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "He became convinced that the tunnel would not be to the advantage of Great Britain.",
+      "adopted_answer": "认为隧道对英国不利",
+      "outcome": "W",
+      "outcome_reason": "与原相同正式答案，缺国防具体原因；不得把一般不利直接当军事入侵。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1猜Robert Davidson，泛跨海Query空；R2查询Lightship、R3采用Newnham并转Severn Query。R4选Walker，Open limit5只Thoma；R5/6/7围绕Walker查询，R7 Return第10条1285495带回Hawkshaw直接关系。R8明确读取、比较并修正人选为Hawkshaw。随后Open10/20/20/50/100/50多次只开头，R14才2502全文，R15仍只提交一般不利。没有采用具体入侵原因。",
+      "first_judgment_divergence": "R1先猜人名而不是按地点链，R4将承包人Walker暂当目标；R8靠Return有效纠正人物。",
+      "first_actual_tool_divergence": "R1跨海泛Query；R2才真实重做地点检索。",
+      "function_correspondence": [
+        {
+          "original": "查船去处并用地点约束后续工程",
+          "new": "R2同文档返回、R3采用地点并实际查询Severn，功能全恢复但推迟一轮",
+          "evidence": [
+            "O_LOCATION",
+            "O_USE",
+            "N3_LOCATION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "地点取得和行动使用均实际发生；另有人物纠错也发生，不能写成从头到尾锁错人。",
+      "judgment_action_outcome_chain": "地点恢复→先围绕错误Walker查→Hawkshaw材料实际使对象改正→反复短Open未取得更多原因，最终全文仍只有一般不利→按该概括提交W。人物修正解释查询改向，却没有补足最终答案原因。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "3507生成185695Prompt6Search8Open15Actor，完整response生成差+984。Search与原相同但Open增加7、Actor增加7；多次只开头的Open是明确成本落点，最终2502才真正取得全文。",
+      "counterevidence_and_alternatives": "r1人物错误却C，r3人物已纠正却W；相同终态不等于同路线。原也有完整军事Return但未提交具体原因，不能把本次W归因于删去地点。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R4约41158字符/10000Token无真实Call/Final，终止N。",
+      "outcome_evidence": [
+        "N4_STOP"
+      ],
+      "work_and_evidence_timeline": "R1地点已由G提示，实际搜索Lightship/Newnham返回6120451，R2采用后与原相同附近隧道Query。R3将earliest误系1810Severn而非英欧项目，猜Brunel并实际搜1810工程撤退；E3返回本地旧工程，未给Hawkshaw。R4虽多次承认Severn不是英欧，却反复将未证实William James Mackenzie当Severn工程师，猜成本/政治/技术，写满10K；大量Let me search都是未执行意向。",
+      "first_judgment_divergence": "R3把题目中的两个不同工程压成1810Severn的同一earliest，形成错误对象核查。",
+      "first_actual_tool_divergence": "R1 Lightship 2000 planned home Newnham Severn tunnel，R2附近隧道Query与原相同；R3改查Severn Tunnel 1810 engineer withdrawal。",
+      "function_correspondence": [
+        {
+          "original": "计划去处的取证与采用",
+          "new": "R1相同船文档、R2正确地点并用于附近工程查询",
+          "evidence": [
+            "O_LOCATION",
+            "O_USE",
+            "N4_LOCATION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U功能全部恢复；下游人物/工程关系失真与不执行计划另计。",
+      "judgment_action_outcome_chain": "地点恢复→将earliest绑定本地旧隧道→新Return不提供所需跨海人选→未证实Mackenzie被反复当已知前提，但真实搜索不再发生→10K内部自问无提交。没有依据说地点Stage删除直接造成Mackenzie断言。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0154__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "10957生成11603Prompt3Search0Open4Actor，完整response生成差+8434；工具/Actor/Prompt均少于原，但长内部重复生成增加且无Final。不能仅看搜索减少说更高效。",
+      "counterevidence_and_alternatives": "原与新R2实际Query及Return相同，分歧出现在后续处理；G给地点尚不足锁定正确工程师。R4自己识别本地/跨海不符却仍无法退出推演。"
+    }
+  ],
+  "four_run_comparison": "四次都真实重建地点工作，C/N/W/N不是该功能恢复与否的差别。r1错误Low角色却采用正确入侵原因；r2/r4反复区分工程而不实际执行下一核查，均10K无Final；r3真实采用Hawkshaw纠错，却反复短Open、最终只提交泛化原因W。可以分别定位对象关系解释、搜索反馈到动作、原因具体化到提交三个不同环节，不能用一个机制解释三次状态变化。",
+  "conditional_mechanism_proposals": [
+    {
+      "prestate": "首个地点关系原本未知，但本干预G提前补地点，四次仍取证恢复",
+      "stage_function": "地点采用及多跳入口建立",
+      "judgment_action_link": "后续是否把不同工程的角色关系准确对应、是否据失败Return改变实际Call、是否将具体原因写进正式Final，分别决定路线和终态",
+      "outcome_and_cost": "原W至一C两N一W；所有生成response成本↑但工具/Prompt方向不同，需按实际操作拆账",
+      "support_and_limits": "此例反对把B直接解释为被删U具有唯一关键判断：U产物恢复，差异主要在下游；G补偿与从起点重采样使纯删除归因不成立"
+    },
+    {
+      "prestate": "未证实的人物/工程关系已进入查询",
+      "stage_function": "后续关系判断与失败反馈处理，非本U直接工作",
+      "judgment_action_link": "r1同Low假设反复查询无支持却未撤出；r3新HawkshawReturn实际改人；r2/r4识别冲突但只重复查询意向",
+      "outcome_and_cost": "分别产生真实重复搜索、低增量Open和纯内部10K，不混称同一种重复",
+      "support_and_limits": "跨题归纳待全量；r1以错误人物得到C是重要反例，结果正确不保证机制链正确"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "B为CWN状态变化，不代表三次改善；本例仅一次C、另两次无Final。",
+    "地点G是目标U产物泄漏，不能作为无引导因果删除证据。",
+    "实际新Query/Return需与计划区分，r2/r4末轮无真实Call。",
+    "原Final一般不利判W的语义范围保留研究者复核；R8推理有入侵但并未正式提交。",
+    "原nativeIDs未保存，只能报告完整response usage差，不称native精确Token节省。",
+    "不同独立分支成本不可相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_LOCATION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "It was planned to restore the ship, and for it to become a floating museum at Newnham on Severn.",
+      "call_id": "chatcmpl-tool-991add7d682ff964",
+      "doc_ids": [
+        "6120451"
+      ]
+    },
+    {
+      "evidence_id": "O_USE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the planned future home of Lightship 2000 is Newnham on Severn."
+    },
+    {
+      "evidence_id": "O_HAWKSHAW",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "John Hawkshaw Channel Tunnel Company withdrawal reason",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_MILITARY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "likely due to strategic/military concerns"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "He became convinced that the tunnel would not be to the advantage of Great Britain."
+    },
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "near the planned future home of Lightship 2000"
+    },
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about a major 19th-century railway tunnel near Newnham on Severn."
+    },
+    {
+      "evidence_id": "N1_LOCATION",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results show that Lightship 2000 was planned to be a floating museum at Newnham on Severn."
+    },
+    {
+      "evidence_id": "N1_NO_SUPPORT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "Let me search for \"Severn Tunnel engineer\" first."
+    },
+    {
+      "evidence_id": "N1_STILL_LOW",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/9/arguments/query",
+      "exact_quote": "Severn Tunnel engineer William Low",
+      "call_id": "chatcmpl-tool-b322596def3ebfdb"
+    },
+    {
+      "evidence_id": "N1_FALSE_ROLE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "William Low was indeed involved in the Severn Tunnel"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Fears raised by the British military that an underwater tunnel might be used as an invasion route."
+    },
+    {
+      "evidence_id": "N2_LOCATION",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the planned future home is Newnham on Severn."
+    },
+    {
+      "evidence_id": "N2_WRONG_PROJECT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The earliest attempt to build a rail link between Great Britain and continental Europe was the Severn Tunnel of 1810."
+    },
+    {
+      "evidence_id": "N2_CORRECT_CONFLICT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "That's not the Severn Tunnel"
+    },
+    {
+      "evidence_id": "N2_LOOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "Let's search for \"John Hawkshaw Channel Tunnel withdrawal\"."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_LOCATION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Lightship 2000 was planned to become a floating museum at Newnham on Severn"
+    },
+    {
+      "evidence_id": "N3_CORRECTION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "So the engineer is John Hawkshaw"
+    },
+    {
+      "evidence_id": "N3_SHORT_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/text",
+      "exact_quote": "He was engineer, wit",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "1285495"
+      ]
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "He became convinced that the tunnel would not be to the advantage of Great Britain."
+    },
+    {
+      "evidence_id": "N4_LOCATION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The planned future home of Lightship 2000 (which is Newnham on Severn according to the search results)"
+    },
+    {
+      "evidence_id": "N4_WRONG_PROJECT_CALL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Severn Tunnel 1810 engineer withdrawal",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_UNSUPPORTED",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The engineer for the Severn Tunnel was **William James Mackenzie**."
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

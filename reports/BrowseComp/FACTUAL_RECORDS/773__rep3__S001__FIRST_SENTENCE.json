@@ -1,0 +1,43 @@
+{
+ "case_id":"773__rep3__S001__FIRST_SENTENCE","question_id":"773","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"N","3":"W","4":"W"},"basis":"原上下文上限无Final；新1/3/4正式回答白色，与Gold Red不同；新2无Final。没有将多次提到white当成正确。"},
+ "review_basis":"原19轮完整推理、19Call及Return已读；本组全部104精确不同文本块、69字段的有序复现与四支40个Call参数完整读。19新不同Return共38355字符全部实际阅读全文，余槽位按同SHA全文映射；新2最后Return仅在未发出guard输入中，不声称被模型消费。",
+ "pre_state":"S001从R1@0开始，P只有原题与系统/工具协议，没有已返回文档或已采用人物。不能把后来的Karlie材料放进P。",
+ "u_work":"原U整理13/14/16岁及2014/15/18线索，执行首次2018少年衣物查询，得到71687等五篇材料。R2前763字符对照约束，明确Karlie为October2018、没有重复失踪时间线，尚不能匹配题目。",
+ "u_state_update":"U没有识别题目目标，完成的是首次返回与约束的不匹配判断。原后续继续查2014/2015事件，R4却先把white shirt写进查询，此后又引入Mono County/Karlie；未验证身份的部分属性成为检索前提，但原始仍保持未找到并最终无Final。",
+ "original_action_consequence":"原有冲突反馈没有持续排除候选属性进入Query；后期反复列出缺口而检索仍收窄到Karlie。这里不能把原N写成正确→错误，也不能把全原轨迹成本当作一个已成功答案的必要开销。",
+ "guidance":{"text":"Let me search more specifically for information about the case with multiple missing incidents and the specific details mentioned in the question.","source":"S002 R2@763；23Token；原生R1@0截点，保留生成0Token。","audit":"G没有新人物、颜色、事实或答案，只给多次失踪的搜索方向。但P为空，从头P+G实际重新采样整条解题，仍是ORACLE_ANCHORED，不能将结果差异单归因缺少原U的局部评价。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/reasoning_content","quote":"However, this doesn't match the specific timeline mentioned in the question (multiple missing incidents in 2014-2018).","use":"原U明确识别未匹配，不是已经正确采用Karlie。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/0/exact_result","quote":"Saturday, October 13, 2018","use":"实际返回为十月，不是early2018；衣物属于这个未确认身份。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"white shirt","use":"原反馈之后，部分候选的颜色仍进入真实查询。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/2/tool_calls/0/function/arguments","quote":"child missing 2014 found 2015 missing 2018 shirt color white t-shirt","use":"尚未闭合身份时颜色已限制真实检索。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/11/content","quote":"my searches did not find the complete case details you described","use":"Final明确承认身份时间链未核实，却仍提交白色。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/11/content","quote":"**white t-shirt**","use":"实际错误答案，不把Final有保留措辞当拒答。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Mono County Karlie missing 2014 2015 2018 multiple times","use":"第二Call就将同一人物/地区与未证时间链捆绑。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/10/reasoning_content","quote":"This matches the question which mentions:","use":"模型刚引用October13却称匹配early2018；缺口没有被实际消解。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/18/tool_calls/0/function/arguments","quote":"Mono County teen missing 2014 2015 2018 Karlie found safe","use":"直到末次真实调用仍同一候选和未证历史，不只是嘴上说再查。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"However, I need to find more information about the pattern of multiple missing incidents described in the question","use":"缺口明确识别，非没有读取返回。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/4/tool_calls/0/function/arguments","quote":"Mono County Karlie missing 2014 2015 2018 13 14 16 year old white t-shirt","use":"此后实际选择仍依赖未证人物和颜色。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/5/content","quote":"when Karlie was reported missing in early 2018","use":"Final把October案例表述为early，与同Final后文十月相矛盾。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"However, this doesn't match all the details from the question","use":"原U的直接不匹配评价在新支确实重新执行。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"13-year-old found with two other missing teens late 2014 missing person case white shirt","use":"在保持不匹配认识时仍把颜色带入另一事件查询。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"However, this document doesn't mention the multiple missing incidents described in the question","use":"提交前关键缺口仍被明确承认，并无新增身份闭合材料。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/5/content","quote":"**Answer: White**","use":"Final选择错误颜色而非仅供候选。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首次用多年/年龄组合而非原宽泛2018查询，第三Call已带white t-shirt；继续11次Search仍找不到完整历史，R12以唯一有颜色的部分匹配提交白色。","state_chain":"颜色材料返回→身份仍未确认→该颜色先进入下一Query→多轮缺证后用部分匹配作答案，Final仍承认缺少完整时间链。","function_change":"初始线索整理、真实搜索及发现不完全匹配均重做，但没有维持严格身份要求到提交。2595+23生成比原4743少2125，Search11比19少8、Actor12比19少7，Prompt192199比505096少；节省包括较早结束未闭合核查，非正确任务保持。","evidence":["O1","N11","N12","N13"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"第二真实Call已锁Mono County Karlie；后不断在该人物上找多年失踪证明，R11引用October仍称匹配early2018，之后继续同一需求到R19，未提交。","state_chain":"部分匹配先作具体对象→时间链未证又被列作待查→没有解除对象限制→同一人物复合查询持续、推理清单逐轮增长→上下文止。","function_change":"搜索及结果缺口反馈重建；没有正式接受提交。6571+23比4743多1851，Search19/Actor19均相同，Prompt502728略少；额外生成落在不断累积的缺口与候选盘点，不可泛称所有成本上升。","evidence":["N21","N22","N23"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"第二Call已把Karlie与完整多年时间链绑定，继续五Call，R6承认时间链缺证后以白T恤作答；Final还将十月说成early2018。","state_chain":"返回的年龄/颜色局部匹配→实际Query限定同人→身份未闭合但颜色被提升为题目答案→提前错误提交。","function_change":"初次搜索与不匹配反馈部分/实质恢复，后续没有验证题目目标；1282+23生成少3438，Search少14、Actor少13、Prompt44283大减，减少的是后续未解决核查，而不是获得同等质量证据的更短路径。","evidence":["N31","N32","N33"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"R2明确重演首条材料不匹配，R3转Karlie，R4把white嵌入2014事件查询；R6仍承认多年事件未证，却选择最相关材料提交白色。","state_chain":"直接反馈已经重建→不匹配认识与候选属性进入Query并存→未取得身份链→由最相关而非已匹配转换为答案。","function_change":"原U主要功能确实恢复，不等于正确判断有效约束后续；1593+23少3127生成，Search少14、Actor少13、Prompt43111下降。错误答出不能列严格可省。","evidence":["N41","N42","N43","N44"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"可观察的是：检索只给出同龄与衣物局部匹配，模型虽识别多年失踪历史未对齐，却让颜色/地区/人物进入实际Query；之后或继续给这个对象补历史而耗尽，或以最接近材料提交。三次少花成本伴随错误提交，一次保持未完成并增加生成。原U的不匹配评价本身也没防止原后续Query引入white，因此不能声称删除该评价才首次导致候选锁定。",
+ "within_case_support":"四支均有未确认人物/颜色进入实际查询，最终三W一N；说明同一中间行动不唯一决定是否提交。新4明确恢复不匹配反馈仍W，是仅凭REBUILT判作用恢复的反例；新2甚至有答案判断仍继续Search，是不能将想答当Final的反例。",
+ "mechanism_chain_checks":[
+  {"chain":"身份与多年事件未闭合时，部分候选的属性仍被实际Query当作限定，后续围绕它补证","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22","N23"],"3":["N31","N32"],"4":["N41","N42","N43"]},"limits":"原亦出现，不能归因删除独有；同题四支只是内部对照不是跨题支持。"},
+  {"chain":"未补齐身份关系而用最相关的颜色材料提前提交，减少后续核查但答案错误","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["N12","N13"],"2":["N22","N23"],"3":["N33"],"4":["N43","N44"]},"limits":"新2继续到上限未正式提交；原也没有正确，不能称正确率从高变低。"}
+ ],
+ "counterevidence_and_limits":["空P最初Stage删除是重新起跑，不能作纯局部因果效应。","原始为N、GoldRed，新白色是W，Final存在不等于质量改善。","原U反馈与新4反馈都存在，重要差别是后续是否把缺口当硬约束，而不是有没有说过不匹配。","71687确已返回且被多次引用，问题不是没有工具信息；但正确目标身份未找到，也不能声称正确Red证据已返回却被忽略。","80922仅2015十四岁事件部分匹配，不能从Gold反推它必为同一人或已足够答案。","同链四支终态分叉，停止/提交选择还受采样和G方向影响，日志不证明隐藏信心阈值。"],
+ "cost_basis":"原生R1@0无保留生成，原后缀4743生成19Search19Actor，Prompt428+504668=505096。新生成2595/6571/1282/1593，G23只加一次，净−2125/+1851/−3438/−3127；Search11/19/5/5，Actor12/19/6/6，Prompt192199/502728/44283/43111。比较是实际后缀；新2最后Return未进入实际Actor。",
+ "next_cross_case_test":"分别在A/B检查：早期不匹配反馈是否真的改变检索对象；同一候选的属性何时未经确认进入后续Query；结果保持的案例是否已有独立身份支持、后续修复或仅未提交状态保持。对三W的少成本不归为有效任务冗余。"
+}

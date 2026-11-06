@@ -1,0 +1,451 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0359",
+  "stage_id": "S006",
+  "sample_order": 66,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0359/trajectory.json",
+      "source_sha256": "ab759de163d729512451929d8bb3e7fa90dc220f6996a18b04f6ee31d3f7524b"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0359.json",
+      "source_sha256": "2d78c15aab95eff1ba903a9cefd538a7c956981a747a6cde1a3210c3fe3ef84d"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "61bccb101f8bdd4308fea09d8ce893bd2aa1fa5905e4325f9e167a8846c92774"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "9e32c05d3c8f32006e1b2c9a0007b68a8cca09b80e2684103c4e82885d8626fd"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "2d15ba5c3d9b7763ac967995d52c134fcf320d25e33cf9998cba5b8befd6fcae"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "96128ac253aae4c6cb46e60b7fc5ec3458d93f9969dcd76efb7b7e804f31f65e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "7313cab41a338fcc66d409e57c19cc697e3934e7308883146d148a847bedd92a"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the full name and noble title of the commander who led the British-led Allied forces to victory in the famous battle where Napoleon Bonaparte suffered a decisive defeat, having been the primary adversary of Ferdinand IV of Naples who reigned over Sicily during the late 18th century when Giovanni Meli's Sicilian parody, \"Don Chisciotti e Sanciu Panza,\" notably featured the character Sancho Panza?",
+    "gold": [
+      "Arthur Wellesley, 1st Duke of Wellington"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0359/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Admiral Horatio Nelson, 1st Viscount Nelson",
+    "adopted_answer": "Horatio Nelson, 1st Viscount Nelson",
+    "outcome": "W",
+    "reason": "接受Sicily保护者Nelson而非Waterloo指挥官Wellington，正式错；此前已看到并识别盟友/对手冲突，不是未见该证据。",
+    "evidence": [
+      "I_CONFLICT",
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@4541：十条规范化历史保留四Search完整Return，旧assistant reasoning空；当前R5[0,4541)完整保留。已经引用446079 Nelson护送、承认题目要求adversary而材料为protector，倾向Trafalgar但未正式接受。原R4完整比较虽有Waterloo，旧reasoning不在actual_history，不能把旧比较当当前明确承诺。P15633Token，保留当前派生996，首请求余9004生成。",
+    "evidence_states": "Nelson保护关系已返回、提取并用于当前候选；矛盾已识别但未能据此排除/重解析。剩余缺口是对手身份与主战役如何连接，不是缺少护送材料。",
+    "evidence": [
+      "I_CONFLICT",
+      "I_PROTECT",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items：R5[4541,4770)、E5完整Query/Return，下一StageR6@0。",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 4541,
+        "end": 4770
+      }
+    ],
+    "goal": "在已知保护/对手冲突后再核Ferdinand的英国对手指挥官。",
+    "operations": "实际Query Ferdinand IV of Naples primary adversary British commander，完整Return与原E4同一组同文，仍是Naples入侵、英国/Nelson保护，没有补上英国敌对关系。",
+    "product": "再次取得原有背景关系，无新解决冲突的证据；收束为尚待R6解释。",
+    "judgment_change": "冲突尚存→再获同一组支持盟友的文，未产生有效排除。",
+    "evidence": [
+      "O_QUERY",
+      "O_RETURN"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R6承认英国保护、Napoleon是敌对背景，仍以Nelson与Sicily的独特关联接受Nelson，真实查其爵位；R7提交W。新增一次同结果未使候选排除或实际转Waterloo查询。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已经发现的角色关系矛盾重新取证，尝试闭合候选接受条件。",
+    "information_state_dependence": "P已经有保护关系与冲突识别，U不是第一次看见关键证据；原普通关键词改写回同文，新路径可再次关系取证、绕过、或只重述冲突而不执行。重复取证不自动冗余，需要追反馈是否更新行动。",
+    "first_update": "U未给新关系事实，亦未完成排除，但原后续仍要作选择。"
+  },
+  "guide_audit": {
+    "text": "The user is asking for the full name and noble title of the commander who led the British-led Allied forces to victory in the famous battle where Napoleon Bonaparte suffered a decisive defeat.",
+    "source": "O#/rounds/5/reasoning_content[0,192)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "37Token仅复述主问题，原题/当前P已有，无新实体、日期、人物、答案或已完成搜索宣称。相对上一句矛盾使主战役要求再出现，注意方向可能受影响；不把这种影响推断为事实泄漏。",
+    "evidence": [
+      "I_G",
+      "I_CONFLICT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat01",
+      "actual_final": "Arthur Wellesley, Duke of Wellington",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Arthur Wellesley, 1st Duke of Wellington",
+      "outcome": "C",
+      "outcome_reason": "省1st所指明确，正式C，真实Waterloo及518787爵位支持；R6一度把保护理解为adversary仍错，但最后将Ferdinand对手理解France/Napoleon。",
+      "outcome_evidence": [
+        "N1_MAIN",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R5仍复述P保护冲突，真实primary adversary Ferdinand查询，回904882明确Ferdinand natural opponent Napoleon、7108638同盟及大量艺术/王室无关材料。R6转Waterloo，仍夹Nelson保护也算对手的错误说法，但决定优先主战役，真实Waterloo commander Query；R7已有Gordon/画作支持后再实际Wellesley title Query，R8引用518787区分2ndDuke名字，串Napoleon敌对背景，SubmitC。",
+      "first_judgment_divergence": "首关系Query仍恢复，重要变化在R6将主战役Waterloo作为实际核验对象，不再在Nelson关联中停止。",
+      "first_actual_tool_divergence": "首关系Query去British限制，实际回新904882；之后真实Waterloo与Wellington查询取代原Nelson爵位。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "已知冲突后重新Query对手关系，回同一组保护材料。",
+          "new_goal_operation_product": "真实再查对手，904882新增直接Napoleon敌对关系及旧背景，目标/操作恢复、证据更直接；后采用主战役转向。",
+          "evidence": [
+            "O_QUERY",
+            "N1_CALL",
+            "N1_RELATION",
+            "N1_MAIN"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原关系取证真实恢复，Query改变和新证据是替代执行，不当没重建。",
+      "judgment_action_outcome_chain": "已有Nelson保护冲突→新对手查询取得Napoleon直接关系→虽一度混乱，实际转Waterloo查主指挥官→查爵位后C。支持状态更新需看动作，而不能只看首次正确词。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2339生成/80141Prompt/3Search4Actor，原切点后1618—2663生成/2Search3segments。生成差-324至+721跨0，不能称确定省；Search/Actor各多1，关系+主战役+姓名三次实际核查为新增交互，累计Prompt增。",
+      "counterevidence_and_alternatives": "正确性改善并未必降低成本，关系检索恢复不是删除无效的终点；新的直接文与采样共同改变路线，不能唯一归因。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat02",
+      "actual_final": "Horatio Nelson, 1st Viscount Nelson",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Horatio Nelson, 1st Viscount Nelson",
+      "outcome": "W",
+      "outcome_reason": "正式仍错Nelson。末轮已反复承认Nelson是ally、Waterloo另候选，但以Sicily关联更强将对手问题当题目错误，未执行Waterloo查询。",
+      "outcome_evidence": [
+        "N2_WRONG",
+        "N2_PRIORITY",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R5不先查关系，先锁Trafalgar并真实Nelson full title Query，回后代Earls/1118429Nelson舰队及其他材料。R6明确区分William兄长和Horatio，本身爵位日期说错，仍称保护所以adversary，再真实Nelson/Ferdinand/adversary Query。E2是446079保护、Bronte授爵、Gozo等，R7长20487字符反复承认盟友/误字、考虑Waterloo但又以Sicily更强回Nelson，SubmitW。",
+      "first_judgment_divergence": "先将原后续Nelson爵位核验提前，然后才恢复关系核查；未利用冲突排除Nelson。",
+      "first_actual_tool_divergence": "首Nelson爵位而非Ferdinand关系，第二再查具体Nelson/Ferdinand关系，原两目标次序交换。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "重新取证Ferdinand与英国指挥官的对手关系。",
+          "new_goal_operation_product": "第二真实Query具体到Nelson/Ferdinand，实际获得保护/授爵材料并R7明确读为ally，原关系核查功能延后恢复；结论却仍接受Nelson。",
+          "evidence": [
+            "O_QUERY",
+            "N2_RELATION_CALL",
+            "N2_WRONG",
+            "N2_PRIORITY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际关系查询、返回处理、冲突判断都有，不用查询次序或相似度代替功能分析。",
+      "judgment_action_outcome_chain": "Trafalgar身份先接受并查爵位→关系重核又证盟友→冲突被当用词错误而非强制排除，Sicily匹配维持Nelson优先→W。重复认识矛盾并未改变核查对象，成本增在长篇重新论证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "5996生成/56978Prompt/2Search3Actor，Search/Actor与原后续相同，生成多3333—4378，末轮5259completion反复角色与意图猜测为主；不能将所有增长说是更多搜索。",
+      "counterevidence_and_alternatives": "相同W状态不代表无影响，先后次序、标题细节和生成长度都变；明确说出正确关系并不保证采用它。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat03",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "首请求9004生成上限真实耗尽，无Call/Submit/Final；重复提Nelson不能补正式答案。",
+      "outcome_evidence": [
+        "N3_CONFLICT",
+        "N3_NOEXEC"
+      ],
+      "work_and_evidence_timeline": "R5从P末尾继续同一Nelson/Trafalgar与adversary冲突，反复引用P中446079护送句、重读全题、提出Austerlitz又承认Napoleon胜利，然后再次Trafalgar/保护矛盾。41756字符几乎重复同一组比较，直到9004上限，无任何真实工具事件或正式提交。",
+      "first_judgment_divergence": "原在冲突后执行下一Search；新一直在已完成的冲突识别和同候选陈述中重新展开，没有转为实际核查或排除。",
+      "first_actual_tool_divergence": "无真实新Call，原目标Ferdinand对手Query被跳过且未恢复。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "再查对手关系、取得完整Return。",
+          "new_goal_operation_product": "只有P旧Return引用与反复冲突陈述，零新Query/Return，原重新取证的操作与产物未观察。",
+          "evidence": [
+            "O_QUERY",
+            "O_RETURN",
+            "N3_CONFLICT",
+            "N3_NOEXEC"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "已有背景和冲突复述不等于实际重新Search；整个新轨迹一轮零Call已核。",
+      "judgment_action_outcome_chain": "Nelson保护与adversary冲突在P已成立→删后反复重申同一冲突、未形成可执行新策略或候选排除→没有搜索或提交→N。可见反馈未转行动，但不能据此推断内部为何进入逐句重复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "9004生成/15670Prompt/0Search1Actor，原后续2Search3segments；生成多6341—7386，少两Search/Actor，但任务未完成。技术首轮上限10000减保留996=9004，不误说新请求少给预算。",
+      "counterevidence_and_alternatives": "没重建外部工作仍更耗生成、未改善；不能将少工具解释节省成功，也不把文字重复本身当因果机制。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "单轮9004生成后无Final、无工具调用，N。没有采用正式答案，不从反复Trafalgar猜测补W。",
+      "outcome_evidence": [
+        "N4_CONFLICT",
+        "N4_REPEAT"
+      ],
+      "work_and_evidence_timeline": "R5起始仍说Nelson/Trafalgar，承认P的protector与enemy不一致，短暂Austerlitz备选后重复同一‘let re-examine...Trafalgar...however adversary’段落。43081字符，无新证据、零Call/Return，9004生成截止。",
+      "first_judgment_divergence": "在应执行关系核查处只重开已经识别的矛盾；相较r3更快退化为单一短段重复，而不是实际新取证。",
+      "first_actual_tool_divergence": "零新Call，原Ferdinand关系Query及后续Nelson爵位Query均未实际执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实对手关系重核、完整新Return。",
+          "new_goal_operation_product": "只用P的保护材料复述冲突，未发出Query，无新Return或关系产物，外部核查未恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_RETURN",
+            "N4_CONFLICT",
+            "N4_REPEAT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整新一轮已读，Repeated words不是工具事件；不把计划写成执行。",
+      "judgment_action_outcome_chain": "旧候选与旧冲突同时保留→同一要求反复触发重读而没有稳定角色修正/下一行动→预算耗尽N；日志能描述该过程，不能证明原重复Search本身可避免此循环。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S006__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "9004生成/15670Prompt/0Search1Actor，生成增6341—7386、少2Search/Actor。增加全部在首轮重复文字，非搜索成本；原P重放15633与G37计一次。",
+      "counterevidence_and_alternatives": "r1同P/G能实际查询并C，r2能查询却W，故P冲突不是单一决定因素；采样与生产参数差异无法排除。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "W",
+    "outcomes": [
+      "C",
+      "W",
+      "N",
+      "N"
+    ],
+    "state_changes": 3,
+    "group": "B",
+    "observed_difference": "原冲突已经被识别，删后两条实际关系核查恢复：一条转WaterlooC，一条维持NelsonW；另外两条连新Call都没有，在冲突段落内部重复到首轮长度上限。外部重建有无不能独自解释结果，仍需看关系判断如何限制候选与行动。",
+    "costs": "C分支生成区间跨0且Search/Actor更多，W分支工具次数同而生成更多，N分支工具少但生成大增。无一可仅据Call下降称严格可省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "已经识别的冲突是否转成可执行的候选/策略更新",
+      "chain": "P已有保护者证据和对手要求冲突；重复取证若得到/采用Napoleon才对手的关系并让主战役控制查询，可转WellingtonC；若先确认Nelson身份，再把同盟冲突当题目错误，继续接受W；若只有同冲突反复陈述，没有实际查询、排除或提交，首轮即可耗尽而N。",
+      "limits": "不是把Search重做视为必要性证明，也不是用循环标签代替解释。两N逐句复制为何发生无法从日志唯一定位，保留采样/模型配置/引导形式因素。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四新173383字符全部按真实序读完，完整原轨迹已读；两N无Call是真的，而不是Parser少展示，原轨迹/新tool_events皆核。",
+    "G只复述题目主问题，无新事实；P当前已识别冲突，因此不可写‘删除后才首次意识到盟友问题’。",
+    "首轮9004是保留996生成后的预算，符合冻结输入审计；原nativeIDs缺失，原后续生成只给1618—2663区间。",
+    "r1正确但一度仍错误释保护为对手，r2错误却多次想正确解释；须看持久采用与实际Query，不将出现正确词当状态已修复。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_CONFLICT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "This suggests that the commander was an adversary of Ferdinand IV, not an ally. However, the search results show that Nelson was the one who protected Ferdinand IV when he fled to Sicily."
+    },
+    {
+      "evidence_id": "I_PROTECT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Ferdinand fled on 23 December 1798 aboard Nelson's ship to Palermo"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the full name and noble title of the commander who led the British-led Allied forces to victory in the famous battle where Napoleon Bonaparte suffered a decisive defeat."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Ferdinand IV of Naples primary adversary British commander"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/4/observation/results/7/snippet",
+      "exact_quote": "Horatio Nelson then led Ferdinand and Maria Carolina to Palermo on December 22, 1798.",
+      "doc_id": "wiki25:11018541"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the answer is likely Horatio Nelson."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Admiral Horatio Nelson, 1st Viscount Nelson"
+    },
+    {
+      "evidence_id": "N1_CALL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "primary adversary of Ferdinand IV of Naples",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RELATION",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/6/snippet",
+      "exact_quote": "Ferdinand was a natural opponent of Napoleon and was allied with the Third Coalition against him.",
+      "doc_id": "wiki25:904882",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_MAIN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Battle of Waterloo commander British Allied forces victory",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Arthur Wellesley, Duke of Wellington"
+    },
+    {
+      "evidence_id": "N2_RELATION_CALL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Horatio Nelson Ferdinand IV Naples adversary",
+      "call_id": "chatcmpl-tool-83475891e4809af0"
+    },
+    {
+      "evidence_id": "N2_WRONG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Wait, Nelson was the ally of Ferdinand IV against the French. He helped Ferdinand escape to Sicily in 1798."
+    },
+    {
+      "evidence_id": "N2_PRIORITY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Okay, I will bet on Nelson being the intended answer due to the Sicily/Meli clue, despite the \"adversary\" wording."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Horatio Nelson, 1st Viscount Nelson"
+    },
+    {
+      "evidence_id": "N3_CONFLICT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This suggests that Nelson was the one who protected Ferdinand IV when he fled to Sicily. However, the question asks for the commander who was the primary adversary of Ferdinand IV of Naples."
+    },
+    {
+      "evidence_id": "N3_NOEXEC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let's re-read the search results."
+    },
+    {
+      "evidence_id": "N4_CONFLICT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This suggests that the commander was an enemy of Ferdinand IV, not an ally. However, the search results show that Nelson was the one who protected Ferdinand IV when he fled to Sicily."
+    },
+    {
+      "evidence_id": "N4_REPEAT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Wait, let's re-examine the question."
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

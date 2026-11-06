@@ -1,0 +1,48 @@
+{
+ "case_id":"724__rep2__S007__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原有正式拒答W/REFUSAL_NO_ENTITY，新四条CONTEXT_BLOCKED没有FinalN。不是正确→错误。"},
+ "review_basis":"原17轮推理与完整Call/Return已实际阅读。本组四新140个新增不同精确推理块25596字符全部读，62字段顺序含重复段已核对，40真实Call参数完整读。280文档槽位中18新增不同Return全文读，其余已读同SHA文本复用；P中87844医生师承材料额外完整重读。输入验证40配对，36返回真实进入后续Actor，4仅未发送guard。",
+ "pre_state":"R9@0前八次检索未找到医生。P的87844介绍Phillip Lerner、Louis Weinstein及导师Chester Keefer师承，不证明他们满足奖学金、死亡1970s、老大学等条件。原U之后仍没有确定身份。",
+ "u_work":"U包括R9全部838字符、E9及R10前209字符：盘点条件，实际执行doctor died1974/75/76/77/78 scholarship medicine university查询，直接反馈仍没找到，提出Harvard朋友方向。R9提Osler但实际Call不是Osler，不能把意向当执行。",
+ "u_state_update":"只完成一次年代/奖学金取证及未匹配反馈，没有新候选被接受或排除的产物。后续原模型按朋友、名医与创会继续尝试，最终拒答。",
+ "original_action_consequence":"四新都重做年代/奖学金或朋友核查，没有绕过总体信息缺口。不同中间判断分别驱动组织、名医、朋友关系或精确年代枚举；原停止拒答变成持续取证至上下文止。",
+ "guidance":{"text":"Let me try searching for information about \"Harvard PhD friend doctor\" or similar combinations.","source":"S008 R10@209之后的首句，18Token；native截点R9@0，保留当前轮生成0Token。","audit":"给出了下一检索方向和关键词，但Harvard朋友约束已在题目/P，未给新候选、事实或答案。ORACLE_ANCHORED，不把第一项朋友查询一律视作自主重建。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/8/exact_arguments","quote":"doctor died 1974 1975 1976 1977 1978 scholarship medicine university","use":"被删实际取证工作，不将Osler提及算Call。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/7/exact_result","quote":"Weinstein's mentor had been the brilliant clinician and researcher Chester Keefer","use":"P已有名字和师承关系，仅支持进一步核查，不等于符合目标医生条件。"},
+  {"id":"O3","source":"original","pointer":"/rounds/16/content","quote":"I was unable to find a specific doctor","use":"原正式拒答。"},
+  {"id":"N11","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Chester Keefer doctor Harvard PhD friend","use":"新1从P的具体人名转为真实朋友核查，G没提供此人。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/5/reasoning_content","quote":"many of the results are about doctors who died in 2023, not in the 1970s as required","use":"明确识别年份不符，而非完全没读返回。"},
+  {"id":"N13","source":"new1","pointer":"/tool_events/6/exact_arguments","quote":"Virginia Apgar scholarship medicine university","use":"真实转Apgar部分匹配，后又转组织，不是一成不变的Query。"},
+  {"id":"N14","source":"new1","pointer":"/tool_events/9/exact_arguments","quote":"B.F. Skinner Harvard PhD friend doctor","use":"末轮尝试从朋友反查医生，但返回只guard未消费。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"he was born in 1809 and died in 1894, which doesn't match the death in 1970s criteria","use":"确识别Holmes冲突，本轮实际改年代组合，不把提Holmes当重新接受。"},
+  {"id":"N22","source":"new2","pointer":"/tool_events/6/exact_arguments","quote":"John F. Kennedy doctor friend","use":"候选朋友方向实际执行，但没有已证Harvard PhD关系。"},
+  {"id":"N23","source":"new2","pointer":"/tool_events/7/exact_result","quote":"The American Cancer Society was founded in 1913 by 10 doctors and five laypeople in New York City.","use":"真实组织历史返回，不含这些人满足全部条件的证明。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/8/reasoning_content","quote":"George E. Durant","use":"提海报获奖者但没有真实查此名，不升级为错误身份接受。"},
+  {"id":"N25","source":"new2","pointer":"/tool_events/8/exact_arguments","quote":"American Cancer Society 1913 founding member doctor","use":"真正后继是继续创始成员查询，而非Durant或文中列举的众多人物查询。"},
+  {"id":"N26","source":"new2","pointer":"/tool_events/9/exact_arguments","quote":"Charles Best 1899 1978 doctor scholarship university","use":"R18长篇备选后只执行Best，不能把全部意向计搜索。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/7/reasoning_content","quote":"Chester Keefer\" who died in 1962 (not 1970s)","use":"R16实际识别死亡条件不符。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/8/reasoning_content","quote":"Chester Keefer\" who might have died in the 1970s","use":"R17又将该死亡条件恢复为可能，未见中间有效消解证据。"},
+  {"id":"N33","source":"new3","pointer":"/tool_events/8/exact_arguments","quote":"Chester Keefer doctor died 1962 1970","use":"实际检索同时带冲突年代，不等于明确接受全部条件。"},
+  {"id":"N34","source":"new3","pointer":"/tool_events/9/exact_arguments","quote":"Chester Keefer Boston University doctor","use":"最后继续同一候选核查，未凭1962冲突稳定退出。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"James Watson","use":"后五轮也重复Watson意向，但没有任何Watson实际Call。"},
+  {"id":"N42","source":"new4","pointer":"/tool_events/4/exact_arguments","quote":"doctor born 1928 died 1977 scholarship","use":"真实行为是未证精确年代枚举。"},
+  {"id":"N43","source":"new4","pointer":"/tool_events/7/exact_arguments","quote":"doctor born 1927 died 1978 scholarship medicine","use":"与文字中相同的备选计划不同的真实新查询。"},
+  {"id":"N44","source":"new4","pointer":"/tool_events/9/exact_arguments","quote":"doctor born 1926 died 1970s practiced 40 years city","use":"最后依旧广条件枚举，没接受具体医生。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Call用P里的Keefer查Harvard朋友，再AMA/城市/年代，识别2023不符后查Apgar奖学金、ACP创始人，末查Skinner朋友，没有身份采用和Final。","state_chain":"师承材料给人名→核查朋友未匹配→更换城市/年代及部分匹配名医→晚从朋友反查仍无消费机会→N。","function_change":"U年代/奖学金取证实际恢复，并增加组织核查；10Search10Actor比原8/9多2/1，2303+18生成少1182但Prompt383594增加。","evidence":["O2","N11","N12","N13","N14"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"G后朋友组合，Tremont、名医与创会交替；明确Holmes1894不符后改年代，后真查Kennedy/ACS，1913组织材料触发创始成员补查，末回Best。","state_chain":"没有具体符合者→不断提出朋友/组织备选→部分历史信息触发更具体查询但仍无目标身份→长篇计划后继续Call至N。","function_change":"原年代/奖学金工作恢复，新增多组织/朋友核查；提Rockefeller/Frost/Hemingway等多数没有执行，不能给每个备选计行动。10Search10Actor多2/1，3265+18少220，Prompt386065增加。","evidence":["N21","N22","N23","N24","N25","N26"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"朋友/奖学金广搜后采用P的Keefer/Weinstein作核查对象；R16明确Keefer1962不符，R17又写可能1970s并真实查1962/1970，最后查BostonUniversity，N。","state_chain":"师承名字→可能身份→识别死亡冲突→下一轮冲突未被稳定保留为排除依据→继续同人核查，新增消耗未形成答案。","function_change":"U年代/奖学金恢复，同时恢复具体候选核查；不是正式重新接受Keefer为答案。10Search10Actor多2/1，2650+18少835，Prompt384587增加。","evidence":["O2","N31","N32","N33","N34"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"朋友组合后反复出生1928/1925/1927/1929/1926与死亡、奖学金、40年条件查询；R13起Reasoning相同而真实Query变化，未实际查Watson或接受候选。","state_chain":"缺口持续未闭合→用未证精确年份重组Query→返回未形成候选更新→同一计划复述但仍执行不同年份组合→N。","function_change":"原广年代取证持续重建，无具体身份产物；10Search10Actor多2/1，2063+18少1422但Prompt384703增加。不得从同Reasoning推相同Call，也不得把未执行Watson意向算额外搜索。","evidence":["N41","N42","N43","N44"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"这组的可见差异在反馈能否维持到后续行动：新3明确死亡1962冲突，下一轮又把1970s当可能并继续实际查Keefer；新2Holmes1894冲突后真实换年代入口，是局部反馈能改变行动但最终仍N的反例。新4文字重复并不等于查询不变，成本增加实际落在多种未证年份组合。原U没有正确候选，不支持删其判定导致正确答案丢失。",
+ "within_case_support":"四N不同路线；冲突识别后继续同人链只新3，而新2Holmes冲突后确换Call。新1从师承人名试探并末换Skinner，新4没有具体身份比较，不能四支统一贴候选固化。",
+ "mechanism_chain_checks":[
+  {"chain":"具体候选死亡冲突已被明确识别，却未稳定成为后续排除条件，下一轮重新以可能符合年代继续查同一人","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33","N34"]},"limits":"只支持查询对象未退出，不是已经正式重新接受为答案；新2是有冲突反馈后真实改变查询但仍N的对照。"},
+  {"chain":"反复相同计划措辞掩盖真实的不同年代组合尝试，候选状态未推进而工具调用增加","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44"]},"limits":"重述、同Query与不同真实取证必须分开；不能因查不同年份就证明每次尝试必要或有效。"}
+ ],
+ "counterevidence_and_limits":["B来自W→N终态差异，不是原正确答案丢失；冻结样本成员不更换。","新2认识Holmes不符后实际改查，是反馈并非一概不进入行动的反例。","新3说Keefer1962是日志内判断；不借外部事实给该资料增加源内证明。","海报获奖者Durant和Watson只是计划提及，没有对应Call，不当实际身份接受。","G行动方向已来源原未来，ORACLE限制保留，不能据该方向的恢复作纯删除因果证明。","四新没有Gold姓名Return，不写已有正确材料未采用；原新均未正确，不能由此研究哪项正确必需工作。","生成均少而Search/Actor/Prompt均增，节省不能统一归到U或算整体降低；独立分支差不相加。"],
+ "cost_basis":"nativeR9@0，P当前轮0Token，G18。原3503生成8Search9Actor，Prompt24657+310074=334731；新2303/3265/2650/2063，含G净−1182/−220/−835/−1422；四支10Search10Actor，均多2/1，Prompt383594/386065/384587/384703均增。末Call返回只guard，仍真实Search计费，不假装被Actor采用。",
+ "next_cross_case_test":"在A/B分开寻找具体冲突是否进入下一Call约束的对照：已排除后又查、为消解冲突而查、实际转查三种不能混合；检验前提是判断被后续行动采用而非只是原文出现。"
+}

@@ -1,0 +1,35 @@
+{
+ "batch_id":"PEER_001","reviewer":"PEER","status":"COMPLETE_CODEX_REVIEW_NOT_HUMAN_GOLD",
+ "case_ids":["23__rep2__S001__FIRST_SENTENCE","23__rep2__S002__FIRST_SENTENCE","116__rep4__S003__FIRST_SENTENCE","429__rep1__S004__FIRST_SENTENCE","429__rep1__S005__FIRST_SENTENCE","18__rep1__S003__FIRST_SENTENCE","68__rep1__S005__FIRST_SENTENCE","202__rep1__S004__FIRST_SENTENCE","289__rep1__S002__FIRST_SENTENCE","506__rep1__S003__FIRST_SENTENCE"],
+ "functions":[
+  {"description":"在没有正候选时选择辨别入口，保留排除/失败反馈；具体入口可能加入题外限制。","members":["23__rep2__S001__FIRST_SENTENCE","23__rep2__S002__FIRST_SENTENCE","116__rep4__S003__FIRST_SENTENCE","429__rep1__S004__FIRST_SENTENCE","18__rep1__S003__FIRST_SENTENCE"],"distinction":"23加入金融和feature范围；116维持家庭死亡反证但未找到人；429以已定学院为入口；18已有多个局部人选。不能将所有探索统一成空P或首次发现。"},
+  {"description":"将外部材料解释成题目对象的角色/关系，从而改变可采用候选与派发任务。","members":["429__rep1__S005__FIRST_SENTENCE","202__rep1__S004__FIRST_SENTENCE","289__rep1__S002__FIRST_SENTENCE","506__rep1__S003__FIRST_SENTENCE"],"distinction":"429错把出版商当学会；202正确保持成立年与合作关系的边界；289从名单新建词义连接；506只建个人经历而未连影片。不能都叫关系绑定而不分正误及证据层次。"},
+  {"description":"主体已采用时，明确组织可提交答案，但该接受不自动结束剩余核查。","members":["68__rep1__S005__FIRST_SENTENCE"],"distinction":"不是首次接受姓名/奖项，没有新事实；四次均恢复该认知动作而真实后续Call不同。"}
+ ],
+ "comparisons":[
+  {"id":"C01","cases":["429__rep1__S005__FIRST_SENTENCE","202__rep1__S004__FIRST_SENTENCE","506__rep1__S003__FIRST_SENTENCE"],"finding":"同是关系工作，429错误角色真正派生2025过滤，删除加G纠正后正确人选可被采用；202的正确关系限制被无据年份代替仍核心C；506的个人经历恢复却不等于合作被证明。区别是关系处于候选身份入口，还是已强采用主体的辅助支持。","counter":"429新4角色纠正仍N；202新3/4重建限制仍C更贵；506各路径核心证据早在P。不能由A/B反推关系工作好坏。"},
+  {"id":"C02","cases":["116__rep4__S003__FIRST_SENTENCE","18__rep1__S003__FIRST_SENTENCE","289__rep1__S002__FIRST_SENTENCE","506__rep1__S003__FIRST_SENTENCE"],"finding":"恢复可从保留实体重新取证，也可能由G提前指名补偿。289P已有剧集/演员，四次真实重建词义；506P无Alejandro但G提供他；116P无Jon而G提供错误对象；18G无实体，成功连接来自新Return。","counter":"G给人名既能配合强主体保持C，也能固定错候选W，不把补偿等同正确。"},
+  {"id":"C03","cases":["23__rep2__S002__FIRST_SENTENCE","429__rep1__S004__FIRST_SENTENCE","68__rep1__S005__FIRST_SENTENCE"],"finding":"未解缺口可以触发真实Search，也可以只触发长篇计划或短未执行意向。23新2末轮10000Token无Call；429新1持续15Call至N；68新3末句要查却直接Final。","counter":"不能用文本相同或终态N将实际Search和无执行生成合并一种成本机制。"},
+  {"id":"C04","cases":["18__rep1__S003__FIRST_SENTENCE","289__rep1__S002__FIRST_SENTENCE","202__rep1__S004__FIRST_SENTENCE"],"finding":"相同核心答案并不保证相同证据覆盖。18新2/3未得论坛直接材料，202新2无据品牌，289四次均恢复关键词义但共同未证首演年。","counter":"不把所有A都归为少证猜答：289确有真实关键关系恢复，18新1/4确有论坛直接支持。"}
+ ],
+ "mechanism_tests":[
+  {"id":"PEER001_T1","description":"未经支持的对象属性/关系被作为下一项工作或接受前提；保留或写出反证却未使该对象/关系退出后继任务。","links":[{"case_id":"23__rep2__S001__FIRST_SENTENCE","local_id":"23S1_B"},{"case_id":"116__rep4__S003__FIRST_SENTENCE","local_id":"116S3_A"},{"case_id":"202__rep1__S004__FIRST_SENTENCE","local_id":"202S4_A"},{"case_id":"506__rep1__S003__FIRST_SENTENCE","local_id":"506S3_B"}],"relation":"与P1_K1解释/条件错绑上游相关，但这里必须拆开年份记忆、教师给人、独立事实不连关系；暂作为上位比较，不新冻结统一机制。","counterexamples":["202新3/4保留关系限制而继续核查，未走无据品牌闭合；506新1/4明确知道合作还缺并执行查询；116新3确短暂宽搜，不能称完全无纠错。"],"unresolved":"有些联系只解释质量和路线，不解释原U独特删除效应；G新实体对116/506特别强。"},
+  {"id":"PEER001_T2","description":"主体已恢复以后，具体未证关系是否再次派发真实核验或被放宽/断言，影响能否提交及各成本；需要进一步定位每次再查的依据。","links":[{"case_id":"429__rep1__S004__FIRST_SENTENCE","local_id":"429S4_B"},{"case_id":"429__rep1__S005__FIRST_SENTENCE","local_id":"429S5_B"},{"case_id":"68__rep1__S005__FIRST_SENTENCE","local_id":"68S5_A"},{"case_id":"202__rep1__S004__FIRST_SENTENCE","local_id":"202S4_B"}],"relation":"支持P2_R3边界：已有主体/仍缺关系是真实可见前态；仅此仍是较宽过程共性，不能宣布知道某seed停止原因。","counterexamples":["68四次都正常提交，有缺口不必长期循环；429新3的学会1962证据有真实增量；202品牌替代验证有合理目标，不能因最后没补齐称全冗余。"],"unresolved":"同材料下继续查和提交的选择尚缺唯一解释；不要把‘缺口驱动’当所有N的原因。"},
+  {"id":"PEER001_T3","description":"已定候选的特定缺口取证，入口实际覆盖不足会多出补查与历史重放；共享证据覆盖则可能压缩操作，但联合/分开本身不是规则。","links":[{"case_id":"289__rep1__S002__FIRST_SENTENCE","local_id":"289S2_B"}],"relation":"本批只有一题确定对照，仍为候选；对照试点291的新1联合Query同时覆盖学校与身份、减少一轮，支持比较变量应是实际覆盖而非Query长短。","counterexamples":["试点291联合更省，289联合先偏向已有剧集更贵；同一表面操作可相反。"],"unresolved":"本批不足跨题支持，等待更多候选明确需求与实际Return缺口覆盖链。"},
+  {"id":"PEER001_T4","description":"明确识别候选不符不等于撤销对其属性的检索；应比较反证之后真实查谁，而不是只看是否说出了冲突。","links":[{"case_id":"23__rep2__S001__FIRST_SENTENCE","local_id":"23S1_A"}],"relation":"与试点270/257/1046排除没有约束行动相关，但本批23新2年份未核、新4书关系仅存疑，不能一律计硬冲突。116链另含G固定对象，用T1交叉说明而不重复当独立样本。","counterexamples":["23新2自己年份可能错误，不能把Query测试假设直接当已确认排除；新3协议早停根本无该机会。"],"unresolved":"不重建原U成功功能，因为原U也没有找到答案；原W→N与C→W解释必须分开。"}
+ ],
+ "unresolved":[
+  {"case_id":"23__rep2__S001__FIRST_SENTENCE","issue":"金融/feature题外限定和未核年份的具体来源未知；新3协议失败不能纳语义机制。"},
+  {"case_id":"23__rep2__S002__FIRST_SENTENCE","issue":"自纠范围后无Call空转原因未知，纪录片排除是否题意正确不明。"},
+  {"case_id":"116__rep4__S003__FIRST_SENTENCE","issue":"G未来错误候选强影响；四出生名都未证，原N→W不属正确退化。"},
+  {"case_id":"429__rep1__S004__FIRST_SENTENCE","issue":"研究全作者名单与此书出版社绑定不足，正确姓名不等于全题核齐。"},
+  {"case_id":"429__rep1__S005__FIRST_SENTENCE","issue":"G提供正确出版社角色，无法分离删除与纠正补偿。"},
+  {"case_id":"18__rep1__S003__FIRST_SENTENCE","issue":"原/新最后专栏仍近似，部分C少论坛直接证据。"},
+  {"case_id":"68__rep1__S005__FIRST_SENTENCE","issue":"接受重建后为何多查或零查不唯一；疟疾启发缺证。"},
+  {"case_id":"202__rep1__S004__FIRST_SENTENCE","issue":"合作与年份应同关系证明；电影/博士年原新共有缺口。"},
+  {"case_id":"289__rep1__S002__FIRST_SENTENCE","issue":"演员出演区间不等于戏剧首演年。"},
+  {"case_id":"506__rep1__S003__FIRST_SENTENCE","issue":"个人跳学经历不等于参与影片；G实体补偿强。"}
+ ],
+ "source_handling":"作者亲自阅读六类已核事实材料与真实引文、完整U/真实Call序列；23两案关键位置另定向回查。未重新读巨量Token数组，未复制旧机制标签。Python只核身份/引用/成本和显式成员统计。",
+ "limitations":"本批同题多个Stage不是独立题目支持；实际不同题数由程序去重。四分支为教师预填随机续跑，机制链是可观察过程解释，非无G纯删除因果效应。"
+}

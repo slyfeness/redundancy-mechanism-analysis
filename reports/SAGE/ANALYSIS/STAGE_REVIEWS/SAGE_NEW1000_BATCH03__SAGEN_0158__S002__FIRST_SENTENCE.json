@@ -1,0 +1,614 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0158",
+  "stage_id": "S002",
+  "sample_order": 30,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0158/trajectory.json",
+      "source_sha256": "00c1a3e889f7c40fec57428c111ff7eb62a22cdbd06f1a6be187d83e43efe01d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0158.json",
+      "source_sha256": "fea3d50a483e85a7b2ca24e784ea06b52353185f1ec997f82e6e27e93710eeed"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "627f7137a151eb56bc20d5bc66b551f0f978ab58fa859fd4ff77824836eeef6a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "6d23bc3e1466dda66675dda93bf858ca29b06a65c99ad3d3ef0e7181f3fd9c6c"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "e8d12895904ae857d372ef5a4d684938e5d9dd0d0f46fc03c20d0ca32a18c23c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "815d075379c13e2bd60f0a0892290743e68cee0b170c6bfb0d7154cecd63e0da"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "035f4c4e97ea401c3ebf03af082267b9ef77c36213e16ebad16848214960e5e6"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the year when the Paraguayan settlement, which became a base for a foreign-owned tannin extraction company known for processing 'axe-breaker' hardwood, was established under the name honoring the Argentine figure associated with that company?",
+    "offline_gold": [
+      "1889"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原六轮全部Reasoning/Call/Return完整已读，另重读R4全文278字符和R5前303字符。",
+    "new": "四条完整事件视图62346字符，按0—24000—48000—62346读取完；工具Return只在完整内容与已读来源canonical一致时别名，非按DocID去重。",
+    "semantic_author": "Codex独立阅读并逐条撰写。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R4@47，P当前仅I found PuertoCasado；历史有三次搜索完整Return。最新聚落1500字符片段含1889及公司联系，但尚未覆盖全文末部tannin/quebracho说明。",
+    "evidence_state": "PuertoCasado已实际识别、1889文字已返回；不能把全文的木材证据提前视为P已获。CarlosCasado在公司名可见，未有传记，也未明确采用人物身份。",
+    "gap": "需要取得木材/公司及人物细节；旧名改名年仍无直接支持。",
+    "evidence": [
+      "I_P",
+      "O_PRE_SNIPPET"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 4,
+        "json_pointer": "/rounds/3/reasoning_content",
+        "start": 47,
+        "end": 278
+      },
+      {
+        "round": 4,
+        "json_pointer": "/tool_events/3",
+        "event": "真实Open与全文Return"
+      },
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 303
+      }
+    ],
+    "goal": "从已发现的聚落片段扩展全文以核验公司、人物、建立年。",
+    "operations": [
+      "Open1833884默认4000字符，全文实际2607字符。",
+      "R5直接反馈提取1889、公司、quebracho/tannin，木材axe-breaker解释来自模型知识，不在原聚落正文词源明示。"
+    ],
+    "product": "首次获得并明确采用公司使用quebracho生产tannin的全文支持；人物身份尚待S004。",
+    "judgment_change": "从候选与年份片段转到候选原料条件获支持，为后续具体人物核验收窄需求。",
+    "evidence": [
+      "O_OPEN_PLAN",
+      "O_OPEN_TEXT",
+      "O_U_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "S003列题目四条件并推CarlosCasado人物，S004查传记6119231，R6整体接受1889后长篇命名年反复，最终Submit。",
+    "true_suffix": "原生成4015—4090、1Search1Open1Submit、3生成段；未来HTTP Prompt39647，切点原R4请求16937已发生，新P重放16951分列。",
+    "evidence": [
+      "O_PERSON_QUERY",
+      "O_PERSON_RETURN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "扩展返回并使木材条件从未核实线索成为可引用支持，不是重复打开已经完整可见全文。",
+    "四条都实际重Open全文，但采用其中人物/旧名的方式不同，重建工具工作不等于恢复同样关系判断。",
+    "日期已在P，错误人物解释仍可能保持同一正确年份，故A类C频率不能代替关系证据审查。"
+  ],
+  "guide_audit": {
+    "G": "The question asks about:",
+    "origin": "原S003 R5[303,327)冒号行，无条件清单",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "只引向题目条件复述，未加实体、年份、答案、quebracho或Carlos人物方向；不能把新列清单当G直接预填。原Question本完整在P。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R6真Submit1889；木材全文和人物传记实际取得并采用，命名年共享缺口仍在。",
+      "outcome_evidence": [
+        "N1_ADOPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R4先列条件，发现片段还欠木材和人物，重Open同聚落全文。",
+        "R5采用quebracho/tannin与1889，明确问CarlosCasado是否Argentine，真实Search人物。",
+        "返回与原人物Search全同，R6采用SpanishArgentine身份和六条件匹配，短篇Submit。"
+      ],
+      "first_substantive_judgment_difference": "先列条件再Open，与原先Open后列条件顺序不同；没有改变核验对象，后续少长篇重开命名问题。",
+      "first_actual_tool_difference": "第一Open与原完整Return相同；后人物Query词序小改、完整Return仍全同；不是原功能被跳过。",
+      "function_correspondence": [
+        {
+          "original_goal": "从候选片段取得木材/公司全文",
+          "original_operation": "Open全文并提取quebracho/tannin",
+          "original_product": "木材条件支持",
+          "new_goal": "同一缺口",
+          "new_operation": "先列条件再Open，读同全文后提取",
+          "new_product": "完整重建并用于人物后续核验",
+          "evidence": [
+            "O_OPEN_TEXT",
+            "O_U_ADOPT",
+            "N1_OPEN",
+            "N1_RETURN",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "片段已发现候选→重Open补木材→具体人物国籍成为下一缺口→真实人物Search后接受并C；生成下降来自后续长篇命名纠结少，Open并未省。",
+      "costs": {
+        "new_generation": 1204,
+        "new_prompt": 56603,
+        "new_search": 1,
+        "new_open": 1,
+        "new_actor": 3,
+        "P_replay": 16951,
+        "G_prefill": 5,
+        "conservative_new_minus_original_generation_interval": [
+          -2886,
+          -2811
+        ]
+      },
+      "limits": "Search/Open/Actor同原切点后，Prompt含新请求开销，不能将生成下降叫功能省略。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "正式Submit1889但新解释将AngelCustodio无依据具体化为ÁngelCustodioBaigorria，声称其与公司/命名相关；工具全文没这人物关系。",
+      "outcome_evidence": [
+        "N2_WRONG_PERSON",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R4重Open聚落全文，原U工具和木材材料均恢复。",
+        "R5把旧地名AngelCustodio认作Argentine将领Baigorria，甚至给出生卒/角色细节，未任何真实人物Search。",
+        "将旧名直接解释为纪念该将领，绕过原CarlosCasado传记核验，沿1889Submit。"
+      ],
+      "first_substantive_judgment_difference": "同全文之后将旧地名错误转为具体人物，并将这个解释当题目纪念关系已经闭合。",
+      "first_actual_tool_difference": "Open后直接Submit，原下一次Carlos人物Search没有执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得并提取公司木材全文",
+          "original_operation": "Open/摘要",
+          "original_product": "quebracho/tannin与1889支持",
+          "new_goal": "同一全文支持",
+          "new_operation": "真实Open同全文并采用木材",
+          "new_product": "完整重建此U取证，后续人物解释却不同，不能因全文重建推关系也重建",
+          "evidence": [
+            "O_OPEN_TEXT",
+            "N2_OPEN",
+            "N2_WRONG_PERSON"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "同样全文→旧名被当将领姓名→错误人物关联被接受为命名约束解释→不再查Carlos身份→C年份保持但推理依据失真；少Search/Actor不是无损省事。",
+      "costs": {
+        "new_generation": 998,
+        "new_prompt": 34605,
+        "new_search": 0,
+        "new_open": 1,
+        "new_actor": 2,
+        "P_replay": 16951,
+        "G_prefill": 5,
+        "conservative_new_minus_original_generation_interval": [
+          -3092,
+          -3017
+        ]
+      },
+      "limits": "这是新增无依据具体人物关系，不是原新共同缺改名年证据；二者分别记录。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R7真Submit1889，但旧地名在R5被写作将领López，R7又写Lengua，没有返回支持；不能用正确年证明实体关系正确。",
+      "outcome_evidence": [
+        "N3_LOPEZ",
+        "N3_LENGUA",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R4先改查axe-breaker hardwoodtannin，结果是论文目录/词表/书籍引言。",
+        "R5仍用旧片段，推AngelCustodio为Argentine将领López，再查axe-breaker woodtanninArgentina，同样无目标支持。",
+        "R6明确搜索没给specific信息，转Open原聚落全文。",
+        "R7采用quebracho条件，却把旧名又称将领Lengua并当纪念关系，最后Submit1889。"
+      ],
+      "first_substantive_judgment_difference": "原先直接Open得到木材，新先用通俗木材称呼广查两轮；失败后才回原文，并未核实人物猜测。",
+      "first_actual_tool_difference": "第一Call为木材Search替代原Open；第三Call才恢复Open全文。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得聚落木材公司完整说明",
+          "original_operation": "直接Open并提取",
+          "original_product": "quebracho/tannin",
+          "new_goal": "同一木材线索",
+          "new_operation": "先两次无支持Search，再回Open同全文、提取木材",
+          "new_product": "U功能最终完整恢复，路径绕行；人物误释未被修正",
+          "evidence": [
+            "O_OPEN_TEXT",
+            "N3_FAIL",
+            "N3_OPEN",
+            "N3_LENGUA"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "木材通俗名先触发泛搜→失败未消解题目人物缺口→回Open补木材→旧名人物猜测继续当事实→C年份但关系无证。生成较少但Search/Actor/Prompt增加，来源不同。",
+      "costs": {
+        "new_generation": 1349,
+        "new_prompt": 88820,
+        "new_search": 2,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 16951,
+        "G_prefill": 5,
+        "conservative_new_minus_original_generation_interval": [
+          -2741,
+          -2666
+        ]
+      },
+      "limits": "不把两次真实失败Search的成本归为工具意向；都已实际发生，区分其后回原入口的改策。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R7真Submit1889，人物先被误认AngelCustodio，后真实查6119231并采用CarlosCasado身份；最终仍无命名日期直接证据。",
+      "outcome_evidence": [
+        "N4_EARLY_ERROR",
+        "N4_PERSON_RETURN",
+        "N4_PERSON_ADOPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R4重Open同全文。",
+        "R5将AngelCustodio说成公司相关Argentine人物，Query查公司+木材，取到公司城镇续页。",
+        "R6改说聚落纪念CarlosCasado，认为还需查其Argentina关系，真实人物Search，取同原6119231。",
+        "R7采用正确人物，但大量反复成立1889与更名未知的两种读法，最后真实Submit。"
+      ],
+      "first_substantive_judgment_difference": "Open后错误旧名人物归属先出现，之后新返回/再次条件比较下重新改回CarlosCasado并外证；不能把它归成持续同一误判。",
+      "first_actual_tool_difference": "第一Open同原，第二Call为公司木材而非原人物Query，第三Call才具体人物核验。",
+      "function_correspondence": [
+        {
+          "original_goal": "全文补齐木材条件",
+          "original_operation": "Open/直接反馈",
+          "original_product": "木材支持",
+          "new_goal": "同一信息",
+          "new_operation": "真实Open同全文，提取木材后两次关系核验",
+          "new_product": "U完整恢复，并修正后续早期人物误释；仍长篇命名问题",
+          "evidence": [
+            "O_U_ADOPT",
+            "N4_OPEN",
+            "N4_EARLY_ERROR",
+            "N4_PERSON_RETURN",
+            "N4_PERSON_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "全文重建→旧名误作人→公司线索重新指向Casado→外部传记确认→命名时点缺口仍反复触发推想→最终C；成本增长既有额外Search/Actor，也有恢复后的长篇同问题讨论。",
+      "costs": {
+        "new_generation": 4638,
+        "new_prompt": 82818,
+        "new_search": 2,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 16951,
+        "G_prefill": 5,
+        "conservative_new_minus_original_generation_interval": [
+          548,
+          623
+        ]
+      },
+      "limits": "生成区间全正，可确认更多，但不可报告native精确增加数；不能将后期纠错解释成无需原工作。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "4C，U的实际Open+木材获取均完整恢复；2/3条路径出现旧名到人物无依据解释，r4后来修正，r2/r3未实际补查修正。",
+    "same_result_different_routes": "r1支持较完整且短篇；r2无人物Search但臆造人物；r3先泛搜失败再Open且人物漂移；r4恢复正确人物但反复命名问题。",
+    "cost_location": "r1少后续解释；r2额外省人物Search但质量不同；r3多泛搜；r4多人物绕行和长篇。无需以4C把它们合并为同一机制。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "答案年份在早期片段已出现时，后续即使恢复全文取证，人物/命名关系解释仍可能完全不同而不改年份；判断答案稳定必须和证据采用质量分开。",
+      "support": "1题本Stage4条：全部恢复Open，r2/r3错误人物仍C，r4纠回正确人物也C。",
+      "counterexample": "r1无此错误且同样C，说明共同年份并不能唯一推断中间关系。"
+    },
+    {
+      "claim": "已经有具体候选文档时，改用描述性关键词广搜可能绕行，反馈明确失败后再回原文；最终完成同功能但Search/Prompt增加。",
+      "support": "r3两次失败Search后才Open。",
+      "limit": "当前单条路径/单题，只记候选作用链，不声称跨题机制已确认。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "旧名与改名年共享缺口从原文就有；新将旧名指定为Baigorria/López/Lengua属额外无依据断言。",
+    "不能因U完整恢复而否认后续篇幅减少；也不能因四C而称U不必要，四条都重做其核心。",
+    "G不含答案，但Oracle引导和独立采样仍限制因果判断。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "I found \"Puerto Casado\" in the search results."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 4,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The question asks about:"
+    },
+    {
+      "evidence_id": "O_PRE_SNIPPET",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "Founded in 1889 in time of President Patricio Escobar, formerly known as Angel Custodio.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_OPEN_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Let me open the document to get more details about the company, the Argentine figure, and the year the settlement was established."
+    },
+    {
+      "evidence_id": "O_OPEN_TEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "Tannin is a substance extracted from the \"quebracho\" tree, used for tanning hides.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The company was devoted to logging and production of tannin from \"quebracho\" tree"
+    },
+    {
+      "evidence_id": "O_PERSON_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Carlos Casado Argentine entrepreneur quebracho tannin",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_PERSON_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "was a Spanish Argentine businessman.",
+      "doc_id": "wiki25:6119231",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-b5050eb01e33a8d5"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Tannin is a substance extracted from the \"quebracho\" tree, used for tanning hides.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Is Carlos Casado an Argentine figure?"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_WRONG_PERSON",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The settlement was established in 1889 under the name \"Angel Custodio\" (honoring the Argentine figure Ángel Custodio Baigorria)"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-8f1fd7a34ec4b446"
+    },
+    {
+      "evidence_id": "N3_LOPEZ",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Angel Custodio is an Argentine figure (General Ángel Custodio López)"
+    },
+    {
+      "evidence_id": "N3_FAIL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results are not providing the specific information about the \"axe-breaker\" hardwood or the tannin extraction company."
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LENGUA",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Formerly known as Angel Custodio (referring to the Argentine figure, likely General Ángel Custodio Lengua"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_EARLY_ERROR",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Angel Custodio was an Argentine figure associated with the Carlos Casado Company"
+    },
+    {
+      "evidence_id": "N4_PERSON_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "was a Spanish Argentine businessman.",
+      "doc_id": "wiki25:6119231",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_PERSON_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The company was named after **Carlos Casado del Alisal**, a Spanish-Argentine businessman."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA and exact evidence references, source side, four task/Final/stop, original tool Rounds from frozen mapping, new Round/Call/Doc metadata and all four cost rows verified. Codex semantic self-review, not independent human gold."
+}

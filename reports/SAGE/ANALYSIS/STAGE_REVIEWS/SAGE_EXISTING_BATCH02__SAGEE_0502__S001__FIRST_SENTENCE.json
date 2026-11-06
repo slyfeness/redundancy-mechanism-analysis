@@ -1,0 +1,445 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0502",
+  "stage_id": "S001",
+  "sample_order": 74,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0502/trajectory.json",
+      "source_sha256": "8bbb33fa0a823fce39a3d5056779b265b76af40f869b865135719b546e006d2e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0502.json",
+      "source_sha256": "71ebe65232f638b00ea37410f71d153046390f3e3b335393e8ff84e7186356fd"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "dcc7facc91748d5c67405b8161a054ef14ffc5d8c9d218b7f359fb32c0d12885"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "389f89a95736e01952ad1f22d582f013ae42ac5351b8050295b6d4db19af5c9e"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "44f2e577dabfa20822fa8e77409fb33fdf2de89dd72b87259800fc4c568a8ff0"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "1b16240bb4c437927df314f9fd7e32223d020eaab13a0aea169d8034d8ca1f0e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "6a7ec523a2225bf97a51d188ef6f28081b974f149720922220b143955b3438ae"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the document authorizing the annexation of the former Captaincy General of Guatemala into the First Mexican Empire was signed by the individual who held the office that governed from the Palacio de los Capitanes Generales, an office established after the colonization began in 1524, and which first implemented the provincial division decreed by the Cádiz Cortes in 1812?",
+    "gold": [
+      "January 5, 1822"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0502/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "R5反复正确日期但无正式Submit，47017字符至MISSING_FINAL_STOP，不能以中间答案判C。",
+    "evidence": [
+      "O_STOP",
+      "O_LOOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，P525派生Token只有system和原题，无历史Return或当前前缀；职务、签署者和日期都未独立证实。",
+    "evidence_states": "原题已给Captaincy/Palacio/1524/1812，不等于已识别具体Gabino或日期。",
+    "evidence": [
+      "I_MODE",
+      "I_Q"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items；R1[0,711)+E1 Search完整Return+R2[0,1331)，止R2@1331。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 711
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 1331
+      }
+    ],
+    "goal": "通过Cádiz1812省制线索定位职务背景及独立/兼并的时间关系。",
+    "operations": "真实查Captaincy Guatemala Cádiz Cortes1812，2330526给Gainza/governor与1812时段，7758490给独立Sep15,1821。R2区分独立后才兼并，但未落实签署人和具体兼并日期。",
+    "product": "制度/历史入口与独立不等于兼并的初步区分；没有准确兼并日期。",
+    "judgment_change": "题目线索→取得CaptainGeneral背景及独立后兼并关系，继续查具体文书。",
+    "evidence": [
+      "O_FIRST",
+      "O_TEMPORAL"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2/R3泛兼并Query两次后E3才得10487637直接request accepted5Jan1822；R4采用并Open1000；R5反复纠结集体接受/个人签署、独立/兼并，已说正确日期却未Submit。首Stage不是直接制造最后纯推理循环的唯一证据。",
+    "evidence": [
+      "O_DATE",
+      "O_LOOP",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "用历史制度约束定位候选职务、建立相近事件区分。",
+    "information_state_dependence": "P无外部事实；四条改从目标事件直查，但同制度材料与Gainza角色后来实际恢复，终态改善不表示背景功能被完全绕过。",
+    "first_update": "首次制度背景外部材料在U；精确日期及签署关系在后续。"
+  },
+  "guide_audit": {
+    "text": "Let me search for more specific information about the annexation document and the governor who signed it.",
+    "source": "O#/rounds/1/reasoning_content[1331,1436)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "G19教师Token，将初始行动从1812制度背景改向兼并文书/签署者；governor是题目职务的角色解释提示，无Gainza姓名、日期或答案事实。首输入544=P525+G19。",
+    "evidence": [
+      "I_G",
+      "I_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "January 5, 1822",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 5, 1822",
+      "outcome": "C",
+      "outcome_reason": "新增7758492直接Gainza寄接受兼并信同日期，R8真实SubmitC。",
+      "outcome_evidence": [
+        "N1_LETTER",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1/2泛文书Query得原E2同Return，R2一度把July1823脱离误说成加入；R3加1821，R4又泛加Gainza，未补日期；R5缩成Gainza文书Query得10535968 Jan5投票及3489390 Jan3后两天回应。R6加January1822得10487637日期，R7再查1822得7758492直接个人寄信关系；R8准确采用三份日期与角色并Submit。没有Open。",
+      "first_judgment_divergence": "直接搜兼并/签署而非先1812，但同背景后来被读；新增个人寄信证据明确补了原最后反复自问的个人/集体桥接。",
+      "first_actual_tool_divergence": "R1文书Search替代Cádiz制度Query，首Return为原E2而非E1。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "制度Query取得CaptainGeneral/Gainza及独立后兼并背景。",
+          "new_goal_operation_product": "事件Query同Return包含制度背景，R4/6/8主动采用CaptainGeneral/Gainza；相关判断恢复，具体1812Query未重放。",
+          "evidence": [
+            "O_TEMPORAL",
+            "N1_ROLE",
+            "N1_LETTER"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原背景目标和产物由事件入口取得并采用，操作入口替代，不凭Query字面重合。",
+      "judgment_action_outcome_chain": "背景仍恢复→长期缺具体文书导致多次实际查→带回个人Jan5寄信→明确将个人/文书/日期绑定并SubmitC；相比原纯推理反复，新增证据和实际搜索路径不同，不能归因只删制度步骤。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2107生成/109311Prompt/7Search0Open8Actor，原11357/38281/3S1O5A；生成少9250主要避开原R5的10K式重复，但多4Search/3Actor且Prompt更高。不是全部资源下降。",
+      "counterevidence_and_alternatives": "若只有投票日期还缺个人行为证据，此路后来真实取得；G方向/采样改变亦影响，不宣称原U因果有害。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "5 January 1822",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "5 January 1822",
+      "outcome": "C",
+      "outcome_reason": "日期格式等价，R8/9取得7758492寄信片段及全文，R10SubmitC。",
+      "outcome_evidence": [
+        "N2_ADOPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1事件Query得背景，R2 Open2330526，R3明确Gainza并Query得Jan5投票。R4带重音Gaínza签字Query只无关目录，R5 OpenJunta仅重复投票；R6 4356字符说明vote≠signed，真实查带Jan5仍未直接个人。R7再次查Gaínza也未得；R8换泛文书Query得7758492个人Jan5寄信，R9 Open完整文，R10准确接受并Submit。",
+      "first_judgment_divergence": "背景从同Return+Open恢复，后续没有在签署疑点上只循环文字，而实际换检索入口得到直接信件关系。",
+      "first_actual_tool_divergence": "首事件Search替代制度Query，R2新增背景Open；后续多次文书Search与原不同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取背景、区分独立/兼并，继续具体签署人。",
+          "new_goal_operation_product": "Open背景明确Gainza，R4区分独立文与最终兼并投票，后续真查签字，原背景判断实际恢复。",
+          "evidence": [
+            "O_TEMPORAL",
+            "N2_ROLE",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同目标/背景材料通过新操作采用，不是单纯同实体。",
+      "judgment_action_outcome_chain": "已知Jan5投票但个人签字仍缺→不把投票直接视作足够，真实更换检索→个人寄信材料到达/Open→提交C；必要缺口取证与此前低增量重复同存。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "3449生成/105707Prompt/6Search3Open10Actor，生成少7908，但Search+3/Open+2/Actor+5、Prompt增加。省在不持续原R5纯推理至终止，新增多轮核验不可忽略。",
+      "counterevidence_and_alternatives": "重音Query返回无关原文真实存在，不自动解释为服务故障。R6长判断和多次无增量查询仍有压缩候选，但不是全段无用。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "5 January 1822",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "5 January 1822",
+      "outcome": "C",
+      "outcome_reason": "R3真实7758492已给个人寄信日期，后续最终Submit正确。",
+      "outcome_evidence": [
+        "N3_EARLY",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1事件Query得背景；R2第二Search已得10487637日期但R3未明确处理，继续加1822得到7758492寄信。R4主动采用Gainza/日期/寄信，Open却limit50没关键句。R5查宫殿1812只无关目录，R6再查Gainza文书、R7 Open3489389仅100字符，R8再查同类签署Query，R9 5256字符多次确认个人寄信与独立/兼并区别后Submit。",
+      "first_judgment_divergence": "个体关系证据早在R3到达并R4采用，之后仍持续核具体文名/签署日期，没有立即收束；比原最终有Submit。",
+      "first_actual_tool_divergence": "首事件Search，后续宫殿Query及两个小limitOpen为新。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "识别制度/职务与独立后兼并。",
+          "new_goal_operation_product": "R4显式逐项解释CaptainGeneral/1812背景，R5还实际宫殿Query，虽结果无关但已有材料仍被采用；原背景目标恢复。",
+          "evidence": [
+            "O_TEMPORAL",
+            "N3_EARLY",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "具体背景推理和取证均存在，不能因改先后顺序说删除功能消失。",
+      "judgment_action_outcome_chain": "正确个人/日期关系已采用→特定文名/签字仍触发小Open及多查→没有更强日期改变→较晚SubmitC。此路反驳只有缺个人寄信证据才会继续；可见证据到达不保证立即停止。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "3247生成/103420Prompt/6Search2Open9Actor，生成少8110但Search+3/Open+1/Actor+4，Prompt更高；R9独1414生成，额外查询/Open真实发生。",
+      "counterevidence_and_alternatives": "R3关键证据不是到Final才取得；r1/r2晚补证与此早采用晚提交不可用同一中间链解释。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "January 5, 1822",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 5, 1822",
+      "outcome": "C",
+      "outcome_reason": "正式日期等Gold，但个人签署仍是would have signed推断，证据质量与r1–3不同。",
+      "outcome_evidence": [
+        "N4_ASSUMPTION",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1事件背景，R2加1821Query，R3采用Gainza查文书得JuntaJan5投票；R4 OpenJunta重复，R5签署Search同不足结果，R6 Open3489389 2000只到independence lastedJan5，R7再OpenJunta同文；R8仍区分vote/signed但最后说head of junta would have signed，真实SubmitC。未实际得到7758492个人寄信文。",
+      "first_judgment_divergence": "没有补直接个人寄信证据，最终用领袖应签字推断接受，原也有同猜测却没Submit。",
+      "first_actual_tool_divergence": "首事件Search及人物/JuntaOpen替代原制度/大背景日期Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "制度和独立/兼并背景定位。",
+          "new_goal_operation_product": "从同类事件Return采用Gainza及职务、区分Sep15独立与Jan5兼并，背景恢复，Cádiz单独Query未做。",
+          "evidence": [
+            "O_TEMPORAL",
+            "N4_ROLE",
+            "N4_ASSUMPTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原背景产物被重新实际采用，不能因缺后来才需要的签署证据否认原U背景功能。",
+      "judgment_action_outcome_chain": "核心日期投票证据可用、签署关系仍未闭→数次同源Open没有新增个人关系→以领导人应签名推断结束→C。改善是提交发生，不能宣称证据链全修复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0502__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2095生成/84052Prompt/4Search3Open8Actor，生成少9262，但Search+1/Open+2/Actor+3、Prompt更高。减少原10K内循环，仍有重复JuntaOpen。",
+      "counterevidence_and_alternatives": "此C不依赖直接寄信证据，反驳四条都靠新证据补缺；语义日期C与证据充分分开。"
+    }
+  ],
+  "four_run_comparison": "四条N→C且背景功能全部重建，均更多Search/Actor/Prompt但较少生成。r1/r2晚得个人寄信再Submit，r3早得早采用却继续多轮，r4没有该直接证据也凭推断Submit。不能把四C统一解释成删去背景解除错误假设；差异在关键关系补证、采用时点与何时接受提交。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "已知兼并日期但缺个人/文书桥接时，真实换向检索可补个人寄信证据并进入提交；若只反复重述相同投票事实，原可持续耗生成无Final。",
+      "support": "r1/r2相对原，r3早证仍多核、r4缺证也提交是边界/反例。"
+    },
+    {
+      "chain": "背景定位并非被删除功能就不再需要，新路径事件优先仍取得并采用同背景；生成减少主要是后续长篇循环未再持续，而更多真实查证使Prompt/工具反增。",
+      "support": "四新均如此，一题内部对照。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G行动方向来自后继，Oracle，含governor角色解释而无姓名日期。",
+    "原R5正确日期不是正式Final；B四变化是N→C，不表示U原本有害或重要。",
+    "原T0.7/topk20/MTP2/Eager与新T1/topk0/MTPoff/GraphPrefix/预算不同，不能唯一归因Stage。",
+    "R1@0完整响应usage可比较，但原IDs缺失，不冒称native精确StageToken节省。G19单计Prompt，P525单列。原105540及四新157521字符已完整读。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_Q",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "actual_question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What was the date when the document authorizing the annexation"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me search for more specific information about the annexation document and the governor who signed it."
+    },
+    {
+      "evidence_id": "O_FIRST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Captaincy General of Guatemala Cádiz Cortes 1812 provincial division",
+      "call_id": "chatcmpl-tool-bcbab3ed86518a82"
+    },
+    {
+      "evidence_id": "O_TEMPORAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The region joined the First Mexican Empire by annexation after the Act of Independence of Central America."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "His request was accepted on 5 January 1822.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:10487637"
+      ]
+    },
+    {
+      "evidence_id": "O_LOOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The Consultive Junta of Guatemala City was the Central American government at the time, not the Captain General."
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "N1_ROLE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Gabino Gainza Fernandez de Medrano is mentioned as the \"jefe político superior\" (governor) of Guatemala"
+    },
+    {
+      "evidence_id": "N1_LETTER",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/6/observation/results/9/snippet",
+      "exact_quote": "On 5 January 1822, Gaínza sent a letter to Iturbide accepting Central America's annexation",
+      "call_id": "chatcmpl-tool-8891a1575ac88321",
+      "doc_ids": [
+        "wiki25:7758492"
+      ]
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 5, 1822"
+    },
+    {
+      "evidence_id": "N2_ROLE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The text mentions the annexation into the First Mexican Empire and that Gabino Gainza was the Captain General."
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "The document authorizing annexation was sent by Gaínza on 5 January 1822."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5 January 1822"
+    },
+    {
+      "evidence_id": "N3_EARLY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Gabino Gaínza was the last Captain General before independence and then the first Captain General of Central America under Mexican rule. He sent a letter accepting annexation on 5 January 1822."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5 January 1822"
+    },
+    {
+      "evidence_id": "N4_ROLE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Gabino Gaínza Fernández de Medrano, who was the \"jefe político superior\" (governor) of Guatemala"
+    },
+    {
+      "evidence_id": "N4_ASSUMPTION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Gabino Gaínza was the head of the junta and would have signed the document."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 5, 1822"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

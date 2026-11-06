@@ -1,0 +1,1375 @@
+# SAGE_NEW1000_BATCH03__SAGEN_0916｜V1.3.2完整Stage切分
+
+样本序号：97；原件SHA256：`03b951c72acc95c19781e7ca575f5325863786f44fb011f9455e0f1b7b18897c`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What traditional musical instrument, considered a national symbol for Manipuris, accompanies the folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur?
+````
+
+## 完整求解过程
+
+首轮按Milhiem、OldKuki、乐器与national symbol联合搜索，只确认族群身份。第二、三轮沿同一初始取证计划去掉部分词重试，取得Music of Manipur对pena及pena eshei的直接描述。第四轮先引用乐器材料，再把候选与题目各条件比较，指出缺少OldKuki与歌曲的直接关系，实际查询该关系。
+
+第五轮不是只换词：重新对照整题、逐段检查片段能证明什么，讨论是否另有乐器及题目连接含义，随后才改查OldKuki音乐。第六轮在返回族群历史后重建三项资料链，接受Pena，但仍选Open Music of Manipur核验。Open只读100字符；第七轮指出截断，改用Pena定向Search，返回此前音乐资料。第八轮重新比较条件，未补出歌曲与族群的直接连接，仍判断Pena并成功Submit。
+
+完整阅读6次Search、1次Open及Submit。未执行的多个搜索说法不当真实Call；既保留初始普通重试，也保留实际展开的多条件评估。对题目族群关系缺口不外加知识补齐。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 联合线索检索并定位pena音乐资料 | 确认Pena国家象征和伴奏描述、Milhiem族群。 | E001,E002,E003 |
+
+| S002 | R4 / 0 / 557 | 将Pena对照题目并识别族群歌曲连接缺口 | 前两项支持，族群连接未明。 |  |
+
+| S003 | R4 / 0 / 1236 | 查询pena eshei与OldKuki及Milhiem的联系 | 只返回Milhiem身份资料。 | E004 |
+
+| S004 | R5 / 0 / 0 | 重新比较歌曲与族群证据并考虑其他乐器解释 | 未证连接，决定从OldKuki音乐描述查。 |  |
+
+| S005 | R5 / 0 / 2259 | 从OldKuki民歌入口重新取证 | 取得族群历史，无乐器连接。 | E005 |
+
+| S006 | R6 / 0 / 0 | 合并族群与乐器材料并接受Pena候选 | 接受候选，随后仍要读音乐文档。 |  |
+
+| S007 | R6 / 0 / 1196 | 打开音乐文档验证候选 | 没有读到Pena段落。 | E006 |
+
+| S008 | R7 / 0 / 26 | 以Pena定向检索替代截断读取 | 返回已见完整音乐片段。 | E007 |
+
+| S009 | R8 / 0 / 0 | 重评整题条件并正式提交Pena | 正式Final pena。 | E008 |
+
+## S001｜联合线索检索并定位pena音乐资料
+
+R1—R3三次Search沿同一组合线索逐次去词，R4先引用两篇实际返回。
+
+结束状态：确认Pena国家象征和伴奏描述、Milhiem族群。
+
+边界判断：起始取证。
+
+内部KEEP与反证：只是初始未命中后的关键词聚焦，没有新的独立候选比较或方法选择；R4直接引文归取证。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,532)
+
+SHA256：`757fe0113f2861d7ffdfced6a6c062ba16e728cdd77f5c6b1929f641f9e2f2fe`；原字段SHA256：`757fe0113f2861d7ffdfced6a6c062ba16e728cdd77f5c6b1929f641f9e2f2fe`。
+
+````
+This is a multi-hop question that requires me to find information about:
+1. A traditional musical instrument that is a national symbol for Manipuris
+2. This instrument accompanies a folk song form
+3. This folk song form is associated with "Old Kuki tribes" such as the Milhiem ethnic group in Manipur
+
+Let me start by searching for information about this. I should search for terms related to Manipur, Kuki tribes, Milhiem, and musical instruments.
+
+Let me start with a search about Manipur traditional instruments and Kuki tribes.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Manipur traditional musical instrument national symbol Kuki tribes Milhiem folk song"
+  },
+  "id": "chatcmpl-tool-b08134e6392a4cf5",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Manipur traditional musical instrument national symbol Kuki tribes Milhiem folk song\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-b08134e6392a4cf5",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Manipur traditional musical instrument national symbol Kuki tribes Milhiem folk song"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 0.07357377605512738,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5711237",
+        "score": 43.55002673728481,
+        "snippet": "The Milhiems are an ethnic group living in parts of Northeast India and Myanmar. Some writers refer to them as Milhem, Meriem, Mirem, Marrem or Miriam. They belong to the \"Old Kuki tribes\" of Manipur. The Milhiems believe that they descend from a common ancestor who came from a cave which they call Khul. Their history is based on oral tradition, folklore and myth handed down from one generation to the next. Their society is organised into clans and subclans. The village is the highest unit of society and lands belong to the village chief, who is considered the head of their clan or subclan. Some Milhiem clans and subclans are scattered among other Old Kuki tribes such as the Chothe, Purum, Koireng, Kom, Lamkang, Aimol, Maring, Tarao, Vaiphei, Paite, Lusei and also among the Thadou-kuki tribe. Origin. Miriems claim to originate from a cave which they refer to as Khur. According to their folklore and myths, their ancestor LUPHO, born of Miriem, went out from Khul with his followers after killing the serpent Gulhiemnu, and Tiger keeper and guardian of the cave opening. Lupho Bepa-customary family friend, Shongthu and the Priest Zahong (Zahang) were all members of the group that came out from Khul. In the days of yore, the Chief used to take up the role of a priest as well. Miriem is the ancestor of the Lupho but Zahong/Zahang is the ancestor of Suantak, Ngoilu, Neitham, Lupheng, Misau, Leivon. In the book \"Chongza genealogy\" of the Mangtes, their family priest/Thempu Thangjakhup",
+        "text_characters": 2577,
+        "title": "Milhiem"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3910684",
+        "score": 41.6211086655253,
+        "snippet": "Maphou is a village in the Saikul subdivision of the Kangpokpi district in Manipur, India. Most residents are members of the Kuki ethnic group. Location. Maphou is located in the Tomching Chingsang Hills range and is situated on the bank of the Thoubal River. It is located from the city of Imphal. It is surrounded by villages belonging to the Tangkhul tribe. History. Maphou was established before the independence of India, by the forefathers of Lenghou Lupho. In 1945 Lenghou Lupho converted to Christianity and founded the first Christian Church in 1945. The present village chief is Haokhomang Lupho( Ex-Chairman, Thoubal Area Kuki Inpi, the great-grandson of Lenghou Lupho. Chairman Thoubal multipurpose project committee. Church movement. As the village was established after the Lenghou family converted to Christianity, the Christian church was one of the first buildings in the village. The first church leader was Ngamkholhun Lupho. In the 1980s a second church was built. The two congregations were Newlife and Kuki Baptist Convention (KBC). After 1990 a single church was formed under the banner of the Maphou Local Baptist Church. The golden jubilee of the church was in 1996 but the celebration was not held until 2000, due to the ethnic clashes that were occurring at that time. The theme of the jubilee celebration was a quotation from Mathew 16:18: \"And I also say to you that you are Peter, and on this rock, I will build my church, and the gates of Hades shall not prevail agains",
+        "text_characters": 2680,
+        "title": "Maphou"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-b08134e6392a4cf5"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5711237", "title": "Milhiem", "score": 43.55002673728481, "snippet": "The Milhiems are an ethnic group living in parts of Northeast India and Myanmar. Some writers refer to them as Milhem, Meriem, Mirem, Marrem or Miriam. They belong to the \"Old Kuki tribes\" of Manipur. The Milhiems believe that they descend from a common ancestor who came from a cave which they call Khul. Their history is based on oral tradition, folklore and myth handed down from one generation to the next. Their society is organised into clans and subclans. The village is the highest unit of society and lands belong to the village chief, who is considered the head of their clan or subclan. Some Milhiem clans and subclans are scattered among other Old Kuki tribes such as the Chothe, Purum, Koireng, Kom, Lamkang, Aimol, Maring, Tarao, Vaiphei, Paite, Lusei and also among the Thadou-kuki tribe. Origin. Miriems claim to originate from a cave which they refer to as Khur. According to their folklore and myths, their ancestor LUPHO, born of Miriem, went out from Khul with his followers after killing the serpent Gulhiemnu, and Tiger keeper and guardian of the cave opening. Lupho Bepa-customary family friend, Shongthu and the Priest Zahong (Zahang) were all members of the group that came out from Khul. In the days of yore, the Chief used to take up the role of a priest as well. Miriem is the ancestor of the Lupho but Zahong/Zahang is the ancestor of Suantak, Ngoilu, Neitham, Lupheng, Misau, Leivon. In the book \"Chongza genealogy\" of the Mangtes, their family priest/Thempu Thangjakhup", "text_characters": 2577, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3910684", "title": "Maphou", "score": 41.6211086655253, "snippet": "Maphou is a village in the Saikul subdivision of the Kangpokpi district in Manipur, India. Most residents are members of the Kuki ethnic group. Location. Maphou is located in the Tomching Chingsang Hills range and is situated on the bank of the Thoubal River. It is located from the city of Imphal. It is surrounded by villages belonging to the Tangkhul tribe. History. Maphou was established before the independence of India, by the forefathers of Lenghou Lupho. In 1945 Lenghou Lupho converted to Christianity and founded the first Christian Church in 1945. The present village chief is Haokhomang Lupho( Ex-Chairman, Thoubal Area Kuki Inpi, the great-grandson of Lenghou Lupho. Chairman Thoubal multipurpose project committee. Church movement. As the village was established after the Lenghou family converted to Christianity, the Christian church was one of the first buildings in the village. The first church leader was Ngamkholhun Lupho. In the 1980s a second church was built. The two congregations were Newlife and Kuki Baptist Convention (KBC). After 1990 a single church was formed under the banner of the Maphou Local Baptist Church. The golden jubilee of the church was in 1996 but the celebration was not held until 2000, due to the ethnic clashes that were occurring at that time. The theme of the jubilee celebration was a quotation from Mathew 16:18: \"And I also say to you that you are Peter, and on this rock, I will build my church, and the gates of Hades shall not prevail agains", "text_characters": 2680, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R002_request.json/messages/3/content`；SHA256：`5da050bdba9dc03ec632e7ffe2ee5d5cd25db6add182a9e8e744579c4b61b807`。
+
+### R2 `/rounds/1/reasoning_content` [0,477)
+
+SHA256：`6609fcff79a5446a5b8c022d6c362b76719f82e52296e807b33bbef78ca8eea7`；原字段SHA256：`6609fcff79a5446a5b8c022d6c362b76719f82e52296e807b33bbef78ca8eea7`。
+
+````
+The search results mention the Milhiem ethnic group as part of the "Old Kuki tribes" in Manipur, but don't mention the musical instrument or folk song form. I need to search for more specific information about the folk song form associated with the Milhiem or Old Kuki tribes, and the traditional musical instrument that is a national symbol for Manipuris.
+
+Let me search for information about Manipuri national symbol musical instrument and folk songs related to Kuki tribes.
+
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Manipur national symbol musical instrument folk song Kuki tribes"
+  },
+  "id": "chatcmpl-tool-82aad8d31060f8bf",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Manipur national symbol musical instrument folk song Kuki tribes\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-82aad8d31060f8bf",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Manipur national symbol musical instrument folk song Kuki tribes"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 1.0802206550724804,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9495499",
+        "score": 27.493214100094317,
+        "snippet": "Arunachal Pradesh was formed from the frontier tracts as an administrative convenience, with much less political activity by the people than elsewhere in the northeast. Arunachal Pradesh became a state on 20 February 1987. Arunachal Pradesh covers a part of the Himalayas, with its highest elevation being . The terrain is cut by river valleys, including those of the Kameng, Subansiri, Siang (Brahmaputra), Dibang, Lohit and Dihing rivers. The climate varies from humid subtropical in the lower areas to alpine at the highest elevations. The economy is mostly based on agriculture, with the tribal groups practicing shifting cultivation. Forest products are also important. There is a large hydroelectric potential. As of 2005 about 63.66% of the population were members of scheduled tribes. The remainder are mostly immigrants from Bengal or the Hindi Belt. The state is home to various Tibeto-Burman speaking Tribes. Monpa people live near the border with Bhutan to the west, Tani people and Mishmi people in the center, Jingpo, Naga and Lisu people in the area bordering Myanmar to the east and Naga people in the area bordering Nagaland in the south. There are transition zones on the borders where the Bugun, Hruso, Miji and Sherdukpen people form cultural \"buffers\" between the Tibetic Buddhist tribes and the Tani hill tribes. In addition, there are isolated peoples scattered throughout the state. Manipur. Manipur is bounded by Myanmar to the southeast and east, Nagaland to the north, Assa",
+        "text_characters": 2709,
+        "title": "Hill tribes of Northeast India"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7734487",
+        "score": 27.246702339425795,
+        "snippet": "Three British columns entered Manipur from British Burma, Cachar and the Naga Hills, which after several skirmishes with the 3,000 men strong Manipuri army, managed to pacify the kingdom. Following the British attack, Tikendrajit and Kulachandra Singh fled, but were captured. Tikendrajit and those Manipuris involved in the killing of the British officers were tried and hanged, while the deposed King Kulachandra Singh and other leaders of the rebellion were sent to the Cellular Jail in the Andaman Islands. Manipur was briefly annexed to British India by virtue of the doctrine of lapse. On 22 September 1891 when Meidingngu Churachand (Churachandra), a 5-year-old boy, was put on the throne, power was restored nominally to the Manipuri crown over the state. During the dynastic disturbances and the British intervention the Naga and Kuki hill tribes of the state lapsed into lawlessness, with numerous instances of murder and arson in the mountain villages, a situation that lasted well into 1894. Princely state under British Raj. The child ruler Churachand belonged to a side branch of the Manipur royal family, so that all the main contenders to the throne were bypassed. While he was a minor the affairs of state were administered by the British Political Agent, which facilitated the introduction and implementation of reforms. The first paved road to Manipur was inaugurated in 1900 —until then there had been no proper roads to reach the kingdom— and this improvement in communication fa",
+        "text_characters": 2737,
+        "title": "Manipur (princely state)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.4207187885837404,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.17312476162135695,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.022962563925724395,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-82aad8d31060f8bf"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:9495499", "title": "Hill tribes of Northeast India", "score": 27.493214100094317, "snippet": "Arunachal Pradesh was formed from the frontier tracts as an administrative convenience, with much less political activity by the people than elsewhere in the northeast. Arunachal Pradesh became a state on 20 February 1987. Arunachal Pradesh covers a part of the Himalayas, with its highest elevation being . The terrain is cut by river valleys, including those of the Kameng, Subansiri, Siang (Brahmaputra), Dibang, Lohit and Dihing rivers. The climate varies from humid subtropical in the lower areas to alpine at the highest elevations. The economy is mostly based on agriculture, with the tribal groups practicing shifting cultivation. Forest products are also important. There is a large hydroelectric potential. As of 2005 about 63.66% of the population were members of scheduled tribes. The remainder are mostly immigrants from Bengal or the Hindi Belt. The state is home to various Tibeto-Burman speaking Tribes. Monpa people live near the border with Bhutan to the west, Tani people and Mishmi people in the center, Jingpo, Naga and Lisu people in the area bordering Myanmar to the east and Naga people in the area bordering Nagaland in the south. There are transition zones on the borders where the Bugun, Hruso, Miji and Sherdukpen people form cultural \"buffers\" between the Tibetic Buddhist tribes and the Tani hill tribes. In addition, there are isolated peoples scattered throughout the state. Manipur. Manipur is bounded by Myanmar to the southeast and east, Nagaland to the north, Assa", "text_characters": 2709, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7734487", "title": "Manipur (princely state)", "score": 27.246702339425795, "snippet": "Three British columns entered Manipur from British Burma, Cachar and the Naga Hills, which after several skirmishes with the 3,000 men strong Manipuri army, managed to pacify the kingdom. Following the British attack, Tikendrajit and Kulachandra Singh fled, but were captured. Tikendrajit and those Manipuris involved in the killing of the British officers were tried and hanged, while the deposed King Kulachandra Singh and other leaders of the rebellion were sent to the Cellular Jail in the Andaman Islands. Manipur was briefly annexed to British India by virtue of the doctrine of lapse. On 22 September 1891 when Meidingngu Churachand (Churachandra), a 5-year-old boy, was put on the throne, power was restored nominally to the Manipuri crown over the state. During the dynastic disturbances and the British intervention the Naga and Kuki hill tribes of the state lapsed into lawlessness, with numerous instances of murder and arson in the mountain villages, a situation that lasted well into 1894. Princely state under British Raj. The child ruler Churachand belonged to a side branch of the Manipur royal family, so that all the main contenders to the throne were bypassed. While he was a minor the affairs of state were administered by the British Political Agent, which facilitated the introduction and implementation of reforms. The first paved road to Manipur was inaugurated in 1900 —until then there had been no proper roads to reach the kingdom— and this improvement in communication fa", "text_characters": 2737, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.4207187885837404, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.17312476162135695, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.022962563925724395, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R003_request.json/messages/5/content`；SHA256：`0b2150bc53bd0e968155235ab57a5707ea0e6b7d28f4a2727d7a68005e5b5f46`。
+
+### R3 `/rounds/2/reasoning_content` [0,314)
+
+SHA256：`305902f1786837e7ee22f3a5a5b6df850b2e18b6b74b297ff88297788e2ca3ae`；原字段SHA256：`305902f1786837e7ee22f3a5a5b6df850b2e18b6b74b297ff88297788e2ca3ae`。
+
+````
+The search results didn't directly give me the answer. Let me try searching more specifically for the musical instrument of Manipur and its connection to the Kuki tribes or folk songs.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Manipur national symbol musical instrument
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Manipur national symbol musical instrument"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nManipur national symbol musical instrument\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Manipur national symbol musical instrument"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 1.413849826902151,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1408738",
+        "score": 22.91281897906711,
+        "snippet": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rural love songs Khullang Eshei, the rhythmic Lai Haraoba eshei, which contain lyrics with veiled references to erotic mysticism and pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris. \"Nat\" (a shortened form of Meitei Nat Sankirtan) is a classical form of music of Manipur. It is a product of the Sanskritisation of traditional Meitei culture with Hindu culture by the Brahmanas, having 6 ragas and 36 raginis. Classical Nat music is performed at various special occasions, the women's devotional nupi pala songs, Gaur Padas, sung in praise of Chaitanya Mahaprabhu and dhob, sung accompanied by the jhal, a large cymbal. Manohar Sai is another important class of songs, devoted to a 19th-century man of the same name. Khubakeshei is a kind of song accompanied entirely by clapping. Contrasting to the other forms of Indian classical music, which are performed by sitting, in the Meitei Nata-Sankirtana, artists perform musical instruments as well as sing songs, simultaneously performing the delicate movements of the body and hands, based on the form of , aligning to different footsteps, based on the . References.",
+        "text_characters": 1362,
+        "title": "Music of Manipur"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:769321",
+        "score": 20.88605016266877,
+        "snippet": "The Battle of Imphal, known to the Manipuris as \"Japan Laan\", are among the lesser-known battles of the Second World War. Yet the Allied Victory in this battle was a turning point against the Japanese in East Asia. Post-colonial history. After the war, the Maharaja took the advice of the British Cabinet Mission and the Chamber of Princes to introduce democratic reforms in the state. The Manipur State Constitution Act of 1947 was promulgated in July 1947 to give the state an elected legislative assembly and an appointed prime minister. Elections to the assembly were held only in the following year. Following the decision to partition British India, all the princely states were advised to \"accede\" to one of the new dominions. The Maharaja acceded to India on 11 August 1947 and signed a standstill agreement to continue all the pre-existing arrangements it had with British India. Some Meitei people argue that the king was in no legal position to sign the instrument of accession at the time. Over the next two years, the multitude of princely states of India were extensively reorganised as India moved towards becoming a constitutional republic. Proposals for reorganisation were also made for Manipur but discarded as being unsuitable. Eventually Manipur was turned into a centrally administered province (called a 'Part C' state, later renamed union territory) by asking the Maharaja to sign a merger agreement. He is believed to have signed it under duress. Later, on 21 September 1949,",
+        "text_characters": 2807,
+        "title": "Manipur"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10881664",
+        "score": 20.7149589872151,
+        "snippet": "Intangible cultural heritage of Meitei civilization The intangible cultural heritage (ICH) of Meitei civilization is recognised, honoured, preserved as well as promoted by the UNESCO, the Ministry of Culture of the Union Government of India, the Government of Armenia, the State Government of Manipur, the State Government of Assam, the State Government of Tripura, among many other notable institutions. UNESCO's intangible cultural heritage. Sankirtana, ritual singing, drumming and dancing of Manipur. Meitei Sankirtana (under the name of \"\"Sankirtana, ritual singing, drumming and dancing of Manipur\"\"), one of the most remarkable cultural heritage of the Meitei civilization, was formally recognized as a UNESCO's intangible cultural heritage, declared in the eighth session of the UNESCO Intergovernmental Committee in Baku, Azerbaijan, in December 2013. National List for Intangible Cultural Heritage (ICH). Traditional Craftsmanship. Music of Pena. Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell. The other part is the . It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc. Applique art. In Meitei culture, through the art of applique, decorative effects are achieved by superposing patches of coloured fabrics on a basic fabric, with the stitch",
+        "text_characters": 2650,
+        "title": "Meitei intangible cultural heritage"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9608814",
+        "score": 17.145189279681702,
+        "snippet": "Classical Meitei language epic poem The Khamba Thoibi Sheireng, also spelled as the Khamba Thoibi Seireng (), is a Classical Meitei language epic poem based on the ancient love story of Khuman prince Khamba and Moirang princess Thoibi of Ancient Moirang kingdom of Ancient Kangleipak (early Manipur). It is the magnum opus of Hijam Anganghal, the \"Bard of Samurou\". It is regarded as the national epic of the Manipuris. It is regarded as the greatest of all the epic poems in Meitei literature, with 39,000 verses, thereby being the third longest Indian epic poem, next to the Mahabharata and the Ramayana. The Khamba Thoibi Sheireng is often considered to be in a status of “mahakavya” (transl. great epic; court epic), and its author as a “” (transl. great poet; classical poet). For composing the epic, Anganghal was honoured by the Manipuri Sahitya Parishad, with the title “Kabiratna” in 1948. The epic saga is based on the ancient classic of Khamba and Thoibi, also referred to as the \"National Romantic Legend of Manipur\" by Suniti Kumar Chatterjee, as well as one of the 7 epic cycles of incarnations, constituting the Moirang Kangleirol of Ancient Moirang. Another remarkable achievement of Meitei cultural heritage, directly related to the Khamba Thoibi epic poem, is \"Khamba Thoibi Jagoi\" (), also known as \"Khamba Thoibi ballet\", which is a traditional Meitei ritualistic and theatrical classical dance form, a part and parcel of the Lai Haraoba performances, performed in honor of God , ",
+        "text_characters": 2461,
+        "title": "Khamba Thoibi Sheireng"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10881665",
+        "score": 16.692952423039507,
+        "snippet": "It is a union of \"the critical and the humourist\". It produces a big humorous temperament. Its common character includes pastiche. It aims whatever is ridiculous or unseemly. Social practices, rituals and festive events. Sankirtan. Meitei Sankirtana (alias Manipuri Sankirtana) is the artistic manifestation of the worshipping culture of the Meitei people (Manipuri people). It is regarded as the visible form of God, in Meitei culture. Regarding the art form, the Ministry of Culture (India) states the following: \"“... Woven within the framework of sacrosanct rituals and ceremonies the art consists of narrative singing and dancing. Always performed in a Mandala (circular area) inside a Mandapa (hall) attached to a temple or erected in a courtyard. The rituals and formalities are strict and even the audience are seated according to set rules. It employs musical instruments like drums and cymbals. The artistes play these instruments and dance at the same time. An artiste spends a life-time specializing only in one aspect.”\" Death rites of Phayeng. The Chapka Phayeng people of Manipur are a part of the Meitei people itself. But they have a unique culture of burying the death. Shikaplon is a tradition of \"“requiem and a funeral march”\", along with . According to their beliefs, in the afterlife, people go to the to unite with their ancestors. Among the mourning people during the time of burial, one of them should sing the Shikaplon, which gives instructions to the journey of the dead ",
+        "text_characters": 2204,
+        "title": "Meitei intangible cultural heritage"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8233849",
+        "score": 14.708672768596525,
+        "snippet": "Indian film actress Tonthoingambi Leishangthem, popularly known as Tonthoi, is an Indian actress. She has established a career in Manipuri films and is the recipient of several awards, including a National Film Award. Early life and education. She is a B.Com. graduate and has taken keen interest in performing arts since very young age. Tonthoi loves sports and has actively been volunteering in social service since her childhood. She completed her master's in social work from Manipur University. As a student, she was part of the University's women football team which participated in All India Women Football tournament. She has also been trained in playing the traditional music instrument, Pena. Before joining NSD, she took a three-month acting class in the early month of 2007 under Oja Niladhaja Khuman. She has also completed her one-year residential certificate course in Theatre in Education from National School of Drama, Tripura. Career. \"Leishangthem\" appeared in feature films, Doordarshan serials and ISTV serials. Her first film is \"Nangna Thawaini\", where she was playing heroine's friend, alongside Kamala and Gung in a supporting role. After this, she has done a number of Manipuri films. Among the notable ones are \"Loibataare Ta Raju\", \"Thoicha\", \"Amamba Sayon (Resurrection)\", \"Eepaktuda the lake\", \"Leipaklei\", \"Nungshibee Kabaw Valley\", \"Beragee Bomb\", \"Pallepfam\" and \"Phijigee Mani\". She has also produced a Manipuri film titled \"Beragee Bomb\" under the banner of Chingkh",
+        "text_characters": 2551,
+        "title": "Leishangthem Tonthoingambi Devi"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:39583",
+        "score": 14.535247690954165,
+        "snippet": "National and regional forms. Africa. Africa is a vast continent and its regions and nations have distinct musical traditions. The music of North Africa for the most part has a different history from Sub-Saharan African music traditions. The music and dance forms of the African diaspora, including African American music and many Caribbean genres like soca, calypso and Zouk; and Latin American music genres like the samba, Cuban rumba, salsa; and other clave (rhythm)-based genres, were founded to varying degrees on the music of enslaved Africans, which has in turn influenced African popular music. Asia. Many Asian civilizations distinguish between art/court/classical styles and \"folk\" music. For example, the late Alam Lohar is an example of a South Asian singer who was classified as a folk singer. Khunung Eshei/Khuland Eshei is an ancient folk song from India, a country of Asia, of Meiteis of Manipur, that is an example of Asian folk music, and how they put it into its own genre. Folk music of China. Archaeological discoveries date Chinese folk music back 7000 years; it is largely based on the pentatonic scale. Han traditional weddings and funerals usually include a form of oboe called a suona, and apercussive ensembles called a chuigushou. Ensembles consisting of mouth organs (sheng), shawms (suona), flutes (dizi) and percussion instruments (especially yunluo gongs) are popular in northern villages; their music is descended from the imperial temple music of Beijing, Xi'an, Wuta",
+        "text_characters": 2791,
+        "title": "Folk music"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5965767",
+        "score": 12.521287655968845,
+        "snippet": "The opening ceremony of the 2010 Commonwealth Games was held at the Jawaharlal Nehru Stadium, the main stadium of the event, in New Delhi, India. It began at 7:00 PM (IST) on 3 October 2010 ending at 10:00 PM (IST) displaying India's varied culture in a plethora of cultural showcases. Wizcraft was given the contract to produce the opening and closing ceremonies of the 2010 Commonwealth Games. Guests of Honour. The following were the guests that attended the opening ceremony of the 2010 Commonwealth Games: The Royal Family. The Prince of Wales (now Charles III, representing Elizabeth II as Head of the Commonwealth), Camilla, Duchess of Cornwall and Prince Edward, Earl of Wessex attended the ceremony. International Guests. A total of three heads of state from outside India attended the opening ceremony; two from Commonwealth nations and one from a non-Commonwealth nation. The three head of states are Mohamed Nasheed, President of the Maldives, Marcus Stephen, President of Nauru and a multiple Commonwealth gold medallist.h. Sir Anand Satyanand, the Governor General of New Zealand (the first of Indian descent), attended the ceremony as well. Alongside the Commonwealth president, attendees included International Olympic Committee then president, Jacques Rogge and Albert II, Prince of Monaco who is a member.Rogge was quoted as saying, \"I think India has set a good foundation stone for the Olympics bid and a successful Commonwealth Games can help India mount a serious bid for the Ol",
+        "text_characters": 2733,
+        "title": "2010 Commonwealth Games opening ceremony"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2470854",
+        "score": 12.103874443757384,
+        "snippet": "By 1891 one-fourth the population of Assam was of migrant origin. Assamese nationalism, which grew by the beginning of the 20th century, began to look at both the Hindu Bengalis as well as the British as alien rulers. The emerging Assamese literate class aspired to the same positions as those enjoyed by the Bengali Hindus, mostly from Sylhet. The Bengali Muslims, who came in mainly from Mymensingh, were cultivators who occupied flood plains and cleared forests. They were not in conflict with the Assamese and did not align with the Bengali Hindus. In fact the Assamese elite encouraged their settlement. In the post-partition period as Assamese nationalists tried to dismantle Bengali Hindu dominance from the colonial period the tea garden labourers as well as the Muslim Bengalis supported them. Ever mindful of being the neighbour of the populous and culturally dominant Bengali people, the Assamese were alarmed that immigration not only had continued illegally in the post-independence period but that illegal immigrants were being included in electoral rolls. Cross-border immigration. Immigration from East Bengal to Assam became cross-border in character following Partition of India—the 1951 census records 274,000 refugees between 1947 and 1951, most of who are estimated to be Hindu Bengalis. On the basis of a natural growth rate, it was estimated that the immigrants numbered 221,000 between 1951 and 1961. In 1971, the surplus over the natural growth was 424,000 and the estimated ",
+        "text_characters": 3021,
+        "title": "Assam Movement"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 2.748297141388834,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:1408738", "title": "Music of Manipur", "score": 22.91281897906711, "snippet": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rural love songs Khullang Eshei, the rhythmic Lai Haraoba eshei, which contain lyrics with veiled references to erotic mysticism and pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris. \"Nat\" (a shortened form of Meitei Nat Sankirtan) is a classical form of music of Manipur. It is a product of the Sanskritisation of traditional Meitei culture with Hindu culture by the Brahmanas, having 6 ragas and 36 raginis. Classical Nat music is performed at various special occasions, the women's devotional nupi pala songs, Gaur Padas, sung in praise of Chaitanya Mahaprabhu and dhob, sung accompanied by the jhal, a large cymbal. Manohar Sai is another important class of songs, devoted to a 19th-century man of the same name. Khubakeshei is a kind of song accompanied entirely by clapping. Contrasting to the other forms of Indian classical music, which are performed by sitting, in the Meitei Nata-Sankirtana, artists perform musical instruments as well as sing songs, simultaneously performing the delicate movements of the body and hands, based on the form of , aligning to different footsteps, based on the . References.", "text_characters": 1362, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:769321", "title": "Manipur", "score": 20.88605016266877, "snippet": "The Battle of Imphal, known to the Manipuris as \"Japan Laan\", are among the lesser-known battles of the Second World War. Yet the Allied Victory in this battle was a turning point against the Japanese in East Asia. Post-colonial history. After the war, the Maharaja took the advice of the British Cabinet Mission and the Chamber of Princes to introduce democratic reforms in the state. The Manipur State Constitution Act of 1947 was promulgated in July 1947 to give the state an elected legislative assembly and an appointed prime minister. Elections to the assembly were held only in the following year. Following the decision to partition British India, all the princely states were advised to \"accede\" to one of the new dominions. The Maharaja acceded to India on 11 August 1947 and signed a standstill agreement to continue all the pre-existing arrangements it had with British India. Some Meitei people argue that the king was in no legal position to sign the instrument of accession at the time. Over the next two years, the multitude of princely states of India were extensively reorganised as India moved towards becoming a constitutional republic. Proposals for reorganisation were also made for Manipur but discarded as being unsuitable. Eventually Manipur was turned into a centrally administered province (called a 'Part C' state, later renamed union territory) by asking the Maharaja to sign a merger agreement. He is believed to have signed it under duress. Later, on 21 September 1949,", "text_characters": 2807, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10881664", "title": "Meitei intangible cultural heritage", "score": 20.7149589872151, "snippet": "Intangible cultural heritage of Meitei civilization The intangible cultural heritage (ICH) of Meitei civilization is recognised, honoured, preserved as well as promoted by the UNESCO, the Ministry of Culture of the Union Government of India, the Government of Armenia, the State Government of Manipur, the State Government of Assam, the State Government of Tripura, among many other notable institutions. UNESCO's intangible cultural heritage. Sankirtana, ritual singing, drumming and dancing of Manipur. Meitei Sankirtana (under the name of \"\"Sankirtana, ritual singing, drumming and dancing of Manipur\"\"), one of the most remarkable cultural heritage of the Meitei civilization, was formally recognized as a UNESCO's intangible cultural heritage, declared in the eighth session of the UNESCO Intergovernmental Committee in Baku, Azerbaijan, in December 2013. National List for Intangible Cultural Heritage (ICH). Traditional Craftsmanship. Music of Pena. Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell. The other part is the . It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc. Applique art. In Meitei culture, through the art of applique, decorative effects are achieved by superposing patches of coloured fabrics on a basic fabric, with the stitch", "text_characters": 2650, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9608814", "title": "Khamba Thoibi Sheireng", "score": 17.145189279681702, "snippet": "Classical Meitei language epic poem The Khamba Thoibi Sheireng, also spelled as the Khamba Thoibi Seireng (), is a Classical Meitei language epic poem based on the ancient love story of Khuman prince Khamba and Moirang princess Thoibi of Ancient Moirang kingdom of Ancient Kangleipak (early Manipur). It is the magnum opus of Hijam Anganghal, the \"Bard of Samurou\". It is regarded as the national epic of the Manipuris. It is regarded as the greatest of all the epic poems in Meitei literature, with 39,000 verses, thereby being the third longest Indian epic poem, next to the Mahabharata and the Ramayana. The Khamba Thoibi Sheireng is often considered to be in a status of “mahakavya” (transl. great epic; court epic), and its author as a “” (transl. great poet; classical poet). For composing the epic, Anganghal was honoured by the Manipuri Sahitya Parishad, with the title “Kabiratna” in 1948. The epic saga is based on the ancient classic of Khamba and Thoibi, also referred to as the \"National Romantic Legend of Manipur\" by Suniti Kumar Chatterjee, as well as one of the 7 epic cycles of incarnations, constituting the Moirang Kangleirol of Ancient Moirang. Another remarkable achievement of Meitei cultural heritage, directly related to the Khamba Thoibi epic poem, is \"Khamba Thoibi Jagoi\" (), also known as \"Khamba Thoibi ballet\", which is a traditional Meitei ritualistic and theatrical classical dance form, a part and parcel of the Lai Haraoba performances, performed in honor of God , ", "text_characters": 2461, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10881665", "title": "Meitei intangible cultural heritage", "score": 16.692952423039507, "snippet": "It is a union of \"the critical and the humourist\". It produces a big humorous temperament. Its common character includes pastiche. It aims whatever is ridiculous or unseemly. Social practices, rituals and festive events. Sankirtan. Meitei Sankirtana (alias Manipuri Sankirtana) is the artistic manifestation of the worshipping culture of the Meitei people (Manipuri people). It is regarded as the visible form of God, in Meitei culture. Regarding the art form, the Ministry of Culture (India) states the following: \"“... Woven within the framework of sacrosanct rituals and ceremonies the art consists of narrative singing and dancing. Always performed in a Mandala (circular area) inside a Mandapa (hall) attached to a temple or erected in a courtyard. The rituals and formalities are strict and even the audience are seated according to set rules. It employs musical instruments like drums and cymbals. The artistes play these instruments and dance at the same time. An artiste spends a life-time specializing only in one aspect.”\" Death rites of Phayeng. The Chapka Phayeng people of Manipur are a part of the Meitei people itself. But they have a unique culture of burying the death. Shikaplon is a tradition of \"“requiem and a funeral march”\", along with . According to their beliefs, in the afterlife, people go to the to unite with their ancestors. Among the mourning people during the time of burial, one of them should sing the Shikaplon, which gives instructions to the journey of the dead ", "text_characters": 2204, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8233849", "title": "Leishangthem Tonthoingambi Devi", "score": 14.708672768596525, "snippet": "Indian film actress Tonthoingambi Leishangthem, popularly known as Tonthoi, is an Indian actress. She has established a career in Manipuri films and is the recipient of several awards, including a National Film Award. Early life and education. She is a B.Com. graduate and has taken keen interest in performing arts since very young age. Tonthoi loves sports and has actively been volunteering in social service since her childhood. She completed her master's in social work from Manipur University. As a student, she was part of the University's women football team which participated in All India Women Football tournament. She has also been trained in playing the traditional music instrument, Pena. Before joining NSD, she took a three-month acting class in the early month of 2007 under Oja Niladhaja Khuman. She has also completed her one-year residential certificate course in Theatre in Education from National School of Drama, Tripura. Career. \"Leishangthem\" appeared in feature films, Doordarshan serials and ISTV serials. Her first film is \"Nangna Thawaini\", where she was playing heroine's friend, alongside Kamala and Gung in a supporting role. After this, she has done a number of Manipuri films. Among the notable ones are \"Loibataare Ta Raju\", \"Thoicha\", \"Amamba Sayon (Resurrection)\", \"Eepaktuda the lake\", \"Leipaklei\", \"Nungshibee Kabaw Valley\", \"Beragee Bomb\", \"Pallepfam\" and \"Phijigee Mani\". She has also produced a Manipuri film titled \"Beragee Bomb\" under the banner of Chingkh", "text_characters": 2551, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:39583", "title": "Folk music", "score": 14.535247690954165, "snippet": "National and regional forms. Africa. Africa is a vast continent and its regions and nations have distinct musical traditions. The music of North Africa for the most part has a different history from Sub-Saharan African music traditions. The music and dance forms of the African diaspora, including African American music and many Caribbean genres like soca, calypso and Zouk; and Latin American music genres like the samba, Cuban rumba, salsa; and other clave (rhythm)-based genres, were founded to varying degrees on the music of enslaved Africans, which has in turn influenced African popular music. Asia. Many Asian civilizations distinguish between art/court/classical styles and \"folk\" music. For example, the late Alam Lohar is an example of a South Asian singer who was classified as a folk singer. Khunung Eshei/Khuland Eshei is an ancient folk song from India, a country of Asia, of Meiteis of Manipur, that is an example of Asian folk music, and how they put it into its own genre. Folk music of China. Archaeological discoveries date Chinese folk music back 7000 years; it is largely based on the pentatonic scale. Han traditional weddings and funerals usually include a form of oboe called a suona, and apercussive ensembles called a chuigushou. Ensembles consisting of mouth organs (sheng), shawms (suona), flutes (dizi) and percussion instruments (especially yunluo gongs) are popular in northern villages; their music is descended from the imperial temple music of Beijing, Xi'an, Wuta", "text_characters": 2791, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5965767", "title": "2010 Commonwealth Games opening ceremony", "score": 12.521287655968845, "snippet": "The opening ceremony of the 2010 Commonwealth Games was held at the Jawaharlal Nehru Stadium, the main stadium of the event, in New Delhi, India. It began at 7:00 PM (IST) on 3 October 2010 ending at 10:00 PM (IST) displaying India's varied culture in a plethora of cultural showcases. Wizcraft was given the contract to produce the opening and closing ceremonies of the 2010 Commonwealth Games. Guests of Honour. The following were the guests that attended the opening ceremony of the 2010 Commonwealth Games: The Royal Family. The Prince of Wales (now Charles III, representing Elizabeth II as Head of the Commonwealth), Camilla, Duchess of Cornwall and Prince Edward, Earl of Wessex attended the ceremony. International Guests. A total of three heads of state from outside India attended the opening ceremony; two from Commonwealth nations and one from a non-Commonwealth nation. The three head of states are Mohamed Nasheed, President of the Maldives, Marcus Stephen, President of Nauru and a multiple Commonwealth gold medallist.h. Sir Anand Satyanand, the Governor General of New Zealand (the first of Indian descent), attended the ceremony as well. Alongside the Commonwealth president, attendees included International Olympic Committee then president, Jacques Rogge and Albert II, Prince of Monaco who is a member.Rogge was quoted as saying, \"I think India has set a good foundation stone for the Olympics bid and a successful Commonwealth Games can help India mount a serious bid for the Ol", "text_characters": 2733, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2470854", "title": "Assam Movement", "score": 12.103874443757384, "snippet": "By 1891 one-fourth the population of Assam was of migrant origin. Assamese nationalism, which grew by the beginning of the 20th century, began to look at both the Hindu Bengalis as well as the British as alien rulers. The emerging Assamese literate class aspired to the same positions as those enjoyed by the Bengali Hindus, mostly from Sylhet. The Bengali Muslims, who came in mainly from Mymensingh, were cultivators who occupied flood plains and cleared forests. They were not in conflict with the Assamese and did not align with the Bengali Hindus. In fact the Assamese elite encouraged their settlement. In the post-partition period as Assamese nationalists tried to dismantle Bengali Hindu dominance from the colonial period the tea garden labourers as well as the Muslim Bengalis supported them. Ever mindful of being the neighbour of the populous and culturally dominant Bengali people, the Assamese were alarmed that immigration not only had continued illegally in the post-independence period but that illegal immigrants were being included in electoral rolls. Cross-border immigration. Immigration from East Bengal to Assam became cross-border in character following Partition of India—the 1951 census records 274,000 refugees between 1947 and 1951, most of who are estimated to be Hindu Bengalis. On the basis of a natural growth rate, it was estimated that the immigrants numbered 221,000 between 1951 and 1961. In 1971, the surplus over the natural growth was 424,000 and the estimated ", "text_characters": 3021, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 2.748297141388834, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R004_request.json/messages/7/content`；SHA256：`fde2e49e7643263e358d3ad632c0b95350cd48a15d4b49d912471b3c418f9b76`。
+
+### R4 `/rounds/3/reasoning_content` [0,557)
+
+SHA256：`2b80a630027c719d66e4873ae8a4e886f953c8adad49c4d7650d7eb96d1fdcb8`；原字段SHA256：`af7b83100a9e5ad28163c8bbffe5aa812b141326a55ce7b1f95851f6020a667a`。
+
+````
+The search results provide clear information.
+
+From the "Music of Manipur" document (wiki25:1408738):
+"pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris."
+
+From the "Meitei intangible cultural heritage" document (wiki25:10881664):
+"Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell... Pena is an inseparable part of Meitei civilization."
+
+
+````
+
+## S002｜将Pena对照题目并识别族群歌曲连接缺口
+
+逐条件比较national symbol、folk song和OldKuki关系。
+
+结束状态：前两项支持，族群连接未明。
+
+边界判断：从直接引用转入候选的完整条件评估。
+
+内部KEEP与反证：比较、识别缺口和结论是一项判断。
+
+### SPLIT原文
+
+````
+ of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris."
+
+From the "Meitei intangible cultural heritage" document (wiki25:10881664):
+"Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell... Pena is an inseparable part of Meitei civilization."
+
+
+→ 切点 [3, 0, 557] →
+The question asks for:
+1. A traditional musical instrument
+2. Considered a national symbol for Manipuris
+3. Accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+The search results mention "pena eshei" is a folk song accompanied by the pena instrument. The pena is described as a "national symbo
+````
+
+### R4 `/rounds/3/reasoning_content` [557,1236)
+
+SHA256：`32d875b58112ecab5db17b466ee31aa133158fd10c55182bd1d1b6919e993bf2`；原字段SHA256：`af7b83100a9e5ad28163c8bbffe5aa812b141326a55ce7b1f95851f6020a667a`。
+
+````
+The question asks for:
+1. A traditional musical instrument
+2. Considered a national symbol for Manipuris
+3. Accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+The search results mention "pena eshei" is a folk song accompanied by the pena instrument. The pena is described as a "national symbol for Manipuris". The pena eshei is a folk song.
+
+However, I need to confirm if pena eshei is specifically associated with the "Old Kuki tribes" such as the Milhiem ethnic group. The first search result about Milhiem mentions they belong to the "Old Kuki tribes" of Manipur, but doesn't explicitly mention pena eshei.
+
+
+````
+
+## S003｜查询pena eshei与OldKuki及Milhiem的联系
+
+执行针对连接的Search。
+
+结束状态：只返回Milhiem身份资料。
+
+边界判断：评估收束后实际针对缺口取证。
+
+内部KEEP与反证：Call与完整Return保持一起。
+
+### SPLIT原文
+
+````
+he pena is described as a "national symbol for Manipuris". The pena eshei is a folk song.
+
+However, I need to confirm if pena eshei is specifically associated with the "Old Kuki tribes" such as the Milhiem ethnic group. The first search result about Milhiem mentions they belong to the "Old Kuki tribes" of Manipur, but doesn't explicitly mention pena eshei.
+
+
+→ 切点 [3, 0, 1236] →
+Let me search more specifically to confirm the connection between pena eshei and the Old Kuki tribes/Milhiem.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena eshei Old Kuki tribes Milhiem
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [1236,1467)
+
+SHA256：`8672b1cd3093fe25a0be839de3cf620f343a986430f5c98b4b2d10ba9b4e40d6`；原字段SHA256：`af7b83100a9e5ad28163c8bbffe5aa812b141326a55ce7b1f95851f6020a667a`。
+
+````
+Let me search more specifically to confirm the connection between pena eshei and the Old Kuki tribes/Milhiem.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena eshei Old Kuki tribes Milhiem
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "pena eshei Old Kuki tribes Milhiem"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\npena eshei Old Kuki tribes Milhiem\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "pena eshei Old Kuki tribes Milhiem"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 1.732132438570261,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5711237",
+        "score": 39.83042507479552,
+        "snippet": "The Milhiems are an ethnic group living in parts of Northeast India and Myanmar. Some writers refer to them as Milhem, Meriem, Mirem, Marrem or Miriam. They belong to the \"Old Kuki tribes\" of Manipur. The Milhiems believe that they descend from a common ancestor who came from a cave which they call Khul. Their history is based on oral tradition, folklore and myth handed down from one generation to the next. Their society is organised into clans and subclans. The village is the highest unit of society and lands belong to the village chief, who is considered the head of their clan or subclan. Some Milhiem clans and subclans are scattered among other Old Kuki tribes such as the Chothe, Purum, Koireng, Kom, Lamkang, Aimol, Maring, Tarao, Vaiphei, Paite, Lusei and also among the Thadou-kuki tribe. Origin. Miriems claim to originate from a cave which they refer to as Khur. According to their folklore and myths, their ancestor LUPHO, born of Miriem, went out from Khul with his followers after killing the serpent Gulhiemnu, and Tiger keeper and guardian of the cave opening. Lupho Bepa-customary family friend, Shongthu and the Priest Zahong (Zahang) were all members of the group that came out from Khul. In the days of yore, the Chief used to take up the role of a priest as well. Miriem is the ancestor of the Lupho but Zahong/Zahang is the ancestor of Suantak, Ngoilu, Neitham, Lupheng, Misau, Leivon. In the book \"Chongza genealogy\" of the Mangtes, their family priest/Thempu Thangjakhup",
+        "text_characters": 2577,
+        "title": "Milhiem"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5711237", "title": "Milhiem", "score": 39.83042507479552, "snippet": "The Milhiems are an ethnic group living in parts of Northeast India and Myanmar. Some writers refer to them as Milhem, Meriem, Mirem, Marrem or Miriam. They belong to the \"Old Kuki tribes\" of Manipur. The Milhiems believe that they descend from a common ancestor who came from a cave which they call Khul. Their history is based on oral tradition, folklore and myth handed down from one generation to the next. Their society is organised into clans and subclans. The village is the highest unit of society and lands belong to the village chief, who is considered the head of their clan or subclan. Some Milhiem clans and subclans are scattered among other Old Kuki tribes such as the Chothe, Purum, Koireng, Kom, Lamkang, Aimol, Maring, Tarao, Vaiphei, Paite, Lusei and also among the Thadou-kuki tribe. Origin. Miriems claim to originate from a cave which they refer to as Khur. According to their folklore and myths, their ancestor LUPHO, born of Miriem, went out from Khul with his followers after killing the serpent Gulhiemnu, and Tiger keeper and guardian of the cave opening. Lupho Bepa-customary family friend, Shongthu and the Priest Zahong (Zahang) were all members of the group that came out from Khul. In the days of yore, the Chief used to take up the role of a priest as well. Miriem is the ancestor of the Lupho but Zahong/Zahang is the ancestor of Suantak, Ngoilu, Neitham, Lupheng, Misau, Leivon. In the book \"Chongza genealogy\" of the Mangtes, their family priest/Thempu Thangjakhup", "text_characters": 2577, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R005_request.json/messages/9/content`；SHA256：`181c299b41a881a589ec6bb8183fb570a8e7f6892185a161e53354cafe83f026`。
+
+## S004｜重新比较歌曲与族群证据并考虑其他乐器解释
+
+完整重读三资料支持范围、引用原句，推敲是否另有乐器及题目含义。
+
+结束状态：未证连接，决定从OldKuki音乐描述查。
+
+边界判断：没有仅报告Search无果，而是实际展开候选与题意的重新比较。
+
+内部KEEP与反证：中途Let's check、Wait只是同一次未收束论证，不拆成未执行查询。
+
+### SPLIT原文
+
+````
+Let me search more specifically to confirm the connection between pena eshei and the Old Kuki tribes/Milhiem.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena eshei Old Kuki tribes Milhiem
+</parameter>
+</function>
+</tool_call>
+→ 切点 [4, 0, 0] →
+The user is asking for a specific traditional musical instrument.
+The instrument must be:
+1.  Considered a national symbol for Manipuris.
+2.  Accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results:
+- `wiki25:1408738` (Music of Manipur): Mentions "peña eshei, which is acco
+````
+
+### R5 `/rounds/4/reasoning_content` [0,2259)
+
+SHA256：`6781f1bdd3c81dac1e220573cf9baa8193bb07293e5418670ab90a70e06e05a1`；原字段SHA256：`053156e8b945e0ef43db8395659165898a6775237bc752a7c30d40aceb35f86d`。
+
+````
+The user is asking for a specific traditional musical instrument.
+The instrument must be:
+1.  Considered a national symbol for Manipuris.
+2.  Accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results:
+- `wiki25:1408738` (Music of Manipur): Mentions "peña eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris."
+- `wiki25:10881664` (Meitei intangible cultural heritage): Mentions "Pena (musical instrument) is single stringed... It acts as a bow used to give friction on the string... Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc."
+- `wiki25:5711237` (Milhiem): Confirms Milhiems are an "Old Kuki tribes" of Manipur.
+
+The question links the instrument to the "Old Kuki tribes" such as the Milhiem.
+The `Music of Manipur` snippet says "peña eshei, which is accompanied by a pena... The pena is an ancient instrument that is a sort of national symbol for Manipuris."
+However, the snippet doesn't explicitly link "peña eshei" to the "Old Kuki tribes" or "Milhiem" directly in that specific text chunk. It lists "peña eshei" as a variety of folk music from the area.
+Let's check if there's a more specific link between Pena and the Kuki tribes or Milhiem folk songs.
+The snippet from `wiki25:1408738` says: "Some varieties of folk music from the area include the rural love songs Khullang Eshei, the rhythmic Lai Haraoba eshei... and pena eshei, which is accompanied by a pena...". It doesn't explicitly say "Old Kuki tribes".
+However, the question asks for the instrument that accompanies the folk song form associated with the "Old Kuki tribes" such as the Milhiem.
+Is there another instrument?
+Let's search for "Kuki folk song instrument" or "Milhiem song instrument".
+
+Wait, the `Music of Manipur` snippet says "peña eshei... accompanied by a pena... pena is a sort of national symbol for Manipuris."
+Does the question imply that the folk song form associated with the Old Kuki tribes is the one accompanied by the Pena? Or is there a different instrument?
+
+````
+
+## S005｜从OldKuki民歌入口重新取证
+
+Search OldKuki folk song instrument。
+
+结束状态：取得族群历史，无乐器连接。
+
+边界判断：完整比较后实际换查询入口。
+
+内部KEEP与反证：实际一次Call，保留与此前备选计划区别。
+
+### SPLIT原文
+
+````
+s search for "Kuki folk song instrument" or "Milhiem song instrument".
+
+Wait, the `Music of Manipur` snippet says "peña eshei... accompanied by a pena... pena is a sort of national symbol for Manipuris."
+Does the question imply that the folk song form associated with the Old Kuki tribes is the one accompanied by the Pena? Or is there a different instrument?
+
+→ 切点 [4, 0, 2259] →
+Let's search for "Kuki folk song" or "Old Kuki tribes music".
+
+<tool_call>
+<function=search>
+<parameter=query>
+"Old Kuki tribes" folk song instrument Manipur
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [2259,2454)
+
+SHA256：`25a2efeea6113404d81dc1931db263fb5d39eece559f46b80b430350c74fd7f2`；原字段SHA256：`053156e8b945e0ef43db8395659165898a6775237bc752a7c30d40aceb35f86d`。
+
+````
+Let's search for "Kuki folk song" or "Old Kuki tribes music".
+
+<tool_call>
+<function=search>
+<parameter=query>
+"Old Kuki tribes" folk song instrument Manipur
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "\"Old Kuki tribes\" folk song instrument Manipur"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\n\"Old Kuki tribes\" folk song instrument Manipur\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "\"Old Kuki tribes\" folk song instrument Manipur"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.5831829640083015,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2161836",
+        "score": 36.26419692173677,
+        "snippet": "Some Kuki and Chin tribes reject both of these terms as being of colonial origin, and use the self-designation \"Zo\", which is a generic term that has variants in most Kuki-Chin dialects. \"Zomi\" (meaning \"Zo people\") is also used. The term \"Kuki\" is still enthusiastically adopted by the Thadou language-speaking clans. Thus, \"Kuki\" is sometimes used in this \"narrow\" sense to refer to the Thadou-speaking Kukis, with even the Thadou language referred to as the \"Kuki language\". By 2023, a consensus seems to have developed among the Kuki tribes of Manipur to use the compound term \"Kuki-Zo\" to refer to themselves. History. Early history. Ethnologist C. A. Soppitt argued that the Kuki tribes must have settled in region west of Irrawaddy river from before the 11th century, based on the fact that they had no traces of Buddhism, which was already prevalent in Burma by that time. He grouped the Kuki tribes into two broad classes: Hrangkhol along with the co-tribe Biate in one class, and Changsan along with the co-tribe Thadou in the other class. Each of them was grouped with several subtribes. Soppitt suggested that, by the 16th century, the Hrangkhols and Biate inhabited the Lushai Hills region (currently divided between Mizoram and Chin State). He believed that they were pushed out by Changsan, who moved in from the east along with Thadou, forcing them to move to the North Cachar Hills, Manipur and Tripura. Further, the Changsan–Thadou combine was believed to have been in turn forced o",
+        "text_characters": 2605,
+        "title": "Kuki people"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2161837",
+        "score": 35.959358806457786,
+        "snippet": "During the Kuki Rebellion of 1917–1919, the Kukis in Manipur were estimated to number 40,000. Manipur. \"Cheitharol Kumbaba\", the court chronicle of the Manipur kings, mentions various Kuki tribes and clans from 1404 onwards. The largest of the Kuki tribes, the Thadous, lived in the southern hills of the present-day Manipur, which was ungoverned territory for most of the historical period. The Manipuris referred to them as \"Khongjais\". The naming was apparently based on a village called \"Khongchai\" in the Tuipui river valley, with the surrounding hills also referred to as Khongjai Hills. The Manipur ruler Ching-Thang Khomba (also known as Bhagyachandra and Jai Singh) made war on this region in 1786, and subjugated the Kuki chieftain in the central village. Other regions in southern hills remained relatively untouched until 1894 when the British defined the border of the Manipur state to include the southern hills. The term \"Kuki\" to refer to these tribes was introduced by the British in the 1820s. By 1850s, they imported the terminology of \"New Kuki\" for the Khongjai tribes and \"Old Kuki\" for the other Kuki tribes such as Kom and Aimol. The scholars of Kuki Research Forum consider the terminology misleading because the historical record does not justify such a progression in time. The British testimony regarding Kukis in Manipur was variable. British Commissioner Pemberton wrote in 1835 that the Khongjais stretched along the hills from the south of the Manipur valley to the Ar",
+        "text_characters": 2647,
+        "title": "Kuki people"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:11204780",
+        "score": 34.98448311960956,
+        "snippet": "Kuki-Zo civil society organisation in Manipur, India The Indigenous Tribal Leaders' Forum (ITLF) is a joint body of Kuki-Zo tribal leaders in the Indian state of Manipur. It came into being in 2022 in the wake of the Manipur government's assault on tribal land rights in protected forests. During the 2023–2025 Manipur violence, ITLF served as the main representative body of the Kuki-Zo tribes in Manipur. Background. The Kuki-Zo people of Manipur, divided into multiple tribes, were riven by internal divisions since the independence of India. Many of the tribes were not comfortable with the term \"Kuki\" introduced during the British Raj and sought an alternative label. They were also afraid of domination by the Thadou Kukis, who make up roughly half of the entire community. The Old Kukis separated out during the 1940s and the other tribes, with the exception of Thadou Kukis, formed a Zomi umbrella in the 1990s. The Thadou Kukis stood alone in continuing the use of the \"Kuki\" label. Virtually all tribes formed their own armed groups during the 1990s, for the purpose of protecting their own tribal communities. In the course of negotiating a Suspension of Operations (SoO) agreement with the Government of India, the armed groups gathered into two umbrella organisations called Kuki National Organisation and United People's Front. They also began to address themselves as \"Kuki/Zo people\", later changed to \"Kuki-Zo people\". With these antecedents, some sort of reunion of all the Kuki-Zo",
+        "text_characters": 2821,
+        "title": "Indigenous Tribal Leaders' Forum"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2161839",
+        "score": 34.427730332068585,
+        "snippet": "The Dobashi, Lengjang Kuki was credited as responsible for preventing the Kukis of the Naga Hills from joining the Kuki Rebellion of Manipur. During World War II, seeing an opportunity to regain independence, the Kuki fought with the Imperial Japanese Army and the Indian National Army led by Subhas Chandra Bose but the success of the Allied forces over the Axis group dashed their hopes. Tripura. On 31 January 1860, Kuki Riang led the Kukis of Hill Tippera in raiding the Chhagalnaiya plains (then under the administration of the Twipra Kingdom) which was inhabited by ethnic Bengalis and British officers. The Kukis looted the area of Bakhshganj and murdered Kamal Poddar of Basantpur. They then proceeded to molest Poddar's women until Guna Ghazi and Jakimal waged war against them in the village of Kulapara. Whilst the Kukis abducted 700 women, Munshi Abdul Ali informed the British authorities of the atrocities. 185 Britons were assassinated, 100 of them were kidnapped and the Kukis remained in the plains for one or two days. British troops and policemen were finally despatched from Noakhali, Tipperah (Comilla) and Chittagong to suppress them but the Kukis had already fled to the jungles of the princely state and they never returned to Chhagalnaiya ever again. Post-colonial history. The \"Constitution (Scheduled Tribes) (Part C States) Order, 1951\" included \"any Kuki tribe\", \"any Lushai tribe\" and \"any Naga tribe\" (as umbrella terms among the scheduled tribes in Assam, Manipur, and",
+        "text_characters": 2577,
+        "title": "Kuki people"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:769325",
+        "score": 34.35525511940804,
+        "snippet": "Naga and Kuki settlements are also found in the valley region, though less in numbers. There are also sizable population of Nepalis, Bengalis, Tamils and Marwaris living in Manipur. The distribution of area, population and density, and literacy rate as per the 2001 Census provisional figures are as below: People. The Meiteis (synonymous to the Manipuris) constitute the majority of the state's population. They inhabit the Imphal Valley. Nagas and Kuki-Zo are the major tribe conglomerates of tribes inhabiting the surrounding hills. The Kuki-Zos consist of several tribes including Gangte, Hmar, Paite, Simte, Sukte, Thadou, Vaiphei, Zou, and some smaller tribes. They speak Kuki-Chin languages and predominate the southern hill districts of Manipur. The prominent Naga tribes are Angami, Kabui, Kacha Naga, Mao, Maram, Poumai, Sema and Tangkhul, each speaking its own language. They predominate the northern hill districts of Manipur. In addition, several smaller tribes that were classified as \"Old Kuki\" by the British administrators populate Chandel and neighbouring districts. Some of them now classify themselves as Nagas while others retain the Kuki classification. Languages. The official language of the state is Meitei (also known as \"Manipuri\"). It is a scheduled language in the Republic of India, and serves as the lingua franca in Manipur. Other than Meitei language, in Manipur, there is a huge amount of linguistic diversity, as is the case in most of the Northeast India. Almost a",
+        "text_characters": 2684,
+        "title": "Manipur"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3450035",
+        "score": 33.757227248827135,
+        "snippet": "They settled in Moreh and the surrounding areas of Tengnoupal district. According to scholar Thongkholal Haokip, many of these Kukis had been previously displaced from the Naga-dominated ares of Manipur such as the Ukhrul district. In 1992, the Kuki–Naga clashes began in Moreh. At that time, the Naga insurgent group NSCN-IM dominated the Moreh town and the surrounding Tengnoupal–Chandel district. NSCN-IM was collecting \"house tax\" from the local Kukis and, over time, the demands for such taxes grew stronger. By 1992, the Kukis had their own militant organisation Kuki National Army (KNA), which was based in Tamu. The Kukis of Moreh are said to have invited the KNA to come to Moreh to ward off NSCN-IM. The Old Kuki tribes in resident in Moreh had, by now, switched their allegiance to the Naga grouping. The KNA commander asked them to stop supporting NSCN-IM. But the tribes felt unable to do so and left the town. The conflict itself started when NSCN-IM captured two Kuki student leaders, who were allegedly carrying messages for KNA, and killed one of them. This led to a full-scale war between the two groups and spread throughout Manipur. Commentators also state that the main driving force for the conflict was the control of the smuggling trade through Moreh. Demography. Moreh is in Tengnoupal district in Manipur with a sizeable number of Tamils and other Indians. The local population includes Kuki-Zo tribals and Meiteis, with small numbers Nagas and Old Kuki/Naga people. In the ",
+        "text_characters": 2588,
+        "title": "Moreh, India"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6754520",
+        "score": 33.2684205424936,
+        "snippet": "Sino-Tibetan language spoken in India Aimol, also known as Aimual, is a Sino-Tibetan language spoken by the Aimol people of Manipur, India. It is considered endangered and has less than 9,000 speakers worldwide as per 2011 census. The speakers of this language use Meitei language as their second language (L2) according to the Ethnologue. Geographical distribution. Aimol is spoken primarily in the Tengnoupal district, Chandel district, Kangpokpi district, and Churachandpur districts of Manipur. Aimol is spoken in the following villages of Manipur state (\"Ethnologue\"). There are also small numbers of speakers in Assam, Mizoram, Tripura, Nagaland Meghalaya. Name. The name of the language comes from the Aimol tribe of people who speak it. The word Aimol itself may come from the words \"Ai\" meaning \" Ginzer\" and \"Mol\" meaning \"hill\". Genealogical affiliation. Aimol is an Old Kuki language. The language displays similar characteristics as other Old Kuki including Hmar, Kom, Koireng, Kharam, Purum, Chiru, Chothe, Tarao, etc. However, most of the Old Kuki languages are not mutually intelligible with Aimol. Additionally, Aimol is reportedly less influenced by Meitei, the lingua franca of the state of Manipur, as compared to the other neighboring languages. Aimol is mutually intelligible with Kom. Speakers of the respective languages can understand each other when speaking in their own language. In terms of numeric structures, the two languages demonstrate extreme grammatical and struct",
+        "text_characters": 2810,
+        "title": "Aimol language"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9623660",
+        "score": 32.76333432030343,
+        "snippet": "Historians believe that the Koirengs migrated away from the region due to the repeated incursions by the Moirang people. The Thangjing Hill was also deified by the Koireng people and the deity has since been adopted by the Moirangs, and eventually by the Meitei people in general. The Chiru people, another Old Kuki tribe, have historical memory of having lived on the Thangjing Hill. The villagers later migrated to a new location in the present day Kangpokpi district for better availability of agricultural land and named the new village \"Thangjing Chiru\". One of the Kabui Naga tribes, named Sungbu, also have a tradition of having originated from the Thangjing Hill. The Moirang people have a tradition of having been saved from a man-eater by the Kabui chief from Thangjing Hill during the rule of Thangtek Soinaiba. By the time British Raj arrived in Manipur (c. 1830), the Sungbus had moved to the region around the Cachar–Bishnupur Road on sites that were previously occupied by Kuki people (called \"Khongjais\" by Manipuris). According to Boileau Pemberton, Kukis were in occupation of all the southern hills from Tipaimukh to Thangjing Hills. William McCulloch, British resident between 1844 and 1867, found that Kukis were living all around the Manipur valley, confirmed by later commentators. These descriptions suggest that the Thangjing Hill itself was under the occupation of the Kukis. A village called Ukha (also called \"Loikhai\" or \"Luaikhai\") on the western slopes of the Thangjing",
+        "text_characters": 2741,
+        "title": "Thangjing Hill"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5268388",
+        "score": 32.46210976264475,
+        "snippet": "Ethnic conflict in Manipur, India The Kuki–Paite Conflict, also called Kuki–Zomi Conflict, was an ethnic conflict during 1997–1998 between tribal communities in Churachandpur district in Manipur, India. The conflict started when a Kuki insurgent group, KNF, mercilessly killed 10 Paite villagers of Saikul Village on June 24, 1997, which led to pitting one group that subscribed to the Kuki label against another group that subscribed to the Zomi label, the latter being led by the Paites. The conflict lasted for over a year, during which 352 people died, thousands of homes were destroyed and over 13,000 people were displaced. The Government of India sent in the Indian Army to attempt to stop the violence, but peace was restored in September–October 1998 only with the initiative of the Church. Background. In 1948, 21 tribes of Manipur that shared the \"Kuki\" label per the British nomenclature formed a joint organisation called Kuki Company based at Kuki Inn in Imphal. After the formation, however, frictions began to develop due to the predominance of the Thadou language in the grouping. As a result, some 14 tribes left the group and formed a separate Khul Union. After the rise of the United Naga Council and NSCN-IM in the 1980s, some of the tribes that had been called 'Old Kuki' in the British nomenclature quit the Kuki umbrella and joined the Naga grouping. Seven 'New Kuki' tribes other than Thadou, stood on their own for some time, but eventually adopted the Zomi label. These six",
+        "text_characters": 2625,
+        "title": "Kuki–Paite Conflict"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10752794",
+        "score": 31.98812180315257,
+        "snippet": "The Congress Party expressed deep concern and requested the police to provide protection to the candidate. On 14 April, miscreants opened fire at a campaign site in Moirang where Akoijam was expected to organise a campaign meeting the following day. Perceiving the threat, Akoijam cancelled the meeting. Two days later, armed miscreants again disrupted an election meeting at Kumbi. Akoijam confided to the press the extent of threats he was receiving and commented that these were from \"my own community\" [Meiteis]. A week before the first phase of polling, armed militants, alleged to belong to Arambai Tenggol, attacked a border region of Kangpokpi district in the Thoubal river valley, called Phailengmol Island Block, and killed two Kuki-Zo village defence volunteers. Graphic videos of their corpses being dragged, mutilated and body parts displayed were circulated. The gruesome attacks and display caused the Kuki-Zo civil society organisations to come out with calls for boycotting the general election, saying \"no justice, no vote\". The Global Kuki-Zomi-Hmar Women Community, including journalists social workers, politicians and leaders, had earlier written to the Chief Election Commissioner, informing him of its decision to boycott the polls. Following the Phailengmol attack, the Kuki National Assembly and Kuki Inpi have also joined the fray. On 16 April, the Kuki Inpi Sadar Hills (covering the Kangpokpi district) asked all Kuki residents of the district to abstain from voting. Kuk",
+        "text_characters": 2712,
+        "title": "2024 Indian general election in Manipur"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2161836", "title": "Kuki people", "score": 36.26419692173677, "snippet": "Some Kuki and Chin tribes reject both of these terms as being of colonial origin, and use the self-designation \"Zo\", which is a generic term that has variants in most Kuki-Chin dialects. \"Zomi\" (meaning \"Zo people\") is also used. The term \"Kuki\" is still enthusiastically adopted by the Thadou language-speaking clans. Thus, \"Kuki\" is sometimes used in this \"narrow\" sense to refer to the Thadou-speaking Kukis, with even the Thadou language referred to as the \"Kuki language\". By 2023, a consensus seems to have developed among the Kuki tribes of Manipur to use the compound term \"Kuki-Zo\" to refer to themselves. History. Early history. Ethnologist C. A. Soppitt argued that the Kuki tribes must have settled in region west of Irrawaddy river from before the 11th century, based on the fact that they had no traces of Buddhism, which was already prevalent in Burma by that time. He grouped the Kuki tribes into two broad classes: Hrangkhol along with the co-tribe Biate in one class, and Changsan along with the co-tribe Thadou in the other class. Each of them was grouped with several subtribes. Soppitt suggested that, by the 16th century, the Hrangkhols and Biate inhabited the Lushai Hills region (currently divided between Mizoram and Chin State). He believed that they were pushed out by Changsan, who moved in from the east along with Thadou, forcing them to move to the North Cachar Hills, Manipur and Tripura. Further, the Changsan–Thadou combine was believed to have been in turn forced o", "text_characters": 2605, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2161837", "title": "Kuki people", "score": 35.959358806457786, "snippet": "During the Kuki Rebellion of 1917–1919, the Kukis in Manipur were estimated to number 40,000. Manipur. \"Cheitharol Kumbaba\", the court chronicle of the Manipur kings, mentions various Kuki tribes and clans from 1404 onwards. The largest of the Kuki tribes, the Thadous, lived in the southern hills of the present-day Manipur, which was ungoverned territory for most of the historical period. The Manipuris referred to them as \"Khongjais\". The naming was apparently based on a village called \"Khongchai\" in the Tuipui river valley, with the surrounding hills also referred to as Khongjai Hills. The Manipur ruler Ching-Thang Khomba (also known as Bhagyachandra and Jai Singh) made war on this region in 1786, and subjugated the Kuki chieftain in the central village. Other regions in southern hills remained relatively untouched until 1894 when the British defined the border of the Manipur state to include the southern hills. The term \"Kuki\" to refer to these tribes was introduced by the British in the 1820s. By 1850s, they imported the terminology of \"New Kuki\" for the Khongjai tribes and \"Old Kuki\" for the other Kuki tribes such as Kom and Aimol. The scholars of Kuki Research Forum consider the terminology misleading because the historical record does not justify such a progression in time. The British testimony regarding Kukis in Manipur was variable. British Commissioner Pemberton wrote in 1835 that the Khongjais stretched along the hills from the south of the Manipur valley to the Ar", "text_characters": 2647, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:11204780", "title": "Indigenous Tribal Leaders' Forum", "score": 34.98448311960956, "snippet": "Kuki-Zo civil society organisation in Manipur, India The Indigenous Tribal Leaders' Forum (ITLF) is a joint body of Kuki-Zo tribal leaders in the Indian state of Manipur. It came into being in 2022 in the wake of the Manipur government's assault on tribal land rights in protected forests. During the 2023–2025 Manipur violence, ITLF served as the main representative body of the Kuki-Zo tribes in Manipur. Background. The Kuki-Zo people of Manipur, divided into multiple tribes, were riven by internal divisions since the independence of India. Many of the tribes were not comfortable with the term \"Kuki\" introduced during the British Raj and sought an alternative label. They were also afraid of domination by the Thadou Kukis, who make up roughly half of the entire community. The Old Kukis separated out during the 1940s and the other tribes, with the exception of Thadou Kukis, formed a Zomi umbrella in the 1990s. The Thadou Kukis stood alone in continuing the use of the \"Kuki\" label. Virtually all tribes formed their own armed groups during the 1990s, for the purpose of protecting their own tribal communities. In the course of negotiating a Suspension of Operations (SoO) agreement with the Government of India, the armed groups gathered into two umbrella organisations called Kuki National Organisation and United People's Front. They also began to address themselves as \"Kuki/Zo people\", later changed to \"Kuki-Zo people\". With these antecedents, some sort of reunion of all the Kuki-Zo", "text_characters": 2821, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2161839", "title": "Kuki people", "score": 34.427730332068585, "snippet": "The Dobashi, Lengjang Kuki was credited as responsible for preventing the Kukis of the Naga Hills from joining the Kuki Rebellion of Manipur. During World War II, seeing an opportunity to regain independence, the Kuki fought with the Imperial Japanese Army and the Indian National Army led by Subhas Chandra Bose but the success of the Allied forces over the Axis group dashed their hopes. Tripura. On 31 January 1860, Kuki Riang led the Kukis of Hill Tippera in raiding the Chhagalnaiya plains (then under the administration of the Twipra Kingdom) which was inhabited by ethnic Bengalis and British officers. The Kukis looted the area of Bakhshganj and murdered Kamal Poddar of Basantpur. They then proceeded to molest Poddar's women until Guna Ghazi and Jakimal waged war against them in the village of Kulapara. Whilst the Kukis abducted 700 women, Munshi Abdul Ali informed the British authorities of the atrocities. 185 Britons were assassinated, 100 of them were kidnapped and the Kukis remained in the plains for one or two days. British troops and policemen were finally despatched from Noakhali, Tipperah (Comilla) and Chittagong to suppress them but the Kukis had already fled to the jungles of the princely state and they never returned to Chhagalnaiya ever again. Post-colonial history. The \"Constitution (Scheduled Tribes) (Part C States) Order, 1951\" included \"any Kuki tribe\", \"any Lushai tribe\" and \"any Naga tribe\" (as umbrella terms among the scheduled tribes in Assam, Manipur, and", "text_characters": 2577, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:769325", "title": "Manipur", "score": 34.35525511940804, "snippet": "Naga and Kuki settlements are also found in the valley region, though less in numbers. There are also sizable population of Nepalis, Bengalis, Tamils and Marwaris living in Manipur. The distribution of area, population and density, and literacy rate as per the 2001 Census provisional figures are as below: People. The Meiteis (synonymous to the Manipuris) constitute the majority of the state's population. They inhabit the Imphal Valley. Nagas and Kuki-Zo are the major tribe conglomerates of tribes inhabiting the surrounding hills. The Kuki-Zos consist of several tribes including Gangte, Hmar, Paite, Simte, Sukte, Thadou, Vaiphei, Zou, and some smaller tribes. They speak Kuki-Chin languages and predominate the southern hill districts of Manipur. The prominent Naga tribes are Angami, Kabui, Kacha Naga, Mao, Maram, Poumai, Sema and Tangkhul, each speaking its own language. They predominate the northern hill districts of Manipur. In addition, several smaller tribes that were classified as \"Old Kuki\" by the British administrators populate Chandel and neighbouring districts. Some of them now classify themselves as Nagas while others retain the Kuki classification. Languages. The official language of the state is Meitei (also known as \"Manipuri\"). It is a scheduled language in the Republic of India, and serves as the lingua franca in Manipur. Other than Meitei language, in Manipur, there is a huge amount of linguistic diversity, as is the case in most of the Northeast India. Almost a", "text_characters": 2684, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3450035", "title": "Moreh, India", "score": 33.757227248827135, "snippet": "They settled in Moreh and the surrounding areas of Tengnoupal district. According to scholar Thongkholal Haokip, many of these Kukis had been previously displaced from the Naga-dominated ares of Manipur such as the Ukhrul district. In 1992, the Kuki–Naga clashes began in Moreh. At that time, the Naga insurgent group NSCN-IM dominated the Moreh town and the surrounding Tengnoupal–Chandel district. NSCN-IM was collecting \"house tax\" from the local Kukis and, over time, the demands for such taxes grew stronger. By 1992, the Kukis had their own militant organisation Kuki National Army (KNA), which was based in Tamu. The Kukis of Moreh are said to have invited the KNA to come to Moreh to ward off NSCN-IM. The Old Kuki tribes in resident in Moreh had, by now, switched their allegiance to the Naga grouping. The KNA commander asked them to stop supporting NSCN-IM. But the tribes felt unable to do so and left the town. The conflict itself started when NSCN-IM captured two Kuki student leaders, who were allegedly carrying messages for KNA, and killed one of them. This led to a full-scale war between the two groups and spread throughout Manipur. Commentators also state that the main driving force for the conflict was the control of the smuggling trade through Moreh. Demography. Moreh is in Tengnoupal district in Manipur with a sizeable number of Tamils and other Indians. The local population includes Kuki-Zo tribals and Meiteis, with small numbers Nagas and Old Kuki/Naga people. In the ", "text_characters": 2588, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6754520", "title": "Aimol language", "score": 33.2684205424936, "snippet": "Sino-Tibetan language spoken in India Aimol, also known as Aimual, is a Sino-Tibetan language spoken by the Aimol people of Manipur, India. It is considered endangered and has less than 9,000 speakers worldwide as per 2011 census. The speakers of this language use Meitei language as their second language (L2) according to the Ethnologue. Geographical distribution. Aimol is spoken primarily in the Tengnoupal district, Chandel district, Kangpokpi district, and Churachandpur districts of Manipur. Aimol is spoken in the following villages of Manipur state (\"Ethnologue\"). There are also small numbers of speakers in Assam, Mizoram, Tripura, Nagaland Meghalaya. Name. The name of the language comes from the Aimol tribe of people who speak it. The word Aimol itself may come from the words \"Ai\" meaning \" Ginzer\" and \"Mol\" meaning \"hill\". Genealogical affiliation. Aimol is an Old Kuki language. The language displays similar characteristics as other Old Kuki including Hmar, Kom, Koireng, Kharam, Purum, Chiru, Chothe, Tarao, etc. However, most of the Old Kuki languages are not mutually intelligible with Aimol. Additionally, Aimol is reportedly less influenced by Meitei, the lingua franca of the state of Manipur, as compared to the other neighboring languages. Aimol is mutually intelligible with Kom. Speakers of the respective languages can understand each other when speaking in their own language. In terms of numeric structures, the two languages demonstrate extreme grammatical and struct", "text_characters": 2810, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9623660", "title": "Thangjing Hill", "score": 32.76333432030343, "snippet": "Historians believe that the Koirengs migrated away from the region due to the repeated incursions by the Moirang people. The Thangjing Hill was also deified by the Koireng people and the deity has since been adopted by the Moirangs, and eventually by the Meitei people in general. The Chiru people, another Old Kuki tribe, have historical memory of having lived on the Thangjing Hill. The villagers later migrated to a new location in the present day Kangpokpi district for better availability of agricultural land and named the new village \"Thangjing Chiru\". One of the Kabui Naga tribes, named Sungbu, also have a tradition of having originated from the Thangjing Hill. The Moirang people have a tradition of having been saved from a man-eater by the Kabui chief from Thangjing Hill during the rule of Thangtek Soinaiba. By the time British Raj arrived in Manipur (c. 1830), the Sungbus had moved to the region around the Cachar–Bishnupur Road on sites that were previously occupied by Kuki people (called \"Khongjais\" by Manipuris). According to Boileau Pemberton, Kukis were in occupation of all the southern hills from Tipaimukh to Thangjing Hills. William McCulloch, British resident between 1844 and 1867, found that Kukis were living all around the Manipur valley, confirmed by later commentators. These descriptions suggest that the Thangjing Hill itself was under the occupation of the Kukis. A village called Ukha (also called \"Loikhai\" or \"Luaikhai\") on the western slopes of the Thangjing", "text_characters": 2741, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5268388", "title": "Kuki–Paite Conflict", "score": 32.46210976264475, "snippet": "Ethnic conflict in Manipur, India The Kuki–Paite Conflict, also called Kuki–Zomi Conflict, was an ethnic conflict during 1997–1998 between tribal communities in Churachandpur district in Manipur, India. The conflict started when a Kuki insurgent group, KNF, mercilessly killed 10 Paite villagers of Saikul Village on June 24, 1997, which led to pitting one group that subscribed to the Kuki label against another group that subscribed to the Zomi label, the latter being led by the Paites. The conflict lasted for over a year, during which 352 people died, thousands of homes were destroyed and over 13,000 people were displaced. The Government of India sent in the Indian Army to attempt to stop the violence, but peace was restored in September–October 1998 only with the initiative of the Church. Background. In 1948, 21 tribes of Manipur that shared the \"Kuki\" label per the British nomenclature formed a joint organisation called Kuki Company based at Kuki Inn in Imphal. After the formation, however, frictions began to develop due to the predominance of the Thadou language in the grouping. As a result, some 14 tribes left the group and formed a separate Khul Union. After the rise of the United Naga Council and NSCN-IM in the 1980s, some of the tribes that had been called 'Old Kuki' in the British nomenclature quit the Kuki umbrella and joined the Naga grouping. Seven 'New Kuki' tribes other than Thadou, stood on their own for some time, but eventually adopted the Zomi label. These six", "text_characters": 2625, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10752794", "title": "2024 Indian general election in Manipur", "score": 31.98812180315257, "snippet": "The Congress Party expressed deep concern and requested the police to provide protection to the candidate. On 14 April, miscreants opened fire at a campaign site in Moirang where Akoijam was expected to organise a campaign meeting the following day. Perceiving the threat, Akoijam cancelled the meeting. Two days later, armed miscreants again disrupted an election meeting at Kumbi. Akoijam confided to the press the extent of threats he was receiving and commented that these were from \"my own community\" [Meiteis]. A week before the first phase of polling, armed militants, alleged to belong to Arambai Tenggol, attacked a border region of Kangpokpi district in the Thoubal river valley, called Phailengmol Island Block, and killed two Kuki-Zo village defence volunteers. Graphic videos of their corpses being dragged, mutilated and body parts displayed were circulated. The gruesome attacks and display caused the Kuki-Zo civil society organisations to come out with calls for boycotting the general election, saying \"no justice, no vote\". The Global Kuki-Zomi-Hmar Women Community, including journalists social workers, politicians and leaders, had earlier written to the Chief Election Commissioner, informing him of its decision to boycott the polls. Following the Phailengmol attack, the Kuki National Assembly and Kuki Inpi have also joined the fray. On 16 April, the Kuki Inpi Sadar Hills (covering the Kangpokpi district) asked all Kuki residents of the district to abstain from voting. Kuk", "text_characters": 2712, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R006_request.json/messages/11/content`；SHA256：`24c33aea44462a70ef3a3def4a6e33d855b5d17b70743d7d210098f6c3182584`。
+
+## S006｜合并族群与乐器材料并接受Pena候选
+
+实际重建三项证据链，明确So the answer is Pena。
+
+结束状态：接受候选，随后仍要读音乐文档。
+
+边界判断：族群检索没有给连接，模型独立利用先前材料作整题接受，不因后续Open消失。
+
+内部KEEP与反证：三项引用与接受结论为同一次证据充分性判断。
+
+### SPLIT原文
+
+````
+Let's search for "Kuki folk song" or "Old Kuki tribes music".
+
+<tool_call>
+<function=search>
+<parameter=query>
+"Old Kuki tribes" folk song instrument Manipur
+</parameter>
+</function>
+</tool_call>
+→ 切点 [5, 0, 0] →
+The user is asking for a traditional musical instrument that is considered a national symbol for Manipuris, which accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results, I found:
+1. In the "Music of Manipur" document (wiki25:1408738), it states: "pena eshei, which is acco
+````
+
+### R6 `/rounds/5/reasoning_content` [0,1196)
+
+SHA256：`da6e521edebf1f73be8e5c8f585c1068228a957aeb063f9a832193cdaf241542`；原字段SHA256：`03f8d6c7c108c3c848cb03a5a103626e5e191924359c5d0c80cc33b9533b1f4c`。
+
+````
+The user is asking for a traditional musical instrument that is considered a national symbol for Manipuris, which accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results, I found:
+1. In the "Music of Manipur" document (wiki25:1408738), it states: "pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris."
+
+2. The "Milhiem" document (wiki25:5711237) confirms that the Milhiems are an ethnic group belonging to the "Old Kuki tribes" of Manipur.
+
+3. The "Meitei intangible cultural heritage" document (wiki25:10881664) also mentions: "Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell. The other part is the [bow]. It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc."
+
+So the answer is the "Pena" (or "Pena instrument").
+
+
+````
+
+## S007｜打开音乐文档验证候选
+
+Open100字符，R7直接反馈截断。
+
+结束状态：没有读到Pena段落。
+
+边界判断：接受后实际重启文档核验。
+
+内部KEEP与反证：R7 The text seems truncated留在本次读取。
+
+### SPLIT原文
+
+````
+ is a bamboo pole attached to a coconut shell. The other part is the [bow]. It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc."
+
+So the answer is the "Pena" (or "Pena instrument").
+
+
+→ 切点 [5, 0, 1196] →
+Let me verify this by opening the "Music of Manipur" document to get more details.
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [1196,1279)
+
+SHA256：`9c38527ac90c80491135e4320b7f49df15c2eff60ebe2b0c193b080ab53031bc`；原字段SHA256：`03f8d6c7c108c3c848cb03a5a103626e5e191924359c5d0c80cc33b9533b1f4c`。
+
+````
+Let me verify this by opening the "Music of Manipur" document to get more details.
+
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:1408738",
+    "limit": 100,
+    "offset": 0
+  },
+  "id": "chatcmpl-tool-9ca75607ea0a20d0",
+  "name": "open",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"doc_id\": \"wiki25:1408738\", \"offset\": 0, \"limit\": 100}",
+      "name": "open"
+    },
+    "id": "chatcmpl-tool-9ca75607ea0a20d0",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:1408738",
+    "limit": 100,
+    "offset": 0
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 0.029801792930811644,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:1408738",
+    "limit": 100,
+    "offset": 0,
+    "text": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rura",
+    "title": "Music of Manipur",
+    "total_text_characters": 1362
+  },
+  "tool_call_id": "chatcmpl-tool-9ca75607ea0a20d0"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:1408738", "title": "Music of Manipur", "offset": 0, "limit": 100, "text": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rura", "total_text_characters": 1362, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R007_request.json/messages/13/content`；SHA256：`199520bdfc250949478565115c6c8cd17c6d26e75e22b4e712326e522a3a9661`。
+
+### R7 `/rounds/6/reasoning_content` [0,26)
+
+SHA256：`547b108374fcc0cfef4a704a33b11d2741792b351d9ba45da5baf0236f5f4db7`；原字段SHA256：`692274dddf54ee08b891abb1c7933d6bf20e275320a396cfb2eb16361c480d4b`。
+
+````
+The text seems truncated. 
+````
+
+## S008｜以Pena定向检索替代截断读取
+
+真实Search Pena instrument national symbol。
+
+结束状态：返回已见完整音乐片段。
+
+边界判断：读取失败后实际改证据入口。
+
+内部KEEP与反证：没有按缺少长计划制造额外工具层。
+
+### SPLIT原文
+
+````
+The text seems truncated. 
+→ 切点 [6, 0, 26] →
+Let me try to get more context or search for "pena" specifically.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena instrument Manipur national symbol folk song
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R7 `/rounds/6/reasoning_content` [26,228)
+
+SHA256：`750f7d99ebb8bc49885304700950938270d30f1e418735c1a87e645c4093fd55`；原字段SHA256：`692274dddf54ee08b891abb1c7933d6bf20e275320a396cfb2eb16361c480d4b`。
+
+````
+Let me try to get more context or search for "pena" specifically.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena instrument Manipur national symbol folk song
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "query": "pena instrument Manipur national symbol folk song"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\npena instrument Manipur national symbol folk song\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "pena instrument Manipur national symbol folk song"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 1.3943553450517356,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1408738",
+        "score": 22.91281897906711,
+        "snippet": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rural love songs Khullang Eshei, the rhythmic Lai Haraoba eshei, which contain lyrics with veiled references to erotic mysticism and pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris. \"Nat\" (a shortened form of Meitei Nat Sankirtan) is a classical form of music of Manipur. It is a product of the Sanskritisation of traditional Meitei culture with Hindu culture by the Brahmanas, having 6 ragas and 36 raginis. Classical Nat music is performed at various special occasions, the women's devotional nupi pala songs, Gaur Padas, sung in praise of Chaitanya Mahaprabhu and dhob, sung accompanied by the jhal, a large cymbal. Manohar Sai is another important class of songs, devoted to a 19th-century man of the same name. Khubakeshei is a kind of song accompanied entirely by clapping. Contrasting to the other forms of Indian classical music, which are performed by sitting, in the Meitei Nata-Sankirtana, artists perform musical instruments as well as sing songs, simultaneously performing the delicate movements of the body and hands, based on the form of , aligning to different footsteps, based on the . References.",
+        "text_characters": 1362,
+        "title": "Music of Manipur"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:769321",
+        "score": 20.88605016266877,
+        "snippet": "The Battle of Imphal, known to the Manipuris as \"Japan Laan\", are among the lesser-known battles of the Second World War. Yet the Allied Victory in this battle was a turning point against the Japanese in East Asia. Post-colonial history. After the war, the Maharaja took the advice of the British Cabinet Mission and the Chamber of Princes to introduce democratic reforms in the state. The Manipur State Constitution Act of 1947 was promulgated in July 1947 to give the state an elected legislative assembly and an appointed prime minister. Elections to the assembly were held only in the following year. Following the decision to partition British India, all the princely states were advised to \"accede\" to one of the new dominions. The Maharaja acceded to India on 11 August 1947 and signed a standstill agreement to continue all the pre-existing arrangements it had with British India. Some Meitei people argue that the king was in no legal position to sign the instrument of accession at the time. Over the next two years, the multitude of princely states of India were extensively reorganised as India moved towards becoming a constitutional republic. Proposals for reorganisation were also made for Manipur but discarded as being unsuitable. Eventually Manipur was turned into a centrally administered province (called a 'Part C' state, later renamed union territory) by asking the Maharaja to sign a merger agreement. He is believed to have signed it under duress. Later, on 21 September 1949,",
+        "text_characters": 2807,
+        "title": "Manipur"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10881664",
+        "score": 20.7149589872151,
+        "snippet": "Intangible cultural heritage of Meitei civilization The intangible cultural heritage (ICH) of Meitei civilization is recognised, honoured, preserved as well as promoted by the UNESCO, the Ministry of Culture of the Union Government of India, the Government of Armenia, the State Government of Manipur, the State Government of Assam, the State Government of Tripura, among many other notable institutions. UNESCO's intangible cultural heritage. Sankirtana, ritual singing, drumming and dancing of Manipur. Meitei Sankirtana (under the name of \"\"Sankirtana, ritual singing, drumming and dancing of Manipur\"\"), one of the most remarkable cultural heritage of the Meitei civilization, was formally recognized as a UNESCO's intangible cultural heritage, declared in the eighth session of the UNESCO Intergovernmental Committee in Baku, Azerbaijan, in December 2013. National List for Intangible Cultural Heritage (ICH). Traditional Craftsmanship. Music of Pena. Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell. The other part is the . It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc. Applique art. In Meitei culture, through the art of applique, decorative effects are achieved by superposing patches of coloured fabrics on a basic fabric, with the stitch",
+        "text_characters": 2650,
+        "title": "Meitei intangible cultural heritage"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9608814",
+        "score": 17.145189279681702,
+        "snippet": "Classical Meitei language epic poem The Khamba Thoibi Sheireng, also spelled as the Khamba Thoibi Seireng (), is a Classical Meitei language epic poem based on the ancient love story of Khuman prince Khamba and Moirang princess Thoibi of Ancient Moirang kingdom of Ancient Kangleipak (early Manipur). It is the magnum opus of Hijam Anganghal, the \"Bard of Samurou\". It is regarded as the national epic of the Manipuris. It is regarded as the greatest of all the epic poems in Meitei literature, with 39,000 verses, thereby being the third longest Indian epic poem, next to the Mahabharata and the Ramayana. The Khamba Thoibi Sheireng is often considered to be in a status of “mahakavya” (transl. great epic; court epic), and its author as a “” (transl. great poet; classical poet). For composing the epic, Anganghal was honoured by the Manipuri Sahitya Parishad, with the title “Kabiratna” in 1948. The epic saga is based on the ancient classic of Khamba and Thoibi, also referred to as the \"National Romantic Legend of Manipur\" by Suniti Kumar Chatterjee, as well as one of the 7 epic cycles of incarnations, constituting the Moirang Kangleirol of Ancient Moirang. Another remarkable achievement of Meitei cultural heritage, directly related to the Khamba Thoibi epic poem, is \"Khamba Thoibi Jagoi\" (), also known as \"Khamba Thoibi ballet\", which is a traditional Meitei ritualistic and theatrical classical dance form, a part and parcel of the Lai Haraoba performances, performed in honor of God , ",
+        "text_characters": 2461,
+        "title": "Khamba Thoibi Sheireng"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10881665",
+        "score": 16.692952423039507,
+        "snippet": "It is a union of \"the critical and the humourist\". It produces a big humorous temperament. Its common character includes pastiche. It aims whatever is ridiculous or unseemly. Social practices, rituals and festive events. Sankirtan. Meitei Sankirtana (alias Manipuri Sankirtana) is the artistic manifestation of the worshipping culture of the Meitei people (Manipuri people). It is regarded as the visible form of God, in Meitei culture. Regarding the art form, the Ministry of Culture (India) states the following: \"“... Woven within the framework of sacrosanct rituals and ceremonies the art consists of narrative singing and dancing. Always performed in a Mandala (circular area) inside a Mandapa (hall) attached to a temple or erected in a courtyard. The rituals and formalities are strict and even the audience are seated according to set rules. It employs musical instruments like drums and cymbals. The artistes play these instruments and dance at the same time. An artiste spends a life-time specializing only in one aspect.”\" Death rites of Phayeng. The Chapka Phayeng people of Manipur are a part of the Meitei people itself. But they have a unique culture of burying the death. Shikaplon is a tradition of \"“requiem and a funeral march”\", along with . According to their beliefs, in the afterlife, people go to the to unite with their ancestors. Among the mourning people during the time of burial, one of them should sing the Shikaplon, which gives instructions to the journey of the dead ",
+        "text_characters": 2204,
+        "title": "Meitei intangible cultural heritage"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8233849",
+        "score": 14.708672768596525,
+        "snippet": "Indian film actress Tonthoingambi Leishangthem, popularly known as Tonthoi, is an Indian actress. She has established a career in Manipuri films and is the recipient of several awards, including a National Film Award. Early life and education. She is a B.Com. graduate and has taken keen interest in performing arts since very young age. Tonthoi loves sports and has actively been volunteering in social service since her childhood. She completed her master's in social work from Manipur University. As a student, she was part of the University's women football team which participated in All India Women Football tournament. She has also been trained in playing the traditional music instrument, Pena. Before joining NSD, she took a three-month acting class in the early month of 2007 under Oja Niladhaja Khuman. She has also completed her one-year residential certificate course in Theatre in Education from National School of Drama, Tripura. Career. \"Leishangthem\" appeared in feature films, Doordarshan serials and ISTV serials. Her first film is \"Nangna Thawaini\", where she was playing heroine's friend, alongside Kamala and Gung in a supporting role. After this, she has done a number of Manipuri films. Among the notable ones are \"Loibataare Ta Raju\", \"Thoicha\", \"Amamba Sayon (Resurrection)\", \"Eepaktuda the lake\", \"Leipaklei\", \"Nungshibee Kabaw Valley\", \"Beragee Bomb\", \"Pallepfam\" and \"Phijigee Mani\". She has also produced a Manipuri film titled \"Beragee Bomb\" under the banner of Chingkh",
+        "text_characters": 2551,
+        "title": "Leishangthem Tonthoingambi Devi"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:39583",
+        "score": 14.535247690954165,
+        "snippet": "National and regional forms. Africa. Africa is a vast continent and its regions and nations have distinct musical traditions. The music of North Africa for the most part has a different history from Sub-Saharan African music traditions. The music and dance forms of the African diaspora, including African American music and many Caribbean genres like soca, calypso and Zouk; and Latin American music genres like the samba, Cuban rumba, salsa; and other clave (rhythm)-based genres, were founded to varying degrees on the music of enslaved Africans, which has in turn influenced African popular music. Asia. Many Asian civilizations distinguish between art/court/classical styles and \"folk\" music. For example, the late Alam Lohar is an example of a South Asian singer who was classified as a folk singer. Khunung Eshei/Khuland Eshei is an ancient folk song from India, a country of Asia, of Meiteis of Manipur, that is an example of Asian folk music, and how they put it into its own genre. Folk music of China. Archaeological discoveries date Chinese folk music back 7000 years; it is largely based on the pentatonic scale. Han traditional weddings and funerals usually include a form of oboe called a suona, and apercussive ensembles called a chuigushou. Ensembles consisting of mouth organs (sheng), shawms (suona), flutes (dizi) and percussion instruments (especially yunluo gongs) are popular in northern villages; their music is descended from the imperial temple music of Beijing, Xi'an, Wuta",
+        "text_characters": 2791,
+        "title": "Folk music"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5965767",
+        "score": 12.521287655968845,
+        "snippet": "The opening ceremony of the 2010 Commonwealth Games was held at the Jawaharlal Nehru Stadium, the main stadium of the event, in New Delhi, India. It began at 7:00 PM (IST) on 3 October 2010 ending at 10:00 PM (IST) displaying India's varied culture in a plethora of cultural showcases. Wizcraft was given the contract to produce the opening and closing ceremonies of the 2010 Commonwealth Games. Guests of Honour. The following were the guests that attended the opening ceremony of the 2010 Commonwealth Games: The Royal Family. The Prince of Wales (now Charles III, representing Elizabeth II as Head of the Commonwealth), Camilla, Duchess of Cornwall and Prince Edward, Earl of Wessex attended the ceremony. International Guests. A total of three heads of state from outside India attended the opening ceremony; two from Commonwealth nations and one from a non-Commonwealth nation. The three head of states are Mohamed Nasheed, President of the Maldives, Marcus Stephen, President of Nauru and a multiple Commonwealth gold medallist.h. Sir Anand Satyanand, the Governor General of New Zealand (the first of Indian descent), attended the ceremony as well. Alongside the Commonwealth president, attendees included International Olympic Committee then president, Jacques Rogge and Albert II, Prince of Monaco who is a member.Rogge was quoted as saying, \"I think India has set a good foundation stone for the Olympics bid and a successful Commonwealth Games can help India mount a serious bid for the Ol",
+        "text_characters": 2733,
+        "title": "2010 Commonwealth Games opening ceremony"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2470854",
+        "score": 12.103874443757384,
+        "snippet": "By 1891 one-fourth the population of Assam was of migrant origin. Assamese nationalism, which grew by the beginning of the 20th century, began to look at both the Hindu Bengalis as well as the British as alien rulers. The emerging Assamese literate class aspired to the same positions as those enjoyed by the Bengali Hindus, mostly from Sylhet. The Bengali Muslims, who came in mainly from Mymensingh, were cultivators who occupied flood plains and cleared forests. They were not in conflict with the Assamese and did not align with the Bengali Hindus. In fact the Assamese elite encouraged their settlement. In the post-partition period as Assamese nationalists tried to dismantle Bengali Hindu dominance from the colonial period the tea garden labourers as well as the Muslim Bengalis supported them. Ever mindful of being the neighbour of the populous and culturally dominant Bengali people, the Assamese were alarmed that immigration not only had continued illegally in the post-independence period but that illegal immigrants were being included in electoral rolls. Cross-border immigration. Immigration from East Bengal to Assam became cross-border in character following Partition of India—the 1951 census records 274,000 refugees between 1947 and 1951, most of who are estimated to be Hindu Bengalis. On the basis of a natural growth rate, it was estimated that the immigrants numbered 221,000 between 1951 and 1961. In 1971, the surplus over the natural growth was 424,000 and the estimated ",
+        "text_characters": 3021,
+        "title": "Assam Movement"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 2.748297141388834,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:1408738", "title": "Music of Manipur", "score": 22.91281897906711, "snippet": "Manipur is a region of North-East India. Some varieties of folk music from the area include the rural love songs Khullang Eshei, the rhythmic Lai Haraoba eshei, which contain lyrics with veiled references to erotic mysticism and pena eshei, which is accompanied by a pena, an instrument made from a bamboo rod and the shell of a gourd or coconut. The pena is an ancient instrument that is a sort of national symbol for Manipuris. \"Nat\" (a shortened form of Meitei Nat Sankirtan) is a classical form of music of Manipur. It is a product of the Sanskritisation of traditional Meitei culture with Hindu culture by the Brahmanas, having 6 ragas and 36 raginis. Classical Nat music is performed at various special occasions, the women's devotional nupi pala songs, Gaur Padas, sung in praise of Chaitanya Mahaprabhu and dhob, sung accompanied by the jhal, a large cymbal. Manohar Sai is another important class of songs, devoted to a 19th-century man of the same name. Khubakeshei is a kind of song accompanied entirely by clapping. Contrasting to the other forms of Indian classical music, which are performed by sitting, in the Meitei Nata-Sankirtana, artists perform musical instruments as well as sing songs, simultaneously performing the delicate movements of the body and hands, based on the form of , aligning to different footsteps, based on the . References.", "text_characters": 1362, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:769321", "title": "Manipur", "score": 20.88605016266877, "snippet": "The Battle of Imphal, known to the Manipuris as \"Japan Laan\", are among the lesser-known battles of the Second World War. Yet the Allied Victory in this battle was a turning point against the Japanese in East Asia. Post-colonial history. After the war, the Maharaja took the advice of the British Cabinet Mission and the Chamber of Princes to introduce democratic reforms in the state. The Manipur State Constitution Act of 1947 was promulgated in July 1947 to give the state an elected legislative assembly and an appointed prime minister. Elections to the assembly were held only in the following year. Following the decision to partition British India, all the princely states were advised to \"accede\" to one of the new dominions. The Maharaja acceded to India on 11 August 1947 and signed a standstill agreement to continue all the pre-existing arrangements it had with British India. Some Meitei people argue that the king was in no legal position to sign the instrument of accession at the time. Over the next two years, the multitude of princely states of India were extensively reorganised as India moved towards becoming a constitutional republic. Proposals for reorganisation were also made for Manipur but discarded as being unsuitable. Eventually Manipur was turned into a centrally administered province (called a 'Part C' state, later renamed union territory) by asking the Maharaja to sign a merger agreement. He is believed to have signed it under duress. Later, on 21 September 1949,", "text_characters": 2807, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10881664", "title": "Meitei intangible cultural heritage", "score": 20.7149589872151, "snippet": "Intangible cultural heritage of Meitei civilization The intangible cultural heritage (ICH) of Meitei civilization is recognised, honoured, preserved as well as promoted by the UNESCO, the Ministry of Culture of the Union Government of India, the Government of Armenia, the State Government of Manipur, the State Government of Assam, the State Government of Tripura, among many other notable institutions. UNESCO's intangible cultural heritage. Sankirtana, ritual singing, drumming and dancing of Manipur. Meitei Sankirtana (under the name of \"\"Sankirtana, ritual singing, drumming and dancing of Manipur\"\"), one of the most remarkable cultural heritage of the Meitei civilization, was formally recognized as a UNESCO's intangible cultural heritage, declared in the eighth session of the UNESCO Intergovernmental Committee in Baku, Azerbaijan, in December 2013. National List for Intangible Cultural Heritage (ICH). Traditional Craftsmanship. Music of Pena. Pena (musical instrument) is single stringed. It has two parts. One part is a bamboo pole attached to a coconut shell. The other part is the . It acts as a bow used to give friction on the string. A sings songs while playing the musical instrument. Pena is an inseparable part of Meitei civilization. It is used in ritualistic functions like Lai Haraoba, Lai Ikouba, etc. Applique art. In Meitei culture, through the art of applique, decorative effects are achieved by superposing patches of coloured fabrics on a basic fabric, with the stitch", "text_characters": 2650, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9608814", "title": "Khamba Thoibi Sheireng", "score": 17.145189279681702, "snippet": "Classical Meitei language epic poem The Khamba Thoibi Sheireng, also spelled as the Khamba Thoibi Seireng (), is a Classical Meitei language epic poem based on the ancient love story of Khuman prince Khamba and Moirang princess Thoibi of Ancient Moirang kingdom of Ancient Kangleipak (early Manipur). It is the magnum opus of Hijam Anganghal, the \"Bard of Samurou\". It is regarded as the national epic of the Manipuris. It is regarded as the greatest of all the epic poems in Meitei literature, with 39,000 verses, thereby being the third longest Indian epic poem, next to the Mahabharata and the Ramayana. The Khamba Thoibi Sheireng is often considered to be in a status of “mahakavya” (transl. great epic; court epic), and its author as a “” (transl. great poet; classical poet). For composing the epic, Anganghal was honoured by the Manipuri Sahitya Parishad, with the title “Kabiratna” in 1948. The epic saga is based on the ancient classic of Khamba and Thoibi, also referred to as the \"National Romantic Legend of Manipur\" by Suniti Kumar Chatterjee, as well as one of the 7 epic cycles of incarnations, constituting the Moirang Kangleirol of Ancient Moirang. Another remarkable achievement of Meitei cultural heritage, directly related to the Khamba Thoibi epic poem, is \"Khamba Thoibi Jagoi\" (), also known as \"Khamba Thoibi ballet\", which is a traditional Meitei ritualistic and theatrical classical dance form, a part and parcel of the Lai Haraoba performances, performed in honor of God , ", "text_characters": 2461, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10881665", "title": "Meitei intangible cultural heritage", "score": 16.692952423039507, "snippet": "It is a union of \"the critical and the humourist\". It produces a big humorous temperament. Its common character includes pastiche. It aims whatever is ridiculous or unseemly. Social practices, rituals and festive events. Sankirtan. Meitei Sankirtana (alias Manipuri Sankirtana) is the artistic manifestation of the worshipping culture of the Meitei people (Manipuri people). It is regarded as the visible form of God, in Meitei culture. Regarding the art form, the Ministry of Culture (India) states the following: \"“... Woven within the framework of sacrosanct rituals and ceremonies the art consists of narrative singing and dancing. Always performed in a Mandala (circular area) inside a Mandapa (hall) attached to a temple or erected in a courtyard. The rituals and formalities are strict and even the audience are seated according to set rules. It employs musical instruments like drums and cymbals. The artistes play these instruments and dance at the same time. An artiste spends a life-time specializing only in one aspect.”\" Death rites of Phayeng. The Chapka Phayeng people of Manipur are a part of the Meitei people itself. But they have a unique culture of burying the death. Shikaplon is a tradition of \"“requiem and a funeral march”\", along with . According to their beliefs, in the afterlife, people go to the to unite with their ancestors. Among the mourning people during the time of burial, one of them should sing the Shikaplon, which gives instructions to the journey of the dead ", "text_characters": 2204, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8233849", "title": "Leishangthem Tonthoingambi Devi", "score": 14.708672768596525, "snippet": "Indian film actress Tonthoingambi Leishangthem, popularly known as Tonthoi, is an Indian actress. She has established a career in Manipuri films and is the recipient of several awards, including a National Film Award. Early life and education. She is a B.Com. graduate and has taken keen interest in performing arts since very young age. Tonthoi loves sports and has actively been volunteering in social service since her childhood. She completed her master's in social work from Manipur University. As a student, she was part of the University's women football team which participated in All India Women Football tournament. She has also been trained in playing the traditional music instrument, Pena. Before joining NSD, she took a three-month acting class in the early month of 2007 under Oja Niladhaja Khuman. She has also completed her one-year residential certificate course in Theatre in Education from National School of Drama, Tripura. Career. \"Leishangthem\" appeared in feature films, Doordarshan serials and ISTV serials. Her first film is \"Nangna Thawaini\", where she was playing heroine's friend, alongside Kamala and Gung in a supporting role. After this, she has done a number of Manipuri films. Among the notable ones are \"Loibataare Ta Raju\", \"Thoicha\", \"Amamba Sayon (Resurrection)\", \"Eepaktuda the lake\", \"Leipaklei\", \"Nungshibee Kabaw Valley\", \"Beragee Bomb\", \"Pallepfam\" and \"Phijigee Mani\". She has also produced a Manipuri film titled \"Beragee Bomb\" under the banner of Chingkh", "text_characters": 2551, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:39583", "title": "Folk music", "score": 14.535247690954165, "snippet": "National and regional forms. Africa. Africa is a vast continent and its regions and nations have distinct musical traditions. The music of North Africa for the most part has a different history from Sub-Saharan African music traditions. The music and dance forms of the African diaspora, including African American music and many Caribbean genres like soca, calypso and Zouk; and Latin American music genres like the samba, Cuban rumba, salsa; and other clave (rhythm)-based genres, were founded to varying degrees on the music of enslaved Africans, which has in turn influenced African popular music. Asia. Many Asian civilizations distinguish between art/court/classical styles and \"folk\" music. For example, the late Alam Lohar is an example of a South Asian singer who was classified as a folk singer. Khunung Eshei/Khuland Eshei is an ancient folk song from India, a country of Asia, of Meiteis of Manipur, that is an example of Asian folk music, and how they put it into its own genre. Folk music of China. Archaeological discoveries date Chinese folk music back 7000 years; it is largely based on the pentatonic scale. Han traditional weddings and funerals usually include a form of oboe called a suona, and apercussive ensembles called a chuigushou. Ensembles consisting of mouth organs (sheng), shawms (suona), flutes (dizi) and percussion instruments (especially yunluo gongs) are popular in northern villages; their music is descended from the imperial temple music of Beijing, Xi'an, Wuta", "text_characters": 2791, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5965767", "title": "2010 Commonwealth Games opening ceremony", "score": 12.521287655968845, "snippet": "The opening ceremony of the 2010 Commonwealth Games was held at the Jawaharlal Nehru Stadium, the main stadium of the event, in New Delhi, India. It began at 7:00 PM (IST) on 3 October 2010 ending at 10:00 PM (IST) displaying India's varied culture in a plethora of cultural showcases. Wizcraft was given the contract to produce the opening and closing ceremonies of the 2010 Commonwealth Games. Guests of Honour. The following were the guests that attended the opening ceremony of the 2010 Commonwealth Games: The Royal Family. The Prince of Wales (now Charles III, representing Elizabeth II as Head of the Commonwealth), Camilla, Duchess of Cornwall and Prince Edward, Earl of Wessex attended the ceremony. International Guests. A total of three heads of state from outside India attended the opening ceremony; two from Commonwealth nations and one from a non-Commonwealth nation. The three head of states are Mohamed Nasheed, President of the Maldives, Marcus Stephen, President of Nauru and a multiple Commonwealth gold medallist.h. Sir Anand Satyanand, the Governor General of New Zealand (the first of Indian descent), attended the ceremony as well. Alongside the Commonwealth president, attendees included International Olympic Committee then president, Jacques Rogge and Albert II, Prince of Monaco who is a member.Rogge was quoted as saying, \"I think India has set a good foundation stone for the Olympics bid and a successful Commonwealth Games can help India mount a serious bid for the Ol", "text_characters": 2733, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2470854", "title": "Assam Movement", "score": 12.103874443757384, "snippet": "By 1891 one-fourth the population of Assam was of migrant origin. Assamese nationalism, which grew by the beginning of the 20th century, began to look at both the Hindu Bengalis as well as the British as alien rulers. The emerging Assamese literate class aspired to the same positions as those enjoyed by the Bengali Hindus, mostly from Sylhet. The Bengali Muslims, who came in mainly from Mymensingh, were cultivators who occupied flood plains and cleared forests. They were not in conflict with the Assamese and did not align with the Bengali Hindus. In fact the Assamese elite encouraged their settlement. In the post-partition period as Assamese nationalists tried to dismantle Bengali Hindu dominance from the colonial period the tea garden labourers as well as the Muslim Bengalis supported them. Ever mindful of being the neighbour of the populous and culturally dominant Bengali people, the Assamese were alarmed that immigration not only had continued illegally in the post-independence period but that illegal immigrants were being included in electoral rolls. Cross-border immigration. Immigration from East Bengal to Assam became cross-border in character following Partition of India—the 1951 census records 274,000 refugees between 1947 and 1951, most of who are estimated to be Hindu Bengalis. On the basis of a natural growth rate, it was estimated that the immigrants numbered 221,000 between 1951 and 1961. In 1971, the surplus over the natural growth was 424,000 and the estimated ", "text_characters": 3021, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 2.748297141388834, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0916/R008_request.json/messages/15/content`；SHA256：`fde2e49e7643263e358d3ad632c0b95350cd48a15d4b49d912471b3c418f9b76`。
+
+## S009｜重评整题条件并正式提交Pena
+
+比较四项支持、再次承认连接疑问，最终答案接受并Submit。
+
+结束状态：正式Final pena。
+
+边界判断：检索后重新展开候选整体接受。
+
+内部KEEP与反证：引用、疑问、最终判断为同一次完整论证，不按清单拆。
+
+### SPLIT原文
+
+````
+Let me try to get more context or search for "pena" specifically.
+
+<tool_call>
+<function=search>
+<parameter=query>
+pena instrument Manipur national symbol folk song
+</parameter>
+</function>
+</tool_call>
+→ 切点 [7, 0, 0] →
+The user is asking for a traditional musical instrument that is considered a national symbol for Manipuris, which accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results, I found:
+1. The Milhiem ethnic group belongs to the "Old Kuki tribes" of Manipur (from doc_id: wiki25:
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R8 `/rounds/7/reasoning_content` [0,1503)
+
+SHA256：`667f83ebc8136fcb795543748e378c3bf56c4b1a39d9007e539fc9d7337f4b60`；原字段SHA256：`667f83ebc8136fcb795543748e378c3bf56c4b1a39d9007e539fc9d7337f4b60`。
+
+````
+The user is asking for a traditional musical instrument that is considered a national symbol for Manipuris, which accompanies a folk song form associated with the "Old Kuki tribes" such as the Milhiem ethnic group found in Manipur.
+
+From the search results, I found:
+1. The Milhiem ethnic group belongs to the "Old Kuki tribes" of Manipur (from doc_id: wiki25:5711237).
+2. The pena is an ancient instrument that is a sort of national symbol for Manipuris (from doc_id: wiki25:1408738 and wiki25:10881664).
+3. The pena accompanies "pena eshei", which is a folk song form (from doc_id: wiki25:1408738).
+
+The pena is described as an instrument made from a bamboo rod and the shell of a gourd or coconut.
+
+The question asks for the instrument that accompanies the folk song form associated with the "Old Kuki tribes" such as the Milhiem. The pena is the instrument that is a national symbol for Manipuris and accompanies "pena eshei".
+
+Let me verify if "pena eshei" is associated with the Old Kuki tribes or if there's another connection. The search results mention that the pena is a national symbol for Manipuris and accompanies "pena eshei". The Milhiem are Old Kuki tribes. The question seems to be asking about the pena as the instrument.
+
+Based on the information available:
+- The pena is a traditional musical instrument.
+- It is considered a national symbol for Manipuris.
+- It accompanies the folk song form "pena eshei".
+- The Milhiem are Old Kuki tribes of Manipur.
+
+The answer should be "pena".
+
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "answer": "pena"
+  },
+  "id": "chatcmpl-tool-8b11ab836e38dea4",
+  "name": "submit_answer",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"answer\": \"pena\"}",
+      "name": "submit_answer"
+    },
+    "id": "chatcmpl-tool-8b11ab836e38dea4",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "pena"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 6.7050568759441376e-06,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "chatcmpl-tool-8b11ab836e38dea4"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "pena",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    7
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 7
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+初始三Call普通重试保持完整；三次实质候选评估与随后取证均保留。100字符Open的直接失败反馈不提前放入新搜索。
+
+R5可视为关系取证的长背景说明；主方案依据其真实比较材料证明范围、提出其他乐器解释和重新选择入口而独立。R8也可作为最后Search直接解释，主方案因明确整题接受及提交而分开。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

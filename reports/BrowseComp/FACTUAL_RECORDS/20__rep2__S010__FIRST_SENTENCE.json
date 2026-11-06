@@ -1,0 +1,41 @@
+{
+  "case_id":"20__rep2__S010__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五个Final真实采用正确题名；Final本科时间未获直接证据，C仅答案采纳语义，不冒证据质量通过。旧整段EM保留。"},
+  "review_basis":"原完整14轮13Call已读；四新10轮6Call全Reasoning/Return/Final读完。95返回槽无新增全文，跨线程56130已实际读过，其他精确SHA为本线程已读，不按相似文档代读。",
+  "pre_state":"R12@244之前，P已经采用正确论文和直接16500，技术条件支持；学校多次查询失败，本科R8实际查过并明确没有日期。U不是第一次本科核验。当前R12已反馈学校无结果，尚未有Chalmers招生或作者本科日期证明。",
+  "u_work":"先用常识断言学校沿革，随后实际执行第二次作者本科Query E12，R13前157字符说仍无日期/招生。没有新增学历证据、候选排除或充分性接受，后继转全面比较。",
+  "u_state_update":"本科仍未知，与P第一次失败后状态一致；原随后又一次学校，R14按其他支持接受题名。其查证反馈没有改变论文采用，也未消解任何新冲突。",
+  "original_action_consequence":"原U及后续两Call为作者一次、学校一次。新1/4重做这两个目标；新2/3没有再做作者，但保留P先前无证状态并在一次学校后直接接受，因此需区分已有尝试支持的少重复与漏做第一次核验。",
+  "guidance":{"text":"However, I have found strong evidence for most of the criteria:","source":"原R13[157,220)，13Token，冒号引导行不含后继清单。","audit":"ORACLE_ANCHORED。无新实体、学校沿革或日期，但预填技术强匹配的评价框架；P已具同类匹配判断，并非第一次给答案。仍可能补偿原失败后的转接受衔接，不能当无引导纯删除。U内1829/1962常识未注入，四路径后来1829来自自身生成，不错归G。"},
+  "evidence":[
+    {"id":"O_PRIOR_AUTHOR","source":"original","pointer":"/tool_events/7/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013 thesis Chalmers","use":"chatcmpl-tool-866ec32af8f8b4e2，P中已有第一次作者真实核验。"},
+    {"id":"O_PRIOR_FAIL","source":"original","pointer":"/rounds/8/reasoning_content","quote":"not giving me specific information about Simon Isakson's B.Sc. completion date.","use":"P已识别无日期，不是只看到姓名未理解。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"Simon Isakson Chalmers B.Sc. 2005 2010 2013 engineering","use":"chatcmpl-tool-a889830f2a989f14，U再查同缺口。"},
+    {"id":"O_FAIL","source":"original","pointer":"/rounds/12/reasoning_content","quote":"not giving me specific information about Simon Isakson's B.Sc. completion date or Chalmers University's student numbers in the 1850s.","use":"U局部产物没有关闭缺口。"},
+    {"id":"N1_AUTHOR","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Simon Isakson B.Sc Chalmers 2005 2013 education","use":"chatcmpl-tool-88907f67501e09ce，R13学校后恢复作者取证。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"not directly verifiable from the search results, but given that all other criteria match perfectly","use":"R14虽仍未知两属性，以技术支持接受C。"},
+    {"id":"N2_ONLY_CALL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Chalmers University founded 1829 1850s student enrollment Sweden engineering","use":"chatcmpl-tool-b927d8d6d34409ed，全新轨迹唯一Call，不是本科查证。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"However, I should note that I couldn't verify all the criteria","use":"R13保留学历无证而选择接受；没有真实执行新本科核查。"},
+    {"id":"N3_ONLY_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Chalmers University founded 1829 student enrollment history 1850s","use":"chatcmpl-tool-aceb5b0a8064b252，全部新路径唯一学校Call。"},
+    {"id":"N3_UNEXECUTED","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Let me search for more specific information about Simon Isakson's B.Sc. completion date.","use":"R13本科意向没有实际Call，转整体比较和Final，不算已重建。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Based on the information I have gathered, the thesis title is","use":"R13仍列本科待证而回答C。"},
+    {"id":"N4_AUTHOR","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson Chalmers B.Sc 2005 2013 degree","use":"chatcmpl-tool-a15a7c8d788600c0，R12即恢复原目标实际取证。"},
+    {"id":"N4_FAIL","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"not giving me specific information about Simon Isakson's B.Sc. completion date.","use":"R13失败反馈也恢复，之后实际学校。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"Need to verify B.Sc completion between 2005-2013","use":"R14未证属性与最终接受同时存在。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后先学校而非原先作者，之后再恢复本科。","state_chain":"技术强匹配盘点→学校失败→本科再查失败→按其他已证支持接受C。","function_change":"原作者目标、操作、无日期反馈完整重建，只顺序倒换；两Call/三Actor均原数，生成与Prompt略增，不是净资源节省。","evidence":["N1_AUTHOR","N1_ACCEPT"],"semantic_result":"C，Final依学业顺序推日期并无直接证据。"},
+    {"repeat":2,"first_divergence":"先学校一次，随后不再实际查本科，接受P技术匹配。","state_chain":"学校失败→保留两缺口→以其他匹配直接接受C。","function_change":"新后缀未观察作者操作重建，原P已有第一次作者失败提供相同未知状态；因此少一次重复尝试，并非本题从未查过学历。Final却无证说本科在范围内，质量受限。","evidence":["O_PRIOR_AUTHOR","O_PRIOR_FAIL","N2_ONLY_CALL","N2_ACCEPT"],"semantic_result":"C；Reasoning承认未证，Final又肯定，二者不混。"},
+    {"repeat":3,"first_divergence":"先学校一次；后提出查本科但未执行，改接受。","state_chain":"学校无结果→本科核查意向→重盘技术与两待证→直接正式C。","function_change":"新路径不重建实际本科尝试，P中同目标已失败；少一次原重复取证和部分表述。Final学历依2018推测，不能解释为证据完整不变。","evidence":["O_PRIOR_AUTHOR","O_PRIOR_FAIL","N3_ONLY_CALL","N3_UNEXECUTED","N3_ACCEPT"],"semantic_result":"C，无新日期支持。"},
+    {"repeat":4,"first_divergence":"G后仍决定查作者，首Call与原同目标。","state_chain":"本科失败恢复→实际学校失败→技术匹配完整比较→承认两缺口但接受C。","function_change":"作者目标/操作/无证产物全恢复，原后缀学校也保留；表达稍短、Prompt略增，不能按重建推所有开销不变。","evidence":["N4_AUTHOR","N4_FAIL","N4_ACCEPT"],"semantic_result":"C，Final作者身份代日期。"}
+  ],
+  "mechanism_candidate":"这个A组的U是已失败过的本科核查再次执行，未改变当前题名或已证/未知结构。新2/3不再做这次额外学历尝试，以P已有失败状态和技术匹配继续，经一次学校后提交；新1/4重新查学历，仍得相同未知，最后同样提交。四路径对照支持本科重试次数可以不同而不改变本组答案，但G先给强匹配评价且Final属性仍无证，不能提升为学历条件无用或无补偿严格省略。",
+  "within_case_support":"一对两路径恢复作者、一对两路径不恢复；都以同候选和两未知属性结束C。两不恢复都有P中先前真实作者失败，不是相同姓名的关键词推断。新3说要查但没有Call，行为与意向分离。",
+  "mechanism_chain_checks":[
+    {"chain":"P已有同目标失败→不再执行第二次本科查证→保留未知与技术支持→正式提交同题名。","observed_repeats":[2,3],"not_observed_repeats":[1,4],"evidence_by_repeat":{"2":["O_PRIOR_AUTHOR","O_PRIOR_FAIL","N2_ONLY_CALL","N2_ACCEPT"],"3":["O_PRIOR_AUTHOR","O_PRIOR_FAIL","N3_ONLY_CALL","N3_ACCEPT"],"1":["N1_AUTHOR"],"4":["N4_AUTHOR"]},"limits":"G有强匹配框架，未证属性在Final过度肯定；只能说明本组额外尝试非答案保持必要条件，不能证明纯因果可省。"},
+    {"chain":"本科再查恢复且仍无日期→依其余匹配接受同题名。","observed_repeats":[1,4],"not_observed_repeats":[2,3],"evidence_by_repeat":{"1":["N1_AUTHOR","N1_ACCEPT"],"4":["N4_AUTHOR","N4_FAIL","N4_ACCEPT"]},"limits":"恢复没有带来新证据，不表示这个目标在别题不会发现重要冲突。"}
+  ],
+  "counterevidence_and_limits":["未重建的两条并非从未核验作者，完整P里第一次失败不可遗漏。","新3未来计划不算真实Call，不能据此称部分操作重建。","Final把未知变肯定是质量问题，即使题名正确也不消失。","G是原后继强匹配评语，P虽早已匹配仍不能声称完全中性。","恢复者和不恢复者都C，当前没有失败分支解释哪种取证在别题会改答案，需要跨题A/B比较。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R12@244，P47生成前缀IDs重放单列；原1387生成/2Search/3Actor，Prompt35992+81683=117675，G13一次。新1417/1060/1085/1310加G1430/1073/1098/1323，精确差+43/-314/-289/-64；Search2/1/1/2、Actor3/2/2/3、Prompt117903/75309/75343/117804，差+228/-42366/-42332/+129。2/3少一次作者重试且四资源均降，1原构成保持略增，4原构成保持生成降Prompt增。原延迟含P不作精确差，分支节省不相加。",
+  "next_cross_case_test":"在A找同缺口已有失败状态是否可直接沿用、B找重复核查实际发现/消解新冲突的反例；比较真正改变的判断和后继行动，不把无新事实等同无作用。"
+}

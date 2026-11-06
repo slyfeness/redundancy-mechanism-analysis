@@ -1,0 +1,41 @@
+{
+ "case_id":"495__rep1__S005__TERMINAL_DROP_NO_ANCHOR","question_id":"495","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"N","3":"W","4":"W"},"basis":"原一轮10000Token GENERATION_LENGTH_STOP无Final；新2同长度终态N，余三正式2017,Satam，与Gold2015,Ayoyinka不符。不能将原推理答案草稿当原正式W。"},
+ "review_basis":"完整原35854字符单轮Reasoning分段实际阅读，原0Call/0Return。四新20轮16Call全部Reasoning/content/Return全文已读，80文档槽56个新完整片段逐一读，余精确SHA已读。不是搜索意向按Call计数。",
+ "pre_state":"R1@24689前已大量写查询计划却没有真实Call；还编出Shivaji/Shivangi Satam、2017、1992、访谈题名与假想Snippet并当匹配来比较。P没有任何工具证据或真文档。Stage起点之前就已有错误答案及其假想支持，删除末段并不删除这套假前提。",
+ "u_work":"U R1[24689,35854)再列搜索/拟答2017,Satam，继续比较少量候选后长时间逐字重复Query意向，到10000Token截断。U无实际Call，也没有真实信息增量、正式Final；它恢复已定错误候选并反复准备执行，却一直没把计划变成协议调用。",
+ "u_state_update":"原U没有修正P中假的已找到访谈/2017关系。新2继续同样伪搜索、确定拟答与文本循环到长度N；新1/3/4把搜索计划变成真实Call，逐轮承认返回不支持，却没有撤销原身份假设，最终仍提交错误2017,Satam。",
+ "original_action_consequence":"这里不是必要证据随U被删除：P本来没真实证据。差别在原计划是否成为真实执行，以及负反馈是否降低既定身份假设的地位。三个实际Search分支都说未找到目标采访，但仍以所谓internal knowledge/题意完全匹配为接受理由，追加核验只改变花费与是否提交，未改变具体答案。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，无首句/首Token/G。","audit":"无未来引导，保留P自身已有错误断言不是G泄漏。CHAR_EXACT_RETOKENIZED仅末尾空格[24688,24689)补回，6882原生+1空格=6883保留ID，不移动边界。非单Stage从零重采样：保留已有6883Token及其错误判断。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"**Document:** \"2021 Interview: Shivangi Satam on Father's Legacy\".","use":"P内假想来源，无对应Call/Return。"},
+  {"id":"O2","source":"original","pointer":"/rounds/0/reasoning_content","quote":"*(Wait, I'll assume the search returns the correct info.)*","use":"U开头附近直接假定检索支持，而非真实返回。"},
+  {"id":"O3","source":"original","pointer":"/rounds/0/reasoning_content","quote":"**Query:** \"2021 interview child soap opera character played real life\"","use":"U重复文本，原0工具，不把多次文字Query当重复Search。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"2021 interview child stated that the individual had over four decades in a career and was the first child of one of their parents out of three other children","use":"首轮立即真实执行此前计划；返回不匹配。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Shivaji Satam fits some criteria (died 2017, poetry lover).","use":"R2真实检索无支持后仍维持P假的候选事实。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"None of these contain the specific details about the individual's career, soap opera role, or the child's upbringing as described in the prompt.","use":"R5明确知道四次查证未返回目标信息，却仍接着说只能依赖题目推断。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/4/content","quote":"The individual's child lost that parent in **2017**, and the last name of the individual's child is **Satam**.","use":"正式错误答案，不能按有Final当质量改善。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"**The text is from an interview with Shivangi Satam.**","use":"0Call下仍说找到访谈，与P假想证据延续。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"**Query:** \"2021 interview child stated that the individual had over four decades in a career\"","use":"反复写计划直至3117新Token耗尽，非真实重复工具执行。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"*(Wait, I need to simulate the search results.)*","use":"R1先编Snippet/死亡日期等，后本轮末才真正Call；不能把编的片段算Return。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"The search results still do not provide the specific interview details about Shivangi Satam or the other candidate.","use":"R4承认三次Search都无采访证据，但继续由自己构造匹配接受。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/3/content","quote":"**Last name of the individual's child:** Satam","use":"正式W，多个家庭/诗歌假事实未在实际文档获得。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"*(Wait, I will assume the search confirms Shivaji Satam.)*","use":"尚未真实结果先预设确认，说明错误前提保留。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"None of these match the specific details in the prompt","use":"R7早已见不匹配仍说internal knowledge确定，后又三次查同候选。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/9/content","quote":"The individual's child lost that parent in **2017**, and the last name of the individual's child is **Satam**.","use":"九真Search后仍同W；最后失败反馈没有用于重选身份。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"立即发真实Call，原U却只继续文字计划；随后三次查词句/姓名。","state_chain":"真实结果不匹配→明确意识缺采访→仍用P的Satam假设填满条件→再查失败→正式W。","function_change":"拟答/核查意向恢复且实际执行4Search，原U文字循环减少但增加检索/Actor/Prompt，没恢复证据支持。","evidence":["N11","N12","N13","N14"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"原U计划拟答与伪搜索继续，具体词句/假死亡日改变但无真实执行。","state_chain":"假访谈视为已找到→2017,Satam拟答→反复需要搜索→不发Call→长度N。","function_change":"U主要文本工作/循环完整再现，无真取证，无正式Final，和原同失败状态不能说Stage不必要。","evidence":["N21","N22"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"先假想Snippet并拟答，再真正发Call；三次实际结果都未支持，R4仍接受。","state_chain":"假支持保留→真实反馈未匹配→候选比较用自己编的条件而非来源→正式W。","function_change":"拟答重建，计划转三真Search；表达比原后缀可能短，但新取证成本增加，不是总开销省且质量保持。","evidence":["N31","N32","N33"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"先假定确认，首Call真泛访谈，后多个线索/姓名查九次。","state_chain":"逐次反馈不匹配→换诗歌/祖辈/失亲查询→仍把Satam当唯一匹配→继续同候选核验→正式W。","function_change":"U的拟答多次重做，新增九Search与九Actor，返回无证却未改变接受，耗费增加也未改变答案实体。","evidence":["N41","N42","N43"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"P已把自编的访谈、死亡年和亲子关系当匹配。删除末尾拟答/伪搜索文本没有移走这些先前判断：新2直接再现循环，新1/3/4虽然真正执行查证并明确看到无匹配，却没有撤销候选前提，最后仍从所谓internal knowledge接受同错答案。这里查询负反馈只更新了“没找到采访”的状态，没有改变“此人符合”的判断；因此查3/4/9次改变开销却未纠正答案。必须区分自称找到和真实返回，不能以原有许多Query文字统计重复检索。",
+ "within_case_support":"3条实际Search均明确承认未匹配且最终2017,Satam W；0Call新2文本循环N，是计划不执行的反例路径。四条都未采用Gold；三次状态变W不证明U维持正确答案的重要性。",
+ "mechanism_chain_checks":[
+  {"chain":"真实查证无匹配被明确处理，但错误身份假设未撤销，最后仍接受原先错误答案","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["N12","N13","N14"],"2":["N21","N22"],"3":["N31","N32","N33"],"4":["N41","N42","N43"]},"limits":"新2没有真实Return或Final，不硬纳入相同链；未匹配不是候选被直接证伪，不能主张一次未命中就应该排人。"}
+ ],
+ "counterevidence_and_limits":["原无FinalN，新三W只是生成了错误答案，不是任务质量提升。","错误候选和假证据已在P，不能把它们算删后新增或G泄漏；本组无G。","不存在支持Satam关系的真实返回，不把虚构Snippet/日期当证据来源。","搜索没命中不能单独证明候选错误；分析仅指模型承认无支持后仍把自己推断写成来源事实。","非精确切点原suffix成本只能保守区间，new2预算3117不意味着与原后缀逐Token精确相等。"],
+ "cost_basis":"R1@24689 CHAR_EXACT_RETOKENIZED，原10000生成，6882完整原生ID后切入下一Token，原后缀保守3117–3118Token，不报精确净节省。G0。新gen3341/3117/2581/3361；相对保守区间分别+223..224/−1..0/−537..−536/+243..244。原后缀Search0/Actor1，Prompt原首523，但删后重放6883Token使新首7406，prefill单列；新Search4/0/3/9 Actor5/1/4/10 Prompt68350/7406/49704/210644。未用原全10000当可省后缀，新增真实搜索不能算原成本下降。",
+ "next_cross_case_test":"与其他P已有被采用但尚无来源支持的候选对比：真实负反馈是否改变下一次核验对象、是否把假想支持重新当确证；保留实际纠错成功的反例及所有0Call文本循环，不按提到Query直接归重复检索。"
+}

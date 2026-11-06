@@ -1,0 +1,823 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0735",
+  "stage_id": "S004",
+  "sample_order": 29,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0735/trajectory.json",
+      "source_sha256": "abb613982659e665568bdb9e0ddb9538a5b6d55b3ebf40446e0143061cd0836e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0735.json",
+      "source_sha256": "9e75cef3a12bc4876fa1e82a96d921c597d24fd8966eab80cc79a7d74ac83882"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "cec1624c3f189251daa66849d3299cc672de4cedb0dae4051376b866f252b925"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "79fbc9cc72f85759cf1cd36b56dfa534c9ba29f9e419056ffff48ffb6c7dedb0"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a5fb2177a1f2c2101d876ed4d15e898e2347414bd50373adb5a830e3b09c321e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "a796d11d03446ed15f63da9293cda759ec0d9964e9d7e90aef85c1d50e66b606"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "64141a30630e0fba76bd5b33703e354ae52c18ad578532b6b2bff04378a4767b"
+    }
+  },
+  "question_and_gold": {
+    "question": "Consider the highest peak in the Northern Calcareous Alps. What is the result of adding the quotient of its elevation (in meters) and the duration (in millions of years) of the Norian stage, to the product of the duration (in millions of years) of the Rhaetian stage and the number of known specimens of the genus Caviramus, and then subtracting the year the genus Carniadactylus was named from this sum?",
+    "offline_gold": [
+      "-1830.5"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原10轮109484字符及全部真实工具返回已经完整阅读，见ROOT_029_ORIGINAL_PROCESS.md。",
+    "new": "本组223046字符阅读视图按0、28000、56000、84000、112000、140000、168000、196000至223046连续完整读取；r2/r3/r4末轮重复全文均读，未以摘要替代。仅全文读过且内容精确相同的Return用别名。",
+    "semantic_author": "Codex直接撰写全部语义，Python不生成判断。"
+  },
+  "original_outcome": "W",
+  "prestate": {
+    "actual_input": "切于R4@1287，保留当前R4[0,1287)及真实工具历史。当前已认Parseierspitze最高，却认为高度缺失；Norian用217−213暂取4，Rhaetian和Caviramus数仍缺，命名年将2009/2015/2008和其他属混在一起尚需核。历史Assistant reasoning实际为空，不能把原旧推理视为全部重放。",
+    "evidence_state": "R3 E10返回的列表7071506已明确Parseierspitze(3,036m)，因此高度事实已经可见，但当前R4未提取采用。主峰页3309898本身文本530字符的高度位置是at tall，非增加Open长度即可补回。题目另三数值关系并未因高度可见而解决。",
+    "gap": "模型自述高度仍缺与实际P已有高度形成区别；应查它何时采用旧列表，以及何时把已知高度再次当缺口。",
+    "evidence": [
+      "I_P",
+      "O_PRIOR_HEIGHT",
+      "O_CORRUPTED_PEAK"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 4,
+        "json_pointer": "/rounds/3/reasoning_content",
+        "start": 1287,
+        "end": 1517
+      },
+      {
+        "round": 4,
+        "json_pointer": "/tool_events/16"
+      },
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 324
+      },
+      {
+        "round": 5,
+        "json_pointer": "/tool_events/17"
+      },
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 276
+      },
+      {
+        "round": 6,
+        "json_pointer": "/tool_events/18"
+      }
+    ],
+    "goal": "解决主峰页高度空缺，为公式确定海拔输入。",
+    "operations": [
+      "R4Open3309898 offset0 limit1000得到全530字符，依旧at tall。",
+      "R5把缺数视为placeholder，再做完全相同Open，完整Return相同。",
+      "R6称placeholder or error，改Search Parseierspitze elevation meters，返回与R3同资料包，再次含3036列表。"
+    ],
+    "product": "两次全页Open并未带回新高度；Search再次给出先前已可见的列表。U没有在内部完成采用，明确提取3036在后继R7。不能把U全部说成不存在真实取证，也不能称三次都是必要新事实。",
+    "judgment_change": "从缺数可用打开全文修补，转为再搜索高度。缺口没有利用此前列表闭合；后续R7才取用列表3036。",
+    "evidence": [
+      "O_FIRST_OPEN",
+      "O_REPEAT_FEEDBACK",
+      "O_REPEAT_OPEN",
+      "O_RESEARCH",
+      "O_PRIOR_HEIGHT"
+    ]
+  },
+  "original_followup": {
+    "use": "R7采用3036但再Open7071506前500字符，实际只给列表介绍而不含靠后的3036；R8从先前Search继续采用高度，转Rhaetian/标本。R9纠正物种/属命名年2009并三Search补数，R10以4/8/2/2009提交−1234。高度正确恢复并不能修复动物年代/冷期等同整阶的错误。",
+    "true_suffix": "原生成保守2236—2652，6Search/3Open/7Actor生成段，记录Prompt192368(当前23925、后续168443)。U只是其中1Search2Open，不拿整原轨迹总成本冒充切点后。",
+    "evidence": [
+      "O_ADOPT_HEIGHT",
+      "O_OPEN_LIST",
+      "O_WRONG_PARAMETERS",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "同一高度缺口可由已返回的次要列表满足，继续打开缺字段的主词条未必新增事实；材料可见、被采用、被持续当作已解决三者不同。",
+    "四条都会重新读主峰并搜索高度，G也重申这个方向，故本组不能直接证明高度核验功能被绕过。",
+    "有路径先采用3036、后又称高度缺而重查；这不是完全没看到证据，是已形成判断未稳定限制后续待办。",
+    "高度恢复后，不同数值缺口的路径仍决定是否提交和答案；不能把三条N都归因于丢失高度工作。"
+  ],
+  "guide_audit": {
+    "G": "I need to find the specific elevation of Parseierspitze.",
+    "origin": "原R7 /rounds/6/reasoning_content [0,56)，13派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "Parseierspitze和查高度均已在当前P，3036在P真实Return；G没有新实体或数值，只重申未解高度行动方向。P24265派生Token，首Prompt24278。仍是后继引导，不能按无引导删除解释；四条首Call恢复Open也可能受此强调影响。",
+    "evidence": [
+      "I_G",
+      "I_P",
+      "O_PRIOR_HEIGHT"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "-1613.5",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "-1613.5",
+      "outcome": "W",
+      "outcome_reason": "正式提交−1613.5。高度3036、计数2和2009已采用；用Mid-Norian Warm Interval217—209推整个Norian8，Rhaetian冷期推8。算术对这组错误范围参数成立，答案W。",
+      "outcome_evidence": [
+        "N1_WARM_STAGE",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R4联合Open峰页500字符、Rhaetian、Caviramus、命名年四Call；峰页仍无高度，其他两泛Query无新关键数。",
+        "R5认识格式丢数，带3036搜索高度却得到出租车工会等数字命中杂结果；同批两阶段年代和holotype入口真实取回冷期及标本2。",
+        "R6采用的是旧7071506高度，不是新数字杂返；同时把Mid-Norian暖期当整阶8，计算−1613.5，复盘后Submit。"
+      ],
+      "first_substantive_judgment_difference": "原R4—6只围绕峰高，后续才查其他数；新R4把其他缺口同时执行，R5即带3036查询。关键答案分歧发生在R6采用暖期8替代原动物年代4，两者都未证明整阶。",
+      "first_actual_tool_difference": "原首Open1000；新首Open500并同批3Search，随后数字高度Query返回杂包。不是删U后完全不核高度。",
+      "function_correspondence": [
+        {
+          "original_goal": "补确切高度",
+          "original_operation": "2Open+1Search后取旧列表",
+          "original_product": "后继采用3036",
+          "new_goal": "同高度",
+          "new_operation": "1Open+带3036Search并取旧列表",
+          "new_product": "高度核验重做但少1Open，高度来自P已有事实",
+          "evidence": [
+            "O_PRIOR_HEIGHT",
+            "O_REPEAT_OPEN",
+            "N1_OPEN",
+            "N1_NUMERIC_QUERY",
+            "N1_HEIGHT_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "补公式其他数",
+          "original_operation": "原后续分轮取证并以4/8采用",
+          "original_product": "原W−1234",
+          "new_goal": "同公式",
+          "new_operation": "更早联合取证并以暖期8采用",
+          "new_product": "不同错误参数、短路径提交W−1613.5",
+          "evidence": [
+            "O_WRONG_PARAMETERS",
+            "N1_WARM_STAGE",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "HEIGHT_WORK_REBUILT_COMPRESSED_OTHER_PARAMETER_INTERPRETATION_CHANGED",
+      "decision_action_result_chain": "高度已有但未用→重做峰Open/数字Search→回用旧列表3036→联合取证提前拿到标本2及冷暖期资料→把暖期当整阶8→算术顺利结束并提交另一W。变短主要来自联合安排及少轮复盘，不是功能消失，也不是任务质量改善。",
+      "costs": {
+        "new_generation": 1354,
+        "new_prompt": 91221,
+        "new_search": 7,
+        "new_open": 1,
+        "new_actor": 3,
+        "P_replay": 24265,
+        "G_prefill": 13,
+        "conservative_new_minus_original_generation_interval": [
+          -1298,
+          -882
+        ]
+      },
+      "limits": "Search比原切点后多1，Open少2，Actor少4；生成和Prompt下降仍是W→W，不得据此称正确且可省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R14整段10000Token停于重复201.3−201.3?No，无Submit或Final。N不能由中间推测算式替代。",
+      "outcome_evidence": [
+        "N2_FIXED_ZERO_LOOP",
+        "N2_STOP"
+      ],
+      "work_timeline": [
+        "R4Open100，R5数字高度Query杂返，R6Open1000全页；R7明确从旧7071506采用3036，恢复高度所需产物。",
+        "R7—9重复查Rhaetian201200及Caviramus，阶段返Coelophysis和词表、标本只相关属；R8/R9也重述3036。",
+        "R10又说高度缺、实际再Search高度和其他四项；高度返回原同包，R11重新承认3036。这里有采用后重开，而非第一次一直未得高度。",
+        "R11—13继续同201200Query和标本词序变化，实际没取3260299；R12借常识暂用7.7而后R13又重开。R14大段先有多项反思，后近乎固定重复201.3−201.3?No，无新Call，长度N。"
+      ],
+      "first_substantive_judgment_difference": "原完成一段高度取证后转其他项并取得标本属页；新恢复高度以后仍把已解决项重纳待查，同时Rhaetian和标本入口连续失败，迟迟未形成输入组合。",
+      "first_actual_tool_difference": "首Open仅100字符，随后带3036Query而非原同Open；后续主要新增工作为201200限制的Rhaetian和Caviramus计数多次真实重复，及R10重查已知高度。",
+      "function_correspondence": [
+        {
+          "original_goal": "高度确定",
+          "original_operation": "Open/重搜后旧列表3036",
+          "original_product": "正确海拔",
+          "new_goal": "同海拔",
+          "new_operation": "两Open+数字Search、R7采用、R10又Search",
+          "new_product": "功能和正确数已恢复但未稳定退出待办",
+          "evidence": [
+            "O_ADOPT_HEIGHT",
+            "N2_HEIGHT_ADOPT",
+            "N2_REOPEN_HEIGHT",
+            "N2_HEIGHT_REQUERY"
+          ]
+        },
+        {
+          "original_goal": "后续补时长标本",
+          "original_operation": "特定入口得到冷期、标本2",
+          "original_product": "能参与计算但时长范围错",
+          "new_goal": "同缺口",
+          "new_operation": "201200多次Query和多次标本改写",
+          "new_product": "仍未获得直接标本2或唯一时长，最后仅长推理",
+          "evidence": [
+            "O_WRONG_PARAMETERS",
+            "N2_RHAETIAN_REPEAT",
+            "N2_COUNT_RETRY",
+            "N2_FIXED_ZERO_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "HEIGHT_REBUILT_AND_REOPENED_OTHER_INPUTS_UNRESOLVED",
+      "decision_action_result_chain": "高度从旧证据恢复→该判断未稳定结束高度待办→同时两未解数不断触发同入口→相同/相关属返回未变成策略更新→末轮脱离真实取证的固定算式重复→生成长度N。原高度U不是新N的唯一缺失项，因为其产物实际已恢复。",
+      "costs": {
+        "new_generation": 13919,
+        "new_prompt": 374256,
+        "new_search": 18,
+        "new_open": 2,
+        "new_actor": 11,
+        "P_replay": 24265,
+        "G_prefill": 13,
+        "conservative_new_minus_original_generation_interval": [
+          11267,
+          11683
+        ]
+      },
+      "limits": "Search多12、Open少1、Actor多4；主要Prompt增加来自这些交互的历史重放，生成大增在R14。检索入口和采样共同变化，不把所有新增认作U删除直接效应。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R11末轮10000Token反复拟搜索但未执行，无Final，保留N。",
+      "outcome_evidence": [
+        "N3_UNEXECUTED_COUNT_SEARCH",
+        "N3_STOP"
+      ],
+      "work_timeline": [
+        "R4默认Open4000取得完整但缺高度峰页；R5已经说另snippet3036，仍带3036搜，返数字杂包。",
+        "R6明确采用旧列表3036，同批却又Open同峰500且查两缺口；R7还计划核高度，R8又写高度缺，真实Search height meters带回不同排序的相同相关文本。",
+        "R8的Rhaetian stage duration首次给1895079生物带而没有1895080时长估计；R9Open峰500和Rhaetian500，均未补时长/计数，同批再动物Norian和标本只相关属。",
+        "R10再以201201.3时长及Caviramus fossils搜索，首返词表，次返相关属；R11从标准知识反复猜8/7.7和单标本，明确区分BNM14524是Raeticodactylus，却陷入拟搜索/又自称已Open循环，实际无新Call，长度N。"
+      ],
+      "first_substantive_judgment_difference": "高度已在新R5/6识别，但仍不能作为稳定已知约束后续取证；原阶段结束后R7直接采用，后续不再查询峰页3309898。真正阻止新提交的仍是时长/计数缺口及未执行的新查询，而非高度答案丢失。",
+      "first_actual_tool_difference": "首Open默认4000而非1000但实际同530字符；数字Search杂返，后续R6/R9再Open同页，R8重搜高度。",
+      "function_correspondence": [
+        {
+          "original_goal": "确切海拔",
+          "original_operation": "两次全页Open加再搜",
+          "original_product": "取用3036",
+          "new_goal": "同海拔",
+          "new_operation": "多次Open及数字/height查询",
+          "new_product": "3036明确恢复但部分查询继续，未带来新高度",
+          "evidence": [
+            "O_PRIOR_HEIGHT",
+            "N3_ALREADY_HEIGHT",
+            "N3_HEIGHT_ADOPT",
+            "N3_HEIGHT_QUERY",
+            "N3_HEIGHT_OPEN"
+          ]
+        },
+        {
+          "original_goal": "补其他算式参数",
+          "original_operation": "后续holotype和带边界搜索",
+          "original_product": "标本2及年代材料",
+          "new_goal": "同其他数",
+          "new_operation": "泛计数搜索、短RhaetianOpen、201201.3查询",
+          "new_product": "未取得标本直接页或唯一时长；最后长篇未执行意向",
+          "evidence": [
+            "O_WRONG_PARAMETERS",
+            "N3_RHAETIAN_OPEN",
+            "N3_DURATION_QUERY",
+            "N3_UNEXECUTED_COUNT_SEARCH"
+          ]
+        }
+      ],
+      "function_recovery": "HEIGHT_REBUILT_MULTIPLE_TIMES_OTHER_INPUT_SEARCHES_PARTIAL_WITH_NO_COUNT_SUPPORT",
+      "decision_action_result_chain": "已有3036反复识别但峰缺字段持续被当核验理由→新增低增量峰Open/Search；其他两数仍缺→短Open和错误年代限定未解决→新查询只在文字中反复提出→无工具推进也未接受答案→长度N。",
+      "costs": {
+        "new_generation": 12818,
+        "new_prompt": 266150,
+        "new_search": 13,
+        "new_open": 4,
+        "new_actor": 8,
+        "P_replay": 24265,
+        "G_prefill": 13,
+        "conservative_new_minus_original_generation_interval": [
+          10166,
+          10582
+        ]
+      },
+      "limits": "Search多7、Open多1、Actor多1；全部篇幅并非搜索开销，末轮生成10000是主要增量。峰页缺字段是实际源数据缺损，不能当作模型自行漏读了存在于峰页的数。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R9重复假设Rhaetian4及−1242算式但无正式提交，10000Token终止N。",
+      "outcome_evidence": [
+        "N4_ASSUMED_DURATION",
+        "N4_REPEAT_CALC",
+        "N4_STOP"
+      ],
+      "work_timeline": [
+        "R4首Open峰500并同时查Rhaetian/Caviramus/年份，返回缺数、杂项与家族；R5带3036搜数字仍杂返。",
+        "R6再次Open峰1000，同时holotype specimen number known fossils真实返回与原后续完全相同的Caviramus属页，Rhaetian201200仍无直接时长。",
+        "R7又同数字Query及另外4Search，未新增高度/时长，标本本轮只相关属但先前属页仍在；R8真正提取旧列表3036和属页2，真实Open列表500而不是继续只峰页。",
+        "R8另两Query仍是动物Norian和201200，R9接受高度3036、计数2、2009，唯Rhaetian在多个范围之间推测；最终反复假设4、计算−1242、再拟搜索而不Call，长度N。"
+      ],
+      "first_substantive_judgment_difference": "新路径在R6提前获得原后续的标本属页，R8采用两个直接数；但Rhaetian单缺口仍不断重开，未像原R10接受冷期8后提交。",
+      "first_actual_tool_difference": "首Open500加3Search，后更换为带数字高度入口和holotype计数；R8重用原后继Open列表，但未包含原后续全文或未来Return。",
+      "function_correspondence": [
+        {
+          "original_goal": "核高度",
+          "original_operation": "峰Open/搜后列表采用再Open列表",
+          "original_product": "3036",
+          "new_goal": "同高度",
+          "new_operation": "峰Open/数字搜索后R8采用并Open列表",
+          "new_product": "具体高度及相关核验恢复，仍多次无增量峰工作",
+          "evidence": [
+            "O_ADOPT_HEIGHT",
+            "O_OPEN_LIST",
+            "N4_HEIGHT_ADOPT",
+            "N4_LIST_OPEN"
+          ]
+        },
+        {
+          "original_goal": "其他参数补齐并计算",
+          "original_operation": "属页+冷期取证后接受",
+          "original_product": "2及4/8错误组合的W提交",
+          "new_goal": "同公式",
+          "new_operation": "属页数2恢复、时长查询无直接结果后反复假设",
+          "new_product": "计数和高度有支持，Rhaetian未定，未正式提交",
+          "evidence": [
+            "O_WRONG_PARAMETERS",
+            "N4_COUNT_RETURN",
+            "N4_HEIGHT_ADOPT",
+            "N4_ASSUMED_DURATION",
+            "N4_REPEAT_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "HEIGHT_AND_LATER_COUNT_REBUILT_DURATION_ACCEPTANCE_NOT_RESTORED",
+      "decision_action_result_chain": "高度核验重做→另一路标本证据也取得并采用→一个未唯一化时长仍使整个算式迟迟不被接受→在同假设/同算式之间反复而不真实搜索→长度N。说明并非资料越缺才越易无Final：与r2/r3不同，标本2已经有直接证据。",
+      "costs": {
+        "new_generation": 11607,
+        "new_prompt": 193304,
+        "new_search": 13,
+        "new_open": 3,
+        "new_actor": 6,
+        "P_replay": 24265,
+        "G_prefill": 13,
+        "conservative_new_minus_original_generation_interval": [
+          8955,
+          9371
+        ]
+      },
+      "limits": "Search多7、Open相同、Actor少1，Prompt略多936；Actor少不等于生成少，R9长段大增。不能把假设−1242当真实W或正确提交。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "B",
+    "outcomes": [
+      "W",
+      "N",
+      "N",
+      "N"
+    ],
+    "common": "四条都重做峰页Open和高度Search，最终都识别3036；核心高度事实在P原已可见，U后续产物没有消失。三条N主要卡在其他参数的取证/选择及长篇未执行动作，不能以状态3/4变化证明高度U必要。",
+    "contrast": "r1把其他取证提前合批、恢复标本2，快速接受另一个错误Norian8而提交W；r2/r3标本计数从未直接取得且高度会被重开；r4已取得并采用2仍因Rhaetian不明持续重算。共同N有不同未闭合条件。",
+    "cost_location": "r1省在少Open、少交互和较短复盘，Search反多1；其余生成大增主要末轮10000Token，不仅是搜索次数。r2Search18及多轮Prompt是另一真实增长来源。",
+    "not_claimed": "不是高度工作可完全省的无引导证据；也不是B即重要。G重申高度且工作全部重做，状态变化须沿剩余参数逐项解释。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当主词条字段实际缺失、另一已返回列表却有确切数值时，是否把列表事实作为稳定已知决定了核验是否能退出。仅提到3036还不够：r2/r3后来又称缺高度并真实再查，因此增加的是已解决信息重新进入待办所派生的工作。",
+      "support": [
+        "O_PRIOR_HEIGHT",
+        "O_REPEAT_FEEDBACK",
+        "N2_HEIGHT_ADOPT",
+        "N2_REOPEN_HEIGHT",
+        "N2_HEIGHT_REQUERY",
+        "N3_ALREADY_HEIGHT",
+        "N3_HEIGHT_QUERY"
+      ],
+      "limit": "r1/r4也做多次峰工作，不能把核验次数当固定机制阈值；原P尚未采用数值，首次核实可以合理。列表高度何时不再需要核验没有唯一金标准。"
+    },
+    {
+      "claim": "多输入任务某项事实恢复后，另一个缺口仍可持续重启全体输入盘点和算式，消耗却不产生新证据。r4已具高度与标本而单时长未解，r2/r3还缺计数；这些不同状态都可进入无Call长推理，但不能统一声称原U的高度判断丢失造成无Final。",
+      "support": [
+        "N2_FIXED_ZERO_LOOP",
+        "N3_UNEXECUTED_COUNT_SEARCH",
+        "N4_COUNT_RETURN",
+        "N4_ASSUMED_DURATION",
+        "N4_REPEAT_CALC"
+      ],
+      "limit": "r1反例是很快结束却选错参数；较快提交不是证据充分的证明。只本题，本机制需跨题和其他有Final反例检验，不能由三N反推隐藏停止阈值。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "原U三次工具没有获得P以外的新高度，但删后四条都重新核高度。既不能说U有新增事实，也不能说删后功能未重建。",
+    "新r2/r3已经明确3036后又重开，证据确实被识别但未持续控制待办，区别于从未识别。r4从属页2恢复而仍N，是仅凭计数恢复解释提交的反例。",
+    "数字3036Query四条均被真实检索转到数字杂包，查询目的合理并不保证实际返回相关；不由相似字符串推断同信息。",
+    "原阶段后的3036采用与最终整阶范围错误分开；本组原W状态变化不等于正确性退化，也不等于U在原路径完成所有关键核验。",
+    "G不提供3036，但重申高度，影响首Call恢复方向不能排除；采样、查询入口、合批、额外返回及预算均不同，单组不作纯因果证明。",
+    "原当前Round内切且无native IDs，原生成区间2236—2652；G13为预填、P24265单列；同题不同Stage及四分支差值均不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "I need to find the exact height."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 4,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the specific elevation of Parseierspitze."
+    },
+    {
+      "evidence_id": "O_PRIOR_HEIGHT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/results/2/snippet",
+      "exact_quote": "Parseierspitze (3,036 m)",
+      "doc_id": "wiki25:7071506"
+    },
+    {
+      "evidence_id": "O_CORRUPTED_PEAK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/results/0/snippet",
+      "exact_quote": "Parseierspitze is, at tall",
+      "doc_id": "wiki25:3309898"
+    },
+    {
+      "evidence_id": "O_FIRST_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/16/arguments/doc_id",
+      "exact_quote": "wiki25:3309898",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_REPEAT_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The snippet says \"at tall\" which seems like a placeholder. Let me open the document to get the full text."
+    },
+    {
+      "evidence_id": "O_REPEAT_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/17/arguments/doc_id",
+      "exact_quote": "wiki25:3309898",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RESEARCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/18/arguments/query",
+      "exact_quote": "Parseierspitze elevation meters",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ADOPT_HEIGHT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The snippet says \"Parseierspitze (3,036 m)\" in one result."
+    },
+    {
+      "evidence_id": "O_OPEN_LIST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/19/arguments/doc_id",
+      "exact_quote": "wiki25:7071506",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_WRONG_PARAMETERS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "- (3036 / 4) + (8 * 2) - 2009"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/25/arguments/answer",
+      "exact_quote": "-1234",
+      "call_id": "chatcmpl-tool-a0c85ed2c495b826"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:3309898",
+      "call_id": "chatcmpl-tool-9cd9b4065d0fd897"
+    },
+    {
+      "evidence_id": "N1_NUMERIC_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Parseierspitze elevation 3036 meters",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_HEIGHT_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the elevation is **3,036 meters**."
+    },
+    {
+      "evidence_id": "N1_WARM_STAGE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So Norian duration = 217 - 209 = **8 million years**."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/8/arguments/answer",
+      "exact_quote": "-1613.5",
+      "call_id": "chatcmpl-tool-a65c7a61e96e3d07"
+    },
+    {
+      "evidence_id": "N2_HEIGHT_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Highest peak in Northern Calcareous Alps: Parseierspitze, elevation = 3036 meters"
+    },
+    {
+      "evidence_id": "N2_REOPEN_HEIGHT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The document says \"Parseierspitze is, at tall, the highest mountain...\" - the text is cut off. Let me search for the elevation specifically."
+    },
+    {
+      "evidence_id": "N2_HEIGHT_REQUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/10/arguments/query",
+      "exact_quote": "Parseierspitze elevation meters",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RHAETIAN_REPEAT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/18/arguments/query",
+      "exact_quote": "Rhaetian stage duration 201 200 million years",
+      "call_id": "chatcmpl-tool-ba0520024410400b"
+    },
+    {
+      "evidence_id": "N2_COUNT_RETRY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/19/arguments/query",
+      "exact_quote": "Caviramus number specimens holotype",
+      "call_id": "chatcmpl-tool-adb6cb10600ed397"
+    },
+    {
+      "evidence_id": "N2_FIXED_ZERO_LOOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "Let's assume the Rhaetian duration is 201.3 - 201.3? No."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_ALREADY_HEIGHT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I see in another snippet that Parseierspitze is at 3,036 m."
+    },
+    {
+      "evidence_id": "N3_HEIGHT_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So Parseierspitze is 3,036 m."
+    },
+    {
+      "evidence_id": "N3_HEIGHT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Parseierspitze height meters",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_HEIGHT_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/11/arguments/doc_id",
+      "exact_quote": "wiki25:3309898",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RHAETIAN_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/12/arguments/doc_id",
+      "exact_quote": "wiki25:1895079",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N3_DURATION_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/15/arguments/query",
+      "exact_quote": "Rhaetian stage duration 201 201.3",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_UNEXECUTED_COUNT_SEARCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Actually, I recall that Caviramus is known from a single specimen (BNM 14524? No, that's Raeticodactylus). Let me search."
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_COUNT_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/6/observation/results/0/snippet",
+      "exact_quote": "A second specimen",
+      "call_id": "recovered_call_2",
+      "doc_id": "wiki25:3260299"
+    },
+    {
+      "evidence_id": "N4_HEIGHT_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "This suggests 2 specimens are known (holotype and second specimen)."
+    },
+    {
+      "evidence_id": "N4_LIST_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/15/arguments/doc_id",
+      "exact_quote": "wiki25:7071506",
+      "call_id": "chatcmpl-tool-a61a7f70d994b87b"
+    },
+    {
+      "evidence_id": "N4_ASSUMED_DURATION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let's assume the Rhaetian duration is 4 million years."
+    },
+    {
+      "evidence_id": "N4_REPEAT_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Result: 767 - 2009 = -1242"
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "Seven source SHA bindings, 38 exact references, event Round/Call/Doc metadata and four cost rows checked; not independent human semantic gold."
+}

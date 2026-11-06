@@ -1,0 +1,445 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0077",
+  "stage_id": "S004",
+  "sample_order": 42,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the name of the recipient of the Turing Award for foundational work in operating systems, particularly related to the development of Unix, who is an alumnus of a university located in the same state as the city of Pinole?",
+    "gold": [
+      "Ken Thompson"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "Ken Thompson",
+    "adopted_answer": "Ken Thompson",
+    "outcome": "C",
+    "reason": "正式提交正确姓名。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@278；当前P明确Ken Berkeley母校但还要查Berkeley/Pinole是否同州。初Search并无Pinole地理证据；原R2日志曾常识说California，但该历史Reasoning不能自动当实际后续P可见。",
+    "evidence_states": "母校已返回并提取，州别同一关系当前仍标待核，无Pinole工具支持。",
+    "evidence": [
+      "I_P",
+      "O_ED"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/3/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 278,
+        "end": 354
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 414
+      }
+    ],
+    "goal": "真实检索Pinole州别并据此采用同州匹配。",
+    "operations": "SearchPinolecitystatelocation，标题PinoleCalifornia及加州周边文档返回，R4采用California并对应KenBerkeley。",
+    "product": "城市州别有检索标题支持，Ken成为同州候选。",
+    "judgment_change": "待查城市州别变为采用California，后继转学校追加确认。",
+    "evidence": [
+      "O_Q",
+      "O_CITY",
+      "O_J"
+    ]
+  },
+  "original_followup": {
+    "use": "后继反复OpenKen母校，School早在Search；R9仍用Pinole加州与Harvard排除Dennis后Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "补城市地理条件并把它用于母校排他筛选。",
+    "state_relation": "4C；r2/3真正重新搜Pinole，r1/4没有城市来源却直接以常识采用California。结果一致不等于证据取得一致。",
+    "evidence": [
+      "N1_J",
+      "N2_Q",
+      "N3_Q",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Let me verify this by opening the document about Ken Thompson to get more details about his education.",
+    "source_position": "原R4[414,516)，19派生Token。",
+    "novelty": "候选Ken与教育需求在P已有，未注入Pinole州别；新增立即OpenKen行动方向，把原U城市查询暂时跳过。",
+    "risk": "ORACLE_ANCHORED路线提示；r1/4无Pinole来源不能说完整证据质量保持。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "采用正确同州关系并Submit，但城市无新工具证据。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_J"
+      ],
+      "work_and_evidence_timeline": "R3Open0/100、R4Open0/200、R5Open100/200均未教育；R6改KeneducationuniversityBerkeley检索得126493学校校友及5245548；R7采用Ken/加州，并额外OpenDennis30057首200只C/Unix职业；R8承认PinoleCalifornia来自general knowledge后Submit。没有PinoleSearch。",
+      "first_judgment_divergence": "按G先查学校，城市待核直接由知识补入，未恢复U城市来源。",
+      "first_actual_tool_divergence": "OpenKen替代PinoleSearch；后续Search只教育。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定Pinole州别并同州筛选",
+          "original_operation": "城市Search后采用",
+          "original_product": "城市标题支持California",
+          "new_goal": "同州筛选",
+          "new_operation": "学校Search加常识城市判断",
+          "new_product": "正确同州但无城市返回",
+          "evidence": [
+            "O_Q",
+            "O_CITY",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "州别判断恢复，实际城市取证没有；学校取证不是相同对象替代证据。",
+      "chain": "G转学校入口→旧学校已知但短读仍继续→新学校Search确认→城市凭常识补齐→C，证据链城市来源少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1019生成37821Prompt6Actor1Search4Open；原切点后2Search4Open7响应，新少城市Search但新增/保留学校工作；不能把全部差值算U节省。P4682/G19单列。",
+      "counterevidence_and_alternatives": "r1文字称Pinolefromsearch但真实新Return无Pinole；末轮明确general knowledge。不据称述伪造取证。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "城市真实Search再支持同州，正式Submit。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_J"
+      ],
+      "work_and_evidence_timeline": "R3先Open100；R4用学校比较先接受Ken，随后真实SearchPinolecitylocationstate，返回与原相同城市标题；R5采用州别与旧教育句Submit，无进一步Open。",
+      "first_judgment_divergence": "U城市核验被延后一轮学校Open，功能随后恢复。",
+      "first_actual_tool_divergence": "首Open，下一轮PinoleSearch，Query词序不同但真实相同Return。",
+      "function_correspondence": [
+        {
+          "original_goal": "城市州别取证",
+          "original_operation": "SearchPinole",
+          "original_product": "California",
+          "new_goal": "同",
+          "new_operation": "R4真实PinoleSearch",
+          "new_product": "相同标题支持并采用",
+          "evidence": [
+            "O_Q",
+            "O_CITY",
+            "N2_Q",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "城市Query/Return/采用均重现，位置后移。",
+      "chain": "先学校Open→已经知道候选仍补城市来源→采用已有学校不再扩读→C，少后段教育Search和Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "586生成18441Prompt3Actor1Search1Open；节省落在原后继母校多次Open/无关教育Query，非U城市工作省掉。",
+      "counterevidence_and_alternatives": "原U重建且仍更省，是功能与执行方式分离反例。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "重新取得城市Return并匹配母校后Submit。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_J"
+      ],
+      "work_and_evidence_timeline": "R3Open100，R4先说明PinoleCalifornia并采用Ken后真实同原QuerySearch城市；R5回看学校仍再Open100，未到教育；R6重新完整比较Ken/Dennis学校州别后Submit。",
+      "first_judgment_divergence": "同样先学校动作后城市核验，且恢复U后再有一次学校重复确认。",
+      "first_actual_tool_divergence": "首Open替Search，R4城市Search完全相同Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "城市来源和匹配",
+          "original_operation": "真实Search并采用",
+          "original_product": "California",
+          "new_goal": "同",
+          "new_operation": "R4同QuerySearch、R5采用",
+          "new_product": "同州匹配",
+          "evidence": [
+            "O_Q",
+            "N3_Q",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原地理取证及使用恢复。",
+      "chain": "学校先行→城市核验恢复→虽旧学校充分仍Open短前缀→最终用旧句排除Dennis→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "935生成27374Prompt4Actor1Search2Open；节省较r2小，新增的学校Open与长1690字符比较明确可定位。",
+      "counterevidence_and_alternatives": "功能恢复并不保证多余确认结束；同C成本不同。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "正确比较并Submit，无城市工具佐证。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_J"
+      ],
+      "work_and_evidence_timeline": "R3Open100；R4长4166字符反复同州比较、唯一性、其他OS获奖人可能性，再回到Ken。多次说会Open或verify但无真实取证，最终Submit。",
+      "first_judgment_divergence": "Pinole待查由知识直接当California，随后重复整体确认替代城市查询。",
+      "first_actual_tool_divergence": "一OpenKen后Submit，城市Search不执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "补Pinole地理来源",
+          "original_operation": "Search+采用",
+          "original_product": "标题支持州别",
+          "new_goal": "同州判断",
+          "new_operation": "知识州别与旧学校比较",
+          "new_product": "C但城市无文档来源",
+          "evidence": [
+            "O_CITY",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "判断采用有，取证没有，计划不算Call。",
+      "chain": "G使学校先行→城市按常识补入→答案已定仍多次唯一性检查→C，工具少但文字多。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1052生成9435Prompt2Actor0Search1Open；少城市Search和后段读取；R4 989生成反复核对解释长文字成本。",
+      "counterevidence_and_alternatives": "正常Final不等于保留所有原证据支持；不能把无城市查询等价已证实地理。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C；r2/3FULL，r1/4PARTIAL只恢复城市采用。",
+    "shared_and_different": "G四次都使首动作为KenOpen；两支回来真实查城市，两支未回来。地理知识使同一答案保持，却支持来源不同。",
+    "cost": "生成/Prompt/工具分开，原部分Round保守区间见表；少工具可能伴随长篇条件复盘。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "删除条件取证后，模型可能用已有知识恢复同一条件判断而不恢复来源；也可先被G转去另一项核验后再恢复取证。答案保持无法区分这两种过程，节省还可能主要来自其他后继工作。",
+      "support": [
+        "I_G",
+        "N1_J",
+        "N2_Q",
+        "N3_Q",
+        "N4_J"
+      ],
+      "limits": "同题四次，仅说明轨迹可观察差异；不能证明知识来源可靠或纯删除因果。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原先R2日志已说城市加州，但非本切点当前P；不把历史Reasoning当实际仍可见。",
+    "r1/4正确城市常识不等于新Return来源，不将其声明为完整文档支持。",
+    "DERIVED_CHAR_EXACT，非nativeexact成本。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Now I need to find out what state Berkeley is in and check if Pinole is in the same state."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this by opening the document about Ken Thompson to get more details about his education."
+    },
+    {
+      "evidence_id": "O_ED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "from the University of California, Berkeley"
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Pinole city state location",
+      "call_id": "chatcmpl-tool-8a7ecb73de0a9f5a"
+    },
+    {
+      "evidence_id": "O_CITY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/0/title",
+      "exact_quote": "Pinole, California"
+    },
+    {
+      "evidence_id": "O_J",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "So Pinole is in California."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "From general knowledge:"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Pinole city location state"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results indicate that Pinole is a city in California."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Pinole city state location"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "based on the search results showing \"Pinole, California\""
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Pinole is a city in Contra Costa County, California."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0077/trajectory.json",
+      "source_sha256": "e1e902213f72dc1a72f9dd348144bdf9dcd971521e40a270b32f170167e82996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0077.json",
+      "source_sha256": "cea37db1dfec82fd5e8947bfd971aae59dfc528a2bd063097221bc522aecf877"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "1d485259f6e75fa78628f69ac217f7902d1d230a17b52ccd4ac47d9a1fbf237a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "d83905197a022d509aa2cc2204ca521bc79a196e8a4b15c850d85cc0efb0ea78"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "17188651ed6628619561e8ff5bfc86efc1b6dff91342ad3b86db98398f25a2a9"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b585a9475907515cdc99384bd98bcca3d72401d2962aaab956675f236635190d"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "69326bcee9ad99bba7ba5a89c6c6271ea06222cae57bc3056955ebb60c89f25d"
+    }
+  }
+}

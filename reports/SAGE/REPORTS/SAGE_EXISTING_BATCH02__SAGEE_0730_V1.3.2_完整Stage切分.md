@@ -1,0 +1,1385 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0730｜V1.3.2完整Stage切分
+
+样本序号：17；原件SHA256：`7d00003a6edd3c6bb23be5491cc0dbd24f83a87298aa0d747fbcd2ba896a22c0`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+On what specific date did the 1983 Heisman Trophy winner, whose professional career included playing for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons, appear on the television show "Family Feud" with family members?
+````
+
+## 完整求解过程
+
+模型先搜1983 Heisman及四队履历，失败后改为只搜奖项年份，又原样重试一次。前三次均未直接定位球员。R4实际换到四队履历入口，区分USFL和NFL，再按球队组合检索；返回Mike Rozier及对应职业经历，R5直接采用人名。
+
+随后它查Mike Rozier Family Feud，得到与妻子及另三位亲属参加2013年10月22日节目的直接句子。R6引用并提取日期后，另行选择打开原文验证。前两次open limit=100都只见开头，不含节目日期；R7只是重复已有搜索结论和原打开意向，没有重新比较或排除候选。R8将limit扩大为1000，终于得到完整737字符原文。这三次open属于同一文件核实操作的普通重复与扩展，全部真实事件保留。
+
+R9接受球员与日期关系并submit October 22, 2013。模型没有实际核查其他球员候选；初期无关命中不视为候选评估。正式Final有效，MODEL_FINAL_STOP。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 按1983 Heisman线索定位球员，简化查询后原样重试 | 未明确采用人名。 | E001,E002,E003 |
+
+| S002 | R4 / 0 / 47 | 改以USFL与NFL四队履历组合定位Mike Rozier | 球员身份与职业条件被采用。 | E004 |
+
+| S003 | R5 / 0 / 176 | 查Rozier参加Family Feud日期并直接提取2013年10月22日 | 节目、家属与日期直接证据已取得。 | E005 |
+
+| S004 | R6 / 0 / 417 | 打开同一Rozier文档核实日期，重复后扩大读取范围 | 最终取得含日期的737字符完整文段。 | E006,E007,E008 |
+
+| S005 | R9 / 0 / 0 | 接受Rozier与节目日期证据并提交答案 | VALID_FINAL，MODEL_FINAL_STOP。 | E009 |
+
+## S001｜按1983 Heisman线索定位球员，简化查询后原样重试
+
+初次带球队组合搜索，继而只搜奖项年份并重试，R4首句评价尚未找到球员。
+
+结束状态：未明确采用人名。
+
+边界判断：轨迹起点，包括奖项入口下的普通改词与重试。
+
+内部KEEP与反证：R2—R3仅重复同一球员缺口，没有实质候选比较或新证据方法；三Call不自动三Stage。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,349)
+
+SHA256：`ffa0b7f85db4317e529736a639d9c6a761f078a99d8edc9c1e230537d2783c7a`；原字段SHA256：`ffa0b7f85db4317e529736a639d9c6a761f078a99d8edc9c1e230537d2783c7a`。
+
+````
+This is a multi-hop question that requires me to:
+1. Find out who won the 1983 Heisman Trophy and played for Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons
+2. Then find when that person appeared on Family Feud with family members
+
+Let me start by searching for the 1983 Heisman Trophy winner who played for those teams.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons"
+  },
+  "id": "chatcmpl-tool-8b913ef3ffe852b0",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-8b913ef3ffe852b0",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 0.5022815116681159,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2603858",
+        "score": 26.806674555272615,
+        "snippet": "American football player (born 1983) Guy Whimper (born May 21, 1983) is an American former professional football offensive tackle. He was selected in the fourth round (129th overall) of the 2006 NFL draft by the New York Giants. Whimper played college football at East Carolina University. Whimper was also a member of the Jacksonville Jaguars and Pittsburgh Steelers. Professional career. New York Giants. Whimper was waived by the New York Giants on September 4, 2010. Jacksonville Jaguars. Whimper was signed by the Jacksonville Jaguars on November 2, 2010. On October 28, 2012, Whimper was made an eligible receiver and successfully caught a pass for a touchdown against the Green Bay Packers. Whimper was released by the Jaguars on February 27, 2013. Pittsburgh Steelers. On May 6, 2013, Whimper was signed by the Pittsburgh Steelers. On March 17, 2014, the Steelers re-signed Whimper to a one-year contract. References.",
+        "text_characters": 925,
+        "title": "Guy Whimper"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4124669",
+        "score": 23.875734128895314,
+        "snippet": "American football player (born 1983) Jonathan Palmer (born December 3, 1983) is a former American football offensive lineman. He was signed by the Philadelphia Eagles as an undrafted free agent in 2007. He played college football at Auburn. Palmer was also a member of the Carolina Panthers, Oakland Raiders, New York Giants, Cleveland Browns, Pittsburgh Steelers, Arizona Cardinals, Jacksonville Jaguars, Virginia Destroyers and Tennessee Titans.",
+        "text_characters": 447,
+        "title": "Jonathan Palmer (American football)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2608162",
+        "score": 21.499957702237637,
+        "snippet": "American football player (born 1983) Isaac Joseph Smolko (born February 28, 1983) is a former American football tight end. He was signed by the Pittsburgh Steelers as an undrafted free agent in 2006. He played college football at Penn State. Smolko has also been a member of the Jacksonville Jaguars, Baltimore Ravens and Indianapolis Colts. College career. Smolko was a four-year letterman at Penn State University where he earned a Bachelor of Science in Kinesiology in 2006. He played high school football at Springfield High School in New Middletown, Ohio. Professional career. Pittsburgh Steelers. He signed as an undrafted rookie free agent with the National Football League's Pittsburgh Steelers following the 2006 NFL draft. Despite a productive training camp—including an athletic touchdown catch in Game 1 of the preseason versus the Arizona Cardinals—Smolko was released at the end of the preseason. Jacksonville Jaguars. He signed with the Jacksonville Jaguars prior to the 2007 season. Despite another promising preseason, including a game against the Washington Redskins where he was used in six positions—tight end, fullback, linebacker, defensive end and two positions on special teams—Smolko was released on September 1, 2007. He spent the first 8 weeks of the 2007 season on the practice squad before being activated for the Jaguars' week 9 game against New Orleans. He was waived and re-signed to the practice squad until his activation prior to the Jaguars' Week 13 game at Indian",
+        "text_characters": 2611,
+        "title": "Isaac Smolko"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5779300",
+        "score": 21.29901972460148,
+        "snippet": "American baseball player (born 1963) Scott Drew Ruskin (born June 8, 1963) is an American former professional baseball player who was a pitcher for four Major League Baseball seasons. He played for the Pittsburgh Pirates in 1990, Montreal Expos from 1990 to 1991, and Cincinnati Reds from 1992 to 1993. Career. Ruskin was born in Jacksonville, Florida. He attended Sandalwood High School in Jacksonville, and played high school baseball for the Sandalwood Saints. Ruskin received an athletic scholarship to attend the University of Florida in Gainesville, Florida, where he played for coach Joe Arnold's Florida Gators baseball team from 1982 to 1985. In 1983, he played collegiate summer baseball with the Falmouth Commodores of the Cape Cod Baseball League. He received All-Southeastern conference (SEC) honors in 1984 and 1985 and was a second-team All-American in 1984. Ruskin returned to the university after his professional baseball career was over, and completed his bachelor's degree in computer and information science in 2003. References.",
+        "text_characters": 1049,
+        "title": "Scott Ruskin (baseball)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3590301",
+        "score": 21.200214832546855,
+        "snippet": "American football player (born 1983) Derek Landri (born September 21, 1983) is a former American football defensive lineman. He was selected by the Jacksonville Jaguars in the fifth round of the 2007 NFL draft. He played college football at Notre Dame. Landri also played for the Carolina Panthers, Philadelphia Eagles and Tampa Bay Buccaneers. Early life. Named Mr. California for the highest award for California high school players, Landri played high school football for De La Salle where he was Maurice Jones-Drew's teammate. Professional career. Jacksonville Jaguars. Landri's selection by the Jacksonville Jaguars in the fifth round was rated one of the \"Top 10 Draft Steals\" of the 2007 draft by \"Sports Illustrated\". Playing in a reserve role, Landri recorded a sack and an interception on Pittsburgh Steelers quarterback Ben Roethlisberger during the Jaguars' Wildcard playoff game on January 5, 2008. He also recovered a fumble which sealed the Jaguars' win. On December 3, 2009, Landri was waived by the Jaguars. Carolina Panthers. Landri was claimed off waivers by the Carolina Panthers on December 4, 2009. He became an unrestricted free agent following the 2010 season. Philadelphia Eagles. The Philadelphia Eagles signed Landri on August 3, 2011. He was released on September 3 during final roster cuts. Following a season-ending injury to Antonio Dixon, Landri was re-signed on October 3. Following the 2011 season, Landri became an unrestricted free agent, but was re-signed to a on",
+        "text_characters": 1703,
+        "title": "Derek Landri"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5603368",
+        "score": 21.04309621401554,
+        "snippet": "Round ) Philadelphia Eagles ( 116 ) vs Dallas Cowboys , Jan 9 , 2010 ( Wild Card Round ) Seattle Seahawks , 2010 Washington Football Team , 2020 Seattle Seahawks , 2010 Minnesota Vikings , 1987 Seattle Seahawks , 1983 Pittsburgh Steelers , 1984 Indianapolis Colts , 1995 Jacksonville Jaguars , 1996 New York Jets , 2009 Tennessee Titans , 2019 Los Angeles Rams , 1979 Arizona Cardinals , 2008 New York Giants , 2011 New York Giants , 2011 Miami Dolphins vs Kansas City Chiefs , Dec 25 , 1971 ( 2OT , Divisional Round ) Washington Redskins , 1946–1970 Chicago/St . Louis Cardinals, 1949–1973 New Orleans Saints, 1967–1986 New York Jets, 2011–present New England Patriots, 2009–2019 Chicago/St. Louis/Phoenix/Arizona Cardinals, 1948–1997",
+        "text_characters": 735,
+        "title": "List of NFL team playoff records"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4214071",
+        "score": 20.674338203318875,
+        "snippet": "Week 11: Houston Oilers at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Week 12: vs. Oakland Raiders. Week 12: Oakland Raiders at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Week 13: at Denver Broncos. Week 13: San Diego Chargers at Denver Broncos – Game summary \"at Mile High Stadium, Denver, Colorado ! Game information Week 14: vs. Pittsburgh Steelers. Week 14: Pittsburgh Steelers at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Notable events. In their last game for the year, the Chargers became the thirty-third team in the NFL or leagues that merged with the NFL to score only a safety in a full game. This unusual occurrence has been repeated only six times since: by the 1980 Buffalo Bills, the 1983 Minnesota Vikings, the 1993 Cincinnati Bengals, the 2011 Atlanta Falcons (the only team to do so in a playoff game), the 2013 Jacksonville Jaguars, and the 2024 Houston Texans. References.",
+        "text_characters": 1058,
+        "title": "1972 San Diego Chargers season"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3212250",
+        "score": 20.169332949140102,
+        "snippet": "American football player (born 1983) Charles Suonne Davis, Jr. (born March 13, 1983) is an American former professional football tight end. He was selected by the Pittsburgh Steelers in the fifth round of the 2006 NFL draft. He played both college football and college basketball at Purdue. Davis was also a member of the New York Giants, Berlin Thunder, Carolina Panthers, Jacksonville Jaguars, San Diego Chargers, New York Sentinels and Hartford Colonials. Professional career. San Diego Chargers (first stint). Davis was signed by the San Diego Chargers on August 1, 2009. He was released on September 5. New York Sentinels. Davis was drafted by the New York Sentinels on the UFL Premiere Season Draft in 2009. In 2010, Davis played for the Hartford Colonials of the UFL after New York ceased operations. He was re-signed for the 2011 season by Hartford. He became a free agent on August 10, 2011 when the Colonials were contracted. San Diego Chargers (second stint). On August 17, 2011, Davis re-signed with the Chargers. References.",
+        "text_characters": 1037,
+        "title": "Charles Davis (tight end)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4855067",
+        "score": 19.744412178902166,
+        "snippet": "Yugoslav footballer Ninoslav \"Nino\" Zec (, born 7 July 1949) is a retired Yugoslav professional footballer who played as midfielder or striker. Career. Born in Miloševo, SR Serbia, Zec began his professional career in 1968 with OFK Beograd. In 1978, Zec moved to the United States to play in the NASL, signing with the Tulsa Roughnecks. He moved to the Atlanta Chiefs in 1979 and was traded to the Houston Hurricane during the season. In 1980, the league terminated the Houston franchise and in December 1980 the Jacksonville Tea Men signed Zec. In 1983, the Tea Men moved to the American Soccer League. Zec spent the 1983 season with the Tea Men in the ASL. When the ASL collapsed at the end of the season, Zec and his teammates moved to the United Soccer League. He also played six games for the Pittsburgh Spirit during the 1979–1980 Major Indoor Soccer League season. He played another three games for the Tulsa Roughnecks during the 1983–1984 NASL indoor season. He currently lives in Florida where he owns a flooring business. His father in law was one of the most famous Yugoslavian strikers Stjepan Bobek. Zec was the first player ever to receive a yellow card in Yugoslavian football after the booking rule was introduced. References.",
+        "text_characters": 1243,
+        "title": "Nino Zec"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4299371",
+        "score": 19.663465433239637,
+        "snippet": "The Karpeles Manuscript Library Museum was a museum in Jacksonville, Florida, one of ten (as of June 2023) Karpeles Manuscript Library Museums in the United States, all housed in repurposed old buildings. Other locations of Karpeles Museums include Buffalo, NY; Duluth, MN; Santa Barbara, CA; Tacoma, WA; Alvin, TX; Rock Island, IL; Gloversville, NY; Lake Mary, FL; Pittsburgh, PA; and St. Augustine, FL. Karpeles Manuscript Library Museums display manuscripts and documents from the private collection of David and Marsha Karpeles, the world's largest privately owned collection. The museum opened in 1992 in the former First Church of Christ, Scientist building in Jacksonville's Springfield neighborhood. The Classical Revival structure, constructed in 1921, is a contributing property in the Springfield Historic District and is listed as No. SP-61 by the Jacksonville Historic Landmarks Commission. Building. This impressive former church building stands at the entrance to Springfield and overlooks Henry J. Klutho Park and Hogans Creek. It features an imposing Neo-Classical Revival facade, highlighted by monumental Doric columns, a departure from the more usual ecclesiastical styles of the era (such as Gothic Revival, Romanesque Revival, Spanish). It is also unusual among churches for lacking both a steeple and a bell tower. The construction of this sanctuary in 1921 cost $80,000. The architecture firm responsible for its design was Marsh & Saxelbye, and W.D. Gerbrich was the builder.",
+        "text_characters": 2749,
+        "title": "Karpeles Manuscript Library Museum (Jacksonville)"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-8b913ef3ffe852b0"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2603858", "title": "Guy Whimper", "score": 26.806674555272615, "snippet": "American football player (born 1983) Guy Whimper (born May 21, 1983) is an American former professional football offensive tackle. He was selected in the fourth round (129th overall) of the 2006 NFL draft by the New York Giants. Whimper played college football at East Carolina University. Whimper was also a member of the Jacksonville Jaguars and Pittsburgh Steelers. Professional career. New York Giants. Whimper was waived by the New York Giants on September 4, 2010. Jacksonville Jaguars. Whimper was signed by the Jacksonville Jaguars on November 2, 2010. On October 28, 2012, Whimper was made an eligible receiver and successfully caught a pass for a touchdown against the Green Bay Packers. Whimper was released by the Jaguars on February 27, 2013. Pittsburgh Steelers. On May 6, 2013, Whimper was signed by the Pittsburgh Steelers. On March 17, 2014, the Steelers re-signed Whimper to a one-year contract. References.", "text_characters": 925, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4124669", "title": "Jonathan Palmer (American football)", "score": 23.875734128895314, "snippet": "American football player (born 1983) Jonathan Palmer (born December 3, 1983) is a former American football offensive lineman. He was signed by the Philadelphia Eagles as an undrafted free agent in 2007. He played college football at Auburn. Palmer was also a member of the Carolina Panthers, Oakland Raiders, New York Giants, Cleveland Browns, Pittsburgh Steelers, Arizona Cardinals, Jacksonville Jaguars, Virginia Destroyers and Tennessee Titans.", "text_characters": 447, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2608162", "title": "Isaac Smolko", "score": 21.499957702237637, "snippet": "American football player (born 1983) Isaac Joseph Smolko (born February 28, 1983) is a former American football tight end. He was signed by the Pittsburgh Steelers as an undrafted free agent in 2006. He played college football at Penn State. Smolko has also been a member of the Jacksonville Jaguars, Baltimore Ravens and Indianapolis Colts. College career. Smolko was a four-year letterman at Penn State University where he earned a Bachelor of Science in Kinesiology in 2006. He played high school football at Springfield High School in New Middletown, Ohio. Professional career. Pittsburgh Steelers. He signed as an undrafted rookie free agent with the National Football League's Pittsburgh Steelers following the 2006 NFL draft. Despite a productive training camp—including an athletic touchdown catch in Game 1 of the preseason versus the Arizona Cardinals—Smolko was released at the end of the preseason. Jacksonville Jaguars. He signed with the Jacksonville Jaguars prior to the 2007 season. Despite another promising preseason, including a game against the Washington Redskins where he was used in six positions—tight end, fullback, linebacker, defensive end and two positions on special teams—Smolko was released on September 1, 2007. He spent the first 8 weeks of the 2007 season on the practice squad before being activated for the Jaguars' week 9 game against New Orleans. He was waived and re-signed to the practice squad until his activation prior to the Jaguars' Week 13 game at Indian", "text_characters": 2611, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5779300", "title": "Scott Ruskin (baseball)", "score": 21.29901972460148, "snippet": "American baseball player (born 1963) Scott Drew Ruskin (born June 8, 1963) is an American former professional baseball player who was a pitcher for four Major League Baseball seasons. He played for the Pittsburgh Pirates in 1990, Montreal Expos from 1990 to 1991, and Cincinnati Reds from 1992 to 1993. Career. Ruskin was born in Jacksonville, Florida. He attended Sandalwood High School in Jacksonville, and played high school baseball for the Sandalwood Saints. Ruskin received an athletic scholarship to attend the University of Florida in Gainesville, Florida, where he played for coach Joe Arnold's Florida Gators baseball team from 1982 to 1985. In 1983, he played collegiate summer baseball with the Falmouth Commodores of the Cape Cod Baseball League. He received All-Southeastern conference (SEC) honors in 1984 and 1985 and was a second-team All-American in 1984. Ruskin returned to the university after his professional baseball career was over, and completed his bachelor's degree in computer and information science in 2003. References.", "text_characters": 1049, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3590301", "title": "Derek Landri", "score": 21.200214832546855, "snippet": "American football player (born 1983) Derek Landri (born September 21, 1983) is a former American football defensive lineman. He was selected by the Jacksonville Jaguars in the fifth round of the 2007 NFL draft. He played college football at Notre Dame. Landri also played for the Carolina Panthers, Philadelphia Eagles and Tampa Bay Buccaneers. Early life. Named Mr. California for the highest award for California high school players, Landri played high school football for De La Salle where he was Maurice Jones-Drew's teammate. Professional career. Jacksonville Jaguars. Landri's selection by the Jacksonville Jaguars in the fifth round was rated one of the \"Top 10 Draft Steals\" of the 2007 draft by \"Sports Illustrated\". Playing in a reserve role, Landri recorded a sack and an interception on Pittsburgh Steelers quarterback Ben Roethlisberger during the Jaguars' Wildcard playoff game on January 5, 2008. He also recovered a fumble which sealed the Jaguars' win. On December 3, 2009, Landri was waived by the Jaguars. Carolina Panthers. Landri was claimed off waivers by the Carolina Panthers on December 4, 2009. He became an unrestricted free agent following the 2010 season. Philadelphia Eagles. The Philadelphia Eagles signed Landri on August 3, 2011. He was released on September 3 during final roster cuts. Following a season-ending injury to Antonio Dixon, Landri was re-signed on October 3. Following the 2011 season, Landri became an unrestricted free agent, but was re-signed to a on", "text_characters": 1703, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5603368", "title": "List of NFL team playoff records", "score": 21.04309621401554, "snippet": "Round ) Philadelphia Eagles ( 116 ) vs Dallas Cowboys , Jan 9 , 2010 ( Wild Card Round ) Seattle Seahawks , 2010 Washington Football Team , 2020 Seattle Seahawks , 2010 Minnesota Vikings , 1987 Seattle Seahawks , 1983 Pittsburgh Steelers , 1984 Indianapolis Colts , 1995 Jacksonville Jaguars , 1996 New York Jets , 2009 Tennessee Titans , 2019 Los Angeles Rams , 1979 Arizona Cardinals , 2008 New York Giants , 2011 New York Giants , 2011 Miami Dolphins vs Kansas City Chiefs , Dec 25 , 1971 ( 2OT , Divisional Round ) Washington Redskins , 1946–1970 Chicago/St . Louis Cardinals, 1949–1973 New Orleans Saints, 1967–1986 New York Jets, 2011–present New England Patriots, 2009–2019 Chicago/St. Louis/Phoenix/Arizona Cardinals, 1948–1997", "text_characters": 735, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4214071", "title": "1972 San Diego Chargers season", "score": 20.674338203318875, "snippet": "Week 11: Houston Oilers at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Week 12: vs. Oakland Raiders. Week 12: Oakland Raiders at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Week 13: at Denver Broncos. Week 13: San Diego Chargers at Denver Broncos – Game summary \"at Mile High Stadium, Denver, Colorado ! Game information Week 14: vs. Pittsburgh Steelers. Week 14: Pittsburgh Steelers at San Diego Chargers – Game summary \"at San Diego Stadium, San Diego, California ! Game information Notable events. In their last game for the year, the Chargers became the thirty-third team in the NFL or leagues that merged with the NFL to score only a safety in a full game. This unusual occurrence has been repeated only six times since: by the 1980 Buffalo Bills, the 1983 Minnesota Vikings, the 1993 Cincinnati Bengals, the 2011 Atlanta Falcons (the only team to do so in a playoff game), the 2013 Jacksonville Jaguars, and the 2024 Houston Texans. References.", "text_characters": 1058, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3212250", "title": "Charles Davis (tight end)", "score": 20.169332949140102, "snippet": "American football player (born 1983) Charles Suonne Davis, Jr. (born March 13, 1983) is an American former professional football tight end. He was selected by the Pittsburgh Steelers in the fifth round of the 2006 NFL draft. He played both college football and college basketball at Purdue. Davis was also a member of the New York Giants, Berlin Thunder, Carolina Panthers, Jacksonville Jaguars, San Diego Chargers, New York Sentinels and Hartford Colonials. Professional career. San Diego Chargers (first stint). Davis was signed by the San Diego Chargers on August 1, 2009. He was released on September 5. New York Sentinels. Davis was drafted by the New York Sentinels on the UFL Premiere Season Draft in 2009. In 2010, Davis played for the Hartford Colonials of the UFL after New York ceased operations. He was re-signed for the 2011 season by Hartford. He became a free agent on August 10, 2011 when the Colonials were contracted. San Diego Chargers (second stint). On August 17, 2011, Davis re-signed with the Chargers. References.", "text_characters": 1037, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4855067", "title": "Nino Zec", "score": 19.744412178902166, "snippet": "Yugoslav footballer Ninoslav \"Nino\" Zec (, born 7 July 1949) is a retired Yugoslav professional footballer who played as midfielder or striker. Career. Born in Miloševo, SR Serbia, Zec began his professional career in 1968 with OFK Beograd. In 1978, Zec moved to the United States to play in the NASL, signing with the Tulsa Roughnecks. He moved to the Atlanta Chiefs in 1979 and was traded to the Houston Hurricane during the season. In 1980, the league terminated the Houston franchise and in December 1980 the Jacksonville Tea Men signed Zec. In 1983, the Tea Men moved to the American Soccer League. Zec spent the 1983 season with the Tea Men in the ASL. When the ASL collapsed at the end of the season, Zec and his teammates moved to the United Soccer League. He also played six games for the Pittsburgh Spirit during the 1979–1980 Major Indoor Soccer League season. He played another three games for the Tulsa Roughnecks during the 1983–1984 NASL indoor season. He currently lives in Florida where he owns a flooring business. His father in law was one of the most famous Yugoslavian strikers Stjepan Bobek. Zec was the first player ever to receive a yellow card in Yugoslavian football after the booking rule was introduced. References.", "text_characters": 1243, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4299371", "title": "Karpeles Manuscript Library Museum (Jacksonville)", "score": 19.663465433239637, "snippet": "The Karpeles Manuscript Library Museum was a museum in Jacksonville, Florida, one of ten (as of June 2023) Karpeles Manuscript Library Museums in the United States, all housed in repurposed old buildings. Other locations of Karpeles Museums include Buffalo, NY; Duluth, MN; Santa Barbara, CA; Tacoma, WA; Alvin, TX; Rock Island, IL; Gloversville, NY; Lake Mary, FL; Pittsburgh, PA; and St. Augustine, FL. Karpeles Manuscript Library Museums display manuscripts and documents from the private collection of David and Marsha Karpeles, the world's largest privately owned collection. The museum opened in 1992 in the former First Church of Christ, Scientist building in Jacksonville's Springfield neighborhood. The Classical Revival structure, constructed in 1921, is a contributing property in the Springfield Historic District and is listed as No. SP-61 by the Jacksonville Historic Landmarks Commission. Building. This impressive former church building stands at the entrance to Springfield and overlooks Henry J. Klutho Park and Hogans Creek. It features an imposing Neo-Classical Revival facade, highlighted by monumental Doric columns, a departure from the more usual ecclesiastical styles of the era (such as Gothic Revival, Romanesque Revival, Spanish). It is also unusual among churches for lacking both a steeple and a bell tower. The construction of this sanctuary in 1921 cost $80,000. The architecture firm responsible for its design was Marsh & Saxelbye, and W.D. Gerbrich was the builder.", "text_characters": 2749, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R002_request.json/messages/3/content`；SHA256：`8cc05034f0192024ba89ef5c1177da0b34d3396f9fd5edf7dc975bcbd363190b`。
+
+### R2 `/rounds/1/reasoning_content` [0,369)
+
+SHA256：`5ec1901ab8dbcf7a3dfad245a2f66b594b6c4099a54a1877ed2e99b4118fbba6`；原字段SHA256：`5ec1901ab8dbcf7a3dfad245a2f66b594b6c4099a54a1877ed2e99b4118fbba6`。
+
+````
+The search results didn't return the correct person. I need to identify the 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. Let me search for "1983 Heisman Trophy winner" directly.
+
+<tool_call>
+<function=search>
+<parameter=query>
+1983 Heisman Trophy winner
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\n1983 Heisman Trophy winner\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 0.5327835199423134,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2581306",
+        "score": 26.66549815420086,
+        "snippet": "Meanwhile, the University of Miami Hurricanes, unranked in the preseason Top 20, began winning after their first week 28–3 loss to Florida. Miami came in at No. 15 in the September 26 poll. As they continued unbeaten, the Hurricanes gathered force, rising to No. 12, No. 10, No. 8, No. 7, and reached No. 5 by October 31, where they remained in the final regular season poll after they were invited to play against Nebraska in the Orange Bowl. Bowl games. January 2 Bowls: Other Bowls: Heisman Trophy voting. \"The Heisman Trophy is given to the year's most outstanding player\" References.",
+        "text_characters": 588,
+        "title": "1983 NCAA Division I-A football season"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8768015",
+        "score": 25.39167855734449,
+        "snippet": "American college football season The 1983 Boston College Eagles football team represented Boston College as an independent during the 1983 NCAA Division I-A football season. The Eagles were led by third-year head coach Jack Bicknell, and played their home games at Alumni Stadium in Chestnut Hill, Massachusetts and Sullivan Stadium (later known as Foxboro Stadium) in Foxborough, Massachusetts. Junior quarterback Doug Flutie threw for over 2,700 yards and finished third in the Heisman Trophy voting, leading Boston College to their first ranked finish in 41 years. They met their rivals, Notre Dame, in the 1983 Liberty Bowl. Boston College finished the season ranked No. 19 in the final AP Poll, and captured the Lambert-Meadowlands Trophy (emblematic of the 'Eastern championship' in Division I FBS). References.",
+        "text_characters": 817,
+        "title": "1983 Boston College Eagles football team"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6658579",
+        "score": 24.163869845224962,
+        "snippet": "Michael Lance \"Mike\" Trope (born 1951), is a Los Angeles based trial lawyer and former sports agent for over 200 NFL players. Trope was a sports agent from the time he was a 21-year-old senior at University of Southern California, USC, in 1972 until he retired from the business in 1985. Subsequently, after Trope's graduation from Loyola Law School, he was admitted to practice law in California in 1987. As an agent for football stars, Trope was known for negotiating record breaking contracts in the 1970s, including the first million dollar package for an NFL rookie. This caused many publications to refer to Trope, still in his 20s, as a Super Agent by 1977, as well as \"Whiz Kid\" and \"LA's Boy Wonder\". Trope is the son of legendary Los Angeles Trial lawyer and philanthropist, Sorrell Trope. Biography. Early years. Trope graduated from Palisades Charter High School in 1969 and graduated magna cum laude from USC with a major in history in 1973. Trope later graduated from Loyola Law School in 1983 and was admitted to the California State Bar in 1987. Professional life. In 1971, 20-year-old USC junior, Trope, decided he wanted to be an agent after watching Johnny Rodgers complete a punt return for 72 yards and a touchdown against the University of Oklahoma, thus leading the Nebraska Cornhuskers to the NCAA national football championship. Rodgers won the Heisman Trophy and Trope, at age 21 signed Rodgers as his first client and became the youngest agent in history to represent NFL p",
+        "text_characters": 2159,
+        "title": "Michael Trope"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5076248",
+        "score": 23.857041785645592,
+        "snippet": "American football player (born 1952) David Duane Jaynes (born December 12, 1952) is an American former professional football player who was a quarterback in the National Football League (NFL). He played college football for the Kansas Jayhawks football, earning All-American honors in 1973. That same year, he was a finalist for the Heisman Trophy finishing fourth in voting. He was selected in the third-round (66th overall selection) of the 1974 NFL draft by the Kansas City Chiefs. He would play only one season in the NFL. College career. Jaynes accepted a football scholarship from the University of Kansas. During the early 1970s, he broke virtually every passing record in Kansas history. When he left Kansas, he was first in passing, with 5,132 yards. This record held for ten years until broken in 1983 by Frank Seurer. He also left Kansas with the record for career passing touchdowns at 35, which held up until the 2007 season, when he was passed by Todd Reesing, who would shatter the record with 90. Jaynes' most memorable game was in 1973 against SEC power Tennessee, when he completed 35 of 58 attempted passes for 394 yards in the 28-27 loss. In 1973 Kansas finished 7–4–1 and went to the Liberty Bowl. Jaynes finished fourth in the voting that year for the Heisman Trophy behind winner John Cappelletti, John Hicks, and Roosevelt Leaks. He also finished ahead of future two-time Heisman winner Archie Griffin. Jaynes is, to date, the only Heisman Trophy finalist in Kansas football h",
+        "text_characters": 2129,
+        "title": "David Jaynes"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9953952",
+        "score": 23.686166075904175,
+        "snippet": "This is a list of second overall National Football League (NFL) draft picks. The NFL draft is an annual sports draft in which National Football League teams select newly eligible players for their rosters. Seven Heisman Trophy winners have been selected with the pick: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), and Jayden Daniels (2024). 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Tony Boselli (1995), Julius Peppers (2002), and Calvin Johnson (2007). The Cleveland / St. Louis / Los Angeles Rams have had nine selections at the spot, the most in the NFL. List. 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Calvin Johnson (2007), Tony Boselli (1995), and Julius Peppers (2002). In 2012, \"Sports Illustrated\" chose Taylor as the best player selected second overall. Seven Heisman Trophy winners have been selected at the spot: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), ",
+        "text_characters": 1702,
+        "title": "List of second overall NFL draft picks"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1244454",
+        "score": 23.35790199605278,
+        "snippet": "United States Army general Peter Miller Dawkins (born March 8, 1938) is an American business executive and former college football player, hockey player, military officer, and political candidate. Dawkins attended the United States Military Academy, where he played as a halfback for the Army Cadets football team from 1956 to 1958. As a senior in 1958 he won the Heisman Trophy, the Maxwell Award, and was named as a consensus All-American. After graduating from the Military Academy in 1959, he studied at the University of Oxford as a Rhodes Scholar. Dawkins served as an officer in the United States Army until he retired in 1983 with the rank of brigadier general. He received the Golden Plate Award of the American Academy of Achievement presented by Awards Council member and Supreme Allied Commander Europe, General Bernard W. Rogers, USA in 1983. He was a Republican candidate for United States Senate in 1988. Dawkins has held executive positions with Lehman Brothers, Bain & Company, Primerica, and Citigroup. He is the only person in history to have held the titles of Brigade Commander, Football Team Captain, Class President, Star Man (top 5% of the class), Heisman Trophy winner, and Rhodes Scholar. He is often regarded as the most decorated cadet in the history of the United States Military Academy. Following Johnny Lujack's death on July 25, 2023, Dawkins is the oldest surviving winner of the Heisman Trophy. He is the lone survivor among the first 27 recipients (1935–1961). Ear",
+        "text_characters": 2564,
+        "title": "Pete Dawkins"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1583008",
+        "score": 23.305214829943523,
+        "snippet": "Dan Heisman (born July 8, 1950) is a United States Chess Federation National Master, author and instructor. Education. Heisman graduated from Hatboro-Horsham High School in Pennsylvania as the co-valedictorian in 1968, and was elected to the school's hall of fame in 2007. He attended Caltech and transferred to Penn State in 1969. In 1971 Heisman graduated at the top of his class earning a B.S. in mathematics, and in 1983, again at the top of his class with a 4.0 G.P.A., received his master's degree in engineering, both from the Pennsylvania State University. Early career. Heisman began his career as an engineer and worked in that capacity with several organizations, including the Naval Air Development Center and Intermetrics, Inc. Later, Heisman became a Registered Investment Adviser in Pennsylvania. He has been a full-time chess instructor and author since 1996. Chess career. Heisman is the two-time open chess champion of Philadelphia (1973 and 1976), and the Philadelphia Invitational Chess Champion (1973). His Penn State team won the U.S. Amateur Team Championship in 1972. He is rated over 2200 by both the United States Chess Federation and FIDE, but is currently inactive as a tournament player. Heisman is a member of the International Computer Games Association and worked at both Deep Blue versus Garry Kasparov matches (1996 and 1997). Heisman authors the award-winning Novice Nook column, aimed at improving adults, for the popular Chess Cafe Web site. He has also written t",
+        "text_characters": 2711,
+        "title": "Dan Heisman"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1176927",
+        "score": 23.225042891608087,
+        "snippet": "Athletic teams representing Auburn University The Auburn Tigers are the athletic teams representing Auburn University, a public four-year university located in Auburn, Alabama, United States. The Auburn Tigers compete in Division I of the National Collegiate Athletic Association (NCAA) as a member of the Southeastern Conference (SEC). Sports sponsored. Auburn sponsors 21 varsity teams in 15 sports and competes in the Southeastern Conference. Football. Auburn claims five national championships: 1913 (chosen by one selector in 1999), 1957, 1983, 1993 (one of four co-champions by one selector), and 2010. Three Auburn players, Pat Sullivan in 1971, Bo Jackson in 1985, and Cam Newton in 2010 have won the Heisman Trophy. The Trophy's namesake, John Heisman, coached at Auburn from 1895 until 1899. Auburn is the only school that Heisman coached at (among others, Georgia Tech and Clemson) that has produced a Heisman Trophy winner. Auburn's Jordan–Hare Stadium has a capacity of 87,451 ranking as the tenth-largest on-campus stadium in the NCAA as of January 2011. Auburn played the first football game in the Deep South in 1892 against the University of Georgia at Piedmont Park in Atlanta, Georgia. The Tigers' first bowl appearance was in 1937 in the sixth Bacardi Bowl played in Havana, Cuba. AU Football has won 12 conference championships (8 SEC), has had seven perfect seasons, and since the division of the conference in 1992, six outright western division championships (1997, 2000, 2004",
+        "text_characters": 2534,
+        "title": "Auburn Tigers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4957477",
+        "score": 23.07279219093565,
+        "snippet": "American college football season The 2009 NCAA Division I FBS football season was the highest level of college football competition in the United States organized by the National Collegiate Athletic Association (NCAA). The regular season began on September 3, 2009, and ended on December 12, 2009. The postseason concluded on January 7, 2010, with the BCS National Championship Game in Pasadena, California, where the Alabama Crimson Tide defeated the Texas Longhorns by the score of 37–21. For the first time in the history of the Heisman Trophy, the annual award for the most outstanding player in college football, two previous Heisman winners played in the same season—2008 winner Sam Bradford of Oklahoma and 2007 winner Tim Tebow of Florida. For the first time since 1946, the top three vote-getters from the previous season all returned: Bradford, Colt McCoy of Texas, and Tebow, in that order. Six teams finished the regular season undefeated; a record for the BCS era. Rule changes. The NCAA football rules committee proposed several rule changes for 2009. The rule changes include the following: Conference changes. Western Kentucky joined the Sun Belt Conference after playing the 2008 as an FBS independent, completing their two-year transition from the Football Championship Subdivision (FCS). The number of full FBS members increased to 120. Regular season top 10 matchups. Rankings reflect the AP Poll. Rankings for Week 8 and beyond will list BCS Rankings first and AP Poll second. Te",
+        "text_characters": 2528,
+        "title": "2009 NCAA Division I FBS football season"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1997285",
+        "score": 23.011246043044554,
+        "snippet": "In 1979, BYU led the country in passing offense, total offense, and scoring offense during the regular season, and quarterback Jim McMahon finished fifth in the Heisman vote. In 1982, head coach LaVell Edwards named Chow as principal offensive play-caller. Chow continued to call all the offensive plays for the rest of his 17 years at BYU. In 1983, the offense, led by quarterback Steve Young, set NCAA single-season records for pass completion percentage (71.3%) and total yards per game (584.2). Young finished second in the Heisman vote. In 1984, the unbeaten BYU team won the consensus national championship. Quarterback Robbie Bosco finished second in the nation in total passing and third in the Heisman vote. Chow became quarterbacks and receivers coach in 1986. In 1990, the Cougars upset defending national champion and top-ranked Miami, FL., 28–21, with nearly 500 yards of offense and Ty Detmer went on to win the Heisman. In 1996, Chow was officially given the title of assistant head coach / offensive coordinator / quarterback / receivers coach. That season, the Cougars with Steve Sarkisian as quarterback, won the WAC and earned its first ever New Year's Day Bowl. BYU came from behind to beat Kansas State in the Cotton Bowl, and finished with No. 5 ranking and a 14–1 record, setting an NCAA record for most wins in a season by Division I football team. Sarkisian finished the season with a quarterback rating of 162.0, the third highest in the country. During his 27 years with BY",
+        "text_characters": 2537,
+        "title": "Norm Chow"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2581306", "title": "1983 NCAA Division I-A football season", "score": 26.66549815420086, "snippet": "Meanwhile, the University of Miami Hurricanes, unranked in the preseason Top 20, began winning after their first week 28–3 loss to Florida. Miami came in at No. 15 in the September 26 poll. As they continued unbeaten, the Hurricanes gathered force, rising to No. 12, No. 10, No. 8, No. 7, and reached No. 5 by October 31, where they remained in the final regular season poll after they were invited to play against Nebraska in the Orange Bowl. Bowl games. January 2 Bowls: Other Bowls: Heisman Trophy voting. \"The Heisman Trophy is given to the year's most outstanding player\" References.", "text_characters": 588, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8768015", "title": "1983 Boston College Eagles football team", "score": 25.39167855734449, "snippet": "American college football season The 1983 Boston College Eagles football team represented Boston College as an independent during the 1983 NCAA Division I-A football season. The Eagles were led by third-year head coach Jack Bicknell, and played their home games at Alumni Stadium in Chestnut Hill, Massachusetts and Sullivan Stadium (later known as Foxboro Stadium) in Foxborough, Massachusetts. Junior quarterback Doug Flutie threw for over 2,700 yards and finished third in the Heisman Trophy voting, leading Boston College to their first ranked finish in 41 years. They met their rivals, Notre Dame, in the 1983 Liberty Bowl. Boston College finished the season ranked No. 19 in the final AP Poll, and captured the Lambert-Meadowlands Trophy (emblematic of the 'Eastern championship' in Division I FBS). References.", "text_characters": 817, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6658579", "title": "Michael Trope", "score": 24.163869845224962, "snippet": "Michael Lance \"Mike\" Trope (born 1951), is a Los Angeles based trial lawyer and former sports agent for over 200 NFL players. Trope was a sports agent from the time he was a 21-year-old senior at University of Southern California, USC, in 1972 until he retired from the business in 1985. Subsequently, after Trope's graduation from Loyola Law School, he was admitted to practice law in California in 1987. As an agent for football stars, Trope was known for negotiating record breaking contracts in the 1970s, including the first million dollar package for an NFL rookie. This caused many publications to refer to Trope, still in his 20s, as a Super Agent by 1977, as well as \"Whiz Kid\" and \"LA's Boy Wonder\". Trope is the son of legendary Los Angeles Trial lawyer and philanthropist, Sorrell Trope. Biography. Early years. Trope graduated from Palisades Charter High School in 1969 and graduated magna cum laude from USC with a major in history in 1973. Trope later graduated from Loyola Law School in 1983 and was admitted to the California State Bar in 1987. Professional life. In 1971, 20-year-old USC junior, Trope, decided he wanted to be an agent after watching Johnny Rodgers complete a punt return for 72 yards and a touchdown against the University of Oklahoma, thus leading the Nebraska Cornhuskers to the NCAA national football championship. Rodgers won the Heisman Trophy and Trope, at age 21 signed Rodgers as his first client and became the youngest agent in history to represent NFL p", "text_characters": 2159, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5076248", "title": "David Jaynes", "score": 23.857041785645592, "snippet": "American football player (born 1952) David Duane Jaynes (born December 12, 1952) is an American former professional football player who was a quarterback in the National Football League (NFL). He played college football for the Kansas Jayhawks football, earning All-American honors in 1973. That same year, he was a finalist for the Heisman Trophy finishing fourth in voting. He was selected in the third-round (66th overall selection) of the 1974 NFL draft by the Kansas City Chiefs. He would play only one season in the NFL. College career. Jaynes accepted a football scholarship from the University of Kansas. During the early 1970s, he broke virtually every passing record in Kansas history. When he left Kansas, he was first in passing, with 5,132 yards. This record held for ten years until broken in 1983 by Frank Seurer. He also left Kansas with the record for career passing touchdowns at 35, which held up until the 2007 season, when he was passed by Todd Reesing, who would shatter the record with 90. Jaynes' most memorable game was in 1973 against SEC power Tennessee, when he completed 35 of 58 attempted passes for 394 yards in the 28-27 loss. In 1973 Kansas finished 7–4–1 and went to the Liberty Bowl. Jaynes finished fourth in the voting that year for the Heisman Trophy behind winner John Cappelletti, John Hicks, and Roosevelt Leaks. He also finished ahead of future two-time Heisman winner Archie Griffin. Jaynes is, to date, the only Heisman Trophy finalist in Kansas football h", "text_characters": 2129, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9953952", "title": "List of second overall NFL draft picks", "score": 23.686166075904175, "snippet": "This is a list of second overall National Football League (NFL) draft picks. The NFL draft is an annual sports draft in which National Football League teams select newly eligible players for their rosters. Seven Heisman Trophy winners have been selected with the pick: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), and Jayden Daniels (2024). 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Tony Boselli (1995), Julius Peppers (2002), and Calvin Johnson (2007). The Cleveland / St. Louis / Los Angeles Rams have had nine selections at the spot, the most in the NFL. List. 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Calvin Johnson (2007), Tony Boselli (1995), and Julius Peppers (2002). In 2012, \"Sports Illustrated\" chose Taylor as the best player selected second overall. Seven Heisman Trophy winners have been selected at the spot: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), ", "text_characters": 1702, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1244454", "title": "Pete Dawkins", "score": 23.35790199605278, "snippet": "United States Army general Peter Miller Dawkins (born March 8, 1938) is an American business executive and former college football player, hockey player, military officer, and political candidate. Dawkins attended the United States Military Academy, where he played as a halfback for the Army Cadets football team from 1956 to 1958. As a senior in 1958 he won the Heisman Trophy, the Maxwell Award, and was named as a consensus All-American. After graduating from the Military Academy in 1959, he studied at the University of Oxford as a Rhodes Scholar. Dawkins served as an officer in the United States Army until he retired in 1983 with the rank of brigadier general. He received the Golden Plate Award of the American Academy of Achievement presented by Awards Council member and Supreme Allied Commander Europe, General Bernard W. Rogers, USA in 1983. He was a Republican candidate for United States Senate in 1988. Dawkins has held executive positions with Lehman Brothers, Bain & Company, Primerica, and Citigroup. He is the only person in history to have held the titles of Brigade Commander, Football Team Captain, Class President, Star Man (top 5% of the class), Heisman Trophy winner, and Rhodes Scholar. He is often regarded as the most decorated cadet in the history of the United States Military Academy. Following Johnny Lujack's death on July 25, 2023, Dawkins is the oldest surviving winner of the Heisman Trophy. He is the lone survivor among the first 27 recipients (1935–1961). Ear", "text_characters": 2564, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1583008", "title": "Dan Heisman", "score": 23.305214829943523, "snippet": "Dan Heisman (born July 8, 1950) is a United States Chess Federation National Master, author and instructor. Education. Heisman graduated from Hatboro-Horsham High School in Pennsylvania as the co-valedictorian in 1968, and was elected to the school's hall of fame in 2007. He attended Caltech and transferred to Penn State in 1969. In 1971 Heisman graduated at the top of his class earning a B.S. in mathematics, and in 1983, again at the top of his class with a 4.0 G.P.A., received his master's degree in engineering, both from the Pennsylvania State University. Early career. Heisman began his career as an engineer and worked in that capacity with several organizations, including the Naval Air Development Center and Intermetrics, Inc. Later, Heisman became a Registered Investment Adviser in Pennsylvania. He has been a full-time chess instructor and author since 1996. Chess career. Heisman is the two-time open chess champion of Philadelphia (1973 and 1976), and the Philadelphia Invitational Chess Champion (1973). His Penn State team won the U.S. Amateur Team Championship in 1972. He is rated over 2200 by both the United States Chess Federation and FIDE, but is currently inactive as a tournament player. Heisman is a member of the International Computer Games Association and worked at both Deep Blue versus Garry Kasparov matches (1996 and 1997). Heisman authors the award-winning Novice Nook column, aimed at improving adults, for the popular Chess Cafe Web site. He has also written t", "text_characters": 2711, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1176927", "title": "Auburn Tigers", "score": 23.225042891608087, "snippet": "Athletic teams representing Auburn University The Auburn Tigers are the athletic teams representing Auburn University, a public four-year university located in Auburn, Alabama, United States. The Auburn Tigers compete in Division I of the National Collegiate Athletic Association (NCAA) as a member of the Southeastern Conference (SEC). Sports sponsored. Auburn sponsors 21 varsity teams in 15 sports and competes in the Southeastern Conference. Football. Auburn claims five national championships: 1913 (chosen by one selector in 1999), 1957, 1983, 1993 (one of four co-champions by one selector), and 2010. Three Auburn players, Pat Sullivan in 1971, Bo Jackson in 1985, and Cam Newton in 2010 have won the Heisman Trophy. The Trophy's namesake, John Heisman, coached at Auburn from 1895 until 1899. Auburn is the only school that Heisman coached at (among others, Georgia Tech and Clemson) that has produced a Heisman Trophy winner. Auburn's Jordan–Hare Stadium has a capacity of 87,451 ranking as the tenth-largest on-campus stadium in the NCAA as of January 2011. Auburn played the first football game in the Deep South in 1892 against the University of Georgia at Piedmont Park in Atlanta, Georgia. The Tigers' first bowl appearance was in 1937 in the sixth Bacardi Bowl played in Havana, Cuba. AU Football has won 12 conference championships (8 SEC), has had seven perfect seasons, and since the division of the conference in 1992, six outright western division championships (1997, 2000, 2004", "text_characters": 2534, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4957477", "title": "2009 NCAA Division I FBS football season", "score": 23.07279219093565, "snippet": "American college football season The 2009 NCAA Division I FBS football season was the highest level of college football competition in the United States organized by the National Collegiate Athletic Association (NCAA). The regular season began on September 3, 2009, and ended on December 12, 2009. The postseason concluded on January 7, 2010, with the BCS National Championship Game in Pasadena, California, where the Alabama Crimson Tide defeated the Texas Longhorns by the score of 37–21. For the first time in the history of the Heisman Trophy, the annual award for the most outstanding player in college football, two previous Heisman winners played in the same season—2008 winner Sam Bradford of Oklahoma and 2007 winner Tim Tebow of Florida. For the first time since 1946, the top three vote-getters from the previous season all returned: Bradford, Colt McCoy of Texas, and Tebow, in that order. Six teams finished the regular season undefeated; a record for the BCS era. Rule changes. The NCAA football rules committee proposed several rule changes for 2009. The rule changes include the following: Conference changes. Western Kentucky joined the Sun Belt Conference after playing the 2008 as an FBS independent, completing their two-year transition from the Football Championship Subdivision (FCS). The number of full FBS members increased to 120. Regular season top 10 matchups. Rankings reflect the AP Poll. Rankings for Week 8 and beyond will list BCS Rankings first and AP Poll second. Te", "text_characters": 2528, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1997285", "title": "Norm Chow", "score": 23.011246043044554, "snippet": "In 1979, BYU led the country in passing offense, total offense, and scoring offense during the regular season, and quarterback Jim McMahon finished fifth in the Heisman vote. In 1982, head coach LaVell Edwards named Chow as principal offensive play-caller. Chow continued to call all the offensive plays for the rest of his 17 years at BYU. In 1983, the offense, led by quarterback Steve Young, set NCAA single-season records for pass completion percentage (71.3%) and total yards per game (584.2). Young finished second in the Heisman vote. In 1984, the unbeaten BYU team won the consensus national championship. Quarterback Robbie Bosco finished second in the nation in total passing and third in the Heisman vote. Chow became quarterbacks and receivers coach in 1986. In 1990, the Cougars upset defending national champion and top-ranked Miami, FL., 28–21, with nearly 500 yards of offense and Ty Detmer went on to win the Heisman. In 1996, Chow was officially given the title of assistant head coach / offensive coordinator / quarterback / receivers coach. That season, the Cougars with Steve Sarkisian as quarterback, won the WAC and earned its first ever New Year's Day Bowl. BYU came from behind to beat Kansas State in the Cotton Bowl, and finished with No. 5 ranking and a 14–1 record, setting an NCAA record for most wins in a season by Division I football team. Sarkisian finished the season with a quarterback rating of 162.0, the third highest in the country. During his 27 years with BY", "text_characters": 2537, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R003_request.json/messages/5/content`；SHA256：`0b2b6af543184b9ad1976485173bb98ce8db88c720e8dd1b69c579999d375f6f`。
+
+### R3 `/rounds/2/reasoning_content` [0,384)
+
+SHA256：`41a3192c13a51b30185ae175bc6b07f1a3213c467d1fd2b403fc3d91774a53f8`；原字段SHA256：`41a3192c13a51b30185ae175bc6b07f1a3213c467d1fd2b403fc3d91774a53f8`。
+
+````
+The search results don't seem to directly identify the player. The player described won the 1983 Heisman Trophy and played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. Let me search for the 1983 Heisman Trophy winner specifically.
+
+<tool_call>
+<function=search>
+<parameter=query>
+1983 Heisman Trophy winner
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\n1983 Heisman Trophy winner\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "1983 Heisman Trophy winner"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 0.1158040757291019,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2581306",
+        "score": 26.66549815420086,
+        "snippet": "Meanwhile, the University of Miami Hurricanes, unranked in the preseason Top 20, began winning after their first week 28–3 loss to Florida. Miami came in at No. 15 in the September 26 poll. As they continued unbeaten, the Hurricanes gathered force, rising to No. 12, No. 10, No. 8, No. 7, and reached No. 5 by October 31, where they remained in the final regular season poll after they were invited to play against Nebraska in the Orange Bowl. Bowl games. January 2 Bowls: Other Bowls: Heisman Trophy voting. \"The Heisman Trophy is given to the year's most outstanding player\" References.",
+        "text_characters": 588,
+        "title": "1983 NCAA Division I-A football season"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8768015",
+        "score": 25.39167855734449,
+        "snippet": "American college football season The 1983 Boston College Eagles football team represented Boston College as an independent during the 1983 NCAA Division I-A football season. The Eagles were led by third-year head coach Jack Bicknell, and played their home games at Alumni Stadium in Chestnut Hill, Massachusetts and Sullivan Stadium (later known as Foxboro Stadium) in Foxborough, Massachusetts. Junior quarterback Doug Flutie threw for over 2,700 yards and finished third in the Heisman Trophy voting, leading Boston College to their first ranked finish in 41 years. They met their rivals, Notre Dame, in the 1983 Liberty Bowl. Boston College finished the season ranked No. 19 in the final AP Poll, and captured the Lambert-Meadowlands Trophy (emblematic of the 'Eastern championship' in Division I FBS). References.",
+        "text_characters": 817,
+        "title": "1983 Boston College Eagles football team"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6658579",
+        "score": 24.163869845224962,
+        "snippet": "Michael Lance \"Mike\" Trope (born 1951), is a Los Angeles based trial lawyer and former sports agent for over 200 NFL players. Trope was a sports agent from the time he was a 21-year-old senior at University of Southern California, USC, in 1972 until he retired from the business in 1985. Subsequently, after Trope's graduation from Loyola Law School, he was admitted to practice law in California in 1987. As an agent for football stars, Trope was known for negotiating record breaking contracts in the 1970s, including the first million dollar package for an NFL rookie. This caused many publications to refer to Trope, still in his 20s, as a Super Agent by 1977, as well as \"Whiz Kid\" and \"LA's Boy Wonder\". Trope is the son of legendary Los Angeles Trial lawyer and philanthropist, Sorrell Trope. Biography. Early years. Trope graduated from Palisades Charter High School in 1969 and graduated magna cum laude from USC with a major in history in 1973. Trope later graduated from Loyola Law School in 1983 and was admitted to the California State Bar in 1987. Professional life. In 1971, 20-year-old USC junior, Trope, decided he wanted to be an agent after watching Johnny Rodgers complete a punt return for 72 yards and a touchdown against the University of Oklahoma, thus leading the Nebraska Cornhuskers to the NCAA national football championship. Rodgers won the Heisman Trophy and Trope, at age 21 signed Rodgers as his first client and became the youngest agent in history to represent NFL p",
+        "text_characters": 2159,
+        "title": "Michael Trope"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5076248",
+        "score": 23.857041785645592,
+        "snippet": "American football player (born 1952) David Duane Jaynes (born December 12, 1952) is an American former professional football player who was a quarterback in the National Football League (NFL). He played college football for the Kansas Jayhawks football, earning All-American honors in 1973. That same year, he was a finalist for the Heisman Trophy finishing fourth in voting. He was selected in the third-round (66th overall selection) of the 1974 NFL draft by the Kansas City Chiefs. He would play only one season in the NFL. College career. Jaynes accepted a football scholarship from the University of Kansas. During the early 1970s, he broke virtually every passing record in Kansas history. When he left Kansas, he was first in passing, with 5,132 yards. This record held for ten years until broken in 1983 by Frank Seurer. He also left Kansas with the record for career passing touchdowns at 35, which held up until the 2007 season, when he was passed by Todd Reesing, who would shatter the record with 90. Jaynes' most memorable game was in 1973 against SEC power Tennessee, when he completed 35 of 58 attempted passes for 394 yards in the 28-27 loss. In 1973 Kansas finished 7–4–1 and went to the Liberty Bowl. Jaynes finished fourth in the voting that year for the Heisman Trophy behind winner John Cappelletti, John Hicks, and Roosevelt Leaks. He also finished ahead of future two-time Heisman winner Archie Griffin. Jaynes is, to date, the only Heisman Trophy finalist in Kansas football h",
+        "text_characters": 2129,
+        "title": "David Jaynes"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9953952",
+        "score": 23.686166075904175,
+        "snippet": "This is a list of second overall National Football League (NFL) draft picks. The NFL draft is an annual sports draft in which National Football League teams select newly eligible players for their rosters. Seven Heisman Trophy winners have been selected with the pick: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), and Jayden Daniels (2024). 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Tony Boselli (1995), Julius Peppers (2002), and Calvin Johnson (2007). The Cleveland / St. Louis / Los Angeles Rams have had nine selections at the spot, the most in the NFL. List. 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Calvin Johnson (2007), Tony Boselli (1995), and Julius Peppers (2002). In 2012, \"Sports Illustrated\" chose Taylor as the best player selected second overall. Seven Heisman Trophy winners have been selected at the spot: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), ",
+        "text_characters": 1702,
+        "title": "List of second overall NFL draft picks"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1244454",
+        "score": 23.35790199605278,
+        "snippet": "United States Army general Peter Miller Dawkins (born March 8, 1938) is an American business executive and former college football player, hockey player, military officer, and political candidate. Dawkins attended the United States Military Academy, where he played as a halfback for the Army Cadets football team from 1956 to 1958. As a senior in 1958 he won the Heisman Trophy, the Maxwell Award, and was named as a consensus All-American. After graduating from the Military Academy in 1959, he studied at the University of Oxford as a Rhodes Scholar. Dawkins served as an officer in the United States Army until he retired in 1983 with the rank of brigadier general. He received the Golden Plate Award of the American Academy of Achievement presented by Awards Council member and Supreme Allied Commander Europe, General Bernard W. Rogers, USA in 1983. He was a Republican candidate for United States Senate in 1988. Dawkins has held executive positions with Lehman Brothers, Bain & Company, Primerica, and Citigroup. He is the only person in history to have held the titles of Brigade Commander, Football Team Captain, Class President, Star Man (top 5% of the class), Heisman Trophy winner, and Rhodes Scholar. He is often regarded as the most decorated cadet in the history of the United States Military Academy. Following Johnny Lujack's death on July 25, 2023, Dawkins is the oldest surviving winner of the Heisman Trophy. He is the lone survivor among the first 27 recipients (1935–1961). Ear",
+        "text_characters": 2564,
+        "title": "Pete Dawkins"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1583008",
+        "score": 23.305214829943523,
+        "snippet": "Dan Heisman (born July 8, 1950) is a United States Chess Federation National Master, author and instructor. Education. Heisman graduated from Hatboro-Horsham High School in Pennsylvania as the co-valedictorian in 1968, and was elected to the school's hall of fame in 2007. He attended Caltech and transferred to Penn State in 1969. In 1971 Heisman graduated at the top of his class earning a B.S. in mathematics, and in 1983, again at the top of his class with a 4.0 G.P.A., received his master's degree in engineering, both from the Pennsylvania State University. Early career. Heisman began his career as an engineer and worked in that capacity with several organizations, including the Naval Air Development Center and Intermetrics, Inc. Later, Heisman became a Registered Investment Adviser in Pennsylvania. He has been a full-time chess instructor and author since 1996. Chess career. Heisman is the two-time open chess champion of Philadelphia (1973 and 1976), and the Philadelphia Invitational Chess Champion (1973). His Penn State team won the U.S. Amateur Team Championship in 1972. He is rated over 2200 by both the United States Chess Federation and FIDE, but is currently inactive as a tournament player. Heisman is a member of the International Computer Games Association and worked at both Deep Blue versus Garry Kasparov matches (1996 and 1997). Heisman authors the award-winning Novice Nook column, aimed at improving adults, for the popular Chess Cafe Web site. He has also written t",
+        "text_characters": 2711,
+        "title": "Dan Heisman"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1176927",
+        "score": 23.225042891608087,
+        "snippet": "Athletic teams representing Auburn University The Auburn Tigers are the athletic teams representing Auburn University, a public four-year university located in Auburn, Alabama, United States. The Auburn Tigers compete in Division I of the National Collegiate Athletic Association (NCAA) as a member of the Southeastern Conference (SEC). Sports sponsored. Auburn sponsors 21 varsity teams in 15 sports and competes in the Southeastern Conference. Football. Auburn claims five national championships: 1913 (chosen by one selector in 1999), 1957, 1983, 1993 (one of four co-champions by one selector), and 2010. Three Auburn players, Pat Sullivan in 1971, Bo Jackson in 1985, and Cam Newton in 2010 have won the Heisman Trophy. The Trophy's namesake, John Heisman, coached at Auburn from 1895 until 1899. Auburn is the only school that Heisman coached at (among others, Georgia Tech and Clemson) that has produced a Heisman Trophy winner. Auburn's Jordan–Hare Stadium has a capacity of 87,451 ranking as the tenth-largest on-campus stadium in the NCAA as of January 2011. Auburn played the first football game in the Deep South in 1892 against the University of Georgia at Piedmont Park in Atlanta, Georgia. The Tigers' first bowl appearance was in 1937 in the sixth Bacardi Bowl played in Havana, Cuba. AU Football has won 12 conference championships (8 SEC), has had seven perfect seasons, and since the division of the conference in 1992, six outright western division championships (1997, 2000, 2004",
+        "text_characters": 2534,
+        "title": "Auburn Tigers"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4957477",
+        "score": 23.07279219093565,
+        "snippet": "American college football season The 2009 NCAA Division I FBS football season was the highest level of college football competition in the United States organized by the National Collegiate Athletic Association (NCAA). The regular season began on September 3, 2009, and ended on December 12, 2009. The postseason concluded on January 7, 2010, with the BCS National Championship Game in Pasadena, California, where the Alabama Crimson Tide defeated the Texas Longhorns by the score of 37–21. For the first time in the history of the Heisman Trophy, the annual award for the most outstanding player in college football, two previous Heisman winners played in the same season—2008 winner Sam Bradford of Oklahoma and 2007 winner Tim Tebow of Florida. For the first time since 1946, the top three vote-getters from the previous season all returned: Bradford, Colt McCoy of Texas, and Tebow, in that order. Six teams finished the regular season undefeated; a record for the BCS era. Rule changes. The NCAA football rules committee proposed several rule changes for 2009. The rule changes include the following: Conference changes. Western Kentucky joined the Sun Belt Conference after playing the 2008 as an FBS independent, completing their two-year transition from the Football Championship Subdivision (FCS). The number of full FBS members increased to 120. Regular season top 10 matchups. Rankings reflect the AP Poll. Rankings for Week 8 and beyond will list BCS Rankings first and AP Poll second. Te",
+        "text_characters": 2528,
+        "title": "2009 NCAA Division I FBS football season"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1997285",
+        "score": 23.011246043044554,
+        "snippet": "In 1979, BYU led the country in passing offense, total offense, and scoring offense during the regular season, and quarterback Jim McMahon finished fifth in the Heisman vote. In 1982, head coach LaVell Edwards named Chow as principal offensive play-caller. Chow continued to call all the offensive plays for the rest of his 17 years at BYU. In 1983, the offense, led by quarterback Steve Young, set NCAA single-season records for pass completion percentage (71.3%) and total yards per game (584.2). Young finished second in the Heisman vote. In 1984, the unbeaten BYU team won the consensus national championship. Quarterback Robbie Bosco finished second in the nation in total passing and third in the Heisman vote. Chow became quarterbacks and receivers coach in 1986. In 1990, the Cougars upset defending national champion and top-ranked Miami, FL., 28–21, with nearly 500 yards of offense and Ty Detmer went on to win the Heisman. In 1996, Chow was officially given the title of assistant head coach / offensive coordinator / quarterback / receivers coach. That season, the Cougars with Steve Sarkisian as quarterback, won the WAC and earned its first ever New Year's Day Bowl. BYU came from behind to beat Kansas State in the Cotton Bowl, and finished with No. 5 ranking and a 14–1 record, setting an NCAA record for most wins in a season by Division I football team. Sarkisian finished the season with a quarterback rating of 162.0, the third highest in the country. During his 27 years with BY",
+        "text_characters": 2537,
+        "title": "Norm Chow"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2581306", "title": "1983 NCAA Division I-A football season", "score": 26.66549815420086, "snippet": "Meanwhile, the University of Miami Hurricanes, unranked in the preseason Top 20, began winning after their first week 28–3 loss to Florida. Miami came in at No. 15 in the September 26 poll. As they continued unbeaten, the Hurricanes gathered force, rising to No. 12, No. 10, No. 8, No. 7, and reached No. 5 by October 31, where they remained in the final regular season poll after they were invited to play against Nebraska in the Orange Bowl. Bowl games. January 2 Bowls: Other Bowls: Heisman Trophy voting. \"The Heisman Trophy is given to the year's most outstanding player\" References.", "text_characters": 588, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8768015", "title": "1983 Boston College Eagles football team", "score": 25.39167855734449, "snippet": "American college football season The 1983 Boston College Eagles football team represented Boston College as an independent during the 1983 NCAA Division I-A football season. The Eagles were led by third-year head coach Jack Bicknell, and played their home games at Alumni Stadium in Chestnut Hill, Massachusetts and Sullivan Stadium (later known as Foxboro Stadium) in Foxborough, Massachusetts. Junior quarterback Doug Flutie threw for over 2,700 yards and finished third in the Heisman Trophy voting, leading Boston College to their first ranked finish in 41 years. They met their rivals, Notre Dame, in the 1983 Liberty Bowl. Boston College finished the season ranked No. 19 in the final AP Poll, and captured the Lambert-Meadowlands Trophy (emblematic of the 'Eastern championship' in Division I FBS). References.", "text_characters": 817, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6658579", "title": "Michael Trope", "score": 24.163869845224962, "snippet": "Michael Lance \"Mike\" Trope (born 1951), is a Los Angeles based trial lawyer and former sports agent for over 200 NFL players. Trope was a sports agent from the time he was a 21-year-old senior at University of Southern California, USC, in 1972 until he retired from the business in 1985. Subsequently, after Trope's graduation from Loyola Law School, he was admitted to practice law in California in 1987. As an agent for football stars, Trope was known for negotiating record breaking contracts in the 1970s, including the first million dollar package for an NFL rookie. This caused many publications to refer to Trope, still in his 20s, as a Super Agent by 1977, as well as \"Whiz Kid\" and \"LA's Boy Wonder\". Trope is the son of legendary Los Angeles Trial lawyer and philanthropist, Sorrell Trope. Biography. Early years. Trope graduated from Palisades Charter High School in 1969 and graduated magna cum laude from USC with a major in history in 1973. Trope later graduated from Loyola Law School in 1983 and was admitted to the California State Bar in 1987. Professional life. In 1971, 20-year-old USC junior, Trope, decided he wanted to be an agent after watching Johnny Rodgers complete a punt return for 72 yards and a touchdown against the University of Oklahoma, thus leading the Nebraska Cornhuskers to the NCAA national football championship. Rodgers won the Heisman Trophy and Trope, at age 21 signed Rodgers as his first client and became the youngest agent in history to represent NFL p", "text_characters": 2159, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5076248", "title": "David Jaynes", "score": 23.857041785645592, "snippet": "American football player (born 1952) David Duane Jaynes (born December 12, 1952) is an American former professional football player who was a quarterback in the National Football League (NFL). He played college football for the Kansas Jayhawks football, earning All-American honors in 1973. That same year, he was a finalist for the Heisman Trophy finishing fourth in voting. He was selected in the third-round (66th overall selection) of the 1974 NFL draft by the Kansas City Chiefs. He would play only one season in the NFL. College career. Jaynes accepted a football scholarship from the University of Kansas. During the early 1970s, he broke virtually every passing record in Kansas history. When he left Kansas, he was first in passing, with 5,132 yards. This record held for ten years until broken in 1983 by Frank Seurer. He also left Kansas with the record for career passing touchdowns at 35, which held up until the 2007 season, when he was passed by Todd Reesing, who would shatter the record with 90. Jaynes' most memorable game was in 1973 against SEC power Tennessee, when he completed 35 of 58 attempted passes for 394 yards in the 28-27 loss. In 1973 Kansas finished 7–4–1 and went to the Liberty Bowl. Jaynes finished fourth in the voting that year for the Heisman Trophy behind winner John Cappelletti, John Hicks, and Roosevelt Leaks. He also finished ahead of future two-time Heisman winner Archie Griffin. Jaynes is, to date, the only Heisman Trophy finalist in Kansas football h", "text_characters": 2129, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9953952", "title": "List of second overall NFL draft picks", "score": 23.686166075904175, "snippet": "This is a list of second overall National Football League (NFL) draft picks. The NFL draft is an annual sports draft in which National Football League teams select newly eligible players for their rosters. Seven Heisman Trophy winners have been selected with the pick: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), and Jayden Daniels (2024). 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Tony Boselli (1995), Julius Peppers (2002), and Calvin Johnson (2007). The Cleveland / St. Louis / Los Angeles Rams have had nine selections at the spot, the most in the NFL. List. 13 have been inducted into the Pro Football Hall of Fame: Sid Luckman (1939), George McAfee (1940), Les Richter (1952), Bob Brown (1964), Tom Mack (1966), Randy White (1975), Tony Dorsett (1977), Lawrence Taylor (1981), Eric Dickerson (1983), Marshall Faulk (1994), Calvin Johnson (2007), Tony Boselli (1995), and Julius Peppers (2002). In 2012, \"Sports Illustrated\" chose Taylor as the best player selected second overall. Seven Heisman Trophy winners have been selected at the spot: Glenn Davis (1946), Billy Vessels (1952), John David Crow (1957), Reggie Bush (2006), Robert Griffin III (2012), Marcus Mariota (2014), ", "text_characters": 1702, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1244454", "title": "Pete Dawkins", "score": 23.35790199605278, "snippet": "United States Army general Peter Miller Dawkins (born March 8, 1938) is an American business executive and former college football player, hockey player, military officer, and political candidate. Dawkins attended the United States Military Academy, where he played as a halfback for the Army Cadets football team from 1956 to 1958. As a senior in 1958 he won the Heisman Trophy, the Maxwell Award, and was named as a consensus All-American. After graduating from the Military Academy in 1959, he studied at the University of Oxford as a Rhodes Scholar. Dawkins served as an officer in the United States Army until he retired in 1983 with the rank of brigadier general. He received the Golden Plate Award of the American Academy of Achievement presented by Awards Council member and Supreme Allied Commander Europe, General Bernard W. Rogers, USA in 1983. He was a Republican candidate for United States Senate in 1988. Dawkins has held executive positions with Lehman Brothers, Bain & Company, Primerica, and Citigroup. He is the only person in history to have held the titles of Brigade Commander, Football Team Captain, Class President, Star Man (top 5% of the class), Heisman Trophy winner, and Rhodes Scholar. He is often regarded as the most decorated cadet in the history of the United States Military Academy. Following Johnny Lujack's death on July 25, 2023, Dawkins is the oldest surviving winner of the Heisman Trophy. He is the lone survivor among the first 27 recipients (1935–1961). Ear", "text_characters": 2564, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1583008", "title": "Dan Heisman", "score": 23.305214829943523, "snippet": "Dan Heisman (born July 8, 1950) is a United States Chess Federation National Master, author and instructor. Education. Heisman graduated from Hatboro-Horsham High School in Pennsylvania as the co-valedictorian in 1968, and was elected to the school's hall of fame in 2007. He attended Caltech and transferred to Penn State in 1969. In 1971 Heisman graduated at the top of his class earning a B.S. in mathematics, and in 1983, again at the top of his class with a 4.0 G.P.A., received his master's degree in engineering, both from the Pennsylvania State University. Early career. Heisman began his career as an engineer and worked in that capacity with several organizations, including the Naval Air Development Center and Intermetrics, Inc. Later, Heisman became a Registered Investment Adviser in Pennsylvania. He has been a full-time chess instructor and author since 1996. Chess career. Heisman is the two-time open chess champion of Philadelphia (1973 and 1976), and the Philadelphia Invitational Chess Champion (1973). His Penn State team won the U.S. Amateur Team Championship in 1972. He is rated over 2200 by both the United States Chess Federation and FIDE, but is currently inactive as a tournament player. Heisman is a member of the International Computer Games Association and worked at both Deep Blue versus Garry Kasparov matches (1996 and 1997). Heisman authors the award-winning Novice Nook column, aimed at improving adults, for the popular Chess Cafe Web site. He has also written t", "text_characters": 2711, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1176927", "title": "Auburn Tigers", "score": 23.225042891608087, "snippet": "Athletic teams representing Auburn University The Auburn Tigers are the athletic teams representing Auburn University, a public four-year university located in Auburn, Alabama, United States. The Auburn Tigers compete in Division I of the National Collegiate Athletic Association (NCAA) as a member of the Southeastern Conference (SEC). Sports sponsored. Auburn sponsors 21 varsity teams in 15 sports and competes in the Southeastern Conference. Football. Auburn claims five national championships: 1913 (chosen by one selector in 1999), 1957, 1983, 1993 (one of four co-champions by one selector), and 2010. Three Auburn players, Pat Sullivan in 1971, Bo Jackson in 1985, and Cam Newton in 2010 have won the Heisman Trophy. The Trophy's namesake, John Heisman, coached at Auburn from 1895 until 1899. Auburn is the only school that Heisman coached at (among others, Georgia Tech and Clemson) that has produced a Heisman Trophy winner. Auburn's Jordan–Hare Stadium has a capacity of 87,451 ranking as the tenth-largest on-campus stadium in the NCAA as of January 2011. Auburn played the first football game in the Deep South in 1892 against the University of Georgia at Piedmont Park in Atlanta, Georgia. The Tigers' first bowl appearance was in 1937 in the sixth Bacardi Bowl played in Havana, Cuba. AU Football has won 12 conference championships (8 SEC), has had seven perfect seasons, and since the division of the conference in 1992, six outright western division championships (1997, 2000, 2004", "text_characters": 2534, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4957477", "title": "2009 NCAA Division I FBS football season", "score": 23.07279219093565, "snippet": "American college football season The 2009 NCAA Division I FBS football season was the highest level of college football competition in the United States organized by the National Collegiate Athletic Association (NCAA). The regular season began on September 3, 2009, and ended on December 12, 2009. The postseason concluded on January 7, 2010, with the BCS National Championship Game in Pasadena, California, where the Alabama Crimson Tide defeated the Texas Longhorns by the score of 37–21. For the first time in the history of the Heisman Trophy, the annual award for the most outstanding player in college football, two previous Heisman winners played in the same season—2008 winner Sam Bradford of Oklahoma and 2007 winner Tim Tebow of Florida. For the first time since 1946, the top three vote-getters from the previous season all returned: Bradford, Colt McCoy of Texas, and Tebow, in that order. Six teams finished the regular season undefeated; a record for the BCS era. Rule changes. The NCAA football rules committee proposed several rule changes for 2009. The rule changes include the following: Conference changes. Western Kentucky joined the Sun Belt Conference after playing the 2008 as an FBS independent, completing their two-year transition from the Football Championship Subdivision (FCS). The number of full FBS members increased to 120. Regular season top 10 matchups. Rankings reflect the AP Poll. Rankings for Week 8 and beyond will list BCS Rankings first and AP Poll second. Te", "text_characters": 2528, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1997285", "title": "Norm Chow", "score": 23.011246043044554, "snippet": "In 1979, BYU led the country in passing offense, total offense, and scoring offense during the regular season, and quarterback Jim McMahon finished fifth in the Heisman vote. In 1982, head coach LaVell Edwards named Chow as principal offensive play-caller. Chow continued to call all the offensive plays for the rest of his 17 years at BYU. In 1983, the offense, led by quarterback Steve Young, set NCAA single-season records for pass completion percentage (71.3%) and total yards per game (584.2). Young finished second in the Heisman vote. In 1984, the unbeaten BYU team won the consensus national championship. Quarterback Robbie Bosco finished second in the nation in total passing and third in the Heisman vote. Chow became quarterbacks and receivers coach in 1986. In 1990, the Cougars upset defending national champion and top-ranked Miami, FL., 28–21, with nearly 500 yards of offense and Ty Detmer went on to win the Heisman. In 1996, Chow was officially given the title of assistant head coach / offensive coordinator / quarterback / receivers coach. That season, the Cougars with Steve Sarkisian as quarterback, won the WAC and earned its first ever New Year's Day Bowl. BYU came from behind to beat Kansas State in the Cotton Bowl, and finished with No. 5 ranking and a 14–1 record, setting an NCAA record for most wins in a season by Division I football team. Sarkisian finished the season with a quarterback rating of 162.0, the third highest in the country. During his 27 years with BY", "text_characters": 2537, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R004_request.json/messages/7/content`；SHA256：`0b2b6af543184b9ad1976485173bb98ce8db88c720e8dd1b69c579999d375f6f`。
+
+### R4 `/rounds/3/reasoning_content` [0,47)
+
+SHA256：`20e4c926f68ba698efc1b61a7deb71e82a3c0abe99e8aefae486aefc2d176849`；原字段SHA256：`af5306c95c2d646749bca229d8d57fa38d7aa4e860a2f7e092fb69c36b58be4d`。
+
+````
+The search results didn't identify the player. 
+````
+
+## S002｜改以USFL与NFL四队履历组合定位Mike Rozier
+
+具体区分两联盟球队，放弃仅奖项入口，真实查四队履历，R5直接采用Mike Rozier。
+
+结束状态：球员身份与职业条件被采用。
+
+边界判断：前次失败反馈留旧Stage；此处实际重选履历证据入口并执行，不只是无内容的下一轮重试。
+
+内部KEEP与反证：联盟履历解释、查询及直接人名采用是完整取证动作，R5开头反馈不另切。
+
+### SPLIT原文
+
+````
+The search results didn't identify the player. 
+→ 切点 [3, 0, 47] →
+Let me try a more specific search focusing on the teams mentioned: Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. These are USFL and NFL teams. The player played for the Pittsburgh Maulers (USFL) and Jacksonville Bulls (USFL), and Houston Oilers and Atlanta Falcons (NFL).
+
+Let me search for a player who played for these specific
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [47,577)
+
+SHA256：`e48b36cb109b7f7a4f30c9732139c3eb99bd6b3f070b8ee2eaad4530c3cf419a`；原字段SHA256：`af5306c95c2d646749bca229d8d57fa38d7aa4e860a2f7e092fb69c36b58be4d`。
+
+````
+Let me try a more specific search focusing on the teams mentioned: Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. These are USFL and NFL teams. The player played for the Pittsburgh Maulers (USFL) and Jacksonville Bulls (USFL), and Houston Oilers and Atlanta Falcons (NFL).
+
+Let me search for a player who played for these specific teams.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons player
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons player"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nPittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons player\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Pittsburgh Maulers Jacksonville Bulls Houston Oilers Atlanta Falcons player"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.19104106817394495,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3454251",
+        "score": 32.068528199592926,
+        "snippet": "American football player (1955–2021) Lawrence John Swider (February 1, 1955 – August 7, 2021) was an American football punter. He attended DuBois Area High School in DuBois, Pennsylvania, where he was a standout athlete. He played in the National Football League (NFL) from 1979 to 1982. He then played in the United States Football League (USFL) for the Pittsburgh Maulers and the Jacksonville Bulls. Swider died on August 7, 2021, in Fayetteville, Texas, at age 66. References.",
+        "text_characters": 479,
+        "title": "Larry Swider"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8755654",
+        "score": 31.997478542340843,
+        "snippet": "American football player (born 1994) Blair Brown (born May 27, 1994) is an American football linebacker. He played college football at Ohio University. College career. Brown was ranked first in Football Bowl Subdivision (FBS) in tackling efficiency with just three misses and 96 solo tackles while at Ohio University. In 2016, only Reuben Foster had higher overall and run-defense grades according to Pro Football Focus than Brown's 92.4 and 91.5. Brown's 131 total tackles tied for the second-most among FBS inside linebackers. Brown was ranked third in FBS in run-stop percentage and had 47 stops. Professional career. Jacksonville Jaguars. Brown was drafted by the Jacksonville Jaguars in the fifth round, 148th overall, in the 2017 NFL draft. He played in 28 games for the team before he was released on May 9, 2019. Brown was charged with domestic battery on May 30, 2019, but had the charges dismissed in July 2020 and the NFL announced in October 2020 he would not receive league discipline for the incident. He worked out for the Houston Texans on October 17, 2020. Pittsburgh Maulers. Brown was drafted by the Pittsburgh Maulers of the United States Football League (USFL) in the 31st round of the 2022 USFL draft on February 24, 2022. He was transferred to the team's practice squad before the start of the regular season on April 16. He remained on the inactive roster on April 22. He was transferred to the active roster on April 30. He was released on May 5. References.",
+        "text_characters": 1483,
+        "title": "Blair Brown (American football)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9004360",
+        "score": 31.19543399353747,
+        "snippet": "He threw five incompletions and an interception to Mason Foster in the fourth quarter, for a passer rating of 0.0. He appeared in one other game, Week 17 against the Dallas Cowboys as a blocker, in the 2018 season. Lauletta was waived during final roster cuts on August 31, 2019. Philadelphia Eagles. Lauletta signed with the practice squad of the Philadelphia Eagles on September 1, 2019. He signed a reserve/future contract with the Eagles on January 6, 2020. He was waived on August 17, 2020. Atlanta Falcons. Lauletta was signed by the Atlanta Falcons on September 2, 2020. Three days later on September 5, 2020, Lauletta was waived by the Falcons and re-signed to the practice squad. He was released on September 22, 2020. Cleveland Browns (first stint). On October 16, 2020, Lauletta was signed to the Cleveland Browns' practice squad. He was signed to a reserve/futures contract by the Browns on January 18, 2021. Lauletta was waived by the Browns on August 31, 2021. Jacksonville Jaguars. On September 2, 2021, Lauletta was signed to the Jacksonville Jaguars' practice squad. Cleveland Browns (second stint). On December 17, 2021, Lauletta was signed off the Jaguars' practice squad to the Browns' active roster. He was waived by the Browns on January 4, 2022. Pittsburgh Maulers. On February 22, 2022, Lauletta was drafted by the Pittsburgh Maulers of the United States Football League (USFL) in the 1st round with the seventh pick of the 2022 USFL draft. He was released on May 25, 2022. Ne",
+        "text_characters": 1697,
+        "title": "Kyle Lauletta"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:964559",
+        "score": 30.659362128183844,
+        "snippet": "The Maulers opened their home season with a March 11, 1984 sellout crowd at Three Rivers Stadium facing the Birmingham Stallions, a team led by Cliff Stoudt, who had spent much of the previous season as the starter for the Pittsburgh Steelers, and had been Terry Bradshaw's backup for years before then. Fans bombarded Stoudt with snowballs and ice whenever the Stallions entered the red zone. The Maulers lost, 30-18, in what would be the team's only sellout. The team finished 3–15, tying the Washington Federals for the worst record in the league. However, while undermanned, they were not nearly as bad as their record indicated. They were in part victims of a very tough schedule. They played nine games against playoff teams and caught a lot of the other teams when they were hot—Oklahoma and New Orleans early and San Antonio and Jacksonville late. Seven of their losses were by fewer than 10 points. The team was built around the idea that Dallas Cowboys longtime third-string QB Glenn Carano would be a strong starter in the USFL. To support Carano, the team had RB Mike Rozier–the second straight Heisman Trophy winner to sign with a USFL team–and WR Greg Anderson, who caught 63 passes. Carano had his moments but he struggled overall, completing only 53.7% of his passes with 13 touchdowns and 19 interceptions. Backup Tom Rozantz was expected to mostly carry a clipboard, but he ended up playing a lot and he struggled as well. However, either would have been a disappointment, as most f",
+        "text_characters": 2612,
+        "title": "Pittsburgh Maulers (1984)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:965709",
+        "score": 26.8785454422189,
+        "snippet": "Rozier had a nation's best 2,486 total yards with 2,148 of those coming on the ground and twenty-nine touchdowns scored. His 7.8 yards-per-carry mark on the season stands as the third-highest mark for players with more than 214 carries in a season. Against Kansas, Rozier rushed for 230 yards in the first half and finished with 285 rushing yards total, at that time a school record. Rozier went over 200 yards in each of his last four regular-season games of the 1983 season. His senior season was capped when he was awarded the Heisman Trophy, given to the best individual player in college football and was again an All-American. His college career would end in disappointment, losing the 1984 Orange Bowl in which Miami defeated Nebraska 31-30 for the national championship. Rozier had 138 yards on 21 carries at halftime against a Miami Hurricanes team with the second-ranked defense in football, but he had to leave in the third quarter following an ankle injury. Rozier finished the game with 147 yards on 26 carries. Professional career. Rozier was selected by the Pittsburgh Maulers first overall in the 1984 USFL Draft. He played his first two professional seasons in the United States Football League, in 1984, with the Pittsburgh Maulers, and 1985, with the Jacksonville Bulls. In 1985 Rozier played for the Jacksonville Bulls in the spring and the Houston Oilers in the fall. He was drafted by the Houston Oilers in the 1st round (2nd pick overall) of the 1984 NFL Supplemental Draft of ",
+        "text_characters": 2559,
+        "title": "Mike Rozier"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3684880",
+        "score": 25.34442701446114,
+        "snippet": "American football player (born 1958) Amos Lawrence Jr. (born January 9, 1958) is an American former professional football player who was a running back for the San Francisco 49ers of the National Football League (NFL). He played college football for the North Carolina Tar Heels and was selected in the fourth round of the 1981 NFL draft Early life. Lawrence was raised in the Diggs Park housing project in Norfolk, Virginia. Career. Lawrence was selected by the San Diego Chargers out of the University of North Carolina at Chapel Hill in the fourth round of the 1981 NFL draft. On September 10, 1981, Lawrence was traded to the San Francisco 49ers for a fourth round pick in the 1984 NFL draft. He was later cut during training camp. Lawrence joined the Pittsburgh Maulers in 1984 but was cut from the team after Mike Rozier was signed. He later briefly played for the Jacksonville Bulls. After his professional career ended, Lawrence returned to Norfolk, where he worked bused tables and sorted newspapers, among other odd jobs. His high school football coach, Bert Harrell, got him a job as an attendance officer and junior varsity assistant coach at Lake Taylor High School. Personal life. Lawrence had one daughter. In 1985, he divorced his wife, Ponsella Brown.",
+        "text_characters": 1268,
+        "title": "Amos Lawrence (American football)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6639807",
+        "score": 24.073424721484187,
+        "snippet": "On January 13, 2020, DeFilippo was fired by the Jacksonville Jaguars after only one season as the offensive coordinator. Chicago Bears. On January 16, 2020, DeFilippo was hired by the Chicago Bears to be their quarterbacks coach on Matt Nagy's staff. DeFilippo had interviewed for the Bears' head coaching position in 2018, but lost out to Nagy. On February 8, 2021, DeFilippo was promoted to passing game coordinator while still holding the title of quarterbacks coach. On June 13, 2022, DeFilippo announced that he would not coach that year. New Orleans Breakers. On November 10, 2022, DeFilippo was hired as the head coach of the New Orleans Breakers. He guided his team to a 4–0 start, but lost three games in a row to enter the final three games with a 4–3 record. The Breakers won out to finish 7–3, and faced the Birmingham Stallions in the 2023 USFL South Championship Game. However, the Breakers lost 47–22, and the Stallions ended up winning the championship against the Pittsburgh Maulers the following week. Memphis Showboats. After the USFL and the XFL merged to create the United Football League, DeFilippo was named the Head Coach of the Memphis Showboats on January 1, 2024. The Showboats struggled to a 2-8 record, though they would win the season finale over the Houston Roughnecks, earning the number one pick in the UFL College Draft. Along with Memphis' general manager Dennis Polian, DeFilippo resigned as coach after the season ended. References.",
+        "text_characters": 1469,
+        "title": "John DeFilippo"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9648300",
+        "score": 23.51117578394088,
+        "snippet": "American football player (born 1995) Garrett McGhin (born October 13, 1995) is an American football guard for the Arlington Renegades of the United Football League (UFL). He played college football at East Carolina. Professional career. Buffalo Bills (first stint). McGhin was signed by the Buffalo Bills as an undrafted free agent on May 13, 2019. He was placed on injured reserve on August 20, 2019, and later released on August 24. Carolina Panthers. On November 12, 2019, McGhin was signed to the Carolina Panthers practice squad. He was promoted to the active roster on November 25, 2019. He played in two games before being placed on injured reserve on December 19, 2019. He was waived on March 18, 2020. Buffalo Bills (second stint). McGhin signed with the Bills on April 23, 2020. He was waived on July 27, 2020. Jacksonville Jaguars. McGhin was claimed off of waivers by the Jacksonville Jaguars on July 28, 2020. He was waived on September 5, 2020. He was re-signed to their practice squad on November 9, 2020. He signed a reserve/future contract on January 4, 2021. He was waived on August 25, 2021. New Jersey Generals. McGhin was selected in the 5th round of the 2022 USFL draft by the New Jersey Generals. He was ruled inactive for the team's game against the Pittsburgh Maulers on May 7, 2022. He was transferred back to the active roster on May 12. New York Giants. On July 27, 2022, McGhin signed with the New York Giants. He was waived on August 30, 2022, and signed to the practice",
+        "text_characters": 2002,
+        "title": "Garrett McGhin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:591911",
+        "score": 22.596190340592727,
+        "snippet": "With McQuilken's post-season retirement, the team had an undisputed and seemingly capable starter at quarterback in Hohensee. The Birmingham Stallions' acquisition of Cliff Stoudt made their 1983 quarterback Reggie Collier available, and the Federals added him for depth in 1984 alongside Hohensee and rookie Lou Pagley. Star running back Craig James had recovered from his 1983 injury and was healthy for 1984. It seemed like the pitfalls that Jauch had fallen into in the first season might be missed this time around. Player familiarity with the system and their teammates and having a proven winner like Jauch as a coach suggested the Federals were bound to deliver better results in 1984. Unfortunately, the 1984 season unraveled in a hurry. The league scheduled the Federals to open against the expansion Jacksonville Bulls, probably in an effort to help the get the Federals off to a good start with an easy win. Unfortunately, that plan backfired; hours before the game, the Federals hobbled their defense by cutting all three of their starting linebackers, and the Bulls crushed the Federals 53–14. \"We played like a group of untrained gerbils,\" Bernhard said after the game. In an effort to save face, Bernhard fired Jauch three days after the game and replaced him with his offensive coordinator, former Maryland Terrapins and Dallas Cowboys running back Dick Bielski. In Week 2 James suffered a season-ending injury. His frequent injuries had disappointed the Federals. For his part, Jame",
+        "text_characters": 2731,
+        "title": "Orlando Renegades"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:965850",
+        "score": 22.196956335812807,
+        "snippet": "In the last game, against the Pittsburgh Maulers, a huge crowd patiently waited through a late-June downpour which postponed the game for more than an hour. When play finally started the Bulls won 26–2. 1984 schedule and results. Sources 1984 roster. 1. Danny Miller (K) 2. Rich Hendley (P) 3. Brian Franco (K/P) 5. Jeff Brockhaus (K) 8. Jeff Pierce (P) 9. Ken Hobart (QB) 14. Ben Bennett (QB) 14. Ron Rice (P) 15. Robbie Mahfouz (QB) 16. Buck Belue (QB) 17. Matt Robinson (QB) 20. Billy Cesare (SS) 21. Willie McClendon (RB) 22. Kevin Gray (CB) 23. Kerry Baird (CB) 23. Donald Dykes (CB) 24. Marvin Lewis (FB) 25. Charlie Dean (CB) 26. Chester Gee (CB) 27. Michael Whiting (RB) 28. Matt Courtney (CB) 32. Larry Mason (RB) 33. Vaughan Johnson (LB) 35. John Lott (FS) 44. Larry Key (RB) 44. Bobby Hosea (FS) 45. Mike Goedeker (LB) 46. Don Bessillieu (FS) 47. Sammy Brown (SS) 50. John McLean (LB) 51. Dave Otey (C) 52. Tom Dinkel (LB) 53. Fernando Jackson (LB) 55. Carl Qualls (LB) 55. Dann Lute (LB) 56. Rufus Norman (LB) 56. Doug West (LB) 57. Greg Zappala (LB) 58. Andy Hendel (LB) 59. Russ Washington (LB) 60. Gary Anderson (G/C) 63. Nat Hudson (T) 64. Kenny Howell (G) 65. Wally Pesuit (C) 66. George Collins (G) 67. Warren Gray (G) 69. Rush Brown (DE) 70. Val Brown (DE) 72. Don Latimer (NT) 73. Ed Gantner (DT) 75. Bob Gruber (T) 77. Chris Wampler (NT) 78. Brian Douglas (NT) 80. Gary Clark (WR) 82. Wyatt Henderson (WR) 83. Aubrey Matthews (WR) 84. Paul Bergmann (TE) 85. Perry Kemp (WR) 87. C",
+        "text_characters": 1677,
+        "title": "Jacksonville Bulls"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:3454251", "title": "Larry Swider", "score": 32.068528199592926, "snippet": "American football player (1955–2021) Lawrence John Swider (February 1, 1955 – August 7, 2021) was an American football punter. He attended DuBois Area High School in DuBois, Pennsylvania, where he was a standout athlete. He played in the National Football League (NFL) from 1979 to 1982. He then played in the United States Football League (USFL) for the Pittsburgh Maulers and the Jacksonville Bulls. Swider died on August 7, 2021, in Fayetteville, Texas, at age 66. References.", "text_characters": 479, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8755654", "title": "Blair Brown (American football)", "score": 31.997478542340843, "snippet": "American football player (born 1994) Blair Brown (born May 27, 1994) is an American football linebacker. He played college football at Ohio University. College career. Brown was ranked first in Football Bowl Subdivision (FBS) in tackling efficiency with just three misses and 96 solo tackles while at Ohio University. In 2016, only Reuben Foster had higher overall and run-defense grades according to Pro Football Focus than Brown's 92.4 and 91.5. Brown's 131 total tackles tied for the second-most among FBS inside linebackers. Brown was ranked third in FBS in run-stop percentage and had 47 stops. Professional career. Jacksonville Jaguars. Brown was drafted by the Jacksonville Jaguars in the fifth round, 148th overall, in the 2017 NFL draft. He played in 28 games for the team before he was released on May 9, 2019. Brown was charged with domestic battery on May 30, 2019, but had the charges dismissed in July 2020 and the NFL announced in October 2020 he would not receive league discipline for the incident. He worked out for the Houston Texans on October 17, 2020. Pittsburgh Maulers. Brown was drafted by the Pittsburgh Maulers of the United States Football League (USFL) in the 31st round of the 2022 USFL draft on February 24, 2022. He was transferred to the team's practice squad before the start of the regular season on April 16. He remained on the inactive roster on April 22. He was transferred to the active roster on April 30. He was released on May 5. References.", "text_characters": 1483, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9004360", "title": "Kyle Lauletta", "score": 31.19543399353747, "snippet": "He threw five incompletions and an interception to Mason Foster in the fourth quarter, for a passer rating of 0.0. He appeared in one other game, Week 17 against the Dallas Cowboys as a blocker, in the 2018 season. Lauletta was waived during final roster cuts on August 31, 2019. Philadelphia Eagles. Lauletta signed with the practice squad of the Philadelphia Eagles on September 1, 2019. He signed a reserve/future contract with the Eagles on January 6, 2020. He was waived on August 17, 2020. Atlanta Falcons. Lauletta was signed by the Atlanta Falcons on September 2, 2020. Three days later on September 5, 2020, Lauletta was waived by the Falcons and re-signed to the practice squad. He was released on September 22, 2020. Cleveland Browns (first stint). On October 16, 2020, Lauletta was signed to the Cleveland Browns' practice squad. He was signed to a reserve/futures contract by the Browns on January 18, 2021. Lauletta was waived by the Browns on August 31, 2021. Jacksonville Jaguars. On September 2, 2021, Lauletta was signed to the Jacksonville Jaguars' practice squad. Cleveland Browns (second stint). On December 17, 2021, Lauletta was signed off the Jaguars' practice squad to the Browns' active roster. He was waived by the Browns on January 4, 2022. Pittsburgh Maulers. On February 22, 2022, Lauletta was drafted by the Pittsburgh Maulers of the United States Football League (USFL) in the 1st round with the seventh pick of the 2022 USFL draft. He was released on May 25, 2022. Ne", "text_characters": 1697, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:964559", "title": "Pittsburgh Maulers (1984)", "score": 30.659362128183844, "snippet": "The Maulers opened their home season with a March 11, 1984 sellout crowd at Three Rivers Stadium facing the Birmingham Stallions, a team led by Cliff Stoudt, who had spent much of the previous season as the starter for the Pittsburgh Steelers, and had been Terry Bradshaw's backup for years before then. Fans bombarded Stoudt with snowballs and ice whenever the Stallions entered the red zone. The Maulers lost, 30-18, in what would be the team's only sellout. The team finished 3–15, tying the Washington Federals for the worst record in the league. However, while undermanned, they were not nearly as bad as their record indicated. They were in part victims of a very tough schedule. They played nine games against playoff teams and caught a lot of the other teams when they were hot—Oklahoma and New Orleans early and San Antonio and Jacksonville late. Seven of their losses were by fewer than 10 points. The team was built around the idea that Dallas Cowboys longtime third-string QB Glenn Carano would be a strong starter in the USFL. To support Carano, the team had RB Mike Rozier–the second straight Heisman Trophy winner to sign with a USFL team–and WR Greg Anderson, who caught 63 passes. Carano had his moments but he struggled overall, completing only 53.7% of his passes with 13 touchdowns and 19 interceptions. Backup Tom Rozantz was expected to mostly carry a clipboard, but he ended up playing a lot and he struggled as well. However, either would have been a disappointment, as most f", "text_characters": 2612, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:965709", "title": "Mike Rozier", "score": 26.8785454422189, "snippet": "Rozier had a nation's best 2,486 total yards with 2,148 of those coming on the ground and twenty-nine touchdowns scored. His 7.8 yards-per-carry mark on the season stands as the third-highest mark for players with more than 214 carries in a season. Against Kansas, Rozier rushed for 230 yards in the first half and finished with 285 rushing yards total, at that time a school record. Rozier went over 200 yards in each of his last four regular-season games of the 1983 season. His senior season was capped when he was awarded the Heisman Trophy, given to the best individual player in college football and was again an All-American. His college career would end in disappointment, losing the 1984 Orange Bowl in which Miami defeated Nebraska 31-30 for the national championship. Rozier had 138 yards on 21 carries at halftime against a Miami Hurricanes team with the second-ranked defense in football, but he had to leave in the third quarter following an ankle injury. Rozier finished the game with 147 yards on 26 carries. Professional career. Rozier was selected by the Pittsburgh Maulers first overall in the 1984 USFL Draft. He played his first two professional seasons in the United States Football League, in 1984, with the Pittsburgh Maulers, and 1985, with the Jacksonville Bulls. In 1985 Rozier played for the Jacksonville Bulls in the spring and the Houston Oilers in the fall. He was drafted by the Houston Oilers in the 1st round (2nd pick overall) of the 1984 NFL Supplemental Draft of ", "text_characters": 2559, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3684880", "title": "Amos Lawrence (American football)", "score": 25.34442701446114, "snippet": "American football player (born 1958) Amos Lawrence Jr. (born January 9, 1958) is an American former professional football player who was a running back for the San Francisco 49ers of the National Football League (NFL). He played college football for the North Carolina Tar Heels and was selected in the fourth round of the 1981 NFL draft Early life. Lawrence was raised in the Diggs Park housing project in Norfolk, Virginia. Career. Lawrence was selected by the San Diego Chargers out of the University of North Carolina at Chapel Hill in the fourth round of the 1981 NFL draft. On September 10, 1981, Lawrence was traded to the San Francisco 49ers for a fourth round pick in the 1984 NFL draft. He was later cut during training camp. Lawrence joined the Pittsburgh Maulers in 1984 but was cut from the team after Mike Rozier was signed. He later briefly played for the Jacksonville Bulls. After his professional career ended, Lawrence returned to Norfolk, where he worked bused tables and sorted newspapers, among other odd jobs. His high school football coach, Bert Harrell, got him a job as an attendance officer and junior varsity assistant coach at Lake Taylor High School. Personal life. Lawrence had one daughter. In 1985, he divorced his wife, Ponsella Brown.", "text_characters": 1268, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6639807", "title": "John DeFilippo", "score": 24.073424721484187, "snippet": "On January 13, 2020, DeFilippo was fired by the Jacksonville Jaguars after only one season as the offensive coordinator. Chicago Bears. On January 16, 2020, DeFilippo was hired by the Chicago Bears to be their quarterbacks coach on Matt Nagy's staff. DeFilippo had interviewed for the Bears' head coaching position in 2018, but lost out to Nagy. On February 8, 2021, DeFilippo was promoted to passing game coordinator while still holding the title of quarterbacks coach. On June 13, 2022, DeFilippo announced that he would not coach that year. New Orleans Breakers. On November 10, 2022, DeFilippo was hired as the head coach of the New Orleans Breakers. He guided his team to a 4–0 start, but lost three games in a row to enter the final three games with a 4–3 record. The Breakers won out to finish 7–3, and faced the Birmingham Stallions in the 2023 USFL South Championship Game. However, the Breakers lost 47–22, and the Stallions ended up winning the championship against the Pittsburgh Maulers the following week. Memphis Showboats. After the USFL and the XFL merged to create the United Football League, DeFilippo was named the Head Coach of the Memphis Showboats on January 1, 2024. The Showboats struggled to a 2-8 record, though they would win the season finale over the Houston Roughnecks, earning the number one pick in the UFL College Draft. Along with Memphis' general manager Dennis Polian, DeFilippo resigned as coach after the season ended. References.", "text_characters": 1469, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9648300", "title": "Garrett McGhin", "score": 23.51117578394088, "snippet": "American football player (born 1995) Garrett McGhin (born October 13, 1995) is an American football guard for the Arlington Renegades of the United Football League (UFL). He played college football at East Carolina. Professional career. Buffalo Bills (first stint). McGhin was signed by the Buffalo Bills as an undrafted free agent on May 13, 2019. He was placed on injured reserve on August 20, 2019, and later released on August 24. Carolina Panthers. On November 12, 2019, McGhin was signed to the Carolina Panthers practice squad. He was promoted to the active roster on November 25, 2019. He played in two games before being placed on injured reserve on December 19, 2019. He was waived on March 18, 2020. Buffalo Bills (second stint). McGhin signed with the Bills on April 23, 2020. He was waived on July 27, 2020. Jacksonville Jaguars. McGhin was claimed off of waivers by the Jacksonville Jaguars on July 28, 2020. He was waived on September 5, 2020. He was re-signed to their practice squad on November 9, 2020. He signed a reserve/future contract on January 4, 2021. He was waived on August 25, 2021. New Jersey Generals. McGhin was selected in the 5th round of the 2022 USFL draft by the New Jersey Generals. He was ruled inactive for the team's game against the Pittsburgh Maulers on May 7, 2022. He was transferred back to the active roster on May 12. New York Giants. On July 27, 2022, McGhin signed with the New York Giants. He was waived on August 30, 2022, and signed to the practice", "text_characters": 2002, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:591911", "title": "Orlando Renegades", "score": 22.596190340592727, "snippet": "With McQuilken's post-season retirement, the team had an undisputed and seemingly capable starter at quarterback in Hohensee. The Birmingham Stallions' acquisition of Cliff Stoudt made their 1983 quarterback Reggie Collier available, and the Federals added him for depth in 1984 alongside Hohensee and rookie Lou Pagley. Star running back Craig James had recovered from his 1983 injury and was healthy for 1984. It seemed like the pitfalls that Jauch had fallen into in the first season might be missed this time around. Player familiarity with the system and their teammates and having a proven winner like Jauch as a coach suggested the Federals were bound to deliver better results in 1984. Unfortunately, the 1984 season unraveled in a hurry. The league scheduled the Federals to open against the expansion Jacksonville Bulls, probably in an effort to help the get the Federals off to a good start with an easy win. Unfortunately, that plan backfired; hours before the game, the Federals hobbled their defense by cutting all three of their starting linebackers, and the Bulls crushed the Federals 53–14. \"We played like a group of untrained gerbils,\" Bernhard said after the game. In an effort to save face, Bernhard fired Jauch three days after the game and replaced him with his offensive coordinator, former Maryland Terrapins and Dallas Cowboys running back Dick Bielski. In Week 2 James suffered a season-ending injury. His frequent injuries had disappointed the Federals. For his part, Jame", "text_characters": 2731, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:965850", "title": "Jacksonville Bulls", "score": 22.196956335812807, "snippet": "In the last game, against the Pittsburgh Maulers, a huge crowd patiently waited through a late-June downpour which postponed the game for more than an hour. When play finally started the Bulls won 26–2. 1984 schedule and results. Sources 1984 roster. 1. Danny Miller (K) 2. Rich Hendley (P) 3. Brian Franco (K/P) 5. Jeff Brockhaus (K) 8. Jeff Pierce (P) 9. Ken Hobart (QB) 14. Ben Bennett (QB) 14. Ron Rice (P) 15. Robbie Mahfouz (QB) 16. Buck Belue (QB) 17. Matt Robinson (QB) 20. Billy Cesare (SS) 21. Willie McClendon (RB) 22. Kevin Gray (CB) 23. Kerry Baird (CB) 23. Donald Dykes (CB) 24. Marvin Lewis (FB) 25. Charlie Dean (CB) 26. Chester Gee (CB) 27. Michael Whiting (RB) 28. Matt Courtney (CB) 32. Larry Mason (RB) 33. Vaughan Johnson (LB) 35. John Lott (FS) 44. Larry Key (RB) 44. Bobby Hosea (FS) 45. Mike Goedeker (LB) 46. Don Bessillieu (FS) 47. Sammy Brown (SS) 50. John McLean (LB) 51. Dave Otey (C) 52. Tom Dinkel (LB) 53. Fernando Jackson (LB) 55. Carl Qualls (LB) 55. Dann Lute (LB) 56. Rufus Norman (LB) 56. Doug West (LB) 57. Greg Zappala (LB) 58. Andy Hendel (LB) 59. Russ Washington (LB) 60. Gary Anderson (G/C) 63. Nat Hudson (T) 64. Kenny Howell (G) 65. Wally Pesuit (C) 66. George Collins (G) 67. Warren Gray (G) 69. Rush Brown (DE) 70. Val Brown (DE) 72. Don Latimer (NT) 73. Ed Gantner (DT) 75. Bob Gruber (T) 77. Chris Wampler (NT) 78. Brian Douglas (NT) 80. Gary Clark (WR) 82. Wyatt Henderson (WR) 83. Aubrey Matthews (WR) 84. Paul Bergmann (TE) 85. Perry Kemp (WR) 87. C", "text_characters": 1677, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R005_request.json/messages/9/content`；SHA256：`fa75af4d5bb0ca649270df4e453a00cb1a6d9136719e807d7e5d1ea15974b28c`。
+
+### R5 `/rounds/4/reasoning_content` [0,176)
+
+SHA256：`cb52a2b501d0f6cc1f6205a7faae28e3678ca691f35e0b21a222cee41174d4e1`；原字段SHA256：`d62e3893ac1333e29577dbde5f215c2ac60b3ffb6738bcee296ecac9e010828f`。
+
+````
+I found Mike Rozier in the search results. He is the 1983 Heisman Trophy winner. He played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. 
+````
+
+## S003｜查Rozier参加Family Feud日期并直接提取2013年10月22日
+
+执行Mike Rozier Family Feud查询，R6引用返回原句并提取具体日期。
+
+结束状态：节目、家属与日期直接证据已取得。
+
+边界判断：身份定位收束，开始独立节目日期取证。
+
+内部KEEP与反证：R6引用、日期提取是单次搜索直接反馈，不因已有答案句就自动新建整体判断Stage。
+
+### SPLIT原文
+
+````
+I found Mike Rozier in the search results. He is the 1983 Heisman Trophy winner. He played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. 
+→ 切点 [4, 0, 176] →
+Now I need to find the date he appeared on Family Feud.
+
+Let me search for Mike Rozier and Family Feud.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Mike Rozier Family Feud
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [176,390)
+
+SHA256：`3353eff4579ef083d349cd716b7c030f09fa51ba8ed45dc8dcf603f679d96755`；原字段SHA256：`d62e3893ac1333e29577dbde5f215c2ac60b3ffb6738bcee296ecac9e010828f`。
+
+````
+Now I need to find the date he appeared on Family Feud.
+
+Let me search for Mike Rozier and Family Feud.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Mike Rozier Family Feud
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "Mike Rozier Family Feud"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nMike Rozier Family Feud\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Mike Rozier Family Feud"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 1.8633403708226979,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:965710",
+        "score": 29.624357377220036,
+        "snippet": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one son, Michael Guy Pacheco Rozier. He has two other children, Amber and JaMichael Rozier, who reside in Houston, Texas. In 1996, he was shot in his hometown of Camden, New Jersey. Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\". Rozier was called one the most stylish dressers in the history of the Heisman Trophy by SBNation. On April 9, 2024, Rozier was honored in his hometown of Camden, New Jersey, with a street dedication. Additionally, a sign was erected in the city proclaiming it the home of the renowned former Nebraska, USFL, and NFL running back. References.",
+        "text_characters": 737,
+        "title": "Mike Rozier"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2476535",
+        "score": 14.890925471952329,
+        "snippet": "By 1997, Farr had expanded his Mel Farr Auto Group to 14 auto dealerships in five states (Michigan, Ohio, New Jersey, Maryland, and Texas) with annual sales in excess of $500 million. By 1998, Farr's dealership group grossed $596.6 million, making it the top black-owned business in the United States and the 33rd largest auto dealership in the US. Farr specialized in the subprime market, expanded into the used car market, and offered credit at rates up to 25 percent. In 2000, Farr's companies became the subject of negative publicity focusing on their sales and credit practices. There were legal problems surrounding Farr's \"On-Time Device\", which prevented drivers of leased vehicles from starting the car if they missed payments. In June 2000, Farr settled a suit with customers who complained that the device turned off their cars when they were in motion. Many claimed they had not been late with their payments. Each of the 1,500 customers received $200 worth of coupons for their troubles. In January 2002, Farr was in discussions to sell his franchises in Oak Park and Waterford Township, Michigan, to Ford Motor Company, who had outstanding liens with Farr. The franchises were sold in April 2002 and subsequently closed. After defaulting on a $36.5 million bond package, Farr sold his final dealership in 2003. Family and later years. Farr was married to his first wife, Mae Rutha (Forbes) Farr, in the mid-1960s. They had two sons, Mel Farr Jr., born in 1966, and Mike Farr, born in 19",
+        "text_characters": 2272,
+        "title": "Mel Farr"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:98070",
+        "score": 14.33372998403675,
+        "snippet": "The Steelers have been owned by the Rooney family since the team's founding in 1933, show consistency in coaching (only three coaches since the 1960s all with the same basic philosophy) and are noted as one of sports' most respectable franchises. The Steelers have a long waiting list for season tickets, and have sold out every home game since 1972. The team won four Super Bowls in a six-year span in the 1970s, a fifth Super Bowl in 2006, and a league record sixth Super Bowl in 2009. College football in the city dates to 1889 with the Division I (FBS) Panthers of the University of Pittsburgh posting nine national championships, qualifying 37 total bowl games, appearing in the 2018 ACC Championship Game, and winning the 2021 ACC Championship Game which was the program's first conference title since leaving the Big East for the ACC between the 2012 and 2013 seasons. Local universities Duquesne and Robert Morris have loyal fan bases that follow their lower (FCS) teams. Acrisure Stadium serves as home for the Steelers, Panthers, and both the suburban and city high school championships. Playoff franchises Pittsburgh Power and Pittsburgh Gladiators competed in the Arena Football League in the 1980s and 2010s respectively. The Gladiators hosted ArenaBowl I in the city, competing in two, but losing both before moving to Tampa, Florida and becoming the Storm. The Pittsburgh Passion has been the city's professional women's football team since 2002 and plays its home games at Highmark St",
+        "text_characters": 2556,
+        "title": "Pittsburgh"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3902436",
+        "score": 14.17302310900504,
+        "snippet": "The fight was contested for Benavidez's interim WBC super middleweight title. Andrade was confident he could find multiple ways to win, by relying on his ability and movement. He hoped a win here would propel him on to even bigger fights and domination of the super middleweight division. Benavidez weighed in at 167 pounds, whilst Andrade was a little heavier at 167.6 pounds. Before the fight, it was reported by ESPN Andrade had rehydrated to 190 pounds, since the weigh in. Andrade suffered his first professional career defeat, being stopped in round 6, after the towel came in, giving Benavidez the TKO win. He started the fight quick, winning the opening couple of rounds. The tide changed in the fourth round. Andrade was in his rhythm, boxing well until Benavidez connected with a hard right hand, dropping Andrade to the floor. Andrade beat the count, but was hit with a huge left hook followed by combinations. Instead of attempting to slow down the pace of the fight in round 5, Andrade showed his toughness in trying to trade blows with Benavidez. Andrade again started the sixth round confidently, landing his own combinations and an uppercut, which pushed his opponent back but Benavidez continued to land hard shot. The round ended with Andrade with blood pouring from his mouth. His corner then waived off the fight. At the time of stoppage, the three judges scorecards read 59-54, 58-55 & 57-56 in favour of Benavidez. During the post-fight interviews, Benavidez was greeted by form",
+        "text_characters": 2547,
+        "title": "Demetrius Andrade"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:56405",
+        "score": 5.536715177639164,
+        "snippet": "---\ntitle: The best players to wear every jersey number in college football history\ndate: 2020-03-30\n---\nHow do you pick between five Heisman Trophy winners and an all-time great safety (No. 20)? How do you compare a 1980s wide receiver to a 2010s quarterback to a 1920s fullback (No. 1)?\n\nPicking the best player to wear every number in college football is a tall task. Placing numbers on uniforms officially began in 1915, and in the ensuing century-plus, numerous stars have worn every number from 1-99. That's what happens when college football players have just four years, and in many cases less than that, to craft a résumé.\n\nAdvertisement\n\nThough a handful of choices are obvious because numbers were worn by the most transcendent college stars, most have debates between two or sometimes several more worthy candidates.\n\nIt can be difficult to avoid being heavily influenced by what players did as professionals, but these choices are based on college accomplishments. Because of the extensive scope of the sport, the starting point here was players who have received the highest of honors in college football: Heisman winners (and top contenders), consensus first-team All-Americans and College Football Hall of Fame inductees, with other deserving names considered when applicable.\n\nA panel of The Athletic's college football editors made the selections, with writing contributions from across the staff.\n\n1: Anthony Carter, Michigan\n\nCarter returned a punt 78 yards for a touchdown in his",
+        "text_characters": 63007,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:13831",
+        "score": 4.501493654165137,
+        "snippet": "---\ntitle: United States Football League - Wikipedia\ndate: 2002-07-28\n---\nlogo: File:Logo of the United States Football League.png\npixels: 200px\nsport: American football\nfounded: 1982\ninaugural: 1983\nteams: 18\nfolded: 1986\ncountry: United States\nchampion: Baltimore Stars\n\nThe United States Football League (USFL) was a professional American football league that played for three seasons, 1983 through 1985. The league played a spring/summer schedule in each of its active seasons. The 1986 season was scheduled to be played in the autumn/winter, directly competing against the long-established National Football League (NFL). However, the USFL ceased operations before that season was scheduled to begin.\n\nThe ideas behind the USFL were conceived in 1965 by New Orleans businessman David Dixon, who saw a market for a professional football league that would play in the summer, when the National Football League and college football were in their off-season. Dixon had been a key player in the construction of the Louisiana Superdome and the expansion of the NFL into New Orleans in 1967. He developed \"The Dixon Plan\"—a blueprint for the USFL based upon securing NFL-caliber stadiums in top television markets, securing a national television broadcast contract, and controlling spending—and found investors willing to buy in.\n\nThough the original franchise owners and founders of the USFL had promised to abide by the general guidelines set out by Dixon's plan, problems arose before the teams took",
+        "text_characters": 64632,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:98796",
+        "score": 3.857570696072459,
+        "snippet": "---\ntitle: No Rules: The Birth Of UFC\ndate: 2025-01-01\n---\nJODY AVIRGAN: From ESPN Films and ESPN Audio, you're listening to 30 for 30 podcasts, presented by the Mini Countryman.\n\nMixed Martial Arts is the fastest growing sport in North America. And the Ultimate Fighting Championship is the biggest organization in the game. In 2016, the company was sold for a reported $4 billion. But the UFC didn't even exist 25 years ago. Most fans assume it all started with Dana White, the promoter and the face of the sport. But the story begins way before Dana was involved, so this week, we go back to November 12th, 1993 when the UFC was born on a cold night in Denver, Colorado. Here is Chris Berube to tell the story of No Rules: The Birth of UFC.\n\n[UFC 203,\n\nANNOUNCER: 'This is the moment UFC fans have been waiting for.'\n\nCOMMENTATOR: 'Five, five minute rounds.'\n\nCOMMENTATOR: 'Here we go!']\n\n[ESPN REPORTER,\n\n'One person walks out of that Octagon.']\n\n[CBS 8,\n\nREPORTER: 'The largest deal in the history of sports will be officially revealed this morning by the UFC.']\n\n[ESPN REPORTER,\n\n'Good for the guys who sold it for four hundred, what is it 2 billion? 4 billion.']\n\n[CBS 8,\n\nREPORTER: '$4 billion deal']\n\n[UFC 203,\n\n'Can he finish it right here, right now?']\n\n[ESPN REPORTER,\n\n'It's really clear who really took command of the Octagon.']\n\nCHRIS BERUBE: The Ultimate Fighting Championship. A sport born in our lifetime, in the United States. When you think about it, pretty incredible. So how did",
+        "text_characters": 50714,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:73699",
+        "score": 3.204122117958779,
+        "snippet": "---\ntitle: Obituary Archive\ndate: 2025-01-01\n---\nObituary Archive\n\n| Hazel Jane (Maust) Airesman went to be with the Lord on September 4, 2017 at The Patriot. Born July 24, 1922 to Harry and Lucy (Darr) Maust, Hazel was the last surviving member of her family. She is preceded in death by her parents and brothers: Park, Guy and Norman and these sisters: Neva Miller, Margaret Nair, Nina Schlosnagle, Ethel Johnson and an infant sister. Hazel married Roy Airesman on August 21, 1944. Roy passed on October 15, 1989. Hazel is survived by their two children, a son Pastor Royden Airesman married to Linda Wagner and daughter Joy Ann married to Lee Fritz all of Somerset. Hazel is also survived by her three precious grandchildren: Renee Airesman married to Doug Haney of Highspire, PA, Chad Airesman of Somerset and Dr. Kelley Fritz married to Dr Lucas Kirschman of Anchorage, AK. Hazel is also survived by many nieces and nephews who she loved very much. Hazel was a graduate of Somerset Area High School. She enjoyed sewing, embroidery, reading and yard work. She always had a special pet cat. Hazel was a member of the Somerset Church of the Brethren. Friends received from 2-4 & 6-8 Tuesday and from 10 am to 11 am Wednesday in the Robert H. Halverson Funeral Home where services will immediately follow with Reverend Martha Beach officiating. Interment in Somerset County Memorial Park. The family would like to thank The Patriot and via Quest for their dedication and care of our precious loved o",
+        "text_characters": 411533,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:13981",
+        "score": 2.6437158066452997,
+        "snippet": "---\ntitle: Editor's Picks\nauthor: ESPN staff Jan\ndate: 2020-01-13\n---\n(Editor's Note: This article was originally published on Jan. 13, 2020. Legendary Syracuse running back -- and future NFL Hall of Famer -- Jim Brown, was judged by a panel of 150 experts to be the greatest college football player of all time. He died on Friday at age 87.)\n\nThat the best player in the history of college football didn't win the Heisman Trophy says less about the player than it does about college football. Jim Brown of Syracuse finished fifth in the vote to select the most outstanding player of 1956. A significant portion of the electorate balked at voting for a black man. Coaches always maintain that the longer a game goes, the more that talent will reveal itself.\n\nThe game is made up of more than running backs, but the ability to burst through the line, to plant a foot in one direction and take off in another, has beguiled us from the earliest days of the sport. The blue-ribbon panel of 150 media members, college administrators, and former coaches and players who accepted the responsibility of selecting the best players in the history of the game are suckers for the ball handlers. Nine of the top 10 and 19 of the top 25 are running backs.\n\nThe schools who put the most players on this list are archrivals closing in on the 100th anniversary of their first meeting. Notre Dame and USC each have nine players; Oklahoma, eight; Alabama and Ohio State, seven.\n\nThe panel's selections spanned across 1",
+        "text_characters": 114120,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:6316",
+        "score": 2.3627190401359375,
+        "snippet": "---\ntitle: Advanced search\ndate: 2025-01-01\n---\nAdvanced search\n\n- TITLES\n\n- NAMES\n\n- COLLABORATIONS\n\nSearch filters\n\nEnter full date\n\nto\n\nor just enter yyyy, or yyyy-mm below\n\nto\n\nOnly includes names with the selected topics\n\nto\n\nor just enter yyyy, or yyyy-mm below\n\nto\n\n1-50 of 7,126\n\n- Actress\n\n- Additional Crew\n\n- Producer\n\nSally Kellerman arrived quite young on the late 1950s film and television scene with a fresh and distinctively weird, misfit presence. It is this same uniqueness that continued to make her such an attractively offbeat performer. The willowy, swan-necked, flaxen-haired actress shot to film comedy fame after toiling nearly a decade and a half in the business, and is still most brazenly remembered for her career-maker in the irreverent hit Korean War dramedy M*A*S*H (1970), for which she received supporting Oscar and Golden Globe nominations. From there, she went on to enjoy several other hallmark moments as both an actress and a vocalist.\n\nCalifornia native Sally Clare Kellerman was born in Long Beach on June 2, 1937, to Edith (née Vaughn), a piano teacher, and John Helm Kellerman, a Shell Oil Company executive. Raised along with her sister in the San Fernando Valley area, Sally was attracted to the performing arts after seeing Marlon Brando star in the film Viva Zapata! (1952). Attending the renowned Hollywood High School as a teenager, she sang in musical productions while there, including a version of \"Meet Me in St. Louis.\" Following graduation, she ",
+        "text_characters": 86661,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:965710", "title": "Mike Rozier", "score": 29.624357377220036, "snippet": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one son, Michael Guy Pacheco Rozier. He has two other children, Amber and JaMichael Rozier, who reside in Houston, Texas. In 1996, he was shot in his hometown of Camden, New Jersey. Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\". Rozier was called one the most stylish dressers in the history of the Heisman Trophy by SBNation. On April 9, 2024, Rozier was honored in his hometown of Camden, New Jersey, with a street dedication. Additionally, a sign was erected in the city proclaiming it the home of the renowned former Nebraska, USFL, and NFL running back. References.", "text_characters": 737, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2476535", "title": "Mel Farr", "score": 14.890925471952329, "snippet": "By 1997, Farr had expanded his Mel Farr Auto Group to 14 auto dealerships in five states (Michigan, Ohio, New Jersey, Maryland, and Texas) with annual sales in excess of $500 million. By 1998, Farr's dealership group grossed $596.6 million, making it the top black-owned business in the United States and the 33rd largest auto dealership in the US. Farr specialized in the subprime market, expanded into the used car market, and offered credit at rates up to 25 percent. In 2000, Farr's companies became the subject of negative publicity focusing on their sales and credit practices. There were legal problems surrounding Farr's \"On-Time Device\", which prevented drivers of leased vehicles from starting the car if they missed payments. In June 2000, Farr settled a suit with customers who complained that the device turned off their cars when they were in motion. Many claimed they had not been late with their payments. Each of the 1,500 customers received $200 worth of coupons for their troubles. In January 2002, Farr was in discussions to sell his franchises in Oak Park and Waterford Township, Michigan, to Ford Motor Company, who had outstanding liens with Farr. The franchises were sold in April 2002 and subsequently closed. After defaulting on a $36.5 million bond package, Farr sold his final dealership in 2003. Family and later years. Farr was married to his first wife, Mae Rutha (Forbes) Farr, in the mid-1960s. They had two sons, Mel Farr Jr., born in 1966, and Mike Farr, born in 19", "text_characters": 2272, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:98070", "title": "Pittsburgh", "score": 14.33372998403675, "snippet": "The Steelers have been owned by the Rooney family since the team's founding in 1933, show consistency in coaching (only three coaches since the 1960s all with the same basic philosophy) and are noted as one of sports' most respectable franchises. The Steelers have a long waiting list for season tickets, and have sold out every home game since 1972. The team won four Super Bowls in a six-year span in the 1970s, a fifth Super Bowl in 2006, and a league record sixth Super Bowl in 2009. College football in the city dates to 1889 with the Division I (FBS) Panthers of the University of Pittsburgh posting nine national championships, qualifying 37 total bowl games, appearing in the 2018 ACC Championship Game, and winning the 2021 ACC Championship Game which was the program's first conference title since leaving the Big East for the ACC between the 2012 and 2013 seasons. Local universities Duquesne and Robert Morris have loyal fan bases that follow their lower (FCS) teams. Acrisure Stadium serves as home for the Steelers, Panthers, and both the suburban and city high school championships. Playoff franchises Pittsburgh Power and Pittsburgh Gladiators competed in the Arena Football League in the 1980s and 2010s respectively. The Gladiators hosted ArenaBowl I in the city, competing in two, but losing both before moving to Tampa, Florida and becoming the Storm. The Pittsburgh Passion has been the city's professional women's football team since 2002 and plays its home games at Highmark St", "text_characters": 2556, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3902436", "title": "Demetrius Andrade", "score": 14.17302310900504, "snippet": "The fight was contested for Benavidez's interim WBC super middleweight title. Andrade was confident he could find multiple ways to win, by relying on his ability and movement. He hoped a win here would propel him on to even bigger fights and domination of the super middleweight division. Benavidez weighed in at 167 pounds, whilst Andrade was a little heavier at 167.6 pounds. Before the fight, it was reported by ESPN Andrade had rehydrated to 190 pounds, since the weigh in. Andrade suffered his first professional career defeat, being stopped in round 6, after the towel came in, giving Benavidez the TKO win. He started the fight quick, winning the opening couple of rounds. The tide changed in the fourth round. Andrade was in his rhythm, boxing well until Benavidez connected with a hard right hand, dropping Andrade to the floor. Andrade beat the count, but was hit with a huge left hook followed by combinations. Instead of attempting to slow down the pace of the fight in round 5, Andrade showed his toughness in trying to trade blows with Benavidez. Andrade again started the sixth round confidently, landing his own combinations and an uppercut, which pushed his opponent back but Benavidez continued to land hard shot. The round ended with Andrade with blood pouring from his mouth. His corner then waived off the fight. At the time of stoppage, the three judges scorecards read 59-54, 58-55 & 57-56 in favour of Benavidez. During the post-fight interviews, Benavidez was greeted by form", "text_characters": 2547, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:56405", "title": "", "score": 5.536715177639164, "snippet": "---\ntitle: The best players to wear every jersey number in college football history\ndate: 2020-03-30\n---\nHow do you pick between five Heisman Trophy winners and an all-time great safety (No. 20)? How do you compare a 1980s wide receiver to a 2010s quarterback to a 1920s fullback (No. 1)?\n\nPicking the best player to wear every number in college football is a tall task. Placing numbers on uniforms officially began in 1915, and in the ensuing century-plus, numerous stars have worn every number from 1-99. That's what happens when college football players have just four years, and in many cases less than that, to craft a résumé.\n\nAdvertisement\n\nThough a handful of choices are obvious because numbers were worn by the most transcendent college stars, most have debates between two or sometimes several more worthy candidates.\n\nIt can be difficult to avoid being heavily influenced by what players did as professionals, but these choices are based on college accomplishments. Because of the extensive scope of the sport, the starting point here was players who have received the highest of honors in college football: Heisman winners (and top contenders), consensus first-team All-Americans and College Football Hall of Fame inductees, with other deserving names considered when applicable.\n\nA panel of The Athletic's college football editors made the selections, with writing contributions from across the staff.\n\n1: Anthony Carter, Michigan\n\nCarter returned a punt 78 yards for a touchdown in his", "text_characters": 63007, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:13831", "title": "", "score": 4.501493654165137, "snippet": "---\ntitle: United States Football League - Wikipedia\ndate: 2002-07-28\n---\nlogo: File:Logo of the United States Football League.png\npixels: 200px\nsport: American football\nfounded: 1982\ninaugural: 1983\nteams: 18\nfolded: 1986\ncountry: United States\nchampion: Baltimore Stars\n\nThe United States Football League (USFL) was a professional American football league that played for three seasons, 1983 through 1985. The league played a spring/summer schedule in each of its active seasons. The 1986 season was scheduled to be played in the autumn/winter, directly competing against the long-established National Football League (NFL). However, the USFL ceased operations before that season was scheduled to begin.\n\nThe ideas behind the USFL were conceived in 1965 by New Orleans businessman David Dixon, who saw a market for a professional football league that would play in the summer, when the National Football League and college football were in their off-season. Dixon had been a key player in the construction of the Louisiana Superdome and the expansion of the NFL into New Orleans in 1967. He developed \"The Dixon Plan\"—a blueprint for the USFL based upon securing NFL-caliber stadiums in top television markets, securing a national television broadcast contract, and controlling spending—and found investors willing to buy in.\n\nThough the original franchise owners and founders of the USFL had promised to abide by the general guidelines set out by Dixon's plan, problems arose before the teams took", "text_characters": 64632, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:98796", "title": "", "score": 3.857570696072459, "snippet": "---\ntitle: No Rules: The Birth Of UFC\ndate: 2025-01-01\n---\nJODY AVIRGAN: From ESPN Films and ESPN Audio, you're listening to 30 for 30 podcasts, presented by the Mini Countryman.\n\nMixed Martial Arts is the fastest growing sport in North America. And the Ultimate Fighting Championship is the biggest organization in the game. In 2016, the company was sold for a reported $4 billion. But the UFC didn't even exist 25 years ago. Most fans assume it all started with Dana White, the promoter and the face of the sport. But the story begins way before Dana was involved, so this week, we go back to November 12th, 1993 when the UFC was born on a cold night in Denver, Colorado. Here is Chris Berube to tell the story of No Rules: The Birth of UFC.\n\n[UFC 203,\n\nANNOUNCER: 'This is the moment UFC fans have been waiting for.'\n\nCOMMENTATOR: 'Five, five minute rounds.'\n\nCOMMENTATOR: 'Here we go!']\n\n[ESPN REPORTER,\n\n'One person walks out of that Octagon.']\n\n[CBS 8,\n\nREPORTER: 'The largest deal in the history of sports will be officially revealed this morning by the UFC.']\n\n[ESPN REPORTER,\n\n'Good for the guys who sold it for four hundred, what is it 2 billion? 4 billion.']\n\n[CBS 8,\n\nREPORTER: '$4 billion deal']\n\n[UFC 203,\n\n'Can he finish it right here, right now?']\n\n[ESPN REPORTER,\n\n'It's really clear who really took command of the Octagon.']\n\nCHRIS BERUBE: The Ultimate Fighting Championship. A sport born in our lifetime, in the United States. When you think about it, pretty incredible. So how did", "text_characters": 50714, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:73699", "title": "", "score": 3.204122117958779, "snippet": "---\ntitle: Obituary Archive\ndate: 2025-01-01\n---\nObituary Archive\n\n| Hazel Jane (Maust) Airesman went to be with the Lord on September 4, 2017 at The Patriot. Born July 24, 1922 to Harry and Lucy (Darr) Maust, Hazel was the last surviving member of her family. She is preceded in death by her parents and brothers: Park, Guy and Norman and these sisters: Neva Miller, Margaret Nair, Nina Schlosnagle, Ethel Johnson and an infant sister. Hazel married Roy Airesman on August 21, 1944. Roy passed on October 15, 1989. Hazel is survived by their two children, a son Pastor Royden Airesman married to Linda Wagner and daughter Joy Ann married to Lee Fritz all of Somerset. Hazel is also survived by her three precious grandchildren: Renee Airesman married to Doug Haney of Highspire, PA, Chad Airesman of Somerset and Dr. Kelley Fritz married to Dr Lucas Kirschman of Anchorage, AK. Hazel is also survived by many nieces and nephews who she loved very much. Hazel was a graduate of Somerset Area High School. She enjoyed sewing, embroidery, reading and yard work. She always had a special pet cat. Hazel was a member of the Somerset Church of the Brethren. Friends received from 2-4 & 6-8 Tuesday and from 10 am to 11 am Wednesday in the Robert H. Halverson Funeral Home where services will immediately follow with Reverend Martha Beach officiating. Interment in Somerset County Memorial Park. The family would like to thank The Patriot and via Quest for their dedication and care of our precious loved o", "text_characters": 411533, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:13981", "title": "", "score": 2.6437158066452997, "snippet": "---\ntitle: Editor's Picks\nauthor: ESPN staff Jan\ndate: 2020-01-13\n---\n(Editor's Note: This article was originally published on Jan. 13, 2020. Legendary Syracuse running back -- and future NFL Hall of Famer -- Jim Brown, was judged by a panel of 150 experts to be the greatest college football player of all time. He died on Friday at age 87.)\n\nThat the best player in the history of college football didn't win the Heisman Trophy says less about the player than it does about college football. Jim Brown of Syracuse finished fifth in the vote to select the most outstanding player of 1956. A significant portion of the electorate balked at voting for a black man. Coaches always maintain that the longer a game goes, the more that talent will reveal itself.\n\nThe game is made up of more than running backs, but the ability to burst through the line, to plant a foot in one direction and take off in another, has beguiled us from the earliest days of the sport. The blue-ribbon panel of 150 media members, college administrators, and former coaches and players who accepted the responsibility of selecting the best players in the history of the game are suckers for the ball handlers. Nine of the top 10 and 19 of the top 25 are running backs.\n\nThe schools who put the most players on this list are archrivals closing in on the 100th anniversary of their first meeting. Notre Dame and USC each have nine players; Oklahoma, eight; Alabama and Ohio State, seven.\n\nThe panel's selections spanned across 1", "text_characters": 114120, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:6316", "title": "", "score": 2.3627190401359375, "snippet": "---\ntitle: Advanced search\ndate: 2025-01-01\n---\nAdvanced search\n\n- TITLES\n\n- NAMES\n\n- COLLABORATIONS\n\nSearch filters\n\nEnter full date\n\nto\n\nor just enter yyyy, or yyyy-mm below\n\nto\n\nOnly includes names with the selected topics\n\nto\n\nor just enter yyyy, or yyyy-mm below\n\nto\n\n1-50 of 7,126\n\n- Actress\n\n- Additional Crew\n\n- Producer\n\nSally Kellerman arrived quite young on the late 1950s film and television scene with a fresh and distinctively weird, misfit presence. It is this same uniqueness that continued to make her such an attractively offbeat performer. The willowy, swan-necked, flaxen-haired actress shot to film comedy fame after toiling nearly a decade and a half in the business, and is still most brazenly remembered for her career-maker in the irreverent hit Korean War dramedy M*A*S*H (1970), for which she received supporting Oscar and Golden Globe nominations. From there, she went on to enjoy several other hallmark moments as both an actress and a vocalist.\n\nCalifornia native Sally Clare Kellerman was born in Long Beach on June 2, 1937, to Edith (née Vaughn), a piano teacher, and John Helm Kellerman, a Shell Oil Company executive. Raised along with her sister in the San Fernando Valley area, Sally was attracted to the performing arts after seeing Marlon Brando star in the film Viva Zapata! (1952). Attending the renowned Hollywood High School as a teenager, she sang in musical productions while there, including a version of \"Meet Me in St. Louis.\" Following graduation, she ", "text_characters": 86661, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R006_request.json/messages/11/content`；SHA256：`2ecd66df82ea8d4ce0f6c053ec7fc7e8e4c0c77fe1c98c628ba93ee30705a185`。
+
+### R6 `/rounds/5/reasoning_content` [0,417)
+
+SHA256：`d26daa3178834c68842dc24d5d1bd982944b8405fcb4fd4346b62beddc8ef568`；原字段SHA256：`4588ab07fe4e54dbb713a91cd076a8c1648aabdc287f0cafa66637723be91c23`。
+
+````
+The search results have identified Mike Rozier as the 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons.
+
+From the search result with doc_id "wiki25:965710", it states: "Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\"."
+
+This gives me the specific date: October 22, 2013.
+
+
+````
+
+## S004｜打开同一Rozier文档核实日期，重复后扩大读取范围
+
+两次open同文档0/100，再扩为0/1000；完整保留三次返回及可见Round。
+
+结束状态：最终取得含日期的737字符完整文段。
+
+边界判断：日期提取已结束，此处实际选择原文打开验证这一新操作。
+
+内部KEEP与反证：R7是背景复述与相同打开计划，没有独立接受或排除；R8扩大limit是同次文档读取操作的继续，不能因Call或Round增加机械切分。
+
+### SPLIT原文
+
+````
+3 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons.
+
+From the search result with doc_id "wiki25:965710", it states: "Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\"."
+
+This gives me the specific date: October 22, 2013.
+
+
+→ 切点 [5, 0, 417] →
+Let me verify this information by opening the document to make sure I have the correct information.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:965710
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+100
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [417,685)
+
+SHA256：`71a41462bdd293e2d7dd1171c5e527d420a9c08dce533d94f546c7a48d59e7fd`；原字段SHA256：`4588ab07fe4e54dbb713a91cd076a8c1648aabdc287f0cafa66637723be91c23`。
+
+````
+Let me verify this information by opening the document to make sure I have the correct information.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:965710
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+100
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:965710\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n100\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 0.002790043130517006,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0,
+    "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s",
+    "title": "Mike Rozier",
+    "total_text_characters": 737
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:965710", "title": "Mike Rozier", "offset": 0, "limit": 100, "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s", "total_text_characters": 737, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R007_request.json/messages/13/content`；SHA256：`1f8d80d8cc172c941c2a5c26936d7df9f327471daaef236560571a1ff4163226`。
+
+### R7 `/rounds/6/reasoning_content` [0,608)
+
+SHA256：`5e1e9b4efc9765c930c776bd431eb5307f50e5d4455283d0b338be6712a3e4bd`；原字段SHA256：`5e1e9b4efc9765c930c776bd431eb5307f50e5d4455283d0b338be6712a3e4bd`。
+
+````
+I have found the answer in the search results. The 1983 Heisman Trophy winner is Mike Rozier. He played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons. The search result indicates that Mike Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of "Family Feud".
+
+Let me verify this information by opening the document to ensure I have the correct details.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:965710
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+100
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:965710\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n100\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 0.00023712823167443275,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:965710",
+    "limit": 100,
+    "offset": 0,
+    "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s",
+    "title": "Mike Rozier",
+    "total_text_characters": 737
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:965710", "title": "Mike Rozier", "offset": 0, "limit": 100, "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s", "total_text_characters": 737, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R008_request.json/messages/15/content`；SHA256：`1f8d80d8cc172c941c2a5c26936d7df9f327471daaef236560571a1ff4163226`。
+
+### R8 `/rounds/7/reasoning_content` [0,277)
+
+SHA256：`44632fd6527bf8332e40f78b617905516413e61104b41c5141d11e89fb243dd2`；原字段SHA256：`44632fd6527bf8332e40f78b617905516413e61104b41c5141d11e89fb243dd2`。
+
+````
+I need to open the full document for Mike Rozier to see the complete text about his Family Feud appearance.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:965710
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+1000
+</parameter>
+</function>
+</tool_call>
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 1000,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:965710\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n1000\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:965710",
+    "limit": 1000,
+    "offset": 0
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 0.00011616665869951248,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:965710",
+    "limit": 1000,
+    "offset": 0,
+    "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one son, Michael Guy Pacheco Rozier. He has two other children, Amber and JaMichael Rozier, who reside in Houston, Texas. In 1996, he was shot in his hometown of Camden, New Jersey. Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\". Rozier was called one the most stylish dressers in the history of the Heisman Trophy by SBNation. On April 9, 2024, Rozier was honored in his hometown of Camden, New Jersey, with a street dedication. Additionally, a sign was erected in the city proclaiming it the home of the renowned former Nebraska, USFL, and NFL running back. References.",
+    "title": "Mike Rozier",
+    "total_text_characters": 737
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:965710", "title": "Mike Rozier", "offset": 0, "limit": 1000, "text": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one son, Michael Guy Pacheco Rozier. He has two other children, Amber and JaMichael Rozier, who reside in Houston, Texas. In 1996, he was shot in his hometown of Camden, New Jersey. Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\". Rozier was called one the most stylish dressers in the history of the Heisman Trophy by SBNation. On April 9, 2024, Rozier was honored in his hometown of Camden, New Jersey, with a street dedication. Additionally, a sign was erected in the city proclaiming it the home of the renowned former Nebraska, USFL, and NFL running back. References.", "total_text_characters": 737, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0730/R009_request.json/messages/17/content`；SHA256：`8370db3bd7bf6cad62d8da88fea14438b0a7af337b9fcf986973ead9062068da`。
+
+## S005｜接受Rozier与节目日期证据并提交答案
+
+确认四队球员与家属节目日期关系，submit October 22, 2013。
+
+结束状态：VALID_FINAL，MODEL_FINAL_STOP。
+
+边界判断：文档读取完成后转入答案接受及正式提交。
+
+内部KEEP与反证：简明条件联结与提交完整保留，不将submit协议另切为工具Stage。
+
+### SPLIT原文
+
+````
+I need to open the full document for Mike Rozier to see the complete text about his Family Feud appearance.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:965710
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+1000
+</parameter>
+</function>
+</tool_call>
+→ 切点 [8, 0, 0] →
+The 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons is Mike Rozier. According to the document, he appeared on "Family Feud" with his family members on October 22, 2013.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+October 22, 2013
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R9 `/rounds/8/reasoning_content` [0,354)
+
+SHA256：`8036b24efe60166610e551d975d6ac2ab8c9ac91105c73d82f9a8327d9d4630b`；原字段SHA256：`8036b24efe60166610e551d975d6ac2ab8c9ac91105c73d82f9a8327d9d4630b`。
+
+````
+The 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons is Mike Rozier. According to the document, he appeared on "Family Feud" with his family members on October 22, 2013.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+October 22, 2013
+</parameter>
+</function>
+</tool_call>
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "answer": "October 22, 2013"
+  },
+  "id": "recovered_call_1",
+  "name": "submit_answer",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=submit_answer>\n<parameter=answer>\nOctober 22, 2013\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "October 22, 2013"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 9.50181856751442e-06,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "October 22, 2013",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    8
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "ACTUAL_REQUEST_VERIFIED": 8,
+    "NO_LATER_ACTOR_REQUEST": 1
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整读取9轮、5search、3open及1submit与全部返回。奖项普通重试KEEP，真实转履历入口SPLIT；同文档重复open与扩大limit保持同一操作。日期直接解释和之后验证精确分开。
+
+R4四队检索可备选视为同一球员搜索的关键词调整；主方案SPLIT，因为原文实际解释USFL/NFL履历并选择不同证据入口。R7的I have found the answer可备选接受判断，但仅复述搜索结论、未展开新条件比较，主方案KEEP于打开核实动作。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

@@ -1,0 +1,485 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE",
+  "trajectory_id": "PILOT200_BATCH01__MS200_148",
+  "stage_id": "S002",
+  "sample_order": 96,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total production number of the Mercury Marauder, a car model that, like the Rover 75's performance variant, was powered by a 4.6-liter Ford Modular V8 but produced a peak horsepower of 305, as opposed to the Rover 75's performance variant which produced 260 horsepower?",
+    "gold": [
+      "11,052"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "11,052",
+    "adopted_answer": "11052",
+    "outcome": "C",
+    "reason": "数字与Gold相同，但302/305仍有原始冲突。",
+    "evidence": [
+      "O_F",
+      "O_CONFLICT"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3[0,430)已从R2 Search7702873逐字摘取两年11052并明确采用。当前没有Open；R1只有Mach1发动机比较，不能证明题目305就是Marauder。",
+    "evidence_states": "产量已返回、提取、接受；全doc末尾302hp尚不可见，U扩大阅读才露出。",
+    "evidence": [
+      "O_P",
+      "O_SEARCH"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 430,
+        "end": 701
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 406
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 275
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 271
+      }
+    ],
+    "goal": "通过打开原文确认已经提取的产量。",
+    "operations": "先Open500未含产量，R4未改变limit再Open500同返回；R5扩大2764得全文，R6再次采用同11052。",
+    "product": "产量结论重复确认；额外露出末尾302hp，供下一Stage比较。",
+    "judgment_change": "产量数字没有改变，第一次两次打开未提供该数字；第三次改变读取范围后真正取得全文。",
+    "evidence": [
+      "O_OPEN1",
+      "O_OPEN2",
+      "O_OPEN3",
+      "O_P",
+      "O_HP"
+    ]
+  },
+  "original_followup": {
+    "use": "原S003比较题305与全文302，认为明确车型/产量可接受，未外查消解便C。",
+    "evidence": [
+      "O_CONFLICT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已采用Search数字后的原文复读确认与读取范围调整。",
+    "state_relation": "三条0Open直接依据既有片段接受；一条Open100仍无产量/马力后退回P片段提交。四C可见原全文读取没有被完整重建，但也因此未见全文302冲突，不能说全证据质量完全同原。",
+    "evidence": [
+      "N1_REASON",
+      "N2_REASON",
+      "N3_OPEN",
+      "N3_RETURN",
+      "N3_ACCEPT",
+      "N4_REASON"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me verify this is the correct model.",
+    "source_position": "R6[271,311)",
+    "oracle_anchored": true,
+    "novelty": "9Token未来核验行动提示，不含数字或302冲突。具体车型和既有产量P已明示，不能把11052说成G补答案。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "依据原Search数字真实submit，无新Search/Open。",
+      "outcome_evidence": [
+        "N1_REASON",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R3 523字符按G列车型、发动机、题305和Rover260，认为Search已足够确认2003/04两年11052，立即submit。",
+      "first_judgment_divergence": "把现有片段视为足够，不再执行原三Open确认。",
+      "first_actual_tool_divergence": "原首Open变submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全文确认产量",
+          "original_operation": "三Open，最终扩大到2764",
+          "original_product": "同11052加末尾302冲突",
+          "new_goal": "确认车型/数字",
+          "new_operation": "仅重新读P片段和题意，无Open",
+          "new_product": "11052同答案，全文302未获得",
+          "evidence": [
+            "O_OPEN3",
+            "O_HP",
+            "N1_REASON",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "确认判断保留，原全文取证未执行，产量直接继承P。",
+      "judgment_action_outcome_chain": "P已接受数字→短条件匹配判断足够→直接C，三次原文读取及等待不再发生。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "161生成6075Prompt1Actor0Search0Open；原切点562–766生成0Search3Open4生成段，差[-605,-401]；少3Open和3生成段。P6066/G9另计。",
+      "counterevidence_and_alternatives": "发动机4.6正确不证明305准确，文档302没再见。数字保持不能等同冲突核查保持。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "实际提交同数字，Open只意向未执行。",
+      "outcome_evidence": [
+        "N2_REASON",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R3 686字符先说要Open马力，随后重读现有片段认为车型/数字明确，真实Call只有submit。",
+      "first_judgment_divergence": "查询计划被现有证据充分判断取代，不把未执行Open记重建。",
+      "first_actual_tool_divergence": "0Open只submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全文确认",
+          "original_operation": "Open读取",
+          "original_product": "产量重复支持及302",
+          "new_goal": "核对车型和产量",
+          "new_operation": "重新解释已见Search，取消Open意向",
+          "new_product": "11052接受，302未获",
+          "evidence": [
+            "O_OPEN1",
+            "O_HP",
+            "N2_REASON",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "认知确认在，真正读取全文不在。",
+      "judgment_action_outcome_chain": "原片段已明示产量→计划Open后重新判断足够→直接C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "198生成6075Prompt1Actor，差[-568,-364]，少3Open/3生成段；省原重复读取和后续完整冲突比较。",
+      "counterevidence_and_alternatives": "不能将取消Open与没有核验思考混为一谈，实际仍短篇确认。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "Open100没有目标资料，R4回用Search片段数字提交。",
+      "outcome_evidence": [
+        "N3_RETURN",
+        "N3_ACCEPT",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R3实际Open7702873 limit100想看马力，Return只有X100开头100字符；R4没有继续扩大，明确Search已含11052，承认sold与production不同但以现有上下文采用，再称题305匹配而无资料证明，submit。",
+      "first_judgment_divergence": "原会反复Open并扩大，新一次极短Open无效后改回既有片段判断足够。",
+      "first_actual_tool_divergence": "首Open100而非500，接着submit而非第二Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "全文核验产量/车型",
+          "original_operation": "Open500、500、2764",
+          "original_product": "全文产量及马力302",
+          "new_goal": "核对发动机马力",
+          "new_operation": "Open100不含相关段，后用Search片段",
+          "new_product": "原数字保持，未取得完整马力证据",
+          "evidence": [
+            "O_OPEN3",
+            "O_HP",
+            "N3_OPEN",
+            "N3_RETURN",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "一个Open尝试重建，但原有效的范围扩大和全文获取未恢复。",
+      "judgment_action_outcome_chain": "短Open无关→回用已采用的产量Search→决定没有另一个production数→C；省后两次读取但质量限制在。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "447生成12131Prompt2Actor1Open0Search；差[-319,-115]，少2Open/2生成段。新增加的是一次无效短Open，不能将其视新支持。",
+      "counterevidence_and_alternatives": "明确sales作为production解释是新认知，不能说只是复制答案；这一同义处理合理性另待研究者，数值符合Gold。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "短篇解释P车型年份后直接提交。",
+      "outcome_evidence": [
+        "N4_REASON",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R3 479字符指出7702870复活2003至2004，与Search11052一致；没有真正Search/Open，submit。",
+      "first_judgment_divergence": "通过已见两个片段交叉说明两年，无需再次全文读取。",
+      "first_actual_tool_divergence": "submit替原Open链。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认产量与车型",
+          "original_operation": "原文打开链",
+          "original_product": "重复11052和302",
+          "new_goal": "相同确认",
+          "new_operation": "重读P已有7702870/7702873，无工具",
+          "new_product": "同数字，马力冲突未见",
+          "evidence": [
+            "O_P",
+            "O_OPEN3",
+            "N4_REASON",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "确认采用动作重做，原全文取证并未重建。",
+      "judgment_action_outcome_chain": "P两个片段已覆盖车型年代和数值→短确认→直接C，原读取延长无新增产量判断。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "151生成6075Prompt1Actor0Open/Search，差[-615,-411]，少3Open/3生成段。",
+      "counterevidence_and_alternatives": "没有305的直接证明，不能写所有条件重新验证。"
+    }
+  ],
+  "four_run_comparison": "4C。三0Open、一Open100无相关正文；均沿用切点前已采用数字。省的是三Open链或其中后两次和随后的长比较。G只提示核对车型，并没有补11052。原三Open最终多暴露302冲突，新没看这部分，答案保持与证据完整程度分开。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当Search片段已完整提供并已被采用的目标数字，重复打开同文档可能仅再次确认数字；缩短/取消打开可保留答案。若展开读取同时带来其他冲突，跳过后不是全部信息状态相同，而是没有暴露那项冲突。",
+      "support": "四条原数字都保留，三条无Open，一条无效Open后回用片段；原有效全文不改变11052却带来302/305问题。",
+      "limits": "一题明确车型，不能推广为Open总无用；原最终全文有新增约束信息，严格质量保持需单列，保守成本不是native精确。"
+    }
+  ],
+  "counterevidence_and_limits": "完整18353字符四路径亲读，原32624字符已读。原partialRound没有原生IDs，生成差用区间，P和G预填不重复计。自审非人工验收。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the total production number of the Mercury Marauder was 11,052."
+    },
+    {
+      "evidence_id": "O_SEARCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "with only 11,052 sold over its two-year production",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:7702873"
+      ]
+    },
+    {
+      "evidence_id": "O_OPEN1",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/2/tool_calls/0/name",
+      "exact_quote": "open",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_OPEN2",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I need to open the full document to get the complete information"
+    },
+    {
+      "evidence_id": "O_OPEN3",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/rounds/4/tool_calls/0/name",
+      "exact_quote": "open",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_HP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "For production Marauders, Mercury used a 302 hp 4.6 L DOHC V8",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:7702873"
+      ]
+    },
+    {
+      "evidence_id": "O_CONFLICT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This is a slight discrepancy (302 vs 305)"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this is the correct model."
+    },
+    {
+      "evidence_id": "N1_REASON",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The answer is 11,052."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11052"
+    },
+    {
+      "evidence_id": "N2_REASON",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, the search result snippet mentions \"2003-2004 Mercury Marauder\" in the context of the DOHC engine."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/name",
+      "exact_quote": "open",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "The X-100 also featured Kelsey-Hayes road wheels along with rear fender skirts, and was listed at US",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:7702873"
+      ]
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "While this refers to sales, it is often used interchangeably with production numbers in such contexts, and the text doesn't provide a separate production number."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "N4_REASON",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The second result (wiki25:7702870) also confirms the Marauder was revived for 2003 and discontinued at the end of 2004 model year"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/PILOT200_BATCH01__MS200_148/trajectory.json",
+      "source_sha256": "1f33889ae1342ca7c2cd7b40f5389a1b98c171a84be61dd7204443d945b30415"
+    },
+    "M": {
+      "source_file": "MAPPINGS/PILOT200_BATCH01__MS200_148.json",
+      "source_sha256": "e7d5e96ee8dde6eb9595210c047c0bbf4c95bfe76762621891b45bc2b4fb71a2"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "dd0bcd28b27055629903e0ca4c38fe5c9b82932f72938ddfe1273cdbaba4b50a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "16bca13662b1c9aaf4f0fa4bc166556f4eb33d1eab9c0ae3d9b5a0e1d9d31af9"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "3b3077e78ac6aa4384560ecfd8555fb4a8d02b50277e6a2d57a3021f713170b3"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "262f14469fe0d2b58593bacecf503aca7712ed2c30c2d21fdc766c6c4707c8d6"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "6de3a18f058269934a29cafcc68376c2d587574da84a758e112350d6a3ea6b9a"
+    }
+  }
+}

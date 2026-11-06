@@ -1,0 +1,149 @@
+{
+  "case_id":"11__step11__S032",
+  "category":"A",
+  "trajectory_id":"11__step11",
+  "stage_id":"S032",
+  "main_problem_id":"11",
+  "official_subproblem_id":"11.11",
+  "intervention":"TERMINAL_DROP_NO_ANCHOR",
+  "review_status":"COMPLETE",
+  "evidence_index":"RESOLVED_EVIDENCE.json",
+  "objective_cost_table":"OBJECTIVE_COSTS.json",
+  "sources":{
+    "original_read":"从头完整阅读11__step11全部11子题、92Round、91Call/完整Return与实际提交或未提交。与11step10逐字段不等，未复用其不同自然样本的阅读。11__step11__READING_COVERAGE.md记录窗口，含11.8 R14全部16284字符及11.9 R4全部53630字符。",
+    "new_read":"四条完整11轮/11实际Call与Return逐一读完，1/2各3、3为2、4为3；所有测试脚本、反馈、read内容及submit代码已比较。",
+    "input_read":"R2@40，P当前前缀仅‘The code has been written successfully. ’，保留完整用户题面/前题提交及R1已保存1805字符自包含正确函数。original_request的用户消息与原11.11 prompt逐字符相等；末条消息是write返回，不能把末条当用户题面。历史89Actor/88Call，G空0Token。"
+  },
+  "original":{
+    "pre_state":"P已有正确coherent_inf_state：reshape(dimA,dimB,dimA,dimB)后trace轴0/2取得B，S(B)-S(AB)，附eigvalsh/clip1e-15/log2 entropy。已write成功533c32ee...，并非仅推理草稿。前题entropy也已正式提交及有限真测；部分更早函数存在缺陷/11.9无提交，但当前函数直接np.trace不依赖它们。",
+    "U_goal":"核验当前相干信息函数并完成正式提交。",
+    "U_operations":"from prior_model测试被IMPORT_DENIED，未取得数值；随后认为应避免导入既有entropy，写999字符仅依赖既有entropy封装；最后submit又用P中1805字符自包含原SHA。原测试还误把4×4矩阵outer成16×16，若绕过入口会与2×2双系统reshape不一致，但没有实际运行到该错误。",
+    "U_product":"没有新增数值证据、没有改变最终公式或最终代码；完成正式提交C。临时999字符封装未保留到Final。",
+    "judgment_before_after":"从正确候选待测到入口失败后调整依赖组织、接受并提交；无已观察到的数学纠错，结果仍取P已有候选。",
+    "original_suffix_use":"U是最后Stage，含实际submit，没有U之后新工作。原最终代码SHA与切点前draft相同；不能把删除后必需再次submit算成绕过提交功能。",
+    "evidence":["P_SAVED","O_FORMULA","O_BAD_TEST","O_ROOT","O_REWRITE","O_FINAL"]
+  },
+  "guide_audit":{
+    "G":"",
+    "P_relation":"TERMINAL_DROP_NO_ANCHOR，无教师首句、无未来实体/答案预填。四条自主决定测试或read；P正确代码本身是合法保留历史，不是未来回填。",
+    "novelty":"无G，没有引导信息新颖性或语义泄漏。",
+    "risk":"本组与FIRST_SENTENCE分开统计；不是单Stage从空状态重启，切点前已有完整当前候选。",
+    "evidence":["I_PREFIX","P_SAVED"],
+    "uncertainty":"无引导也有独立seed影响；4C只支持该候选被保持，不能证明所有核验工作没有用。"
+  },
+  "rollouts":[
+    {
+      "branch_id":"11__step11__S032__TERMINAL_DROP_NO_ANCHOR__rep1",
+      "official_state":"C",
+      "first_material_divergence":"自主选Bell等测试，但用exec(open(...))载入代码，被exec门控拒；接下来改合法inline同一算法，未修改候选保存。",
+      "work_reconstruction":{
+        "goal":"重做验证和正式提交。",
+        "operation":"非法exec测试拒→inline相同coherent_inf_state/entropy真测Bell与纯积态→submit原P代码，0write。",
+        "product":"真实Bell约1、纯积态约0；最终533c32ee...与P和原最终完全相同。",
+        "assessment":"FULL_REBUILT原U验证意图与提交，数值证据新增；原临时依赖封装调整NOT_OBSERVED，并未需要该调整。"
+      },
+      "judgment_change":"把入口失败用于换测试方法，没有把正确数学候选改坏；成功有限输出成为接受原代码的依据。",
+      "action_chain":"P已有正确实现→exec入口拒绝→合法同式inline验证→接受原候选submit→C。",
+      "result_explanation":"答案保持主要可追溯到P已有完整正确产物并最终同SHA，不是从G恢复算法。与原相比证据更强，但不是整体成本更低。",
+      "cost_localization":"原切点生成保守[935,1329]，新2009，确定多680–1074；Prompt20671对20187多484；3Actor/工具持平，2run取代原1run+1write，且其中1次真实成功。新长测试脚本和真实结果解释增加生成；无临时封装改写。",
+      "evidence":["N1_ROOT","N1_RUN","N1_SAME_FORMULA","N1_FINAL"],
+      "counterevidence":"原并无成功验证，新增加真测有证据价值；不能只看重做测试就称原U必要或新成本无用。",
+      "unknowns":"有限Bell/积态样例不能覆盖任意维度、复数输入；不引入新实验重评分。"
+    },
+    {
+      "branch_id":"11__step11__S032__TERMINAL_DROP_NO_ANCHOR__rep2",
+      "official_state":"C",
+      "first_material_divergence":"从sys和虚构模块载入的首测试被sys拒；模型一度说自己没导入sys，实际脚本有，但随后只换inline测试。",
+      "work_reconstruction":{
+        "goal":"检验已保存算法并提交。",
+        "operation":"sys测试拒→inline同公式真实Bell测试→submit P1805字符，不另write。",
+        "product":"Bell0.9999999999998502，最终533c32ee...不变；原封装改写不再执行。",
+        "assessment":"FULL_REBUILT验证/接受/提交，未重做原无关依赖改写。"
+      },
+      "judgment_change":"语言层面错误否认sys导入，但实际动作没有派发修改numpy/entropy候选的任务，只换执行入口；数值一致后接受。",
+      "action_chain":"P正确候选→工具入口拒→解释有误但测试方法改为合法→真实值符合预期→同候选C。",
+      "result_explanation":"同一错误诊断并不必然污染代码，必须看它进入了什么实际操作；本支没有新write或数学变化。",
+      "cost_localization":"1529生成确定多200–594；Prompt20646增加459；3Actor/工具持平，2run中一次成功。原临时write变为实际测试，但包含否认/重解释文本，未形成总生成节省。",
+      "evidence":["N2_SYS_CODE","N2_ROOT","N2_DENIAL_CONFUSION","N2_RUN","N2_FINAL"],
+      "counterevidence":"‘没有import sys’与参数矛盾，不能把所有说明当可信状态；尽管如此候选未被改动且C保持。",
+      "unknowns":"旧版本V6与V7分支目录分列保存；不将代码版本和采样贡献假称已独立排除。"
+    },
+    {
+      "branch_id":"11__step11__S032__TERMINAL_DROP_NO_ANCHOR__rep3",
+      "official_state":"C",
+      "first_material_divergence":"直接合法inline相同coherent_inf_state与entropy并真实测试Bell、纯积态和完全混态，未经历入口拒绝。",
+      "work_reconstruction":{
+        "goal":"核验P已有函数并提交。",
+        "operation":"1次真实run→submit P同SHA；0write/0read。",
+        "product":"真实输出约1、约0、-1；正式提交仍533c32ee...。",
+        "assessment":"FULL_REBUILT验证/接受/提交，原依赖改写未执行。"
+      },
+      "judgment_change":"合法同算法反馈直接支持接受，不产生新的依赖缺口，跳过原临时封装改写而保持数学候选。末尾把所有separable概括成coherent information0过宽，完全混态本身即反例；实际三个例值及代码仍正确。",
+      "action_chain":"已有正确候选→一次合法有限验证→同候选正式提交C，少一次无关中间改写。",
+      "result_explanation":"支持‘已完成数学判断的P允许减少后续封装调整’这一有条件解释；不支持原验证功能完全没重建，验证反而更充分。",
+      "cost_localization":"1602生成仍确定多273–667；Prompt13775少6412；2Actor/工具比3少1。一次成功run替代原拒绝run，省原临时write及其下一轮上下文，但三样例长脚本/说明增加生成。属于交互和输入下降、生成上升，不能统一称省Token。",
+      "evidence":["N3_RUN","N3_ACCEPT","N3_FINAL"],
+      "counterevidence":"交互更短但生成更长，且验证功能存在；‘完全混态=-1’反驳其笼统separable=0文字，不据最终C掩盖。",
+      "unknowns":"无法把Prompt减少直接换算GPU时延，本组没有同口径延迟记录。"
+    },
+    {
+      "branch_id":"11__step11__S032__TERMINAL_DROP_NO_ANCHOR__rep4",
+      "official_state":"C",
+      "first_material_divergence":"首脚本用元素log2矩阵相乘直接算熵且from tools载入，被tools拒；没有实际NaN返回，模型随后read而不继续测试。",
+      "work_reconstruction":{
+        "goal":"重新尝试验证、确认候选并提交。",
+        "operation":"非法tools测试拒→read返回P原1805字符→直接submit原SHA，0write、0成功run。",
+        "product":"原候选被保留且C；没有新增数值证据，原临时依赖改写不出现。",
+        "assessment":"PARTIAL_REBUILT验证尝试与接受/提交恢复，数值验证NOT_OBSERVED；原路径也无成功run。"
+      },
+      "judgment_change":"把IMPORT_DENIED视为工具入口问题，read只确认保存代码存在后接受；没有根据未运行的错误熵测试去修改正确候选。",
+      "action_chain":"P已有正确函数→测试入口拒→read确认现有实现→直接同代码提交C。",
+      "result_explanation":"正确性保持有清楚的已有产物来源；但无数值检验不等于证明验证没必要，更不能说首脚本已产生NaN并被修好。",
+      "cost_localization":"1220生成对原[935,1329]差额可能少109也可能多285，方向未知；Prompt20728增加541；Actor/工具3持平。read替代原依赖write，但读回1805字符输入成本上升，未节省交互。",
+      "evidence":["N4_BAD_METRIC","N4_ROOT","N4_READ","N4_ACCEPT","N4_FINAL"],
+      "counterevidence":"与rep3同C但无成功数值验证，且Prompt上升；同结果不等价于同证据或成本。",
+      "unknowns":"切点位于原Round内部，无法还原精确原生Token长度，不强判生成省或增。"
+    }
+  ],
+  "cross_rollout_comparison":{
+    "same_changes":"4条都自主重新尝试核查并正式submit同一P候选533c32ee...，0新write；原临时依赖封装调整4次都没有重做。3条新增成功数值运行，4没有。",
+    "different_paths_same_result":"1/2入口拒后换inline，3首轮即合法inline，4入口拒后read直接提交；4C由已保存数学产物保持可解释，但并非四条验证状态相同。",
+    "mechanism_strength":"当正确公式与完整保存代码已在P，原入口失败后的封装改写并没有给最终产物增加功能；删除后可通过直接测试或read继续提交。若反馈只改变测试方法，数学产物稳定；是否省交互与是否省生成仍须分列。",
+    "counterexamples":"4个C不能说测试全被省：3条做了原本未成功的运行；最短rep3只省Prompt/Actor而生成增；rep4无真测且生成方向未知。原提交功能全部重建，故不作‘整个U严格可省’认定。"
+  },
+  "stage_function":"对已经保存的相干信息实现发起验证，处理测试入口拒绝导致的依赖封装调整，并正式提交原候选。",
+  "candidate_mechanism_chain":"P中正确数学与自包含候选已经保存→U入口拒绝被转成封装调整但最终仍提交原P版本→无G删除后四次保留同一候选、重新选择验证/接受路径→三次获得新数值、一支只read→四C；原无关中间write可消失，但正式提交与多数核查被恢复，交互和生成消耗不必同向。",
+  "limits":[
+    "1Stage/1主问题/1原轨迹/4续跑；与同主问题其他Stage不算不同题。",
+    "TERMINAL_DROP_NO_ANCHOR，无G0Token，不与教师引导FIRST_SENTENCE合计解释。",
+    "P首重放6671单列；RECONSTRUCTED_CHAR_EXACT，生成原窗保守[935,1329]，非原生Token精确差。",
+    "目标11.11正确不说明更早m-rail、apply_channel、syspermute等均正确，更不说明整体主问题任务已成功；保留旧评价不重判。",
+    "V6 rep1/2和V7 rep3/4路径均封存，不为了比较重新采样。"
+  ],
+  "evidence_specs":[
+    {"id":"P_SAVED","source_key":"G1","json_pointer":"/state/draft_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"I_PREFIX","source_key":"G1","json_pointer":"/P_current_reasoning_prefix","exact_quote":"The code has been written successfully. "},
+    {"id":"O_FORMULA","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/0/arguments/code","exact_quote":"rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)"},
+    {"id":"O_BAD_TEST","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/1/arguments/code","exact_quote":"bell_state = np.zeros((total_dim, total_dim), dtype=np.float64)"},
+    {"id":"O_ROOT","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/1/model_visible_return/validation/root","exact_quote":"prior_model"},
+    {"id":"O_REWRITE","source_key":"ORIGINAL","json_pointer":"/steps/10/rounds/2/reasoning_content","exact_quote":"Let me rewrite the function to use the already available entropy function without redefining it."},
+    {"id":"O_FINAL","source_key":"ORIGINAL","json_pointer":"/steps/10/submitted_code_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N1_ROOT","source_key":"NEW1","json_pointer":"/steps/0/tool_events/0/model_visible_return/validation/name","exact_quote":"exec"},
+    {"id":"N1_RUN","source_key":"NEW1","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Coherent information of Bell state: 0.9999999999998506\nCoherent information of separable state: -9.965784284662086e-14"},
+    {"id":"N1_SAME_FORMULA","source_key":"NEW1","json_pointer":"/steps/0/tool_events/1/arguments/code","exact_quote":"rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)"},
+    {"id":"N1_FINAL","source_key":"NEW1","json_pointer":"/formal_target_submission_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N2_SYS_CODE","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"import sys\nsys.path.insert(0, '/tmp')"},
+    {"id":"N2_ROOT","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/model_visible_return/validation/root","exact_quote":"sys"},
+    {"id":"N2_DENIAL_CONFUSION","source_key":"NEW2","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"I don't see any `sys` import."},
+    {"id":"N2_RUN","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Coherent information for Bell state: 0.9999999999998502"},
+    {"id":"N2_FINAL","source_key":"NEW2","json_pointer":"/formal_target_submission_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N3_RUN","source_key":"NEW3","json_pointer":"/steps/0/tool_events/0/model_visible_return/stdout","exact_quote":"Coherent information of maximally mixed state: -1.0"},
+    {"id":"N3_ACCEPT","source_key":"NEW3","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"correct, as separable states have zero coherent information"},
+    {"id":"N3_FINAL","source_key":"NEW3","json_pointer":"/formal_target_submission_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N4_BAD_METRIC","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"-np.sum(rho_AB @ np.log2(rho_AB))"},
+    {"id":"N4_ROOT","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/model_visible_return/validation/root","exact_quote":"tools"},
+    {"id":"N4_READ","source_key":"NEW4","json_pointer":"/steps/0/tool_events/1/model_visible_return/code_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N4_ACCEPT","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code was already accepted and is stored. Now I need to submit it."},
+    {"id":"N4_FINAL","source_key":"NEW4","json_pointer":"/formal_target_submission_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"}
+  ]
+}

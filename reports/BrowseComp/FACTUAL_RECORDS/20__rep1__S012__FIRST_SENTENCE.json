@@ -1,0 +1,37 @@
+{
+  "case_id":"20__rep1__S012__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新正式采纳正确题名；旧整段Final EM保留。新3披露学历待核实，新1/2无证肯定，新4推测时间，质量表述分别记录。"},
+  "review_basis":"原16轮15Call完整已读，四新18轮14Call/完整Return和全部Final全文已读。145返回槽，新增37261的2440字符全文读完，其余精确SHA均来自本线程已读18/20题。",
+  "pre_state":"R14@711，正确题名和四项技术支持均已采用；刚完整复盘并列大学增长和BSc两项待证。学校两次查询没证明Chalmers增长，UNC来源已在原R13区分。还没有Simon本科日期证据。",
+  "u_work":"原E14针对Simon姓名/BSc年份/Chalmers真实检索，返回无直接本科毕业日期；R15[0,81)明确反馈没找到日期。U是一次实际未补齐的学历核查，不是确定学历符合或排除论文。",
+  "u_state_update":"学历仍未知；这次失败没有改变已采用论文，原后继转学校史/题名方向，实际又查原题名，R16在两条件未证时提交。原Final无证声称学历相符，不能说U给了支持。",
+  "original_action_consequence":"U的未找到信息保留成待证状态，正确题名和技术匹配持续主导最后接受；没有看到负面文档排除候选，检索没找到日期不等于日期不符合。",
+  "guidance":{"text":"Let me try searching for more information about Chalmers University's history and student numbers in the 1850s, as well as search for the specific thesis title that matches all the criteria.","source":"原S013 R15@81首句，41Token。","audit":"ORACLE_ANCHORED；Chalmers/招生史/题名及待查方向在P已有，无新事实或答案，但给原未来改查学校/论文的组合行动。四新首无额外Reasoning即发Call，不伪造前置动机；新2实际先论文+BSc而非G学校。"},
+  "evidence":[
+    {"id":"O_P_GAPS","source":"original","pointer":"/rounds/13/reasoning_content","quote":"Did Simon Isakson complete his B.Sc between 2005-2013?","use":"P已明确待查本科条件。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/13/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013 Chalmers","use":"chatcmpl-tool-bf3ccd9ae7841f0e，真实学历尝试。"},
+    {"id":"O_U_FAIL","source":"original","pointer":"/rounds/14/reasoning_content","quote":"I'm not finding specific information about Simon Isakson's B.Sc completion year.","use":"U产物是日期仍未知。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/tool_events/2/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013","use":"chatcmpl-tool-82ff9edc73cd4557，学校/UNC两Call后才恢复学历核查。"},
+    {"id":"N1_FEEDBACK","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"I couldn't find specific information about Simon Isakson's B.Sc completion year.","use":"完整恢复失败反馈，仍继续接受最可能题名。"},
+    {"id":"N2_HYBRID","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson B.Sc","use":"chatcmpl-tool-84b71a0e33dc9529，以题名+作者+BSc联合查询，返回论文而非本科日期。"},
+    {"id":"N2_LIMIT","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"The only issue is whether Chalmers University had rapid student number increases in the 1850s, and whether Simon Isakson completed his B.Sc between 2005-2013.","use":"R18仍明确两缺口，不是学历成功核验。"},
+    {"id":"N3_REBUILD","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013 Chalmers","use":"chatcmpl-tool-97d51f3f43298ee8，大学一Call后恢复原查询。"},
+    {"id":"N3_RULE","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"If I can't find this information, I'll provide the best answer based on the criteria I've been able to verify.","use":"R17明确有条件继续一查后提交，下一实际Call为UNC论文。"},
+    {"id":"N3_CAVEAT","source":"new3","pointer":"/rounds/4/content","quote":"B.Sc completion year would need to be verified separately","use":"Final真实披露本科未证，不伪补为成功。"},
+    {"id":"N4_REBUILD","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013 Chalmers","use":"chatcmpl-tool-a85b7f1ff14efb77，学校/UNC之后恢复学历。"},
+    {"id":"N4_FEEDBACK","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"I haven't found specific information about Simon Isakson's B.Sc completion year","use":"失败反馈和原U相同事实状态，后仍提交。"},
+    {"id":"N4_GUESS","source":"new4","pointer":"/rounds/3/content","quote":"which would typically follow a B.Sc completion within the 2005-2013 timeframe","use":"用常规学程推测日期，不是Return直接证据。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"先执行G学校，再UNC论文，再原学历目标。","state_chain":"P题名/技术匹配保持→学校仍未证→学历真实重查无日期→R17据最可能题名提交C，Final无证肯定本科且虚构UNC连接。","function_change":"目标/实际检索/失败反馈完整重建，顺序后移；不是绕过学历工作。","evidence":["N1_REBUILD","N1_FEEDBACK"],"semantic_result":"C；学历/学校说明缺依据。"},
+    {"repeat":2,"first_divergence":"首执行题名+作者+BSc联合查询，取得论文，之后两查学校与UNC。","state_chain":"已知论文再次确认→本科日期仍未知→学校两次核查未解→UNC替代论文仍回原候选→R18接受最匹配C，Final却写日期符合。","function_change":"学历信息需求实际以联合Query尝试、仍未补齐；不是精确原查询/单独背景核查回放，功能部分恢复，不能由包含BSc就算找到日期。","evidence":["N2_HYBRID","N2_LIMIT"],"semantic_result":"C；本科被无证肯定。"},
+    {"repeat":3,"first_divergence":"首学校，次恢复原学历Query，再题名、UNC。","state_chain":"学历查询失败→重述四支持两缺口→R17明确查不到就据已证部分回答→再一真实UNC查询→R18提交C，Final保留本科待证。","function_change":"原学历尝试和失败反馈重建，执行成本增加而非减少；出现可见查证→有条件提交决定，不能泛说信心提高。","evidence":["N3_REBUILD","N3_RULE","N3_CAVEAT"],"semantic_result":"C且明确未核实限制。"},
+    {"repeat":4,"first_divergence":"首学校，次UNC论文，第三才恢复本科查询。","state_chain":"已有题名反复返回→本科和大学仍无证→R17说再查却无实际Call并正式回答C，Final以通常学程推测。","function_change":"原目标/操作/未知产物完整恢复；计划再查未执行不计Search。","evidence":["N4_REBUILD","N4_FEEDBACK","N4_GUESS"],"semantic_result":"C；学历推测非直接证明。"}
+  ],
+  "mechanism_candidate":"A四C的前提是正确题名及技术匹配已在P，原U未取得本科新支持；删除后四条仍进行至少相关学历查询，三条完整重做原目标并得到同一失败反馈。它们不是靠证实学历才保持答案，而是到某处以现有强技术匹配接受，并以不同方式表达未证条件。因而原失败核查执行实例可能不是唯一接续途径，但当前不能证明学历功能被省掉，且四条均更多消耗。",
+  "within_case_support":"四C均保持两缺口，其中新3明确查不到就据已知提交且Final披露，另三条无证肯定或推测。相同答案下判断/表述质量不同；不能将它们全称完整质量保持的冗余证据。",
+  "mechanism_chain_checks":[{"chain":"既有题名技术匹配保持→重新尝试本科取证仍无日期→接受最可能题名而非等待全部条件证明。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_REBUILD","N1_FEEDBACK"],"2":["N2_HYBRID","N2_LIMIT"],"3":["N3_REBUILD","N3_RULE","N3_CAVEAT"],"4":["N4_REBUILD","N4_FEEDBACK"]},"limits":"2只联合论文查询，其他三条单独学历；对未知条件的最终表述不同。"}],
+  "counterevidence_and_limits":["四次都有学历相关真实尝试，不能据四C说原功能完全未执行。","无日期返回不是不符合日期，未发现反证不能当核验成功。","新3明确披露，新1/2肯定、新4推测，名称正确不证明条件支持质量相同。","四条比原后缀更多Search/Actor/生成/Prompt，不能从目标U长度直接算节省。","G方向、独立采样和剩余预算保留；只有同题四次支持，不能当跨题规律。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT；原切点后1050生成/2Search/3Actor，P239生成IDs重放单列，G41一次。新1752/1839/1632/1134加G为1793/1880/1673/1175，精确多743/830/623/125；Search3/4/4/3、Actor4/5/5/4均增。Prompt187669/242639/242474/187331对原41898+93556=135454均增。四C没有全资源下降，消耗增加落点是学校/UNC/学历重新核验和重复条件整理。无guard/最后未消费返回。",
+  "next_cross_case_test":"A内跨题比较一次失败核查的反馈是否被用于换行动/停止，还是后续重做同功能；对于答案保持分别解释既有充分支持、条件未查、实际恢复及G补偿，不能将它们统一贴冗余。"
+}

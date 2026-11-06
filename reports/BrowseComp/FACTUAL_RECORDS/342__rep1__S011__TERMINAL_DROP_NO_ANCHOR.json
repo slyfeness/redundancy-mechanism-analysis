@@ -1,0 +1,37 @@
+{
+ "case_id":"342__rep1__S011__TERMINAL_DROP_NO_ANCHOR","question_id":"342","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"W","4":"N"},"basis":"原PhilHill正式W，新3正式仍PhilHillW；其余三条真实工具Call后下一Actor未发送、context终止无FinalN，不能因新4中间说答案Phil就标W。"},
+ "review_basis":"原16轮15Call/完整Return/错误Final已完整阅读全文，末轮切点前后再次逐字读；四新各一轮完整Reasoning/真实Call参数、三完整Return和新3完整Final全部实际读。90文档槽SHA复用本题已读完整片段，无新增；4首输入核对，三Call真实执行、Return保存但只进入未发送guard，实际下一Actor消费为0。",
+ "pre_state":"R16@6123前，P已有大量真实查询失败与Ford1964首发/1966首胜不符的重复论证；也早见正确Richard/Porsche资料，但当前真实行动仍查Ford/Phil。最新P末尾仍准备查身体问题，没有清楚关闭缺口或决定提交。剩余上下文已接近本项目下一请求安全预算界限。",
+ "u_work":"U为R16[6123,7090)停止检索/接受决定：明确说找不到身体细节也要接受现有信息，选Ford、从Phil或Ken收束到Phil，修正HenryFordII/创办人区分后实际准备回答。U没有新Call或新事实，原随后正式Final错误PhilHill。",
+ "u_state_update":"把仍待核且年份不符的候选，转成无需再搜索的接受及正式答复；该转变让原轨迹在当前轮结束，但接受内容是错误，不能称U提供正确知识。",
+ "original_action_consequence":"原U后无新Search，当前R16直接Final。删除后若再次发Call，真实Return将增加上下文，下一Actor可能被安全预算guard拦住；候选相同与是否提交是两个节点。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，0Token；原R16@6123直接自由续写，没有任何后继G。","audit":"NO_ANCHOR_TERMINAL_DROP，不属ORACLE_ANCHORED。P保留1506原生生成Token和此前真实历史；没有原U、原Final或未来Return注入。非空P单Stage重启。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/15/reasoning_content","quote":"Actually, I think I need to accept that I'm not finding the specific information about the driver's physical issue through my searches.","use":"U@6123首句，实际从未解核查转有限接受。"},
+  {"id":"O2","source":"original","pointer":"/rounds/15/reasoning_content","quote":"Actually, based on all the clues, the driver is Phil Hill.","use":"U结束选定错误名字；后原Final直接回答，无新Call。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Actually, I realize I've been searching for the wrong information.","use":"新R16看似反思，但随后仍真实查Phil/Ford，不将反思措辞当路线已纠正。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Phil Hill Ford GT40 1964 physical issue whiplash","use":"chatcmpl-tool-a9016b26606d3543真实新Call；whiplash为未证假设，Return只guard未消费。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Let me search for information about Phil Hill and his specific experience with the Ford GT40, including any injuries or physical issues.","use":"没有恢复原停止/接受，继续同一信息需求真实取证。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Phil Hill Ford GT40 1964 Le Mans car problem driver unhappy","use":"chatcmpl-tool-a794dc7be08082ae真实Call，之后不能合法发送下一Actor，无Final。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Actually, I think I need to make a conclusion based on the information I have.","use":"无G自主恢复原U从未解到接受的决定。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/content","quote":"The driver in question was **Phil Hill**.","use":"当前R16实际错误Final，0Call；不能将W和三条N都归为答错实体。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Actually, I think the answer is Phil Hill. Let me try searching for more specific information about Phil Hill and Ford GT40.","use":"答案候选接受已恢复但随即实际核查，未形成正式提交；与新3同名字但不同终态。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Phil Hill Ford GT40 1964 Le Mans design flaw injury","use":"chatcmpl-tool-9848d768e610571a真实Call后仅未发送guard，不能把未消费Return写为模型又重新评估。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"无G后不是原接受未解并提交，而宣称查错信息却仍选择Phil/Ford/whiplash真实取证。","state_chain":"P身体缺口→反思措辞但同对象真查→完整Return产生→下一Actor安全预算不允许发送→无Final。","function_change":"NOT_OBSERVED原停止/接受/答案组织功能，原候选取证继续；不能因说wrong information认定纠错完成。","evidence":["N11","N12"],"semantic_result":"N；没有机会消费新Return，不把这个返回当形成新决定的证据。"},
+  {"repeat":2,"first_divergence":"从P未解状态继续设计不同措辞的Phil问题并真实查询，没有形成原U的有限接受。","state_chain":"未解身体条件→Phil真实检索→返回入未发送guard→无Final，未获得新一轮判断。","function_change":"NOT_OBSERVED原停止/提交；候选核查延续不是U答案组织重建。","evidence":["N21","N22"],"semantic_result":"N；真实搜索存在但后续生成被预算约束阻断。"},
+  {"repeat":3,"first_divergence":"主要判断与原同：无G仍决定应根据现有信息作结，直接选择Phil并组织Final，只是表达短。","state_chain":"P未证/矛盾资料→有限接受恢复→0Call正式PhilHill→W。","function_change":"FULL_REBUILT原U接受与组织功能，错误判断也一并恢复；不是省掉功能后成功。","evidence":["N31","N32"],"semantic_result":"W，原状态保持；虽生成少167，却不属于A正确保持。"},
+  {"repeat":4,"first_divergence":"已说答案Phil，原候选接受部分恢复，但立即要求再真实查，而非提交。","state_chain":"Phil候选接受→再次查同对象→Return后下一Actor受guard→没有正式Final。","function_change":"PARTIAL_REBUILT：名字接受恢复，停止选择及正式组织没恢复。相同答案候选不保证同样交付。","evidence":["N41","N42"],"semantic_result":"N；中间名字Phil不能冒充正式W或提交。"}
+ ],
+ "mechanism_candidate":"P仍有未解决身体细节且年份矛盾反复未消时，原末段的实际作用是停止继续核验并接受一个错误候选。无G删后，三条又真实查询同一对象，下一Actor因上下文安全预算不能发送而无Final；一条恢复停止决定直接错误提交。新4甚至已接受同一名字却仍查，直接表明候选接受与提交选择不同。这里B的W→N多数变化反映是否继续取证耗掉最后生成机会，不是丢失正确事实；原U缩短了计算但代价是无据错误接受。",
+ "within_case_support":"W→N/N/W/N，k3（B）。继续真实查询后guard无Final3/4；直接恢复接受并错误Final1/4。名字接受至少新3/4都发生却C/W/N不同，不能用候选是否重建一项解释。无G，四份输入均无未来引导补偿。",
+ "mechanism_chain_checks":[
+  {"chain":"原末段停止决定未完整恢复→未解条件继续驱动真实Call→Return后下一Actor不能发送→无Final","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"],"4":["N41","N42"]},"limits":"已见context guard，不称模型看完Return又判断；原U本来是错误接受，不作正向必要性结论。"},
+  {"chain":"无G恢复有限接受/提交选择→不再实际取证→原错误Final状态保持且表达较短","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32"]},"limits":"1/4单题，不说明所有末段可省或所有停止决策有利质量。"}
+ ],
+ "counterevidence_and_limits":["终段NO_G与FIRST_SENTENCE分开；原有错误Final不是正确性保持的基线。","三条Return实际执行保存但没有进入已发送Actor，不能说关键证据回了却被忽略。","context阻止下一请求符合冻结安全预算，不是工程协议失败；不能把它与无真实Search的文本长度失败混为同一种过程。","新4接受名字却继续查与新3接受名字直接答，是同名不同状态内部反例，不猜信心或隐藏停止阈值。","和319P证据已闭合的无G末段四C对照时，需要区分P信息状态、接受内容正确性及剩余预算，不仅比较Stage形式。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT原R16@6123为1506，原后缀698生成/0Search1Actor，原Prompt53499。新83/83/531/71生成，G0，净−615/−615/−167/−627；Search1/1/0/1，Actor全1（guard不是实际请求），Prompt全55005，即P重放+1506。三N少生成是未获得下一轮和未提交所致，不是有效省；新3W短表达也不能称正确推理冗余。独立分支成本不相加。",
+ "next_cross_case_test":"跨题区分P已正确全条件接受和P未解/矛盾仍主导行动的末端Stage；检验候选接受、停止取证、正式提交三个具体节点是否分别恢复，以及继续一Call如何影响剩余合法生成机会，不把所有末段终态变化解释为信息丢失。"
+}

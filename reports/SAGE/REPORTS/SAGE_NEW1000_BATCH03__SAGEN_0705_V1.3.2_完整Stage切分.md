@@ -1,0 +1,2512 @@
+# SAGE_NEW1000_BATCH03__SAGEN_0705｜V1.3.2完整Stage切分
+
+样本序号：92；原件SHA256：`f301d0b1804642d8426d171d85469f6713b8a92ff403bb3428476b7be6c079b9`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What is the sum of the number of BAFTA Awards won by the film featuring Michael Caine in his second lead role, and the number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director?
+````
+
+## 完整求解过程
+
+# 完整求解过程
+
+先两次查Caine第二主演角色，采用Zulu后Ipcress File。第三轮查Ipcress获奖，直接得到三BAFTA与Furie导演；第四轮查同导演恐怖片，得到Entity、Doctor Blood、Snake Woman等。第五轮实际把“第二主演”重新解释成“第二次Palmer”，转为Funeral in Berlin，并因续集推测同导演；完整推理后同批查Funeral的BAFTA和导演，但未查到对应奖项。
+
+第六至八轮查Entity影评数，先相同review查询重试，再缩成film详情。第七轮背景又称Ipcress第二主演，未独立展开纠错，也未查该对象；不能把这句复述扩为已完成核验。影评数始终未获得。第九轮回到Funeral获奖，第十、十一轮普通增年份/film重试；第十轮返回明确Guy Hamilton导演。第十二轮才实际比较两片导演并识别Furie/Guy冲突，仍采用Funeral第二Palmer假设，重新Search Funeral BAFTA。虽正文提Guy horror搜索，但真实仅一个BAFTA Call。第十三轮上下文阻塞，未计算和提交，无Final。完整读取13 Search（含R5同批两次）、无Open；早期条件误解和未解决影评数保留。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 检索Caine第二主演电影并采用Ipcress | 暂接受Ipcress。 | E001,E002 |
+
+| S002 | R3 / 0 / 518 | 取得Ipcress三BAFTA与Furie导演 | 三奖和导演到位。 | E003 |
+
+| S003 | R4 / 0 / 602 | 查Furie恐怖片范围 | 取得Entity、Doctor Blood和Snake Woman。 | E004 |
+
+| S004 | R5 / 0 / 0 | 将第二主演重新解释为第二Palmer并采用Funeral | 转为Funeral候选，导演仍推测。 |  |
+
+| S005 | R5 / 0 / 1511 | 联合核查Funeral奖项和导演 | 未获所需奖项和明确导演。 | E005,E006 |
+
+| S006 | R6 / 0 / 0 | 转查Entity的Rotten Tomatoes影评数并普通重试 | 取得影片资料但未得影评数。 | E007,E008,E009 |
+
+| S007 | R9 / 0 / 0 | 恢复Funeral的BAFTA核查并普通加年份重试 | 返回Guy Hamilton导演，仍缺Funeral奖项。 | E010,E011,E012 |
+
+| S008 | R12 / 0 / 0 | 识别Funeral导演实际为Guy Hamilton并重新检查角色链 | 导演关系纠错完成，奖项仍缺。 |  |
+
+| S009 | R12 / 0 / 718 | 导演纠错后重新查询Funeral奖项 | R13 CONTEXT_LIMIT_STOP，无Final、无求和。 | E013 |
+
+## S001｜检索Caine第二主演电影并采用Ipcress
+
+R1—R2同计划搜索角色，R3提取Zulu后Ipcress。
+
+结束状态：暂接受Ipcress。
+
+边界判断：首次动作。
+
+内部KEEP与反证：第二次仅扩为filmography，不含独立候选排除，直接采用留前段。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,494)
+
+SHA256：`291bfcb986e60ae2d39bc32c3c0c389714a0d8d7ce5a28a239f77bfcfa9c843c`；原字段SHA256：`291bfcb986e60ae2d39bc32c3c0c389714a0d8d7ce5a28a239f77bfcfa9c843c`。
+
+````
+This is a complex multi-hop question. Let me break it down:
+
+1. First, I need to find a film featuring Michael Caine in his second lead role
+2. Then find how many BAFTA Awards that film won
+3. Find another horror film directed by the same director as that first film
+4. Find the number of critical reviews on which the Rotten Tomatoes approval rating is based for that horror film
+5. Sum these two numbers
+
+Let me start by searching for information about Michael Caine's second lead role film.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Michael Caine second lead role film"
+  },
+  "id": "chatcmpl-tool-966fce00b859f6fc",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Michael Caine second lead role film\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-966fce00b859f6fc",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Michael Caine second lead role film"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 8.174528791103512,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212208",
+        "score": 23.836753279683684,
+        "snippet": "\"I kept my cockney accent in order to let other working class boys know that if I made it, they could do it too.\" —Caine speaking to CNN's \"The Screening Room\" in 2007 on retaining his accent. Caine is regarded as a British cultural icon, with Mairi Mackay of CNN stating: \"Michael Caine has been personifying British cool since the swinging sixties. He has brought some of British cinema's most iconic characters to life and introduced his very own laid-back cockney gangster into pop culture. He doggedly retained a regional accent at a time when the plummy tones of Received Pronunciation were considered obligatory. It is a sweet irony that his accent has become his calling card.\" In 2015 \"The Times\" called Caine \"the epitome of Sixties cool in his first outing as the secret agent Harry Palmer\". A trailer for his second role as Palmer described him as possessing \"horn rims, cockney wit and an iron fist\". With his distinctive voice and manner of speaking, Caine is a popular subject for impersonators and mimics. Most Caine impressions include the catchphrase \"Not a lot of people know that.\" The catchphrase emanates from Caine's habit of informing people of obscure \"interesting facts\" that he has collected. Referring to Caine as being the \"biggest mine of useless information\", Peter Sellers initiated the catchphrase when he appeared on BBC1's \"Parkinson\" show on 28 October 1972 and said: Not many people know that. This is my Michael Caine impression. You see, Mike's always quoting f",
+        "text_characters": 2458,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212209",
+        "score": 23.333005425642888,
+        "snippet": "I sound like a bloody moron. You know where they've got me now? On birthday cards. 'It's your birthday today. Not many people know that'. Now they've got me on Satellite navigation. It's me going, 'take the second turn on the right, and you'll wind up right in the shit.'\" In 1983, Caine used his \"not a lot of people know that\" phrase as a joke in the film \"Educating Rita\". The comedy sketch show \"Harry Enfield's Television Programme\" included a series of sketches in which Paul Whitehouse played a character called Michael Paine; an amalgam of previous Michael Caine impressions, who in a reference to Caine's character Harry Palmer from \"The Ipcress File\" wears oversized, thick-rimmed glasses and a trench coat. He introduces himself with the line, \"My name is Michael Paine, and I am a nosy neighbour\" and in a spoof of the stakeout at the beginning of \"The Ipcress File\", recounts to the camera the 'suspiciously' mundane behaviour of his neighbours, before saying, \"Not a lot of people know that I know that\". Caine's Harry Palmer character (with the glasses, the girls, and disregard for authority) was among the many British pop cultural influences for Mike Myers' \"Austin Powers\" films. At Myers' request, Caine himself starred in \"Austin Powers in Goldmember\" (2002), with his portrayal of Nigel Powers, father of Austin Powers, spoofing Harry Palmer. A parody of Caine appears in the animated series \"Ugly Americans\", in the episode \"The Dork Knight\", which also parodies the film \"The ",
+        "text_characters": 2342,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212204",
+        "score": 22.153918701705013,
+        "snippet": "In the 1990s, Caine found good parts harder to come by. He played the mysterious bartender Mike in \"Mr. Destiny\" in 1990 and appeared with Roger Moore in \"Bullseye!\" (1990).He played Ebenezer Scrooge in \"The Muppet Christmas Carol\" (1992). Having been chosen by Brian Henson, Caine stated: \"I'm going to play this movie like I'm working with the Royal Shakespeare Company. I will never wink, I will never do anything Muppety. I am going to play Scrooge as if it is an utterly dramatic role and there are no puppets around me.\" He played the beleaguered stage director Lloyd Fellowes in the film adaptation of \"Noises Off\" (1992). He also played a villain in the Steven Seagal film \"On Deadly Ground\" (1994). He was starred two straight to video Harry Palmer sequels and a few television films. 1998–2014: Career resurgence. Caine's performance in \"Little Voice\" (1998) won him a Golden Globe Award. Better parts followed, including \"The Cider House Rules\" (1999), for which he won his second Academy Award for Best Supporting Actor. In the 2000s, Caine appeared in the comedy \"Miss Congeniality\" (2000) as the refined pageant coach opposite Sandra Bullock as the undercover FBI agent. The film was a massive box office success and Caine earned praise for his comic turn. That same year Caine also appeared in Philip Kaufman's controversial yet acclaimed film \"Quills\" (2000) as Dr. Royer-Collard opposite Geoffrey Rush, Kate Winslet, and Joaquin Phoenix. In 2001, Caine starred in the ensemble dramed",
+        "text_characters": 2408,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:9194",
+        "score": 21.946299060715504,
+        "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o",
+        "text_characters": 48946,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5065336",
+        "score": 21.51937493395514,
+        "snippet": "This article is a List of awards and nominations received by Michael Caine. Michael Caine is an English actor known for his roles in film and television. He has received numerous accolades including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award as well as nominations for three Primetime Emmy Awards. He been nominated for an Oscar six times, winning his first Academy Award for the 1986 film \"Hannah and Her Sisters\", and his second in 1999 for \"The Cider House Rules\", in both cases as a supporting actor. His performance in \"Educating Rita\" in 1983 earned him the BAFTA and Golden Globe Award for Best Actor. Caine is one of only two actors nominated for an Academy Award for acting in every decade from the 1960s to 2000s (the other one being Jack Nicholson); Laurence Olivier was also nominated for an acting Academy Award in five different decades, beginning in 1939 and ending in 1978, as has Paul Newman (1950s, '60s, '80s, '90s and 2000s) and Denzel Washington (1980s, '90s. 2000s, '10s and '20s). Caine appeared in seven films that were ranked in the BFI's 100 greatest British films of the 20th century. Caine was appointed a Commander of the Order of the British Empire (CBE) in the 1992 Birthday Honours and in the 2000 Birthday Honours he was knighted (as \"Sir Maurice Micklewhite CBE\") by Queen Elizabeth II at Buckingham Palace. In a tribute to his background, he stated: \"I was named after my father and I was knighted in his name beca",
+        "text_characters": 2051,
+        "title": "List of awards and nominations received by Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212197",
+        "score": 21.147412030380238,
+        "snippet": "Caine is also known for his performance as Ebenezer Scrooge in \"The Muppet Christmas Carol\" (1992), and for his comedic roles in \"Dirty Rotten Scoundrels\" (1988), \"Miss Congeniality\" (2000), \"Austin Powers in Goldmember\" (2002), and \"Secondhand Lions\" (2003). Caine portrayed Alfred Pennyworth in Christopher Nolan's \"Batman\" trilogy (2005–2012). He has also had roles in five other Nolan films: \"The Prestige\" (2006), \"Inception\" (2010), \"Interstellar\" (2014), \"Dunkirk\" (2017), and \"Tenet\" (2020). He announced his retirement from acting in October 2023, with his final film being \"The Great Escaper\", which came out in the same month. Early life. Michael Caine was born Maurice Joseph Micklewhite at St Olave's Hospital in the Rotherhithe district of London on 14 March 1933, the son of cook and charwoman Ellen Frances Marie (née Burchell; 1901–1989) and a fish market porter also called Maurice Joseph Micklewhite (1899–1956). His father was from a Catholic Irish Traveller family background. Caine was raised in his mother's Protestant faith. He had a younger brother, Stanley (1935–2013), who also became an actor, and an older maternal half-brother named David Burchell. He grew up in London's Southwark district; during the Second World War, he was evacuated to North Runcton, Norfolk, where he made his acting debut at the village school and had a pet horse called Lottie. After the war, Caine's father was demobilised and the family were rehoused by the council in Marshall Gardens in Lond",
+        "text_characters": 2382,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212214",
+        "score": 20.935225669202314,
+        "snippet": "In 2008, Caine was awarded the prize for Outstanding Contribution to Showbusiness at the Variety Club Awards. On 5 January 2011 he was honored as Commander of the by France's culture minister, Frédéric Mitterrand. In May 2012, Caine was awarded the Honorary Freedom of the London Borough of Southwark as a person of distinction and eminence of the borough. In 2017, Caine was the recipient of the Golden Plate Award of the American Academy of Achievement. His Golden Plate was presented by Awards Council member Peter Jackson. Bibliography. Memoirs. Caine has written four memoirs across several decades. He published the first, \"What's It All About? \", in 1992. Its title is a quote from the title song from his 1966 hit film \"Alfie\". The book was reviewed negatively in \"The New York Times\", which called it an \"archetypal show-business memoir\" that was engaging but tainted by the book's \"name-dropping, the sexual boasting, the sensitivity to slights\". His second memoir, \"The Elephant to Hollywood\", was published in 2010. Its title refers to his journey from working-class roots in the Elephant and Castle neighborhood of London to Hollywood success. Janet Maslin of \"The New York Times\" reviewed it positively, calling Caine a \"charming raconteur\" and \"wittily self-deprecating\". His third memoir, \"Blowing the Bloody Doors Off\", was published in 2018. Its title references an iconic quote from his 1969 hit film \"The Italian Job\". His fourth memoir, \"Don't Look Back, You'll Trip Over: My Gui",
+        "text_characters": 1676,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728902",
+        "score": 20.586608851650254,
+        "snippet": "Eisenberg, Ruffalo, Harrelson, Franco, Caine and Freeman were set to reprise their roles for the sequel. Fisher was unable to participate because of her third pregnancy and was replaced by Lizzy Caplan. On October 2, 2014, Michael Caine said in an interview that Daniel Radcliffe would be playing his son in the film. Filming began in late November. The film was released on June 10, 2016, titled \"Now You See Me 2\". On May 22, 2015, Lionsgate revealed details about the development of the second sequel, when CEO Jon Feltheimer announced that they had \"already begun early planning for \"Now You See Me 3\"\". It will be released on November 14, 2025. References.",
+        "text_characters": 661,
+        "title": "Now You See Me (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4607784",
+        "score": 20.515096737884946,
+        "snippet": "British motor racing team Alliance Racing (formerly known as Motorbase Performance) is a British motor racing team, founded in 2004 by former Production Saloon racer David Bartrum. They are best known for competing in the British Touring Car Championship. Porsche Carrera Cup Great Britain. The team started out by contesting the 2004 Porsche Carrera Cup Great Britain, finishing second in the teams championship despite their best-known driver Damien Faulkner only joining mid-season. However, the 2005 season proved difficult with no wins and poor points performance. 2006 saw the team enter both the Pro class and the newly established Pro-Am class. The team's main charge came from the 1992 BTCC champion Tim Harvey, who managed to score 3 wins on his way to second place in that year's championship. In the 2007 Porsche Carrera Cup Great Britain, Steven Kane won more races than anyone else, finishing 3rd overall. The team took a break form the Carrera Cup in 2008 to focus on their British Touring Car Championship campaign but were back for the 2009 Porsche Carrera Cup Great Britain entering all three classes. Michael Caine was able to take 3 wins for the team during the year on his way to 4th in the championship. 2010 saw Michael Caine lead Motorbase's charge for the title gaining 7 wins along the way. However, he was beaten by 10 points to the title by ex-Motorbase driver Tim Harvey. In 2011, Harvey attempted to defend his title with Motorbase, partnering his rival Caine. However, ",
+        "text_characters": 2592,
+        "title": "Motorbase Performance"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212201",
+        "score": 20.296060810421764,
+        "snippet": "Caine's roles as effete-seeming aristocrats were to contrast with his next projects, in which he was to become notable for using a regional accent, rather than the Received Pronunciation then considered proper for film actors. At that time his working-class Cockney speech stood out to American and British audiences alike, as did the Beatles' Liverpudlian accents. \"Zulu\" was followed by two of Caine's best-known roles: the rough-edged petty-crook-turned-spy Harry Palmer in \"The Ipcress File\" (1965) and the titular womanising young Cockney in \"Alfie\" (1966). In a 2016 interview Caine cited \"Alfie\" as his favourite film of his career, saying, \"it made me a star in America as well, and it was my first nomination for an Academy Award\". He went on to play Harry Palmer in a further four films, \"Funeral in Berlin\" (1966), \"Billion Dollar Brain\" (1967), \"Bullet to Beijing\" (1995) and \"Midnight in Saint Petersburg\" (1996). Caine made his first film in Hollywood in 1966, after an invitation from Shirley MacLaine to play opposite her in \"Gambit\". During the first two weeks, whilst staying at the Beverly Hills Hotel, he met long-term friends John Wayne and agent \"Swifty\" Lazar. Wayne was a fan of Caine's performance in \"Alfie\" and suggested to Caine, \"Speak slow and speak low\". Caine was always grateful for that advice. Caine starred in the film \"The Magus\" (1968) which, although BAFTA-nominated for Best Cinematography, failed at the box office. Caine starred in the 1969 comedy caper film",
+        "text_characters": 2253,
+        "title": "Michael Caine"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-966fce00b859f6fc"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:212208", "title": "Michael Caine", "score": 23.836753279683684, "snippet": "\"I kept my cockney accent in order to let other working class boys know that if I made it, they could do it too.\" —Caine speaking to CNN's \"The Screening Room\" in 2007 on retaining his accent. Caine is regarded as a British cultural icon, with Mairi Mackay of CNN stating: \"Michael Caine has been personifying British cool since the swinging sixties. He has brought some of British cinema's most iconic characters to life and introduced his very own laid-back cockney gangster into pop culture. He doggedly retained a regional accent at a time when the plummy tones of Received Pronunciation were considered obligatory. It is a sweet irony that his accent has become his calling card.\" In 2015 \"The Times\" called Caine \"the epitome of Sixties cool in his first outing as the secret agent Harry Palmer\". A trailer for his second role as Palmer described him as possessing \"horn rims, cockney wit and an iron fist\". With his distinctive voice and manner of speaking, Caine is a popular subject for impersonators and mimics. Most Caine impressions include the catchphrase \"Not a lot of people know that.\" The catchphrase emanates from Caine's habit of informing people of obscure \"interesting facts\" that he has collected. Referring to Caine as being the \"biggest mine of useless information\", Peter Sellers initiated the catchphrase when he appeared on BBC1's \"Parkinson\" show on 28 October 1972 and said: Not many people know that. This is my Michael Caine impression. You see, Mike's always quoting f", "text_characters": 2458, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212209", "title": "Michael Caine", "score": 23.333005425642888, "snippet": "I sound like a bloody moron. You know where they've got me now? On birthday cards. 'It's your birthday today. Not many people know that'. Now they've got me on Satellite navigation. It's me going, 'take the second turn on the right, and you'll wind up right in the shit.'\" In 1983, Caine used his \"not a lot of people know that\" phrase as a joke in the film \"Educating Rita\". The comedy sketch show \"Harry Enfield's Television Programme\" included a series of sketches in which Paul Whitehouse played a character called Michael Paine; an amalgam of previous Michael Caine impressions, who in a reference to Caine's character Harry Palmer from \"The Ipcress File\" wears oversized, thick-rimmed glasses and a trench coat. He introduces himself with the line, \"My name is Michael Paine, and I am a nosy neighbour\" and in a spoof of the stakeout at the beginning of \"The Ipcress File\", recounts to the camera the 'suspiciously' mundane behaviour of his neighbours, before saying, \"Not a lot of people know that I know that\". Caine's Harry Palmer character (with the glasses, the girls, and disregard for authority) was among the many British pop cultural influences for Mike Myers' \"Austin Powers\" films. At Myers' request, Caine himself starred in \"Austin Powers in Goldmember\" (2002), with his portrayal of Nigel Powers, father of Austin Powers, spoofing Harry Palmer. A parody of Caine appears in the animated series \"Ugly Americans\", in the episode \"The Dork Knight\", which also parodies the film \"The ", "text_characters": 2342, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212204", "title": "Michael Caine", "score": 22.153918701705013, "snippet": "In the 1990s, Caine found good parts harder to come by. He played the mysterious bartender Mike in \"Mr. Destiny\" in 1990 and appeared with Roger Moore in \"Bullseye!\" (1990).He played Ebenezer Scrooge in \"The Muppet Christmas Carol\" (1992). Having been chosen by Brian Henson, Caine stated: \"I'm going to play this movie like I'm working with the Royal Shakespeare Company. I will never wink, I will never do anything Muppety. I am going to play Scrooge as if it is an utterly dramatic role and there are no puppets around me.\" He played the beleaguered stage director Lloyd Fellowes in the film adaptation of \"Noises Off\" (1992). He also played a villain in the Steven Seagal film \"On Deadly Ground\" (1994). He was starred two straight to video Harry Palmer sequels and a few television films. 1998–2014: Career resurgence. Caine's performance in \"Little Voice\" (1998) won him a Golden Globe Award. Better parts followed, including \"The Cider House Rules\" (1999), for which he won his second Academy Award for Best Supporting Actor. In the 2000s, Caine appeared in the comedy \"Miss Congeniality\" (2000) as the refined pageant coach opposite Sandra Bullock as the undercover FBI agent. The film was a massive box office success and Caine earned praise for his comic turn. That same year Caine also appeared in Philip Kaufman's controversial yet acclaimed film \"Quills\" (2000) as Dr. Royer-Collard opposite Geoffrey Rush, Kate Winslet, and Joaquin Phoenix. In 2001, Caine starred in the ensemble dramed", "text_characters": 2408, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:9194", "title": "", "score": 21.946299060715504, "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o", "text_characters": 48946, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5065336", "title": "List of awards and nominations received by Michael Caine", "score": 21.51937493395514, "snippet": "This article is a List of awards and nominations received by Michael Caine. Michael Caine is an English actor known for his roles in film and television. He has received numerous accolades including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award as well as nominations for three Primetime Emmy Awards. He been nominated for an Oscar six times, winning his first Academy Award for the 1986 film \"Hannah and Her Sisters\", and his second in 1999 for \"The Cider House Rules\", in both cases as a supporting actor. His performance in \"Educating Rita\" in 1983 earned him the BAFTA and Golden Globe Award for Best Actor. Caine is one of only two actors nominated for an Academy Award for acting in every decade from the 1960s to 2000s (the other one being Jack Nicholson); Laurence Olivier was also nominated for an acting Academy Award in five different decades, beginning in 1939 and ending in 1978, as has Paul Newman (1950s, '60s, '80s, '90s and 2000s) and Denzel Washington (1980s, '90s. 2000s, '10s and '20s). Caine appeared in seven films that were ranked in the BFI's 100 greatest British films of the 20th century. Caine was appointed a Commander of the Order of the British Empire (CBE) in the 1992 Birthday Honours and in the 2000 Birthday Honours he was knighted (as \"Sir Maurice Micklewhite CBE\") by Queen Elizabeth II at Buckingham Palace. In a tribute to his background, he stated: \"I was named after my father and I was knighted in his name beca", "text_characters": 2051, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212197", "title": "Michael Caine", "score": 21.147412030380238, "snippet": "Caine is also known for his performance as Ebenezer Scrooge in \"The Muppet Christmas Carol\" (1992), and for his comedic roles in \"Dirty Rotten Scoundrels\" (1988), \"Miss Congeniality\" (2000), \"Austin Powers in Goldmember\" (2002), and \"Secondhand Lions\" (2003). Caine portrayed Alfred Pennyworth in Christopher Nolan's \"Batman\" trilogy (2005–2012). He has also had roles in five other Nolan films: \"The Prestige\" (2006), \"Inception\" (2010), \"Interstellar\" (2014), \"Dunkirk\" (2017), and \"Tenet\" (2020). He announced his retirement from acting in October 2023, with his final film being \"The Great Escaper\", which came out in the same month. Early life. Michael Caine was born Maurice Joseph Micklewhite at St Olave's Hospital in the Rotherhithe district of London on 14 March 1933, the son of cook and charwoman Ellen Frances Marie (née Burchell; 1901–1989) and a fish market porter also called Maurice Joseph Micklewhite (1899–1956). His father was from a Catholic Irish Traveller family background. Caine was raised in his mother's Protestant faith. He had a younger brother, Stanley (1935–2013), who also became an actor, and an older maternal half-brother named David Burchell. He grew up in London's Southwark district; during the Second World War, he was evacuated to North Runcton, Norfolk, where he made his acting debut at the village school and had a pet horse called Lottie. After the war, Caine's father was demobilised and the family were rehoused by the council in Marshall Gardens in Lond", "text_characters": 2382, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212214", "title": "Michael Caine", "score": 20.935225669202314, "snippet": "In 2008, Caine was awarded the prize for Outstanding Contribution to Showbusiness at the Variety Club Awards. On 5 January 2011 he was honored as Commander of the by France's culture minister, Frédéric Mitterrand. In May 2012, Caine was awarded the Honorary Freedom of the London Borough of Southwark as a person of distinction and eminence of the borough. In 2017, Caine was the recipient of the Golden Plate Award of the American Academy of Achievement. His Golden Plate was presented by Awards Council member Peter Jackson. Bibliography. Memoirs. Caine has written four memoirs across several decades. He published the first, \"What's It All About? \", in 1992. Its title is a quote from the title song from his 1966 hit film \"Alfie\". The book was reviewed negatively in \"The New York Times\", which called it an \"archetypal show-business memoir\" that was engaging but tainted by the book's \"name-dropping, the sexual boasting, the sensitivity to slights\". His second memoir, \"The Elephant to Hollywood\", was published in 2010. Its title refers to his journey from working-class roots in the Elephant and Castle neighborhood of London to Hollywood success. Janet Maslin of \"The New York Times\" reviewed it positively, calling Caine a \"charming raconteur\" and \"wittily self-deprecating\". His third memoir, \"Blowing the Bloody Doors Off\", was published in 2018. Its title references an iconic quote from his 1969 hit film \"The Italian Job\". His fourth memoir, \"Don't Look Back, You'll Trip Over: My Gui", "text_characters": 1676, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728902", "title": "Now You See Me (film)", "score": 20.586608851650254, "snippet": "Eisenberg, Ruffalo, Harrelson, Franco, Caine and Freeman were set to reprise their roles for the sequel. Fisher was unable to participate because of her third pregnancy and was replaced by Lizzy Caplan. On October 2, 2014, Michael Caine said in an interview that Daniel Radcliffe would be playing his son in the film. Filming began in late November. The film was released on June 10, 2016, titled \"Now You See Me 2\". On May 22, 2015, Lionsgate revealed details about the development of the second sequel, when CEO Jon Feltheimer announced that they had \"already begun early planning for \"Now You See Me 3\"\". It will be released on November 14, 2025. References.", "text_characters": 661, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4607784", "title": "Motorbase Performance", "score": 20.515096737884946, "snippet": "British motor racing team Alliance Racing (formerly known as Motorbase Performance) is a British motor racing team, founded in 2004 by former Production Saloon racer David Bartrum. They are best known for competing in the British Touring Car Championship. Porsche Carrera Cup Great Britain. The team started out by contesting the 2004 Porsche Carrera Cup Great Britain, finishing second in the teams championship despite their best-known driver Damien Faulkner only joining mid-season. However, the 2005 season proved difficult with no wins and poor points performance. 2006 saw the team enter both the Pro class and the newly established Pro-Am class. The team's main charge came from the 1992 BTCC champion Tim Harvey, who managed to score 3 wins on his way to second place in that year's championship. In the 2007 Porsche Carrera Cup Great Britain, Steven Kane won more races than anyone else, finishing 3rd overall. The team took a break form the Carrera Cup in 2008 to focus on their British Touring Car Championship campaign but were back for the 2009 Porsche Carrera Cup Great Britain entering all three classes. Michael Caine was able to take 3 wins for the team during the year on his way to 4th in the championship. 2010 saw Michael Caine lead Motorbase's charge for the title gaining 7 wins along the way. However, he was beaten by 10 points to the title by ex-Motorbase driver Tim Harvey. In 2011, Harvey attempted to defend his title with Motorbase, partnering his rival Caine. However, ", "text_characters": 2592, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212201", "title": "Michael Caine", "score": 20.296060810421764, "snippet": "Caine's roles as effete-seeming aristocrats were to contrast with his next projects, in which he was to become notable for using a regional accent, rather than the Received Pronunciation then considered proper for film actors. At that time his working-class Cockney speech stood out to American and British audiences alike, as did the Beatles' Liverpudlian accents. \"Zulu\" was followed by two of Caine's best-known roles: the rough-edged petty-crook-turned-spy Harry Palmer in \"The Ipcress File\" (1965) and the titular womanising young Cockney in \"Alfie\" (1966). In a 2016 interview Caine cited \"Alfie\" as his favourite film of his career, saying, \"it made me a star in America as well, and it was my first nomination for an Academy Award\". He went on to play Harry Palmer in a further four films, \"Funeral in Berlin\" (1966), \"Billion Dollar Brain\" (1967), \"Bullet to Beijing\" (1995) and \"Midnight in Saint Petersburg\" (1996). Caine made his first film in Hollywood in 1966, after an invitation from Shirley MacLaine to play opposite her in \"Gambit\". During the first two weeks, whilst staying at the Beverly Hills Hotel, he met long-term friends John Wayne and agent \"Swifty\" Lazar. Wayne was a fan of Caine's performance in \"Alfie\" and suggested to Caine, \"Speak slow and speak low\". Caine was always grateful for that advice. Caine starred in the film \"The Magus\" (1968) which, although BAFTA-nominated for Best Cinematography, failed at the box office. Caine starred in the 1969 comedy caper film", "text_characters": 2253, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R002_request.json/messages/3/content`；SHA256：`08a25a7f9be6352fde34079d91896c616a48b04586215a3f50449436aa5d882f`。
+
+### R2 `/rounds/1/reasoning_content` [0,625)
+
+SHA256：`b5356e77fdab22bc429b79ff344c822146e9a4d70e817592f2f1a1314fb2ae4c`；原字段SHA256：`b5356e77fdab22bc429b79ff344c822146e9a4d70e817592f2f1a1314fb2ae4c`。
+
+````
+The search results mention Michael Caine's roles, but I need to find specific information about his "second lead role". The snippet mentions "The Ipcress File" (1965) as his first Harry Palmer role, and then mentions "Funeral in Berlin" (1966), "Billion Dollar Brain" (1967), "Bullet to Beijing" (1995), and "Midnight in Saint Petersburg" (1996). But I need to identify which film featured him in his "second lead role".
+
+Let me search more specifically for Michael Caine's filmography and lead roles.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Michael Caine filmography lead roles
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Michael Caine filmography lead roles"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nMichael Caine filmography lead roles\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Michael Caine filmography lead roles"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 0.704517989885062,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4231320",
+        "score": 29.083553624318974,
+        "snippet": "Michael Caine is an English actor who has appeared in over 130 films and has had multiple television appearances. Caine's acting career began in the 1950s, when he was cast in many small, often uncredited roles in British films. Caine gained recognition as one of the most famous actors of the 1960s through his breakthrough role in the film \"Zulu\" (1964). He then portrayed spy Harry Palmer in the films \"The Ipcress File\" (1965), \"Funeral in Berlin\" (1966) and \"Billion Dollar Brain\" (1967). He also had starring roles in \"The Italian Job\" and \"Battle of Britain\" (both 1969). His role in \"Sleuth\" (1972) led him to an Academy Award for Best Actor nomination. Caine has won a Best Supporting Actor Oscar for the films \"Hannah and Her Sisters\" (1986) and \"The Cider House Rules\" (1999). More recently, Caine has gained a new following through his collaborations with British-American filmmaker Christopher Nolan in The Dark Knight Trilogy films, as well as \"The Prestige\" (2006), \"Inception\" (2010), \"Interstellar\" (2014), \"Dunkirk\" (2017) and \"Tenet\" (2020). Caine officially retired from acting in October 2023. Video games. Note: in \"The Italian Job\" (2001 video game), Caine's voice (as Charlie Croker) was impersonated by Phil Cornwell. Box office ranking. At his peak, exhibitors voted Michael Caine one of the most popular stars at the box office: References.",
+        "text_characters": 1367,
+        "title": "Michael Caine filmography"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6019942",
+        "score": 28.264188796087275,
+        "snippet": "The result, starring Michael Caine, \"Get Carter\", was released early in 1971. Klinger, Hodges and Caine formed a production company to make \"Pulp\" which followed in 1972. Klinger was the executive producer of the \"Confessions\" series of sex comedies (\"Window Cleaner\"/\"Pop Performer\"/\"Driving Instructor\"/\"Holiday Camp\") during the period 1974-78. He continued with big budget action films, such as \"Gold\" (1974) and \"Shout at the Devil\" (1976), both starring Roger Moore and with Lee Marvin in the later. The two films were based on novels by Wilbur Smith, and aimed an international market. He died in Watford. His son, Tony Klinger, has had a career in the film and television industry. Filmography. Produced by Michael Klinger and Tony Tenser Produced by Michael Klinger References.",
+        "text_characters": 786,
+        "title": "Michael Klinger (producer)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2272392",
+        "score": 26.607368752710954,
+        "snippet": "Gene Siskel of the \"Chicago Tribune\", who also gave the film four stars, praised the film as \"a genuinely witty and literate adventure story ...that should appeal to the whole family. Kids over the age of 10 will enjoy being transported into another world of casbahs and camels; adults will be hooked by the witty dialog, much of it taken from its source, a Rudyard Kipling story.\" A review in \"Variety\" was critical of the film mostly because of Caine's performance, stating \"Whether it was the intention of the director-adapter John Huston or not, the tale of action and adventure became a too-broad comedy, mostly due to the poor performance of Michael Caine\". On the review aggregator website Rotten Tomatoes, the film has a rating of based on reviews, with an average score of . Another review aggregator, Metacritic, calculated a score of 91 based on 15 reviews, indicating \"universal acclaim\". In 2019, in a ranking of Caine's filmography, Andrew Pulver of \"The Guardian\" selected the film as Caine's best-ever role. Both Connery and Caine have considered the movie their favorite of all they had worked on. References. Bibliography.",
+        "text_characters": 1140,
+        "title": "The Man Who Would Be King (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212213",
+        "score": 25.835422261264753,
+        "snippet": "In November 2014, Caine described the proposed mansion tax by then Labour leader Ed Miliband as \"preposterous and silly\". Caine voted in favour of Brexit in the 2016 European Referendum, stating he would rather be a \"poor master than a rich servant\". He said he was a reluctant Leaver; \"I don't know what to vote for. Both are scary. To me, you've now got in Europe a sort of government-by-proxy of everybody, who has now got carried away. Unless there is some extremely significant changes, we should get out.\" In November 2024, following the election of Labour Party leader Sir Keir Starmer as Prime Minister in the July of that year, Caine supported the petition on the UK Parliament petitions website that demands a new general election in the UK by sharing it on his X account. In a 2010 Classic FM interview, Caine said that he had persuaded a doctor to deliberately give his father a fatal overdose when he was dying from liver cancer in 1955 and endorsed voluntary euthanasia. Filmography. Partial filmography Awards and honours. Caine has been nominated for an Oscar six times, winning his first Academy Award for the 1986 film \"Hannah and Her Sisters\", and his second in 1999 for \"The Cider House Rules\", in both cases as a supporting actor. His performance in \"Educating Rita\" in 1983 earned him the BAFTA and Golden Globe Award for Best Actor. Caine is one of only two actors nominated for an Academy Award for acting in every consecutive decade from the 1960s to 2000s (the other one bei",
+        "text_characters": 2512,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2768276",
+        "score": 23.902518032719975,
+        "snippet": "The general plot, themes, and characters of \"The Hand\" resemble those of \"The Hands of Orlac\" and \"The Beast with Five Fingers\", leading some to declare \"The Hand\" an unofficial remake or spiritual adaptation of the aforementioned works. The film was shot partly in Big Bear Lake, California. The film's special effects were provided by Stan Winston and Carlo Rambaldi. Several lifelike animatronic hands were built, each designed for a specific action or motion (i.e. crawling, walking, grabbing). \"Mandro,\" Prince Valiant/Conan The Barbarian-styled comic book character, was drawn by artist Barry Windsor-Smith, who at the time was a real-life illustrator for the Marvel Conan comics. Despite receiving mixed reviews from critics, \"The Hand\" gained a cult following over the years, with some viewers appreciating its unique approach to psychological thriller elements and Michael Caine's performance in the film. Casting. Oliver Stone's first choice for the lead was Academy Award-winner Jon Voight, who declined the role. Stone also approached other Oscar-winners Dustin Hoffman and Christopher Walken. Michael Caine, however, after the success of his previous film \"Dressed to Kill\", was interested in making another horror film to earn enough to put a down payment on a new garage he was having built, and he agreed to take the part after talks with the director. Caine's experience with Stone resulted in their being friends later in life, although Stone and Caine have not worked together sinc",
+        "text_characters": 2419,
+        "title": "The Hand (1981 film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4400702",
+        "score": 23.479016200630415,
+        "snippet": "1969 film The Italian Job is a 1969 British comedy caper film written by Troy Kennedy Martin, produced by Michael Deeley, directed by Peter Collinson, and starring Michael Caine. The film's plot centres on Cockney criminal Charlie Croker, recently released from prison, who forms a gang for the job of stealing a cache of gold bullion being transported through the city of Turin, Italy, in an armoured security truck. In addition to Caine, the cast also included Benny Hill, Raf Vallone, Tony Beckley and Noël Coward; the film was Coward's last before his retirement from acting. The soundtrack was composed by Quincy Jones, featuring the songs \"On Days Like These\", sung by Matt Monro over the opening credits, and \"Getta Bloomin' Move On\" (usually referred to as \"The Self-Preservation Society\", after its chorus) during the climactic car chase, which featured Caine among its singers. The film proved a success upon its release, earning critical acclaim amongst critics for the performances by Caine and Coward, the film's reflection of British culture from the period, and the climactic car chase. It became a cult symbol of British filmography and was ranked favourably in the top 100 British films by the British Film Institute. Several elements became symbolic cult features, including a rare never-resolved cliffhanger ending, and Caine's famous line about only blowing the doors off. The popularity of \"The Italian Job\" led to several parodies and allusions in other films and productions, i",
+        "text_characters": 2503,
+        "title": "The Italian Job"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7916958",
+        "score": 22.851427564291804,
+        "snippet": "Irish actress Orla O'Rourke is an Irish actress known for her role in the 2014 film \"Calvary\". Early life and education. O'Rourke was born in Zambia to Irish parents. Her family returned to Ireland when she was five. At 13, she entered drama school. At 16, she acted in public in \"Adult Child/ Dead Child\". Orla earned a degree in film and broadcasting. Career. While still studying, O'Rourke began her first regular role as Sinéad Kelly in the television show \"The Clinic\". She then worked on \"Malice Aforethought\" for director David Blair. She acted in a first feature film \"The Front Line\", directed by David Gleeson. After graduation, she worked in England on the TV drama \"Casualty\" and the film \"Harry Brown\" with Michael Caine, Emily Mortimer, and Charlie Creed-Miles. Filmography. O'Rourke has acted in the following: References.",
+        "text_characters": 837,
+        "title": "Orla O'Rourke"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:9194",
+        "score": 22.598838294920377,
+        "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o",
+        "text_characters": 48946,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2644812",
+        "score": 22.48489440843279,
+        "snippet": "Czech cinematographer (1896–1970) Otto Heller, B.S.C. (8 March 1896 – 19 February 1970) was a Czech cinematographer long resident in the United Kingdom. He worked on more than 250 films, including \"Richard III\" (1955), \"The Ladykillers\" (1955) and \"Peeping Tom\" (1960). Life. Otto Heller was born in a Jewish family in Prague on 8 March 1896. As a teenager, he became a projectionist in the Lucerna cinema. During World War I, he worked in a film laboratory in Vienna. After the war, he started to work as a documentary cameraman at Pragafilm. During the 1920s, he was the most requested cinematographer in Czechoslovakia. Together with Karel Lamač, Anny Ondra and Václav Wasserman, he made many movies both for domestic and international audience. He often worked with Svatopluk Innemann, Martin Frič and Jan S. Kolár. Because of the rise of Nazism, he left Czechoslovakia in 1938 with Lamač. In an interview for the extra materials on the Blu-ray Disk version of The Ipcress File, Michael Caine recollects how Otto Heller told the story of leaving Nazi Germany in 1939. His camera crew were all Germans and they kept telling him to leave but he did not believe he needed to go and he would refuse, saying they were having a great time doing movies. Then one day his camera operator came dressed in an SS uniform and told him that he has joined the SS and urged Heller to go \"now\". Heller told Michael Caine that he \"went to the toilet, went out through the toilet window and I never stopped running",
+        "text_characters": 1697,
+        "title": "Otto Heller"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2175154",
+        "score": 22.35952514403077,
+        "snippet": "Other theatre includes \"An Inspector Calls\" (Garrick Theatre), \"Macbeth\" (Nottingham Playhouse), \"Titus Andronicus\" (European Tour), \"A Man for All Seasons\" (International Tour), \"The Merchant of Venice\" (International Tour), \"Galileo\" (Young Vic), \"Death of a Salesman\" (Lyric Theatre, Belfast)—for which he was nominated as best actor in the RITA awards in 1998—and \"Halpern and Johnson\" (New End Theatre). He twice appeared at the Finborough Theatre in London: in 2006 in \"After Haggerty\" and in 2010 in \"Dream of the Dog\". Personal life. Kay was married to the actress Patricia Haines from 1963 until her death from cancer in 1977; he never remarried, and was said to have been grief-stricken for the rest of his life. Kay had no children of his own, but was stepfather to Haines’s daughter from her first marriage to the actor Michael Caine. He died in London on Christmas Day in 2014, at the age of 86. Selected filmography. References.",
+        "text_characters": 942,
+        "title": "Bernard Kay"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:4231320", "title": "Michael Caine filmography", "score": 29.083553624318974, "snippet": "Michael Caine is an English actor who has appeared in over 130 films and has had multiple television appearances. Caine's acting career began in the 1950s, when he was cast in many small, often uncredited roles in British films. Caine gained recognition as one of the most famous actors of the 1960s through his breakthrough role in the film \"Zulu\" (1964). He then portrayed spy Harry Palmer in the films \"The Ipcress File\" (1965), \"Funeral in Berlin\" (1966) and \"Billion Dollar Brain\" (1967). He also had starring roles in \"The Italian Job\" and \"Battle of Britain\" (both 1969). His role in \"Sleuth\" (1972) led him to an Academy Award for Best Actor nomination. Caine has won a Best Supporting Actor Oscar for the films \"Hannah and Her Sisters\" (1986) and \"The Cider House Rules\" (1999). More recently, Caine has gained a new following through his collaborations with British-American filmmaker Christopher Nolan in The Dark Knight Trilogy films, as well as \"The Prestige\" (2006), \"Inception\" (2010), \"Interstellar\" (2014), \"Dunkirk\" (2017) and \"Tenet\" (2020). Caine officially retired from acting in October 2023. Video games. Note: in \"The Italian Job\" (2001 video game), Caine's voice (as Charlie Croker) was impersonated by Phil Cornwell. Box office ranking. At his peak, exhibitors voted Michael Caine one of the most popular stars at the box office: References.", "text_characters": 1367, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6019942", "title": "Michael Klinger (producer)", "score": 28.264188796087275, "snippet": "The result, starring Michael Caine, \"Get Carter\", was released early in 1971. Klinger, Hodges and Caine formed a production company to make \"Pulp\" which followed in 1972. Klinger was the executive producer of the \"Confessions\" series of sex comedies (\"Window Cleaner\"/\"Pop Performer\"/\"Driving Instructor\"/\"Holiday Camp\") during the period 1974-78. He continued with big budget action films, such as \"Gold\" (1974) and \"Shout at the Devil\" (1976), both starring Roger Moore and with Lee Marvin in the later. The two films were based on novels by Wilbur Smith, and aimed an international market. He died in Watford. His son, Tony Klinger, has had a career in the film and television industry. Filmography. Produced by Michael Klinger and Tony Tenser Produced by Michael Klinger References.", "text_characters": 786, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2272392", "title": "The Man Who Would Be King (film)", "score": 26.607368752710954, "snippet": "Gene Siskel of the \"Chicago Tribune\", who also gave the film four stars, praised the film as \"a genuinely witty and literate adventure story ...that should appeal to the whole family. Kids over the age of 10 will enjoy being transported into another world of casbahs and camels; adults will be hooked by the witty dialog, much of it taken from its source, a Rudyard Kipling story.\" A review in \"Variety\" was critical of the film mostly because of Caine's performance, stating \"Whether it was the intention of the director-adapter John Huston or not, the tale of action and adventure became a too-broad comedy, mostly due to the poor performance of Michael Caine\". On the review aggregator website Rotten Tomatoes, the film has a rating of based on reviews, with an average score of . Another review aggregator, Metacritic, calculated a score of 91 based on 15 reviews, indicating \"universal acclaim\". In 2019, in a ranking of Caine's filmography, Andrew Pulver of \"The Guardian\" selected the film as Caine's best-ever role. Both Connery and Caine have considered the movie their favorite of all they had worked on. References. Bibliography.", "text_characters": 1140, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212213", "title": "Michael Caine", "score": 25.835422261264753, "snippet": "In November 2014, Caine described the proposed mansion tax by then Labour leader Ed Miliband as \"preposterous and silly\". Caine voted in favour of Brexit in the 2016 European Referendum, stating he would rather be a \"poor master than a rich servant\". He said he was a reluctant Leaver; \"I don't know what to vote for. Both are scary. To me, you've now got in Europe a sort of government-by-proxy of everybody, who has now got carried away. Unless there is some extremely significant changes, we should get out.\" In November 2024, following the election of Labour Party leader Sir Keir Starmer as Prime Minister in the July of that year, Caine supported the petition on the UK Parliament petitions website that demands a new general election in the UK by sharing it on his X account. In a 2010 Classic FM interview, Caine said that he had persuaded a doctor to deliberately give his father a fatal overdose when he was dying from liver cancer in 1955 and endorsed voluntary euthanasia. Filmography. Partial filmography Awards and honours. Caine has been nominated for an Oscar six times, winning his first Academy Award for the 1986 film \"Hannah and Her Sisters\", and his second in 1999 for \"The Cider House Rules\", in both cases as a supporting actor. His performance in \"Educating Rita\" in 1983 earned him the BAFTA and Golden Globe Award for Best Actor. Caine is one of only two actors nominated for an Academy Award for acting in every consecutive decade from the 1960s to 2000s (the other one bei", "text_characters": 2512, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2768276", "title": "The Hand (1981 film)", "score": 23.902518032719975, "snippet": "The general plot, themes, and characters of \"The Hand\" resemble those of \"The Hands of Orlac\" and \"The Beast with Five Fingers\", leading some to declare \"The Hand\" an unofficial remake or spiritual adaptation of the aforementioned works. The film was shot partly in Big Bear Lake, California. The film's special effects were provided by Stan Winston and Carlo Rambaldi. Several lifelike animatronic hands were built, each designed for a specific action or motion (i.e. crawling, walking, grabbing). \"Mandro,\" Prince Valiant/Conan The Barbarian-styled comic book character, was drawn by artist Barry Windsor-Smith, who at the time was a real-life illustrator for the Marvel Conan comics. Despite receiving mixed reviews from critics, \"The Hand\" gained a cult following over the years, with some viewers appreciating its unique approach to psychological thriller elements and Michael Caine's performance in the film. Casting. Oliver Stone's first choice for the lead was Academy Award-winner Jon Voight, who declined the role. Stone also approached other Oscar-winners Dustin Hoffman and Christopher Walken. Michael Caine, however, after the success of his previous film \"Dressed to Kill\", was interested in making another horror film to earn enough to put a down payment on a new garage he was having built, and he agreed to take the part after talks with the director. Caine's experience with Stone resulted in their being friends later in life, although Stone and Caine have not worked together sinc", "text_characters": 2419, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4400702", "title": "The Italian Job", "score": 23.479016200630415, "snippet": "1969 film The Italian Job is a 1969 British comedy caper film written by Troy Kennedy Martin, produced by Michael Deeley, directed by Peter Collinson, and starring Michael Caine. The film's plot centres on Cockney criminal Charlie Croker, recently released from prison, who forms a gang for the job of stealing a cache of gold bullion being transported through the city of Turin, Italy, in an armoured security truck. In addition to Caine, the cast also included Benny Hill, Raf Vallone, Tony Beckley and Noël Coward; the film was Coward's last before his retirement from acting. The soundtrack was composed by Quincy Jones, featuring the songs \"On Days Like These\", sung by Matt Monro over the opening credits, and \"Getta Bloomin' Move On\" (usually referred to as \"The Self-Preservation Society\", after its chorus) during the climactic car chase, which featured Caine among its singers. The film proved a success upon its release, earning critical acclaim amongst critics for the performances by Caine and Coward, the film's reflection of British culture from the period, and the climactic car chase. It became a cult symbol of British filmography and was ranked favourably in the top 100 British films by the British Film Institute. Several elements became symbolic cult features, including a rare never-resolved cliffhanger ending, and Caine's famous line about only blowing the doors off. The popularity of \"The Italian Job\" led to several parodies and allusions in other films and productions, i", "text_characters": 2503, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7916958", "title": "Orla O'Rourke", "score": 22.851427564291804, "snippet": "Irish actress Orla O'Rourke is an Irish actress known for her role in the 2014 film \"Calvary\". Early life and education. O'Rourke was born in Zambia to Irish parents. Her family returned to Ireland when she was five. At 13, she entered drama school. At 16, she acted in public in \"Adult Child/ Dead Child\". Orla earned a degree in film and broadcasting. Career. While still studying, O'Rourke began her first regular role as Sinéad Kelly in the television show \"The Clinic\". She then worked on \"Malice Aforethought\" for director David Blair. She acted in a first feature film \"The Front Line\", directed by David Gleeson. After graduation, she worked in England on the TV drama \"Casualty\" and the film \"Harry Brown\" with Michael Caine, Emily Mortimer, and Charlie Creed-Miles. Filmography. O'Rourke has acted in the following: References.", "text_characters": 837, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:9194", "title": "", "score": 22.598838294920377, "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o", "text_characters": 48946, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2644812", "title": "Otto Heller", "score": 22.48489440843279, "snippet": "Czech cinematographer (1896–1970) Otto Heller, B.S.C. (8 March 1896 – 19 February 1970) was a Czech cinematographer long resident in the United Kingdom. He worked on more than 250 films, including \"Richard III\" (1955), \"The Ladykillers\" (1955) and \"Peeping Tom\" (1960). Life. Otto Heller was born in a Jewish family in Prague on 8 March 1896. As a teenager, he became a projectionist in the Lucerna cinema. During World War I, he worked in a film laboratory in Vienna. After the war, he started to work as a documentary cameraman at Pragafilm. During the 1920s, he was the most requested cinematographer in Czechoslovakia. Together with Karel Lamač, Anny Ondra and Václav Wasserman, he made many movies both for domestic and international audience. He often worked with Svatopluk Innemann, Martin Frič and Jan S. Kolár. Because of the rise of Nazism, he left Czechoslovakia in 1938 with Lamač. In an interview for the extra materials on the Blu-ray Disk version of The Ipcress File, Michael Caine recollects how Otto Heller told the story of leaving Nazi Germany in 1939. His camera crew were all Germans and they kept telling him to leave but he did not believe he needed to go and he would refuse, saying they were having a great time doing movies. Then one day his camera operator came dressed in an SS uniform and told him that he has joined the SS and urged Heller to go \"now\". Heller told Michael Caine that he \"went to the toilet, went out through the toilet window and I never stopped running", "text_characters": 1697, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2175154", "title": "Bernard Kay", "score": 22.35952514403077, "snippet": "Other theatre includes \"An Inspector Calls\" (Garrick Theatre), \"Macbeth\" (Nottingham Playhouse), \"Titus Andronicus\" (European Tour), \"A Man for All Seasons\" (International Tour), \"The Merchant of Venice\" (International Tour), \"Galileo\" (Young Vic), \"Death of a Salesman\" (Lyric Theatre, Belfast)—for which he was nominated as best actor in the RITA awards in 1998—and \"Halpern and Johnson\" (New End Theatre). He twice appeared at the Finborough Theatre in London: in 2006 in \"After Haggerty\" and in 2010 in \"Dream of the Dog\". Personal life. Kay was married to the actress Patricia Haines from 1963 until her death from cancer in 1977; he never remarried, and was said to have been grief-stricken for the rest of his life. Kay had no children of his own, but was stepfather to Haines’s daughter from her first marriage to the actor Michael Caine. He died in London on Christmas Day in 2014, at the age of 86. Selected filmography. References.", "text_characters": 942, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R003_request.json/messages/5/content`；SHA256：`8dea65386285a37f91aef57ee960968d2451eea2ab76d2f6aba1855fe963a197`。
+
+### R3 `/rounds/2/reasoning_content` [0,518)
+
+SHA256：`b86b2e7298dc024a1d127742592ca6f9bda8682f96fbce4eefbf4b11ba9de1c2`；原字段SHA256：`12de57e019ac5980f04dd6a4d78a4628d64be6b35dc6932924f92e31902acf12`。
+
+````
+The user is asking for the sum of:
+1. The number of BAFTA Awards won by the film featuring Michael Caine in his second lead role.
+2. The number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director as that film.
+
+First, I need to identify Michael Caine's second lead role. From the search results, I can see that his first lead role was in "Zulu" (1964), and his second lead role was in "The Ipcress File" (1965) where he played Harry Palmer.
+
+
+````
+
+## S002｜取得Ipcress三BAFTA与Furie导演
+
+Search奖项并处理R4事实。
+
+结束状态：三奖和导演到位。
+
+边界判断：身份采用后转查数量。
+
+内部KEEP与反证：R4已知清单是本次直接反馈。
+
+### SPLIT原文
+
+````
+views on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director as that film.
+
+First, I need to identify Michael Caine's second lead role. From the search results, I can see that his first lead role was in "Zulu" (1964), and his second lead role was in "The Ipcress File" (1965) where he played Harry Palmer.
+
+
+→ 切点 [2, 0, 518] →
+Now I need to find out how many BAFTA Awards "The Ipcress File" won. Let me search for this information.
+
+<tool_call>
+<function=search>
+<parameter=query>
+The Ipcress File BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R3 `/rounds/2/reasoning_content` [518,739)
+
+SHA256：`451b6472f5f40ed83bde0cc4f28dcb43194e5d5d790a3c3986620382650292fc`；原字段SHA256：`12de57e019ac5980f04dd6a4d78a4628d64be6b35dc6932924f92e31902acf12`。
+
+````
+Now I need to find out how many BAFTA Awards "The Ipcress File" won. Let me search for this information.
+
+<tool_call>
+<function=search>
+<parameter=query>
+The Ipcress File BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "The Ipcress File BAFTA Awards"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nThe Ipcress File BAFTA Awards\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "The Ipcress File BAFTA Awards"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 1.7430757810361683,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3387400",
+        "score": 28.77689798434904,
+        "snippet": "1965 British spy film directed by Sidney J. Furie The Ipcress File is a 1965 British spy film directed by Sidney J. Furie, from a screenplay by Bill Canaway and James Doran, based on Len Deighton's 1962 novel \"The IPCRESS File\". It stars Michael Caine as Harry Palmer, an agent for the Ministry of Defence investigating the disappearances of high-level scientists. This film and its sequels were a deliberately downbeat alternative to the hugely successful James Bond films, even though some of the production team were previously involved with the 007 films, including producer Harry Saltzman, production designer Ken Adam, and composer John Barry. \"The Ipcress File\" was released by Rank Film Distributors on March 18, 1965. It received widespread positive reviews and was a commercial success. At the 19th British Academy Film Awards, the film won three BAFTA Awards, including for Best British Film. In 1999, it was included at number 59 on the BFI list of the 100 best British films of the 20th century. A sequel film, \"Funeral in Berlin\", was released in 1966. Plot. A scientist called Radcliffe is kidnapped from a train and his security escort killed. Harry Palmer, a British Army sergeant with a record of insubordination and a criminal past, now working for a Ministry of Defence organisation, is summoned by his superior, Colonel Ross, and transferred to a section headed by Major Dalby. Ross suspects that Radcliffe's disappearance is connected to the fact that sixteen other top British ",
+        "text_characters": 2667,
+        "title": "The Ipcress File (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:212196",
+        "score": 26.18807886282338,
+        "snippet": "English actor (born 1933) Sir Michael Caine (born Maurice Joseph Micklewhite; 14 March 1933) is an English retired actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one of only five male actors to be nominated for an Academy Award for acting in five different decades. In 2000, he received a BAFTA Fellowship and was knighted by Queen Elizabeth II. Often playing a Cockney, Caine made his breakthrough in the 1960s with starring roles in British films such as \"Zulu\" (1964), \"The Ipcress File\" (1965), \"The Italian Job\" (1969), and \"Battle of Britain\" (1969). During this time he established a distinctive visual style wearing thick horn-rimmed glasses combined with sharp suits and a laconic vocal delivery; he was recognised as a style icon of the 1960s. He solidified his stardom with roles in \"Get Carter\" (1971), \"The Last Valley\" (1971), \"The Man Who Would Be King\" (1975), \"The Eagle Has Landed\" (1976), and \"A Bridge Too Far\" (1977). Caine received two Academy Awards for Best Supporting Actor for his roles as Elliot in Woody Allen's dramedy \"Hannah and Her Sisters\" (1986), and as Dr. Wilbur Larch in Lasse Hallström's drama \"The Cid",
+        "text_characters": 1943,
+        "title": "Michael Caine"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:443116",
+        "score": 24.64449396286189,
+        "snippet": "The year 1965 in film involved several significant events, with \"The Sound of Music\" topping the U.S. box office and winning five Academy Awards. Fox Film (now 20th Century-Fox), Universal City, California and Universal Studios Lot will celebrated their 50th anniversaries. Top-grossing films (U.S.). The top ten 1965 released films by box office gross in North America are as follows: Awards. Academy Awards: Best Picture: The Sound of Music – Argyle Enterprises, 20th Century Fox Best Director: Robert Wise – \"The Sound of Music\" Best Actor: Lee Marvin – \"Cat Ballou\" Best Actress: Julie Christie – \"Darling\" Best Supporting Actor: Martin Balsam – \"A Thousand Clowns\" Best Supporting Actress: Shelley Winters – \"A Patch of Blue\" Best Foreign Language Film: The Shop on Main Street (\"Obchod na korze\"), directed by Ján Kadár and Elmar Klos, Czechoslovakia BAFTA Film Awards: Best Film from Any Source: My Fair Lady Best British Film: The Ipcress File Golden Globe Awards: Drama: Best Picture: Doctor Zhivago Best Actor: Omar Sharif – \"Doctor Zhivago\" Best Actress: Samantha Eggar – \"The Collector\" Comedy or Musical: Best Picture: The Sound of Music Best Actor: Lee Marvin – \"Cat Ballou\" Best Actress: Julie Andrews – \"The Sound of Music\" Other Best Supporting Actor: Oskar Werner – \"The Spy Who Came in from the Cold\" Best Supporting Actress: Ruth Gordon – \"Inside Daisy Clover\" Best Director: David Lean – \"Doctor Zhivago\" Palme d'Or (Cannes Film Festival): The Knack ...and How to Get It, directe",
+        "text_characters": 1877,
+        "title": "1965 in film"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:9194",
+        "score": 9.346677761199434,
+        "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o",
+        "text_characters": 48946,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:31251",
+        "score": 5.326943925392879,
+        "snippet": "---\ntitle: 1965 in film - Wikipedia\ndate: 2003-01-20\n---\nThe year 1965 in film involved several significant events, with The Sound of Music topping the U.S. box office and winning five Academy Awards.\nFox Film (now 20th Century-Fox), Universal City, California and Universal Studios Lot celebrated their 50th anniversaries.\n\nTop-grossing films (U.S.)\n\nThe top ten 1965 released films by box office gross in North America are as follows:\n\n**Table 1**: Highest-grossing films of 1965\n\n| Rank | Title | Distributor | Domestic rentals |\n|---|---|---|---|\n| 1 | The Sound of Music | 20th Century Fox | $72,000,000 |\n| 2 | Doctor Zhivago | MGM | $43,000,000 |\n| 3 | Thunderball | United Artists / Eon | $27,000,000 |\n| 4 | Those Magnificent Men in their Flying Machines | 20th Century Fox | $14,000,000Aubrey Solomon, Twentieth Century-Fox: A Corporate and Financial History Rowman & Littlefield, 2002 p 229 |\n| 5 | The Great Race | Warner Bros. | $11,400,000Top 20 Films of 1965 by Domestic Revenue |\n| 6 | That Darn Cat! | Buena Vista | $9,500,000 |\n| 7 | Cat Ballou | Columbia | $9,300,000 |\n| 8 | What's New Pussycat? | United Artists | $8,469,000 |\n| 9 | Shenandoah | Universal | $7,771,000 |\n| 10 | Von Ryan's Express | 20th Century Fox | $7,700,000 |\n\nEvents\n\n* February 15 – George Stevens' production of The Greatest Story Ever Told, a retelling of the account of Jesus Christ, premieres in New York City, New York. It was such a flop with critics and audiences that its failure discouraged produc",
+        "text_characters": 45246,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:96472",
+        "score": 5.164879189019696,
+        "snippet": "---\ntitle: Cinema of the United Kingdom - Wikipedia\ndate: 2001-06-19\n---\nname: Cinema of the United Kingdom\nscreens: 4, 720 (2022)Statistical Yearbook 2023 BFI British Film Institute 10 Feb 2025 live 67 PDF\nscreens_per_capita: 7.0 per 100, 000 (2022)\ndistributors: Walt Disney Studios Motion Pictures StudioCanal Universal Pictures Pathé 20th Century Studios Entertainment OneTable 6: Share of Top 3 distributors (Excel) UNESCO Institute for Statistics 24 December 2018\nproduced_year: 2017\nproduced_ref: Table 1: Feature Film Production - Genre/Method of Shooting UNESCO Institute for Statistics 7 May 2019 24 December 2018\nproduced_total: 285\nproduced_fictional: 213 (74.7%)\nproduced_animated: 5 (1.8%)\nproduced_documentary: 66 (23.2%)\nadmissions_year: 2022\nadmissions_ref: Statistical Yearbook 2023 BFI British Film Institute 10 Feb 2025 live 67 PDF\nadmissions_total: 117, 300, 000\nadmissions_per_capita: 1.7\nbox_office_year: 2022\nbox_office_ref: Statistical Yearbook 2023 BFI British Film Institute 2 Feb 2025 live 14, 21 PDF\nbox_office_total: £904000000\nbox_office_national: £266680000 (29.5%)\n\nBritish cinema has significantly influenced the global film industry since the 19th century.\n\nThe oldest known surviving film in the world, Roundhay Garden Scene (1888), was shot in England by French inventor Louis Le Prince. Early colour films were also pioneered in the UK. Film production reached an all-time high in 1936, but the \"golden age\" of British cinema is usually thought to have occurred ",
+        "text_characters": 64083,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:30637",
+        "score": 2.061482622757884,
+        "snippet": "---\ntitle: 2022 in British television - Wikipedia\ndate: 2021-11-30\n---\nThis is a list of events that took place in 2022 relating to television in the United Kingdom.\n\nEvents\n\nJanuary\n\n**Table 1**\n\n| Date | Event |\n|---|---|\n| 1 | BBC One airs The Big New Years & Years Eve Party, which sees Olly Alexander of Years & Years joined by Kylie Minogue and the Pet Shop Boys to see out 2021 and welcome in 2022. London's annual fireworks display is also aired at midnight. |\n| 1 | Among those from the world of film and television to be recognised in the 2022 New Year Honours are Joanna Lumley and Vanessa Redgrave, who are given damehoods, Daniel Craig, who is made a Companion of the Order of St Michael and St George, and soap stars William Roache and June Brown, who become OBEs. |\n| 3 | Eamonn Holmes joins GB News to co-present their weekday breakfast programme alongside Isabel Webster. |\n| 4 | ITV's Good Morning Britain returns following a Christmas break to protect its staff against the Omicron variant of Coronavirus. |\n| 6 | Deborah Turness, a former editor of ITV News and current CEO of ITN, is appointed the BBC's new CEO of news and current affairs, replacing Fran Unsworth. |\n| 6 | A suggestion by Conservative MP Andrew Rosindell that the BBC should be made to reinstate \"God Save the Queen\" at the end of daily broadcasts wins the backing of ministers after he raises the matter in the House of Commons. BBC One last played the national anthem at the end of broadcasts in 1997, but sto",
+        "text_characters": 127669,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:62148",
+        "score": 1.8221282924702065,
+        "snippet": "---\ntitle: Top 125 Best Spy Authors Ranked by Tim Shipman for Spybrary\nauthor: Shane Whaley\ndate: 2021-12-04\n---\nJump to…\n\nDo we have a treat in store for you spy book fans! Many of you will know Tim Shipman as the Chief Political Commentator at the Sunday Times or maybe you know him as the author of All Out War? But did you know that Tim is also a huge fan of spy books and boasts his own very impressive Spybrary? In this exclusive Spybrary feature Tim is going to share with us his top 125 spy authors ranked!\n\nUPDATE – On August 7th, we hosted our first ever live episode of Spybrary. A panel to discuss Tim's list of the best spy writers. Tim revealed more about his method and criteria for selecting this monster list of spy authors. Joining us were Professor Penny Fielding, author and critic Jeremy Duns, spy blogger Matthew Bradford, and John le Carre book collector Steven Ritterman to run the rule over Tim's pick of the best spy writers. You can watch the discussion below or listen in via your podcast app.\n\nOr listen here\n\nI blush when I think back to the early days of the Spybrary project. I worshipped at the altar of Len Deighton, John le Carre, and Ian Fleming. I had no idea that there was such a wide universe in the spy book genre with so many talented spy authors that I had yet to discover. Buckle up and get that credit card ready as Tim takes us on a journey highlighting and showcasing his top spy authors.\n\nBefore we dive in, four items for you to consider.\n\n1 – We are ",
+        "text_characters": 250255,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 1.4122479653667994,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.021875229590716624,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:3387400", "title": "The Ipcress File (film)", "score": 28.77689798434904, "snippet": "1965 British spy film directed by Sidney J. Furie The Ipcress File is a 1965 British spy film directed by Sidney J. Furie, from a screenplay by Bill Canaway and James Doran, based on Len Deighton's 1962 novel \"The IPCRESS File\". It stars Michael Caine as Harry Palmer, an agent for the Ministry of Defence investigating the disappearances of high-level scientists. This film and its sequels were a deliberately downbeat alternative to the hugely successful James Bond films, even though some of the production team were previously involved with the 007 films, including producer Harry Saltzman, production designer Ken Adam, and composer John Barry. \"The Ipcress File\" was released by Rank Film Distributors on March 18, 1965. It received widespread positive reviews and was a commercial success. At the 19th British Academy Film Awards, the film won three BAFTA Awards, including for Best British Film. In 1999, it was included at number 59 on the BFI list of the 100 best British films of the 20th century. A sequel film, \"Funeral in Berlin\", was released in 1966. Plot. A scientist called Radcliffe is kidnapped from a train and his security escort killed. Harry Palmer, a British Army sergeant with a record of insubordination and a criminal past, now working for a Ministry of Defence organisation, is summoned by his superior, Colonel Ross, and transferred to a section headed by Major Dalby. Ross suspects that Radcliffe's disappearance is connected to the fact that sixteen other top British ", "text_characters": 2667, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:212196", "title": "Michael Caine", "score": 26.18807886282338, "snippet": "English actor (born 1933) Sir Michael Caine (born Maurice Joseph Micklewhite; 14 March 1933) is an English retired actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one of only five male actors to be nominated for an Academy Award for acting in five different decades. In 2000, he received a BAFTA Fellowship and was knighted by Queen Elizabeth II. Often playing a Cockney, Caine made his breakthrough in the 1960s with starring roles in British films such as \"Zulu\" (1964), \"The Ipcress File\" (1965), \"The Italian Job\" (1969), and \"Battle of Britain\" (1969). During this time he established a distinctive visual style wearing thick horn-rimmed glasses combined with sharp suits and a laconic vocal delivery; he was recognised as a style icon of the 1960s. He solidified his stardom with roles in \"Get Carter\" (1971), \"The Last Valley\" (1971), \"The Man Who Would Be King\" (1975), \"The Eagle Has Landed\" (1976), and \"A Bridge Too Far\" (1977). Caine received two Academy Awards for Best Supporting Actor for his roles as Elliot in Woody Allen's dramedy \"Hannah and Her Sisters\" (1986), and as Dr. Wilbur Larch in Lasse Hallström's drama \"The Cid", "text_characters": 1943, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:443116", "title": "1965 in film", "score": 24.64449396286189, "snippet": "The year 1965 in film involved several significant events, with \"The Sound of Music\" topping the U.S. box office and winning five Academy Awards. Fox Film (now 20th Century-Fox), Universal City, California and Universal Studios Lot will celebrated their 50th anniversaries. Top-grossing films (U.S.). The top ten 1965 released films by box office gross in North America are as follows: Awards. Academy Awards: Best Picture: The Sound of Music – Argyle Enterprises, 20th Century Fox Best Director: Robert Wise – \"The Sound of Music\" Best Actor: Lee Marvin – \"Cat Ballou\" Best Actress: Julie Christie – \"Darling\" Best Supporting Actor: Martin Balsam – \"A Thousand Clowns\" Best Supporting Actress: Shelley Winters – \"A Patch of Blue\" Best Foreign Language Film: The Shop on Main Street (\"Obchod na korze\"), directed by Ján Kadár and Elmar Klos, Czechoslovakia BAFTA Film Awards: Best Film from Any Source: My Fair Lady Best British Film: The Ipcress File Golden Globe Awards: Drama: Best Picture: Doctor Zhivago Best Actor: Omar Sharif – \"Doctor Zhivago\" Best Actress: Samantha Eggar – \"The Collector\" Comedy or Musical: Best Picture: The Sound of Music Best Actor: Lee Marvin – \"Cat Ballou\" Best Actress: Julie Andrews – \"The Sound of Music\" Other Best Supporting Actor: Oskar Werner – \"The Spy Who Came in from the Cold\" Best Supporting Actress: Ruth Gordon – \"Inside Daisy Clover\" Best Director: David Lean – \"Doctor Zhivago\" Palme d'Or (Cannes Film Festival): The Knack ...and How to Get It, directe", "text_characters": 1877, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:9194", "title": "", "score": 9.346677761199434, "snippet": "---\ntitle: Michael Caine - Wikipedia\nauthor: Authority control databases\ndate: 2002-07-11\n---\nhonorific_prefix: Sir\nname: Michael Caine\nhonorific_suffix: GBR 100 CBE\nbirth_name: Maurice Joseph Micklewhite\nbirth_date: 14 March 1933\nbirth_place: Rotherhithe, London, England\noccupation: Actor\nyears_active: 1950–2023\nworks: Filmography\nspouse: | }}\nchildren: 2\nrelatives: Stanley Caine (brother)\nawards: Full list, Military Service United Kingdom British Army 1952–1954 C Company, 1st Royal Fusiliers Private Korean War Korea MedalUN Korea Medal\nwebsite: michaelcaine.com\nmodule: yes, Michael_Caine_BBC_Radio4_Front_Row_29_Sept_2010_b00tyv8c.flac, Michael Caine's voice, speech, from the BBC programme Front Row Interviews, 29 September 2010.\nsignature: Michael Caine Signature.png\n\nembed: yes\nembed_title: Military Service\nallegiance: United Kingdom\nbranch: British Army\nserviceyears: 1952–1954\nunit: C Company, 1st Royal Fusiliers\nrank: Private\nbattles: Korean War\nawards: Korea MedalUN Korea Medal\n\nSir Michael Caine (born Maurice Joseph Micklewhite, 14 March 1933) is a retired English actor. Known for his distinct Cockney accent, he has appeared in more than 160 films over a career that spanned eight decades and is considered a British cultural icon. He has received numerous awards including two Academy Awards, a BAFTA Award, three Golden Globe Awards, and a Screen Actors Guild Award. As of 2017, the films in which Caine has appeared have grossed over $7.8 billion worldwide. Caine is one o", "text_characters": 48946, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:31251", "title": "", "score": 5.326943925392879, "snippet": "---\ntitle: 1965 in film - Wikipedia\ndate: 2003-01-20\n---\nThe year 1965 in film involved several significant events, with The Sound of Music topping the U.S. box office and winning five Academy Awards.\nFox Film (now 20th Century-Fox), Universal City, California and Universal Studios Lot celebrated their 50th anniversaries.\n\nTop-grossing films (U.S.)\n\nThe top ten 1965 released films by box office gross in North America are as follows:\n\n**Table 1**: Highest-grossing films of 1965\n\n| Rank | Title | Distributor | Domestic rentals |\n|---|---|---|---|\n| 1 | The Sound of Music | 20th Century Fox | $72,000,000 |\n| 2 | Doctor Zhivago | MGM | $43,000,000 |\n| 3 | Thunderball | United Artists / Eon | $27,000,000 |\n| 4 | Those Magnificent Men in their Flying Machines | 20th Century Fox | $14,000,000Aubrey Solomon, Twentieth Century-Fox: A Corporate and Financial History Rowman & Littlefield, 2002 p 229 |\n| 5 | The Great Race | Warner Bros. | $11,400,000Top 20 Films of 1965 by Domestic Revenue |\n| 6 | That Darn Cat! | Buena Vista | $9,500,000 |\n| 7 | Cat Ballou | Columbia | $9,300,000 |\n| 8 | What's New Pussycat? | United Artists | $8,469,000 |\n| 9 | Shenandoah | Universal | $7,771,000 |\n| 10 | Von Ryan's Express | 20th Century Fox | $7,700,000 |\n\nEvents\n\n* February 15 – George Stevens' production of The Greatest Story Ever Told, a retelling of the account of Jesus Christ, premieres in New York City, New York. It was such a flop with critics and audiences that its failure discouraged produc", "text_characters": 45246, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:96472", "title": "", "score": 5.164879189019696, "snippet": "---\ntitle: Cinema of the United Kingdom - Wikipedia\ndate: 2001-06-19\n---\nname: Cinema of the United Kingdom\nscreens: 4, 720 (2022)Statistical Yearbook 2023 BFI British Film Institute 10 Feb 2025 live 67 PDF\nscreens_per_capita: 7.0 per 100, 000 (2022)\ndistributors: Walt Disney Studios Motion Pictures StudioCanal Universal Pictures Pathé 20th Century Studios Entertainment OneTable 6: Share of Top 3 distributors (Excel) UNESCO Institute for Statistics 24 December 2018\nproduced_year: 2017\nproduced_ref: Table 1: Feature Film Production - Genre/Method of Shooting UNESCO Institute for Statistics 7 May 2019 24 December 2018\nproduced_total: 285\nproduced_fictional: 213 (74.7%)\nproduced_animated: 5 (1.8%)\nproduced_documentary: 66 (23.2%)\nadmissions_year: 2022\nadmissions_ref: Statistical Yearbook 2023 BFI British Film Institute 10 Feb 2025 live 67 PDF\nadmissions_total: 117, 300, 000\nadmissions_per_capita: 1.7\nbox_office_year: 2022\nbox_office_ref: Statistical Yearbook 2023 BFI British Film Institute 2 Feb 2025 live 14, 21 PDF\nbox_office_total: £904000000\nbox_office_national: £266680000 (29.5%)\n\nBritish cinema has significantly influenced the global film industry since the 19th century.\n\nThe oldest known surviving film in the world, Roundhay Garden Scene (1888), was shot in England by French inventor Louis Le Prince. Early colour films were also pioneered in the UK. Film production reached an all-time high in 1936, but the \"golden age\" of British cinema is usually thought to have occurred ", "text_characters": 64083, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:30637", "title": "", "score": 2.061482622757884, "snippet": "---\ntitle: 2022 in British television - Wikipedia\ndate: 2021-11-30\n---\nThis is a list of events that took place in 2022 relating to television in the United Kingdom.\n\nEvents\n\nJanuary\n\n**Table 1**\n\n| Date | Event |\n|---|---|\n| 1 | BBC One airs The Big New Years & Years Eve Party, which sees Olly Alexander of Years & Years joined by Kylie Minogue and the Pet Shop Boys to see out 2021 and welcome in 2022. London's annual fireworks display is also aired at midnight. |\n| 1 | Among those from the world of film and television to be recognised in the 2022 New Year Honours are Joanna Lumley and Vanessa Redgrave, who are given damehoods, Daniel Craig, who is made a Companion of the Order of St Michael and St George, and soap stars William Roache and June Brown, who become OBEs. |\n| 3 | Eamonn Holmes joins GB News to co-present their weekday breakfast programme alongside Isabel Webster. |\n| 4 | ITV's Good Morning Britain returns following a Christmas break to protect its staff against the Omicron variant of Coronavirus. |\n| 6 | Deborah Turness, a former editor of ITV News and current CEO of ITN, is appointed the BBC's new CEO of news and current affairs, replacing Fran Unsworth. |\n| 6 | A suggestion by Conservative MP Andrew Rosindell that the BBC should be made to reinstate \"God Save the Queen\" at the end of daily broadcasts wins the backing of ministers after he raises the matter in the House of Commons. BBC One last played the national anthem at the end of broadcasts in 1997, but sto", "text_characters": 127669, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:62148", "title": "", "score": 1.8221282924702065, "snippet": "---\ntitle: Top 125 Best Spy Authors Ranked by Tim Shipman for Spybrary\nauthor: Shane Whaley\ndate: 2021-12-04\n---\nJump to…\n\nDo we have a treat in store for you spy book fans! Many of you will know Tim Shipman as the Chief Political Commentator at the Sunday Times or maybe you know him as the author of All Out War? But did you know that Tim is also a huge fan of spy books and boasts his own very impressive Spybrary? In this exclusive Spybrary feature Tim is going to share with us his top 125 spy authors ranked!\n\nUPDATE – On August 7th, we hosted our first ever live episode of Spybrary. A panel to discuss Tim's list of the best spy writers. Tim revealed more about his method and criteria for selecting this monster list of spy authors. Joining us were Professor Penny Fielding, author and critic Jeremy Duns, spy blogger Matthew Bradford, and John le Carre book collector Steven Ritterman to run the rule over Tim's pick of the best spy writers. You can watch the discussion below or listen in via your podcast app.\n\nOr listen here\n\nI blush when I think back to the early days of the Spybrary project. I worshipped at the altar of Len Deighton, John le Carre, and Ian Fleming. I had no idea that there was such a wide universe in the spy book genre with so many talented spy authors that I had yet to discover. Buckle up and get that credit card ready as Tim takes us on a journey highlighting and showcasing his top spy authors.\n\nBefore we dive in, four items for you to consider.\n\n1 – We are ", "text_characters": 250255, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 1.4122479653667994, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.021875229590716624, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R004_request.json/messages/7/content`；SHA256：`5a114e8a0af06c1d3346a1b349301adcf6bbde5983ed19da11a5f8325a553f5e`。
+
+### R4 `/rounds/3/reasoning_content` [0,602)
+
+SHA256：`f494b16f489dfad0cbbc131f473f179a0b68f033fc511dc8043674ae7d26a057`；原字段SHA256：`768867ac51c3a619dda21b22b00afb9c2f6712471b7e8419cfb25cff54f291f8`。
+
+````
+The user is asking for the sum of:
+1. The number of BAFTA Awards won by the film featuring Michael Caine in his second lead role
+2. The number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director (of the second lead role film)
+
+From the search results, I can see:
+- "The Ipcress File" (1965) is Michael Caine's second lead role film (first was "Zulu" in 1964, then "The Ipcress File" in 1965)
+- "The Ipcress File" was directed by Sidney J. Furie
+- "The Ipcress File" won 3 BAFTA Awards at the 19th British Academy Film Awards
+
+
+````
+
+## S003｜查Furie恐怖片范围
+
+Search Furie horror。
+
+结束状态：取得Entity、Doctor Blood和Snake Woman。
+
+边界判断：从奖项数转向另一影片身份。
+
+内部KEEP与反证：多片名返回不是每个片名一个Stage。
+
+### SPLIT原文
+
+````
+irected by the same director (of the second lead role film)
+
+From the search results, I can see:
+- "The Ipcress File" (1965) is Michael Caine's second lead role film (first was "Zulu" in 1964, then "The Ipcress File" in 1965)
+- "The Ipcress File" was directed by Sidney J. Furie
+- "The Ipcress File" won 3 BAFTA Awards at the 19th British Academy Film Awards
+
+
+→ 切点 [3, 0, 602] →
+Now I need to find another horror film directed by Sidney J. Furie and check its Rotten Tomatoes rating basis (number of reviews).
+
+Let me search for Sidney J. Furie's horror films.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sidney J. Furie horror film
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [602,898)
+
+SHA256：`42d5a6174b9f383b30f2bf49454cc3ec4a9cc082e24fd76f4b7ab13576af9647`；原字段SHA256：`768867ac51c3a619dda21b22b00afb9c2f6712471b7e8419cfb25cff54f291f8`。
+
+````
+Now I need to find another horror film directed by Sidney J. Furie and check its Rotten Tomatoes rating basis (number of reviews).
+
+Let me search for Sidney J. Furie's horror films.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sidney J. Furie horror film
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "Sidney J. Furie horror film"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSidney J. Furie horror film\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sidney J. Furie horror film"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.598820046056062,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2701801",
+        "score": 33.13652391061368,
+        "snippet": "Canadian film director Sholom Joseph Furie (born February 28, 1933), commonly known as Sidney J. Furie, is a Canadian film and television director, screenwriter, and producer. After early work at the Canadian Broadcasting Corporation, Furie made his feature film debut with the drama \"A Dangerous Age\" (1957). Largely overlooked in its native country, the film was well-received by British critics and led the director to move there. He directed the well-regarded kitchen sink drama \"The Leather Boys\" (1964) and the spy film \"The Ipcress File\" (1965), starring Michael Caine, which won the BAFTA Award for Outstanding British Film. In the following decade, Furie moved to the United States, where he directed a variety of films including the Western \"The Appaloosa\" (1966), the biopics \"Lady Sings the Blues\" (1972) and \"Gable and Lombard\" (1976), the Vietnam War film \"The Boys in Company C\" (1978), the horror film \"The Entity\" (1982), and the superhero film \"\" (1987). He co-created the \"Iron Eagle\" action film franchise which began in 1986, and directed three of its four entries. He returned to Canada in the 1990s, where he has directed various independent and low-budget films. Furie is considered by some an \"auteur\" director, elevating otherwise unremarkable genre films through strong, creative visuals, and atmospheric direction. He was one of the earliest Canadian directors to achieve mainstream critical and commercial success outside their native country, at a time when its native f",
+        "text_characters": 2374,
+        "title": "Sidney J. Furie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2701803",
+        "score": 29.80897490757003,
+        "snippet": "Furie relocated again, this time to Hollywood, where he began his American directing career with \"The Appaloosa\", a Western film starring Marlon Brando and John Saxon. He revisited the spy genre with a follow-up to \"The Ipcress File\"; \"The Naked Runner\". Both films feature Furie's signature visuals and directorial style. In 1972, he directed \"Lady Sings the Blues\", a biographical drama about the life of jazz singer-songwriter Billie Holiday, for which lead actress Diana Ross was nominated for an Academy Award for Best Actress. Furie was later attached to direct the similarly-themed remake of \"The Jazz Singer\", but was replaced by Richard Fleischer halfway through principal photography. He was originally offered to direct \"The Godfather\" by producer Albert S. Ruddy, but he left the job early in pre-production due to budget disputes, being replaced by Francis Ford Coppola due to the producers' desire to keep the film \"ethnic to the core\". He directed 1978's \"The Boys in Company C,\" one of the first American films produced about the Vietnam War after the end of the conflict. Stanley Kubrick cited it as an influence on \"Full Metal Jacket\" (1987). Furie's 1981 horror movie \"The Entity\" was declared by Martin Scorsese to be one of the \"scariest movies of all time\". Furie wrote and directed the 1986 action war film \"Iron Eagle\", adapting a screenplay by writer Kevin Alyn Elders based on the real-life 1981 Gulf of Sidra incident. The film was overshadowed by the release of the simila",
+        "text_characters": 2600,
+        "title": "Sidney J. Furie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2701802",
+        "score": 29.491278019168263,
+        "snippet": "Despite the support of popular producer and distributor Nat Taylor, it failed to find a following in its native country, but was critically acclaimed by British critics, who saw the young Furie as a fresh talent. A year later, Furie again tried his hand at gritty adolescent drama, writing and directing \"A Cool Sound from Hell\". Shot on location in Toronto, the film followed a young, jazz-obsessed hipster wandering aimlessly through the city's streets and metro stations, who finds himself plunged into the world of illicit drug smuggling while pursuing a femme fatale. A direct refutation of his home town's squeaky-clean self-image, the film suffered the same fate as his previous one, failing to find a proper distributor and falling into obscurity. The film was long thought lost, until it was rediscovered decades later by Furie's biographer Daniel Kremer in the vaults of the British Film Institute, mislabelled as \"The Beat Generation\". The restored film premiered at the Toronto International Film Festival in September 2016. Furie then directed 19 episodes of the CBC dramatic series \"Hudson's Bay\". Move to England and breakthrough. Unable to find success or recognition in his native country, Furie relocated to England, where he had received critical acclaim, in hopes of pursuing more successful ventures. He dabbled in various genres, including horror (\"Doctor Blood's Coffin\"), comedy (\"Three on a Spree\"), and musicals (\"The Young Ones\"). His brief dip into the kitchen sink realis",
+        "text_characters": 2675,
+        "title": "Sidney J. Furie"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4038085",
+        "score": 28.816792984382943,
+        "snippet": "Canadian film director Lindsay Craig Shonteff (5 November 1935 – 11 March 2006) was a Canadian born film director, film producer and screenwriter who achieved fame for low-budget films produced in the United Kingdom. Biography. Lindsay Shonteff was born in Toronto, Ontario and made his directing, producing, editing and screenwriting debut in 1959 with a Canadian made Western \"The Hired Gun\"/\"The Last Gunfighter\" that he edited in his own home. After the film's release, Shonteff went to England following his friend and fellow Canadian Sidney J. Furie. Shonteff's debut in Britain was \"Devil Doll\" (1964); Furie was originally scheduled to direct, but was offered a more prestigious film and recommended Shonteff. Richard Gordon said Furie advised Shonteff throughout the making of the film. Shonteff had to cut the horror tale of a ventriloquist's dummy for an X rating from the British Board of Film Censors. This film led to interest from Columbia Pictures for a contract but Shonteff argued over the matter and the contract did not come through. Shonteff then filmed the \"African horror adventure\" \"Curse of Simba\" (aka \"Curse of the Voodoo\") in 1965 for Gordon. The same year, he co-wrote and directed a James Bond type film for producer S.J.H. \"James\" Ward, \"Licensed to Kill\". The film was picked up for American and international release by Joseph E. Levine; it was re-edited and retitled \"The Second Best Secret Agent in the Whole Wide World\". Reportedly Shonteff was offered a contract ",
+        "text_characters": 2446,
+        "title": "Lindsay Shonteff"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5052733",
+        "score": 27.55076316349365,
+        "snippet": "1961 British film by Sidney J. Furie Doctor Blood's Coffin is a 1961 British horror film directed by Sidney J. Furie from a screenplay co-written by Nathan Juran, and starring Kieron Moore, Hazel Court, and Ian Hunter. It follows young biochemist Dr. Peter Blood (Moore), who returns to his hometown in Cornwall with the belief that he can selectively restore life by transplanting the living hearts of 'undeserving' people into dead people who 'deserve' to live. The film is significant for being one of the first two zombie films to be shot in colour, the other being the obscure 1961 American film \"The Dead One\", and for its early portrayal of zombies as homicidal rotting cadavers. It was released in the UK by United Artists in January 1961 and in the US in April of that year. In the US, it was released on a double bill with \"The Snake Woman\", also directed by Furie. Plot. Strange crimes are occurring in Cornwall. Doctors' surgeries are becoming burgled, and people are disappearing. No one knows it yet, but the stolen medical supplies have been used to set up a laboratory in the disused Porthcarron Tin Mine, and the missing people have been taken there after being immobilised with a drug. Into this situation comes young Dr. Peter Blood, fresh off a biochemistry research grant in Vienna. He is a Porthcarron native, and his father, Robert, is the village doctor. A young widowed nurse, Linda Parker, assists Robert. Police Sgt. Cook is investigating the crimes. Peter eagerly voluntee",
+        "text_characters": 2539,
+        "title": "Doctor Blood's Coffin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5585572",
+        "score": 27.482304212013517,
+        "snippet": "1961 British horror film by Sidney J. Furie The Snake Woman (also released as The Terror of the Snake Woman) is a 1961 British horror film directed by Sidney J. Furie from a screenplay by Orville H. Hampton, and starring Susan Travers, John McCarthy, Geoffrey Denton, Elsie Wagstaff, Arnold Marlé and John Cazabon. The film is set in a small Northumbrian village at the turn of the 20th century. It tells the story of Atheris, a young woman who has the power to transform from human to cobra, and the Scotland Yard detective sent to investigate a series of deaths, unusual because all the victims died after being bitten by snakes that are not native to the UK. \"The Snake Woman\" distributed by United Artists. It premiered in the United States on April 26, 1961, on a double bill with \"Doctor Blood's Coffin\", which was produced at the same time and shares much of the same crew. Plot. In the tiny Northumbrian village of Bellingham in 1890, herpetologist Dr. Horace Adderson has successfully been keeping his wife Martha's unnamed mental illness under control by regularly injecting her with snake venom. When Martha dies giving birth to their daughter, local midwife Addie Harker, who villagers believe is a witch, proclaims that the baby – who doesn't blink and is cold to the touch – is pure evil, the 'devil's offspring' and must be destroyed. She is stopped before she can stab the new-born with scissors. But she runs to the local pub and an angry mob follow her to Adderson's laboratory and ",
+        "text_characters": 2444,
+        "title": "The Snake Woman"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1005014",
+        "score": 26.7627078659389,
+        "snippet": "\"TV Guide\" gave the film a middling review, noting that \"a great performance by Barbara Hershey fails to save this poorly directed tale of the supernatural... ever-inept director Sidney J. Furie is ham-handed as usual, with the camera swooping all over the place between dull bouts of psychological and parapsychological mumbo-jumbo.\" Director Martin Scorsese has also remarked his appreciation for the film, and ranked it the fourth-scariest horror film of all time, above \"Psycho\" and \"The Shining\". In other media. Avant-garde filmmaker Peter Tscherkassky used a print of this film for his 1999 short \"Outer Space\". Remake. In April 2015, it was announced that James Wan and Roy Lee were producing a remake for 20th Century Fox through their Atomic Monster and Vertigo Entertainment banners, respectively. The film would be written by Chad Hayes and Carey W. Hayes. In a 2020 interview, Carey Hayes commented that the screenplay had been completed, but that the project's future was undetermined following The Walt Disney Company's acquisition of 20th Century Fox. References. Sources.",
+        "text_characters": 1088,
+        "title": "The Entity"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1005010",
+        "score": 25.3084142069696,
+        "snippet": "Much to her chagrin, however, Weber decides to take refuge in the belief that he did not witness anything. Carla returns to her house the next day. The front door slams by itself and she is greeted by a disembodied demonic voice which says, \"Welcome home, cunt\". She calmly opens the door, exits the house, gets in a car with her family and leaves. A closing intertitle verifies that Carla and her family have moved to Texas. Carla still experiences attacks from the entity, although they have lessened in frequency and severity. Cast. * Barbara Hershey as Carla Moran Themes. Film scholar Daniel Kremer interprets \"The Entity\" as a parable for female sexual victimhood, citing the lead character of Carla Moran as a woman who \"goes head-to-head with a gaggle of men (including the \"entity\" itself). If the men of the film do not undermine her credibility or sanity, they objectify her, exploit her victimhood, belittle her ability to take control of her unfortunate circumstances, and ultimately give her the dignity of a glorified lab rat.\" Brad Stevens of the British Film Institute notes that the film deals with themes of sexual assault as well as a \"fantasy\" figure that serves as a surrogate for the absent father in the household, a theme he compares to the extraterrestrial in Steven Spielberg's \"E.T. the Extra-Terrestrial\", released the same year. Despite some of the film's contemporary elements, Stevens also notes that it follows a classically Gothic narrative structure. Michael Doyle,",
+        "text_characters": 2594,
+        "title": "The Entity"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5585573",
+        "score": 25.203522936262644,
+        "snippet": "Charles soon encounters a beautiful, though unblinking and cold to the touch, young woman named Atheris, She was the baby born of the Addersons and raised by the shepherd until she mysteriously disappeared. Atheris is attracted to Charles by the tune he's tootling on a snake-charmer's flute that Wynborn has given him. After discussing the case with Wynborn and again seeing Atheris, Charles goes to Addie's house, where she pins a voodoo doll to the wall and tells Charles to shoot it three times. When he does, Aggie tells him that the Curse of the Snake Woman has now been broken - but that he, Charles, must shoot Atheris three times and kill her. Charles doesn't believe any of what he's learned and decides to return to London. He stops at the Bellingham pub to write his report and Polly the barmaid convinces him that the curse is indeed true. Charles then heads off to find Atheris. When he discovers the full-body skin that she's shed, as a snake would, and Aggie explains what it is, he too believes that Atheris is the snake woman. In the meantime, a village boy has died from a snakebite. Murton believes that Atheris has murdered the boy and sets out to destroy her. But when he aims his shotgun at her, Atheris kills him. The boy's father, distraught over his son's death and quite drunk, also goes to the moors to find Atheris. She kills him, as well. After finding Murton's body, Charles catches up Atheris and tells her that he understands that she can't help being what she is and",
+        "text_characters": 2397,
+        "title": "The Snake Woman"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1962548",
+        "score": 22.48140166733735,
+        "snippet": "In 1964 Small provided funding for and was a silent partner in Grant Whytock's Admiral Pictures that produced Audie Murphy westerns for Columbia. Whytock had a long career editing many of Small's films and being credited as a producer or associate producer on several of them. Larger budgeted films. Small occasionally made large budgeted films, usually in partnership with other producers. These included \"Monkey on My Back\" (1957) a biopic about Barney Ross that ran into censorship trouble. There was also \"Witness for the Prosecution\" (1957) directed by Billy Wilder; \"Solomon and Sheba\" (1959) originally with Tyrone Power who died during filming. Television. In 1950, Small sold a package of 26 films he produced to show on American television through his Peerless Television Productions. In 1953, he bought 50% of Arrow Productions. Small later served as chairman of the board of the TV distribution company Television Programs of America whose shows include \"Private Secretary\", \"Fury\", 'Captain Gallant of the Foreign Legion\", \"Hawkeye and the Last of the Mohicans\", \"Halls of Ivy\" and 'Ramar of the Jungle\". In 1957, he sold his interest in the company for $1.5 million. British productions. In the late 1950s and early 1960s, Small made a number of films in the UK. He made several low-budget comedies and horror films, including several directed by Sidney J. Furie: \"Doctor Blood's Coffin\" (1961), \"The Snake Woman\" (1961) and \"Three on a Spree\" (1961, a remake of \"Brewster's Millions\").",
+        "text_characters": 2193,
+        "title": "Edward Small"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2701801", "title": "Sidney J. Furie", "score": 33.13652391061368, "snippet": "Canadian film director Sholom Joseph Furie (born February 28, 1933), commonly known as Sidney J. Furie, is a Canadian film and television director, screenwriter, and producer. After early work at the Canadian Broadcasting Corporation, Furie made his feature film debut with the drama \"A Dangerous Age\" (1957). Largely overlooked in its native country, the film was well-received by British critics and led the director to move there. He directed the well-regarded kitchen sink drama \"The Leather Boys\" (1964) and the spy film \"The Ipcress File\" (1965), starring Michael Caine, which won the BAFTA Award for Outstanding British Film. In the following decade, Furie moved to the United States, where he directed a variety of films including the Western \"The Appaloosa\" (1966), the biopics \"Lady Sings the Blues\" (1972) and \"Gable and Lombard\" (1976), the Vietnam War film \"The Boys in Company C\" (1978), the horror film \"The Entity\" (1982), and the superhero film \"\" (1987). He co-created the \"Iron Eagle\" action film franchise which began in 1986, and directed three of its four entries. He returned to Canada in the 1990s, where he has directed various independent and low-budget films. Furie is considered by some an \"auteur\" director, elevating otherwise unremarkable genre films through strong, creative visuals, and atmospheric direction. He was one of the earliest Canadian directors to achieve mainstream critical and commercial success outside their native country, at a time when its native f", "text_characters": 2374, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2701803", "title": "Sidney J. Furie", "score": 29.80897490757003, "snippet": "Furie relocated again, this time to Hollywood, where he began his American directing career with \"The Appaloosa\", a Western film starring Marlon Brando and John Saxon. He revisited the spy genre with a follow-up to \"The Ipcress File\"; \"The Naked Runner\". Both films feature Furie's signature visuals and directorial style. In 1972, he directed \"Lady Sings the Blues\", a biographical drama about the life of jazz singer-songwriter Billie Holiday, for which lead actress Diana Ross was nominated for an Academy Award for Best Actress. Furie was later attached to direct the similarly-themed remake of \"The Jazz Singer\", but was replaced by Richard Fleischer halfway through principal photography. He was originally offered to direct \"The Godfather\" by producer Albert S. Ruddy, but he left the job early in pre-production due to budget disputes, being replaced by Francis Ford Coppola due to the producers' desire to keep the film \"ethnic to the core\". He directed 1978's \"The Boys in Company C,\" one of the first American films produced about the Vietnam War after the end of the conflict. Stanley Kubrick cited it as an influence on \"Full Metal Jacket\" (1987). Furie's 1981 horror movie \"The Entity\" was declared by Martin Scorsese to be one of the \"scariest movies of all time\". Furie wrote and directed the 1986 action war film \"Iron Eagle\", adapting a screenplay by writer Kevin Alyn Elders based on the real-life 1981 Gulf of Sidra incident. The film was overshadowed by the release of the simila", "text_characters": 2600, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2701802", "title": "Sidney J. Furie", "score": 29.491278019168263, "snippet": "Despite the support of popular producer and distributor Nat Taylor, it failed to find a following in its native country, but was critically acclaimed by British critics, who saw the young Furie as a fresh talent. A year later, Furie again tried his hand at gritty adolescent drama, writing and directing \"A Cool Sound from Hell\". Shot on location in Toronto, the film followed a young, jazz-obsessed hipster wandering aimlessly through the city's streets and metro stations, who finds himself plunged into the world of illicit drug smuggling while pursuing a femme fatale. A direct refutation of his home town's squeaky-clean self-image, the film suffered the same fate as his previous one, failing to find a proper distributor and falling into obscurity. The film was long thought lost, until it was rediscovered decades later by Furie's biographer Daniel Kremer in the vaults of the British Film Institute, mislabelled as \"The Beat Generation\". The restored film premiered at the Toronto International Film Festival in September 2016. Furie then directed 19 episodes of the CBC dramatic series \"Hudson's Bay\". Move to England and breakthrough. Unable to find success or recognition in his native country, Furie relocated to England, where he had received critical acclaim, in hopes of pursuing more successful ventures. He dabbled in various genres, including horror (\"Doctor Blood's Coffin\"), comedy (\"Three on a Spree\"), and musicals (\"The Young Ones\"). His brief dip into the kitchen sink realis", "text_characters": 2675, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4038085", "title": "Lindsay Shonteff", "score": 28.816792984382943, "snippet": "Canadian film director Lindsay Craig Shonteff (5 November 1935 – 11 March 2006) was a Canadian born film director, film producer and screenwriter who achieved fame for low-budget films produced in the United Kingdom. Biography. Lindsay Shonteff was born in Toronto, Ontario and made his directing, producing, editing and screenwriting debut in 1959 with a Canadian made Western \"The Hired Gun\"/\"The Last Gunfighter\" that he edited in his own home. After the film's release, Shonteff went to England following his friend and fellow Canadian Sidney J. Furie. Shonteff's debut in Britain was \"Devil Doll\" (1964); Furie was originally scheduled to direct, but was offered a more prestigious film and recommended Shonteff. Richard Gordon said Furie advised Shonteff throughout the making of the film. Shonteff had to cut the horror tale of a ventriloquist's dummy for an X rating from the British Board of Film Censors. This film led to interest from Columbia Pictures for a contract but Shonteff argued over the matter and the contract did not come through. Shonteff then filmed the \"African horror adventure\" \"Curse of Simba\" (aka \"Curse of the Voodoo\") in 1965 for Gordon. The same year, he co-wrote and directed a James Bond type film for producer S.J.H. \"James\" Ward, \"Licensed to Kill\". The film was picked up for American and international release by Joseph E. Levine; it was re-edited and retitled \"The Second Best Secret Agent in the Whole Wide World\". Reportedly Shonteff was offered a contract ", "text_characters": 2446, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5052733", "title": "Doctor Blood's Coffin", "score": 27.55076316349365, "snippet": "1961 British film by Sidney J. Furie Doctor Blood's Coffin is a 1961 British horror film directed by Sidney J. Furie from a screenplay co-written by Nathan Juran, and starring Kieron Moore, Hazel Court, and Ian Hunter. It follows young biochemist Dr. Peter Blood (Moore), who returns to his hometown in Cornwall with the belief that he can selectively restore life by transplanting the living hearts of 'undeserving' people into dead people who 'deserve' to live. The film is significant for being one of the first two zombie films to be shot in colour, the other being the obscure 1961 American film \"The Dead One\", and for its early portrayal of zombies as homicidal rotting cadavers. It was released in the UK by United Artists in January 1961 and in the US in April of that year. In the US, it was released on a double bill with \"The Snake Woman\", also directed by Furie. Plot. Strange crimes are occurring in Cornwall. Doctors' surgeries are becoming burgled, and people are disappearing. No one knows it yet, but the stolen medical supplies have been used to set up a laboratory in the disused Porthcarron Tin Mine, and the missing people have been taken there after being immobilised with a drug. Into this situation comes young Dr. Peter Blood, fresh off a biochemistry research grant in Vienna. He is a Porthcarron native, and his father, Robert, is the village doctor. A young widowed nurse, Linda Parker, assists Robert. Police Sgt. Cook is investigating the crimes. Peter eagerly voluntee", "text_characters": 2539, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5585572", "title": "The Snake Woman", "score": 27.482304212013517, "snippet": "1961 British horror film by Sidney J. Furie The Snake Woman (also released as The Terror of the Snake Woman) is a 1961 British horror film directed by Sidney J. Furie from a screenplay by Orville H. Hampton, and starring Susan Travers, John McCarthy, Geoffrey Denton, Elsie Wagstaff, Arnold Marlé and John Cazabon. The film is set in a small Northumbrian village at the turn of the 20th century. It tells the story of Atheris, a young woman who has the power to transform from human to cobra, and the Scotland Yard detective sent to investigate a series of deaths, unusual because all the victims died after being bitten by snakes that are not native to the UK. \"The Snake Woman\" distributed by United Artists. It premiered in the United States on April 26, 1961, on a double bill with \"Doctor Blood's Coffin\", which was produced at the same time and shares much of the same crew. Plot. In the tiny Northumbrian village of Bellingham in 1890, herpetologist Dr. Horace Adderson has successfully been keeping his wife Martha's unnamed mental illness under control by regularly injecting her with snake venom. When Martha dies giving birth to their daughter, local midwife Addie Harker, who villagers believe is a witch, proclaims that the baby – who doesn't blink and is cold to the touch – is pure evil, the 'devil's offspring' and must be destroyed. She is stopped before she can stab the new-born with scissors. But she runs to the local pub and an angry mob follow her to Adderson's laboratory and ", "text_characters": 2444, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1005014", "title": "The Entity", "score": 26.7627078659389, "snippet": "\"TV Guide\" gave the film a middling review, noting that \"a great performance by Barbara Hershey fails to save this poorly directed tale of the supernatural... ever-inept director Sidney J. Furie is ham-handed as usual, with the camera swooping all over the place between dull bouts of psychological and parapsychological mumbo-jumbo.\" Director Martin Scorsese has also remarked his appreciation for the film, and ranked it the fourth-scariest horror film of all time, above \"Psycho\" and \"The Shining\". In other media. Avant-garde filmmaker Peter Tscherkassky used a print of this film for his 1999 short \"Outer Space\". Remake. In April 2015, it was announced that James Wan and Roy Lee were producing a remake for 20th Century Fox through their Atomic Monster and Vertigo Entertainment banners, respectively. The film would be written by Chad Hayes and Carey W. Hayes. In a 2020 interview, Carey Hayes commented that the screenplay had been completed, but that the project's future was undetermined following The Walt Disney Company's acquisition of 20th Century Fox. References. Sources.", "text_characters": 1088, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1005010", "title": "The Entity", "score": 25.3084142069696, "snippet": "Much to her chagrin, however, Weber decides to take refuge in the belief that he did not witness anything. Carla returns to her house the next day. The front door slams by itself and she is greeted by a disembodied demonic voice which says, \"Welcome home, cunt\". She calmly opens the door, exits the house, gets in a car with her family and leaves. A closing intertitle verifies that Carla and her family have moved to Texas. Carla still experiences attacks from the entity, although they have lessened in frequency and severity. Cast. * Barbara Hershey as Carla Moran Themes. Film scholar Daniel Kremer interprets \"The Entity\" as a parable for female sexual victimhood, citing the lead character of Carla Moran as a woman who \"goes head-to-head with a gaggle of men (including the \"entity\" itself). If the men of the film do not undermine her credibility or sanity, they objectify her, exploit her victimhood, belittle her ability to take control of her unfortunate circumstances, and ultimately give her the dignity of a glorified lab rat.\" Brad Stevens of the British Film Institute notes that the film deals with themes of sexual assault as well as a \"fantasy\" figure that serves as a surrogate for the absent father in the household, a theme he compares to the extraterrestrial in Steven Spielberg's \"E.T. the Extra-Terrestrial\", released the same year. Despite some of the film's contemporary elements, Stevens also notes that it follows a classically Gothic narrative structure. Michael Doyle,", "text_characters": 2594, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5585573", "title": "The Snake Woman", "score": 25.203522936262644, "snippet": "Charles soon encounters a beautiful, though unblinking and cold to the touch, young woman named Atheris, She was the baby born of the Addersons and raised by the shepherd until she mysteriously disappeared. Atheris is attracted to Charles by the tune he's tootling on a snake-charmer's flute that Wynborn has given him. After discussing the case with Wynborn and again seeing Atheris, Charles goes to Addie's house, where she pins a voodoo doll to the wall and tells Charles to shoot it three times. When he does, Aggie tells him that the Curse of the Snake Woman has now been broken - but that he, Charles, must shoot Atheris three times and kill her. Charles doesn't believe any of what he's learned and decides to return to London. He stops at the Bellingham pub to write his report and Polly the barmaid convinces him that the curse is indeed true. Charles then heads off to find Atheris. When he discovers the full-body skin that she's shed, as a snake would, and Aggie explains what it is, he too believes that Atheris is the snake woman. In the meantime, a village boy has died from a snakebite. Murton believes that Atheris has murdered the boy and sets out to destroy her. But when he aims his shotgun at her, Atheris kills him. The boy's father, distraught over his son's death and quite drunk, also goes to the moors to find Atheris. She kills him, as well. After finding Murton's body, Charles catches up Atheris and tells her that he understands that she can't help being what she is and", "text_characters": 2397, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1962548", "title": "Edward Small", "score": 22.48140166733735, "snippet": "In 1964 Small provided funding for and was a silent partner in Grant Whytock's Admiral Pictures that produced Audie Murphy westerns for Columbia. Whytock had a long career editing many of Small's films and being credited as a producer or associate producer on several of them. Larger budgeted films. Small occasionally made large budgeted films, usually in partnership with other producers. These included \"Monkey on My Back\" (1957) a biopic about Barney Ross that ran into censorship trouble. There was also \"Witness for the Prosecution\" (1957) directed by Billy Wilder; \"Solomon and Sheba\" (1959) originally with Tyrone Power who died during filming. Television. In 1950, Small sold a package of 26 films he produced to show on American television through his Peerless Television Productions. In 1953, he bought 50% of Arrow Productions. Small later served as chairman of the board of the TV distribution company Television Programs of America whose shows include \"Private Secretary\", \"Fury\", 'Captain Gallant of the Foreign Legion\", \"Hawkeye and the Last of the Mohicans\", \"Halls of Ivy\" and 'Ramar of the Jungle\". In 1957, he sold his interest in the company for $1.5 million. British productions. In the late 1950s and early 1960s, Small made a number of films in the UK. He made several low-budget comedies and horror films, including several directed by Sidney J. Furie: \"Doctor Blood's Coffin\" (1961), \"The Snake Woman\" (1961) and \"Three on a Spree\" (1961, a remake of \"Brewster's Millions\").", "text_characters": 2193, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R005_request.json/messages/9/content`；SHA256：`022d094483afa99b6cdbf508462bae60c8c63f607fc6c447e3751d3e3f30af4b`。
+
+## S004｜将第二主演重新解释为第二Palmer并采用Funeral
+
+实质比较Palmer顺序，推测续集导演并盘点余下条件。
+
+结束状态：转为Funeral候选，导演仍推测。
+
+边界判断：中断恐怖片工作，独立重新解释主片条件。
+
+内部KEEP与反证：完整候选推导和未来待办保持，不冒充已执行。
+
+### SPLIT原文
+
+````
+Now I need to find another horror film directed by Sidney J. Furie and check its Rotten Tomatoes rating basis (number of reviews).
+
+Let me search for Sidney J. Furie's horror films.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sidney J. Furie horror film
+</parameter>
+</function>
+</tool_call>
+→ 切点 [4, 0, 0] →
+The user wants the sum of:
+1. The number of BAFTA Awards won by the film featuring Michael Caine in his second lead role.
+2. The number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director.
+
+Step 1: Identify the film featuring Michael Caine in his second lead role.
+From the search res
+````
+
+### R5 `/rounds/4/reasoning_content` [0,1511)
+
+SHA256：`ecf8951faf04004d789dce80320ebd5fc302481a62bf5e07e2aa7fece4665c34`；原字段SHA256：`0aba17313eb2a3543a6ea86b808cc8140e9fb690a5797b822a05d7642c49b344`。
+
+````
+The user wants the sum of:
+1. The number of BAFTA Awards won by the film featuring Michael Caine in his second lead role.
+2. The number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director.
+
+Step 1: Identify the film featuring Michael Caine in his second lead role.
+From the search results:
+- "The Ipcress File" (1965) was Michael Caine's first lead role as Harry Palmer.
+- "Funeral in Berlin" (1966) was his second lead role as Harry Palmer.
+
+Let me verify this. The search results mention:
+- "The Ipcress File" (1965) - first Harry Palmer film.
+- "Funeral in Berlin" (1966) - sequel.
+
+So "Funeral in Berlin" should be the film with Michael Caine in his second lead role.
+
+Step 2: Find the number of BAFTA Awards won by "Funeral in Berlin".
+Let me search for "Funeral in Berlin BAFTA Awards".
+
+Step 3: Identify the director of "Funeral in Berlin".
+From the search results, "The Ipcress File" was directed by Sidney J. Furie. Since "Funeral in Berlin" is a sequel, it was likely also directed by Sidney J. Furie. Let me verify.
+
+Step 4: Find another horror film directed by Sidney J. Furie.
+From the search results, Sidney J. Furie directed several horror films:
+- "Doctor Blood's Coffin" (1961)
+- "The Snake Woman" (1961)
+- "The Entity" (1982)
+
+Step 5: Find the Rotten Tomatoes approval rating and the number of critical reviews for one of these horror films.
+Let me search for the Rotten Tomatoes information for one of these films.
+
+
+````
+
+## S005｜联合核查Funeral奖项和导演
+
+同批两Search。
+
+结束状态：未获所需奖项和明确导演。
+
+边界判断：候选评估完成后执行具体联合查证。
+
+内部KEEP与反证：严格同批，无批内先读再决策。
+
+### SPLIT原文
+
+````
+dney J. Furie.
+From the search results, Sidney J. Furie directed several horror films:
+- "Doctor Blood's Coffin" (1961)
+- "The Snake Woman" (1961)
+- "The Entity" (1982)
+
+Step 5: Find the Rotten Tomatoes approval rating and the number of critical reviews for one of these horror films.
+Let me search for the Rotten Tomatoes information for one of these films.
+
+
+→ 切点 [4, 0, 1511] →
+Let me start by searching for "Funeral in Berlin BAFTA Awards" and "Funeral in Berlin director".
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0",
+      "/rounds/4/tool_calls/1"
+    ],
+    "return_pointers": [
+      "/tool_events/4",
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [1511,1608)
+
+SHA256：`627f29ca2aef6735670353e38fcc125c13ab58d12ae275b6bb2094b312440ec3`；原字段SHA256：`0aba17313eb2a3543a6ea86b808cc8140e9fb690a5797b822a05d7642c49b344`。
+
+````
+Let me start by searching for "Funeral in Berlin BAFTA Awards" and "Funeral in Berlin director".
+
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "id": "chatcmpl-tool-987e292cd9d923a1",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Funeral in Berlin BAFTA Awards\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-987e292cd9d923a1",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.9693831638433039,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9140721",
+        "score": 18.71140933501034,
+        "snippet": "Straßmann supported the separation of church and state which made him a target to antisemitic attacks of court chaplain Adolf Stoecker in 1883. Straßmann was married to Louise Cohen (1835–1889) from 1862 until his death in 1885. Their daughter Henni Lehmann became a well-known painter. His son Wolf died aged 35. A funeral service for Wolfgang Straßmann was held in Berlin's City Hall, with Rudolf Virchow giving the eulogy. Awards. His portrait in the gallery of presidents of the town council in Berlin's City Hall was destroyed by the Nazis in the 1930s, the Straßmannstrasse in Friedrichshain-Kreuzberg was named in his honor on 4 August 1897 and, after being renamed by the Nazis in 1938, again in 1947. References.",
+        "text_characters": 721,
+        "title": "Wolfgang Straßmann"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8226362",
+        "score": 18.196765292071603,
+        "snippet": "Subsequent conspiracy theories have circled the events ever since, but none of these has progressed beyond a series of tantalising conjectural scenarios. Bodies of the German victims of the accident were subjected to autopsies at the Charité (university hospital) in Berlin. The corpses should have included that of Werner Lamberz, but one of the pathologists involved, Wolfgang Keil, stated in a later interview that it had not been possible to find the remains of Lamberz. Nevertheless, Werner Lamberz received a state funeral and an urn believed to contain his ashes following cremation was placed beside the remains of other privileged East German politicians in the cemetery at Berlin-Lichtenberg. Awards and honours. The list is not exhaustive. Streets were also named after Werner Lamberz, although they tended to be renamed after the East German state became discredited following German reunification in 1990. References.",
+        "text_characters": 930,
+        "title": "Werner Lamberz"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10698025",
+        "score": 17.98544855661527,
+        "snippet": "In addition to directing, writing, and editing this film, Singing Chen also specifically participated in producing the music for the yoga music composer in the movie. Critical reception. In 2007, \"God Man Dog\" participated in the Vancouver International Film Festival and the 12th Busan International Film Festival, where it was selected for the \"New Currents.\" At the 44th The Golden Horse Awards, the film was nominated for \"Best Original Screenplay\" and Singing Chen and Huang Meiqing for \"Best Film Editing\" and \"Best Art Direction,\" respectively. In 2008, the film competed in the official competition section of the Fribourg International Film Festival in Switzerland. It was nominated for the Berlin Film Festival, and was selected for the \"Best Film\" by the Berlin Daily Mirror. In the Asian Film Awards, Jack Kao was nominated for \"Best Actor.\" It received the recognition of the \"E-Changer Award\" at the Fribourg International Film Festival in Switzerland, and was awarded 5,000 Swiss francs. Huang Ming-chuan recalled that once while shooting a funeral procession in Chiayi, the gods on every truck were different. Singing Chen, seeing this scene for the first time, was quite shocked and perhaps it also opened up her creative thinking. References.",
+        "text_characters": 1260,
+        "title": "God Man Dog"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9378393",
+        "score": 17.757444362325867,
+        "snippet": "Austrian opera singer Josef von Manowarda (3 July 1890 in Kraków – 24 December 1942 in Berlin) was an Austrian operatic singer (bass and Heldenbaritone). Life. Manowarda was born in Kraków, the son of the Austrian general Eberhard Manowarda von Jana. He first prepared himself for a diplomatic career in Vienna, but then studied philosophy in Graz. Early on he received violin lessons, in Graz and also speech and singing lessons. In 1911–15 he was engaged in the Graz Opera, in 1915–18 at the Wiener Volksoper, and from 1919 to 1934 at the Wiener Staatsoper. According to the he appeared at the Salzburg Festival. He was professor at the Vienna Music Academy. Manowarda had joined the NSDAP together with his wife before 1933 and remained politically active even after the party ban in 1933 by distributing propaganda material to the staff of the Vienna State Opera and refusing to wear the badge of the Vaterländische Front despite threats of severe punishment. According to his own statements, this caused him political difficulties, which is why he moved to the Berlin State Opera under Clemens Krauss in 1935. Already in 1931 he sang his way to great success at the Bayreuth Festival as the Landgrave in \"Tannhäuser\" under Arturo Toscanini. After his move to Berlin, Manowarda was particularly popular with Adolf Hitler and Joseph Goebbels and used this attention to propose in 1936 to Heinz Tietjen the unification of the Staatstheaters of Berlin and Kassel with the Burgtheater and the Vienna ",
+        "text_characters": 2447,
+        "title": "Josef von Manowarda"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3533709",
+        "score": 17.508208551862143,
+        "snippet": "The first film of this genre was \"Nehir\", in which he shared the role with Cüneyt Arkın. Political films like \"Maden\", \"Sürü\", \"Yol\" and \"Kanal\" followed. He acted in a total of 110 films, and won numerous awards from various festivals including Cannes and Berlin. He won an Honourable Mention at the 35th Berlin International Film Festival for his role in \"Pehlivan\". Later years. He also directed several productions such as documentaries and serials for television. In 2002, he published his first book \"Anne Kafamda Bit Var\", a biography of his life and his time in prison. In 1991, he took over the elementary school in Bakırköy, in which he was educated, and transferred it to his own Özel Taş İlköğretim Okulu. In 2005, he became the chairman of the education-aimed \"Nesin Foundation\", succeeding Ali Nesin, the son of the founder Aziz Nesin. In his later years, he was served as chairman of the \"Nazım Hikmet Cultural and Arts Foundation\". Illness and death. Akan contracted lung cancer, and was in treatment for over one year. In the early hours of 16 September 2016, he died at the age of 66 in the intensive care station of a private hospital in Istanbul. On 18 September, he was interred at Zuhuratbaba Cemetery in Bakırköy following a memorial service held in Harbiye Muhsin Ertuğrul Stage and the religious funeral service at Teşvikiye Mosque. The funeral was attended by thousands of people, his castmates, former President of Turkey Ahmet Necdet Sezer and the leader of the main oppos",
+        "text_characters": 1543,
+        "title": "Tarık Akan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7683912",
+        "score": 16.95611087411191,
+        "snippet": "Kwaku Ananse is a 2013 short film directed by Akosua Adoma Owusu. The short film combines semi-autobiographical elements with the tale of Kwaku Ananse, a trickster in West African and Caribbean stories who appears as both a spider and a man. The fable of Kwaku Ananse is combined with the story of a young outsider named Nyan Koronhwea, who attends her estranged father's funeral. At the funeral, she retreats to the woods in search of her father. The film starred legendary musician Koo Nimo and veteran actress Grace Omaboe. The screenplay was co-written by Pakistani-American filmmaker and entrepreneur Iram Parveen Bilal. The script was written for MaameYaa Boafo, a Pakistani born-Ghanaian actress, who was originally cast in the lead role as Nyan Koronhwea. However, the production team in New York City eventually decided to recast the character during the pre-production stage with Jojo Abot, an emerging Ghanaian artist. Synopsis. Drawing upon the rich mythology of Ghana, this magical short film combines semi-autobiographical elements from Owusu's life with local folklore to tell the story of a young American woman who returns to West Africa for her father's funeral, only to discover his hidden double identity. Kwaku Ananse is a traditional West African fable about a being that is part man and part spider, who spends years collecting all the wisdom of the world in a wooden pot. As he tries to hide the pot in a tree, he can't find a way to place it high up in its branches. When his",
+        "text_characters": 2345,
+        "title": "Kwaku Ananse (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3967608",
+        "score": 16.28387808620022,
+        "snippet": "Armed tensions in Poland provided King Frederick William IV, for whom Knesebeck was still officially acting as primary military adviser, the opportunity to offer him promotion to field marshal on 7 October 1847, a five star rank that could only be bestowed in wartime. Knesebeck also declined this honour, pointing to his advanced age and suggesting it would \"make a mockery of active field marshals\". He instead requested his discharge from the army, which was granted him with a simultaneous promotion to field marshal at the insistence of the king. He died on 12 January 1848 in Berlin. Following a state funeral with an honour guard of nine regiments he was buried in the Alter Garnisonfriedhof. On the church in Neuruppin-Karwe hangs a memorial to Knesebeck, with the inscription: \"Carl Friedrich von dem Knesebeck, born in Carwe 1768, died in Berlin 1848. A Prussian field marshal, he fought for the honour of his King and Country in 17 battles and served to the glory of his fatherland from his 13th year until his death. Peace to his remains, honour to his memory.\" Between 1983 and 1986 the awards received by Knesebeck, held by the German Historical Museum in Berlin, were among the priceless collection stolen and sold on the black market by an employee of the museum. Together with the orders worn by several German kings, emperors, and generals, numerous other unique pieces were taken during the theft. Only a limited number of the items in question have since been recovered, making it",
+        "text_characters": 1569,
+        "title": "Karl Friedrich von dem Knesebeck"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:40030",
+        "score": 15.864899729409752,
+        "snippet": "Truffaut was philosophically opposed to attempts to portray anti-war themes through cinema, famously stating that \"there is no such thing as an anti-war film\" due to the medium's inherent glorification of such subjects, no matter how they are portrayed. Personal life. Truffaut was married to Madeleine Morgenstern from 1957 to 1965, and they had two daughters, Laura (born 1959) and Eva (born 1961). Madeleine was the daughter of Ignace Morgenstern, managing director of one of France's largest film distribution companies, Cocinor, and was largely responsible for securing funding for Truffaut's first films. In 1968, Truffaut was engaged to actress Claude Jade (\"Stolen Kisses\", \"Bed and Board\", \"Love on the Run\"); he and Fanny Ardant (\"The Woman Next Door\", \"Confidentially Yours\") lived together from 1981 to 1984 and had a daughter, Joséphine Truffaut (born 28 September 1983). Truffaut was an atheist, but had great respect for the Catholic Church and requested a Requiem Mass for his funeral. Death. In July 1983, following his first stroke and being diagnosed with a brain tumour, Truffaut rented France Gall's and Michel Berger's house outside Honfleur, Normandy. He was expected to attend his friend Miloš Forman's \"Amadeus\" premiere when he died on 21 October 1984, aged 52, at the American Hospital of Paris in Neuilly-sur-Seine in France. At the time of his death, he was said to have numerous further films in preparation. He is buried in Montmartre Cemetery. Filmography. Feature fil",
+        "text_characters": 1744,
+        "title": "François Truffaut"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2245678",
+        "score": 15.071787210038707,
+        "snippet": "However, Riskin felt that Capra was taking all the credit for their films, including Riskin's share. Riskin came to resent Capra for this. This led to several confrontations with Capra during the production of \"Meet John Doe\". According to an account by Hollywood screenwriter David Rintels (which was denied by Capra), Riskin brandished 120 blank pages in Capra's face and challenged: \"Put the famous Capra touch on \"that\"!\" After completion of just one film, \"Meet John Doe\", the association was dissolved. Riskin never willingly collaborated with Capra again. During the time of his declining health, home confinement, and final residence at the Motion Picture & Television Country Home and Hospital, Riskin was regularly visited by old friends such as Edward G. Robinson, Jack Benny, and Irving Berlin. Long time friend and screenwriting colleague Jo Swerling and his wife remained devoted visitors. Conspicuously absent was Frank Capra, who never visited Riskin during the five years of his illness. Swerling was pained by Capra's behavior, but Riskin refused to disparage Capra. He remained loyal to the man, calling him \"his best friend\". The \"Los Angeles Examiner\" covered Riskin's funeral in September 1955, describing the \"notables\" in attendance. The report also identified the \"one man who wasn’t there\": Frank Capra. In 1961, Capra directed \"A Pocketful of Miracles\", a remake of Capra and Riskin's 1933 collaboration \"Lady for a Day\", with a screenplay by Hal Kanter and Harry Tugend fr",
+        "text_characters": 2381,
+        "title": "Robert Riskin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:916501",
+        "score": 15.043904555022154,
+        "snippet": "Chuikov's advance through Poland was characterized by massive advances across difficult terrain [on several occasions, the 8th Guards Army advanced over in a single day]. On 1 May 1945, Chuikov, who commanded his army operating in central Berlin, was the first Allied officer to learn about Adolf Hitler's suicide, being informed by General Hans Krebs who had come to Chuikov's headquarters under a white flag. Krebs, under orders from Goebbels, sought conditions for surrender more favorable to the Germans, which Chuikov had no authority to grant and so rejected any terms. On 2 May, he accepted the unconditional surrender of Berlin's forces from General Helmuth Weidling who had taken command, with the suicide that morning by Gen. Krebs. Chuikov appeared in the documentary film \"Berlin\" (1945), directed by Yuli Raizman. Later life. After the war, Chuikov continued to command the 8th Guards Army in Germany, later serving as Commander-in-Chief of the Group of Soviet Forces in Germany from 1949 until 1953, when he was made commander of the Kiev Military District. While serving at that post, on 11 March 1955 he was promoted to Marshal of the Soviet Union. From 1960 to 1964, he was the Commander-in-Chief of the Soviet Ground Forces. He also served as the Chief of the Civil Defense from 1961 until his retirement in 1972. From 1961 until his death, he was a member of the Central Committee of the Communist Party of the Soviet Union. In 1969, Chuikov led the Soviet delegation attending the",
+        "text_characters": 1998,
+        "title": "Vasily Chuikov"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-987e292cd9d923a1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:9140721", "title": "Wolfgang Straßmann", "score": 18.71140933501034, "snippet": "Straßmann supported the separation of church and state which made him a target to antisemitic attacks of court chaplain Adolf Stoecker in 1883. Straßmann was married to Louise Cohen (1835–1889) from 1862 until his death in 1885. Their daughter Henni Lehmann became a well-known painter. His son Wolf died aged 35. A funeral service for Wolfgang Straßmann was held in Berlin's City Hall, with Rudolf Virchow giving the eulogy. Awards. His portrait in the gallery of presidents of the town council in Berlin's City Hall was destroyed by the Nazis in the 1930s, the Straßmannstrasse in Friedrichshain-Kreuzberg was named in his honor on 4 August 1897 and, after being renamed by the Nazis in 1938, again in 1947. References.", "text_characters": 721, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8226362", "title": "Werner Lamberz", "score": 18.196765292071603, "snippet": "Subsequent conspiracy theories have circled the events ever since, but none of these has progressed beyond a series of tantalising conjectural scenarios. Bodies of the German victims of the accident were subjected to autopsies at the Charité (university hospital) in Berlin. The corpses should have included that of Werner Lamberz, but one of the pathologists involved, Wolfgang Keil, stated in a later interview that it had not been possible to find the remains of Lamberz. Nevertheless, Werner Lamberz received a state funeral and an urn believed to contain his ashes following cremation was placed beside the remains of other privileged East German politicians in the cemetery at Berlin-Lichtenberg. Awards and honours. The list is not exhaustive. Streets were also named after Werner Lamberz, although they tended to be renamed after the East German state became discredited following German reunification in 1990. References.", "text_characters": 930, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10698025", "title": "God Man Dog", "score": 17.98544855661527, "snippet": "In addition to directing, writing, and editing this film, Singing Chen also specifically participated in producing the music for the yoga music composer in the movie. Critical reception. In 2007, \"God Man Dog\" participated in the Vancouver International Film Festival and the 12th Busan International Film Festival, where it was selected for the \"New Currents.\" At the 44th The Golden Horse Awards, the film was nominated for \"Best Original Screenplay\" and Singing Chen and Huang Meiqing for \"Best Film Editing\" and \"Best Art Direction,\" respectively. In 2008, the film competed in the official competition section of the Fribourg International Film Festival in Switzerland. It was nominated for the Berlin Film Festival, and was selected for the \"Best Film\" by the Berlin Daily Mirror. In the Asian Film Awards, Jack Kao was nominated for \"Best Actor.\" It received the recognition of the \"E-Changer Award\" at the Fribourg International Film Festival in Switzerland, and was awarded 5,000 Swiss francs. Huang Ming-chuan recalled that once while shooting a funeral procession in Chiayi, the gods on every truck were different. Singing Chen, seeing this scene for the first time, was quite shocked and perhaps it also opened up her creative thinking. References.", "text_characters": 1260, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9378393", "title": "Josef von Manowarda", "score": 17.757444362325867, "snippet": "Austrian opera singer Josef von Manowarda (3 July 1890 in Kraków – 24 December 1942 in Berlin) was an Austrian operatic singer (bass and Heldenbaritone). Life. Manowarda was born in Kraków, the son of the Austrian general Eberhard Manowarda von Jana. He first prepared himself for a diplomatic career in Vienna, but then studied philosophy in Graz. Early on he received violin lessons, in Graz and also speech and singing lessons. In 1911–15 he was engaged in the Graz Opera, in 1915–18 at the Wiener Volksoper, and from 1919 to 1934 at the Wiener Staatsoper. According to the he appeared at the Salzburg Festival. He was professor at the Vienna Music Academy. Manowarda had joined the NSDAP together with his wife before 1933 and remained politically active even after the party ban in 1933 by distributing propaganda material to the staff of the Vienna State Opera and refusing to wear the badge of the Vaterländische Front despite threats of severe punishment. According to his own statements, this caused him political difficulties, which is why he moved to the Berlin State Opera under Clemens Krauss in 1935. Already in 1931 he sang his way to great success at the Bayreuth Festival as the Landgrave in \"Tannhäuser\" under Arturo Toscanini. After his move to Berlin, Manowarda was particularly popular with Adolf Hitler and Joseph Goebbels and used this attention to propose in 1936 to Heinz Tietjen the unification of the Staatstheaters of Berlin and Kassel with the Burgtheater and the Vienna ", "text_characters": 2447, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3533709", "title": "Tarık Akan", "score": 17.508208551862143, "snippet": "The first film of this genre was \"Nehir\", in which he shared the role with Cüneyt Arkın. Political films like \"Maden\", \"Sürü\", \"Yol\" and \"Kanal\" followed. He acted in a total of 110 films, and won numerous awards from various festivals including Cannes and Berlin. He won an Honourable Mention at the 35th Berlin International Film Festival for his role in \"Pehlivan\". Later years. He also directed several productions such as documentaries and serials for television. In 2002, he published his first book \"Anne Kafamda Bit Var\", a biography of his life and his time in prison. In 1991, he took over the elementary school in Bakırköy, in which he was educated, and transferred it to his own Özel Taş İlköğretim Okulu. In 2005, he became the chairman of the education-aimed \"Nesin Foundation\", succeeding Ali Nesin, the son of the founder Aziz Nesin. In his later years, he was served as chairman of the \"Nazım Hikmet Cultural and Arts Foundation\". Illness and death. Akan contracted lung cancer, and was in treatment for over one year. In the early hours of 16 September 2016, he died at the age of 66 in the intensive care station of a private hospital in Istanbul. On 18 September, he was interred at Zuhuratbaba Cemetery in Bakırköy following a memorial service held in Harbiye Muhsin Ertuğrul Stage and the religious funeral service at Teşvikiye Mosque. The funeral was attended by thousands of people, his castmates, former President of Turkey Ahmet Necdet Sezer and the leader of the main oppos", "text_characters": 1543, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7683912", "title": "Kwaku Ananse (film)", "score": 16.95611087411191, "snippet": "Kwaku Ananse is a 2013 short film directed by Akosua Adoma Owusu. The short film combines semi-autobiographical elements with the tale of Kwaku Ananse, a trickster in West African and Caribbean stories who appears as both a spider and a man. The fable of Kwaku Ananse is combined with the story of a young outsider named Nyan Koronhwea, who attends her estranged father's funeral. At the funeral, she retreats to the woods in search of her father. The film starred legendary musician Koo Nimo and veteran actress Grace Omaboe. The screenplay was co-written by Pakistani-American filmmaker and entrepreneur Iram Parveen Bilal. The script was written for MaameYaa Boafo, a Pakistani born-Ghanaian actress, who was originally cast in the lead role as Nyan Koronhwea. However, the production team in New York City eventually decided to recast the character during the pre-production stage with Jojo Abot, an emerging Ghanaian artist. Synopsis. Drawing upon the rich mythology of Ghana, this magical short film combines semi-autobiographical elements from Owusu's life with local folklore to tell the story of a young American woman who returns to West Africa for her father's funeral, only to discover his hidden double identity. Kwaku Ananse is a traditional West African fable about a being that is part man and part spider, who spends years collecting all the wisdom of the world in a wooden pot. As he tries to hide the pot in a tree, he can't find a way to place it high up in its branches. When his", "text_characters": 2345, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3967608", "title": "Karl Friedrich von dem Knesebeck", "score": 16.28387808620022, "snippet": "Armed tensions in Poland provided King Frederick William IV, for whom Knesebeck was still officially acting as primary military adviser, the opportunity to offer him promotion to field marshal on 7 October 1847, a five star rank that could only be bestowed in wartime. Knesebeck also declined this honour, pointing to his advanced age and suggesting it would \"make a mockery of active field marshals\". He instead requested his discharge from the army, which was granted him with a simultaneous promotion to field marshal at the insistence of the king. He died on 12 January 1848 in Berlin. Following a state funeral with an honour guard of nine regiments he was buried in the Alter Garnisonfriedhof. On the church in Neuruppin-Karwe hangs a memorial to Knesebeck, with the inscription: \"Carl Friedrich von dem Knesebeck, born in Carwe 1768, died in Berlin 1848. A Prussian field marshal, he fought for the honour of his King and Country in 17 battles and served to the glory of his fatherland from his 13th year until his death. Peace to his remains, honour to his memory.\" Between 1983 and 1986 the awards received by Knesebeck, held by the German Historical Museum in Berlin, were among the priceless collection stolen and sold on the black market by an employee of the museum. Together with the orders worn by several German kings, emperors, and generals, numerous other unique pieces were taken during the theft. Only a limited number of the items in question have since been recovered, making it", "text_characters": 1569, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:40030", "title": "François Truffaut", "score": 15.864899729409752, "snippet": "Truffaut was philosophically opposed to attempts to portray anti-war themes through cinema, famously stating that \"there is no such thing as an anti-war film\" due to the medium's inherent glorification of such subjects, no matter how they are portrayed. Personal life. Truffaut was married to Madeleine Morgenstern from 1957 to 1965, and they had two daughters, Laura (born 1959) and Eva (born 1961). Madeleine was the daughter of Ignace Morgenstern, managing director of one of France's largest film distribution companies, Cocinor, and was largely responsible for securing funding for Truffaut's first films. In 1968, Truffaut was engaged to actress Claude Jade (\"Stolen Kisses\", \"Bed and Board\", \"Love on the Run\"); he and Fanny Ardant (\"The Woman Next Door\", \"Confidentially Yours\") lived together from 1981 to 1984 and had a daughter, Joséphine Truffaut (born 28 September 1983). Truffaut was an atheist, but had great respect for the Catholic Church and requested a Requiem Mass for his funeral. Death. In July 1983, following his first stroke and being diagnosed with a brain tumour, Truffaut rented France Gall's and Michel Berger's house outside Honfleur, Normandy. He was expected to attend his friend Miloš Forman's \"Amadeus\" premiere when he died on 21 October 1984, aged 52, at the American Hospital of Paris in Neuilly-sur-Seine in France. At the time of his death, he was said to have numerous further films in preparation. He is buried in Montmartre Cemetery. Filmography. Feature fil", "text_characters": 1744, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2245678", "title": "Robert Riskin", "score": 15.071787210038707, "snippet": "However, Riskin felt that Capra was taking all the credit for their films, including Riskin's share. Riskin came to resent Capra for this. This led to several confrontations with Capra during the production of \"Meet John Doe\". According to an account by Hollywood screenwriter David Rintels (which was denied by Capra), Riskin brandished 120 blank pages in Capra's face and challenged: \"Put the famous Capra touch on \"that\"!\" After completion of just one film, \"Meet John Doe\", the association was dissolved. Riskin never willingly collaborated with Capra again. During the time of his declining health, home confinement, and final residence at the Motion Picture & Television Country Home and Hospital, Riskin was regularly visited by old friends such as Edward G. Robinson, Jack Benny, and Irving Berlin. Long time friend and screenwriting colleague Jo Swerling and his wife remained devoted visitors. Conspicuously absent was Frank Capra, who never visited Riskin during the five years of his illness. Swerling was pained by Capra's behavior, but Riskin refused to disparage Capra. He remained loyal to the man, calling him \"his best friend\". The \"Los Angeles Examiner\" covered Riskin's funeral in September 1955, describing the \"notables\" in attendance. The report also identified the \"one man who wasn’t there\": Frank Capra. In 1961, Capra directed \"A Pocketful of Miracles\", a remake of Capra and Riskin's 1933 collaboration \"Lady for a Day\", with a screenplay by Hal Kanter and Harry Tugend fr", "text_characters": 2381, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:916501", "title": "Vasily Chuikov", "score": 15.043904555022154, "snippet": "Chuikov's advance through Poland was characterized by massive advances across difficult terrain [on several occasions, the 8th Guards Army advanced over in a single day]. On 1 May 1945, Chuikov, who commanded his army operating in central Berlin, was the first Allied officer to learn about Adolf Hitler's suicide, being informed by General Hans Krebs who had come to Chuikov's headquarters under a white flag. Krebs, under orders from Goebbels, sought conditions for surrender more favorable to the Germans, which Chuikov had no authority to grant and so rejected any terms. On 2 May, he accepted the unconditional surrender of Berlin's forces from General Helmuth Weidling who had taken command, with the suicide that morning by Gen. Krebs. Chuikov appeared in the documentary film \"Berlin\" (1945), directed by Yuli Raizman. Later life. After the war, Chuikov continued to command the 8th Guards Army in Germany, later serving as Commander-in-Chief of the Group of Soviet Forces in Germany from 1949 until 1953, when he was made commander of the Kiev Military District. While serving at that post, on 11 March 1955 he was promoted to Marshal of the Soviet Union. From 1960 to 1964, he was the Commander-in-Chief of the Soviet Ground Forces. He also served as the Chief of the Civil Defense from 1961 until his retirement in 1972. From 1961 until his death, he was a member of the Central Committee of the Communist Party of the Soviet Union. In 1969, Chuikov led the Soviet delegation attending the", "text_characters": 1998, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R006_request.json/messages/11/content`；SHA256：`08cc01efd6fc7f1eda7c64bd6be41ea1d1e33d641fa8eed94b80736e121dfc5d`。
+
+### R5 Call `/rounds/4/tool_calls/1` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin director"
+  },
+  "id": "chatcmpl-tool-8f4419e50d6d63fb",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Funeral in Berlin director\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-8f4419e50d6d63fb",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin director"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 2,
+  "event_id": "E006",
+  "latency_seconds": 0.9367124331183732,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9896391",
+        "score": 18.853463592687987,
+        "snippet": "German composer Karl Bernhard Wessely, also \"Carl Bernhard Wessely\" (Berlin 1 September 1768 – Potsdam 11 July 1826), was a German composer. He was born to a Jewish family in Berlin associated with intellectual circles, both Jewish and Christian: his father was Naphtali Hirz Wessely. Wessely was conductor and Hofkapellmeister of Prince Henry of Prussia in Rheinsberg. He composed, among other pieces, a cantata mourning of the death of Moses Mendelssohn, (\"Sulamith und Eusebia \", 1786). Life. Born in Berlin, Wessely was a student of J. A. Schulz. He became music director at the Royal National Theater in Berlin in 1788, and became court music director in Rheinsberg in 1796. After the prince's death in 1802 he largely gave up his musical career and became a low-ranking civil servant in Berlin and later in Potsdam, where he founded a club for classical music, which he headed until his death. He was a member of the Berlin Freemason's Lodge \"Friedrich Wilhelm zur gekrönten Gerechtigkeit\". Wessely composed several operas, ballet and incidental music for the theatre, Lieder, funeral cantatas and string quartets. He was also active as a musicological writer and supplied journal articles, especially for the \"Archiv der Zeit\" and the \"Allgemeine musikalische Zeitung\". Wessely died in Potsdam at the age of 57. References.",
+        "text_characters": 1330,
+        "title": "Karl Bernhard Wessely"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3358248",
+        "score": 18.023739123292557,
+        "snippet": "When Palmer informs Colonel Ross about the Broum documents, he is told that towards the end of the war, Broum murdered a resistance fighter called Johnny Vulkan at a concentration camp and assumed his identity. Ross got hold of the documents and used them to blackmail Broum into working for him. He now orders Palmer to kill Broum, but Palmer allows him to get away instead. Palmer later meets Stok, who is in West Berlin for a routine meeting with his Western counterparts. The Russian confirms that his supposed defection was just a trap to get rid of Kreutzman. He even jokes that if Palmer ever wishes to defect to the East, he should ask Vulkan, who \"knows the way\". Meanwhile, the supposed Vulkan goes to Samantha's flat, murders an Israeli agent, and gets the documents back; Palmer is blamed for this. Broum meets with Hallam, who realises Palmer had substituted forgeries for the documents. Hallam goes to Palmer, claiming he was sent by Ross to get the real documents back. Palmer forces him to admit that he is in league with Broum to get them out of London and that they now intend to use them in order to claim the Nazi loot that Broum deposited in a Swiss bank. Palmer makes Hallam go with him to a quiet part of the Berlin Wall through which Broum and Hallam intend to slip into the East, but Broum kills Hallam and is subsequently mistaken for Palmer and killed by Israeli agents. Palmer then gives the Israelis the documents. Back in London, Ross is satisfied that the dead \"Vulkan\"",
+        "text_characters": 2190,
+        "title": "Funeral in Berlin (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9905485",
+        "score": 17.805844915692344,
+        "snippet": "With great participation of representatives of Berlin and foreign theatre life as well as the local population, the coffin was then led to the Friedhöfe vor dem Halleschen Tor in front of the Hallesches Tor, where the funeral took place, near the last resting place of its patron Theodor Döring, who had died eight years earlier. The eulogy at the grave was delivered by Arthur Deetz, director of the Königliches Schauspielhaus. The preserved grave site is marked by a plate with inscription and ornaments. References.",
+        "text_characters": 518,
+        "title": "Minona Frieb-Blumauer"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2645383",
+        "score": 17.12578684514903,
+        "snippet": "Italian film director, screenwriter and critic Carlo Lizzani (3 April 1922 – 5 October 2013) was an Italian film director, screenwriter and critic. Biography. Born in Rome, before World War II Lizzani worked as a scenarist on such films as Roberto Rossellini's \"Germany Year Zero\", Alberto Lattuada's \"The Mill on the Po\" (both 1948), and Giuseppe De Santis' \"Bitter Rice\" (1949), for which he received an Academy Award nomination for Best Original Story. After directing documentaries, he debuted as a feature director with the admired World War II drama \"Achtung! Banditi!\" (1951). Respected for his awarded drama \"Chronicle of Poor Lovers\" (1954), he has proven a solid director of genre films, notably crime films such as \"The Violent Four\" (1968) and \"Crazy Joe\" (1974) or crime-comedy \"Roma Bene\" (1971). His film \"L'oro di Roma\" (1961) examined events around the final deportation of the Jews of Rome and the Roman roundup, \"grande razzia\", of October 1943. For his 1968 film \"Bandits in Milan,\" he won a David di Donatello award as best director and a Nastro d'Argento award for best screenplay. Lizzani worked frequently for Italian television in the 1980s and supervised the Venice International Film Festival for four editions, from 1979 to 1982. In 1994 Lizzani was a member of the jury at the Berlin Film Festival. For his 1996 film \"Celluloide\", which deals with the making of \"Rome, Open City\", he received another David di Donatello award for his screenplay. While preparing for the f",
+        "text_characters": 2418,
+        "title": "Carlo Lizzani"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6994799",
+        "score": 16.617277642786483,
+        "snippet": "It is a minute longer than most of his marches, which typically time out at two minutes. Another fanfare march, “Siegesfanfare”, was composed in 1940 in the euphoria of victory but was renamed \"Europafanfare\" after the war. Other marches he composed for the Luftwaffe included “Kampfgeschwader Immelmann” (1938), \"Kampfgeschwader Hindenburg\" (1938? ), and “Fliegergeschwader Horst Wessel” (1939), de-nazified as well as made more commercially suitable by being renamed “Silberkondor” after the war). In the first iteration of the final section of this march Husadel released a full saxophone sound that must have surprised audiences of his time. The \"Peronne-Marsch\" was another war-time march which may have been a reminiscence of Husadel's own career in World War I, Péronne, Somme being the scene of major battles. The march includes a typically jaunty introduction followed by a powerful conclusion. \"Schwert am Himmel\" (Sword in the Sky, 1940) may represent Husadel's most modern sounding Luftwaffe march. Husadel's marches were un-Germanic sounding – unconventional, jaunty, and vibrant and more reminiscent of the compositions of Louis Ganne and John Philip Sousa. Husadel incorporated new harmonies, transparent instrumentation, and engaging melodies in his marches. Husadel organized the music of the Luftwaffe into a publication (mentioned above) titled \"Märsche der Luftwaffe\", Verlag Arthur Parrhysius, Berlin - \"Marches of the Air Force\" to correspond with the longstanding Armeemarschsa",
+        "text_characters": 2709,
+        "title": "Hans Felix Husadel"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1415051",
+        "score": 16.198073565803462,
+        "snippet": "\"The New York Times\" called it \"a strikingly effective thriller\". In January 1966 Caine announced he had signed with Saltzman to make 11 films in five years, with three of the films to be Harry Palmer stories by Len Deighton: \"Funeral in Berlin\", \"Billion Dollar Brain\" and a fourth, mostly likely \"Horse Under Water\". Russell as director. Ken Russell was a highly regarded television director who had made one unsuccessful feature. Caine narrated a series of Russell's films and became friendly with the director; he recommended him to Saltzman for \"Billion Dollar Brain\". Caine later said this was a mistake, although Russell was \"an emotional genius. \"Billion Dollar Brain\" is a highly complicated thriller which needs a draftsman. The last thing you need is an emotional genius.\" Russell wanted to make a film about Nijinsky with Rudolph Nureyev and Saltzman was interested. He suggested Russell make \"Billion Dollar Brain\" to \"keep his hand in.\" \"We never quite realised we had a lunatic genius on our hands,\" said Caine in 1976. \"He was the least ideal man to do a thriller. What he has is this passion to make thundering great messes.\" In January 1967, it was announced Russell would direct from a script by John McGrath, with Oscar Homolka reprising his role from \"Funeral in Berlin\". Shooting. Principal photography took place from 30 January to the end of May 1967. Approximately five weeks later, on 26 June, Françoise Dorléac was killed in an automobile accident in Nice, France. It is un",
+        "text_characters": 2529,
+        "title": "Billion Dollar Brain"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5541330",
+        "score": 15.983887598048746,
+        "snippet": "Zeki Ökten (4 August 1941 – 19 December 2009) was a Turkish film director. Biography. He was born on 4 August 1941 in Istanbul. Zeki Ökten was interested in theatre during his education at the Haydarpaşa High School. He entered his filmmaking career in 1961 as the assistant director of Nişan Hançer directing \"Acı Zeytin\". Zeki Ökten directed his first film \"Ölüm Pazarı\" two years later in 1963. However, he stepped back to the post of assistant director as the success expected did not come. He worked then nine years long as the assistant to the renowned directors like Ömer Lütfi Akad, Halit Refiğ, Memduh Ün and Atıf Yılmaz. With his films \"Kadın Yapar\" in 1972 and with \"Bir Demet Menekşe\" in 1973, written by Selim İleri, he gained recognition. He was honored at the Golden Orange Film Festival in 1977 for directing the film Kapıcılar Kralı. Real success came with the films \"Sürü\" (1978) and \"Düşman\" (1979), both written by Yılmaz Güney. \"Düşman\" won an Honourable Mention at the 30th Berlin International Film Festival in 1980. The film \"Sürü\" received nine more international awards, following the honors at the festivals in Locarno 1979 and at Antwerp in 1980. Zeki Ökten received his second Golden Orange award in 1983 for directing the film \"Faize Hücum\". His 1984 film \"Pehlivan\" won an Honourable Mention at the 35th Berlin International Film Festival. The themes of his films were social problems featured in comedy. Zeki Ökten died on 19 December 2009, following heart surgery for",
+        "text_characters": 1823,
+        "title": "Zeki Ökten"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4871253",
+        "score": 15.910424143551449,
+        "snippet": "The club were relegated at the end of the season, and Patschinski had managed a rather curious feat: in five seasons his clubs had been relegated four times. Patschinski would describe his move to Ahlen as a mistake he \"would never make again\". During his spell at Ahlen the football magazine \"RUND\" discovered that Patschinski's grandparents were Polish and he would be eligible to play for the Poland national team. However, the interest cooled off as the Polish manager had already selected his team of the 2006 FIFA World Cup. Even though the PZPN president had signaled interest for matches after the World Cup, Patschinski did not hear anything from them again. 2006 bis 2009: Return to Berlin. At the start of the 2006–07 season, Patschinski returned to the club of his youth, Union Berlin. His team had a mixed season, alternating between promotion hope and relegation fight. In the end, Union Berlin saved themselves from relegation and Patschinski scored a Goal of the Week against his former club FC St. Pauli. Patschinski admitted that he had meant to cross the ball. In the following season Patschinski and Union Berlin qualified for the newly created 3. Liga. Citing a lack of trust, Union dissolved the player's contract on 4 March 2009. Return to BFC. On 28 July 2009, Patschinski joined BFC Dynamo. Personal life. Patschinski has three children. He and Mariana Kautz were married in December 2006. Their relationship ended in winter 2009. By the end of his footballing career, Patsch",
+        "text_characters": 1720,
+        "title": "Nico Patschinski"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1793409",
+        "score": 15.889197411252416,
+        "snippet": "The award was in recognition of Honecker's untiring support of the national campaign against illiteracy in the 1980s. This honor was Honecker's first public appearance since the fall of the Berlin Wall. Honecker was reported to have said she was grateful for the honor, but said nothing publicly. The left-wing heads of state of Paraguay and Venezuela, Fernando Lugo and Hugo Chávez, also took part in the celebrations in Managua. To the day she died, Honecker continued to defend the old East Germany and identified herself as a hardline Communist. In October 2009, Honecker celebrated the 60th anniversary of the founding of the GDR with former Chilean exiles who had sought asylum in East Germany. She participated in singing a patriotic East German song and gave a short speech in which she stated that East Germans \"had a good life in the GDR\" and that many felt that capitalism has made their lives worse. In 2011, author Frank Schuhmann published a book entitled \"Letzte Aufzeichnungen – Für Margot\" (\"Final Notes – For Margot\" in English) based on the 400-page diary kept by Erich Honecker during his stay in Berlin's Moabit prison beginning in July 1992. The diary was given to the author by Margot Honecker. On 2 April 2012, Honecker gave an interview during which she defended the GDR, attacked those who helped to \"destroy\" it, and complained about her pension. She felt that there was no need for people to climb over the Berlin Wall and lose their lives. She suggested that the GDR was ",
+        "text_characters": 2628,
+        "title": "Margot Honecker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:159247",
+        "score": 15.836700446677106,
+        "snippet": "In printmaking, he is credited with the invention of the deliberate \"remarque\", a small sketch on a plate lying outside the main image. These were originally little sketches or doodles by artists, not really meant to be seen, but Chodowiecki turned them into \"bonus items\" for collectors. Chodowiecki, though speaking only French and German (due to his offices in the Huguenot French community in Berlin he often spoke French), many times also declared his Polish allegiance and had his son Isaac Heinrich, born in Berlin, painted as a very young child with a Polish outfit and haircut. After the Partitions of Poland Chodowiecki wrote to Gräfin Solms-Laubach: \"From my father's side I am Polish, a descendant of a brave nation which will soon vanish\". In a letter to , a Polish astronomer, he wrote: \"I consider it an honour to be a genuine Pole, even though I am now living in Germany\". Because of his mother's and his wife's Huguenot descent he was very close to the Huguenots of Berlin. Nearly all his life and career was spent in Germany, writing in German and living in Berlin from the age of almost 17. Chodowiecki depicted on a 1 million papiermark note (1923) One of his most popular books is the \"Journey from Berlin to Danzig\" (, 1773) with many illustrations. He purchased a horse rather than going by stage coach. This was his first return after 30 years absence and he went specifically to see his elderly mother and sisters in Danzig again. He made only one more trip to Danzig afterwa",
+        "text_characters": 2007,
+        "title": "Daniel Chodowiecki"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-8f4419e50d6d63fb"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:9896391", "title": "Karl Bernhard Wessely", "score": 18.853463592687987, "snippet": "German composer Karl Bernhard Wessely, also \"Carl Bernhard Wessely\" (Berlin 1 September 1768 – Potsdam 11 July 1826), was a German composer. He was born to a Jewish family in Berlin associated with intellectual circles, both Jewish and Christian: his father was Naphtali Hirz Wessely. Wessely was conductor and Hofkapellmeister of Prince Henry of Prussia in Rheinsberg. He composed, among other pieces, a cantata mourning of the death of Moses Mendelssohn, (\"Sulamith und Eusebia \", 1786). Life. Born in Berlin, Wessely was a student of J. A. Schulz. He became music director at the Royal National Theater in Berlin in 1788, and became court music director in Rheinsberg in 1796. After the prince's death in 1802 he largely gave up his musical career and became a low-ranking civil servant in Berlin and later in Potsdam, where he founded a club for classical music, which he headed until his death. He was a member of the Berlin Freemason's Lodge \"Friedrich Wilhelm zur gekrönten Gerechtigkeit\". Wessely composed several operas, ballet and incidental music for the theatre, Lieder, funeral cantatas and string quartets. He was also active as a musicological writer and supplied journal articles, especially for the \"Archiv der Zeit\" and the \"Allgemeine musikalische Zeitung\". Wessely died in Potsdam at the age of 57. References.", "text_characters": 1330, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3358248", "title": "Funeral in Berlin (film)", "score": 18.023739123292557, "snippet": "When Palmer informs Colonel Ross about the Broum documents, he is told that towards the end of the war, Broum murdered a resistance fighter called Johnny Vulkan at a concentration camp and assumed his identity. Ross got hold of the documents and used them to blackmail Broum into working for him. He now orders Palmer to kill Broum, but Palmer allows him to get away instead. Palmer later meets Stok, who is in West Berlin for a routine meeting with his Western counterparts. The Russian confirms that his supposed defection was just a trap to get rid of Kreutzman. He even jokes that if Palmer ever wishes to defect to the East, he should ask Vulkan, who \"knows the way\". Meanwhile, the supposed Vulkan goes to Samantha's flat, murders an Israeli agent, and gets the documents back; Palmer is blamed for this. Broum meets with Hallam, who realises Palmer had substituted forgeries for the documents. Hallam goes to Palmer, claiming he was sent by Ross to get the real documents back. Palmer forces him to admit that he is in league with Broum to get them out of London and that they now intend to use them in order to claim the Nazi loot that Broum deposited in a Swiss bank. Palmer makes Hallam go with him to a quiet part of the Berlin Wall through which Broum and Hallam intend to slip into the East, but Broum kills Hallam and is subsequently mistaken for Palmer and killed by Israeli agents. Palmer then gives the Israelis the documents. Back in London, Ross is satisfied that the dead \"Vulkan\"", "text_characters": 2190, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9905485", "title": "Minona Frieb-Blumauer", "score": 17.805844915692344, "snippet": "With great participation of representatives of Berlin and foreign theatre life as well as the local population, the coffin was then led to the Friedhöfe vor dem Halleschen Tor in front of the Hallesches Tor, where the funeral took place, near the last resting place of its patron Theodor Döring, who had died eight years earlier. The eulogy at the grave was delivered by Arthur Deetz, director of the Königliches Schauspielhaus. The preserved grave site is marked by a plate with inscription and ornaments. References.", "text_characters": 518, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2645383", "title": "Carlo Lizzani", "score": 17.12578684514903, "snippet": "Italian film director, screenwriter and critic Carlo Lizzani (3 April 1922 – 5 October 2013) was an Italian film director, screenwriter and critic. Biography. Born in Rome, before World War II Lizzani worked as a scenarist on such films as Roberto Rossellini's \"Germany Year Zero\", Alberto Lattuada's \"The Mill on the Po\" (both 1948), and Giuseppe De Santis' \"Bitter Rice\" (1949), for which he received an Academy Award nomination for Best Original Story. After directing documentaries, he debuted as a feature director with the admired World War II drama \"Achtung! Banditi!\" (1951). Respected for his awarded drama \"Chronicle of Poor Lovers\" (1954), he has proven a solid director of genre films, notably crime films such as \"The Violent Four\" (1968) and \"Crazy Joe\" (1974) or crime-comedy \"Roma Bene\" (1971). His film \"L'oro di Roma\" (1961) examined events around the final deportation of the Jews of Rome and the Roman roundup, \"grande razzia\", of October 1943. For his 1968 film \"Bandits in Milan,\" he won a David di Donatello award as best director and a Nastro d'Argento award for best screenplay. Lizzani worked frequently for Italian television in the 1980s and supervised the Venice International Film Festival for four editions, from 1979 to 1982. In 1994 Lizzani was a member of the jury at the Berlin Film Festival. For his 1996 film \"Celluloide\", which deals with the making of \"Rome, Open City\", he received another David di Donatello award for his screenplay. While preparing for the f", "text_characters": 2418, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6994799", "title": "Hans Felix Husadel", "score": 16.617277642786483, "snippet": "It is a minute longer than most of his marches, which typically time out at two minutes. Another fanfare march, “Siegesfanfare”, was composed in 1940 in the euphoria of victory but was renamed \"Europafanfare\" after the war. Other marches he composed for the Luftwaffe included “Kampfgeschwader Immelmann” (1938), \"Kampfgeschwader Hindenburg\" (1938? ), and “Fliegergeschwader Horst Wessel” (1939), de-nazified as well as made more commercially suitable by being renamed “Silberkondor” after the war). In the first iteration of the final section of this march Husadel released a full saxophone sound that must have surprised audiences of his time. The \"Peronne-Marsch\" was another war-time march which may have been a reminiscence of Husadel's own career in World War I, Péronne, Somme being the scene of major battles. The march includes a typically jaunty introduction followed by a powerful conclusion. \"Schwert am Himmel\" (Sword in the Sky, 1940) may represent Husadel's most modern sounding Luftwaffe march. Husadel's marches were un-Germanic sounding – unconventional, jaunty, and vibrant and more reminiscent of the compositions of Louis Ganne and John Philip Sousa. Husadel incorporated new harmonies, transparent instrumentation, and engaging melodies in his marches. Husadel organized the music of the Luftwaffe into a publication (mentioned above) titled \"Märsche der Luftwaffe\", Verlag Arthur Parrhysius, Berlin - \"Marches of the Air Force\" to correspond with the longstanding Armeemarschsa", "text_characters": 2709, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1415051", "title": "Billion Dollar Brain", "score": 16.198073565803462, "snippet": "\"The New York Times\" called it \"a strikingly effective thriller\". In January 1966 Caine announced he had signed with Saltzman to make 11 films in five years, with three of the films to be Harry Palmer stories by Len Deighton: \"Funeral in Berlin\", \"Billion Dollar Brain\" and a fourth, mostly likely \"Horse Under Water\". Russell as director. Ken Russell was a highly regarded television director who had made one unsuccessful feature. Caine narrated a series of Russell's films and became friendly with the director; he recommended him to Saltzman for \"Billion Dollar Brain\". Caine later said this was a mistake, although Russell was \"an emotional genius. \"Billion Dollar Brain\" is a highly complicated thriller which needs a draftsman. The last thing you need is an emotional genius.\" Russell wanted to make a film about Nijinsky with Rudolph Nureyev and Saltzman was interested. He suggested Russell make \"Billion Dollar Brain\" to \"keep his hand in.\" \"We never quite realised we had a lunatic genius on our hands,\" said Caine in 1976. \"He was the least ideal man to do a thriller. What he has is this passion to make thundering great messes.\" In January 1967, it was announced Russell would direct from a script by John McGrath, with Oscar Homolka reprising his role from \"Funeral in Berlin\". Shooting. Principal photography took place from 30 January to the end of May 1967. Approximately five weeks later, on 26 June, Françoise Dorléac was killed in an automobile accident in Nice, France. It is un", "text_characters": 2529, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5541330", "title": "Zeki Ökten", "score": 15.983887598048746, "snippet": "Zeki Ökten (4 August 1941 – 19 December 2009) was a Turkish film director. Biography. He was born on 4 August 1941 in Istanbul. Zeki Ökten was interested in theatre during his education at the Haydarpaşa High School. He entered his filmmaking career in 1961 as the assistant director of Nişan Hançer directing \"Acı Zeytin\". Zeki Ökten directed his first film \"Ölüm Pazarı\" two years later in 1963. However, he stepped back to the post of assistant director as the success expected did not come. He worked then nine years long as the assistant to the renowned directors like Ömer Lütfi Akad, Halit Refiğ, Memduh Ün and Atıf Yılmaz. With his films \"Kadın Yapar\" in 1972 and with \"Bir Demet Menekşe\" in 1973, written by Selim İleri, he gained recognition. He was honored at the Golden Orange Film Festival in 1977 for directing the film Kapıcılar Kralı. Real success came with the films \"Sürü\" (1978) and \"Düşman\" (1979), both written by Yılmaz Güney. \"Düşman\" won an Honourable Mention at the 30th Berlin International Film Festival in 1980. The film \"Sürü\" received nine more international awards, following the honors at the festivals in Locarno 1979 and at Antwerp in 1980. Zeki Ökten received his second Golden Orange award in 1983 for directing the film \"Faize Hücum\". His 1984 film \"Pehlivan\" won an Honourable Mention at the 35th Berlin International Film Festival. The themes of his films were social problems featured in comedy. Zeki Ökten died on 19 December 2009, following heart surgery for", "text_characters": 1823, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4871253", "title": "Nico Patschinski", "score": 15.910424143551449, "snippet": "The club were relegated at the end of the season, and Patschinski had managed a rather curious feat: in five seasons his clubs had been relegated four times. Patschinski would describe his move to Ahlen as a mistake he \"would never make again\". During his spell at Ahlen the football magazine \"RUND\" discovered that Patschinski's grandparents were Polish and he would be eligible to play for the Poland national team. However, the interest cooled off as the Polish manager had already selected his team of the 2006 FIFA World Cup. Even though the PZPN president had signaled interest for matches after the World Cup, Patschinski did not hear anything from them again. 2006 bis 2009: Return to Berlin. At the start of the 2006–07 season, Patschinski returned to the club of his youth, Union Berlin. His team had a mixed season, alternating between promotion hope and relegation fight. In the end, Union Berlin saved themselves from relegation and Patschinski scored a Goal of the Week against his former club FC St. Pauli. Patschinski admitted that he had meant to cross the ball. In the following season Patschinski and Union Berlin qualified for the newly created 3. Liga. Citing a lack of trust, Union dissolved the player's contract on 4 March 2009. Return to BFC. On 28 July 2009, Patschinski joined BFC Dynamo. Personal life. Patschinski has three children. He and Mariana Kautz were married in December 2006. Their relationship ended in winter 2009. By the end of his footballing career, Patsch", "text_characters": 1720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1793409", "title": "Margot Honecker", "score": 15.889197411252416, "snippet": "The award was in recognition of Honecker's untiring support of the national campaign against illiteracy in the 1980s. This honor was Honecker's first public appearance since the fall of the Berlin Wall. Honecker was reported to have said she was grateful for the honor, but said nothing publicly. The left-wing heads of state of Paraguay and Venezuela, Fernando Lugo and Hugo Chávez, also took part in the celebrations in Managua. To the day she died, Honecker continued to defend the old East Germany and identified herself as a hardline Communist. In October 2009, Honecker celebrated the 60th anniversary of the founding of the GDR with former Chilean exiles who had sought asylum in East Germany. She participated in singing a patriotic East German song and gave a short speech in which she stated that East Germans \"had a good life in the GDR\" and that many felt that capitalism has made their lives worse. In 2011, author Frank Schuhmann published a book entitled \"Letzte Aufzeichnungen – Für Margot\" (\"Final Notes – For Margot\" in English) based on the 400-page diary kept by Erich Honecker during his stay in Berlin's Moabit prison beginning in July 1992. The diary was given to the author by Margot Honecker. On 2 April 2012, Honecker gave an interview during which she defended the GDR, attacked those who helped to \"destroy\" it, and complained about her pension. She felt that there was no need for people to climb over the Berlin Wall and lose their lives. She suggested that the GDR was ", "text_characters": 2628, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:159247", "title": "Daniel Chodowiecki", "score": 15.836700446677106, "snippet": "In printmaking, he is credited with the invention of the deliberate \"remarque\", a small sketch on a plate lying outside the main image. These were originally little sketches or doodles by artists, not really meant to be seen, but Chodowiecki turned them into \"bonus items\" for collectors. Chodowiecki, though speaking only French and German (due to his offices in the Huguenot French community in Berlin he often spoke French), many times also declared his Polish allegiance and had his son Isaac Heinrich, born in Berlin, painted as a very young child with a Polish outfit and haircut. After the Partitions of Poland Chodowiecki wrote to Gräfin Solms-Laubach: \"From my father's side I am Polish, a descendant of a brave nation which will soon vanish\". In a letter to , a Polish astronomer, he wrote: \"I consider it an honour to be a genuine Pole, even though I am now living in Germany\". Because of his mother's and his wife's Huguenot descent he was very close to the Huguenots of Berlin. Nearly all his life and career was spent in Germany, writing in German and living in Berlin from the age of almost 17. Chodowiecki depicted on a 1 million papiermark note (1923) One of his most popular books is the \"Journey from Berlin to Danzig\" (, 1773) with many illustrations. He purchased a horse rather than going by stage coach. This was his first return after 30 years absence and he went specifically to see his elderly mother and sisters in Danzig again. He made only one more trip to Danzig afterwa", "text_characters": 2007, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R006_request.json/messages/12/content`；SHA256：`1e23ac5d4d92a6cc2cba27dc7e769932c476c9f696bcea994c9833b2aef3fccb`。
+
+## S006｜转查Entity的Rotten Tomatoes影评数并普通重试
+
+R6/R7相同review查询，R8缩词film详情。
+
+结束状态：取得影片资料但未得影评数。
+
+边界判断：Funeral联合核验后实际转到另一数值缺口。
+
+内部KEEP与反证：R7背景Ipcress重述未展开独立纠错；R8同一影片缺口普通扩词，三个Search KEEP。
+
+### SPLIT原文
+
+````
+Let me start by searching for "Funeral in Berlin BAFTA Awards" and "Funeral in Berlin director".
+
+→ 切点 [5, 0, 0] →
+I need to find the director of "Funeral in Berlin" to confirm it's Sidney J. Furie, and then find the number of critical reviews for a horror film directed by him.
+
+From the search results:
+- "The Ipcress File" (1965) directed by Sidney J. Furie, starring Michael Caine. It won 3 BAFTA Awards.
+- "Funeral in Berlin" is a sequel to "The Ipcress File".
+- Sidney 
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [0,657)
+
+SHA256：`561f28f94da7abb7ebf028f3d4521e61bf3f6247f8b814c4c742aa3836150dca`；原字段SHA256：`561f28f94da7abb7ebf028f3d4521e61bf3f6247f8b814c4c742aa3836150dca`。
+
+````
+I need to find the director of "Funeral in Berlin" to confirm it's Sidney J. Furie, and then find the number of critical reviews for a horror film directed by him.
+
+From the search results:
+- "The Ipcress File" (1965) directed by Sidney J. Furie, starring Michael Caine. It won 3 BAFTA Awards.
+- "Funeral in Berlin" is a sequel to "The Ipcress File".
+- Sidney J. Furie directed "The Entity" (1982), which is a horror film.
+
+I need to find the number of critical reviews for "The Entity" on Rotten Tomatoes. Let me search for that.
+
+<tool_call>
+<function=search>
+<parameter=query>
+The Entity 1982 Rotten Tomatoes reviews
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 Rotten Tomatoes reviews"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nThe Entity 1982 Rotten Tomatoes reviews\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 Rotten Tomatoes reviews"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 1.9313347688876092,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:77824",
+        "score": 7.01738439643351,
+        "snippet": "---\ntitle: Famous actresses from Tennessee\nauthor: Written by\ndate: 2022-07-28\n---\nFamous actresses from Tennessee\n\nFamous actresses from Tennessee\n\nAnyone who wants to admire and envy the world's biggest stars needs only to look on Instagram. From A-list movie stars and major musicians to pro ball players and comedians who landed their own sitcoms, there's no shortage of evidence of just how good the good life is. They post pictures of themselves with other big shots on rooftop bars, at exclusive clubs, at backstage parties, and at restaurants where regular people can't get a reservation.\n\nBut the vast majority of these celebrities were born and raised outside of Hollywood, finding their way to the bright lights and big money of superstardom from obscure beginnings in regular small towns and cities across the country.\n\nStacker compiled a list of actresses that were born in Tennessee from IMDb's most popular list. Movie poster images are from OMDb. Keep reading to see which of your favorite actresses are from your home state.\n\nAnnie Potts\n\n- Known for:\n\n--- Janine Melnitz in \"Ghostbusters\" (1984)\n\n--- Bo Peep in \"Toy Story 4\" (2019)\n\n--- Iona in \"Pretty in Pink\" (1986)\n\nMiley Cyrus\n\n- Known for:\n\n--- Miley Stewart / Hannah Montana / Luann Stewart in \"Hannah Montana\" (2006-2011)\n\n--- Hannah / Miley in \"Hannah Montana: The Movie\" (2009)\n\n--- Ronnie Miller in \"The Last Song\" (2010)\n\nChristina Hendricks\n\n- Known for:\n\n--- Natalie in \"Ginger & Rosa\" (2012)\n\n--- Roberta Hoffmann in",
+        "text_characters": 10085,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:85596",
+        "score": 4.077575011495127,
+        "snippet": "---\ntitle: List of fiction works made into feature films (D–J) - Wikipedia\ndate: 2012-12-03\n---\nThis is a list of works of fiction that have been made into feature films, from D to J. The title of the work and the year it was published are both followed by the work's author, the title of the film, and the year of the film. If a film has an alternate title based on geographical distribution, the title listed will be that of the widest distribution area.\n\nD\n\n**Table 1**\n\n| Fiction work(s) | Film adaptation(s) |\n|---|---|\n| The Da Vinci Code (2003), Dan Brown | The Da Vinci Code (2006) |\n| Dad (1981), William Wharton | Dad (1989) |\n| Damage (1991), Josephine Hart | Damage (1992) |\n| Damnation Alley (1967), Roger Zelazny | Damnation Alley (1977) |\n| The Damned Utd (2006), David Peace | The Damned United (2009) |\n| The Dancer Upstairs (1995), Nicholas Shakespeare | The Dancer Upstairs (2002) |\n| Dances with Wolves (1986), Michael Blake | Dances with Wolves (1990) |\n| (1951), Yasunari Kawabata | Dancing Girl (1951) |\n| A Dandy in Aspic (1966), Derek Marlowe | A Dandy in Aspic (1968) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1959) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1980) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Dangerous Liaisons (1988) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Valmont (1989) |\n| The Dangerous Liaisons () (17",
+        "text_characters": 87794,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:26393",
+        "score": 2.8024384114973997,
+        "snippet": "---\ntitle: US-China Relations in the Biden Era: A Timeline\nauthor: China Briefing\ndate: 2024-12-09\n---\nUS-China Relations in the Biden Era: A Timeline\n\nThis timeline documented key developments in US-China relations during the Biden administration. For the latest updates on US-China relations under the current Trump administration, see our new timeline: US-China Relations in the Trump 2.0 Era.\n\nThis article on US-China relations was originally posted on March 22, 2021, and last updated on December 9, 2024.\n\nOn January 20, 2021, Joe Biden was sworn in as the 46th president of the United States, offering a chance to change the course of US-China relations, which had hit a low point under the outgoing Trump administration.\n\nThe four years witnessed escalating trade tensions culminating in a trade war and sanctions on Chinese technology companies.\n\nSince Biden's election, political and business stakeholders have been paying close attention to the direction of the new White House administration's policy toward China.\n\nWill the Biden administration be accommodating of China or take advantage of the new status quo established under his predecessor?\n\nChina Briefing previously monitored and documented major developments during the US-China trade war in the Trump era.\n\nHere, we present a fresh timeline that will track key developments affecting bilateral ties between the world's two largest economies under the Biden administration.\n\nUS-China relations in the Biden era\n\nDecember 5, 2024",
+        "text_characters": 250735,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:50378",
+        "score": 2.53652406641069,
+        "snippet": "---\ntitle: U.S. Embassy & Consulatesin India\nauthor: By; Topics Press Releases\ndate: 2022-04-14\n---\nNew Delhi — The U.S. Mission in India (comprising the Embassy in New Delhi and Consulates General in Mumbai, Chennai, Kolkata, and Hyderabad) today released a star-studded video message to celebrate 75 years of U.S.-India relations, with participation by some of the most iconic and accomplished Indian Americans and Indians in America, whose remarkable contributions reflect the journey of Indians in the United States over the past 75 years. The full video can be viewed here.\n\nChargé d'Affaires Patricia Lacina stated: \"At the core of the U.S.-India partnership are the countless personal friendships formed over the years between individual Americans and Indians as they study, work, live, and learn together. The contributors to this video stand at the pinnacle of their respective fields of endeavor, highlighting the many ways that these people-to-people connections have helped both our countries thrive.\"\n\nThe video features (in alphabetical order): tennis ambassador, philanthropist and filmmaker Ashok Amritraj; author and wellness pioneer Dr. Deepak Chopra; activist, first Indian Miss America and actor Nina Davuluri; CNN chief medical correspondent Dr. Sanjay Gupta; tabla virtuoso, composer and music ambassador Zakir Hussain; food and travel author, TV chef and actor Madhur Jaffrey; actor, producer and philanthropist Priyanka Chopra Jonas; television host, producer, food expert and",
+        "text_characters": 24544,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:40689",
+        "score": 2.470804468176733,
+        "snippet": "---\ntitle: Title 75\ndate: 1997-07-01\n---\n75cc\n\nTABLE OF CONTENTS\n\nTITLE 75\n\nVEHICLES\n\nPART I. PRELIMINARY PROVISIONS\n\n§ 101. Short title of title.\n\n§ 102. Definitions.\n\n§ 103. Uniformity of interpretation.\n\n§ 104. Continuation of existing law (Repealed).\n\nPART II. TITLE, REGISTRATION AND LICENSING\n\nChapter 11. Certificate of Title and Security Interests\n\nSubchapter A. Certificate of Title\n\n§ 1101. Certificate of title required.\n\n§ 1102. Vehicles not requiring certificate of title.\n\n§ 1103. Application for certificate of title (Repealed).\n\n§ 1103.1. Application for certificate of title.\n\n§ 1104. Examination of records upon receipt of application.\n\n§ 1105. Issuance of certificate of title.\n\n§ 1106. Content and effect of certificate of title.\n\n§ 1107. Delivery of certificate of title.\n\n§ 1108. Registration without certificate of title.\n\n§ 1109. Refusing issuance of certificate.\n\n§ 1110. Duplicate certificate of title to replace original.\n\n§ 1111. Transfer of ownership of vehicle.\n\n§ 1111.1. Transfer of ownership of vehicles used for human habitation.\n\n§ 1112. Disclosure of odometer reading and tampering with odometer (Repealed).\n\n§ 1113. Transfer to or from manufacturer or dealer.\n\n§ 1114. Transfer of vehicle by operation of law.\n\n§ 1115. Correction of certificate of title.\n\n§ 1116. Issuance of new certificate following transfer.\n\n§ 1117. Vehicle destroyed, dismantled, salvaged or recycled (Repealed).\n\n§ 1118. Suspension and cancellation of certificate of title.\n\n§ 1119. Applica",
+        "text_characters": 2533608,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:38099",
+        "score": 2.4633120023767843,
+        "snippet": "---\ntitle: Introduction\ndate: 2011-01-01\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n1249 Active Guests |\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNational 4-H Recognition and Awards\n\n|\n\n|\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\nIntroductionFrom its earliest days, 4-H evolved around projects and there were four primary areas of emphasis. The first was practice adoption, coming out of the land-grant universities - instilling in youth the importance of embracing new practices to improve the farm and home - including the use of hybrid corn, testing milk, and better canning procedures. The second and third areas of emphasis go together, basically being accountability and financial... a goal of any 4-H project was to keep good records and to show a profit. The fourth area was that of awards, incentives and recognition. Acknowledging the successes of boys and girls who achieved in their project work was important. Awards were an integral part of the boys and girls club programs. When the National Committee on Boys and Girls Club Work (National 4-H Service Committee) announced the first national 4-H awards program in 1922 - Montgomery Ward providing trips to National 4-H",
+        "text_characters": 56147,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:87614",
+        "score": 2.3409058373074707,
+        "snippet": "---\ntitle: Movie Box Office Figures\ndate: 1999-02-26\n---\nWeekly movie stats:    ------------ NOTE: Some figures below are THEATRICAL RENTALS, not BOX OFFICE GROSS figures. Theatrical Rentals should always have their column labeled as such. \"Theatrical Rentals\" are the actual amount paid to the theatrical distributor (most studios have their own distribution arm) by theaters. This is a smaller figure than the gross box office ticket sales. To obtain approximate gross domestic sales from Rental figure, multiply rental by 2.18 DEMONSTRATION, based on data from actual 1969 rental table combined with data from actual 1969 gross ticket sales table (then divide gross by rental to obtain rental-to-gross multiplier): Title Rental Gross Multiply Rental by ? for Gross Butch Cassidy & the Sundance Kid $45,953,000 $102,308,900 2.23 The Love Bug 23,150,000 50,576,808 2.18 Midnight Cowboy 20,499,000 44,785,053 2.18 Easy Rider 19,100,000 41,728,598 2.18 Hello, Dolly 15,200,000 33,208,099 2.18 Bob & Carrol & Ted & Alice 14,600,000 31,897,253 2.18 Paint Your Wagon 14,500,000 31,678,778 2.18 True Grit 14,250,000 31,132,592 2.18 Cactus Flower 11,850,000 25,889,208 2.18 Goodbye, Columbus 10,500,000 22,939,805 2.18 On Her Majesty's Secret Service 9,117,000 22,800,000 2.50 I Am Curious 8,500,000 18,570,318 2.18 Z 7,100,000 15,511,678 2.18 Winning 6,703,000 14,644,335 2.18 The Sterile Cuckoo 6,400,000 13,982,357 2.18 ----------------------------------------------------------- Source: Susan Sackett, ",
+        "text_characters": 1401509,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:14670",
+        "score": 2.1694276069425102,
+        "snippet": "---\ntitle: Consciousness\ndate: 2014-01-01\n---\nConsciousness\n\nPerhaps no aspect of mind is more familiar or more puzzling than consciousness and our conscious experience of self and world. The problem of consciousness is arguably the central issue in current theorizing about the mind. Despite the lack of any agreed upon theory of consciousness, there is a widespread, if less than universal, consensus that an adequate account of mind requires a clear understanding of it and its place in nature. We need to understand both what consciousness is and how it relates to other, nonconscious, aspects of reality.\n\n- 1. History of the issue\n\n- 2. Concepts of Consciousness\n\n- 3. Problems of Consciousness\n\n- 4. The descriptive question: What are the features of consciousness?\n\n- 5. The explanatory question: How can consciousness exist?\n\n- 6. The functional question: Why does consciousness exist?\n\n- 7. Theories of consciousness\n\n- 8. Metaphysical theories of consciousness\n\n- 9. Specific Theories of Consciousness\n\n- 10. Conclusion\n\n- Bibliography\n\n- Academic Tools\n\n- Other Internet Resources\n\n- Related Entries\n\n1. History of the issue\n\nQuestions about the nature of conscious awareness have likely been asked for as long as there have been humans. Neolithic burial practices appear to express spiritual beliefs and provide early evidence for at least minimally reflective thought about the nature of human consciousness (Pearson 1999, Clark and Riel-Salvatore 2001). Preliterate cultures have simil",
+        "text_characters": 151922,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:13216",
+        "score": 1.7767843690788525,
+        "snippet": "---\ntitle: Milestones in U.S. Food and Drug Law\ndate: 2023-01-30\n---\nMilestones in U.S. Food and Drug Law\n\nFrom the beginnings of civilization people have been concerned about the quality and safety of foods and medicines. In 1202, King John of England proclaimed the first English food law, the Assize of Bread, which prohibited adulteration of bread with such ingredients as ground peas or beans. Regulation of food in the United States dates from early colonial times. Federal controls over the drug supply began with inspection of imported drugs in 1848, although the first federal biologics law, which addressed the provision of reliable smallpox vaccine to citizens, was passed in 1813. The following chronology describes some of the milestones in the history of food and drug regulation in the United States.\n\n1800-1899: FDA Milestones\n\n| 1820 | Eleven physicians meet in Washington, D.C., to establish the U.S. Pharmacopeia, the first compendium of standard drugs for the United States. |\n\n| 1848 | Drug Importation Act passed by Congress requires U.S. Customs Service inspection to stop entry of adulterated drugs from overseas. |\n\n| 1862 |\n\nPresident Lincoln appoints a chemist, Charles M. Wetherill, to serve in the new Department of Agriculture. This was the beginning of the Bureau of Chemistry, the predecessor of the Food and Drug Administration. |\n\n| 1880 | Peter Collier, chief chemist, U.S. Department of Agriculture, recommends passage of a national food and drug law, following hi",
+        "text_characters": 39512,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:70787",
+        "score": 1.632794835988948,
+        "snippet": "---\ntitle: WarnerMedia - Wikipedia\nauthor: Authority control databases\ndate: 2002-09-10\n---\nname: Warner Media, LLC\nlogo: frameless|class=skin-invert\nlogo_caption: Final logo, used from 2019 to 2022\nimage_caption: 30 Hudson Yards, WarnerMedia's last headquarters in New York City\ntrade_name: WarnerMedia\nformer_names: * Time Warner (1990–1992, 2003–2018), * Time Warner Entertainment(1992–2001), * AOL Time Warner(2001–2003)\nindustry: Media, Entertainment\npredecessors: * Warner Communications (1972–1990), * Time Inc. (1922–1990), * Turner Broadcasting System (1965–2019)\nfounded: 10 01 1990\nfounders: Steve Ross (Warner Communications) Henry Luce (Time Inc.)\nsuccessor: Warner Bros. Discovery\ndefunct: 08 04 2022\nfate: Spun-off from AT&T and merged with Discovery, Inc. to form Warner Bros. Discovery\nhq_location: 30 Hudson Yards\nhq_location_city: New York City\nhq_location_country: US\narea_served: Worldwide\nkey_people: * Jason Kilar (CEO), * Andy Forssell (head of operations, Direct), * Ann Sarnoff (chairwoman and CEO, Studios and Networks, Chairwoman and CEO, Warner Bros.), * Michael Bass, Amy Entelis and Ken Jautz (CNN interim co-heads), * Gerhard Zeiler (CRO, chairman, International), * Tony Goncalves (president, Commercial, CEO, Otter Media)\nbrands: * Adult Swim, * AT&T SportsNet, * Boomerang, * Cartoon Network, * Cartoonito, * Cinemax, * CNN, * CNN+, * DC Comics, * HBO, * HBO Max, * HLN, * Mad, * TBS, * TNT, * TruTV, * Turner Classic Movies, * Warner Bros., * Warner TV, * Wizardin",
+        "text_characters": 41122,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:77824", "title": "", "score": 7.01738439643351, "snippet": "---\ntitle: Famous actresses from Tennessee\nauthor: Written by\ndate: 2022-07-28\n---\nFamous actresses from Tennessee\n\nFamous actresses from Tennessee\n\nAnyone who wants to admire and envy the world's biggest stars needs only to look on Instagram. From A-list movie stars and major musicians to pro ball players and comedians who landed their own sitcoms, there's no shortage of evidence of just how good the good life is. They post pictures of themselves with other big shots on rooftop bars, at exclusive clubs, at backstage parties, and at restaurants where regular people can't get a reservation.\n\nBut the vast majority of these celebrities were born and raised outside of Hollywood, finding their way to the bright lights and big money of superstardom from obscure beginnings in regular small towns and cities across the country.\n\nStacker compiled a list of actresses that were born in Tennessee from IMDb's most popular list. Movie poster images are from OMDb. Keep reading to see which of your favorite actresses are from your home state.\n\nAnnie Potts\n\n- Known for:\n\n--- Janine Melnitz in \"Ghostbusters\" (1984)\n\n--- Bo Peep in \"Toy Story 4\" (2019)\n\n--- Iona in \"Pretty in Pink\" (1986)\n\nMiley Cyrus\n\n- Known for:\n\n--- Miley Stewart / Hannah Montana / Luann Stewart in \"Hannah Montana\" (2006-2011)\n\n--- Hannah / Miley in \"Hannah Montana: The Movie\" (2009)\n\n--- Ronnie Miller in \"The Last Song\" (2010)\n\nChristina Hendricks\n\n- Known for:\n\n--- Natalie in \"Ginger & Rosa\" (2012)\n\n--- Roberta Hoffmann in", "text_characters": 10085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:85596", "title": "", "score": 4.077575011495127, "snippet": "---\ntitle: List of fiction works made into feature films (D–J) - Wikipedia\ndate: 2012-12-03\n---\nThis is a list of works of fiction that have been made into feature films, from D to J. The title of the work and the year it was published are both followed by the work's author, the title of the film, and the year of the film. If a film has an alternate title based on geographical distribution, the title listed will be that of the widest distribution area.\n\nD\n\n**Table 1**\n\n| Fiction work(s) | Film adaptation(s) |\n|---|---|\n| The Da Vinci Code (2003), Dan Brown | The Da Vinci Code (2006) |\n| Dad (1981), William Wharton | Dad (1989) |\n| Damage (1991), Josephine Hart | Damage (1992) |\n| Damnation Alley (1967), Roger Zelazny | Damnation Alley (1977) |\n| The Damned Utd (2006), David Peace | The Damned United (2009) |\n| The Dancer Upstairs (1995), Nicholas Shakespeare | The Dancer Upstairs (2002) |\n| Dances with Wolves (1986), Michael Blake | Dances with Wolves (1990) |\n| (1951), Yasunari Kawabata | Dancing Girl (1951) |\n| A Dandy in Aspic (1966), Derek Marlowe | A Dandy in Aspic (1968) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1959) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1980) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Dangerous Liaisons (1988) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Valmont (1989) |\n| The Dangerous Liaisons () (17", "text_characters": 87794, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:26393", "title": "", "score": 2.8024384114973997, "snippet": "---\ntitle: US-China Relations in the Biden Era: A Timeline\nauthor: China Briefing\ndate: 2024-12-09\n---\nUS-China Relations in the Biden Era: A Timeline\n\nThis timeline documented key developments in US-China relations during the Biden administration. For the latest updates on US-China relations under the current Trump administration, see our new timeline: US-China Relations in the Trump 2.0 Era.\n\nThis article on US-China relations was originally posted on March 22, 2021, and last updated on December 9, 2024.\n\nOn January 20, 2021, Joe Biden was sworn in as the 46th president of the United States, offering a chance to change the course of US-China relations, which had hit a low point under the outgoing Trump administration.\n\nThe four years witnessed escalating trade tensions culminating in a trade war and sanctions on Chinese technology companies.\n\nSince Biden's election, political and business stakeholders have been paying close attention to the direction of the new White House administration's policy toward China.\n\nWill the Biden administration be accommodating of China or take advantage of the new status quo established under his predecessor?\n\nChina Briefing previously monitored and documented major developments during the US-China trade war in the Trump era.\n\nHere, we present a fresh timeline that will track key developments affecting bilateral ties between the world's two largest economies under the Biden administration.\n\nUS-China relations in the Biden era\n\nDecember 5, 2024", "text_characters": 250735, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:50378", "title": "", "score": 2.53652406641069, "snippet": "---\ntitle: U.S. Embassy & Consulatesin India\nauthor: By; Topics Press Releases\ndate: 2022-04-14\n---\nNew Delhi — The U.S. Mission in India (comprising the Embassy in New Delhi and Consulates General in Mumbai, Chennai, Kolkata, and Hyderabad) today released a star-studded video message to celebrate 75 years of U.S.-India relations, with participation by some of the most iconic and accomplished Indian Americans and Indians in America, whose remarkable contributions reflect the journey of Indians in the United States over the past 75 years. The full video can be viewed here.\n\nChargé d'Affaires Patricia Lacina stated: \"At the core of the U.S.-India partnership are the countless personal friendships formed over the years between individual Americans and Indians as they study, work, live, and learn together. The contributors to this video stand at the pinnacle of their respective fields of endeavor, highlighting the many ways that these people-to-people connections have helped both our countries thrive.\"\n\nThe video features (in alphabetical order): tennis ambassador, philanthropist and filmmaker Ashok Amritraj; author and wellness pioneer Dr. Deepak Chopra; activist, first Indian Miss America and actor Nina Davuluri; CNN chief medical correspondent Dr. Sanjay Gupta; tabla virtuoso, composer and music ambassador Zakir Hussain; food and travel author, TV chef and actor Madhur Jaffrey; actor, producer and philanthropist Priyanka Chopra Jonas; television host, producer, food expert and", "text_characters": 24544, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:40689", "title": "", "score": 2.470804468176733, "snippet": "---\ntitle: Title 75\ndate: 1997-07-01\n---\n75cc\n\nTABLE OF CONTENTS\n\nTITLE 75\n\nVEHICLES\n\nPART I. PRELIMINARY PROVISIONS\n\n§ 101. Short title of title.\n\n§ 102. Definitions.\n\n§ 103. Uniformity of interpretation.\n\n§ 104. Continuation of existing law (Repealed).\n\nPART II. TITLE, REGISTRATION AND LICENSING\n\nChapter 11. Certificate of Title and Security Interests\n\nSubchapter A. Certificate of Title\n\n§ 1101. Certificate of title required.\n\n§ 1102. Vehicles not requiring certificate of title.\n\n§ 1103. Application for certificate of title (Repealed).\n\n§ 1103.1. Application for certificate of title.\n\n§ 1104. Examination of records upon receipt of application.\n\n§ 1105. Issuance of certificate of title.\n\n§ 1106. Content and effect of certificate of title.\n\n§ 1107. Delivery of certificate of title.\n\n§ 1108. Registration without certificate of title.\n\n§ 1109. Refusing issuance of certificate.\n\n§ 1110. Duplicate certificate of title to replace original.\n\n§ 1111. Transfer of ownership of vehicle.\n\n§ 1111.1. Transfer of ownership of vehicles used for human habitation.\n\n§ 1112. Disclosure of odometer reading and tampering with odometer (Repealed).\n\n§ 1113. Transfer to or from manufacturer or dealer.\n\n§ 1114. Transfer of vehicle by operation of law.\n\n§ 1115. Correction of certificate of title.\n\n§ 1116. Issuance of new certificate following transfer.\n\n§ 1117. Vehicle destroyed, dismantled, salvaged or recycled (Repealed).\n\n§ 1118. Suspension and cancellation of certificate of title.\n\n§ 1119. Applica", "text_characters": 2533608, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:38099", "title": "", "score": 2.4633120023767843, "snippet": "---\ntitle: Introduction\ndate: 2011-01-01\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n1249 Active Guests |\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNational 4-H Recognition and Awards\n\n|\n\n|\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\nIntroductionFrom its earliest days, 4-H evolved around projects and there were four primary areas of emphasis. The first was practice adoption, coming out of the land-grant universities - instilling in youth the importance of embracing new practices to improve the farm and home - including the use of hybrid corn, testing milk, and better canning procedures. The second and third areas of emphasis go together, basically being accountability and financial... a goal of any 4-H project was to keep good records and to show a profit. The fourth area was that of awards, incentives and recognition. Acknowledging the successes of boys and girls who achieved in their project work was important. Awards were an integral part of the boys and girls club programs. When the National Committee on Boys and Girls Club Work (National 4-H Service Committee) announced the first national 4-H awards program in 1922 - Montgomery Ward providing trips to National 4-H", "text_characters": 56147, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:87614", "title": "", "score": 2.3409058373074707, "snippet": "---\ntitle: Movie Box Office Figures\ndate: 1999-02-26\n---\nWeekly movie stats:    ------------ NOTE: Some figures below are THEATRICAL RENTALS, not BOX OFFICE GROSS figures. Theatrical Rentals should always have their column labeled as such. \"Theatrical Rentals\" are the actual amount paid to the theatrical distributor (most studios have their own distribution arm) by theaters. This is a smaller figure than the gross box office ticket sales. To obtain approximate gross domestic sales from Rental figure, multiply rental by 2.18 DEMONSTRATION, based on data from actual 1969 rental table combined with data from actual 1969 gross ticket sales table (then divide gross by rental to obtain rental-to-gross multiplier): Title Rental Gross Multiply Rental by ? for Gross Butch Cassidy & the Sundance Kid $45,953,000 $102,308,900 2.23 The Love Bug 23,150,000 50,576,808 2.18 Midnight Cowboy 20,499,000 44,785,053 2.18 Easy Rider 19,100,000 41,728,598 2.18 Hello, Dolly 15,200,000 33,208,099 2.18 Bob & Carrol & Ted & Alice 14,600,000 31,897,253 2.18 Paint Your Wagon 14,500,000 31,678,778 2.18 True Grit 14,250,000 31,132,592 2.18 Cactus Flower 11,850,000 25,889,208 2.18 Goodbye, Columbus 10,500,000 22,939,805 2.18 On Her Majesty's Secret Service 9,117,000 22,800,000 2.50 I Am Curious 8,500,000 18,570,318 2.18 Z 7,100,000 15,511,678 2.18 Winning 6,703,000 14,644,335 2.18 The Sterile Cuckoo 6,400,000 13,982,357 2.18 ----------------------------------------------------------- Source: Susan Sackett, ", "text_characters": 1401509, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:14670", "title": "", "score": 2.1694276069425102, "snippet": "---\ntitle: Consciousness\ndate: 2014-01-01\n---\nConsciousness\n\nPerhaps no aspect of mind is more familiar or more puzzling than consciousness and our conscious experience of self and world. The problem of consciousness is arguably the central issue in current theorizing about the mind. Despite the lack of any agreed upon theory of consciousness, there is a widespread, if less than universal, consensus that an adequate account of mind requires a clear understanding of it and its place in nature. We need to understand both what consciousness is and how it relates to other, nonconscious, aspects of reality.\n\n- 1. History of the issue\n\n- 2. Concepts of Consciousness\n\n- 3. Problems of Consciousness\n\n- 4. The descriptive question: What are the features of consciousness?\n\n- 5. The explanatory question: How can consciousness exist?\n\n- 6. The functional question: Why does consciousness exist?\n\n- 7. Theories of consciousness\n\n- 8. Metaphysical theories of consciousness\n\n- 9. Specific Theories of Consciousness\n\n- 10. Conclusion\n\n- Bibliography\n\n- Academic Tools\n\n- Other Internet Resources\n\n- Related Entries\n\n1. History of the issue\n\nQuestions about the nature of conscious awareness have likely been asked for as long as there have been humans. Neolithic burial practices appear to express spiritual beliefs and provide early evidence for at least minimally reflective thought about the nature of human consciousness (Pearson 1999, Clark and Riel-Salvatore 2001). Preliterate cultures have simil", "text_characters": 151922, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:13216", "title": "", "score": 1.7767843690788525, "snippet": "---\ntitle: Milestones in U.S. Food and Drug Law\ndate: 2023-01-30\n---\nMilestones in U.S. Food and Drug Law\n\nFrom the beginnings of civilization people have been concerned about the quality and safety of foods and medicines. In 1202, King John of England proclaimed the first English food law, the Assize of Bread, which prohibited adulteration of bread with such ingredients as ground peas or beans. Regulation of food in the United States dates from early colonial times. Federal controls over the drug supply began with inspection of imported drugs in 1848, although the first federal biologics law, which addressed the provision of reliable smallpox vaccine to citizens, was passed in 1813. The following chronology describes some of the milestones in the history of food and drug regulation in the United States.\n\n1800-1899: FDA Milestones\n\n| 1820 | Eleven physicians meet in Washington, D.C., to establish the U.S. Pharmacopeia, the first compendium of standard drugs for the United States. |\n\n| 1848 | Drug Importation Act passed by Congress requires U.S. Customs Service inspection to stop entry of adulterated drugs from overseas. |\n\n| 1862 |\n\nPresident Lincoln appoints a chemist, Charles M. Wetherill, to serve in the new Department of Agriculture. This was the beginning of the Bureau of Chemistry, the predecessor of the Food and Drug Administration. |\n\n| 1880 | Peter Collier, chief chemist, U.S. Department of Agriculture, recommends passage of a national food and drug law, following hi", "text_characters": 39512, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:70787", "title": "", "score": 1.632794835988948, "snippet": "---\ntitle: WarnerMedia - Wikipedia\nauthor: Authority control databases\ndate: 2002-09-10\n---\nname: Warner Media, LLC\nlogo: frameless|class=skin-invert\nlogo_caption: Final logo, used from 2019 to 2022\nimage_caption: 30 Hudson Yards, WarnerMedia's last headquarters in New York City\ntrade_name: WarnerMedia\nformer_names: * Time Warner (1990–1992, 2003–2018), * Time Warner Entertainment(1992–2001), * AOL Time Warner(2001–2003)\nindustry: Media, Entertainment\npredecessors: * Warner Communications (1972–1990), * Time Inc. (1922–1990), * Turner Broadcasting System (1965–2019)\nfounded: 10 01 1990\nfounders: Steve Ross (Warner Communications) Henry Luce (Time Inc.)\nsuccessor: Warner Bros. Discovery\ndefunct: 08 04 2022\nfate: Spun-off from AT&T and merged with Discovery, Inc. to form Warner Bros. Discovery\nhq_location: 30 Hudson Yards\nhq_location_city: New York City\nhq_location_country: US\narea_served: Worldwide\nkey_people: * Jason Kilar (CEO), * Andy Forssell (head of operations, Direct), * Ann Sarnoff (chairwoman and CEO, Studios and Networks, Chairwoman and CEO, Warner Bros.), * Michael Bass, Amy Entelis and Ken Jautz (CNN interim co-heads), * Gerhard Zeiler (CRO, chairman, International), * Tony Goncalves (president, Commercial, CEO, Otter Media)\nbrands: * Adult Swim, * AT&T SportsNet, * Boomerang, * Cartoon Network, * Cartoonito, * Cinemax, * CNN, * CNN+, * DC Comics, * HBO, * HBO Max, * HLN, * Mad, * TBS, * TNT, * TruTV, * Turner Classic Movies, * Warner Bros., * Warner TV, * Wizardin", "text_characters": 41122, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R007_request.json/messages/14/content`；SHA256：`df23d2e273a65474869c476021f2040704ec06825ae8b9e8f1a4602332742877`。
+
+### R7 `/rounds/6/reasoning_content` [0,1016)
+
+SHA256：`9bac6f6932c3c0c184fd1597d9b75520669c8229edadc153e99bad7d9b0d66d9`；原字段SHA256：`9bac6f6932c3c0c184fd1597d9b75520669c8229edadc153e99bad7d9b0d66d9`。
+
+````
+The search results for "Funeral in Berlin" did not yield specific information about BAFTA awards for that film or its director. I need to find:
+1. The film featuring Michael Caine in his second lead role and the number of BAFTA Awards it won.
+2. The director of that film.
+3. Another horror film directed by the same director and the number of critical reviews on which the Rotten Tomatoes approval rating is based.
+
+From the earlier search, I know that "The Ipcress File" (1965) is Michael Caine's second lead role (after "Zulu" in 1964). It was directed by Sidney J. Furie and won 3 BAFTA Awards.
+
+Now I need to find another horror film directed by Sidney J. Furie and the number of critical reviews on which its Rotten Tomatoes approval rating is based.
+
+From the search results, I found that Sidney J. Furie directed "The Entity" (1982), which is a horror film. I need to find the number of critical reviews on which its Rotten Tomatoes approval rating is based.
+
+Let me search for "The Entity" Rotten Tomatoes.
+
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 Rotten Tomatoes reviews"
+  },
+  "id": "chatcmpl-tool-a5d2a7eadb6b10ec",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"The Entity 1982 Rotten Tomatoes reviews\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-a5d2a7eadb6b10ec",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 Rotten Tomatoes reviews"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 0.6394503400661051,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:77824",
+        "score": 7.01738439643351,
+        "snippet": "---\ntitle: Famous actresses from Tennessee\nauthor: Written by\ndate: 2022-07-28\n---\nFamous actresses from Tennessee\n\nFamous actresses from Tennessee\n\nAnyone who wants to admire and envy the world's biggest stars needs only to look on Instagram. From A-list movie stars and major musicians to pro ball players and comedians who landed their own sitcoms, there's no shortage of evidence of just how good the good life is. They post pictures of themselves with other big shots on rooftop bars, at exclusive clubs, at backstage parties, and at restaurants where regular people can't get a reservation.\n\nBut the vast majority of these celebrities were born and raised outside of Hollywood, finding their way to the bright lights and big money of superstardom from obscure beginnings in regular small towns and cities across the country.\n\nStacker compiled a list of actresses that were born in Tennessee from IMDb's most popular list. Movie poster images are from OMDb. Keep reading to see which of your favorite actresses are from your home state.\n\nAnnie Potts\n\n- Known for:\n\n--- Janine Melnitz in \"Ghostbusters\" (1984)\n\n--- Bo Peep in \"Toy Story 4\" (2019)\n\n--- Iona in \"Pretty in Pink\" (1986)\n\nMiley Cyrus\n\n- Known for:\n\n--- Miley Stewart / Hannah Montana / Luann Stewart in \"Hannah Montana\" (2006-2011)\n\n--- Hannah / Miley in \"Hannah Montana: The Movie\" (2009)\n\n--- Ronnie Miller in \"The Last Song\" (2010)\n\nChristina Hendricks\n\n- Known for:\n\n--- Natalie in \"Ginger & Rosa\" (2012)\n\n--- Roberta Hoffmann in",
+        "text_characters": 10085,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:85596",
+        "score": 4.077575011495127,
+        "snippet": "---\ntitle: List of fiction works made into feature films (D–J) - Wikipedia\ndate: 2012-12-03\n---\nThis is a list of works of fiction that have been made into feature films, from D to J. The title of the work and the year it was published are both followed by the work's author, the title of the film, and the year of the film. If a film has an alternate title based on geographical distribution, the title listed will be that of the widest distribution area.\n\nD\n\n**Table 1**\n\n| Fiction work(s) | Film adaptation(s) |\n|---|---|\n| The Da Vinci Code (2003), Dan Brown | The Da Vinci Code (2006) |\n| Dad (1981), William Wharton | Dad (1989) |\n| Damage (1991), Josephine Hart | Damage (1992) |\n| Damnation Alley (1967), Roger Zelazny | Damnation Alley (1977) |\n| The Damned Utd (2006), David Peace | The Damned United (2009) |\n| The Dancer Upstairs (1995), Nicholas Shakespeare | The Dancer Upstairs (2002) |\n| Dances with Wolves (1986), Michael Blake | Dances with Wolves (1990) |\n| (1951), Yasunari Kawabata | Dancing Girl (1951) |\n| A Dandy in Aspic (1966), Derek Marlowe | A Dandy in Aspic (1968) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1959) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1980) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Dangerous Liaisons (1988) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Valmont (1989) |\n| The Dangerous Liaisons () (17",
+        "text_characters": 87794,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:26393",
+        "score": 2.8024384114973997,
+        "snippet": "---\ntitle: US-China Relations in the Biden Era: A Timeline\nauthor: China Briefing\ndate: 2024-12-09\n---\nUS-China Relations in the Biden Era: A Timeline\n\nThis timeline documented key developments in US-China relations during the Biden administration. For the latest updates on US-China relations under the current Trump administration, see our new timeline: US-China Relations in the Trump 2.0 Era.\n\nThis article on US-China relations was originally posted on March 22, 2021, and last updated on December 9, 2024.\n\nOn January 20, 2021, Joe Biden was sworn in as the 46th president of the United States, offering a chance to change the course of US-China relations, which had hit a low point under the outgoing Trump administration.\n\nThe four years witnessed escalating trade tensions culminating in a trade war and sanctions on Chinese technology companies.\n\nSince Biden's election, political and business stakeholders have been paying close attention to the direction of the new White House administration's policy toward China.\n\nWill the Biden administration be accommodating of China or take advantage of the new status quo established under his predecessor?\n\nChina Briefing previously monitored and documented major developments during the US-China trade war in the Trump era.\n\nHere, we present a fresh timeline that will track key developments affecting bilateral ties between the world's two largest economies under the Biden administration.\n\nUS-China relations in the Biden era\n\nDecember 5, 2024",
+        "text_characters": 250735,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:50378",
+        "score": 2.53652406641069,
+        "snippet": "---\ntitle: U.S. Embassy & Consulatesin India\nauthor: By; Topics Press Releases\ndate: 2022-04-14\n---\nNew Delhi — The U.S. Mission in India (comprising the Embassy in New Delhi and Consulates General in Mumbai, Chennai, Kolkata, and Hyderabad) today released a star-studded video message to celebrate 75 years of U.S.-India relations, with participation by some of the most iconic and accomplished Indian Americans and Indians in America, whose remarkable contributions reflect the journey of Indians in the United States over the past 75 years. The full video can be viewed here.\n\nChargé d'Affaires Patricia Lacina stated: \"At the core of the U.S.-India partnership are the countless personal friendships formed over the years between individual Americans and Indians as they study, work, live, and learn together. The contributors to this video stand at the pinnacle of their respective fields of endeavor, highlighting the many ways that these people-to-people connections have helped both our countries thrive.\"\n\nThe video features (in alphabetical order): tennis ambassador, philanthropist and filmmaker Ashok Amritraj; author and wellness pioneer Dr. Deepak Chopra; activist, first Indian Miss America and actor Nina Davuluri; CNN chief medical correspondent Dr. Sanjay Gupta; tabla virtuoso, composer and music ambassador Zakir Hussain; food and travel author, TV chef and actor Madhur Jaffrey; actor, producer and philanthropist Priyanka Chopra Jonas; television host, producer, food expert and",
+        "text_characters": 24544,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:40689",
+        "score": 2.470804468176733,
+        "snippet": "---\ntitle: Title 75\ndate: 1997-07-01\n---\n75cc\n\nTABLE OF CONTENTS\n\nTITLE 75\n\nVEHICLES\n\nPART I. PRELIMINARY PROVISIONS\n\n§ 101. Short title of title.\n\n§ 102. Definitions.\n\n§ 103. Uniformity of interpretation.\n\n§ 104. Continuation of existing law (Repealed).\n\nPART II. TITLE, REGISTRATION AND LICENSING\n\nChapter 11. Certificate of Title and Security Interests\n\nSubchapter A. Certificate of Title\n\n§ 1101. Certificate of title required.\n\n§ 1102. Vehicles not requiring certificate of title.\n\n§ 1103. Application for certificate of title (Repealed).\n\n§ 1103.1. Application for certificate of title.\n\n§ 1104. Examination of records upon receipt of application.\n\n§ 1105. Issuance of certificate of title.\n\n§ 1106. Content and effect of certificate of title.\n\n§ 1107. Delivery of certificate of title.\n\n§ 1108. Registration without certificate of title.\n\n§ 1109. Refusing issuance of certificate.\n\n§ 1110. Duplicate certificate of title to replace original.\n\n§ 1111. Transfer of ownership of vehicle.\n\n§ 1111.1. Transfer of ownership of vehicles used for human habitation.\n\n§ 1112. Disclosure of odometer reading and tampering with odometer (Repealed).\n\n§ 1113. Transfer to or from manufacturer or dealer.\n\n§ 1114. Transfer of vehicle by operation of law.\n\n§ 1115. Correction of certificate of title.\n\n§ 1116. Issuance of new certificate following transfer.\n\n§ 1117. Vehicle destroyed, dismantled, salvaged or recycled (Repealed).\n\n§ 1118. Suspension and cancellation of certificate of title.\n\n§ 1119. Applica",
+        "text_characters": 2533608,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:38099",
+        "score": 2.4633120023767843,
+        "snippet": "---\ntitle: Introduction\ndate: 2011-01-01\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n1249 Active Guests |\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNational 4-H Recognition and Awards\n\n|\n\n|\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\nIntroductionFrom its earliest days, 4-H evolved around projects and there were four primary areas of emphasis. The first was practice adoption, coming out of the land-grant universities - instilling in youth the importance of embracing new practices to improve the farm and home - including the use of hybrid corn, testing milk, and better canning procedures. The second and third areas of emphasis go together, basically being accountability and financial... a goal of any 4-H project was to keep good records and to show a profit. The fourth area was that of awards, incentives and recognition. Acknowledging the successes of boys and girls who achieved in their project work was important. Awards were an integral part of the boys and girls club programs. When the National Committee on Boys and Girls Club Work (National 4-H Service Committee) announced the first national 4-H awards program in 1922 - Montgomery Ward providing trips to National 4-H",
+        "text_characters": 56147,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:87614",
+        "score": 2.3409058373074707,
+        "snippet": "---\ntitle: Movie Box Office Figures\ndate: 1999-02-26\n---\nWeekly movie stats:    ------------ NOTE: Some figures below are THEATRICAL RENTALS, not BOX OFFICE GROSS figures. Theatrical Rentals should always have their column labeled as such. \"Theatrical Rentals\" are the actual amount paid to the theatrical distributor (most studios have their own distribution arm) by theaters. This is a smaller figure than the gross box office ticket sales. To obtain approximate gross domestic sales from Rental figure, multiply rental by 2.18 DEMONSTRATION, based on data from actual 1969 rental table combined with data from actual 1969 gross ticket sales table (then divide gross by rental to obtain rental-to-gross multiplier): Title Rental Gross Multiply Rental by ? for Gross Butch Cassidy & the Sundance Kid $45,953,000 $102,308,900 2.23 The Love Bug 23,150,000 50,576,808 2.18 Midnight Cowboy 20,499,000 44,785,053 2.18 Easy Rider 19,100,000 41,728,598 2.18 Hello, Dolly 15,200,000 33,208,099 2.18 Bob & Carrol & Ted & Alice 14,600,000 31,897,253 2.18 Paint Your Wagon 14,500,000 31,678,778 2.18 True Grit 14,250,000 31,132,592 2.18 Cactus Flower 11,850,000 25,889,208 2.18 Goodbye, Columbus 10,500,000 22,939,805 2.18 On Her Majesty's Secret Service 9,117,000 22,800,000 2.50 I Am Curious 8,500,000 18,570,318 2.18 Z 7,100,000 15,511,678 2.18 Winning 6,703,000 14,644,335 2.18 The Sterile Cuckoo 6,400,000 13,982,357 2.18 ----------------------------------------------------------- Source: Susan Sackett, ",
+        "text_characters": 1401509,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:14670",
+        "score": 2.1694276069425102,
+        "snippet": "---\ntitle: Consciousness\ndate: 2014-01-01\n---\nConsciousness\n\nPerhaps no aspect of mind is more familiar or more puzzling than consciousness and our conscious experience of self and world. The problem of consciousness is arguably the central issue in current theorizing about the mind. Despite the lack of any agreed upon theory of consciousness, there is a widespread, if less than universal, consensus that an adequate account of mind requires a clear understanding of it and its place in nature. We need to understand both what consciousness is and how it relates to other, nonconscious, aspects of reality.\n\n- 1. History of the issue\n\n- 2. Concepts of Consciousness\n\n- 3. Problems of Consciousness\n\n- 4. The descriptive question: What are the features of consciousness?\n\n- 5. The explanatory question: How can consciousness exist?\n\n- 6. The functional question: Why does consciousness exist?\n\n- 7. Theories of consciousness\n\n- 8. Metaphysical theories of consciousness\n\n- 9. Specific Theories of Consciousness\n\n- 10. Conclusion\n\n- Bibliography\n\n- Academic Tools\n\n- Other Internet Resources\n\n- Related Entries\n\n1. History of the issue\n\nQuestions about the nature of conscious awareness have likely been asked for as long as there have been humans. Neolithic burial practices appear to express spiritual beliefs and provide early evidence for at least minimally reflective thought about the nature of human consciousness (Pearson 1999, Clark and Riel-Salvatore 2001). Preliterate cultures have simil",
+        "text_characters": 151922,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:13216",
+        "score": 1.7767843690788525,
+        "snippet": "---\ntitle: Milestones in U.S. Food and Drug Law\ndate: 2023-01-30\n---\nMilestones in U.S. Food and Drug Law\n\nFrom the beginnings of civilization people have been concerned about the quality and safety of foods and medicines. In 1202, King John of England proclaimed the first English food law, the Assize of Bread, which prohibited adulteration of bread with such ingredients as ground peas or beans. Regulation of food in the United States dates from early colonial times. Federal controls over the drug supply began with inspection of imported drugs in 1848, although the first federal biologics law, which addressed the provision of reliable smallpox vaccine to citizens, was passed in 1813. The following chronology describes some of the milestones in the history of food and drug regulation in the United States.\n\n1800-1899: FDA Milestones\n\n| 1820 | Eleven physicians meet in Washington, D.C., to establish the U.S. Pharmacopeia, the first compendium of standard drugs for the United States. |\n\n| 1848 | Drug Importation Act passed by Congress requires U.S. Customs Service inspection to stop entry of adulterated drugs from overseas. |\n\n| 1862 |\n\nPresident Lincoln appoints a chemist, Charles M. Wetherill, to serve in the new Department of Agriculture. This was the beginning of the Bureau of Chemistry, the predecessor of the Food and Drug Administration. |\n\n| 1880 | Peter Collier, chief chemist, U.S. Department of Agriculture, recommends passage of a national food and drug law, following hi",
+        "text_characters": 39512,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:70787",
+        "score": 1.632794835988948,
+        "snippet": "---\ntitle: WarnerMedia - Wikipedia\nauthor: Authority control databases\ndate: 2002-09-10\n---\nname: Warner Media, LLC\nlogo: frameless|class=skin-invert\nlogo_caption: Final logo, used from 2019 to 2022\nimage_caption: 30 Hudson Yards, WarnerMedia's last headquarters in New York City\ntrade_name: WarnerMedia\nformer_names: * Time Warner (1990–1992, 2003–2018), * Time Warner Entertainment(1992–2001), * AOL Time Warner(2001–2003)\nindustry: Media, Entertainment\npredecessors: * Warner Communications (1972–1990), * Time Inc. (1922–1990), * Turner Broadcasting System (1965–2019)\nfounded: 10 01 1990\nfounders: Steve Ross (Warner Communications) Henry Luce (Time Inc.)\nsuccessor: Warner Bros. Discovery\ndefunct: 08 04 2022\nfate: Spun-off from AT&T and merged with Discovery, Inc. to form Warner Bros. Discovery\nhq_location: 30 Hudson Yards\nhq_location_city: New York City\nhq_location_country: US\narea_served: Worldwide\nkey_people: * Jason Kilar (CEO), * Andy Forssell (head of operations, Direct), * Ann Sarnoff (chairwoman and CEO, Studios and Networks, Chairwoman and CEO, Warner Bros.), * Michael Bass, Amy Entelis and Ken Jautz (CNN interim co-heads), * Gerhard Zeiler (CRO, chairman, International), * Tony Goncalves (president, Commercial, CEO, Otter Media)\nbrands: * Adult Swim, * AT&T SportsNet, * Boomerang, * Cartoon Network, * Cartoonito, * Cinemax, * CNN, * CNN+, * DC Comics, * HBO, * HBO Max, * HLN, * Mad, * TBS, * TNT, * TruTV, * Turner Classic Movies, * Warner Bros., * Warner TV, * Wizardin",
+        "text_characters": 41122,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-a5d2a7eadb6b10ec"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:77824", "title": "", "score": 7.01738439643351, "snippet": "---\ntitle: Famous actresses from Tennessee\nauthor: Written by\ndate: 2022-07-28\n---\nFamous actresses from Tennessee\n\nFamous actresses from Tennessee\n\nAnyone who wants to admire and envy the world's biggest stars needs only to look on Instagram. From A-list movie stars and major musicians to pro ball players and comedians who landed their own sitcoms, there's no shortage of evidence of just how good the good life is. They post pictures of themselves with other big shots on rooftop bars, at exclusive clubs, at backstage parties, and at restaurants where regular people can't get a reservation.\n\nBut the vast majority of these celebrities were born and raised outside of Hollywood, finding their way to the bright lights and big money of superstardom from obscure beginnings in regular small towns and cities across the country.\n\nStacker compiled a list of actresses that were born in Tennessee from IMDb's most popular list. Movie poster images are from OMDb. Keep reading to see which of your favorite actresses are from your home state.\n\nAnnie Potts\n\n- Known for:\n\n--- Janine Melnitz in \"Ghostbusters\" (1984)\n\n--- Bo Peep in \"Toy Story 4\" (2019)\n\n--- Iona in \"Pretty in Pink\" (1986)\n\nMiley Cyrus\n\n- Known for:\n\n--- Miley Stewart / Hannah Montana / Luann Stewart in \"Hannah Montana\" (2006-2011)\n\n--- Hannah / Miley in \"Hannah Montana: The Movie\" (2009)\n\n--- Ronnie Miller in \"The Last Song\" (2010)\n\nChristina Hendricks\n\n- Known for:\n\n--- Natalie in \"Ginger & Rosa\" (2012)\n\n--- Roberta Hoffmann in", "text_characters": 10085, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:85596", "title": "", "score": 4.077575011495127, "snippet": "---\ntitle: List of fiction works made into feature films (D–J) - Wikipedia\ndate: 2012-12-03\n---\nThis is a list of works of fiction that have been made into feature films, from D to J. The title of the work and the year it was published are both followed by the work's author, the title of the film, and the year of the film. If a film has an alternate title based on geographical distribution, the title listed will be that of the widest distribution area.\n\nD\n\n**Table 1**\n\n| Fiction work(s) | Film adaptation(s) |\n|---|---|\n| The Da Vinci Code (2003), Dan Brown | The Da Vinci Code (2006) |\n| Dad (1981), William Wharton | Dad (1989) |\n| Damage (1991), Josephine Hart | Damage (1992) |\n| Damnation Alley (1967), Roger Zelazny | Damnation Alley (1977) |\n| The Damned Utd (2006), David Peace | The Damned United (2009) |\n| The Dancer Upstairs (1995), Nicholas Shakespeare | The Dancer Upstairs (2002) |\n| Dances with Wolves (1986), Michael Blake | Dances with Wolves (1990) |\n| (1951), Yasunari Kawabata | Dancing Girl (1951) |\n| A Dandy in Aspic (1966), Derek Marlowe | A Dandy in Aspic (1968) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1959) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Les Liaisons dangereuses (1980) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Dangerous Liaisons (1988) |\n| The Dangerous Liaisons () (1782), Pierre Choderlos de Laclos | Valmont (1989) |\n| The Dangerous Liaisons () (17", "text_characters": 87794, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:26393", "title": "", "score": 2.8024384114973997, "snippet": "---\ntitle: US-China Relations in the Biden Era: A Timeline\nauthor: China Briefing\ndate: 2024-12-09\n---\nUS-China Relations in the Biden Era: A Timeline\n\nThis timeline documented key developments in US-China relations during the Biden administration. For the latest updates on US-China relations under the current Trump administration, see our new timeline: US-China Relations in the Trump 2.0 Era.\n\nThis article on US-China relations was originally posted on March 22, 2021, and last updated on December 9, 2024.\n\nOn January 20, 2021, Joe Biden was sworn in as the 46th president of the United States, offering a chance to change the course of US-China relations, which had hit a low point under the outgoing Trump administration.\n\nThe four years witnessed escalating trade tensions culminating in a trade war and sanctions on Chinese technology companies.\n\nSince Biden's election, political and business stakeholders have been paying close attention to the direction of the new White House administration's policy toward China.\n\nWill the Biden administration be accommodating of China or take advantage of the new status quo established under his predecessor?\n\nChina Briefing previously monitored and documented major developments during the US-China trade war in the Trump era.\n\nHere, we present a fresh timeline that will track key developments affecting bilateral ties between the world's two largest economies under the Biden administration.\n\nUS-China relations in the Biden era\n\nDecember 5, 2024", "text_characters": 250735, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:50378", "title": "", "score": 2.53652406641069, "snippet": "---\ntitle: U.S. Embassy & Consulatesin India\nauthor: By; Topics Press Releases\ndate: 2022-04-14\n---\nNew Delhi — The U.S. Mission in India (comprising the Embassy in New Delhi and Consulates General in Mumbai, Chennai, Kolkata, and Hyderabad) today released a star-studded video message to celebrate 75 years of U.S.-India relations, with participation by some of the most iconic and accomplished Indian Americans and Indians in America, whose remarkable contributions reflect the journey of Indians in the United States over the past 75 years. The full video can be viewed here.\n\nChargé d'Affaires Patricia Lacina stated: \"At the core of the U.S.-India partnership are the countless personal friendships formed over the years between individual Americans and Indians as they study, work, live, and learn together. The contributors to this video stand at the pinnacle of their respective fields of endeavor, highlighting the many ways that these people-to-people connections have helped both our countries thrive.\"\n\nThe video features (in alphabetical order): tennis ambassador, philanthropist and filmmaker Ashok Amritraj; author and wellness pioneer Dr. Deepak Chopra; activist, first Indian Miss America and actor Nina Davuluri; CNN chief medical correspondent Dr. Sanjay Gupta; tabla virtuoso, composer and music ambassador Zakir Hussain; food and travel author, TV chef and actor Madhur Jaffrey; actor, producer and philanthropist Priyanka Chopra Jonas; television host, producer, food expert and", "text_characters": 24544, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:40689", "title": "", "score": 2.470804468176733, "snippet": "---\ntitle: Title 75\ndate: 1997-07-01\n---\n75cc\n\nTABLE OF CONTENTS\n\nTITLE 75\n\nVEHICLES\n\nPART I. PRELIMINARY PROVISIONS\n\n§ 101. Short title of title.\n\n§ 102. Definitions.\n\n§ 103. Uniformity of interpretation.\n\n§ 104. Continuation of existing law (Repealed).\n\nPART II. TITLE, REGISTRATION AND LICENSING\n\nChapter 11. Certificate of Title and Security Interests\n\nSubchapter A. Certificate of Title\n\n§ 1101. Certificate of title required.\n\n§ 1102. Vehicles not requiring certificate of title.\n\n§ 1103. Application for certificate of title (Repealed).\n\n§ 1103.1. Application for certificate of title.\n\n§ 1104. Examination of records upon receipt of application.\n\n§ 1105. Issuance of certificate of title.\n\n§ 1106. Content and effect of certificate of title.\n\n§ 1107. Delivery of certificate of title.\n\n§ 1108. Registration without certificate of title.\n\n§ 1109. Refusing issuance of certificate.\n\n§ 1110. Duplicate certificate of title to replace original.\n\n§ 1111. Transfer of ownership of vehicle.\n\n§ 1111.1. Transfer of ownership of vehicles used for human habitation.\n\n§ 1112. Disclosure of odometer reading and tampering with odometer (Repealed).\n\n§ 1113. Transfer to or from manufacturer or dealer.\n\n§ 1114. Transfer of vehicle by operation of law.\n\n§ 1115. Correction of certificate of title.\n\n§ 1116. Issuance of new certificate following transfer.\n\n§ 1117. Vehicle destroyed, dismantled, salvaged or recycled (Repealed).\n\n§ 1118. Suspension and cancellation of certificate of title.\n\n§ 1119. Applica", "text_characters": 2533608, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:38099", "title": "", "score": 2.4633120023767843, "snippet": "---\ntitle: Introduction\ndate: 2011-01-01\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n1249 Active Guests |\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNational 4-H Recognition and Awards\n\n|\n\n|\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\nIntroductionFrom its earliest days, 4-H evolved around projects and there were four primary areas of emphasis. The first was practice adoption, coming out of the land-grant universities - instilling in youth the importance of embracing new practices to improve the farm and home - including the use of hybrid corn, testing milk, and better canning procedures. The second and third areas of emphasis go together, basically being accountability and financial... a goal of any 4-H project was to keep good records and to show a profit. The fourth area was that of awards, incentives and recognition. Acknowledging the successes of boys and girls who achieved in their project work was important. Awards were an integral part of the boys and girls club programs. When the National Committee on Boys and Girls Club Work (National 4-H Service Committee) announced the first national 4-H awards program in 1922 - Montgomery Ward providing trips to National 4-H", "text_characters": 56147, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:87614", "title": "", "score": 2.3409058373074707, "snippet": "---\ntitle: Movie Box Office Figures\ndate: 1999-02-26\n---\nWeekly movie stats:    ------------ NOTE: Some figures below are THEATRICAL RENTALS, not BOX OFFICE GROSS figures. Theatrical Rentals should always have their column labeled as such. \"Theatrical Rentals\" are the actual amount paid to the theatrical distributor (most studios have their own distribution arm) by theaters. This is a smaller figure than the gross box office ticket sales. To obtain approximate gross domestic sales from Rental figure, multiply rental by 2.18 DEMONSTRATION, based on data from actual 1969 rental table combined with data from actual 1969 gross ticket sales table (then divide gross by rental to obtain rental-to-gross multiplier): Title Rental Gross Multiply Rental by ? for Gross Butch Cassidy & the Sundance Kid $45,953,000 $102,308,900 2.23 The Love Bug 23,150,000 50,576,808 2.18 Midnight Cowboy 20,499,000 44,785,053 2.18 Easy Rider 19,100,000 41,728,598 2.18 Hello, Dolly 15,200,000 33,208,099 2.18 Bob & Carrol & Ted & Alice 14,600,000 31,897,253 2.18 Paint Your Wagon 14,500,000 31,678,778 2.18 True Grit 14,250,000 31,132,592 2.18 Cactus Flower 11,850,000 25,889,208 2.18 Goodbye, Columbus 10,500,000 22,939,805 2.18 On Her Majesty's Secret Service 9,117,000 22,800,000 2.50 I Am Curious 8,500,000 18,570,318 2.18 Z 7,100,000 15,511,678 2.18 Winning 6,703,000 14,644,335 2.18 The Sterile Cuckoo 6,400,000 13,982,357 2.18 ----------------------------------------------------------- Source: Susan Sackett, ", "text_characters": 1401509, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:14670", "title": "", "score": 2.1694276069425102, "snippet": "---\ntitle: Consciousness\ndate: 2014-01-01\n---\nConsciousness\n\nPerhaps no aspect of mind is more familiar or more puzzling than consciousness and our conscious experience of self and world. The problem of consciousness is arguably the central issue in current theorizing about the mind. Despite the lack of any agreed upon theory of consciousness, there is a widespread, if less than universal, consensus that an adequate account of mind requires a clear understanding of it and its place in nature. We need to understand both what consciousness is and how it relates to other, nonconscious, aspects of reality.\n\n- 1. History of the issue\n\n- 2. Concepts of Consciousness\n\n- 3. Problems of Consciousness\n\n- 4. The descriptive question: What are the features of consciousness?\n\n- 5. The explanatory question: How can consciousness exist?\n\n- 6. The functional question: Why does consciousness exist?\n\n- 7. Theories of consciousness\n\n- 8. Metaphysical theories of consciousness\n\n- 9. Specific Theories of Consciousness\n\n- 10. Conclusion\n\n- Bibliography\n\n- Academic Tools\n\n- Other Internet Resources\n\n- Related Entries\n\n1. History of the issue\n\nQuestions about the nature of conscious awareness have likely been asked for as long as there have been humans. Neolithic burial practices appear to express spiritual beliefs and provide early evidence for at least minimally reflective thought about the nature of human consciousness (Pearson 1999, Clark and Riel-Salvatore 2001). Preliterate cultures have simil", "text_characters": 151922, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:13216", "title": "", "score": 1.7767843690788525, "snippet": "---\ntitle: Milestones in U.S. Food and Drug Law\ndate: 2023-01-30\n---\nMilestones in U.S. Food and Drug Law\n\nFrom the beginnings of civilization people have been concerned about the quality and safety of foods and medicines. In 1202, King John of England proclaimed the first English food law, the Assize of Bread, which prohibited adulteration of bread with such ingredients as ground peas or beans. Regulation of food in the United States dates from early colonial times. Federal controls over the drug supply began with inspection of imported drugs in 1848, although the first federal biologics law, which addressed the provision of reliable smallpox vaccine to citizens, was passed in 1813. The following chronology describes some of the milestones in the history of food and drug regulation in the United States.\n\n1800-1899: FDA Milestones\n\n| 1820 | Eleven physicians meet in Washington, D.C., to establish the U.S. Pharmacopeia, the first compendium of standard drugs for the United States. |\n\n| 1848 | Drug Importation Act passed by Congress requires U.S. Customs Service inspection to stop entry of adulterated drugs from overseas. |\n\n| 1862 |\n\nPresident Lincoln appoints a chemist, Charles M. Wetherill, to serve in the new Department of Agriculture. This was the beginning of the Bureau of Chemistry, the predecessor of the Food and Drug Administration. |\n\n| 1880 | Peter Collier, chief chemist, U.S. Department of Agriculture, recommends passage of a national food and drug law, following hi", "text_characters": 39512, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:70787", "title": "", "score": 1.632794835988948, "snippet": "---\ntitle: WarnerMedia - Wikipedia\nauthor: Authority control databases\ndate: 2002-09-10\n---\nname: Warner Media, LLC\nlogo: frameless|class=skin-invert\nlogo_caption: Final logo, used from 2019 to 2022\nimage_caption: 30 Hudson Yards, WarnerMedia's last headquarters in New York City\ntrade_name: WarnerMedia\nformer_names: * Time Warner (1990–1992, 2003–2018), * Time Warner Entertainment(1992–2001), * AOL Time Warner(2001–2003)\nindustry: Media, Entertainment\npredecessors: * Warner Communications (1972–1990), * Time Inc. (1922–1990), * Turner Broadcasting System (1965–2019)\nfounded: 10 01 1990\nfounders: Steve Ross (Warner Communications) Henry Luce (Time Inc.)\nsuccessor: Warner Bros. Discovery\ndefunct: 08 04 2022\nfate: Spun-off from AT&T and merged with Discovery, Inc. to form Warner Bros. Discovery\nhq_location: 30 Hudson Yards\nhq_location_city: New York City\nhq_location_country: US\narea_served: Worldwide\nkey_people: * Jason Kilar (CEO), * Andy Forssell (head of operations, Direct), * Ann Sarnoff (chairwoman and CEO, Studios and Networks, Chairwoman and CEO, Warner Bros.), * Michael Bass, Amy Entelis and Ken Jautz (CNN interim co-heads), * Gerhard Zeiler (CRO, chairman, International), * Tony Goncalves (president, Commercial, CEO, Otter Media)\nbrands: * Adult Swim, * AT&T SportsNet, * Boomerang, * Cartoon Network, * Cartoonito, * Cinemax, * CNN, * CNN+, * DC Comics, * HBO, * HBO Max, * HLN, * Mad, * TBS, * TNT, * TruTV, * Turner Classic Movies, * Warner Bros., * Warner TV, * Wizardin", "text_characters": 41122, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R008_request.json/messages/16/content`；SHA256：`df23d2e273a65474869c476021f2040704ec06825ae8b9e8f1a4602332742877`。
+
+### R8 `/rounds/7/reasoning_content` [0,265)
+
+SHA256：`eefbbdaca484a49b5f6704989482f757ee6d234a30a5d2edb1b62b38016bf6ec`；原字段SHA256：`eefbbdaca484a49b5f6704989482f757ee6d234a30a5d2edb1b62b38016bf6ec`。
+
+````
+The search results for "The Entity 1982 Rotten Tomatoes reviews" did not return specific information about the number of reviews. I need to search for "The Entity" film details to find the Rotten Tomatoes review count.
+
+Let me search for "The Entity" film details.
+
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 film"
+  },
+  "id": "chatcmpl-tool-8308defaa8ffe136",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"The Entity 1982 film\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-8308defaa8ffe136",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "The Entity 1982 film"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 3.111530183814466,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6185730",
+        "score": 20.881330173054963,
+        "snippet": "The Entity is a 1982 horror film. The Entity may also refer to: See also. Topics referred to by the same term This page lists associated with the title .",
+        "text_characters": 153,
+        "title": "The Entity (disambiguation)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1005008",
+        "score": 17.723277564872433,
+        "snippet": "The Entity is a 1982 American supernatural horror film directed by Sidney J. Furie, and starring Barbara Hershey, Ron Silver, David Labiosa, Maggie Blye, Jacqueline Brookes, and Alex Rocco. The film follows a single mother in Los Angeles who is raped and tormented by an invisible poltergeist-like entity in her home. It was adapted for the screen by Frank De Felitta from his 1978 novel of the same name, which was based on the 1974 case of Doris Bither, a woman who claimed to have been repeatedly sexually assaulted by an invisible assailant, and who underwent observation by doctoral students at the University of California, Los Angeles. Principal photography of \"The Entity\" took place over a ten week-period in Los Angeles and El Segundo, California, in the spring of 1980. Despite being completed and planned for a release in 1981, the film went unreleased until the fall of 1982, when it was acquired by 20th Century Fox and given a theatrical release in the United Kingdom. The studio subsequently released it in the United States on February 4, 1983. It grossed over $13 million at the box office against a $9 million budget. The film received moderately favorable critical reviews and acclaim for Hershey's performance, and has received further praise from contemporary film critics. In addition to its paranormal elements, the film deals with themes of female sexual victimhood, sexual repression, and the family dynamics of single-parent households. It was met with some controversy fro",
+        "text_characters": 2808,
+        "title": "The Entity"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1005012",
+        "score": 17.288260238826922,
+        "snippet": "Stylistically, Furie and his cinematographer, Stephen H. Burum, employed frequent use of close-ups and Dutch angles. The shoot was temporarily halted when Labiosa accidentally broke his wrist while filming a scene in which he is thrown backward by the entity. Labiosa's injury resulted in him being written out of several scenes. During filming, Furie excised a subplot involving overt incestuous feelings between Carla and her son, Billy. A dream sequence in the original screenplay featured Carla fantasizing about taking her son's virginity. Labiosa recalled: \"I think it was awkward for everyone to do, because of what the whole thing implied. I often wonder what the film would have been like had they kept it in.\" According to Labiosa, a scene was filmed in which Carla observes Billy shirtless outside, which hinted at this subplot, but this scene was cut from the film. The majority of the special effects in the film were achieved with practical methods, and were supervised by Stan Winston. For example, the scene in which Carla's nude body is groped by the entity was shot featuring a latex dummy body with suction cups built inside, which allowed crew members to manipulate it to appear as though fingers were making impressions on her flesh; Hershey's body, aside from her head, was hidden beneath the bed during this scene. The construction of the dummy body cost the production $65,000 to create. The film would be among the final productions made by American Cinema Productions before",
+        "text_characters": 2593,
+        "title": "The Entity"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7511184",
+        "score": 17.00854315545434,
+        "snippet": "American novelist (1921–2016) Frank Paul De Felitta (August 3, 1921 – March 29, 2016) was an author, producer, pilot and film director. He was most well known for his novels \"Audrey Rose\" and \"The Entity.\" Life and career. Frank De Felitta was born in The Bronx, New York City, New York on August 3, 1921. He served as a pilot in World War II and in 1945 returned to New York, where he began to write scripts. His first effort, for the weekly radio program \"The Whistler,\" a popular thriller series, earned him $350 and started him on his writing career. He continued to write radio scripts before turning to television, where he was successful as a writer, producer, and director, winning Emmy nominations in 1963 and 1968 for his documentaries as well as a Peabody Award and several Writers Guild nominations. By the early 1970s he was working on film scripts, including two he wrote with Max Ehrlich, \"The Edict\" (1971) and \"The Savage is Loose\" (1974). \"The Edict\" was filmed as \"Z.P.G.\" (1972), and both it and \"The Savage is Loose\" were published as novels by Max Ehrlich. De Felitta's first novel, \"Oktoberfest\" (1973), a thriller, though not a bestseller nonetheless earned him enough to finance the year and a half he devoted to his next novel, \"Audrey Rose\" (1975). This novel, a horror story involving reincarnation, was a smash bestseller, selling more than 2.5 million copies and spawning a successful 1977 film adaptation (scripted by De Felitta) and a sequel, \"For Love of Audrey Rose\"",
+        "text_characters": 2052,
+        "title": "Frank De Felitta"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10622837",
+        "score": 16.756893752520153,
+        "snippet": "Eve is horrified to realize that Ray is now being healed by the pool but its guardian will take one of the children as a sacrifice. Eve returns to the house to find that Ray is being directly controlled by the entity, which traps Elliot in the pool and attempts to kill Izzy. Eve tries to save her son while Izzy confronts the entity controlling her father via the water from the spring, eventually assaulting him with a baseball bat. Eve manages to retrieve an unconscious Elliot, and is guided to the surface of the pool by Rebecca's spirit. Once back in the yard, Izzy's assault and Elliot's condition help Ray regain control of himself. To stop the entity from attacking his children, Ray sacrifices himself to it and the entity vanishes. Deciding to remain in the house so that no one else falls victim to the entity, Eve, Izzy and Elliot make arrangements for the pool to be filled in to stop such a thing happening again. Production. Proof-of-concept origins. The film's origins go back to 2014, when Bryce McGuire wrote and directed his low-budget five-minute 2014 short film of the same name in collaboration with his friend Rod Blackhurst, which he filmed in the backyard of musician Michelle Branch. It starred Megalyn Echikunwoke in the lead role, which would inspire the character of Izzy Waller in the feature version. McGuire cited Blumhouse's own films, as well as other films such as \"Poltergeist\" (1982), \"Creature from the Black Lagoon\" (1954), \"Jaws\" (1975), \"Christine\" (1983), \"",
+        "text_characters": 2376,
+        "title": "Night Swim"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1945299",
+        "score": 16.41650069100762,
+        "snippet": "Satan's Mistress (also known as Demon Rage, Fury of the Succubus and Dark Eyes) is a 1980 horror film, released in theatres in 1982. It concerns a sexually frustrated housewife, Lisa (Lana Wood), who, having become distanced from her husband Carl (Don Galloway), begins having nightly trysts with a tall, dark stranger who turns out to be a ghost (Kabir Bedi). The film gives bigger screen credit to Britt Ekland, who has only a minor role but possessed more star power, having previously played Mary Goodnight in \"The Man with the Golden Gun\". Lana Wood is known to many as Plenty O'Toole from the James Bond film \"Diamonds Are Forever\", while Kabir Bedi was featured as the villain's henchman, Gobinda, in yet another James Bond film, \"Octopussy\". The film also contains a cameo role for veteran horror actor John Carradine, as Father Stratten. The film was released the same year as the similarly themed \"The Entity\", differing from it in that the sex in \"Satan's Mistress\" is consensual. References.",
+        "text_characters": 1003,
+        "title": "Satan's Mistress"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7947704",
+        "score": 16.099096145108106,
+        "snippet": "Thomas J. Brandon (1908–1982) was a founding member of the New York Workers Film and Photo League. He later worked as a film distributor for Garrison Films, which distributed films such as \"People of the Cumberland\" and \"The Spanish Earth\". Brandon then founded his own company, Brandon Films in November 1940 and acquired the Garrison catalog. During the 1950s, Brandon Films owned the largest collection of 16mm available for general release in the United States. He was the first president of the New York Film Council, and helped to found the short-lived Film Forum in 1933 with Pulitzer Prize-winning playwright Sidney Howard. In 1968, Brandon sold his company to Macmillan; the new entity became known as Audio-Brandon. Audio-Brandon was later acquired by Films Inc. Brandon's work in the 1970s to reclaim and publicize the history of 1930s film activism is an important source for film historians. Brandon's unpublished manuscripts and documents on radical film history are deposited at the New York Museum of Modern Art Film Study Center. Films from his collection were donated to several archives including the Museum of Modern Art and the U.S. Library of Congress, and others. References.",
+        "text_characters": 1198,
+        "title": "Thomas Brandon (film distributor)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1005011",
+        "score": 15.795411350134478,
+        "snippet": "Neither he nor actress Barbara Hershey met with Doris Bither, the woman on whom the character of Carla Moran was based. Casting. \"Barbara's performance is very unusual in that it almost seems to belong to a documentary rather than a suspense film. It's very real. You don't see the acting. You don't see the wheels turning, and that's what great actors do.\" —Director Sidney Furie on Hershey's performance Several actresses were considered for the role of Carla Moran, including Jill Clayburgh, Sally Field, Jane Fonda, and Bette Midler, but all four declined the offer. Barbara Hershey was cast in the role only ten days before production was scheduled to begin. Hershey had hesitations about the part due to the nudity in the screenplay, but agreed to it after director Sidney J. Furie assured her the nude sequences would be accomplished via body doubles and mannequins. Recalling her casting, Hershey said: \"I was frightened. I didn't know how it would be edited or marketed. But I knew that Sid saw potential in the film to approach the subject from a humanistic and psychiatric viewpoint, from a mother's viewpoint... and I felt it was a worthwhile risk.\" Neither Hershey nor Furie met the real Doris Bither in preparation for the film. Ron Silver was cast as Dr. Sniderman, the psychologist who questions the supernatural nature of Carla's attacks, while Alex Rocco was given the part of Jerry, her absent boyfriend. Furie had originally sought Craig T. Nelson for the role of Jerry, but produ",
+        "text_characters": 2535,
+        "title": "The Entity"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10779208",
+        "score": 15.770177383295428,
+        "snippet": "Marcia Karr (; born June 29, 1963) is an American former actress who appeared in several exploitation and horror films in the 1980s, including \"Chained Heat\" (1983), \"Savage Streets\" (1984), and \"Killer Workout\" (1987). Biography. Karr was born and raised in Pennsauken Township, New Jersey. As a teenager, Karr ran away and relocated to Los Angeles. She began her film career performing as a body double for Barbara Hershey in the 1981 horror film \"The Entity\". Karr made her feature film debut in \"The Concrete Jungle\" (1982), and subsequently appeared opposite Linda Blair in the women-in-prison film \"Chained Heat\" (1983). The following year, she again co-starred with Blair in the exploitation vigilante film \"Savage Streets\" (1984). She later had a lead role in the slasher film \"Killer Workout\" (1987), playing the proprietor of a fitness spa where a series of murders are occurring. She also had a supporting role in the slasher film \"Maniac Cop\" (1988). In 1988, she served as a casting director for the horror film \"Cheerleader Camp\". After retiring from acting in the early 1990s, Karr relocated to Arizona with her husband and worked for eight years as a corporate fundraiser for the Make-A-Wish Foundation. She has since worked for the non-profit charities ChildFund and International Medical Corps. References.",
+        "text_characters": 1324,
+        "title": "Marcia Karr"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:446718",
+        "score": 15.685335103011418,
+        "snippet": "In January 1982, Lear and Jerry Perenchio bought Avco Embassy Pictures from Avco Financial Corporation. In January 1982, after merging with company with T.A.T. Communications, the Avco was dropped, and the combined entity was renamed as Embassy Communications, Inc. Embassy Pictures was led by Alan Horn and Martin Schaeffer, later co-founders of Castle Rock Entertainment with Rob Reiner. In March 1982, Lear produced an ABC television special titled \"I Love Liberty\", as a counterbalance to groups like the Moral Majority. Among the many guests who appeared on the special was conservative icon and the 1964 U.S. presidential election's Republican nominee Barry Goldwater. On June 18, 1985, Lear and Perenchio sold Embassy Communications to Columbia Pictures (then owned by The Coca-Cola Company), which acquired Embassy's film and television division (including Embassy's in-house television productions and the television rights to the Embassy theatrical library) for $485 million of shares of The Coca-Cola Company. The brand Tandem Productions was abandoned in 1986 with the cancellation of \"Diff'rent Strokes\", and Embassy ceased to exist as a single entity in late 1986, having been split into different components owned by different entities. Coca-Cola sold the film division to Dino De Laurentiis and the home video arm to Nelson Holdings (led by Barry Spikings). The TV properties continued under the Columbia Pictures Television banner. Lear's Act III Communications was founded in 1986 a",
+        "text_characters": 2656,
+        "title": "Norman Lear"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-8308defaa8ffe136"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:6185730", "title": "The Entity (disambiguation)", "score": 20.881330173054963, "snippet": "The Entity is a 1982 horror film. The Entity may also refer to: See also. Topics referred to by the same term This page lists associated with the title .", "text_characters": 153, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1005008", "title": "The Entity", "score": 17.723277564872433, "snippet": "The Entity is a 1982 American supernatural horror film directed by Sidney J. Furie, and starring Barbara Hershey, Ron Silver, David Labiosa, Maggie Blye, Jacqueline Brookes, and Alex Rocco. The film follows a single mother in Los Angeles who is raped and tormented by an invisible poltergeist-like entity in her home. It was adapted for the screen by Frank De Felitta from his 1978 novel of the same name, which was based on the 1974 case of Doris Bither, a woman who claimed to have been repeatedly sexually assaulted by an invisible assailant, and who underwent observation by doctoral students at the University of California, Los Angeles. Principal photography of \"The Entity\" took place over a ten week-period in Los Angeles and El Segundo, California, in the spring of 1980. Despite being completed and planned for a release in 1981, the film went unreleased until the fall of 1982, when it was acquired by 20th Century Fox and given a theatrical release in the United Kingdom. The studio subsequently released it in the United States on February 4, 1983. It grossed over $13 million at the box office against a $9 million budget. The film received moderately favorable critical reviews and acclaim for Hershey's performance, and has received further praise from contemporary film critics. In addition to its paranormal elements, the film deals with themes of female sexual victimhood, sexual repression, and the family dynamics of single-parent households. It was met with some controversy fro", "text_characters": 2808, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1005012", "title": "The Entity", "score": 17.288260238826922, "snippet": "Stylistically, Furie and his cinematographer, Stephen H. Burum, employed frequent use of close-ups and Dutch angles. The shoot was temporarily halted when Labiosa accidentally broke his wrist while filming a scene in which he is thrown backward by the entity. Labiosa's injury resulted in him being written out of several scenes. During filming, Furie excised a subplot involving overt incestuous feelings between Carla and her son, Billy. A dream sequence in the original screenplay featured Carla fantasizing about taking her son's virginity. Labiosa recalled: \"I think it was awkward for everyone to do, because of what the whole thing implied. I often wonder what the film would have been like had they kept it in.\" According to Labiosa, a scene was filmed in which Carla observes Billy shirtless outside, which hinted at this subplot, but this scene was cut from the film. The majority of the special effects in the film were achieved with practical methods, and were supervised by Stan Winston. For example, the scene in which Carla's nude body is groped by the entity was shot featuring a latex dummy body with suction cups built inside, which allowed crew members to manipulate it to appear as though fingers were making impressions on her flesh; Hershey's body, aside from her head, was hidden beneath the bed during this scene. The construction of the dummy body cost the production $65,000 to create. The film would be among the final productions made by American Cinema Productions before", "text_characters": 2593, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7511184", "title": "Frank De Felitta", "score": 17.00854315545434, "snippet": "American novelist (1921–2016) Frank Paul De Felitta (August 3, 1921 – March 29, 2016) was an author, producer, pilot and film director. He was most well known for his novels \"Audrey Rose\" and \"The Entity.\" Life and career. Frank De Felitta was born in The Bronx, New York City, New York on August 3, 1921. He served as a pilot in World War II and in 1945 returned to New York, where he began to write scripts. His first effort, for the weekly radio program \"The Whistler,\" a popular thriller series, earned him $350 and started him on his writing career. He continued to write radio scripts before turning to television, where he was successful as a writer, producer, and director, winning Emmy nominations in 1963 and 1968 for his documentaries as well as a Peabody Award and several Writers Guild nominations. By the early 1970s he was working on film scripts, including two he wrote with Max Ehrlich, \"The Edict\" (1971) and \"The Savage is Loose\" (1974). \"The Edict\" was filmed as \"Z.P.G.\" (1972), and both it and \"The Savage is Loose\" were published as novels by Max Ehrlich. De Felitta's first novel, \"Oktoberfest\" (1973), a thriller, though not a bestseller nonetheless earned him enough to finance the year and a half he devoted to his next novel, \"Audrey Rose\" (1975). This novel, a horror story involving reincarnation, was a smash bestseller, selling more than 2.5 million copies and spawning a successful 1977 film adaptation (scripted by De Felitta) and a sequel, \"For Love of Audrey Rose\"", "text_characters": 2052, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10622837", "title": "Night Swim", "score": 16.756893752520153, "snippet": "Eve is horrified to realize that Ray is now being healed by the pool but its guardian will take one of the children as a sacrifice. Eve returns to the house to find that Ray is being directly controlled by the entity, which traps Elliot in the pool and attempts to kill Izzy. Eve tries to save her son while Izzy confronts the entity controlling her father via the water from the spring, eventually assaulting him with a baseball bat. Eve manages to retrieve an unconscious Elliot, and is guided to the surface of the pool by Rebecca's spirit. Once back in the yard, Izzy's assault and Elliot's condition help Ray regain control of himself. To stop the entity from attacking his children, Ray sacrifices himself to it and the entity vanishes. Deciding to remain in the house so that no one else falls victim to the entity, Eve, Izzy and Elliot make arrangements for the pool to be filled in to stop such a thing happening again. Production. Proof-of-concept origins. The film's origins go back to 2014, when Bryce McGuire wrote and directed his low-budget five-minute 2014 short film of the same name in collaboration with his friend Rod Blackhurst, which he filmed in the backyard of musician Michelle Branch. It starred Megalyn Echikunwoke in the lead role, which would inspire the character of Izzy Waller in the feature version. McGuire cited Blumhouse's own films, as well as other films such as \"Poltergeist\" (1982), \"Creature from the Black Lagoon\" (1954), \"Jaws\" (1975), \"Christine\" (1983), \"", "text_characters": 2376, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1945299", "title": "Satan's Mistress", "score": 16.41650069100762, "snippet": "Satan's Mistress (also known as Demon Rage, Fury of the Succubus and Dark Eyes) is a 1980 horror film, released in theatres in 1982. It concerns a sexually frustrated housewife, Lisa (Lana Wood), who, having become distanced from her husband Carl (Don Galloway), begins having nightly trysts with a tall, dark stranger who turns out to be a ghost (Kabir Bedi). The film gives bigger screen credit to Britt Ekland, who has only a minor role but possessed more star power, having previously played Mary Goodnight in \"The Man with the Golden Gun\". Lana Wood is known to many as Plenty O'Toole from the James Bond film \"Diamonds Are Forever\", while Kabir Bedi was featured as the villain's henchman, Gobinda, in yet another James Bond film, \"Octopussy\". The film also contains a cameo role for veteran horror actor John Carradine, as Father Stratten. The film was released the same year as the similarly themed \"The Entity\", differing from it in that the sex in \"Satan's Mistress\" is consensual. References.", "text_characters": 1003, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7947704", "title": "Thomas Brandon (film distributor)", "score": 16.099096145108106, "snippet": "Thomas J. Brandon (1908–1982) was a founding member of the New York Workers Film and Photo League. He later worked as a film distributor for Garrison Films, which distributed films such as \"People of the Cumberland\" and \"The Spanish Earth\". Brandon then founded his own company, Brandon Films in November 1940 and acquired the Garrison catalog. During the 1950s, Brandon Films owned the largest collection of 16mm available for general release in the United States. He was the first president of the New York Film Council, and helped to found the short-lived Film Forum in 1933 with Pulitzer Prize-winning playwright Sidney Howard. In 1968, Brandon sold his company to Macmillan; the new entity became known as Audio-Brandon. Audio-Brandon was later acquired by Films Inc. Brandon's work in the 1970s to reclaim and publicize the history of 1930s film activism is an important source for film historians. Brandon's unpublished manuscripts and documents on radical film history are deposited at the New York Museum of Modern Art Film Study Center. Films from his collection were donated to several archives including the Museum of Modern Art and the U.S. Library of Congress, and others. References.", "text_characters": 1198, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1005011", "title": "The Entity", "score": 15.795411350134478, "snippet": "Neither he nor actress Barbara Hershey met with Doris Bither, the woman on whom the character of Carla Moran was based. Casting. \"Barbara's performance is very unusual in that it almost seems to belong to a documentary rather than a suspense film. It's very real. You don't see the acting. You don't see the wheels turning, and that's what great actors do.\" —Director Sidney Furie on Hershey's performance Several actresses were considered for the role of Carla Moran, including Jill Clayburgh, Sally Field, Jane Fonda, and Bette Midler, but all four declined the offer. Barbara Hershey was cast in the role only ten days before production was scheduled to begin. Hershey had hesitations about the part due to the nudity in the screenplay, but agreed to it after director Sidney J. Furie assured her the nude sequences would be accomplished via body doubles and mannequins. Recalling her casting, Hershey said: \"I was frightened. I didn't know how it would be edited or marketed. But I knew that Sid saw potential in the film to approach the subject from a humanistic and psychiatric viewpoint, from a mother's viewpoint... and I felt it was a worthwhile risk.\" Neither Hershey nor Furie met the real Doris Bither in preparation for the film. Ron Silver was cast as Dr. Sniderman, the psychologist who questions the supernatural nature of Carla's attacks, while Alex Rocco was given the part of Jerry, her absent boyfriend. Furie had originally sought Craig T. Nelson for the role of Jerry, but produ", "text_characters": 2535, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10779208", "title": "Marcia Karr", "score": 15.770177383295428, "snippet": "Marcia Karr (; born June 29, 1963) is an American former actress who appeared in several exploitation and horror films in the 1980s, including \"Chained Heat\" (1983), \"Savage Streets\" (1984), and \"Killer Workout\" (1987). Biography. Karr was born and raised in Pennsauken Township, New Jersey. As a teenager, Karr ran away and relocated to Los Angeles. She began her film career performing as a body double for Barbara Hershey in the 1981 horror film \"The Entity\". Karr made her feature film debut in \"The Concrete Jungle\" (1982), and subsequently appeared opposite Linda Blair in the women-in-prison film \"Chained Heat\" (1983). The following year, she again co-starred with Blair in the exploitation vigilante film \"Savage Streets\" (1984). She later had a lead role in the slasher film \"Killer Workout\" (1987), playing the proprietor of a fitness spa where a series of murders are occurring. She also had a supporting role in the slasher film \"Maniac Cop\" (1988). In 1988, she served as a casting director for the horror film \"Cheerleader Camp\". After retiring from acting in the early 1990s, Karr relocated to Arizona with her husband and worked for eight years as a corporate fundraiser for the Make-A-Wish Foundation. She has since worked for the non-profit charities ChildFund and International Medical Corps. References.", "text_characters": 1324, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:446718", "title": "Norman Lear", "score": 15.685335103011418, "snippet": "In January 1982, Lear and Jerry Perenchio bought Avco Embassy Pictures from Avco Financial Corporation. In January 1982, after merging with company with T.A.T. Communications, the Avco was dropped, and the combined entity was renamed as Embassy Communications, Inc. Embassy Pictures was led by Alan Horn and Martin Schaeffer, later co-founders of Castle Rock Entertainment with Rob Reiner. In March 1982, Lear produced an ABC television special titled \"I Love Liberty\", as a counterbalance to groups like the Moral Majority. Among the many guests who appeared on the special was conservative icon and the 1964 U.S. presidential election's Republican nominee Barry Goldwater. On June 18, 1985, Lear and Perenchio sold Embassy Communications to Columbia Pictures (then owned by The Coca-Cola Company), which acquired Embassy's film and television division (including Embassy's in-house television productions and the television rights to the Embassy theatrical library) for $485 million of shares of The Coca-Cola Company. The brand Tandem Productions was abandoned in 1986 with the cancellation of \"Diff'rent Strokes\", and Embassy ceased to exist as a single entity in late 1986, having been split into different components owned by different entities. Coca-Cola sold the film division to Dino De Laurentiis and the home video arm to Nelson Holdings (led by Barry Spikings). The TV properties continued under the Columbia Pictures Television banner. Lear's Act III Communications was founded in 1986 a", "text_characters": 2656, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R009_request.json/messages/18/content`；SHA256：`2426e90f97e8251f63d3e974500a59d51b049e011e856f19882b8b0dbbddf471`。
+
+## S007｜恢复Funeral的BAFTA核查并普通加年份重试
+
+R9—R11三Search，明确区分Ipcress三奖属于另一片。
+
+结束状态：返回Guy Hamilton导演，仍缺Funeral奖项。
+
+边界判断：从Entity取证恢复被中断的主片奖项工作。
+
+内部KEEP与反证：R10虽然计划两查询，真实只BAFTA；R11仅加film，同计划重试。
+
+### SPLIT原文
+
+````
+The search results for "The Entity 1982 Rotten Tomatoes reviews" did not return specific information about the number of reviews. I need to search for "The Entity" film details to find the Rotten Tomatoes review count.
+
+Let me search for "The Entity" film details.
+
+→ 切点 [8, 0, 0] →
+I need to find the number of BAFTA Awards won by the film featuring Michael Caine in his second lead role.
+From the search results, I know:
+1. Michael Caine's first lead role was Harry Palmer in "The Ipcress File" (1965).
+2. His second lead role was in "Funeral in Berlin" (1966).
+3. "The Ipcress File" won 3 BAFTA Awards.
+4. I need to check how many BAFTA Awa
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/9"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 10,
+    "batch_id": "B010",
+    "call_pointers": [
+      "/rounds/9/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/10"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 11,
+    "batch_id": "B011",
+    "call_pointers": [
+      "/rounds/10/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/11"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R9 `/rounds/8/reasoning_content` [0,559)
+
+SHA256：`38e468f15962e6298918b712c15c21e4185b7d1e0fd936b247cbefc1bd803b37`；原字段SHA256：`38e468f15962e6298918b712c15c21e4185b7d1e0fd936b247cbefc1bd803b37`。
+
+````
+I need to find the number of BAFTA Awards won by the film featuring Michael Caine in his second lead role.
+From the search results, I know:
+1. Michael Caine's first lead role was Harry Palmer in "The Ipcress File" (1965).
+2. His second lead role was in "Funeral in Berlin" (1966).
+3. "The Ipcress File" won 3 BAFTA Awards.
+4. I need to check how many BAFTA Awards "Funeral in Berlin" won.
+
+Let me search for "Funeral in Berlin BAFTA Awards".
+
+<tool_call>
+<function=search>
+<parameter=query>
+Funeral in Berlin BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/9`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nFuneral in Berlin BAFTA Awards\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E010",
+  "latency_seconds": 0.8458191840909421,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9140721",
+        "score": 18.71140933501034,
+        "snippet": "Straßmann supported the separation of church and state which made him a target to antisemitic attacks of court chaplain Adolf Stoecker in 1883. Straßmann was married to Louise Cohen (1835–1889) from 1862 until his death in 1885. Their daughter Henni Lehmann became a well-known painter. His son Wolf died aged 35. A funeral service for Wolfgang Straßmann was held in Berlin's City Hall, with Rudolf Virchow giving the eulogy. Awards. His portrait in the gallery of presidents of the town council in Berlin's City Hall was destroyed by the Nazis in the 1930s, the Straßmannstrasse in Friedrichshain-Kreuzberg was named in his honor on 4 August 1897 and, after being renamed by the Nazis in 1938, again in 1947. References.",
+        "text_characters": 721,
+        "title": "Wolfgang Straßmann"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8226362",
+        "score": 18.196765292071603,
+        "snippet": "Subsequent conspiracy theories have circled the events ever since, but none of these has progressed beyond a series of tantalising conjectural scenarios. Bodies of the German victims of the accident were subjected to autopsies at the Charité (university hospital) in Berlin. The corpses should have included that of Werner Lamberz, but one of the pathologists involved, Wolfgang Keil, stated in a later interview that it had not been possible to find the remains of Lamberz. Nevertheless, Werner Lamberz received a state funeral and an urn believed to contain his ashes following cremation was placed beside the remains of other privileged East German politicians in the cemetery at Berlin-Lichtenberg. Awards and honours. The list is not exhaustive. Streets were also named after Werner Lamberz, although they tended to be renamed after the East German state became discredited following German reunification in 1990. References.",
+        "text_characters": 930,
+        "title": "Werner Lamberz"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10698025",
+        "score": 17.98544855661527,
+        "snippet": "In addition to directing, writing, and editing this film, Singing Chen also specifically participated in producing the music for the yoga music composer in the movie. Critical reception. In 2007, \"God Man Dog\" participated in the Vancouver International Film Festival and the 12th Busan International Film Festival, where it was selected for the \"New Currents.\" At the 44th The Golden Horse Awards, the film was nominated for \"Best Original Screenplay\" and Singing Chen and Huang Meiqing for \"Best Film Editing\" and \"Best Art Direction,\" respectively. In 2008, the film competed in the official competition section of the Fribourg International Film Festival in Switzerland. It was nominated for the Berlin Film Festival, and was selected for the \"Best Film\" by the Berlin Daily Mirror. In the Asian Film Awards, Jack Kao was nominated for \"Best Actor.\" It received the recognition of the \"E-Changer Award\" at the Fribourg International Film Festival in Switzerland, and was awarded 5,000 Swiss francs. Huang Ming-chuan recalled that once while shooting a funeral procession in Chiayi, the gods on every truck were different. Singing Chen, seeing this scene for the first time, was quite shocked and perhaps it also opened up her creative thinking. References.",
+        "text_characters": 1260,
+        "title": "God Man Dog"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9378393",
+        "score": 17.757444362325867,
+        "snippet": "Austrian opera singer Josef von Manowarda (3 July 1890 in Kraków – 24 December 1942 in Berlin) was an Austrian operatic singer (bass and Heldenbaritone). Life. Manowarda was born in Kraków, the son of the Austrian general Eberhard Manowarda von Jana. He first prepared himself for a diplomatic career in Vienna, but then studied philosophy in Graz. Early on he received violin lessons, in Graz and also speech and singing lessons. In 1911–15 he was engaged in the Graz Opera, in 1915–18 at the Wiener Volksoper, and from 1919 to 1934 at the Wiener Staatsoper. According to the he appeared at the Salzburg Festival. He was professor at the Vienna Music Academy. Manowarda had joined the NSDAP together with his wife before 1933 and remained politically active even after the party ban in 1933 by distributing propaganda material to the staff of the Vienna State Opera and refusing to wear the badge of the Vaterländische Front despite threats of severe punishment. According to his own statements, this caused him political difficulties, which is why he moved to the Berlin State Opera under Clemens Krauss in 1935. Already in 1931 he sang his way to great success at the Bayreuth Festival as the Landgrave in \"Tannhäuser\" under Arturo Toscanini. After his move to Berlin, Manowarda was particularly popular with Adolf Hitler and Joseph Goebbels and used this attention to propose in 1936 to Heinz Tietjen the unification of the Staatstheaters of Berlin and Kassel with the Burgtheater and the Vienna ",
+        "text_characters": 2447,
+        "title": "Josef von Manowarda"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3533709",
+        "score": 17.508208551862143,
+        "snippet": "The first film of this genre was \"Nehir\", in which he shared the role with Cüneyt Arkın. Political films like \"Maden\", \"Sürü\", \"Yol\" and \"Kanal\" followed. He acted in a total of 110 films, and won numerous awards from various festivals including Cannes and Berlin. He won an Honourable Mention at the 35th Berlin International Film Festival for his role in \"Pehlivan\". Later years. He also directed several productions such as documentaries and serials for television. In 2002, he published his first book \"Anne Kafamda Bit Var\", a biography of his life and his time in prison. In 1991, he took over the elementary school in Bakırköy, in which he was educated, and transferred it to his own Özel Taş İlköğretim Okulu. In 2005, he became the chairman of the education-aimed \"Nesin Foundation\", succeeding Ali Nesin, the son of the founder Aziz Nesin. In his later years, he was served as chairman of the \"Nazım Hikmet Cultural and Arts Foundation\". Illness and death. Akan contracted lung cancer, and was in treatment for over one year. In the early hours of 16 September 2016, he died at the age of 66 in the intensive care station of a private hospital in Istanbul. On 18 September, he was interred at Zuhuratbaba Cemetery in Bakırköy following a memorial service held in Harbiye Muhsin Ertuğrul Stage and the religious funeral service at Teşvikiye Mosque. The funeral was attended by thousands of people, his castmates, former President of Turkey Ahmet Necdet Sezer and the leader of the main oppos",
+        "text_characters": 1543,
+        "title": "Tarık Akan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7683912",
+        "score": 16.95611087411191,
+        "snippet": "Kwaku Ananse is a 2013 short film directed by Akosua Adoma Owusu. The short film combines semi-autobiographical elements with the tale of Kwaku Ananse, a trickster in West African and Caribbean stories who appears as both a spider and a man. The fable of Kwaku Ananse is combined with the story of a young outsider named Nyan Koronhwea, who attends her estranged father's funeral. At the funeral, she retreats to the woods in search of her father. The film starred legendary musician Koo Nimo and veteran actress Grace Omaboe. The screenplay was co-written by Pakistani-American filmmaker and entrepreneur Iram Parveen Bilal. The script was written for MaameYaa Boafo, a Pakistani born-Ghanaian actress, who was originally cast in the lead role as Nyan Koronhwea. However, the production team in New York City eventually decided to recast the character during the pre-production stage with Jojo Abot, an emerging Ghanaian artist. Synopsis. Drawing upon the rich mythology of Ghana, this magical short film combines semi-autobiographical elements from Owusu's life with local folklore to tell the story of a young American woman who returns to West Africa for her father's funeral, only to discover his hidden double identity. Kwaku Ananse is a traditional West African fable about a being that is part man and part spider, who spends years collecting all the wisdom of the world in a wooden pot. As he tries to hide the pot in a tree, he can't find a way to place it high up in its branches. When his",
+        "text_characters": 2345,
+        "title": "Kwaku Ananse (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3967608",
+        "score": 16.28387808620022,
+        "snippet": "Armed tensions in Poland provided King Frederick William IV, for whom Knesebeck was still officially acting as primary military adviser, the opportunity to offer him promotion to field marshal on 7 October 1847, a five star rank that could only be bestowed in wartime. Knesebeck also declined this honour, pointing to his advanced age and suggesting it would \"make a mockery of active field marshals\". He instead requested his discharge from the army, which was granted him with a simultaneous promotion to field marshal at the insistence of the king. He died on 12 January 1848 in Berlin. Following a state funeral with an honour guard of nine regiments he was buried in the Alter Garnisonfriedhof. On the church in Neuruppin-Karwe hangs a memorial to Knesebeck, with the inscription: \"Carl Friedrich von dem Knesebeck, born in Carwe 1768, died in Berlin 1848. A Prussian field marshal, he fought for the honour of his King and Country in 17 battles and served to the glory of his fatherland from his 13th year until his death. Peace to his remains, honour to his memory.\" Between 1983 and 1986 the awards received by Knesebeck, held by the German Historical Museum in Berlin, were among the priceless collection stolen and sold on the black market by an employee of the museum. Together with the orders worn by several German kings, emperors, and generals, numerous other unique pieces were taken during the theft. Only a limited number of the items in question have since been recovered, making it",
+        "text_characters": 1569,
+        "title": "Karl Friedrich von dem Knesebeck"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:40030",
+        "score": 15.864899729409752,
+        "snippet": "Truffaut was philosophically opposed to attempts to portray anti-war themes through cinema, famously stating that \"there is no such thing as an anti-war film\" due to the medium's inherent glorification of such subjects, no matter how they are portrayed. Personal life. Truffaut was married to Madeleine Morgenstern from 1957 to 1965, and they had two daughters, Laura (born 1959) and Eva (born 1961). Madeleine was the daughter of Ignace Morgenstern, managing director of one of France's largest film distribution companies, Cocinor, and was largely responsible for securing funding for Truffaut's first films. In 1968, Truffaut was engaged to actress Claude Jade (\"Stolen Kisses\", \"Bed and Board\", \"Love on the Run\"); he and Fanny Ardant (\"The Woman Next Door\", \"Confidentially Yours\") lived together from 1981 to 1984 and had a daughter, Joséphine Truffaut (born 28 September 1983). Truffaut was an atheist, but had great respect for the Catholic Church and requested a Requiem Mass for his funeral. Death. In July 1983, following his first stroke and being diagnosed with a brain tumour, Truffaut rented France Gall's and Michel Berger's house outside Honfleur, Normandy. He was expected to attend his friend Miloš Forman's \"Amadeus\" premiere when he died on 21 October 1984, aged 52, at the American Hospital of Paris in Neuilly-sur-Seine in France. At the time of his death, he was said to have numerous further films in preparation. He is buried in Montmartre Cemetery. Filmography. Feature fil",
+        "text_characters": 1744,
+        "title": "François Truffaut"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2245678",
+        "score": 15.071787210038707,
+        "snippet": "However, Riskin felt that Capra was taking all the credit for their films, including Riskin's share. Riskin came to resent Capra for this. This led to several confrontations with Capra during the production of \"Meet John Doe\". According to an account by Hollywood screenwriter David Rintels (which was denied by Capra), Riskin brandished 120 blank pages in Capra's face and challenged: \"Put the famous Capra touch on \"that\"!\" After completion of just one film, \"Meet John Doe\", the association was dissolved. Riskin never willingly collaborated with Capra again. During the time of his declining health, home confinement, and final residence at the Motion Picture & Television Country Home and Hospital, Riskin was regularly visited by old friends such as Edward G. Robinson, Jack Benny, and Irving Berlin. Long time friend and screenwriting colleague Jo Swerling and his wife remained devoted visitors. Conspicuously absent was Frank Capra, who never visited Riskin during the five years of his illness. Swerling was pained by Capra's behavior, but Riskin refused to disparage Capra. He remained loyal to the man, calling him \"his best friend\". The \"Los Angeles Examiner\" covered Riskin's funeral in September 1955, describing the \"notables\" in attendance. The report also identified the \"one man who wasn’t there\": Frank Capra. In 1961, Capra directed \"A Pocketful of Miracles\", a remake of Capra and Riskin's 1933 collaboration \"Lady for a Day\", with a screenplay by Hal Kanter and Harry Tugend fr",
+        "text_characters": 2381,
+        "title": "Robert Riskin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:916501",
+        "score": 15.043904555022154,
+        "snippet": "Chuikov's advance through Poland was characterized by massive advances across difficult terrain [on several occasions, the 8th Guards Army advanced over in a single day]. On 1 May 1945, Chuikov, who commanded his army operating in central Berlin, was the first Allied officer to learn about Adolf Hitler's suicide, being informed by General Hans Krebs who had come to Chuikov's headquarters under a white flag. Krebs, under orders from Goebbels, sought conditions for surrender more favorable to the Germans, which Chuikov had no authority to grant and so rejected any terms. On 2 May, he accepted the unconditional surrender of Berlin's forces from General Helmuth Weidling who had taken command, with the suicide that morning by Gen. Krebs. Chuikov appeared in the documentary film \"Berlin\" (1945), directed by Yuli Raizman. Later life. After the war, Chuikov continued to command the 8th Guards Army in Germany, later serving as Commander-in-Chief of the Group of Soviet Forces in Germany from 1949 until 1953, when he was made commander of the Kiev Military District. While serving at that post, on 11 March 1955 he was promoted to Marshal of the Soviet Union. From 1960 to 1964, he was the Commander-in-Chief of the Soviet Ground Forces. He also served as the Chief of the Civil Defense from 1961 until his retirement in 1972. From 1961 until his death, he was a member of the Central Committee of the Communist Party of the Soviet Union. In 1969, Chuikov led the Soviet delegation attending the",
+        "text_characters": 1998,
+        "title": "Vasily Chuikov"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：10；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:9140721", "title": "Wolfgang Straßmann", "score": 18.71140933501034, "snippet": "Straßmann supported the separation of church and state which made him a target to antisemitic attacks of court chaplain Adolf Stoecker in 1883. Straßmann was married to Louise Cohen (1835–1889) from 1862 until his death in 1885. Their daughter Henni Lehmann became a well-known painter. His son Wolf died aged 35. A funeral service for Wolfgang Straßmann was held in Berlin's City Hall, with Rudolf Virchow giving the eulogy. Awards. His portrait in the gallery of presidents of the town council in Berlin's City Hall was destroyed by the Nazis in the 1930s, the Straßmannstrasse in Friedrichshain-Kreuzberg was named in his honor on 4 August 1897 and, after being renamed by the Nazis in 1938, again in 1947. References.", "text_characters": 721, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8226362", "title": "Werner Lamberz", "score": 18.196765292071603, "snippet": "Subsequent conspiracy theories have circled the events ever since, but none of these has progressed beyond a series of tantalising conjectural scenarios. Bodies of the German victims of the accident were subjected to autopsies at the Charité (university hospital) in Berlin. The corpses should have included that of Werner Lamberz, but one of the pathologists involved, Wolfgang Keil, stated in a later interview that it had not been possible to find the remains of Lamberz. Nevertheless, Werner Lamberz received a state funeral and an urn believed to contain his ashes following cremation was placed beside the remains of other privileged East German politicians in the cemetery at Berlin-Lichtenberg. Awards and honours. The list is not exhaustive. Streets were also named after Werner Lamberz, although they tended to be renamed after the East German state became discredited following German reunification in 1990. References.", "text_characters": 930, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10698025", "title": "God Man Dog", "score": 17.98544855661527, "snippet": "In addition to directing, writing, and editing this film, Singing Chen also specifically participated in producing the music for the yoga music composer in the movie. Critical reception. In 2007, \"God Man Dog\" participated in the Vancouver International Film Festival and the 12th Busan International Film Festival, where it was selected for the \"New Currents.\" At the 44th The Golden Horse Awards, the film was nominated for \"Best Original Screenplay\" and Singing Chen and Huang Meiqing for \"Best Film Editing\" and \"Best Art Direction,\" respectively. In 2008, the film competed in the official competition section of the Fribourg International Film Festival in Switzerland. It was nominated for the Berlin Film Festival, and was selected for the \"Best Film\" by the Berlin Daily Mirror. In the Asian Film Awards, Jack Kao was nominated for \"Best Actor.\" It received the recognition of the \"E-Changer Award\" at the Fribourg International Film Festival in Switzerland, and was awarded 5,000 Swiss francs. Huang Ming-chuan recalled that once while shooting a funeral procession in Chiayi, the gods on every truck were different. Singing Chen, seeing this scene for the first time, was quite shocked and perhaps it also opened up her creative thinking. References.", "text_characters": 1260, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9378393", "title": "Josef von Manowarda", "score": 17.757444362325867, "snippet": "Austrian opera singer Josef von Manowarda (3 July 1890 in Kraków – 24 December 1942 in Berlin) was an Austrian operatic singer (bass and Heldenbaritone). Life. Manowarda was born in Kraków, the son of the Austrian general Eberhard Manowarda von Jana. He first prepared himself for a diplomatic career in Vienna, but then studied philosophy in Graz. Early on he received violin lessons, in Graz and also speech and singing lessons. In 1911–15 he was engaged in the Graz Opera, in 1915–18 at the Wiener Volksoper, and from 1919 to 1934 at the Wiener Staatsoper. According to the he appeared at the Salzburg Festival. He was professor at the Vienna Music Academy. Manowarda had joined the NSDAP together with his wife before 1933 and remained politically active even after the party ban in 1933 by distributing propaganda material to the staff of the Vienna State Opera and refusing to wear the badge of the Vaterländische Front despite threats of severe punishment. According to his own statements, this caused him political difficulties, which is why he moved to the Berlin State Opera under Clemens Krauss in 1935. Already in 1931 he sang his way to great success at the Bayreuth Festival as the Landgrave in \"Tannhäuser\" under Arturo Toscanini. After his move to Berlin, Manowarda was particularly popular with Adolf Hitler and Joseph Goebbels and used this attention to propose in 1936 to Heinz Tietjen the unification of the Staatstheaters of Berlin and Kassel with the Burgtheater and the Vienna ", "text_characters": 2447, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3533709", "title": "Tarık Akan", "score": 17.508208551862143, "snippet": "The first film of this genre was \"Nehir\", in which he shared the role with Cüneyt Arkın. Political films like \"Maden\", \"Sürü\", \"Yol\" and \"Kanal\" followed. He acted in a total of 110 films, and won numerous awards from various festivals including Cannes and Berlin. He won an Honourable Mention at the 35th Berlin International Film Festival for his role in \"Pehlivan\". Later years. He also directed several productions such as documentaries and serials for television. In 2002, he published his first book \"Anne Kafamda Bit Var\", a biography of his life and his time in prison. In 1991, he took over the elementary school in Bakırköy, in which he was educated, and transferred it to his own Özel Taş İlköğretim Okulu. In 2005, he became the chairman of the education-aimed \"Nesin Foundation\", succeeding Ali Nesin, the son of the founder Aziz Nesin. In his later years, he was served as chairman of the \"Nazım Hikmet Cultural and Arts Foundation\". Illness and death. Akan contracted lung cancer, and was in treatment for over one year. In the early hours of 16 September 2016, he died at the age of 66 in the intensive care station of a private hospital in Istanbul. On 18 September, he was interred at Zuhuratbaba Cemetery in Bakırköy following a memorial service held in Harbiye Muhsin Ertuğrul Stage and the religious funeral service at Teşvikiye Mosque. The funeral was attended by thousands of people, his castmates, former President of Turkey Ahmet Necdet Sezer and the leader of the main oppos", "text_characters": 1543, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7683912", "title": "Kwaku Ananse (film)", "score": 16.95611087411191, "snippet": "Kwaku Ananse is a 2013 short film directed by Akosua Adoma Owusu. The short film combines semi-autobiographical elements with the tale of Kwaku Ananse, a trickster in West African and Caribbean stories who appears as both a spider and a man. The fable of Kwaku Ananse is combined with the story of a young outsider named Nyan Koronhwea, who attends her estranged father's funeral. At the funeral, she retreats to the woods in search of her father. The film starred legendary musician Koo Nimo and veteran actress Grace Omaboe. The screenplay was co-written by Pakistani-American filmmaker and entrepreneur Iram Parveen Bilal. The script was written for MaameYaa Boafo, a Pakistani born-Ghanaian actress, who was originally cast in the lead role as Nyan Koronhwea. However, the production team in New York City eventually decided to recast the character during the pre-production stage with Jojo Abot, an emerging Ghanaian artist. Synopsis. Drawing upon the rich mythology of Ghana, this magical short film combines semi-autobiographical elements from Owusu's life with local folklore to tell the story of a young American woman who returns to West Africa for her father's funeral, only to discover his hidden double identity. Kwaku Ananse is a traditional West African fable about a being that is part man and part spider, who spends years collecting all the wisdom of the world in a wooden pot. As he tries to hide the pot in a tree, he can't find a way to place it high up in its branches. When his", "text_characters": 2345, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3967608", "title": "Karl Friedrich von dem Knesebeck", "score": 16.28387808620022, "snippet": "Armed tensions in Poland provided King Frederick William IV, for whom Knesebeck was still officially acting as primary military adviser, the opportunity to offer him promotion to field marshal on 7 October 1847, a five star rank that could only be bestowed in wartime. Knesebeck also declined this honour, pointing to his advanced age and suggesting it would \"make a mockery of active field marshals\". He instead requested his discharge from the army, which was granted him with a simultaneous promotion to field marshal at the insistence of the king. He died on 12 January 1848 in Berlin. Following a state funeral with an honour guard of nine regiments he was buried in the Alter Garnisonfriedhof. On the church in Neuruppin-Karwe hangs a memorial to Knesebeck, with the inscription: \"Carl Friedrich von dem Knesebeck, born in Carwe 1768, died in Berlin 1848. A Prussian field marshal, he fought for the honour of his King and Country in 17 battles and served to the glory of his fatherland from his 13th year until his death. Peace to his remains, honour to his memory.\" Between 1983 and 1986 the awards received by Knesebeck, held by the German Historical Museum in Berlin, were among the priceless collection stolen and sold on the black market by an employee of the museum. Together with the orders worn by several German kings, emperors, and generals, numerous other unique pieces were taken during the theft. Only a limited number of the items in question have since been recovered, making it", "text_characters": 1569, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:40030", "title": "François Truffaut", "score": 15.864899729409752, "snippet": "Truffaut was philosophically opposed to attempts to portray anti-war themes through cinema, famously stating that \"there is no such thing as an anti-war film\" due to the medium's inherent glorification of such subjects, no matter how they are portrayed. Personal life. Truffaut was married to Madeleine Morgenstern from 1957 to 1965, and they had two daughters, Laura (born 1959) and Eva (born 1961). Madeleine was the daughter of Ignace Morgenstern, managing director of one of France's largest film distribution companies, Cocinor, and was largely responsible for securing funding for Truffaut's first films. In 1968, Truffaut was engaged to actress Claude Jade (\"Stolen Kisses\", \"Bed and Board\", \"Love on the Run\"); he and Fanny Ardant (\"The Woman Next Door\", \"Confidentially Yours\") lived together from 1981 to 1984 and had a daughter, Joséphine Truffaut (born 28 September 1983). Truffaut was an atheist, but had great respect for the Catholic Church and requested a Requiem Mass for his funeral. Death. In July 1983, following his first stroke and being diagnosed with a brain tumour, Truffaut rented France Gall's and Michel Berger's house outside Honfleur, Normandy. He was expected to attend his friend Miloš Forman's \"Amadeus\" premiere when he died on 21 October 1984, aged 52, at the American Hospital of Paris in Neuilly-sur-Seine in France. At the time of his death, he was said to have numerous further films in preparation. He is buried in Montmartre Cemetery. Filmography. Feature fil", "text_characters": 1744, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2245678", "title": "Robert Riskin", "score": 15.071787210038707, "snippet": "However, Riskin felt that Capra was taking all the credit for their films, including Riskin's share. Riskin came to resent Capra for this. This led to several confrontations with Capra during the production of \"Meet John Doe\". According to an account by Hollywood screenwriter David Rintels (which was denied by Capra), Riskin brandished 120 blank pages in Capra's face and challenged: \"Put the famous Capra touch on \"that\"!\" After completion of just one film, \"Meet John Doe\", the association was dissolved. Riskin never willingly collaborated with Capra again. During the time of his declining health, home confinement, and final residence at the Motion Picture & Television Country Home and Hospital, Riskin was regularly visited by old friends such as Edward G. Robinson, Jack Benny, and Irving Berlin. Long time friend and screenwriting colleague Jo Swerling and his wife remained devoted visitors. Conspicuously absent was Frank Capra, who never visited Riskin during the five years of his illness. Swerling was pained by Capra's behavior, but Riskin refused to disparage Capra. He remained loyal to the man, calling him \"his best friend\". The \"Los Angeles Examiner\" covered Riskin's funeral in September 1955, describing the \"notables\" in attendance. The report also identified the \"one man who wasn’t there\": Frank Capra. In 1961, Capra directed \"A Pocketful of Miracles\", a remake of Capra and Riskin's 1933 collaboration \"Lady for a Day\", with a screenplay by Hal Kanter and Harry Tugend fr", "text_characters": 2381, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:916501", "title": "Vasily Chuikov", "score": 15.043904555022154, "snippet": "Chuikov's advance through Poland was characterized by massive advances across difficult terrain [on several occasions, the 8th Guards Army advanced over in a single day]. On 1 May 1945, Chuikov, who commanded his army operating in central Berlin, was the first Allied officer to learn about Adolf Hitler's suicide, being informed by General Hans Krebs who had come to Chuikov's headquarters under a white flag. Krebs, under orders from Goebbels, sought conditions for surrender more favorable to the Germans, which Chuikov had no authority to grant and so rejected any terms. On 2 May, he accepted the unconditional surrender of Berlin's forces from General Helmuth Weidling who had taken command, with the suicide that morning by Gen. Krebs. Chuikov appeared in the documentary film \"Berlin\" (1945), directed by Yuli Raizman. Later life. After the war, Chuikov continued to command the 8th Guards Army in Germany, later serving as Commander-in-Chief of the Group of Soviet Forces in Germany from 1949 until 1953, when he was made commander of the Kiev Military District. While serving at that post, on 11 March 1955 he was promoted to Marshal of the Soviet Union. From 1960 to 1964, he was the Commander-in-Chief of the Soviet Ground Forces. He also served as the Chief of the Civil Defense from 1961 until his retirement in 1972. From 1961 until his death, he was a member of the Central Committee of the Communist Party of the Soviet Union. In 1969, Chuikov led the Soviet delegation attending the", "text_characters": 1998, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R010_request.json/messages/20/content`；SHA256：`08cc01efd6fc7f1eda7c64bd6be41ea1d1e33d641fa8eed94b80736e121dfc5d`。
+
+### R10 `/rounds/9/reasoning_content` [0,895)
+
+SHA256：`cc77bf00245236cd930aaf3275aabf036acbc9525768387b19476a5cf25e91b4`；原字段SHA256：`cc77bf00245236cd930aaf3275aabf036acbc9525768387b19476a5cf25e91b4`。
+
+````
+I need to find the number of BAFTA Awards won by "Funeral in Berlin" (the film featuring Michael Caine in his second lead role).
+The first film featuring Michael Caine as Harry Palmer was "The Ipcress File" (1965).
+The second film featuring Michael Caine as Harry Palmer was "Funeral in Berlin" (1966).
+I need to find how many BAFTA Awards "Funeral in Berlin" won.
+
+I also need to find the number of critical reviews on which the Rotten Tomatoes approval rating is based for another horror film directed by the same director (Sidney J. Furie).
+Sidney J. Furie directed "The Entity" (1982), a horror film.
+I need to find the number of reviews for "The Entity" on Rotten Tomatoes.
+
+Let me search for "Funeral in Berlin BAFTA Awards" and "The Entity Rotten Tomatoes reviews".
+
+<tool_call>
+<function=search>
+<parameter=query>
+Funeral in Berlin 1966 BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+````
+
+### R10 Call `/rounds/9/tool_calls/0` → Return `/tool_events/10`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin 1966 BAFTA Awards"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nFuneral in Berlin 1966 BAFTA Awards\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin 1966 BAFTA Awards"
+  },
+  "batch_id": "B010",
+  "batch_ordinal": 1,
+  "event_id": "E011",
+  "latency_seconds": 0.4484952613711357,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:208889",
+        "score": 22.82163507300199,
+        "snippet": "Book by Len Deighton Funeral in Berlin is a 1964 spy novel by Len Deighton set between Saturday 5 October and Sunday 10 November 1963. It was the third of Deighton's novels about an unnamed British agent. It was preceded by \"The IPCRESS File\" (1962) and \"Horse Under Water\" (1963), and followed by \"Billion-Dollar Brain\" (1966). Plot. The protagonist, who is unnamed, travels to Berlin to arrange the defection of a Soviet scientist named Semitsa, this being brokered by Johnny Vulkan of the Berlin intelligence community. Despite the protagonist's scepticism, the deal seems to have the support of Russian security-chief Colonel Stok and Hallam at the Home Office. The fake documentation for Semitsa needs to be precisely specified. An Israeli intelligence agent named Samantha Steel is involved in the case but it soon becomes apparent that behind the façade of an elaborate mock funeral lies a game of deadly manoeuvres and ruthless tactics. Legal dispute. The UK publication of \"Funeral in Berlin\" brought on a lawsuit: At the novel's climax, the protagonist and Hallam meet at a fireworks party where they discuss the hazards of fireworks. The dialogue went on to say the Home Office was hampered from taking action by vested interests, and mentioned Brock's Fireworks, a UK company, by name. Brock's objected to this, and sued for libel. The complaint was upheld, and the 1972 Penguin edition had the dialogue deleted. This ruling did not affect books published elsewhere, which continued to co",
+        "text_characters": 2144,
+        "title": "Funeral in Berlin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3358247",
+        "score": 19.094021716866624,
+        "snippet": "1966 film by Guy Hamilton Funeral in Berlin is a 1966 British spy film directed by Guy Hamilton and based on the 1964 novel of the same name by Len Deighton. It is the second of three 1960s films starring Michael Caine as the character Harry Palmer that followed the characters from the initial film, \"The Ipcress File\" (1965). The third film was \"Billion Dollar Brain\" (1967). Plot. British secret agent Harry Palmer is sent to Berlin by his superior Colonel Ross to arrange the defection of Colonel Stok, a prominent Soviet intelligence officer. Palmer is sceptical but links up with Johnny Vulkan, an old German friend and former criminal associate, who now runs the Berlin station for British intelligence. Palmer makes a rendezvous with Stok in the Soviet zone of the divided city, finding him eccentric and likeable. Stok asks for the defection to be managed by Otto Kreutzman, a West German criminal who has organised a number of recent escapes. When Palmer returns to the western sector he meets Samantha Steel, a model. He spends the night with her, but is suspicious of her forward manner. The next day he has his police contacts establish her identity and arranges for a criminal to burgle her apartment, where several different false passports are discovered. Meanwhile, Palmer arranges a deal with Kreutzman to bring Stok across the wall in return for £20,000 and a set of genuine documents meeting certain specifications. Palmer then returns to London to report. Ross is convinced that ",
+        "text_characters": 2576,
+        "title": "Funeral in Berlin (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:208890",
+        "score": 18.210130225725617,
+        "snippet": "1966 novel by Len Deighton Billion-Dollar Brain is a 1966 Cold War spy novel by Len Deighton. It was the fourth to feature an unnamed secret agent working for the British WOOC(P) intelligence agency. It follows \"The IPCRESS File\" (1962), \"Horse Under Water\" (1963), and \"Funeral in Berlin\" (1964). As in most of Deighton's novels, the plot of \"Billion Dollar Brain\" (1967) is intricate, with many dead ends. Plot. The unnamed protagonist is ordered to Helsinki by Dawlish, his boss, to suppress a newspaper article, potentially embarrassing to the U.K. government, about to be published by a Finnish journalist. He finds the journalist murdered and coincidentally meets a young woman who attempts to recruit him into the British Intelligence. This woman, Signe Laine, is both romantically connected to and working for the protagonist's old American friend Harvey Newbegin (who also appeared in \"Funeral in Berlin\"). Newbegin in turn attempts to recruit him into a private intelligence outfit, whose network is operated by 'The Brain', a billion dollar super-computer owned by eccentric Texan billionaire General Midwinter. Midwinter is using his agency and private army to start an uprising in Latvia, at the time a part of the USSR, to end Communism in the Eastern bloc and tip the balance of the Cold War in favour of the West. After discovering this and also the fact that a package Newbegin wants delivered from England to Finland contains virus-contaminated eggs, stolen from a British research ",
+        "text_characters": 2111,
+        "title": "Billion-Dollar Brain"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10504232",
+        "score": 17.884112502732386,
+        "snippet": "1968 Soviet song \"The Vast Sky\" () is a song written in 1968 by Soviet Russian songwriters Oscar Feltsman (composer) and Robert Rozhdestvensky (poet) and arranged by Alexander Bronevitskiy. It was initially performed by singer and actress Edita Piekha. This song is dedicated to pilots Boris Kapustin and Yury Yanov, who both died in a plane crash on 6 April 1966, flying from West Berlin. Mark Bernes, Muslim Magomayev, Ljiljana Petrović, Heli Lääts also recorded their versions of the song. Story. On 6 April 1966, the Yakovlev Yak-28 of Group of Soviet Forces in Germany's 24th Air Army crashed into the Stössensee lake due to compressor stall of both engines. The pilots, Captain Boris Kapustin and Senior Lieutenant Yury Yanov, chose not to eject from the stricken aircraft, piloting it away from the center of Berlin. At first they tried to land on Berlin's cemetery but rejected after recognizing lots of people on that area; then they tried to land on Stössensee lake but were forced to lift the plane after recognizing a levee full or traffic. The plane then crashed into the lake under a large angle. Both pilots were killed. British military divers arrived at the crash site, and immediately engaged in lifting some particularly important parts of the crashed aircraft. They managed to dismantle the unique Eagle-D radar (\"Skipspin\" according to the NATO classification) and it, along with engine parts, was examined at the British airbase in Farnborough. \"The Telegraph\" proudly described",
+        "text_characters": 2610,
+        "title": "The Vast Sky"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3952981",
+        "score": 16.99985780601059,
+        "snippet": "However, the track was banned in the U.S. because it was said to be referring to drug use, although the title was taken from the film \"Funeral in Berlin\". The follow-up single \"If You Do Believe in Love\" hit No. 81 in the US and No. 31 in Canada. The group disbanded in 1975, but briefly reunited in 1978 and 1983. Since 1983 the band was revived, although its work was mainly nostalgic \"sixties\". Members. Peter Tetteroo. Peter Tetteroo (Petrus Gerardus Anthonius Tetteroo) (8 July 1947 − 9 September 2002) was a Dutch composer, pop musician and singer born in Delft. He became known in 1966 as founder and lead singer of Tee-Set. In 1968, he had a top 10 hit with a solo album, his version of \"Red Red Wine\". Despite a severe liver disease, Peter remained active to the end. He died at his home in Delft from liver cancer at the age of 55. References.",
+        "text_characters": 853,
+        "title": "Tee-Set"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2876238",
+        "score": 16.7053631986031,
+        "snippet": "Norwegian writer, wife of Willy Brandt Rut Brandt (10 January 1920 – 28 July 2006) was a Norwegian-born German writer and the wife of the German Chancellor Willy Brandt between 1948 and 1980, including most of his political career as Governing Mayor of Berlin (1957–1966) and German chancellor (1969–1974). Rut Brandt became highly popular in Germany and a noted public figure in her role as First Lady of Berlin and the chancellor's spouse. Life. Born Rut Hansen in Hamar, Norway, she worked initially in a bakery in Norway and then as a tailor's apprentice. At age 16, she joined a socialist youth group, which conducted political activities against the German occupation during the Second World War. In 1942, she fled to Sweden with one of her sisters. In Sweden, she married her Norwegian friend, Ole Olstadt Bergaust, who died in 1946. In 1944, Hansen met Willy Brandt, the later German Chancellor, who had fled Germany. After Bergaust's death, Brandt and Hansen married in 1948. When Willy Brandt became chancellor in 1969, Rut Brandt was at his side as a very successful and popular First Lady. However, when she discovered in 1979 that Brandt had an affair with Brigitte Seebacher (later his third wife), Rut Brandt filed for divorce. After the divorce was granted in 1980, Rut and Willy Brandt went their separate ways and never saw each other again. When Brandt died in 1992, Brigitte Seebacher-Brandt did not allow Rut to attend the funeral – a decision which was highly criticised by many",
+        "text_characters": 1643,
+        "title": "Rut Brandt"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1745696",
+        "score": 16.32668884956466,
+        "snippet": "She remained busy over the next several years appearing as Avice Brunton in \"The Bombshell\" (1954), Portia in \"The Merchant of Venice\" (1955) and Olivia in \"The Chalk Garden\" (1956). In 1959, she replaced Celia Johnson as Hilary in \"The Grass is Greener\" at the St. Martin's Theatre. Gurney also began to appear in both films and television in the 1950s. Her first film role was in \"Tom Brown's Schooldays\" (1951). This was followed by the films \"The Blakes Slept Here\" (1953), \"Room in the House\" (1955), \"Port Afrique\" (1956) and \"A Touch of Larceny\" (1959). Her television credits at this time included \"Night River\" (1955), \"The Scarlet Pimpernel\" (1956), \"Colonel March of Scotland Yard\" (1956), \"Our Mutual Friend\" (1958) and \"The Moonstone\" (1959). Mid career. Gurney remain active in theatre, television and film during the 1960s and also on radio. In 1961 she played Marian in the BBC radio adaptation of LP Hartley’s novel The Go-Between. On the stage she starred opposite John Gielgud as Hermione in the 1965 production of \"A Winter's Tale\" and as Lady Chiltern in \"An Ideal Husband\" at the Piccadilly Theatre in 1966. She also starred in the 1969 touring production of Shaw's \"On the Rocks\" opposite David Tomlinson, Robert Flemyng and Jack Hulbert. Her later film roles included \"Funeral in Berlin\" (1966) and \"I Want What I Want\" (1972). Her television credits include \"Dixon of Dock Green\" (1961), \"Katy\" (1962), \"The Saint\" (1963), \"Compact\" (1963), \"ITV Play of the Week\" (1964), \"Ga",
+        "text_characters": 1913,
+        "title": "Rachel Gurney"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:191213",
+        "score": 16.039160717476207,
+        "snippet": "Encouraging the unitary concept – that the later novels feature the same narrator – is the 1974 dust jacket to the Harcourt, Brace & Jovanovich American edition of \"Spy Story\", in which the cover blurb states, \"He is back, after five long-years' absence, the insubordinate, decent, bespectacled English spy who fought, fumbled, and survived his outrageous way through the best-selling \"Horse Under Water\", \"Funeral in Berlin\", and the rest of those marvellous, celebrated Len Deighton spy thrillers.\" Likewise, on the 1976 edition dust jacket to \"Catch a Falling Spy\", the novel features \"Deighton's familiar hero, our bespectacled Englishman\". A number of minor characters from the earlier novels also appear in \"Spy Story\", further connecting the books. Film adaptations. \"The Ipcress File\". \"The IPCRESS File\" novel came out just after the release of the first James Bond film \"Dr. No\" (1962). When the novel reached best-seller status, Eon Productions film producers Harry Saltzman and Albert R. Broccoli approached Deighton to write the script for the second Bond film, \"From Russia with Love\" (1963). Little of Deighton's screenplay was actually used on the shoot. Saltzman decided instead to make use of \"The IPCRESS File\" in the expectation of beginning a new secret agent film series. Unlike the Bond films, \"The Ipcress File\" was designed to have a somewhat different, mostly rather naturalistic style, with hints of the kitchen sink school, film adaptations of which Saltzman had produced.",
+        "text_characters": 2468,
+        "title": "Harry Palmer"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:653556",
+        "score": 15.882820064438368,
+        "snippet": "From 1949 to 1961, Modrow worked in various functions for the Free German Youth (FDJ) in Brandenburg, Mecklenburg, and Berlin and in 1952 and 1953 studied at the Komsomol college in Moscow. In 1953, he attended the state funeral of Joseph Stalin. After Nikita Khrushchev's Secret Speech at the 20th Party Congress condemning Stalin and beginning de-Stalinization, Modrow claimed to have complained to his former teacher Neumann \"Comrade, this is unacceptable — you are accusing us of having learned Stalin off by heart, but I never had the inclination to do this myself, you asked us to!\" From 1953 to 1961, he served as an FDJ functionary in East Berlin. From 1954 to 1957, he studied at the SED's Karl Marx school in Berlin, graduating as a social scientist. In 1959 to 1961 he studied at the University of Economics in Berlin-Karlshorst and obtained the degree of graduate economist. He gained his doctorate at the Humboldt University of Berlin in 1966. West Germany's Federal Intelligence Service (BND) kept Modrow under observation from 1958 to 2013. Communist party career. Modrow had a long political career in East Germany, serving as a member of the \"Volkskammer\" from 1957 to 1990 and in the SED's Central Committee (ZK) from 1967 to 1989, having previously been a candidate for the ZK from 1958 to 1967. From 1961 to 1967 he was first secretary of the district administration of the SED in Berlin-Köpenick and secretary for agitation and propaganda from 1967 to 1971 in the SED's district ",
+        "text_characters": 2683,
+        "title": "Hans Modrow"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1454046",
+        "score": 15.572304920258631,
+        "snippet": "Finding that Germany had no population group with revolutionary potential comparable to America's Black Power movement, Dutschke sought to mold Germany's student movements into seeing themselves as an oppressed minority. His plan for accomplishing this was to provoke violent confrontations with government authorities. He wrote in 1965, \"Authorized demonstrations must be guided into illegality. Confrontation with state power is essential and must be sought out.\" Protests 1966–1968. The West German parliament had proposed to expand government powers in the Emergency Laws, as well as to reform universities. On 22 June 1966, 3,000 students from the Free University of Berlin staged a sit-in to demand involvement in the reform process of universities, included democratic management of colleges. Echoing Marcuse, Rudi Dutschke considered the politically complacent working classes to be a lost cause when it came to revolutionary agitation. Instead, he hoped to build a coalition between Western intelligentsia and third world communist revolutionaries. To that end, Dutschke organized the event \"Vietnam – Analysis of an Example\" (\"\") at the University of Frankfurt Institute for Social Research with Marcuse as the headline speaker. SDS president Walmot Falkenburg privately requested that Marcuse emphasize solidarity with the Vietnamese on the basis of traditional Marxist concerns with labor and material interests, which would have been a rebuke of Dutschke and his associates in the West B",
+        "text_characters": 2944,
+        "title": "West German student movement"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：11；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:208889", "title": "Funeral in Berlin", "score": 22.82163507300199, "snippet": "Book by Len Deighton Funeral in Berlin is a 1964 spy novel by Len Deighton set between Saturday 5 October and Sunday 10 November 1963. It was the third of Deighton's novels about an unnamed British agent. It was preceded by \"The IPCRESS File\" (1962) and \"Horse Under Water\" (1963), and followed by \"Billion-Dollar Brain\" (1966). Plot. The protagonist, who is unnamed, travels to Berlin to arrange the defection of a Soviet scientist named Semitsa, this being brokered by Johnny Vulkan of the Berlin intelligence community. Despite the protagonist's scepticism, the deal seems to have the support of Russian security-chief Colonel Stok and Hallam at the Home Office. The fake documentation for Semitsa needs to be precisely specified. An Israeli intelligence agent named Samantha Steel is involved in the case but it soon becomes apparent that behind the façade of an elaborate mock funeral lies a game of deadly manoeuvres and ruthless tactics. Legal dispute. The UK publication of \"Funeral in Berlin\" brought on a lawsuit: At the novel's climax, the protagonist and Hallam meet at a fireworks party where they discuss the hazards of fireworks. The dialogue went on to say the Home Office was hampered from taking action by vested interests, and mentioned Brock's Fireworks, a UK company, by name. Brock's objected to this, and sued for libel. The complaint was upheld, and the 1972 Penguin edition had the dialogue deleted. This ruling did not affect books published elsewhere, which continued to co", "text_characters": 2144, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3358247", "title": "Funeral in Berlin (film)", "score": 19.094021716866624, "snippet": "1966 film by Guy Hamilton Funeral in Berlin is a 1966 British spy film directed by Guy Hamilton and based on the 1964 novel of the same name by Len Deighton. It is the second of three 1960s films starring Michael Caine as the character Harry Palmer that followed the characters from the initial film, \"The Ipcress File\" (1965). The third film was \"Billion Dollar Brain\" (1967). Plot. British secret agent Harry Palmer is sent to Berlin by his superior Colonel Ross to arrange the defection of Colonel Stok, a prominent Soviet intelligence officer. Palmer is sceptical but links up with Johnny Vulkan, an old German friend and former criminal associate, who now runs the Berlin station for British intelligence. Palmer makes a rendezvous with Stok in the Soviet zone of the divided city, finding him eccentric and likeable. Stok asks for the defection to be managed by Otto Kreutzman, a West German criminal who has organised a number of recent escapes. When Palmer returns to the western sector he meets Samantha Steel, a model. He spends the night with her, but is suspicious of her forward manner. The next day he has his police contacts establish her identity and arranges for a criminal to burgle her apartment, where several different false passports are discovered. Meanwhile, Palmer arranges a deal with Kreutzman to bring Stok across the wall in return for £20,000 and a set of genuine documents meeting certain specifications. Palmer then returns to London to report. Ross is convinced that ", "text_characters": 2576, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:208890", "title": "Billion-Dollar Brain", "score": 18.210130225725617, "snippet": "1966 novel by Len Deighton Billion-Dollar Brain is a 1966 Cold War spy novel by Len Deighton. It was the fourth to feature an unnamed secret agent working for the British WOOC(P) intelligence agency. It follows \"The IPCRESS File\" (1962), \"Horse Under Water\" (1963), and \"Funeral in Berlin\" (1964). As in most of Deighton's novels, the plot of \"Billion Dollar Brain\" (1967) is intricate, with many dead ends. Plot. The unnamed protagonist is ordered to Helsinki by Dawlish, his boss, to suppress a newspaper article, potentially embarrassing to the U.K. government, about to be published by a Finnish journalist. He finds the journalist murdered and coincidentally meets a young woman who attempts to recruit him into the British Intelligence. This woman, Signe Laine, is both romantically connected to and working for the protagonist's old American friend Harvey Newbegin (who also appeared in \"Funeral in Berlin\"). Newbegin in turn attempts to recruit him into a private intelligence outfit, whose network is operated by 'The Brain', a billion dollar super-computer owned by eccentric Texan billionaire General Midwinter. Midwinter is using his agency and private army to start an uprising in Latvia, at the time a part of the USSR, to end Communism in the Eastern bloc and tip the balance of the Cold War in favour of the West. After discovering this and also the fact that a package Newbegin wants delivered from England to Finland contains virus-contaminated eggs, stolen from a British research ", "text_characters": 2111, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10504232", "title": "The Vast Sky", "score": 17.884112502732386, "snippet": "1968 Soviet song \"The Vast Sky\" () is a song written in 1968 by Soviet Russian songwriters Oscar Feltsman (composer) and Robert Rozhdestvensky (poet) and arranged by Alexander Bronevitskiy. It was initially performed by singer and actress Edita Piekha. This song is dedicated to pilots Boris Kapustin and Yury Yanov, who both died in a plane crash on 6 April 1966, flying from West Berlin. Mark Bernes, Muslim Magomayev, Ljiljana Petrović, Heli Lääts also recorded their versions of the song. Story. On 6 April 1966, the Yakovlev Yak-28 of Group of Soviet Forces in Germany's 24th Air Army crashed into the Stössensee lake due to compressor stall of both engines. The pilots, Captain Boris Kapustin and Senior Lieutenant Yury Yanov, chose not to eject from the stricken aircraft, piloting it away from the center of Berlin. At first they tried to land on Berlin's cemetery but rejected after recognizing lots of people on that area; then they tried to land on Stössensee lake but were forced to lift the plane after recognizing a levee full or traffic. The plane then crashed into the lake under a large angle. Both pilots were killed. British military divers arrived at the crash site, and immediately engaged in lifting some particularly important parts of the crashed aircraft. They managed to dismantle the unique Eagle-D radar (\"Skipspin\" according to the NATO classification) and it, along with engine parts, was examined at the British airbase in Farnborough. \"The Telegraph\" proudly described", "text_characters": 2610, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3952981", "title": "Tee-Set", "score": 16.99985780601059, "snippet": "However, the track was banned in the U.S. because it was said to be referring to drug use, although the title was taken from the film \"Funeral in Berlin\". The follow-up single \"If You Do Believe in Love\" hit No. 81 in the US and No. 31 in Canada. The group disbanded in 1975, but briefly reunited in 1978 and 1983. Since 1983 the band was revived, although its work was mainly nostalgic \"sixties\". Members. Peter Tetteroo. Peter Tetteroo (Petrus Gerardus Anthonius Tetteroo) (8 July 1947 − 9 September 2002) was a Dutch composer, pop musician and singer born in Delft. He became known in 1966 as founder and lead singer of Tee-Set. In 1968, he had a top 10 hit with a solo album, his version of \"Red Red Wine\". Despite a severe liver disease, Peter remained active to the end. He died at his home in Delft from liver cancer at the age of 55. References.", "text_characters": 853, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2876238", "title": "Rut Brandt", "score": 16.7053631986031, "snippet": "Norwegian writer, wife of Willy Brandt Rut Brandt (10 January 1920 – 28 July 2006) was a Norwegian-born German writer and the wife of the German Chancellor Willy Brandt between 1948 and 1980, including most of his political career as Governing Mayor of Berlin (1957–1966) and German chancellor (1969–1974). Rut Brandt became highly popular in Germany and a noted public figure in her role as First Lady of Berlin and the chancellor's spouse. Life. Born Rut Hansen in Hamar, Norway, she worked initially in a bakery in Norway and then as a tailor's apprentice. At age 16, she joined a socialist youth group, which conducted political activities against the German occupation during the Second World War. In 1942, she fled to Sweden with one of her sisters. In Sweden, she married her Norwegian friend, Ole Olstadt Bergaust, who died in 1946. In 1944, Hansen met Willy Brandt, the later German Chancellor, who had fled Germany. After Bergaust's death, Brandt and Hansen married in 1948. When Willy Brandt became chancellor in 1969, Rut Brandt was at his side as a very successful and popular First Lady. However, when she discovered in 1979 that Brandt had an affair with Brigitte Seebacher (later his third wife), Rut Brandt filed for divorce. After the divorce was granted in 1980, Rut and Willy Brandt went their separate ways and never saw each other again. When Brandt died in 1992, Brigitte Seebacher-Brandt did not allow Rut to attend the funeral – a decision which was highly criticised by many", "text_characters": 1643, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1745696", "title": "Rachel Gurney", "score": 16.32668884956466, "snippet": "She remained busy over the next several years appearing as Avice Brunton in \"The Bombshell\" (1954), Portia in \"The Merchant of Venice\" (1955) and Olivia in \"The Chalk Garden\" (1956). In 1959, she replaced Celia Johnson as Hilary in \"The Grass is Greener\" at the St. Martin's Theatre. Gurney also began to appear in both films and television in the 1950s. Her first film role was in \"Tom Brown's Schooldays\" (1951). This was followed by the films \"The Blakes Slept Here\" (1953), \"Room in the House\" (1955), \"Port Afrique\" (1956) and \"A Touch of Larceny\" (1959). Her television credits at this time included \"Night River\" (1955), \"The Scarlet Pimpernel\" (1956), \"Colonel March of Scotland Yard\" (1956), \"Our Mutual Friend\" (1958) and \"The Moonstone\" (1959). Mid career. Gurney remain active in theatre, television and film during the 1960s and also on radio. In 1961 she played Marian in the BBC radio adaptation of LP Hartley’s novel The Go-Between. On the stage she starred opposite John Gielgud as Hermione in the 1965 production of \"A Winter's Tale\" and as Lady Chiltern in \"An Ideal Husband\" at the Piccadilly Theatre in 1966. She also starred in the 1969 touring production of Shaw's \"On the Rocks\" opposite David Tomlinson, Robert Flemyng and Jack Hulbert. Her later film roles included \"Funeral in Berlin\" (1966) and \"I Want What I Want\" (1972). Her television credits include \"Dixon of Dock Green\" (1961), \"Katy\" (1962), \"The Saint\" (1963), \"Compact\" (1963), \"ITV Play of the Week\" (1964), \"Ga", "text_characters": 1913, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:191213", "title": "Harry Palmer", "score": 16.039160717476207, "snippet": "Encouraging the unitary concept – that the later novels feature the same narrator – is the 1974 dust jacket to the Harcourt, Brace & Jovanovich American edition of \"Spy Story\", in which the cover blurb states, \"He is back, after five long-years' absence, the insubordinate, decent, bespectacled English spy who fought, fumbled, and survived his outrageous way through the best-selling \"Horse Under Water\", \"Funeral in Berlin\", and the rest of those marvellous, celebrated Len Deighton spy thrillers.\" Likewise, on the 1976 edition dust jacket to \"Catch a Falling Spy\", the novel features \"Deighton's familiar hero, our bespectacled Englishman\". A number of minor characters from the earlier novels also appear in \"Spy Story\", further connecting the books. Film adaptations. \"The Ipcress File\". \"The IPCRESS File\" novel came out just after the release of the first James Bond film \"Dr. No\" (1962). When the novel reached best-seller status, Eon Productions film producers Harry Saltzman and Albert R. Broccoli approached Deighton to write the script for the second Bond film, \"From Russia with Love\" (1963). Little of Deighton's screenplay was actually used on the shoot. Saltzman decided instead to make use of \"The IPCRESS File\" in the expectation of beginning a new secret agent film series. Unlike the Bond films, \"The Ipcress File\" was designed to have a somewhat different, mostly rather naturalistic style, with hints of the kitchen sink school, film adaptations of which Saltzman had produced.", "text_characters": 2468, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:653556", "title": "Hans Modrow", "score": 15.882820064438368, "snippet": "From 1949 to 1961, Modrow worked in various functions for the Free German Youth (FDJ) in Brandenburg, Mecklenburg, and Berlin and in 1952 and 1953 studied at the Komsomol college in Moscow. In 1953, he attended the state funeral of Joseph Stalin. After Nikita Khrushchev's Secret Speech at the 20th Party Congress condemning Stalin and beginning de-Stalinization, Modrow claimed to have complained to his former teacher Neumann \"Comrade, this is unacceptable — you are accusing us of having learned Stalin off by heart, but I never had the inclination to do this myself, you asked us to!\" From 1953 to 1961, he served as an FDJ functionary in East Berlin. From 1954 to 1957, he studied at the SED's Karl Marx school in Berlin, graduating as a social scientist. In 1959 to 1961 he studied at the University of Economics in Berlin-Karlshorst and obtained the degree of graduate economist. He gained his doctorate at the Humboldt University of Berlin in 1966. West Germany's Federal Intelligence Service (BND) kept Modrow under observation from 1958 to 2013. Communist party career. Modrow had a long political career in East Germany, serving as a member of the \"Volkskammer\" from 1957 to 1990 and in the SED's Central Committee (ZK) from 1967 to 1989, having previously been a candidate for the ZK from 1958 to 1967. From 1961 to 1967 he was first secretary of the district administration of the SED in Berlin-Köpenick and secretary for agitation and propaganda from 1967 to 1971 in the SED's district ", "text_characters": 2683, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1454046", "title": "West German student movement", "score": 15.572304920258631, "snippet": "Finding that Germany had no population group with revolutionary potential comparable to America's Black Power movement, Dutschke sought to mold Germany's student movements into seeing themselves as an oppressed minority. His plan for accomplishing this was to provoke violent confrontations with government authorities. He wrote in 1965, \"Authorized demonstrations must be guided into illegality. Confrontation with state power is essential and must be sought out.\" Protests 1966–1968. The West German parliament had proposed to expand government powers in the Emergency Laws, as well as to reform universities. On 22 June 1966, 3,000 students from the Free University of Berlin staged a sit-in to demand involvement in the reform process of universities, included democratic management of colleges. Echoing Marcuse, Rudi Dutschke considered the politically complacent working classes to be a lost cause when it came to revolutionary agitation. Instead, he hoped to build a coalition between Western intelligentsia and third world communist revolutionaries. To that end, Dutschke organized the event \"Vietnam – Analysis of an Example\" (\"\") at the University of Frankfurt Institute for Social Research with Marcuse as the headline speaker. SDS president Walmot Falkenburg privately requested that Marcuse emphasize solidarity with the Vietnamese on the basis of traditional Marxist concerns with labor and material interests, which would have been a rebuke of Dutschke and his associates in the West B", "text_characters": 2944, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R011_request.json/messages/22/content`；SHA256：`351da838de04334120708c188096b526cde676dcf368cc35d114dae041b959e9`。
+
+### R11 `/rounds/10/reasoning_content` [0,781)
+
+SHA256：`5dfb1488997a099dd7aef3d07859ed505191c939419fb73f0478d58e295814ba`；原字段SHA256：`5dfb1488997a099dd7aef3d07859ed505191c939419fb73f0478d58e295814ba`。
+
+````
+I need to find the number of BAFTA Awards won by "Funeral in Berlin" (the film featuring Michael Caine in his second lead role).
+From the search results:
+- "The Ipcress File" (1965) was Michael Caine's first lead role as Harry Palmer.
+- "Funeral in Berlin" (1966) was the second film in the Harry Palmer series, starring Michael Caine.
+- From the search result for "The Ipcress File", it says: "At the 19th British Academy Film Awards, the film won three BAFTA Awards, including for Best British Film." This refers to "The Ipcress File".
+- I need to find the BAFTA wins for "Funeral in Berlin".
+
+Let me search specifically for "Funeral in Berlin BAFTA".
+
+<tool_call>
+<function=search>
+<parameter=query>
+Funeral in Berlin 1966 film BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+````
+
+### R11 Call `/rounds/10/tool_calls/0` → Return `/tool_events/11`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin 1966 film BAFTA Awards"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nFuneral in Berlin 1966 film BAFTA Awards\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin 1966 film BAFTA Awards"
+  },
+  "batch_id": "B011",
+  "batch_ordinal": 1,
+  "event_id": "E012",
+  "latency_seconds": 0.3635997171513736,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:208889",
+        "score": 22.82163507300199,
+        "snippet": "Book by Len Deighton Funeral in Berlin is a 1964 spy novel by Len Deighton set between Saturday 5 October and Sunday 10 November 1963. It was the third of Deighton's novels about an unnamed British agent. It was preceded by \"The IPCRESS File\" (1962) and \"Horse Under Water\" (1963), and followed by \"Billion-Dollar Brain\" (1966). Plot. The protagonist, who is unnamed, travels to Berlin to arrange the defection of a Soviet scientist named Semitsa, this being brokered by Johnny Vulkan of the Berlin intelligence community. Despite the protagonist's scepticism, the deal seems to have the support of Russian security-chief Colonel Stok and Hallam at the Home Office. The fake documentation for Semitsa needs to be precisely specified. An Israeli intelligence agent named Samantha Steel is involved in the case but it soon becomes apparent that behind the façade of an elaborate mock funeral lies a game of deadly manoeuvres and ruthless tactics. Legal dispute. The UK publication of \"Funeral in Berlin\" brought on a lawsuit: At the novel's climax, the protagonist and Hallam meet at a fireworks party where they discuss the hazards of fireworks. The dialogue went on to say the Home Office was hampered from taking action by vested interests, and mentioned Brock's Fireworks, a UK company, by name. Brock's objected to this, and sued for libel. The complaint was upheld, and the 1972 Penguin edition had the dialogue deleted. This ruling did not affect books published elsewhere, which continued to co",
+        "text_characters": 2144,
+        "title": "Funeral in Berlin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3358247",
+        "score": 19.094021716866624,
+        "snippet": "1966 film by Guy Hamilton Funeral in Berlin is a 1966 British spy film directed by Guy Hamilton and based on the 1964 novel of the same name by Len Deighton. It is the second of three 1960s films starring Michael Caine as the character Harry Palmer that followed the characters from the initial film, \"The Ipcress File\" (1965). The third film was \"Billion Dollar Brain\" (1967). Plot. British secret agent Harry Palmer is sent to Berlin by his superior Colonel Ross to arrange the defection of Colonel Stok, a prominent Soviet intelligence officer. Palmer is sceptical but links up with Johnny Vulkan, an old German friend and former criminal associate, who now runs the Berlin station for British intelligence. Palmer makes a rendezvous with Stok in the Soviet zone of the divided city, finding him eccentric and likeable. Stok asks for the defection to be managed by Otto Kreutzman, a West German criminal who has organised a number of recent escapes. When Palmer returns to the western sector he meets Samantha Steel, a model. He spends the night with her, but is suspicious of her forward manner. The next day he has his police contacts establish her identity and arranges for a criminal to burgle her apartment, where several different false passports are discovered. Meanwhile, Palmer arranges a deal with Kreutzman to bring Stok across the wall in return for £20,000 and a set of genuine documents meeting certain specifications. Palmer then returns to London to report. Ross is convinced that ",
+        "text_characters": 2576,
+        "title": "Funeral in Berlin (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:208890",
+        "score": 18.210130225725617,
+        "snippet": "1966 novel by Len Deighton Billion-Dollar Brain is a 1966 Cold War spy novel by Len Deighton. It was the fourth to feature an unnamed secret agent working for the British WOOC(P) intelligence agency. It follows \"The IPCRESS File\" (1962), \"Horse Under Water\" (1963), and \"Funeral in Berlin\" (1964). As in most of Deighton's novels, the plot of \"Billion Dollar Brain\" (1967) is intricate, with many dead ends. Plot. The unnamed protagonist is ordered to Helsinki by Dawlish, his boss, to suppress a newspaper article, potentially embarrassing to the U.K. government, about to be published by a Finnish journalist. He finds the journalist murdered and coincidentally meets a young woman who attempts to recruit him into the British Intelligence. This woman, Signe Laine, is both romantically connected to and working for the protagonist's old American friend Harvey Newbegin (who also appeared in \"Funeral in Berlin\"). Newbegin in turn attempts to recruit him into a private intelligence outfit, whose network is operated by 'The Brain', a billion dollar super-computer owned by eccentric Texan billionaire General Midwinter. Midwinter is using his agency and private army to start an uprising in Latvia, at the time a part of the USSR, to end Communism in the Eastern bloc and tip the balance of the Cold War in favour of the West. After discovering this and also the fact that a package Newbegin wants delivered from England to Finland contains virus-contaminated eggs, stolen from a British research ",
+        "text_characters": 2111,
+        "title": "Billion-Dollar Brain"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10504232",
+        "score": 17.884112502732386,
+        "snippet": "1968 Soviet song \"The Vast Sky\" () is a song written in 1968 by Soviet Russian songwriters Oscar Feltsman (composer) and Robert Rozhdestvensky (poet) and arranged by Alexander Bronevitskiy. It was initially performed by singer and actress Edita Piekha. This song is dedicated to pilots Boris Kapustin and Yury Yanov, who both died in a plane crash on 6 April 1966, flying from West Berlin. Mark Bernes, Muslim Magomayev, Ljiljana Petrović, Heli Lääts also recorded their versions of the song. Story. On 6 April 1966, the Yakovlev Yak-28 of Group of Soviet Forces in Germany's 24th Air Army crashed into the Stössensee lake due to compressor stall of both engines. The pilots, Captain Boris Kapustin and Senior Lieutenant Yury Yanov, chose not to eject from the stricken aircraft, piloting it away from the center of Berlin. At first they tried to land on Berlin's cemetery but rejected after recognizing lots of people on that area; then they tried to land on Stössensee lake but were forced to lift the plane after recognizing a levee full or traffic. The plane then crashed into the lake under a large angle. Both pilots were killed. British military divers arrived at the crash site, and immediately engaged in lifting some particularly important parts of the crashed aircraft. They managed to dismantle the unique Eagle-D radar (\"Skipspin\" according to the NATO classification) and it, along with engine parts, was examined at the British airbase in Farnborough. \"The Telegraph\" proudly described",
+        "text_characters": 2610,
+        "title": "The Vast Sky"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3952981",
+        "score": 16.99985780601059,
+        "snippet": "However, the track was banned in the U.S. because it was said to be referring to drug use, although the title was taken from the film \"Funeral in Berlin\". The follow-up single \"If You Do Believe in Love\" hit No. 81 in the US and No. 31 in Canada. The group disbanded in 1975, but briefly reunited in 1978 and 1983. Since 1983 the band was revived, although its work was mainly nostalgic \"sixties\". Members. Peter Tetteroo. Peter Tetteroo (Petrus Gerardus Anthonius Tetteroo) (8 July 1947 − 9 September 2002) was a Dutch composer, pop musician and singer born in Delft. He became known in 1966 as founder and lead singer of Tee-Set. In 1968, he had a top 10 hit with a solo album, his version of \"Red Red Wine\". Despite a severe liver disease, Peter remained active to the end. He died at his home in Delft from liver cancer at the age of 55. References.",
+        "text_characters": 853,
+        "title": "Tee-Set"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2876238",
+        "score": 16.7053631986031,
+        "snippet": "Norwegian writer, wife of Willy Brandt Rut Brandt (10 January 1920 – 28 July 2006) was a Norwegian-born German writer and the wife of the German Chancellor Willy Brandt between 1948 and 1980, including most of his political career as Governing Mayor of Berlin (1957–1966) and German chancellor (1969–1974). Rut Brandt became highly popular in Germany and a noted public figure in her role as First Lady of Berlin and the chancellor's spouse. Life. Born Rut Hansen in Hamar, Norway, she worked initially in a bakery in Norway and then as a tailor's apprentice. At age 16, she joined a socialist youth group, which conducted political activities against the German occupation during the Second World War. In 1942, she fled to Sweden with one of her sisters. In Sweden, she married her Norwegian friend, Ole Olstadt Bergaust, who died in 1946. In 1944, Hansen met Willy Brandt, the later German Chancellor, who had fled Germany. After Bergaust's death, Brandt and Hansen married in 1948. When Willy Brandt became chancellor in 1969, Rut Brandt was at his side as a very successful and popular First Lady. However, when she discovered in 1979 that Brandt had an affair with Brigitte Seebacher (later his third wife), Rut Brandt filed for divorce. After the divorce was granted in 1980, Rut and Willy Brandt went their separate ways and never saw each other again. When Brandt died in 1992, Brigitte Seebacher-Brandt did not allow Rut to attend the funeral – a decision which was highly criticised by many",
+        "text_characters": 1643,
+        "title": "Rut Brandt"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1745696",
+        "score": 16.32668884956466,
+        "snippet": "She remained busy over the next several years appearing as Avice Brunton in \"The Bombshell\" (1954), Portia in \"The Merchant of Venice\" (1955) and Olivia in \"The Chalk Garden\" (1956). In 1959, she replaced Celia Johnson as Hilary in \"The Grass is Greener\" at the St. Martin's Theatre. Gurney also began to appear in both films and television in the 1950s. Her first film role was in \"Tom Brown's Schooldays\" (1951). This was followed by the films \"The Blakes Slept Here\" (1953), \"Room in the House\" (1955), \"Port Afrique\" (1956) and \"A Touch of Larceny\" (1959). Her television credits at this time included \"Night River\" (1955), \"The Scarlet Pimpernel\" (1956), \"Colonel March of Scotland Yard\" (1956), \"Our Mutual Friend\" (1958) and \"The Moonstone\" (1959). Mid career. Gurney remain active in theatre, television and film during the 1960s and also on radio. In 1961 she played Marian in the BBC radio adaptation of LP Hartley’s novel The Go-Between. On the stage she starred opposite John Gielgud as Hermione in the 1965 production of \"A Winter's Tale\" and as Lady Chiltern in \"An Ideal Husband\" at the Piccadilly Theatre in 1966. She also starred in the 1969 touring production of Shaw's \"On the Rocks\" opposite David Tomlinson, Robert Flemyng and Jack Hulbert. Her later film roles included \"Funeral in Berlin\" (1966) and \"I Want What I Want\" (1972). Her television credits include \"Dixon of Dock Green\" (1961), \"Katy\" (1962), \"The Saint\" (1963), \"Compact\" (1963), \"ITV Play of the Week\" (1964), \"Ga",
+        "text_characters": 1913,
+        "title": "Rachel Gurney"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:191213",
+        "score": 16.039160717476207,
+        "snippet": "Encouraging the unitary concept – that the later novels feature the same narrator – is the 1974 dust jacket to the Harcourt, Brace & Jovanovich American edition of \"Spy Story\", in which the cover blurb states, \"He is back, after five long-years' absence, the insubordinate, decent, bespectacled English spy who fought, fumbled, and survived his outrageous way through the best-selling \"Horse Under Water\", \"Funeral in Berlin\", and the rest of those marvellous, celebrated Len Deighton spy thrillers.\" Likewise, on the 1976 edition dust jacket to \"Catch a Falling Spy\", the novel features \"Deighton's familiar hero, our bespectacled Englishman\". A number of minor characters from the earlier novels also appear in \"Spy Story\", further connecting the books. Film adaptations. \"The Ipcress File\". \"The IPCRESS File\" novel came out just after the release of the first James Bond film \"Dr. No\" (1962). When the novel reached best-seller status, Eon Productions film producers Harry Saltzman and Albert R. Broccoli approached Deighton to write the script for the second Bond film, \"From Russia with Love\" (1963). Little of Deighton's screenplay was actually used on the shoot. Saltzman decided instead to make use of \"The IPCRESS File\" in the expectation of beginning a new secret agent film series. Unlike the Bond films, \"The Ipcress File\" was designed to have a somewhat different, mostly rather naturalistic style, with hints of the kitchen sink school, film adaptations of which Saltzman had produced.",
+        "text_characters": 2468,
+        "title": "Harry Palmer"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:653556",
+        "score": 15.882820064438368,
+        "snippet": "From 1949 to 1961, Modrow worked in various functions for the Free German Youth (FDJ) in Brandenburg, Mecklenburg, and Berlin and in 1952 and 1953 studied at the Komsomol college in Moscow. In 1953, he attended the state funeral of Joseph Stalin. After Nikita Khrushchev's Secret Speech at the 20th Party Congress condemning Stalin and beginning de-Stalinization, Modrow claimed to have complained to his former teacher Neumann \"Comrade, this is unacceptable — you are accusing us of having learned Stalin off by heart, but I never had the inclination to do this myself, you asked us to!\" From 1953 to 1961, he served as an FDJ functionary in East Berlin. From 1954 to 1957, he studied at the SED's Karl Marx school in Berlin, graduating as a social scientist. In 1959 to 1961 he studied at the University of Economics in Berlin-Karlshorst and obtained the degree of graduate economist. He gained his doctorate at the Humboldt University of Berlin in 1966. West Germany's Federal Intelligence Service (BND) kept Modrow under observation from 1958 to 2013. Communist party career. Modrow had a long political career in East Germany, serving as a member of the \"Volkskammer\" from 1957 to 1990 and in the SED's Central Committee (ZK) from 1967 to 1989, having previously been a candidate for the ZK from 1958 to 1967. From 1961 to 1967 he was first secretary of the district administration of the SED in Berlin-Köpenick and secretary for agitation and propaganda from 1967 to 1971 in the SED's district ",
+        "text_characters": 2683,
+        "title": "Hans Modrow"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1454046",
+        "score": 15.572304920258631,
+        "snippet": "Finding that Germany had no population group with revolutionary potential comparable to America's Black Power movement, Dutschke sought to mold Germany's student movements into seeing themselves as an oppressed minority. His plan for accomplishing this was to provoke violent confrontations with government authorities. He wrote in 1965, \"Authorized demonstrations must be guided into illegality. Confrontation with state power is essential and must be sought out.\" Protests 1966–1968. The West German parliament had proposed to expand government powers in the Emergency Laws, as well as to reform universities. On 22 June 1966, 3,000 students from the Free University of Berlin staged a sit-in to demand involvement in the reform process of universities, included democratic management of colleges. Echoing Marcuse, Rudi Dutschke considered the politically complacent working classes to be a lost cause when it came to revolutionary agitation. Instead, he hoped to build a coalition between Western intelligentsia and third world communist revolutionaries. To that end, Dutschke organized the event \"Vietnam – Analysis of an Example\" (\"\") at the University of Frankfurt Institute for Social Research with Marcuse as the headline speaker. SDS president Walmot Falkenburg privately requested that Marcuse emphasize solidarity with the Vietnamese on the basis of traditional Marxist concerns with labor and material interests, which would have been a rebuke of Dutschke and his associates in the West B",
+        "text_characters": 2944,
+        "title": "West German student movement"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：12；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:208889", "title": "Funeral in Berlin", "score": 22.82163507300199, "snippet": "Book by Len Deighton Funeral in Berlin is a 1964 spy novel by Len Deighton set between Saturday 5 October and Sunday 10 November 1963. It was the third of Deighton's novels about an unnamed British agent. It was preceded by \"The IPCRESS File\" (1962) and \"Horse Under Water\" (1963), and followed by \"Billion-Dollar Brain\" (1966). Plot. The protagonist, who is unnamed, travels to Berlin to arrange the defection of a Soviet scientist named Semitsa, this being brokered by Johnny Vulkan of the Berlin intelligence community. Despite the protagonist's scepticism, the deal seems to have the support of Russian security-chief Colonel Stok and Hallam at the Home Office. The fake documentation for Semitsa needs to be precisely specified. An Israeli intelligence agent named Samantha Steel is involved in the case but it soon becomes apparent that behind the façade of an elaborate mock funeral lies a game of deadly manoeuvres and ruthless tactics. Legal dispute. The UK publication of \"Funeral in Berlin\" brought on a lawsuit: At the novel's climax, the protagonist and Hallam meet at a fireworks party where they discuss the hazards of fireworks. The dialogue went on to say the Home Office was hampered from taking action by vested interests, and mentioned Brock's Fireworks, a UK company, by name. Brock's objected to this, and sued for libel. The complaint was upheld, and the 1972 Penguin edition had the dialogue deleted. This ruling did not affect books published elsewhere, which continued to co", "text_characters": 2144, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3358247", "title": "Funeral in Berlin (film)", "score": 19.094021716866624, "snippet": "1966 film by Guy Hamilton Funeral in Berlin is a 1966 British spy film directed by Guy Hamilton and based on the 1964 novel of the same name by Len Deighton. It is the second of three 1960s films starring Michael Caine as the character Harry Palmer that followed the characters from the initial film, \"The Ipcress File\" (1965). The third film was \"Billion Dollar Brain\" (1967). Plot. British secret agent Harry Palmer is sent to Berlin by his superior Colonel Ross to arrange the defection of Colonel Stok, a prominent Soviet intelligence officer. Palmer is sceptical but links up with Johnny Vulkan, an old German friend and former criminal associate, who now runs the Berlin station for British intelligence. Palmer makes a rendezvous with Stok in the Soviet zone of the divided city, finding him eccentric and likeable. Stok asks for the defection to be managed by Otto Kreutzman, a West German criminal who has organised a number of recent escapes. When Palmer returns to the western sector he meets Samantha Steel, a model. He spends the night with her, but is suspicious of her forward manner. The next day he has his police contacts establish her identity and arranges for a criminal to burgle her apartment, where several different false passports are discovered. Meanwhile, Palmer arranges a deal with Kreutzman to bring Stok across the wall in return for £20,000 and a set of genuine documents meeting certain specifications. Palmer then returns to London to report. Ross is convinced that ", "text_characters": 2576, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:208890", "title": "Billion-Dollar Brain", "score": 18.210130225725617, "snippet": "1966 novel by Len Deighton Billion-Dollar Brain is a 1966 Cold War spy novel by Len Deighton. It was the fourth to feature an unnamed secret agent working for the British WOOC(P) intelligence agency. It follows \"The IPCRESS File\" (1962), \"Horse Under Water\" (1963), and \"Funeral in Berlin\" (1964). As in most of Deighton's novels, the plot of \"Billion Dollar Brain\" (1967) is intricate, with many dead ends. Plot. The unnamed protagonist is ordered to Helsinki by Dawlish, his boss, to suppress a newspaper article, potentially embarrassing to the U.K. government, about to be published by a Finnish journalist. He finds the journalist murdered and coincidentally meets a young woman who attempts to recruit him into the British Intelligence. This woman, Signe Laine, is both romantically connected to and working for the protagonist's old American friend Harvey Newbegin (who also appeared in \"Funeral in Berlin\"). Newbegin in turn attempts to recruit him into a private intelligence outfit, whose network is operated by 'The Brain', a billion dollar super-computer owned by eccentric Texan billionaire General Midwinter. Midwinter is using his agency and private army to start an uprising in Latvia, at the time a part of the USSR, to end Communism in the Eastern bloc and tip the balance of the Cold War in favour of the West. After discovering this and also the fact that a package Newbegin wants delivered from England to Finland contains virus-contaminated eggs, stolen from a British research ", "text_characters": 2111, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10504232", "title": "The Vast Sky", "score": 17.884112502732386, "snippet": "1968 Soviet song \"The Vast Sky\" () is a song written in 1968 by Soviet Russian songwriters Oscar Feltsman (composer) and Robert Rozhdestvensky (poet) and arranged by Alexander Bronevitskiy. It was initially performed by singer and actress Edita Piekha. This song is dedicated to pilots Boris Kapustin and Yury Yanov, who both died in a plane crash on 6 April 1966, flying from West Berlin. Mark Bernes, Muslim Magomayev, Ljiljana Petrović, Heli Lääts also recorded their versions of the song. Story. On 6 April 1966, the Yakovlev Yak-28 of Group of Soviet Forces in Germany's 24th Air Army crashed into the Stössensee lake due to compressor stall of both engines. The pilots, Captain Boris Kapustin and Senior Lieutenant Yury Yanov, chose not to eject from the stricken aircraft, piloting it away from the center of Berlin. At first they tried to land on Berlin's cemetery but rejected after recognizing lots of people on that area; then they tried to land on Stössensee lake but were forced to lift the plane after recognizing a levee full or traffic. The plane then crashed into the lake under a large angle. Both pilots were killed. British military divers arrived at the crash site, and immediately engaged in lifting some particularly important parts of the crashed aircraft. They managed to dismantle the unique Eagle-D radar (\"Skipspin\" according to the NATO classification) and it, along with engine parts, was examined at the British airbase in Farnborough. \"The Telegraph\" proudly described", "text_characters": 2610, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3952981", "title": "Tee-Set", "score": 16.99985780601059, "snippet": "However, the track was banned in the U.S. because it was said to be referring to drug use, although the title was taken from the film \"Funeral in Berlin\". The follow-up single \"If You Do Believe in Love\" hit No. 81 in the US and No. 31 in Canada. The group disbanded in 1975, but briefly reunited in 1978 and 1983. Since 1983 the band was revived, although its work was mainly nostalgic \"sixties\". Members. Peter Tetteroo. Peter Tetteroo (Petrus Gerardus Anthonius Tetteroo) (8 July 1947 − 9 September 2002) was a Dutch composer, pop musician and singer born in Delft. He became known in 1966 as founder and lead singer of Tee-Set. In 1968, he had a top 10 hit with a solo album, his version of \"Red Red Wine\". Despite a severe liver disease, Peter remained active to the end. He died at his home in Delft from liver cancer at the age of 55. References.", "text_characters": 853, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2876238", "title": "Rut Brandt", "score": 16.7053631986031, "snippet": "Norwegian writer, wife of Willy Brandt Rut Brandt (10 January 1920 – 28 July 2006) was a Norwegian-born German writer and the wife of the German Chancellor Willy Brandt between 1948 and 1980, including most of his political career as Governing Mayor of Berlin (1957–1966) and German chancellor (1969–1974). Rut Brandt became highly popular in Germany and a noted public figure in her role as First Lady of Berlin and the chancellor's spouse. Life. Born Rut Hansen in Hamar, Norway, she worked initially in a bakery in Norway and then as a tailor's apprentice. At age 16, she joined a socialist youth group, which conducted political activities against the German occupation during the Second World War. In 1942, she fled to Sweden with one of her sisters. In Sweden, she married her Norwegian friend, Ole Olstadt Bergaust, who died in 1946. In 1944, Hansen met Willy Brandt, the later German Chancellor, who had fled Germany. After Bergaust's death, Brandt and Hansen married in 1948. When Willy Brandt became chancellor in 1969, Rut Brandt was at his side as a very successful and popular First Lady. However, when she discovered in 1979 that Brandt had an affair with Brigitte Seebacher (later his third wife), Rut Brandt filed for divorce. After the divorce was granted in 1980, Rut and Willy Brandt went their separate ways and never saw each other again. When Brandt died in 1992, Brigitte Seebacher-Brandt did not allow Rut to attend the funeral – a decision which was highly criticised by many", "text_characters": 1643, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1745696", "title": "Rachel Gurney", "score": 16.32668884956466, "snippet": "She remained busy over the next several years appearing as Avice Brunton in \"The Bombshell\" (1954), Portia in \"The Merchant of Venice\" (1955) and Olivia in \"The Chalk Garden\" (1956). In 1959, she replaced Celia Johnson as Hilary in \"The Grass is Greener\" at the St. Martin's Theatre. Gurney also began to appear in both films and television in the 1950s. Her first film role was in \"Tom Brown's Schooldays\" (1951). This was followed by the films \"The Blakes Slept Here\" (1953), \"Room in the House\" (1955), \"Port Afrique\" (1956) and \"A Touch of Larceny\" (1959). Her television credits at this time included \"Night River\" (1955), \"The Scarlet Pimpernel\" (1956), \"Colonel March of Scotland Yard\" (1956), \"Our Mutual Friend\" (1958) and \"The Moonstone\" (1959). Mid career. Gurney remain active in theatre, television and film during the 1960s and also on radio. In 1961 she played Marian in the BBC radio adaptation of LP Hartley’s novel The Go-Between. On the stage she starred opposite John Gielgud as Hermione in the 1965 production of \"A Winter's Tale\" and as Lady Chiltern in \"An Ideal Husband\" at the Piccadilly Theatre in 1966. She also starred in the 1969 touring production of Shaw's \"On the Rocks\" opposite David Tomlinson, Robert Flemyng and Jack Hulbert. Her later film roles included \"Funeral in Berlin\" (1966) and \"I Want What I Want\" (1972). Her television credits include \"Dixon of Dock Green\" (1961), \"Katy\" (1962), \"The Saint\" (1963), \"Compact\" (1963), \"ITV Play of the Week\" (1964), \"Ga", "text_characters": 1913, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:191213", "title": "Harry Palmer", "score": 16.039160717476207, "snippet": "Encouraging the unitary concept – that the later novels feature the same narrator – is the 1974 dust jacket to the Harcourt, Brace & Jovanovich American edition of \"Spy Story\", in which the cover blurb states, \"He is back, after five long-years' absence, the insubordinate, decent, bespectacled English spy who fought, fumbled, and survived his outrageous way through the best-selling \"Horse Under Water\", \"Funeral in Berlin\", and the rest of those marvellous, celebrated Len Deighton spy thrillers.\" Likewise, on the 1976 edition dust jacket to \"Catch a Falling Spy\", the novel features \"Deighton's familiar hero, our bespectacled Englishman\". A number of minor characters from the earlier novels also appear in \"Spy Story\", further connecting the books. Film adaptations. \"The Ipcress File\". \"The IPCRESS File\" novel came out just after the release of the first James Bond film \"Dr. No\" (1962). When the novel reached best-seller status, Eon Productions film producers Harry Saltzman and Albert R. Broccoli approached Deighton to write the script for the second Bond film, \"From Russia with Love\" (1963). Little of Deighton's screenplay was actually used on the shoot. Saltzman decided instead to make use of \"The IPCRESS File\" in the expectation of beginning a new secret agent film series. Unlike the Bond films, \"The Ipcress File\" was designed to have a somewhat different, mostly rather naturalistic style, with hints of the kitchen sink school, film adaptations of which Saltzman had produced.", "text_characters": 2468, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:653556", "title": "Hans Modrow", "score": 15.882820064438368, "snippet": "From 1949 to 1961, Modrow worked in various functions for the Free German Youth (FDJ) in Brandenburg, Mecklenburg, and Berlin and in 1952 and 1953 studied at the Komsomol college in Moscow. In 1953, he attended the state funeral of Joseph Stalin. After Nikita Khrushchev's Secret Speech at the 20th Party Congress condemning Stalin and beginning de-Stalinization, Modrow claimed to have complained to his former teacher Neumann \"Comrade, this is unacceptable — you are accusing us of having learned Stalin off by heart, but I never had the inclination to do this myself, you asked us to!\" From 1953 to 1961, he served as an FDJ functionary in East Berlin. From 1954 to 1957, he studied at the SED's Karl Marx school in Berlin, graduating as a social scientist. In 1959 to 1961 he studied at the University of Economics in Berlin-Karlshorst and obtained the degree of graduate economist. He gained his doctorate at the Humboldt University of Berlin in 1966. West Germany's Federal Intelligence Service (BND) kept Modrow under observation from 1958 to 2013. Communist party career. Modrow had a long political career in East Germany, serving as a member of the \"Volkskammer\" from 1957 to 1990 and in the SED's Central Committee (ZK) from 1967 to 1989, having previously been a candidate for the ZK from 1958 to 1967. From 1961 to 1967 he was first secretary of the district administration of the SED in Berlin-Köpenick and secretary for agitation and propaganda from 1967 to 1971 in the SED's district ", "text_characters": 2683, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1454046", "title": "West German student movement", "score": 15.572304920258631, "snippet": "Finding that Germany had no population group with revolutionary potential comparable to America's Black Power movement, Dutschke sought to mold Germany's student movements into seeing themselves as an oppressed minority. His plan for accomplishing this was to provoke violent confrontations with government authorities. He wrote in 1965, \"Authorized demonstrations must be guided into illegality. Confrontation with state power is essential and must be sought out.\" Protests 1966–1968. The West German parliament had proposed to expand government powers in the Emergency Laws, as well as to reform universities. On 22 June 1966, 3,000 students from the Free University of Berlin staged a sit-in to demand involvement in the reform process of universities, included democratic management of colleges. Echoing Marcuse, Rudi Dutschke considered the politically complacent working classes to be a lost cause when it came to revolutionary agitation. Instead, he hoped to build a coalition between Western intelligentsia and third world communist revolutionaries. To that end, Dutschke organized the event \"Vietnam – Analysis of an Example\" (\"\") at the University of Frankfurt Institute for Social Research with Marcuse as the headline speaker. SDS president Walmot Falkenburg privately requested that Marcuse emphasize solidarity with the Vietnamese on the basis of traditional Marxist concerns with labor and material interests, which would have been a rebuke of Dutschke and his associates in the West B", "text_characters": 2944, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0705/R012_request.json/messages/24/content`；SHA256：`351da838de04334120708c188096b526cde676dcf368cc35d114dae041b959e9`。
+
+## S008｜识别Funeral导演实际为Guy Hamilton并重新检查角色链
+
+比较Ipcress/Funeral导演，纠正Furie推测，保留第二Palmer假设。
+
+结束状态：导演关系纠错完成，奖项仍缺。
+
+边界判断：不是普通反馈，实际发现并解释关系冲突。
+
+内部KEEP与反证：同次导演比较和片序论证不拆碎。
+
+### SPLIT原文
+
+````
+y Film Awards, the film won three BAFTA Awards, including for Best British Film." This refers to "The Ipcress File".
+- I need to find the BAFTA wins for "Funeral in Berlin".
+
+Let me search specifically for "Funeral in Berlin BAFTA".
+
+<tool_call>
+<function=search>
+<parameter=query>
+Funeral in Berlin 1966 film BAFTA Awards
+</parameter>
+</function>
+</tool_call>
+→ 切点 [11, 0, 0] →
+I need to find the film featuring Michael Caine in his second lead role. Based on my previous search results, Michael Caine's first lead role was in "The Ipcress File" (1965), directed by Sidney J. Furie. His second lead role would be "Funeral in Berlin" (1966), also directed by Guy Hamilton. Wait, the search results show "Funeral in Berlin" was directed by 
+````
+
+### R12 `/rounds/11/reasoning_content` [0,718)
+
+SHA256：`e01009b35ea71fc689b09b3e818ab098b5c57853d625cce85e75dcbd0babec02`；原字段SHA256：`0b55f6d20a80058ff6102e5f226a178dca4554fccb825ac4557d5a1e0ba052d7`。
+
+````
+I need to find the film featuring Michael Caine in his second lead role. Based on my previous search results, Michael Caine's first lead role was in "The Ipcress File" (1965), directed by Sidney J. Furie. His second lead role would be "Funeral in Berlin" (1966), also directed by Guy Hamilton. Wait, the search results show "Funeral in Berlin" was directed by Guy Hamilton, not Sidney J. Furie. Let me re-check.
+
+From the search results:
+- "The Ipcress File" (1965) was directed by Sidney J. Furie and starred Michael Caine.
+- "Funeral in Berlin" (1966) was directed by Guy Hamilton and starred Michael Caine.
+
+So if "The Ipcress File" was his first lead role, then "Funeral in Berlin" would be his second lead role.
+
+
+````
+
+## S009｜导演纠错后重新查询Funeral奖项
+
+实际执行一个BAFTA Search，其余Guy horror仅计划。
+
+结束状态：R13 CONTEXT_LIMIT_STOP，无Final、无求和。
+
+边界判断：纠错结论之后实际恢复数值取证；采用该句首次出现位置718，避免同轮重复句误定位。
+
+内部KEEP与反证：后面反复片序和待办服务本次未完取证，没有再完成新候选判断。
+
+### SPLIT原文
+
+````
+y Guy Hamilton, not Sidney J. Furie. Let me re-check.
+
+From the search results:
+- "The Ipcress File" (1965) was directed by Sidney J. Furie and starred Michael Caine.
+- "Funeral in Berlin" (1966) was directed by Guy Hamilton and starred Michael Caine.
+
+So if "The Ipcress File" was his first lead role, then "Funeral in Berlin" would be his second lead role.
+
+
+→ 切点 [11, 0, 718] →
+Now I need to find the number of BAFTA Awards won by "Funeral in Berlin".
+
+From the earlier search results about "The Ipcress File", it won 3 BAFTA Awards. But I need to check "Funeral in Berlin".
+
+Let me search for "Funeral in Berlin BAFTA Awards".
+
+Also, I need to find a horror film directed by the same director as "Funeral in Berlin" (Guy Hamilton) and fi
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 12,
+    "batch_id": "B012",
+    "call_pointers": [
+      "/rounds/11/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/12"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R12 `/rounds/11/reasoning_content` [718,2119)
+
+SHA256：`57e97fd29a91c69d117bd0243276cadc1fc2491e4d3113b540fa781986d52719`；原字段SHA256：`0b55f6d20a80058ff6102e5f226a178dca4554fccb825ac4557d5a1e0ba052d7`。
+
+````
+Now I need to find the number of BAFTA Awards won by "Funeral in Berlin".
+
+From the earlier search results about "The Ipcress File", it won 3 BAFTA Awards. But I need to check "Funeral in Berlin".
+
+Let me search for "Funeral in Berlin BAFTA Awards".
+
+Also, I need to find a horror film directed by the same director as "Funeral in Berlin" (Guy Hamilton) and find the number of critical reviews on which the Rotten Tomatoes approval rating is based.
+
+Wait, let me re-read the question: "the film featuring Michael Caine in his second lead role" - this would be "Funeral in Berlin" (1966).
+
+But wait, I need to confirm if "The Ipcress File" was his first lead role. Let me check the search results again.
+
+From the search results:
+- "The Ipcress File" (1965) - directed by Sidney J. Furie, starring Michael Caine as Harry Palmer.
+- "Funeral in Berlin" (1966) - directed by Guy Hamilton, starring Michael Caine as Harry Palmer.
+
+So if "The Ipcress File" was his first lead role, then "Funeral in Berlin" would be his second lead role.
+
+Now I need to find the number of BAFTA Awards won by "Funeral in Berlin".
+
+Let me search for "Funeral in Berlin BAFTA Awards".
+
+Also, I need to find a horror film directed by Guy Hamilton (the director of "Funeral in Berlin") and find the number of critical reviews on which the Rotten Tomatoes approval rating is based.
+
+Let me search for "Guy Hamilton horror film".
+
+````
+
+### R12 Call `/rounds/11/tool_calls/0` → Return `/tool_events/12`
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "id": "chatcmpl-tool-b1b8830217081572",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Funeral in Berlin BAFTA Awards\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-b1b8830217081572",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Funeral in Berlin BAFTA Awards"
+  },
+  "batch_id": "B012",
+  "batch_ordinal": 1,
+  "event_id": "E013",
+  "latency_seconds": 0.5836788020096719,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9140721",
+        "score": 18.71140933501034,
+        "snippet": "Straßmann supported the separation of church and state which made him a target to antisemitic attacks of court chaplain Adolf Stoecker in 1883. Straßmann was married to Louise Cohen (1835–1889) from 1862 until his death in 1885. Their daughter Henni Lehmann became a well-known painter. His son Wolf died aged 35. A funeral service for Wolfgang Straßmann was held in Berlin's City Hall, with Rudolf Virchow giving the eulogy. Awards. His portrait in the gallery of presidents of the town council in Berlin's City Hall was destroyed by the Nazis in the 1930s, the Straßmannstrasse in Friedrichshain-Kreuzberg was named in his honor on 4 August 1897 and, after being renamed by the Nazis in 1938, again in 1947. References.",
+        "text_characters": 721,
+        "title": "Wolfgang Straßmann"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8226362",
+        "score": 18.196765292071603,
+        "snippet": "Subsequent conspiracy theories have circled the events ever since, but none of these has progressed beyond a series of tantalising conjectural scenarios. Bodies of the German victims of the accident were subjected to autopsies at the Charité (university hospital) in Berlin. The corpses should have included that of Werner Lamberz, but one of the pathologists involved, Wolfgang Keil, stated in a later interview that it had not been possible to find the remains of Lamberz. Nevertheless, Werner Lamberz received a state funeral and an urn believed to contain his ashes following cremation was placed beside the remains of other privileged East German politicians in the cemetery at Berlin-Lichtenberg. Awards and honours. The list is not exhaustive. Streets were also named after Werner Lamberz, although they tended to be renamed after the East German state became discredited following German reunification in 1990. References.",
+        "text_characters": 930,
+        "title": "Werner Lamberz"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10698025",
+        "score": 17.98544855661527,
+        "snippet": "In addition to directing, writing, and editing this film, Singing Chen also specifically participated in producing the music for the yoga music composer in the movie. Critical reception. In 2007, \"God Man Dog\" participated in the Vancouver International Film Festival and the 12th Busan International Film Festival, where it was selected for the \"New Currents.\" At the 44th The Golden Horse Awards, the film was nominated for \"Best Original Screenplay\" and Singing Chen and Huang Meiqing for \"Best Film Editing\" and \"Best Art Direction,\" respectively. In 2008, the film competed in the official competition section of the Fribourg International Film Festival in Switzerland. It was nominated for the Berlin Film Festival, and was selected for the \"Best Film\" by the Berlin Daily Mirror. In the Asian Film Awards, Jack Kao was nominated for \"Best Actor.\" It received the recognition of the \"E-Changer Award\" at the Fribourg International Film Festival in Switzerland, and was awarded 5,000 Swiss francs. Huang Ming-chuan recalled that once while shooting a funeral procession in Chiayi, the gods on every truck were different. Singing Chen, seeing this scene for the first time, was quite shocked and perhaps it also opened up her creative thinking. References.",
+        "text_characters": 1260,
+        "title": "God Man Dog"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9378393",
+        "score": 17.757444362325867,
+        "snippet": "Austrian opera singer Josef von Manowarda (3 July 1890 in Kraków – 24 December 1942 in Berlin) was an Austrian operatic singer (bass and Heldenbaritone). Life. Manowarda was born in Kraków, the son of the Austrian general Eberhard Manowarda von Jana. He first prepared himself for a diplomatic career in Vienna, but then studied philosophy in Graz. Early on he received violin lessons, in Graz and also speech and singing lessons. In 1911–15 he was engaged in the Graz Opera, in 1915–18 at the Wiener Volksoper, and from 1919 to 1934 at the Wiener Staatsoper. According to the he appeared at the Salzburg Festival. He was professor at the Vienna Music Academy. Manowarda had joined the NSDAP together with his wife before 1933 and remained politically active even after the party ban in 1933 by distributing propaganda material to the staff of the Vienna State Opera and refusing to wear the badge of the Vaterländische Front despite threats of severe punishment. According to his own statements, this caused him political difficulties, which is why he moved to the Berlin State Opera under Clemens Krauss in 1935. Already in 1931 he sang his way to great success at the Bayreuth Festival as the Landgrave in \"Tannhäuser\" under Arturo Toscanini. After his move to Berlin, Manowarda was particularly popular with Adolf Hitler and Joseph Goebbels and used this attention to propose in 1936 to Heinz Tietjen the unification of the Staatstheaters of Berlin and Kassel with the Burgtheater and the Vienna ",
+        "text_characters": 2447,
+        "title": "Josef von Manowarda"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3533709",
+        "score": 17.508208551862143,
+        "snippet": "The first film of this genre was \"Nehir\", in which he shared the role with Cüneyt Arkın. Political films like \"Maden\", \"Sürü\", \"Yol\" and \"Kanal\" followed. He acted in a total of 110 films, and won numerous awards from various festivals including Cannes and Berlin. He won an Honourable Mention at the 35th Berlin International Film Festival for his role in \"Pehlivan\". Later years. He also directed several productions such as documentaries and serials for television. In 2002, he published his first book \"Anne Kafamda Bit Var\", a biography of his life and his time in prison. In 1991, he took over the elementary school in Bakırköy, in which he was educated, and transferred it to his own Özel Taş İlköğretim Okulu. In 2005, he became the chairman of the education-aimed \"Nesin Foundation\", succeeding Ali Nesin, the son of the founder Aziz Nesin. In his later years, he was served as chairman of the \"Nazım Hikmet Cultural and Arts Foundation\". Illness and death. Akan contracted lung cancer, and was in treatment for over one year. In the early hours of 16 September 2016, he died at the age of 66 in the intensive care station of a private hospital in Istanbul. On 18 September, he was interred at Zuhuratbaba Cemetery in Bakırköy following a memorial service held in Harbiye Muhsin Ertuğrul Stage and the religious funeral service at Teşvikiye Mosque. The funeral was attended by thousands of people, his castmates, former President of Turkey Ahmet Necdet Sezer and the leader of the main oppos",
+        "text_characters": 1543,
+        "title": "Tarık Akan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7683912",
+        "score": 16.95611087411191,
+        "snippet": "Kwaku Ananse is a 2013 short film directed by Akosua Adoma Owusu. The short film combines semi-autobiographical elements with the tale of Kwaku Ananse, a trickster in West African and Caribbean stories who appears as both a spider and a man. The fable of Kwaku Ananse is combined with the story of a young outsider named Nyan Koronhwea, who attends her estranged father's funeral. At the funeral, she retreats to the woods in search of her father. The film starred legendary musician Koo Nimo and veteran actress Grace Omaboe. The screenplay was co-written by Pakistani-American filmmaker and entrepreneur Iram Parveen Bilal. The script was written for MaameYaa Boafo, a Pakistani born-Ghanaian actress, who was originally cast in the lead role as Nyan Koronhwea. However, the production team in New York City eventually decided to recast the character during the pre-production stage with Jojo Abot, an emerging Ghanaian artist. Synopsis. Drawing upon the rich mythology of Ghana, this magical short film combines semi-autobiographical elements from Owusu's life with local folklore to tell the story of a young American woman who returns to West Africa for her father's funeral, only to discover his hidden double identity. Kwaku Ananse is a traditional West African fable about a being that is part man and part spider, who spends years collecting all the wisdom of the world in a wooden pot. As he tries to hide the pot in a tree, he can't find a way to place it high up in its branches. When his",
+        "text_characters": 2345,
+        "title": "Kwaku Ananse (film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3967608",
+        "score": 16.28387808620022,
+        "snippet": "Armed tensions in Poland provided King Frederick William IV, for whom Knesebeck was still officially acting as primary military adviser, the opportunity to offer him promotion to field marshal on 7 October 1847, a five star rank that could only be bestowed in wartime. Knesebeck also declined this honour, pointing to his advanced age and suggesting it would \"make a mockery of active field marshals\". He instead requested his discharge from the army, which was granted him with a simultaneous promotion to field marshal at the insistence of the king. He died on 12 January 1848 in Berlin. Following a state funeral with an honour guard of nine regiments he was buried in the Alter Garnisonfriedhof. On the church in Neuruppin-Karwe hangs a memorial to Knesebeck, with the inscription: \"Carl Friedrich von dem Knesebeck, born in Carwe 1768, died in Berlin 1848. A Prussian field marshal, he fought for the honour of his King and Country in 17 battles and served to the glory of his fatherland from his 13th year until his death. Peace to his remains, honour to his memory.\" Between 1983 and 1986 the awards received by Knesebeck, held by the German Historical Museum in Berlin, were among the priceless collection stolen and sold on the black market by an employee of the museum. Together with the orders worn by several German kings, emperors, and generals, numerous other unique pieces were taken during the theft. Only a limited number of the items in question have since been recovered, making it",
+        "text_characters": 1569,
+        "title": "Karl Friedrich von dem Knesebeck"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:40030",
+        "score": 15.864899729409752,
+        "snippet": "Truffaut was philosophically opposed to attempts to portray anti-war themes through cinema, famously stating that \"there is no such thing as an anti-war film\" due to the medium's inherent glorification of such subjects, no matter how they are portrayed. Personal life. Truffaut was married to Madeleine Morgenstern from 1957 to 1965, and they had two daughters, Laura (born 1959) and Eva (born 1961). Madeleine was the daughter of Ignace Morgenstern, managing director of one of France's largest film distribution companies, Cocinor, and was largely responsible for securing funding for Truffaut's first films. In 1968, Truffaut was engaged to actress Claude Jade (\"Stolen Kisses\", \"Bed and Board\", \"Love on the Run\"); he and Fanny Ardant (\"The Woman Next Door\", \"Confidentially Yours\") lived together from 1981 to 1984 and had a daughter, Joséphine Truffaut (born 28 September 1983). Truffaut was an atheist, but had great respect for the Catholic Church and requested a Requiem Mass for his funeral. Death. In July 1983, following his first stroke and being diagnosed with a brain tumour, Truffaut rented France Gall's and Michel Berger's house outside Honfleur, Normandy. He was expected to attend his friend Miloš Forman's \"Amadeus\" premiere when he died on 21 October 1984, aged 52, at the American Hospital of Paris in Neuilly-sur-Seine in France. At the time of his death, he was said to have numerous further films in preparation. He is buried in Montmartre Cemetery. Filmography. Feature fil",
+        "text_characters": 1744,
+        "title": "François Truffaut"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2245678",
+        "score": 15.071787210038707,
+        "snippet": "However, Riskin felt that Capra was taking all the credit for their films, including Riskin's share. Riskin came to resent Capra for this. This led to several confrontations with Capra during the production of \"Meet John Doe\". According to an account by Hollywood screenwriter David Rintels (which was denied by Capra), Riskin brandished 120 blank pages in Capra's face and challenged: \"Put the famous Capra touch on \"that\"!\" After completion of just one film, \"Meet John Doe\", the association was dissolved. Riskin never willingly collaborated with Capra again. During the time of his declining health, home confinement, and final residence at the Motion Picture & Television Country Home and Hospital, Riskin was regularly visited by old friends such as Edward G. Robinson, Jack Benny, and Irving Berlin. Long time friend and screenwriting colleague Jo Swerling and his wife remained devoted visitors. Conspicuously absent was Frank Capra, who never visited Riskin during the five years of his illness. Swerling was pained by Capra's behavior, but Riskin refused to disparage Capra. He remained loyal to the man, calling him \"his best friend\". The \"Los Angeles Examiner\" covered Riskin's funeral in September 1955, describing the \"notables\" in attendance. The report also identified the \"one man who wasn’t there\": Frank Capra. In 1961, Capra directed \"A Pocketful of Miracles\", a remake of Capra and Riskin's 1933 collaboration \"Lady for a Day\", with a screenplay by Hal Kanter and Harry Tugend fr",
+        "text_characters": 2381,
+        "title": "Robert Riskin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:916501",
+        "score": 15.043904555022154,
+        "snippet": "Chuikov's advance through Poland was characterized by massive advances across difficult terrain [on several occasions, the 8th Guards Army advanced over in a single day]. On 1 May 1945, Chuikov, who commanded his army operating in central Berlin, was the first Allied officer to learn about Adolf Hitler's suicide, being informed by General Hans Krebs who had come to Chuikov's headquarters under a white flag. Krebs, under orders from Goebbels, sought conditions for surrender more favorable to the Germans, which Chuikov had no authority to grant and so rejected any terms. On 2 May, he accepted the unconditional surrender of Berlin's forces from General Helmuth Weidling who had taken command, with the suicide that morning by Gen. Krebs. Chuikov appeared in the documentary film \"Berlin\" (1945), directed by Yuli Raizman. Later life. After the war, Chuikov continued to command the 8th Guards Army in Germany, later serving as Commander-in-Chief of the Group of Soviet Forces in Germany from 1949 until 1953, when he was made commander of the Kiev Military District. While serving at that post, on 11 March 1955 he was promoted to Marshal of the Soviet Union. From 1960 to 1964, he was the Commander-in-Chief of the Soviet Ground Forces. He also served as the Chief of the Civil Defense from 1961 until his retirement in 1972. From 1961 until his death, he was a member of the Central Committee of the Communist Party of the Soviet Union. In 1969, Chuikov led the Soviet delegation attending the",
+        "text_characters": 1998,
+        "title": "Vasily Chuikov"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-b1b8830217081572"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": null,
+  "final_validity_state": "MISSING_FINAL",
+  "stop_reason": "CONTEXT_LIMIT_STOP",
+  "submission_event_indices": []
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "ACTUAL_REQUEST_VERIFIED": 12,
+    "NO_LATER_ACTOR_REQUEST": 1
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+保留R5错误重新解释和R12真实导演纠错；R1—R2、R6—R8、R9—R11普通重试未机械分开。13次Search与1个双Call批次完整，未伪造Open/Guy搜索或Final。
+
+R8从影评词转film详情可视方法改变，但原文仅缩词扩检同片资料，主方案KEEP。R7一度称Ipcress第二主演缺少实际重新论证，主方案不单列。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

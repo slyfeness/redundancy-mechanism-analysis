@@ -1,0 +1,411 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0916",
+  "stage_id": "S003",
+  "sample_order": 97,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What traditional musical instrument, considered a national symbol for Manipuris, accompanies the folk song form associated with the \"Old Kuki tribes\" such as the Milhiem ethnic group found in Manipur?",
+    "gold": [
+      "Pena"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "pena",
+    "adopted_answer": "Pena",
+    "outcome": "C",
+    "reason": "答案实体符合Gold；族群歌曲连接没有直接证明。",
+    "evidence": [
+      "O_F",
+      "O_P"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R4[0,1236)已摘取Pena象征及伴奏、Meitei文化，列全约束，明确Milhiem归Old Kuki但不提pena eshei，已知需要连接两者。",
+    "evidence_states": "音乐事实已返回、提取为强候选；关系未解已明确识别。原U不是首次知道Pena或首次发现缺口，而是实际查该边。",
+    "evidence": [
+      "O_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 1236,
+        "end": 1467
+      }
+    ],
+    "goal": "直接查Pena eshei与Old Kuki/Milhiem关联。",
+    "operations": "真实Search pena eshei Old Kuki tribes Milhiem。",
+    "product": "只返回已见Milhiem归属，无歌曲或乐器联系。",
+    "judgment_change": "已有关系疑问变为实际查询，结果没补连接。",
+    "evidence": [
+      "O_Q"
+    ]
+  },
+  "original_followup": {
+    "use": "R5承认关联缺口继续泛族群Search，R6接受Pena，再Open和音乐Search，最终同答案；原U没有为关系证明提供新产物。",
+    "evidence": [
+      "O_NEXT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把已识别的两个事实间缺口变成针对性的关系检索。",
+    "state_relation": "四条缺口都还会被讨论，但仅r2/r3真正再查；r1仅反复意向、r4直接接受。讨论缺口不等于功能取证恢复。",
+    "evidence": [
+      "N1_J",
+      "N2_Q",
+      "N3_Q",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "The user is asking for a specific traditional musical instrument.",
+    "source_position": "R5[0,65)",
+    "oracle_anchored": true,
+    "novelty": "11Token泛题意，不含Pena、族群关系新事实或明确查询。不是答案泄漏，但仍是后继原文引导。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "未新取证，反复权衡后以已有象征特征接受。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R4唯一生成13598字符/2939Token，反复Meitei与Kuki、是否查、打算提交、又重新考虑，始终未真实Search/Open；最后实际submit pena。正文多处Final answer是推理不是正式Final，只有末Call正式提交。",
+      "first_judgment_divergence": "缺口只触发内部往复，不再转成真实Query。",
+      "first_actual_tool_divergence": "直接submit替原关系Search，无其他工具。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得关系证据",
+          "original_operation": "真实Search",
+          "original_product": "无直接边",
+          "new_goal": "判断已有材料能否作答",
+          "new_operation": "多次搜索意向但0Search",
+          "new_product": "Pena C，关系仍未证",
+          "evidence": [
+            "O_Q",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整唯一Round中没有实际关系查询，不能因多次说search认重建。",
+      "judgment_action_outcome_chain": "强主特征保持→未证边反复引发考虑与撤回提交→无新行动/信息→最终同候选C，内部生成膨胀。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "2939生成8272Prompt1Actor0Search/Open，原1526–1894生成5段3Search1Open；差[1045,1413]。虽然少4真实取证/交互，新增在单轮长篇反复判断。P8261/G11单列。",
+      "counterevidence_and_alternatives": "r4同样无取证只201Token，不能把不查必然导致长推理；也不能据C断言关联已证。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "关系核验恢复两次仍无连接，最后原symbol支持足以选答案。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R4 pena eshei Kuki tribes Old Kuki Manipur回旧族群政治；R5 peña eshei Old Kuki tribes Milhiem仅Milhiem；R6 1471字符并列三事实，承认资料偏Meitei但认为强特征吻合，submit。2Search0Open。",
+      "first_judgment_divergence": "第一次Query用族群广词而非具名Milhiem，第二次才恢复近似原Query。",
+      "first_actual_tool_divergence": "R4更广关系Query，R5具名Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "核关系边",
+          "original_operation": "Pena/Milhiem Search",
+          "original_product": "仅归属",
+          "new_goal": "同关系边",
+          "new_operation": "两实际Search，第二近原",
+          "new_product": "仍无直接连接，C",
+          "evidence": [
+            "O_Q",
+            "N2_Q",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原实际关系核验完整重做，尽管没有取得所需证据。",
+      "judgment_action_outcome_chain": "缺口识别保留→实际两Query仍无边→停止额外核验并接受强symbol→C且原后续短Open/重检不再发生。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "946生成33450Prompt3Actor2Search0Open，差[-948,-580]；少1Search1Open2Actor，省主要为原后续额外读取与查询/比较，不能说原关系功能没用。",
+      "counterevidence_and_alternatives": "最新Query无音乐但后续说found relevant music，实际引用的是P旧资料，采用来源必须分开。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "一关系Search仍只Milhiem，原强音乐支持维持答案。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R4近同原Query追加folk song，仅旧Milhiem；R5 4377字符比较关联、Jhal/Drum、Pena唯一symbol，提出Penai等未证别名但正式只Pena，实际submit。0Open。",
+      "first_judgment_divergence": "关系Search重做后不继续泛族群和Open，转较早接受。",
+      "first_actual_tool_divergence": "R4仅加folk song，真正分歧在随后submit替泛族群Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "关系核验",
+          "original_operation": "定向Query",
+          "original_product": "无连接",
+          "new_goal": "同核验",
+          "new_operation": "近原Query实际执行",
+          "new_product": "同归属资料、C",
+          "evidence": [
+            "O_Q",
+            "N3_Q",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同需求取证和返回处理实际出现，查询相似度不是唯一依据。",
+      "judgment_action_outcome_chain": "关系取证失败→仍以主特征认候选→不再派后续查询→C，省后续取证但保留较长比较。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "1135生成16708Prompt2Actor1Search0Open，差[-759,-391]，少2Search1Open3Actor；R5长比较仍1026Token，不按原U长度归节省。",
+      "counterevidence_and_alternatives": "Pena与Penai同义无文档支持但Final只Pena；不要让正确实体掩盖推理中的无依据扩展。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "直接使用P中已提取音乐证据提交，明确连接没有直接陈述。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R4 759字符列Pena symbol、伴奏、Milhiem归属三事实，承认不直接连接但按题意接受，唯一Call submit。0Search/Open。",
+      "first_judgment_divergence": "没有把已知缺口再次派发查询，直接回答。",
+      "first_actual_tool_divergence": "submit替关系Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得关系证据",
+          "original_operation": "定向Search",
+          "original_product": "仅旧归属",
+          "new_goal": "利用已知支持提交",
+          "new_operation": "条件评估但无取证",
+          "new_product": "PenaC，未补边",
+          "evidence": [
+            "O_Q",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有实际新取证，承认缺口不是原Search功能执行。",
+      "judgment_action_outcome_chain": "候选和强特征P已采用→关系缺口被容忍→直接提交C，少后续多轮工作。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "201生成8272Prompt1Actor0Search/Open，差[-1693,-1325]，少原3Search1Open4段；省分布于全原后续，不可全算目标Search长度。",
+      "counterevidence_and_alternatives": "与r1同无真实取证但篇幅巨大差异，说明成本不由工具是否恢复唯一决定。"
+    }
+  ],
+  "four_run_comparison": "两条无Search，两条恢复关系Search，均C且均没取得新音乐关联。r1不取证却长2939Token高于原后续；r4同无取证201Token显著少。r2/r3恢复U但取消其他原后续仍净省。四者共同支持答案强特征已在P，而成本变化需追后续判断如何展开，不能只看U是否重建。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "已采用候选仍带未闭合关联时，同一缺口可转成真实取证或内部反复，也可在接受时被容忍；U取证恢复与否不足以解释消耗。",
+      "support_evidence": [
+        "O_P",
+        "N1_J",
+        "N2_Q",
+        "N3_Q",
+        "N4_J"
+      ],
+      "limit": "本题强特征答案一致，不推广所有核验可跳过，G/采样未隔离。"
+    }
+  ],
+  "counterevidence_and_limits": "所有C仍缺直接族群关系；r1是无取证不等于低成本的反例，r2/3是功能恢复仍可减少其他工作反例。原native IDs缺失，仅保守差值区间。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "However, I need to confirm if pena eshei is specifically associated"
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "pena eshei Old Kuki tribes Milhiem"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "\"Old Kuki tribes\" folk song instrument Manipur"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "pena"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for a specific traditional musical instrument."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, let me reconsider one more time."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "pena"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "peña eshei Old Kuki tribes Milhiem",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "While the search results focus on the Meitei culture"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "pena eshei Old Kuki tribes Milhiem folk song",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "It doesn't explicitly link *pena eshei* to the Kuki tribes"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The search results don't explicitly state this connection"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0916/trajectory.json",
+      "source_sha256": "03b951c72acc95c19781e7ca575f5325863786f44fb011f9455e0f1b7b18897c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0916.json",
+      "source_sha256": "01c981c69ed2d2f7f0cf3df7541b6d7f68561c027216407e7500e2ab441a9016"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "7484f712000b7b14379f37d76ec23c52738e847ec2e6a54d8e8eda1a810c0e99"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "8009384d293596dd423575a16cdb4300c530460e0b680500971c8366739035e4"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7523217d25574e17e6a9a3a19bc59fcf8290e5b4a491b99891bfae0e4b200f37"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "56c095d35eb85a7f1f958dca28c518f097ff5754693f087177584882030b52c7"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0916__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "b44fa09bf66b283bf8ebc1be2d37fbc5c4e4469375eb3ade64139476f4172d67"
+    }
+  }
+}

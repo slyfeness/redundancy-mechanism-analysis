@@ -1,0 +1,444 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S003",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "正式数字正确，原天体链未闭合。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@0；当前前缀空，但P并非空：两次Search完整工具历史分别支持LuXun描述惨案及1936奥运49/129/19。原R2日志用知识假设1936，尚未有死亡年直接Return；旧reasoning被模板剥离不能视作可见。",
+    "evidence_states": "人物和奥运数字已返回，死亡年尚待文档证明。",
+    "evidence": [
+      "O_49",
+      "O_WRITER"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 381
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 185
+      }
+    ],
+    "goal": "确认描述惨案者死亡年份，将人物和1936赛事相连。",
+    "operations": "Query Lu Xun death year，读十条真实返回，其中Tomb直接写Oct19,1936；R4采用。",
+    "product": "1936从先前知识假设变为直接文档支持。",
+    "judgment_change": "死亡年得到明确支持，后续可按1936锁定赛事。",
+    "evidence": [
+      "O_YEAR",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "重读赛事49，之后查附加天体/机场；死亡年贯穿后续，数字不变。",
+    "evidence": [
+      "O_ADOPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "补人物—年份桥接事实的直接证据。",
+    "state_relation": "四支均重新执行同一死亡年Search并采用1936，虽G已给1936；答案保持不是该功能未执行。",
+    "evidence": [
+      "N1_YEAR",
+      "N2_YEAR",
+      "N3_YEAR",
+      "N4_YEAR"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find a multi-sport event that featured 129 events and 19 separate sports, held in 1936.",
+    "source_position": "O R4[185,286)",
+    "novelty": "1936已经存在P赛事返回及原先日志知识，但G将其明确指定为待找赛事的年份，提前承担被删死亡桥接的确定性，不能称全新数字也不能称无补偿。",
+    "risk": "ORACLE_ANCHORED；无Gold49，无具体天体；年份桥接/行动方向提示。",
+    "evidence": [
+      "I_G",
+      "O_49"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "提交49，有直接Search支持。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R3先采用P的49但仍重查死亡年，R4明确Oct19/1936并Open50；R5—R7三次March18小行星查询同一无关批次；R8机场243；R9—R11三次全条件查询同批噪声；R11长6885字符整体推理虽数次说足够却仍真实Search；R12再Open100短窗，R13沿用原Search数字提交。",
+      "first_judgment_divergence": "死亡年功能即时恢复，主要分歧在确认49以后仍派发外围搜索；说准备提交不等于已提交。",
+      "first_actual_tool_divergence": "首Call和原相同，随后Open50而非100；直接进入March18而无原Oct18误查。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认死亡年",
+          "original_operation": "死亡年Search并读Tomb",
+          "original_product": "采用1936",
+          "new_goal": "同一桥接确认",
+          "new_operation": "R3相同Search、R4采用",
+          "new_product": "Oct19,1936重新明确",
+          "evidence": [
+            "O_YEAR",
+            "N1_YEAR",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "目标、真实取证和年份产物都恢复。",
+      "chain": "年份补回→49稳定→外围缺口反复触发搜索与长整理→核心接受后才提交。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "5668gen/247770Prompt/11Actor/8Search/2Open；原后缀3478gen/10Search/3Open/14Actor，gen反增2190来自多次整链解释及R11长猜测，工具减少不代表推理更短。",
+      "counterevidence_and_alternatives": "没有新天体支持，缺口原路径也有；未因缺口导致答案改变。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "正式49且天体证据比原完整。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R3先查机场243，R4明确LuXun死亡年仍待核并真实查询；R5采用1936。R5—R7三次全条件无效；R7说提交却实际Search。R8日期Search，R9把入口改为只有周期243days，取得2002FB3实际March18/243。R10采用天体并默认Open4000完整奥运文档；R11全链Submit。",
+      "first_judgment_divergence": "延后死亡年核查但没有取消；无效全条件查询后去掉日期约束，才返回匹配天体。",
+      "first_actual_tool_divergence": "第一Call机场而不是死亡年。",
+      "function_correspondence": [
+        {
+          "original_goal": "人物死亡年桥接",
+          "original_operation": "Search死亡年",
+          "original_product": "1936",
+          "new_goal": "同一桥接",
+          "new_operation": "R4补同Query、R5采用",
+          "new_product": "1936文档重证",
+          "evidence": [
+            "O_YEAR",
+            "N2_YEAR",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "死亡证据完整重新取得，顺序不同。",
+      "chain": "先机场→补死亡桥接→多次无效外围→改入口得匹配天体→完整支持后提交49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "3775gen/221746Prompt/9Actor/7Search/1Open；gen较原增297，工具与Actor下降；单次完整Open代替短窗，外围新增成功关系并非纯节省。",
+      "counterevidence_and_alternatives": "新增证据成功不证明原U删除导致检索策略改进；采样和G都是替代解释。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "最后49，死亡年正确但日反复误解。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R3—R7五次Open10/50/50/100/200不含49，仍知道旧Search数字。R8回查死亡年，R9采用1936并Open300仍不到49段；R10日期Search、R11机场、R12—R14全条件重复、R15日期、R16/17全条件重复；R18 Open500实际读49，R19Submit。中间多轮误称Oct18死亡，R18又正确Oct19，但曾把同日误写为March18,1926。",
+      "first_judgment_divergence": "先重复重读，死亡桥接晚到R8才补；补回并未停止外围派工。",
+      "first_actual_tool_divergence": "先Open10而非死亡Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得死亡年证据",
+          "original_operation": "R3Search并R4用",
+          "original_product": "1936",
+          "new_goal": "确认人物年份",
+          "new_operation": "R8同Search、R9采用",
+          "new_product": "1936恢复，具体日误读不影响年",
+          "evidence": [
+            "O_YEAR",
+            "N3_YEAR",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "年份桥接实际恢复，不要求错误日解释消失。",
+      "chain": "短窗口重读多次→年份补回→外围未解继续Search→接近预算末端读500核心段→Submit49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "4220gen/365349Prompt/17Actor/9Search/7Open；gen增742，Open增4、Actor增3、Prompt增；成本落于短窗未推进和外围重复。",
+      "counterevidence_and_alternatives": "有真实重复查询但不能说其无Final；该支R19确实提交。日期误读是质量疑点而非数字W。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "最终核心49，天体日期曾错转。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R3立即同死亡Search；R4采用1936/49后查机场；R5—R7三次全条件Query无效；R8说核心已确认但实际Open50，R9Open100、R10Open1000。R11把天体同日错误连到死亡Oct19，真实执行Oct19+243Query得到无关材料；R12重新写March18且承认无直接天体支持，Submit49。R4错引Doc1107602，实际数字在1148006，不能照其错编号写证据。",
+      "first_judgment_divergence": "死亡桥接恢复之后，把日期关系误接到死亡日，制造一次偏离题面查询；核心数未动。",
+      "first_actual_tool_divergence": "首Call相同，第二Call机场而非原Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认LuXun死亡年",
+          "original_operation": "Search年份及采用",
+          "original_product": "1936",
+          "new_goal": "同一桥接",
+          "new_operation": "R3Search、R4接受",
+          "new_product": "1936恢复",
+          "evidence": [
+            "O_YEAR",
+            "N4_YEAR",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "原U完整重做；后来的日期关系错误属于后续新工作。",
+      "chain": "死亡桥接重证→外围无效→回读核心→误接日期再Search→恢复March18但放下未证外围→49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3894gen/240249Prompt/10Actor/6Search/3Open；gen增416，Search减4/Actor减4，消耗变化分账。",
+      "counterevidence_and_alternatives": "三次Open完整重现不等于所有原后续重放；天体缺口共享原路径，不能归作新增遗漏。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "死亡年Search四支均恢复，时间R3/R4/R8/R3。",
+    "quality": "r2实际闭合天体；其余仍缺；r3/r4有日期归属误解。",
+    "cost": "四支生成均比原后缀多，虽然r1/2/4 Search和Actor更少。",
+    "inference": "A类保持答案不能自动推出可有可无；此处功能重做、直接数支持/G年份共同维持，额外消耗发生于确认后的核验与表达。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "人物年份用于把赛事与人物桥接，但赛事数字已可见时，删后可先采用数字、再补年份；功能恢复的先后不唯一决定答案，未解附加条件怎样继续派工影响成本。",
+      "support": "四支均死亡年取证恢复，只有r2改周期入口成功补天体，r3开窗与外围最多。",
+      "limits": "同一题不是四题；G直接指定1936，禁止认作无引导可省证明。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "P当前前缀为空≠没有历史；保留原两个Search及Return。",
+    "G没有全新1936实体数字，但将赛事年份确定化；需与真实P语义区分。",
+    "原无nativeIDs，整Round3478usage可比但仍DERIVED_CHAR_EXACT；无伪原生节省。G32、P8722单列。",
+    "FULL_REBUILT是本地目标/操作/产物对应，不意味着后续关系解释和质量均相同。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_WRITER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/3/snippet",
+      "exact_quote": "Lu Xun"
+    },
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/2/snippet",
+      "exact_quote": "19 October 1936"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Lu Xun died on October 19, 1936."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find a multi-sport event that featured 129 events and 19 separate sports, held in 1936."
+    },
+    {
+      "evidence_id": "N1_YEAR",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Lu Xun death year"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "died on October 19, 1936"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_YEAR",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Lu Xun death year"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the year is 1936."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_YEAR",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/query",
+      "exact_quote": "Lu Xun death year"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "he died in 1936"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 19,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_YEAR",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Lu Xun death year"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Lu Xun died in 1936"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "4a17f1bd62433644c78659911aa814c3e67140734192ea40fe5afa7c4b42ccb6"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ed7ec9d44bfb687b0319542658d92f6587807a802ecf33872771ff1d8daa9424"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "027493fa9288f454178d57eea8b1bea5d92ebf637e285b7a7a3e0ccc01cfb743"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "2a79c10bef8a3fe0c47d54e4d5006645858d078e48c653bbce9ae2b1817ce0bf"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "d361e3a83b0cf385b8151e66f3791f75ca995a4259b1cbb75d1f30b4974f7525"
+    }
+  }
+}

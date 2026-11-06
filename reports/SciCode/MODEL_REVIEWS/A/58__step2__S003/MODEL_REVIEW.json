@@ -1,0 +1,87 @@
+{
+ "case_id":"58__step2__S003","category":"A","trajectory_id":"58__step2","stage_id":"S003","main_problem_id":"58","official_subproblem_id":"58.2 (U位于58.1)","intervention":"FIRST_SENTENCE","review_status":"COMPLETE","evidence_index":"RESOLVED_EVIDENCE.json","objective_cost_table":"OBJECTIVE_COSTS.json",
+ "sources":{"original_read":"原58两步此前完整已读，重新核对U为step1 R4@109至R5，P已有正确正函数和两个伪模块测试拒绝；目标为step2密度反解，不能混为同一子题。","new_read":"四条完整两子题续跑全部推理/Call/Return与提交，逐次检查临时写错任务、真实测试和实际正式代码。","input_read":"首请求仍原step1 user与历史，保留R4前109字符，G来自下一子题首句；按实际模型状态和传递代码核对，不恢复原后继prompt。"},
+ "original":{
+  "pre_state":"58.1正函数press=kappa*rho^Gamma已保存并正确；两次from eos_press_from_rho/write_code_result测试均ImportDenied，P说实现无imports；还没提交当前题。",
+  "U_goal":"读回已保存压力函数后提交，结束58.1。",
+  "U_operations":"read_code确认当前460字符稿，简短认为已经保存，正式submit同稿。无公式改变或数值运行。",
+  "U_product":"压力函数正式提交，使运行器进入58.2；后题只接收已提交代码，不沿用前题推理与测试历史。",
+  "judgment_before_after":"从含混验证拒绝转为当前稿可提交，未产生后题反函数的新知识。",
+  "original_suffix_use":"58.2在新user中看到同一正函数与方程，独立反解并保存密度函数；测试伪模块拒后同稿write/submit。目标C不是前题U的单独评分。",
+  "evidence":["O1","O2","O3","O4"]
+ },
+ "guide_audit":{
+  "G":"The current subproblem asks me to implement a function that computes density from pressure using a polytropic equation of state.",
+  "P_relation":"真实当前题58.1要求pressure from density，G却把下一题density from pressure说成current。方程/主问题中两量本已存在，但当前任务方向是未来子题状态；不是普通承接。rep2/3/4实际在前题写入反函数，rep1读当前user纠正。",
+  "novelty":"FUTURE_SUBPROBLEM_DIRECTION及任务身份/方向预置；不直接给数值答案，却可转移当前实现对象。",
+  "risk":"ORACLE_ANCHORED，跨子题G与实际当前工作冲突；这些分支不能计无方向引导的纯删除或直接算法可省证据。",
+  "evidence":["G1","O1","N21","N31","N41"],
+  "uncertainty":"不能唯一断言所有错任务写入只由G引起，但原新输入冲突和真实动作方向吻合；不修改既有实验。"
+ },
+ "rollouts":[
+  {
+   "branch_id":"58__step2__S003__FIRST_SENTENCE__rep1","official_state":"C",
+   "first_material_divergence":"重新读实际当前要求为pressure from density，未read_code而直接submit同P正函数。",
+   "work_reconstruction":{"goal":"确认当前压力函数可提交","operation":"重读题目/识别无imports，直接submit；0read、0run","product":"前题正式代码字节等原，目标prompt字节等原；后题独立实现并提交同SHA反函数","assessment":"PARTIAL_REBUILT：接受/提交恢复，read动作未重现；后题重新求解不是U功能"},
+   "judgment_change":"G相反方向未被采用为当前任务，模型明确采用当前user的正向关系；前题提交后后题正常独立反解。",
+   "action_chain":"58.1直接submit→新会话58.2 write/submit，无真实测试。",
+   "result_explanation":"目标反函数仍按同题面/同前题代码独立得到C；没有证据表明U曾为它提供独特判断。",
+   "cost_localization":"原从切点到目标结束6Actor6Call、生成1270..1322、Prompt8957；新3Actor3Call、915生成、4181Prompt，G24另计。少355..407生成、4776Prompt、3交互。省前题read，以及后题失败测试/第二write等；不能把全部差值归前题U。",
+   "evidence":["N11","N12","N13"],"counterevidence":"前题没有数值验证，后题也无成功run；C不代表所有验证支持恢复。","unknowns":"目标新实际原生输入IDs与旧API记录不作逐位相等声明，仅已封存逻辑prompt相同。"
+  },
+  {
+   "branch_id":"58__step2__S003__FIRST_SENTENCE__rep2","official_state":"C",
+   "first_material_divergence":"在实际前题仍为pressure函数时，照G方向写入density反函数；下一submit却明确提交过去P中的正确pressure函数。",
+   "work_reconstruction":{"goal":"结束前题并保持合法提交","operation":"错误对象write反函数→实际submit原正函数，没有read；后题再从新prompt写/提交反函数","product":"暂存稿错任务，但前题最终同原SHA，目标prompt相同，目标最终同原反函数SHA","assessment":"PARTIAL_REBUILT：提交结果恢复、read未恢复；中间方向污染没有传到正式先题代码"},
+   "judgment_change":"Reasoning宣称当前density任务，实际submit回正函数未解释转变；记录动作而不补造纠错过程。",
+   "action_chain":"58.1错write→submit正函数→58.2重新write反函数→submit；0run。",
+   "result_explanation":"最终被传入后题的正函数未变，所以不能将临时错误稿当后题C的证据或U机制；后题独立给正确反解。",
+   "cost_localization":"953生成/5731Prompt/4Actor4Call，较原少317..369生成、3226Prompt、2交互，G后少293..345。前题省read却新增错write，主要还省原后题失败测试及第二write。",
+   "evidence":["N21","N22","N23"],"counterevidence":"不称恢复原后继代码；原P正函数本已可见，submit参数实际如此，既有runtime无回填fallback。","unknowns":"write反函数后为何submit正函数无显式解释，保持未知。"
+  },
+  {
+   "branch_id":"58__step2__S003__FIRST_SENTENCE__rep3","official_state":"C",
+   "first_material_divergence":"照G写错任务反函数，参数名rho却使用未定义press；然后四次main伪模块压力函数测试被拒，才重新保存正确正函数、合法内联测试并提交。",
+   "work_reconstruction":{"goal":"确认并提交当前正函数","operation":"没有read，错反函数write→main入口四次失败→正函数write→内联成功→原完整正函数submit；后题反解并成功互逆run→submit","product":"错稿未执行到运行时；最终先题/目标代码均等原，新增两子题实际测试结果","assessment":"FULL_REBUILT接受/提交功能，以重写和数值核验替代read；额外任务错误和重复入口不能算原U原样重建"},
+   "judgment_change":"原先误用未来任务，后续实际动作回到正函数；失败反馈未及时改变main入口，四次后才转内联。真正2.0返回支持前题提交；后题另取得互逆True。",
+   "action_chain":"错write→main拒×3→正write→main拒→内联run成功→正submit→后题write/run成功/submit。",
+   "result_explanation":"两个正确公式最终恢复，C；临时错反函数未产生执行NameError，因为相关run更早在导入被拒。",
+   "cost_localization":"2016生成/18510Prompt/11Actor11Call，较原多694..746生成、9553Prompt、5交互，G后多718..770。增加前题错方向保存与四次无效入口、正函数恢复和后题成功测试；不是原read函数有巨大算法作用。",
+   "evidence":["N31","N32","N33","N34"],"counterevidence":"所有测试意向不等执行：四次main拒没有数值；后两个合法run才有2.0与互逆True，逐项分开。","unknowns":"任务身份纠正未完整用语言说明，不推断隐藏判断时点。"
+  },
+  {
+   "branch_id":"58__step2__S003__FIRST_SENTENCE__rep4","official_state":"C",
+   "first_material_divergence":"把G的density要求当当前题，先write反函数，随后明确发现written for different function，改write正函数再submit。",
+   "work_reconstruction":{"goal":"把当前正确压力函数正式提交","operation":"错反函数write→显式纠正任务对象→正write/submit；后题再次反解write、互逆run、submit","product":"最终前题/后题代码与原分别同SHA，后题实际round-trip True","assessment":"FULL_REBUILT接受/提交功能，read被任务身份纠错及重写替代"},
+   "judgment_change":"明确区分当前pressure函数与提前给出的density方向，修正实际保存对象；后题独立反解，没有沿用前题额外推理历史。",
+   "action_chain":"58.1错write→识别对象错→正write→submit→58.2write/run成功/submit。",
+   "result_explanation":"先题代码恢复使后题输入一致，反函数正确而C；不能把G错误承接造成额外工作解释为U信息缺失本身。",
+   "cost_localization":"1692生成/9698Prompt/6Actor6Call，较原多370..422生成、741Prompt，交互数相同，G后多394..446。原read/失败测试/重复write被前题错方向纠正和后题实际测试替换，工作种类变化而非次数概括。",
+   "evidence":["N41","N42","N43"],"counterevidence":"前题实际接收过错误反函数不等最终评分错，必须看submit内容及传递prompt。","unknowns":"不声称新旧目标prompt原生IDs相同，旧原始TokenIDs缺失。"
+  }
+ ],
+ "cross_rollout_comparison":{"same_changes":"4/4没有原read动作、最终前题代码逐字等原，进入后题的逻辑prompt逐字等原，目标反函数提交SHA全等原，4C。INPUT_PROPAGATION_FACTS.json按原字段复算。","different_paths_same_result":"rep1纠正G方向直接交；rep2/3/4先写下一题函数，只有4显式说明对象错；3大量入口重试，3/4后题有成功测试，1/2无测试。成本前两降后两升。","mechanism_strength":"可观察的主要作用链是跨子题引导错置任务身份→部分分支暂时转错实现对象→实际提交恢复原先题代码→后题新会话只接收相同代码、独立求解。无法把目标C保持归前题U独特认知贡献；属于必须限制机制解释的边界案例。","counterexamples":"相同后题输入与相同答案下，前题过程可以完全不同；工作重建与目标正确性不能直接连因果。"},
+ "stage_function":"核对并提交先题已保存状态，使流程进入下一子题；不是目标58.2反函数推导。",
+ "candidate_mechanism_chain":"P正函数已对但测试入口失败→U读回并提交→后题只继承代码；删除后G提前称当前为反问题→三条暂时转错任务→四条最终正函数提交均恢复→后题逻辑输入相同独立反解C，成本由错对象纠正/入口重试/后题自选测试分化。",
+ "limits":["跨子题传递限制优先，不将此A例用于声称前题read是目标可有可无的判断。","ORACLE_ANCHORED带未来子题方向，不能计无引导纯删除。","INPUT_PROPAGATION_FACTS只证明封存逻辑prompt/代码字节；未取得旧原生IDs时不声称Token级完全一致。","RECONSTRUCTED_CHAR_EXACT，成本按真实U切点至目标终态，不能用整条原轨迹总量。"],
+ "evidence_specs":[
+  {"id":"O1","source_key":"ORIGINAL","json_pointer":"/steps/0/prompt","exact_quote":"Using a polytropic equation of state, write a function that computes pressure given density."},
+  {"id":"O2","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/3/reasoning_content","exact_quote":"Let me check the current saved code to see what's there."},
+  {"id":"O3","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/4/reasoning_content","exact_quote":"The code is already saved. Now I need to submit it for the current subproblem."},
+  {"id":"O4","source_key":"ORIGINAL","json_pointer":"/steps/1/prompt","exact_quote":"# Current subproblem 2 / official step 58.2"},
+  {"id":"G1","source_key":"G1","json_pointer":"/G","exact_quote":"The current subproblem asks me to implement a function that computes density from pressure using a polytropic equation of state."},
+  {"id":"N11","source_key":"NEW1","json_pointer":"/steps/0/rounds/0/reasoning_content","exact_quote":"The subproblem asks to implement a function that computes pressure from density using the polytropic equation of state:"},
+  {"id":"N12","source_key":"NEW1","json_pointer":"/tool_events/0/model_visible_return/code_sha256","exact_quote":"68cb125e766bfa47b9cc1e1506c59cdfe3c547e70870db22ce3becd1fcbc4a20"},
+  {"id":"N13","source_key":"NEW1","json_pointer":"/steps/1/rounds/0/reasoning_content","exact_quote":"ρ = (P/κ)^(1/Γ)"},
+  {"id":"N21","source_key":"NEW2","json_pointer":"/steps/0/rounds/0/reasoning_content","exact_quote":"The function should take `press`, `eos_Gamma`, and `eos_kappa` as inputs and return `rho`."},
+  {"id":"N22","source_key":"NEW2","json_pointer":"/tool_events/0/arguments/code","exact_quote":"def eos_rho_from_press(press, eos_Gamma, eos_kappa):"},
+  {"id":"N23","source_key":"NEW2","json_pointer":"/tool_events/1/arguments/code","exact_quote":"def eos_press_from_rho(rho, eos_Gamma, eos_kappa):"},
+  {"id":"N31","source_key":"NEW3","json_pointer":"/tool_events/0/arguments/code","exact_quote":"def eos_rho_from_press(rho, eos_Gamma, eos_kappa):"},
+  {"id":"N32","source_key":"NEW3","json_pointer":"/tool_events/3/model_visible_return/validation/root","exact_quote":"main"},
+  {"id":"N33","source_key":"NEW3","json_pointer":"/tool_events/6/model_visible_return/stdout","exact_quote":"2.0\n"},
+  {"id":"N34","source_key":"NEW3","json_pointer":"/tool_events/9/model_visible_return/stdout","exact_quote":"Recovered rho: 9.999999999999998\n  Match: True"},
+  {"id":"N41","source_key":"NEW4","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"The write_code succeeded for a different function. I need to write the eos_press_from_rho function. Let me try again."},
+  {"id":"N42","source_key":"NEW4","json_pointer":"/tool_events/1/model_visible_return/code_sha256","exact_quote":"68cb125e766bfa47b9cc1e1506c59cdfe3c547e70870db22ce3becd1fcbc4a20"},
+  {"id":"N43","source_key":"NEW4","json_pointer":"/tool_events/4/model_visible_return/stdout","exact_quote":"Round-trip successful: True"}
+ ]
+}

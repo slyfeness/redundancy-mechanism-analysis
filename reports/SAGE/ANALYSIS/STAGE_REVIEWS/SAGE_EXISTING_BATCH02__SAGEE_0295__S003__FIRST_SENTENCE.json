@@ -1,0 +1,756 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0295",
+  "stage_id": "S003",
+  "sample_order": 21,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0295/trajectory.json",
+      "source_sha256": "103824d3180be9a982f96d762456d98916f488eb440f590066b3a94569d217c3"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0295.json",
+      "source_sha256": "46cb1f4316e8cd70ffa7a17831868945ae5a217fd66e7c958c35b1b20e04bf08"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "93ac6cd8614fdb9c9a1184ee443faa87ad3bdcb56308b0e9894075704eed6d76"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "68f2ec8b979e354255c04a31a133a6ce40c73eb4a415b17abbf6fbcc23c777b1"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a03acafcc38c93346292a12859e3f6d5c1479119cf125a6050676f79f4925bd3"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "8f0a5c386548ff81383908721980c7cd2353bd64a14394415fb57c329faf1c43"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "e3b814e1a0bf3310c5aadb542b8cd7bda798aa9d26edb5a275a5decce93aa2fc"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the designation prefix given to the naval fleet of the country where the Royal New Zealand Foundation of the Blind is based was formally approved by the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind?",
+    "offline_gold": [
+      "October 1, 1941"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整15轮、14次真实Search、完整不同返回及最终HTTP400已阅读。ROOT_021_ORIGINAL_READING_VIEW.txt[0,53746)。",
+    "new": "read_four_branches.py完整视图[0,168484)依次阅读；4条全部Reasoning、真实Call、完整Return和Submit。相同Return仅使用已经完整阅读的精确原文引用。",
+    "scope_limit": "本记录只裁定S003及其四条续跑；其他Stage不因完整原轨迹阅读而算完成。",
+    "semantic_author": "Codex模型阅读原文后逐项撰写，程序只提取和验证。"
+  },
+  "original_outcome": "N",
+  "prestate": {
+    "visible_evidence": "E1/2的机构4091169返回支持New Zealand、1890 Jubilee前身及2002法案允许incorporation；E3/4是相同的Jubilee人物/机构包，没有授衔君主或海军日期。",
+    "original_process_adoption": "R2已明确采用国家和前身；到R4仍把机构的Royal授予者列为待查。",
+    "actual_branch_P": "R5@0，当前保留推理为空；actual_normalized_history四个历史assistant正文为空，四个真实工具Return保留。不能把原R2–R4内心盘点当作逐字输入给新模型。",
+    "candidate_and_gaps": "国家有证据；海军名称、designation的具体含义、授衔者和批准日期尚未由真实海军材料确认。机构2002法案不等于Royal授予事件。",
+    "evidence": [
+      "I_Q",
+      "I_EMPTY_CURRENT",
+      "O_INSTITUTE",
+      "O_COUNTRY_ADOPT"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 1081
+      }
+    ],
+    "goal": "把嵌套问句落实为国家—海军—Royal designation—同一授衔君主—批准日期的关系和查询顺序。",
+    "operations": [
+      "重列题目关系",
+      "把新西兰海军具体化为Royal New Zealand Navy",
+      "将designation解释为Royal",
+      "把机构授予君主设为先查条件，再以同一君主查海军日期"
+    ],
+    "product": "得到待验证的RNZN/Royal假设及先机构后海军的依赖顺序，没有取得君主或日期证据。",
+    "judgment_change": "从泛称naval fleet和designation，转为具体RNZN/Royal，并把机构君主缺口设为前置问题。",
+    "tool_events_in_U": [],
+    "evidence": [
+      "O_U_ROYAL",
+      "O_U_ORDER"
+    ]
+  },
+  "original_followup": {
+    "use": "S004从R5@1081计划查两端，但真实R5–R14十次Search全是机构Royal授予者及改词，始终没有转到海军。R6等再次采用RNZN/Royal，又仍把机构君主置前。",
+    "observable_result": "R3以后的机构结果包重复，未获得海军日期；R15请求上下文预算不合法而停止，无正式Final。",
+    "limits": "这说明关系重释没有有效带来实际取证入口转换；不能推断该思考动作单独导致后十次Search或是失败唯一原因。",
+    "evidence": [
+      "O_POST_QUERY",
+      "O_LATE_QUERY",
+      "O_STOP"
+    ]
+  },
+  "function_features": [
+    "把题目关系落为可核查的对象和顺序，未增加外部事实。",
+    "顺序含一个尚无证据的前置依赖：先找机构授衔君主。",
+    "该解释在四条新路径都再次出现，但何时真正切到海军取证不同；这比是否重建一个标签更能解释结果。"
+  ],
+  "guide_audit": {
+    "G": "Let me search for information about when the Royal prefix was granted to the Jubilee Institute for the Blind, and when the Royal prefix was granted to the New Zealand naval fleet.",
+    "origin": "原R5[1081,1260)，S004首句，35个派生预填Token；仅注入一次。",
+    "P_comparison": "机构Jubilee、Royal及New Zealand在问题和历史Return已出现；但将海军designation解释成Royal并并列提出海军授衔日期查询，补回了被删S003的一部分关系假设和行动方向。",
+    "novelty": "不含George VI、1941或目标日期，不是答案泄漏；属于后继提供的假设/行动方向补偿。不能把这部分算新模型自主发现。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "critical_future_answer_fact": false,
+    "cannot_establish_unguided_causal_effect": true,
+    "evidence": [
+      "I_G",
+      "I_Q",
+      "O_U_ROYAL"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "真实Submit给出与Gold等价日期；但机构Royal授予者关系没有直接证据，不能用日期正确替代全约束证据验收。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_DATE_RETURN",
+        "N1_FALSE_2002"
+      ],
+      "work_timeline": [
+        "R5–R9五次机构Query，均为原先包，未补机构授衔者；R6先猜Victoria并承认待核，R7/R8重复Royal/RNZN解释。",
+        "R10首次真实改查Royal New Zealand Navy designation prefix approved monarch date；Operation Neptune 8355138直接给1 October 1941、George VI。",
+        "R11明确采用日期；随后把2002incorporation法案误写成Royal授予年，围绕Elizabeth II/George VI冲突展开16079字符、3646生成Token的推理；多个search意向未执行，最后以most likely interpretation提交1941。"
+      ],
+      "first_substantive_judgment_difference": "R6新增无证据Victoria猜测，尚未改变实际机构查询；有效任务分流到R10才发生。R11采用真实海军日期后又制造2002授衔冲突。",
+      "first_actual_tool_difference": "R5仍是机构Query，作用同原S004；首个证据入口的实质变化在R10海军Query，原路径从未执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别海军与Royal关系",
+          "original_operation": "R5条件拆解并采用RNZN/Royal",
+          "original_product": "RNZN/Royal假设",
+          "new_goal": "重读同一国家与海军关系",
+          "new_operation": "R6–R7明确重复RNZN/Royal",
+          "new_product": "相同核心解释恢复，受G补偿",
+          "evidence": [
+            "O_U_ROYAL",
+            "N1_RECOVER"
+          ]
+        },
+        {
+          "original_goal": "先机构君主再海军日期",
+          "original_operation": "设定依赖顺序",
+          "original_product": "机构缺口前置",
+          "new_goal": "取得日期",
+          "new_operation": "五次机构Search后终于换查海军，R11以海军日期优先提交",
+          "new_product": "海军日期已证实，机构同君主关系仍未闭合",
+          "evidence": [
+            "O_U_ORDER",
+            "N1_NAVY_QUERY",
+            "N1_DATE_RETURN",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U的核心关系解释和先机构后海军计划均重新实际展开；改善不来自彻底省去该认知功能，而是后续终于执行海军取证，且在未证明机构关系时提交。",
+      "decision_action_result_chain": "同样前置机构缺口→继续五次无新增Search→转到海军入口取得直接日期→错误将2002法案当授衔年形成冲突→长篇反复解释而无新工具→提交已获日期C。",
+      "cost": {
+        "generation_tokens": 6046,
+        "prompt_tokens": 191283,
+        "search": 6,
+        "open": 0,
+        "actor": 7,
+        "generation_difference_vs_recorded_original_suffix": 3519,
+        "prompt_difference_vs_cut_round_inclusive": -146452,
+        "search_difference": -4,
+        "actor_difference_vs_recorded_HTTP_attempts": -4,
+        "source_of_change": "少四次机构取证及相应历史反复预填；但R11长篇冲突推理使生成总量比原后缀增加3519。"
+      },
+      "limits": [
+        "Victoria和2002授衔均不是返回证明的事实。",
+        "没有Open，也没有补机构君主证据；R11提出的查询不能算Search。",
+        "字符精确重建、无原始native IDs，完整请求usage差异不冒充原生精确节省。"
+      ]
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "R12真实提交正确日期；海军事件有Search及完整Open双重直接证据，机构获得Royal的君主仍由假设填充。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_OPEN_DATE",
+        "N2_UNSUPPORTED_LINK"
+      ],
+      "work_timeline": [
+        "R5/R6两次相同机构Query、相同Return；R6已将海军designation写为RNZN/Royal。",
+        "R7实际改查New Zealand naval fleet designation prefix Royal，返回空；R8换成具体RNZN授衔日期Query，返回Operation Neptune直接日期。",
+        "R9已明确采用海军1941和George VI，但仍查机构；R10再猜Victoria1887并查机构，返回仍未提供授衔证据。",
+        "R11改Open8355138全文2672字符，直接核实日期；R12把机构Royal也归给George VI而无新增支持，提交1941。"
+      ],
+      "first_substantive_judgment_difference": "R7把原本仅列为后续的海军问题实际提到当前执行位置；空结果后R8针对RNZN改词取得核心证据。",
+      "first_actual_tool_difference": "R7海军Query虽空，已是实质入口变化；不能因未召回而抹掉。R8后才取得日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "具体化designation",
+          "original_operation": "采用RNZN/Royal",
+          "original_product": "海军关系假设",
+          "new_goal": "定位同一海军称号",
+          "new_operation": "R6重写RNZN/Royal并R7/R8真实检索",
+          "new_product": "核心解释重建并转为行动",
+          "evidence": [
+            "O_U_ROYAL",
+            "N2_RECOVER",
+            "N2_NAVY_FIRST"
+          ]
+        },
+        {
+          "original_goal": "联结同一君主的两次授衔",
+          "original_operation": "将机构君主设为先决条件",
+          "original_product": "待证的依赖链",
+          "new_goal": "核实已得海军日期并提交",
+          "new_operation": "取得日期后两次追机构，随后Open海军全文",
+          "new_product": "海军证据充分、机构君主仍未证，最后直接宣称相同",
+          "evidence": [
+            "O_U_ORDER",
+            "N2_ADOPT_DATE",
+            "N2_OPEN_DATE",
+            "N2_UNSUPPORTED_LINK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全部核心拆题和RNZN/Royal解释在R5–R8恢复；后续实际行动不再一直受机构缺口阻挡，但最终关系证明不完整。",
+      "decision_action_result_chain": "相同关系解释恢复→两次机构重试→海军空结果→具体海军Query取得日期→机构缺口又触发两次Search→Open已知核心日期材料→未经证实补同君主关系→正确日期Final。",
+      "cost": {
+        "generation_tokens": 1700,
+        "prompt_tokens": 208140,
+        "search": 6,
+        "open": 1,
+        "actor": 8,
+        "generation_difference_vs_recorded_original_suffix": -827,
+        "prompt_difference_vs_cut_round_inclusive": -129595,
+        "search_difference": -4,
+        "open_difference": 1,
+        "actor_difference_vs_recorded_HTTP_attempts": -3,
+        "source_of_change": "取代后六轮同包机构重试的是具体海军取证、全文核实及短接受判断；新增加一次Open，但少四次Search、生成更短。"
+      },
+      "limits": [
+        "空Return是实际Search结果，不作未执行或技术重试删除。",
+        "全文Open证明海军事件，不证明机构Royal由George VI授予。",
+        "与其他三次共享C，证据采用和计算路线仍不同。"
+      ]
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确日期；最终承认机构授衔证据缺失却由题目同君主前提反推机构君主。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_DATE_ADOPT",
+        "N3_REVERSE_INFER"
+      ],
+      "work_timeline": [
+        "R5/R6重复机构Search；R7转naval fleet Query返回空。",
+        "R8从2002法案推Elizabeth II，带着这个未经证明的限定词查海军，实际返回王室称号及访问文章，没有目标批准日期。",
+        "R9再次查机构仍原结果包；R10去掉Elizabeth II限制查RNZN授衔日期，才得到Operation Neptune。",
+        "R11采用真实日期，又反复纠结2002与1941关系；18628字符4823生成Token，所有Search提议均未执行；最终认为既然海军明确George VI，机构必也同君主，提交正确日期。"
+      ],
+      "first_substantive_judgment_difference": "R7开始实际转海军；R8出现新增错误关系：incorporation年被推为Royal授予年，继而将Elizabeth II绑定到海军查询。",
+      "first_actual_tool_difference": "R7海军查询空；R8错误君主限定又改变召回入口；R10取消限定才取得有效日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "拆解国家、海军、designation及同君主条件",
+          "original_operation": "采用Royal并排依赖链",
+          "original_product": "Royal海军假设与机构君主缺口",
+          "new_goal": "重建问题关系",
+          "new_operation": "R6/R7拆解、R8明确RNZN/Royal并推君主",
+          "new_product": "核心工作恢复，但加入未经证明的2002→Elizabeth II关系",
+          "evidence": [
+            "O_U_ORDER",
+            "N3_BAD_QUERY",
+            "N3_BAD_YEAR"
+          ]
+        },
+        {
+          "original_goal": "同一君主连接机构与海军",
+          "original_operation": "等机构证据后继续查海军",
+          "original_product": "未执行到海军取证",
+          "new_goal": "在不闭合机构关系时接受日期",
+          "new_operation": "R10真实海军Search、R11从海军君主反推机构",
+          "new_product": "日期正确；关系证明由假设替代",
+          "evidence": [
+            "N3_DATE_QUERY",
+            "N3_DATE_ADOPT",
+            "N3_REVERSE_INFER"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "重新展开同一关系解释与任务分解，而非省去；不同之处是执行海军查询及后来反向填充未证关系。",
+      "decision_action_result_chain": "机构缺口仍在→改海军但误用法案年推君主→错误君主限定召回不相关材料→取消限制取得目标日期→长篇未执行核验意向→用题目关系反推缺失链接后C。",
+      "cost": {
+        "generation_tokens": 6629,
+        "prompt_tokens": 170888,
+        "search": 6,
+        "open": 0,
+        "actor": 7,
+        "generation_difference_vs_recorded_original_suffix": 4102,
+        "prompt_difference_vs_cut_round_inclusive": -166847,
+        "search_difference": -4,
+        "actor_difference_vs_recorded_HTTP_attempts": -4,
+        "source_of_change": "少了四次机构Search与历史预填，但R11冲突推理4823Token使总生成增加4102；错误君主条件浪费一次取证。"
+      },
+      "limits": [
+        "R8王室文章不是机构Royal授衔证明。",
+        "最终C不是先纠正了2002事件解释再完成全关系核查。",
+        "长篇中多次计划查询不计真实Search。"
+      ]
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "正式Submit目标日期；机构Royal授予君主的关键关系没有直接证据，仍反复用2002法案作不充分推断。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_DATE_ADOPT",
+        "N4_ASSUMPTION"
+      ],
+      "work_timeline": [
+        "R5–R7三次机构Search，R7明确承认前次未给授衔日期但仍再查同入口。",
+        "R8再次采用RNZN/Royal，虽然猜海军Royal由Elizabeth II授予，真实Query未加入错误君主，获得直接1941/George VI材料。",
+        "R9未明确采用日期，先又查机构；R10才逐条提取Operation Neptune具体日期，又去查机构一次。",
+        "R11整轮27630字符7211生成Token，2002法案→Royal授予年→Elizabeth II不断与1941 George VI冲突，提出许多未执行Query，最终在假设同君主成立下提交1941。"
+      ],
+      "first_substantive_judgment_difference": "R8实际把海军问题提升为当前取证，R10才清楚采用R8已返回的目标日期；返回与采用相隔另一轮机构Search。",
+      "first_actual_tool_difference": "R6换回Royal New Zealand Foundation名称属同缺口重试；实质入口转换是R8真实海军Query，原路径未执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "解释RNZN与Royal并连接同君主",
+          "original_operation": "完整条件拆解",
+          "original_product": "具体海军假设及机构君主缺口",
+          "new_goal": "重复确认同一关系结构",
+          "new_operation": "R6/R8重列并明确Royal，R10/R11完整比较",
+          "new_product": "原核心解释重建；后来混入2002授衔假设",
+          "evidence": [
+            "O_U_ROYAL",
+            "N4_RECOVER",
+            "N4_FALSE_2002"
+          ]
+        },
+        {
+          "original_goal": "等待机构君主以找海军日期",
+          "original_operation": "机构反复取证",
+          "original_product": "无海军日期",
+          "new_goal": "获得海军日期但继续处理机构缺口",
+          "new_operation": "海军取证后再两次机构Search、长篇冲突比较",
+          "new_product": "日期返回并最终采用，机构关系由假设填充",
+          "evidence": [
+            "N4_NAVY_QUERY",
+            "N4_DATE_ADOPT",
+            "N4_ASSUMPTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U关系解释反复重新执行；不同的是真实海军取证和最终未闭合机构关系时仍提交，不能称原U功能未重建。",
+      "decision_action_result_chain": "机构授衔缺口持续驱动查询→转海军取得日期→未立即采用又查机构→采用日期但错误法案解释制造冲突→再查机构仍无新证→7211Token反复比较→假设同君主后正确日期Final。",
+      "cost": {
+        "generation_tokens": 9106,
+        "prompt_tokens": 180759,
+        "search": 6,
+        "open": 0,
+        "actor": 7,
+        "generation_difference_vs_recorded_original_suffix": 6579,
+        "prompt_difference_vs_cut_round_inclusive": -156976,
+        "search_difference": -4,
+        "actor_difference_vs_recorded_HTTP_attempts": -4,
+        "source_of_change": "少四次真实Search、少历史回放；新增的长篇假冲突推理主要在R11，占7211Token，造成生成总量显著增加。"
+      },
+      "limits": [
+        "R8即已返回日期，不等于R9采用；R10采用不等于机构关系核查完成。",
+        "不能从最终猜对推出长篇反复推理有必要或原U有害。"
+      ]
+    }
+  ],
+  "four_run_comparison": {
+    "states": "原N→C/C/C/C，B类4次改变，全部是实际提交改善，不是W/N之间变化。",
+    "same_core_function": "4/4重新形成RNZN/Royal及同君主关系分解，故不能解释为删除原U后不再执行该功能。G也部分补回相同假设。",
+    "common_action_difference": "4/4最终真实转查海军，原路径0次；有效海军日期首次返回分别R10/R8/R10/R8，明确采用分别R11/R9/R11/R10。",
+    "different_routes": "第2次有一次空海军Search、两次回查机构、一次全文Open，再短提交；第1/3/4次在拿到日期后分别3646/4823/7211生成Token的长单轮推理，0次额外Search。",
+    "quality_counterevidence": "没有一路直接取得机构授衔君主的证据；第1/3/4次把2002法案误解释为Royal授予，第2次最终直接宣称机构由George VI授衔。答案对，不等于全条件证据对。",
+    "costs_not_uniform": "四次均少4次Search、Prompt下降，但生成仅第2次减少827，另三次增加3519/4102/6579。不能把查询减少等同计算各项均下降。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "hypothesis": "当嵌套题中的一个关系缺口被当作另一端取证的先决条件，反复重列依赖可维持同一入口，而真正尝试另一端能独立取得目标事实。",
+      "chain": "国家已证实、机构君主缺口未闭合→U设先机构后海军→原后续只查机构同包至上下文失败；新路径恢复同一解释但不再一直等待，海军Query取得明确日期→可提交。",
+      "support_scope": "本Stage四次均有真实海军入口变化并C；跨题成立与否待全量对照，不能据一题冻结为通用结论。",
+      "counterevidence": "原U本身也计划海军，四条又重建U；G提示双入口，采样和实际历史输入均是替代解释，不证明原U因果有害。"
+    },
+    {
+      "hypothesis": "把材料中的法案/法人资格时间当成称号授予时间，会从未经证明的事件解释生成君主冲突；该冲突即使不再触发工具，也可持续增加纯推理。",
+      "chain": "Return仅说2002允许incorporation→新推理赋值Royal授予年=2002→推Elizabeth II，与真实海军1941George VI冲突→反复讨论或限制Query→多生成或无关召回。",
+      "support_scope": "第1/3/4次明显出现，3个续跑、1个Stage、1道题；第2次较短且直接接受，不形成同规模长推理，保留为内部反例。",
+      "counterevidence": "三次仍C，说明这种错误中间解释影响证据质量和成本，不必改变最终日期；不能只由C/W/N统计发现。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四条B改善均实际恢复U功能，不支持以FULL_REBUILT否定计算路线变化，也不支持B=必要工作。",
+    "G不是无信息承接：补Royal海军假设及双入口计划；本实验为ORACLE_ANCHORED，不作无引导纯删除因果证明。",
+    "原上下文终止是R15原请求55537+10000超过65536的HTTP400，不能谎称实际生成填满所有上下文。",
+    "原始切点无native生成IDs；R5@0可比较原记录完整请求usage2527与新生成总量，但不贴NATIVE_TOKEN_EXACT，也不汇加独立分支节省。",
+    "真实Search返回有空包，视为实际结果；没有外搜校正数据或用Gold引导模型。",
+    "本记录不是独立人工金标准。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_Q",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "the designation prefix given to the naval fleet of the country where the Royal New Zealand Foundation of the Blind is based"
+    },
+    {
+      "evidence_id": "I_EMPTY_CURRENT",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 5,
+      "event_type": "boundary_mode",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "when the Royal prefix was granted to the New Zealand naval fleet."
+    },
+    {
+      "evidence_id": "O_INSTITUTE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "The \"Royal New Zealand Foundation of the Blind Act 2002\" allows for the Foundation to become an incorporated society.",
+      "call_id": "chatcmpl-tool-8cef6308b759369a",
+      "doc_id": "wiki25:4091169"
+    },
+    {
+      "evidence_id": "O_COUNTRY_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the country is New Zealand."
+    },
+    {
+      "evidence_id": "O_U_ROYAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The Royal New Zealand Navy's designation prefix is \"Royal\"."
+    },
+    {
+      "evidence_id": "O_U_ORDER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "I need to find out which monarch granted the \"Royal\" prefix to the Jubilee Institute for the Blind."
+    },
+    {
+      "evidence_id": "O_POST_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Jubilee Institute for the Blind Royal prefix granted monarch",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_LATE_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Jubilee Institute for the Blind Royal prefix granted monarch",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "http_error",
+      "json_pointer": "/rounds/14/error/message",
+      "exact_quote": "your prompt contains at least 55537 input tokens, for a total of at least 65537 tokens"
+    },
+    {
+      "evidence_id": "N1_RECOVER",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The New Zealand naval fleet is the Royal New Zealand Navy (RNZN). The prefix is \"Royal\"."
+    },
+    {
+      "evidence_id": "N1_NAVY_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Royal New Zealand Navy designation prefix approved monarch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/5/observation/results/2/snippet",
+      "exact_quote": "1 October 1941, that His Majesty King George VI approved the designation “Royal New Zealand Navy”",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:8355138"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The date is **1 October 1941**."
+    },
+    {
+      "evidence_id": "N1_FALSE_2002",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The Royal prefix was granted to the Foundation in 2002 by the Royal New Zealand Foundation of the Blind Act 2002."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-b4eb6b5061f9add4"
+    },
+    {
+      "evidence_id": "N2_RECOVER",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The designation prefix given to the naval fleet of New Zealand is \"RNZN\" (Royal New Zealand Navy)."
+    },
+    {
+      "evidence_id": "N2_NAVY_FIRST",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "New Zealand naval fleet designation prefix Royal",
+      "call_id": "chatcmpl-tool-be2a3f684f5f9bbf"
+    },
+    {
+      "evidence_id": "N2_ADOPT_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The naval fleet designation prefix \"Royal New Zealand Navy\" was formally approved by His Majesty King George VI on 1 October 1941."
+    },
+    {
+      "evidence_id": "N2_OPEN_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 11,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/6/observation/text",
+      "exact_quote": "1 October 1941, that His Majesty King George VI approved the designation “Royal New Zealand Navy”",
+      "call_id": "chatcmpl-tool-94d7797848e192b4",
+      "doc_id": "wiki25:8355138"
+    },
+    {
+      "evidence_id": "N2_UNSUPPORTED_LINK",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The Royal New Zealand Foundation of the Blind (formerly the Jubilee Institute for the Blind) received the Royal prefix from King George VI."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/7/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_BAD_YEAR",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I need to find the date when this designation was formally approved by the monarch (Queen Elizabeth II)."
+    },
+    {
+      "evidence_id": "N3_BAD_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "New Zealand Navy granted Royal prefix date Queen Elizabeth II",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_DATE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Royal New Zealand Navy Royal prefix approved date monarch",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_DATE_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The date is clearly **1 October 1941** from `wiki25:8355138`."
+    },
+    {
+      "evidence_id": "N3_REVERSE_INFER",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Therefore, the Blind Foundation must have received the Royal prefix from George VI."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-a8dccc13139f0797"
+    },
+    {
+      "evidence_id": "N4_RECOVER",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "New Zealand's naval fleet is the Royal New Zealand Navy (RNZN). The prefix is \"Royal\"."
+    },
+    {
+      "evidence_id": "N4_NAVY_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Royal New Zealand Navy Royal prefix approved date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_DATE_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Search result `wiki25:8355138` (Operation Neptune) snippet says: \"It was not until **1 October 1941**, that His Majesty King George VI approved the designation “Royal New Zealand Navy”...\""
+    },
+    {
+      "evidence_id": "N4_FALSE_2002",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "This implies the Royal title was granted via an Act in 2002."
+    },
+    {
+      "evidence_id": "N4_ASSUMPTION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "So I will assume King George VI granted the Royal prefix to the Jubilee Institute as well, even if the snippet doesn't explicitly state it"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-97fa63c7d290400f"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

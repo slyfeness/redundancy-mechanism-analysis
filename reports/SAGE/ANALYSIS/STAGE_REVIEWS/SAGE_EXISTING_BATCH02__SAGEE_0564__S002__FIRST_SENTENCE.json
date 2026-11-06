@@ -1,0 +1,541 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0564",
+  "stage_id": "S002",
+  "sample_order": 34,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0564/trajectory.json",
+      "source_sha256": "35d81c30d265492cb6920db32a09423c606953071f6f4b6c4af51f9d90b9f9f2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0564.json",
+      "source_sha256": "ca2f5eb61384529b5f184b6174b00f7baf3a8da0b4c96ee555b9fcb69d71ad84"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "6c864c9f17b595c4a71ff2abc7a2af8dd85044132650ccc8161442b41f35939f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "05529c8ed3221b0e71e5cca9e2c2dbcc9b41e99602f0230211a4623ce1d34d07"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "db96576de75782d8c6fd9df2fbd16637926f9773f8597a9a3264d05e45b0136f"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "c4298298f92cc7afcecd6b86457e4629e058848bbd5ee6cddd6beaf205d42330"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "deef95093a21c655afad386cb387b494147bd46810818e4c270fcaeb54cf1026"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the dollar amount, rounded to the nearest million, of the 3D contribution to the opening weekend gross of the Marvel Cinematic Universe film directed by the individual who also directed the movie for which Jennifer Carpenter received the 2006 MTV Movie Award for 'Best Frightened Performance'?",
+    "offline_gold": [
+      "24 million"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "14Round完整原轨迹已读，U为R2@1722 Open500至R3@122姓氏解释。",
+    "new": "四支98690字符0—28000—56000—84000—98690完整读。r2新Open4000完整2189字符含精确获奖句已读；r1新Open100和r3Open50及其后所有真实Return也读；其余精确重复全观察仅已读引用。",
+    "semantic_author": "Codex阅读全文独立直接写语义；Python仅提取定位及成本。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R2@1722，P已在Search snippet中看到EmilyRose、Carpenter评论、他人提名，反复说要核奖/导演。P开头无依据写Carpenter获提名；历史推理规范化为空，旧实际Search观察保留。",
+    "evidence_state": "Derrickson姓氏已经在旧完整Search snippet，而Scott全名尚未在当前P明确采用；winner直接句在截断snippet外，尚不可见。",
+    "gap": "确认EmilyRose导演并继续电影链；获奖win/nom仍未解。",
+    "evidence": [
+      "I_P",
+      "O_OLD_SURNAME"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 1722,
+        "end": 1804
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 122
+      }
+    ],
+    "goal": "重开EmilyRose资料识别导演。",
+    "operations": [
+      "实际Open1940056 offset0 limit500，仍是已有评论前段，包含Derrickson姓氏。",
+      "R3将姓氏解释为likely Scott Derrickson，第一次当前局部明确提取全名。"
+    ],
+    "product": "可用于MCU下一跳的Scott候选，但不含获奖证据或独立导演确认。",
+    "judgment_change": "把姓氏材料转成全名候选；Open本身没添超出旧Search的相关文字，语义采用与材料重复应分开。",
+    "evidence": [
+      "O_OPEN",
+      "O_U_INTERPRET"
+    ]
+  },
+  "original_followup": {
+    "use": "下一工作仍先三次奖项Query、Open1000、再比较和查奖多次；直到R11才真正ScottMCU查询，随后金额24并Submit。Scott采用早出现不等于立刻改变真实工具对象。",
+    "true_suffix": "原生成9714—10234区间，10Search2Open1Submit、13生成段，未来HTTP Prompt311144。",
+    "evidence": [
+      "O_LATE_MCU",
+      "O_AMOUNT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "工作中有效的部分是姓氏→候选全名解释，重复Open窗口和首次采用不能混为一件事。",
+    "新四支Scott链都恢复，但r1Open100/r3Open50甚至不足覆盖姓氏；后者转直接导演Search补足。",
+    "r2用默认4000读全文得到原短窗口没有的明确2006获奖证据，反驳相同DocID或重复Open必无信息增量。"
+  ],
+  "guide_audit": {
+    "G": "Jennifer Carpenter starred in this film and received an MTV Movie Award nomination for Best Frightened Performance.",
+    "origin": "原S003 R3[122,237)，20派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "Carpenter/该片和nomination断言都已在当前P开头，G不是新实体或新导演；强化了无据提名表述，不能当新文献。没有Scott全名/MCU片名/24。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R11真Submit，R9票房新Return直接24；奖项仍无直接证明。",
+      "outcome_evidence": [
+        "N1_MIXED_QUERY",
+        "N1_AMOUNT_QUERY",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2重开同文档但limit100，只得票房开头无Derrickson；R3—5三次奖项Search仍旧Return。",
+        "R6从旧姓氏/常识恢复Scott2016，实际把Scott加进票房Query，只返回制作等片段无24。",
+        "R7/8再两次查奖，R9终于用不带Scott的精确票房查询得24，R10有24还查奖，R11长9532字符条件接受Submit。"
+      ],
+      "first_substantive_judgment_difference": "具体重读窗口更短，Scott仍从旧Search和常识恢复，金额入口第一次不命中后没有马上修正而回前置核查。",
+      "first_actual_tool_difference": "Open500变Open100；后混合票房Query替代原独立ScottMCU入口，直到R9才有金额。",
+      "function_correspondence": [
+        {
+          "original_goal": "从EmilyRose材料识别导演",
+          "original_operation": "Open500→Derrickson解释Scott",
+          "original_product": "Scott候选",
+          "new_goal": "同导演确认",
+          "new_operation": "Open100不足，后依据旧Search姓氏与常识解释Scott并用于真实票房Query",
+          "new_product": "核心全名候选和行动恢复，具体Open未获得相同材料",
+          "evidence": [
+            "O_U_INTERPRET",
+            "N1_MIXED_QUERY",
+            "N1_AMOUNT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "短Open无导演→旧材料恢复Scott→混合查询无金额→回奖项核查→精确票房得24→再核奖和长解释→C；只少295—815生成，少2Search1Open3Actor，后续长篇吃掉大部分篇幅节省。",
+      "costs": {
+        "new_generation": 9419,
+        "new_prompt": 205401,
+        "new_search": 8,
+        "new_open": 1,
+        "new_actor": 10,
+        "P_replay": 5234,
+        "G_prefill": 20,
+        "conservative_new_minus_original_generation_interval": [
+          -815,
+          -295
+        ]
+      },
+      "limits": "没有实际独立MCU取证，角色解释恢复不等其证据完全恢复。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R8真Submit，全文Open直接证2006BestFrightened获奖，MCU和24也有真实返回，第一跳支持强于原。",
+      "outcome_evidence": [
+        "N2_FULL_AWARD",
+        "N2_ADOPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2—4三次award Search同旧，分析明确winner不在snippet。",
+        "R5不指定limit的Open实际默认4000，读完整2189字符，末尾明确Carpenter赢BestFrightenedPerformance MTV2006。",
+        "R6接受EmilyRose和Scott转MCU，R7采用2016查票房，R8复盘全文获奖与24Submit，没有金额后再核奖。"
+      ],
+      "first_substantive_judgment_difference": "真正把缺winner定位为可见窗口不足；重新Open整文拿到原500/1000窗口没有的精确关系，后续采用并推进。",
+      "first_actual_tool_difference": "首Call改Search，第四Call默认4000而非原500；后MCU/金额。",
+      "function_correspondence": [
+        {
+          "original_goal": "开文档识别导演并推进关系链",
+          "original_operation": "Open500→姓氏解释",
+          "original_product": "Scott候选",
+          "new_goal": "开全文核导演/奖项",
+          "new_operation": "R5完整Open→R6采用Scott，R8引用精确获奖",
+          "new_product": "原导演功能恢复且第一跳证据额外补齐",
+          "evidence": [
+            "O_OPEN",
+            "O_U_INTERPRET",
+            "N2_FULL_AWARD",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "重复snippet不足→完整窗口取得明确winner/year→缺口有依据闭合→ScottMCU/金额真实推进→短SubmitC；少5Search1Open6Actor、少7473—7993生成，减少主要是原晚段反复核奖和长条件盘点，不能把新有效Open排为冗余。",
+      "costs": {
+        "new_generation": 2241,
+        "new_prompt": 113286,
+        "new_search": 5,
+        "new_open": 1,
+        "new_actor": 7,
+        "P_replay": 5234,
+        "G_prefill": 20,
+        "conservative_new_minus_original_generation_interval": [
+          -7993,
+          -7473
+        ]
+      },
+      "limits": "未明说完整读过所有文字不影响明确R8采用证据；属于同文档不同窗口，原文件/原片段未改变。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R5真Submit，R4金额Return支持；获奖仍无精确材料，导演有直接新Search支持。",
+      "outcome_evidence": [
+        "N3_DIRECTOR_QUERY",
+        "N3_ADOPT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2Open50只得标题/票房碎片，R3明确仍缺导演，实际改SearchEmilyRose导演。",
+        "返回1940054/2023087直接导演与DoctorStrange，R4实际采用正确电影查金额；R5短链24Submit。"
+      ],
+      "first_substantive_judgment_difference": "短窗口没满足导演需求，下一步真实改证据入口而不重复同Open；导演假设由新片头/人物文献直接支持。",
+      "first_actual_tool_difference": "Open500改50，第二Call直接导演Search，之后票房。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别导演",
+          "original_operation": "Open与姓氏解释",
+          "original_product": "Scott候选",
+          "new_goal": "相同",
+          "new_operation": "Open50失败后新导演Search、采用直接材料",
+          "new_product": "核心导演功能恢复并有更强直接支持，原姓氏猜测被替代",
+          "evidence": [
+            "O_U_INTERPRET",
+            "N3_DIRECTOR_QUERY",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "短Open不足→改变入口取得导演关系→直接采用2016查24→短SubmitC；少8Search1Open9Actor、少8848—9368生成，主要省掉原大量前置反复和后续盘点。",
+      "costs": {
+        "new_generation": 866,
+        "new_prompt": 32760,
+        "new_search": 2,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 5234,
+        "G_prefill": 20,
+        "conservative_new_minus_original_generation_interval": [
+          -9368,
+          -8848
+        ]
+      },
+      "limits": "G不提供Scott，恢复来自新Query/Return；第一跳精确奖项仍未全证，不称全质量不变。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R4真Submit，新导演Search和金额有直接材料；最后说奖项confirmed超出实际snippet。",
+      "outcome_evidence": [
+        "N4_DIRECTOR_QUERY",
+        "N4_ADOPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2不Open，直接查EmilyRose导演，真实得到Scott人物/电影片头文献及Carpenter简介。",
+        "R3采用Scott2016查金额，R4简短整链24Submit；前提nomination随G和P承接，最后升为received without新获奖精确证据。"
+      ],
+      "first_substantive_judgment_difference": "从找导演需求直接选择新Search，而不是同评论再开短窗口；新文献直接承担原姓氏全名解释功能。",
+      "first_actual_tool_difference": "首Call由Open变导演Search，第二金额，第三Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定EmilyRose导演",
+          "original_operation": "旧文Open500再解释姓氏",
+          "original_product": "Scott倾向",
+          "new_goal": "相同",
+          "new_operation": "直接新导演Search并采用关系",
+          "new_product": "导演识别/行动完全恢复，Open操作未出现",
+          "evidence": [
+            "O_U_INTERPRET",
+            "N4_DIRECTOR_QUERY",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "直接关系文献→2016电影采用→金额24→短提交C；少8Search2Open10Actor、少9157—9677生成，原逐轮前提核验大量不再执行，但核心导演作用被替代，不能说功能无用。",
+      "costs": {
+        "new_generation": 557,
+        "new_prompt": 27466,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 5234,
+        "G_prefill": 20,
+        "conservative_new_minus_original_generation_interval": [
+          -9677,
+          -9157
+        ]
+      },
+      "limits": "三跳中导演/金额更直接不代表获奖第一跳更完整，最后confirmed断言应单记。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "C/C/C/C，Scott候选全部恢复，具体窗口与证据路线不同。",
+    "shared": "已有EmilyRose线索可继续，G没有提供Scott/金额；恢复工作后能否停止前置核查影响生成和交互。",
+    "differences": "r1短Open+混合Query错误入口、长核奖；r2全Open补精确获奖；r3短Open后换导演Search；r4直接Search不Open。",
+    "A_class_interpretation": "四C不能认定原Open+解释全多余。重复窗口可能没添事实，解释功能均恢复；新全文Open反而提供原未取得的关键证据，正确性与完整性分开。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "同一材料的可见窗口决定核查实际能否闭合；当旧片段没有所需关系时，改变窗口/证据入口可产生实质更新，而重复短窗口只会再次触发相同缺口。",
+      "support": "r2全Open得到精确2006winner后短推进；r3/4直接导演文献替代弱姓氏猜测；r1Open100无所需导演、旧缺口反复并长生成。",
+      "counterexample": "r1仍C，r3/4没有winner全文也C，所以证据补齐不是本题C必要条件；原短Open虽无新事实仍伴随姓氏采用，不能只看窗口判全部工作无效。",
+      "scope": "同题四支取证实例比较，需跨题支持；不能将信息质量提升与状态保持混为冗余率。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "原Open500和后Open1000都未到全文末尾获奖句；r2默认4000才真的取得，必须保留实际窗口而非只看DocID。",
+    "G名词已经在P但重复不准确nomination；不能把它当原Stage独有正确事实。",
+    "r3/4功能通过新证据替代，省Open不等导演识别无用。",
+    "所有生成比较保守区间，原IDs缺失；P/G只记预填，不重复扣。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results show that Jennifer Carpenter received a nomination"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Jennifer Carpenter starred in this film and received an MTV Movie Award nomination for Best Frightened Performance."
+    },
+    {
+      "evidence_id": "O_OLD_SURNAME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/3/snippet",
+      "exact_quote": "According to Derrickson, the film was not as successful as he hoped.",
+      "doc_id": "wiki25:1940056",
+      "call_id": "chatcmpl-tool-a6094ee5abf37d2a"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "According to Derrickson, the film was not as successful as he hoped.",
+      "call_id": "chatcmpl-tool-9785ec0a55bac943"
+    },
+    {
+      "evidence_id": "O_U_INTERPRET",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The document mentions \"Derrickson\" which likely refers to Scott Derrickson, the director of \"The Exorcism of Emily Rose\"."
+    },
+    {
+      "evidence_id": "O_LATE_MCU",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/tool_events/10/arguments/query",
+      "exact_quote": "Scott Derrickson Marvel Cinematic Universe film",
+      "call_id": "chatcmpl-tool-843b40c8f3b8a9d3"
+    },
+    {
+      "evidence_id": "O_AMOUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/4/snippet",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-81b4ad4283e1221c"
+    },
+    {
+      "evidence_id": "N1_MIXED_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Scott Derrickson Doctor Strange opening weekend gross 3D",
+      "call_id": "chatcmpl-tool-b14a33133910e7ff"
+    },
+    {
+      "evidence_id": "N1_AMOUNT_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Doctor Strange 2016 opening weekend gross 3D contribution",
+      "call_id": "chatcmpl-tool-b9429608fe45d682"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/9/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "chatcmpl-tool-8968065330cd4cd8"
+    },
+    {
+      "evidence_id": "N2_FULL_AWARD",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "won \"Best Frightened Performance\" at the MTV Movie Awards in 2006.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I found that Jennifer Carpenter won \"Best Frightened Performance\" at the 2006 MTV Movie Awards for her role in \"The Exorcism of Emily Rose\""
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-b2b46f0e99bccf78"
+    },
+    {
+      "evidence_id": "N3_DIRECTOR_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "The Exorcism of Emily Rose director",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The director of \"The Exorcism of Emily Rose\" is Scott Derrickson."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-b7728ed902541c15"
+    },
+    {
+      "evidence_id": "N4_DIRECTOR_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "The Exorcism of Emily Rose director",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Scott Derrickson also directed \"Doctor Strange\" (2016)"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA,20 exact evidence quotes and correct source sides,Round/Call ID/DocID metadata,frozen ranges,four actual cost ledgers. Codex self-review is not independent human gold."
+}

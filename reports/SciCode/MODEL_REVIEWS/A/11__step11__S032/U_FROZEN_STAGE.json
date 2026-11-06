@@ -1,0 +1,172 @@
+{
+  "stage_id": "S032",
+  "start": [
+    10,
+    1,
+    "Let me test"
+  ],
+  "name": "验证相干信息并处理prior_model入口拒绝后提交",
+  "result": "测试未执行；保存999字符依赖版，再提交1805字符自包含版。",
+  "why": "短依赖封装调整仍是一次验证后续，不把accepted说成数值PASS。",
+  "segments": [
+    {
+      "pointer": "/steps/10/rounds/1/reasoning_content",
+      "start": 40,
+      "end": 1133,
+      "text": "Let me test it with a simple example to make sure it works correctly.\n\n<tool_call>\n<function=run_python>\n<parameter=code>\nimport numpy as np\nfrom prior_model import coherent_inf_state, entropy\n\n# Test with a simple bipartite state\n# Let's use a 2x2 system (dimA=2, dimB=2)\n\n# Create a simple Bell state: |00> + |11>\ndimA = 2\ndimB = 2\ntotal_dim = dimA * dimB\n\nbell_state = np.zeros((total_dim, total_dim), dtype=np.float64)\nbell_state[0, 0] = 1.0 / np.sqrt(2)  # |00>\nbell_state[3, 3] = 1.0 / np.sqrt(2)  # |11>\n\nrho_AB = np.outer(bell_state, bell_state.conj())\n\n# Compute coherent information\nci = coherent_inf_state(rho_AB, dimA, dimB)\nprint(f\"Coherent information: {ci}\")\n\n# Verify by manual calculation\n# S(AB) for Bell state should be 0 (pure state)\n# S(B) for Bell state should be 1 (maximally mixed)\n# So co_inf = 1 - 0 = 1\n\nprint(f\"S_AB = {entropy(rho_AB)}\")\n\n# Reduced state on B\nrho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\nrho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\nprint(f\"rho_B = {rho_B}\")\nprint(f\"S_B = {entropy(rho_B)}\")\n</parameter>\n</function>\n</tool_call>",
+      "sha256": "56f54c301b4f29fea150e5f48a06af4ec073a9366be2f90de92dfcfae4f16428",
+      "step": 11,
+      "round": 2
+    },
+    {
+      "pointer": "/steps/10/rounds/2/reasoning_content",
+      "start": 0,
+      "end": 1261,
+      "text": "I need to not import entropy since it's already available from prior code. Let me rewrite the function to use the already available entropy function without redefining it.\n\n<tool_call>\n<function=write_code>\n<parameter=code>\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n</parameter>\n</function>\n</tool_call>",
+      "sha256": "a84f09b89eaca132c0d45b1c3f39c248511b22c26d939645b401146994c1f584",
+      "step": 11,
+      "round": 3
+    },
+    {
+      "pointer": "/steps/10/rounds/3/reasoning_content",
+      "start": 0,
+      "end": 1976,
+      "text": "The code was accepted. Now I need to submit the final code for this subproblem.\n\n<tool_call>\n<function=submit_code>\n<parameter=code>\nimport numpy as np\n\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n\ndef entropy(rho):\n    '''Inputs:\n    rho: 2d array of floats with equal dimensions, the density matrix of the state\n    Output:\n    en: quantum (von Neumann) entropy of the state rho, float\n    '''\n    # Diagonalize the density matrix to get eigenvalues\n    eigenvalues = np.linalg.eigvalsh(rho)  # Use eigvalsh for Hermitian matrices\n    \n    # Filter out small/negative eigenvalues (due to numerical errors)\n    # Replace values <= 0 with a small positive value\n    eigenvalues = np.maximum(eigenvalues, 1e-15)\n    \n    # Compute von Neumann entropy: S = -sum(lambda_i * log2(lambda_i))\n    # For eigenvalues close to zero, lambda * log2(lambda) -> 0\n    entropies = eigenvalues * np.log2(eigenvalues)\n    \n    # Return negative of sum\n    en = -np.sum(entropies)\n    \n    return en\n</parameter>\n</function>\n</tool_call>",
+      "sha256": "8cc1c4bb528bbefda2961f6eddafdcfa32bfc48b78b6bee3c5ae290e40d91d63",
+      "step": 11,
+      "round": 4
+    }
+  ],
+  "events": [
+    {
+      "pointer": "/steps/10/tool_events/1",
+      "source_call_pointer": "/steps/10/rounds/1/tool_calls/0",
+      "step": 11,
+      "dispatch_round": 2,
+      "first_actor_visible": {
+        "step": 11,
+        "round": 3,
+        "message_index": 5,
+        "request": "sources/11__step11/step_11/round_03_request.json"
+      },
+      "call": {
+        "arguments": {
+          "code": "import numpy as np\nfrom prior_model import coherent_inf_state, entropy\n\n# Test with a simple bipartite state\n# Let's use a 2x2 system (dimA=2, dimB=2)\n\n# Create a simple Bell state: |00> + |11>\ndimA = 2\ndimB = 2\ntotal_dim = dimA * dimB\n\nbell_state = np.zeros((total_dim, total_dim), dtype=np.float64)\nbell_state[0, 0] = 1.0 / np.sqrt(2)  # |00>\nbell_state[3, 3] = 1.0 / np.sqrt(2)  # |11>\n\nrho_AB = np.outer(bell_state, bell_state.conj())\n\n# Compute coherent information\nci = coherent_inf_state(rho_AB, dimA, dimB)\nprint(f\"Coherent information: {ci}\")\n\n# Verify by manual calculation\n# S(AB) for Bell state should be 0 (pure state)\n# S(B) for Bell state should be 1 (maximally mixed)\n# So co_inf = 1 - 0 = 1\n\nprint(f\"S_AB = {entropy(rho_AB)}\")\n\n# Reduced state on B\nrho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\nrho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\nprint(f\"rho_B = {rho_B}\")\nprint(f\"S_B = {entropy(rho_B)}\")"
+        },
+        "id": "recovered_1",
+        "name": "run_python",
+        "parse_source": "reasoning_tag_recovery",
+        "raw": "<tool_call>\n<function=run_python>\n<parameter=code>\nimport numpy as np\nfrom prior_model import coherent_inf_state, entropy\n\n# Test with a simple bipartite state\n# Let's use a 2x2 system (dimA=2, dimB=2)\n\n# Create a simple Bell state: |00> + |11>\ndimA = 2\ndimB = 2\ntotal_dim = dimA * dimB\n\nbell_state = np.zeros((total_dim, total_dim), dtype=np.float64)\nbell_state[0, 0] = 1.0 / np.sqrt(2)  # |00>\nbell_state[3, 3] = 1.0 / np.sqrt(2)  # |11>\n\nrho_AB = np.outer(bell_state, bell_state.conj())\n\n# Compute coherent information\nci = coherent_inf_state(rho_AB, dimA, dimB)\nprint(f\"Coherent information: {ci}\")\n\n# Verify by manual calculation\n# S(AB) for Bell state should be 0 (pure state)\n# S(B) for Bell state should be 1 (maximally mixed)\n# So co_inf = 1 - 0 = 1\n\nprint(f\"S_AB = {entropy(rho_AB)}\")\n\n# Reduced state on B\nrho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\nrho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\nprint(f\"rho_B = {rho_B}\")\nprint(f\"S_B = {entropy(rho_B)}\")\n</parameter>\n</function>\n</tool_call>"
+      },
+      "event": {
+        "arguments": {
+          "code": "import numpy as np\nfrom prior_model import coherent_inf_state, entropy\n\n# Test with a simple bipartite state\n# Let's use a 2x2 system (dimA=2, dimB=2)\n\n# Create a simple Bell state: |00> + |11>\ndimA = 2\ndimB = 2\ntotal_dim = dimA * dimB\n\nbell_state = np.zeros((total_dim, total_dim), dtype=np.float64)\nbell_state[0, 0] = 1.0 / np.sqrt(2)  # |00>\nbell_state[3, 3] = 1.0 / np.sqrt(2)  # |11>\n\nrho_AB = np.outer(bell_state, bell_state.conj())\n\n# Compute coherent information\nci = coherent_inf_state(rho_AB, dimA, dimB)\nprint(f\"Coherent information: {ci}\")\n\n# Verify by manual calculation\n# S(AB) for Bell state should be 0 (pure state)\n# S(B) for Bell state should be 1 (maximally mixed)\n# So co_inf = 1 - 0 = 1\n\nprint(f\"S_AB = {entropy(rho_AB)}\")\n\n# Reduced state on B\nrho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\nrho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\nprint(f\"rho_B = {rho_B}\")\nprint(f\"S_B = {entropy(rho_B)}\")"
+        },
+        "batch_id": "B002",
+        "batch_ordinal": 1,
+        "call_id": "recovered_1",
+        "event_id": "E002",
+        "model_visible_return": {
+          "status": "REJECTED",
+          "validation": {
+            "kind": "IMPORT_DENIED",
+            "root": "prior_model"
+          }
+        },
+        "name": "run_python",
+        "parse_source": "reasoning_tag_recovery"
+      },
+      "code_before_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+      "code_after_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+      "test_parameter_sha256": "4641689e68a469548500d16af1d5cc5edb8648225c36c7b77031406fb367352e",
+      "test_inline_function_names": []
+    },
+    {
+      "pointer": "/steps/10/tool_events/2",
+      "source_call_pointer": "/steps/10/rounds/2/tool_calls/0",
+      "step": 11,
+      "dispatch_round": 3,
+      "first_actor_visible": {
+        "step": 11,
+        "round": 4,
+        "message_index": 7,
+        "request": "sources/11__step11/step_11/round_04_request.json"
+      },
+      "call": {
+        "arguments": {
+          "code": "def coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf"
+        },
+        "id": "recovered_1",
+        "name": "write_code",
+        "parse_source": "reasoning_tag_recovery",
+        "raw": "<tool_call>\n<function=write_code>\n<parameter=code>\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n</parameter>\n</function>\n</tool_call>"
+      },
+      "event": {
+        "arguments": {
+          "code": "def coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf"
+        },
+        "batch_id": "B003",
+        "batch_ordinal": 1,
+        "call_id": "recovered_1",
+        "event_id": "E003",
+        "model_visible_return": {
+          "action": "write_code",
+          "code_characters": 999,
+          "code_sha256": "832ce67ee8531a9938bbecc98a62eb98a4e65898fcaf0c8460247c6c8daa917f",
+          "status": "ACCEPTED",
+          "validation": {
+            "kind": "OK"
+          }
+        },
+        "name": "write_code",
+        "parse_source": "reasoning_tag_recovery"
+      },
+      "code_before_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+      "code_after_sha256": "832ce67ee8531a9938bbecc98a62eb98a4e65898fcaf0c8460247c6c8daa917f",
+      "test_parameter_sha256": "832ce67ee8531a9938bbecc98a62eb98a4e65898fcaf0c8460247c6c8daa917f",
+      "test_inline_function_names": []
+    },
+    {
+      "pointer": "/steps/10/tool_events/3",
+      "source_call_pointer": "/steps/10/rounds/3/tool_calls/0",
+      "step": 11,
+      "dispatch_round": 4,
+      "first_actor_visible": null,
+      "call": {
+        "arguments": {
+          "code": "import numpy as np\n\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n\ndef entropy(rho):\n    '''Inputs:\n    rho: 2d array of floats with equal dimensions, the density matrix of the state\n    Output:\n    en: quantum (von Neumann) entropy of the state rho, float\n    '''\n    # Diagonalize the density matrix to get eigenvalues\n    eigenvalues = np.linalg.eigvalsh(rho)  # Use eigvalsh for Hermitian matrices\n    \n    # Filter out small/negative eigenvalues (due to numerical errors)\n    # Replace values <= 0 with a small positive value\n    eigenvalues = np.maximum(eigenvalues, 1e-15)\n    \n    # Compute von Neumann entropy: S = -sum(lambda_i * log2(lambda_i))\n    # For eigenvalues close to zero, lambda * log2(lambda) -> 0\n    entropies = eigenvalues * np.log2(eigenvalues)\n    \n    # Return negative of sum\n    en = -np.sum(entropies)\n    \n    return en"
+        },
+        "id": "recovered_1",
+        "name": "submit_code",
+        "parse_source": "reasoning_tag_recovery",
+        "raw": "<tool_call>\n<function=submit_code>\n<parameter=code>\nimport numpy as np\n\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n\ndef entropy(rho):\n    '''Inputs:\n    rho: 2d array of floats with equal dimensions, the density matrix of the state\n    Output:\n    en: quantum (von Neumann) entropy of the state rho, float\n    '''\n    # Diagonalize the density matrix to get eigenvalues\n    eigenvalues = np.linalg.eigvalsh(rho)  # Use eigvalsh for Hermitian matrices\n    \n    # Filter out small/negative eigenvalues (due to numerical errors)\n    # Replace values <= 0 with a small positive value\n    eigenvalues = np.maximum(eigenvalues, 1e-15)\n    \n    # Compute von Neumann entropy: S = -sum(lambda_i * log2(lambda_i))\n    # For eigenvalues close to zero, lambda * log2(lambda) -> 0\n    entropies = eigenvalues * np.log2(eigenvalues)\n    \n    # Return negative of sum\n    en = -np.sum(entropies)\n    \n    return en\n</parameter>\n</function>\n</tool_call>"
+      },
+      "event": {
+        "arguments": {
+          "code": "import numpy as np\n\ndef coherent_inf_state(rho_AB, dimA, dimB):\n    '''Inputs:\n    rho_AB: 2d array of floats with equal dimensions, the state we evaluate coherent information\n    dimA: int, dimension of system A\n    dimB: int, dimension of system B\n    Output\n    co_inf: float, the coherent information of the state rho_AB\n    '''\n    # Total dimension of the bipartite system\n    total_dim = dimA * dimB\n    \n    # Compute S(AB) - von Neumann entropy of the full state\n    S_AB = entropy(rho_AB)\n    \n    # Compute reduced state rho_B by tracing out system A\n    # Reshape the density matrix into a 4D tensor: (dimA, dimB, dimA, dimB)\n    # Then sum over the A indices (first and third dimensions)\n    rho_AB_reshaped = rho_AB.reshape(dimA, dimB, dimA, dimB)\n    rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)\n    \n    # Compute S(B) - von Neumann entropy of the reduced state on B\n    S_B = entropy(rho_B)\n    \n    # Coherent information: I_c(A>|B) = S(B) - S(AB)\n    co_inf = S_B - S_AB\n    \n    return co_inf\n\ndef entropy(rho):\n    '''Inputs:\n    rho: 2d array of floats with equal dimensions, the density matrix of the state\n    Output:\n    en: quantum (von Neumann) entropy of the state rho, float\n    '''\n    # Diagonalize the density matrix to get eigenvalues\n    eigenvalues = np.linalg.eigvalsh(rho)  # Use eigvalsh for Hermitian matrices\n    \n    # Filter out small/negative eigenvalues (due to numerical errors)\n    # Replace values <= 0 with a small positive value\n    eigenvalues = np.maximum(eigenvalues, 1e-15)\n    \n    # Compute von Neumann entropy: S = -sum(lambda_i * log2(lambda_i))\n    # For eigenvalues close to zero, lambda * log2(lambda) -> 0\n    entropies = eigenvalues * np.log2(eigenvalues)\n    \n    # Return negative of sum\n    en = -np.sum(entropies)\n    \n    return en"
+        },
+        "batch_id": "B004",
+        "batch_ordinal": 1,
+        "call_id": "recovered_1",
+        "event_id": "E004",
+        "model_visible_return": {
+          "action": "submit_code",
+          "code_characters": 1805,
+          "code_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+          "status": "ACCEPTED",
+          "validation": {
+            "kind": "OK"
+          }
+        },
+        "name": "submit_code",
+        "parse_source": "reasoning_tag_recovery"
+      },
+      "code_before_sha256": "832ce67ee8531a9938bbecc98a62eb98a4e65898fcaf0c8460247c6c8daa917f",
+      "code_after_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+      "test_parameter_sha256": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+      "test_inline_function_names": []
+    }
+  ],
+  "code_before": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e",
+  "code_after": "533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"
+}

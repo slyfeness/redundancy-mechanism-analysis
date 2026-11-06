@@ -1,0 +1,424 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0008",
+  "stage_id": "S010",
+  "sample_order": 98,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the date of the maiden flight of the second prototype of the German flying boat, whose initial version was flown by Flight Captain Erich Gundermann, and which was designed by the company that also developed an experimental aircraft in the 1950s to test a tilting-propeller system for STOL, a concept initially explored with the pre-World War II Dornier Do 10?",
+    "gold": [
+      "23 November 1938"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "23 November 1938",
+    "adopted_answer": "23 November 1938",
+    "outcome": "C",
+    "reason": "Do26 V2日期正式正确提交。",
+    "evidence": [
+      "O_F",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R12[0,2604)已多次接受Do26 V2 23November1938，全文同时证实V1 Gundermann和V2 EgonFath，型号身份可靠。Do10的STOL事实已返并采用；1950s具体实验机尚不知，Do228猜想已否定，只说应该核实。",
+    "evidence_states": "日期和目标身份已可见、提取、接受；1950s厂家条件独立待核，不能称Do29已经P中证实。",
+    "evidence": [
+      "O_DATE",
+      "O_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/9/items",
+    "ranges": [
+      {
+        "round": 12,
+        "pointer": "/rounds/11/reasoning_content",
+        "start": 2604,
+        "end": 2693
+      }
+    ],
+    "goal": "补核1950s厂家试验机旁线。",
+    "operations": "真实Dornier 1950s tilting propeller experimental aircraft Search。",
+    "product": "5808524直接给Do29、Dornier和1950s V/STOL；没有改变先前日期。",
+    "judgment_change": "原待证厂家条件得到直接支持。",
+    "evidence": [
+      "O_Q",
+      "O_29"
+    ]
+  },
+  "original_followup": {
+    "use": "R13把Do29加入Do10/Do26证据链，全线索一致后提交日期。",
+    "evidence": [
+      "O_USE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "核心目标事实已确定后，对身份旁线补充独立证据。",
+    "state_relation": "四条都没重做旁线核验，也没自主补Do29，但全部依已有Do26全文直接作答；C保持同时支线证据比原少，两者分开。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "The user's question asks for the date of the maiden flight of the second prototype of a German flying boat.",
+    "source_position": "R13[0,107)",
+    "oracle_anchored": true,
+    "novelty": "22Token重述最终询问目标，不含具体日期/Do29/新事实。可能将注意力从待查旁线拉回日期，不是直接事实泄漏，也不是无提示纯删除。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "按P中Do26全文的已接受日期直接正式提交。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R12新55字符Based on document date23November1938，唯一Call submit，无Search/Open或1950s判断。",
+      "first_judgment_divergence": "不再执行P末要求的厂家核实，直接将已接受日期提交。",
+      "first_actual_tool_divergence": "submit替1950s Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "核1950s试验机",
+          "original_operation": "Search",
+          "original_product": "Do29直接支持",
+          "new_goal": "提交已证日期",
+          "new_operation": "无旁线推理/取证，只有submit",
+          "new_product": "日期C；Do29条件未证",
+          "evidence": [
+            "O_Q",
+            "O_29",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整唯一Round只用日期，没有原旁线检索或同目标替代证据。",
+      "judgment_action_outcome_chain": "目标日期已稳定→G重申日期问题→省略身份旁线补证→C且少Search/一交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "55生成16129Prompt1Actor0Search/Open；较原从切点的生成保守区间显著下降，省原1950s Search及R13全题整合，不以整R12长度当目标成本。P16107/G22分列。",
+      "counterevidence_and_alternatives": "不能称所有线索证据保持完整；已知Do26身份/日期仍支持主体答案，不证明支线对任意题目不必要。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "明确Do26 V2日期，真实submit正确。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R12 182字符明确型号/V2 Seefalke和日期，confident后submit，无旁线/新证据。",
+      "first_judgment_divergence": "待核厂家支线不再影响提交。",
+      "first_actual_tool_divergence": "唯一submit替Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "1950s厂家核验",
+          "original_operation": "Query Do29线索",
+          "original_product": "旁线证据",
+          "new_goal": "日期回答",
+          "new_operation": "回用P的V2日期、无核验",
+          "new_product": "C日期，旁线缺支持",
+          "evidence": [
+            "O_Q",
+            "O_29",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有取证或1950s验证，信心陈述不是核验。",
+      "judgment_action_outcome_chain": "已知目标日期→不再派支线任务→直接C，工作减少而证据覆盖收窄。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "98生成16129Prompt1Actor0Search/Open；少原1Search和1后续交互，生成差引用成本区间；日期确认很短。",
+      "counterevidence_and_alternatives": "G把最终目标提到眼前，不能排除注意方向补偿。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "已证Do26 V2日期正式提交。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R12 150字符型号、V2日期，唯一submit；无1950s/Do29推断或Call。",
+      "first_judgment_divergence": "停止核厂家旁线，保留已接受日期。",
+      "first_actual_tool_divergence": "submit替1950s Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "补支线证据",
+          "original_operation": "真实Search",
+          "original_product": "Do29",
+          "new_goal": "回答日期",
+          "new_operation": "无补支线，直接submit",
+          "new_product": "同日期C、无Do29支持",
+          "evidence": [
+            "O_Q",
+            "O_29",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "未观察原目标或替代核验。",
+      "judgment_action_outcome_chain": "P已知日期与身份→无新信息也能提交→C/更少后续成本。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "83生成16129Prompt1Actor0Search/Open；省掉原支线取证和完整整合，G22一次预填不重复计。",
+      "counterevidence_and_alternatives": "答案保持与完整条件证明不同；不据C把支线质量损失抹掉。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "区分Gundermann的V1与所问V2，正确日期submit。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R12 225字符明确飞机、V1飞行员、V2日期然后submit。未涉及1950s试验机；0Search/Open。",
+      "first_judgment_divergence": "仅复核目标身份日期，不处理P中另一待办。",
+      "first_actual_tool_divergence": "submit替1950s Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "1950s技术厂家证据",
+          "original_operation": "Search后Do29信息",
+          "original_product": "补线索",
+          "new_goal": "核已知V1/V2然后提交",
+          "new_operation": "回读P无新核验",
+          "new_product": "日期C、支线未补",
+          "evidence": [
+            "O_Q",
+            "O_29",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "身份日期回顾不等于另一时代型号的实证核验。",
+      "judgment_action_outcome_chain": "P内V1/V2关系已经清楚→只围绕所问目标收束→不再取支线→C少成本。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "109生成16129Prompt1Actor0Search/Open；保守差值见成本表，少原1Search/1后续交互，表达也更短。",
+      "counterevidence_and_alternatives": "不改变日期可能因为身份已有独立飞行员和原型证据；这不证明Do29检查在证据薄弱状态同样可省。"
+    }
+  ],
+  "four_run_comparison": "4C4NOT_OBSERVED，无Do29补偿、无Search/Open。区别于末段S011的4FULL：本U补充的是已识别对象的一条旁线，核心日期在P已采用，G把问题重心重申为日期，四次直接提交。答案保持且更少成本，但独立1950s证据缺失，不能说质量每维完全保持。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当对象已由飞行员/原型关系独立确认且目标事实已直接采用，剩余身份旁线可以不再成为提交前任务；省掉它保持日期答案，但减少对旁线的实际证据覆盖。",
+      "support_evidence": [
+        "O_DATE",
+        "O_P",
+        "O_Q",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "仅一题，G方向提示、随机性与支线质量差异必须保留，不把局部结果解释为所有辅助条件不该查。"
+    }
+  ],
+  "counterevidence_and_limits": "P曾无证断言厂家1950s也做过，但没有Do29信息，不能当原U已完成；原U确实新增旁线直接证据。原生Token缺失，部分Round切点只给保守区间，不提供伪精确节省。",
+  "evidence": [
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "I should verify the 1950s aircraft, but the answer seems to be 23 November 1938."
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "Dornier 1950s tilting propeller experimental aircraft",
+      "call_id": "chatcmpl-tool-8a7bd6cd0db67016"
+    },
+    {
+      "evidence_id": "O_29",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/0/snippet",
+      "exact_quote": "The Dornier Do 29 was an experimental aircraft developed by Dornier Flugzeugwerke",
+      "doc_ids": [
+        "wiki25:5808524"
+      ]
+    },
+    {
+      "evidence_id": "O_USE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "In the 1950s, Dornier developed the Do 29"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 13,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user's question asks for the date of the maiden flight of the second prototype of a German flying boat."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Based on the document, that date is 23 November 1938."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I'm confident the answer is 23 November 1938."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "the second prototype (V2) had its maiden flight on 23 November 1938."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The initial version (V1) was flown by Erich Gundermann."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0008/trajectory.json",
+      "source_sha256": "cc74e26e4a5b1f1ebf5742a00f51d948daa3ab611f6070f8629fbaa065d87a50"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0008.json",
+      "source_sha256": "7fc501e9424351c2e6478a20bea5c3a57722b59bc1de64b5ca3c3b7db254e595"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "312dd3a37953815c39eb50461e225817a639fe5076593f58734393d6225ad3ca"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "4a1e50747d0786ee738ca362e80691a4cc5c49872e46f003128e84711f0668f3"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c4cb2fb30124fcfd372385e1fb6e867469c7499cd9716e7d5552d1e750a01c7f"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "56c1731f9c108b66c9b9a0abc5208ee85064b05d1c4c138118fc5e2696c9db41"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S010__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "88f72b7fef26f43ad8942eb84ca62ee2567f41914d56c12861b96b1072c44e3d"
+    }
+  }
+}

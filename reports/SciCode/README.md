@@ -1,0 +1,7 @@
+# 交付阅读顺序
+
+先读01主报告；STATISTICS为全范围确定性统计，SYNTHESIS为Codex逐行写的共性索引，MODEL_REVIEWS按A/B保留249组、每组四条续跑的具体判断和原文定位。SOURCE_INDEX保存完整原新轨迹的本机/服务器来源及SHA；大轨迹原件仍在原位置，未删除也未改写。
+
+观察轴数量不是已证因果机制数量，关联四条不是四次机制发生。CODE_STAGE规范保持原文件名；本次未改规范或Stage。FIRST_SENTENCE是ORACLE_ANCHORED，末段无G分列。程序没有生成语义标签。
+
+解压后运行python RECOMPUTE/recompute_packaged_statistics.py，仅依赖Python标准库，即可独立核对全部组/分支、工作族/观察轴支持ID与不同题目数、官方状态及切点成本算式，不需要连接服务器或运行模型。原工作目录另保留aggregate_sealed_reviews.py读取已封存逐组记录重新生成统计。研究者尚未作人工金标准验收。

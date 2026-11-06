@@ -1,0 +1,44 @@
+{
+ "case_id":"724__rep2__S002__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"W","3":"N","4":"N"},"basis":"原与新2均正式拒答未给医生W/REFUSAL_NO_ENTITY；新1/3/4CONTEXT_BLOCKED无FinalN。没有正确答案，W→N不解释为正确候选被删除。"},
+ "review_basis":"原完整17轮及全部16Call/Return已在S001亲读；本组四新完整Reasoning/Final、68次真实Call及完整Return已读，65次返回进入后续真实Actor，3次只进入未发送guard。159个新增不同推理块逐一全文读，92字段逐一还原位置顺序，未用旧判定；420文档槽位中40新增不同Return全部全文读，已读同SHA原文复用。",
+ "pre_state":"R2@420前，原第一次宽搜已返回现代奖学金、Fisher2023讣告等，模型明确还没找到匹配医生。P没有具体已采用候选；只有原题所有条件，没有1920s出生或1750s建校等更窄要求。",
+ "u_work":"U从R2组织入口Query开始，到R4@368反馈，实际两次组织创始成员及城市40年Query，没有发现或接受目标。它对无匹配反馈的处理是继续组织/城市组合，而非完成某项候选关系纠正。",
+ "u_state_update":"状态维持尚未识别医生，未取得可见的充分身份线索。原后续转名医/奖学金/Harvard等入口，仍无匹配，最终正式拒答。",
+ "original_action_consequence":"没有‘U将正确对象转成下一步’的链；原后续沿美国名医及组织试探，晚期旧计划累积后拒答。删后的主要结果差是三支不停到上下文止、一支也拒答。",
+ "guidance":{"text":"Let me try searching for specific famous doctors who might match these criteria, perhaps searching for \"scholarship medicine doctor 1970s\" or trying different combinations.","source":"后继S003 R4@368，35Token；切点nativeR2@420，保留113Token当前轮前缀。","audit":"无新姓名/事实/答案；指定名医、奖学金、1970s组合的行动方向，题目已有这些条件。ORACLE_ANCHORED，G不当自主证据，不能排除其对搜索顺序影响。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The search results don't seem to provide a specific doctor matching all the criteria.","use":"P没有确定候选。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"doctor practiced city 40 years founding member organization 1950","use":"U实际城市/组织联合取证，两Call功能不遗漏。"},
+  {"id":"O3","source":"original","pointer":"/rounds/16/content","quote":"I was unable to find a specific doctor","use":"原拒答W不冒充已有正确轨迹。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/7/reasoning_content","quote":"Johns Hopkins","use":"R9真正认识大学1889不符1800前并列老大学，但实际该轮Call仍组织入口。"},
+  {"id":"N12","source":"new1","pointer":"/tool_events/10/exact_arguments","quote":"born 192 died 197 doctor","use":"原出生1930前被具体缩为1920s，非题目要求或已识别对象证明。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/15/reasoning_content","quote":"Lyall Stuart Scott was born in 1920","use":"晚期部分资料形成新人物，不能一概说全程无候选信息。"},
+  {"id":"N14","source":"new1","pointer":"/tool_events/15/exact_arguments","quote":"Lyall Stuart Scott doctor 1920 1970s","use":"部分匹配进入真实核查，但未取得全条件接受。"},
+  {"id":"N21","source":"new2","pointer":"/tool_events/8/exact_arguments","quote":"doctor born 1920s died 1976 scholarship medicine university founded 1750s","use":"把宽年龄/大学条件缩成未证年代组合，持续查而未成身份。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/15/reasoning_content","quote":"Perhaps there's a doctor who was a friend of W.E.B. Du Bois.","use":"R17确实采用朋友线索，不能写未处理所有返回。"},
+  {"id":"N23","source":"new2","pointer":"/tool_events/15/exact_arguments","quote":"doctor friend W.E.B. Du Bois Philadelphia medical school","use":"实际按朋友查，但加入未证Philadelphia；返回仅DuBois相关未出Clarke，不说目标已返回。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/16/content","quote":"I cannot identify a specific individual doctor","use":"正式拒答并非上下文无Final。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/15/reasoning_content","quote":"the search results keep showing the same documents","use":"R17明确识别返回重复，随后实际改变年份查询，非完全没反馈。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/15/exact_arguments","quote":"doctor died 1976 1977 1978 1979 medical society","use":"改变字符串但仍未找到具体身份，与计划同词或精确Query循环不同。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/11/reasoning_content","quote":"Frederick Banting 1891 1941","use":"只提其死亡年代不符，实际该轮查Harvard朋友，不能冒计Banting搜索。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/13/reasoning_content","quote":"I think I've been going in circles.","use":"R15自知循环并尝试具体Best，不等于问题已解决。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/16/reasoning_content","quote":"George R. Fisher III, but he died in 2023, not the 1970s.","use":"R18真的利用死亡年份排除，反驳反馈全部无效的泛化。"},
+  {"id":"N43","source":"new4","pointer":"/tool_events/16/exact_arguments","quote":"died 1974 doctor anesthesiologist","use":"排除后实际换入口但最后Return只guard不消费，不能说它又触发一轮决策。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后按奖学金/名医查，再组织、Harvard、城市组合；部分大学年代判断正确却没有立刻转成该轮Query。后期1920s约束、Best、Lyall新材料交替，没完成身份N。","state_chain":"无匹配→继续列可换入口并渐加窄年代→小线索引发具体人核验→未闭合而继续至N。","function_change":"U城市/组织查找实际重建，换入口及人物核验新增；17Search/17Actor较原多2/1，生成4131+35少253，Prompt更高。","evidence":["N11","N12","N13","N14"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"G名医/奖学金路线反复缩出生1925、死亡1976、大学1750s；晚期从Return识别DuBois并实际查朋友，但加Philadelphia继续偏窄，末正式拒答。","state_chain":"仍无医生→加未证具体年代反复检索→部分朋友线索被采用但未成医生身份→拒答W。","function_change":"原按条件取证与朋友核验重建，仍未正确；16Search/17Actor多1/1，生成6672+35多2288，Prompt更高。","evidence":["N21","N22","N23","N24"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"持续条件组合/大学/组织，试Apgar与Best；认识Banting年代不符只停留备选讨论，R17明确同文档返回后改死亡年份入口，仍无身份到N。","state_chain":"结果不足→更换词与入口、复述所有条件→反馈知道重复但未得到候选/排除集合更新→继续新调用至N。","function_change":"U组织城市等条件取证充分恢复，非目标工作跳过；18Search/18Actor多3/2，生成3943+35少441，Prompt更多。","evidence":["N31","N32","N33"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"交替窄年代与组织、试Apgar，后承认绕圈试Best再Apgar。末真实指出Fisher2023不符，改1974麻醉师入口，但预算未允许消费最后返回，N。","state_chain":"广搜不足→多次具体试探→局部失败反馈确能改实际Query→仍未发现目标、上下文先耗尽N。","function_change":"原U取证恢复，存在有效局部排除不能统一无反馈；17Search/17Actor多2/1，生成4563+35多179，Prompt增加。","evidence":["N41","N42","N43"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"这组B三N一拒答，不是正确候选丢失。反复未匹配反馈主要被转成再组合条件，并常把‘1930前/1800前’收窄为1920s/1750s等未证具体搜索前提；但新2采用了DuBois、新4完成Fisher排除并换实际Query，反证‘所有失败都没更新’。需追不同程度更新为何未得到身份，而不是用循环标签掩盖。",
+ "within_case_support":"未证收窄在1/2有明确具体Query，3/4也枚举年份但伴实际不同反馈，不能凭关键词视一机制。不同Query未获进展与精确重复Call要分开。跨组S001新3正确路径用了老大学+长期行医联合Query，但并非说明只要查老大学就会成功。",
+ "mechanism_chain_checks":[
+  {"chain":"未解全条件匹配被转成未证具体出生/大学年代的检索前提，未形成具体身份而持续取证","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N12","N13","N14"],"2":["N21","N22","N23"]},"limits":"检索不是硬过滤，不能声称某年份字符串数学上排除Gold；这里只记录查询前提变窄与未成功的可见链。"},
+  {"chain":"实际认识某已试对象不符并改变后续Call，但仍先耗尽上下文未发现目标","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43"]},"limits":"局部正确反馈更新不是充分成功条件；3知道同文档重复也改Query，但不冒称完成同一候选排除。"}
+ ],
+ "counterevidence_and_limits":["原拒答W、新2拒答W，A/B只冻结状态频率不代机制或正确性必要。","新2确采用DuBois并发真实Query；没有Clarke片段返回，不能写目标证据可见未用。","新4对Fisher排除及换Query是实质更新，反例保留。","同一段逐轮累加是真实生成，不因全文重复合并日志或不读；完整位置与重复块已校验。","G行动方向影响、seed和预算保留；不从单P+G四次推出纯因果。","40个新增不同Return片段不是40次Search：真实68次Call，程序单列65次实际Actor消费及3次未发送guard。"],
+ "cost_basis":"nativeR2@420，原后缀4419生成15Search16Actor，Prompt3404+418864=422268，原当前轮113P Token单列。G35；新生成4131/6672/3943/4563，含G净−253/+2288/−441/+179；Search17/16/18/17，Actor17/17/18/17，Prompt469819/470088/519029/465169。所有Prompt大于原，不能把仅两支生成少称全资源下降。原同轮延迟含切前生成不伪精确比较。",
+ "next_cross_case_test":"对A中条件已定位对象的复述与本组尚无对象时不断组合条件作比较，区分有证据驱动的具体检索与无依据收窄；把局部反馈真正改Call但仍失败的反例纳入。"
+}

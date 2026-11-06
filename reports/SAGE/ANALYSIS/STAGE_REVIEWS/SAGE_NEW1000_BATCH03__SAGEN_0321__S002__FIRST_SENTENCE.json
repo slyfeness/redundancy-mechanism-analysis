@@ -1,0 +1,564 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0321",
+  "stage_id": "S002",
+  "sample_order": 83,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical result of adding the full lifespan, in years, of Laurance Labadie's father, Joseph Labadie, to the full lifespan, in years, of Benjamin Tucker, the editor of the anarchist periodical \"Liberty\", and then subtracting the total duration, in years, that \"Liberty\" was published?",
+    "gold": [
+      "141"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "141",
+    "adopted_answer": "141",
+    "outcome": "C",
+    "reason": "Gold与原年差口径83+85-27=141吻合，精确月份/整年口径有歧义单列。",
+    "evidence": [
+      "O_ADOPT",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@0当前Reasoning空，P10253派生Token，三个Search完整Return已含父子关系、Jo精确生卒、Tucker年和刊期月；尚未在实际P明确采用身份或初算。",
+    "evidence_states": "信息返回但当前没有亲子身份采用/83/85/27计算，需将来源落实为对象与输入。",
+    "evidence": [
+      "I_MODE",
+      "O_RELATION"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 1201
+      }
+    ],
+    "goal": "将Jo与题目Joseph父亲同一身份确认，并计算三项输入。",
+    "operations": "以childrenLaurance确认Jo=CharlesJosephAntoine，提取1850–1933/83、1854–1939/85、1881–1908/27并注明月份待核。",
+    "product": "正确人物归属与初步数值，尚未确定刊期口径或最终值。",
+    "judgment_change": "材料由可见转为明确身份和运算对象，不是纯复述。",
+    "evidence": [
+      "O_ADOPT",
+      "O_RELATION"
+    ]
+  },
+  "original_followup": {
+    "use": "同R2再三Open100，但两人物/刊期关键信息仍来自Search；R3反复比较26+8月/27年，采用27算141Submit。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "明确多名人物别称/关系，将各日期对应到正确输入，同时暴露月数口径。",
+    "state_relation": "新材料不缺而采用未发生，删后若能正确读取既有Return则身份和数值可恢复；不能由C把采用工作说没价值。",
+    "evidence": [
+      "I_MODE",
+      "O_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me open the relevant documents to get more precise information about the birth and death dates.",
+    "source_position": "原R2[1201,1300)",
+    "novelty": "18Token无身份事实/年/答案，只给更精确日期核验方向。可能使新先Open而非初算；ORACLE_ANCHORED，不当自主计划。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "正确父子与三年差，最终按Gold口径141；月份解释含短暂四/八月说错但后纠。",
+      "outcome_evidence": [
+        "N1_REL",
+        "N1_CALC",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "用childrenLaurance初步采用正确父亲，Tucker和刊期提取，真实同B002三OpenJo/Tucker/独立Liberty各50，均短前缀不补所求精度。",
+          "evidence": [
+            "N1_REL",
+            "N1_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "确认Jo身份、算83/85，反复27/26.67/141/141.33，最终按年差27Submit141。没有Search。",
+          "evidence": [
+            "N1_CALC",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原首轮已初算83/85/27，新推迟计算到返回后；亲子采用首轮已恢复。",
+      "first_actual_tool_divergence": "三Open50且Liberty1831557替原2806362100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "父子别称与三个数值初算。",
+          "new_goal_operation_product": "R2关系初步采用、R3三值完整计算，原功能恢复；50字Open未增事实。",
+          "evidence": [
+            "O_ADOPT",
+            "N1_REL",
+            "N1_CALC",
+            "N1_OPEN"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "身份和输入均明确恢复，只是分配两轮。",
+      "judgment_action_outcome_chain": "材料保留→正确同人采用恢复→未新增日期仍反复口径→采用原整数法C；生成少源于较短后轮讨论，非跳过身份功能。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2444生成/20975Prompt/0Search3Open2Actor，对原4035/20828/0S3O2段；整轮生成usage差-1591、Prompt略增，交互不降；主要少原R3反复口径展开。",
+      "counterevidence_and_alternatives": "约6169字符仍重复多轮口径判断，不能称彻底停止无意义重述；GoldC不消除27vs26.67歧义。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "正确父亲和年差，按相同整数口径141提交。",
+      "outcome_evidence": [
+        "N2_REL",
+        "N2_CALC",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "识别childrenLaurance关系，仍问Jo是否Joseph；同批只OpenJo50/Tucker50，未Open刊物。",
+          "evidence": [
+            "N2_REL",
+            "N2_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "直接原Search确认身份83/85/27，6197字符在26/27/26.67和141间反复，最终使用年差27Submit。",
+          "evidence": [
+            "N2_CALC",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原当前轮更快明确同一人物并初算，新推迟确认和运算到R3；最后结论同。",
+      "first_actual_tool_divergence": "两Open50替原三Open100，刊物已有Search而未再读。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "同人关系识别、输入初算。",
+          "new_goal_operation_product": "R3完整恢复，刊物即使无新Open仍有原Search支持。",
+          "evidence": [
+            "O_ADOPT",
+            "N2_REL",
+            "N2_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "必要身份与数值采用完整；不以少刊物Open说功能丢失。",
+      "judgment_action_outcome_chain": "事实齐→再确认身份和初算→精确/整数口径反复未取新证据→选原年差C；比原少一Open但仍长篇判断。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2580生成/20706Prompt/0Search2Open2Actor，生成usage差-1455；少一Open/Return，Actor仍两次；减少来自较短口径重述和少来源复读。",
+      "counterevidence_and_alternatives": "没有追额外精确日期并不意味着完整日期条件都已解决，Tucker仍仅年份；评分按原约定，质量口径待研究者确认。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "R4恢复正确父亲和三项年差提交141，新两Search没取得Tucker精确月日。",
+      "outcome_evidence": [
+        "N3_REL",
+        "N3_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "暂保留Jo不一定Joseph疑问，三并行OpenJo100/Tucker100/Liberty100，后者不到刊期。",
+          "evidence": [
+            "N3_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "原Search children明确确认同一父亲，初算83/85/26.67→141.33，途中月数26.33自纠；真实同B003 SearchTucker详细生卒和Joseph父亲。Tucker返回其他无关人物/理论无月日，Joseph完整返回与原同。",
+          "evidence": [
+            "N3_REL",
+            "N3_SEARCH",
+            "N3_JOSEARCH"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "再次确认父子关系，三次比较27与26.67、选择27和141Submit。",
+          "evidence": [
+            "N3_ACCEPT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "已能从旧关系确认后仍追加两Search要求更精确，无新解读事实取得，最后仍原口径。",
+      "first_actual_tool_divergence": "首三Open对象有换，随后多两Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "身份绑定与初算83/85/27。",
+          "new_goal_operation_product": "R3已确认并算83/85，R4接受27与141；额外Search没改变必要数据。",
+          "evidence": [
+            "O_ADOPT",
+            "N3_REL",
+            "N3_SEARCH",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原认知完整恢复且最终使用，不把多搜当功能没恢复。",
+      "judgment_action_outcome_chain": "关系已可确认→精确性疑问继续派发取证→没有所求新月日仍回用旧资料选择整数法→C；生成略少但新增Search/轮次/Prompt。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2819生成/37794Prompt/2Search3Open3Actor，生成usage差-1216但其他Search/Actor/Prompt增，落点额外R3两Search与R4请求重放历史。",
+      "counterevidence_and_alternatives": "精确日期本身确有真实不足，不能把所有搜索叫无用；实际返回没补缺口、最后口径改变没有新资料支持要分列。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "141",
+      "adopted_answer": "141",
+      "outcome": "C",
+      "outcome_reason": "正确父亲/年差，最后141与Gold一致，26.67问题仍同原歧义。",
+      "outcome_evidence": [
+        "N4_REL",
+        "N4_REACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "首轮已明确father Joseph=Jo、两生卒与刊期，三Open50无新增关键句。",
+          "evidence": [
+            "N4_REL",
+            "N4_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "已采用父子又称Jo不一定Joseph，重新派发Joseph父亲Search，返回原同文档没有新信息。",
+          "evidence": [
+            "N4_SEARCH"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "再确认关系并8194字符多次比较26.67/27与141.33/141，采用整数年差提交141。",
+          "evidence": [
+            "N4_REACCEPT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "首轮关系已确认却跨轮重开同人疑问，原没有再真实Search；正确事实没变但任务重启。",
+      "first_actual_tool_divergence": "Open50替100，后多一次JosephSearch。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "人物归属和初算。",
+          "new_goal_operation_product": "首轮归属恢复，R4再次确认与三数值运算，原认知恢复但其完成状态没有始终约束后续任务。",
+          "evidence": [
+            "O_ADOPT",
+            "N4_REL",
+            "N4_SEARCH",
+            "N4_REACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "身份和数值最终明确用于式子；重复核验另外记录。",
+      "judgment_action_outcome_chain": "已识别同人→跨轮又当身份缺口→同Query入口得到同证据→重接受关系后口径反复→C；多耗为重新搜索与长篇重议而非取到新事实。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3826生成/33559Prompt/1Search3Open3Actor，生成usage差-209但Prompt/Actor/Search增；新增JosephQuery和R4重放、较长讨论抵消部分原长篇压缩。",
+      "counterevidence_and_alternatives": "实际历史消息不保留前轮reasoning，跨轮重新疑问可能与此有关，但不能唯一归因；不猜隐藏遗忘。"
+    }
+  ],
+  "four_run_comparison": "四次都依旧Return恢复正确身份/输入并按原年差口径C。r1/2两Actor无新Search，r3/4多Search但没有新所需日期，仍相同答案。共享前态是关键材料在P，删除的是首次明确采用，能够恢复；成本分歧是恢复后身份/精度是否继续派发任务和口径复述长度，不是四个都跳过了认知。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "证据已返回未采用→原U完成身份/数值绑定→删后通过既有资料恢复可保持结果；若完成的关系或未取齐的精度继续触发核验，查询未增加新支持却重放历史/重新比较，便出现生成少而总交互/Prompt增。",
+      "support_scope": "本Stage四FULL四C，两条无Search对两条新增Search。",
+      "limits": "年差口径存在真歧义，不把所有精确性问题叫伪缺口；G鼓励Open、历史reasoning未保留等替代解释仍有。"
+    }
+  ],
+  "counterevidence_and_limits": "所有最终141按冻结Gold口径，不等于月份/完整寿命唯一合理解释。原无nativeIDs，仅Round起点usage差，重放P/G18分列，分支差不相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me open the relevant documents to get more precise information about the birth and death dates."
+    },
+    {
+      "evidence_id": "O_RELATION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Their children were Laura, Charlotte, and Laurance",
+      "call_id": "chatcmpl-tool-a69424d0fd090503"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So Jo Labadie (Charles Joseph Antoine Labadie) is Laurance Labadie's father."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    },
+    {
+      "evidence_id": "N1_REL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "which suggests this is the right person."
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "American labor leader Charles Joseph Antoine Labad",
+      "call_id": "chatcmpl-tool-a57da9613f79da7e"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "83 + 85 - 27 = 141"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    },
+    {
+      "evidence_id": "N2_REL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So Jo Labadie is the father of Laurance."
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:7192074",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Lifespan: 1933 - 1850 = 83 years."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:1831557",
+      "call_id": "chatcmpl-tool-918264c6b2e9b040"
+    },
+    {
+      "evidence_id": "N3_REL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "is the father. His lifespan is 1850-1933."
+    },
+    {
+      "evidence_id": "N3_SEARCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Benjamin Tucker birth date death date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_JOSEARCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Joseph Labadie birth date death date father Laurance Labadie",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This confirms Joseph Labadie (Charles Joseph Antoine Labadie) is Laurance Labadie's father."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    },
+    {
+      "evidence_id": "N4_REL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Laurance Labadie's father is Joseph Labadie (Jo Labadie)."
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:1831557",
+      "call_id": "chatcmpl-tool-a887d82f494746e5"
+    },
+    {
+      "evidence_id": "N4_SEARCH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Joseph Labadie birth death years Laurance Labadie father",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_REACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results show \"Jo Labadie\" (Charles Joseph Antoine Labadie) is Laurance Labadie's father."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "141"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0321/trajectory.json",
+      "source_sha256": "604846d0b8f0bb5003a10a51ef05ff6c5e74715a7b2956c72d1d48816a7a3fc6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0321.json",
+      "source_sha256": "b0aaa2d9e58c9af2578542dddcaf0e8a9536608355496b6aa495cc3530bd3e0c"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5d075baae65c90b5288436da12175e332375a825f06fcba541b857a9511b829a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "044ef6f6828e6b7c758b8d360e8e27bd94a1244fddb2b630aec67dd1a6ffd57d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "e3a1595cfb473b794f1b80878356addfe975dd5fd243005f1b61519b4f33e056"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3b62c22865cd70763505d154d907153eb5b0d81269fa74b1d7c2dcf5d7d215f9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0321__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "3b01c9b1392f1178a29d46c0d19519ec68a59a01235be444edda0296882fd400"
+    }
+  }
+}

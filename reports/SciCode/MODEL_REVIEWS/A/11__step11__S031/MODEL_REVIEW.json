@@ -1,0 +1,100 @@
+{
+  "case_id":"11__step11__S031","category":"A","trajectory_id":"11__step11","stage_id":"S031","main_problem_id":"11","official_subproblem_id":"11.11","intervention":"FIRST_SENTENCE","review_status":"COMPLETE","evidence_index":"RESOLVED_EVIDENCE.json","objective_cost_table":"OBJECTIVE_COSTS.json",
+  "sources":{
+    "original_read":"11__step11完整11子题92轮91Call已经在S032首次完整阅读并有READING_COVERAGE；本组重新核同SHA并完整读11.11四轮、首次write1805、测试拒、去依赖rewrite999和最终回1805。不复用不同source的11step10轨迹。",
+    "new_read":"四条3/7/3/3轮、16Call及所有Return完整读取，分别核对run内临时定义、write接受与最终提交，未把先测试的意向记作已执行数值检验。",
+    "input_read":"11.11R1@0，当前draft空，P已有题面S(B)-S(AB)、前10子题代码及正确entropy；G从S032R2[40,109)取15Token测试意向，没有偏迹轴或科学答案。"
+  },
+  "original":{
+    "pre_state":"题面给信息量差式，已有entropy可用，但当前coherent_inf_state尚未实现/保存；题目仅说约化B，具体偏迹索引需落实。",
+    "U_goal":"把迹掉A的数学关系落实为正确reshape/对角求和并保存相干信息计算。",
+    "U_operations":"解释S(AB)、S(B)，确认reshape(dimA,dimB,dimA,dimB)后第一和第三维同索引求和，np.trace(axis1=0,axis2=2)，用entropy差，首次保存自包含1805字符。",
+    "U_product":"533c32ee...正确偏迹和熵计算，既有认知判断也有实际write；不是只重复题面差式。",
+    "judgment_before_after":"从抽象约化态到明确A的两条索引须相等，形成可执行函数；这是后续保持正确的具体约束。",
+    "original_suffix_use":"测试prior_model模块拒，另含4x4 bell_state再outer成16x16的未执行脚本错误；Z误以为不应定义entropy而write999依赖版，最后submit回原1805同SHA。没有成功数值验证，但最终正确索引来自U并保留。",
+    "evidence":["O_TRACE_REASON","O_TRACE_CODE","O_WRITE","O_ROOT","O_REWRITE","O_FINAL"]
+  },
+  "guide_audit":{
+    "G":"Let me test it with a simple example to make sure it works correctly.",
+    "P_relation":"P没有当前实现；G预设已有可测函数，但未给Bell态、期望1、偏迹轴或代码。四次第一Call都run并被write前置条件拒。",
+    "novelty":"测试方向和已存在实现的承接预设，非新候选实体、数值或决定性事实。",
+    "risk":"ORACLE_ANCHORED；首测试方向不能当自主产生，实际Bell选择/公式是后续新生成；G自身不等于功能重建。",
+    "evidence":["I_G","N1_GATE","N2_GATE","N3_GATE","N4_GATE"],
+    "uncertainty":"无无G对照，不能唯一归因首测试门控由G造成；该事实仍应列入成本。"
+  },
+  "rollouts":[
+    {
+      "branch_id":"11__step11__S031__FIRST_SENTENCE__rep1","official_state":"W",
+      "first_material_divergence":"首run手算/临时函数都对A的i和j分别全求和而未限定i=j，被空draft拒；之后write同一错误偏迹，直接submit，未真测。",
+      "work_reconstruction":{"goal":"相干信息差式和约化态目标恢复。","operation":"run门控拒→write双A索引全求和→submit同SHA，无成功run。","product":"25066cf8...虽然计算S(B)-S(AB)，rho_B[k,l]对所有i,j求和，包含应被迹掉的跨A相干项；与原np.trace产物不同，W。","assessment":"PARTIAL_REBUILT公式/保存/提交，原关键同A索引约束未恢复。"},
+      "judgment_change":"把‘迹掉A’解释为对两个A指标独立相加，虽有正确熵差文字却没有正确约化操作；计划Bell测试被门控后没有再执行，错误未得到反馈纠正。",
+      "action_chain":"测试意向/错误双和草稿→门控拒→保存错误双和→直接提交W。",
+      "result_explanation":"W有具体代码差异支持：非对角A块被纳入，不能叫全部工作重建只是随机答错；本轮不新增数值运行或改旧评分。",
+      "cost_localization":"1851生成对原2349少498，G15计后少483；Prompt20022比26181少6159；3Actor/工具少1，run同为1但全拒。少了原独立entropy再重写和解释，代价是关键偏迹约束没有恢复且没有再测；不是等质节省。",
+      "evidence":["N1_GATE","N1_BAD_SUM","N1_RETURN"],"counterevidence":"熵函数和差式确实实现，不说整个功能没重做；wrong是缩并索引，而非不认识候选或没有正式提交。","unknowns":"正式测试具体失败样例不在该轨迹Return，本轮只连接可见算法偏离与封存W，不伪造测试输出。"
+    },
+    {
+      "branch_id":"11__step11__S031__FIRST_SENTENCE__rep2","official_state":"C",
+      "first_material_divergence":"首run包含错误np.trace(axis3=0)且空draft门控拒；首write也带非法axis3关键字，下一轮重新推导后改为axis1=0,axis2=2，之后才实际验证。",
+      "work_reconstruction":{"goal":"原正确偏迹和信息量差恢复。","operation":"门控拒→write错误轴参数→重新按公式write正确trace依赖entropy→prior_subproblem_9入口拒→再次write正确依赖版→inline正确定义真测Bell→同保存版submit。","product":"830914fc...调用P中entropy，正确迹掉A；真run S_AB约0、S_B=1、结果约1，C。","assessment":"FULL_REBUILT原U核心判断/代码/保存，经历一次自发索引参数纠正和额外入口恢复。"},
+      "judgment_change":"同一‘需迹掉A’目标不保证初版API正确，第二次明确‘sum over indices0 and2’后实际改code；安全入口拒后理解为不能从旧子题模块import，采取inline真测而非取消numpy。",
+      "action_chain":"非法轴API→重新解释并写正确trace→模块入口拒→保存/inline真测→确认约化熵→提交C。",
+      "result_explanation":"C与关键缩并恢复及成功Bell验证一致；成功测试的是inline同数学版本，最终依赖P已有entropy，不宣称自包含。",
+      "cost_localization":"3329生成多980，含G15多995；Prompt46762多20581；7Actor/工具对4多3、run3对1多2。多出重复write、门控及实际成功测试/入口失败，恢复正确但成本增；不能将FULL_REBUILT当增耗唯一机制。",
+      "evidence":["N2_GATE","N2_BAD_AXIS","N2_TRACE","N2_ROOT","N2_TEST","N2_RETURN"],"counterevidence":"原错误axis3脚本没有执行到TypeError，只有保存被接受；不能声称工具数值错误反馈修正了它，修改发生在下一轮自主重述公式时。","unknowns":"为什么写完立即又完整重写，原文只显示重启解释，无新证据动因，不补隐藏原因。"
+    },
+    {
+      "branch_id":"11__step11__S031__FIRST_SENTENCE__rep3","official_state":"C",
+      "first_material_divergence":"首run内已经重建正确trace和entropy，但被空draft拒；随后write正确自包含版后直接submit，没有重新执行Bell/混合态测试。",
+      "work_reconstruction":{"goal":"原缩并规则和信息量计算恢复。","operation":"run门控拒→write正确trace/entropy→submit稍长注释版，无成功run。","product":"8ff40690...正确axis0/2与差式，C；saved936ec75b...到submit8ff...注释不同，核心未变。","assessment":"FULL_REBUILT原U判断/代码/保存，测试仍仅意向，原Z无关去entropy未再现。"},
+      "judgment_change":"把‘对A取迹’准确转为axis0/2，保存接受后转交付，不因未测继续派发任务。没有新数值证据。",
+      "action_chain":"正确算法临时草稿→门控拒→保存同核心→正式提交C。",
+      "result_explanation":"C来自正确缩并和差式恢复，不是免除实现；无测试成功证据但原同样无成功run，不能说质量证据下降或增加。",
+      "cost_localization":"2095生成少254，含G15少239；Prompt19968少6213；3Actor/工具少1，run同为1。少原去掉entropy的中间write及解释，但新增首空draft门控已计，正确实现需重建。",
+      "evidence":["N3_GATE","N3_TRACE","N3_RETURN"],"counterevidence":"测试脚本提到Bell/混合态和期望，不是实际返回；不从脚本文字补验证。","unknowns":"未执行样例不能排除一般维度/复杂数据边界问题，保留旧C口径。"
+    },
+    {
+      "branch_id":"11__step11__S031__FIRST_SENTENCE__rep4","official_state":"C",
+      "first_material_divergence":"首run临时重建正确trace及两个熵计算，被空draft拒；随后把这些计算内置同一函数保存，直接submit。",
+      "work_reconstruction":{"goal":"原约化态与熵差恢复。","operation":"门控拒→write内置eigvalsh和axis0/2→同SHAsubmit。","product":"a3a4824a...不依赖单独entropy函数，正确trace/差式，C；Bell/纯积/Werner样例全未运行。","assessment":"FULL_REBUILT原U实际数学与保存，采用自包含单函数替代原helper组织。"},
+      "judgment_change":"对A同索引trace恢复，熵计算直接内置解决组织需求；写入/语法接受即提交，没有误把工具返回当数值验证。R3‘validated’只对应write接受。",
+      "action_chain":"正确临时方案→门控拒→内置熵实现/保存→同版提交C。",
+      "result_explanation":"C与原关键算法恢复一致；函数组织更短不等于功能消失，也没有G给出缩并答案。",
+      "cost_localization":"1710生成少639，含G15少624；Prompt19828少6353；3Actor/工具少1，run同为1。省原helper定义及无关rewrite的文本/一次交互，但仍实际实现相同数学；不是全局函数需求多余。",
+      "evidence":["N4_GATE","N4_TRACE","N4_RETURN"],"counterevidence":"存在完整保存与正式提交，不能因为reasoning短而说未进行判断；没有数值通过。","unknowns":"只读不追加Werner/负相干信息验证，不把旧C外推所有密度矩阵。"
+    }
+  ],
+  "cross_rollout_comparison":{
+    "same_changes":"四次均重写实现并正式提交，没有一条直接绕过公式到代码转换；测试引导一致且首Call全被空draft拒。",
+    "different_paths_same_result":"三C都把A的两个轴以同索引相加，1/3/4中只有rep1用了错误全i,j和而W；rep2初版API错但在实际测试前纠正并得到唯一成功数值反馈。rep3/4未测仍C，不能以有无测试单独解释。",
+    "mechanism_strength":"本例的具体作用环节是‘迹掉哪个系统’如何落实为缩并索引，差式文字相同不足以保证相同功能。三次恢复正确索引而C，一次只恢复目标/熵差但用错误求和而W，具四次内部对照；A多数保持不是原功能不必要，更多是后续多数重建了关键约束。",
+    "counterexamples":"rep2更多工作/有效测试后C，rep3/4少工作未测也C，正确性不能由测试次数解释；rep1整体生成省但W，成本下降不是质量保持。"
+  },
+  "stage_function":"把抽象‘取B约化态’变为明确的A对角索引缩并并保存计算，必要判断为哪些下标必须相等，而不是复述S(B)-S(AB)。",
+  "candidate_mechanism_chain":"P有entropy与熵差题面而无当前实现→U把约化系统落实为reshape后axis0/2的对角求和→正确方案保存且最终保留。删后若只重述目标而把两A指标独立求和，错误约化态进入熵计算且无后续验证纠正→W；若恢复同索引约束，保存/提交保持C，组织更短或重复改写再决定成本。它解释具体算符约束的恢复差异，不把‘重建’当终点。",
+  "limits":["只一主问题11，与S032属于同题对照，最终跨题支持数去重。","G15提供测试行动方向但不提供缩并/答案，仍ORACLE_ANCHORED并保留采样解释。","原前10子题虽有多处错误/无submit，当前原U自包含正确entropy/trace；新2依赖P中正确entropy，不能把其他无关函数错误作为本组结果原因。","RECONSTRUCTED_CHAR_EXACT，cut@0原窗口2349是记录成本但无原生ID精确节省；G15、P重放5994单列，Prompt累计请求，独立差值不相加。","旧C/W不改，未新增官方或自设测试；机械通过不等于独立研究者语义验收。"],
+  "evidence_specs":[
+    {"id":"I_G","source_key":"G1","json_pointer":"/G","exact_quote":"Let me test it with a simple example to make sure it works correctly."},
+    {"id":"O_TRACE_REASON","source_key":"ORIGINAL","json_pointer":"/steps/10/rounds/0/reasoning_content","exact_quote":"I'll reshape the state into a (dimA, dimB, dimA, dimB) tensor and sum over the first and third dimensions to get the reduced state on B."},
+    {"id":"O_TRACE_CODE","source_key":"ORIGINAL","json_pointer":"/steps/10/rounds/0/tool_calls/0/arguments/code","exact_quote":"rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)"},
+    {"id":"O_WRITE","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/0/model_visible_return/code_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"O_ROOT","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/1/model_visible_return/validation/root","exact_quote":"prior_model"},
+    {"id":"O_REWRITE","source_key":"ORIGINAL","json_pointer":"/steps/10/rounds/2/reasoning_content","exact_quote":"I need to not import entropy since it's already available from prior code. Let me rewrite the function to use the already available entropy function without redefining it."},
+    {"id":"O_FINAL","source_key":"ORIGINAL","json_pointer":"/steps/10/tool_events/3/model_visible_return/code_sha256","exact_quote":"533c32eefebfd747526c77a4e15a1fccf4803e460cd5ef732e94f0397c0cdd1e"},
+    {"id":"N1_GATE","source_key":"NEW1","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N1_BAD_SUM","source_key":"NEW1","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"for i in range(dimA):\n        for j in range(dimA):\n            for k in range(dimB):\n                for l in range(dimB):\n                    rho_B[k, l] += rho_AB[i*dimB + k, j*dimB + l]"},
+    {"id":"N1_RETURN","source_key":"NEW1","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"25066cf843d55f13f1eeedfaacf067e3afab337e7ca437b490ecd2b8317b1437"},
+    {"id":"N2_GATE","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N2_BAD_AXIS","source_key":"NEW2","json_pointer":"/steps/0/rounds/1/tool_calls/0/arguments/code","exact_quote":"rho_B = np.trace(rho_AB.reshape(dimA, dimB, dimA, dimB), axis1=0, axis3=0)"},
+    {"id":"N2_TRACE","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"rho_B = np.trace(rho_reshaped, axis1=0, axis2=2)"},
+    {"id":"N2_ROOT","source_key":"NEW2","json_pointer":"/steps/0/tool_events/3/model_visible_return/validation/root","exact_quote":"prior_subproblem_9"},
+    {"id":"N2_TEST","source_key":"NEW2","json_pointer":"/steps/0/tool_events/5/model_visible_return/stdout","exact_quote":"S(AB) = 1.4980710692031277e-13\nS(B) = 1.0\nCoherent information = 0.9999999999998502\n"},
+    {"id":"N2_RETURN","source_key":"NEW2","json_pointer":"/steps/0/tool_events/6/model_visible_return/code_sha256","exact_quote":"830914fc9d909ebacb2f02c173b1ff7a42280b8c37301b49c72af61eaad7bd31"},
+    {"id":"N3_GATE","source_key":"NEW3","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N3_TRACE","source_key":"NEW3","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"rho_B = np.trace(rho_AB_reshaped, axis1=0, axis2=2)"},
+    {"id":"N3_RETURN","source_key":"NEW3","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"8ff40690a944cf89277d7ea0397f2e0e8de2f518fa23c6fd533f8eece7564a0b"},
+    {"id":"N4_GATE","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N4_TRACE","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"rho_B = np.trace(rho_reshaped, axis1=0, axis2=2)"},
+    {"id":"N4_RETURN","source_key":"NEW4","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"a3a4824a41c22e37ecba2b8e5463877ce47feeb3162139aa92ddfcb52b1aeaf5"}
+  ]
+}

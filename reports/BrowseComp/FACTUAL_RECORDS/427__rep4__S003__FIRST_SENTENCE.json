@@ -1,0 +1,39 @@
+{
+ "case_id":"427__rep4__S003__FIRST_SENTENCE","question_id":"427","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"N","2":"W","3":"W","4":"W"},"basis":"原ContextN，新1ContextN；新2正式DrPepper错误；新3/4有正式Final但承认未找到公司/请求补充，按有Final未答对记W，不能当无FinalN。k3 B。"},
+ "review_basis":"原18轮18Call全部Reasoning/Return及无Final状态首次完整读，四新30轮27Call及全部Reasoning/content/完整Return全文读。225槽24新增完整片段全读，余精确已读SHA；实际4P+G与27Call配对/下轮可见核验。源字节SHA同时与冻结mapping/audit一致。",
+ "pre_state":"R10@344保留9次Search。P没有确认公司：R4提DrPepper1885/名字，R9 Pepsi历史48158中的DocBradham返回；R10前344字符已以成立1898超窗排除Pepsi，却错误说1898也在产品窗口。厂区等未闭合，有Guerlain工厂资料可见但未采用。",
+ "u_work":"U R10@344至R15@352实际5次Search按成立年、并购、厂区等组合寻找公司，R13曾推欧洲/1866线索，R14提DrPepper未来意向但Call仍泛查。产物仍未匹配，R15之后才实际转DrPepper并在R16识别1885成立超窗，后再泛查/Pepsodent到ContextN。",
+ "u_state_update":"删除后G把原R15具体DrPepper行动移到R10。四新第一真实Call都DrPepper，原五次广查跳过；新3/4随后恢复广查，新1/2主要固定DrPepper。不同在于1885冲突被如何使用与最后提交什么，而非简单是否恢复搜索。",
+ "original_action_consequence":"原U没有得出正确公司，不能将N→错误答案或正式拒答当原正确判断被破坏。新2已识别1885超窗仍接受DrPepper并在Final称1885在窗内；新3/4没有强行认此公司，真实广查后正式承认未找到。三条W的答案行为并不相同。",
+ "guidance":{"text":"Based on all the information I've gathered, let me try searching for \"Dr Pepper\" company specifically, as that was mentioned in one of the earlier searches and matches some of the criteria (product created 1885, named after nickname \"Doc\").","source":"S004 R15@352首句52Token，目标R10@344原生105。","audit":"ORACLE_ANCHORED。DrPepper/1885已在P，不能标首次实体；但G前移实际选此公司的行动，并把Doc昵称与它绑定。P中DocBradham明确来自Pepsi历史48158/R10，DrPepper材料81994只说Morrison命名且来源不明。G的具体命名关系是有污染风险的未来解释，不当新模型自主发现。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/9/reasoning_content","quote":"Founded 1898 (outside 1850-1880 range)","use":"切点P已有对Pepsi日期排除，U随后广查。"},
+  {"id":"O2","source":"original","pointer":"/rounds/14/reasoning_content","quote":"let me try searching for \"Dr Pepper\" company specifically","use":"原后继才真正选择DrPepper，G前移此决策。"},
+  {"id":"O3","source":"original","pointer":"/rounds/15/reasoning_content","quote":"Dr Pepper was created in 1885, which is outside this range","use":"原R16识别候选成立日期冲突后又查泛条件，不是已接受Gold。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"the founding year of the company itself needs to be checked against the 1850-1880 range.","use":"R11局部1885产品匹配但成立未闭合，之后一直DrPepper查询。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/8/reasoning_content","quote":"Dr Pepper seems to match some criteria:","use":"R18只保持部分匹配，最后相同PepsiCo1976 Query重复到ContextN，未正式答案。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"But the company founding date seems to be around 1885, not 1850-1880 ✗","use":"R14明确冲突，不是模型没看到日期。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/5/reasoning_content","quote":"However, I should note that the company founding date doesn't match the 1850-1880 range if we consider the drink was created in 1885.","use":"R15提交前仍保留冲突，却按昵称最可能接受DrPepper，关键判断未持续约束答案。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/5/content","quote":"The Dr Pepper company traces its roots to **1885** (within the specified range)","use":"正式Final把已知不符反称符合，其他年龄/后代/厂区/并购亦有无据断言，W。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Dr Pepper was created in 1885, which is outside the 1850-1880 founding range specified.","use":"R11同样识别冲突，R12实际Query随后泛查成立/工厂。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/5/content","quote":"I was unable to find a company that matches all the specific criteria you've provided.","use":"R15正式拒答/补充请求，Final存在但无正确公司，W而非N。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Founded 1907 (outside 1850-1880 range) ✗","use":"R11实际Faygo返回84654后排除其成立年，是约束运用局部成功反例。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/2/tool_calls/0/function/arguments","quote":"company founded 1860s acquired 1980s two production facilities family business descendants","use":"R12真恢复广查，后还有面积/Pepsodent/家族查询，不是一律固定DrPepper。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/8/content","quote":"I was unable to find a company that matches ALL the specific criteria you provided.","use":"R18正式承认未匹配而非认定某公司，W保留回答形式与错误实体的区别。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Call直接DrPepper，后以1885产品/名字部分匹配维持该对象，查自造WilliamPepper/1976/PepsiCo等。","state_chain":"G选对象→部分匹配→其他条件仍缺触发同候选取证→最后两次同Query/Return→ContextN。","function_change":"原五次广查没有恢复，换成特定对象核验，9Search与原后缀同数，无法证明跳过功能后省总工作。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"先DrPepper三次，R13实际泛查面积，再回DrPepper；R14/15识别成立超窗却最终采用。","state_chain":"候选新优先级→明确冲突→其他入口没找到更好→未消解仍按昵称接受→Final反称1885合格W。","function_change":"原广查部分恢复，仅一次；具体候选核验增加，较早错误提交缩短交互但生成增。","evidence":["N21","N22","N23"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"DrPepper两查识别冲突后，真转三次不限定公司条件Query；最终没有采用错误候选。","state_chain":"优先候选→日期不合→恢复广查→仍未匹配→正式承认未找到W。","function_change":"U广查工作部分恢复，执行更少；不是无Final也不是错误接受DrPepper，留正式拒答这一反例。","evidence":["N31","N32"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"两次DrPepper，正确排除Faygo1907后真正广查/面积/Pepsodent，最终承认无匹配。","state_chain":"初候选部分匹配→排除日期冲突旁候选→恢复原广查方向→仍缺有效匹配→正式拒答W。","function_change":"原主要广查操作恢复，8Search较原少1，Actor同9且生成增；停止形式改了未改善正确性。","evidence":["N41","N42","N43"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"本B组的三W不能合称错误候选被接受：只有新2接受DrPepper，另两条主动承认未找到。G把已出现的候选变为立即实际核验目标，并携带可疑昵称绑定；之后一条反复部分匹配到N、一条在明确日期冲突仍接受、两条广查后拒答。作用链应定位冲突有没有约束下一行动和最终选择，不能仅从终态改变推原U重要，也不能把G实体已在P就说没有行动/关系影响。",
+ "within_case_support":"四条首查DrPepper，三条之后有不同程度广查恢复；明确冲突后仍接受仅新2，正式拒答两条、无Final一条。频率3/4改变而接受错候选链仅1/4。",
+ "mechanism_chain_checks":[
+  {"chain":"1885成立冲突被识别但未消解，最终仍接受DrPepper并反称在窗口","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N21","N22","N23"],"3":["N31","N32"],"4":["N41","N42","N43"]},"limits":"新3/4拒答是反例，不能把三个W都算该链；原也N，非正确到错误因果证明。"}
+ ],
+ "counterevidence_and_limits":["G DrPepper不是新实体，但Doc命名关系与前移核验方向需单列，不能用实体已见掩盖关系污染。","新4实际Return支持Faygo1907/1985并购，但模型pop昵称误释仍在，局部排除成功不等于全程证据解释正确。","新3/4正式Final存在却不提供Gold，研究记W并单列拒答，不能写NO_FINAL。","原U广查确实未找到匹配，不根据Gold倒推它已完成正确判断或必须保留。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R10@344保留105，G52。原后缀1857gen/9Search/9Actor，Prompt28654+343552=372206。新gen1683/2106/1479/2420，加G净差−122/+301/−326/+615；Search9/5/5/8 Actor9/6/6/9 Prompt371396/220237/219150/370271。新3少消耗但正式拒答未成功；新2少Call却生成多且错答。首P重放、G与新生成分列，不把原整题当后缀。",
+ "next_cross_case_test":"与427rep1Underwood固定路线比较，在相同题目约束下候选入口/G关系如何变化；再跨题验证已识别冲突后的真实排除、重新接受或拒答，分别数，不把四态结果率当机制率。"
+}

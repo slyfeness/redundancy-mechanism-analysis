@@ -1,0 +1,473 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0289",
+  "stage_id": "S005",
+  "sample_order": 61,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0289/trajectory.json",
+      "source_sha256": "79fe9a45b937d41313730f9254a8ac4657eb9c0bb501a8ed95937071b200cb5a"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0289.json",
+      "source_sha256": "5a69308283c17d91f1982c8a833f4bde5761de1abbf1f58d257d029dc8dce939"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "f034235fd57774a08104ce0275488a1ff1fb19c3cfd938f98668757e1a261a9a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "63d5a529c9813453765d4019fd08686201a62201eabb0659e8a95c018d1d381d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "0aa146fcb625e9dac7950721b624a951c2171a4c7627eb475b94ca52a52d3056"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "9ed7521100641cce49875c0119160efdc0927c52963c1725f20ca9aeab15cf5e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c7f46d495015df060c424feb32ffc628db550d4d915757d6906857108a2a42a3"
+    }
+  },
+  "question_and_gold": {
+    "question": "Moses Schorr ministered a significant religious institution in Warsaw. In what year was the official report, compiled by the SS-Gruppenführer responsible for the destruction of that institution, submitted by Poland to the international organization for culture and heritage, for inclusion in their specific program dedicated to documentary heritage?",
+    "gold": [
+      "2017"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "2017",
+    "adopted_answer": "2017年",
+    "outcome": "C",
+    "reason": "正式提交年与新旧实际Report片段的2017一致。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R14@170，当前原文已明确会堂1943毁坏、Stroop负责；此前13次Search全部历史返回保留，当前所缺是具体报告及其UNESCO提交年。P27799Token。旧日志在历史Round中的推理不等实际P保留的消息，当前170字符确实保留Stroop采用。",
+    "evidence_states": "机构和负责人已提取、采用，并即将影响报告查询；提交年份尚未得到，不能将未来2017Return当已有。",
+    "evidence": [
+      "I_CURRENT",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items，R14[170,547)及E14完整Call/Return。",
+    "ranges": [
+      {
+        "round": 14,
+        "pointer": "/rounds/13/reasoning_content",
+        "start": 170,
+        "end": 547
+      }
+    ],
+    "goal": "从已知毁坏者Stroop核查报告提交UNESCO的年份。",
+    "operations": "将已采用的人物用于Jürgen Stroop report UNESCO Memory of the World实际Search，完整Return直接给出2017。",
+    "product": "获得Stroop Report及2017提交/登记的直接文档依据。",
+    "judgment_change": "负责人已知、报告年份未知→报告与年份已有直接支持，可进入全题接受。",
+    "evidence": [
+      "O_QUERY",
+      "O_DATE"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R15引用2017并串联Schorr—Great Synagogue—Stroop—Report—UNESCO，Submit2017，没有额外Search。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已确定链条的最后一个年份缺口做定向取证，给提交提供直接依据。",
+    "information_state_dependence": "这里负责人已经在当前P，而不是待G补偿；因此恢复报告查询并非重新发现会堂或负责人。",
+    "first_update": "提交年2017首次由本次真实Return提供；后续只是采用该值。"
+  },
+  "guide_audit": {
+    "text": "I have found the answer.",
+    "source": "O#/rounds/14/reasoning_content[0,24)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "6教师Token只是已找到答案的确定性提示，P尚无年份，故其完成状态来自未来；没有新实体、年份或报告事实。四条实际仍Search，不将G当自主完成或事实证据。",
+    "evidence": [
+      "I_G",
+      "I_CURRENT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat01",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "第二个真实Search给出2017，后续虽军衔解释有无直接证据的自我确认，目标年份有明确依据。",
+      "outcome_evidence": [
+        "N1_DATE",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R14查Stroop report Warsaw Ghetto destruction submitted to UNESCO，先得人物与报告资料但无2017；R15准确保留年份缺口，再查submission year，E2明确2017；R16长6323字符1884生成Token，反复核对Brigadeführer/Gruppenführer，声称April1943晋升但所列片段不足以证实，最后Submit。",
+      "first_judgment_divergence": "原一次ReportQuery就够，新首Return不含年份，因此另作一次合理缺口查询；主要额外认知发生在日期已补齐后重新核对军衔。",
+      "first_actual_tool_divergence": "首Query加Warsaw Ghetto destruction，检索面不同；第二Query更聚焦提交年。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "人物已定→查Report提交→得到2017。",
+          "new_goal_operation_product": "同一目标用两Search，第二次真实取得并采用2017；取证、产物和最终应用完整恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N1_QUERY2",
+            "N1_DATE",
+            "N1_RANK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同功能并未跳过；不是只看Query重合，而是新直接返回2017并实际用于Submit。",
+      "judgment_action_outcome_chain": "首Return未补日期→重新定位具体年份缺口并改变Query→直接2017→仍把军衔差异当需内部澄清的问题，长篇反复无新Call→最终保持C。增加的是第二取证和日期已知后的内部核查，而非目标答案失去。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2130生成/95929Prompt/2Search0Open3Actor；原后缀115–274生成/1S0O2段，新生成+1856至+2015，Search/Actor各+1。R16占1884生成是主要新增落点，非目标Search本身节省。",
+      "counterevidence_and_alternatives": "军衔日期自我确认缺少新增直接证据，C不等所有解释充分；同G其他三条一次Search即提交，不是引导必然造成长核查。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat02",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "真实Report片段2017明确，R15对照题目后提交。",
+      "outcome_evidence": [
+        "N2_DATE",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R14在G后仍明确报告提交年未知，以Stroop Report Poland UNESCO Memory of the World实际检索，首Return已有2017；R15重列完整链条，确认题目问提交年并Submit。",
+      "first_judgment_divergence": "没有关键候选变化；新稍长解释为何查年份，原一次取证功能照常恢复。",
+      "first_actual_tool_divergence": "首Query换词序和Poland，仍同报告年份取证，返回实际核对。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得报告提交年份。",
+          "new_goal_operation_product": "一次真实Search取到同2017、明确采用，完整恢复目标/操作/产物。",
+          "evidence": [
+            "O_DATE",
+            "N2_QUERY",
+            "N2_DATE",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期查证及接受均实际出现；不能因A类答案保持叫功能可省。",
+      "judgment_action_outcome_chain": "既有负责人已稳定→G未提供答案值→实际查报告年份→2017直接证据→完整链条接受并C，行动结构与原相近，只表达较长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "446生成/59932Prompt/1Search0Open2Actor，原115–274生成同1S2段，生成+172至+331；无搜索节省，增加在查询准备与提交前整体解释。",
+      "counterevidence_and_alternatives": "同一C不表示原U重复；这里年份确实不在P。原新采样档位、字符切点成本区间均保留。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat03",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "首Call与原E14完全相同，真实Return2017后明确提交。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R14显式reasoning仅换行，但结构化Search真实执行原Jürgen Stroop report UNESCO Memory of the World；E1与原E14完整观察相同；R15简短串联会堂、Stroop、报告及2017后Submit。",
+      "first_judgment_divergence": "无可确认实质判断差异，原取证操作与产物都恢复；缺少前置计划不代表没取证。",
+      "first_actual_tool_divergence": "首Call与原相同，没有工具路径分歧；原生结构化ID不同正常保留。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查报告取得2017并供下一轮采用。",
+          "new_goal_operation_product": "相同真实Query及完整Return，下一轮采用2017，功能完整恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N3_QUERY",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "明确的真实Call/Return和后续采用足够，不因reasoning空白标未观察。",
+      "judgment_action_outcome_chain": "P人名已定→同ReportQuery→相同2017证据→简短接受C；差异主要是表达长度与调用形式，并非功能移除。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "150生成/58342Prompt/1S0O2Actor；原115–274生成，同工具/轮数，差值-124至+35跨零，不能声称精确省Token。",
+      "counterevidence_and_alternatives": "表面生成150低于原整R14+15的274，但切点在R14内部，不能把274全当原后缀。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE__repeat04",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "首实际Report查询直接2017，R15引用原句接受，正式C。",
+      "outcome_evidence": [
+        "N4_DATE",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R14先列毁坏者、报告、UNESCO年份三点，但实际只查报告年份；E1直接2017。R15列全题链条并重引提交年原句，无新增Search，Submit。",
+      "first_judgment_divergence": "未观察核心关系或答案分歧；独立整体判断表达比原长，而目标取证未减少。",
+      "first_actual_tool_divergence": "首Query加入Poland，仍实际验证同报告提交年。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "报告年份缺口→Search→2017直证。",
+          "new_goal_operation_product": "同缺口一次新Search直接补齐，结果被明确用于Submit。",
+          "evidence": [
+            "O_DATE",
+            "N4_QUERY",
+            "N4_DATE",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、真实操作、产物和采用齐备。",
+      "judgment_action_outcome_chain": "P提供机构和人名→按G之后仍取证→2017补缺口→完整条件解释并提交C；答案保持是工作恢复，不是必要证据已在P。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S005__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "453生成/58315Prompt/1Search0Open2Actor；原115–274生成，增加179至338，无Search/Actor减少，主要多在全题链条复述。",
+      "counterevidence_and_alternatives": "G只表示找到不带年份，不能把真实新Return2017说成教师答案泄漏；完成状态提示影响仍无法排除。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "四条都实际重新取得报告年份并提交，同目标恢复4/4。一次两Search后长篇军衔判断；另外三次一Search后长短不同。",
+    "costs": "3条明确生成增加，1条区间跨零；一次Search/Actor增加，余相同。答案稳定不说明删除节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题最后年份缺口的四次续跑",
+      "chain": "具体机构和负责人在当前P已采用，G只给完成提示→模型仍恢复定向报告年份取证→2017被用于正式提交，结果稳定；差异转移到证据取得后的军衔核查与条件重述，造成生成量差别而不改变目标值。",
+      "limits": "这是功能恢复、非工作可有可无。无真实无G对照，不能归因确定性提示；本题无法证明其他题均如此。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "完整原轨迹及四新41413字符已阅读；相同Return仅在完整文本已亲读并核SHA时引用，不是回填给模型。",
+    "R16军衔部分反复实际推理没有新Search，不能从多次Let me check文字增计工具。",
+    "原115–274是部分Round保守区间；G6已计Prompt，P27799单列；原新配置和预算差异保留，独立删除分支不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_CURRENT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 14,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The SS force that destroyed the ghetto and the synagogue was led by Jürgen Stroop."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 14,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have found the answer."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Jürgen Stroop report UNESCO Memory of the World",
+      "call_id": "chatcmpl-tool-ae9c3c5708f0b77f"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/13/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "chatcmpl-tool-ae9c3c5708f0b77f",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/14/reasoning_content",
+      "exact_quote": "I have found the answer."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N1_QUERY2",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Stroop Report UNESCO Memory of the World Register Poland submission year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "N1_RANK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Let me double check the rank."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Stroop Report Poland UNESCO Memory of the World",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Therefore, the answer is 2017."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Jürgen Stroop report UNESCO Memory of the World",
+      "call_id": "chatcmpl-tool-a31f6d0f175a07a0"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I have the answer: 2017."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Jürgen Stroop report Poland UNESCO Memory of the World",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_DATE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms the answer is 2017."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

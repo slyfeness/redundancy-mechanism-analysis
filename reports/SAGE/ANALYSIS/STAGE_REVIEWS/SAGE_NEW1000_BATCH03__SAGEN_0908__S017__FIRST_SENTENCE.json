@@ -1,0 +1,450 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0908",
+  "stage_id": "S017",
+  "sample_order": 88,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "In what year did the college, where the head coach who immediately preceded the head coach of Michigan State during punter Brandon Fields' collegiate career played football, win the NAIA Football National Championship?",
+    "gold": [
+      "1962"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原R17用满10000生成Token但无提交，不以中间Never当Final。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R15[0,1857)及前14轮真实工具。Fields2003–2006→Smith→Williams→Purdue已反复采用；R4返回2002赛季曾写Williams被MorrisWatts临时接任，但模型一直没采用该细分。Purdue不参加NAIA、教练表无全国冠军的冲突已多次识别。",
+    "evidence_states": "Williams/Purdue关系有实际Return和Open支持，但立即前任关系仍遗漏临时教练。NAIA冲突不是本U首次发现，P中甚至已有Theywouldnothavewon判断。",
+    "evidence": [
+      "I_P",
+      "O_INTERIM",
+      "O_NO_TITLE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/16/items",
+    "ranges": [
+      {
+        "round": 15,
+        "pointer": "/rounds/14/reasoning_content",
+        "start": 1857,
+        "end": 1919
+      },
+      {
+        "round": 16,
+        "pointer": "/rounds/15/reasoning_content",
+        "start": 0,
+        "end": 611
+      }
+    ],
+    "goal": "沿Purdue对象再核NAIA冠军年份。",
+    "operations": "R15PurdueNAIAfootballchampionshiphistory，R16PurduefootballNAIAnationalchampionwinner两次真实Search。",
+    "product": "同一套篮球/其他学校等无关返回，未取得Purdue获奖年，也没改变前任教练。",
+    "judgment_change": "保留旧对象，未把NAIA不符反馈转为核查临时前任，仍将未解问题派发为Purdue查询。",
+    "evidence": [
+      "O_U1",
+      "O_U2"
+    ]
+  },
+  "original_followup": {
+    "use": "R17 37715字符持续同教练链、Purdue无NAIA、Never、Weber/Troy备选，很多写Letsearch无真实Call，最终无Final。",
+    "evidence": [
+      "O_NEXT",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已识别冲突但保留同候选的冠军历史重复取证。",
+    "state_relation": "删后W/W/W/W相对原N变化4次，仅从无提交变成错误提交；不应当作答案改善。两条不再查，另一条完整重查，另一条改猜Weber1969，均没实际修复教练链。",
+    "evidence": [
+      "N1_F",
+      "N2_Q",
+      "N3_F",
+      "N4_GUESS"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Based on the search results:",
+    "source_position": "R17[0,28)",
+    "oracle_anchored": true,
+    "novelty": "6Token普通证据总结开头，没有学校/教练/年份、Never或1962；会诱导以已有证据收束，但不能当自主判断全文或未来事实。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Purdue University never won the NAIA Football National Championship as it is an NCAA Division I institution, not an NAIA school.",
+      "adopted_answer": "Purdue从未获NAIA冠军",
+      "outcome": "W",
+      "outcome_reason": "正式否定获奖，没有回答目标1962。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R15 1400字符直接采用P中NoPurduecoachhasled...，重新列Williams链后正式提交Purdue从未。0Search。",
+      "first_judgment_divergence": "将早已识别的Purdue冲突当作可提交的否定答案，不再把它当需继续查询的缺口。",
+      "first_actual_tool_divergence": "原PurdueSearch被Submit替代。",
+      "function_correspondence": [
+        {
+          "original_goal": "再核PurdueNAIA",
+          "original_operation": "两Search",
+          "original_product": "未得年，旧链未改",
+          "new_goal": "根据P资料回答是否获奖",
+          "new_operation": "复盘后Submit，没新Search",
+          "new_product": "Never型W",
+          "evidence": [
+            "O_U1",
+            "O_U2",
+            "N1_USE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "新推理有判断但目标两次真实冠军取证未重做。",
+      "judgment_action_outcome_chain": "P已有错误前任链及NAIA冲突→G后把冲突固化为题目无解→取消重查并提交否定→N变W，非正确性保持。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "364生成41995Prompt0Search1Actor；原真实切点生成保守[10120,10646]、2Search3生成段。少去两Search与R17约10K反复，但P41989重放单列，G6不重复扣，无native精确节省。",
+      "counterevidence_and_alternatives": "缩短不等于必要工作无损省去；P的临时教练材料没有被新采用。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Purdue University has never won an NAIA Football National Championship.",
+      "adopted_answer": "Purdue从未获奖",
+      "outcome": "W",
+      "outcome_reason": "正式否定Purdue，不是1962。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R15 345字符认Purdue无冠军仍SearchPurdueUniversityNAIAfootball，返回Wegher/Franklin/SimonFraser等未连目标；R16 2182字符回旧WilliamsPurdue链并查PurdueBoilermakersNAIAfootballchampionshiphistory，返回篮球/其他学校；R17 13520字符反复同链与Never、说再查但无更多Search，终于Submit否定。",
+      "first_judgment_divergence": "直接引用NoPurduecoach结论后再取证，最后形成实际提交而非原长度停止。",
+      "first_actual_tool_divergence": "同Purdue缺口换Query，但两Search仍实做。",
+      "function_correspondence": [
+        {
+          "original_goal": "两次PurdueNAIA核查",
+          "original_operation": "2Search",
+          "original_product": "无相应年份",
+          "new_goal": "同Purdue冠军缺口",
+          "new_operation": "R15/16两Search",
+          "new_product": "同样没得目标年，最终NeverW",
+          "evidence": [
+            "O_U1",
+            "O_U2",
+            "N2_Q",
+            "N2_REPEAT",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、两次实际操作、无增证产物均对应，非只Query相似。",
+      "judgment_action_outcome_chain": "同错误链→无冠军冲突继续触发取证→新返回仍未改变对象→最终接受无奖判断并提交W；功能重建但长篇缩短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "3717生成137695Prompt2Search3Actor；原[10120,10646]生成、2Search3段。Search没减少，主要最后反复从10000降到3065Token。Prompt实际含重放P41989，不能按原整轨迹399516算后缀节省。",
+      "counterevidence_and_alternatives": "完整重查仍更短，不能因FULL_REBUILT否定表达/退出组织的减少；但仍W，不是质量改善。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Never",
+      "adopted_answer": "从未",
+      "outcome": "W",
+      "outcome_reason": "正式Never，不是目标年。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R15 293字符引用P中Purdue教练表与NAIA其他学校，直接认从未并Submit。没有新Search/Open。",
+      "first_judgment_divergence": "把已有负向证据当完整回答，而不是查前任关系或继续冠军检索。",
+      "first_actual_tool_divergence": "Submit替代原两Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "冠军再取证",
+          "original_operation": "两Search",
+          "original_product": "无对应年",
+          "new_goal": "依据P否定获奖",
+          "new_operation": "293字符后Submit",
+          "new_product": "NeverW",
+          "evidence": [
+            "O_U1",
+            "O_U2",
+            "N3_USE",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "只有P证据复述和提交，没有真实重新核查。",
+      "judgment_action_outcome_chain": "错误学校已确定→已有冲突被解释为题目无获奖年→无需新检索直接Submit→更短但错误。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "96生成41995Prompt0Search1Actor，对照原[10120,10646]与2Search3段，主要未执行两次重查和长R17。G6仅prefill，P41989单列。",
+      "counterevidence_and_alternatives": "r1同结果却364Token，微观表达和采样不同；不能归为原U决定正确性。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1969",
+      "adopted_answer": "1969",
+      "outcome": "W",
+      "outcome_reason": "没有证据的WeberState1969猜测，非1962。",
+      "outcome_evidence": [
+        "N4_GUESS",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R15 375字符同Purdue无NAIA后真实SearchPurdueNAIAFootballNationalChampionshiphistory，返回原Purdue系统等；R16 24752字符反复WilliamsPurdue、SmithWeber、SabanLSU等，未做任何新Call却多次声称要查；最终因题目应有年，绕过自己承认的前任关系，猜Weber1969并正式Submit。",
+      "first_judgment_divergence": "冲突未触发核实临时前任，而触发替换成当前教练母校并猜年份。",
+      "first_actual_tool_divergence": "一次PurdueSearch后不再真实检索Weber。",
+      "function_correspondence": [
+        {
+          "original_goal": "Purdue冠军历史",
+          "original_operation": "两Search",
+          "original_product": "无对应年",
+          "new_goal": "Purdue后转猜Weber",
+          "new_operation": "一次PurdueSearch+纯推理备选",
+          "new_product": "无直接证据的1969W",
+          "evidence": [
+            "O_U1",
+            "O_U2",
+            "N4_Q",
+            "N4_GUESS",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "第一次同缺口取证重做，第二次真实重查未再现；新Weber核验只是意向不是Call。",
+      "judgment_action_outcome_chain": "P错误链遇NAIA不符→保留其事实却为满足有年份预期改用不合前任条件的Weber→无文档支撑的1969正式提交→W。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "6823生成87461Prompt1Search2Actor，原[10120,10646]2Search3段；少一次实际查询及部分长推理，但额外错误Weber推导仍占6703Token。",
+      "counterevidence_and_alternatives": "没相同Never结果但同样未修前任；不能用终态W同标签掩盖错误答案形成过程不同。"
+    }
+  ],
+  "four_run_comparison": "W/W/W/W均形成Final，但不含正确答案；r1/r3不重建取证，r2完整重建，r4部分重建。共同未采用P里MorrisWatts接替Williams的材料，保留Purdue或无证换Weber。B因N→W不是变正确，也不证明被删Stage重要。",
+  "conditional_mechanism": {
+    "observed_chain": "学校冠军冲突已识别却没有回查立即前任→冲突反复派发同对象查询或直接变成Never提交；另一路为满足年份外形而换不合链的对象。",
+    "support_scope": "1Stage1题4路径，N→W4次，分取证是否重建与错误答案路径。",
+    "counterexamples": "r2完全恢复两Search仍W且生成更少，r1/r3不用Search同W；因此取消重查不是错误答案唯一原因。",
+    "limits": "G总结方向+seed影响何时提交；不得宣称从没有Final到有错误Final是任务改善。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 15,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "They would not have won an NAIA championship."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 15,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Based on the search results:"
+    },
+    {
+      "evidence_id": "O_INTERIM",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/5/snippet",
+      "exact_quote": "replaced after the Michigan game by interim head coach Morris Watts",
+      "doc_ids": [
+        "wiki25:6050057"
+      ]
+    },
+    {
+      "evidence_id": "O_NO_TITLE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/1/snippet",
+      "exact_quote": "No Purdue coach has led the Boilermakers to a national championship.",
+      "doc_ids": [
+        "wiki25:5742855"
+      ]
+    },
+    {
+      "evidence_id": "O_U1",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/14/arguments/query",
+      "exact_quote": "Purdue NAIA football championship history",
+      "call_id": "chatcmpl-tool-bdb2d3b9e1217cfc"
+    },
+    {
+      "evidence_id": "O_U2",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 16,
+      "event_type": "call",
+      "json_pointer": "/tool_events/15/arguments/query",
+      "exact_quote": "Purdue football NAIA national championship winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "The college is Purdue University."
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 17,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "N1_USE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the answer might be that Purdue never won the NAIA Football National Championship, or the question might be based on a false premise."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Purdue University never won the NAIA Football National Championship as it is an NCAA Division I institution, not an NAIA school."
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Purdue University NAIA football",
+      "call_id": "chatcmpl-tool-bd8bbe0190d79251"
+    },
+    {
+      "evidence_id": "N2_REPEAT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Purdue Boilermakers NAIA football championship history",
+      "call_id": "chatcmpl-tool-a8e1bc8b30c00763"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Purdue University has never won an NAIA Football National Championship."
+    },
+    {
+      "evidence_id": "N3_USE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the answer appears to be that Purdue never won the NAIA Football National Championship."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 15,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Never"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Purdue NAIA Football National Championship history",
+      "call_id": "chatcmpl-tool-8f4dc51dd1670bfe"
+    },
+    {
+      "evidence_id": "N4_GUESS",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I will go with **1969** assuming the question refers to Weber State (Smith's college) despite the \"preceded\" phrasing"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1969"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0908/trajectory.json",
+      "source_sha256": "c47c3cbe3840531cb431632814e8178245fca5a85ab034c8caffea8a24ac9307"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0908.json",
+      "source_sha256": "e15d939bb8894b47948038b15105542294211553bb3305589fe2912e408d4f95"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c0998fef4622e48238ae7f55a3aa06735e00e43c6a4447d4e8eb33ce0280d77f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "fbd41841c4cf9a6fbfbfa124beef9685715eb63be03359d570d968d324523307"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "3709955fcb941fa943f780665c34b168433d263b43415f42af2ab19775266c50"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "9b0354e48da3628463620f1c72d799acea3fea8166b3d4a94623d236065b968f"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0908__S017__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "7619c600f81fd74ce7b9ab2bdccc3cca52d1024331c58066d911f14574439e71"
+    }
+  }
+}

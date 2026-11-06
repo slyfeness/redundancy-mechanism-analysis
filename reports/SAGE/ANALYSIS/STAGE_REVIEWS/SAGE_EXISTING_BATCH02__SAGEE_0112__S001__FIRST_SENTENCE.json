@@ -1,0 +1,462 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0112",
+  "stage_id": "S001",
+  "sample_order": 43,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the specific calendar date of the formal declaration of independence for the South American nation in which the poet, famously known for his 'yaravíes' and his participation in the Battle of Umachiri, was executed by firing squad?",
+    "gold": [
+      "July 28, 1821"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "July 28, 1821",
+    "adopted_answer": "July 28, 1821",
+    "outcome": "C",
+    "reason": "正式Submit符合当前Gold宣告日。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，仅原题和工具系统，没有诗人、国家、处决日期或工具返回。",
+    "evidence_states": "原题匿名诗人，U才检索到Melgar与Peru；G提前给这两实体及关联。",
+    "evidence": [
+      "O_Q",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 574
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 325
+      }
+    ],
+    "goal": "依据诗歌、战役和处决线索找诗人与国家入口。",
+    "operations": "匿名三线索Search，Corrales文给Melgar和Peru/Umachiri后处决，R2采用身份和1815处决。",
+    "product": "Melgar—Peru关系成立供独立日期查询；yaravies/枪决未逐项直接返回。",
+    "judgment_change": "匿名对象变成具体诗人与Peru查询对象。",
+    "evidence": [
+      "O_QUERY",
+      "O_POET",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "Peru日期检索读出15签署/28宣告，短Open后再查宣告日期、多源28接受Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始诗人识别与国家关系采用。",
+    "state_relation": "四条都再次真实执行诗人Search和采用；三条定向含G姓名较早核实，一条匿名Query失败、空Return后多轮猜错，R7战役宽搜才找回。不能把有G等同一直保持其实体。",
+    "evidence": [
+      "N1_ADOPT",
+      "N2_ADOPT",
+      "N3_ADOPT",
+      "N4_LOST",
+      "N4_RECOVER"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "From the context, Mariano Melgar is associated with Peru (Arequipa, Peru).",
+    "source_position": "R2[325,399)，18派生Token。",
+    "novelty": "P原题无姓名/国家，G直接给目标诗人与国家、城市及关系，是被删U之后获得的信息。",
+    "risk": "ORACLE_ANCHORED关键未来实体与关系补偿，不能作为严格无泄漏可省证据；首Stage重启尤其不能宣称发现功能跳过。G只注入首请求，不假设后续每轮仍保留该Reasoning。",
+    "evidence": [
+      "I_G",
+      "O_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 15, 1821",
+      "adopted_answer": "July 15, 1821",
+      "outcome": "W",
+      "outcome_reason": "冻结Gold为28日；15为有文档支持的Act签署日，formal措辞真实歧义保留待研究者裁，不宣称15日期事实虚构。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_CHOICE"
+      ],
+      "work_and_evidence_timeline": "R1沿G认Melgar却猜处决1821Jan15，真实姓名三线索Search得到Corrales、1730562、Cuzco；R2改1815March12并采用Peru。日期Search得双日期；R3/4两个双日期长Query返回完全同无关人物日期；R5Open2729314默认全文，签Act15直接可见但公告28不在该段，模型混引其他Search；R6又Open6623804前1000无日；R7长17046字符反复Act/公开宣告，最终真实Submit15。",
+      "first_judgment_divergence": "初处决日期猜错后被Return纠正；重要后段分歧为formal逐步绑定Act签署。",
+      "first_actual_tool_divergence": "首Query加入G给的Mariano姓名，得直接诗歌来源较原完整；后日期比较Query含两日期导致无关召回。",
+      "function_correspondence": [
+        {
+          "original_goal": "诗人/国家识别",
+          "original_operation": "匿名Search后采用",
+          "original_product": "MelgarPeru1815",
+          "new_goal": "核实G候选",
+          "new_operation": "姓名定向Search并修正死亡日",
+          "new_product": "同关系且诗歌直接材料",
+          "evidence": [
+            "O_QUERY",
+            "O_POET",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际工作重新执行、证据采用恢复；最终不同来自后段日期事件解释而非诗人丢失。",
+      "chain": "G给候选→核验并纠正处决日→正确国家恢复→双日期未唯一消歧→长篇Act解释固化→GoldW且高消耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "6722生成64968Prompt7Actor4Search2Open；原1205生成23693Prompt5Actor3Search1Open，增加5517生成、1Search1Open2Actor。生成大头R7 4550，另两个双日期Query无有效信息。P492/G18分列。",
+      "counterevidence_and_alternatives": "已完成原U仍可W；题义歧义和采样不能排除，不能声称U的身份判断决定全部变化。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "选择公开宣告28并正式Submit。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_CHOICE"
+      ],
+      "work_and_evidence_timeline": "R1姓名三线索Search同r1批；R2采用诗人/国家并查Peru日期；R3已倾向28但Open2729314首10只Two days a；R4完整6311字符反复15签署/28宣告，最终选28Submit，无第二日期Search。",
+      "first_judgment_divergence": "初身份已由G给并核实，后持续辨词义但不再发多余双日期Query。",
+      "first_actual_tool_divergence": "首姓名Search，后Open另文档极短10。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别诗人和国家",
+          "original_operation": "Search采用",
+          "original_product": "MelgarPeru",
+          "new_goal": "验证G给关系",
+          "new_operation": "同真实定向Search采用",
+          "new_product": "相同且yaravies直接可见",
+          "evidence": [
+            "O_POET",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原识别功能重建并有真实材料，不只是G直接答案。",
+      "chain": "G候选→真实核验→双日期→短Open无增量→较长语义比较收束28→C，交互较少但生成更长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2695生成14049Prompt4Actor2Search1Open；生成比原多1490，Search/Actor各少1，Prompt少9644。R4 1898生成是主要新增。",
+      "counterevidence_and_alternatives": "更少交互并未更少生成，不将正确C判所有成本下降。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "真实Submit28，初处决年份已由返回纠正。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_CHOICE"
+      ],
+      "work_and_evidence_timeline": "R1自写Melgar1790–1821，姓名Search与r1同批；R2实际采用1815March12和Peru，查独立日；R3完整20373字符、5977生成持续两日期语义比较，没有新Open或Search，最后正式选28Submit。",
+      "first_judgment_divergence": "原需短Open/新Search，本支直接在已有双日期上长篇解释；不再取证却不早结束。",
+      "first_actual_tool_divergence": "两Search后Submit，无Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别诗人国家",
+          "original_operation": "Search采用",
+          "original_product": "Melgar1815Peru",
+          "new_goal": "同关系核实",
+          "new_operation": "真实姓名Search修错年",
+          "new_product": "同关系",
+          "evidence": [
+            "O_ADOPT",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "身份和国家关系通过真实材料恢复，后面的长篇不代表U缺失。",
+      "chain": "G候选核实→正确国家恢复→日期事实均有→词义不断重判→最终C，生成爆长但工具少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "6281生成8208Prompt3Actor2Search0Open；比原多5076生成、少1Search1Open2Actor，累计Prompt少15485。R3无新工具的5977生成解释大头。",
+      "counterevidence_and_alternatives": "不能把长推理里的反复search字样算真实Call；成本维度方向相反。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "R7新返回找回诗人、后查日期并真实Submit28。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_RECOVER",
+        "N4_CHOICE"
+      ],
+      "work_and_evidence_timeline": "R1提G名字但首匿名Query仅AyaviriMelgar地方史；R2不再采用Mariano，猜Delgado并Search诗人枪决，空；R3同首Query同地方史；R4诗歌处决Query空，R5/6相同poetyaravies两次仍空，猜多名人物；R7改纯BattleofUmachiri，终于得Corrales、1730562等；R8明确采用Mariano/Peru再查日期；R9长13007字符比较两日期后Submit28。",
+      "first_judgment_divergence": "首Return没有诗人名时，没有持续沿G定向查Mariano，转匿名猜测；G首请求信息不应假设后轮持续在模板。",
+      "first_actual_tool_divergence": "首匿名Query与原词executed/execution不同返回地方史；直到第7次宽战役入口才恢复人物。",
+      "function_correspondence": [
+        {
+          "original_goal": "找到诗人/国家",
+          "original_operation": "匿名联合线索Search",
+          "original_product": "直接CorralesMelgar",
+          "new_goal": "同",
+          "new_operation": "6次失败/无关搜索后纯战役Search",
+          "new_product": "最终Melgar与Peru恢复",
+          "evidence": [
+            "O_QUERY",
+            "N4_LOST",
+            "N4_RECOVER"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "识别实际重做且显著延迟，不因初G包含名字就标其全程已知。",
+      "chain": "无关初返回→未保持候选线索、猜多个诗人→空Return仍触发匿名重试→改战役入口得到明确身份→国家日期核查→C但多Search/长生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "6523生成20112Prompt9Actor8Search0Open；原+5318生成、+5Search、−1Open、+4Actor。首6搜索及猜人篇幅、末R9 3814生成分别定位增量；Prompt仍少3581，不能成本全部同向。",
+      "counterevidence_and_alternatives": "空Return是真实；相同Query重复仍空，不证明证据不存在。后续恢复说明G不能保证候选一直采用；模板历史Reasoning可见性是重要替代因素。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "3C1W按冻结Gold，r1签署解释待裁；4FULL_REBUILT初始识别。",
+    "shared_and_different": "前三姓名定向Query均同Return，r1最后15而r2/3最后28；第四即使G给姓名仍后轮重新猜、7Search后恢复。身份恢复与最终日期词义选择是两个不同节点。",
+    "cost": "全部生成大于原1205，但Prompt三少一多，Search2—8；不可用同答案或工具少概括净计算。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "候选实体的可见提示不等于后续持续采用；有效证据必须使具体人物/国家进入真实查询。即使该关系恢复，另一个事件语义缺口仍可反复触发思考、检索并改变最终日期选择。",
+      "support": [
+        "I_G",
+        "N1_ADOPT",
+        "N1_CHOICE",
+        "N2_CHOICE",
+        "N3_CHOICE",
+        "N4_LOST",
+        "N4_RECOVER"
+      ],
+      "limits": "首Stage带关键关系的ORACLE重启；不能分离G、实际Return、模板历史可见性和采样的影响，也不能把formal歧义当单纯模型错误。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "r1/3初处决日错误后来纠正；r4身份丢失后恢复，均不能只靠最终C/W推断原U作用。",
+    "r1/2/3取得1730562直接yaravies，较原补证改善；枪决仍未由所读片段直接给出，原新共享部分缺口。",
+    "原生ID未存，DERIVED_CHAR_EXACT；R1整usage可比较仍非nativeexactToken收益。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 0,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "What was the specific calendar date of the formal declaration of independence"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "From the context, Mariano Melgar is associated with Peru (Arequipa, Peru)."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "poet yaravíes Battle of Umachiri executed firing squad"
+    },
+    {
+      "evidence_id": "O_POET",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "Peru's famous poet and patriot soldier, Mariano Melgar"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results mention Mariano Melgar"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "March 12, 1815"
+    },
+    {
+      "evidence_id": "N1_CHOICE",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Okay, I'll go with July 15, 1821."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 15, 1821"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The nation is Peru."
+    },
+    {
+      "evidence_id": "N2_CHOICE",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Therefore, the declaration date is July 28, 1821."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the nation is Peru."
+    },
+    {
+      "evidence_id": "N3_CHOICE",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Final check: The poet is Mariano Melgar. Nation is Peru. Date is July 28, 1821."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N4_LOST",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "the most famous poet known for yaravíes is José Matías Delgado"
+    },
+    {
+      "evidence_id": "N4_RECOVER",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "So the poet is Mariano Melgar"
+    },
+    {
+      "evidence_id": "N4_CHOICE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "Final decision: July 28, 1821."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0112/trajectory.json",
+      "source_sha256": "39d4f1796eeef13e82c3156d100dfd47829b8585d7f9d96c25be5910405af2db"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0112.json",
+      "source_sha256": "51dfda15da68f4dcd775a6aaf563f6edca0e24e5b05c2d36902d0450915bff5d"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "da6681f56970314588b3036de09e40fce5bf1a218359f279e1c32963e1cc176d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f43fc042e6324220ba696b953b055e890a76933995f4fdc3cb0533f78e6e85eb"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9404e6bd7375aaeee72883848fc7b30e794c7ee23612aeabdfc9d600fd8d1931"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "80ef2a4a417c5fc787b8b7013cafa0b38da4731a3d51e4b3d57b3faf6debcf12"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "b18ce4e28d1791a343c844609c28ddef4a22cee90cd7033a45ed0d3c5259517c"
+    }
+  }
+}

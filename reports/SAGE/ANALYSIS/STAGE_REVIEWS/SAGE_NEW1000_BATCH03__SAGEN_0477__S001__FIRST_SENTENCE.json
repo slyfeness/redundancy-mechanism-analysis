@@ -1,0 +1,494 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0477",
+  "stage_id": "S001",
+  "sample_order": 62,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0477/trajectory.json",
+      "source_sha256": "3c9f094dc3381f901557c35757500548d94d56ce9a07701dd89ae131063f87c9"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0477.json",
+      "source_sha256": "24ca1f606e1f56b81c9e8e1a05fffb3cdeacf2e475dc22759a1d675374b5ad37"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "29a792063ed8041e7b3c9043e28308bbcb48326c25a829dbd060382865857035"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "73d3f69668d750765270a2caf13bc1b4c39f3508f3d4947ee6b779921cb3232a"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "26a8e0cc2dd3618eb7a06253673fd138a89f73d8457cc8c93ad6f626dfff4783"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "9290ec194632929e726122e596704cad1c9a279253f2854897e0dcddac5bfd3c"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "2dbd71e452f4f35e546aae947d07dbe1f40bd0d1f293742c28a509cdf3077430"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the initial magazine publication year of the Abraham Merritt story whose depiction of Nan Madol inspired its use in H. P. Lovecraft and Hazel Heald's \"Out of the Aeons\"?",
+    "gold": [
+      "1918"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "1918",
+    "adopted_answer": "1918年",
+    "outcome": "C",
+    "reason": "正式初刊年正确，3571720与5405579明确原短篇1918；作品影响关系仍非直接证实。",
+    "evidence": [
+      "O_YEAR",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，无已执行Search或已有候选。P484Token，仅原题及协议，无Moon Pool或年份。",
+    "evidence_states": "机构地点/作者/被影响作品是题目条件，目标书名尚未知；不把G书名误算自主发现。",
+    "evidence": [
+      "I_EMPTY",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items，R1[0,346)、E1、R2[0,200)。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 346
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 200
+      }
+    ],
+    "goal": "由Merritt和Nan Madol识别目标故事候选。",
+    "operations": "作者地点Search，3571721返回Moon Pool/Nan Madol及1919小说评论，R2提取故事与初步1919。",
+    "product": "Moon Pool作为待核候选及尚未区分出版类型的1919线索；没有初刊1918。",
+    "judgment_change": "没有具体书名→有Moon Pool候选，但是否影响Out Aeons和初刊年都未定。",
+    "evidence": [
+      "O_DISCOVER",
+      "O_EXTRACT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2/3核作品影响关系失败，R4简查Out Aeons；R5把题材相似当足以采用Moon Pool，先取1919，R7实际查magazine后得1918/1919版本区分并改答案，R8再Open，R9Submit。",
+    "evidence": [
+      "O_ASSUMED_LINK",
+      "O_YEAR",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "从作者地点线索提取故事候选，给后续关系核查和出版年查询具体对象。",
+    "information_state_dependence": "起始P没有候选，而G提前给书名；四新虽然仍取得书名资料，不能称不依引导的零信息等价发现。",
+    "first_update": "原U首次将Moon Pool及1919变成可查询的具体对象。"
+  },
+  "guide_audit": {
+    "text": "However, I need to confirm if \"The Moon Pool\" is the story whose depiction of Nan Madol inspired its use in H.P. Lovecraft and Hazel Heald's \"Out of the Aeons\".",
+    "source": "O#/rounds/1/reasoning_content[200,360)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "42教师Token引入Moon Pool新候选实体和核查关系方向，不是题目已有书名；未给1918/1919年份，语气仍待确认。即使新又真实搜索，候选提示补偿必须保留。",
+    "evidence": [
+      "I_G",
+      "I_EMPTY"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "实际新年份片段和500字符Open都支持1918短篇，正式C；影响关系只是间接推定。",
+      "outcome_evidence": [
+        "N1_YEAR_ACCEPT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1先查Nan Madol+被影响作品，无具体书名；R2查Out Aeons原篇；R3回作者地点，E3原E1完整同Return，R4提取Moon Pool但仍指出缺直接影响联系，继续联合Query无效；R5转magazine1919Query取得1918/1919区分；R6Open50只有开头，R7扩大500真实得到书目，R8采用1918Submit。",
+      "first_judgment_divergence": "G已给候选却先查关系而非原作者地点；最终R4明确区分题材和影响证明，R5把实际行动转到版本年份。",
+      "first_actual_tool_divergence": "首查询被影响作品+地点，原先作者地点查询到新R3才执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "作者地点Search取得Moon Pool待核候选和1919。",
+          "new_goal_operation_product": "G先提供假设，R3真实取得同Return，R4明确提取Moon Pool/1919并用于R5出版Query；目标、取证和候选产物恢复，但有教师预告。",
+          "evidence": [
+            "O_DISCOVER",
+            "O_EXTRACT",
+            "N1_DISCOVER_QUERY",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有新取证、提取和实际后续查询，不因G先给就说没有恢复，也不说完全独立发现。",
+      "judgment_action_outcome_chain": "G候选→关系先查未闭合→作者地点Return重新取得候选→转版本初刊问题→1918与1919区分真正用于答案→C。原影响关系同样未证实；省主要在不Open旧片段、改查版本并减少总Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1760生成/72242Prompt/5Search2Open8Actor，原1964/96933/5S3O9A；生成-204、Open/Actor各-1、Search相同。仍两次新书目Open，首次50不够；少的是旧片段Open链，不是候选识别完全消失。",
+      "counterevidence_and_alternatives": "新也保留无直接影响关系的缺口；不能把最终C当全部条件核实。G补书名及采样/检索排序影响无法分离。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "1918实际书目Return已取得，正式采用，虽有Randolph Carter角色错误和影响关系夸大。",
+      "outcome_evidence": [
+        "N2_YEAR_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1作者地点同原Return；R2立即认识1919未区分杂志/小说，查magazine取得1918；R3却把R'lyeh与Out Aeons差异当可能另一作品，再查Out Aeons。R4错误称Carter来自Merritt，但回到1918/1919版本区分；Open10、Open20均只有开头无年份，R6最终用较早Search片段Submit1918。",
+      "first_judgment_divergence": "原到R7才区分版本，新R2已经把1919类型不足转成magazineQuery，早获正确年；之后关系疑虑增加一个Search而不改最终年份。",
+      "first_actual_tool_divergence": "首作者地点同原，第二Search变出版问题而非联合影响关系。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得Moon Pool与1919，建立后续具体查询对象。",
+          "new_goal_operation_product": "首同QueryReturn提取Moon Pool并立即对其查初刊；发现、采用、行动更新恢复，受G书名补偿。",
+          "evidence": [
+            "O_DISCOVER",
+            "N2_DISCOVER_QUERY",
+            "N2_VERSION_QUERY",
+            "N2_YEAR_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不仅含书名，确实取文并用候选查初刊。",
+      "judgment_action_outcome_chain": "候选从新Return确认→1919未说明magazine被实际识别→提前Query得1918→虽再怀疑身份、两次短Open无新日期，已有书目足以支撑年份→C；少原连续影响Query与旧Open，另增无效短Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1354生成/45134Prompt/3Search2Open6Actor，原1964/96933/5S3O9A；生成-610、Search-2、Open-1、Actor-3。省在早转版本证据，非最终判断不需要。",
+      "counterevidence_and_alternatives": "两个Open都不含年份却仍可用此前Search；Carter是Merritt角色的说法无据但未变目标。提示、采样和工具返回可解释路径不同。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "真实初刊Return最终被采用并正式提交1918，早期1919错误被修正。",
+      "outcome_evidence": [
+        "N3_YEAR_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1联合Query已带回Moon Pool旧片段；R2/3核Out Aeons并Open旧片段100；R4带1919/1920/1921查询反而回无关Merritt人物城市；R5回作者地点再取旧材料；R6仍说1919初刊却真实查initial magazine year，E6给1918短篇；R7区分后Submit，不再新书目Open。",
+      "first_judgment_divergence": "原有效版本Query在R7，新R4提前但加多年份失效，后又回发现入口；R6真实改回聚焦版本Query才修正1919。",
+      "first_actual_tool_divergence": "首联合作者地点/两作品Query，较原宽；中间无关人物Return由不同Query实际引出。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "作者地点取Moon Pool候选。",
+          "new_goal_operation_product": "首Return已有Moon Pool，R2实际提取并核关系，R5再次取同资料；候选功能恢复且重复一次，G并未替代全部取证。",
+          "evidence": [
+            "O_DISCOVER",
+            "N3_ACCEPT",
+            "N3_REPEAT_QUERY",
+            "N3_YEAR_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "候选从Return提取并进入后续核验、最终版本区分，非仅G或Final出现书名。",
+      "judgment_action_outcome_chain": "Moon Pool/1919先采用→关系核查和错误年份组合查询未推进→回作者地点重取候选→聚焦magazine的真实Query返回1918→版本事件区分用于SubmitC。少Open带来成本下降，但仍有原功能及额外错误取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1483生成/74625Prompt/5Search1Open7Actor，原1964/96933/5S3O9A；生成-481、Search同、Open/Actor各-2。省在未再全Open旧片段及未再Open新书目，直接使用Search日期；无关人物Return仍带额外Prompt。",
+      "counterevidence_and_alternatives": "不是没有初步错误就更省，早期仍把1919当初刊；最后真实版本更新恢复才C。原也缺直接影响证据。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "R8实际年份文档给1918，R9/10采用并正式Submit；不是原先Amazing Stories1919无据说法支持。",
+      "outcome_evidence": [
+        "N4_YEAR_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1—3连续被影响作品/地点查询无帮助；R4猜多故事后作者地点Query取Moon Pool，R5仍回Out Aeons Nan Madol同Query同Return；R6Open旧片段5仅The b；R7无据称Amazing Stories1919后查Out Aeons；R8才查magazine1919，得1918/1919；R9Open新片段10没年份，R10引用Search中的书目和杂志史提交C。",
+      "first_judgment_divergence": "G给Moon Pool仍未稳定采用，R4还猜其他故事；真正取得后又被未解决影响关系驱动重复Search，直到R8转版本查询才推进目标年份。",
+      "first_actual_tool_divergence": "前三Call都查关系，原首作者地点移到R4，关系QueryR3/R5完全重试无新信息。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取Moon Pool及1919线索并转具体核查。",
+          "new_goal_operation_product": "R4真实同原Query得到候选，R5/R6明确采用并据此Open/版本Search；完整恢复，且之前G候选一度未被保持。",
+          "evidence": [
+            "O_DISCOVER",
+            "N4_DISCOVER_QUERY",
+            "N4_ACCEPT",
+            "N4_YEAR_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实取得、接受并行动可定位；不能因候选教师先说过就否认后续真实核查。",
+      "judgment_action_outcome_chain": "G候选没立即进入稳定行动→关系缺口驱动多次低信息查询、额外猜测与短Open→R8实际查版本终于得到1918→区别原短篇与小说并C。成本增加在未闭合关系反复触发工作，非年份本身特别难。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2097生成/83691Prompt/7Search2Open10Actor，原1964/96933/5S3O9A；生成+133、Search+2、Open-1、Actor+1，Prompt仍降。新增在关系反复核验，减少在旧长Open，不能混成一项净高效。",
+      "counterevidence_and_alternatives": "R3/R5同Query同Return是真重复，但最终仍退出并C；不能从重复本身推失败。G书名未稳定采用说明提示非确定控制。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "4条均重新取Moon Pool候选并最终真实查版本、采用1918。转版本的时机不同，关系缺口导致额外查询不等最终答案改；Openlimit10/20/50多只读开头，实际年份常来自Search。",
+    "costs": "前三生成下降，第四升；工具省主要后续Open压缩和更早切年份。并非被删候选功能四条都不再执行。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题候选发现被删且教师给书名四条",
+      "chain": "G先给Moon Pool方向→不同程度重新取材确认候选→未证实影响关系可能继续触发查询，但实际转入magazine年份证据并区分1918短篇/1919续篇小说后，仍可C；提早/推迟这一行动更新与重复取证、无效短Open改变成本。",
+      "limits": "共同关系证据缺口未因C消失，教师候选补偿明显；单题不确认普遍机制或因果必要性，且第四成本升构成反例。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原68576及四新106401字符完整阅读。没有因同DocID而默认同文本，引用仅完整已读相同片段。",
+    "实际Search5/3/5/7不等计划里的多查询；多Open很短只首字符，不算取得完整书目。",
+    "原初刊年份直证存在但Out Aeons影响关系原新均未直接证实，属共享缺口。",
+    "起点Round开头可比较全响应使用量，原生IDs缺失仍不标NATIVE_TOKEN_EXACT；G42已在Prompt，P484单列。原新采样、预算、生产档位差异不混同纯删除效应。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "original_question_at_empty_start",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What was the initial magazine publication year of the Abraham Merritt story"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "However, I need to confirm if \"The Moon Pool\" is the story"
+    },
+    {
+      "evidence_id": "O_DISCOVER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "\"The Moon Pool\" is partly set on Nan Madol",
+      "doc_id": "wiki25:3571721",
+      "call_id": "chatcmpl-tool-89ebf85d9e17fdd5"
+    },
+    {
+      "evidence_id": "O_EXTRACT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The snippet mentions \"Beginning with 'The Moon Pool' in 1919\"."
+    },
+    {
+      "evidence_id": "O_ASSUMED_LINK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "So \"The Moon Pool\" is the Abraham Merritt story that depicted Nan Madol, which inspired its use in \"Out of the Aeons\"."
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/6/observation/results/0/snippet",
+      "exact_quote": "\"The Moon Pool\" (1918) and its sequel, \"Conquest of the Moon Pool\" (1919). These were then reworked into a novel released in 1919.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3571720"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N1_DISCOVER_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Nan Madol Abraham Merritt",
+      "call_id": "chatcmpl-tool-b9c665c93f87ffbf"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The snippet mentions \"The Moon Pool\" as being set on Nan Madol, but doesn't explicitly link it to \"Out of the Aeons\"."
+    },
+    {
+      "evidence_id": "N1_YEAR_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The initial magazine publication would be 1918"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N2_DISCOVER_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Nan Madol Abraham Merritt",
+      "call_id": "chatcmpl-tool-9832e79f9f2ea667"
+    },
+    {
+      "evidence_id": "N2_VERSION_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "\"The Moon Pool\" Abraham Merritt magazine publication year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_YEAR_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "\"The Moon Pool\" was first published in 1918 (as a short story in All-Story Weekly)"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results mention \"The Moon Pool\" by Abraham Merritt"
+    },
+    {
+      "evidence_id": "N3_REPEAT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Abraham Merritt story Nan Madol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_YEAR_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The initial publication was in 1918."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N4_DISCOVER_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Abraham Merritt Nan Madol story",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The search results mention \"The Moon Pool\" by Abraham Merritt, which is set on Nan Madol."
+    },
+    {
+      "evidence_id": "N4_YEAR_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "The first part of \"The Moon Pool\" was published as a short story in \"All-Story Weekly\" in 1918."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

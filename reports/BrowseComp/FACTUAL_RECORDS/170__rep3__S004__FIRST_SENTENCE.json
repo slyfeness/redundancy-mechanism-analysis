@@ -1,0 +1,40 @@
+{
+  "case_id":"170__rep3__S004__FIRST_SENTENCE","question_id":"170","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R8、new1/3 R8及new2/4 R7均实际正式提交第三季The Good Karma Hospital。"},
+  "review_basis":"本人完整阅读原8轮Reasoning/7Call/Return/Final；四新全部Reasoning和Final、两次新真实Call与完整Return。45文档槽无新snippet，按已阅读全文的精确SHA复用，并重新完整读两新Return。源SHA1e563ff9a6852c4983f5d6afdc13b3453e97b98488b1a3b5bcd8a18218269ad0。",
+  "pre_state":"R7@0；P六Call。正确人物、剧情与季数已采用，1958与慈善有直接支持。E6刚回80759 AssociateProducer，尚未有后继Reasoning明确采用此新署名；不能将已返回等同已完成认知采用。",
+  "u_work":"R7[0,533)实际解读署名，整合1958、季数、作者医生与慈善，接受候选，再执行E7 Amanda Redman Associate Producer Good Karma Hospital season 3 burns确认。该Call没有补一个此前完全没有的核心事实；原R8又整理条件后C。",
+  "u_state_update":"U把新返署名转成明确接受，并仍让已受支持的季数/署名触发一次额外确认。应分开追踪事实采用、整体接受和真实确认操作，而非将U整体等同一次冗余Search。",
+  "original_action_consequence":"四新都重建署名采用与整体比较；1/3再真实确认一次，2/4只在文本中复核已有材料并直接Final。后两条少一次Search和一次历史重放；前两条搜索不减且生成更长。",
+  "guidance":{"text":"Perfect!","source":"S005 R8@0，8字符2Token；R7@0 NATIVE_TOKEN_EXACT，P18764，实际首Prompt18766。","audit":"ORACLE_ANCHORED；感叹未带人物、季数、署名事实或查询。不能把后续接受算作G已预填认知过程。"},
+  "evidence":[
+    {"id":"O_P_CREDIT_RETURN","source":"original","pointer":"/tool_events/5/exact_result","quote":"Amanda Redman is Associate Producer","use":"E6 Doc80759，进入R7前已返回，之后才会实际处理。"},
+    {"id":"O_U_CREDIT_ACCEPTED","source":"original","pointer":"/rounds/6/reasoning_content","quote":"Amanda Redman is listed as \"Associate Producer\" on The Good Karma Hospital Episode #3.4 (season 3)","use":"R7原U明确采用，不只是查询已有文档。"},
+    {"id":"O_U_EXTRA_CALL","source":"original","pointer":"/tool_events/6/exact_arguments","quote":"Amanda Redman Associate Producer Good Karma Hospital season 3 burns","use":"E7确认已返回的季数/署名，原R8继续组织回答。"},
+    {"id":"N1_ACCEPTS","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"She received an \"Associate Producer\" credit (as shown in the IMDb entry)","use":"R7从P真实采用后接受季数与事故链。"},
+    {"id":"N1_RECONFIRMS","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"The Good Karma Hospital Amanda Redman Associate Producer credit season 3 acid attack","use":"R7 Call chatcmpl-tool-b40d5dbeb2e4fef6，回33125/38607/80759/26356/48603并进入R8，实际重做确认。"},
+    {"id":"N1_FINAL","source":"new1","pointer":"/rounds/1/content","quote":"**The Good Karma Hospital, Season 3**","use":"R8正式C。"},
+    {"id":"N2_ACCEPTS","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"She received an \"Associate Producer\" credit for the show (found in the IMDb entry for episode 3.4)","use":"R7采用已返事实，不是绕过必要的解释。"},
+    {"id":"N2_INTERNAL_CHECK","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"All the clues match! Let me verify the answer:","use":"后续九项文本检查，tool_calls确为空，不能把verify意向算真实Search。"},
+    {"id":"N2_FINAL","source":"new2","pointer":"/rounds/0/content","quote":"**Season:** Season 3 (aired March 2020)","use":"同一R7直接C，无新Return补偿。"},
+    {"id":"N2_CAUSAL_OVERSTATEMENT","source":"new2","pointer":"/rounds/0/content","quote":"For this contribution, Amanda received an **Associate Producer credit** on the show.","use":"IMDb只直接给署名，不证明因这项贡献授予；原新共享缺口，不把核心C当全条件证据闭环。"},
+    {"id":"N3_ACCEPTS","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"She received an \"Associate Producer\" credit for The Good Karma Hospital (Episode #3.4)","use":"R7已采用，随后仍启动确认。"},
+    {"id":"N3_RECONFIRMS","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Amanda Redman Associate Producer Good Karma Hospital credits","use":"Call chatcmpl-tool-b3a6e88ddf3427ea，完整回80759/48603/33125/38607/54838，R8再次整合。"},
+    {"id":"N3_FINAL","source":"new3","pointer":"/rounds/1/content","quote":"**The TV Series and Season**: **The Good Karma Hospital, Season 3**","use":"正式C但工具没有节省。"},
+    {"id":"N4_ACCEPTS","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Amanda Redman received \"Associate Producer\" credit on The Good Karma Hospital Episode #3.4 (Season 3)","use":"R7第一项从P采用署名。"},
+    {"id":"N4_REREADS","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me verify this is all correct by looking at the information one more time to make sure I have all the details right.","use":"随后六项回看已有证据，无新Call；认知核验确实重做。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/0/content","quote":"## Answer: **Season 3 of \"The Good Karma Hospital\"**","use":"R7正式C。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"采用已有署名并接受完整条件后，仍选择真实额外确认，和原相同一Call但组织更长。","state_chain":"P新材料→署名采用→整体接受→真实确认→再整理C。","function_change":"FULL_REBUILT：U认知与确认均实际发生。","evidence":["N1_ACCEPTS","N1_RECONFIRMS","N1_FINAL"],"semantic_result":"C→C；raw852+G2=854，比原790多64；Search1/Actor2同原；Prompt40270比40207多63。"},
+    {"repeat":2,"first_divergence":"采用署名并逐项确认后直接提交，不再把确认意向变成一次工具调用。","state_chain":"P证据→首次明确采用署名→内部核对→直接C。","function_change":"PARTIAL_REBUILT：接受判断完整恢复，额外Search未执行；不是整项思考消失。","evidence":["N2_ACCEPTS","N2_INTERNAL_CHECK","N2_FINAL","N2_CAUSAL_OVERSTATEMENT"],"semantic_result":"C→C；raw596+2=598，少192；Search0少1，Actor1少1，Prompt18766少21441。共同的署名授予因果缺口仍在。"},
+    {"repeat":3,"first_divergence":"采用P署名后再查同一信用及剧集，R8再次整理，同原真实确认路径。","state_chain":"证据采用→接受→重新取证→再接受C。","function_change":"FULL_REBUILT：并未绕开U的确认动作。","evidence":["N3_ACCEPTS","N3_RECONFIRMS","N3_FINAL"],"semantic_result":"C→C；raw850+2=852，多62；Search1/Actor2同原；Prompt40230多23。"},
+    {"repeat":4,"first_divergence":"两次文字条件复核后直接Final，没有真实Search。","state_chain":"署名采用→完整接受→回看旧材料→C。","function_change":"PARTIAL_REBUILT：认知比较和答案组织恢复，只省后续真实确认。","evidence":["N4_ACCEPTS","N4_REREADS","N4_FINAL"],"semantic_result":"C→C；raw722+2=724，少66；Search0少1，Actor1少1，Prompt18766少21441。"}
+  ],
+  "mechanism_candidate":"这一A Stage混合了刚返关键事实的采用与已获支持后的再次确认。四次均恢复事实采用和整体比较，只有2/4不再执行额外确认并直接提交，故答案保持并非整项认知功能无用，而是该次额外Search没有成为提交前必经动作。1/3恢复同样确认且更长，构成内部反例。",
+  "within_case_support":"四C、两真实确认、两只有文本核对。2/4核心季数与署名有P材料支持，没有靠G或新证据补偿；但署名因建议授予仍非直接文档事实，因此只能讨论有限的额外确认省略，不宣称全质量严格可省。",
+  "mechanism_chain_checks":[{"chain":"候选和条件支持已在P，实际采用仍恢复，而额外确认是否被再次选为提交前动作，区分工具/Prompt开销。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ACCEPTS","N1_RECONFIRMS"],"2":["N2_ACCEPTS","N2_INTERNAL_CHECK","N2_FINAL"],"3":["N3_ACCEPTS","N3_RECONFIRMS"],"4":["N4_ACCEPTS","N4_REREADS","N4_FINAL"]},"limits":"不是所有重复确认都应省；这里两条没有执行该Call，另两条执行且无结果改善。四次采样不构成纯因果必要性证明。"}],
+  "counterevidence_and_limits":["P有新署名Return但尚无采用，不能称U所有认知已在P完成。","new2/4文本确实重新评估，不因无Call就说工作没有重建。","IMDb条目标题是User reviews，直接文字仅署名，证据强度与授予因果须保留限制。","1/3生成和Prompt都增加，A结果保持不是统一省计算。","与170rep1S004四条都重搜形成同题反例，不能只留本组两条节省。","教师感叹仍是干预条件；相同题多rep不算多个独立题目。"],
+  "cost_basis":"R7@0 NATIVE_TOKEN_EXACT。原790gen/1Search/2Actor/Prompt18764+21443=40207；四新raw852/596/850/722加G2=854/598/852/724，差+64/−192/+62/−66；Search1/0/1/0，Actor2/1/2/1，Prompt40270/18766/40230/18766差+63/−21441/+23/−21441。P重放18764单列，G只算一次，不加总独立分支节省。",
+  "next_cross_case_test":"检查其他A的补证/复核Stage是否同样含必要事实采用与后续可不重复的工具确认；必须按P是否已有具体支持、四次是否真正查以及提交证据分别比较。"
+}

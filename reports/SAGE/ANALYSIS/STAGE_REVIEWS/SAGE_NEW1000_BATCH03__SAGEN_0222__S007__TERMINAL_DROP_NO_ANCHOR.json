@@ -1,0 +1,384 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0222",
+  "stage_id": "S007",
+  "sample_order": 72,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0222/trajectory.json",
+      "source_sha256": "cc3cf5435a2af194f17d23bbc0e224a7d96ad13298cedb06ab2b38a297c42c93"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0222.json",
+      "source_sha256": "e6ff232c344dd03661623388f153db18b8f210b7e0d75b78c8c1c8f680ea0488"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "a3dc20506b747dc5fc39625745cafa3709d0696ab94ce6be8e6934a54cc94fc4"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "da18b2fdc1f7fd4810580ea0d09866802907dd26f0d0d955934f03a6035c2894"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "5c95d3c1a69ba9fd64739e0a3b574c1ca4873d47b317a6a1801aa42272d84c9e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "0e9047ff2402b77fced6139b58c9484c058cd2a5c9cfdb06d32310192e2557a6"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "2423da07dcd2d7f3db6833e4b9a9521898bf358850cac0b6e00e499f80f1b15d"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the individual who served as director of cinematics for the \"Halo\" game that introduced reusable armor abilities, and who subsequently worked on the game \"Destiny\" whose soundtrack composer also worked on its \"The Taken King\" expansion, rejoined Microsoft Studios as a senior creative director?",
+    "gold": [
+      "January 9, 2014"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0222/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "January 9, 2014",
+    "adopted_answer": "January 9, 2014",
+    "outcome": "C",
+    "reason": "直接日期被真实Submit采纳，与Gold相同。",
+    "evidence": [
+      "O_FINAL",
+      "O_DOC"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R7@0，P19059派生Token：全部E1–E6工具Return（日期已两次）可见，历史assistant content空，当前reasoning空。原R6复盘已写但不默认保留在实际P；直接文依然可重新采用。",
+    "evidence_states": "准确日期和人物关系在Return，游戏具体作品及共同作曲者支持仍不完整。没有G/旧Final注入。",
+    "evidence": [
+      "I_MODE",
+      "O_DOC"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/6/items；R7[0,813)及Submit事件，正式Final字段独立。",
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 813
+      }
+    ],
+    "goal": "将已获得资料归纳为人物身份与所问日期并正式提交。",
+    "operations": "接受Joseph/日期、无据宣称音乐上下文确认，实际SubmitJanuary9,2014。",
+    "product": "有效C Final，部分辅助条件仍共享证据缺口。",
+    "judgment_change": "可见日期材料→当前接受并正式提交。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "终末Stage没有后继Reasoning；U自身包含最终接受/Submit，不能虚构原后续。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "稳定主体与直接属性证据下的答案接受和正式提交。",
+    "information_state_dependence": "删后还必须形成提交动作才算任务完成，四条均重建；部分路径因未闭辅助关系重开取证，主日期却始终稳定。",
+    "first_update": "日期早已得到，首次正式Submit在U。"
+  },
+  "guide_audit": {
+    "text": "",
+    "source": "NO_ANCHOR",
+    "oracle_status": "NO_ANCHOR",
+    "P_comparison": "终末无G，不是单Stage题目重启，P已含六轮真实Return。原Final及未来Submit没有注入；无引导不等于自动跳过提交工作。",
+    "evidence": [
+      "I_ORIGIN"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "实际Submit准确日期，承认音乐证据缺失但主答案有直接文。",
+      "outcome_evidence": [
+        "N1_GAP",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7重新整链，明确看到只有Halo作曲者、Destiny snippets没有explicit composer，而后认为核心日期已直接证明，不再Search，Submit。",
+      "first_judgment_divergence": "比原无据声称音乐确认，更明确承认该缺口；但选择直接提交主日期。",
+      "first_actual_tool_divergence": "没有新增外部Call，同原只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "身份/日期接受并正式Submit。",
+          "new_goal_operation_product": "重新采用同身份/date，承认音乐支持欠缺，仍实际SubmitC，接受与提交功能全重做。",
+          "evidence": [
+            "O_ACCEPT",
+            "N1_GAP",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不只Final词相同，明确阅读资料、接受日期、真实Submit均恢复。",
+      "judgment_action_outcome_chain": "直接日期足够支持核心属性→附带缺口未触发真实搜索→同C；接受工作恢复但更长，不是末段省去。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "361生成/19059Prompt/0S0O1A；原194生成同Prompt/工具/Actor，记录多167，主要多说明音乐证据缺口。",
+      "counterevidence_and_alternatives": "不把承认缺口必然不能提交作为先验；这里日期C而完整条件未验。新旧采样档不同。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "R9正式同日期，新增查询没有获得直接音乐证明。",
+      "outcome_evidence": [
+        "N2_QUERY",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7日期已明但音乐关系未证，实际Search音乐，得原E5完整相同不足Return；R8又将游戏能力列缺口并真实Query，3985398 introduced in空白；R9 3748字符/935生成反复把空白语境当Halo4确认及作曲者共同参与，最终Submit。",
+      "first_judgment_divergence": "不直接结束，把已出现过的未解决音乐与游戏问题重新当必要工作，恢复两次取证但判断未更新。",
+      "first_actual_tool_divergence": "R7新增音乐Search，原直接Submit；R8再新增游戏Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "接受主体/date并正式回答。",
+          "new_goal_operation_product": "先重新查两项条件，R9接受同主体/date并真实Submit，最终提交功能全部恢复。",
+          "evidence": [
+            "O_ACCEPT",
+            "N2_QUERY",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标接受与提交恢复，但被额外两次查证和长篇解释延后。",
+      "judgment_action_outcome_chain": "核心日期稳定但辅助缺口继续派任务→同音乐不足返回、游戏空白来源→没有新有效闭合仍重复确认→C但多消耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "1455生成/69729Prompt/2Search0Open3Actor；原194/19059/0S1A，多1261生成、2Search2Actor，具体是新增音乐/游戏核查及R9长解释。",
+      "counterevidence_and_alternatives": "新增查询不是所有都无新增内容：能力具体文首次到这条分支，但引入作品链接仍缺失，不能将features自动当首次introduced。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "正式日期有准确P文支持，C；列音乐/扩展存在不证明共同作曲关系。",
+      "outcome_evidence": [
+        "N3_ADOPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7提取Joseph和日期，引用3245334，逐项复核六条，误把Halo OST证成Destiny音乐，把扩展存在当身份链支持，直接Submit无Search/Open。",
+      "first_judgment_divergence": "全链复述比原更长但实质仍同过度桥接；没有新的候选/行动更新。",
+      "first_actual_tool_divergence": "无，唯一Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "整理已有证据、接受日期、提交。",
+          "new_goal_operation_product": "重新核对/接受并真实Submit，全部功能恢复，论证仍不完整。",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_ADOPT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有真实同类接受与提交，不将没有Search误作没有认知工作。",
+      "judgment_action_outcome_chain": "已有日期/身份→逐条件重述而未改变判断→直接同C，更多生成来自答案组织，不是外部工作增加。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "493生成/19059Prompt/0S0O1A，生成比原多299；外部动作和Prompt不变。",
+      "counterevidence_and_alternatives": "同正确日期的多条件盘点不等于每个条件获得直接支持；形式完整不代替证据验收。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "R8真实Submit准确日期，对作曲者关系仍自承不确定。",
+      "outcome_evidence": [
+        "N4_QUERY",
+        "N4_LIMIT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7已经提取准确日期，仍真实查音乐共同关系；Return与原E5完全同。R8考虑再次查询但未执行，称作曲者likely或不关键、通常扩展同人，转回主体/date，Submit。",
+      "first_judgment_divergence": "先重开一项核验，但返回未闭后选择不再追，和r2又查游戏不同。",
+      "first_actual_tool_divergence": "R7新增音乐Search，随后直接Submit，没有所提第二次音乐Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "接受与正式提交所问日期。",
+          "new_goal_operation_product": "一轮额外音乐核验后，R8将主身份/date视为足够并正式提交。",
+          "evidence": [
+            "O_ACCEPT",
+            "N4_QUERY",
+            "N4_LIMIT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "正式提交功能恢复，音乐局限被弱化而不是新证据解决；不能用C宣称所有核验重建。",
+      "judgment_action_outcome_chain": "直接日期已知→音乐缺口触发一次Search→同不足反馈后认为对主体不关键→停止核验C，成本增但少于r2追加游戏核查。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S007__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "1116生成/42285Prompt/1Search0Open2Actor；较原+922生成、+1Search/+1Actor；增加来自重新派发音乐核验及随后2732字符整链解释。",
+      "counterevidence_and_alternatives": "说typical是主观接受理由非外部证明；不能把缺口继续驱动必然无Final当通则，四条均成功提交日期。"
+    }
+  ],
+  "four_run_comparison": "无G四条全C且接受/Submit均重建；两条直接提交，两条重开音乐，一条又查游戏。全部生成多于原。核心日期稳定解释答案稳定，但不能解释所有核验长度；外部失败反馈被如何处理与提交选择产生不同成本。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "核心属性直接证据稳定、附带关系未闭→不同新路径或容忍缺口直接提交，或重开取证后再接受→同C却额外0/1/2Search及不同篇幅。",
+      "support": "本Stage四条内部对照；不是证据缺口一律无需查。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "末段删除不等于提交功能省去，四条完整恢复，且生成全部更长。",
+    "无G排除教师事实补偿，但原/新采样与预算配置仍不同，不能纯因果解释。",
+    "R7@0记录完整响应可比，原生IDs缺失仍不冒称native Stage省算；0G，P重放单列。完整27948字符四新视图全读。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 7,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_ORIGIN",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 7,
+      "event_type": "guide_origin",
+      "json_pointer": "/anchor/origin",
+      "exact_quote": "NO_ANCHOR"
+    },
+    {
+      "evidence_id": "O_DOC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "as a senior creative director on January 9, 2014",
+      "doc_ids": [
+        "wiki25:3245334"
+      ]
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I have found the answer. The individual is Joseph Staten."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N1_GAP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Looking at the Destiny search results, I see mentions of \"Destiny\" but don't see explicit information about the soundtrack composer in the snippets."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Destiny soundtrack composer The Taken King",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the answer is January 9, 2014."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "actual_query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Destiny soundtrack composer The Taken King",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_LIMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "likely Martin O'Donnell or similar, but the exact composer isn't the critical part since the question is about Staten"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,558 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0456",
+  "stage_id": "S001",
+  "sample_order": 90,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "In the decade when the Ginetta G4 Series IV was revived with a Ford engine, Ginetta re-entered the complete car business with a specific mid-engined model. What was the 1990 retail price for the open-top variant of that particular model?",
+    "gold": [
+      "£14,600"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "£14,600",
+    "adopted_answer": "£14,600",
+    "outcome": "C",
+    "reason": "原后续实际Open提供G32及敞篷价，正式提交。",
+    "evidence": [
+      "O_PRICE",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0仅原Question与系统工具协议，无任何既有候选、历史Return或生成判断。",
+    "evidence_states": "G4/Ford/1990/open-top来自原题；1981与1980年代尚未取证。删除首Stage不是在现成候选知识后删重复总结。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 405
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 163
+      }
+    ],
+    "goal": "拆解多跳问题并确定Ford复活的年代。",
+    "operations": "列三步，实际Search G4 Series IV Ford revival；返回G4 1981与型号片段，R2直接提取1981并认定1980年代。",
+    "product": "1981/Ford复活与1980年代判断，以及G27/G33等后续线索。",
+    "judgment_change": "从未知年代变成以1980年代约束型号搜索，随后真实宽业务Query。",
+    "evidence": [
+      "O_U",
+      "O_CALL",
+      "O_RETURN",
+      "O_YEAR",
+      "O_FOLLOW"
+    ]
+  },
+  "original_followup": {
+    "use": "后续将1980年代作为型号范围，先宽搜后错误倾向G33；长Open取得G32业务关系，后半价格供最后提交。U年代在后续不断使用，但原成功还依赖更后面的有效取证和纠错。",
+    "evidence": [
+      "O_FOLLOW",
+      "O_OPEN",
+      "O_PRICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始任务分解、时间线事实获取及其作为后续候选限制的采用。",
+    "state_relation": "四条都重新实际搜索并采用1981/1980年代，均完整重建首Stage；三N不是年代没恢复，而是后续车型取证路线与执行异常。唯一C靠新全文Open纠正早前G27。",
+    "evidence": [
+      "N1_FIRST",
+      "N1_YEAR",
+      "N2_FIRST",
+      "N2_YEAR",
+      "N3_FIRST",
+      "N3_YEAR",
+      "N4_FIRST",
+      "N4_YEAR"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Now I need to find out which mid-engined model Ginetta re-entered the complete car business with in that decade.",
+    "source_position": "R2[163,275)",
+    "oracle_anchored": true,
+    "novelty": "25Token给出第二跳的工作方向和that decade承接，但没有1981、具体年代、正确型号或价格。四条都自主回到先查G4年代，不把G当已有日期事实。该G方向为题目可推，不是答案泄漏；仍ORACLE_ANCHORED。",
+    "evidence": [
+      "I_G",
+      "O_U",
+      "N1_FIRST",
+      "N2_FIRST",
+      "N3_FIRST",
+      "N4_FIRST"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R18单轮10000Token车型与版本反复论证无新Call/Final。",
+      "outcome_evidence": [
+        "N1_LOOP",
+        "N1_STOP"
+      ],
+      "work_and_evidence_timeline": "R1先回查G4/Ford，返回与原初查完全一致；R2 5148字符提取1981/1980年代并比较G27/G33，实际业务Search。R3/4/5宽搜，R6G27价，R7G33价，R8G27布局+价，R9/10G33价；R11/12宽中置，R13 4973字符再G27价，R14联合价，R15误将Triumph后置类比后真实G20布局Query，返回G20赛车/车手等；R16业务，R17G33价，R18 32624字符重复G27/G33年代/敞篷/整车关系，0Call，长度停。全程0Open。",
+      "first_judgment_divergence": "U的时间判断恢复，R2已比原更长评估；后续对G27/G33身份的无证据接受与关系调和主导搜索，不是首事实缺失。",
+      "first_actual_tool_divergence": "R1近原且Return完全相同；R2直接业务Query，后R15新增G20，原后续的长Open始终未执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "拆题并取得年代",
+          "original_operation": "G4/Ford Search与1981提取",
+          "original_product": "1980年代用于下一跳",
+          "new_goal": "同年代入口",
+          "new_operation": "R1同实查，R2采用日期并真实查业务关系",
+          "new_product": "时间判断与行动约束完整恢复，后续车型仍未核定",
+          "evidence": [
+            "O_U",
+            "O_YEAR",
+            "N1_FIRST",
+            "N1_YEAR",
+            "N1_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实日期取证、采用和下一跳行动均有记录，不只复述G。",
+      "judgment_action_outcome_chain": "年代恢复→旧片段中的G27/G33局部匹配变前提→围绕型号/价广窄交替，未Open→关系缺口持续使比较重开→最后单轮10K无行动N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "22019生成218622Prompt17Search0Open18Actor；原4527生成209096Prompt12Search3Open16Actor，记录生成+17492。多5Search及R18纯10000生成、长候选盘点是增量落点；少3Open伴关键证据缺失，非严格节省。P498/G25预填单列。",
+      "counterevidence_and_alternatives": "初查Return同原，排除初始材料差异作为全部解释；但后续采样/查询/服务行为不同，不能证明删除首Stage具有因果必要性。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "R11新Open默认完整2514字符，R12根据G32业务句与价款明确纠正车型并Submit14600。",
+      "outcome_evidence": [
+        "N2_FULL",
+        "N2_ADOPT",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1自主查G4年代，R2实际采用1981但错认G27业务身份并查价；R3宽业务价，R4/5G27价，R6 6120字符比较后G33价，R7/8宽业务，R9 6253字符比较再G27价。R10实际Query G27 price £19900，这是未证价格猜测，回Logitech方向盘等新无关材料。R11承认无具体价，真实Open1945361不传limit，默认4000完整2514；R12逐条引用G32业务/敞篷14600并Submit。10Search1Open12Actor。",
+      "first_judgment_divergence": "时间恢复；R2过早接受G27且后多次换G33。关键修正是R12新文段明确取代G27为G32。",
+      "first_actual_tool_divergence": "R2G27价而原宽年代；R10带猜价19900引无关返回，随后R11从Search改全文Open一次。",
+      "function_correspondence": [
+        {
+          "original_goal": "年代取证与行动更新",
+          "original_operation": "G4 Search后提取1981",
+          "original_product": "1980年代条件",
+          "new_goal": "同初始年代",
+          "new_operation": "R1同实查，R2采用1980年代",
+          "new_product": "原U完整重建；后另用全文纠正型号而非G提供答案",
+          "evidence": [
+            "O_U",
+            "N2_FIRST",
+            "N2_YEAR",
+            "N2_FULL",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "初查与年代限制明确再做；C不代表删除功能没执行。",
+      "judgment_action_outcome_chain": "年代恢复但早期G27错判→价格Search持续失败和猜价无关材料→改全文Open→新G32直接关系被实际采用、价款车身正确对齐→停止旧路线并C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "9511生成103420Prompt10Search1Open12Actor；较原生成记录+4984但Search−2/Open−2/Actor−4/Prompt下降。更少交互来自一次全文代替多次分块取证及早提交，更多生成来自R6/R8/R9长比较；不能用工具少就说总计算都降。",
+      "counterevidence_and_alternatives": "相同首Stage功能恢复且C；全文证据真返回，G不含G32价。形成三N反例：错误初候选并非不可纠正，关键取证改变后仍可恢复。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R6单轮10000Token只枚举许多未执行车型查询，无Final。",
+      "outcome_evidence": [
+        "N3_LOOP",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R1自主查日期，Return与原相同；R2 3842字符1981与车型比较后宽业务Search，R3/4/5继续同或近义1980业务Query，同旧片段。R6 24558字符先盘点G27/G33、再逐一枚举G1到G575等未来Query，含G32字面出现但无Search、无G32业务证据或采用，10000Token长度停。5Search0Open6Actor。",
+      "first_judgment_divergence": "时间与约束恢复；R2提前长比较后仍宽搜，R6不再执行下一取证，而陷入枚举。",
+      "first_actual_tool_divergence": "R1同Query和Return；R3改re-entry措辞，实际仍同材料，后Open只意向无调用。",
+      "function_correspondence": [
+        {
+          "original_goal": "获得并采用复活年代",
+          "original_operation": "Search与提取",
+          "original_product": "1980年代后续约束",
+          "new_goal": "同年代/型号入口",
+          "new_operation": "R1真Search,R2明确1981并用于1980业务Query",
+          "new_product": "完整恢复原U；型号缺口未闭合，枚举不是新证据",
+          "evidence": [
+            "O_U",
+            "N3_FIRST",
+            "N3_YEAR",
+            "N3_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有实际Call/Return及采用，不把G的that decade当年份泄漏。",
+      "judgment_action_outcome_chain": "日期更新恢复→宽业务Search仍同片段→型号无直接证据时不断规划其他候选→枚举未来Query没执行→生成预算N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "12663生成31913Prompt5Search0Open6Actor；原4527生成，记录+8136。少7Search3Open10Actor因为R6早期单轮长度停，生成增量主要R6 10000而非真实多次搜索。",
+      "counterevidence_and_alternatives": "G32在枚举表中出现不等于发现正确车型，也不等于执行查询；不能按关键词判断证据采用或功能恢复。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R6单轮10000Token反复G400/G500/G50等猜测计划，0新Call，缺Final。",
+      "outcome_evidence": [
+        "N4_LOOP",
+        "N4_STOP"
+      ],
+      "work_and_evidence_timeline": "R1查G4/Ford同返回，R2采用1981/1980年代并真实宽业务，R3认为G27中置并联合价，R4接受G27为1985业务车型查价。R5又发现front/mid与整车关系不足，实际宽业务；R6 22253字符从G27/G33改猜G400/G500/G45/G50，后逐字重复这些计划，未执行任一新Call，10000Token长度停。5Search0Open6Actor。",
+      "first_judgment_divergence": "R3/4较原提前把G27当完整匹配，随后矛盾未解改泛猜；原U年代仍恢复。",
+      "first_actual_tool_divergence": "R3联合价而原仍宽搜；R6所有Let's search均未执行，原继续有效Call的路径没有恢复。",
+      "function_correspondence": [
+        {
+          "original_goal": "拆解问题、年代取证",
+          "original_operation": "G4/Ford Search与采用1981",
+          "original_product": "后续限定1980年代",
+          "new_goal": "同日期及型号线索",
+          "new_operation": "R1同Search，R2读取采用并真实业务Query",
+          "new_product": "原U完整恢复，后型号错误接受及新猜测无证据",
+          "evidence": [
+            "O_U",
+            "N4_FIRST",
+            "N4_YEAR",
+            "N4_ADOPT",
+            "N4_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际年代证据、提取与行动都有，而新无Final不否定这项功能完成。",
+      "judgment_action_outcome_chain": "年代已知→G27局部年匹配升为身份→无价后布局矛盾重开→转无证G400等猜测并反复计划→没有转化为Call和新证据→长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "11497生成29885Prompt5Search0Open6Actor；记录生成+6970，多数来自R6 10000Token纯重复。低Prompt/工具来自更早长度停而非必要工作都完成后的节省。",
+      "counterevidence_and_alternatives": "与r3同早期长度停但内容不同：r3枚举型号编号，r4固定几车型反复自问。不能把两个N写成完全同判断链。"
+    }
+  ],
+  "four_run_comparison": "N/C/N/N。四条初查Return与原一致，四条均实际恢复1981→1980年代及后续使用。唯一C在11轮全文Open后明确定G32并提交；r1持续Search到R17后10K无行动，r3/r4五次Search后R6纯生成停。删掉首事实Stage没有让日期消失，退化与后续车型关系获取/采用和执行异常相伴；首Stage重要性不能单凭3/4退化推断。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "初始关键事实即使完整重新取得，也不保证后续关系链与证据入口相同。在已有年代却型号不明时，局部年份/整车词可促成错误身份前提；后续若只给这个对象查价格，或反复规划未执行查询，求解状态停留。全文直接关系若在预算内真正返回并采用，可推翻该前提、收束取证并提交。",
+      "support": "本Stage四条有同初查返回和同日期采用，r2全文→纠正→C，三N没有Open；与同题其他切点构成同题多次对照，不当多独立题。",
+      "limits": "不能由这一题证明通用因果机制；新旧服务/采样、G工作方向和预算交互保留，原U重建说明此实验未证明绕过功能。"
+    }
+  ],
+  "counterevidence_and_limits": "235759字符四路径全部实际读完，旧文本重复Return仅用精确SHA已读引用，所有新Reasoning/新Return完整检查。原生IDs缺失，R1@0只有完整响应usage可比，非NATIVE_TOKEN_EXACT。G25预填一次/P498另计，独立分支成本不求和；记录为Codex语义自审。",
+  "evidence": [
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This is a multi-hop question that requires me to:"
+    },
+    {
+      "evidence_id": "O_CALL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta G4 Series IV Ford engine revived decade",
+      "call_id": "chatcmpl-tool-bcd92130f7264a81"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "revived in 1981",
+      "doc_ids": [
+        "wiki25:10476338"
+      ]
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms the decade is the 1980s (specifically 1981-1984)."
+    },
+    {
+      "evidence_id": "O_FOLLOW",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta mid-engined model complete car 1980s 1981 1982 1983",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "return",
+      "json_pointer": "/tool_events/9/observation/text",
+      "exact_quote": "It was decided to re-enter the complete car business with the mid-engined G32",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "O_PRICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "return",
+      "json_pointer": "/tool_events/14/observation/text",
+      "exact_quote": "the convertible £14,600",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find out which mid-engined model Ginetta re-entered the complete car business with in that decade."
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta G4 Series IV Ford engine revival decade",
+      "call_id": "chatcmpl-tool-83421577a146e422"
+    },
+    {
+      "evidence_id": "N1_YEAR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the revival was in the 1980s (specifically 1981-1984)."
+    },
+    {
+      "evidence_id": "N1_LOOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 18,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/17/reasoning_content",
+      "exact_quote": "Let's search for \"Ginetta G27 complete car\"."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 18,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N2_FIRST",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta G4 Series IV revived Ford engine decade",
+      "call_id": "chatcmpl-tool-9f895655281b2954"
+    },
+    {
+      "evidence_id": "N2_YEAR",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results indicate that the Ginetta G4 Series IV was revived in 1981 with a Ford engine."
+    },
+    {
+      "evidence_id": "N2_FULL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "the convertible £14,600",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "So the model is the G32."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N3_FIRST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta G4 Series IV Ford engine revival decade",
+      "call_id": "chatcmpl-tool-af0efacdeff025c7"
+    },
+    {
+      "evidence_id": "N3_YEAR",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This confirms the \"decade when the Ginetta G4 Series IV was revived with a Ford engine\" is the 1980s."
+    },
+    {
+      "evidence_id": "N3_LOOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let's search for \"Ginetta G575\"."
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_FIRST",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Ginetta G4 Series IV Ford engine revival decade",
+      "call_id": "chatcmpl-tool-acd9a9a555148dcd"
+    },
+    {
+      "evidence_id": "N4_YEAR",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results indicate that the Ginetta G4 Series IV was revived in 1981 (in the 1980s decade) with a Ford engine."
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The G27 is the model in question."
+    },
+    {
+      "evidence_id": "N4_LOOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The **Ginetta G50** was launched in 1990?"
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0456/trajectory.json",
+      "source_sha256": "7fde058b641875bbb1a65489d6d34f825db5062f8aee66777f9020395db3d3f3"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0456.json",
+      "source_sha256": "f567f403f7f562d9dc03b2511d0b92e59aa28bb8f4ac62876af0bba50bdf1062"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "f4b6793012877cd30ea31e185bd55c0ccda343414820c8bf75607819eaf9c76d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ed7231978a7027f09063c94327beae15cde7449c6cd55b27c4d7d00b98f0c4c2"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "2c84293121eceb14ebbc45c47c35e84e6b12643464fb28687961189d49b5055a"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f6ae233c38f944b5c4c5480dca0c80a4fc3d391ccb65018854ec533d5d4833b9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "86c0817d8502f1cab5e9f0b9d77407f7c0ed560284a5fc2d0390b9154c2d9292"
+    }
+  }
+}

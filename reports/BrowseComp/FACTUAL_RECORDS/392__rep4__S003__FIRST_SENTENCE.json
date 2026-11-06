@@ -1,0 +1,44 @@
+{
+ "case_id":"392__rep4__S003__FIRST_SENTENCE","question_id":"392","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"W","3":"N","4":"W"},"basis":"原19轮上下文耗尽无Final；新1提交Government Farm Benoni/Uitvalgrond，新2/4提交Benjamin，均非封存Gold Bedford；新3仅Reasoning内工具XML，0真实Call、无Final。N到W三次属于B的状态变化，不等于由正确变错或原U因果必要。"},
+ "review_basis":"原19轮完整Reasoning/19真实Call、四新全部30轮Reasoning与实际content、43新Call/Return完整已读。Return索引46新片段及8同SHA外部片段全文复核，字段没有按DocID推断内容。原source实际21079511字节SHA与mapping/audit匹配；四分支P+G、43配对及首次下一Actor可见另核。",
+ "pre_state":"R1@2972之前P是2972字符、723原生Token的影片猜测及元素城市猜测，尚无工具调用、没有Brain on Fire或Charlize身份。P把城市因元素发现而建立与城市/元素彼此命名多次混同，未形成候选。",
+ "u_work":"U为R1[2972,3050)第一次影片搜索决定、真实E1，以及R2[0,259)直接采用返回中的Brain on Fire及制片人Charlize。核心产物是把宽泛疾病影片猜测转为可核查的具体电影—制片人关系，并决定查其出生。不是整段Benoni命名核验。",
+ "u_state_update":"原E1的53009/90538实际列电影与Charlize；R2首次采用，R3出生/父母/独生女核实后R4纠正gold是化学元素。随后一直查城市备选名，明说没有找到，19轮无Final。原U有效收敛对象，却未取得所问备选名，也未保证完成。",
+ "original_action_consequence":"原U→具体制片人背景查询→Benoni历史取证，未把5470的圣经儿童Benjamin当作城市备选名提交。删后1/2/4都实际重新查影片并恢复同一身份，故三次N→W并非影片身份丢失；差别在剩余命名关系没有证据时如何解释和提交。",
+ "guidance":{"text":"Charlize Theron was born in 1975 in South Africa, which is outside the USA.","source":"原S004 R2[259,334)，23原生教师Token；删点R1@2972，NATIVE_TOKEN_EXACT。","audit":"ORACLE_ANCHORED。完整P没有Charlize，这里提前给出新候选、1975及南非出生关系，补偿了U的部分身份产物；未直接给电影、Benoni或Gold。四新仍实搜影片，但不能据此当无引导删除因果证据。G一次，首请求历史与原R1一致，723P+23G、无旧E1或未来Return。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Let me start by searching for films from the 2010s about women with diseases.","use":"R1@2972实际U取证决策起点；P之前仅猜测。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The producers listed include Charlize Theron.","use":"R2 U直接采用53009/90538电影制片人关系；原E1 chatcmpl-tool-9c55848423864feb。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/reasoning_content","quote":"not necessarily named after an element, but created because of the discovery of an element.","use":"R4将命名与因金矿建城区分，行动转Benoni历史，而非继续元素命名城市。"},
+  {"id":"O4","source":"original","pointer":"/rounds/18/reasoning_content","quote":"Actually, I notice that all the search results keep showing the same information about Benoni's history but don't mention an alternative name.","use":"R19承认问题仍缺证，继续Call；原最终contextstop，不是正式拒答。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"film 2010s woman battling unknown disease female producer born outside USA","use":"新1R1实际三Call同批之首恢复影片取证，另两Call城市元素/父母，不虚构依次阅读。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"The producers include Charlize Theron!","use":"新1R2从实际新返回重新采用Brain on Fire身份。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/8/reasoning_content","quote":"But this doesn't tell me what name was \"almost given\" - it just says what name was given.","use":"R9已识别5470 Government Farm为实际命名非未采用备选；仍继续同类查询。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/9/content","quote":"The answer is most likely **Government Farm Benoni** or potentially **Uitvalgrond** as the original designation before the official naming.","use":"R10正式Final改以原土地名称回答备选名，缺口并未新补证；W。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"2010s film woman battling unknown disease female producer born outside USA","use":"新2R1三Call同批，真实影片搜索恢复。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/5/reasoning_content","quote":"But the question asks \"What is the name that was almost given to her birth city?\" - so it's asking about a name for the city, not the biblical person.","use":"R6能区分圣经人物改名与城市备选关系，随后实际Benjamin查询未获得城市关系。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"However, I should note that the search results don't explicitly state that \"Benjamin\" was \"almost given\" to the city. The biblical connection is just mentioned as background information about the name Benoni.","use":"R7明确保留反证但仍采用Benjamin并正式提交；不是证据没返回或不知道关系差异。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/6/content","quote":"**The answer is: Benjamin**","use":"真实Final W；不是仅中间猜测。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"<function=search-server-search>","use":"实际输出XML处在Reasoning，tool_calls空，0tool_events；NONFINAL_PROTOCOL_STOP，不能把意向当执行或当自主无搜索提交。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"I found \"Brain on Fire\" (2016) which is about a woman battling an unknown disease (encephalitis/psychosis). Charlize Theron is listed as a producer.","use":"新4R2实际影片返回后恢复核心电影身份。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"Benoni South Africa almost named Benjamin","use":"新4R4第一次将未证城市Benjamin关系写入真实查询，chatcmpl-tool-b7d3c1faae78f8fa；不是新文档证明。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"So the city was named Benoni from the start.","use":"R5主动纠正5470儿童改名不等于城市，后来R9/R11/R12仍反复提出相同类推。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/11/reasoning_content","quote":"Wait, let me think about this differently. Maybe the city was almost named Benjamin instead of Benoni? But the text doesn't say that.","use":"R12已明确无关系证据，但转而凭关联接受；真实Final Benjamin W。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G先给Charlize，首轮从原单影片Call改三目的并行Call，R2恢复影片身份，R4恢复金矿解释。决定性后期差别在R9承认土地已用名非备选后，R10仍将该名称/Uitvalgrond作为答案。","state_chain":"身份采用恢复→缺口保持为城市备选名→重复背景Return，未获得备选名→将原始土地名称充当所问对象→W。","function_change":"U影片取证/采用FULL_REBUILT，出生核验并行化；原长城市词变换没有全部再现，但新仍19真实Call，不能说省了Search。","evidence":["N11","N12","N13","N14","O4"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"R1改三Call联合恢复，R6辨清人物/城市关系；R7在明确没有城市备选名证据的情况下，仍将圣经背景Benjamin提升为答案。","state_chain":"影片身份与Benoni恢复→多次命名Query返回5470→识别儿童改名不满足城市条件→未取得消解材料仍接受类推→正式W。","function_change":"U FULL_REBUILT，不是对象未恢复；后缀13Call少于19，减少发生在缺口未闭合时提前提交，不能称有质量保持的节省。","evidence":["N21","N22","N23","N24"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"R1重新列影片候选和取证计划，输出工具XML留在Reasoning。没有真实Call/Return、没有影片新证据或采用Brain on Fire。","state_chain":"P+G候选提示→重启疾病影片猜测→尝试输出但未形成合法Call→协议终态N；没有可追踪的后续检索或正式判断。","function_change":"原U计划部分出现，真实取证/产物NOT_OBSERVED，整体PARTIAL_REBUILT仅计划层；不可将技术中断当省工作或认知反例。","evidence":["N31","O1","O2"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"首轮影片恢复，R4未有新证据就实搜Benjamin；R5纠正儿童/城市错配但R6–10又查元素城市及其他制片人，直到R11才重新承认gold是元素。R12仍缺城市关系而提交Benjamin。","state_chain":"核心身份恢复→元素解释反复动摇→另查元素地名/其他制片人增加工作→纠正金矿释义→已知儿童改名非城市、仍接受类推→W。","function_change":"U FULL_REBUILT；额外的元素/其他制片人路线及重复推敲使生成比原后缀更长，Search/Actor较少不能等价全部成本降低。","evidence":["N41","N42","N43","N44","O3"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"B状态变化的这组并不支持‘删除关键影片发现所以走错对象’：有正式Final的三条均恢复原U电影—制片人关系。可观察的候选解释是：核心身份已确定、所问城市备选名仍无证时，新1将已用土地名、新2/4将圣经人物名提升为城市答案；尤其2/4先明确关系不等价却未保持这一否定作为提交约束。原则继续追缺口直到无Final。应跨题检验的是缺口如何继续驱动取证或被无证类推关闭，而非按N→W频率把U称关键。",
+ "within_case_support":"三次正式提交都没有实际城市备选名证据；两次Benjamin有先识别关系错配、后仍接受的完整前后节点，新1是不同的已用名/未用备选替代，不能硬凑同一细机制。第四条为协议中断，排除于认知链支持。原缺口未闭合的反例显示知道材料不足既可能继续搜索，也可能转为无证答案，不推测隐藏信心或唯一停止阈值。",
+ "mechanism_chain_checks":[
+  {"chain":"U实际影片取证与具体身份采用恢复，但城市答案关系仍缺证","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N21","N22","N23"],"4":["N41","N43","N44"]},"limits":"G已提供Charlize身份，恢复为ORACLE补偿条件下的实际行为，不是纯删除。"},
+  {"chain":"明确区分圣经儿童改名与城市命名后，仍在无消解证据下接受Benjamin","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"2":["N22","N23","N24"],"4":["N42","N43","N44"]},"limits":"仅一题两独立采样；新1有别的关系替代，新3未实际执行；不能泛化频率。"}
+ ],
+ "counterevidence_and_limits":["原本即N且没取得Gold；此B是三次N→W，不支持原U必要性或正确性退化结论。","原与新都仅有Benoni常见命名史，真实Return5470谈Jacob给孩子改名，未谈城市备选Benjamin；全43新Return核对无Bedford，不把Gold反推为模型可见证据。","新4R4首次查询已含Benjamin，此时此前5470可见，但没有新文档证明所问关系。新3协议解析终态单列。原与新采样独立、G未来身份及预算/批量Call差异无法排除。"],
+ "cost_basis":"R1@2972原生精确。原同切点后缀4083生成、19Search、19Actor；Prompt分列原inflight413、后续507172（合507585），当前P723Token重放不能当新推理。新生成3910/2979/367/4674，G各23单列不重复，生成+G净差−150/−1081/−3693/+614；Search19/13/0/11，Actor10/7/1/12，实际Prompt292423/143453/1159/207519（含P+G重放）。新1联合Call减少Actor但没少Search；新2更早无证提交，新3技术停止均非有效节省，新4更多元素/人物猜测使生成增加。原延迟含切点前生成，不能报精确时间节省。",
+ "next_cross_case_test":"和B类‘候选未采用导致继续旧对象’分开：本组身份恢复、关系推断/提交不同。再找不同题目里已明确否定某关系却最终采用它，以及A中同类否定实际约束后续答案的对照；分别追实际消解证据、G补偿及剩余预算，不能按结果给机制贴标签。"
+}

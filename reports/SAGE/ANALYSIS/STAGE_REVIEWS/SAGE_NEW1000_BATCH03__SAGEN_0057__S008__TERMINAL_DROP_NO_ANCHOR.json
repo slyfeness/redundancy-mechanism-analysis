@@ -1,0 +1,486 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0057",
+  "stage_id": "S008",
+  "sample_order": 18,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0057/trajectory.json",
+      "source_sha256": "fabb5b9ad03fff5f388061dd6ada70683b55b34ca97a762426e2b9bfdca3eea6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0057.json",
+      "source_sha256": "2aabbc143903aa5d66ef09f053ec1c4767056a8704bcebc3ab5f4ab5b878cda4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "88aea478439b0527b967781471ccc2aa020a31373119e46ae5acd69118f448f2"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "442cc7d1c71873a2124254e3ddce9b0cfa086973ccb5b02b1c633c2e225a7f26"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "cbad55954cd410b0f547f6e25be73286e21d49e5b8974c966685873214190aaf"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "d98800e5900f927c3e73be2ac25f021955f75a4f8ea29fa9413af87d4c536730"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "dcd2a029cfba398f32206cf09ccf49a13e52d527dbb03420f5ee35df94c96c58"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the exact termination date of the public online service that was operated by the French telecommunications company which was a key consortium member in the construction of the first transatlantic fiber-optic cable that became operational in 1988, where this service itself utilized a Videotex standard running on a packet-switched protocol initially employed by AARNet?",
+    "gold": "June 30, 2012",
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整7轮及7工具事件，50264字符阅读视图",
+    "new": "四条完整新路径共6轮、6工具事件，30256字符阅读视图；无省略新Reasoning，完全相同已读Return仅作为阅读引用",
+    "actual_input": "I.actual_normalized_history逐项核对：历史Assistant content为空，工具返回保留；当前R7前缀为空。",
+    "notes": "ANALYSIS/ORIGINAL_TRAJECTORY_NOTES/ROOT_018_ORIGINAL_PROCESS.md"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "original_process": "原R3已提取Minitel与日期，R4比较Minitel/X.25具体日及Transpac月份，R6展开全题链条并又查AARNet；两次相同AARNet查询都没有直接证明。",
+    "actual_actor_visible_P": "问题、TAT-8财团返回、Minitel/X.25/Transpac及Alex返回、Minitel两次Open、两次AARNet噪声返回均在；当前切点R7@0没有原R7文字，没有G、原Final或未来Return。历史接受判断不作为Assistant content重放。",
+    "known": "France Télécom与TAT-8、Minitel归属及30 June 2012有直接片段；Minitel-Transpac-X.25也有直接支持。",
+    "unresolved": "AARNet最初使用X.25未由实际P的相关检索片段直接支持；Alex是加拿大服务，不能代替AARNet。",
+    "evidence": [
+      "I_P_TOOLS",
+      "O_DATE",
+      "O_X25",
+      "O_AARNET_NOISE",
+      "O_WRONG_ATTRIBUTION"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 1319
+      }
+    ],
+    "goal": "把全题关系链再次接受为充分证据并提交准确停用日。",
+    "operations": "列五跳关系，错误借Alex DATAPAC及Minitel X.25句声称AARNet关系confirmed，实际Submit 30 June 2012。",
+    "product": "正确日期Final，但AARNet证据缺口没有闭合。",
+    "judgment_change": "从待核关系重回全题接受和停止查询；不是首次日期发现，也没有获得新文献事实。",
+    "evidence": [
+      "O_WRONG_ATTRIBUTION",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "末Stage自身Submit后结束，没有下一Reasoning。",
+    "evidence_limit": "答案日期有直接双源支持，不等于整条识别链被完整证实。"
+  },
+  "function_features": [
+    "已有答案属性上的全题关系整合与提交",
+    "提交接受可以在同答案下保留或补齐侧链证据缺口",
+    "同C不区分真实新增关系核验与仅复述"
+  ],
+  "guide_audit": {
+    "condition": "NO_ANCHOR",
+    "text": "",
+    "tokens": 0,
+    "information_risk": "没有教师补偿；日期与候选来自合法P工具材料。无引导仍不能把四条同C视为整个接受功能未执行。"
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "真实Submit日期与Gold相同。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R7再次整合TAT-8/France Télécom/Minitel/Transpac/X.25/日期，断言AARNet used X.25；没有补证Call。",
+        "把Transpac月份句和X.25日期句混合归属，核心精确日期仍有Minitel直接支持，实际Submit。"
+      ],
+      "first_judgment_divergence": "没有换服务或日期；原错借Alex变为对AARNet使用X.25直接断言，没有实际补齐支持。",
+      "first_actual_tool_divergence": "与原相同只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全链接受/日期提交",
+          "original_operation": "比较关系、接受并Submit",
+          "original_product": "日期Final而侧链未证实",
+          "new_goal": "同目标",
+          "new_operation": "R7重新列链并Submit，无Search/Open",
+          "new_product": "同日期Final，侧链支持仍不足",
+          "evidence": [
+            "O_WRONG_ATTRIBUTION",
+            "O_SUBMIT",
+            "N1_CHAIN",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全链接受及正式提交实际重做；FULL不表示推理证据完全正确。",
+      "judgment_action_outcome_chain": "P日期直接可见→接受身份和日期且未解决AARNet关系→立即Submit C；同答案不能证明U功能消失。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "451生成/11390Prompt/0S0O1A；原切点整轮363生成/11390Prompt/0S0O1A，生成+88，工具和输入不变。",
+      "counterevidence_and_alternatives": "没有实际节省，不能当冗余证据；仍是重采样。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "真实Submit日期正确。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R7先接受主要链条，明确说应核AARNet且Let me search，但随后仅用早期学术网络常用X.25的概括来补推断；没有真正Search。",
+        "称AARNet established1986没有对应返回支撑（新3后来的真实AARNet文档给1989）；最后回到Minitel明确日期句并Submit。"
+      ],
+      "first_judgment_divergence": "承认AARNet关系应核，却将一般背景推断当足够继续接受，不同于真实补证；与原同有具体证据缺口。",
+      "first_actual_tool_divergence": "没有Query，仅Submit；搜索意向不计工具。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合并提交",
+          "original_operation": "接受侧链和日期Submit",
+          "original_product": "正确日期",
+          "new_goal": "同目标，口头提出核查",
+          "new_operation": "论述/推断后直接Submit，无实际核查",
+          "new_product": "同日期及同侧链未证实",
+          "evidence": [
+            "O_SUBMIT",
+            "N2_INTENT",
+            "N2_INFERENCE",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U接受/提交恢复；未执行的搜索不虚构为功能新增。",
+      "judgment_action_outcome_chain": "已有日期→识别侧链待核但以一般推断绕过→不Search直接SubmitC；篇幅增加并没有对应新增证据。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "633生成/11390Prompt/0S0O1A；相对原生成+270，其他不变；增加发生在重复重述关系和未执行核查意向。",
+      "counterevidence_and_alternatives": "C不等于AARNet1986等断言被证实；无Search不能靠意向判重复检索。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R9真实Submit正确日期；新核查还给侧链直接支持。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R7已提取Minitel日期，却明确区分Alex是Canadian、不能直接确认AARNet；重新选择AARNet X.25 protocol实际Query。",
+        "e0返回wiki25:1082731 AARNet片段头部给1989与网络身份，但1500字符还没显示X.25初始网络句；不能把doc命中当关系已证。",
+        "R8继续Open AARNet limit2000，e1实际可见文末直接写initially built as a multi-protocol network comprising IP/DECnet/X.25；这才补齐原缺口。",
+        "R9重新列链，说明有足够信息，沿原日期Submit；没有新发现或更换日期。"
+      ],
+      "first_judgment_divergence": "R7不把Alex协议句等同AARNet，明确仍需实际验证；这一判断改变工具行动。",
+      "first_actual_tool_divergence": "原R7直接Submit；新R7先Search AARNet X.25 protocol，R8 Open对应1082731，R9才Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全链证据接受和日期提交",
+          "original_operation": "直接声称AARNet已确认、Submit",
+          "original_product": "日期正确但侧链缺证",
+          "new_goal": "同一完整接受目标，同时确证AARNet协议",
+          "new_operation": "真实定向Search→Open2000取得initially built句→整合并Submit",
+          "new_product": "同日期Final，AARNet-X.25关系现在有直接支持",
+          "evidence": [
+            "O_AARNET_NOISE",
+            "O_WRONG_ATTRIBUTION",
+            "N3_GAP",
+            "N3_QUERY",
+            "N3_OPEN",
+            "N3_DIRECT_PROOF",
+            "N3_ACCEPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原接受/提交最终实际执行；额外做了原路径未成功完成的关系查证，不能误称整段纯重复。",
+      "judgment_action_outcome_chain": "答案日期已知但关键侧链无直接支持→不将Alex证据错用为AARNet→改写Query取得具体对象并Open到关键句→完成真实关系支持后提交同日期C；成本增加对应核查工作及较长整合。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "1674生成/37886Prompt/1S1O3A；原363/11390/0S0O1A，生成+1311、Prompt+26496、Search+1、Open+1、Actor+2。R7生成1058、R8 404、R9 212，分开记录；不是把全部1311都称必要。",
+      "counterevidence_and_alternatives": "多花计算没有改变C，却补了一项此前缺证；反驳所有提交前核查都无用。Query去掉packet-switched带回AARNet，不能把变化归因于U唯一因果作用。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S008__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "实际Submit日期正确。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R7从TAT-8/公司再推Minitel，直接概括AARNet常关联X.25，无新Search。",
+        "同一日期句引用两次，正确区分Transpac只证月份而Minitel证具体日，接受并Submit。"
+      ],
+      "first_judgment_divergence": "未见核心候选或日期分歧，AARNet具体关系仍概括接受。",
+      "first_actual_tool_divergence": "同原仅Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合身份链和具体日期并Submit",
+          "original_operation": "全题接受",
+          "original_product": "正确日期Final",
+          "new_goal": "相同",
+          "new_operation": "重复日期句并区分月份/具体日后Submit",
+          "new_product": "同Final，AARNet直接证据仍缺",
+          "evidence": [
+            "O_DATE",
+            "O_SUBMIT",
+            "N4_DATE_COMPARE",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "接受比较与正式提交都发生，不能只因日期未变标未重建。",
+      "judgment_action_outcome_chain": "原材料有准确日期→重做比较/接受→SubmitC；侧链仍不直接补证。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "521生成/11390Prompt/0S0O1A，生成+158，其余不变；增加在重述五跳关系和反复引用日期。",
+      "counterevidence_and_alternatives": "0新Search不等于U接受功能没有发生。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4/4 FULL_REBUILT接受/提交；1条真正补齐原侧链缺口，另外3条无新Search/Open。",
+    "specific_difference": "new3把待核AARNet关系保持为真实缺口，Query改变并Open到直接句后才接受；new2仅说要查却以一般推断继续，new1/4直接接受。",
+    "cost": "4条生成均增加；new3另增S1/O1/A2/Prompt26496。相同C掩盖支持质量和执行规模差异。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "同一个已知答案上的最终关系整合，能直接重复接受，也能暴露一个原来被错误借证遮盖的约束缺口。只有后者真实改变取证对象/入口并取得直接句时，额外成本对应支持质量提升，而不一定改变答案。",
+      "chain": "P有Minitel日期而AARNet关系未证→new3不把Alex代替AARNet→定向Search及Open真实关系句→同日期Submit；其他3条在无此更新下仍同C。",
+      "support": [
+        "O_WRONG_ATTRIBUTION",
+        "N3_GAP",
+        "N3_QUERY",
+        "N3_DIRECT_PROOF",
+        "N3_SUBMIT"
+      ],
+      "scope": "1Stage/1题/4续跑的候选解释；等跨题对照，不因A类称冗余。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G0排除教师事实补偿，但仍存在重采样及输入历史reasoning未重放的已披露实现因素。",
+    "原正确日期有直接支持；批评侧链不等于将原C改判W。",
+    "Open2000才露出AARNet初始多协议句，Search命中同Doc不能代替已读此句。",
+    "新2提到Search但实际没有执行，不能算核查恢复。",
+    "原nativeIDs缺失，整轮usage比较可披露但不宣称NATIVE_TOKEN_EXACT或因果节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P_TOOLS",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 7,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "initially employed by AARNet"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "O_X25",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "Known as Minitel it was based on Videotex, itself running on X.25.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:158019"
+    },
+    {
+      "evidence_id": "O_AARNET_NOISE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "AARNet X.25 packet-switched protocol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_WRONG_ATTRIBUTION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "as confirmed in the search results about Alex videotex service mentioning"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-bdff0018ee94a12c"
+    },
+    {
+      "evidence_id": "N1_CHAIN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "AARNet (Australian Academic and Research Network) used X.25."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_INTENT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me search for AARNet to confirm this connection."
+    },
+    {
+      "evidence_id": "N2_INFERENCE",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "AARNet (Australian Academic and Research Network) was established in 1986."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-833b1361368a5392"
+    },
+    {
+      "evidence_id": "N3_GAP",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Alex is Canadian."
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "AARNet X.25 protocol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:1082731",
+      "call_id": "chatcmpl-tool-b41bb1c72d175b48"
+    },
+    {
+      "evidence_id": "N3_DIRECT_PROOF",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "AARNet was initially built as a multi-protocol network, comprising Internet Protocol (IP) as well as DECnet and X.25",
+      "call_id": "chatcmpl-tool-b41bb1c72d175b48",
+      "doc_id": "wiki25:1082731"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "I have sufficient information to submit the answer."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-8db75ce066fae197"
+    },
+    {
+      "evidence_id": "N4_DATE_COMPARE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This confirms the month and year but not the exact date."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-857e8e30f550ba65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

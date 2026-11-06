@@ -1,0 +1,48 @@
+{
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex全文阅读后的主学校名称匹配为C；四条均无新Call，前三条Final将未证地点推断强化，第四条仍弱支持。这些证据质量限制独立于答案名状态，不视作完整任务证据PASS。"},
+  "case_id": "205__rep2__S008__FIRST_SENTENCE",
+  "review_basis": "Codex重新阅读全文：原6轮Reasoning、5次Call及全部Return、正式Final；四条新路径各1轮完整Reasoning及Final，均无工具事件。",
+  "question_id": "205",
+  "status": "MECHANISM_REVIEWED_WITH_LIMITATIONS",
+  "pre_state": "P已经采用Veritas为最佳候选并明确女校名称。R3识别Springs1904与题面年代冲突；R5在U之前以地区可能更早的历史保留候选，尚未返回后来E5的1886矿业材料。",
+  "u_work": "重新搜索Springs的19世纪历史，读取1904建镇与Witwatersrand1886淘金文档，并在R6开头用区域历史解释地点条件。",
+  "u_state_update": "U为前文已提出的地区历史解释增加实际检索材料，并明确说1886淘金；没有首次发现或更换女校候选。该材料能支持地区淘金史，不能单独证明题目所指城镇的历史。",
+  "original_action_consequence": "R6后半复盘候选，短暂提出继续核查意向但无真实新Call，随后正式回答Convent。",
+  "guidance": {
+    "text": "Let me think about what matches best:",
+    "source": "原R6@464-501",
+    "audit": "不提供实体、1886年份或答案；提供整体比较的行动方向。ORACLE_ANCHORED，可能促进直接作答，不能排除其贡献。"
+  },
+  "evidence": [
+    {"id":"P_ACCEPT","source":"original","pointer":"/rounds/4/reasoning_content","quote":"The best match seems to be Veritas College.","use":"U开始之前已经采用候选"},
+    {"id":"P_BRIDGE","source":"original","pointer":"/rounds/4/reasoning_content","quote":"This could mean the town area has history from that period, even if the official establishment date is slightly different.","use":"尚为推测的地区解释已经形成"},
+    {"id":"U_QUERY","source":"original","pointer":"/tool_events/4/exact_arguments","quote":"Springs South Africa town history 1850 1860 1870 1880 1890 mining","use":"实际新增地点取证"},
+    {"id":"U_RETURN","source":"original","pointer":"/tool_events/4/exact_result","quote":"in 1886, the world's largest goldfields were discovered on the Witwatersrand.","use":"原U取得的地区矿业证据，Doc47954"},
+    {"id":"U_ADOPT","source":"original","pointer":"/rounds/5/reasoning_content","quote":"the region around Springs (Johannesburg area) has mining history dating back to the late 19th century (1886 gold discovery).","use":"模型实际采用地区史"},
+    {"id":"Z_CLOSE","source":"original","pointer":"/rounds/5/reasoning_content","quote":"Actually, based on all my research, the best match is:","use":"原路径转入接受与提交"},
+    {"id":"N1_TENTATIVE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"the Springs Mine area likely has earlier history","use":"无新检索，仍以可能性解释冲突"},
+    {"id":"N1_ASSERT","source":"new1","pointer":"/rounds/0/content","quote":"the area around Springs Mine has historical significance dating back to the late 19th century mining operations","use":"Final把推测强化成事实表述"},
+    {"id":"N2_TENTATIVE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"the area may have earlier history","use":"承接前文宽解释"},
+    {"id":"N2_ASSERT","source":"new2","pointer":"/rounds/0/content","quote":"Springs, which has historical roots dating back to the mining era in the late 19th century","use":"未取得新材料仍作肯定表述"},
+    {"id":"N3_TENTATIVE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Springs was established in 1904, but could have history going back further","use":"保留反证，采用可能更早历史"},
+    {"id":"N3_ASSERT","source":"new3","pointer":"/rounds/0/content","quote":"has a history that goes back to the mining area in the late 19th century","use":"Final强化推测"},
+    {"id":"N4_INFER","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Springs has some connection to Springs Mine mentioned, which suggests mining history","use":"从矿名推断历史，无新Return"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/0/content","quote":"The girls' school was the **Convent of Our Lady of Mercy**.","use":"正式采纳答案"}
+  ],
+  "content_review_20261030":{"scope":"重读P中已有候选和宽解释，核对删后是否有实际补证及Final措辞变化。","decision":"4次没有重建地点取证，3次把可能地区史在Final强化成确定；姓名保持不抹掉原U确有新增地区材料。"},
+  "mechanism_chain_checks":[
+   {"chain":"P中候选与支持其提交的地区解释已形成，删后无新Search便继续组织并保持主名称","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_ACCEPT","P_BRIDGE","N1_TENTATIVE","N1_ASSERT"],"2":["P_ACCEPT","P_BRIDGE","N2_TENTATIVE","N2_ASSERT"],"3":["P_ACCEPT","P_BRIDGE","N3_TENTATIVE","N3_ASSERT"],"4":["P_ACCEPT","N4_INFER","N4_FINAL"]},"limits":"U原确实补地区矿业材料，新路径没得到它；功能没执行加名称保持不证明地点取证普遍无用，G也给比较方向。"},
+   {"chain":"推理仅有可能或推断的地区历史，在无新文档时被Final强化为肯定陈述","observed_repeats":[1,2,3],"not_observed_repeats":[4],"evidence_by_repeat":{"1":["N1_TENTATIVE","N1_ASSERT"],"2":["N2_TENTATIVE","N2_ASSERT"],"3":["N3_TENTATIVE","N3_ASSERT"]},"limits":"第4次有弱推断支持，但不靠核心名匹配补成同一明确语气升级链。"}
+  ],
+  "rollouts": [
+    {"repeat":1,"first_divergence":"跳过地点核查，直接根据已有候选复盘并提交。","state_chain":"保留P中候选接受与地区推测→无Search→将推测强化于Final→女校名称保持。","function_change":"未重建实际取证；保留解释和最终综合。","evidence":["P_ACCEPT","P_BRIDGE","N1_TENTATIVE","N1_ASSERT"],"semantic_result":"CORRECT_NAME_WITH_UNSUPPORTED_LOCATION_ASSERTION"},
+    {"repeat":2,"first_divergence":"直接勾选学校条件，地点仅用may解释。","state_chain":"既有候选→无Search→将可能地区历史写成确定事实→名称保持。","function_change":"未重建取证；使用已有候选与推断。","evidence":["P_ACCEPT","P_BRIDGE","N2_TENTATIVE","N2_ASSERT"],"semantic_result":"CORRECT_NAME_WITH_UNSUPPORTED_LOCATION_ASSERTION"},
+    {"repeat":3,"first_divergence":"直接复盘并选择Convent，无地点核查。","state_chain":"已有关系与1904反证→可能更早历史→Final采用宽解释→名称保持。","function_change":"未重建取证；再次作接受判断。","evidence":["P_ACCEPT","P_BRIDGE","N3_TENTATIVE","N3_ASSERT"],"semantic_result":"CORRECT_NAME_WITH_UNSUPPORTED_LOCATION_ASSERTION"},
+    {"repeat":4,"first_divergence":"直接从Springs Mine名称推断矿业史后提交。","state_chain":"已知矿名与候选→推断历史→无Search直接提交。","function_change":"未重建取证；以已有文本和推断代替材料支持。","evidence":["P_ACCEPT","N4_INFER","N4_FINAL"],"semantic_result":"CORRECT_NAME_WITH_WEAK_LOCATION_SUPPORT"}
+  ],
+  "mechanism_candidate": "候选及支持其提交的解释已在P形成时，后置补证的删除可不改变答案；实际成本下降来自不再执行补证及反馈。但材料缺失可以被未经验证的推断掩盖，答案保持不能证明证据质量保持。",
+  "within_case_support": "4/4路径均不查地点而保留候选；其中r1-r3可见推理可能性在Final中被强化。仅1道题、1个目标Stage的观察，不称跨题机制成立。",
+  "counterevidence_and_limits": ["原U确实新增地区矿业材料，故不能写成完全没有信息贡献。","原路径本身也未充分证明地区史可替代题面城镇史。","G提供复盘方向；无匹配NO_G对照，不能分离G与删除的贡献。","采样可影响停止；仅四次观察。","功能未执行与结果保持只支持本条件的段落删除表现，不证明地点核验无用。"],
+  "cost_basis": "NATIVE_TOKEN_EXACT；原后缀包含U，completion588、Search1、Actor2；新completion308/353/347/334、Search0、Actor1。G预填8另列。由程序从原始账本复算差额，语义记录不手写统计总数。",
+  "next_cross_case_test": "对比补证前是否已接受候选；若未接受，删除是否延迟候选采用；若已接受，补证是否真改变核验顺序或停止；同时寻找补证首次提供决定性反证导致改选的反例。"
+}

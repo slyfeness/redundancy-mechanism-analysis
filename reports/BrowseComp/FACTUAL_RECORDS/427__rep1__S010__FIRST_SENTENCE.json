@@ -1,0 +1,38 @@
+{
+ "case_id":"427__rep1__S010__FIRST_SENTENCE","question_id":"427","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"W","3":"W","4":"W"},"basis":"四新都有正式Final且都采纳Underwood而非Gold Guerlain；原ContextN。k4 B，不能写成正确→错误或答案改善。"},
+ "review_basis":"原18轮18Call及Return已全读；本组四新15轮11Call的Reasoning/content/Return完整实际读，145槽2新增片段73442/14783全文，其余精确已读SHA；四首P+G/工具配对及下轮消费均实际核验。",
+ "pre_state":"R14@0保留完整13次历史Search。原Reasoning固定Underwood，已有1868/1870资料和大量未补的收购/厂区/年龄缺口，多次PhilipMorris只是Query假设；P还有Guerlain工厂Return却未采用。没有原Final。",
+ "u_work":"U R14长清单维持Underwood，说死亡1864所以可能1850—79成立，仍缺年龄/收购/厂区，实际E14把Underwood与13000/8000面积一起Query。原返回其他制造资料，后续继续PhilipMorris等五次剩余Query到Context。U没有完成充分接受判断或证明厂区。",
+ "u_state_update":"四新继续采用同候选，但新1/4没有再执行厂区Query，改查并购或出生年；新2/3真实设施Query有恢复。四条最终都从尚缺四条件转为正式Underwood，并将查询假设和题目约束写成已证细节。",
+ "original_action_consequence":"删除后少Search并不统一等于原U功能消失：两条仍查设施，两条走其他核验。最终状态变为错误Final的共同可见环节是缺证候选被接受，不是候选发现/证据补齐。较早结束使四条Search/Prompt都少，长篇反复和正文使新3/4生成反增。",
+ "guidance":{"text":"I'm still not getting the specific information about the Underwood company's acquisition and production facilities.","source":"S011 R15@0首句19Token；R14@0原生精确当前生成前缀0但完整历史13Call保留。","audit":"ORACLE_ANCHORED。Underwood与失败评价在完整P多次出现，不新添事实/候选；前移原后继对不足的反馈，不能当模型消费原E14后自主评价。G不包含正式答案、年龄或具体买方。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/13/exact_arguments","quote":"Underwood company 2 production facilities 13000 square meters 8000 square meters","use":"原U真实特定公司厂区Query，不混前面一次一般厂区搜索。"},
+  {"id":"O2","source":"original","pointer":"/rounds/13/reasoning_content","quote":"if he started in Boston before 1864, this could be 1850-1879","use":"原已从上限死亡年猜成立窗口，非真实成立证据。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Underwood food company acquired by Philip Morris 1988","use":"R14唯一新Call查买方而非厂区；买方在旧历史已被查询但未证。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Actually, I think I need to provide the answer based on the information I've found. The company appears to be Underwood & Company.","use":"R15仍说四约束需要验证，实际转正式W。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/content","quote":"William Underwood died in 1864 at age 58 (born approximately 1806, died 1864).","use":"Final具体58/1806无实际Return支持，不能称正确执行年龄核验。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Underwood company Boston food manufacturer production facilities square meters","use":"R14实际恢复厂区查询，不能统一说四次都省了此功能。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/2/content","quote":"he was born around 1840-1850, which would make him between 55-69 years old at the time of his death.","use":"R16Final把1864−1840/1850错算为55—69并称historicalrecords，无证错误匹配。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Underwood company production facilities sites square meters 2022","use":"R15实际恢复面积工作，另两Call查PhilipMorris，结果未证。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Based on the information I have, I believe the company is \"Underwood\" (likely Underwood & Sons or similar).","use":"R18明确转接受，末句仍说查但没有Call，实际正式W。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/4/content","quote":"The company was acquired by Philip Morris (a conglomerate) in 1988.","use":"把实际仅GeneralFoods/Kraft关系的材料扩到Underwood，具体1988未获支持。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"The snippet says William Underwood \"starts a small condiment business in Boston\" but doesn't give an exact year.","use":"R16正确识别日期未证，后查birthyear实际无有效结果。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/4/content","quote":"approximately 51-55 years old at death (close to the specified range).","use":"R18Final把自己给出的51—55也打勾为56—69匹配，材料没有证实出生年，不能叫合理边界值。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"跳过原面积Query，只一次PhilipMorris1988 Query后R15提交。","state_chain":"固定候选/缺口→换查未证买方→仍未知但接受→Final补58岁与并购W。","function_change":"具体厂区操作未重建，后段取证少四次，质量未保持；比较/答案组织仍重建。","evidence":["N11","N12","N13"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"先恢复面积Query，再PhilipMorris Query，R15有中间content同时带Call，R16才最终。","state_chain":"厂区核查恢复→未解关系→同候选盘点→无证/错算年龄成为满足条件的Final→W。","function_change":"原U目标与实际厂区操作恢复但执行更少；不是消除必要年龄计算的有效捷径。","evidence":["N21","N22"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"先并购后面积再两次买方，查询未补约束，R18结束。","state_chain":"原工作恢复→反复同缺口→把最可能候选接受→无证具体并购年/面积→W。","function_change":"厂区操作重建，4次Call少一次，但表达更长使生成增加。","evidence":["N31","N32","N33"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"并购→成立→出生年→PhilipMorris，未再真查面积，最后承认/暴露不合年龄仍打勾。","state_chain":"已知缺口→额外birthQuery未取得有效证据→综合接受→Final以close替代年龄约束W。","function_change":"厂区操作未重建，换其他核验非全功能跳过，四Call和较长生成。","evidence":["N41","N42"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"B四次状态都由N变W，但不等于同一个目标功能四次省掉：两次恢复设施核验、两次转别的核验。共同事实是原固定候选未被有效排除，既有缺口最后被答案正文中的无证断言或错误计算覆盖，而不是被新材料解决。这里Search下降反映较早结束未解核验；生成两增两降说明表达与交互应分账。原U的具体面积工作是否做过，单独不能解释四次均W。",
+ "within_case_support":"4W、2真实厂区核验恢复/2未恢复；4次正式接受都缺关键证明。具体年龄错误分别不同，不能把58岁、1840—50错算和51—55close写成同一原文过程。",
+ "mechanism_chain_checks":[
+  {"chain":"原候选持续、关键约束未证，却在正式答案中被写成符合","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N12","N13"],"2":["N21","N22"],"3":["N31","N32","N33"],"4":["N41","N42"]},"limits":"四次错误终态同题，具体中间年龄/并购错误不同。原也是未成功，不证明删除原U使正确性下降。"}
+ ],
+ "counterevidence_and_limits":["新2/3恢复厂区Search仍错误，新1/4未恢复也错误，是用是否重建作充分解释的反例。","新4实际新增出生年核查，不因结果不相关否认其执行；其后无证出生年和年龄打勾仍须单独审。","新2中间content伴Call不直接当正式终态，最后R16正式Final才评价W。","全部末句搜索意向按实际Call核对，不把没有执行的Search计费或认作恢复。","G不提供新实体事实却仍ORACLE承接，不当无干预因果证明。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R14@0，保留历史13次Call，G19单列。原后缀1955gen/5Search/5Actor，Prompt40732+195494=236226。新gen1066/1460/2460/2154，加G净差−870/−476/+524/+218；Search1/2/4/4 Actor2/3/5/5 Prompt84622/131867/235889/234254。四条Search/Prompt都少，后两条Actor相同/生成反增；原始整题不是比较分母，分支节省不相加。",
+ "next_cross_case_test":"将B按C→失败和N→W分别解释，再比较具体核查有没有真正改变判断及下一Call；多个同题Stage都同候选不变不能充当多题共同特点。"
+}

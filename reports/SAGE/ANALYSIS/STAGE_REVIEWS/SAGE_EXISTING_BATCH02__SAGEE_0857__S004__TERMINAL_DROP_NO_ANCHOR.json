@@ -1,0 +1,464 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0857",
+  "stage_id": "S004",
+  "sample_order": 20,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0857/trajectory.json",
+      "source_sha256": "7ded54490fd523ab26cb16a2fea096b730cd4ebc3fa5915f6f6c26137e7304f7"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0857.json",
+      "source_sha256": "26c59ff9b685cf8df2862e86fe2ed8b8976603192547b9a02fe1fc616ce12757"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "83d3ccb68780b5b745a7488cb7bd88524180be92a3ec09d82eaf23ea3bc20668"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "fbd7b663238af9aa9655f63ea8c0e240ed03ed4f77e6069512f3c395cd58a8be"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "9446229f9463d42ebf5639212aca2d2f4f638852cfc3353fce27cb170e5ebb3f"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "6bac9cb85dc1f303720f0ebe493e35091454bb8e31bb39ed988a9dd2e74efaac"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "86f70906310e17cf9168bab91c51af7f2c82dee55bcdcc8a2555074fffc796af"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the reported acquisition price, in millions of U.S. dollars, for the cloud security company whose product was rebranded as Microsoft Cloud App Security, and whose founders were former members of the Israeli Intelligence Corps' Unit 8200, given that the acquisition occurred after the launch of Microsoft's Trustworthy Computing Initiative?",
+    "gold": [
+      "320"
+    ],
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "原Question/3轮全部Reasoning/3实际事件/全部Search和Open返回完整阅读，21467字符。",
+    "new": "35092字符四条完整新轨迹，6轮6真实工具事件及全部Return；只完全相同全文使用已读引用。",
+    "actual_input": "R3@0当前P空，历史两份工具返回可见，历史Assistant内容为空；实际P没有2002字符串及原R3时间判断。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "original_process": "R2已采用Adallom、改名、Unit8200和320/July2015，Open2000重复确认这些内容；没有实际查倡议启动时间。",
+    "actual_P": "Search7476796片段及Open同Doc前2000字符均直接给身份、产品、创始人和价格/年；当前R3没有保留原接受文字，需由模型重新综合。",
+    "gap": "Trustworthy Computing Initiative启动时间未在实际P文档中返回；原R3用记忆2002。价格本身直接支持充分，与这一条件的证明分开。",
+    "evidence": [
+      "I_QUESTION",
+      "O_PRICE_RETURN",
+      "O_OPEN_RETURN",
+      "O_YEAR_INFERENCE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 650
+      }
+    ],
+    "goal": "接受Adallom全部识别条件，比较倡议2002与收购2015，提交百万美元价格320。",
+    "operations": "重述公司/产品/创始人，记忆推定2002早于2015，决定足够并真实Submit。",
+    "product": "正确Final320，年份条件没有独立文档支持。",
+    "judgment_change": "将已知身份/价格与尚未文档核实的时间前提组合，转入正式提交。",
+    "evidence": [
+      "O_YEAR_INFERENCE",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "本Stage是末段，Submit后终止，无下一Reasoning或G。",
+    "evidence_limit": "原没有精确月份断言，只用2002；价格正确不证明所有条件都经工具核实。"
+  },
+  "function_features": [
+    "直接价格证据齐全后的全题接受和提交",
+    "剩余时间条件可以用记忆比较，也可以真实补证再比较",
+    "相同价格正确性可掩盖附带时间事实错误或证据质量提升"
+  ],
+  "guide_audit": {
+    "text": "",
+    "tokens": 0,
+    "condition": "NO_ANCHOR",
+    "information_risk": "无教师事实/行动/答案补偿。候选和价格来自合法P工具返回，不注入原Final。"
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "真实Submit320，等于Gold。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R3重新采用Adallom/320/2015/改名/Unit8200，直接以November2002早于July2015判断时间条件满足。",
+        "没有新Search/Open；November月份没有在P得到证明，和新2实际文档January15不同，但不改变所问价格或2002<2015的关系。"
+      ],
+      "first_judgment_divergence": "原只说2002，新具体补成November2002；无依据增加细节，但核心先后与候选不变。",
+      "first_actual_tool_divergence": "同原只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合条件和价格提交",
+          "original_operation": "记忆2002/2015比较后Submit",
+          "original_product": "320Final",
+          "new_goal": "相同",
+          "new_operation": "重做关系/价格接受及先后比较、Submit",
+          "new_product": "同320，新增错误月份细节",
+          "evidence": [
+            "O_YEAR_INFERENCE",
+            "O_SUBMIT",
+            "N1_MONTH",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全部题目条件的接受及正式提交都恢复；FULL不是事实每项都正确。",
+      "judgment_action_outcome_chain": "P主体/价格齐全→以记忆月份和年份接受时间条件→直接SubmitC，未补时间证据；较短表达不等于判断功能没重做。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "180生成/4383Prompt/0S0O1A；原193生成/4383Prompt/0S0O1A，记录生成-13，其他同。边界非原生精确，不夸大为可靠因果节省。",
+      "counterevidence_and_alternatives": "答案C仍伴附带月份错误，说明结果保持不能替代证据/解释质量验收。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4实际Submit320，价格同Gold且时间条件有新真实支持。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R3重做价格/身份采用，但将尚未返回的倡议时间保持为待核，实际Query Microsoft TrustworthyComputingInitiativelaunchdate。",
+        "新e0结果0 1591203明确January15,2002memo，其他结果给2002旁证；R4实际引用这一新句，与July2015比较并逐项确认后Submit。",
+        "没有重查价格、换公司或打开原Adallom；新增的是真实时间条件证据。"
+      ],
+      "first_judgment_divergence": "原记忆2002直接接受；新要求文档确认时间先后，明确查证再采用。",
+      "first_actual_tool_divergence": "原直接Submit，新先Search倡议日期，下一轮Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受完整条件并提交",
+          "original_operation": "记忆年份比较",
+          "original_product": "正确价格但时间材料未返回",
+          "new_goal": "同接受目标，补足时间依据",
+          "new_operation": "Search直接日期→R4引用January2002<July2015→Submit",
+          "new_product": "同320、时间条件有直接文档支持",
+          "evidence": [
+            "O_YEAR_INFERENCE",
+            "N2_TIME_QUERY",
+            "N2_TIME_RETURN",
+            "N2_DATE_ADOPT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标完整恢复并以真实材料替代记忆判断；新增支持不是原接受功能消失。",
+      "judgment_action_outcome_chain": "价格已知但倡议启动未证→把这个条件转为具体日期Search→采用January15,2002并与2015比较→接受同公司/价格C，增加取证和较长完整复盘但提高条件支持。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "671生成/12741Prompt/1S0O2A；原193/4383/0S0O1A，生成+478/Prompt+8358/Search+1/Actor+1。R4的517生成含再次约束与单位确认，不能将全部增加称必要Search成本。",
+      "counterevidence_and_alternatives": "更多成本对应真实补证，不是低收益重复的当然例子；同C仍可质量提升。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "真实Submit320。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R3直接引用Adallom文档三条件，记忆称倡议October2002早于2015，接受价格Submit；0新Search/Open。",
+        "该月份不在P且与同批新2实际文档January15不同；日期关系仍为2002在2015前，价格没受影响。"
+      ],
+      "first_judgment_divergence": "增加未经查证的October月份，与原只有2002不一样。",
+      "first_actual_tool_divergence": "仅Submit，无行动分歧。",
+      "function_correspondence": [
+        {
+          "original_goal": "整体接受与Submit",
+          "original_operation": "价格和年份比较",
+          "original_product": "320",
+          "new_goal": "同目标",
+          "new_operation": "全链重述和记忆October2002比较后Submit",
+          "new_product": "同Final、月份说明错误",
+          "evidence": [
+            "O_YEAR_INFERENCE",
+            "N3_MONTH",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "判断/Submit完整重做，并非缺少Call就没有工作。",
+      "judgment_action_outcome_chain": "价格直接支持→未文档核实的月份推断仍满足年序→C；产生错误附带细节且表达成本略增。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "237生成/4383Prompt/0S0O1A，生成+44，其他不变。",
+      "counterevidence_and_alternatives": "C没有检测月份错误，不将其评价改为核心W，也不忽略质量差异。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S004__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit320。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R3先确认已有公司/价格/创始人，将倡议启动时间识别为需要验证，真实Query与新2完全相同。",
+        "Return与新2完全相同，有January15,2002句；R4采用到年份2002并与July2015比较，不额外编月日，Submit320。"
+      ],
+      "first_judgment_divergence": "从直接记忆接受转为真实核实时间，再返回整体接受。",
+      "first_actual_tool_divergence": "原Submit变Search然后下一轮Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全部条件接受/价格提交",
+          "original_operation": "2002与2015比较",
+          "original_product": "320",
+          "new_goal": "同目标",
+          "new_operation": "真实查时间，采用2002<2015后提交",
+          "new_product": "同答案且时间条件被支持",
+          "evidence": [
+            "O_YEAR_INFERENCE",
+            "N4_TIME_QUERY",
+            "N4_TIME_RETURN",
+            "N4_TIME_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "接受及提交恢复，并补一项原未查证条件。",
+      "judgment_action_outcome_chain": "主体/价格齐全→实际查时间条件→新直接证据采用→同C、成本适度增；不用多查改变答案也可增加证据质量。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "379生成/12741Prompt/1S0O2A；生成+186/Prompt+8358/Search+1/Actor+1。与新2同Query同Return而R4只215生成，说明相同证据操作也能有不同复盘篇幅。",
+      "counterevidence_and_alternatives": "同Query/Return不足以证明完全相同思维链，分别保留新2长完整确认与新4短比较。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4FULL整体接受/Submit恢复；2条补真实时间证据、2条凭记忆直接接受。",
+    "specific_difference": "新1/3编不同2002月份，没有影响价格C；新2/4同真实Query同Return补到January15。两条补证的后续复盘517/215生成差异与Search次数无关。",
+    "cost": "只有新1生成少13；新3多44；新2/4新取证分别多478/186生成和8358Prompt。功能恢复、质量增益和成本分开。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "当核心答案已有直接证据，而一项识别条件尚依靠记忆，重新整体判断可以选择直接接受，也可将该条件变成真实查询；后一条会增加成本但使条件支持更可靠，核心答案未必改变。",
+      "chain": "P价320/2015与身份已齐、倡议日期未证→两条记忆补错月份直接C，两条真实查2002日期并采用后C→相同正确性掩盖不同支持质量和取证成本。",
+      "support": [
+        "O_YEAR_INFERENCE",
+        "N1_MONTH",
+        "N2_TIME_RETURN",
+        "N2_DATE_ADOPT",
+        "N3_MONTH",
+        "N4_TIME_ADOPT"
+      ],
+      "scope": "1Stage/1题/4路径；可与第18题S008剩余AARNet关系的真补证对照，是否跨题同机制仍待全量审查。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "无G，避免教师答案补偿，但独立重采样仍不能给末Stage必然冗余的因果结论。",
+    "主动查证不是当然冗余：时间条件未在实际P得到文档支持，补证有真实产物。",
+    "价格正确不代表附带月份正确；仅比较本题分支真实Return中的January15与新1/3断言，无新网络搜索。",
+    "原nativeIDs缺失，R3@0可比较整轮usage，不宣称原生精确节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 3,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "after the launch of Microsoft's Trustworthy Computing Initiative"
+    },
+    {
+      "evidence_id": "O_PRICE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_OPEN_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "The Adallom product was rebranded as Microsoft Cloud App Security (MCAS)",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_YEAR_INFERENCE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Microsoft's Trustworthy Computing Initiative was launched in 2002, which is before the 2015 acquisition"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-aca62874f1cbb61e"
+    },
+    {
+      "evidence_id": "N1_MONTH",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The Trustworthy Computing Initiative was launched by Microsoft in November 2002."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-ab6f5975f5ec511e"
+    },
+    {
+      "evidence_id": "N2_TIME_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Microsoft Trustworthy Computing Initiative launch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_TIME_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Bill Gates launched Microsoft's \"Trustworthy Computing\" initiative with a January 15, 2002 memo",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1591203"
+    },
+    {
+      "evidence_id": "N2_DATE_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "July 2015 is after January 2002."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_MONTH",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The Trustworthy Computing Initiative was launched by Microsoft in October 2002."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-ad97d71b5740e21f"
+    },
+    {
+      "evidence_id": "N4_TIME_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Microsoft Trustworthy Computing Initiative launch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_TIME_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Bill Gates launched Microsoft's \"Trustworthy Computing\" initiative with a January 15, 2002 memo",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1591203"
+    },
+    {
+      "evidence_id": "N4_TIME_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The acquisition occurred in July 2015, which is after the launch of the Trustworthy Computing Initiative."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-a325b05ba3a776fa"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

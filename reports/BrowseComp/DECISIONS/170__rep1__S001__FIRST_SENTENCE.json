@@ -1,0 +1,16 @@
+{
+ "case_id":"170__rep1__S001__FIRST_SENTENCE",
+ "function":"在伤类未知时解析条件、猜中风并广泛取证，最后取得演员—烧伤—建议剧情—剧季的具体材料；U不是正确确认中风，也未在其内部采用最终人物。",
+ "prestate":{"returned":"R1@0只有题目。","extracted":"无外部材料。","adopted":"无演员、伤类或电视剧候选。","action":"题目1950年代限定演员真实受伤时间，不限定报道或剧集年份。"},
+ "stage_effect":"前四次中风相关检索未匹配，第五次仍含stroke的Query却返回33125/26356的Redman烧伤剧情。原Z保留候选并查受伤年代，得到1958后才修正疑问、核季数提交。材料获取与采用在边界两侧。",
+ "four":[
+  {"repeat":1,"state":"N","judgment":"先猜头伤，再猜脊髓；虽排Reeve的1995，未撤掉伤类与老剧范围。","action":"持续MASH/Alan/Vince等查询，18Search从未得到33125，下一请求guard。","restoration":"广搜重做，关键故事材料未取得，不能叫正确材料已返未用。","cost_location":"比原多11Search，增加在错误伤类/老剧范围及条件复述。","quality":"无Final。","evidence":["N1_INITIAL_HEAD_HYPOTHESIS","N1_ACTUAL_HEAD_QUERY","N1_REEVE_REJECTED_BUT_CLASS_RETAINED","N1_MASH_QUERY","N1_LATE_STILL_NO_MATCH"]},
+  {"repeat":2,"state":"N","judgment":"R3已识别Redman烧伤故事，却把2020报道/剧情年代与题目1950年代受伤时间当冲突。","action":"回查1950年代脊髓/老剧和Alan，后续又得33125仍未采用；末轮10000Token只反复计划搜索，没有新Call。","restoration":"关键材料获取已恢复，人物受伤年代的定向核查未恢复。","cost_location":"15次真实Search之外，末轮纯文本循环另增加10000生成；搜索意向不加Search。","quality":"GENERATION_LENGTH_STOP无Final，不把文本中的猜测补答。","evidence":["N2_CORRECT_STORY_RECEIVED","N2_DATE_MISBINDING","N2_ACTUAL_WRONG_RESTRICTION","N2_SHOW_DATE_SUBSTITUTION","N2_REAL_REPEAT_DECISION","N2_FINAL_ACTUAL_CALL","N2_TEXT_LOOP_NOT_SEARCH"]},
+  {"repeat":3,"state":"N","judgment":"R6明确提取人/剧/建议剧情，却再次以2020而非1950年代否定，后又把年份限定到老电视剧。","action":"继续1960年代英国医疗剧/瘫痪对象，18Search后guard。","restoration":"正确关系材料恢复但没有转成查人物早年受伤的行动；第二次返回只证明可见，不虚构第二次同样排除判断。","cost_location":"增长在错误年代所属和伤类范围内的实际Query、重复推理及预填。","quality":"无Final。","evidence":["N3_CORRECT_STORY_RECEIVED","N3_EXPLICIT_RECOGNITION_AND_WRONG_DATE","N3_NEXT_WRONG_QUERY","N3_EMERGENCY_WARD_PREMISE","N3_LAST_CALL"]},
+  {"repeat":4,"state":"C","judgment":"也暂疑Redman年代不符，但把它保留为待查关系，没有直接排除；得到1958后改判符合。","action":"实际查Amanda早年烧伤，再查producer/season，四Call后提交第三季。","restoration":"有效材料获取、年代修正和具体季数核验均恢复，用较短路线完成。","cost_location":"少三Search/三Actor且生成下降，省的是较早无效中风尝试和后续安排，而非省掉核心核查。","quality":"核心剧名季数有依据；推理中Dan年份误写与Final另有差别，不能视所有句子都正确。","evidence":["N4_STORY_RECOGNITION","N4_DOUBT_KEPT_OPEN","N4_TARGETS_INJURY_YEAR","N4_1958_ADOPTED","N4_FINAL_QUERY","N4_FINAL"]}
+ ],
+ "guidance_review":"G只有This is very interesting，不提供人物、烧伤类型、年代关系或答案；仍是ORACLE_ANCHORED而非无G。空P初始长Stage重跑及随机命中差异不能排除。",
+ "local_chain":"广搜实际取得具体烧伤故事→报道时间与童年受伤时间是否区分→把年代疑问用于查同一人物，或当排除依据回到旧剧→前者取得1958并C，后者增加旧对象查询而N。另一个N根本没取得故事，不强并同链。",
+ "attribution_limit":"原U伤类假设本身错误，正确材料意外命中，不能倒推原五次中风搜索必要。三N中只有两条具有日期误绑定链，另一条是取证入口未命中。",
+ "evidence_ids":["O_INITIAL_STROKE_HYPOTHESIS","O_LAST_STROKE_QUERY","O_DIRECT_RETURN","O_ADOPTS_DESPITE_DATE_DOUBT","O_1958_RETURN","O_DATE_UPDATE_USED","O_FINAL","N1_INITIAL_HEAD_HYPOTHESIS","N1_ACTUAL_HEAD_QUERY","N1_REEVE_REJECTED_BUT_CLASS_RETAINED","N1_MASH_QUERY","N1_LATE_STILL_NO_MATCH","N2_CORRECT_STORY_RECEIVED","N2_DATE_MISBINDING","N2_ACTUAL_WRONG_RESTRICTION","N2_SHOW_DATE_SUBSTITUTION","N2_REAL_REPEAT_DECISION","N2_FINAL_ACTUAL_CALL","N2_TEXT_LOOP_NOT_SEARCH","N3_RESTRICTION_BEFORE_RETURN","N3_CORRECT_STORY_RECEIVED","N3_EXPLICIT_RECOGNITION_AND_WRONG_DATE","N3_NEXT_WRONG_QUERY","N3_EMERGENCY_WARD_PREMISE","N3_LAST_CALL","N4_STORY_RECOGNITION","N4_DOUBT_KEPT_OPEN","N4_TARGETS_INJURY_YEAR","N4_1958_ADOPTED","N4_FINAL_QUERY","N4_FINAL"]
+}

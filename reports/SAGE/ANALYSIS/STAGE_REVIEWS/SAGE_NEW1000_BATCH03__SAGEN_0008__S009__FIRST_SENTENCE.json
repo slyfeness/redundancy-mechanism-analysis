@@ -1,0 +1,407 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0008",
+  "stage_id": "S009",
+  "sample_order": 98,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the date of the maiden flight of the second prototype of the German flying boat, whose initial version was flown by Flight Captain Erich Gundermann, and which was designed by the company that also developed an experimental aircraft in the 1950s to test a tilting-propeller system for STOL, a concept initially explored with the pre-World War II Dornier Do 10?",
+    "gold": [
+      "23 November 1938"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "23 November 1938",
+    "adopted_answer": "23 November 1938",
+    "outcome": "C",
+    "reason": "正确目标V2日期正式提交。",
+    "evidence": [
+      "O_F",
+      "O_P"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R12[0,477)已经逐字区分V1 Gundermann 21May1938与V2 EgonFath 23November1938，并明确接受后者。Do10旧Search可见，1950s实验机未实际核实。",
+    "evidence_states": "日期已返回、提取、接受；公司Do26身份已有直接文档。U新增在全题一致性评估、识别1950s待查，而非首次日期提取。",
+    "evidence": [
+      "O_P",
+      "O_DATE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/8/items",
+    "ranges": [
+      {
+        "round": 12,
+        "pointer": "/rounds/11/reasoning_content",
+        "start": 477,
+        "end": 2604
+      }
+    ],
+    "goal": "验证已接受日期与厂家1950s条件是否一致。",
+    "operations": "回顾Do10支线，误猜Do228后否定，数次重确认V1/V2，明确1950s实验机应该另核实；U内无实际Call。",
+    "product": "日期接受维持，1950s身份支线被选为下一取证。",
+    "judgment_change": "没有新日期更新；把未核旁线作为继续工作理由。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_followup": {
+    "use": "后继Search取得Do29直接证据，R13整合全线索提交。",
+    "evidence": [
+      "O_Q",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "核心事实接受后复盘全题一致性，选择未验证旁线进一步核验。",
+    "state_relation": "r1/r4检索后全面重建整合；r2/r3回顾已知日期/Do10后直接提交，没有完成1950s核验判断。主答案已在P是四条稳定的条件，是否仍派发旁线任务不同。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Actually, let me search for Dornier 1950s tilting propeller to confirm the company part.",
+    "source_position": "R12[2604,2692)",
+    "oracle_anchored": true,
+    "full_successor_guide": true,
+    "novelty": "25Token把1950s厂家支线指定为Search目标，覆盖下一Stage全部Reasoning工作，源审计明确ALLOWED_BEHAVIORAL_OBSERVATION_NOT_STRICT_REMOVABILITY。实体/年代题目P已有，非新答案，但决策方向直接补偿U的产物，不计严格可省证据。",
+    "evidence": [
+      "I_G",
+      "O_U"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "Search得到Do29后全条件整合，正式正确日期。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R12直接Dornier 1950s tilting propeller STOL，返回Do27/28与Do29等，Do29给所需关系；R13 1202字符五点整合V1/V2、Do29、Do10，submit。",
+      "first_judgment_divergence": "略过原U长比较，按G先执行旁线，比较延后到返回后。",
+      "first_actual_tool_divergence": "1950s Query略改，同真实取证目标；无新的候选变化。",
+      "function_correspondence": [
+        {
+          "original_goal": "日期与全题一致性判断并选旁线",
+          "original_operation": "比较多条件、保留日期、提出核验",
+          "original_product": "接受日期/1950s待查",
+          "new_goal": "整合已补旁线的全题",
+          "new_operation": "G先定取证，R13完整五点判断",
+          "new_product": "全线索匹配、日期C",
+          "evidence": [
+            "O_U",
+            "I_G",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "比较整合在后续实际完整发生；取证选择由G补偿，不能算完全自主恢复。",
+      "judgment_action_outcome_chain": "日期已接受→G派旁线Query→真实证据补齐→较短全题整合C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "381生成34837Prompt2Actor1Search0Open；原同切点区间413–1218，生成差[-837,-32]。工具/Actor同，减少原U及后续整合篇幅；P15507/G25分列。",
+      "counterevidence_and_alternatives": "full-successor G直接预填行动选择，不能用此作为无泄漏严格可省；原新返回额外Do27/28非日期证据。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "重引已知Do10和V1/V2日期，无新查询仍正确。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R12 1526字符提1950s要求但只重引P中Do10，确认公司Dornier，比较V1/V2两日期后submit。没有Search/Open、没有Do29证据。",
+      "first_judgment_divergence": "不执行G明确Search；用既知身份日期直接接受。",
+      "first_actual_tool_divergence": "submit替1950s Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题一致性和待查支线判断",
+          "original_operation": "比较Do10/年代、V1/V2、再核1950s",
+          "original_product": "待查支线和已接受日期",
+          "new_goal": "根据既知身份日期提交",
+          "new_operation": "比较Do10和V1/V2，未核1950s",
+          "new_product": "C日期，旁线仍未获支持",
+          "evidence": [
+            "O_U",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "日期/厂家比较确实恢复，但1950s待证条件处理未恢复为实证核验，不能认全条件完成。",
+      "judgment_action_outcome_chain": "已证日期和身份足以被接受→1950s任务不再派发→直接C，少交互但证据范围缩小。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "430生成15532Prompt1Actor0Search/Open，差[-788,17]跨0，不宣称净生成下降；少1Search/Actor确定，内容是Do10回引和日期确认。",
+      "counterevidence_and_alternatives": "G明确search却没执行，不能把G当自主行为；C不说明1950s旁线已证。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "回用Do10与明确V2日期正式submit，无新取证。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R12 1012字符引用题目厂家要求、旧Do10支持公司、区分Gundermann V1和V2日期，submit。没有Do29查询或新文档。",
+      "first_judgment_divergence": "将任务收束为已知日期，不再补1950s条件。",
+      "first_actual_tool_divergence": "submit替旁线Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "全条件一致性",
+          "original_operation": "比较日期/厂家并选择核验",
+          "original_product": "日期接受、旁线待查",
+          "new_goal": "已知身份日期复核",
+          "new_operation": "重读Do10与V1/V2，跳过1950s实证",
+          "new_product": "C，旁线缺证",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "部分约束比较重建，未完成独立1950s条件检查或保留其待办。",
+      "judgment_action_outcome_chain": "核心日期已明确→忽略待查支线→直接C，减少真实取证与整合长度。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "303生成15532Prompt1Actor0Search/Open，差[-915,-110]，少1Search/Actor；省的是支线和较短日期比较。",
+      "counterevidence_and_alternatives": "原U是认知比较，不可只按Search少1就称U功能完全消失；前半比较还在。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "真实Do29返回采用，完整核对全链后提交正确V2日期。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R12 937字符重引Do10、选择1950s Query，真实返回同r1；R13 2975字符按Identify/Verify/Formulate/DoubleCheck整合全约束，正式submit。",
+      "first_judgment_divergence": "仍有旁线判断与真实取证，原长篇日期反复改为事后结构化整合。",
+      "first_actual_tool_divergence": "原1950s Query加STOL，同目标，之后同submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "日期/厂家条件一致性",
+          "original_operation": "比较并选1950s核验",
+          "original_product": "已接受日期与需核支线",
+          "new_goal": "同全条件核验",
+          "new_operation": "R12比较Do10后Query，R13完整全链判断",
+          "new_product": "旁线有证、日期C",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际比较、选择核验、事后整合均出现；G已预填行动选择，不能当纯自主因果。",
+      "judgment_action_outcome_chain": "G及已知Do10引出旁线核验→Do29证据采用→全题复盘→C，交互不省且表达更多。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1163生成34876Prompt2Actor1Search0Open，差[-55,750]跨0，不能称净生成节省；工具/Actor同原，R13长整合872Token。",
+      "counterevidence_and_alternatives": "同样4C并非全都减少成本；full-successor引导排除严格可省证据。"
+    }
+  ],
+  "four_run_comparison": "四条C，但r1/r4按引导实际补1950s证据并全面比较，r2/r3不Search仅旧Do10和已知日期。全题比较有完整/部分恢复，原U不是新日期发现。r1/r3生成区间下降，r2/r4跨0，不能给伪精确省值。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "目标事实在P已接受时，删除全题复盘可能不影响答案，却改变旁线是否被当作提交前必要任务；功能恢复程度和证据覆盖随真实Query而异。",
+      "support_evidence": [
+        "O_P",
+        "O_U",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "G覆盖完整后继Reasoning并指明该任务，行动补偿严重，不能据这一组归因原复盘的必要性。"
+    }
+  ],
+  "counterevidence_and_limits": "S010同题四条不核旁线仍C可作对照，但不是独立问题。r4完整恢复却不保证省，r2不Search也不能确认净生成降。原native IDs缺失，保守区间。",
+  "evidence": [
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "So the second prototype (V2) had its maiden flight on 23 November 1938."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "I should verify the 1950s aircraft, but the answer seems to be 23 November 1938."
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "Dornier 1950s tilting propeller experimental aircraft"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 12,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Actually, let me search for Dornier 1950s tilting propeller to confirm the company part."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "which was the Dornier Do 29 (as confirmed by the search results)."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So Dornier is indeed the company. And the flying boat is the Dornier Do 26."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Now I need to confirm the second prototype's maiden flight date."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The clue about the company developing an experimental aircraft in the 1950s to test a tilting-propeller system for STOL points to the **Dornier Do 29**."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0008/trajectory.json",
+      "source_sha256": "cc74e26e4a5b1f1ebf5742a00f51d948daa3ab611f6070f8629fbaa065d87a50"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0008.json",
+      "source_sha256": "7fc501e9424351c2e6478a20bea5c3a57722b59bc1de64b5ca3c3b7db254e595"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "3c072dbc7a208036fae772a52ba265e3dc4548dd5c110ee354ffc589445931e1"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f4116fd0315d5990d848056a39c2db158fec75c160d48bd95786a795e16910c1"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7cd0134e40587b8e8b3e222563aba494bcbe7dbb6a1eb7048c06a8be02e27f84"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3096579c19c4be60968e4f0d8e548e4c3636845875daf9b5c168893576833137"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S009__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "89f7f307adc2975a15362d4b8f5abf16a551c2c0b198fd6fbb824aefd7e42553"
+    }
+  }
+}

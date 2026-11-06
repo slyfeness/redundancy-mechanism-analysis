@@ -1,0 +1,40 @@
+{
+ "case_id":"427__rep1__S001__FIRST_SENTENCE","question_id":"427","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"N","2":"W","3":"W","4":"W"},"basis":"原Context无Final，新1仍无Final，新2/3/4正式选Underwood而非Gold Guerlain；N→W不等于正确性改善。研究k3 B。"},
+ "review_basis":"完整原18轮18Call/Return/无Final、四新41轮38Call/Return/全部Reasoning及正式content实际阅读全文。280文档槽60新增完整片段全读，22814/15649外索引完整片段补读；初次打印mapping含全部Return导致截断，原R1—R9单独重读，其余R10—18完整读。四首P+G和38Call配对核验37入Actor1仅guard。",
+ "pre_state":"R1@0空生成P，只有原始多条件Question，无任何真实检索返回。所有建立/年龄/后代/昵称产品/两厂面积/并购条件都未核查。",
+ "u_work":"U把题目六约束及开区间转为清单，第一次宽泛多条件Search，E1真实返回B&G公司史68660等，R2前146字符先指出不够具体。该次返回没有给Underwood成立年、年龄、两厂面积或符合日期的昵称产品。",
+ "u_state_update":"原后继从68660提取Underwood并作为待核验候选，原U本身未正式接受；之后18次Search几乎一直围绕它，收到工厂查询的Guerlain资料63478也未在R6采用，仍Underwood，最后N。删除后G已提前指定Underwood及一份不存在于当前输入的文档，四条都受此线索承接。",
+ "original_action_consequence":"本组最早行为分歧是没有实际首次宽泛返回却获得后继的候选/来源陈述。新1/4首Query直接Underwood，新2先宽泛Search，新3完全无Call便援引虚构的多个文档提交。不能把三个有Final当原U删除成功或答案改善。",
+ "guidance":{"text":"The mention of \"Underwood Devil\" and William Underwood in docid 68660 caught my attention - that's about Underwood & Company which was a famous food company.","source":"S002 R2@146后继首句，G39局部边缘重编码；目标R1@0原生精确P0。","audit":"ORACLE_ANCHORED，高未来实体/事实/来源风险。完整P没有Underwood、William、Devil、68660或食品公司关系；G引入这些并以已经看到资料的语气表述。未注入Return全文，但新3误认为已有实际检索且扩展出68661/68662，因此必须审查G造成的来源混淆，不能把它算自主取证。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Company established between 1850 and 1880 (exclusive) - so 1851-1879","use":"原U明确条件开区间，后面的1870匹配不是题意。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The mention of \"Underwood Devil\" and William Underwood in docid 68660 caught my attention","use":"原候选采用在真实E1之后，G前移该动作到空P。"},
+  {"id":"O3","source":"original","pointer":"/rounds/5/reasoning_content","quote":"The Underwood company mentioned in the first search results seems promising but I need more details.","use":"R5 E5实际已回63478 Guerlain工厂，R6仍选Underwood，不等于Guerlain完全支持但未改候选。"},
+  {"id":"O4","source":"original","pointer":"/rounds/17/reasoning_content","quote":"Wait, I've been searching for the same information repeatedly without getting new results.","use":"R18明确识别重复仍真Query Underwood；反馈未改变对象，Context止。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"The Underwood® Devil product was created around 1868 and trademarked in 1870. \"Devil\" could be a nickname.","use":"R2已列日期与猜测却不做排除，继续同候选。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/16/reasoning_content","quote":"B&G Foods was formed in 1996","use":"R17已知与并购窗口不同，仅维持缺口；后段两组同Query/同Return交替，至N。成立年不是并购年，不把它当自动排除。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"He died in 1864 (which is between 1850-1880 exclusive for company establishment)","use":"R2把死亡事件年混到成立窗口的可见错误，随后实际Query仍限定Underwood1860。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/11/reasoning_content","quote":"So the company was established around 1860s (during Civil War), which fits the 1850-1880 exclusive range.","use":"R12把内战供货推成公司成立，实际68660只有先成立、后供货，无此等同。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/14/reasoning_content","quote":"I don't have this information yet.","use":"R15仍说无厂区/并购资料，随后正式Underwood并把题给面积与并购条件写成事实。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Docid 68661 - \"Underwood & Company\" - another document about the same company","use":"空P仅G、零新Call，68661与68662不是实际Return；自行虚构多个来源当支持。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/content","quote":"The search results consistently point to this company across multiple documents (docids 68660, 68661, 68662).","use":"正式W答案的来源断言，无任何本分支检索。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"The Underwood Devil logo was trademarked in 1870, which is within the range","use":"R2已经重列exclusive仍把1870说符合；G未给日期，这来自新真实Return后的错误使用。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"The information I have doesn't fully confirm all the criteria.","use":"R7已知缺证却凭Devil/sons接受，正式W并重复题给面积。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Call已Underwood而非原宽泛发现，后真读68660仍未排除，转查B&G。","state_chain":"G候选→片面后代/产品匹配→其余未知持续变成查该公司理由→两组同Query/同Return反复→Context N。","function_change":"原宽泛发现没有恢复，条件核查部分恢复但对象被G固定；18Call与原相同、文字更多，不能说省掉首次Search就省成本。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"先有无公司限定的真实宽泛Call，但G下已认Devil匹配，R2死亡年被混入成立窗口。","state_chain":"真实返回→把活动年代当成立、边界日期当合格→继续补固定公司属性→仍无厂区/年龄/并购证据→正式Underwood W。","function_change":"广泛Search与清单处理恢复，但关键约束使用失真；14Call后提前结束降低消耗并不等于质量保持。","evidence":["N21","N22","N23"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"没有实际Search，直接把G来源叙述扩成三份已见文档，随后提交。","state_chain":"G给候选/来源→虚构相邻docid及多源一致→承认详情未核却答Underwood W。","function_change":"原取证操作NOT_OBSERVED，只比较了G支持的候选；没有真实Return，不把虚构文档算替代证据。","evidence":["N31","N32"],"semantic_result":"W"},
+  {"repeat":4,"first_divergence":"第一Query直接Underwood，六次取证都以其为对象，未做宽泛候选发现。","state_chain":"G限定候选→真实1868/1870仍被当合格→其余条件待核→按两条表面匹配接受W并无据填写厂区。","function_change":"部分真实候选取证/比较恢复，宽泛发现省去，6Call后更早错误提交。","evidence":["N41","N42"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"这个B组并非删掉重要Stage后正确变错：原无答案，新三错误答案。G先把具体候选与已阅来源送到空P，后续或者只围绕其补属性，或者零取证就把G扩写成多源支持。真实Return中的供货年代、产品/商标日期没有被正确用于约束筛选，未知条件又被Final复述为已满足。较低消耗落在省去宽泛发现和更早停止补证，不能用状态变化率把原U判重要，也不能把提早错误作答判冗余。",
+ "within_case_support":"三条W均沿Underwood，但新2/4有真实Return与错误约束使用，新3零Call虚构来源，不能称同一条完整链出现三次；新1同候选仍N是内部反例。",
+ "mechanism_chain_checks":[
+  {"chain":"真实68660后把活动年代/产品日期当合格，未证其余约束仍正式接受","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22","N23"],"3":["N31","N32"],"4":["N41","N42"]},"limits":"新1同局部匹配不提交，新3只有G无真实Return；不得用3/4状态变化充当该链3/4。"},
+  {"chain":"G带来源但没有任何真实Return，扩成虚构多源一致后答W","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32"]},"limits":"单分支个案，非跨题规律，不能归因原U功能缺失而忽略G事实泄漏。"}
+ ],
+ "counterevidence_and_limits":["原也从68660固定Underwood且未有效采用工厂Query返回的Guerlain。不能把原路径说成完整合理筛选。","G提示Underwood是未来候选且文档不在P，四路径ORACLE限制明显。","Gold为Guerlain，但本报告不以Gold倒推原模型已获得成立/昵称全部证据；63478只证明工厂与LVMH信息，未完整闭合题目。","N→W只是终态变化，不是由C到W；同频率B与研究问题的质量方向必须分开。","新2/4Final面积和并购断言未有Return支持，新3伪来源不能当实际工具事件。"],
+ "cost_basis":"原生精确R1@0，G39单列。原后缀4522gen/18Search/18Actor，Prompt489+486766=487255。新gen5144/4349/599/2080，加G净差+661/−134/−3884/−2403；Search18/14/0/6 Actor18/15/1/7 Prompt501788/344110/528/69850。新3节省位置是未真实取证就错答，不是等价证据工作更高效。新1后两组同查询/Return持续生成增加；G不重复计费。",
+ "next_cross_case_test":"与其他B正确变错分开：检查来源前移是否把候选变前提、活动事件年是否误绑定目标条件，以及同候选N/W差别在哪次实际接受；必须保留同题成功与其他错误解释作为反例。"
+}

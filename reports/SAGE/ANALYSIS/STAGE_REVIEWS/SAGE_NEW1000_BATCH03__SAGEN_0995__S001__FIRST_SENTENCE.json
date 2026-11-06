@@ -1,0 +1,507 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0995",
+  "stage_id": "S001",
+  "sample_order": 64,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0995/trajectory.json",
+      "source_sha256": "2c4d9b5fd79099b747903418ae89bfe2517797d3deea9ed6dd54d5acd23905ba"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0995.json",
+      "source_sha256": "751cd09d2d668cbd1d4b46a8c11d64d99d3a3d9a510a0a14402b000e872aea89"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "568f5f4cfb0e349e8f8036f4f2b397dea65abdd8c993dff11f042d8ea3905177"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "b6379c0ae4b3ed43f783c1fc946c5e9fc19c20bc2cc88bfa4c6e3d569d5e3930"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "802bba150ae2b5dcadd261418b171380071b332eed40efcd168aac9f3d2c9fcc"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "003e713f605decd099f71dc0b2e39e479e19d82e8e6c39136606dc423f4aa85e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "4f7cfe3fbf924437994cadaafb50393a579ea646c524df1837eb7a435b881378"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the number of official languages in South Africa in the year the \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council\" judgment was handed down?",
+    "gold": [
+      "11"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "11",
+    "adopted_answer": "11种",
+    "outcome": "C",
+    "reason": "正式11匹配Gold；原最终一般11片段及1997宪法生效推1998，非全部历史条件直接证实。",
+    "evidence": [
+      "O_COUNT",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0只有题目和协议，P475Token，无案件日期、已有工具或语言资料。",
+    "evidence_states": "应先确定判决年再查同年语言数量；1998不在原题中，属于删前未知。",
+    "evidence": [
+      "I_QUESTION",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items，R1[0,319)、E1、R2[0,165)。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 319
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 165
+      }
+    ],
+    "goal": "找案件判决年以确定下一个检索的时间条件。",
+    "operations": "案件全名judgment year Search，6768731给1998听审/10月14判决，R2明确采用1998。",
+    "product": "1998作为语言数量查证的年份。",
+    "judgment_change": "时间锚未知→1998已采用并进入下一真实Query。",
+    "evidence": [
+      "O_DATE",
+      "O_ADOPT",
+      "O_NEXT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2—5以1998查语言失败，R6/7又两Open重证已知年份；R8—23继续语言Query，最后一般11片段出现才Submit。原U日期产物始终用于后续，但重查不改变1998。",
+    "evidence": [
+      "O_NEXT",
+      "O_REOPEN",
+      "O_COUNT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "识别事件日期，将年份绑定为下一信息需求的时间约束。",
+    "information_state_dependence": "原U是初次日期识别；后续语言取证的长失败并非日期错误。删后G直接给1998却四条仍真实查日期。",
+    "first_update": "原1998首次来自本U实际文档并被采用。"
+  },
+  "guide_audit": {
+    "text": "Now I need to find out how many official languages South Africa had in 1998.",
+    "source": "O#/rounds/1/reasoning_content[165,241)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "20教师Token提前给被删U才获得的1998和下一查询方向；不是题目已有年份。无11数值，但关键时间桥接泄漏明确。四条再查案件不取消这一事实。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "正式11正确；一般11与1997宪法生效材料有，历史语言条文仍多由知识补，且将11片段错归1326445。",
+      "outcome_evidence": [
+        "N1_DATE",
+        "N1_SUBMIT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同原案件QueryReturn，R2采用1998；R2—4三次语言/宪法空Return；R5猜11查宪法回泰国，R6实际constitution词Query得27990一般11。R7仍要验证1998，查11+1998回赛事；R8Open1326445limit5只Other；R9再Search赛事，R10/11再查宪法回无关；R12最后用一般11和知识/1997生效桥接Submit。",
+      "first_judgment_divergence": "起始日期工作完整恢复，重要分歧后来发生在一般11材料已返回后仍把1998是否适用视未解决，新增多查至自行接受。",
+      "first_actual_tool_divergence": "首Call与原相同；R2同语言词但真实Return从赛事变空，后较早查宪法取得11，不以字符串代替返回核对。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "实际查案并采用1998用于语言查询。",
+          "new_goal_operation_product": "首相同真实Query/Return，R2明确提取1998并实际查该年语言，完整恢复。",
+          "evidence": [
+            "O_DATE",
+            "O_NEXT",
+            "N1_QUERY",
+            "N1_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期取材/采用/后续行动全在，并非G直接代替全部工作。",
+      "judgment_action_outcome_chain": "日期恢复无误→语言空/无关Return→一般11出现但历史适用仍待核→短Open/多Query没补1998直接句→最终依据知识与一般11提交C；省在原后续更长失败链和两案件Open未再发生，不是日期功能省掉。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2346生成/128296Prompt/10Search1Open12Actor，原3318/571765/21S2O24A，生成-972、Search-11、Open-1、Actor-12；原24而新max20预算不同，不能单独把差额归干预。",
+      "counterevidence_and_alternatives": "E6一般11已返回仍继续5Actor，不是没获得任何数值；错把来源归Languages文档不能当该文实际含11。G给1998，原新参数和工具空返回差异保留。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "11正式正确，时间适用由宪法生效加知识推断，Open100不含语言段不能写全文已证。",
+      "outcome_evidence": [
+        "N2_DATE",
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同案取1998，R2—4三空语言Return；R5改1993Constitution得到一般11及1997更替；R6曾列12语言后自行改成11列表，实际再Query11仍空；R7已说11应适用1998，Open27990limit100仅标题/日期；R8用较早Snippet与知识SubmitC。",
+      "first_judgment_divergence": "日期无差异；关键后来在一般11片段已得后内部补时间桥接，虽尝试Open但内容未补历史条文，最后结束比原早。",
+      "first_actual_tool_divergence": "首同原，第三语言Query改11，早期均空；1993Constitution入口提前得到一般11。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "确定判决1998并选该年查语言。",
+          "new_goal_operation_product": "真实同案件查询并明确采用日期，实际语言1998查询存在；功能完整恢复，G先给仍标泄漏。",
+          "evidence": [
+            "O_DATE",
+            "N2_QUERY",
+            "N2_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是只Final提日期，真实日期查询/返回和随后使用齐全。",
+      "judgment_action_outcome_chain": "1998恢复→语言查询失败→宪法入口一般11与1997更替可见→内部辨语言列表并用时间桥接接受→短Open没补信息也终止C；少在原后续多次同失败Search，日期功能未省。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1812生成/43263Prompt/6Search1Open8Actor；原3318/571765/21S2O24A，生成-1506、Search-15、Open-1、Actor-16。末轮判断仍312生成，非少工作只因表述短。",
+      "counterevidence_and_alternatives": "临时12列表错误没有最终改答案，不能拿中间数字当Final；当前11一般片段不直接给1998，证据充分性有限。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": null,
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "20Actor全部实际Search，最后新Return后额度耗尽，无Submit/正式Final；内部11不是答案。",
+      "outcome_evidence": [
+        "N3_DATE",
+        "N3_LOOP",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R1同案Return、R2明确1998；R2/3空，R4曾错误区分1993九语言/1996十一，宪法Query都无关；R7已知识列11后实际Search同South Africa official languages11，E7空；R8—19无新增实质推理，连续同Query同空Return共13次R7—19；R20才改去11的泛Query，真实首次得1326443十二语言且SignLanguage2023成为第12，随后预算终止没有读取/采用下一轮。",
+      "first_judgment_divergence": "日期识别没丢；语言知识猜测未变成可提交支持，失败返回未推动实质策略改变，直到最后一轮才换泛Query。",
+      "first_actual_tool_divergence": "首同原；后语言空Return，R7—19实际精确Query循环，原失败链更长但24轮才C，不能排除20上限阻止修复。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "定1998供后续查询。",
+          "new_goal_operation_product": "首真实Query与同文档确认1998，R2实际用于语言查询；完全恢复日期功能，后续语言核查失败单列。",
+          "evidence": [
+            "O_DATE",
+            "N3_QUERY",
+            "N3_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "N发生于另一信息缺口及预算耗尽，不能因无Final否认原日期工作已经完成。",
+      "judgment_action_outcome_chain": "1998真实恢复→知识11却始终要语料支持→同空反馈没有可见更新查询选择→连续13次同Query→第20次改泛词得到关键历史变化资料但无Actor可消费→N。最后Return不是模型已见却忽略；预算差异和工具空响应是重要替代解释。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1465生成/228898Prompt/20Search0Open20Actor；原3318/571765/21S2O24A，生成-1853、Search-1、Open-2、Actor-4但未完成且预算不同，不能称严格节省。13个重复Call每轮30生成，工具调用多不等长推理。",
+      "counterevidence_and_alternatives": "最后资料12/2023足以支持历史变更方向但未进入下一Actor，不补造已采用；相同Query空/非空可能服务/检索波动，记录不臆断故障。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "正式11正确；一般11和宪法1997生效已返回，但具体历史语言条文主要知识，不把全文1326445当含数字。",
+      "outcome_evidence": [
+        "N4_DATE",
+        "N4_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同案确认1998；R2宪法1998回修正案，R3改1996Query得一般11；R4检查1998修正案非语言，Open1326445limit50只有Other languages...；R5—7宪法Section6诸Query空/无关，R8默认全Open1326445有语言政策但无明确总数；R9注意此缺再Query无关，R10用较早一般11与知识Submit。",
+      "first_judgment_divergence": "日期仍完整；后续早取得一般11但多次因无直接年份条文继续核验，最后没有新直证也接受同值。",
+      "first_actual_tool_divergence": "首相同；之后较早宪法入口返回一般11，用语言Open替代原日期Open并追加Section6查询。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取1998并实际约束下一语言查询。",
+          "new_goal_operation_product": "同QueryReturn与R2采用日期，接真实1998Constitution语言查询，完整恢复。",
+          "evidence": [
+            "O_DATE",
+            "N4_QUERY",
+            "N4_DATE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期功能与目标年份稳定，不能把后续核验多寡作为恢复证据替代。",
+      "judgment_action_outcome_chain": "已定1998→早得一般11但未给历史适用条文→更多小/全Open和Section6 Query仍没补总数→知识与旧一般值最终足以提交C；已有材料与停止选择不同时稳定。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2080生成/118965Prompt/7Search2Open10Actor，原3318/571765/21S2O24A，生成-1238、Search-14、Open同、Actor-14；少原长重试链，多出的语言Open单列。",
+      "counterevidence_and_alternatives": "最终把27990的11错归6356674，不能当实际该Doc已给答案；该Doc真正eleven指修正案数，模型曾正确区分它并没用11修正案当语言数。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "N",
+      "C"
+    ],
+    "state_changes": 1,
+    "group": "A",
+    "observed_difference": "4条日期取证/采用全恢复，G还提前给1998；后来3条以一般11+宪法时间/知识提交，1条同空Query循环到20上限N，最后新材料来得太晚。",
+    "costs": "全4生成/Prompt较原低，但N未完成且原24Actor、新20不同；三C主要省后续低信息语言重试，不是日期发现消失。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题初始日期桥接恢复后语言证据缺口的四路径",
+      "chain": "原U定1998、G也提前给1998，四条重新完成日期功能→后续知识11与具体年份证据之间缺口持续触发真实核查→有的接受一般11+宪法生效后停止C，有的只重复同空Query直至预算N。区别在如何处理尚未获得直接历史支持的状态和真实查询选择，不在有没有重新知道日期。",
+      "limits": "何以某一时点决定够了不能唯一解释；原/新20vs30预算、T/服务、空Return变化均混杂，不能说删日期导致循环或证明日期可省。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原123052及四新138017字符已完整阅读，包括R7—19全部真实Call/空Return，不从重复文本省略事实事件。",
+    "原C也没有直接1998=11句，证据局限共享；知识猜测不当Gold引用，离线只用评价。",
+    "起点Round头可比整响应usage，原生IDs未存不标NATIVE_TOKEN_EXACT；G20计Prompt，P475单列，四分支差额不相加。",
+    "S005R24超过新Actor20而非运行，不在此记录伪造4新路径。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "original_question_at_start",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What was the number of official languages in South Africa"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find out how many official languages South Africa had in 1998."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/5/snippet",
+      "exact_quote": "heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October.",
+      "call_id": "chatcmpl-tool-ad5046a29e0cc2cc",
+      "doc_id": "wiki25:6768731"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "judgment was handed down on 14 October 1998."
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "South Africa official languages 1998",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_REOPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let me open that document to confirm the year."
+    },
+    {
+      "evidence_id": "O_COUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 23,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/22/observation/results/4/snippet",
+      "exact_quote": "It has 11 official languages and a population of over 49 million people.",
+      "call_id": "recovered_call_1",
+      "doc_id": "browsecomp_plus:27990"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 24,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year",
+      "call_id": "chatcmpl-tool-88048fa7b875ff22"
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "judgment was handed down on 14 October 1998."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "However, I need to confirm if this was the case in 1998."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year",
+      "call_id": "chatcmpl-tool-b9fb5a6e8b1f6446"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Okay, I've found the judgment year."
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "This number has been consistent since the transition from apartheid to democracy in 1994."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year",
+      "call_id": "chatcmpl-tool-b9043dfa69eb3170"
+    },
+    {
+      "evidence_id": "N3_DATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "judgment was handed down on 14 October 1998."
+    },
+    {
+      "evidence_id": "N3_LOOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 19,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/18/arguments/query",
+      "exact_quote": "South Africa official languages 11",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year",
+      "call_id": "chatcmpl-tool-a35e96ba97e38382"
+    },
+    {
+      "evidence_id": "N4_DATE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "judgment in \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council\" was handed down on 14 October 1998"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "The judgment was in 1998, so the number of official languages would be 11."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

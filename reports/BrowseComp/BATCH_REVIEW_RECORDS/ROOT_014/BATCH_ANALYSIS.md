@@ -1,0 +1,644 @@
+# ROOT_014 批次归纳
+
+10 Stage / 10题 / 10原轨迹 / 40续跑；组别{'A': 5, 'B': 5}。
+
+以下机制是本人逐案裁定后的过程解释；统计由显式成员复算，非研究者独立人工金标准。
+
+
+## functions
+
+```json
+{
+  "description": "对具体失败取证作评价并选择下一入口，未必获得任何新正证据。",
+  "members": [
+    "55__rep2__S008__FIRST_SENTENCE",
+    "83__rep2__S002__FIRST_SENTENCE",
+    "228__rep1__S007__FIRST_SENTENCE",
+    "261__rep3__S002__FIRST_SENTENCE"
+  ],
+  "distinction": "55已采用正确人名后的期刊再尝试，83旧实体/记录者试探，228已有主体但捐赠未知，261尚无论文的期刊入口。真实前态不同，不能因都是失败反馈并作一个冗余功能。"
+}
+```
+
+```json
+{
+  "description": "通过明确变更检索约束取得新候选材料，采用发生在后继。",
+  "members": [
+    "69__rep3__S003__FIRST_SENTENCE"
+  ],
+  "distinction": "去掉Vance限定、改新闻入口确实回Nicole；成功产物不只是又一次失败历史。三新恢复，一新错误先接受旧主体不退出，A也有重要具体作用。"
+}
+```
+
+```json
+{
+  "description": "将已可见主体材料作条件比较，采用并划定剩余待核任务。",
+  "members": [
+    "78__rep2__S002__FIRST_SENTENCE",
+    "87__rep2__S002__FIRST_SENTENCE"
+  ],
+  "distinction": "两纯认知无Call；G分别给主体/任务，87还完整后继Reasoning例外。两者均恢复采用，78少后续家系查证降成本，87原联合取证拆顺序查反增成本。"
+}
+```
+
+```json
+{
+  "description": "已有主体但具体条件未知，真实取得支持再直接采用其中事实。",
+  "members": [
+    "191__rep2__S002__FIRST_SENTENCE",
+    "257__rep4__S004__FIRST_SENTENCE",
+    "282__rep2__S002__FIRST_SENTENCE"
+  ],
+  "distinction": "191培训/驾驶和257别名是真未知被U成功补证；282只补作品液体背景，所求数字仍未知。191正确人已采用，257出版社角色错，282数字原新皆未证，不能因具名查询同形混为同一工作结果。"
+}
+```
+
+
+## comparisons
+
+```json
+{
+  "id": "ROOT014_C1",
+  "cases": [
+    "78__rep2__S002__FIRST_SENTENCE",
+    "87__rep2__S002__FIRST_SENTENCE"
+  ],
+  "finding": "同样纯认知采用/任务组织被删后仍恢复，前者四C并少原Z五轮家系，后者四C但原一次分类/河名联合Query拆成两次、三支再分类。",
+  "counter": "恢复功能不决定成本方向；87强G已给两个任务仍未维持原联合产物，不能归因少一认知Stage必然更省。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C2",
+  "cases": [
+    "55__rep2__S008__FIRST_SENTENCE",
+    "191__rep2__S002__FIRST_SENTENCE",
+    "257__rep4__S004__FIRST_SENTENCE"
+  ],
+  "finding": "少取证可以三种不同情况：55U失败尝试与Z另一次失败都不再做、姓名沿用；191新3/4成功U真重建但省Z节目尝试；257别名真恢复而长期错公司日期查证被无据接受提前结束。",
+  "counter": "三者都可能低工具，但只有前两主姓名C，仍都有具体关系未证；不能以工具减少或重建统一冗余资格。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C3",
+  "cases": [
+    "69__rep3__S003__FIRST_SENTENCE",
+    "83__rep2__S002__FIRST_SENTENCE",
+    "228__rep1__S007__FIRST_SENTENCE"
+  ],
+  "finding": "失败反馈作用取决于后真实行动：69三支去人物限制取得新闻，一支固定旧主体；83四新均先重审，后来两得到Mate而使用不同；228四支恢复失败→游戏功能但缺更晚正确关系，次序相近也可W。",
+  "counter": "失败反馈记录不自动更新策略，实际换入口也不保证出现正确结果；原失败U不是由原C就倒推必要。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C4",
+  "cases": [
+    "191__rep2__S002__FIRST_SENTENCE",
+    "83__rep2__S002__FIRST_SENTENCE",
+    "261__rep3__S002__FIRST_SENTENCE"
+  ],
+  "finding": "未知条件对身份作用不同：191新4保候选定向补核心事实，新1先重找人后由直接资料恢复；83新2正确名字已采用后采收真缺口重新开放实体；261新2/4保正确论文持续核表。",
+  "counter": "不能凡有缺口都说不该继续，也不能将身份重开与固定核心补关系并一个实例。原83/261也没完整独特数据，较早C不证明最佳停止策略。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C5",
+  "cases": [
+    "228__rep1__S007__FIRST_SENTENCE",
+    "257__rep4__S004__FIRST_SENTENCE",
+    "282__rep2__S002__FIRST_SENTENCE"
+  ],
+  "finding": "无证关系可能被邻近事实替代：毕业/合作代受赠归属、普通出版代原版、实验体惯例代数字。替代之后具体后果不同，228多查错误学校且W/N，257较早错公司提交W，282两错数字/一拒答/一耗尽。",
+  "counter": "282新4没有用数字假说作Final，257新3原版书目明确提取仍不改Call；需具体判断和执行，不用关系错一词解释全部。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C6",
+  "cases": [
+    "69__rep3__S003__FIRST_SENTENCE",
+    "191__rep2__S002__FIRST_SENTENCE",
+    "87__rep2__S002__FIRST_SENTENCE"
+  ],
+  "finding": "错Query对象/参数不等结果不能用：191查Mel意外回Tim驾驶，实际用于回Tim；87假Javari/Peru查询回正确河关系并修复；69去限定新闻才回真候选。",
+  "counter": "必须检查Return采用和下一行动，而非按Query是否含Gold或错误名评判取证。三例能纠正局部不等整条件全证。"
+}
+```
+
+```json
+{
+  "id": "ROOT014_C7",
+  "cases": [
+    "257__rep4__S004__FIRST_SENTENCE",
+    "282__rep2__S002__FIRST_SENTENCE"
+  ],
+  "finding": "B中原N→W仍未成功：前者四W均错误公司，后者两数字W/正式拒答W/预算N，状态变化与正确性变化不可混。",
+  "counter": "较少Call仅更早失败，不当高质量省；282有正式拒答也不能误算NO_FINAL，CHAR原生精确生成未知保持未知。"
+}
+```
+
+
+## mechanism_tests
+
+```json
+{
+  "id": "ROOT014_T1",
+  "description": "具体实体/关系由真实返回进入下一具名Call，区分返回、提取、采用、执行。",
+  "links": [
+    {
+      "case_id": "69__rep3__S003__FIRST_SENTENCE",
+      "local_id": "FAILED_OLD_OBJECT_RELAXED_IN_REAL_NEWS_DISCOVERY"
+    },
+    {
+      "case_id": "191__rep2__S002__FIRST_SENTENCE",
+      "local_id": "UNEXPECTED_RETURN_RESTORES_ABANDONED_PERSON_IN_NEXT_QUERY"
+    },
+    {
+      "case_id": "83__rep2__S002__FIRST_SENTENCE",
+      "local_id": "TRIAL_RETURN_ADOPTED_AS_REAL_ENTITY_QUERY"
+    },
+    {
+      "case_id": "261__rep3__S002__FIRST_SENTENCE",
+      "local_id": "REAL_SPECIFIC_ENTITY_CONNECTION_COMPLETED_BUT_NOT_FINAL"
+    }
+  ],
+  "relation": "P2_R1保持原定义；69/191最终C、83/261连接成功仍N，终态不决定局部链是否发生。",
+  "counterexamples": [
+    "69新2未取得新闻，不算已经获得却不采用。",
+    "83新1同试验首Return有Mate却无据排除，没有下一MateCall；新3/4未得到。",
+    "261新3有教授网页却不具名或特定学科采用，泛情绪查询不是该连接完成。"
+  ],
+  "unresolved": "完成连接不充分说明证据全闭或应当立即提交，G与采样替代解释保留。",
+  "deterministic_counts": {
+    "observed_stage_count": 4,
+    "different_questions": 4,
+    "original_runs": 4,
+    "observed_rollouts": 7,
+    "not_observed_rollouts": 9,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 7,
+    "not_observed_local_chain_occurrences": 9,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 16,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "191__rep2__S002__FIRST_SENTENCE",
+      "261__rep3__S002__FIRST_SENTENCE",
+      "69__rep3__S003__FIRST_SENTENCE",
+      "83__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "69",
+      "83",
+      "191",
+      "261"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T2",
+  "description": "对象固定而具体关系未证，真实返回不足后仍派同主体/邻近入口取证。",
+  "links": [
+    {
+      "case_id": "69__rep3__S003__FIRST_SENTENCE",
+      "local_id": "PREMATURE_IDENTITY_TURNS_CONFLICTS_INTO_FIXED_OBJECT_TASKS"
+    },
+    {
+      "case_id": "228__rep1__S007__FIRST_SENTENCE",
+      "local_id": "FIXED_DONOR_RELATION_GAP_KEEPS_DISPATCHING_REAL_QUERIES"
+    },
+    {
+      "case_id": "257__rep4__S004__FIRST_SENTENCE",
+      "local_id": "FIXED_PUBLISHER_YEAR_GAP_CHECKED_THEN_UNSUPPORTED_ACCEPTED"
+    },
+    {
+      "case_id": "282__rep2__S002__FIRST_SENTENCE",
+      "local_id": "ADOPTED_ANIMAL_UNCLOSED_SERIAL_KEEPS_DISPATCHING_SEARCH"
+    }
+  ],
+  "relation": "P1_K3，固定对象可正确或错误，停止/正确性另分。",
+  "counterexamples": [
+    "69三C先也查旧人但实际退出，不能一Call旧名就判锁定。",
+    "228新4有效排除Huang，不是全无反馈；282数字参数一直变，不谎报精确重复。",
+    "55本删点四支零Call，虽有缺口不合新路径持续取证。"
+  ],
+  "unresolved": "是否有新证据入口、局部新资料需逐Call保留，不能全部以低增量概括；为何停止仍未唯一识别。",
+  "deterministic_counts": {
+    "observed_stage_count": 4,
+    "different_questions": 4,
+    "original_runs": 4,
+    "observed_rollouts": 13,
+    "not_observed_rollouts": 3,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 13,
+    "not_observed_local_chain_occurrences": 3,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 16,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "228__rep1__S007__FIRST_SENTENCE",
+      "257__rep4__S004__FIRST_SENTENCE",
+      "282__rep2__S002__FIRST_SENTENCE",
+      "69__rep3__S003__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "69",
+      "228",
+      "257",
+      "282"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T3",
+  "description": "正确核心已采用后，具体真实缺口继续触发取证直至有限接受或guard。",
+  "links": [
+    {
+      "case_id": "191__rep2__S002__FIRST_SENTENCE",
+      "local_id": "ADOPTED_PERSON_UNCLOSED_FESTIVAL_ROLE_RETRIGGERS_CHECKS"
+    },
+    {
+      "case_id": "261__rep3__S002__FIRST_SENTENCE",
+      "local_id": "ADOPTED_PAPER_REAL_DATA_GAPS_CONTINUE_TO_CONTEXT_GUARD"
+    }
+  ],
+  "relation": "P2_R3，新191两支有限核查C与261两支核表N方向分开。",
+  "counterexamples": [
+    "191新3/4用奖项推节目没有额外真实核查，不计同链出现。",
+    "83新2不是一直固定Mate补关系，而是重开身份，暂留开放新子链。",
+    "261新1/3从没确定论文，不混正确核心前态。"
+  ],
+  "unresolved": "节目/精确表格确实未证，不因C/N结果把核查判不需要；未证明检索穷尽。",
+  "deterministic_counts": {
+    "observed_stage_count": 2,
+    "different_questions": 2,
+    "original_runs": 2,
+    "observed_rollouts": 4,
+    "not_observed_rollouts": 4,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 4,
+    "not_observed_local_chain_occurrences": 4,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 8,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "191__rep2__S002__FIRST_SENTENCE",
+      "261__rep3__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "191",
+      "261"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T4",
+  "description": "支持且已采用的事实再实际查询，允许同次新增权威背景。",
+  "links": [
+    {
+      "case_id": "78__rep2__S002__FIRST_SENTENCE",
+      "local_id": "SUPPORTED_CORONATION_NAME_REQUERIED_AFTER_TIMELINE_CLOSED"
+    },
+    {
+      "case_id": "87__rep2__S002__FIRST_SENTENCE",
+      "local_id": "ADOPTED_CLASSIFICATION_RECHECKED_WITH_POSSIBLE_AUTHORITY_GAIN"
+    }
+  ],
+  "relation": "P2_R2，78一名字确认，87前三分类确认。",
+  "counterexamples": [
+    "78年表起始年首次取得与87河名首次取证都是真未知，不能归重复。",
+    "87第三Call也返83649专家背景，不能宣称全零价值；新4不需要第三Call仍C只是局部对照。"
+  ],
+  "unresolved": "独立来源支持价值与重复直接事实同时存在，尚不作自动可省判定。",
+  "deterministic_counts": {
+    "observed_stage_count": 2,
+    "different_questions": 2,
+    "original_runs": 2,
+    "observed_rollouts": 4,
+    "not_observed_rollouts": 4,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 4,
+    "not_observed_local_chain_occurrences": 4,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 8,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "78__rep2__S002__FIRST_SENTENCE",
+      "87__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "78",
+      "87"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T5",
+  "description": "主身份已接受时，未知条件是否继续派取证决定Call成本，但质量另审。",
+  "links": [
+    {
+      "case_id": "55__rep2__S008__FIRST_SENTENCE",
+      "local_id": "PREACCEPTED_ANSWER_SUBMITTED_WITHOUT_RETRYING_UNRESOLVED_VENUE"
+    },
+    {
+      "case_id": "191__rep2__S002__FIRST_SENTENCE",
+      "local_id": "TARGET_VERIFICATION_REBUILT_WITH_OPPOSITE_DOWNSTREAM_COSTS"
+    },
+    {
+      "case_id": "78__rep2__S002__FIRST_SENTENCE",
+      "local_id": "ADOPTION_REBUILT_WHILE_LONGER_LINEAGE_CHAIN_NOT_REPEATED"
+    }
+  ],
+  "relation": "跨案例成本落点对照，不统一新机制：55无U再查、191U真恢复而少/多Z、78采用恢复而少家系。",
+  "counterexamples": [
+    "87U采用也恢复但拆检索后成本全增；不能拿重建当节省理由。",
+    "55期刊、191主持、78谱系支持不同程度未闭，C不替代质量验收。"
+  ],
+  "unresolved": "不以共同答案保持强凑N006：55U没有新增直接证明、191U实际全恢复、78纯认知恢复，均不满足N006必要前态。",
+  "deterministic_counts": {
+    "observed_stage_count": 3,
+    "different_questions": 3,
+    "original_runs": 3,
+    "observed_rollouts": 12,
+    "not_observed_rollouts": 0,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 12,
+    "not_observed_local_chain_occurrences": 0,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 12,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "191__rep2__S002__FIRST_SENTENCE",
+      "55__rep2__S008__FIRST_SENTENCE",
+      "78__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "55",
+      "78",
+      "191"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T6",
+  "description": "正确实体材料如何因不同负面判断退出，或被保留为待查主体。",
+  "links": [
+    {
+      "case_id": "83__rep2__S002__FIRST_SENTENCE",
+      "local_id": "UNVERIFIED_NEGATIVE_CONDITION_EXCLUDES_RETURNED_ENTITY"
+    },
+    {
+      "case_id": "83__rep2__S002__FIRST_SENTENCE",
+      "local_id": "REAL_REMAINING_GAP_REOPENS_PREVIOUSLY_ADOPTED_IDENTITY"
+    },
+    {
+      "case_id": "78__rep2__S002__FIRST_SENTENCE",
+      "local_id": "EDUCATION_ROLE_MISASSIGNMENT_CHANGES_CHECK_FOCUS"
+    }
+  ],
+  "relation": "开放比较：83新1无源负面常识、83新2真未证条件、78错学历归属后具体核验纠正不同。未为归类强扩P1_K1/N003。",
+  "counterexamples": [
+    "83新2确有神灵直接证据并采用，不能说同无源非仪式推断；缺采收而重审可合理。",
+    "78父亲教育本来未知，角色误配后两学校Call不一定全部无必要；新3错学院年没有额外学校Call。"
+  ],
+  "unresolved": "假冲突、真未证与合理重审仍须按具体证据区分，不能统一标签当机制。",
+  "deterministic_counts": {
+    "observed_stage_count": 2,
+    "different_questions": 2,
+    "original_runs": 2,
+    "observed_rollouts": 3,
+    "not_observed_rollouts": 7,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 3,
+    "not_observed_local_chain_occurrences": 9,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 8,
+    "status_overlap_across_component_links": true,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "78__rep2__S002__FIRST_SENTENCE",
+      "83__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "78",
+      "83"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T7",
+  "description": "无证关系或数字被邻近事实替代为Formal依据，停止更早不保证正确。",
+  "links": [
+    {
+      "case_id": "228__rep1__S007__FIRST_SENTENCE",
+      "local_id": "ALMA_MATER_OR_PARTNERSHIP_REPLACES_UNPROVEN_BUILDING_RELATION"
+    },
+    {
+      "case_id": "257__rep4__S004__FIRST_SENTENCE",
+      "local_id": "FIXED_PUBLISHER_YEAR_GAP_CHECKED_THEN_UNSUPPORTED_ACCEPTED"
+    },
+    {
+      "case_id": "282__rep2__S002__FIRST_SENTENCE",
+      "local_id": "UNPROVEN_NUMERIC_HYPOTHESIS_ACCEPTED_AS_KNOWN_FACT"
+    },
+    {
+      "case_id": "282__rep2__S002__FIRST_SENTENCE",
+      "local_id": "SEARCH_FAILURE_ACKNOWLEDGED_IN_FORMAL_NONANSWER"
+    }
+  ],
+  "relation": "不同关系替代与拒答停止作为相反子链分列，不统一N001名称机制。四态/成本从客观账本另计，不能拿W当同原因。",
+  "counterexamples": [
+    "228新1相信母校仍继续Call到N，是否同毕业推断保uncertain。",
+    "282新3有数字却无Final，新4不接受数字正式拒答，不能算都无证猜答。",
+    "257新3原版书目明确提取仍公司Query不变，失效不在资料未回。"
+  ],
+  "unresolved": "无证确定化可准确定位，但具体停止的内部原因未知；本批同题更多Stage不增加独立题数。",
+  "deterministic_counts": {
+    "observed_stage_count": 3,
+    "different_questions": 3,
+    "original_runs": 3,
+    "observed_rollouts": 10,
+    "not_observed_rollouts": 4,
+    "uncertain_rollouts": 1,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 10,
+    "not_observed_local_chain_occurrences": 5,
+    "uncertain_local_chain_occurrences": 1,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 12,
+    "status_overlap_across_component_links": true,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "228__rep1__S007__FIRST_SENTENCE",
+      "257__rep4__S004__FIRST_SENTENCE",
+      "282__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "228",
+      "257",
+      "282"
+    ]
+  }
+}
+```
+
+```json
+{
+  "id": "ROOT014_T8",
+  "description": "联合证据获取被拆顺序查询，是同功能不同执行成本的反向对照。",
+  "links": [
+    {
+      "case_id": "87__rep2__S002__FIRST_SENTENCE",
+      "local_id": "COMBINED_EVIDENCE_ACQUISITION_SPLIT_INTO_SEQUENTIAL_CALLS"
+    }
+  ],
+  "relation": "N005反向工程/行为证据：原真实一Call分类+河名，新四支两个Call分别补，未把新多Call算联合正例。",
+  "counterexamples": [
+    "新4两Call无第三确认仍全部成本高于原，前三第三确认还有新权威背景，不把全增耗归无用重复。",
+    "G完整下一Reasoning已提供两任务，仍不足保持一次联合产物，召回/参数改变无法排除。"
+  ],
+  "unresolved": "一题四分支不是四个跨题证据；保持full_successor_guide方法例外，不用于严格可省因果证明。",
+  "deterministic_counts": {
+    "observed_stage_count": 1,
+    "different_questions": 1,
+    "original_runs": 1,
+    "observed_rollouts": 4,
+    "not_observed_rollouts": 0,
+    "uncertain_rollouts": 0,
+    "excluded_rollouts": 0,
+    "observed_local_chain_occurrences": 4,
+    "not_observed_local_chain_occurrences": 0,
+    "uncertain_local_chain_occurrences": 0,
+    "excluded_local_chain_occurrences": 0,
+    "total_distinct_rollouts_in_test": 4,
+    "status_overlap_across_component_links": false,
+    "counting_note": "Rollout counts deduplicate case_id and repeat; local-chain occurrences count each explicit component. Statuses across different components need not be exclusive.",
+    "observed_cases": [
+      "87__rep2__S002__FIRST_SENTENCE"
+    ],
+    "question_ids": [
+      "87"
+    ]
+  }
+}
+```
+
+
+## unresolved
+
+```json
+{
+  "case_id": "55__rep2__S008__FIRST_SENTENCE",
+  "issue": "两Call真正缺席但期刊/职位支持仍缺，G接受语境与既有接受共同作用未分离。"
+}
+```
+
+```json
+{
+  "case_id": "69__rep3__S003__FIRST_SENTENCE",
+  "issue": "新2错误候选先接受却没有Final；三C全部恢复新闻入口而非功能省掉。"
+}
+```
+
+```json
+{
+  "case_id": "78__rep2__S002__FIRST_SENTENCE",
+  "issue": "省家系实例是否减少必要支持，学院/大学与父亲别名错误不能由姓名C遮盖。"
+}
+```
+
+```json
+{
+  "case_id": "87__rep2__S002__FIRST_SENTENCE",
+  "issue": "G完整后继Reasoning例外；第三确认新背景价值未唯一裁定，已联合两证原路径与新分开事实明确。"
+}
+```
+
+```json
+{
+  "case_id": "191__rep2__S002__FIRST_SENTENCE",
+  "issue": "节目present/perform/host关系未直接闭，新增驾驶细节只补驾驶；U全部恢复成本却双向。"
+}
+```
+
+```json
+{
+  "case_id": "83__rep2__S002__FIRST_SENTENCE",
+  "issue": "新1无源否定和新2真未证重审不可并同错误；原也无尖石/1940s，不能认所有继续核验冗余。"
+}
+```
+
+```json
+{
+  "case_id": "228__rep1__S007__FIRST_SENTENCE",
+  "issue": "四U均恢复但Stanford关系不回，新2同顺序仍W；母校探查可合理，错误在关系无证接受。"
+}
+```
+
+```json
+{
+  "case_id": "257__rep4__S004__FIRST_SENTENCE",
+  "issue": "别名真实恢复，正确原版书目未用，四N→W无准确率改善；公司年引文与最后接受冲突未解释内部原因。"
+}
+```
+
+```json
+{
+  "case_id": "261__rep3__S002__FIRST_SENTENCE",
+  "issue": "U是否恢复与目标发现各有反例，4N非一期刊失败工作必要性证明；两支真未证表格驱动取证。"
+}
+```
+
+```json
+{
+  "case_id": "282__rep2__S002__FIRST_SENTENCE",
+  "issue": "两猜号W/一正式拒答W/一预算N分开，CHAR原生生成精确成本未知不补造。"
+}
+```
+
+
+## 限制
+十不同题/十原轨迹/四十续跑，A/B各五，全部FIRST_SENTENCE但87/261为full_successor_guide方法例外，CHAR261/282分列，原精确生成未知按已有区间或未知保留。统计不手填，不累加独立删除节省；Codex语义自审不等独立人工金标准。

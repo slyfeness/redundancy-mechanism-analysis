@@ -1,0 +1,29 @@
+{
+ "version":"V025_NEW_N010_ADD_ONLY",
+ "status":"PROVISIONAL_CODEX_PROCESS_CANDIDATE_NOT_HUMAN_GOLD",
+ "existing_definitions":"Original six and N001—N009 unchanged. This candidate names a specifically observed within-message action failure, not all repeat reasoning or all no-Final runs. It does not explain the hidden origin of failure to emit a tool call.",
+ "candidates":[{
+  "registry_id":"N010_UNRESOLVED_GAP_REACTIVATES_UNEXECUTED_QUERY_PLANS_WITHOUT_STATE_UPDATE",
+  "name":"未闭缺口反复触发未执行查询计划，旧判断反复重述但没有真实反馈更新",
+  "prestate":"模型明确指出某个身份/关系缺口，并在同一实际Assistant生成中多次重述已有候选或已知属性、提出要搜索；不能只依据终态N、长文本、相同词语或无工具自动判定。核心所问属性可已经知道，也可仍未形成可靠候选，须分别记录。",
+  "definition":"真实原文反复出现未闭条件→下一查询意向/重新选择计划→没有实际Call及新Return→继续据原有信息描述不足或失败→再提出相同/近似工作计划的循环；没有可观察的新证据/行动状态推进，单次生成持续消耗预算且本轮没有提交Final。必须同时核对全部真实Call账本、完整消息和实际停止原因。没有执行的计划不算已执行取证，也不能把模型自述搜索失败当本分支已新得到返回。",
+  "chain":"特定缺口保持未解→缺口持续触发新的查询意向而非可执行工具事件→没有真实反馈改变既有候选/方案→同一消息重述问题和候选后再次启动计划→消耗主要落在生成文本，未完成实际取证或提交。此链只描述已观察的维持过程，不能声称已确定为何没有发出工具调用。",
+  "inclusions":["明确多次计划/重估而真实工具表没有相应Call，旧候选/缺口反复回到原状态","同一消息真实长度终止、没有Formal，不能将中间正确数字当提交","有充分的完整原文或精确重复块核验，不能从少量关键词推断整个长消息"],
+  "exclusions":["普通一次未执行计划后正常Formal","真实多次Call及返回的固定缺口核验，属于其它行动实例分析","长推理有实际新候选/推导推进且最后尚未完成，不能只看长度","Call格式错误或服务错误导致工具未执行但原文没有相同计划循环","模型已经真实提交Final，只是Final前有短重复陈述"],
+  "function_relation":"区别P1_K3真实返回后又重新实际查询，和P2_R3正确核心下真实继续核验；本候选是计划未成为行动、也未收束提交。区别N002无源来源叙述直接当事实Formal，本候选没有正式答复，且核心问题在没有新事件的反复重新计划。",
+  "explicit_memberships":[
+   {"case_id":"980__rep4__S001__FIRST_SENTENCE","local_id":"REPEATED_REPLANNING_WITHOUT_TOOL_DISPATCH_OR_FINAL","observed":[2],"not_observed":[1,3,4],"uncertain":[],"excluded":[],"evidence":["N21","N22","N23","N13","N14","N35","N43","N44"],"locus":"新2R12真实10000Token/38884字符，前已有11Search但本轮0Call，无Final；两种完整块实读、中间重复精确核验","subtype":"正确关系尚未获取，反复改变搜索解释与熟悉影片枚举，但新计划不发Call；原W→N不是正确性改善"},
+   {"case_id":"319__rep1__S009__FIRST_SENTENCE","local_id":"UNRESOLVED_IDENTITY_GAP_REPEATEDLY_REACTIVATES_UNEXECUTED_PLANS","observed":[2],"not_observed":[1,3,4],"uncertain":[],"excluded":[],"evidence":["O_P_TWO_BEFORE_CUT","N2_PLANS_NOT_CALLS","N2_FAILURE_STORY_WITHOUT_NEW_RETURN","N2_NUMBER_AND_GAP_REPEAT","N1_TRUE_FINAL","N3_PLANNING_THEN_ACCEPTANCE","N3_TRUE_FINAL","N4_TRUE_FINAL_WITH_LIMIT"],"locus":"新2R10单轮10000Token，全支0Call，无Formal；已知人数2与餐馆背景未配反复交替","subtype":"核心所问数字已P接受且G重复确认，仍被背景缺口带回计划；不能用不知道数字解释无Final"}
+  ],
+  "counterexamples":[
+   "319同Stage新3也提出未执行核验却能收束Formal，单次搜索意向或未解背景不是本循环充分条件。",
+   "319新1/4同P/G与背景缺口，直接有限数值提交；980另三实际继续工具并有Formal，结果C或W均可能。",
+   "353MSc精确年、1046特定bribery反复核验有真实Call/Return；即便无新事实也不是本无执行计划链。",
+   "根部980与晚段319前态/原Stage功能不同，不能把共同失败过程反推两种U具同一因果功能。"
+  ],
+  "cost_relation":"980该支新生成13664+G18相对原后缀4468增加9214，末轮10000生成没有新Call；319该支10000+G18相对原1258增加8760且工具反少一次。分别记录，不累加独立反事实节省，也不从低工具/Prompt成本称有效省。",
+  "full_read_audits":["CURRENT_READ_AUDITS/980__rep4__S001__FIRST_SENTENCE__new2_exact_paragraph_coverage.json","CURRENT_READ_AUDITS/319__rep1__S009__FIRST_SENTENCE__new2_exact_paragraph_coverage.json"],
+  "read_audit_detail":"两消息全部去重段落由模型实际逐段阅读：980共212段/11种、38884字符；319共217段/15种、39758字符。程序保存精确段落、原顺序、字符范围及SHA并逐字还原，不生成语义结论。不是只抽头尾外推整个长轮。",
+  "limits":"目前显式两Stage/两不同题/两原轨迹各一续跑，均真实长度终止。候选解释未闭状态怎样在无反馈时反复维持计划及消耗位置，不解释工具协议为什么未产生/隐藏决策原因，不宣称足以预测失败或已完成因果证明。G/采样/历史差异保留，等待研究者裁定与后续其它案例反证。"
+ }]
+}

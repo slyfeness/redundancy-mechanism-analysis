@@ -1,0 +1,87 @@
+{
+  "schema_version":"SAGE100_FUNCTION_MECHANISM_V1","unit_id":"SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR","trajectory_id":"SAGE_EXISTING_BATCH02__SAGEE_0673","stage_id":"S003","sample_order":4,"condition":"TERMINAL_DROP_NO_ANCHOR",
+  "source_files":{
+    "O":{"source_file":"RAW/SAGE_EXISTING_BATCH02__SAGEE_0673/trajectory.json","source_sha256":"920d22c7ea2477eef1f2e45f8a4a40b795ba1bf60135cbdcdc4f77a8f710c20d"},
+    "M":{"source_file":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0673.json","source_sha256":"5fc539300617989ae29eadac211ffba553ee732bc126a98660e588627d4a1c7a"},
+    "I":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json","source_sha256":"3c62c79976f39725d418ebdf787f3ba088d06e7e0bea0ce20ab6dce301729103"},
+    "N1":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json","source_sha256":"6002ff65372f38fd8d6c9f2ede93b83555fca09b0e83843aca0c28d2918eee52"},
+    "N2":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json","source_sha256":"9b1d0592be864e6bbaf04924c1cb9b4b2c45ce57122166db6f2849c55479e13d"},
+    "N3":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json","source_sha256":"c4cb2cf7b817c9fc50c6f17d83d1944d9a3e18f745ae068bcb2b25b036d954a3"},
+    "N4":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json","source_sha256":"4e3e209a05211a96b1173894589c1f512fa969d0716360ce536d3e95e1478f7f"}
+  },
+  "question_and_gold":{"question":"In the city where Giacomo Puccini's opera 'La bohème' premiered, composed by the same artist as 'Turandot', a specific industrial sector experienced rapid growth in the late 19th century. What was the name of the major company, established in 1899, that became a cornerstone within this sector in that city?","gold":["Fiat"],"gold_reference":"EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0673/0/answer/0"},
+  "read_scope":"原完整3轮及两次Search/全部Return已读；新四路径compact-references视图[0,16131)一次完整展示，无截断。repeat01新增100字符Open已完整读取。",
+  "original_outcome":{"actual_final":"Fiat","adopted_answer":"Fiat","outcome":"C","decision_file":"ANALYSIS/ORIGINAL_OUTCOME_DECISIONS/SAGE_EXISTING_BATCH02__SAGEE_0673.json","reason":"正式Fiat与Gold同一公司，城市、行业、1899、cornerstone均有直接支持。"},
+  "prestate":{"actor_visible":"R3@0，P含E001歌剧/Puccini文档和E002 Turin/Agnelli等真实Return；当前生成前缀为空，无原R3接受或Final。","returned":"首演城市Turin、Puccini两作品、Turin汽车业、1899Fiat及cornerstone均已分别返回。","extracted":"原R2明确提取Turin，后半题的新行业/Fiat证据刚返回，尚待当前Round采用。","adopted":"城市已用于真实下一Query；公司Fiat还没有在生成的原R3中正式接受。不能把刚返回当已接受。","action_updated":"Turin已经成为E002真实查询对象，证据到实际行动更新发生过。","prior_logged_not_retained":"旧R2 Reasoning不在规范化历史，但E002真实Query和文档保留；当前并没有复制原最终条件盘点。","evidence":["O_CITY_QUERY","O_FIAT_RETURN"]},
+  "original_U":{"full_text_reference":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0673.json#/stages/2/items","ranges":[{"json_pointer":"/rounds/2/reasoning_content","round_id":3,"start":0,"end":602},{"json_pointer":"/tool_events/2","event_id":"E003"}],"goal":"将城市到公司两跳证据与题目要求配对，接受Fiat并提交。","operations":"五点列出首演、城市、行业、年份及公司角色，实际submit Fiat，没有新取证。","output":"Fiat正式Final。","judgment_before_after":"Fiat和条件证据已返回→完整匹配接受→正式提交。","evidence":["O_ACCEPT","O_FINAL"]},
+  "original_followup":"末段submit接受即终止，无再后续。",
+  "function_features":"将已齐备但刚返回的公司证据转成全题匹配与提交，没有首次补事实。判断是否被省应看新路径有没有重新比较，而不是只看其无需额外Search。",
+  "guide_audit":{"text":"","source_pointer":null,"source_range":null,"derived_token_count":0,"compared_complete_P":true,"status":"NO_ANCHOR","new_entities_or_facts":"无教师文本、旧Final或Gold注入。","new_action_direction":"无G方向。","full_successor_prefill":false,"limits":"末段自然重生成，未强迫跳过判断。","evidence":["I_NO_G"]},
+  "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts":[
+    {
+      "repeat_id":1,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat01","actual_final":"Fiat","terminal":"MODEL_FINAL_STOP","adopted_answer":"Fiat","outcome":"C","outcome_reason":"真实提交Fiat且P各项证据直接支持；后来的Open没有提供关键公司信息，仍依靠原Search。","outcome_evidence":["N1_ACCEPT","N1_FINAL"],
+      "work_and_evidence_timeline":"R3先逐条件比较并明确公司Fiat，随后真实Open Turin100字符，只见1861首都背景，没有汽车业/1899。R4又用旧Search配对条件，提交Fiat。R4将Turandot也与Turin关联的附带说法没有返回支持，主公司仍正确。",
+      "first_judgment_divergence":"原接受后直接提交，新接受后又决定核查；核心候选/条件年不变。",
+      "first_actual_tool_divergence":"原唯一submit，新先Open Turin，再submit；Open没有目标段落。",
+      "function_correspondence":[{"original":"完整条件匹配并接受Fiat","new":"R3已发生，R4又组织一次","evidence":["O_ACCEPT","N1_ACCEPT"]},{"original":"提交Fiat","new":"延后一轮，R4实际提交同公司","evidence":["O_FINAL","N1_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"条件匹配、公司接受和正式提交都重新发生，并加一次核查。",
+      "judgment_action_outcome_chain":"P事实齐备→R3已接受Fiat→仍Open确认但未到关键段→R4再用旧证据接受并提交。增加的是接受后的核查及再次组织，没有新增决定性支持；不能说删除使判断功能消失。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/0","cost_work_locations":"新536生成、16181Prompt、1Open/2Actor；原236生成、8036Prompt、0Open/1Actor。多一轮Open及R4的8145Prompt，生成两轮展开增加300记录Token。P8036重放另列，G0。",
+      "counterevidence_and_alternatives":"本Stage另外三条不用Open也正确，不能据此说该新增核验提高答案质量；其解释还引入未经支持的Turandot城市关系。"
+    },
+    {
+      "repeat_id":2,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat02","actual_final":"Fiat","terminal":"MODEL_FINAL_STOP","adopted_answer":"Fiat","outcome":"C","outcome_reason":"逐项引用正确城市、汽车业及Fiat1899/cornerstone，实际提交Fiat。没有从中间候选补Final。","outcome_evidence":["N2_ACCEPT","N2_FINAL"],
+      "work_and_evidence_timeline":"唯一R3先按四个前提详细引用直接文档、接受Fiat，再以清单double check相同条件，最后提交。没有Search/Open，列表和double check都不是实际新工具。",
+      "first_judgment_divergence":"没有实质候选/关系分歧，原五点对照扩展为前提引用加重复检查；Premise2措辞城市被composed语法混乱，后一句仍明确同作曲家，未改变查询或答案。",
+      "first_actual_tool_divergence":"无，仍仅submit Fiat。",
+      "function_correspondence":[{"original":"全题证据比较与接受","new":"R3详细对应并再次列单确认","evidence":["O_ACCEPT","N2_ACCEPT"]},{"original":"正式提交","new":"同一轮submit Fiat","evidence":["O_FINAL","N2_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"认知与提交完整重做，没有通过绕过比较节省。",
+      "judgment_action_outcome_chain":"相同充分证据→完整条件对应→已接受后再重列→提交C。结果未变、工具未变，生成增加来源是同一答案更长论证，不是更多事实。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/1","cost_work_locations":"509生成、8036Prompt、1Actor/0Search/Open，原236生成，生成差273；输入不变。重复盘点没有产生额外API调用，不能把它算成多Actor。",
+      "counterevidence_and_alternatives":"与repeat03同样正确且同工具却文字更多，说明全重建后的表达长度有波动；不能把更多解释当更高证据质量。"
+    },
+    {
+      "repeat_id":3,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat03","actual_final":"Fiat","terminal":"MODEL_FINAL_STOP","adopted_answer":"Fiat","outcome":"C","outcome_reason":"实际Fiat与Gold一致、核心城市/汽车业/年/公司关系有P支持；附带断言Turandot在Turin composed没有证据，应单列解释质量风险。","outcome_evidence":["N3_ASIDE","N3_ACCEPT","N3_FINAL"],
+      "work_and_evidence_timeline":"R3五点对照，明确Fiat，立即submit；没有新Call除了提交。第二点把同作曲家的线索误写为Turandot在Turin创作，未据此改变其他候选。",
+      "first_judgment_divergence":"主答案没有分歧；增加未经支持的地理关系解释，但未形成后续行动变化。",
+      "first_actual_tool_divergence":"无，仅提交。",
+      "function_correspondence":[{"original":"各条件比较采用Fiat","new":"同轮五点比较并接受同公司，含一项附带解释偏差","evidence":["O_ACCEPT","N3_ACCEPT","N3_ASIDE"]},{"original":"正式提交Fiat","new":"R3实际同答案submit","evidence":["O_FINAL","N3_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"全题匹配和提交实际重做，不能因文字略短称认知功能跳过；解释精度另记。",
+      "judgment_action_outcome_chain":"充分P→重新比较并采用Fiat→同轮提交。没有新增取证、没有候选改动，略短表达节省少量生成，但出现了附带未证关系，不能称完全质量等价的严格省略。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/2","cost_work_locations":"212生成、8036Prompt、1Actor/0Search/Open，相对原完整响应236少24记录Token。是功能全重建的较短表达，不是省掉匹配或提交；原native IDs缺失，不改称原生精确切点节省。",
+      "counterevidence_and_alternatives":"这是一条生成略少而原功能完整在、解释另有问题的反例。不能用C和生成下降两项就判严格冗余。"
+    },
+    {
+      "repeat_id":4,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR__repeat04","actual_final":"Fiat","terminal":"MODEL_FINAL_STOP","adopted_answer":"Fiat","outcome":"C","outcome_reason":"真实提交Fiat，引用城市及1899公司文档，没有改选其他企业。","outcome_evidence":["N4_ACCEPT","N4_FINAL"],
+      "work_and_evidence_timeline":"R3明确引用La bohème首演Turin、Turin工业汽车业与Fiat1899，再解释题问公司，接受Fiat并提交。未展开独立新核查或多次完整清单。",
+      "first_judgment_divergence":"没有主关系改变，只是更多直接引用和题问重述。",
+      "first_actual_tool_divergence":"无，唯一submit。",
+      "function_correspondence":[{"original":"以两跳证据形成全题公司判断","new":"R3逐文引用后接受Fiat","evidence":["O_ACCEPT","N4_ACCEPT"]},{"original":"正式提交公司","new":"同轮真实submit Fiat","evidence":["O_FINAL","N4_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"主要条件匹配、接受、提交完整出现；未额外检索不代表省掉原本不存在的搜索。",
+      "judgment_action_outcome_chain":"已返回城市及公司关系→引用并匹配→采用Fiat→直接提交。表达比原长但没有可观察的新信息状态或行动更新。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0673__S003__TERMINAL_DROP_NO_ANCHOR.json#/records/3","cost_work_locations":"310生成、8036Prompt、1Actor/0Search/Open；比原236多74记录Token，集中在直接引文和题目重述，不是工具成本。",
+      "counterevidence_and_alternatives":"比repeat02短、比原长但同样正确，不能由长度决定功能有无。"
+    }
+  ],
+  "four_run_comparison":"四次均C并完整重建原整体匹配和正式提交，三次直接提交、一次已接受后额外Open。生成536/509/212/310，对应同一主证据状态仍有篇幅和操作差异；第三次较短却另有未证Turandot地理断言。结果保持、证据支持、解释精度、工作量需要分别记。",
+  "conditional_mechanism_proposals":[{"proposal":"证据已齐的最终匹配Stage在无引导重生成后可完整恢复；有时已接受之后仍追加不覆盖关键段的Open，增加交互而不改变核心答案或证据。","support_scope":"本Stage四次，只有repeat01有额外Open；待与其他题末段比较，不能把所有末段合成一个机制。","counterevidence":"另三条无需Open同样C；但都实际重建判断，未观察到真正跳过匹配。"}],
+  "counterevidence_and_limits":"无G可审事实泄漏；仍为末段自然重生成，非指令式功能跳过。原新seed与生成配置不完全同原生产，成本比较不是纯因果分解。原R3@0整轮usage可报，native-cut精确节省不报。四条生成总差不能求和成一次节省。",
+  "evidence":[
+    {"evidence_id":"I_NO_G","source_ref":"I","source_side":"GUIDE","round_id":3,"event_type":"empty_guide","json_pointer":"/anchor_text","exact_quote":""},
+    {"evidence_id":"O_CITY_QUERY","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":2,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"Turin industrial growth late 19th century company established 1899"},
+    {"evidence_id":"O_FIAT_RETURN","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":2,"event_type":"actual_tool_return","json_pointer":"/tool_events/1/observation/results/0/snippet","exact_quote":"in 1899 Fiat was established in the city","doc_ids":["wiki25:4738638"]},
+    {"evidence_id":"O_ACCEPT","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/2/reasoning_content","exact_quote":"The answer is **Fiat**."},
+    {"evidence_id":"O_FINAL","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":3,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"Fiat"},
+    {"evidence_id":"N1_ACCEPT","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The major company established in 1899 in Turin that became a cornerstone of the automotive sector is Fiat (Fabbrica Italiana Automobili Torino)."},
+    {"evidence_id":"N1_FINAL","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":4,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"Fiat"},
+    {"evidence_id":"N2_ACCEPT","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The answer is Fiat (or Fiat S.p.A.)."},
+    {"evidence_id":"N2_FINAL","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"Fiat"},
+    {"evidence_id":"N3_ASIDE","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Turin is the city where Puccini's opera 'Turandot' was also composed (Turandot is by Puccini)."},
+    {"evidence_id":"N3_ACCEPT","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The answer is Fiat (Fiat S.p.A.)."},
+    {"evidence_id":"N3_FINAL","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"Fiat"},
+    {"evidence_id":"N4_ACCEPT","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The answer is **Fiat**."},
+    {"evidence_id":"N4_FINAL","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"Fiat"}
+  ],
+  "reviewer":"Codex model","review_status":"CODEX_MODEL_REVIEW_COMPLETE","human_gold_claimed":false
+}

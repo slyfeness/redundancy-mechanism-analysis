@@ -1,0 +1,51 @@
+{
+ "case_id":"282__rep2__S002__FIRST_SENTENCE","question_id":"282","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"W","3":"N","4":"W"},"basis":"原18轮CONTEXT_LIMIT_STOP没有Final；新1实际Final答10、新2答5001，均不等于BX 293A；新4有真实Final但明确不能提供编号，为未答中W，不是无Final N；新3历史1次加19新Actor达到20，SAFETY_CEILING_STOP没有Final，N。"},
+ "selection_exception":"冻结B为N→WWNW，k3是失败状态互换；四次正确性均未改善，不能用此组证明删了重要Stage导致正确答案丢失。",
+ "review_basis":"亲读原题、原18轮全部推理与18Call及完整Return、切点与U；四新53轮完整Reasoning/Final、50实际Call/参数/批次/完整Return及字段顺序全部读取。157唯一段中原33、新124；10fresh Return全文读，其余只复用完整可见内容SHA一致且此前亲读的文本，非按DocID猜。源SHA59ae1d90410bf21bb6157b6f4f85c1ef83446e0c91cd175091f194a2063119b1。",
+ "pre_state":"R2@109之前，E1真实宽泛作品/鸟类搜索已返回45388，R2[0,109)明确采用Evangelion中的Pen Pen、企鹅和Misato。因此U不是第一次发现/采用作品或动物。P缺作品其余条件与具体铭牌编号，也没有已确认编号。原始液体分类猜测尚未解决。",
+ "u_work":"U为R2[109,551)及E2：围绕已采用Evangelion/Pen Pen提出作品年代、液体、领导者健康和铭牌条件，实际一次具体作品/动物查询。E2返回45388/10791/97410/66867/64312，使原R3能采用LCL、年代和液体描述；返回未给铭牌编号。U主要将已有候选转为具体取证对象并获取背景材料，没有完成编号核验。",
+ "u_state_update":"删后四条都重新执行Evangelion具体查询，回到同一作品/动物并获得LCL背景。首次真实查询1/3偏液体、2/4直接问Pen Pen编号，但随后都集中编号缺口。真正分化不在是否恢复作品，而在没有直接编号时，是否把自发数字当可提交事实：1把10、2把5001由待核查询变成常识答案；3持续扩展数字串到调用上限；4停止补查并正式说明无法给编号。",
+ "original_action_consequence":"原R3由E2读取LCL，仍不确定化学对应，却无证据地说Gendo终末病；后续始终实际查铭牌。R6实际Query先带900，R8才在推理显式说记忆900/900-0900，不能倒推更早Call有未写动机；R9—R18相同529字符反馈/猜测出现十次，但Query数字串持续变，不是十个相同Call。原未证900仍作为待查假设直至context，没有提交。新1/2在同样没序号材料下改为正式接受不同数字；新3/4提供未这样接受的反例。",
+ "guidance":{"text":"Great!","source":"原S003 R3[0,6)，原生生成Token[0,2)，2Token。","audit":"ORACLE_ANCHORED；普通正向承接，没有新候选、事实、序号或后继全文，不能把其积极语气当模型自主判断。CHAR_EXACT_RETOKENIZED R2@109，保留28native到char108，仅补回P空格[108,109)→ID220，共29IDs；没有挪Stage点或带目标文字。原prompt4013、Pi4042、四首请求4044。无目标E2/Return、原未来或Gold回填。虽G无明显事实补偿，仍不是无引导纯删除因果证明。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The search results mention \"Pen Pen\" from Evangelion! This is a penguin (Class Aves) that lives with Misato.","use":"P已实际采用对象，不能把U当第一次候选更新。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Evangelion Misato Pen Pen penguin nameplate serial number","use":"U E2 R2 chatcmpl-tool-b2f7bbfa7be9bb6a，实际转具体对象取证。"},
+  {"id":"O3","source":"original","pointer":"/rounds/2/reasoning_content","quote":"LCL is the liquid that Eva pilots are submerged in","use":"原R3明确采用返回背景；不是取得序号。"},
+  {"id":"O4","source":"original","pointer":"/rounds/7/reasoning_content","quote":"Based on my knowledge, in Neon Genesis Evangelion, Pen Pen (the penguin) has a nameplate on his cage with the number \"900\" or \"900-0900\" or similar.","use":"R8出现未证记忆，但更早E6已带900；原没有把此记忆正式提交。"},
+  {"id":"O5","source":"original","pointer":"/rounds/8/reasoning_content","quote":"However, the search results aren't showing this specific information.","use":"原R9—R18持续确认未返回，却继续数字查询；最后Return不可当已消费。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Neon Genesis Evangelion show released 1940-2000 character liquid water substance organic compound C-H bonds","use":"R2 a7d72656f3e05f21，先恢复作品/液体核查。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"Based on my knowledge of Evangelion, Pen Pen's nameplate shows the number \"10\".","use":"R6才明确记忆依据；R4 E3真实Query已带10，不补造早先解释。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"The search results are still not providing the specific serial number on Pen Pen's nameplate.","use":"R8知道没有返回却转well-established接受，未取得证据。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/6/content","quote":"The serial number on Pen Pen's nameplate is **10**.","use":"R8正式W，并无源声称多集可见。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Evangelion Pen Pen penguin nameplate serial number","use":"R2 84931626eff34055恢复U具体对象取证。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/tool_calls/0/function/arguments","quote":"Pen Pen penguin 5001 nameplate tag identification number","use":"R5 a14aa1e766e65d6c先真实查5001，下一R6才文字说明实验动物惯例，不倒推隐藏动机。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/9/reasoning_content","quote":"The search results don't specifically show the nameplate serial number, but based on my knowledge of Evangelion, Pen Pen's nameplate number is 5001.","use":"R11将无证数字与实验体模式关联，仍再执行一次查询。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/10/reasoning_content","quote":"Based on all my searches, I have gathered enough information to answer the question:","use":"R12在最后Return仍无序号下接受回答，不能把搜索次数作充分性。"},
+  {"id":"N25","source":"new2","pointer":"/rounds/10/content","quote":"**Answer: 5001**","use":"真实Final，W。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"looking for information about Eva Unit 00 which might be connected to Pen Pen since he was associated with that unit.","use":"R6引入未证关系作为查询入口，真实E5问Eva00；编号缺口仍未闭。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/18/tool_calls/0/function/arguments","quote":"000148 000149 000150","use":"R20 949cb647b455b8c9，持续枚举数字而非从证据得到编号，19新Call到预算。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/18/reasoning_content","quote":"The search results are still not providing specific information about Pen Pen's nameplate serial number.","use":"R20仍承认缺口；R10及R12—20同249字符推理但实际Query不同。"},
+  {"id":"N34","source":"new3","pointer":"/metadata/terminal_status","quote":"SAFETY_CEILING_STOP","use":"没有Final，历史1+新增19=20；最后Return封存但未被下一Actor消费。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"The search results keep returning the same information about Pen Pen but not the specific nameplate number.","use":"R7可观察到失败反馈，却仍数字/关键词改写查询。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/14/reasoning_content","quote":"Given the constraints of my search tool and the information available, I should provide the answer based on what I know.","use":"R16已考虑停止，但接着确实再查一次，不能将准备回答当真正提交。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/14/tool_calls/0/function/arguments","quote":"Evangelion penguin nameplate 001234","use":"R16 90973d6d63c27e60，最后一次真实查仍无序号。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/15/content","quote":"The serial number on Pen Pen's nameplate is **not available** in the current search database.","use":"R17有Final但未答所求编号，W；未把数字猜测升级答案，与1/2不同。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Call先核液体/作品，R4 E3已带10，R6才说来自知识；反复没返回，R8仍称well-established并答10。","state_chain":"作品采用保留→U背景/具体取证恢复→编号猜测引导查询但无证→将记忆认定足以提交→W。","function_change":"FULL_REBUILT 作品/动物取证与背景采用；6Search7Actor89596Prompt少原17/17/489112。新生成1308、G2合1310，原CHAR切点生成精确数未知，不宣称精确净省。少的是后续编号反复，但以错误数字终止。","evidence":["N11","N12","N13","N14"],"semantic_result":"W"},
+  {"repeat":2,"first_divergence":"首Call重做Pen Pen具体查询，另真查LCL；R5先实际查5001，R6/R10说实验体常见/知识，R11承认缺证仍查，R12认为已够并答5001。","state_chain":"同作品与液体工作恢复→无源编号与实验身份形成解释→查询没有证实→解释被当作正式依据→W。","function_change":"FULL_REBUILT，10Search11Actor197983Prompt少原；1799新生成+2G=1801，精确净生成未知。额外LCLCall确实发生，不因首推理计划与真实Call不一致而补造。","evidence":["N21","N22","N23","N24","N25"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"首查液体，后借无证Eva00关系尝试新入口；继续对000001起数字枚举至000150，始终不提交，19新Actor耗尽剩余额度。","state_chain":"同具体工作恢复→取证未获编号→把缺口继续转成更多数字查询→未出现有证接受或正式提交→N。","function_change":"FULL_REBUILT 背景/对象取证，19Search19Actor535050Prompt均高于原17/17/489112；4587新生成+2G=4589，不能给精确原生净差。最后Return只封存，不当作模型又看过后决定不答。","evidence":["N31","N32","N33","N34"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"先重查Pen Pen，真实Query多次加任意数字模式；R16已说应答仍再查，R17才承认查不到并提交不完整答案，而没有接受任何猜号。","state_chain":"具体工作恢复→重复返回不足维持编号缺口→未证数字仍未当答案→以承认无法完成结束→W。","function_change":"FULL_REBUILT 具体对象查询，15Search16Actor423353Prompt略少原；3535新生成+2G=3537，精确原生成未知。少晚期两Call仍不能叫质量保持，因为原新均未答中。","evidence":["N41","N42","N43","N44"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"这一U在P已采用作品/动物之后提供一次具体背景取证，四条删后均恢复，并非已知关键答案被删除。共同的编号证据缺口随后导向不同结束过程：两条将无证数字以知识/实验惯例包装成正式事实，一条不断扩展数字查询到Actor预算，一条承认没有编号而提交。作品/动物采用一致不能解释结果，‘重建’也不能解释成本；必须追踪无源数字如何进入真实Query、是否被取证证实、最后是否升级为可提交答案。这里B只来自失败终态变化，没有正确性差异，更不能据此把U预判为重要或冗余。",
+ "within_case_support":"N→WWNW，三次失败状态改变、正确性变化0/4。四条均恢复U具体取证/背景采用；1/2最终把不同未证数字答出，3枚举而N，4不接受数字却有W Final。相同缺口并不必然导致相同停止，原900猜测也没有正式提交。",
+ "mechanism_chain_checks":[
+  {"chain":"无直接编号证据但将自发数字由查询假设升级为知识/惯例支持的正式答案","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N12","N13","N14"],"2":["N22","N23","N24","N25"]},"limits":"首次带数字的真实Call早于明确记忆说明，不能补写隐含推理；没有重获BX 293A，也无新正确答案。"},
+  {"chain":"编号缺口仍触发大量真实数字试查，未以猜测接受答案而达到调用预算","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33","N34"]},"limits":"4也十五次查询但最终承认无法回答；不能用重复标签或Call数量充分解释N。"},
+  {"chain":"保持具体编号缺口，停止取证但正式承认无法完成而不选择任何数字","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44"]},"limits":"真实Final但任务未答中，W不是N，不把诚实局限表达当所求问题正确。"}
+ ],
+ "counterevidence_and_limits":["冻结B不改，但只N/W变化，不能把三变当正确性受到影响。","P已明确采用对象；U实际新增背景材料，没有已确认编号，删后四支恢复工作，不能解释成首次候选采用丢失。","G仅Great!不含实质未来事实，但仍是老师承接且有采样/返回差异，不构成无引导纯因果证据。","1/2编号进入Call早于明确记忆解释；实际行为顺序优先，不能补造hidden reasoning。","3数字不断改写不是相同Query重复；原十轮相同推理也不等于十个相同Call。","4没有编号却有真实Final，不能误列无Final；3最后真实Return未再Actor消费，不借该材料解释后续决定。","LCL化学对应、Gendo健康或Anno长期治疗均有共享未证推断；未通过外部知识替模型修正，不把勾选表当全部核验。","1/2/4较少工具/输入只是更早不同失败，不是质量保持型节省。","CHAR_EXACT_RETOKENIZED只有P精确字符、原始生成精确成本未知；不给伪精确净Token节省。","同题已有其他切点仅提供内部对照，不计不同题目支持。"],
+ "cost_basis":"原R2@109 CHAR_EXACT_RETOKENIZED，仅重编码一个P空格；原后缀17Search17Actor，Prompt4013+485099=489112，completion_tokens null，精确原生生成差未知。新生成1308/1799/4587/3535，教师2一次单列，合1310/1801/4589/3537；Search6/10/19/15，Actor7/11/19/16，Prompt89596/197983/535050/423353。重放P4042、四首4044；Prompt含实际每次输入自然重复，不重复把G额外计费。最后新3总Actor20上限。分支费用不相加，原延迟含截点前生成也不可伪精确比较。",
+ "next_cross_case_test":"跨题分开比较‘已知候选而缺具体答案字段’与‘尚需候选纠正’：检查返回不足后哪些工作改变了实际核查方案、哪些仅换数字，以及无证假设何时被当正式答案。保留持续查、猜答、承认不足三种反例，不用失败状态变化率代替U重要性。"
+}

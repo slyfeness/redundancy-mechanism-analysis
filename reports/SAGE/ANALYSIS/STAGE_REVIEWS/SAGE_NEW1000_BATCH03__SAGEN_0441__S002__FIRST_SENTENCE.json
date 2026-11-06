@@ -1,0 +1,745 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0441",
+  "stage_id": "S002",
+  "sample_order": 27,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0441/trajectory.json",
+      "source_sha256": "c8480f191727fd9101366d3a0c1f3776522373273cf8c5603057676552292996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0441.json",
+      "source_sha256": "6b53d9b53815ec769cc5e4f6bb23df55e58fc4d2d96243f6082faa357b5bf2d9"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "6ff939a3e30305903dde9a7400681f50b715a1cd058d78de56a406ceba763ab0"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "a7da15341f40333b11b20e307120b6ffb22b35ce4a57bfc3e6f959d9c2b3f1fd"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "77a37ec814860177d7f04e90dc7ad171d01c57885fdf735c019d22a62c1ac414"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "72545ed115037152dabcb1ff54a9e822ea900428c6feedd74a54affae4521d3b"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "59d372aad6eb210f470dcdebafe704f6a7f84c33a78ebb5087c5e8e78d8ee457"
+    }
+  },
+  "question_and_gold": {
+    "question": "What individual served as the first president of the primary organization that led a major civil rights protest in a city whose Public Safety Commissioner was the plaintiff in a landmark Supreme Court case that clarified the 'actual malice' standard, a legal concept developed in a ruling significantly influenced by a Justice who also played a pivotal role in shaping the majority opinion for the case that superseded the 'clear and present danger' test, a doctrine famously articulated by the Supreme Court Justice who served in the 20th Massachusetts during the American Civil War?",
+    "offline_gold": [
+      "Martin Luther King Jr."
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原七轮121040字符全部Reasoning/真实Return已读；U横跨五次军史取证及R6直接采用。",
+    "new": "四路径236610字符连续完整读完；新5/9/9/1Search、多Call批次和所有Return/Submit逐事件阅读，不把同批Calls虚构为看到前返回才决策。",
+    "semantic_author": "Codex亲读四条后直接撰写，Python未生成语义或恢复结论。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R1@1209，当前前缀真实包含完整知识猜测：Holmes20th、Sullivan/Montgomery、抵制/MIA/MLK，且错将Sullivan说成取代clear and present danger。没有任何工具Return。P816派生Token，G10。",
+    "evidence_state": "不是已有外部证据未被采用，而是全部主链已凭知识提出但尚未验证；军事线索是首个实际验证选择。",
+    "gap": "军团/Justice身份是否有材料支持，及法律关系是否解析正确；主答案已作为假设在P。",
+    "evidence": [
+      "I_P_ANSWER",
+      "I_P_WRONG_CASE",
+      "I_BOUNDARY"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 1209,
+        "end": 1472
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 388
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 456
+      },
+      {
+        "round": 4,
+        "json_pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 550
+      },
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 1465
+      },
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 232
+      },
+      {
+        "round": "1—5",
+        "json_pointer": "/tool_events",
+        "event": "冻结映射E0—E4五次Search及完整Return；不是一次Call"
+      }
+    ],
+    "goal": "把P已猜的Holmes/20th军团关系变成已核实的身份，再推进法律链。",
+    "operations": [
+      "先泛Justice/20th查询",
+      "R2军团Justice Query首次返回3578142中的Holmes伤情",
+      "R3仍找Justice再查，完整包与前次相同",
+      "R4已提取Holmes但要核军团，用具名Query同包",
+      "R5又将Abbott视待查Justice并重复军团问题，同包；R6最终接受Holmes服务军团"
+    ],
+    "product": "身份支持和接受已形成，但材料首次在R2出现、R4已提取，后续未转入其他工作直到R6；没有五份不同的新证明。",
+    "judgment_change": "从知识假设到文献支持的军团身份；原末端MLK没有因此新发现或更换。",
+    "evidence": [
+      "O_FIRST_QUERY",
+      "O_HOLMES_RETURN",
+      "O_STILL_SEARCH",
+      "O_HOLMES_EXTRACT",
+      "O_ACCEPT_HOLMES"
+    ]
+  },
+  "original_followup": {
+    "use": "原R6接已接受Holmes重新拆解两Justice/两判例，再查一次公共专员但无目标，R7凭知识串Montgomery/MIA/MLK。U的具体产物用于远端身份确认，并未提供城市或个人直接证据。",
+    "true_suffix": "原R1内切点，原后缀生成保守3471—3827；6Search/0Open/7Actor生成段。原累计Prompt85038含进入切点前的首请求549，未来六请求84489，分别披露。",
+    "evidence": [
+      "O_ACCEPT_HOLMES",
+      "O_NEXT_QUERY",
+      "O_ACCEPT_MLK",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "知识候选已稳定时的独立身份验证，不等于首次发现答案。",
+    "同证据反复返回但直接采用滞后，会使同一个缺口持续派发搜索；新路径可更早采用、改并批或不充分核验即提交。",
+    "多Call并批能缩短Actor序列，但不必减少Search或推理，必须按真实成本分别比较。"
+  ],
+  "guide_audit": {
+    "G": "Now I need to trace the chain of logic:",
+    "origin": "原R6[232,271)，完整冒号开头一行，未带清单；10派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "没有新实体、事实或答案，P已含King；G提示重组关系而非给出军史验证结果，不能把后续自行选Brandenburg或King当G泄漏。仍保留教师干预条件。",
+    "evidence": [
+      "I_G",
+      "I_P_ANSWER"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "第一批同时取到Sullivan案城市和3578145明确Holmes在20th，第二批取到MIA选King；实际采用核心材料，法律稿件细节仍不明却提交C。",
+      "outcome_evidence": [
+        "N1_MILITARY_RETURN",
+        "N1_PARALLEL_CASE",
+        "N1_MOVE_ON",
+        "N1_MIA_RETURN",
+        "N1_ADOPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R1保留知识链含错误Sullivan替代测试，实际同一批两Call：公职案具名Sullivan、军史/clearandpresentdanger。前者包含728339城市和actualmalice，后者3578145直接说Holmes与Abbott同服20th，比原间接伤情句更直接。",
+        "R2不再反复查同一军团，修正替代案为Brandenburg，联合安排MIA首任、Brandenburg/Brennan、Sullivan/Brennan三Query；同一批联合决策，不是逐返回重选。",
+        "MIA真返回23492选King；Brandenburg只有520035标准讨论不含稿件Brennan，Sullivan/Brennan包大多同名法官未补该作用。R3明确说明Brandenburg片段不名Brennan，反复解释后仍以实际城市/组织/首任链接受King，Submit。"
+      ],
+      "first_substantive_judgment_difference": "P已有主答案；新第一轮联合核两个入口且R2直接转下一缺口，没有原R2—R5持续重新找Justice。证据更直接与采用更快共同变化，不能只归因删除重复。",
+      "first_actual_tool_difference": "原首轮一个泛军事Query；新两个并批，其中法律城市Query是提前新增，军事Query也不同并取得明确Holmes服务句。",
+      "function_correspondence": [
+        {
+          "original_goal": "文献核实Holmes军团身份",
+          "original_operation": "五次军史Search后才稳定接受",
+          "original_product": "Holmes服务20th",
+          "new_goal": "同军事身份兼核城市",
+          "new_operation": "一军事Search返回更直接关系，R2已用其转向其他三条件联合Query",
+          "new_product": "原核心身份功能完整重建，五次串行身份查缩为一次，新增其他证据核验",
+          "evidence": [
+            "O_HOLMES_RETURN",
+            "O_ACCEPT_HOLMES",
+            "N1_MILITARY_RETURN",
+            "N1_MOVE_ON",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_CORE_IDENTITY_REBUILT_WITH_SHORTER_VERIFICATION_SEQUENCE",
+      "decision_action_result_chain": "P已猜答案→联合取证得更直接身份及城市→快速采用、转其他缺口→MIA直接选举支持→核心C。减少是多轮身份重新确认及交互序列，不是去掉身份核验；另外仍未实际闭合法律Justice环节。",
+      "costs": {
+        "new_generation": 3015,
+        "new_prompt": 30033,
+        "new_search": 5,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 816,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -812,
+          -456
+        ]
+      },
+      "limits": "较原6Search少1、7生成段少4，但不能将全部净差归给原U五Search；新查询/并批和证据质量也变。无原生精确Token节省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "军事身份确实由3578142重获并采用；其余法律连接长期重读/错配，最后回到已在P的城市/MIA/King知识链C。没有新MIA选举文献。",
+      "outcome_evidence": [
+        "N2_HOLMES_QUERY",
+        "N2_HOLMES_RETURN",
+        "N2_ACCEPT_HOLMES",
+        "N2_WRONG_LINK",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R1联合军史+公职Query；军史包有Abbott但无Holmes句，公职包无目标案。",
+        "R2联合精确军团Justice、clearandpresentdanger案、actualmalice案三Query。第一真返回原相同军史包、Holmes句；后两真实results空，分别约19/17秒。仅记录空，不猜服务超时原因。",
+        "R3已经采用Holmes，2799Token持续纠结Warren/Brennan/Brandenburg，末端King已经提出，真实再Query两案Justice关系，回包多为杂法律/长文首段无目标解答。",
+        "R4又混同Justice为原告等关系，重查已经确认的Holmes，同批也查Sullivan原告及具名城市；军事包与R2相同，城市材料此时增量有效。",
+        "R5长4537Token反复混同Holmes/Brennan、出生年代/判例，后在本轮自行拆开两Justice，但仍错误作者细节；以已有Sullivan/Montgomery/MIA知识链SubmitKing，不实际SearchMIA。"
+      ],
+      "first_substantive_judgment_difference": "原沿同一军事缺口串查；新先并查多个缺口，在R3已经采用军事身份后又因全题角色错配R4重新派军事核验。",
+      "first_actual_tool_difference": "原首轮单军事，新首轮并批两Call，后每批三Call；空Return和新路线均影响成本。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认Holmes军团",
+          "original_operation": "五次军事取证",
+          "original_product": "该身份已采用",
+          "new_goal": "同身份兼法律/城市核查",
+          "new_operation": "R2取得相同证据、R3采用后R4再查相同包",
+          "new_product": "身份功能完整重建但仍重复；法律角色错配驱动额外工作，人物C不等于全部关系正确",
+          "evidence": [
+            "O_HOLMES_RETURN",
+            "N2_HOLMES_RETURN",
+            "N2_ACCEPT_HOLMES",
+            "N2_WRONG_LINK",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_CORE_IDENTITY_REBUILT_WITH_REPEATED_CHECK_AND_UNRESOLVED_LINKS",
+      "decision_action_result_chain": "多条件并查→空结果未闭合法律问题→已采用身份又被角色混同重开→重复军事与新增城市取证→长篇重读后仍知识终点C。消耗增既有空结果后的核查、错配派生任务，也有有价值城市补证，不能归一个循环。",
+      "costs": {
+        "new_generation": 8316,
+        "new_prompt": 60500,
+        "new_search": 9,
+        "new_open": 0,
+        "new_actor": 5,
+        "P_replay": 816,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          4489,
+          4845
+        ]
+      },
+      "limits": "9Search比原多3而Actor5比7少，Prompt也低；并发/批次变化和文本篇幅各账分开。两个空Return可能受检索运行状况影响，原因未确定。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "虽先错把Boston ThomasF.Sullivan当原告，后明确采用早已返回的Hall传记Montgomery句修复，真正核MIA得到选King资料并C。军事身份重建，法律稿件仍无直接支持。",
+      "outcome_evidence": [
+        "N3_FIRST_MILITARY",
+        "N3_WRONG_BOSTON",
+        "N3_CITY_REPAIR",
+        "N3_MIA_QUERY",
+        "N3_MIA_RETURN",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R1同批三个Search：军史Query取得原军史包，clearandpresentdangerQuery空22秒，具名SullivanQuery取得混杂同名人包但已含Hall的正确Montgomery句。",
+        "R2却将ThomasF.Sullivan/Boston绑到NYT案；实际同批查Sullivan法官、Brandenburg替代测试、Holmes军团。第一多同名法官，第二竟是Kentucky公路/杂长文首段，第三原同军事包。",
+        "R3没有新的城市Return，却明确引用R1已可见Hall传记，转为L.B.Sullivan/Montgomery并保持MIA/King；这是真正的旧证据重新采用，不是新证据刚返回。",
+        "R3联合查具名Sullivan+城市、MIA首任King、Holmes测试。城市返回补实际案文、MIA补选举、Holmes包补简介但并非所有所述军团断言。R4多次整链解释及职称疑问，无新Call，最后Submit。"
+      ],
+      "first_substantive_judgment_difference": "初始主链已在P；新R2受同姓同职结果扰动，错误切到Boston人，R3才将更早可见正确关系用于修复。",
+      "first_actual_tool_difference": "首批三Call，原单军事；后角色错误下先查法官和测试，而非直接核组织，直到R3才执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "取回并采用军事身份",
+          "original_operation": "五次同类核验",
+          "original_product": "Holmes20th",
+          "new_goal": "军事身份和法律城市联合核验",
+          "new_operation": "两次军史Query同包，后来正确采用；同时错误Boston关系经旧Return重读修复",
+          "new_product": "身份功能重建；新增组织证据支持C，但中途角色错绑制造额外核查",
+          "evidence": [
+            "O_HOLMES_RETURN",
+            "N3_FIRST_MILITARY",
+            "N3_WRONG_BOSTON",
+            "N3_CITY_REPAIR",
+            "N3_MIA_RETURN",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_CORE_IDENTITY_REBUILT_WITH_TEMPORARY_ROLE_MISBINDING",
+      "decision_action_result_chain": "混合Return中错误同姓人物先被采用→法官/法律Query并未消解城市→旧Hall材料后来真正被采用修复对象→正确城市/组织Query取证→C。材料可见并不保证当轮被正确采用；修复来自重新读取，不来自G给答案。",
+      "costs": {
+        "new_generation": 4640,
+        "new_prompt": 65111,
+        "new_search": 9,
+        "new_open": 0,
+        "new_actor": 4,
+        "P_replay": 816,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          813,
+          1169
+        ]
+      },
+      "limits": "不能假定Boston误绑是全部9Search之因，部分条件本来未解且后来新增有效支持；空结果及杂返还需作为替代解释保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0441__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "Martin Luther King Jr.",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Martin Luther King Jr.",
+      "outcome": "C",
+      "outcome_reason": "只有一次军事查询，没取得原Holmes服务20th那句；反而错误坚持Holmes15th，把题目当有误，再以P已知Sullivan/Montgomery/MIA/King子链C。核验质量与原不同。",
+      "outcome_evidence": [
+        "N4_FIRST_QUERY",
+        "N4_WRONG_REGIMENT",
+        "N4_DISCOUNT_CONSTRAINT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R1仍复述P主链/错误Sullivan替代测试，仅真Query军史，返回Abbott/军团/杂项，无3578142或3578145Holmes服务句。",
+        "R2长4625Token错误坚持Holmes15th，解释成用户混淆15th/20th，提出多个letmesearch但没有任何实际新Call。",
+        "同轮真实重读分开Holmes/Brennan，法律关系部分恢复；最后明确即使军团题意不符，Sullivan到Montgomery/MIA/King主链足够，Submit。无城市或MIA文献。"
+      ],
+      "first_substantive_judgment_difference": "原U最终接受有文献支持的20th；新却将未证15th知识当真而否定题目条件，主答案保持但约束状态退化。",
+      "first_actual_tool_difference": "首Query与原完全相同；分歧在下一次实际行动：原R2继续军史Search，新R2只有Submit，所有新搜索计划未执行，不按计划计Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "证实并采用Holmes20th身份",
+          "original_operation": "五次Search最终采用伤情句",
+          "original_product": "接受该条件",
+          "new_goal": "同军事验证",
+          "new_operation": "一次未中关键句后错误知识否定20th，内部长解释后放弃该限制",
+          "new_product": "尝试部分恢复但正确产物未恢复；C由已有末端子链保持，不是核验质量等价",
+          "evidence": [
+            "O_ACCEPT_HOLMES",
+            "N4_FIRST_QUERY",
+            "N4_WRONG_REGIMENT",
+            "N4_DISCOUNT_CONSTRAINT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_ATTEMPT_REBUILT_CORRECT_IDENTITY_ACCEPTANCE_NOT_RECOVERED",
+      "decision_action_result_chain": "P已含答案→一次军史返回不足→错误记忆造成题目条件被折扣→不再真查、长篇为折扣解释→保留末端知识答案C。Search少5不等于完整功能可省，正确约束判断未恢复。",
+      "costs": {
+        "new_generation": 4851,
+        "new_prompt": 3758,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 816,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          1024,
+          1380
+        ]
+      },
+      "limits": "C不能掩盖未获得军事证据和错误指责题面；Prompt大减而生成增，不能用单一资源指标称全面更省。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "A",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "common": "P从一开始已经有正确人物及城市/组织知识，四条最后仍同答案，但不表示核验同样完成。",
+    "contrast": "r1一次军事查有更直接服务句并快速转其他条件，r2两次、r3两次相同军事包并伴角色核查，r4只尝试而错误否定军团。r1/r3有MIA新直接支持，r2/r4没有。",
+    "cost_location": "r1生成保守下降且少1Search、少4Actor；r2/r3Search增加但Actor/Prompt下降；r4Search/Actor/Prompt下降却长4625Token错误解释导致生成增加。不能合并成同一种冗余或同一种节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "答案候选在删除前已提出时，身份核验主要改变约束是否被支持，而不一定改变人物；更直接材料被迅速采用可缩短反复身份查，反之核验未完成甚至错误否定约束仍可能答同人，二者质量不同。",
+      "support": [
+        "I_P_ANSWER",
+        "O_STILL_SEARCH",
+        "O_HOLMES_RETURN",
+        "N1_MILITARY_RETURN",
+        "N1_MOVE_ON",
+        "N4_DISCOUNT_CONSTRAINT"
+      ],
+      "limit": "一个题内四路径，不能由C将所有军事条件判可省；r1更直接Return也是关键变化。"
+    },
+    {
+      "claim": "混合检索结果中的同姓同职人物被错误绑定后，可派发错误关系核验；正确句即使已返回也可能下一轮才被采用修复，从而改变取证对象和消耗却最终仍C。",
+      "support": [
+        "N3_WRONG_BOSTON",
+        "N3_CITY_REPAIR",
+        "N3_MIA_QUERY"
+      ],
+      "limit": "本路径R2到R3确有修复，其他路径未发生Boston误绑，不能据此解释全四条。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "r1核验完整重建且成本下降，说明FULL不等于原执行长度必要；r4核验失败仍C则不能视质量完全相同。",
+    "原U五Call主要军史，新r1五Call覆盖多个不同缺口，次数相同不能代表工作相同。",
+    "多个Query同批统一决策，只保留真实dispatch序号，不虚构批内读返回后规划。",
+    "新r2两个空Return、r3一个空Return的基础设施或相关性原因未确定，不能用语义推断补因。",
+    "原后续法律关系本就未完整实证核清；新仍有共享缺口，不能全记新增遗漏。",
+    "各分支成本差不相加，G10为预填，非原生精确只能报生成差区间。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P_ANSWER",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The first president of the Montgomery Improvement Association was Dr. Martin Luther King Jr."
+    },
+    {
+      "evidence_id": "I_P_WRONG_CASE",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The case that superseded the 'clear and present danger' test would be New York Times Co. v. Sullivan (1964)"
+    },
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "input_boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to trace the chain of logic:"
+    },
+    {
+      "evidence_id": "O_FIRST_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "20th Massachusetts",
+      "call_id": "chatcmpl-tool-acce22196e2ea08e"
+    },
+    {
+      "evidence_id": "O_HOLMES_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/2/snippet",
+      "exact_quote": "one of whom was Oliver Wendell Holmes Jr. who was wounded for the third time.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3578142"
+    },
+    {
+      "evidence_id": "O_STILL_SEARCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results mention Henry Livermore Abbott and the 20th Massachusetts Infantry Regiment, but I need to find the Justice who served in the 20th Massachusetts during the Civil War."
+    },
+    {
+      "evidence_id": "O_HOLMES_EXTRACT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The snippet mentions Oliver Wendell Holmes Jr. was wounded in the Second Battle of Fredericksburg. Oliver Wendell Holmes Jr. was a Supreme Court Justice. I need to confirm if he was in the 20th Massachusetts."
+    },
+    {
+      "evidence_id": "O_ACCEPT_HOLMES",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The search results confirm that Oliver Wendell Holmes Jr. served in the 20th Massachusetts Infantry Regiment during the Civil War."
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court case actual malice",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ACCEPT_MLK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The Montgomery Improvement Association was formed on December 5, 1955. Martin Luther King Jr. was elected its first president."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_PARALLEL_CASE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Public Safety Commissioner plaintiff Supreme Court actual malice standard New York Times Sullivan",
+      "call_id": "chatcmpl-tool-9f90737831bca895"
+    },
+    {
+      "evidence_id": "N1_MILITARY_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/3/snippet",
+      "exact_quote": "future United States Supreme Court Justice Oliver Wendell Holmes Jr., who served in the 20th Massachusetts Volunteer Infantry Regiment with him",
+      "call_id": "chatcmpl-tool-a62bf6d28ce940f4",
+      "doc_id": "wiki25:3578145"
+    },
+    {
+      "evidence_id": "N1_MOVE_ON",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I'll verify the Montgomery Improvement Association's leadership and Martin Luther King Jr.'s role to complete the research."
+    },
+    {
+      "evidence_id": "N1_MIA_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "elected King, a young minister new to Montgomery, as its chairman.",
+      "call_id": "chatcmpl-tool-ae833fc487be6266",
+      "doc_id": "browsecomp_plus:23492"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results for *Brandenburg* don't explicitly name Brennan in the snippet"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_HOLMES_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Justice served in 20th Massachusetts Infantry Regiment",
+      "call_id": "chatcmpl-tool-8e649900c14caf8f"
+    },
+    {
+      "evidence_id": "N2_HOLMES_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/2/snippet",
+      "exact_quote": "one of whom was Oliver Wendell Holmes Jr. who was wounded for the third time.",
+      "call_id": "chatcmpl-tool-8e649900c14caf8f",
+      "doc_id": "wiki25:3578142"
+    },
+    {
+      "evidence_id": "N2_ACCEPT_HOLMES",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The Justice who served in the 20th Massachusetts Infantry Regiment is Oliver Wendell Holmes Jr. (mentioned in the snippet about Fredericksburg)."
+    },
+    {
+      "evidence_id": "N2_WRONG_LINK",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The Justice who articulated \"clear and present danger\" was also the plaintiff in a landmark Supreme Court case that clarified the \"actual malice\" standard."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/9/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-bc39a32dad919572"
+    },
+    {
+      "evidence_id": "N3_FIRST_MILITARY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "20th Massachusetts Infantry Regiment American Civil War Supreme Court Justice",
+      "call_id": "chatcmpl-tool-b5dba8f9a6279b15"
+    },
+    {
+      "evidence_id": "N3_WRONG_BOSTON",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The key Supreme Court case related to \"actual malice\" is New York Times Co v Sullivan, which involved Thomas F. Sullivan (Boston Public Safety Commissioner)."
+    },
+    {
+      "evidence_id": "N3_CITY_REPAIR",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "From the search results, I found: \"Grover Cleveland Hall, Jr.\" mentioned in a snippet"
+    },
+    {
+      "evidence_id": "N3_MIA_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Montgomery Improvement Association first president Martin Luther King",
+      "call_id": "chatcmpl-tool-9dac0ce7c50eff97"
+    },
+    {
+      "evidence_id": "N3_MIA_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/7/observation/results/0/snippet",
+      "exact_quote": "elected King, a young minister new to Montgomery, as its chairman.",
+      "call_id": "chatcmpl-tool-9dac0ce7c50eff97",
+      "doc_id": "browsecomp_plus:23492"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/9/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-b676c533f99b16d5"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "20th Massachusetts American Civil War Supreme Court Justice clear and present danger",
+      "call_id": "chatcmpl-tool-969224bd19e5cdde"
+    },
+    {
+      "evidence_id": "N4_WRONG_REGIMENT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Actually, Oliver Wendell Holmes Jr. served in the 15th Massachusetts Infantry Regiment, not the 20th."
+    },
+    {
+      "evidence_id": "N4_DISCOUNT_CONSTRAINT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The \"20th Massachusetts\" is likely a slight inaccuracy in the user's prompt"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Martin Luther King Jr.",
+      "call_id": "chatcmpl-tool-b5d3628a31087970"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

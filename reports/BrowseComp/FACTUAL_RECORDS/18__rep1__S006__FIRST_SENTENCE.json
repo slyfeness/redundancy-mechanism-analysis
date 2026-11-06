@@ -1,0 +1,34 @@
+{
+  "case_id":"18__rep1__S006__FIRST_SENTENCE","question_id":"18","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原与四新实际Final均采纳Lillian Karabaic；原新整段EM记录保留。人名C不保证最后专栏条件有直接证据。"},
+  "review_basis":"原18rep1全文已读，本组四新全部Reasoning/Call/Return及Final独立阅读；105返回槽、11新Call均映射，新增唯一返回0，全部正文SHA对应此前本对话已全文读过片段。",
+  "pre_state":"R8@0，P已有Lillian2008骑行、Slate理财/2023文章列表，以及上一Call新取得的68729：2014年论坛演讲。模型尚未在本轮明确采用该新关系；P没有64896离职文档。",
+  "u_work":"U在R8采用骑行/论坛连接，定向查Lillian理财与电台，再在R9查离职，取得64896；R10前295字符解释finance manager quit in June对应2020管理职务离职。它完成了从关系线索到具体候选取证，再到离职条件采用。",
+  "u_state_update":"正确候选被用于真实定向查询，电台管理身份与离职年份从缺口转为明确支持。原后继全条件接受、再一次离职确认、FinalC。",
+  "original_action_consequence":"在U之前P提供可采用的骑行/论坛关系，在U之后三项直接条件能连接到同一人物；原R10后仍又发E10核查同一离职文档，再提交。",
+  "guidance":{"text":"Let me verify this information and search for more details about Lillian Karabaic to confirm all four criteria:","source":"原S007，R10@295，22Token；以冒号完整引导行结束，不带后续清单。","audit":"ORACLE_ANCHORED。Lillian姓名早在P可见，不是新实体；G却把她提前设为全条件确认对象，补偿了被删U原本完成的实际候选采用/取证方向。G没有finance manager/XRAY/quit June等新离职事实，仍必须从真实新Return获得。不能称无G删除结果。"},
+  "evidence":[
+    {"id":"O_FORUM","source":"original","pointer":"/tool_events/6/exact_result","quote":"Lillian Karabaic wowed audiences with her take on how to cultivate","use":"P上一Return给出可用的2014论坛关系。"},
+    {"id":"O_USE","source":"original","pointer":"/rounds/7/reasoning_content","quote":"Let me try searching for Lillian Karabaic specifically","use":"U实际候选采用及定向取证。"},
+    {"id":"O_QUIT","source":"original","pointer":"/rounds/9/reasoning_content","quote":"This matches the criteria of resigning from a management position at a radio station in 2020.","use":"U末端解释并采用离职关系。"},
+    {"id":"N1_NEED","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me search for more information about her to confirm the other criteria.","use":"根据P的两条已知关系和G方向恢复取证。"},
+    {"id":"N1_USE","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"From docid 64896, I can see that Lillian Karabaic was the finance manager at XRAY.FM and quit in June 2020.","use":"新1真实取得并明确采用目标离职信息。"},
+    {"id":"N2_GAP","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"there's no clear indication that these were her last columns.","use":"新2识别当年文章列表不等于最后专栏，实际额外查询但未解决。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"which appears to be the most recent, indicating this was around the time she wrote her last column","use":"没有新直接支持仍通过列表日期推断接受。"},
+    {"id":"N3_AVAILABLE","source":"new3","pointer":"/tool_events/0/exact_result","quote":"Lillian Karabaic, the station's former finance manager, quit in June.","use":"R8已经取得64896，R10仍说离职要更明确核查，R11才明确采用。"},
+    {"id":"N3_RECHECK","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"However, I need to verify the 2020 resignation more specifically.","use":"可见材料未立即转成已解决状态，触发再查同关系。"},
+    {"id":"N4_USE","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"So Lillian Karabaic quit (resigned) from her position as finance manager at XRAY.FM radio station in June 2020.","use":"新4直接使用新Return解除缺口并提交C。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G直接指定Lillian全条件核验，首Query合并电台/专栏后未得到离职，再发精确离职查询。","state_chain":"P论坛关系已可见→立即采用Lillian→两次真实查询取得64896→明确离职关系→直接全条件整理及C，省掉原接受后的再次离职确认。","function_change":"FULL_REBUILT：目标、定向操作和离职产物恢复，后续少一轮再确认。","evidence":["O_FORUM","N1_NEED","N1_USE"],"semantic_result":"C；生成却比原后缀长，少Search不等于全部成本下降。"},
+    {"repeat":2,"first_divergence":"前两Call同新1，随后把最后专栏当作必须更明确的独立缺口。","state_chain":"采用Lillian→实际取得并采用64896→两次farewell/last column真实查询仍只有23742列表等材料→最终把最新列出的日期当近似支持提交C。","function_change":"FULL_REBUILT并新增更明确的最后专栏核验，但没有得到决定性新证据。","evidence":["N2_GAP","N2_ACCEPT","O_QUIT"],"semantic_result":"C；识别缺口不等于后续真正解决，新增成本仍无直接最后一篇证明。"},
+    {"repeat":3,"first_divergence":"首Call已取得64896，但下一轮查专栏，R10仍把离职视为待验证。","state_chain":"正确候选/两已知条件维持→离职文档已回但未明确用于缺口闭合→专栏查询→再次查明确XRAY/finance manager→R11采用64896并C。","function_change":"FULL_REBUILT，且同一离职关系真实取证两次；工作产物的采用延后，不能只按首次DocID判已完成。","evidence":["N3_AVAILABLE","N3_RECHECK","O_QUIT"],"semantic_result":"C；Search与Actor同原后缀数量，操作顺序不同。"},
+    {"repeat":4,"first_divergence":"首合并Query未返回离职，下一次精确离职才取得。","state_chain":"P论坛关系及G采用方向→两Call得到64896→明确身份/职位/时间连接→全条件接受及C，不再额外发原E10确认。","function_change":"FULL_REBUILT，删除没有跳过U信息需求，省掉的是原后续一次重复确认。","evidence":["O_FORUM","N4_USE","O_QUIT"],"semantic_result":"C，原新均有最后专栏推断缺口。"}
+  ],
+  "mechanism_candidate":"A类本案特点不是待核查关系已在P，而是P已给出正确候选的两项连接，G又指定对此候选继续核验，因此被删的定向查证和关键离职采用四次都恢复。答案保持来自功能恢复与方向补偿，不支持该离职条件本身不必要。不同成本落在恢复之后是否重复确认、是否追最后专栏、以及已回证据何时被采用。",
+  "within_case_support":"4/4C，4/4恢复离职取证与采用。新1/4两Call后提交，新2继续追列表最后性，新3较早取得却又重查。把它们都叫重建会遗漏真实成本产生位置。",
+  "mechanism_chain_checks":[{"chain":"P已有正确人物的跨条件线索，G给予候选方向，真实新查询补回离职信息并采用，答案保持。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_NEED","N1_USE"],"2":["N2_GAP","N2_ACCEPT"],"3":["N3_AVAILABLE","N3_RECHECK"],"4":["N4_USE"]},"limits":"没有无G条件，无法排除G在恢复候选采用中的补偿；不能据4/4认定原U可省。"}],
+  "counterevidence_and_limits":["相邻B S005失去的是论坛关系及据此更新对象的机会；本A保留该论坛材料且G指定候选，两种P/G状态不同。","新2明确识别列表非最后性，最终仍推断接受，FinalC不是所有条件充分。","新3同文档先返回后再查，材料可见与实际采用区分。","这是同题不同切点，不能计为跨题复现。"],
+  "cost_basis":"R8@0原生精确，原后缀生成996、Search3、Actor4、Prompt102153。新生成1119/1638/1126/1046，G22一次计入；Search2/4/3/2、Actor3/5/4/3、Prompt71662/133884/101810/72256。四条生成加G均增加；两条Search/Actor下降来自省掉原后续再次离职确认，而非U未恢复。",
+  "next_cross_case_test":"A类分开比较P事实已充分和P仅支持候选/G补偿且功能恢复的Stage；B类比较首次关系连接失去后是否恢复实际候选采用，不以重建标签代替过程。"
+}

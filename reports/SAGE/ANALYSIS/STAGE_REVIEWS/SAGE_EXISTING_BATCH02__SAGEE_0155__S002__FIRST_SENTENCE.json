@@ -1,0 +1,590 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0155",
+  "stage_id": "S002",
+  "sample_order": 81,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the result of the following calculation: (the year Mozambique dance music peaked in popularity) minus (the year Mozambique dance music was developed) plus (the number of drums needed for Mozambique) multiplied by (the number of currently surviving Tumba Francesa societies) plus (the year slavery was abolished in Cuba) minus (the year the UNESCO Convention for the Safeguarding of Intangible Cultural Heritage was drafted) plus (the year UNESCO's Proclamation of Masterpieces of the Oral and Intangible Heritage of Humanity began) minus (the year the LP \"Antología de la música afrocubana VII\" was released)?",
+    "gold": [
+      "-42"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "-42",
+    "adopted_answer": "-42",
+    "outcome": "C",
+    "reason": "原明确区分Marrabenta与Cuban Mozambique，八值及标准式正确。",
+    "evidence": [
+      "O_DISTINGUISH",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@555，七Search所有Return可见；当前555字符却把Mozambique误列Marrabenta1930/40年代，其他3、1886、2003、2001、1976已提取。当前P22937派生Token。",
+    "evidence_states": "Cuban1963/1965/16已经返回但尚未采用，主解释仍错误，需从材料可见转向正确实体归属。",
+    "evidence": [
+      "I_WRONG",
+      "O_MUSIC"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 555,
+        "end": 2051
+      }
+    ],
+    "goal": "纠正地名Mozambican音乐与名为Mozambique的古巴音乐混淆。",
+    "operations": "重新引用549538具体Pello1963/1965/16，明确not Marrabenta，结合题干采纳Cuban三参数，整理其余五值。",
+    "product": "算式输入从模糊年代改为有据1965/1963/16，未新增Call。",
+    "judgment_change": "错误主解释退出，正确实体数据进入实际运算。",
+    "evidence": [
+      "O_DISTINGUISH",
+      "O_MUSIC"
+    ]
+  },
+  "original_followup": {
+    "use": "S003直接代入八值，乘法优先算-42，多遍复算后Submit，无额外Search/Open。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "证据已在但尚未正确采用时，用具体题干属性区分同名对象并约束数值归属。",
+    "state_relation": "不产生新事实仍有判断更新；删后能恢复不代表纠正本身没用，需要检查恢复时点和新增任务。",
+    "evidence": [
+      "I_WRONG",
+      "O_DISTINGUISH"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me calculate:",
+    "source_position": "原R2[2051,2068)，只冒号完整行不带清单",
+    "novelty": "4Token只给计算方向，没有正确实体/年/式子/-42，P错误Marrabenta仍在。可能鼓励在消歧前先算，不能唯一归因。ORACLE_ANCHORED。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_WRONG"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "R3正确八值及-42恢复，R13再次回引旧支持和标准优先级正式Submit。",
+      "outcome_evidence": [
+        "N1_CORRECT",
+        "N1_BACK",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "先拿1940s与16跨对象列项，随后真实识别两传统区别并倾向Cuban，却无实际完整算式声称123，OpenMusic50未触及关键句。",
+          "evidence": [
+            "N1_BAD",
+            "N1_FIRST"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "旧Search八值正确采用并算-42，两遍复算后又OpenTumba50没有LP。R4—R12九Search围绕LP1976/Areito，其中同Query多次同噪声返回，全部未取所求支持。",
+          "evidence": [
+            "N1_CORRECT",
+            "N1_LOOP1",
+            "N1_LOOP2"
+          ]
+        },
+        {
+          "round": 13,
+          "work": "回看最初Tumba明确1976，完整资料/优先级比较与多遍-42后Submit。",
+          "evidence": [
+            "N1_BACK",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原立即消歧进入正确运算，新先错误123；R3核心纠正虽恢复，已知LP仍被反复当待查任务。",
+      "first_actual_tool_divergence": "原无新取证直接Submit，新先OpenMusic50再Tumba50和九Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "区分两音乐并将Cuban值用于式子。",
+          "new_goal_operation_product": "R2已有两传统比较、R3正确三值及八数值式实际恢复，R13名称仍误称Marrabenta但具体Cuban数据已稳定采用；不是完全没纠正。",
+          "evidence": [
+            "O_DISTINGUISH",
+            "I_WRONG",
+            "N1_CORRECT",
+            "N1_BACK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "功能所需实体归属/正确参数实际恢复并用于行动和式子，名称残留错误单列。",
+      "judgment_action_outcome_chain": "错前态+计算G→一度无据数值123→旧Return被重新正确采用算-42→LP已1976却继续Search同不足返回→最终接受旧支持C；主要增耗来自纠正后新派发LP任务并未及时退出。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "4571生成/324863Prompt/9Search2Open12Actor，原切后0Search0Open1段；净生成保守[2901,4571]确定增加。R4—12九查询、两短Open与R13长复盘是实际落点。",
+      "counterevidence_and_alternatives": "不能把正确实体恢复等同原剩余任务组织恢复；LP1976始终在P且R3明确采用，Search失败没使缺口退出的可见过程存在，隐藏原因未确定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "R3重新采用Cuban1963/1965/16，标准式算-42并Submit。",
+      "outcome_evidence": [
+        "N2_BAD",
+        "N2_REPAIR",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "已看见Cuban证据仍重新偏向Marrabenta，估计1940/1935并错误称-49；又谈Cuban却错误称-14，反复再接受非洲主解释。实际同B002三OpenMarrabenta/Music/Tumba各50，都未补日期/实体关键句。",
+          "evidence": [
+            "N2_BAD",
+            "N2_ACCEPTWRONG",
+            "N2_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "旧snippet重新区分Cuban与Mozambican，以其他古巴题项语境确认Cuban，八值正确式两次算-42Submit。",
+          "evidence": [
+            "N2_REPAIR",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "识别不同对象后仍以primarygenre理由错误重新接受Marrabenta并凭空给具体年，之后才纠正。",
+      "first_actual_tool_divergence": "三个并行短Open代替原直接Submit；不虚构批内返回后决策。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "让正确实体及有据数值约束计算。",
+          "new_goal_operation_product": "R2识别却没有稳定采用，R3以题目古巴背景恢复正确归属并用于完整式；50字Return没有造成此新事实。",
+          "evidence": [
+            "O_DISTINGUISH",
+            "N2_ACCEPTWRONG",
+            "N2_REPAIR",
+            "N2_OPEN"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "最终正确判断/输入恢复，过程有反复而非四次都一路正确。",
+      "judgment_action_outcome_chain": "同名分歧被识别却暂未约束选择→错误估年份/结果→额外短读→回用旧上下文纠正实体与式子→C；增耗是延迟纠错和冗长比较、三个Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2458生成/46165Prompt/0Search3Open2Actor，生成保守[788,2458]增；额外请求重放长P，所有三Open同一请求批次。",
+      "counterevidence_and_alternatives": "不能把这些无依据中间年当正式答案W，实际FinalC；恢复不说明被删消歧无作用，仅其作用后续可重做。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "R3明确比较Cuban/非洲并正确八值、优先级算-42；尽管R2无据-1341。",
+      "outcome_evidence": [
+        "N3_BAD",
+        "N3_REPAIR",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "先估1940，识别MusicofCuba更确切1963/65/16却无据声称-1341，末尾又要找Marrabenta峰值；同B002五OpenMusic/Tumba/Convention/Masterpieces/另一Tumba各50，全部只有开头。",
+          "evidence": [
+            "N3_BAD",
+            "N3_FIVE"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "完整重读旧snippet，区分Cuban题目背景，八值及乘法优先、四遍算-42Submit；引用145983为1886不准确，该条实际1888，但多条其他真实1886仍支持。",
+          "evidence": [
+            "N3_REPAIR",
+            "N3_FORMULA",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R2已采用Cuban三值又重复未解Marrabenta任务，算式关系混乱；R3才落实全部一致。",
+      "first_actual_tool_divergence": "原Submit变五并行Open，没提供关键数字。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "消歧并提取正确Cuban数据。",
+          "new_goal_operation_product": "R3完整比较并将1963/65/16投入标准式，前五Open非支持来源。",
+          "evidence": [
+            "O_DISTINGUISH",
+            "N3_REPAIR",
+            "N3_FORMULA",
+            "N3_FIVE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "最终实际消歧与数值作用恢复；来源错引不默默略去。",
+      "judgment_action_outcome_chain": "两对象仍混在工作陈述→先错误结果与重复缺口→批量短核验无新事实→旧材料重新按对象和标准式绑定→C；多消耗来自反复解释/运算和五Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2985生成/46468Prompt/0Search5Open2Actor，生成保守[1315,2985]增；五Call同批非五次Actor；长R2/R3与返回均计。",
+      "counterevidence_and_alternatives": "145983是错引反例但其他废奴1886证据充分；不为强行统一把所有引用判准确。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "-42",
+      "adopted_answer": "-42",
+      "outcome": "C",
+      "outcome_reason": "R3正确采用Cuban日期和drums，区分program1997/proclamation2001并标准算-42。",
+      "outcome_evidence": [
+        "N4_WRONG",
+        "N4_REPAIR",
+        "N4_EVENT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "3997字符继续Marrabenta峰值1930/40年代，估1940并将1965描述relatedgenre；虽看到另一对象仍未落实排除，实际同批OpenMusic100/Tumba100，两返回不含关键字段。",
+          "evidence": [
+            "N4_WRONG",
+            "N4_OPEN"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "以原Search完整提取1965/1963/16等八值，显式区分1997program与2001proclamations，正确式复算提交。",
+          "evidence": [
+            "N4_REPAIR",
+            "N4_EVENT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原先完整消歧，新首轮仍把错误主实体当待核验对象；次轮正确参数全部采用。",
+      "first_actual_tool_divergence": "两Open替原直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "正确实体数据用于算式。",
+          "new_goal_operation_product": "R3明确正确三值与完整公式，原纠正作用恢复，额外还处理UNESCO事件时间区别。",
+          "evidence": [
+            "O_DISTINGUISH",
+            "N4_WRONG",
+            "N4_REPAIR",
+            "N4_EVENT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际正确归属和后续运算恢复，不要求复述原所有字句。",
+      "judgment_action_outcome_chain": "错误主解释继续派发细年核验→短读没补关键事实→回到原详细Search区分数据/事件→正确计算C；最终相同但消歧晚一轮且篇幅更长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2462生成/46041Prompt/0Search2Open2Actor，生成保守[792,2462]增；主要落在冗长R2不确定性和R3全面重算及新增两Open。",
+      "counterevidence_and_alternatives": "G只算式方向没给实体，必要正确支持原P仍保留；两短Return没触及关键句，不能声称新检索补偿。"
+    }
+  ],
+  "four_run_comparison": "四C且最终原消歧功能全部恢复，但首轮均没有稳定把正确对象持续约束所有工作：r1声称123，r2估年份/-49/-14，r3无据-1341，r4仍追Marrabenta精确年。后续均靠旧Search修复，无新关键事实。r1纠正后还把1976LP反复派发九Search，其余三仅短Open一批再接受。所有成本保守生成确定增，A只说明答案多保持，不说明工作无作用或省耗。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "正确材料已返回、当前却采用错误同名实体→原U通过题干属性纠正数值归属→删后可重新恢复正确映射故最终C；若识别差异未持续约束工作，仍追错误实体的具体年或已知LP，新增反复比较/核验而增耗。",
+      "support_scope": "本Stage四条晚纠正、最终4FULL/4C；r1九Search较其他三为持续取证反例。",
+      "limits": "A不是不必要判定，且Gcalculate可能鼓励消歧未稳先算；不能唯一因果归被删U。"
+    }
+  ],
+  "counterevidence_and_limits": "中间错误数值不是正式Final；原所有八值仍在实际P。成本partialRound无原nativeIDs，仅保守区间而非精确节省，G4计Prompt一次；独立分支不相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_WRONG",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Mozambique dance music (Marrabenta) - developed in the 1930s and 1940s"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me calculate:"
+    },
+    {
+      "evidence_id": "O_MUSIC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "it needed 16 drums plus other percussion and dancers.",
+      "call_id": "chatcmpl-tool-b42f6776794c37bf"
+    },
+    {
+      "evidence_id": "O_DISTINGUISH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "not Marrabenta"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N1_BAD",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The result is 123"
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:549538",
+      "call_id": "chatcmpl-tool-9b7f79b81b4edcfd"
+    },
+    {
+      "evidence_id": "N1_CORRECT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "(1965 - 1963) + (16 * 3) + 1886 - 2003 + 2001 - 1976"
+    },
+    {
+      "evidence_id": "N1_LOOP1",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "\"Antología de la música afrocubana VII\" 1976 Areito",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_LOOP2",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "\"Antología de la música afrocubana VII\" 1976 Areito",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_BACK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "Looking back at the Tumba francesa document snippet"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N2_BAD",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I'll use 1940 as the peak year, with 1935 as the development midpoint."
+    },
+    {
+      "evidence_id": "N2_ACCEPTWRONG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The term \"Mozambique dance music\" most likely refers to Marrabenta"
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Musical genre Marrabenta is a popular style of Moz",
+      "call_id": "chatcmpl-tool-8e718dd8015c3feb"
+    },
+    {
+      "evidence_id": "N2_REPAIR",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "it seems to be referring to the Cuban \"Mozambique\" music."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N3_BAD",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The result of -1341"
+    },
+    {
+      "evidence_id": "N3_FIVE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "UNESCO treaty The Convention for the Safeguarding ",
+      "call_id": "chatcmpl-tool-b595dbf74a4bf61e"
+    },
+    {
+      "evidence_id": "N3_REPAIR",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Given the context of the other questions (which seem to be about Cuban music)"
+    },
+    {
+      "evidence_id": "N3_FORMULA",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "With standard operator precedence (multiplication before addition/subtraction)"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    },
+    {
+      "evidence_id": "N4_WRONG",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The most probable interpretation points to 1940 as the peak year"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:549538",
+      "call_id": "chatcmpl-tool-bc0ac22b1c2005d8"
+    },
+    {
+      "evidence_id": "N4_REPAIR",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the program was launched in 1997, but the proclamations began in 2001."
+    },
+    {
+      "evidence_id": "N4_EVENT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "(1965 - 1963) + (16 × 3) + 1886 - 2003 + 2001 - 1976"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "-42"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0155/trajectory.json",
+      "source_sha256": "3d54d819ffffbc7b98f5d368d416b02edd454fc630064605728b5153700e58b9"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0155.json",
+      "source_sha256": "53112d36619821c4678aec3cbcc96abc79c5dc38912647a0f7e2e4e2097045b7"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "f5710e31cd05000f97af7bde033c8dfc5a7a769d8f2ded3d8e8bb0ef5db5f92a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "aea9ae016dfbfa90d3f20ebad03d6daa8469a637267c6ea337bc3e8be8a35810"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "e3413ce85d1079f9fe700f367c0025eafd85028c89f221a84878ebb3f44ea54f"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "4fae91bf39925d0304840a935feb3db2b3f3e0e6a5626f4c0716b05908b4e3f3"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0155__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "b986616ed8c24e7bbcb6a260ddd439ee3fa86177556cf78b3368e74e9ced766e"
+    }
+  }
+}

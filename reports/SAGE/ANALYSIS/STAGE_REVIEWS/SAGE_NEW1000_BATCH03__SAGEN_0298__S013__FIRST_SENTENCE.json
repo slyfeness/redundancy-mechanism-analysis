@@ -1,0 +1,427 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0298",
+  "stage_id": "S013",
+  "sample_order": 41,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "The date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China, occurring shortly after the passing of a prominent leader whose last public appearance involved meeting with a visiting dignitary from Pakistan.?",
+    "gold": [
+      "October 6, 1976"
+    ],
+    "gold_source": "冻结Gold仅离线。"
+  },
+  "original_outcome": {
+    "actual_final": "October 6, 1976",
+    "adopted_answer": "October 6, 1976",
+    "outcome": "C",
+    "reason": "正式日期正确，原U首次返回179223精确6October句。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R10@1113当前保留前缀已经多次接受October6并列毛5月27日见布托/9月9日去世/约一月后被捕；会见有9541138直接支持。但此前工具只有10527815的一月后、9月泛文革材料和E9无关four结果，没有精确6October被捕原句。原U后E10才有179223，不能倒填P。",
+    "evidence_states": "答案已提取和采用、尚未获得该日直接文档支持；同候选接受不等于日期条件已被精确取证。",
+    "evidence": [
+      "O_P",
+      "O_APPROX"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/12/items",
+    "ranges": [
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 1113,
+        "end": 1609
+      },
+      {
+        "round": 11,
+        "pointer": "/rounds/10/reasoning_content",
+        "start": 0,
+        "end": 940
+      }
+    ],
+    "goal": "给已接受的10月6日取得精确文档证据，核对会见与事件意义。",
+    "operations": "明确I should verify exactdate，真实Search GangofFourarrestdateOctober1976；返回179223首次直接6October句，290909事件意义；R11采用两句和已确认会见线索。",
+    "product": "答案没变但日期从无确切日支持变成直接文献支持。",
+    "judgment_change": "将记忆/近似月份形成的日期接受更新为有具体日证据的接受。",
+    "evidence": [
+      "O_U",
+      "O_DATE"
+    ]
+  },
+  "original_followup": {
+    "use": "S014据此最后全条件对应并Submit同日期。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已选答案的关键精确日期补证，而非单纯重复确认。",
+    "state_relation": "三条直接提交省去取证但日期支持也未恢复，一条认真发现一月后不等于6日并真实补查后恢复文档依据。四C不能说明补证功能无增量。",
+    "evidence": [
+      "N1_J",
+      "N2_CONFLICT",
+      "N2_DATE",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "So the pivotal political event that marked the practical conclusion of the Cultural Revolution was the arrest of the Gang of Four on October 6, 1976.",
+    "source_position": "原R11[940,1089)，33派生Token。",
+    "novelty": "包含答案/接受结论，但当前P在R10@1113之前已同样反复接受October6，并非首次答案泄漏。G将该日期以原后继结论预填，可能加强确定性；没有同时注入U才获得的文档句。",
+    "risk": "ORACLE_ANCHORED+ANSWER_REASSERTION，不作无引导纯删除成功解释。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "正式Submit正确日期，但未取得精确日文献。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R10约972字符回顾事件及会见线索，考虑是否另有practicalconclusion但认为被捕是关键；直接Submit，无Search/Open。另称TwoWhatevers December1976没有对应新支持，不当文献事实。",
+      "first_judgment_divergence": "原认为应核精确日期，新将原日期直接作为已可提交结论，缺口不再派发真实取证。",
+      "first_actual_tool_divergence": "原Search→Submit，新只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得精确日直接支持",
+          "original_operation": "Search并采用1792236October",
+          "original_product": "新增精确文档依据",
+          "new_goal": "确认提交日期",
+          "new_operation": "只复述接受及提交",
+          "new_product": "同C，无新增直接日期依据",
+          "evidence": [
+            "O_U",
+            "O_DATE",
+            "N1_J",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有实际取证或等效新精确日证据；Final重述不等于核查重建。",
+      "judgment_action_outcome_chain": "P和G已有日期结论→不把精确证据不足当任务→直接C，省1Search/Actor但证据质量变弱。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "262生成25237Prompt1Actor0Search0Open1Submit；原403..831生成，差[-569,-141]至少少141；省1Search1Actor及后续证据对应。P25204/G33单列，不重计。",
+      "counterevidence_and_alternatives": "答案对不代表必要精确证据保持，G接受提示可补偿，不能称严格可省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "实际取得179223精确句并Submit。",
+      "outcome_evidence": [
+        "N2_DATE",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R10约3228字符明确一月后9月9日应约10月9日，旧10527815没有6日，虽知道历史常识6日却坚持需文档支持；真实Search October61976GangofFourarrest，Return与原E10完整相同。R11读179223精确句并整合会见/逝世/事件，Submit。",
+      "first_judgment_divergence": "仍采用6日但明确区分常识答案与原近似月份的证据不足，展开比原更长的6日/9日论证后补查。",
+      "first_actual_tool_divergence": "Search改为带6October，实际Return完全同原，工具路线同1Search→Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "精确日补证",
+          "original_operation": "Search→179223采用",
+          "original_product": "直接6October依据",
+          "new_goal": "同",
+          "new_operation": "近似日期冲突审查后真实Search并采用同句",
+          "new_product": "完整证据恢复并C",
+          "evidence": [
+            "O_DATE",
+            "N2_CONFLICT",
+            "N2_DATE",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原新具体文档句、日期采用及提交都有对应；不是仅相似Query。",
+      "judgment_action_outcome_chain": "P/G接受6日→察觉一月后不足以定日→要求确切原句→Search取得→以直接日证据解除近似歧义→C，长篇比较增加生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1406生成54165Prompt2Actor1Search0Open1Submit；差[575,1003]至少多575，工具数同，主要增量在R10反复比较10月9与6及R11整合；P25204/G33。",
+      "counterevidence_and_alternatives": "月份近似疑问合理，不能把全部新增论证直接称无用；没有错误Final。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "正式Submit6日正确，但未补精确日原句。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R10约631字符说有答案，引用一月后句并称aroundOctober6，未发现该月间隔不能精确推出6日，只有Submit。无Search/Open。",
+      "first_judgment_divergence": "把近似月份与当前日期结论视为可互证，不再要求原U精确日依据。",
+      "first_actual_tool_divergence": "省原1Search，直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "精确日文献核查",
+          "original_operation": "Search/直接句采用",
+          "original_product": "精确日依据",
+          "new_goal": "确认现有答案",
+          "new_operation": "近似月份口头对应后Submit",
+          "new_product": "同C但文献精度未恢复",
+          "evidence": [
+            "O_DATE",
+            "N3_J",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有新的对应精确日证据，近似月份计算不等效原具体日期取证。",
+      "judgment_action_outcome_chain": "预先接受6日→把一月后当一致→不再补证→直接C并省查证成本，证据精确性下降。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "215生成25237Prompt1Actor0Search0Open1Submit；差[-616,-188]至少少188；少1Search1Actor及证据反馈。P25204/G33。",
+      "counterevidence_and_alternatives": "近似月份并无6日推导能力；不能将同答案当完整功能保持。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确日，证据缺口未补。",
+      "outcome_evidence": [
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R10约983字符引用10527815一月后/被捕结束关系便称confirmsdateand significance，直接Submit。没有179223文档或其他精确日期新Return。",
+      "first_judgment_divergence": "事件意义有依据，被误扩展为日期也被该片段确认，因此取消精确补查。",
+      "first_actual_tool_divergence": "原真实日期Search，新直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认精确被捕日",
+          "original_operation": "真实Search及179223采用",
+          "original_product": "日级文档依据",
+          "new_goal": "检查事件意义",
+          "new_operation": "回引月级与事件关系旧句后Submit",
+          "new_product": "C但精确日期支持缺失",
+          "evidence": [
+            "O_DATE",
+            "N4_J",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "原U产物未恢复，已有意义/月份依据不能顶替精确日。",
+      "judgment_action_outcome_chain": "G/P已有6日→月级事件句被称日期确认→不再取证→C而更省，证据充分性与正确性分离。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "241生成25237Prompt1Actor0Search0Open1Submit；差[-590,-162]至少少162；省原日期Search及一轮模型/反馈。P25204/G33。",
+      "counterevidence_and_alternatives": "G已重申正确答案、模型可能有常识，不推出核验在一般任务中可省。"
+    }
+  ],
+  "four_run_comparison": "四C，三条NOT_OBSERVED节省实际Search和生成但丢了精确日支持，一条FULL重建且长篇识别近似月份歧义、生成增加。与S014完整证据已P不同，不能把两者四C都称重复确认冗余。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "答案先已接受而精确证据尚缺时，删除补证常保留答案，但可通过取消证据要求而降低资源。月份级支持被当日级确认时会直接提交；明确区分近似和精确者则重新查证，成本恢复甚至增加。作用差别在证据精度判断是否驱动真实补查，不在候选日期是否找回。",
+      "support_evidence": [
+        "O_P",
+        "O_APPROX",
+        "O_DATE",
+        "N2_CONFLICT",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "有答案重申G，不能将三条C节省归为干净冗余；单题四路不计多题。"
+    }
+  ],
+  "counterevidence_and_limits": "原111027和本四路26284字符全文已读；179223为被删U首次得到，r1/3/4不得算P可见。G日期已P但确定性补偿仍保留。原nativeIDs缺失生成403..831保守区间，不加总。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "The date is October 6, 1976."
+    },
+    {
+      "evidence_id": "O_APPROX",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/9/snippet",
+      "exact_quote": "One month after Mao's death, Hua Guofeng together with Ye Jianying and Wang Dongxing arrested the radical faction Gang of Four",
+      "doc_ids": [
+        "wiki25:10527815"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "I should verify the exact date of the arrest."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/9/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976, Hua had the four leading radicals and a number of their lesser associates arrested.",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 10,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "So the pivotal political event that marked the practical conclusion of the Cultural Revolution was the arrest of the Gang of Four on October 6, 1976."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the answer should be the date."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N2_CONFLICT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "It doesn't explicitly state the arrest date in this snippet"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976, Hua had the four leading radicals",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "One month after would be around October 6, 1976."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This confirms the date and the significance."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0298/trajectory.json",
+      "source_sha256": "bf3197a6fec2db1bc51d22d0ee599c78abac05856a655a10fcf5e4f813b00eeb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0298.json",
+      "source_sha256": "bb0b87d53cce546f6a34f83925efd1323dffe4dd3a90b6a18c0d47e6351882f1"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "60b1fe0e4276d5519d666cb1f98bf6e116f2b940ea846f24a36cdf2433f7f05c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "1a1bd946dc790e3afd816e0a71f7177d3aefe59e3db93b51981df62c3bfe9ca0"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "990f359193d863ac5788685b26b9f873d0b5ee17fb15114f6d76a3f994cf85c8"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "8f8772f66105c0f79586db5edc737b30722e8f5cc78ea45b53ba80d3c60e6a80"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S013__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "90bcd78edd47e08a3d3fcdba03d0605c00e628335269e41d377e1d43e72d30f7"
+    }
+  }
+}

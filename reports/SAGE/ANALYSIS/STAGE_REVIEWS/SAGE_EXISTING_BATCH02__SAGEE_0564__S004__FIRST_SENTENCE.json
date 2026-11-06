@@ -1,0 +1,566 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0564",
+  "stage_id": "S004",
+  "sample_order": 34,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0564/trajectory.json",
+      "source_sha256": "35d81c30d265492cb6920db32a09423c606953071f6f4b6c4af51f9d90b9f9f2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0564.json",
+      "source_sha256": "ca2f5eb61384529b5f184b6174b00f7baf3a8da0b4c96ee555b9fcb69d71ad84"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "a809feb7a4d9e8d9b9d598eb0e7198a98d15b4ec96938392672072d1877cb41b"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "0d8f09641ddca128ed73b65441dae72bb3d01d55c139b43d78263750168b53b5"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "454731899637302de0ba4965b1428eef156019db6704d446a75e438415c553b2"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "d81bab2a05703deb477c68703d86a2c14de4f40c8f715577ff82a9fb83537d9a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "8e8e75f40af85ea228b5ebcd4e0e66c95267a3b97d2d837b1c19f2162f934610"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the dollar amount, rounded to the nearest million, of the 3D contribution to the opening weekend gross of the Marvel Cinematic Universe film directed by the individual who also directed the movie for which Jennifer Carpenter received the 2006 MTV Movie Award for 'Best Frightened Performance'?",
+    "offline_gold": [
+      "24 million"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "14Round原全部已读；重新读原Open1000完整文本和前后范围。",
+    "new": "四支132474字符0—28000—56000—84000—112000—132474完整读；r4混合查询新Return的所有实际snippet完整读，其他精确相同完整Return只引用已读源。",
+    "semantic_author": "Codex从原文直接写四支判断，程序只定位与记账。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R6@1800，当前P已读旧奖项Search中的Carpenter表演评论、他人提名及类别史，仍未确认winner。历史Assistant推理为空规范化，旧真实Return及当前前缀保留。",
+    "evidence_state": "目标1940056的Search实际已返回1500字符snippet；text_characters=2189是文档总长度，不是本次模型可见长度。原U再次Open只给同一文本的前1000字符，并不含获奖内容，甚至末尾截在committed之前。不能把这次Open当成首次得到Carpenter/姓氏线索。",
+    "gap": "试图从同电影评论入口寻找获奖直接证据，实际窗口无此事实。",
+    "evidence": [
+      "I_P",
+      "O_OLD_REVIEW",
+      "O_OPEN"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 1800,
+        "end": 2175
+      },
+      {
+        "round": 7,
+        "json_pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 1496
+      }
+    ],
+    "goal": "重开EmilyRose文档确认Carpenter奖项。",
+    "operations": [
+      "实际Open1940056 offset0 limit1000。",
+      "R7继续重述表演评论、其他人提名和winner缺口，再计划查奖项。"
+    ],
+    "product": "没有新获奖证据或候选更新；取证目标仍未解决，后续又查同奖项。",
+    "judgment_change": "旧长snippet已经可见，本次短Open没有使win/nom判断变清；其直接反馈仍将缺口设为下一搜索。",
+    "evidence": [
+      "O_PLAN",
+      "O_OPEN",
+      "O_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use": "之后纯推理比较Scott/EliRoth，再4次奖项Search，最后换MCU入口、查24、回核一次奖项后Submit。正确金额来自后面票房Return，非本次Open。",
+    "true_suffix": "原切点生成7789—8374区间，7Search1Open1Submit、9生成段，未来HTTP Prompt265312。",
+    "evidence": [
+      "O_AMOUNT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "本次Open是重复读取较短窗口，不是新增候选或证据；已有模型可见的1500字符Search片段可供后续沿用，但不能据此认为2189字符文档全文已经可见。",
+    "四支均不重开同文档，也无任何Open；都仍核奖项，故目标取证被Search部分替代，而具体Open操作消失。",
+    "r4关键金额在最后真实Return中返回，但下一Actor守卫未发送；不能说模型已读24却拒绝提交。"
+  ],
+  "guide_audit": {
+    "G": "2.  **Identify the movie:** The movie for which this individual received the award.",
+    "origin": "原S005 R7[1496,1579)，19派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "普通题目分解/电影识别方向，当前P已要求找获奖电影；无新实体、导演或金额，无完整后继预填。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "24",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R12真实Submit24，前推理明确单位million，符合冻结语义口径；票房Return有直接支持。",
+      "outcome_evidence": [
+        "N1_AMOUNT",
+        "N1_LAST_REQUERY",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6不用Open而查奖，R7假定EmilyRose/Scott并真实查MCU，R8据2016证据查金额。",
+        "R9已有24仍核奖，R10长12227字符多次说答24和准备提交，实际Call仍是winner查询；R11又查奖，同旧返回。",
+        "R12最终条件信任题目Submit24，无Open。"
+      ],
+      "first_substantive_judgment_difference": "缺Open并未失去旧电影评论；很快从旧姓氏恢复Scott关系，但取得金额后多次完整接受未落实为Submit。",
+      "first_actual_tool_difference": "首Call从Open改Search；后连续MCU/金额推进提前，之后回查奖项3次。",
+      "function_correspondence": [
+        {
+          "original_goal": "从EmilyRose材料核奖项",
+          "original_operation": "Open旧评论1000并解释",
+          "original_product": "奖项仍未证",
+          "new_goal": "核同奖项",
+          "new_operation": "不用Open，以旧snippet+新Search整理，之后又三次回核",
+          "new_product": "取证目标和不足判断恢复，具体重复Open未再执行",
+          "evidence": [
+            "O_OPEN",
+            "N1_LAST_REQUERY",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "旧片材料仍可用→不重Open而转MCU/金额→24已采用仍回查winner→最终有界接受C；少1Search1Open2Actor，但只少120—705生成，长篇重复判断吸收了大部分潜在节省。",
+      "costs": {
+        "new_generation": 7669,
+        "new_prompt": 216083,
+        "new_search": 6,
+        "new_open": 0,
+        "new_actor": 7,
+        "P_replay": 18312,
+        "G_prefill": 19,
+        "conservative_new_minus_original_generation_interval": [
+          -705,
+          -120
+        ]
+      },
+      "limits": "24省略单位需按实际采纳含义审，不能严格字符串EM等同错误或凭出现数字判对。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R8真实Submit，金额新Return直接支持；获奖和部分导演作品有无据错误。",
+      "outcome_evidence": [
+        "N2_TARGET",
+        "N2_AMOUNT_QUERY",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6一次奖项Search同旧。",
+        "R7从姓氏直接恢复Scott/DoctorStrange，错把Signs/Constantine也归Scott，但正确电影决定未变；不查独立MCU而直接票房。",
+        "R8短整链采用24Submit，无Open或奖项再查。"
+      ],
+      "first_substantive_judgment_difference": "旧信息足以短恢复电影链，不再把核奖缺口持续置于金额/提交之前。",
+      "first_actual_tool_difference": "奖项Search替代Open，随后票房而不是多轮旧奖项取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "核奖项关联电影",
+          "original_operation": "Open评论并读不到winner",
+          "original_product": "保留待证",
+          "new_goal": "首Search也核奖项",
+          "new_operation": "不Open，旧评论结合题目前提采用电影",
+          "new_product": "具体Open未观察，核查目标部分恢复但未补新证据",
+          "evidence": [
+            "O_OPEN",
+            "N2_TARGET",
+            "N2_AMOUNT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "旧评论+常识条件采用→一次票房得24→短提交C；少5Search1Open6Actor和6891—7476生成，主要少原后续反复核奖/全题解释；不是一次Open本身就有数千Token。",
+      "costs": {
+        "new_generation": 898,
+        "new_prompt": 66844,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 18312,
+        "G_prefill": 19,
+        "conservative_new_minus_original_generation_interval": [
+          -7476,
+          -6891
+        ]
+      },
+      "limits": "电影链靠常识恢复，若无这类补偿不能外推；C不证第一跳文献完整。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "24",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R13真Submit24，推理明确24million，新金额Return支持。",
+      "outcome_evidence": [
+        "N3_MCU_QUERY",
+        "N3_AMOUNT_QUERY",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6—R9四次奖项Search，同旧材料；多轮已猜2016/续集但仍先核奖。",
+        "R10终于查Scott MCU并采用2016；R11却再查一次winner，R12才查金额。",
+        "R13新金额24后短Submit，不Open。"
+      ],
+      "first_substantive_judgment_difference": "重建同奖项需求的多轮搜索，但没有复刻Open；关键方向更新在新MCU返回之后仍先短暂回核，最后能够推进。",
+      "first_actual_tool_difference": "首Call改奖项Search，4次后MCU；金额晚到但仍有提交预算。",
+      "function_correspondence": [
+        {
+          "original_goal": "核奖项关系",
+          "original_operation": "Open旧文档反馈不足",
+          "original_product": "未解决而再搜索",
+          "new_goal": "相同",
+          "new_operation": "5次奖项Search、不Open、整理不足后条件推进",
+          "new_product": "不足处理和核查目标重建，Open未出现",
+          "evidence": [
+            "O_FEEDBACK",
+            "N3_MCU_QUERY",
+            "N3_AMOUNT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "不用重复Open但旧获奖缺口驱动多次Search→MCU直接关系稳定→仍一次回核→金额→及时SubmitC；Search和Actor降幅不大（原7变7、9段变8），少1Open，生成少2919—3504来自较短后续思考。",
+      "costs": {
+        "new_generation": 4870,
+        "new_prompt": 263011,
+        "new_search": 7,
+        "new_open": 0,
+        "new_actor": 8,
+        "P_replay": 18312,
+        "G_prefill": 19,
+        "conservative_new_minus_original_generation_interval": [
+          -3504,
+          -2919
+        ]
+      },
+      "limits": "同样多次回查仍成功是r4失败解释的反例，必须看查询质量/时序和剩余预算。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "CONTEXT_LIMIT_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R14金额Search返回24，但R15守卫56583+10000+256超限未发送；没有模型消费该Return的后续推理或Submit。",
+      "outcome_evidence": [
+        "N4_MIXED_QUERY",
+        "N4_RETURN_PRODUCTION",
+        "N4_FINAL_AMOUNT_QUERY",
+        "N4_AMOUNT_RETURN",
+        "N4_STOP"
+      ],
+      "work_timeline": [
+        "R6/7两次奖项Search，旧Return。",
+        "R8选择正确Scott/2016，但实际Query混入Scott和票房，返回7461437/7461442制作发行等片段及无关网页，不含24。",
+        "R9—R13再次5次奖项Search，R9/10几乎逐字复述相同计划，始终未形成新的返回反馈来补奖项。",
+        "R14引用制作片段确认2016，终于去掉Scott查精确金额，Return真有24；下一请求未发送，所以模型没有实际采用金额或提交。"
+      ],
+      "first_substantive_judgment_difference": "电影链已恢复但票房取证入口第一次未中目标；反馈后没有立刻调整金额查询，而回头重开前置奖项；最后才恢复正确金额入口。",
+      "first_actual_tool_difference": "首Open改Search，第三Call混合Scott/金额而原后续分开MCU和票房，关键金额Query拖到第9Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "用文档确认Carpenter奖项",
+          "original_operation": "Open评论并继续未证处理",
+          "original_product": "仍待证",
+          "new_goal": "同获奖前提",
+          "new_operation": "7次真实奖项Search，没有Open，反复写计划",
+          "new_product": "同缺口处理多次恢复，未证且耗预算；目标Open操作消失",
+          "evidence": [
+            "O_OPEN",
+            "N4_MIXED_QUERY",
+            "N4_FINAL_AMOUNT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "decision_action_result_chain": "正确候选恢复→混合Query没给金额→回到获奖前提连续核查而不修金额入口→最后正确Query给24但已无法下一轮读它→N。生成少2702—3287却多2Search、Actor段相同、没有提交，不能叫有效节省。",
+      "costs": {
+        "new_generation": 5087,
+        "new_prompt": 316540,
+        "new_search": 9,
+        "new_open": 0,
+        "new_actor": 9,
+        "P_replay": 18312,
+        "G_prefill": 19,
+        "conservative_new_minus_original_generation_interval": [
+          -3287,
+          -2702
+        ]
+      },
+      "limits": "最后返回产生在guard前但未进入任何已发送Actor；需区分工具已得和模型已读/采用，不能用最后DocID出现判功能完全恢复。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "C/C/C/N；四支均无Open，三C通过旧snippet、常识或新关系Search完成核心链。",
+    "shared": "本次短Open没有新增获奖信息，删除没有清除原长snippet；同缺口Search仍可重建。",
+    "differences": "r2短链直接C，r1有24后长篇/3次回核仍C，r3多次前置核查但有提交预算；r4第一次金额入口不命中，接着回核奖项，最终24返回太晚未被模型读。",
+    "A_class_interpretation": "具体重读Open在本组3成功支路确未重现且旧材料替代，但失败不能归于缺这次Open，真实分歧在后续查询入口和工作时序；不据此判全部Stage冗余。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "已有较长snippet时重复较短Open可能未增加判定材料，删后可沿旧材料继续；后续成本和结果仍受核验顺序与取证反馈是否改变下一行动支配。",
+      "support": "四支无Open，3C仍得24；r4正确对象却先混合无金额Query，再回前置缺口，最终有Return但无下一模型读取。",
+      "counterexample": "r1/3也反复核奖而能结束，所以仅缺口/重复次数不充分解释；r4真实最后金额已得但不是可采用机会，不能误类为忽略已读证据。",
+      "scope": "同题4路径展示中间事件和预算交互，原Open功能可替代不等同跨题必省；G及采样未排除。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "本U失败反馈并未成功改变原搜索策略，本轮不虚构其排除候选/停止作用。",
+    "三C的获奖关系仍不充分，减少Open没有消失一个原本已经充分的证据。",
+    "r4金额Return未被下一模型读取，不能描述成模型看到正确金额又继续查。",
+    "正确性冻结语义口径把24解释million，源原文同时保留，避免最终字符串而非真实语义混淆。",
+    "均非原生精确Token，范围保守；独立删除节省不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "I need to confirm if Jennifer Carpenter *won* the award or was nominated."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "2.  **Identify the movie:** The movie for which this individual received the award."
+    },
+    {
+      "evidence_id": "O_OLD_REVIEW",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/3/snippet",
+      "exact_quote": "thanks to a committed performance from Jennifer Carpenter",
+      "doc_id": "wiki25:1940056",
+      "call_id": "chatcmpl-tool-a6094ee5abf37d2a"
+    },
+    {
+      "evidence_id": "O_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let's open that document to see if it mentions the award."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "thanks to a committed ",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I need to find who won in 2006."
+    },
+    {
+      "evidence_id": "O_AMOUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/4/snippet",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-81b4ad4283e1221c"
+    },
+    {
+      "evidence_id": "N1_AMOUNT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "I will proceed with the answer $24 million."
+    },
+    {
+      "evidence_id": "N1_LAST_REQUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Jennifer Carpenter 2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "chatcmpl-tool-89154d2fee2f6a9f"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "24",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_TARGET",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Let me search for Doctor Strange opening weekend gross 3D contribution."
+    },
+    {
+      "evidence_id": "N2_AMOUNT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Doctor Strange opening weekend gross 3D contribution",
+      "call_id": "chatcmpl-tool-a0e1fb52ec0feda1"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_MCU_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Scott Derrickson Marvel Cinematic Universe film",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_AMOUNT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Doctor Strange 2016 opening weekend gross 3D contribution",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/7/arguments/answer",
+      "exact_quote": "24",
+      "call_id": "chatcmpl-tool-9d09a08887069d92"
+    },
+    {
+      "evidence_id": "N4_MIXED_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Scott Derrickson Doctor Strange opening weekend gross 3D contribution",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RETURN_PRODUCTION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "By October 10, 2016, Derrickson had completed the film."
+    },
+    {
+      "evidence_id": "N4_FINAL_AMOUNT_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Doctor Strange 2016 opening weekend gross 3D",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_AMOUNT_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/4/snippet",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "stop_reason",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "CONTEXT_LIMIT_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA,22 exact evidence quotes and correct source sides,Round/Call ID/DocID metadata,frozen ranges,four actual cost ledgers. Codex self-review is not independent human gold."
+}

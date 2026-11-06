@@ -1,0 +1,492 @@
+{
+  "schema_version": "SAGE100_CODEX_SEMANTIC_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0750",
+  "stage_id": "S006",
+  "sample_order": 9,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0750/trajectory.json",
+      "source_sha256": "4fb18a904433fe39fb673e5fb62804c4af3dfcb1077f390c7b69aa694a0d0beb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0750.json",
+      "source_sha256": "ad04278421833e9ccd7cb4766ef4c2eac0d43a00b17d5be5d70cfa5556e574f8"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0974dfc25ab1c4757535c01716d1195077df82d1f5eefb5947f7b0d2c93a747e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "927efe87a9c7fdee97206821b46a1a84db14ee98f9aa07bc66aae43af3c342ea"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "991624b3d3fa9bae046a935c4b230fec239f777ded63ab45b7832ccd2d75266a"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "fb3b2d458da4f59adfdddb1926e38470e122e267aae50a9c712fb58b6facf02c"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "62beadb715e8328b34e9299d1f9486148596ddb5328b152cbc449215c4016b83"
+    }
+  },
+  "question_and_gold": {
+    "question": "The city where the opera that premiered at Foroni's Teatro Filarmonico in 1840 by the composer of \"Tutti in maschera\" first debuted.?",
+    "gold": "Verona",
+    "offline_only": true
+  },
+  "read_scope": "原4轮Reasoning、4完整工具事件及全部Return实际读，首展示26321字符中末轮截断部分另完整补读。四新14958字符一次完整读，全部只新R4，不执行新Search/Open，submit事件及Final均核。实际INPUT_AUDIT历史角色和全部3个真实Return对应位置复核。",
+  "original_outcome": {
+    "outcome": "C",
+    "actual_final": "Verona",
+    "terminal": "MODEL_FINAL_STOP",
+    "reason": "原Domenico Foroni文档直接给Teatro Filarmonico in Verona，最终正式提交相符。",
+    "reference": "ANALYSIS/OUTCOME_SCREENING_ROOT/DECISIONS/SAGE_EXISTING_BATCH02__SAGEE_0750.json"
+  },
+  "prestate": {
+    "actual_input": "R4@0，当前Reasoning空，历史Actor3。实际规范化Assistant历史content为空，但真实工具消息保留：I/history3 Pedrotti首Search全文；5 Open前500字符；7 Foroni城市Search全文。原先R2/R3已在求解日志采用Lina、推测Verona，不能据此说这些历史Reasoning文字也被当前Actor看见；当前可见直接文档足以重新形成相同判断。",
+    "evidence_levels": "原首Return同时给作曲者、Lina1840演出和Pedrotti生于Verona；单靠出生地不能直接证明剧院城市。R3城市Search E2新给Foroni担任Verona剧院主管直证，切点P工具消息7确实已有；在U前这是已返回、尚待当前R4显式采用的关系。",
+    "remaining_gap": "当前需要联结作曲者—Lina—剧院—城市并作正式接受/提交，无须再取得未知城市。题中premiered措辞与材料successfully given关系的强弱仍保留，不能从本文证明绝无更早演出。",
+    "input_accounting": "P6541，G0，首Prompt6541，首max10000，之前Actor3；原本R4为最后一轮，不恢复其Final。",
+    "evidence": [
+      "I_PEDROTTI",
+      "I_DIRECT_CITY",
+      "O_INFER_CITY"
+    ]
+  },
+  "original_U": {
+    "range": "R4 /rounds/3/reasoning_content[0,691)，SHA717cff151c3f0b9a6655658ec550665919b30962c620c44274e785a9bad2f2e8；包含真实submit /tool_events/3，结束轨迹。",
+    "mapping_reference": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0750.json#/stages/5",
+    "actual_goal": "用Foroni文档把此前城市推测升级为有直接剧院关系支持的接受，并提交Verona。",
+    "actual_operations": "把作曲者、Lina1840、Foroni主管Verona剧院连为链；再次引用刚返回句确认城市；真实submit，没有新的Search/Open。",
+    "product": "Verona的有文档支持的接受判断和正式Final。",
+    "judgment_change": "城市此前只是用人物出生/求学地推测；本U明确采用的是新Foroni剧院城市关系，不是又一次人物籍贯推测。",
+    "full_original_text_location": "M#/stages/5/items/0完整Reasoning及items/1实际submit；相关已返回文档在I#/actual_normalized_history/7/content。",
+    "evidence": [
+      "O_MATCH",
+      "O_ACCEPT",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "目标为末段，正式submit即结束，没有未来Reasoning Stage。四新按TERMINAL_DROP_NO_ANCHOR续写，G和原Final均未输入。",
+    "evidence": [
+      "O_SUBMIT",
+      "I_NO_G"
+    ]
+  },
+  "function_features": "证据已在P中的完整多跳关系采用、城市接受和正式提交。与取得城市证据的S005不同，也与此前只按出生地猜Verona不同；删除后应看是否重新联结并提交，而非是否重新搜索。",
+  "guide_audit": {
+    "text": "",
+    "origin": "NO_ANCHOR",
+    "P_comparison": "没有G，无未来实体/事实/行动提示，也没有原Final；城市来自P真实已发生的Return，不属于未来泄漏。",
+    "novelty": "NONE",
+    "oracle_status": "NO_ANCHOR_TERMINAL_DROP",
+    "evidence": [
+      "I_NO_G",
+      "I_DIRECT_CITY"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "R4用P的Foroni剧院位置直证联结Lina并真实submit。",
+      "outcome_evidence": [
+        "N1_LINK",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4 745字符直接列作曲者、Lina、剧院城市、Therefore关系，再正式submit；无新Search/Open。",
+      "first_judgment_divergence": "没有识别到实体或城市判断分歧；采用同一P直证而非原先出生地推测。只是压短原引文复核措辞。",
+      "first_actual_tool_divergence": "没有工具种类/目标分歧；第一个新动作与原U同为submit Verona。",
+      "function_correspondence": [
+        {
+          "original": "将Lina演出地点与Foroni剧院城市联结并接受",
+          "new": "R4明确列三条关系并therefore Verona，全部认知产物恢复",
+          "evidence": [
+            "O_MATCH",
+            "N1_LINK"
+          ]
+        },
+        {
+          "original": "正式提交Verona",
+          "new": "真实submit并有效Final",
+          "evidence": [
+            "O_SUBMIT",
+            "N1_SUBMIT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "比较、城市接受及正式提交全部实际再次执行，无外查不代表认知工作未恢复。",
+      "judgment_action_outcome_chain": "P已有城市直证→重新联结作品与剧院→接受Verona→直接submit→C；没有增加不确定条件。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "214生成/6541Prompt/0Search0Open1Actor；原221/6541/0/0/1，整响应生成少7，仅表达/协议差，不能说少了一次判断或交互。",
+      "counterevidence_and_alternatives": "差7Token很小，且无原nativeIDs；同状态重采样的表述差异，不能据此认为原整体判断冗余。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "完整采用城市直证，并重新比较Lina与稍晚的Clara，真实提交正确。",
+      "outcome_evidence": [
+        "N2_CITY",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4 1331字符完整三跳链、城市判断之后再核Lina是否为最先演出，引用Lina/Clara先后原Search内容；未新查，直接submit。",
+      "first_judgment_divergence": "核心关系与原相同，额外展开Lina先于Clara的次序复核；没有新候选或直接新事实。",
+      "first_actual_tool_divergence": "无，仍只有真实submit Verona。",
+      "function_correspondence": [
+        {
+          "original": "采用Foroni直证完成城市接受",
+          "new": "R4三项匹配明确使用Foroni城市关系",
+          "evidence": [
+            "O_ACCEPT",
+            "N2_CITY"
+          ]
+        },
+        {
+          "original": "解释目标作品并正式提交",
+          "new": "复核Lina/Clara次序后submit，功能恢复且扩展解释",
+          "evidence": [
+            "N2_SEQUENCE",
+            "N2_SUBMIT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原整体判断和提交完整重做，还多了一次基于已有文本的作品次序检查。",
+      "judgment_action_outcome_chain": "P证据充分→城市接受→又检查题中first与作品先后但不派新查询→C；增加是内部核对而非未知证据获取。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "368生成/6541Prompt/0Search0Open1Actor；比原记录多147生成，其余不变。增加位于同轮作品次序复核和重述，不能解释为检索成本。",
+      "counterevidence_and_alternatives": "材料为given而非显式first-ever-premiere，模型将它视为确认；虽与Gold相符，强首演排他性仍未单独证明。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "R4准确引用Foroni的Verona句及真实DocID，正式正确；主动检查更早首演但没有新证。",
+      "outcome_evidence": [
+        "N3_DIRECT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4 1193字符按5651800作曲者与作品、5917355剧院城市联结，随后提出是否早于1840 elsewhere，承认既有successfully given只是suggests首演，选择Verona真实submit。",
+      "first_judgment_divergence": "核心城市没有变，原U更直接接受，本条多出更早别处首演的疑问；疑问没有派出真实Search，也未取消提交。",
+      "first_actual_tool_divergence": "无新外查，真实submit同原城市。",
+      "function_correspondence": [
+        {
+          "original": "依直接剧院城市文本接受Verona",
+          "new": "明确引用同Doc城市原句并联结Lina",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_DIRECT"
+          ]
+        },
+        {
+          "original": "完成答案并提交",
+          "new": "检视首演措辞后正式submit",
+          "evidence": [
+            "N3_LIMIT",
+            "N3_SUBMIT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整原功能恢复；未执行更早首演搜索不等于目标U未重建。",
+      "judgment_action_outcome_chain": "P直证→城市采用→发现首演排他性措辞较弱但未将其变成追加外查任务→提交C；限制仍保留。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "343生成/6541Prompt/0Search0Open1Actor，比原多122生成；新增的是题意疑问和直接引文说明，没有Search变化。",
+      "counterevidence_and_alternatives": "不能猜测为何没有继续查；可观察只是疑问在同轮被当前文本的suggests关闭，采样可能影响展开长度。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "同P直证下反复完整联结并submit正确，没有新独立城市证据。",
+      "outcome_evidence": [
+        "N4_LINK",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4 1473字符先连三跳、接受Verona，Let me double check再次列同条件，The question is a bit convoluted第三次重述同链，最后真实submit。无Search/Open。",
+      "first_judgment_divergence": "无核心判断变化；新增是已接受城市之后两轮内部复述，而非发现新事实或改候选。",
+      "first_actual_tool_divergence": "无，单submit Verona。",
+      "function_correspondence": [
+        {
+          "original": "完整关系匹配和接受城市",
+          "new": "R4至少三次说明同链，功能充分重现且重复",
+          "evidence": [
+            "O_MATCH",
+            "N4_LINK",
+            "N4_RESTATE"
+          ]
+        },
+        {
+          "original": "实际正式提交",
+          "new": "真实submit并有效Final",
+          "evidence": [
+            "O_SUBMIT",
+            "N4_SUBMIT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标认知工作和提交实际均重复出现，不把结果保持写成跳过。",
+      "judgment_action_outcome_chain": "P直证→相同城市接受→反复重述而不改对象/外查→C；生成增加来自重复已完成的关系说明。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S006__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "430生成/6541Prompt/0Search0Open1Actor，比原多209生成，其余不变。答案保持且完全重建，新增内部重述没有可见状态更新。",
+      "counterevidence_and_alternatives": "可以描述额外复述没有新可见判断，但本实验不能单独证明其中任意一句可删除，因为没有进一步干预，也不为后续实验制造边界。"
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_change_count": 0,
+    "screen_group": "A",
+    "common_work": "4/4全部重新把P直证变为整体接受与正式submit，0新增Search/Open；不是靠G、旧Final或仅出生地猜测。",
+    "important_differences": "N1接近原长度；N2多作品次序复核，N3更早首演疑问但不派查询，N4已接受后多次重述。原工作完全重建，答案相同并不说明该工作无用，增加或减少只是执行展开不同。",
+    "cost_not_pooled": "原221生成；新214/368/343/430，Prompt全部6541、Actor全部1；仅一条小幅低，不能从四C归纳成本普降。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当决定答案所需关系已在实际可见工具消息中而当前整体接受尚未完成时，末段无引导续写可直接重建多跳联结与提交；它不需要重新取证，但认知采用仍会发生，长度受额外题意复核/重复重述影响。",
+      "support_scope": "本Stage1题4路径全部FULL并C；N2/N3/N4展开更长是结果保持但计算不同的反例。",
+      "limits": "只证明这次同P续写下功能可恢复，不是删除正式提交功能成功，也不是所有类似终段均可省。需与本题S005删除城市直证获取的四路径继续对照。"
+    }
+  ],
+  "counterevidence_and_limits": "原历史Reasoning在轨迹中可读，不等于规范化历史content中重新提供；本组依据实际I的工具消息证明城市已可见。当前Reasoning为空，无G；NO_ANCHOR_TERMINAL_DROP与首句条件分开。首演给出/首次首演语义强弱非本实验能完全解决。原无nativeIDs，只报整响应usage，不声称原生精确Token节省。Codex自审不是人工金标准。",
+  "evidence": [
+    {
+      "evidence_id": "I_NO_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 4,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "I_PEDROTTI",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "visible_search_return",
+      "json_pointer": "/actual_normalized_history/3/content",
+      "exact_quote": "was successfully given at Foroni's Teatro Filarmonico in 1840",
+      "doc_id": "wiki25:5651800"
+    },
+    {
+      "evidence_id": "I_DIRECT_CITY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "visible_search_return",
+      "json_pointer": "/actual_normalized_history/7/content",
+      "exact_quote": "director and principal conductor of the Teatro Filarmonico in Verona",
+      "doc_id": "wiki25:5917355"
+    },
+    {
+      "evidence_id": "O_INFER_CITY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "which is in Verona (since Pedrotti was born in Verona and studied there)."
+    },
+    {
+      "evidence_id": "O_MATCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Domenico Foroni was the director of the Teatro Filarmonico in Verona."
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "So the city is Verona."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "Verona",
+      "call_id": "chatcmpl-tool-b6a49f7fa8c1c480"
+    },
+    {
+      "evidence_id": "N1_LINK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "4. Therefore, Foroni's Teatro Filarmonico was located in Verona."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "Verona",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N2_CITY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The search results indicate that Domenico Foroni was appointed director and principal conductor of the Teatro Filarmonico in Verona."
+    },
+    {
+      "evidence_id": "N2_SEQUENCE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me double check if \"Lina\" is the *first* opera by Pedrotti to debut there."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "Verona",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N3_DIRECT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "3. Foroni's Teatro Filarmonico is located in Verona (from doc wiki25:5917355 about Domenico Foroni: \"In 1818 he was appointed to the dual position of director and principal conductor of the Teatro Filarmonico in Verona\")."
+    },
+    {
+      "evidence_id": "N3_LIMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This suggests it premiered there in 1840."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "Verona",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N4_LINK",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The document on Domenico Foroni confirms that the Teatro Filarmonico is in Verona."
+    },
+    {
+      "evidence_id": "N4_RESTATE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The question is a bit convoluted:"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "Verona",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

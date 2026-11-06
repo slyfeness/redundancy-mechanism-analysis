@@ -1,0 +1,40 @@
+{
+ "case_id":"694__rep1__S001__FIRST_SENTENCE","question_id":"694","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原正式Paul Fox错误，Gold Jacob Kuriype只事后评价。四新均真实GENERATION_LENGTH_STOP，无合法Final，不能用推理内人名补答案。"},
+ "selection_exception":"R1@0空P，教师G提前给特定文章标题，属于带后继锚定的重新采样；不能用W→N反推原Stage具有正确求解的必要功能。",
+ "review_basis":"原单轮34378字符Reasoning和643字符正式Final全文按连续精确范围读。四新全部Reasoning及空content、无Call状态读：首次大段输出截断后，逐行SHA去重读取全部699个新增不同原文行及完整有序位置，重复序列精确保留，非摘要代替。没有工具Return可读，0槽位检查。",
+ "pre_state":"P为空，仅真实原题。原题要求2016文章、作者为指定奖项决赛者、采访新运动形式发明者、首世界杯距初赛不足五年；没有提供任何记者、运动或文章题名。",
+ "u_work":"U R1[0,25589)在Rugby Sevens/T20等之间推演，逐渐构造Paul Fox、Murray Brown及2016获奖和文章关系。大量Search Query、Result、Found只是推理模拟，真实Call为零。产物是未经真实材料检验的候选关系和接近接受Paul的状态，而非检索证据。",
+ "u_state_update":"U内‘可能’的获奖与文章关系逐步被当成确定前提，最终以winner因此finalist加人物故事的一致性排Paul。S002继续把它当记忆文章，S003草拟，S004再次确认后错误Final。不能把原声称found source写成实际证实。",
+ "original_action_consequence":"原后续没有真实取证，反复比较其他记者但每次又以自述获奖/故事关联返回Paul，终于提交错误姓名。原U至少建立了具体人名路线，但没有正确证据更新。",
+ "guidance":{"text":"    *   *Wait, I recall a specific article.*\n        *   Title: \"The man who invented Rugby Sevens\".","source":"后继S002 R1@25589，27Token，native精确R1@0。","audit":"空P没有该题名或Rugby Sevens关系，G提前给未来具体文章标题/运动方向；不含Gold和Paul，却是显著候选方向补偿。ORACLE_ANCHORED，不能称无引导纯删除。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"(Simulating search)","use":"原模型明示模拟，所有Search语句不是实际Call。"},
+  {"id":"O2","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Let's assume the winner is the most likely answer if they wrote a notable piece.","use":"U采用获奖显著性形成候选，而非文档证明作者。"},
+  {"id":"O3","source":"original","pointer":"/rounds/0/content","quote":"The article was written by **Paul Fox**.","use":"原错误正式提交，不能把四新N写成错人变化。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Wait, I'm repeating myself.","use":"自知文字重复，下一步仍同计划，无实际Search。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Wait, I need to search for \"Sport Australia Media Awards Best Individual Sport Coverage finalist\".","use":"后段查询准备三行循环至10K，不是工具循环。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Author: **David Behar**.","use":"首自主补入不同作者，不继承Paul。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Usually, the winner is the one associated with the piece.","use":"以自述winner替代作者关系证据，在两David间无法结束。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Some sources say **David Smith**.","use":"没有真实返回，所谓sources不能记作新证据。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Tim Brawn was a finalist for Best Individual Sport Coverage at the 2016 Sport Australia Media Awards.","use":"在思考中自造具体引用并复用，工具未执行。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Wait, I need to be sure.","use":"一再确认没有变为取证或提交；重复块22轮保留实际位置。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Inventor: Barry Morgan.","use":"另一自定人物关系，非返回采用。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let's search for \"Sport Australia Media Awards 2016\".","use":"后段同一句计划连续470次，0实际Search。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G给文章题名后仍回问题/奖项检索准备，不提出具体作者；承认重复仍继续三行查询计划直到10K。","state_chain":"需查→不断重写同一待办→没有执行及返回反馈→不形成答案N。","function_change":"原U拆线索/制定查询恢复，具体Paul接受未恢复；没有真实Search可减少。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"立即补David Behar与Mike Pratt、1993/1997时间线，后来又自述David Smith获奖，不断比较两作者而无真实依据。","state_chain":"G特定题名→自述文章及获奖关系→以获奖者推作者→两个自述关系互相冲突且反复确认→N。","function_change":"原候选构造/比较被另一组人物重建；不是同一作者判断保留，也没有真实取证来消解。","evidence":["N21","N22","N23"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"自主Eddie Baxter、Tim Brawn故事和1993/1997计算，先猜后称找到引用，后段相同伪引文与要确定反复22轮。","state_chain":"假设对象→把自述引用当匹配→仍要核查→不执行只重复引用→N。","function_change":"线索匹配和候选接受反复恢复，但未形成正式Final，不能标正式提交。","evidence":["N31","N32"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"自主Barry Morgan发明者假设，文章作者仍缺，随后不断列查询，尾部同句计划重复470次而没有调用。","state_chain":"文章方向已G提供→缺作者→同一取证意向持续生成→无实际材料及提交→N。","function_change":"原拆线索/搜索准备恢复，Paul候选未恢复；主要消耗在未执行计划文字。","evidence":["N41","N42"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"这组B体现的不是删除后答案候选经证据更新而改变，而是原错误候选接受终于提交、四新未结束。1/4真实行动停在检索计划，2/3建立新的自述候选关系后仍不退出比较。需分别追踪计划到真实执行、接受到正式结束两个可见缺口；不能因都N把它们归成同一证据循环。",
+ "within_case_support":"1/4的尾部没有任何新材料和Search，是文字计划重复；2/3有不同具体人物及自述来源变化，没有真实工具反馈。四条不支持同一个候选消失造成同一失败的解释。",
+ "mechanism_chain_checks":[
+  {"chain":"未解作者需求反复触发同一查询准备，未转为真实Call且耗尽生成额度","observed_repeats":[1,4],"not_observed_repeats":[2,3],"evidence_by_repeat":{"1":["N11","N12"],"4":["N41","N42"]},"limits":"2/3也无Call，但主要是具体候选关系比较与自述证据反复，不能仅凭零Call归为相同链。"},
+  {"chain":"将自主构造的文章/获奖关系当确认依据，仍重复比较而没有提交","observed_repeats":[2,3],"not_observed_repeats":[1,4],"evidence_by_repeat":{"2":["N21","N22","N23"],"3":["N31","N32"]},"limits":"没有真实Return，不把sources/snippet词当资料已返回。两支人物不同，原Paul错误不是有证据正确路线。"}
+ ],
+ "counterevidence_and_limits":["空P加题名G属于带方向重采样，不是干净删除局部工作。","四N相同不等于同一机制；不能把未执行搜索计入Search。","原W已经证据不足且错误，不能以删后N倒推出U对正确性必要。","新2/3候选名只是推理，不能评价为正式错误回答。","本题只有一个问题支持，跨题需比较真正的计划不执行与有Call但反馈未更新，不能混为一谈。"],
+ "cost_basis":"nativeR1@0，原后续9958生成0Search1ActorPrompt386；四新各10000生成+27G，delta+69，0Search1ActorPrompt413。只有原Question与G，没有重放旧Reasoning；生成上限确实耗尽，原9958自然结束而新10K止。独立支差不相加，原延迟含完整原轮不可假定后缀精确时差。",
+ "next_cross_case_test":"在其他B及A中检查接受已稳定后，重复核验是维持同一判断、实际改动判断，还是仅占据提交前有限生成额度；分开无工具计划和真实工具反馈。"
+}

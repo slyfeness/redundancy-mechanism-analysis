@@ -1,0 +1,38 @@
+{
+ "case_id":"694__rep1__S003__FIRST_SENTENCE","question_id":"694","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原Paul Fox正式错误。四新均GENERATION_LENGTH_STOP：新1有891字符content草稿但截在201，不是合法完成Final，不能以已有姓名把终态改W；其他无content。"},
+ "review_basis":"原全文及四新全部Reasoning/content/实际停止原因已实际阅读，全部Call和Return均0。三个目标共享同一原路径，只重用已经完整读过的原文，不引用旧语义标签。",
+ "pre_state":"R1@32747前，P已在无任何真实Search下构造并接受Paul Fox、Murray Brown、Rugby Sevens与奖项关系，明确Therefore作者Paul。此处不是还缺候选，而是已选定一个未经来源支持的错误对象。",
+ "u_work":"U R1[32747,33103)是Construct the Final Answer：再列2016、finalist、inventor、运动年份，规划输出姓名。没有新证据、纠错或实际Call；将既有接受变成答案组织。",
+ "u_state_update":"U没有更换候选或关系，只将已有Paul接受转成输出计划。原后续Refinement再比较备选与运动，仍回Paul后自然提交。",
+ "original_action_consequence":"原在未增加任何外部证据时终于结束并输出Paul。删掉答案组织后四新仍采用Paul，但多次再核查占据剩余716Token，三个未进content，一个进入解释后没写完。",
+ "guidance":{"text":"5.  **Refinement:**\n    *   Is it possible the author is **Peter Barrow**?","source":"S004 R1@33103，22Token，切点nativeR1@32747，P9284Token。","audit":"Peter Barrow在P已出现，不是新实体；G给再核验备选的行动与格式，跳过原答案组织。ORACLE_ANCHORED，可能强化继续比较，不能当无提示因果效应。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Therefore, the author is **Paul Fox**.","use":"U前已经采用，不能说U首次识别。"},
+  {"id":"O2","source":"original","pointer":"/rounds/0/reasoning_content","quote":"4.  **Construct the Final Answer:**","use":"U实际是组织输出，不是来源核查。"},
+  {"id":"O3","source":"original","pointer":"/rounds/0/content","quote":"Answer: **Paul Fox**","use":"原最终错误姓名。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"6.  **Constructing the Output:**","use":"答案组织本身已重新执行。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/content","quote":"The author of the article is **Paul Fox**.","use":"有部分content但生成截断，未完成正式Final。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let's assume Paul Fox based on the SAMA win.","use":"仍以无文档获奖前提维持原候选。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"A search for \"Lachlan Scott Murray Brown\" yields fewer results than \"Paul Fox Murray Brown\"","use":"没有Call，所谓搜索结果比较是自述而非真实证据。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"I will provide **Paul Fox**.","use":"决定没变，仍继续反复确认到上限。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Some sources list **David Loewen** as the winner for Best Individual Sport Coverage in 2016?","use":"自主想象冲突后再确认，没拿到新文档。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"So **Paul Fox** is the correct answer.","use":"多次接受后仍没停止。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"It doesn't say the award-winning article was the one interviewing the inventor.","use":"真实重新解释题目关系，不能全部算无内容复述。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"If the award-winning piece was the one interviewing the inventor, then it's definitely Paul Fox.","use":"指出关系未必相同却又依未证假设继续支持Paul。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G先问Barrow，随即回Paul并重建Constructing Output，又检查Lachlan/BeachSoccer，进入Final解释但末尾截断。","state_chain":"原候选已在P→比较后仍Paul→重建答案组织→又核验后输出过长未完成N。","function_change":"原U输出规划明确重建；无证据或候选变化，不能把N叫作答案不同。","evidence":["N11","N12","N13"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"维持Paul获奖，反复姓名/记者/运动/年份确认，假称比较搜索量，没有真实Call也没进入Final。","state_chain":"既有Paul→无外证的重复确认→仍Paul→额度止N。","function_change":"输出意向多次出现但正式输出没有发生，原详细组织未完整复现；不能用Query相似称取证重建。","evidence":["N21","N22"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"回Paul后自述David Loewen可能winner冲突，声称再查名单却没Call，再回Paul并再次怀疑年度。","state_chain":"既有接受→自造冲突→自述名单确认→接受仍重复且未结束N。","function_change":"局部候选比较重做，但U具体答案规划未清楚重建；全新材料没有增加。","evidence":["N31","N32"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"认真区分获奖文章不一定等于目标文章，但没有实际来源去验证，转而以profile通常获奖支持Paul，思考中途耗尽。","state_chain":"已接受Paul→识别关系不是必然→未证假设与文体常识补齐→仍Paul而未提交N。","function_change":"新增题目关系解释实际发生，未修正候选；不能把所有文字都当重复无功能。","evidence":["N41","N42"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"四次状态改变均为错误Final到无完成Final，但原候选Paul在四支没有丢失。关键区别是答案组织/提交被继续比较挤占；新1甚至重建组织并进入content仍没完成。因此这组B不支持‘U提供了不可恢复的候选证据’，而提供有限生成额度下接受与完成分离的观察。",
+ "within_case_support":"四条均维持Paul且无真实Search，1重建输出规划、4真正补充逻辑区分、2/3反复自述确认，不能统一说删后只是同一重复行为。G明确Refinement且原轮余量716，是重要限制。",
+ "mechanism_chain_checks":[
+  {"chain":"候选未变但再次比较延后正式完成，在原轮剩余生成额度用尽前未完成回答","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N21","N22"],"3":["N31","N32"],"4":["N41","N42"]},"limits":"四支N不证明U因果必要；提示本身叫继续Refinement，随机种子与硬预算无法排除。原答案本就错误。"}
+ ],
+ "counterevidence_and_limits":["新1有部分content不能称完全没尝试作答，也不能当有效Final。","原P已Paul，U不产生新事实；少了草稿不等于少了候选采用。","新4关系重解释是实质思考，却没有取得新证据或纠正Paul。","G包含继续核查方向，可能补偿或延迟提交；不作纯删除因果证明。","所有N仍不能从中间Paul推成W，保留实际lengthstop。"],
+ "cost_basis":"nativeR1@32747，原后缀674生成0Search1Actor；四新各716生成+22G，净+64，Prompt9692=386原prompt+9284重放P+22G；原轮Prompt386另列，原延迟含删前大段生成不能报精确后缀时差。每支0Search1Actor，不将独立差累加。",
+ "next_cross_case_test":"对比A中P已经接受、删输出草稿后直接完成的案例，查新后续是否立刻转content，G是否导向再次核验，硬余量是否使同一候选的完成机会不同。"
+}

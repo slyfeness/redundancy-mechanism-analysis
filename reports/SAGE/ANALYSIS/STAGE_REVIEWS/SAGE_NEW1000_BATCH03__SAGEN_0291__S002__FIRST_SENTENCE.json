@@ -1,0 +1,92 @@
+{
+  "schema_version":"SAGE100_FUNCTION_MECHANISM_V1","unit_id":"SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE","trajectory_id":"SAGE_NEW1000_BATCH03__SAGEN_0291","stage_id":"S002","sample_order":5,"condition":"FIRST_SENTENCE",
+  "source_files":{
+    "O":{"source_file":"RAW/SAGE_NEW1000_BATCH03__SAGEN_0291/trajectory.json","source_sha256":"e945e36dee444d103a70422f93658d7c43d67d9e2d662c50e403b5219918e3c9"},
+    "M":{"source_file":"MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0291.json","source_sha256":"919e9709d1bc8610cfb40036cabfa92952cec4c09c9b99bf04ece316a1f1ea49"},
+    "I":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json","source_sha256":"4ecf516f8491b6964c48d91c5e8c2e03c8536b4440b0acc596cdefe5059bb4c7"},
+    "N1":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat01/trajectory.json","source_sha256":"5d88e5ef3bd041f5c3acdeb250ef29f09ae1d2f8a14a6041e7a334ecfdb3ac3d"},
+    "N2":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat02/trajectory.json","source_sha256":"dcf886b1ec41a4be9f749a11cacd1dd3f1ad76b8fb132f1775f663d7767ef875"},
+    "N3":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat03/trajectory.json","source_sha256":"9cb2ab9bc507aebfd90effd3b53395322d72d7b68cf8fba08092b3bfd19da674"},
+    "N4":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat04/trajectory.json","source_sha256":"0bd4056e4a2cc06ecede5f50a3f84985b9c3f068cd92abcd02cf838c2ac13434"}
+  },
+  "question_and_gold":{"question":"What year did the international council, initially fostered by an organization co-founded by Rick Fedrizzi and known for developing the LEED green building rating system, officially constitute with its foundational country-specific members, several years after its first meeting in California?","gold":["2002"],"gold_reference":"EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0291/0/answer/0"},
+  "read_scope":"原路径3轮及全部Return已完整重读；新四路径compact-references视图[0,18000)、[18000,36000)、[36000,53952)全覆盖。repeat01/03额外WorldGBC文档全文snippets、repeat02/04各次短Open/真实空Search均读取；没有把提到Open当成完成Open。",
+  "original_outcome":{"actual_final":"2002","adopted_answer":"2002","outcome":"C","decision_file":"ANALYSIS/ORIGINAL_OUTCOME_DECISIONS/SAGE_NEW1000_BATCH03__SAGEN_0291.json","reason":"正式2002且把1999首会与2002正式成员构成区分，相关关系有直接文档。"},
+  "prestate":{"actor_visible":"原R2@426。P已有首次Search全文，David Gottfried片段同时写California1999及2002八国正式组成；当前保留R2前缀已正确提取组织与两个年。未输入原2000字符Open、原R3总体判断或Final。","returned":"原E001已经完整给2002及八国名单、1999地点、USGBC/LEED/Fedrizzi关系；并非尚待发现Gold。","extracted":"R2前426字符已提取USGBC、WorldGBC、1999和2002。","adopted":"当前可见前缀已经说WorldGBC officially formed in 2002，不存在正在选1999的候选冲突。","action_updated":"原R2即将根据返回DocID打开Gottfried做确认，开文档操作还未发生。","prior_logged_not_retained":"当前R2前缀确实保留这些采用，不是将旧Round日志假定为可见；下一Round仍不保留旧Reasoning，但原Search事实仍在历史。","evidence":["I_ADOPT","I_ORIGINAL_RETURN"]},
+  "original_U":{"full_text_reference":"MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0291.json#/stages/1/items","ranges":[{"json_pointer":"/rounds/1/reasoning_content","round_id":2,"start":426,"end":753},{"json_pointer":"/tool_events/1","event_id":"E002"}],"goal":"重新打开已给出关键事实的Gottfried文档确认组织与时间关系。","operations":"实际Open wiki25:11071925，offset0/limit2000；读到Search已给出的1999/2002/八国关键句及额外职业背景。","output":"相同关键关系再获可见支持，没有新年份、关系修正或冲突。","judgment_before_after":"已采用的2002与1999区分维持，工具操作没有改变答案对象或待核年。","evidence":["O_OPEN","O_DUPLICATE_YEAR"]},
+  "original_followup":"R3据同一事实逐条比对题目，明确问officially constituted而非first meeting，正式提交2002；未见Open新增职业背景被用于取证或候选判断。",
+  "function_features":"对已直接返回且已采用的关键关系再确认，不能与首次把未知关系查实混同。原U操作有真实2000字符内容，但所需事实早在P；是否可以省，应看新路径会否直接采用旧支持、又核查什么及其净成本，不能从前态充分就预断结果。",
+  "guide_audit":{"text":"The search results provide the necessary information.","source_pointer":"/rounds/2/reasoning_content","source_range":[0,53],"derived_token_count":8,"compared_complete_P":true,"status":"ORACLE_ANCHORED","new_entities_or_facts":"无新实体/年/成员事实；这些在P真实Return及当前前缀都有。","new_action_direction":"给出证据已足够的总体判断，比P单列已知事实更明确，可能补偿原Open之后的接受/停止倾向；不能当成完全中性承接。","candidate_certainty":"存在证据充分性增强。原P已采用2002，但尚未明确说全部必要信息齐全；G直接宣称necessary information，必须单列判断性引导风险。","full_successor_prefill":false,"limits":"没有事实泄漏不等于没有判断补偿；四条即使都继续查，也不能取消G本身提供的充分性信号。","evidence":["I_G","I_ADOPT"]},
+  "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE.json",
+  "rollouts":[
+    {
+      "repeat_id":1,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat01","actual_final":"2002","terminal":"MODEL_FINAL_STOP","adopted_answer":"2002","outcome":"C","outcome_reason":"R2先正确区分1999会议/2002组成，另查WorldGBC后R3仍用相同关系正式提交2002，未选1999。","outcome_evidence":["N1_ADOPT","N1_QUERY","N1_FINAL"],
+      "work_and_evidence_timeline":"R2在P+G后先复述2002与1999区别，却仍实际Search WorldGBC formally formed2002/...。Return增另一WorldGBC条目历史，与旧Gottfried支持同一双年关系，也再次返回旧Gottfried片段；R3整理并提交。没有Open。",
+      "first_judgment_divergence":"没有年份或事件关系改变；改变的是核查途径，原打开已知来源，新另搜组织再支持已接受年。",
+      "first_actual_tool_divergence":"原Open Gottfried2000；新以组织、2002、1999实际Search。",
+      "function_correspondence":[{"original":"对已采用双年关系再取证确认","new":"R2改为组织Search重新确认同关系，有新增独立条目但不改变年","evidence":["O_OPEN","N1_QUERY","N1_ADOPT"]},{"original":"确认信息进入正式条件匹配","new":"R3使用相同1999/2002区分提交","evidence":["O_DUPLICATE_YEAR","N1_FINAL"]}],
+      "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"再确认的目标/判断保留，由Search替代原Open；原2000字符读取未执行，不能把方法换了称整个核验功能没发生。若只看目标完成可视为替代完成，具体对应表优先于标签。",
+      "judgment_action_outcome_chain":"P已经直接支持并采用2002→G称必要信息齐全→模型仍决定另搜确认→返回一致历史且无年变化→提交C。新增外部支持存在，但没有观察到它改变已采用关系；是否必要不能由正确不变唯一判定。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE.json#/records/0","cost_work_locations":"365生成、10207Prompt、1Search/0Open/2Actor。把原1Open换为1Search，不能只报Open减少就称工具成本下降；Search实耗23.24秒，返回更多文本增加后继预填。原部分R2切点按成本表保守比较，G8单列。",
+      "counterevidence_and_alternatives":"虽G声明充分，模型没有停止核验；本条不能作为完全跳过再确认的证据。新增另一条目属于补充支持而非新的结论，不能称无任何新信息。"
+    },
+    {
+      "repeat_id":2,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat02","actual_final":"2002","terminal":"MODEL_FINAL_STOP","adopted_answer":"2002","outcome":"C","outcome_reason":"反复Open后最终恢复原2000字符内容，R5正式匹配2002与1999并submit；此前短Open不含关键年，但旧Search一直有。","outcome_evidence":["N2_ALREADY_KNOWN","N2_INCREASE","N2_FINAL"],
+      "work_and_evidence_timeline":"R2先明确2002八国关系，Open Gottfried100字符，只见传记开头；R3再明确旧Search已给两个年和成员，却Open同文200字符，仍没目标段；R4实际把limit增到2000，拿到与原Open完全相同内容；R5重复逐条件论证并提交2002。",
+      "first_judgment_divergence":"2002未变，首Open的执行范围由原2000变100，导致新核查操作自身不能看到目标段；之后选择扩大范围，而不是发现题目事实矛盾。",
+      "first_actual_tool_divergence":"R2相同DocID但limit100对比原2000是真实不同输入和Return；R3/R4两次额外Open补足这次操作范围。",
+      "function_correspondence":[{"original":"Open2000取得包含双年句的文档","new":"先100/200失败，R4终于同2000内容","evidence":["O_OPEN","N2_INCREASE"]},{"original":"保持双年区分并提交","new":"R5完整区分后提交，R2/R3也早已知道相同关系","evidence":["N2_ALREADY_KNOWN","N2_FINAL"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"原Open操作和完整关键内容最终原样恢复，再确认的功能也在；前面额外两次短请求和重复盘点不能被标签掩盖。",
+      "judgment_action_outcome_chain":"事实与年已知→仍打开同文确认→请求字符范围不足，未得到期望段落→扩大读取范围→取回原本Search已含的年关系→再提交。计算增加主要是工具读取范围造成的操作补救和答案组织，不是初始事实缺失。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE.json#/records/1","cost_work_locations":"840生成、14315Prompt、3Open/0Search/4Actor；原后续1Open/2生成段。两个额外短Open及其交互、R5长终判是具体增量；不把G8再次扣为生成节省。",
+      "counterevidence_and_alternatives":"R4真正调整limit并取得目标文本，区别于repeat04反复100未到段落；不能把所有Open重复统一称无策略更新。模型未说明limit单位认知，不能猜它把字符当行。"
+    },
+    {
+      "repeat_id":3,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat03","actual_final":"2002","terminal":"MODEL_FINAL_STOP","adopted_answer":"2002","outcome":"C","outcome_reason":"始终采用2002且有原Search完整支持，短Open不含年后另Search补一致WorldGBC条目，最终R4submit2002。","outcome_evidence":["N3_ACCEPT_BEFORE","N3_SEARCH","N3_FINAL"],
+      "work_and_evidence_timeline":"R2在新Open前已经逐条件比较并说答案2002，随后Open100字符。R3直接引用旧Search的完整1999/2002句，证明不是从这100字符获得，又决定double check组织Search；该Search返回与repeat01同组一致材料。R4仍明确以Gottfried片段为答案依据，提交。",
+      "first_judgment_divergence":"没有改变年；原一次足范围Open变成短Open后再组织Search。已完整接受和有原证据，没有立刻停止。",
+      "first_actual_tool_divergence":"R2 limit100而非2000；R3追加组织Search。",
+      "function_correspondence":[{"original":"打开已知文档确认双年关系","new":"短Open没有这段，随后Search代替完整Open确认","evidence":["O_OPEN","N3_ACCEPT_BEFORE","N3_SEARCH"]},{"original":"已知关系用于正式提交","new":"R4仍从旧Gottfried片段对齐题问并提交","evidence":["O_DUPLICATE_YEAR","N3_FINAL"]}],
+      "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"确认目标、同DocID尝试及后续替代Search都在；原2000字符完整读取未恢复，不能按DocID相同称原操作完整重做。",
+      "judgment_action_outcome_chain":"P事实已采用→R2实际完整接受2002→短Open不补证→R3仍能引用旧支持但又再Search→一致证据没有改变年→再组织提交。答案接受已发生却继续核验的动作可见，但无法把它简化为隐藏信心下降。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE.json#/records/2","cost_work_locations":"741生成、13820Prompt、1Open/1Search/3Actor；较原多1Search/1生成段，Search延迟13.44秒。R3重复关系与再查、R4重述答案都是生成落点，旧Open减少的字符不等于净输入下降。",
+      "counterevidence_and_alternatives":"新Search确实有一致的独立条目支持，不能统一说证据变少；但新Final实际引的仍是旧片段，新增材料没有观察到促成不同判断。"
+    },
+    {
+      "repeat_id":4,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE__repeat04","actual_final":"2002","terminal":"MODEL_FINAL_STOP","adopted_answer":"2002","outcome":"C","outcome_reason":"新R6正式content和submit都明确2002；核心关系一直在P的旧Search中。后来的空Search和短Open未提供决定性新支持，不可因它们失败把已有直接证据忽略。","outcome_evidence":["N4_ACCEPT_BEFORE","N4_OLD_SOURCE","N4_FINAL"],
+      "work_and_evidence_timeline":"R2先接受2002、Open20字符仅American real estate。R3引用旧Search完整双年与成员，又另Search WorldGBC，真实结果为空。R4仍说first search snippet有答案，却Open100；R5说要full details，又以同offset0/limit100重复Open，结果完全相同且没年份。R6最后再次引用旧Gottfried片段，明确区分事件并提交2002。",
+      "first_judgment_divergence":"核心年没变，但反复把确认既有信息当继续操作理由；前次读取不足后，没有如repeat02扩大到目标段，R4/R5相同100字符操作未推进核验。",
+      "first_actual_tool_divergence":"原一次Open2000变Open20→组织Search空→Open100→相同Open100，最后submit。空Return是实际新检索结果，不是假返回或未执行计划。",
+      "function_correspondence":[{"original":"取得完整双年验证文段","new":"三次Open均未到段落、Search空，原新增完整文段没有恢复，但旧P支持没有丢失","evidence":["O_DUPLICATE_YEAR","N4_OPEN100","N4_REPEAT100"]},{"original":"维持双年区分并供提交","new":"R2已采用、R6最终用旧Search再确认并提交","evidence":["N4_ACCEPT_BEFORE","N4_OLD_SOURCE","N4_FINAL"]}],
+      "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"核验目标与真实尝试反复恢复，原Open2000的文段产物没恢复；答案由已有直接证据支持，不等于完全没有工作重建或G供答案。",
+      "judgment_action_outcome_chain":"关系早已直接可证并接受→重复核验决定→过短读取/空Search不增加所需支持→当前缺口被表述为还要full details却仍重复同范围→最终停止并用旧Search正确提交。额外消耗来自自引入的再确认及未奏效操作，不是查出新矛盾必须解决。是否因为删除触发这一链无法唯一确定。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0291__S002__FIRST_SENTENCE.json#/records/3","cost_work_locations":"1312生成、17315Prompt、3Open/1Search/5Actor。相较原1Open/2生成段，多2Open、1Search、3交互；额外Search延迟22.03秒且空结果。R3/R4完整再述既有事实和R6重复组织占生成增量；原切点在R2内部，用保守差区间而非伪精确节省。",
+      "counterevidence_and_alternatives":"最终正确反驳所有新增读取均必要；但原证据始终在P，不能说没有任何支撑而猜对。G提供充分性信号仍未阻止多轮核验，不能据此推断信号必无影响。"
+    }
+  ],
+  "four_run_comparison":"四次C且关键事实原本已在P采用，但没有一条简单跳过所有再确认直接提交：一条Search替代Open，一条100/200/2000逐步扩大，一条短Open后Search，一条短Open/空Search/重复短Open。原关键年关系均未改变。第二条完整恢复原文，其余通过替代材料或旧P完成；新增核验和重复组织可显著增加成本。不能把前态证据充分自动等同删后功能未重建，也不能把相同年答案当所有路径等价。",
+  "conditional_mechanism_proposals":[{"proposal":"当关键关系已由旧Return直接支持且已采用，再确认仍可能重新成为实际工作；若工具读取范围不足，这项确认本身制造需要补足的操作任务，而未改变候选、年份或原事实状态。扩大范围能结束操作补救，重复相同范围则可能继续花费后才回到旧证据提交。","support_scope":"本Stage repeat02与repeat04为同题对照，其他两个为替代Search路线；尚不宣称跨题稳定机制。","counterevidence":"repeat01换Search一次即可完成，repeat02实际扩大范围有明确反馈更新，不能把所有重复调用都视作同一不退出循环。"},{"proposal":"相同形式的直接核验，在关键事实未有外部证据时可能承担首次补证，在事实已返回且已采用时可能只确认既有关系；需比较前态、实际恢复和新增行动。","support_scope":"待与首题S004首次书年补证等跨题对照；当前只是比较入口，不预设其结果。","not_established":"G明示信息已足够、原新采样档不同；没有同配置自然对照，不能证明原Open纯粹冗余或删除导致额外核验。"}],
+  "counterevidence_and_limits":"本案G存在充分性判断补偿，非事实泄漏与无引导不能混为一谈。所有新Final真实2002，原P证据足够支持；新工具失败不意味着答案必无依据。Function恢复按目标/操作/产物分项说明，不能用是否重现同一Query序列代替。字符精确重建非原生ID切点，成本仅保守比较与真实账本，不合并独立分支为实际总节省。",
+  "evidence":[
+    {"evidence_id":"I_ADOPT","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":2,"event_type":"retained_current_reasoning","json_pointer":"/current_reasoning_prefix","exact_quote":"The WorldGBC was officially formed in 2002 with several country-specific members."},
+    {"evidence_id":"I_ORIGINAL_RETURN","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":2,"event_type":"historical_return_in_actual_P","json_pointer":"/actual_normalized_history/3/content","exact_quote":"In 2002, the WorldGBC was officially formed with the countries:"},
+    {"evidence_id":"I_G","source_ref":"I","source_side":"GUIDE","round_id":2,"event_type":"teacher_prefill","json_pointer":"/anchor_text","exact_quote":"The search results provide the necessary information."},
+    {"evidence_id":"O_OPEN","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":2,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"Let me verify this information by opening the relevant document about David Gottfried"},
+    {"evidence_id":"O_DUPLICATE_YEAR","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":2,"event_type":"actual_tool_return","json_pointer":"/tool_events/1/observation/text","exact_quote":"In 2002, the WorldGBC was officially formed with the countries:","doc_ids":["wiki25:11071925"]},
+    {"evidence_id":"N1_ADOPT","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":2,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The World Green Building Council (WorldGBC) was officially formed in 2002."},
+    {"evidence_id":"N1_QUERY","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":2,"event_type":"actual_tool_call","json_pointer":"/tool_events/0/arguments/query","exact_quote":"World Green Building Council WorldGBC officially formed 2002 founding meeting California 1999","call_id":"recovered_call_1"},
+    {"evidence_id":"N1_FINAL","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":3,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"2002"},
+    {"evidence_id":"N2_ALREADY_KNOWN","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"it was officially formed in 2002 with countries including Australia, Brazil, Canada, India, Japan, Mexico, Spain, and the US."},
+    {"evidence_id":"N2_INCREASE","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":4,"event_type":"reasoning","json_pointer":"/rounds/2/reasoning_content","exact_quote":"Let me open the document with a larger limit to see the full text about David Gottfried and the World Green Building Council."},
+    {"evidence_id":"N2_FINAL","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":5,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"2002"},
+    {"evidence_id":"N3_ACCEPT_BEFORE","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":2,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The answer is 2002."},
+    {"evidence_id":"N3_SEARCH","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"World Green Building Council WorldGBC founded 2002 California meeting 1999","call_id":"recovered_call_1"},
+    {"evidence_id":"N3_FINAL","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":4,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"2002"},
+    {"evidence_id":"N4_ACCEPT_BEFORE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":2,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"the WorldGBC was officially constituted in 2002 with its foundational country-specific members"},
+    {"evidence_id":"N4_OPEN100","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":4,"event_type":"actual_tool_return","json_pointer":"/tool_events/2/observation/text","exact_quote":"American real estate developer, author and green building activist David Gottfried is an American re","doc_ids":["wiki25:11071925"]},
+    {"evidence_id":"N4_REPEAT100","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":5,"event_type":"actual_tool_return","json_pointer":"/tool_events/3/observation/text","exact_quote":"American real estate developer, author and green building activist David Gottfried is an American re","doc_ids":["wiki25:11071925"]},
+    {"evidence_id":"N4_OLD_SOURCE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":6,"event_type":"reasoning","json_pointer":"/rounds/4/reasoning_content","exact_quote":"The search result snippet for David Gottfried mentions:"},
+    {"evidence_id":"N4_FINAL","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":6,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"2002"}
+  ],
+  "reviewer":"Codex model","review_status":"CODEX_MODEL_REVIEW_COMPLETE","human_gold_claimed":false
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version":"SAGE100_FUNCTION_MECHANISM_V1","unit_id":"SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE","trajectory_id":"SAGE_NEW1000_BATCH03__SAGEN_0161","stage_id":"S004","sample_order":1,"condition":"FIRST_SENTENCE",
+  "source_files":{
+    "O":{"source_file":"RAW/SAGE_NEW1000_BATCH03__SAGEN_0161/trajectory.json","source_sha256":"789571141ed80d4b1656fff4a9e0b3ddc5e6be94fc35a95cafd8685985b15290"},
+    "M":{"source_file":"MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0161.json","source_sha256":"0464a03d9374d9ae1585e3a871ef8543f53c699604634370481e65925b2ea2c7"},
+    "I":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json","source_sha256":"423e4615c363d3818b63cadb4b80f8bcf655897d1abf29c6e64e34dfded1a934"},
+    "N1":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat01/trajectory.json","source_sha256":"66fc160398a9437a672c8b8f21856884330d8fe48ebbe12edde7b9a3b46815c0"},
+    "N2":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat02/trajectory.json","source_sha256":"dd44e33caafdbbe7afbc245ca440625b6b5ea07f9f9c5e58a32edbfbc201c09f"},
+    "N3":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat03/trajectory.json","source_sha256":"a95d8720a5e55836d759a01caf0bcdd510c818dc36dba255826cb8327fec5ce9"},
+    "N4":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat04/trajectory.json","source_sha256":"7636c3263a07acae83e6f8ee516035e526956b1c4a26e7049a172fa786f215cd"}
+  },
+  "question_and_gold":{"question":"What is the publication year of the seminal monograph by the mathematician whose work on normed vector spaces forms the basis of functional analysis and is referenced in the \"Banach isomorphism theorem\", if this year also marks the introduction of a new set of postulates for Euclidean geometry by George David Birkhoff?","gold":["1932"],"gold_reference":"EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0161/0/answer/0"},
+  "read_scope":"原完整轨迹已读取，U原R6[975,1238)、R7[0,271)重读；本组新四路径阅读视图[0,18000)、[18000,36000)、[36000,54000)、[54000,72000)、[72000,81141)全覆盖，包含repeat04新查询产生的不同且不回答书年的全部实际snippets。",
+  "original_outcome":{"actual_final":"1932","adopted_answer":"1932","outcome":"C","decision_file":"ANALYSIS/ORIGINAL_OUTCOME_DECISIONS/SAGE_NEW1000_BATCH03__SAGEN_0161.json","reason":"原实际提交1932，两条件有原E006/E007直接支持。"},
+  "prestate":{"actor_visible":"P保留当前R6[0,975)，已明确Stefan、法文专著名、两事件1932及So the answer should be 1932；此前历史Return没有直接书目或公理年支持。尚未输入E006及其Return，也没有原R7后续。","returned":"此前E001—E005是真实历史，学会/期刊等普通书目结果没有所问书年；当前1932是生成的判断，不是已获直接Return。","extracted":"人物先前已提取；具体书名/年由保留R6知识性判断提出，不能称从普通Return提取。","adopted":"共同1932已在当前保留前缀明确采用，尚待外部验证。","action_updated":"更具体的书目Call尚未执行，这正是U要完成的工作。","prior_logged_not_retained":"当前975字符确实保留，不能与过去Round未保留的Reasoning混为一谈；下一Round仍按原模板不保留旧Reasoning。","evidence":["I_ACCEPT","O_QUERY"]},
+  "original_U":{"full_text_reference":"MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0161.json#/stages/3/items","ranges":[{"json_pointer":"/rounds/5/reasoning_content","round_id":6,"start":975,"end":1238},{"json_pointer":"/tool_events/5","event_id":"E006"},{"json_pointer":"/rounds/6/reasoning_content","round_id":7,"start":0,"end":271}],"goal":"把已经提出的Banach具体书名及1932从待核知识判断变成有直接文档的依据。","operations":"用法文书名和1932真实Search，收到wiki25:116840等直接书目，R7明确采用原书1932及first monograph信息。","output":"专著与1932有直接文档，接下来只剩另一事件年份的直接核查。","judgment_before_after":"已猜定1932但没有书年文档→真实获得并明确采用书年支持。","evidence":["O_QUERY","O_BOOK_RETURN","O_BOOK_USE"]},
+  "original_followup":"原R7后半直接转查Birkhoff年份，E007给1932，R8比较两端后提交。U让书年缺口先闭合，没有在原后续再次查书。",
+  "function_features":"对已采用答案的一端提供直接外部支持，使下一条件可以成为主要待核问题。删除后既要检查是否仍答1932，也要检查书年文档是否恢复；有答案知识不能代替证据功能。",
+  "guide_audit":{"text":"Now I need to find out when George David Birkhoff introduced a new set of postulates for Euclidean geometry.","source_pointer":"/rounds/6/reasoning_content","source_range":[271,379],"derived_token_count":24,"compared_complete_P":true,"status":"ORACLE_ANCHORED","new_entities_or_facts":"Birkhoff与公理条件题面已有，且P已说1932；G没有新增年或书名。","new_action_direction":"明确把下一动作引向Birkhoff，原本这句话是在书目核实后产生；现在即使书年未查实也给了这种任务顺序。方向补偿必须保留，不叫无风险纯删除。","candidate_certainty":"没有新增答案确定性文字，但暗示可从书年工作转走。","full_successor_prefill":false,"limits":"四次首Call都按G先查Birkhoff，再自主回来查书；不能仅据方向一致证明删U造成顺序变化。","evidence":["I_G","I_ACCEPT"]},
+  "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE.json",
+  "rollouts":[
+    {
+      "repeat_id":1,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat01","actual_final":"1932","terminal":"MODEL_FINAL_STOP","adopted_answer":"1932","outcome":"C","outcome_reason":"先验证公理1932，又真实取得书1932并采用，R8实际提交。","outcome_evidence":["N1_RETURN_USE","N1_FINAL"],
+      "work_and_evidence_timeline":"新R6随G查Birkhoff，真实返回1932；R7把书年仍列待核，发法文书名/1932查询，得到原E006同一直接书目；R8引用两份文档、两次文字确认共同年后提交。",
+      "first_judgment_divergence":"原已核书、R7只补公理；新R7仍把书的外部确认作为未完成任务。此前P中的书1932判断并未让模型一直把它当已被文档证明。",
+      "first_actual_tool_divergence":"新R6先查Birkhoff，原R6先查Banach；两项工作顺序交换，并非书核查消失。",
+      "function_correspondence":[{"original":"具体书名/1932查询取得直接书年","new":"新R7实际同目的Query，返回同一Banach书年","evidence":["O_QUERY","O_BOOK_RETURN","N1_BOOK_QUERY"]},{"original":"采用返回作为1932依据","new":"新R8明确引用该文档并配对Birkhoff","evidence":["O_BOOK_USE","N1_RETURN_USE"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"原U的具体取证、直接书年产物及实际采用均恢复，只排在公理核查之后。",
+      "judgment_action_outcome_chain":"已有知识性1932→G先核公理→明确书年仍缺文档→重做定向书目取证→两端依据闭合→正确提交。没有跳过书年证据功能，也没有多一次Search。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE.json#/records/0","cost_work_locations":"647生成、68981Prompt、2Search/0Open/3Actor。原切点后同为2Search和3生成段；新R8较长引用和反复文字核对增加表达，切点在原R6内部只能报告成本表的保守区间，不能按U字数声称节省。",
+      "counterevidence_and_alternatives":"正确与完整重建并存；没有支持该直接证据不需要。G改变工作顺序且新seed/采样不同，无法唯一定义原U的因果作用。"
+    },
+    {
+      "repeat_id":2,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat02","actual_final":"1932","terminal":"MODEL_FINAL_STOP","adopted_answer":"1932","outcome":"C","outcome_reason":"新R6查公理、新R7查书，R8引用两项1932并真实提交。","outcome_evidence":["N2_BOOK_QUERY","N2_FINAL_USE","N2_FINAL"],
+      "work_and_evidence_timeline":"R6先说知识中两年都1932，但仍按G核Birkhoff；R7再次列身份及书年验证，用法文书名＋1932真实检索，得到直接书目；R8各引一份Return并提交。没有独立身份Search，R7重新说身份不能算新增工具。",
+      "first_judgment_divergence":"R6保留答案但先核另一端；R7明说需要核书，说明先前正确猜年没有抹掉外部证据缺口。",
+      "first_actual_tool_divergence":"先公理后书，原先书后公理；各一次，未改变两端取证的必要工作集合。",
+      "function_correspondence":[{"original":"书目真实Search及1932直接Return","new":"R7实际法文书名Query取得该Return","evidence":["O_QUERY","N2_BOOK_QUERY"]},{"original":"明确采用书年","new":"R8说This is confirmed by the snippet并引用wiki25:116840","evidence":["O_BOOK_USE","N2_FINAL_USE"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"目标、操作和证据产物/采用完整恢复；题面重述不是另一个新身份取证。",
+      "judgment_action_outcome_chain":"已猜对1932但仍核公理→书年继续作为独立缺口驱动R7真实查询→直接支持取得→R8配对提交。成本增加主要在更长的起始解释与最终组织，而不是多了一项真实证据目标。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE.json#/records/1","cost_work_locations":"739生成、69055Prompt、2Search/3Actor。与repeat01工具集合相同却生成较长；R6多次should search/Actually等表述实际只发一次Search，不重复计费。",
+      "counterevidence_and_alternatives":"反驳知道答案就一定跳过必要取证；同时不能用较长解释证明取得更多证据。旧Reasoning后继未保留，不能给重新列身份编造记忆原因。"
+    },
+    {
+      "repeat_id":3,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat03","actual_final":"1932","terminal":"MODEL_FINAL_STOP","adopted_answer":"1932","outcome":"C","outcome_reason":"先公理后一次无效书目尝试，再用1932真实取回目标书，R9提交；最终两端证据充分。","outcome_evidence":["N3_GENERIC","N3_EFFECTIVE","N3_ACCEPT","N3_FINAL"],
+      "work_and_evidence_timeline":"R6查Birkhoff成功。R7仍缺书年，却用不带具体书名或1932的泛查询，返回原先四次已见的学会/期刊集，没有直接年份；R8从已验证公理1932和题面同年关系组织查询，将1932真正加入书目Query，得到直接文档；R9明确采用并提交。",
+      "first_judgment_divergence":"P中已有法文书名/1932，但新R7没有用于实际书目Query，重开泛取证；R8才以年转入有效入口。不能以P曾有结论就假定后继持续采用。",
+      "first_actual_tool_divergence":"最早是公理和书顺序互换；额外消耗来自R7普通书目Search，原在该切点后没有这次无效泛查询。",
+      "function_correspondence":[{"original":"以具体线索检索获得书年","new":"R7普通查询失败，R8加入1932后取得相同目标书","evidence":["O_QUERY","N3_GENERIC","N3_EFFECTIVE"]},{"original":"返回后采用1932为书年","new":"R9明确引书目证明1932","evidence":["O_BOOK_USE","N3_ACCEPT"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"证据功能完整重做，前面另加了一次低信息普通尝试；不是仅凭知识答对。",
+      "judgment_action_outcome_chain":"先闭合公理年→书年缺口继续驱动泛查询→旧无年集未闭合→把已得1932用于具体书目取证→取得并采用→提交。多出的计算有明确无进展尝试落点，不泛称所有核验冗余。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE.json#/records/2","cost_work_locations":"812生成、99739Prompt、3Search/4Actor，较原后续多1Search/1生成段。多一次普通Return入历史、后两轮Prompt增长，R9还较长组织答案；成本不全是目标U重建的固定价格。",
+      "counterevidence_and_alternatives":"返回与先前相同不足以证明模型完全没有读；实际可见的是R7未获得书年、R8改变Query才获得。跨Round模板未保留历史Reasoning，不能只归因于候选知识丢失。"
+    },
+    {
+      "repeat_id":4,"task_id":"SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE__repeat04","actual_final":"1932","terminal":"MODEL_FINAL_STOP","adopted_answer":"1932","outcome":"C","outcome_reason":"R7虽使用正确法文题名却没返回书年；R8换Query取得直接1932，R9才正式提交。没有将无效Query本身当证据。","outcome_evidence":["N4_INEFFECTIVE","N4_EFFECTIVE","N4_ACCEPT","N4_FINAL"],
+      "work_and_evidence_timeline":"R6口头说应先核书，但实际仍先查Birkhoff。R7用带引号的法文书名、不带1932查询，返回Functional analysis另一片段、Derivative及无关集合页，不含目标书出版年。R8仍说书年待找，将1932、book、theory linear operations加入Query，拿到Banach直接证据；R9采用后提交。",
+      "first_judgment_divergence":"R6未实际执行口头先核书计划。R7已经选择具体书名却取不到书年，后续没有因已执行书名查询就假称验证完成，而是R8继续补证。",
+      "first_actual_tool_divergence":"先公理后书；相较原定向书目Search，R7具体题名但不同参数导致不同无年Return，额外R8才恢复原证据。",
+      "function_correspondence":[{"original":"定向书目取证成功","new":"R7选对书但未得证，R8更换实际Query后成功取得同文档","evidence":["O_QUERY","O_BOOK_RETURN","N4_INEFFECTIVE","N4_EFFECTIVE"]},{"original":"采用书年并进入整体匹配","new":"R9引用取得的Banach1932并与公理比对","evidence":["O_BOOK_USE","N4_ACCEPT"]}],
+      "function_recovery":"FULL_REBUILT","function_recovery_reason":"原直接书年查询/产物/采用全部恢复，期间还有一次真实不同但失败的定向尝试。",
+      "judgment_action_outcome_chain":"G先导向公理→书年仍缺直接支持→具体题名查询也未取得所需事实→不把尝试等同成功，重新选择含年英文入口→证据闭合后提交。与repeat03同样增加一轮，但失败入口不同，不能把两者都叫泛词重复。",
+      "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0161__S004__FIRST_SENTENCE.json#/records/3","cost_work_locations":"812生成、102802Prompt、3Search/4Actor。与repeat03生成总量相同但Prompt更高，因R7返回不同内容体量；多一次失败书名请求及更长返回历史是可定位增量，不用相同生成总数推断同机制。",
+      "counterevidence_and_alternatives":"这是正确题名已进入Query却未成功获取证据的反例：不能仅以实际采用题名就保证取证成功，需继续核返回及后续采用。没有证据断言为什么检索规则给这些结果，保留为真实检索反馈。"
+    }
+  ],
+  "four_run_comparison":"四次都先查G指定的Birkhoff，再自主回来查被删的Banach书年，全部恢复直接证据并正确提交。前两次一查即得，后两次各多一次无年返回；其中一次泛查询、一次正确法文题名查询，两者不能强行归为同类重复。四次没有任何一条只靠P知识年或G直接跳过书证据。相同C包含2Search和3Search两种路线，且后两条同生成812而Prompt不同。",
+  "conditional_mechanism_proposals":[{"proposal":"某端事实在P中只是已接受的知识判断，删除直接取证后，即使另一端已验证，原端仍可能被后继重新列为缺口并真实补证。工作顺序改变但证据功能没有省掉。","support_scope":"本Stage四次，仅一道题；G主动先导向另一端，必须保留提示因素。","counterevidence":"不能把该结论外推成所有已知答案都需要重查；本组没有跳过证据的路径。"},{"proposal":"取证对象已正确不等于所需证据已返回。真实Query与返回之间若未闭合缺口，后继可能需换入口增加成本；是否把所得结果用于闭合而非是否提了正确名字，才是下一步可观察的差异。","support_scope":"repeat03/04相对repeat01/02，四次内部对照；未形成跨题统计。","not_established":"无法仅据这组分离G、采样和检索词选择的因果份额。"}],
+  "counterevidence_and_limits":"所有路径FULL_REBUILT与C并存，没有严格功能跳过证据；也不是结果相同就成本相同。G带行动方向但没带新年份，事实与方向泄漏分别记录。原R6@975的部分生成无原生IDs，成本表只报保守区间；原T0.7/k20与指定续跑T1/k0及新seed等差异，不允许把每个变化都归因U。",
+  "evidence":[
+    {"evidence_id":"I_ACCEPT","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":6,"event_type":"retained_current_reasoning","json_pointer":"/current_reasoning_prefix","exact_quote":"So the answer should be 1932."},
+    {"evidence_id":"I_G","source_ref":"I","source_side":"GUIDE","round_id":6,"event_type":"teacher_prefill","json_pointer":"/anchor_text","exact_quote":"Now I need to find out when George David Birkhoff introduced a new set of postulates for Euclidean geometry."},
+    {"evidence_id":"O_QUERY","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":6,"event_type":"actual_tool_call","json_pointer":"/tool_events/5/arguments/query","exact_quote":"Stefan Banach Théorie des opérations linéaires publication year 1932"},
+    {"evidence_id":"O_BOOK_RETURN","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":6,"event_type":"actual_tool_return","json_pointer":"/tool_events/5/observation/results/0/snippet","exact_quote":"His major work was the 1932 book","doc_ids":["wiki25:116840"]},
+    {"evidence_id":"O_BOOK_USE","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":7,"event_type":"reasoning","json_pointer":"/rounds/6/reasoning_content","exact_quote":"His major work is the 1932 book \"Théorie des opérations linéaires\" (Theory of Linear Operations)"},
+    {"evidence_id":"N1_BOOK_QUERY","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":7,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"Stefan Banach Théorie des opérations linéaires 1932 publication year monograph","call_id":"recovered_call_1"},
+    {"evidence_id":"N1_RETURN_USE","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":8,"event_type":"reasoning","json_pointer":"/rounds/2/reasoning_content","exact_quote":"Both confirm 1932."},
+    {"evidence_id":"N1_FINAL","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":8,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"1932"},
+    {"evidence_id":"N2_BOOK_QUERY","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":7,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"Stefan Banach Théorie des opérations linéaires 1932","call_id":"recovered_call_1"},
+    {"evidence_id":"N2_FINAL_USE","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":8,"event_type":"reasoning","json_pointer":"/rounds/2/reasoning_content","exact_quote":"This is confirmed by the snippet from \"Stefan Banach\" (doc_id: wiki25:116840)"},
+    {"evidence_id":"N2_FINAL","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":8,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"1932"},
+    {"evidence_id":"N3_GENERIC","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":7,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"Stefan Banach seminal monograph functional analysis normed vector spaces publication year","call_id":"recovered_call_1"},
+    {"evidence_id":"N3_EFFECTIVE","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":8,"event_type":"actual_tool_call","json_pointer":"/tool_events/2/arguments/query","exact_quote":"Stefan Banach seminal monograph publication year 1932","call_id":"recovered_call_1"},
+    {"evidence_id":"N3_ACCEPT","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/3/reasoning_content","exact_quote":"This is confirmed in the search result for \"Stefan Banach\" (doc_id: wiki25:116840)"},
+    {"evidence_id":"N3_FINAL","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":9,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"1932"},
+    {"evidence_id":"N4_INEFFECTIVE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":7,"event_type":"actual_tool_call","json_pointer":"/tool_events/1/arguments/query","exact_quote":"Stefan Banach monograph \"Théorie des opérations linéaires\" publication year","call_id":"recovered_call_1"},
+    {"evidence_id":"N4_EFFECTIVE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":8,"event_type":"actual_tool_call","json_pointer":"/tool_events/2/arguments/query","exact_quote":"Stefan Banach seminal monograph 1932 book theory linear operations","call_id":"recovered_call_1"},
+    {"evidence_id":"N4_ACCEPT","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":9,"event_type":"reasoning","json_pointer":"/rounds/3/reasoning_content","exact_quote":"Both events occurred in 1932."},
+    {"evidence_id":"N4_FINAL","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":9,"event_type":"formal_final","json_pointer":"/final_answer","exact_quote":"1932"}
+  ],
+  "reviewer":"Codex model","review_status":"CODEX_MODEL_REVIEW_COMPLETE","human_gold_claimed":false
+}

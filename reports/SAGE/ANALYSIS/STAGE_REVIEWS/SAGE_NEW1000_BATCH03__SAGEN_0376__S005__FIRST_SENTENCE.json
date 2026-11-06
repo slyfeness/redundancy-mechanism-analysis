@@ -1,0 +1,453 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0376",
+  "stage_id": "S005",
+  "sample_order": 38,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "In what year did the Parisian institution, which was initially named 'École centrale des travaux publics' and later hosted Joseph Louis Gay-Lussac, a chemist and physicist from Saint-Léonard-de-Noblat, as a demonstrator, adopt its official motto under Emperor Napoléon Bonaparte?",
+    "gold": [
+      "1805"
+    ],
+    "gold_source": "冻结Gold仅离线。"
+  },
+  "original_outcome": {
+    "actual_final": "1805",
+    "adopted_answer": "1805",
+    "outcome": "C",
+    "reason": "Submit正确授校训年。",
+    "evidence": [
+      "O_FINAL",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6@1096，当前推理已明确旧校名与Polytechnique同一，引用645742完整1805授校训句并说答案应1805。6578399校名证据、184336任职截断片段和645742搜索返回在真实历史；不能将旧日志Reasoning一概当P。",
+    "evidence_states": "主体和年份已返回、提取、采用，尚未正式提交。U只是再开文档，不是首次解决日期。",
+    "evidence": [
+      "O_P",
+      "O_NAME",
+      "O_DATE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 1096,
+        "end": 1184
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 544
+      }
+    ],
+    "goal": "打开同源文档确认已知日期。",
+    "operations": "R6真实Open645742 limit100 offset0；返回只到早期校刊，尚未到授校训。R7直接反馈说片段截断，同时重引原搜索中完整1805句。",
+    "product": "没有取得比旧搜索更完整的目标日期证据；重申已知1805和扩大读取需要。",
+    "judgment_change": "查询对象和答案不变；短Open未覆盖目标句被解释为需继续打开。",
+    "evidence": [
+      "O_U",
+      "O_OPEN"
+    ]
+  },
+  "original_followup": {
+    "use": "S006再次对应学校/Gay/日期；S007把窗口扩大500真正读到1805；S008整合并Submit。",
+    "evidence": [
+      "O_NEXT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已知答案后的同源读取确认及读取不足反馈。",
+    "state_relation": "四条都恢复打开和不足处理，年份保持；短窗口有10/20/100，后续或改Search、或多次递增小窗口，改变的是确认路径和消耗，不是最终年份。",
+    "evidence": [
+      "N1_J",
+      "N2_WRONG",
+      "N3_J",
+      "N4_FEEDBACK"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "However, the question asks about the \"École centrale des travaux publics\" which was initially named that and later became the École polytechnique.",
+    "source_position": "原R7[544,690)，29派生Token。",
+    "novelty": "携带旧校名=Polytechnique关系，但在实际当前P已明确采用，非首次引入；有重提身份核对的行动方向。",
+    "risk": "ORACLE_ANCHORED；不能因为关系已知就忽略注意方向补偿。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "真实Submit1805。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6已知日期仍Open100，与原U相同；R7反馈未完整返回并再比三条件，Open200仍未见日期；R8继续称不足、反复引用旧完整日期，最终实际Search学校+英文校训+year；返回645742旧目标句及Peyrard/工程教育/校训列表等新背景，R9重比条件Submit。",
+      "first_judgment_divergence": "原直接扩大500，新只扩大200后改Search；已知1805没有变化，不足反馈选择了另一确认方式。",
+      "first_actual_tool_divergence": "第一Open100相同，第二500变200，后再增Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "Open确认及反馈",
+          "original_operation": "Open100、解释不完整并引用旧句",
+          "original_product": "年份保持、需再核",
+          "new_goal": "同",
+          "new_operation": "同Open100/直接反馈，再Open200及Search",
+          "new_product": "U完整恢复，补查仍使用旧日期支持",
+          "evidence": [
+            "O_U",
+            "O_OPEN",
+            "N1_J",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原同窗口及不足反馈真实重现。",
+      "judgment_action_outcome_chain": "答案已采用→短Open无目标句→再短Open仍不足→改搜索重获旧句→C，多一次真实检索与复盘。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1870生成84729Prompt4Actor1Search2Open1Submit；原1195..1561生成，差[309,675]至少多309。原0Search2Open，新多Search和一Actor；R8长篇确认与新增检索为增量。P20100/G29。",
+      "counterevidence_and_alternatives": "原U也未提供日期新证据，四C不能证明额外读取必要，更不能把全差值归于U篇幅。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "身份误判后恢复正确学校，正式Submit1805。",
+      "outcome_evidence": [
+        "N2_FIX",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6 Open10只有The school；R7把Polytechnique误称另一机构、否定日期证据适用，Search带引号旧校名motto，Return与原E5相同含6578399明确同一性；R8仍一度坚持different school/原名另属，再回读该句修正为同校，转Search Gay répétiteur。Return184336同截断句、Despretz/Frémy等背景；R9完整比较，采用旧1805句Submit。",
+      "first_judgment_divergence": "R7由短Open不足转为无新证据的学校身份否定，使本可用于答案的日期被暂时排除适用范围。",
+      "first_actual_tool_divergence": "Open100改10，随后身份Search及GaySearch，未进行原后继Open500。",
+      "function_correspondence": [
+        {
+          "original_goal": "同源读取及不足解释",
+          "original_operation": "Open100、回引旧日期",
+          "original_product": "保持正确学校和日期",
+          "new_goal": "确认同源后重查身份/任职",
+          "new_operation": "Open10、反馈→错误拆分主体→两Search→采用旧名纠正",
+          "new_product": "读取与反馈恢复但窗口更短；学校判断先失真再恢复，最终同C",
+          "evidence": [
+            "O_U",
+            "N2_WRONG",
+            "N2_FIX",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U只短读取及反馈、不包含长窗取证，实际已恢复此工作；后续新认知错误单独记录，不把最终C掩盖中间偏差。",
+      "judgment_action_outcome_chain": "正确关系已P→极短Open→错误认定不同学校→旧名Search再得同一性仍反复疑虑→角色Search→采用正确关系和旧日期→C且额外两Search。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1771生成92562Prompt4Actor2Search1Open1Submit；差[210,576]至少多210。少1Open却多2Search及身份争论，净工具结构改变；P20100/G29。",
+      "counterevidence_and_alternatives": "Gay新片段仍截断；Despretz任职不能直接代替Gay本人1804任职证据。G本来提示同一性也没有阻止误判。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "正式Submit正确年份。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6 Open20只返回The school was place；R7识别窗口不足，引用完整旧1805及学校关系并Search旧名motto1805Napoleon，结果Bocourt/Luxembourg/古籍等无目标授校训句；R8重新以旧645742/6578399对应学校和年份，多次确认后Submit，无Open500。",
+      "first_judgment_divergence": "将同一学校原名时期是否另有日期当待核，但最终用旧关系排除该歧义，没有新年份。",
+      "first_actual_tool_divergence": "Open100改20，原后继Open500换成一次没有返回目标日期的Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "短Open确认和反馈",
+          "original_operation": "Open100并回引旧日期",
+          "original_product": "未获新日期、保留原答案",
+          "new_goal": "同兼核原名时期",
+          "new_operation": "Open20/不足反馈、改Search后用旧证据判断",
+          "new_product": "同认知产物，日期没有新支持",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际同文档短读取和直接反馈恢复，后继长窗未恢复不属于U范围。",
+      "judgment_action_outcome_chain": "已知年→过短Open→原名日期疑问派发Search→无关结果未改变候选→重新采用旧句→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "1412生成64572Prompt3Actor1Search1Open1Submit；差[-149,217]不能确认生成增减。较原少1Open多1Search，Actor相同，补查路径替代不等于功能消失。P20100/G29。",
+      "counterevidence_and_alternatives": "新Search失败而答对，证据在P已经足够支持日期；不能由此普遍断言原名条件无需核查。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1805",
+      "adopted_answer": "1805",
+      "outcome": "C",
+      "outcome_reason": "真实Submit1805。",
+      "outcome_evidence": [
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6已明确1805却Open20；R7不足反馈→Open30；R8 Search旧名motto Pour la patrie year，返回d'Arçon及泛法文等无目标日期；R9恢复旧完整句仍Open50；R10/11同不足理由Open100/200；R12再次Search旧名mottoNapoleon1805，返回与r3同批无关材料；R13完整三条件比较后以旧1805Submit。全部8轮及真实Return已读。",
+      "first_judgment_divergence": "年份始终已知，不断把自己请求的小窗口解释为文档未完整加载，使同一个确认要求继续派发读取/搜索。",
+      "first_actual_tool_divergence": "原Open100→500，新20→30→Search→50→100→200→Search；所有窗口offset0始终未覆盖日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认旧日期及读取反馈",
+          "original_operation": "Open100、需继续读",
+          "original_product": "已知1805+读取不足",
+          "new_goal": "同多次重启",
+          "new_operation": "5次不足窗口和2次Search，最终旧材料接受",
+          "new_product": "U功能恢复但读窗任务反复；没有取得原后继500字日期窗口",
+          "evidence": [
+            "O_U",
+            "N4_FEEDBACK",
+            "N4_OPEN",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原短Open/不足反馈多次恢复，不能将其误判成原长窗证据功能。",
+      "judgment_action_outcome_chain": "P已正确→窗口设置不足→当作未加载完整→逐步仍不足窗口/新Search→缺口一直被重提→最终用早已见日期提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2057生成192182Prompt8Actor2Search5Open1Submit；差[496,862]至少多496，较原多2Search3Open5Actor；重放多轮历史造成Prompt显增，不能只看生成Token小增。P20100/G29。",
+      "counterevidence_and_alternatives": "不是完全相同Query循环，也没有年份候选变化；可见触发理由是读取不完整而未实质扩大足够窗口。没有证据将错误归为服务失效：实际limit对应返回字符数正常。"
+    }
+  ],
+  "four_run_comparison": "四C且短读取/反馈均恢复；r1同Open100起步，r2/3/4缩到10/20。r2主体错误后恢复，r4五次短窗读同文档并加两Search，所有Final仍依赖旧搜索日期。相同正确率掩盖身份纠错和读取策略差异。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当P已明确采用答案，同源再次读取的价值受窗口是否覆盖目标句影响。读取不足没有改变答案，却可以继续生成确认任务：若模型把小limit造成的正常截断当文档未加载，下一行动仍选不足窗口或另Search，成本累积而日期状态不进展。另一条中错误拆分学校身份暂时使已有日期被认为不适用，旧同一性证据重新被采用后恢复正确答案。",
+      "support_evidence": [
+        "O_P",
+        "N2_WRONG",
+        "N2_FIX",
+        "N4_FEEDBACK",
+        "N4_OPEN"
+      ],
+      "limit": "这两条为同题不同续跑，不能计为两道跨题支持；四次全C不证明读取无用或U因果必要。"
+    }
+  ],
+  "counterevidence_and_limits": "完整四路111385字符顺序阅读并核对实际Return。原Open的limit按字符窗口，短返回不是工具服务错误；全文计划与真实Call分开。G重提同一性但非新事实。派生切点原生成1195..1561保守区间，独立节省不加总。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the answer should be 1805."
+    },
+    {
+      "evidence_id": "O_NAME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "École Polytechnique (first known as \"École centrale des travaux publics\").",
+      "doc_ids": [
+        "wiki25:6578399"
+      ]
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/3/observation/results/3/snippet",
+      "exact_quote": "In 1805, Emperor Napoléon I transferred the school",
+      "doc_ids": [
+        "wiki25:645742"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "the snippet provided in the search result was truncated."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/5/arguments/doc_id",
+      "exact_quote": "wiki25:645742"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "So the institution in question is the École Polytechnique"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "However, the question asks about the \"École centrale des travaux publics\" which was initially named that and later became the École polytechnique."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The previous open call didn't seem to return the full text properly"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N2_WRONG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "which is a different institution (though related in history)."
+    },
+    {
+      "evidence_id": "N2_FIX",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "This confirms that the École Polytechnique was first known as the École centrale des travaux publics."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Yes, they are the same institution."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    },
+    {
+      "evidence_id": "N4_FEEDBACK",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The previous open calls seem to be truncated or not returning the full text."
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/5/arguments/doc_id",
+      "exact_quote": "wiki25:645742",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1805"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0376/trajectory.json",
+      "source_sha256": "785322fe80b9e62b2b47426e5ef4667681ca84a4f7f05b6f132ad59113032200"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0376.json",
+      "source_sha256": "fe1bd6d78eb7bbe4700be16751354353884175bcd6f330ec39a27a1f09c852bd"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "d709fcf5686304aaec42b48d34134e0a0a2dfad0b5a761f5c0c625e20ccec8ed"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3503f1748f76d7aaed9dde1249174771c8f57dcc72d014708c19348cd05ed207"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "052abd62904d478fa3b0738d933affb1405a2952853214ac9ca7be5d6ad3a585"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "1b4e7324f27788dbd34ee34da070d7667f291ef7520a08bda891a42315fbc4ed"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0376__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "29daff724a4beb585390ba6136688d2f7934441fd893d4891616e5ad7edd86fd"
+    }
+  }
+}

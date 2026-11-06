@@ -1,0 +1,152 @@
+{
+  "case_id":"34__step2__S001",
+  "category":"A",
+  "trajectory_id":"34__step2",
+  "stage_id":"S001",
+  "main_problem_id":"34",
+  "official_subproblem_id":"34.2",
+  "intervention":"FIRST_SENTENCE",
+  "review_status":"COMPLETE",
+  "evidence_index":"RESOLVED_EVIDENCE.json",
+  "objective_cost_table":"OBJECTIVE_COSTS.json",
+  "sources":{
+    "original_read":"34__step2两个子题完整原文与Call/Return已于S003/S004/S005读取。本次重新核对34.1完整U和测试/提交Z，以及目标34.2实际调用Fermi、求和内建势、测试值及提交。",
+    "new_read":"四条完整25轮/25Call及全部Return逐一阅读：1/3各4轮，2为7轮，4为10轮；核对测试版本和最终submit参数，不以最后‘working correctly’文字代替代码比较。",
+    "input_read":"34.1 R1@0，当前draft空、无前题代码。G源R2[40,109)，13Token。完整原INPUT四份保存；不把后题评分对象误写为被删U所在前题。"
+  },
+  "original":{
+    "pre_state":"题面已直接给0.0259和两条正对数公式，P未实现Fermi，尚未保存或验证任何候选。",
+    "U_goal":"把p/n侧相对于本征能级的正偏差按既定返回顺序实现为Fermi。",
+    "U_operations":"对应N_a和N_d，写两条0.0259*log(N/n_i)，返回(phi_p,phi_n)，write637字符候选；U末尾含ACCEPTED直接反馈，测试意向未被当成已执行。",
+    "U_product":"d4f28c76...首个正确Fermi实现。",
+    "judgment_before_after":"把题面关系变为明确的两个正偏差及其接口顺序，进入可实际调用状态。",
+    "original_suffix_use":"34.1真实run得到0.4174587和0.2981848并通过正值断言，同SHA提交。34.2实际调用Fermi并将两个正偏差求和为总内建势，按电中性分宽，真实测试后C。",
+    "evidence":["O_FORMULA","O_WRITE","O_TEST","O_USE","O_TARGET_TEST"]
+  },
+  "guide_audit":{
+    "G":"Let me run a quick test to verify the implementation works correctly.",
+    "P_relation":"P没有实现，G提示测试已有实现；没有提供费米公式或正负号。1/2/3首实际动作仍是write，只有4首run被空draft拒，不能把G出现等同4条都执行测试。",
+    "novelty":"行动方向和实现可测的承接预设，不含新实体/新科学事实。",
+    "risk":"ORACLE_ANCHORED，G测试意向不当自主行为；四条续跑仍受独立seed及后题独立重新推导影响。",
+    "evidence":["I_G","N1_FIRST","N2_FIRST","N3_FIRST","N4_GATE"],
+    "uncertainty":"没有无引导对照，不能把前题测试取舍或后题W唯一归因G或U删除。"
+  },
+  "rollouts":[
+    {
+      "branch_id":"34__step2__S001__FIRST_SENTENCE__rep1",
+      "official_state":"C",
+      "first_material_divergence":"重新正确write Fermi后直接submit，没有执行语言中计划的测试；后题也write后直接submit。",
+      "work_reconstruction":{
+        "goal":"重建两侧费米偏差。",
+        "operation":"从题面重写Fermi→submit；后题用等价合并对数式内联总势并实现电中性宽度。",
+        "product":"Fermi c8f166f1...正确；depletion1278fac5...使用log(N_a*N_d/n_i²)和正确分宽，C。",
+        "assessment":"FULL_REBUILT核心计算/保存/提交，原后续两项实际测试未再执行。"
+      },
+      "judgment_change":"保留两个正偏差的数学解释，在后题将其和化为一个对数，未实调用前题函数；ACCEPTED后即提交而非实际验证。",
+      "action_chain":"重新实现正确Fermi→直接接受→后题恢复总势与电中性关系→直接提交C。",
+      "result_explanation":"答案保持由主体工作重建和等价后题实现解释，不能说首次Fermi实现消失；减少的是原后续真实测试与说明。",
+      "cost_localization":"2692生成对原3525少833，G13后少820；Prompt6615对11879少5264；4Actor/工具对6少2，0run对2。两个子题均免测试，各少一轮/Call是明确节省落点；质量证据也少，非同量验证更省。",
+      "evidence":["N1_FIRST","N1_TARGET","N1_FINAL"],
+      "counterevidence":"没有成功测试不能叫已验证，但正确数学/代码确实恢复；原函数并未被跳过。",
+      "unknowns":"未额外执行评测，保留封存C；实现不同浮点组合全域等价性不由有限旧分数证明。"
+    },
+    {
+      "branch_id":"34__step2__S001__FIRST_SENTENCE__rep2",
+      "official_state":"C",
+      "first_material_divergence":"首轮Reasoning仅空白但实际structured write正确Fermi，接着合法code导入真测；后题一度把电中性比例倒置，实际write前自行纠正。",
+      "work_reconstruction":{
+        "goal":"完整重建Fermi及测试。",
+        "operation":"write→真实测两个对数值→submit；后题推导总势求和与正确分宽→write→depletion模块拒→read→submit同SHA。",
+        "product":"前题7ca06bb1...，0.4174587/0.2981848真实返回；后题0d6d8e6c...使用求和，q1.6e-19，旧评分C。",
+        "assessment":"FULL_REBUILT核心工作，原后题真实测试未恢复，仅模块拒和read。"
+      },
+      "judgment_change":"前题接口含义正确；后题比例错误在实际代码前纠正。模块拒被误说候选import问题，但read后未改数学或导入，接受同候选。",
+      "action_chain":"正确恢复前题→真实反馈→后题自行纠正比例→入口失败→read确认仍同式→提交C。",
+      "result_explanation":"C不等于每句推导都正确，需看错误是否进入代码；这一条比例错误未进入，且两正偏差求和保持。",
+      "cost_localization":"3386生成少139，G13后少126；Prompt13294增加1415；7Actor/工具多1，run2与原相等但只有前题真实成功。后题模块失败+read替代原一次成功测试、增加一轮，较短最终实现解释降低生成；不能统称全部资源下降。",
+      "evidence":["N2_FIRST","N2_TEST","N2_CORRECTION","N2_ROOT","N2_READ","N2_FINAL"],
+      "counterevidence":"数学纠正真实发生，但其来源是后题重新推导，不是前题U独有新证据；旧C容忍q取1.6与1.602差异，不扩大精度结论。",
+      "unknowns":"没有完整官方数值容差分析，不解释旧C的细节原因。"
+    },
+    {
+      "branch_id":"34__step2__S001__FIRST_SENTENCE__rep3",
+      "official_state":"C",
+      "first_material_divergence":"简短确认题面两条公式，实际首write而非所说test，之后直接submit；后题也不测试。",
+      "work_reconstruction":{
+        "goal":"恢复正确p/n偏差及接口。",
+        "operation":"write正确Fermi→submit；后题显式说明phi_p+phi_n与合并对数等价、内联公式并电中性分宽→submit。",
+        "product":"前题a52025ad...、目标4a9c1619...，主体数学和输出均恢复，C。",
+        "assessment":"FULL_REBUILT实现/提交，验证动作未恢复。"
+      },
+      "judgment_change":"采用前题相同正偏差，在后题明确求和，没有将p侧正偏差误当带符号费米坐标。",
+      "action_chain":"由现成题面公式重写→接受保存候选→后题合并对数和分宽→无实际test提交C。",
+      "result_explanation":"四条中较短正确路径，必要功能重建，后续验证和篇幅压缩；不是原推理完全无作用。",
+      "cost_localization":"2206生成少1319，G13后少1306；Prompt6751少5128；4Actor/工具少2，0run。明确少掉前题正值断言与后题数值/电中性检查，也少重复包含整份Fermi代码的后题候选。",
+      "evidence":["N3_FIRST","N3_SUM","N3_FINAL"],
+      "counterevidence":"保持C不证明删掉测试对所有题无害；rep4即有真实异常且修复没持续。",
+      "unknowns":"算法重建和后题重新采样不可拆成单独因果效应。"
+    },
+    {
+      "branch_id":"34__step2__S001__FIRST_SENTENCE__rep4",
+      "official_state":"W",
+      "first_material_divergence":"前题先测试被空draft拒，补正确Fermi后真测并正确提交；实质答案分歧始于后题R1把两个已定义正偏差当作带符号坐标相减。",
+      "work_reconstruction":{
+        "goal":"前题两侧费米偏差恢复。",
+        "operation":"run拒→write正确Fermi→inline真测→正确submit；后题先错用差并真测NaN→再真测追查负势→改成正确合并对数/保存/真测有限且电荷平衡→最终submit回旧差值版本。",
+        "product":"原U目标/数学/保存均恢复，前题6faff09e...；目标最终6c33e11...是已被NaN反驳的差值式，修正1171f5e...没进入最终提交，旧评分W。",
+        "assessment":"FULL_REBUILT原U功能；后题独立的关系误读及提交回退导致W，不是Fermi没重建。"
+      },
+      "judgment_change":"模型明知phi_p/phi_n均正仍把phi_i认成phi_n-phi_p。负值反馈之后确实恢复求和等价式并获得正常宽度，但‘working correctly’后的实际submit代码却回到旧错SHA，修复判断没有持续约束提交内容。",
+      "action_chain":"正确Fermi输出→错误角色/符号解释→负总势与NaN→真实诊断→正确公式保存且测通过→提交参数恢复旧错误公式→W。",
+      "result_explanation":"直接错误落点可定位为目标R6实际提交旧版本；删U是否造成后题误读或版本回退未被独立证明。不能把W解释为前题公式缺失，也不能因为曾修复就称问题消除。",
+      "cost_localization":"4514生成比3525多989，G13后多1002；Prompt23346多11467；10Actor/工具多4，run5。前题多一次门控；后题比原多两次异常追查/正确改写及再测，最终仍把坏版提交，修复计算没有保留到产物。",
+      "evidence":["N4_GATE","N4_FERMI_TEST","N4_FIRST_WRONG","N4_NAN","N4_NEGATIVE","N4_FIX","N4_FIXED_TEST","N4_SUBMIT_WRONG","N4_FINAL"],
+      "counterevidence":"原U被完整重建且后题也曾真实修复，反驳‘没恢复原工作所以答错’；同一官方W不排除某些输入碰巧数值有限，不能泛化所有情况NaN。",
+      "unknowns":"日志不解释为何最后挑了旧版内容；只能说行为事实，不猜隐藏记忆/注意力故障或断言U因果必要。"
+    }
+  ],
+  "cross_rollout_comparison":{
+    "same_changes":"4条均完整重建正确Fermi，目标3C1W；两条没有任一实际test，两条至少成功测前题。",
+    "different_paths_same_result":"3C中1/3内联同一合并对数且0test、2先比例自纠后sum式并入口失败/read；W前题也正确，后题误读符号、真修复后提交回退。",
+    "mechanism_strength":"要区分‘关系已正确实现’、‘后题按正确角色使用’和‘修复留在最终提交’三环。原功能恢复不保证后题使用无误；成功测试的判定也不能替代最终提交SHA检查。",
+    "counterexamples":"4条原U都恢复而1W，非工作重建二分能解释；1/3更省但少验证，2生成少而Prompt/Actor多；不将A类合成单一冗余机制。"
+  },
+  "stage_function":"把题面两侧正费米偏差落实为可调用、按固定顺序返回的首个Fermi实现，供后题计算总内建势。",
+  "candidate_mechanism_chain":"P有公式无实现→U建立两个正偏差及接口→删后4条都重新实现→后题3条使用求和等价关系，1条重新误读角色而相减→负值反馈促成正确修复与真实验证，却未持续到实际submit→目标3C1W且成本分化。实现功能可重建但关系使用和提交版本仍是独立可失败环节；省成本的两条主要免去后续测试，并非免去必要数学。",
+  "limits":[
+    "1Stage/1主问题/1原轨迹/4续跑，同题已审核S003/S004/S005不额外算不同题。",
+    "G13预填一次；P首重放1305单列；ORACLE_ANCHORED。",
+    "RECONSTRUCTED_CHAR_EXACT，原记录3525窗口虽char0也不冒充native token精确节省；四分支不可加总。",
+    "评价对象34.2而U在34.1；原后题确实调用Fermi，新后题均内联公式，不能只凭前题C或结果频率判唯一作用。",
+    "不更改既有C/W，不运行新测试；read/write通过安全验证不等于数值证明。"
+  ],
+  "evidence_specs":[
+    {"id":"O_FORMULA","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/0/reasoning_content","exact_quote":"φ_p = kT · ln(N_a/n_i)"},
+    {"id":"O_WRITE","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"phi_p = kT * np.log(N_a / n_i)\n    phi_n = kT * np.log(N_d / n_i)"},
+    {"id":"O_TEST","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"phi_p: 0.4174586773598205\nphi_n: 0.29818476954272893\nTest passed!"},
+    {"id":"O_USE","source_key":"ORIGINAL","json_pointer":"/steps/1/submitted_code","exact_quote":"phi_p, phi_n = Fermi(N_a, N_d, n_i)\n    phi_i = phi_p + phi_n"},
+    {"id":"O_TARGET_TEST","source_key":"ORIGINAL","json_pointer":"/steps/1/tool_events/1/model_visible_return/stdout","exact_quote":"xn (n-side depletion width): 9.572692185158561e-05"},
+    {"id":"I_G","source_key":"G1","json_pointer":"/G","exact_quote":"Let me run a quick test to verify the implementation works correctly."},
+    {"id":"N1_FIRST","source_key":"NEW1","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"return phi_p, phi_n"},
+    {"id":"N1_TARGET","source_key":"NEW1","json_pointer":"/steps/1/submitted_code","exact_quote":"phi_i = kT * np.log(N_a * N_d / n_i**2)"},
+    {"id":"N1_FINAL","source_key":"NEW1","json_pointer":"/formal_target_submission_sha256","exact_quote":"1278fac56b84726fb33374c2116090bea1e8bf809c12903e78a781eb805194f4"},
+    {"id":"N2_FIRST","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"return phi_p, phi_n"},
+    {"id":"N2_TEST","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"phi_p: 0.4174586773598205 V\nphi_n: 0.29818476954272893 V"},
+    {"id":"N2_CORRECTION","source_key":"NEW2","json_pointer":"/steps/1/rounds/0/reasoning_content","exact_quote":"This means $x_p = \\frac{N_d}{N_a} \\cdot x_n$."},
+    {"id":"N2_ROOT","source_key":"NEW2","json_pointer":"/steps/1/tool_events/1/model_visible_return/validation/root","exact_quote":"depletion"},
+    {"id":"N2_READ","source_key":"NEW2","json_pointer":"/steps/1/tool_events/2/model_visible_return/code_sha256","exact_quote":"0d6d8e6cbff4927b11b5803681adf27fe1a1fc41ecfe8030900847be9226709c"},
+    {"id":"N2_FINAL","source_key":"NEW2","json_pointer":"/formal_target_submission_sha256","exact_quote":"0d6d8e6cbff4927b11b5803681adf27fe1a1fc41ecfe8030900847be9226709c"},
+    {"id":"N3_FIRST","source_key":"NEW3","json_pointer":"/steps/0/tool_events/0/arguments/code","exact_quote":"return phi_p, phi_n"},
+    {"id":"N3_SUM","source_key":"NEW3","json_pointer":"/steps/1/submitted_code","exact_quote":"phi_i = kT * np.log((N_a * N_d) / (n_i ** 2))"},
+    {"id":"N3_FINAL","source_key":"NEW3","json_pointer":"/formal_target_submission_sha256","exact_quote":"4a9c161937f43f38b7365028e872627e08b09b209bb0c7675caa051535bd55f7"},
+    {"id":"N4_GATE","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N4_FERMI_TEST","source_key":"NEW4","json_pointer":"/steps/0/tool_events/2/model_visible_return/stdout","exact_quote":"phi_p = 0.4174586773598205\nphi_n = 0.29818476954272893"},
+    {"id":"N4_FIRST_WRONG","source_key":"NEW4","json_pointer":"/steps/1/rounds/0/reasoning_content","exact_quote":"The built-in potential $\\phi_i$ should be the difference between these two"},
+    {"id":"N4_NAN","source_key":"NEW4","json_pointer":"/steps/1/tool_events/1/model_visible_return/stdout","exact_quote":"Total depletion width: nan cm"},
+    {"id":"N4_NEGATIVE","source_key":"NEW4","json_pointer":"/steps/1/tool_events/2/model_visible_return/stdout","exact_quote":"phi_i: -0.11927390781709157\nW: nan"},
+    {"id":"N4_FIX","source_key":"NEW4","json_pointer":"/steps/1/tool_events/3/arguments/code","exact_quote":"phi_i = kT * np.log((N_a * N_d) / (n_i ** 2))"},
+    {"id":"N4_FIXED_TEST","source_key":"NEW4","json_pointer":"/steps/1/tool_events/4/model_visible_return/stdout","exact_quote":"Total depletion width: 9.668419107010147e-05 cm"},
+    {"id":"N4_SUBMIT_WRONG","source_key":"NEW4","json_pointer":"/steps/1/tool_events/5/arguments/code","exact_quote":"phi_i = phi_n - phi_p  # Built-in potential (total voltage drop)"},
+    {"id":"N4_FINAL","source_key":"NEW4","json_pointer":"/formal_target_submission_sha256","exact_quote":"6c33e11efe9cc00df7e0dc7ed1efa5fa0ccd2250d9a5ed832132296229d391bd"}
+  ]
+}

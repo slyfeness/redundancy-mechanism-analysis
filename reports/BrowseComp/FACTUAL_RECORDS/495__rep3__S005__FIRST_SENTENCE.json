@@ -1,0 +1,39 @@
+{
+ "case_id":"495__rep3__S005__FIRST_SENTENCE","question_id":"495","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"W"},"basis":"原正式2015,Gutierrez W；new4正式2015,Aquino W；new1虽已进入content但在半句截断GENERATION_LENGTH_STOP，不能算有效Final。new2/3同长度N。"},
+ "review_basis":"原完整单轮34500字符/Final已读；四新全部Reasoning9456/10534/11359/4374字符与partial content/正式content全文已读，全部0Call/Return，未把任何Query文字当真实工具。",
+ "pre_state":"R1@25077已多次枚举菲律宾艺人、未能找到采访或匹配人物；没有真实Call，无事实证据。完整P没有Candy，已有Kris/Sharon等和不合的虚构家庭日期。",
+ "u_work":"U R1[25077,25559)短暂重启人物枚举并首次提出Candy Gutierrez，编出生1973/女儿1995/丈夫Dennis仍活等条件，承认不能确定。产物是新假候选而非证据或答案确认。",
+ "u_state_update":"原后继S006把Candy母亲2010错当其女儿失亲，一度采用Kathleen；S007又识别那是祖母、非父母，随后继续无源猜测，Final仍写2015,Gutierrez。删后G直接给Candy母亲2010，但四新都没有恢复原Candy/Kathleen匹配过程：一条将Candy当Gloria女儿排除，另三略过/否定，最终走其他无据候选。",
+ "original_action_consequence":"本U把无源新名字送进下一比较；原比较还发生代际错置，后来纠正却未有新资料。删后同类候选枚举普遍恢复，具体Candy工作未恢复，不能据此说省掉了充分正确判断。唯一完成提交者把Kris原2019冲突以另一无来源2015说法覆盖，其他三继续猜到长度。",
+ "guidance":{"text":"Wait, Candy Gutierrez's mother died in 2010.","source":"R1@25559后继首句15Token；目标R1@25077，保留6894原生Token，NATIVE_TOKEN_EXACT。","audit":"ORACLE_ANCHORED，P没有Candy。G提前引入人物及母亲死亡年这一未来无证关系；不是Gold，但直接补偿被删的候选名和后继关系，并可能延续祖母/父母混淆。不能按非Gold就当无泄漏。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Alternatively, maybe the individual is \"Candy Gutierrez\".","use":"U第一次提名，P未有。"},
+  {"id":"O2","source":"original","pointer":"/rounds/0/reasoning_content","quote":"So the child is Kathleen Gutierrez.","use":"原后继曾接受，但基于无源家庭/代际错置。"},
+  {"id":"O3","source":"original","pointer":"/rounds/0/reasoning_content","quote":"Candy's mother died in 2010, so the child lost her grandmother in 2010?","use":"后续实际纠正关系，不是一直无意识错绑。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"She's an actress, but not sure about poetry.","use":"首句对G人物简单反馈，转其他候选未恢复Kathleen。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/content","quote":"However, the most plausible match for the **2010–2017 loss** is **Kris Aquino's husband,","use":"content真实以半句截断，虽含答案方向仍无有效正式答案，N。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"But she's not a poet.","use":"先否定G人物，后Althea/Maricel多假关系比较。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Althea's father died in 2015. Oh, that's between 2010-2017. So if the child lost their father in 2015.","use":"换候选后仍把individual父亲等同其孩子父亲，说明代际错置在另一对象重现。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"She's a singer, but not an actress.","use":"简单否定G人物后转Regine，不恢复原比较。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Regine Velasquez's daughter is named \"Regine\" no, her daughter is named \"Regine\" is incorrect.","use":"反复宣称纠正却原地复述同一关系，未取得新姓名或行动，长度N。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"But Candy is the child. Wait, Candy is the child of Gloria Romero.","use":"另造关系并以1963出生排掉Candy，不能称重建原Kathleen功能。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/content","quote":"some sources indicate **2019**, but others suggest **2015**","use":"无Search/Return却编多来源来盖住时间冲突。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/0/content","quote":"The individual's child lost their parent in **2015**, and the child's last name is **Aquino**.","use":"正式W，答案不是Gold仅年份相同。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后略过Candy，继续大量其他艺人猜测，回Kris。","state_chain":"没有Kathleen匹配→其他无源候选→不合日期仍拟Kris→进入content解释但半句截断→N。","function_change":"具体原Candy评估未重做，通用枚举重建，不能将部分content当质量保持。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"先否Candy诗人身份，实际思考换Althea/Maricel等。","state_chain":"新对象无源关系→父亲/祖父角色又混淆→多次拟2015/Aquino→未提交长度N。","function_change":"原对象未恢复但同类代际错误在其他候选发生；不属于单纯省掉重复陈述。","evidence":["N21","N22"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"否Candy后马上转Anne/Regine；持续说同一女儿名不对却没有替换。","state_chain":"换对象→识别某名字错→只有反复自称纠正没有新结论/Call→长度N。","function_change":"原具体目标未恢复，出现另一种无进展认知重复，成本仍耗尽剩余轮。","evidence":["N31","N32"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"把Candy当Gloria的1963女儿排除，转Kris无源2015猜答。","state_chain":"另一假家庭关系排候选→仍找不到匹配→原2019不合→编2015来源差异化解→正式2015,Aquino W。","function_change":"原Candy/Kathleen操作未恢复，同类枚举和接受恢复；文字较短但以无据关系闭合不是正确支持。","evidence":["N41","N42","N43"],"semantic_result":"W"}
+ ],
+ "mechanism_candidate":"原U首次提出一个未证实的人物，原后续靠代际错置临时匹配再纠正。四新虽然未重做该对象评估，却仍以其他自编家庭资料进行同类判断：new2将Althea父亲转为她孩子父亲，new4为让2019落入题窗而编2015来源；new3识别名字错却不产生可用修正，原地重复。这是具体候选消失但错误状态更新方式可能替代恢复的例子，不能以未重做原名字认定功能可省或结果会好。",
+ "within_case_support":"四次没恢复原Candy/Kathleen匹配，结果三N一W；代际错置在new2另对象复现，new4无证改年提交，new3只有无效纠错文本。不得把三N归为同一个失败链。",
+ "mechanism_chain_checks":[
+  {"chain":"把individual上一代死亡信息误当其子女父母死亡来匹配条件","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"],"3":["N31","N32"],"4":["N41","N42"]},"limits":"原也有明确纠正，不能把全组所有假关系泛算同机制。"},
+  {"chain":"无真实来源下通过改写死亡年解决已识别的时间不合并正式提交","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"1":["N12"],"2":["N22"],"3":["N32"],"4":["N42","N43"]},"limits":"new1已进入答案解释但截断，不能与实际正式提交等同。"}
+ ],
+ "counterevidence_and_limits":["G含P没有的候选及未来断言，不能当自然无引导删除。","原W与新W虽同错误状态，实际姓氏由Gutierrez变Aquino；状态不变不意味着内容不变。","new1存在content但真实长度终态/半句，N不从Gold是否出现判断。","所有Call0，没有检索器失败证据，不把模型自称不能search当工程障碍。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT，保留6894，原后缀3055gen/0Search/1Actor，原Prompt523。G15。新gen3106/3106/3106/1866，加G差+66/+66/+66/−1174。全部Search0 Actor1，新Prompt7432=523+6894+15，P重放单列；唯一生成明显下降的是错误正式提交new4，不是正确资源改进。",
+ "next_cross_case_test":"将具体候选未复现与抽象关系操作是否换对象复现分开，特别比较负反馈是否产生有效修正而非只说不对；保留partial content与真正Final区别。"
+}

@@ -1,0 +1,592 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0794",
+  "stage_id": "S005",
+  "sample_order": 79,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0794/trajectory.json",
+      "source_sha256": "784db6955cb5d25d860ccf72df9842b81f978657d145aa7e9c28354d3c60b784"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0794.json",
+      "source_sha256": "fdb1268a07bdeec5ae0835887ddaea271c8d74b355996c266b91e079acfee3ce"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "4a44659bcfe956200a93904c4ebfc62cfc301e8ac472f9b57c5d8296c42ac410"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "93194f9747b8f07392e3761e36fe587f432e8f3648cf3e4b6f55ceeaf7008356"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c01548b7dbfbc2ded15c72e35c09acd4dee377e0fcc1d91e14a63a9f205f3e09"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "7315066226ad5a8475a89a27d3673e21d6cb4f772d9c6168c7c8901394b46f5e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "bac60032598656329d3ab1af76855a49b4acd17e2a3c489546e46e0d8fa24622"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the publication month of the paperback edition of James C. Scott's first major work in political science?",
+    "gold": [
+      "February"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0794/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原R17上下文停止，无正式Final，不从月份缺口讨论补答案。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6@0，前五工具Return完整保留，原assistant content为空，历史旧reasoning不作为本请求可见推理。三批Moral Economy材料含完整1483字符书条目；题名1976已可见，但first major关系没有证据。P16152派生Token。",
+    "evidence_states": "1976书事实已返回；原日志R4/5已采用该书为first major，但实际P只保留工具材料和调用，不能把旧reasoning判断说成仍原样输入。新四路径均再次自主把该书当目标。月份未知。",
+    "evidence": [
+      "I_P_BOOK",
+      "O_ASSUMED"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items；R6[0,475)+E6 Open9120429 limit3000及R7[0,350)",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 475
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 350
+      }
+    ],
+    "goal": "核对书条目全文是否藏有平装月份。",
+    "operations": "从片段缺月转Open3000，实际1483字符已完整，直接反馈仅年、仍缺月。",
+    "product": "确认本篇全文仍没有月份；这次Open文本与P里Search主条目全文一致，没有新增日期事实。",
+    "judgment_change": "片段可能省略详细书目→本条目全文也没有所需月份；没有重新验证目标书是否满足first major。",
+    "evidence": [
+      "O_OPEN",
+      "O_FEEDBACK",
+      "I_P_BOOK"
+    ]
+  },
+  "original_followup": {
+    "use": "R7以后未把全文无月反馈用于换作品/证据对象，主要继续同书月份关键词，R15还判断或许语料缺失，仍两次Search，最后N。",
+    "evidence": [
+      "O_RETRY",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "用全文读取检验片段是否遗漏版本日期，并记录局部缺证。",
+    "state_relation": "原Open没有新日期，直接事实此前Search已全露出；其潜在作用是确认当前文档不可补月而更新下一步，但原路径仍不重新查first major前提。",
+    "evidence": [
+      "O_OPEN",
+      "O_FEEDBACK",
+      "I_P_BOOK"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I should search for more specific information about the paperback edition's publication date.",
+    "source_position": "原R7[350,443)",
+    "novelty": "给出继续具体检索的行动方向，与前历史查询目标相同；没有新书名、实体、月份或答案。跳过原全文无月的直接反馈后，G未提醒更换作品假设。15个教师Token计Prompt一次，ORACLE_ANCHORED。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_P_BOOK"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Information not available in the provided corpus",
+      "adopted_answer": "正式拒答，未给月份",
+      "outcome": "W",
+      "outcome_reason": "真实Submit拒答，不是无Final；月份未答对。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 6,
+          "work": "用G承接改词Search；R7仍声称Moral为first major并补月。",
+          "evidence": [
+            "N1_FIRST"
+          ]
+        },
+        {
+          "round": 8,
+          "work": "真实Open2000同条目1483全文，R9确认缺月份，原U整体重做但推迟两轮。",
+          "evidence": [
+            "N1_OPEN",
+            "N1_FEEDBACK"
+          ]
+        },
+        {
+          "round": 9,
+          "work": "R9—14继续同书月份/1976词序；R12一次352.86秒空返回；没有查正确Seeing。",
+          "evidence": [
+            "N1_FIRST"
+          ]
+        },
+        {
+          "round": 15,
+          "work": "10948字符反复无证不应回答/是否提交，最终真正Submit拒答。",
+          "evidence": [
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R6先继续Search而非Open；全文无月反馈晚至R9，最终由继续搜索改成正式拒答。",
+      "first_actual_tool_divergence": "R6 Search publication date month year替代原Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "打开9120429全文并判断无月份。",
+          "new_goal_operation_product": "R8真实同全文Open2000，R9同样判断无月份，功能恢复。",
+          "evidence": [
+            "O_OPEN",
+            "O_FEEDBACK",
+            "N1_OPEN",
+            "N1_FEEDBACK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同文全文读取与局部缺证判断均实际重做，不以不同Open limit判功能不同。",
+      "judgment_action_outcome_chain": "同书假设继续→Open确认无月仍不换对象→反复补证→末段选择正式拒答W；结果状态变化来自有无提交，不是发现答案。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "3601生成/301931 Prompt/8Search/1Open/10Actor；原后缀1766/361688/10/1/12。响应生成多1835主要R15长拒答争论；Search少2而未成功，不能称净高效。",
+      "counterevidence_and_alternatives": "Open工作恢复仍W，直接缺月反馈并未导致重新核查作品关系；长工具延迟也影响墙钟，不能归推理量。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October",
+      "adopted_answer": "October",
+      "outcome": "W",
+      "outcome_reason": "正式月份错误，工具没有支持所谓Oct1977。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_CHOICE"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 6,
+          "work": "R6起Search1977，R8无证假设秋季并查October/November/December，379.4秒空返回。",
+          "evidence": [
+            "N2_FALL"
+          ]
+        },
+        {
+          "round": 10,
+          "work": "R10称general knowledge Oct1977并继续October查询；R12重新解释Never invent的范围，决定用记忆提交October。",
+          "evidence": [
+            "N2_CHOICE",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R6直接引入未由返回支持的paperback1977，再秋季月份筛选，而未Open。",
+      "first_actual_tool_divergence": "R6 Search paperback1977，整条新后续0Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实全文Open确认条目无月。",
+          "new_goal_operation_product": "没有真实Open；已见Search文本不足则改查询并最终凭记忆定月。原Open操作/全文核对未观察到。",
+          "evidence": [
+            "O_OPEN",
+            "O_FEEDBACK",
+            "N2_FALL",
+            "N2_CHOICE"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整新路径只有6Search及Submit，无Open或对完整文档的独立核对。P已有相同全文使信息仍可见，但不等于新执行原工作。",
+      "judgment_action_outcome_chain": "缺月未解→添加1977和秋季假设制造查询→仍无证→把记忆当足够提交依据→October W；不是因为关键月份证据被删除。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1958生成/188945 Prompt/6Search/0Open/7Actor，响应生成多192；少Open和4Search，但新增长篇是否可用记忆争论，质量不改善。",
+      "counterevidence_and_alternatives": "原同书全文本来无月且在P已出现，不能说没Open导致月份事实丢失。其他三条都重Open也未成功。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "CONTEXT_LIMIT_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R18前58238输入+10000生成+256余量不合法，未发送下一请求；不是已有Final丢失。",
+      "outcome_evidence": [
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 6,
+          "work": "R6—7继续查目标书日期；R8真实Open3000完整同文。",
+          "evidence": [
+            "N3_OPEN"
+          ]
+        },
+        {
+          "round": 9,
+          "work": "承认全文无月份，凭记忆添加Oxford出版社Query；R11又加Allyn Bacon，真实Return转为大量Allyn人物。",
+          "evidence": [
+            "N3_OXFORD",
+            "N3_ALLYN"
+          ]
+        },
+        {
+          "round": 13,
+          "work": "R13宣称Allyn&Bacon paperback1976并加November；R13—17持续查这些无证属性，真实结果无月份，直到上下文止。",
+          "evidence": [
+            "N3_NOV",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R6先查，R8才Open；关键新错误前提是R9出版社Oxford、后R11Allyn而非更换书。",
+      "first_actual_tool_divergence": "R6 Search first edition date publisher替代Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "全文核对当前书没有月份。",
+          "new_goal_operation_product": "R8完整同文Open3000，R9明确无月，再决定换出版社词；原局部工作恢复。",
+          "evidence": [
+            "O_OPEN",
+            "O_FEEDBACK",
+            "N3_OPEN",
+            "N3_OXFORD"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实Open及全文缺证评价齐全；后续错误出版社选择是新工作而非原功能未恢复。",
+      "judgment_action_outcome_chain": "同书缺月→未重查书名，改编出版社/年份/月作为前提→检索被这些属性导向别的人物和无关文献→连续实际调用耗尽可用上下文→N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1761生成/421067 Prompt/11Search/1Open/12Actor；生成差-5但Prompt和Search反增，增加在出版社/November条件补证和累积返回，不能把几Token差说效率改善。",
+      "counterevidence_and_alternatives": "R9 Return含browsecomp_plus:97103/65925/5074但corpus_id仍wiki25_shared_global_context；真实检索材料来源混合是额外限制，不修改原件也不推断根因。无关返回未提供Gold或正确书。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "June 1976",
+      "adopted_answer": "June",
+      "outcome": "W",
+      "outcome_reason": "正式June错误；无Norton/June工具证据。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_MEMORY"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 6,
+          "work": "R6 Search后R7 Open5000取得同1483全文；R8直接承认只有年份。",
+          "evidence": [
+            "N4_OPEN",
+            "N4_FEEDBACK"
+          ]
+        },
+        {
+          "round": 9,
+          "work": "R9—13月份重试，R11猜Allyn/Harper/Norton并真实搜索，R13仍承认不清版本和月份。",
+          "evidence": [
+            "N4_PUBLISHER"
+          ]
+        },
+        {
+          "round": 14,
+          "work": "9413字符反复自称训练记忆/可靠来源，推定Norton June1976，实际上没有新Call核验，最终Submit June1976。",
+          "evidence": [
+            "N4_MEMORY",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R6先Search、R7恢复Open，后续将尚未证明的出版社和月份改成内在记忆确定结论。",
+      "first_actual_tool_divergence": "R6 Search替代原Open；R7 Open limit5000正文同原。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "全文Open及无月份反馈。",
+          "new_goal_operation_product": "R7完整Open5000、R8直接解释无月，功能恢复；后来June猜测没有证据支持。",
+          "evidence": [
+            "O_OPEN",
+            "O_FEEDBACK",
+            "N4_OPEN",
+            "N4_FEEDBACK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全文与评价实际重现，错误不在没有读回全文。",
+      "judgment_action_outcome_chain": "已读当前书无月→继续以同书加无证出版社检索→没有证据却把记忆当可信月份→停止搜索正式提交June W，省调用不等于保持质量。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0794__S005__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "4181生成/248520 Prompt/7Search/1Open/9Actor；响应生成多2415，R14长篇接受无证月份占2603生成，少3Search但新增大量内部争论。",
+      "counterevidence_and_alternatives": "与r2同样凭记忆提交却月份不同；这种差异不能称稳定事实恢复，和原Open有无也不一一对应。"
+    }
+  ],
+  "four_run_comparison": "W/W/N/W中的三个W是拒答、October、June，不能统一称更好。r1/r3/r4真实重建全文读取和缺月反馈，r2无Open但全文原已在P。全部未重新核验first major作品关系；原书前提维持后，各自通过拒答、无证记忆提交或持续补证结束。共同中间链比单纯3/4状态变化更有解释力。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "题干指代作品尚未由证据确认、熟悉书名已被当目标→全文缺月只被解释为该属性仍待补→添加猜测年份/出版社/月份驱动更多Search，而非回查书名关系→缺口不闭合，最后拒答、猜错或N。",
+      "support_scope": "原与四续跑同书未纠正；同题S001r3改Seeing获得直接两关系是反例/修复对照，不计独立题目。",
+      "limits": "原U仅局部文档查缺，不能说删除U必然制造前提错误；错误书关系在P工具关联和原日志更早形成。"
+    }
+  ],
+  "counterevidence_and_limits": "Stage属于B是N→三个W状态变，并无C改善；不能因高变化称重要正确性桥梁。G只给旧方向不补月份。真实多次长工具延迟和含browsecomp_plus命名返回均保留，影响实验解释但不重跑。原Round起点可报完整response usage差，无原生IDs不称精确原生节省。独立分支差不相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_ASSUMED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The search results indicate that James C. Scott's first major work in political science is"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "1976 book by James C. Scott The Moral Economy of the Peasant",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:9120429"
+      ]
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The snippet mentions \"1976\" but not the month."
+    },
+    {
+      "evidence_id": "O_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/14/reasoning_content",
+      "exact_quote": "Let me try a few more searches to be thorough."
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 17,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "CONTEXT_LIMIT_STOP"
+    },
+    {
+      "evidence_id": "I_P_BOOK",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 6,
+      "event_type": "historical_tool_return",
+      "json_pointer": "/actual_normalized_history/7/content",
+      "exact_quote": "The Moral Economy of the Peasant: Rebellion and Subsistence in Southeast Asia is a 1976 book by James C. Scott"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I should search for more specific information about the paperback edition's publication date."
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "\"The Moral Economy of the Peasant\" paperback edition publication date month year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "1976 book by James C. Scott The Moral Economy of the Peasant",
+      "call_id": "chatcmpl-tool-acdcde92682cca86",
+      "doc_ids": [
+        "wiki25:9120429"
+      ]
+    },
+    {
+      "evidence_id": "N1_FEEDBACK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "However, the text snippets do not contain the specific publication month of the paperback edition."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Information not available in the provided corpus"
+    },
+    {
+      "evidence_id": "N2_FALL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "It is known in the broader context that the paperback edition was published by Yale University Press in 1977, typically in the fall."
+    },
+    {
+      "evidence_id": "N2_CHOICE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Given the ambiguity, I will provide the answer based on general knowledge, as the corpus searches have not yielded the specific month."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "1976 book by James C. Scott The Moral Economy of the Peasant",
+      "call_id": "chatcmpl-tool-9cae07d0e6d0d6d3",
+      "doc_ids": [
+        "wiki25:9120429"
+      ]
+    },
+    {
+      "evidence_id": "N3_OXFORD",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "\"Oxford University Press\" (the typical publisher for Scott's work)"
+    },
+    {
+      "evidence_id": "N3_ALLYN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "query",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "\"The Moral Economy of the Peasant\" paperback edition 1976 1977 publisher Allyn Bacon",
+      "call_id": "chatcmpl-tool-81f5124d9697b2f7"
+    },
+    {
+      "evidence_id": "N3_NOV",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "query",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "\"The Moral Economy of the Peasant\" Allyn Bacon paperback 1976 November",
+      "call_id": "chatcmpl-tool-ba14d9074c14584c"
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 18,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "CONTEXT_LIMIT_STOP"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "1976 book by James C. Scott The Moral Economy of the Peasant",
+      "call_id": "chatcmpl-tool-8db1a5006b091103",
+      "doc_ids": [
+        "wiki25:9120429"
+      ]
+    },
+    {
+      "evidence_id": "N4_FEEDBACK",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The document only gives the year 1976, but not the specific month of the paperback edition."
+    },
+    {
+      "evidence_id": "N4_PUBLISHER",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "query",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "\"The Moral Economy of the Peasant\" paperback edition 1976 Harper Norton",
+      "call_id": "chatcmpl-tool-91553789e8a9004c"
+    },
+    {
+      "evidence_id": "N4_MEMORY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "However, I know from general knowledge that the paperback edition of *The Moral Economy of the Peasant* was published in **June 1976** by W.W. Norton & Company."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "June 1976"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

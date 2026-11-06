@@ -1,0 +1,476 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0091",
+  "stage_id": "S002",
+  "sample_order": 78,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0091/trajectory.json",
+      "source_sha256": "b8f2830b1e2faad7689e5946e5db2aef690ffb2504177884426d092a865256a6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0091.json",
+      "source_sha256": "96ac74ae5593a5ad91cb09ae29f8d65ca08d4adfdae4258fde9c6126c2cd1faf"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "50a56dce76d5bb1ebe11c7cca4915fdd31b3bba4dda396929b44f9baeba13a36"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "b1dffb6d4320b633509a30ac1fa94b799009136cb6669d9d8f037c56f1c1a53a"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "189da03a5af5d9f71d001b393ff3cdd3852b2116cf8719a36cd30b96dbe80367"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f0aa83a4e02baee4f4719e9c53e35d37908af895c964246e9866f1f332b832ce"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "54ac5aefea6d3b6f99ab0875bafb18f3896d998cdc18629824ca221f54e9e3f5"
+    }
+  },
+  "question_and_gold": {
+    "question": "Who was the wife of the Soviet admiral who served with the Republicans during the Spanish Civil War in 1937 and 1938, a period which included the sinking of the Nationalist heavy cruiser 'Baleares', and subsequently commanded the Northern Fleet during World War II?",
+    "gold": [
+      "Kira Golovko"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0091/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Kira Golovko",
+    "adopted_answer": "Kira Golovko",
+    "outcome": "C",
+    "reason": "正式妻子名与1382373关系及Gold相同。",
+    "evidence": [
+      "O_FINAL",
+      "O_MATCH"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@0，16643派生P；四批真实Return、原题与工具消息保留，历史四条Assistant content为空，当前Reasoning空。年表有Kapitanets/Lobov，但尚无Golovko/Kira；不能把原R6的排除结论视为已在P。",
+    "evidence_states": "材料中有不合年代候选，尚未正确提取采用；Baleares沉没具体March6尚未通过被删E5返回。",
+    "evidence": [
+      "I_HISTORY",
+      "I_MODE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items：R5[0,549)+E5完整Call/Return。",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 549
+      }
+    ],
+    "goal": "由Baleares沉没事件及苏联水手寻找目标将领。",
+    "operations": "真实Search Baleares sinking 1938 Soviet sailors，4910909明示March6,1938 CapePalos和Republican驱逐舰击沉；没有提供目标将领。",
+    "product": "沉舰事件和时期背景证据，无人物/妻子。",
+    "judgment_change": "未知具体沉没事件→March6 CapePalos可用；将领仍待找。",
+    "evidence": [
+      "O_QUERY",
+      "O_SINK"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R6先用P年表排除Kapitanets/Lobov，再恢复找人；R7重述March6作为时期线索但未获得人物；R9实际naval officer+wife Query才带来Golovko全链，R10以沉舰时期作为背景配合人物年表接受Kira。原U没有独有的人物正证据。",
+    "evidence": [
+      "O_REJECT",
+      "O_MATCH",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把题目时期背景变成一个具体海战证据入口，同时试图由事件找人。",
+    "information_state_dependence": "原P已有舰队候选但还没匹配，沉舰只是期间背景，并未要求本人击沉。把该背景提升为必须现场参与，会改变检索对象范围。",
+    "first_update": "首次直接沉没日期/战役取证；未找到人。"
+  },
+  "guide_audit": {
+    "text": "The user is asking for the name of the wife of a Soviet admiral.",
+    "source": "O#/rounds/5/reasoning_content[0,64)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "16Token仅重述原题所问妻子，不含人物、具体日期、新事实或新候选。完整P四Return没有Golovko/Kira。G不等于模型已经完成原R6候选排除。",
+    "evidence": [
+      "I_G",
+      "I_HISTORY"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Kira Golovko",
+      "adopted_answer": "Kira Golovko",
+      "outcome": "C",
+      "outcome_reason": "正式姓名匹配，真实全链Return支持。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_USE"
+      ],
+      "work_and_evidence_timeline": "R5重搜Baleares+1938，5342959/1600231/6835634直接给March1938；R6拒绝SpanishUbieta作为Soviet但加InternationalBrigades Query空。R7重提年表不合候选，再泛Query回到原E1；R8 wife Query空；R9 sailors Query无关；R10换wife+NorthernFleet返回原E9；R11全条件比较并区分Drozd战前与Golovko1940–46，Submit。",
+      "first_judgment_divergence": "从原单次事件取证变为精确舰名背景取证，随后原排除仅简述，查询入口次序改变。",
+      "first_actual_tool_divergence": "R5 Soviet admiral Spanish Civil War Baleares sinking 1938。",
+      "function_correspondence": [
+        {
+          "original": "事件入口查询→March1938沉没背景→仍需找苏联人",
+          "new": "R5真实重搜并取得同一背景，R6排除Spanish身份，然后回到舰队/妻子找人",
+          "evidence": [
+            "O_QUERY",
+            "O_SINK",
+            "N1_SINK",
+            "N1_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、事件查询、时间背景产物与后用均恢复。",
+      "judgment_action_outcome_chain": "事件证据恢复但不提供人→不接受Spanish海战指挥官→几次泛查询仍不命中→wife+舰队入口取得直接匹配→接受并提交。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1382生成170583Prompt6Search7Actor，对原后缀1551/150488/5Search6Actor；生成response差-169，但真实工具和Prompt增加。少写原长年表比较，不等于省掉事件功能。G16计Prefill一次，P16643重放单列。",
+      "counterevidence_and_alternatives": "三C中仅此条恢复准确March背景；必要身份/配偶仍靠后来的全链Return。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Kira Golovko",
+      "adopted_answer": "Kira Golovko",
+      "outcome": "C",
+      "outcome_reason": "正式妻子有直接人物证据；海战时期局部错误另列。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_USE"
+      ],
+      "work_and_evidence_timeline": "R5实际排除P中年代不合候选，但凭记忆将沉舰错说July1938、Soviet船击沉，再含wife长Query空；R6Baleares Query无关，R7查1937返回CapeCherchell受伤；R8误读成Sep1937沉没，实际换military advisor Query返回完整Golovko。R9采用匹配经历与妻子，但保留错误海战日期，SubmitC。",
+      "first_judgment_divergence": "目标事件前先作年表排除及无依据沉舰猜测，随后Query偏1937海战。",
+      "first_actual_tool_divergence": "R5 Soviet admiral Spanish Civil War 1937 1938 Northern Fleet WWII wife空，非原事件Query。",
+      "function_correspondence": [
+        {
+          "original": "查沉舰并获得准确March6背景",
+          "new": "R6/7真实重查沉舰，但仅取得受伤海战并误解释Sep1937，精确背景产物未恢复；后由人物全链独立满足核心妻子目标",
+          "evidence": [
+            "O_SINK",
+            "N2_QUERY",
+            "N2_WRONGDATE",
+            "N2_USE"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "事件取证操作存在但准确事件/时间判断没恢复，不能因仍C算全部功能相同。",
+      "judgment_action_outcome_chain": "年表排除恢复→沉舰错误作为1937背景继续查→换advisor入口取得直接人物/配偶→以该证据提交，局部日期错不影响正式妻子名。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1555生成105763Prompt4Search5Actor；response生成差+4，Search/Actor各少1，Prompt下降。少了一些原泛搜索，但新R5长猜测使生成没有降低。",
+      "counterevidence_and_alternatives": "C不等于事件质量保持；原U背景支持未恢复准确，不能称它完全无新增价值。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "真实R20仍Search，无正式Final；已用4次历史Actor+16新Actor达到上限。",
+      "outcome_evidence": [
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R5先把Baleares阵营说反，advisorQuery空；R6查沉舰得5342959，R7将July12遭遇误解为沉没。R7至R14在advisor/mission关键词间多次同类Return、空Return，始终没取到Golovko。R11/12进一步把题目期间背景提升为本人在场。R15取得Drozd背景，R16即接受为目标并Open全2665；全文显示1936–37西班牙、北方舰队到July1940、后Baltic，未逐项对题目1937–38服务核验。R17至R20反复查Drozd wife，返回词表无支持，最后无Final。",
+      "first_judgment_divergence": "R5阵营误解，R7具体日期错；更重要的是后续把时期背景加成本人在场，R16部分匹配便固定Drozd。",
+      "first_actual_tool_divergence": "R5 Soviet naval advisor Spain 1937 1938 admiral空，R6才恢复事件Query。",
+      "function_correspondence": [
+        {
+          "original": "事件检索→准确沉没背景",
+          "new": "真实重新查事件，取得CapePalos但用July遭遇当沉没，后将该线索提升成参与约束；准确时间/角色产物未恢复",
+          "evidence": [
+            "O_SINK",
+            "N3_WRONGDATE",
+            "N3_ACCEPT",
+            "N3_WIFE_CALL"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "取证尝试恢复但解释错误，原准确背景没有保持；未取得核心正确人物资料。",
+      "judgment_action_outcome_chain": "事件日期/参与关系误解→advisor路径反复取不到人物→Drozd部分匹配被当身份已定→查询任务收缩为其妻子→同Query无支持仍重复→耗尽Actor无答案。已有日志支持此行为链，不能唯一证明由U缺失触发。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2980生成595785Prompt15Search1Open16Actor；response差+1429，Search比原后缀多10、Open多1、Actor多10。额外来自advisor/mission泛试、错误候选全Open与R17–20同配偶缺口重复；没有阻止新Call制造跳过。",
+      "counterevidence_and_alternatives": "正确Golovko从未返回本新路径，不是已经见到正确资料却忽略。Drozd北方舰队至1940的历史范围有解释细节，不能只用1941开始的说法断言全部约束必然冲突；但西班牙1936–37与题目1937–38确有未核差别。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Kira Golovko",
+      "adopted_answer": "Kira Golovko",
+      "outcome": "C",
+      "outcome_reason": "后来直接采用并全Open正确人物配偶，正式姓名匹配；错误海战日期仍在。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_CORRECT"
+      ],
+      "work_and_evidence_timeline": "R5查Baleares1937返回CapeCherchell受伤；R6无依据声称Return指IvanYakhontov并定向查，返回姓氏、语言学家、昆虫学家；R7指出没有admiral仍同名再查，R8查其wife返回无关Orlova。R9终于去掉人名，改Soviet volunteer Spanish Civil War admiral Northern Fleet，返回完整Golovko。R10完整引用并采用、全Open1268，R11提交Kira；仍把Sep1937海战当沉没。",
+      "first_judgment_divergence": "R6将未返回的人名当已知候选，后续查询围绕它补属性；R9实际撤去名字才进入有效入口。",
+      "first_actual_tool_divergence": "R5 Baleares cruiser sunk 1937 Soviet admiral，事件年份不同于原1938。",
+      "function_correspondence": [
+        {
+          "original": "查沉舰、确定准确时段背景",
+          "new": "真实事件取证但误用1937受伤为沉没，未恢复准确背景；另通过去掉错误人名换入口恢复正确人物/妻子",
+          "evidence": [
+            "O_SINK",
+            "N4_FALSE_PERSON",
+            "N4_SWITCH",
+            "N4_CORRECT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "事件工作执行但产物不等价；最终人物目标另由直接证据完成。",
+      "judgment_action_outcome_chain": "局部海战Return被错误解释并凭空加人名→失败反馈仍触发同人名核查→实际移除人名改通用入口→正确全链返回、采用并提交；候选限制解除是可见恢复点。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0091__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1593生成174286Prompt5Search1Open7Actor，response差+42；Search与原后缀相同，但新增Open与Actor各1、Prompt上升。Yakhontov三次核查新增，后直接命中抵消部分原泛搜索，不能以净Search不变说执行没变。",
+      "counterevidence_and_alternatives": "r3未解除错误身份后N，r4解除了后C是内部对照；但r4取到Golovko、r3没取到，不能归于仅接受规则不同。"
+    }
+  ],
+  "four_run_comparison": "一条完整恢复准确沉舰背景，另三条虽重查却未恢复准确日期；后三中两C一N。三C最终都取得并采用1382373完整人物配偶，N未取得且固定Drozd。r4从无依据Yakhontov定向核查恢复通用入口是明确行动变化；r3把时段背景升级本人在场再固定部分匹配候选，形成新的配偶搜索缺口。不能把三C全说事件功能省掉，也不能把N仅说重复搜索。",
+  "conditional_mechanism_proposals": [
+    {
+      "prestate": "核心身份未知，题目附带海战时段背景，P中旧候选不合年代",
+      "stage_function": "由背景事件寻找人物并确定时段",
+      "judgment_action_link": "当背景被当作本人参与的额外条件或部分匹配被提升为身份确认，后续工作围绕错误候选补妻子；解除人名限制、真实换通用入口后可取得正确人物并转向提交",
+      "outcome_and_cost": "r3固定Drozd后反复配偶Query无Final高成本，r4撤Yakhontov后C；r1准确背景C但成本不全降，r2背景错仍C",
+      "support_and_limits": "同题四次的不同证据获取路径，非独立因果证明；G无新事实，但采样/Query与原生产条件仍有差异。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "Baleares只是时段背景，C不自动保证其准确日期恢复。",
+    "同样局部事件错误可被正确人物全链截断，r2/r4是失败链的反例。",
+    "Drozd资料至July1940有WWII口径歧义，应保留具体西班牙服务年表，不用笼统战前排除代替比较。",
+    "四次原生历史只有工具Return、历史Assistant content空；不能把原S003未发生的拒绝结论当实际P知识。",
+    "成本从R5实际起点；非nativeIDs只报告完整response usage差，G16为Prompt已计。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Baleares sinking 1938 Soviet sailors",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SINK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "On 6 March she was escorting a convoy and participated in the Battle of Cape Palos, where the heavy cruiser",
+      "doc_ids": [
+        "4910909"
+      ]
+    },
+    {
+      "evidence_id": "O_REJECT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So Lobov did not command the Northern Fleet during WWII."
+    },
+    {
+      "evidence_id": "O_MATCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "His wife was the distinguished Russian actress Kira Golovko."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kira Golovko"
+    },
+    {
+      "evidence_id": "I_HISTORY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "a period which included the sinking of the Nationalist heavy cruiser 'Baleares'"
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the name of the wife of a Soviet admiral."
+    },
+    {
+      "evidence_id": "N1_SINK",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results confirm the sinking of the *Baleares* during the Battle of Cape Palos in March 1938"
+    },
+    {
+      "evidence_id": "N1_USE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Golovko is the one who commanded the Northern Fleet during WWII."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kira Golovko"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Baleares cruiser sinking 1937 Soviet",
+      "call_id": "chatcmpl-tool-9041ce9972c514ea"
+    },
+    {
+      "evidence_id": "N2_WRONGDATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The sinking of the Baleares occurred on September 7, 1937"
+    },
+    {
+      "evidence_id": "N2_USE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The answer is Kira Golovko."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kira Golovko"
+    },
+    {
+      "evidence_id": "N3_WRONGDATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "which suggests it was sunk in July 1937."
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "The admiral is **Valentin Petrovich Drozd**."
+    },
+    {
+      "evidence_id": "N3_WIFE_CALL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 18,
+      "event_type": "call",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Valentin Drozd wife",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    },
+    {
+      "evidence_id": "N4_FALSE_PERSON",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "likely Ivan Yakhontov"
+    },
+    {
+      "evidence_id": "N4_SWITCH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Soviet volunteer Spanish Civil War admiral Northern Fleet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_CORRECT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The search results contain a document about Arseny Golovko (wiki25:1382373)."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kira Golovko"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

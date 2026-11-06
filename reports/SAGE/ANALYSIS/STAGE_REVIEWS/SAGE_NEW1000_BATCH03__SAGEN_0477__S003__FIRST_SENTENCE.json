@@ -1,0 +1,505 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0477",
+  "stage_id": "S003",
+  "sample_order": 62,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0477/trajectory.json",
+      "source_sha256": "3c9f094dc3381f901557c35757500548d94d56ce9a07701dd89ae131063f87c9"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0477.json",
+      "source_sha256": "24ca1f606e1f56b81c9e8e1a05fffb3cdeacf2e475dc22759a1d675374b5ad37"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "a1a5b569460aeb1ea812a148e5061c334bd9eee361079f435bf7516e53d41194"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "7b1df1713d82375c1a23eac808e74736d47832aeb86b976733dc71271ca4157f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "d3db221b58fcb16e947635884281cab082790f8cb39cc2d44a6d0bf166a593a5"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "cef6fc7b901fff048dec8312a0960f0d937298383e0e70ac80a94d279e322cdf"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "3ed2ef7b9389f8808794134f7de8445cbc18c3e8011cd83384dfca6f2d039ba1"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the initial magazine publication year of the Abraham Merritt story whose depiction of Nan Madol inspired its use in H. P. Lovecraft and Hazel Heald's \"Out of the Aeons\"?",
+    "gold": [
+      "1918"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "1918",
+    "adopted_answer": "1918年",
+    "outcome": "C",
+    "reason": "正式正确初刊年，实际书目支持；影响关系只有间接推断。",
+    "evidence": [
+      "O_YEAR",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R4@89保留失败反馈，8历史消息含作者地点及两次联合关系Query完整返回。首3571721已有Moon Pool/Nan Madol/1919，尚无Out Aeons原篇资料或1918。P8820Token。",
+    "evidence_states": "Moon Pool和1919材料可见；旧日志曾提取但历史推理不假定保留，当前prefix只说未找到。关系仍缺直接证据。",
+    "evidence": [
+      "I_CURRENT",
+      "I_OLD"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items；R4[89,417)、E4、R5[0,356)。",
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 89,
+        "end": 417
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 356
+      }
+    ],
+    "goal": "改从被影响作品本身核查题材/影响关系。",
+    "operations": "真实搜索Out Aeons H. P. Lovecraft Hazel Heald，E4给作品1935Weird Tales/古尸沉岛，R5提取这些内容。",
+    "product": "取得Out Aeons背景，没有直接证实Nan Madol来自Moon Pool。",
+    "judgment_change": "联合词取证失败→换作品本身入口有背景，仍需比较判断，不能把背景当已证影响。",
+    "evidence": [
+      "O_CONTEXT_QUERY",
+      "O_CONTEXT_RETURN",
+      "O_CONTEXT_USE"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R5后段用Moon Pool地点与Out Aeons沉岛题材推定目标，先按1919查旧文；R7实际查magazine后获得1918并改，R9Submit。",
+    "evidence": [
+      "O_ASSUMED_LINK",
+      "O_YEAR",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "检索被影响作品的背景，给跨作品身份比较提供另一侧材料。",
+    "information_state_dependence": "本次只填作品背景，不填直接影响证据；评价是否恢复要比较取得什么，而非要求新路径补一个原本也未补齐的关系。",
+    "first_update": "Out Aeons1935和古尸沉岛首次进入原实际资料。"
+  },
+  "guide_audit": {
+    "text": "From the first search result about \"The Moon Pool\", I saw that \"The Moon Pool\" is partly set on Nan Madol.",
+    "source": "O#/rounds/4/reasoning_content[356,462)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "27教师Token把P已有Moon Pool/Nan Madol关系再次明确提取和凸显，无新实体/年份，未给Out Aeons1935或直接影响关系。属于已有材料的采用提醒，不等无干预。",
+    "evidence": [
+      "I_G",
+      "I_OLD"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "实际书目1918被采用，正式答对；影响关系仍仅间接。",
+      "outcome_evidence": [
+        "N1_YEAR",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4先查Moon Poolmagazine而非原作品背景，得1918/1919；R5已接受1918后才查Out Aeons关系，E2即原E4全部背景；R6列1935与1918/1919并Submit，没有Open。",
+      "first_judgment_divergence": "新提前把已有Moon Pool作为足以查版本的候选，先补答案年；原先查背景再两次旧Open才查版本。",
+      "first_actual_tool_divergence": "首Query从Out Aeons改Moon Poolmagazine，原背景查询被移到第二Call，并未彻底省去。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查Out Aeons背景→取得1935/沉岛→用于目标比较。",
+          "new_goal_operation_product": "先得年份再真实查Out Aeons，取得同背景，R6实际列出1935/题材；原操作与产物恢复但顺序改变。",
+          "evidence": [
+            "O_CONTEXT_RETURN",
+            "N1_CONTEXT_QUERY",
+            "N1_YEAR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原背景及实际使用都可定位；直接影响关系原新都未证。",
+      "judgment_action_outcome_chain": "G凸显已有候选→先查初刊补1918→再查作品关系背景→承认同一候选并SubmitC；减少在三个Open均不再执行，直接使用Search书目，而非背景功能消失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "786生成/40046Prompt/2Search0Open3Actor，原1329–1467生成/2S3O6段；生成-681至-543、Open/Actor各-3、Search相同。",
+      "counterevidence_and_alternatives": "G虽未新增事实却可能改变注意/行动优先级；无直接影响证据并非删除造成，不能凭快答证明全条件充分。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "实际书目有1918，长篇反复后正式提交正确。",
+      "outcome_evidence": [
+        "N2_VERSION",
+        "N2_LONG",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4先查Out Aeons inspiration取得完整原背景；R5长2235字符比较Dwellers影响方向与Moon Pool地点，再查magazine得1918；R6长9967字符2933生成，多次说将提交又回查同片段的影响缺口、1918/1919、杂志名，最后实际Submit，无第三Search/Open。",
+      "first_judgment_divergence": "原也有类似比较，新在已得1918后没有马上结束，不断重新检查同一影响关系而不执行取证，最终以题目前提+地点接受。",
+      "first_actual_tool_divergence": "背景首Query改词但同内容，随后直接magazine，未执行原旧片段Open或新书目Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得Out Aeons背景再用于比较。",
+          "new_goal_operation_product": "首真实查询和相同资料，R5/6明确消费1935/沉岛、判断影响未直接支持，功能完整恢复。",
+          "evidence": [
+            "O_CONTEXT_RETURN",
+            "N2_CONTEXT_QUERY",
+            "N2_LONG"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "背景取证和实际评估都重现；评价长不等更多工具或新证据。",
+      "judgment_action_outcome_chain": "背景不足以直接影响证明→仍采用Moon Pool查初刊得1918→未证关系反复触发内部条件检查，没有新证据也未改候选→最终停止C；因此工具少但生成大增，重复的是证据解释/接受而非真实Search循环。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "3630生成/39309Prompt/2Search0Open3Actor；原1329–1467生成/2S3O6段，生成+2163至+2301，Search同、Open/Actor各-3。2933生成在末轮是新增主要落点。",
+      "counterevidence_and_alternatives": "许多Let me search为意向没有Call，不能虚计工具。与rep1同背景/年份证据、同2Search终态C，但内部表述长度差，最终C不能解释全部消耗。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "真实版本片段被采用并正式1918，未直接证明影响关系。",
+      "outcome_evidence": [
+        "N3_VERSION",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4先查Out Aeons，完整背景；R5长3159字符仍反复说1919、比较Dwellers是否目标，实际只查magazine；R6新Return后已区分1918/1919，却长3202字符反复说要核影响，最终真实操作是Open3571720limit100仅小说开头；R7用早先Search书目Submit。",
+      "first_judgment_divergence": "已获得背景但未能直接闭合影响关系，反复比较后仍回版本问题；书目已足够年份时又做不含年份的短Open。",
+      "first_actual_tool_divergence": "首背景Query近义式，后直接版本Query替代旧Open；最后Open新文仅100没有复核到关键句。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "背景取证并辅助候选比较。",
+          "new_goal_operation_product": "首Search取得同背景，后两轮明确对照沉岛、Nan Madol及影响缺口，目标/操作/产物都重现。",
+          "evidence": [
+            "O_CONTEXT_RETURN",
+            "N3_CONTEXT_QUERY",
+            "N3_GAP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "恢复背景工作不代表关系已证；新额外长比较单独记录。",
+      "judgment_action_outcome_chain": "已有候选经G凸显→背景不足直接证影响→长比较后真实查版本得1918→再反复缺口但只短Open→凭书目SubmitC；多生成来自前后内部比较，少Open不等信息处理短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2148生成/56911Prompt/2Search1Open4Actor；原1329–1467/2S3O6段，生成+681至+819，Open/Actor各-2，Search同。R5的839与R6的925生成主导长解释，Open100只小说开头。",
+      "counterevidence_and_alternatives": "文中多次计划再查影响实际没有Call。不能据同DocIDOpen就说复核到1918，也不能把节省两个Open都归到被删背景工作。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "新具体版本Query带回1918并用实际书目提交；直接影响关系仍未闭合。",
+      "outcome_evidence": [
+        "N4_VERSION",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R4先Nan Madol inspiration只旧Pohnpei，R5改简Out Aeons取得背景；R6拿旧MoonPool片段建议1919并默认Open4000读取全1835；R7意识书/杂志差别，实际查publication magazine book1919得1918；R8引用两书目C。",
+      "first_judgment_divergence": "首关系Query仍无效，随后恢复作品入口，之后完整旧文也不提供初刊，需要重新换版本证据入口。",
+      "first_actual_tool_divergence": "比原先多一个无效关系Search，但省掉旧Open100和新书目复核Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "由作品本身取得背景辅助身份判断。",
+          "new_goal_operation_product": "第二真实Query恢复同背景，R6及R8用沉岛/1935信息评估目标，功能完整。",
+          "evidence": [
+            "O_CONTEXT_RETURN",
+            "N4_CONTEXT_QUERY",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原背景资料与消费均存在，不因多一次失败尝试改说未重建。",
+      "judgment_action_outcome_chain": "G旧候选→关系Query无效→改简作品取得背景→旧文1919只小说不够→版本问题转为实际Search→1918与1919关系正确用于C；消耗变化是一个失败Search换掉两个Open，而非单一工作消失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1330生成/65581Prompt/3Search1Open5Actor；原1329–1467/2S3O6段，生成-137至+1跨零，Search+1、Open-2、Actor-1，不能给精确省Token。",
+      "counterevidence_and_alternatives": "完整读旧片段也没补杂志年份，之后改变证据入口才更新答案；不是反复Open必然有用或必然无用。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "4条都真实恢复Out Aeons背景查询，时间次序不同；均转magazine取得1918。1条短提交、2条关系/版本内部反复很长、1条多一次失败Search与旧全文Open。",
+    "costs": "1条明确少生成、2条多、1条区间跨零；4条Open/Actor少，不可由交互减少直接推出推理计算减少。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题被影响作品背景取证删除四路径",
+      "chain": "G凸显P已有Moon Pool候选→背景取证实际恢复，仍无直接影响证明→转版本证据可解决年份而C；未闭合影响关系是否继续触发长篇内部检查或新查询，决定消耗落点，候选/年份相同不等成本相同。",
+      "limits": "4条同C且恢复背景，不支持背景必可省；证据不足同原共享。G/采样混杂，不能解释唯一停止原因或把所有缺口检查当冗余。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原68576和四新56413字符完整读完，N2R6的9967字符非摘要。",
+    "背景1935不是题目目标年份，原新都未错取它；先前1919后得1918的事件类型更新单独保留。",
+    "原当前Round内切点成本1329–1467区间；G27只一次且已计Prompt，P8820单列，无原生精确节省。",
+    "原新参数/预算/生产档位差异保留；独立分支差额不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_CURRENT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The previous search results didn't provide the specific story title or publication year."
+    },
+    {
+      "evidence_id": "I_OLD",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/3/content",
+      "exact_quote": "is partly set on Nan Madol",
+      "doc_id": "wiki25:3571721"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 4,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "From the first search result about \"The Moon Pool\", I saw that \"The Moon Pool\" is partly set on Nan Madol."
+    },
+    {
+      "evidence_id": "O_CONTEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Out of the Aeons H. P. Lovecraft Hazel Heald",
+      "call_id": "chatcmpl-tool-9ebc79f12ac67a0c"
+    },
+    {
+      "evidence_id": "O_CONTEXT_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/3/observation/results/2/snippet",
+      "exact_quote": "First published in the April 1935 issue of \"Weird Tales\" magazine",
+      "doc_id": "wiki25:3018740",
+      "call_id": "chatcmpl-tool-9ebc79f12ac67a0c"
+    },
+    {
+      "evidence_id": "O_CONTEXT_USE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The story features a mummy from a sunken island."
+    },
+    {
+      "evidence_id": "O_ASSUMED_LINK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "So \"The Moon Pool\" is the Abraham Merritt story that depicted Nan Madol, which inspired its use in \"Out of the Aeons\"."
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/6/observation/results/0/snippet",
+      "exact_quote": "\"The Moon Pool\" (1918) and its sequel, \"Conquest of the Moon Pool\" (1919).",
+      "doc_id": "wiki25:3571720",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N1_CONTEXT_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Out of the Aeons Lovecraft Hazel Heald Nan Madol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_YEAR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "\"Out of the Aeons\" by Lovecraft and Heald was first published in the April 1935 issue of \"Weird Tales\" magazine."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N2_CONTEXT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Out of the Aeons Lovecraft Heald inspiration story",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_VERSION",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "\"The Moon Pool\" Abraham Merritt magazine publication year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_LONG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results don't explicitly state \"The Moon Pool inspired Out of the Aeons\", but the question premises that such a link exists."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N3_CONTEXT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Out of the Aeons Lovecraft Heald Nan Madol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_GAP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results don't explicitly state that \"The Moon Pool\" inspired \"Out of the Aeons\""
+    },
+    {
+      "evidence_id": "N3_VERSION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "\"The Moon Pool\" Abraham Merritt magazine publication",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N4_CONTEXT_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Out of the Aeons Lovecraft Heald",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results for \"Out of the Aeons\" and \"Randolph Carter\" don't directly mention the Abraham Merritt story"
+    },
+    {
+      "evidence_id": "N4_VERSION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "\"The Moon Pool\" Abraham Merritt initial publication magazine book 1919",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

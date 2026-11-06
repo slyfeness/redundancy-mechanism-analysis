@@ -1,0 +1,470 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0730",
+  "stage_id": "S004",
+  "sample_order": 17,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0730/trajectory.json",
+      "source_sha256": "7d00003a6edd3c6bb23be5491cc0dbd24f83a87298aa0d747fbcd2ba896a22c0"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0730.json",
+      "source_sha256": "1ff16e5920273956670230403534a98674f081debbcc98ed9d7d10536b0ac4b4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "1bcd96c6cc62fe41cc84cb5a285d27c83df034823a7c022a612d731cc1acd34c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e563352a0106a10bdf662837593fd2c371430438606aef9e8f88f0f2e7a42fd8"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7f0ef245496ef7efdbb76310484259e2859a80a0dc6ca1efce6e51059bc73a37"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b26015b258e43f8018ec98eca15d56e375f97ba0e5c6fc2b658ffb4999f4755b"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "f95c8aa11d70694d068a868eb13e1988be21e7aa95f6efd3501d739cfb39188f"
+    }
+  },
+  "question_and_gold": {
+    "question": "On what specific date did the 1983 Heisman Trophy winner, whose professional career included playing for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons, appear on the television show \"Family Feud\" with family members?",
+    "gold": "October 22, 2013",
+    "gold_use": "事后评价，不向生成注入。"
+  },
+  "read_scope": {
+    "original": "完整原9Round/5Search/3Open/Submit及全部Return、两种输入状态已读。",
+    "new": "四条全部实际Reasoning/Submit/Return/Final，14867字符视图全读；新路径没有Search或Open。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "October 22, 2013",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R6@417。",
+    "current_retained_reasoning": "当前P明确Rozier、四队、Heisman，并引用965710 Family Feud妻子和三家人日期，接着This gives me the specific date: October 22, 2013。该采用发生在被删U之前。",
+    "visible_document_evidence": "R5实际Search Return结果0完整737字符snippet已经包含节目、家人、日期，保存于合法P。原U后来Open1000的737字符text与该已见snippet完全相同。",
+    "known_vs_unknown": "日期已经返回、提取并采用，无尚缺日期证据。Falcons直接句在履历片段仍未见，当前P已声称匹配，但这不等于文档证明；原U打开的是家人日期文档，也没有补Falcons。",
+    "budget": "历史5Actor，P21366=原R6 prompt21250+派生保留116；G32；首请求21398，当前生成预算9884。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 417,
+        "end": 685
+      },
+      {
+        "round": 7,
+        "json_pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 608
+      },
+      {
+        "round": 8,
+        "json_pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 277
+      }
+    ],
+    "actual_tools": [
+      "R6 E5 Open965710 offset0 limit100",
+      "R7 E6同参数同Return",
+      "R8 E7扩大limit1000，返回737字符全文"
+    ],
+    "goal": "通过打开原日期文档再次确认已经采用的节目日期。",
+    "operations": "前两次只读开头不到Family Feud日期；R7仍复述已经有答案再做同Open；R8扩大读取范围，最终读到完整文本。",
+    "product": "没有新增独立文档、日期、关系或反证；最终全文与此前Search已完整可见snippet同文。新增的是读取执行实例与再次确认，不是第一次知道日期。",
+    "judgment_change": "未观察到候选或日期改变。原U自称核实，但其最终信息在P已经存在，不能把核实意向当作新的事实产物。",
+    "evidence": [
+      "O_P_DATE",
+      "O_SEARCH_TEXT",
+      "O_OPEN_FIRST",
+      "O_OPEN_REPEAT",
+      "O_OPEN_FULL"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R9重新接受Rozier/日期并Submit。无法从日志分辨最后接受是否心理上依赖重复Open；可证明它没有用到新增文本或新日期，因为同文本早已返回且被采用。",
+    "separate_condition": "履历Falcons证据不足是共享问题，既不由原U解决，也不因这4条没有Open新增。"
+  },
+  "function_features": [
+    "已经采用的答案属性上的同来源重复读取",
+    "读取范围扩展最终没有相对P的信息增量",
+    "被删取证4条均未再执行，接受/提交仍存在；这与末StageS005四条接受功能全部重建不同"
+  ],
+  "guide_audit": {
+    "text": "The 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons is Mike Rozier.",
+    "origin": "原R9 /rounds/8/reasoning_content [0,141)。",
+    "tokens_derived": 32,
+    "complete_P_comparison": "Mike Rozier与四队/奖项确定判断已经逐字含义存在当前R6[0,417)；没有首次引入人名、日期或新增关系。G没有节目日期，只重申已采用身份。",
+    "risk": "ORACLE_ANCHORED；尽管未发现关键事实新颖性，它仍预填了原后继接受句，可推动转入提交；不能把结果解释成纯无引导省略。",
+    "evidence": [
+      "I_G",
+      "I_DATE_ADOPT",
+      "I_IDENTITY"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R6实际Submit日期。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "G重申身份后，新R6只将Family Feud与P已有日期承接，Let me submit，真实Submit。",
+        "没有Search/Open，也没有独立重读原文的新动作；不能将日期重述当Open功能恢复。"
+      ],
+      "first_judgment_divergence": "在日期已采用的状态下，不再把打开文档设为下一步，转为提交。",
+      "first_actual_tool_divergence": "原R6先Open；新R6直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "打开文档复核已知日期",
+          "original_operation": "3次Open及直接反馈",
+          "original_product": "再次读同一已知日期文本",
+          "new_goal": "已有日期用于回答",
+          "new_operation": "承接已知日期后Submit，无新核查",
+          "new_product": "同日期Final；原Open行为未出现",
+          "evidence": [
+            "O_P_DATE",
+            "O_OPEN_REPEAT",
+            "O_OPEN_FULL",
+            "N1_DATE",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "被删的是文档打开验证，不是一般答案采用；没有实际Open或替代Search，也没有独立新证据判断。",
+      "judgment_action_outcome_chain": "P已采用日期且有完整支持→G重申已知身份→不再派重复读取→SubmitC。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "64生成/21398Prompt/0S0O1A；原同切点后3Open及R9Submit共4Actor，新只1Actor。生成差保守[-478,-282]，重放P21366与G32另列。减少落在3Open、3次后续请求和相关重复说明；S005首句已由G预填，不能把全差值独归U。",
+      "counterevidence_and_alternatives": "无G分支未测；G可提供接受方向。共享Falcons支持缺口仍在，不把同C写成全部条件已严格证明。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "真实Submit日期。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新推理76字符：承接He appeared...已知日期，然后Let me submit the answer，执行Submit。",
+        "没有重新选择文档或核验过程。"
+      ],
+      "first_judgment_divergence": "原的再次verify计划未重启，已有日期直接用于提交。",
+      "first_actual_tool_divergence": "首Call为Submit，不是Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "同文档核查",
+          "original_operation": "短Open重复再扩大",
+          "original_product": "既有全文再次可见",
+          "new_goal": "回答日期",
+          "new_operation": "日期承接/Submit",
+          "new_product": "同答案，未新取证",
+          "evidence": [
+            "O_SEARCH_TEXT",
+            "O_OPEN_FULL",
+            "N2_DATE",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "日期表述不等于重新打开/核查，真实工具事件仅Submit。",
+      "judgment_action_outcome_chain": "已有日期足以继续→未重建重复读取→直接C，未出现新的事实或纠错。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "64生成/21398Prompt/0S0O1A，差区间[-478,-282]；Open−3、Actor−3。P/G计法同前，不将教师32当自由生成。",
+      "counterevidence_and_alternatives": "四路径接近不应当作四个独立题目；仍只有本Stage这一实验对象。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "实际Submit正确日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "日期承接后明确I have the answer. I should submit it，执行Submit。",
+        "没有新Search或Open，接受/提交认知仍在，原U读取操作不在。"
+      ],
+      "first_judgment_divergence": "不再把已知答案视为必须先打开文档的任务，而是明确可提交。",
+      "first_actual_tool_divergence": "Submit替代原Open起始。",
+      "function_correspondence": [
+        {
+          "original_goal": "取全文确认",
+          "original_operation": "重复读取",
+          "original_product": "无新增答案事实",
+          "new_goal": "已有答案提交",
+          "new_operation": "I have the answer→Submit",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_P_DATE",
+            "O_OPEN_FULL",
+            "N3_ACCEPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有恢复独立核查或新证据；已有日期到提交不是原Open工作。",
+      "judgment_action_outcome_chain": "日期已被采用→明确可回答→无新增核查SubmitC。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "68生成/21398Prompt/0S0O1A，区间[-474,-278]；3Open和3额外Actor未再发生。",
+      "counterevidence_and_alternatives": "可见的是提交选择不同，不声称能独立确定内部停止阈值改变原因。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R6真实Submit。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新100字符明确with his family members日期后Submit，保留题目家人关系。",
+        "没有文档读取、搜索或新的候选比较，没把原后续未来Return回填。"
+      ],
+      "first_judgment_divergence": "沿已有家人/日期关系组织答案，不展开再次核查。",
+      "first_actual_tool_divergence": "只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "文档直接核查",
+          "original_operation": "3Open",
+          "original_product": "已知节目关系再次读取",
+          "new_goal": "家人节目日期回答",
+          "new_operation": "复述已知关系并Submit",
+          "new_product": "同Final，未重做取证",
+          "evidence": [
+            "O_SEARCH_TEXT",
+            "O_OPEN_FULL",
+            "N4_DATE",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "原工作为实际文档取证，新的关系重述不构成相同核查。",
+      "judgment_action_outcome_chain": "已有完整关系事实→不新增读取→直接C；相同答案并非由新证据替代。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "68生成/21398Prompt/0S0O1A，生成区间[-474,-278]，Open−3Actor−3。",
+      "counterevidence_and_alternatives": "身份G重复已有确定判断，不能说是首次提供Rozier；但仍非纯无引导条件。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4/4 NOT_OBSERVED原Open核查；4条均恢复一般答案组织/Submit，这与目标Open功能分开。",
+    "support_for_low_increment_reading": "原U全文与P已见Search全文同文，日期在P已采用；4条没有新增取证仍直接C，原已有支持未丢。",
+    "cost_location": "3Open和3次后续Actor消失，且多次已知日期重述减少；也包含原后继首句32Token转为prefill和更短S005，不能把全部Token差归U。",
+    "contrast_with_S005": "同题S005无G四条接受提交FULL恢复，1条还补真实Falcons缺口；同是A，不能都叫同种冗余或同样恢复。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "当一个答案关系已由完整返回支持且在当前P明确采用，重复打开同来源若最终仍只带回同文，不会增加新的判断输入；删除后可直接使用已有判断提交，减少执行和交互。",
+      "chain": "日期已返回/提取/采用→原U重复Open同文本、判断不变→新路径未重建取证、沿P日期Submit→4C且0Open1Actor；减少落在重复读取及随后的展开。",
+      "scope": "本Stage1题4路径；有跨题可比线索但不据本题单独冻结机制。",
+      "limits": "需要证明P确实含完整支持，且G未首次提供关键关系；本组虽无新事实泄漏，G接受方向仍是替代解释。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "本题S005新2补Falcons为真实信息增量，与S004重复家人日期Open不同；不能推广所有已知答案后的核验都无用。",
+    "原U最终Open全文没有相对Search的增量，不能用执行了核验就声称提高独立可信度。",
+    "G身份句已在当前P采用，但教师首句仍可能促使停止；不能称纯无G因果冗余已证实。",
+    "Falcons直接证据共享缺口未在4条中恢复，也不由原U解决；不把正确Final自动等同全部题目约束有证。",
+    "字符重建无原native IDs；区间生成减少可报告，不给伪精确U Token省值。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons is Mike Rozier."
+    },
+    {
+      "evidence_id": "I_IDENTITY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 6,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results have identified Mike Rozier as the 1983 Heisman Trophy winner who played for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons."
+    },
+    {
+      "evidence_id": "I_DATE_ADOPT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 6,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "This gives me the specific date: October 22, 2013."
+    },
+    {
+      "evidence_id": "O_P_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This gives me the specific date: October 22, 2013."
+    },
+    {
+      "evidence_id": "O_SEARCH_TEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\".",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "O_OPEN_FIRST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "O_OPEN_REPEAT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/6/observation/text",
+      "exact_quote": "They reside in the Sicklerville section of Winslow Township, New Jersey and together they have one s",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "O_OPEN_FULL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/7/observation/text",
+      "exact_quote": "Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\".",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "He appeared on Family Feud on October 22, 2013."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-bb41cf69981c6f38"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "He appeared on Family Feud on October 22, 2013."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-8b09f0809b337560"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I have the answer. I should submit it."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-b2c27f3b2454fb84"
+    },
+    {
+      "evidence_id": "N4_DATE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "He appeared on Family Feud with his family members on October 22, 2013."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-970b1a4c71518984"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

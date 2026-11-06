@@ -1,0 +1,40 @@
+{
+ "case_id":"205__rep2__S001__FIRST_SENTENCE","question_id":"205","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"Codex将此前实际完整阅读的原新Final主答案状态显式转录：均采用题目所求正确学校。地点1886/1904证据与断言质量另保留，C不代表所有说明均有证据；不按旧EM或脚本关键词生成。"},
+ "review_basis":"原6轮及5次完整Call/Return复用本轮阅读；四条新路径4/3/4/8轮Reasoning及Final、15次Call/Return逐路径核对。逐段哈希相同正文复用已读全文，新增Doc9361完整读取。",
+ "pre_state":"只有原始问题，没有候选、文档或学校关系。",
+ "u_work":"R1@0-500拆解90年代合并、Latin名字、城镇历史并首次真实Search，返回Veritas及其他学校。",
+ "u_state_update":"从无候选材料变为可筛选结果集。原U没有直接接受Veritas，下一Stage才把它作为主候选并查地点。",
+ "original_action_consequence":"采用Veritas后进行学校/地点联合核查，发现1904反证，广搜其他候选，最终以地区史解释接受。",
+ "guidance":{"text":"I found some interesting information.","source":"原R2@0-37","audit":"无实体、事实、Query或答案；它是带'已找到'表述的Oracle承接，实际P仍无检索历史。四条均自行重新发起初始Search，不把该句当证据。"},
+ "evidence":[
+  {"id":"U_QUERY","source":"original","pointer":"/tool_events/0/exact_arguments","quote":"school founded 1990s combined girls boys school Latin name coeducational","use":"首次取证入口"},
+  {"id":"Z_DATE","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Springs was established in 1904","use":"原后续发现地点反证"},
+  {"id":"N1_ADOPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Let me search more specifically for Veritas College to find the name of the girls' school.","use":"首批返回后自主采用主候选"},
+  {"id":"N1_ASSUMPTION","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"town with history going back to second half of 19th century - Springs Mine area","use":"无地点专门取证仍将条件视为符合"},
+  {"id":"N2_ADOPT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Veritas College (founded 1992) fits this description best:","use":"自主完成候选比较与采用"},
+  {"id":"N2_EXTRA_DATE","source":"new2","pointer":"/rounds/2/content","quote":"Springs Mine, established in the 1890s","use":"Final新增矿场年代，实际可见材料没有直接支持"},
+  {"id":"N3_DATE","source":"new3","pointer":"/tool_events/2/exact_result","quote":"established_date: 1904","use":"专门取证实际得到日期"},
+  {"id":"N3_BRIDGE","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"the history of the area goes back to the gold rush in the 1880s","use":"同轮处理冲突并采用地区解释"},
+  {"id":"N4_RECOGNIZE","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"This doesn't match the user's criteria.","use":"明确采用1904作为冲突"},
+  {"id":"N4_OTHER_CALL","source":"new4","pointer":"/tool_events/5/exact_arguments","quote":"school founded 1993 1994 1995 Latin name merged girls boys","use":"恢复冲突后实际另寻候选"},
+  {"id":"N4_CLOSE","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"this could refer to the area's mining history","use":"后续才用宽解释接受并提交"}
+ ],
+ "content_review_20261030":{"scope":"重读初始候选恢复及地点条件四种处理，不把全部同名提交视为同一过程。","decision":"4次均重新初查；2次未专查地点，1次得到1904立即宽解释，1次先将其作反证另寻再返回。"},
+ "mechanism_chain_checks":[
+  {"chain":"P只有题目，删除首次取证后仍重新检索并采用Veritas，取得候选功能没有省去","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ADOPT","N1_ASSUMPTION"],"2":["N2_ADOPT","N2_EXTRA_DATE"],"3":["N3_DATE","N3_BRIDGE"],"4":["N4_RECOGNIZE","N4_OTHER_CALL","N4_CLOSE"]},"limits":"从题目起点的Oracle承接重采样，不是局部功能成功跳过证据。"},
+  {"chain":"没有专门地点取证，直接以矿区推测或未证年代判条件符合并提交","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N1_ADOPT","N1_ASSUMPTION"],"2":["N2_ADOPT","N2_EXTRA_DATE"]},"limits":"低调用带有地点支持不足；第2次新增矿场年代不由可见材料证明。"},
+  {"chain":"取得1904并明确视为冲突，真实另找候选后才用地区历史重新接受","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_RECOGNIZE","N4_OTHER_CALL","N4_CLOSE"]},"limits":"第3次也取得日期但立即宽解释，不能混为都经独立替代核查；地区史替代镇史仍有题意歧义。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"重新拆题并广搜，采用Veritas后两次查学校关系，不单查镇史。","state_chain":"初始检索恢复→候选采用→关系再确认→把矿名视为镇史符合→提交。","function_change":"原初始取证完整恢复，部分原后续地点核验未执行。","evidence":["N1_ADOPT","N1_ASSUMPTION"],"semantic_result":"CORRECT_NAME_WITH_WEAK_LOCATION_SUPPORT"},
+  {"repeat":2,"first_divergence":"重新广搜，比较后用一次学校查询即结束。","state_chain":"检索恢复→自主候选比较→关系确认→无地点核验直接称符合并加矿场年代→提交。","function_change":"原初始取证恢复，省去后续冲突核查。","evidence":["N2_ADOPT","N2_EXTRA_DATE"],"semantic_result":"CORRECT_NAME_WITH_UNSUPPORTED_DATE"},
+  {"repeat":3,"first_divergence":"重新广搜、核学校再核地点，1904出现时立即采用地区史解释。","state_chain":"候选自主恢复→地点取证→反证同轮被宽解释吸收→较早提交。","function_change":"原初始检索恢复，地点判断也恢复但没有经过广搜替代的长路线。","evidence":["N3_DATE","N3_BRIDGE"],"semantic_result":"CORRECT_NAME_WITH_UNRESOLVED_LOCATION"},
+  {"repeat":4,"first_divergence":"重新检索采用Veritas后，地点日期先可见但直到R6才明确当作冲突，再查其他候选。","state_chain":"候选恢复→地点核查→冲突较晚明确→另寻候选→地区解释→Final。","function_change":"原初始取证与主要后续恢复，新增关系核查及交互。","evidence":["N4_RECOGNIZE","N4_OTHER_CALL","N4_CLOSE"],"semantic_result":"CORRECT_NAME"}
+ ],
+ "mechanism_candidate":"删除首个Stage相当于从只有Question的状态重新开始，而四条均重新执行初始取证；结果保持来自候选发现和采用的恢复。成本主要随原后续地点条件是否真正查证、反证是否触发另寻、以及何时被宽解释接受而变化。",
+ "within_case_support":"4/4自主重新Search并给Gold主名称；r1/r2没有获得1904的专门文档，r3得到后立即宽解释，r4得到后另寻再返回。四条结果一致而行动链不一致；不能统一写成首Stage未起作用。",
+ "counterevidence_and_limits":["从R1@0重启接普通G，不能证明初始取证本来可跳过；四条均重做。","较低消耗r1/r2伴随缺少地点核查，r2还有未支持的矿场年代。","r3的地区解释是否满足城镇题意未被证明。","G、seed和检索排序变化可能改变后续，不能排除采样。","只有一道题的四次观察，尚不能形成跨题机制。"],
+ "cost_basis":"原2073completion/5Search/6Actor；新1066/962/1124/2472completion，Search3/2/3/7，Actor4/3/4/8；G6单列。按程序复算，不把少做必要核验自动记有效节省。",
+ "next_cross_case_test":"比较初始取证被重新执行后的后续分歧：事实是否真正新增、冲突是否返回和采用、哪个实际核验消失或被更快完成；将重启样本与中途删除分列解释。"
+}

@@ -1,0 +1,466 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0298",
+  "stage_id": "S011",
+  "sample_order": 41,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "The date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China, occurring shortly after the passing of a prominent leader whose last public appearance involved meeting with a visiting dignitary from Pakistan.?",
+    "gold": [
+      "October 6, 1976"
+    ],
+    "gold_source": "冻结Gold仅离线。"
+  },
+  "original_outcome": {
+    "actual_final": "October 6, 1976",
+    "adopted_answer": "October 6, 1976",
+    "outcome": "C",
+    "reason": "后续E10获得直接日期并Submit。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8@629，当前P已采用9541138最后会见布托和9月9逝世、被捕结束文革，真正未补齐的是确切被捕日。E7刚返回正确最后会见线索，纠正了此前1968芒果解释。P不包含将被删E8空Return及E9无关结果，也无E10确切日期句。",
+    "evidence_states": "主体/最后露面条件已返回提取采用，事件月份由10527815支持，确切日尚无直接文献支持。旧日志猜测6日不等于原生消息仍带推理。",
+    "evidence": [
+      "O_P",
+      "O_MEETING",
+      "O_APPROX"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/10/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 629,
+        "end": 862
+      },
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 1000
+      }
+    ],
+    "goal": "会见条件解决后恢复确切被捕日的取证，失败后重试。",
+    "operations": "R8Search GangofFourarrestdateOctober1976，约30.66秒后空结果；R9复述月级信息并改Query加CulturalRevolutionconclusion，约26.10秒返回泛four无关文献。",
+    "product": "两次真实尝试都未补确切日期，没有新有效证据。",
+    "judgment_change": "确认仍缺被捕日，继续同缺口重试；没有候选改变。",
+    "evidence": [
+      "O_QUERY",
+      "O_EMPTY",
+      "O_RETRY"
+    ]
+  },
+  "original_followup": {
+    "use": "S012凭旧材料/常识接受6日；S013再发与E8相同Query，这次返回179223确切日并采用，S014Submit。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "身份条件已解决后的日期取证与普通检索重试。",
+    "state_relation": "四条都实际恢复日期Search，首次Query通常与原完全相同却直接拿到原E10正确批次。原新工作目标未变，但返回有效性不同，这是少交互的重要因素，不能只归因删除改变思考策略。",
+    "evidence": [
+      "N1_DATE",
+      "N2_DATE",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The search results confirm the details.",
+    "source_position": "原R10[0,39)，7派生Token。",
+    "novelty": "无新实体/事实/日数，但带笼统已确认信号；当前确切日期尚缺，不能将其当证据支持。四条仍自主识别日期缺口并搜。",
+    "risk": "ORACLE_ANCHORED+UNSPECIFIED_CONFIRMATION；原后继本身也在无确切日Return时过称confirmed。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "新Search直接返回179223并采用后Submit。",
+      "outcome_evidence": [
+        "N1_DATE",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8说需specificdate，真实Search与原E8完全相同，但实际完整Return等于原E10有179223/290909批次，并非原E8空结果；R9约3810字符对应会见、死亡、被捕，区分一月后近似与6日精确句，Submit。",
+      "first_judgment_divergence": "目标无改变，仍缺具体日；信息分歧先发生在相同Query拿到有效结果，因此一轮即可形成证据支持。",
+      "first_actual_tool_divergence": "首Call同原，Return由空变有效；省去后继重试和再查。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得具体被捕日",
+          "original_operation": "真实Search+不足后重试",
+          "original_product": "未得日期",
+          "new_goal": "同",
+          "new_operation": "同Query一次成功并采用",
+          "new_product": "6October精确支持",
+          "evidence": [
+            "O_QUERY",
+            "O_EMPTY",
+            "N1_DATE",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原信息取证功能重做且直接成功；失败后重试因无失败未发生，不视为功能未重建。",
+      "judgment_action_outcome_chain": "会见已解决/日期缺口→同查询有效返回→具体日采用→完整判断→C，减少取证次数但较长整合。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1206生成45543Prompt2Actor1Search1Submit；原1066..1273生成，差[-67,140]不确定；较原少2Search2Actor，因首次返回成功跳过无效尝试。P20817/G7。",
+      "counterevidence_and_alternatives": "同Query返回变化是关键外部因素，不能据此把原两个尝试认定语义冗余或删除因果提速。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "有直接日期片段和Open再次支持，Submit正确。",
+      "outcome_evidence": [
+        "N2_DATE",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8明确仅月级再Search同原Query，实际获有效179223；R9已采用6日仍再发完全相同Query，Return也相同；R10已全题正确却Open179223500，完整目标句在内；R11整合后Submit。",
+      "first_judgment_divergence": "首次成功采用后没有立即停止确认，重复同Query再Open，是有效证据已采用后的额外工作。",
+      "first_actual_tool_divergence": "首次Call同原但Return有效；下一新Call不换词而重放成功查询，再加Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "具体日取证",
+          "original_operation": "失败后重试",
+          "original_product": "尚无具体日",
+          "new_goal": "同并反复确认",
+          "new_operation": "首次成功Search、同Query再Search、Open目标句",
+          "new_product": "具体日支持恢复且反复采用",
+          "evidence": [
+            "O_EMPTY",
+            "N2_DATE",
+            "N2_J",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实日期Search及采用完整发生，两次成功重复不是缺口未解决的必要后续。",
+      "judgment_action_outcome_chain": "首次日证据成功→接受6日→仍再确认→同结果再返/再Open→C但新增认知和Open成本。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1581生成103158Prompt4Actor2Search1Open1Submit；差[308,515]至少多308；较原少1Search但多1Open，Actor同4，后两次确认和多轮整合导致增加。P20817/G7。",
+      "counterevidence_and_alternatives": "比r1多确认并未改变结果；不能证明这些工作普遍无价值，只是同句未带来新判断。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "真实直接日依据并Submit。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8自称常识6日但应查语料，Search同原E8；新Return直接有效，R9约996字符采用会见和179223日期，自称充分并Submit。",
+      "first_judgment_divergence": "没有改变取证目标；区别是同一次Call这次成功，因此不再重复取证或长篇复盘。",
+      "first_actual_tool_divergence": "Query同原，Return空→有确切日，后续直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "日期取证",
+          "original_operation": "真实Search失败重试",
+          "original_product": "缺口未补",
+          "new_goal": "同",
+          "new_operation": "同Search成功、明确采用",
+          "new_product": "C及确切日支持",
+          "evidence": [
+            "O_QUERY",
+            "O_EMPTY",
+            "N3_J",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "功能真实重做，效率来自成功返回及及时采用。",
+      "judgment_action_outcome_chain": "日期先验→仍要求查证→首次有效Return→采用充分→C，少失败重试与长整理。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "378生成45543Prompt2Actor1Search1Submit；差[-895,-688]至少少688；比原少2Search2Actor，R9短整合省篇幅。P20817/G7。",
+      "counterevidence_and_alternatives": "同Query有效性不同，不能称改查询策略获收益；原失败是实际保存结果不伪造服务原因。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "正式Submit且新Return含精确日。",
+      "outcome_evidence": [
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8说open但真实Call为Search arrestGangofFourdateOctober1976，Return完整同原E10有效批次；R9约1494字符全题比较、接受6日后Submit。把精确句同归华国锋文献是来源口述错误，实际179223支持。",
+      "first_judgment_divergence": "工作目标相同，Query词序小改后首次成功，不再经历原空/无关结果。",
+      "first_actual_tool_divergence": "真实Search不是推理口头说的Open；原后两次Search消失。",
+      "function_correspondence": [
+        {
+          "original_goal": "具体日补查",
+          "original_operation": "Search与重试",
+          "original_product": "未查到",
+          "new_goal": "同",
+          "new_operation": "一Search有效返回并采用",
+          "new_product": "6日确定/C",
+          "evidence": [
+            "O_EMPTY",
+            "N4_J",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际查询和日期采用可见，非Final重述推断。",
+      "judgment_action_outcome_chain": "P已知主体和事件→查具体日成功→完整对应→C，失败步骤未发生而更省。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "459生成45509Prompt2Actor1Search1Submit；差[-814,-607]至少少607，少2Search2Actor；P20817/G7。",
+      "counterevidence_and_alternatives": "不能由Query近似和新有效Return断言词序就是成功原因，同完全Queryr1/r3亦有效。"
+    }
+  ],
+  "four_run_comparison": "四FULL/四C。r1/r3/r4一Search成功后结束，r2成功后仍重复Search和Open。原U两次失败/无关检索被新首次成功取代，不是目标功能消失；返回有效性与接受后是否继续确认共同决定消耗。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "同信息需求的取证成本受实际返回是否解决缺口、解决后是否被当作充分证据驱动结束共同影响。原失败触发重试，新成功可减少后续；但r2已得到并采用确切日还重启同Query与Open，说明证据成功也不会自动取消确认任务。",
+      "support_evidence": [
+        "O_EMPTY",
+        "O_RETRY",
+        "N1_DATE",
+        "N2_J",
+        "N3_J"
+      ],
+      "limit": "相同Query原空新有效是明显工具结果差异，不能将收益全部归因Stage删除或模型判断变化；本题各Stage共用案例不当独立题目。"
+    }
+  ],
+  "counterevidence_and_limits": "原111027、新36125字符完整阅读。真实空结果/无关Return与有效返回分别保留，未臆测空因超时或后端原因。G笼统确认方向，无具体日期；原nativeIDs缺失只报1066..1273保守区间。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Mao Zedong's last public appearance was on 27 May 1976"
+    },
+    {
+      "evidence_id": "O_MEETING",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/6/observation/results/2/snippet",
+      "exact_quote": "Mao's last public appearance — and the last known photograph of him alive — was on 27 May 1976.",
+      "doc_ids": [
+        "wiki25:9541138"
+      ]
+    },
+    {
+      "evidence_id": "O_APPROX",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/9/snippet",
+      "exact_quote": "One month after Mao's death",
+      "doc_ids": [
+        "wiki25:10527815"
+      ]
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Gang of Four arrest date October 1976",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_EMPTY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Gang of Four arrest date October 1976"
+    },
+    {
+      "evidence_id": "O_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Gang of Four arrest date October 1976 Cultural Revolution conclusion",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/9/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976, Hua had the four leading radicals",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The search results confirm the details."
+    },
+    {
+      "evidence_id": "N1_DATE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976, Hua had the four leading radicals",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N2_DATE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976, Hua had the four leading radicals",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the answer should be October 6, 1976."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I have sufficient information to answer."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the date would be October 6, 1976."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    }
+  ],
+  "structured_observations": [{"source_ref":"O","json_pointer":"/tool_events/7/observation/results","exact_value":[],"meaning":"O_EMPTY的字符串引用只定位Call；空返回这一事实在此直接指向实际空数组，不能把Query自身当空Return证据。"}],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0298/trajectory.json",
+      "source_sha256": "bf3197a6fec2db1bc51d22d0ee599c78abac05856a655a10fcf5e4f813b00eeb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0298.json",
+      "source_sha256": "bb0b87d53cce546f6a34f83925efd1323dffe4dd3a90b6a18c0d47e6351882f1"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "911afce0a7663e55e832a70f4ee6140a3102f904a8019266aea8eb843db6cbab"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "404ad0c6c268af2bad520abe2f20717eb3a127bf2d7b0e50b222a93f5a8ce8d6"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "793e83d93bce500db54ff52bcad573b7deb84812f44351d3ba07e2c0b0310384"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "7208e45883f35dbd23f8ae80abac304e66e039966c2be300b2888964cb0235aa"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S011__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "cccda50c2849f9c0ff0fd781bd8b2f06da6332193ceb64460393caaf516135e0"
+    }
+  }
+}

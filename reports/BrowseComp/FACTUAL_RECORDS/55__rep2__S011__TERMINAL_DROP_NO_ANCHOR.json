@@ -1,0 +1,38 @@
+{
+  "case_id":"55__rep2__S011__TERMINAL_DROP_NO_ANCHOR","question_id":"55","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新都有实际Final明确接受Biswaranjan Chattapadhyay，旧整段EM不覆盖；不是无Final的中间猜测。"},
+  "review_basis":"原完整12轮11Call/Return此前已全文读；本组四新各一轮完整Reasoning与Final均实际阅读，零Call。没有G，无未来答案预填；原全部已读Return同源保留。",
+  "pre_state":"R12@102之前，完整历史已有11次Search，正确评者及其它多项事实已采用，R10/R11已多次接受姓名；刚消费E11返回并说明仍无刊名。P已经有接受基础，仍无期刊首卷和当时讲师的直接关系支持。",
+  "u_work":"R12[102,1007)最后完整盘点已有证据、明确即使刊名未定也足够识别评者，组织最终答案；没有工具事件，正式Final与原U推理分离。",
+  "u_state_update":"将仍有缺口的证据归结为可提交正确评者，完成本次答案接受与停止。不是第一次采用该姓名，也不产生新事实。",
+  "original_action_consequence":"无G四次都重新列条件并接受评者，明确保留刊名未识别却按所求姓名提交；U核心认知功能完整恢复。表达长短有变化，但Call/Actor无减少，Prompt因重放前缀略增。不能据四C把整体判断视作消失或没有作用。",
+  "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，原R12@102；切点前101字符原生20Token，一空格局部重编码补回为21Token。","audit":"没有G，未把Final或后继答案包装成Reasoning。CHAR_EXACT_RETOKENIZED只补P末尾空格，原生成节省给保守区间而非伪原生精确值；已有P包含先前接受结论，不能称空状态重启。"},
+  "evidence":[
+    {"id":"O_P_ALREADY_ACCEPT","source":"original","pointer":"/rounds/10/reasoning_content","quote":"The reviewer is Biswaranjan Chattapadhyay.","use":"R11已有候选接受，切点前并非未知所求姓名。"},
+    {"id":"O_P_LAST_FAIL","source":"original","pointer":"/rounds/11/reasoning_content","quote":"The search results continue to show the same book review but don't give me the specific journal name.","use":"R12[0,102)P含最后一次失败，缺口仍未解决。"},
+    {"id":"O_U_ENOUGH","source":"original","pointer":"/rounds/11/reasoning_content","quote":"However, I have gathered enough information to identify the reviewer.","use":"原U从@102开始完整充分性接受，不是真实搜索。"},
+    {"id":"O_U_WITH_GAP","source":"original","pointer":"/rounds/11/reasoning_content","quote":"Even though I haven't been able to definitively identify the journal name","use":"原接受仍明确缺口，人名正确不是全题关系已证。"},
+    {"id":"N1_FULL_COMPARE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me verify all the constraints one more time:","use":"R12无G自主恢复八项比较，非仅Final重述。"},
+    {"id":"N1_GAP_ACCEPT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Even though I haven't been able to identify the specific journal, all the other constraints match perfectly","use":"重复原未解关系下的接受决策，未发新Call。"},
+    {"id":"N2_FULL_COMPARE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Even though I haven't been able to identify the specific journal where this review was published","use":"R12实际重新盘点七条件、回到所求人名，非认知U全未再现。"},
+    {"id":"N2_FINAL","source":"new2","pointer":"/rounds/0/content","quote":"**Answer: Biswaranjan Chattapadhyay**","use":"正式正确姓名；讲师身份仍推断而非新证。"},
+    {"id":"N3_FULL_COMPARE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Let me summarize what I've found:","use":"R12自主恢复八项证据整理并明确期刊未定后提交。"},
+    {"id":"N3_GAP_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"The question asks me to name the reviewer, and that information is available.","use":"真实所求→已知→停止判断恢复，不靠无Final猜测。"},
+    {"id":"N4_FULL_COMPARE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"All constraints are satisfied.","use":"R12七项完整盘点后作充分性判断，但紧接承认期刊未识别，内部证据张力保留。"},
+    {"id":"N4_STILL_GAP","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Even though I haven't been able to identify the specific journal name from the search results","use":"并未通过新取证补缺，声明全部满足不能由审核者认证为事实。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"无G仍从最后失败反馈转入完整比较，八条件再盘点后接受。","state_chain":"P已有姓名与失败反馈→自主恢复条件复盘→承认刊名未知→直接Final。","function_change":"FULL_REBUILT认知U与答案接受；无Call、Actor同原，生成多116—117，Prompt多21，不是净执行下降。","evidence":["O_P_ALREADY_ACCEPT","N1_FULL_COMPARE","N1_GAP_ACCEPT"],"semantic_result":"C→C，背景支持缺口保留。"},
+    {"repeat":2,"first_divergence":"无G自主七条件复盘，表达略短，未实际核刊便提交。","state_chain":"P已知候选→完整接受恢复→未解关系不再触发Search→Final。","function_change":"FULL_REBUILT认知U，原生新587，较保守原后缀592—593少5—6；Prompt反而多21，不能称四资源都降。","evidence":["N2_FULL_COMPARE","N2_FINAL"],"semantic_result":"C→C，讲师/刊物关系仍缺。"},
+    {"repeat":3,"first_divergence":"自主八条件盘点，以所求姓名已有为停止依据。","state_chain":"已有P事实→认知组织和接受再发生→保留未定刊物→Final。","function_change":"FULL_REBUILT核心工作，生成多43—44、Prompt多21；没有搜索功能要重建，不虚构取证。","evidence":["N3_FULL_COMPARE","N3_GAP_ACCEPT"],"semantic_result":"C→C。"},
+    {"repeat":4,"first_divergence":"自主列七项后声明全满足，但又承认具体刊名未知。","state_chain":"P正确候选→重新充分性接受→未解条件被放下而非证实→正确姓名Final。","function_change":"FULL_REBUILT认知U，生成多11—12、Prompt多21，Call/Actor不变。","evidence":["N4_FULL_COMPARE","N4_STILL_GAP"],"semantic_result":"C→C，证据充分性断言仍有缺口。"}
+  ],
+  "mechanism_candidate":"切点前已多次采用正确评者，删除最后认知盘点并不让模型停止进行答案接受：无G四次都自主恢复同一所求→证据匹配→刊名未知但接受的判断。答案稳定支持已有候选路径可恢复，不支持完整判断无须执行。生成有三增一微降，成本没有稳定下降，说明纯认知重建与额外取证可省是不同问题。",
+  "within_case_support":"四次核心接受判断完整恢复，四正式人名C，零Call且Actor同原；其中三更长、一稍短，全部Prompt略增。与S010四次跳过最后真实Call且有G充分性预填形成内部对照，而非同一冗余类别。",
+  "mechanism_chain_checks":[
+    {"chain":"P已有稳定候选与多次接受→无G也自主恢复完整证据比较/答案接受→正确人名Final，认知功能未消失。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["O_P_ALREADY_ACCEPT","N1_FULL_COMPARE","N1_GAP_ACCEPT"],"2":["O_P_ALREADY_ACCEPT","N2_FULL_COMPARE","N2_FINAL"],"3":["O_P_ALREADY_ACCEPT","N3_FULL_COMPARE","N3_GAP_ACCEPT"],"4":["O_P_ALREADY_ACCEPT","N4_FULL_COMPARE","N4_STILL_GAP"]},"limits":"同一道题末段，不证明判断唯一必要；已有P接受和独立采样仍可能影响表达/停止。没有新的关系证据。"}
+  ],
+  "counterevidence_and_limits":["无G排除教师直接补接受句，但P早已有同样答案/接受，不等于没有上下文支持的判断可恢复。","新4全满足与期刊未知同时存在，不以正确姓名覆盖证据不足。","新1/3/4生成更长，新2仅少5—6且Prompt多21，反对A类都省成本。","与S008/S010少真实取证的节省不混为同一认知功能删除。","末端Stage不是全轨迹重采样，原历史完整保留；局部空格重编码边界明确披露。"],
+  "cost_basis":"CHAR_EXACT_RETOKENIZED R12@102，原R12总613Token，前20原生Token加一空格重编码成为21保留。保守原后缀592—593生成，0Search、1Actor、Prompt34514；新709/587/636/604生成，0Search、1Actor、Prompt均34535，教师0。变化区间+116—117/−6—−5/+43—44/+11—12；Prompt各+21为重放，独立差值不加和，不报告精确原生节省。",
+  "next_cross_case_test":"继续无G末段跨题对照：已有候选情况下，哪些认知判断自主恢复、哪些真实核验仍触发，表达压缩和功能消失分别统计，不以A标签直接称冗余。"
+}

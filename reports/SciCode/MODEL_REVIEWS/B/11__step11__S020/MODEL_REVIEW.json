@@ -1,0 +1,831 @@
+{
+  "case_id": "11__step11__S020",
+  "category": "B",
+  "trajectory_id": "11__step11",
+  "stage_id": "S020",
+  "main_problem_id": "11",
+  "official_subproblem_id": "11.11",
+  "intervention": "FIRST_SENTENCE",
+  "review_status": "COMPLETE",
+  "semantic_author": "Codex实际阅读并逐条手写；Python只定位完全相同原文、SHA、协议及客观成本，不生成语义结论",
+  "sources": {
+    "reading_scope": "完整实际P：主问题、当前11.8题面及此前11.1—11.7七份正式代码；P没有此前66轮推理或工具历史，不能把未进入Actor输入的历史解释当作已知。原U的11.8R1—R2及原后续11.8R3—R15、11.9四轮、11.10三轮、11.11四轮，全部Reasoning、content、工具参数和完整Return已读。四条新路径13/14/34/34轮、13/12/34/34工具全部读完。原11.9R4、新N1的11.9R1、新N2的11.8R5与11.9R1长重复文本按精确原句与每次出现字符范围阅读全文，read索引分别保存在O_s9r4_read、N1_s9r1_read、N2_s8r5_read、N2_s9r1_read.json；显示截断的N1[9480,12220)和N3的11.9R3已单独补读。未重跑科学代码，未复制历史机制标签。",
+    "scope_note": "SciCode100 B116；不是BrowseComp904。目标是11.11，U在上游11.8；不能把上游代码的局部验证结果当作目标11.11官方测试结果。",
+    "files": {
+      "O": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      "N1": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+        "sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+      },
+      "I1": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/INPUT_AUDIT.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\INPUT_AUDIT.json",
+        "sha256": "e88d4904e06cf8162530b9fd8ad59255427effd0102ff07d1803729aeb160187"
+      },
+      "N2": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+        "sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+      },
+      "I2": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/INPUT_AUDIT.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\INPUT_AUDIT.json",
+        "sha256": "897a61c9a522818846702158bd45e7f8d192dfe36405e5f9d92fd7db4f28b105"
+      },
+      "N3": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+        "sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+      },
+      "I3": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/INPUT_AUDIT.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\INPUT_AUDIT.json",
+        "sha256": "338b0a94ecda2145ea631bcbb8c9ad746387c937eb3b636c1110f18ecaaf4bb1"
+      },
+      "N4": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+        "sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+      },
+      "I4": {
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/INPUT_AUDIT.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\INPUT_AUDIT.json",
+        "sha256": "b75cce880e60443fbbec109c4995b0788ebe54b69ef87a4af0e8d941e8f9e073"
+      }
+    }
+  },
+  "original": {
+    "pre_state": "当前子问题要实现任意维数密度矩阵的子系统置换syspermute(X,perm,dim)。P中已有七份正式辅助代码，当前draft和本轮Reasoning前缀为空、无待配对历史工具；历史已消耗66次Actor。此前函数包括ket、multi_rail、tensor、apply_channel、GAD、output_state、measurement，但没有syspermute、partial_trace或entropy成品。七份代码可见并不证明其算法正确，例如部分np.kron.reduce与编码约定本身有疑点；本组只追踪后续实际调用的依赖。",
+    "U_goal": "把子系统重排的数学索引解释落成第一份可保存代码，并建立后续读取/测试对象。",
+    "U_operations": "11.8R1[0,9214)论证行主序及置换前后基底映射，直接run_python被write-before-run门控拒绝；R2[0,1924)认识到必须先write_code，保存1720字符稿。该稿只复制对角元，解码余数用dim[j]而非对应权重，且没有正确应用完整置换。U包括两次真实事件，不能把长论证或ACCEPTED当成正确算法。",
+    "U_product": "首份已保存syspermute草稿e1ccc05d…，不是正确通用置换证明。保存解决的是工具可测试前置状态；对角复制、行列索引等仍待纠错。",
+    "judgment_before_after": "从尚未有实现、可直接试算的预想，变为必须先保存代码再读/测。数学上的行列都需映射并未在初稿完整实现；真正的行列修补发生于后继。",
+    "original_suffix_use": "11.8R3按G读取刚保存稿，R4指出只处理对角却再次写同稿；R5—R14多轮真实测试、修改及基底解释，最终两量子位测试通过，但混合维数Identity等失败未消解，R15仍接受。11.9写partial_trace，测试另行定义的错误reshape版本，R4长10000Token推导后未正式提交；因此11.11没有正式partial_trace依赖，直接reshape(dimA,dimB,dimA,dimB)并trace axes0,2，正式代码1805字符，官方C。不能说U的正确辅助算法一路保证了最终正确：原通用辅助本身有反证，目标代码绕过了它。",
+    "evidence": [
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/7/rounds/0/reasoning_content",
+        "exact_quote": "A basis state |i0, i1, i2, ...> has index i0 * (d1*d2*...) + i1 * (d2*...) + i2 * ... (lexicographic ordering)",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 774,
+        "end": 884,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/7/rounds/1/reasoning_content",
+        "exact_quote": "I need to write the code first, then test it.",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 0,
+        "end": 45,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/7/tool_events/1/arguments/code",
+        "exact_quote": "Y[new_idx, new_idx] = X[old_idx, old_idx]",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 1661,
+        "end": 1702,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/7/rounds/14/reasoning_content",
+        "exact_quote": "The 3-qubit tests were confusing because I was getting the indexing wrong.",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 714,
+        "end": 788,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/10/tool_events/3/arguments/code",
+        "exact_quote": "rho_AB.reshape(dimA, dimB, dimA, dimB)",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 723,
+        "end": 761,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/10/tool_events/3/arguments/code",
+        "exact_quote": "axis1=0, axis2=2",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 800,
+        "end": 816,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      }
+    ]
+  },
+  "guide_audit": {
+    "text": "Let me read the code I just wrote and verify it's correct.",
+    "origin": "原S021，11.8R3 /steps/7/rounds/2/reasoning_content[0,58)。14教师Token。",
+    "comparison_with_full_P": "完整P没有当前syspermute代码，draft为空。G没有引入科学事实、目标答案、公式或未来子问题；但I just wrote预设当前代码已经存在，并指定读取/验证行动。四次首次都read_code读到空字符串，随后重建实现。不能把G视为普通无干预续写，也不能把读空直接解释成数值失败。",
+    "risk": "ORACLE_ANCHORED；方向与当前工具状态错位。没有观察到G提供决定性答案，但采样和跨子问题余下预算同样影响远端结果，不能唯一归因为删U。",
+    "evidence": [
+      {
+        "source_key": "I1",
+        "source_side": "G",
+        "json_pointer": "/G",
+        "exact_quote": "Let me read the code I just wrote and verify it's correct.",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/INPUT_AUDIT.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\INPUT_AUDIT.json",
+        "start": 0,
+        "end": 58,
+        "source_sha256": "e88d4904e06cf8162530b9fd8ad59255427effd0102ff07d1803729aeb160187"
+      },
+      {
+        "source_key": "O",
+        "source_side": "ORIGINAL",
+        "json_pointer": "/steps/7/rounds/2/reasoning_content",
+        "exact_quote": "Let me read the code I just wrote and verify it's correct.",
+        "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_stage_remaining95_20261103\\sources\\11__step11\\trajectory.json",
+        "start": 0,
+        "end": 58,
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e"
+      }
+    ]
+  },
+  "rollouts": [
+    {
+      "branch_id": "11__step11__S020__FIRST_SENTENCE__rep1",
+      "official_state": "W",
+      "first_material_divergence": "11.8R1按G read_code获得空draft；R2新写置换矩阵方案而非原对角稿。R3测试从syspermute_code导入被拒；R4误指numpy而仅小改，R5正式提交。原路径后续多种实际置换测试及反复改码没有重现。",
+      "work_reconstruction": {
+        "goal": "重新实现并保存syspermute目标恢复；不算功能被跳过。",
+        "operation": "R2write、R3真实run请求被拒、R4write、R5submit。新采用小端累积权重和逆向解码组合，与原初稿不同，没有成功数值验证。",
+        "product": "11.8正式1779字符2109f33e…；新11.9又正式提交partial_trace，而原11.9无正式代码。这项新依赖随后真正进入目标代码。",
+        "assessment": "实现/保存/提交工作重建，正确通用置换功能未证明；后继新增错误依赖不能归入被删U本身的功能。"
+      },
+      "judgment_change": "11.9推导一度有对角配对trace方案，却错误认为np.trace不能给axis，转用einsum('kicj->ij')，独立求和两条被弃轴，未落实同一指标相等的偏迹约束。R2未经测试正式交付，11.11采用此已可见partial_trace而非原直接双体计算。",
+      "action_chain": "空draft→重写置换但测试入口被拒→照样正式提交→后题把未验证的通用偏迹当现成依赖→目标调用它并将同版本helpers一起交付。11.11R1尝试数值测试又因当前目标draft空被write-before-run拒绝，R2保存后只读取/提交，没有成功执行目标测试。",
+      "result_explanation": "C→W有可见代码依赖链：原目标直接trace axes0,2，新目标依赖包含独立求和的通用偏迹。静态算法差别支持具体风险，但本轮未重跑官方用例，不把某一行宣布为官方失败的唯一原因。",
+      "cost_localization": "原切点后42354生成、226457Prompt、26Actor/25工具；新19442生成+14G、85722Prompt、13Actor/13工具，记录生成+G少22898，Prompt少140735，Actor少13/工具少12。主要没有重演原syspermute多轮验证以及原partial_trace长推导，较早交付未验证helper；不能全算U本身节省，更不能以更省判质量不变。",
+      "evidence": [
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/tool_events/0/model_visible_return/code_sha256",
+          "exact_quote": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 0,
+          "end": 64,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        },
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/tool_events/2/model_visible_return/validation/root",
+          "exact_quote": "syspermute_code",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 0,
+          "end": 15,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        },
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/0/arguments/code",
+          "exact_quote": "kicj->ij",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 1302,
+          "end": 1310,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        },
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/tool_events/1/arguments/code",
+          "exact_quote": "partial_trace(rho_AB",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 4453,
+          "end": 4473,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        },
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/tool_events/0/model_visible_return/status",
+          "exact_quote": "REJECTED",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 0,
+          "end": 8,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        },
+        {
+          "source_key": "N1",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/submitted_code_sha256",
+          "exact_quote": "4531cfc7b6cc759c22397dbc53f068a57ad7ae3133afca8cfb34ea586ee5af93",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep1\\trajectory.json",
+          "start": 0,
+          "end": 64,
+          "source_sha256": "050222c3772d08617d387635aba664f1d450941e060fe868ee7919e4ea42b632"
+        }
+      ],
+      "counterevidence": "原syspermute也有测试失败；原目标C不是原U数学方案完全正确的证明。新R1含Bell测试计划而没有执行成功，不能把计划打印当正确测试。",
+      "unknowns": "未取得本轮官方失败的逐用例断言，不能唯一定位W；U重建方案、G、seed及后续partial_trace的独立生成共同变化。"
+    },
+    {
+      "branch_id": "11__step11__S020__FIRST_SENTENCE__rep2",
+      "official_state": "C",
+      "first_material_divergence": "11.8R1read空、R2写reshape+transpose，但把perm重复两次而没有给bra轴加n，R4真实inline执行报repeated axis。R5正确指出自己构造重复轴，却停在10000Token反复推导，未提交syspermute。",
+      "work_reconstruction": {
+        "goal": "尝试重建置换并保存、实际测试；正式产品未恢复。",
+        "operation": "read→write→导入拒绝→inline运行得到ValueError→长推理无Call。后继11.9又一次10000Token无Call长推理，无正式partial_trace。",
+        "product": "没有新syspermute或partial_trace正式提交；仅entropy和目标代码正式提交。",
+        "assessment": "PARTIAL：本次实现尝试重建但未成功交付，不能称未观察目标工作，也不能把官方C当辅助函数已经正确。"
+      },
+      "judgment_change": "错误axes被认识但没有形成修正版提交。由于两个通用helper缺席，11.11改用目标内部按块np.trace计算，不依赖未提交helper；entropy测试实际得到纯态0、混合态1/2。目标的测试则被prior_functions导入拒绝，随后删掉内部import、正式提交，未获得目标数值确认。",
+      "action_chain": "空draft→新置换错误被真实返回识别→两道helper长推导耗尽各轮生成但未正式交付→仍继续entropy并成功测试→目标自包含局部实现→测试入口拒绝后提交，官方C。",
+      "result_explanation": "C→C是辅助实现未完成仍能交目标的反例。并非目标功能不需要偏迹，而是目标又自行实现局部操作。保留静态反证：它以i*dimA分块并对块取trace，可能是在常用约定下约化另一侧，不能据官方C宣称任意非对称状态/维数均正确；不修改封存评分。",
+      "cost_localization": "新29859生成+14G、79773Prompt、14Actor/12工具，记录生成+G少12481、Prompt少146684、Actor少12/工具少13。两个10000Token无Call段仍很长；减少主要是原syspermute多轮工具调试没有重演，不能说省掉一项必要数学功能。原新均有partial_trace长推导，节省不是把所有旧长推理都删除。",
+      "evidence": [
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/rounds/4/reasoning_content",
+          "exact_quote": "The issue with my approach is that I'm creating a permutation list with repeated elements",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 728,
+          "end": 817,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/stop_reason",
+          "exact_quote": "GENERATION_LENGTH_STOP",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 0,
+          "end": 22,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/stop_reason",
+          "exact_quote": "GENERATION_LENGTH_STOP",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 0,
+          "end": 22,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/2/tool_events/1/model_visible_return/stdout",
+          "exact_quote": "Pure state entropy: -0.0\nMaximally mixed state entropy: 1.0\n4x4 maximally mixed entropy: 2.0",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 0,
+          "end": 92,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/tool_events/1/arguments/code",
+          "exact_quote": "rho_B[i, j] = np.trace(rho_AB[i*dimA:(i+1)*dimA, j*dimA:(j+1)*dimA])",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 923,
+          "end": 991,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/tool_events/2/model_visible_return/validation/root",
+          "exact_quote": "prior_functions",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 0,
+          "end": 15,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        },
+        {
+          "source_key": "N2",
+          "source_side": "NEW",
+          "json_pointer": "/steps/3/submitted_code_sha256",
+          "exact_quote": "3388d14fa575a11b55b6d1ee5ba44e7ea06567dbf74ceb49f5bfac4f0b9ed591",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep2\\trajectory.json",
+          "start": 0,
+          "end": 64,
+          "source_sha256": "6641c0b6c90a6eb26eda5e629bf941ae0c3e75c13f011ce4606f5c06acc276e3"
+        }
+      ],
+      "counterevidence": "恢复的是目标代码中的局部偏迹计算，不是完整通用syspermute工作。官方C与静态泛化疑点同时保留；未追加科学测试。",
+      "unknowns": "不知道官方测试覆盖的具体状态与维数，不据静态疑点更改C，也不宣称已证明general correctness。"
+    },
+    {
+      "branch_id": "11__step11__S020__FIRST_SENTENCE__rep3",
+      "official_state": "N",
+      "first_material_divergence": "11.8R1读取空draft，R2写置换矩阵小端解码/原维数重编码版本，R3导入tools拒绝，R4未成功测试就submit。11.9首次真实运行暴露前题syspermute浮点索引IndexError。",
+      "work_reconstruction": {
+        "goal": "syspermute设计、保存与正式交付均恢复；正确运行没有恢复。",
+        "operation": "4轮完成前题，后题30轮在先弃用syspermute的错误3D reshape和重新采用syspermute的4D方案间切换。",
+        "product": "正式1704字符48ea9933…带未验证依赖缺陷；partial_trace始终无正式提交，entropy和目标根本未进入。",
+        "assessment": "U实现工作重建；后题暴露缺陷后修复对象/工具对象错配，不能把N解释成完全没重建U。"
+      },
+      "judgment_change": "11.9R2/8的Return已将错误定位到syspermute的P[new_idx,old_idx]，R9识别np.prod空list可能float。R9—22却反复read_code，返回一直是partial_trace当前草稿b826d82c…，不是此前正式syspermute；认定需修旧依赖没有转成能修改该依赖的实际操作。R23才把两函数一起写，R25转int后R27测试一部分shape通过但异维交换越界，R29继续修权重，R30读稿时Actor用满。",
+      "action_chain": "先提交未测试依赖→调用后失败→暂时绕开却reshape错→恢复依赖方案仍失败→多轮读错修复对象→合并两函数才取得局部进展→尚未提交偏迹已用66+34=100次Actor→目标无Final/N。",
+      "result_explanation": "C→N有明确可见预算路径：没有达到11.10/11.11。不存在正式错误目标答案，不能将N当W；也不能说此前1006Stage规则有错。原路径接受窄测试并继续，新路径真实暴露依赖异常且耗于修复，接受/继续策略与代码状态均改变。",
+      "cost_localization": "新26124生成+14G、477445Prompt、34Actor/34工具。记录生成+G少16216，但Prompt多250988、Actor多8/工具多9。少生成来自末题未到达、短read循环替代原长推理等，绝非完整任务更省。11.9连续read反复回传同1753字符当前稿，直接解释累计Prompt增加；run请求7次包括拒绝/失败，不等于7次成功验证。",
+      "evidence": [
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/submitted_code_sha256",
+          "exact_quote": "48ea99338b1daf38951a7ca141d8e024a031b465642bffeaded9ae7522b6dc0e",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 0,
+          "end": 64,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/1/model_visible_return/stderr",
+          "exact_quote": "IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 711,
+          "end": 840,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/rounds/8/reasoning_content",
+          "exact_quote": "np.prod(dim[j+1:])` might return a float when the list is empty.",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 311,
+          "end": 375,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/rounds/9/reasoning_content",
+          "exact_quote": "I need to fix that function. Let me read the current `syspermute` function and fix it.",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 30,
+          "end": 116,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/9/model_visible_return/current_code",
+          "exact_quote": "def partial_trace(X, sys, dim):",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 20,
+          "end": 51,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/26/model_visible_return/stdout",
+          "exact_quote": "Output shape: (2, 2)\nExpected shape: (2, 2)",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 52,
+          "end": 95,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/26/model_visible_return/stderr",
+          "exact_quote": "IndexError: index 6 is out of bounds for axis 0 with size 6",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 723,
+          "end": 782,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        },
+        {
+          "source_key": "N3",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/stop_reason",
+          "exact_quote": "ACTOR_BUDGET_STOP",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep3\\trajectory.json",
+          "start": 0,
+          "end": 17,
+          "source_sha256": "f3a0df01e09efc78681ea7fc6cecec63cbdc6edb1343c6157e5ab236af8bcc5b"
+        }
+      ],
+      "counterevidence": "R23之后确实重新写联合实现并消解浮点索引，R27有部分shape通过，不是全段没有修复进展；只是没有在剩余额度内完成下一目标。原辅助也不完全正确，不能把旧较早提交推成更可靠核验。",
+      "unknowns": "无法唯一分离G、seed、初版错误与后题修复决策的贡献；本组只记录真实链，不能宣称U不可删因果必要。"
+    },
+    {
+      "branch_id": "11__step11__S020__FIRST_SENTENCE__rep4",
+      "official_state": "N",
+      "first_material_divergence": "11.8R1读空，R2对角索引稿运行浮点索引失败后R4换reshape/transpose却引入未定义d。R5真实candidate测试报NameError，R6读取同稿，R7使用sys导入被拒，R8将错误归测试环境并正式提交含d缺陷版本。",
+      "work_reconstruction": {
+        "goal": "重新设计、保存、测与提交syspermute都有实际行为；不是U未再执行。",
+        "operation": "8轮前题；后题26轮修partial_trace中的d、轴位移、list/tuple及sum方案。",
+        "product": "正式syspermute1223字符24c31085…含未定义d；后题偏迹只有反复保存，无正式提交；未到entropy/目标。",
+        "assessment": "原U工作重建但产物缺陷未排清；新错误修复环与原初稿不同。"
+      },
+      "judgment_change": "11.9R6正确得到d未定义，R7真实write已改dim*2；R8测试却inline重新定义旧d版本，再次NameError，模型R9再次修相同问题。R11使用candidate才暴露实际当前稿的轴4越界；此后把partial trace当两轴独立sum，轮流修轴删减和list/tuple参数。write_code的ACCEPTED多次被说成looks correct，但实际Return没有验证数学偏迹，仍在运行错误上循环。",
+      "action_chain": "初版未解决NameError却正式交辅助→后题复制同类reshape缺陷→修正已保存、测试却跑旧inline版本→误把旧错误反馈当当前错误→再改稿→终于测试candidate获得新轴错误→修轴/参数后退回旧操作→66+34=100Actor耗尽，目标未开始/N。",
+      "result_explanation": "C→N与N3同样末端预算未到，但中间路径不同：N3主要读错依赖对象，N4有版本错位及偏迹语义被sum替代。两者不能只合成“重复调试”；需指明错误反馈未对应当前实现和未建立有效偏迹操作。",
+      "cost_localization": "新22468生成+14G、365482Prompt、34Actor/34工具，记录生成+G少19872但Prompt多139025、Actor多8/工具多9。13次run请求与多次read/write的成本集中11.8/11.9；省去原后面entropy/目标全部工作是任务未完成，不是无损节省。测试inline旧稿将本可用于验证修复的请求消耗在复现旧NameError。",
+      "evidence": [
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/tool_events/4/model_visible_return/stderr",
+          "exact_quote": "NameError: name 'd' is not defined.",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 468,
+          "end": 503,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/0/rounds/7/reasoning_content",
+          "exact_quote": "The issue might be with how the test is set up.",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 554,
+          "end": 601,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/6/arguments/code",
+          "exact_quote": "reshape_shape = [dim[i] for i in range(len(dim))] * 2",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 1294,
+          "end": 1347,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/7/arguments/code",
+          "exact_quote": "reshape_shape = [d] * (2 * len(dim))",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 1328,
+          "end": 1364,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/10/model_visible_return/stderr",
+          "exact_quote": "numpy.exceptions.AxisError: axis 4 is out of bounds for array of dimension 4",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 1065,
+          "end": 1141,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/tool_events/17/model_visible_return/stderr",
+          "exact_quote": "TypeError: 'list' object cannot be interpreted as an integer",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 1053,
+          "end": 1113,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/rounds/20/reasoning_content",
+          "exact_quote": "The code looks correct. Let me run the test again to see if it works now.",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 0,
+          "end": 73,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        },
+        {
+          "source_key": "N4",
+          "source_side": "NEW",
+          "json_pointer": "/steps/1/stop_reason",
+          "exact_quote": "ACTOR_BUDGET_STOP",
+          "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/trajectory.json",
+          "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\11__step11__S020__FIRST_SENTENCE__rep4\\trajectory.json",
+          "start": 0,
+          "end": 17,
+          "source_sha256": "eabf578a0ba7e4f0c1af808de409d0f22c7f3768372477aa351b7f386b87dcf2"
+        }
+      ],
+      "counterevidence": "R7修d真实保存在draft，R11开始也真实测candidate；不能说从未采用错误反馈。后面轴错不断变化，非所有调用都同一无决策重试。",
+      "unknowns": "没有目标正式代码，无从评价其若继续会否答对；预算上限真实终止，不能通过想象后续修复改判。"
+    }
+  ],
+  "cross_rollout_comparison": {
+    "state_transitions": "C→W/C/N/N，3/4变化。N1正式错误提交，N2官方正确，N3/4在辅助题耗尽Actor无目标Final，三种终态不能混成相同失败机制。",
+    "common_reconstruction": "4/4读空draft后重新展开syspermute实现；1/3/4正式提交，2仅保存/运行后长推导未提交。因此删后差异不是简单有无重建，而是重建哪版、验证是否真对应当前代码、是否被后题采用，以及是否在预算内到达目标。",
+    "functionally_close_but_different": "原路径11.9不提交，11.11直接局部偏迹；N1通用偏迹正式提交并进入目标，官方W。N2通用偏迹也未提交，目标自写局部方案，官方C但静态约定仍存疑。这对比支持依赖采用路线重要，但不能以官方结果证明各helper的通用正确性。",
+    "failure_path_contrast": "N3识别旧依赖错误后读到另一函数草稿，多次想修而未修改对应对象；N4修了当前稿却测试inline旧稿，继而把独立sum/轴修补当偏迹。相同N、同100Actor终止，中间决策链不同；两者均有实际新进展作为反证。",
+    "costs": "四条新生成+G均低于原记录，但N3/4累计Prompt、Actor和工具更多且后题未到。不能以生成短认定更高效或U冗余。N1较早交错误helper和N2减少旧多轮syspermute调试分别说明成本减少可以来自不同完成方式。"
+  },
+  "stage_function": "从子系统置换的接口/索引解释构造首份保存实现，并用工具拒绝反馈修正先保存再测试的执行顺序；不是单纯重复陈述，也不是目标11.11的最终科学结论。",
+  "candidate_mechanism_chain": [
+    "尚无当前代码→原U建立已保存实现→后继read/verify才有对象；删后只接读取句→四次都读取空稿并重建。G保留操作方向但不能代替代码，说明存在性预设与真实工具状态需要分列；这条共享链只能解释入口，不解释全部远端结果。",
+    "新辅助代码被正式接受但未获得充分数值确认→后题把它当已可用依赖→错误可能进入目标产物或转成依赖修复任务；若通用helper缺席，后题又可局部重实现。原/N1/N2的依赖采用对照与N3/4的依赖故障支持该条件链；不是所有辅助工作都必要或都可省。",
+    "已经识别需要修的错误→实际读取/测试对象没有与该判断一致→旧错误反馈继续触发修复而有效代码未被验证→额外交互和累计Prompt增加，有限Actor耗尽前到不了目标。N3的修复对象与N4的测试版本分别有直接Return证据；只算同主问题内两续跑，不冒充跨题普遍规律。"
+  ],
+  "limits": [
+    "本组为SciCode主问题11、目标11.11，删除上游11.8的一个Stage；多子问题后续均可重新采样，不把远端差异唯一归U。",
+    "官方C/W/N保持原封存评价，静态算法疑点与官方结果分列；无新GPU、模型、工具科学执行或Judge。",
+    "原先66轮已消耗但推理未进入当前P；已完整审实际输入和U之后26轮，不谎称重新阅读全文前66轮遗留日志。",
+    "G14Token仅方向与代码存在性预设，不是无引导纯删除；未来实体/答案未注入，但ORACLE_ANCHORED仍保留。",
+    "全部切点RECONSTRUCTED_CHAR_EXACT；@0使记录Token窗口可直接按请求计数，仍不是NATIVE_TOKEN_EXACT，不给伪精确原生ID节省或延迟结论；四个独立节省不相加。",
+    "候选共性待与A类相同功能比较及跨主问题反证，不能因为B多数变化便断言原U数学产物正确或必要。"
+  ],
+  "mechanical_evidence_check": {
+    "exact_quotes_checked": 37,
+    "source_sha_check": "PASS",
+    "semantic_claim": "Not assessed by this program",
+    "protocol_check": {
+      "local_path": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\11__step11__S020\\B62_PROTOCOL_CHECK.json",
+      "sha256": "39c3d29cb37a742ce022e26af09523f865e4045e59d2a95e80ad9bc3055b82bf",
+      "result": "PASS: four independent inputs, 95 rounds/93 events, 9 source SHAs, prior code prompts and objective request costs"
+    }
+  },
+  "objective_cost_record": {
+    "path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/AB_FUNCTION_MECHANISM_ANALYSIS_20261104/OBJECTIVE_SUFFIX_COSTS/11__step11__S020.json",
+    "local_copy": "C:\\Users\\24413\\Desktop\\后训练\\scicode_ab_mechanism_20261104\\OBJECTIVE_SUFFIX_COSTS\\11__step11__S020.json",
+    "sha256": "603d437351db32b17e0ef4e88da063ec9e41c995d99c56231301e70d2829d4d2",
+    "records": [
+      {
+        "branch_id": "11__step11__S020__FIRST_SENTENCE__rep1",
+        "cut_step_index": 7,
+        "cut_round_index": 0,
+        "cut_char": 0,
+        "cost_window": "cut in source current step through source target submission; all branch new suffix through target terminal",
+        "original_suffix_recorded_request_costs": {
+          "generated_tokens": 42354,
+          "prompt_tokens": 226457,
+          "actor_calls": 26,
+          "tools_by_name": {
+            "run_python": 9,
+            "write_code": 11,
+            "read_code": 2,
+            "submit_code": 3
+          },
+          "tools_total": 25
+        },
+        "original_generated_suffix_conservative_interval": [
+          42354,
+          42354
+        ],
+        "new_generated_tokens": 19442,
+        "new_prompt_tokens": 85722,
+        "new_actor_calls": 13,
+        "new_tools_total": 13,
+        "new_run_python_calls": 2,
+        "teacher_prefill_tokens": 14,
+        "teacher_prefill_in_generated_count": false,
+        "new_first_replay_P_input_tokens": 5143,
+        "saving_generated_interval": [
+          22912,
+          22912
+        ],
+        "saving_generated_plus_teacher_interval": [
+          22898,
+          22898
+        ],
+        "saving_prompt_tokens": 140735,
+        "saving_actor_calls": 13,
+        "saving_tools_total": 12,
+        "boundary_mode": "RECONSTRUCTED_CHAR_EXACT",
+        "native_token_exact_saving": null,
+        "source_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e",
+        "input_audit_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/INPUT_AUDIT.json",
+        "input_audit_sha256": "e88d4904e06cf8162530b9fd8ad59255427effd0102ff07d1803729aeb160187",
+        "terminal_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep1/BRANCH_TERMINAL.json",
+        "terminal_sha256": "265205ba96b5549523da7a7d4a0292aa02c5defb3ae4d49f2496d7ed8a7ea503",
+        "limitations": [
+          "Prompt is cumulative submitted requests, not unique context tokens or measured GPU prefill time.",
+          "Prompt delta includes all original future requests including the cut request; first replay P disclosed separately.",
+          "Tool counts are dispatch records, not evidence that rejected tests ran numerical code.",
+          "Interior cut original generation bounds include/exclude entire cut round; no tokenizer estimate used.",
+          "No latency saving asserted; independent branch savings must not be summed."
+        ]
+      },
+      {
+        "branch_id": "11__step11__S020__FIRST_SENTENCE__rep2",
+        "cut_step_index": 7,
+        "cut_round_index": 0,
+        "cut_char": 0,
+        "cost_window": "cut in source current step through source target submission; all branch new suffix through target terminal",
+        "original_suffix_recorded_request_costs": {
+          "generated_tokens": 42354,
+          "prompt_tokens": 226457,
+          "actor_calls": 26,
+          "tools_by_name": {
+            "run_python": 9,
+            "write_code": 11,
+            "read_code": 2,
+            "submit_code": 3
+          },
+          "tools_total": 25
+        },
+        "original_generated_suffix_conservative_interval": [
+          42354,
+          42354
+        ],
+        "new_generated_tokens": 29859,
+        "new_prompt_tokens": 79773,
+        "new_actor_calls": 14,
+        "new_tools_total": 12,
+        "new_run_python_calls": 4,
+        "teacher_prefill_tokens": 14,
+        "teacher_prefill_in_generated_count": false,
+        "new_first_replay_P_input_tokens": 5143,
+        "saving_generated_interval": [
+          12495,
+          12495
+        ],
+        "saving_generated_plus_teacher_interval": [
+          12481,
+          12481
+        ],
+        "saving_prompt_tokens": 146684,
+        "saving_actor_calls": 12,
+        "saving_tools_total": 13,
+        "boundary_mode": "RECONSTRUCTED_CHAR_EXACT",
+        "native_token_exact_saving": null,
+        "source_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e",
+        "input_audit_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/INPUT_AUDIT.json",
+        "input_audit_sha256": "897a61c9a522818846702158bd45e7f8d192dfe36405e5f9d92fd7db4f28b105",
+        "terminal_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep2/BRANCH_TERMINAL.json",
+        "terminal_sha256": "d83eaa251fafbd654927f7dccfbbdb8a3f02ec3af5479ee094f532392401d2f8",
+        "limitations": [
+          "Prompt is cumulative submitted requests, not unique context tokens or measured GPU prefill time.",
+          "Prompt delta includes all original future requests including the cut request; first replay P disclosed separately.",
+          "Tool counts are dispatch records, not evidence that rejected tests ran numerical code.",
+          "Interior cut original generation bounds include/exclude entire cut round; no tokenizer estimate used.",
+          "No latency saving asserted; independent branch savings must not be summed."
+        ]
+      },
+      {
+        "branch_id": "11__step11__S020__FIRST_SENTENCE__rep3",
+        "cut_step_index": 7,
+        "cut_round_index": 0,
+        "cut_char": 0,
+        "cost_window": "cut in source current step through source target submission; all branch new suffix through target terminal",
+        "original_suffix_recorded_request_costs": {
+          "generated_tokens": 42354,
+          "prompt_tokens": 226457,
+          "actor_calls": 26,
+          "tools_by_name": {
+            "run_python": 9,
+            "write_code": 11,
+            "read_code": 2,
+            "submit_code": 3
+          },
+          "tools_total": 25
+        },
+        "original_generated_suffix_conservative_interval": [
+          42354,
+          42354
+        ],
+        "new_generated_tokens": 26124,
+        "new_prompt_tokens": 477445,
+        "new_actor_calls": 34,
+        "new_tools_total": 34,
+        "new_run_python_calls": 7,
+        "teacher_prefill_tokens": 14,
+        "teacher_prefill_in_generated_count": false,
+        "new_first_replay_P_input_tokens": 5143,
+        "saving_generated_interval": [
+          16230,
+          16230
+        ],
+        "saving_generated_plus_teacher_interval": [
+          16216,
+          16216
+        ],
+        "saving_prompt_tokens": -250988,
+        "saving_actor_calls": -8,
+        "saving_tools_total": -9,
+        "boundary_mode": "RECONSTRUCTED_CHAR_EXACT",
+        "native_token_exact_saving": null,
+        "source_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e",
+        "input_audit_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/INPUT_AUDIT.json",
+        "input_audit_sha256": "338b0a94ecda2145ea631bcbb8c9ad746387c937eb3b636c1110f18ecaaf4bb1",
+        "terminal_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep3/BRANCH_TERMINAL.json",
+        "terminal_sha256": "4ebf1ed668243543ee295d72114ee761d41c941a67616e68dd6573f9fa34c423",
+        "limitations": [
+          "Prompt is cumulative submitted requests, not unique context tokens or measured GPU prefill time.",
+          "Prompt delta includes all original future requests including the cut request; first replay P disclosed separately.",
+          "Tool counts are dispatch records, not evidence that rejected tests ran numerical code.",
+          "Interior cut original generation bounds include/exclude entire cut round; no tokenizer estimate used.",
+          "No latency saving asserted; independent branch savings must not be summed."
+        ]
+      },
+      {
+        "branch_id": "11__step11__S020__FIRST_SENTENCE__rep4",
+        "cut_step_index": 7,
+        "cut_round_index": 0,
+        "cut_char": 0,
+        "cost_window": "cut in source current step through source target submission; all branch new suffix through target terminal",
+        "original_suffix_recorded_request_costs": {
+          "generated_tokens": 42354,
+          "prompt_tokens": 226457,
+          "actor_calls": 26,
+          "tools_by_name": {
+            "run_python": 9,
+            "write_code": 11,
+            "read_code": 2,
+            "submit_code": 3
+          },
+          "tools_total": 25
+        },
+        "original_generated_suffix_conservative_interval": [
+          42354,
+          42354
+        ],
+        "new_generated_tokens": 22468,
+        "new_prompt_tokens": 365482,
+        "new_actor_calls": 34,
+        "new_tools_total": 34,
+        "new_run_python_calls": 13,
+        "teacher_prefill_tokens": 14,
+        "teacher_prefill_in_generated_count": false,
+        "new_first_replay_P_input_tokens": 5143,
+        "saving_generated_interval": [
+          19886,
+          19886
+        ],
+        "saving_generated_plus_teacher_interval": [
+          19872,
+          19872
+        ],
+        "saving_prompt_tokens": -139025,
+        "saving_actor_calls": -8,
+        "saving_tools_total": -9,
+        "boundary_mode": "RECONSTRUCTED_CHAR_EXACT",
+        "native_token_exact_saving": null,
+        "source_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode_RANDOM100_Qwen35_9B_4GPU_20261103/trajectories/11__step11/trajectory.json",
+        "source_sha256": "b5e6428acd8e5c9448dd7e63e9a927a3a8847e04d4a350b45092570c41a3394e",
+        "input_audit_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/INPUT_AUDIT.json",
+        "input_audit_sha256": "b75cce880e60443fbbec109c4995b0788ebe54b69ef87a4af0e8d941e8f9e073",
+        "terminal_path": "/file_storage01/home/weiyu/lanyi/projects/新实验/reports/SciCode100_STAGE_DELETION_N4_20261103/VALID_RUN_V7_LOCAL_BRANCH_SPOOL/branches/11__step11__S020__FIRST_SENTENCE__rep4/BRANCH_TERMINAL.json",
+        "terminal_sha256": "5273c327e4570c7598ca81fcc43868438c8f408d26fe16e8959f90fc672461dd",
+        "limitations": [
+          "Prompt is cumulative submitted requests, not unique context tokens or measured GPU prefill time.",
+          "Prompt delta includes all original future requests including the cut request; first replay P disclosed separately.",
+          "Tool counts are dispatch records, not evidence that rejected tests ran numerical code.",
+          "Interior cut original generation bounds include/exclude entire cut round; no tokenizer estimate used.",
+          "No latency saving asserted; independent branch savings must not be summed."
+        ]
+      }
+    ]
+  }
+}

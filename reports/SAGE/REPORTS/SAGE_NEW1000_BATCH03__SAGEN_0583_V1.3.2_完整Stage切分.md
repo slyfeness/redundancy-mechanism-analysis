@@ -1,0 +1,1393 @@
+# SAGE_NEW1000_BATCH03__SAGEN_0583｜V1.3.2完整Stage切分
+
+样本序号：48；原件SHA256：`cdee2f6653762054915e62f1cfd0d88c9a6fb42d7810e482cf034281705284af`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What is the birth year of the director of the film in which Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem, a film whose initial festival premiere date was May 20, 2016, and whose lead actress had also shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival, an award won the same year that "Blue Ruin" received the FIPRESCI Prize at Cannes, a film that a "Hollywood Reporter" review described as "less disciplined" than "Green Room", which was co-written and directed by Jeremy Saulnier, and starred an actress from "Sweet Virginia" who reunited with Anton Yelchin for "Green Room"?
+````
+
+## 完整求解过程
+
+首轮反复拆读长题后，同一批真实执行三Search：三位演员的电影、Blue Is the Warmest Colour金棕榈、Blue Ruin奖项。实际结果已给The Last Face、Sean Penn和May20,2016，另给Exarchopoulos/Seydoux共享奖。第二轮完整比较电影与题干，先误把Theron当获奖者，再发现不符并将其记作题意歧义，仍采用The Last Face和Sean Penn，转查其出生年。
+
+出生年Search返回政治生活片段；第三至五轮同一文档Open100、200、500，持续扩大读取但仍非出生段，没有新核验方法。第六轮放弃片段读取，恢复Sean Penn born检索，获得1960。第七轮先提取日期，再完整核对九项线索并提交1960；部分Blue Ruin、Green Room、Imogen条件只是推理声称，没有相应真实检索补证。
+
+5次Search、3次Open、一次Submit完整阅读与映射。第一批多目的联合查询保持批内并列；候选冲突评估与后续出生取证分开，同次Open范围扩大不机械逐Call拆。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 解析电影关系并联合检索三条关键线索 | The Last Face、导演和首映日取得，奖项姓名另有资料。 | E001,E002,E003 |
+
+| S002 | R2 / 0 / 0 | 评估电影条件并发现Theron获奖关系误配 | 电影采用，奖项称谓歧义保留。 |  |
+
+| S003 | R2 / 0 / 2333 | 检索Sean Penn出生年 | 只见政治生活片段。 | E004 |
+
+| S004 | R3 / 0 / 88 | 打开同一人物片段并逐步扩大范围 | 仍停在同一政治生活片段。 | E005,E006,E007 |
+
+| S005 | R6 / 0 / 58 | 恢复出生信息检索并取得1960 | 出生年直接证据取得。 | E008 |
+
+| S006 | R7 / 0 / 80 | 完整核对电影链并提交出生年 | 正式Final1960。 | E009 |
+
+## S001｜解析电影关系并联合检索三条关键线索
+
+反复拆题后同批搜索三演员电影、金棕榈与Blue Ruin奖项。
+
+结束状态：The Last Face、导演和首映日取得，奖项姓名另有资料。
+
+边界判断：起始联合取证。
+
+内部KEEP与反证：同批三个不同目的为一次联合决策，真实主需求电影定位和附带奖项线索并列，不虚构批内看完返回再决策。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0",
+      "/rounds/0/tool_calls/1",
+      "/rounds/0/tool_calls/2"
+    ],
+    "return_pointers": [
+      "/tool_events/0",
+      "/tool_events/1",
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,2536)
+
+SHA256：`8f8a540cd6e42c5ab82f7397a8315856f2854ab3fa7f7fd6095ba115ab5e81a9`；原字段SHA256：`8f8a540cd6e42c5ab82f7397a8315856f2854ab3fa7f7fd6095ba115ab5e81a9`。
+
+````
+This is a complex multi-hop question. Let me break it down step by step:
+
+1. First, I need to find the film in which Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem.
+2. This film had an initial festival premiere date of May 20, 2016.
+3. The lead actress of this film had also shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival.
+4. This award (Palme d'Or) was won the same year that "Blue Ruin" received the FIPRESCI Prize at Cannes.
+5. "Blue Ruin" was described by a "Hollywood Reporter" review as "less disciplined" than "Green Room".
+6. "Green Room" was co-written and directed by Jeremy Saulnier.
+7. "Green Room" starred an actress from "Sweet Virginia" who reunited with Anton Yelchin for "Green Room".
+
+Let me start by searching for information about Adèle Exarchopoulos co-starring with Charlize Theron and Javier Bardem.
+
+Wait, let me think about this more carefully. The question is asking about the birth year of the director of a specific film. Let me trace through the clues:
+
+1. Film where Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem
+2. Initial festival premiere date: May 20, 2016
+3. Lead actress shared Palme d'Or for "Blue Is the Warmest Colour" at 2013 Cannes
+4. 2013 is when "Blue Ruin" received FIPRESCI Prize at Cannes
+5. "Hollywood Reporter" review described "Blue Ruin" as "less disciplined" than "Green Room"
+6. "Green Room" was co-written and directed by Jeremy Saulnier
+7. "Green Room" starred an actress from "Sweet Virginia" who reunited with Anton Yelchin for "Green Room"
+
+Wait, I need to re-read this more carefully. The question structure is:
+
+
+I'm tracking multiple interconnected film details, focusing on finding the director's birth year through a series of specific film connections. The key is to methodically verify each piece of information to ensure accuracy.
+
+The film with Adèle Exarchopoulos, Charlize Theron, and Javier Bardem seems central to this investigation. I'll need to carefully cross-reference the premiere date, festival details, and actress connections to pinpoint the exact film and its director.
+
+The 2013 Cannes Film Festival context provides additional verification points, particularly around "Blue Is the Warmest Colour" and "Blue Ruin". These specific references will help me narrow down the search and confirm the precise film details.
+
+My next step is to conduct targeted searches to validate each interconnected element and ultimately determine the director's birth year with precision.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Adèle Exarchopoulos Charlize Theron Javier Bardem film"
+  },
+  "id": "chatcmpl-tool-827186c340a51558",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Adèle Exarchopoulos Charlize Theron Javier Bardem film\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-827186c340a51558",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Adèle Exarchopoulos Charlize Theron Javier Bardem film"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 0.3829382788389921,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7190436",
+        "score": 35.66574048628087,
+        "snippet": "For her performance in \"Blue Is the Warmest Colour\", she won the Los Angeles Film Critics Association Award for Best Actress, the César Award for Most Promising Actress, and the Trophée Chopard for Female Revelation of the Year, among dozens of other accolades. She received critical praise and her performance was cited as one of the year's best. Indiewire critic Eric Kohn stated that her performance was the best female performance of 2013. Her performance was praised for its \"rawness.\" Critic A.O. Scott of \"The New York Times\" wrote that she gives a performance with \"astonishing sensitivity\" adding \"Ms. Exarchopoulos almost never departs from the camera's scrutiny, and her reality, her ways of seeing and feeling, define the many shades of Blue.\" Justin Chang of \"Variety\" declared, \"The picture belongs to Exarchopoulos, completely inhabiting a role aptly named after the thesp herself; with her husky voice and sweet, reluctant smile, she plays virtually every emotion a director can demand of an actress, commanding the viewer's attention and sympathy at every minute\". Exarchopoulos discussed her process with \"The New York Times\", explaining: \"Abdellatif tried to keep us close to reality. He asked us to play with our own emotions. For example, I kept my own voice. It's very subtle, very delicate, the things that are a part of you and the things that are a part of your character\". In March 2014, she was in consideration to play Tiger Lily in the Joe Wright directed fantasy film \"P",
+        "text_characters": 2356,
+        "title": "Adèle Exarchopoulos"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7735950",
+        "score": 33.25416517049618,
+        "snippet": "The Last Face is a 2016 American drama film directed by Sean Penn and written by Erin Dignam. The film stars Charlize Theron, Javier Bardem, Adèle Exarchopoulos, and Jean Reno. It was selected to compete for the Palme d'Or at the 2016 Cannes Film Festival, debuting to generally poor reviews. The film was released on DirecTV on June 29, 2017, before being released on video on demand and in theaters on July 28, 2017, by Saban Films. Plot. Wren Peterson is a physician and activist working in West Africa with the organization Doctors of the World that her late father started many years ago. She is happy to lead the organization, but frequently finds herself negatively comparing herself to her father's achievements. In 2003, Wren meets Miguel, a handsome surgeon who has also devoted himself to treating people from impoverished and war-torn sections of the world. The two fall in love but Wren soon discovers that Miguel has had a prior sexual relationship with her cousin, which contributes to the decay of their relationship. Production. On April 10, 2014, it was announced Sean Penn would direct the film, with Charlize Theron and Javier Bardem set to star in the film. Principal photography began on August 1, 2014, in Cape Town. Release. The film premiered at the 2016 Cannes Film Festival on May 20, 2016. On September 8, 2016, Saban Films acquired U.S distribution rights to the film. The film was released on DirecTV on June 29, 2017, before being released on video on demand and in the",
+        "text_characters": 2450,
+        "title": "The Last Face"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5893083",
+        "score": 31.32137384845629,
+        "snippet": "French photographer Éric James Guillemain is a French photographer born in Morocco. He worked with Peter Lindbergh and photographed Vanessa Paradis for \"Vs. Magazine\". Early life. Eric James Guillemain was born in Morocco and raised in Paris. He was the lead singer of the French rock band Venice, and moved to New York in 2002 to pursue a career in music. He ended up assisting photographer Peter Lindbergh. Career. In 2002 Eric moved to New York and was assisting world-renowned photographer Peter Lindbergh and eventually taking behind the scenes photos on Peter’s shoot and later on movie sets. In 2010 Eric started his photography career and since then Eric works for international clients in advertising and editorial. He photographed celebrities such as Isabelle Huppert, Diane Kruger, Norman Reedus, Vanessa Paradis, Anya Taylor Joy, Charlize Theron, Shailene Woodley, Sasha Lane, Jessica Alba, Dakota Johnson, Léa Seydoux, Keri Russell, Andie McDowell, Nick Cave, Rachel Weisz, Lou Doillon, Charlotte Gainsbourg, Jennifer Laurence, Carla Bruni, Adele Exarchopoulos, Famke Janssen, Lily Allen, Milla Jovovich, Clémence Poésy, Alicia Keys, Laetitia Casta, Jean Reno, Sigourney Weaver etc to name just a few. In 2021 Eric James Guillemain has shown his work “Crosses”at 23 Pine Gallery. Eric’s style can be described as stripped down and sudden without filters or device, connected directly through emotion. Eric’s first book BACKSTAGE DREAMS published by Damiani will be released in 2025. This",
+        "text_characters": 1810,
+        "title": "Éric Guillemain"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:65976",
+        "score": 6.444548660363907,
+        "snippet": "---\ntitle: These 18 Action Movies Will Get Your Heart Pumping\ndate: 2025-01-17\n---\nWhat To Watch\n\nThese 18 Action Movies Will Get Your Heart Pumping\n\nFor when you're seeking a thrill ride from the comfort of your own home.\n\nBy Allison Picurro\n\nJan. 17, 2025\n\nThis is a safe space to admit that sometimes you're just not in the mood to watch a serious drama. They're great, of course, but we've all gotten that itch to escape reality and enter a world where wild stunts, big muscles, and bigger explosions are the norm. Action is a wide-ranging genre, covering everything from thrilling heist flicks, swaggering Westerns, and films about people trying to save the world from shady government operations. That's what makes them so classic: No matter what you're looking for, there's probably an action movie out there that fits the bill.\n\nWhether you're an adrenaline junkie looking for some excitement or the kind of person who enjoys living vicariously through fearless fictional characters, check out these action movies that are sure to get your pulse racing.\n\nBack in Action is both the title of this action-comedy and an apt description of both of its stars: Cameron Diaz, appearing in her first film role since 2014, and Jamie Foxx, returning to the screen following his 2023 hospitalization. Diaz and Foxx play a married couple who gave up their careers as CIA operatives in favor of living a normal suburban family life. Years later, their identities are exposed, blowing their cover to some o",
+        "text_characters": 17846,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:59285",
+        "score": 5.192523633474275,
+        "snippet": "---\ntitle: 160 Best LGBTQ+ Movies of All Time\ndate: 2025-06-09\n---\nTAGGED AS: best, Countdown, Film, LGBT, LGBTQ, movies\n\nThe latest: With out latest update, we've added the most recent Certified Fresh films, including Backspot, Good One, Challengers, Bird, Love Lies Bleeding, Queer, Problemista, Fitting In, Housekeeping for Beginners, I Saw the TV Glow, In the Summers, The People's Joker, National Anthem, Good Grief, Sebastian, FRIDA, Cuckoo, Fancy Dance, Femme, A Nice Indian Boy, and The Wedding Banquet! Watch them and more on Fandango at Home!\n\nOur list of the 200 Best LGBTQ+ Movies of All Time stretches back 90 years to the pioneering German film, Mädchen in Uniform, which was subsequently banned by the Nazis, and crosses multiple continents, cultures, and genres. There are broad American comedies (The Birdcage), artful Korean crime dramas (The Handmaiden), groundbreaking indies (Tangerine), and landmark documentaries (Paris Is Burning). Over the last few years, we added titles like the documentary Welcome to Chechnya, about LGBTQ+ activists risking their lives for the cause in Russia; Certified Fresh comedy Shiva, Baby; and Netflix's The Old Guard, a rare movie about super beings that showed a same-sex relationship between two of its heroes.\n\nCulled from a longlist of hundreds, movies considered for the list prominently feature gay, lesbian, trans, or queer characters; concern itself centrally with LGBTQ+ themes; present its LGBTQ+ characters in a fair and realistic ligh",
+        "text_characters": 56714,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:19722",
+        "score": 3.089117397603257,
+        "snippet": "---\ntitle: Venice International Film Festival\ndate: 2023-01-01\n---\nHistory 1932-2024\n\nThe Venice International Film Festival is the oldest film festival in the world and one of the most prestigious. The Festival was organised for the first time in 1932, under the auspices of the President of the Biennale, Count Giuseppe Volpi di Misurata, the sculptor Antonio Maraini, and Luciano De Feo and obtained a great popularity, so as to become an annual event from 1935 onwards. The Venice Film Festival is today a prestigious event that presents every year a selection of world-class films, bringing some of the most successful directors and actors of our time on the red carpet at Lido di Venezia, continuing the tradition that adds the glamour charm that always marked the Festival to a high artistic value program.\n\nThe 69th Festival in 2012 saw Alberto Barbera as the new artistic director alongside remarkable new initiatives: the launch of Biennale College - Cinema, a higher education training workshop for the development and production of micro-budget audio-visual works, and the establishment of the Venice Film Market in dedicated spaces at the Excelsior Hotel. As part of the renovation – in agreement with the City of Venice – of the existing facilities of the Festival, which included the restoration of the Sala Grande in 2011, a new, larger and more functional foyer in the Palazzo del Cinema was built to welcome the public. The intervention also included the renovation of two historic ",
+        "text_characters": 69563,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:33309",
+        "score": 0.37923329029132785,
+        "snippet": "---\ntitle: 2024 Reviews\ndate: 2023-11-16\n---\nEAGAN AT THE MOVIES\n\nReviewing Movies Because We Care\n\nSince 2010, and Still Unpaid!\n\nBetter Man by James Eagan ★★★★½ out of ★★★★★\n\nImage: Apes Together Strong! Ya Fookin Wankahs!\n\nAlways around the end of the year (Into the beginning of next year, since many of these films get delayed nationwide releases), we get some music Biopics that hope to see some Oscar gold. We get plenty of good ones, a few okay ones, some cloying ones, or all of the above. It's gotten old. Most of the time, especially when they have heavy involvement from their subjects or their families, they're fairly safe portrayals that don't want to make said subject look bad. It's kind of refreshing to have a Biopic that basically screams \"I was a piece of sh*t. I hated myself, and I wanted to kill myself\", while its subject is turned literally into a wild animal. That's certainly a choice, and it makes for a final leftover great film from 2024.\n\nBased on the life of British pop singer, Robbie Williams (Who serves as the film's narrator), \"Better Man\" opens with a young \"Robbie Williams\" (Portrayed as a CG animated chimpanzee/human hybrid through motion capture by Jonno Davies), yearning for a chance at stardom, though mostly yearning for the affection of his eventually absent father, \"Peter\" (Steve Pemberton), who really just tends to make Robbie feel worthless. With some encouragement from his mother, \"Janet\" (Kate Mulvany) and loving grandmother, \"Betty\" (Alison ",
+        "text_characters": 673794,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:95292",
+        "score": 0.22020321787918426,
+        "snippet": "---\ntitle: ********** A **********\ndate: 2001-09-11\n---\nTo find a title: press Ctrl-F (or Cmd-F on Mac)\n\nor jump directly to a section by letter:\n\n|\n\n12 Angry Men (1957) remains one of the greatest courtroom dramas actually, a jury-room drama, because only the first few minutes are in court. Nearly the entire running time is confined to the jury deliberations, and the sense of confinement is deliberate. Adapted from a 1954 TV drama about a murder trial, this tight film casts 12 skilled actors as the jurors who debate a young man's fate. The biggest star is Henry Fonda, who calmly plays the lone holdout against the other 11. Additional notables are Lee J. Cobb, Jack Warden, E.G. Marshall, Martin Balsam, Jack Klugman, and Ed Begley, but even the lesser-known actors pull their weight in this masterpiece. Director Sidney Lumet's camera angles, close-ups, and quick cuts heighten the tension as the arguments verge on violence. Although some critics dismiss it as a \"message movie,\" and some scenes show behavior that should trigger a mistrial, its power is undeniable, and it earns classic status. 12 O'Clock High (1949): see Twelve O'Clock High. 12 Years a Slave fully deserves its Academy Awards for Best Picture and Adapted Screenplay of 2013. It's based on the 1853 memoir by Solomon Northup, a free black Northerner who was kidnapped and sold into slavery in 1841. British actor Chiwetel Ejiofor stars as Northup, and Kenyan-Mexican actress Lupita Nyong'o won an Oscar for her supporting",
+        "text_characters": 1555207,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-827186c340a51558"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7190436", "title": "Adèle Exarchopoulos", "score": 35.66574048628087, "snippet": "For her performance in \"Blue Is the Warmest Colour\", she won the Los Angeles Film Critics Association Award for Best Actress, the César Award for Most Promising Actress, and the Trophée Chopard for Female Revelation of the Year, among dozens of other accolades. She received critical praise and her performance was cited as one of the year's best. Indiewire critic Eric Kohn stated that her performance was the best female performance of 2013. Her performance was praised for its \"rawness.\" Critic A.O. Scott of \"The New York Times\" wrote that she gives a performance with \"astonishing sensitivity\" adding \"Ms. Exarchopoulos almost never departs from the camera's scrutiny, and her reality, her ways of seeing and feeling, define the many shades of Blue.\" Justin Chang of \"Variety\" declared, \"The picture belongs to Exarchopoulos, completely inhabiting a role aptly named after the thesp herself; with her husky voice and sweet, reluctant smile, she plays virtually every emotion a director can demand of an actress, commanding the viewer's attention and sympathy at every minute\". Exarchopoulos discussed her process with \"The New York Times\", explaining: \"Abdellatif tried to keep us close to reality. He asked us to play with our own emotions. For example, I kept my own voice. It's very subtle, very delicate, the things that are a part of you and the things that are a part of your character\". In March 2014, she was in consideration to play Tiger Lily in the Joe Wright directed fantasy film \"P", "text_characters": 2356, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7735950", "title": "The Last Face", "score": 33.25416517049618, "snippet": "The Last Face is a 2016 American drama film directed by Sean Penn and written by Erin Dignam. The film stars Charlize Theron, Javier Bardem, Adèle Exarchopoulos, and Jean Reno. It was selected to compete for the Palme d'Or at the 2016 Cannes Film Festival, debuting to generally poor reviews. The film was released on DirecTV on June 29, 2017, before being released on video on demand and in theaters on July 28, 2017, by Saban Films. Plot. Wren Peterson is a physician and activist working in West Africa with the organization Doctors of the World that her late father started many years ago. She is happy to lead the organization, but frequently finds herself negatively comparing herself to her father's achievements. In 2003, Wren meets Miguel, a handsome surgeon who has also devoted himself to treating people from impoverished and war-torn sections of the world. The two fall in love but Wren soon discovers that Miguel has had a prior sexual relationship with her cousin, which contributes to the decay of their relationship. Production. On April 10, 2014, it was announced Sean Penn would direct the film, with Charlize Theron and Javier Bardem set to star in the film. Principal photography began on August 1, 2014, in Cape Town. Release. The film premiered at the 2016 Cannes Film Festival on May 20, 2016. On September 8, 2016, Saban Films acquired U.S distribution rights to the film. The film was released on DirecTV on June 29, 2017, before being released on video on demand and in the", "text_characters": 2450, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5893083", "title": "Éric Guillemain", "score": 31.32137384845629, "snippet": "French photographer Éric James Guillemain is a French photographer born in Morocco. He worked with Peter Lindbergh and photographed Vanessa Paradis for \"Vs. Magazine\". Early life. Eric James Guillemain was born in Morocco and raised in Paris. He was the lead singer of the French rock band Venice, and moved to New York in 2002 to pursue a career in music. He ended up assisting photographer Peter Lindbergh. Career. In 2002 Eric moved to New York and was assisting world-renowned photographer Peter Lindbergh and eventually taking behind the scenes photos on Peter’s shoot and later on movie sets. In 2010 Eric started his photography career and since then Eric works for international clients in advertising and editorial. He photographed celebrities such as Isabelle Huppert, Diane Kruger, Norman Reedus, Vanessa Paradis, Anya Taylor Joy, Charlize Theron, Shailene Woodley, Sasha Lane, Jessica Alba, Dakota Johnson, Léa Seydoux, Keri Russell, Andie McDowell, Nick Cave, Rachel Weisz, Lou Doillon, Charlotte Gainsbourg, Jennifer Laurence, Carla Bruni, Adele Exarchopoulos, Famke Janssen, Lily Allen, Milla Jovovich, Clémence Poésy, Alicia Keys, Laetitia Casta, Jean Reno, Sigourney Weaver etc to name just a few. In 2021 Eric James Guillemain has shown his work “Crosses”at 23 Pine Gallery. Eric’s style can be described as stripped down and sudden without filters or device, connected directly through emotion. Eric’s first book BACKSTAGE DREAMS published by Damiani will be released in 2025. This", "text_characters": 1810, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:65976", "title": "", "score": 6.444548660363907, "snippet": "---\ntitle: These 18 Action Movies Will Get Your Heart Pumping\ndate: 2025-01-17\n---\nWhat To Watch\n\nThese 18 Action Movies Will Get Your Heart Pumping\n\nFor when you're seeking a thrill ride from the comfort of your own home.\n\nBy Allison Picurro\n\nJan. 17, 2025\n\nThis is a safe space to admit that sometimes you're just not in the mood to watch a serious drama. They're great, of course, but we've all gotten that itch to escape reality and enter a world where wild stunts, big muscles, and bigger explosions are the norm. Action is a wide-ranging genre, covering everything from thrilling heist flicks, swaggering Westerns, and films about people trying to save the world from shady government operations. That's what makes them so classic: No matter what you're looking for, there's probably an action movie out there that fits the bill.\n\nWhether you're an adrenaline junkie looking for some excitement or the kind of person who enjoys living vicariously through fearless fictional characters, check out these action movies that are sure to get your pulse racing.\n\nBack in Action is both the title of this action-comedy and an apt description of both of its stars: Cameron Diaz, appearing in her first film role since 2014, and Jamie Foxx, returning to the screen following his 2023 hospitalization. Diaz and Foxx play a married couple who gave up their careers as CIA operatives in favor of living a normal suburban family life. Years later, their identities are exposed, blowing their cover to some o", "text_characters": 17846, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:59285", "title": "", "score": 5.192523633474275, "snippet": "---\ntitle: 160 Best LGBTQ+ Movies of All Time\ndate: 2025-06-09\n---\nTAGGED AS: best, Countdown, Film, LGBT, LGBTQ, movies\n\nThe latest: With out latest update, we've added the most recent Certified Fresh films, including Backspot, Good One, Challengers, Bird, Love Lies Bleeding, Queer, Problemista, Fitting In, Housekeeping for Beginners, I Saw the TV Glow, In the Summers, The People's Joker, National Anthem, Good Grief, Sebastian, FRIDA, Cuckoo, Fancy Dance, Femme, A Nice Indian Boy, and The Wedding Banquet! Watch them and more on Fandango at Home!\n\nOur list of the 200 Best LGBTQ+ Movies of All Time stretches back 90 years to the pioneering German film, Mädchen in Uniform, which was subsequently banned by the Nazis, and crosses multiple continents, cultures, and genres. There are broad American comedies (The Birdcage), artful Korean crime dramas (The Handmaiden), groundbreaking indies (Tangerine), and landmark documentaries (Paris Is Burning). Over the last few years, we added titles like the documentary Welcome to Chechnya, about LGBTQ+ activists risking their lives for the cause in Russia; Certified Fresh comedy Shiva, Baby; and Netflix's The Old Guard, a rare movie about super beings that showed a same-sex relationship between two of its heroes.\n\nCulled from a longlist of hundreds, movies considered for the list prominently feature gay, lesbian, trans, or queer characters; concern itself centrally with LGBTQ+ themes; present its LGBTQ+ characters in a fair and realistic ligh", "text_characters": 56714, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:19722", "title": "", "score": 3.089117397603257, "snippet": "---\ntitle: Venice International Film Festival\ndate: 2023-01-01\n---\nHistory 1932-2024\n\nThe Venice International Film Festival is the oldest film festival in the world and one of the most prestigious. The Festival was organised for the first time in 1932, under the auspices of the President of the Biennale, Count Giuseppe Volpi di Misurata, the sculptor Antonio Maraini, and Luciano De Feo and obtained a great popularity, so as to become an annual event from 1935 onwards. The Venice Film Festival is today a prestigious event that presents every year a selection of world-class films, bringing some of the most successful directors and actors of our time on the red carpet at Lido di Venezia, continuing the tradition that adds the glamour charm that always marked the Festival to a high artistic value program.\n\nThe 69th Festival in 2012 saw Alberto Barbera as the new artistic director alongside remarkable new initiatives: the launch of Biennale College - Cinema, a higher education training workshop for the development and production of micro-budget audio-visual works, and the establishment of the Venice Film Market in dedicated spaces at the Excelsior Hotel. As part of the renovation – in agreement with the City of Venice – of the existing facilities of the Festival, which included the restoration of the Sala Grande in 2011, a new, larger and more functional foyer in the Palazzo del Cinema was built to welcome the public. The intervention also included the renovation of two historic ", "text_characters": 69563, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:33309", "title": "", "score": 0.37923329029132785, "snippet": "---\ntitle: 2024 Reviews\ndate: 2023-11-16\n---\nEAGAN AT THE MOVIES\n\nReviewing Movies Because We Care\n\nSince 2010, and Still Unpaid!\n\nBetter Man by James Eagan ★★★★½ out of ★★★★★\n\nImage: Apes Together Strong! Ya Fookin Wankahs!\n\nAlways around the end of the year (Into the beginning of next year, since many of these films get delayed nationwide releases), we get some music Biopics that hope to see some Oscar gold. We get plenty of good ones, a few okay ones, some cloying ones, or all of the above. It's gotten old. Most of the time, especially when they have heavy involvement from their subjects or their families, they're fairly safe portrayals that don't want to make said subject look bad. It's kind of refreshing to have a Biopic that basically screams \"I was a piece of sh*t. I hated myself, and I wanted to kill myself\", while its subject is turned literally into a wild animal. That's certainly a choice, and it makes for a final leftover great film from 2024.\n\nBased on the life of British pop singer, Robbie Williams (Who serves as the film's narrator), \"Better Man\" opens with a young \"Robbie Williams\" (Portrayed as a CG animated chimpanzee/human hybrid through motion capture by Jonno Davies), yearning for a chance at stardom, though mostly yearning for the affection of his eventually absent father, \"Peter\" (Steve Pemberton), who really just tends to make Robbie feel worthless. With some encouragement from his mother, \"Janet\" (Kate Mulvany) and loving grandmother, \"Betty\" (Alison ", "text_characters": 673794, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:95292", "title": "", "score": 0.22020321787918426, "snippet": "---\ntitle: ********** A **********\ndate: 2001-09-11\n---\nTo find a title: press Ctrl-F (or Cmd-F on Mac)\n\nor jump directly to a section by letter:\n\n|\n\n12 Angry Men (1957) remains one of the greatest courtroom dramas actually, a jury-room drama, because only the first few minutes are in court. Nearly the entire running time is confined to the jury deliberations, and the sense of confinement is deliberate. Adapted from a 1954 TV drama about a murder trial, this tight film casts 12 skilled actors as the jurors who debate a young man's fate. The biggest star is Henry Fonda, who calmly plays the lone holdout against the other 11. Additional notables are Lee J. Cobb, Jack Warden, E.G. Marshall, Martin Balsam, Jack Klugman, and Ed Begley, but even the lesser-known actors pull their weight in this masterpiece. Director Sidney Lumet's camera angles, close-ups, and quick cuts heighten the tension as the arguments verge on violence. Although some critics dismiss it as a \"message movie,\" and some scenes show behavior that should trigger a mistrial, its power is undeniable, and it earns classic status. 12 O'Clock High (1949): see Twelve O'Clock High. 12 Years a Slave fully deserves its Academy Awards for Best Picture and Adapted Screenplay of 2013. It's based on the 1853 memoir by Solomon Northup, a free black Northerner who was kidnapped and sold into slavery in 1841. British actor Chiwetel Ejiofor stars as Northup, and Kenyan-Mexican actress Lupita Nyong'o won an Oscar for her supporting", "text_characters": 1555207, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R002_request.json/messages/3/content`；SHA256：`d17a0c23b982fa0af5da2f0c5e700c1cfbad2f60eca7f829bea7966fa37a5f3c`。
+
+### R1 Call `/rounds/0/tool_calls/1` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Blue Is the Warmest Colour Palme d'Or 2013 Cannes"
+  },
+  "id": "chatcmpl-tool-807e28dcb5e8cf34",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Blue Is the Warmest Colour Palme d'Or 2013 Cannes\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-807e28dcb5e8cf34",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Blue Is the Warmest Colour Palme d'Or 2013 Cannes"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 2,
+  "event_id": "E002",
+  "latency_seconds": 0.4478387599810958,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7150811",
+        "score": 25.300793859685243,
+        "snippet": "\"La Vie d'Adèle – Chapitres 1 & 2\" was released on Blu-ray Disc and DVD in France by Wild Side on 26 February 2014, and in North America, as \"Blue is the Warmest Color\", through The Criterion Collection on 25 February 2014. As \"Blue Is the Warmest Colour\", the film was also released on DVD and Blu-ray Disc in Canada on 25 February 2014 by Mongrel Media, in the United Kingdom on 17 March 2014 by Artificial Eye and on 18 June 2014, in Australia by Transmission Films. In Brazil, as of 2014, Blu-ray manufacturing companies Sonopress and Sony DADC were refusing to produce the film because of its content. The distributor was struggling to reverse this situation. Reception. Box office. \"Blue Is the Warmest Colour\" grossed a worldwide total of $19,492,879. During its opening in France on 9 October 2013, the film debuted with a weekend total of $2.3 million on 285 screens for a $8,200 per-screen average. It took the fourth spot in its first weekend, which was seen as a \"notably good showing because of its nearly three-hour length\". The film had a limited release in the U.S. and it grossed an estimated $101,116 in its first weekend ending 25 October 2013, with an average of $25,279 for four theatres in New York City and Los Angeles. The film grossed $2,199,787 in the U.S. theatrically. It had greater success in the U.S. home entertainment market, generating more than $3,500,000 in U.S. Blu-ray/DVD sales alone. Critical response. On review aggregation website Rotten Tomatoes, 89% of 204",
+        "text_characters": 2434,
+        "title": "Blue Is the Warmest Colour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7446531",
+        "score": 25.028573830471164,
+        "snippet": "The 48th National Society of Film Critics Awards, given on 4 January 2014, honored the best in film for 2013. 48th NSFC Awards January 4, 2014 Best Film: Inside Llewyn Davis Winners. Film titles are listed in order of placings: Best Picture. 1. Inside Llewyn Davis 2. \"American Hustle\" 3. \"12 Years a Slave\" 3. \"Her\" Best Director. 1. Joel Coen and Ethan Coen – \"Inside Llewyn Davis\" 2. Alfonso Cuarón – \"Gravity\" 3. Steve McQueen – \"12 Years a Slave\" Best Actor. 1. Oscar Isaac – \"Inside Llewyn Davis\" 2. Chiwetel Ejiofor – \"12 Years a Slave\" 3. Robert Redford – \"All Is Lost\" Best Actress. 1. Cate Blanchett – \"Blue Jasmine\" 2. Adèle Exarchopoulos – \"Blue Is the Warmest Colour\" 3. Julie Delpy – \"Before Midnight\" Best Supporting Actor. 1. James Franco – \"Spring Breakers\" 2. Jared Leto – \"Dallas Buyers Club\" 3. Barkhad Abdi – \"Captain Phillips\" Best Supporting Actress. 1. Jennifer Lawrence – \"American Hustle\" 2. Lupita Nyong'o – \"12 Years a Slave\" 3. Léa Seydoux – \"Blue Is the Warmest Colour\" 3. Sally Hawkins – \"Blue Jasmine\" Best Screenplay. 1. Richard Linklater, Ethan Hawke, and Julie Delpy – \"Before Midnight\" 2. Joel Coen and Ethan Coen – \"Inside Llewyn Davis\" 3. Eric Warren Singer and David O. Russell – \"American Hustle\" Best Cinematography. 1. Bruno Delbonnel – \"Inside Llewyn Davis\" 2. Emmanuel Lubezki – \"Gravity\" 3. Phedon Papamichael – \"Nebraska\" Best Non-Fiction Film. 1. \"The Act of Killing\" (TIE) 1. \"At Berkeley\" (TIE) 2. \"Leviathan\" Best Foreign-Language Film. 1. Blue Is th",
+        "text_characters": 1570,
+        "title": "2013 National Society of Film Critics Awards"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7150810",
+        "score": 24.708390489104204,
+        "snippet": "The camerawork and many of Kechiche's directorial decisions give the film a true-to-life feel, which has led audiences to read meaning into it that they derive from their personal experiences. In \"The Yale Review\", Charles Taylor wrote: \"Instead of fencing its young lovers within a petting zoo... Kechiche removes the barriers that separate us from them. He brings the camera so close to the faces of his actresses that he seems to be trying to make their flesh more familiar to us than his own.\" Significance of the colour blue. \"Blue Is the Warmest Colour\" is characterized by visual symbolism. The colour blue is used extensively throughout the film—from the lighting in the gay club Adèle visits to the dress she wears in the last scene and most notably in Emma's hair and eyes. For Adèle, blue represents emotional intensity, curiosity, love, and sadness. Adèle also references Pablo Picasso, who famously went through a melancholy Blue Period. As Emma grows out of her relationship with Adèle and their passion wanes, she removes the blue from her hair and adopts a more natural, conservative hairstyle. Music. Reviewer Spencer Wolff noted Adèle's political stance, which changes as her life experiences change and reflect her alternating views: \"Framed by black and Arab faces, Adèle marches in a protest to demand better funding for education. The music, 'On lâche rien' ('We will never give up! '), by the Algerian-born Kaddour Haddadi, is the official song of the French Communist Party. Y",
+        "text_characters": 2586,
+        "title": "Blue Is the Warmest Colour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7462648",
+        "score": 24.58106831505075,
+        "snippet": "\"Blue Is the Warmest Colour\" (; ) is a 2013 French romantic coming-of-age drama film directed by Abdellatif Kechiche, and produced by Kechiche, Brahim Chioua, and Vincent Maraval. The screenplay also co-written by Kechiche was based on Jul Maroh's 2010 graphic novel of the same name. Adèle Exarchopoulos stars as a teenager who falls in love with an older woman played by Léa Seydoux. The film premiered at the 66th Cannes Film Festival on 23 May 2013 where it won the Palme d'Or. For the first time, the jury at Cannes presented the award to three recipients: Kechiche, Exarchopoulos, and Seydoux. At the age of 19, Exarchopoulos became the youngest recipient of the award. The film grossed over €14 million at the worldwide box office on a production budget of €4 million. Rotten Tomatoes, a review aggregator, surveyed 197 reviews and judged 89% to be positive. \"Blue Is the Warmest Colour\" garnered awards and nominations in a variety of categories with particular praise for Kechiche's direction, and the performances of Exarchopoulos and Seydoux. At the 39th César Awards, the film received eight nominations including Best Film, Best Director for Kechiche, and Best Actress for Seydoux. Exarchopoulous was the sole winner for Most Promising Actress. She also won the Critics' Choice Movie Award for Best Young Performer, Lumières Award for Best Female Revelation, and Best Breakthrough Actress from the National Board of Review. Seydoux garnered the Lumières Award for Best Actress as well as",
+        "text_characters": 1658,
+        "title": "List of accolades received by Blue Is the Warmest Colour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7190435",
+        "score": 24.468557727373824,
+        "snippet": "French actress (born 1993) Adèle Exarchopoulos (; born 22 November 1993) is a French actress. She had her career breakthrough starring as Adèle in the romance \"Blue Is the Warmest Colour\" (2013). At the 2013 Cannes Film Festival, she became the youngest person in the history of the festival to be awarded the Palme d'Or. She won it with her co-star Léa Seydoux. Exarchopoulos won two César Awards for \"Blue is the Warmest Colour\" (2013) and \"All Your Faces\" (2023). She was also nominated for Cesars for her roles in \"Mandibles\" (2020) and \"Zero Fucks Given\" (2023). Her other notables roles feature her in such films as \"Racer and the Jailbird\" (2017), \"The White Crow\" (2018), \"Sibyl\" (2019), \"The Five Devils\" (2022), and \"Passages\" (2023). She voiced Ennui in the Pixar animated film \"Inside Out 2\" (2024). Early life. Exarchopoulos grew up in the 19th arrondissement of Paris, near the Place des Fêtes. Her father is a French restaurant manager at the Palais omnisports de Paris-Bercy, film producer, and president of the company 1660 Productions. Her mother is a French nurse. She is of Greek ancestry through her paternal great-grandfather, who was born there. Career. 2006–2012: Acting debut and early roles. In 2006, Exarchopoulos was spotted by an agent and made her first television appearance in an episode of the French police series \"R.I.S, police scientifique\". At thirteen, she had a debuting film role in the 2007 film \"Boxes\". She also appeared in the films \"Les Enfants de Timpelb",
+        "text_characters": 2198,
+        "title": "Adèle Exarchopoulos"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7416301",
+        "score": 23.754822298779406,
+        "snippet": "'s Game '' * Adèle Exarchopoulos – `` Blue Is the Warmest Colour '' * Liam James – `` The Way Way Back '' * Waad Mohammed – `` Wadjda '' The Joe Barber Award for Best Portrayal of Washington , D.C. * `` The East '' * `` Olympus Has Fallen '' * `` Philomena '' * `` White House Down '' Multiple nominations and awards . References.",
+        "text_characters": 330,
+        "title": "Washington D.C. Area Film Critics Association Awards 2013"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5773768",
+        "score": 22.232386686146935,
+        "snippet": "According to the specialist press, the young woman then appeared as one of the \"essential French actresses in Hollywood\", and even as \"the most sought-after actress of her generation\", who at only 26 years-old, \"has always made the right choices and has tackled almost all genres\". In the process, she became the image of the perfume \"Candy\" for the Italian luxury group Prada. In 2012, she starred in \"Farewell, My Queen\". The film opened the 62nd Berlin International Film Festival, where it was met with critical acclaim. Critics praised director Benoît Jacquot's decision to cast Seydoux in the key-role of Sidonie, stating \"her luminous but watchful eyes suggest a soul wise beyond her years.\" Kenneth Turan of the \"Los Angeles Times\" wrote that Seydoux was an excellent choice for the part, calling her a remarkably versatile young actress and pointed to the stark difference in her characters from her previous roles in \"Midnight in Paris\" and \"\". That same year, she appeared in the Swiss drama film, \"Sister\". The film competed in competition at the 62nd Berlin International Film Festival, where it won the Special Award, the \"Silver Bear\", and was selected as the Swiss entry for the Best Foreign Language Oscar at the 85th Academy Awards. Critics again praised Seydoux for bringing a strong array of emotions to a highly unsympathetic part and called her performance intensely moving. That year, Seydoux was attached to star in Michael Gondry's \"Mood Indigo\", but had to drop out before f",
+        "text_characters": 2396,
+        "title": "Léa Seydoux"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7418287",
+        "score": 21.653285870478044,
+        "snippet": "17th Online Film Critics Society Awards 17th Online Film Critics Society Awards December 16, 2013 Best Picture: 12 Years a Slave The 17th Online Film Critics Society Awards, honoring the best in film for 2013, were announced on 16 December 2013. Winners and nominees. Best Picture. 12 Years a Slave Best Director. Alfonso Cuarón – \"Gravity\" Best Actor. Chiwetel Ejiofor – \"12 Years a Slave\" Best Actress. Cate Blanchett – \"Blue Jasmine\" Best Supporting Actor. Michael Fassbender – \"12 Years a Slave\" Best Supporting Actress. Lupita Nyong'o – \"12 Years a Slave\" Best Original Screenplay. \"Her\" – Spike Jonze Best Adapted Screenplay. \"12 Years a Slave\" – John Ridley Best Foreign Language Film. Blue Is the Warmest Colour Best Documentary. The Act of Killing Best Animated Feature. The Wind Rises Best Cinematography. \"Gravity\" – Emmanuel Lubezki Best Editing. \"Gravity\" – Alfonso Cuarón and Mark Sanger References.",
+        "text_characters": 913,
+        "title": "Online Film Critics Society Awards 2013"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7004110",
+        "score": 20.779062429068095,
+        "snippet": "The Cinéma de la Plage is a part of the Official Selection. The outdoors screenings at the beach cinema of Cannes are open to the public. Parallel sections. Critics' Week. The line-up for the Critics' Week was announced on 22 April at the section's website. The following films were selected: Feature films - The winner of the Grand Prix Nespresso has been highlighted. indicates film eligible for the Caméra d'Or as directorial debut feature. Short films - The winner of the Canal+ Award has been highlighted. Special Screenings indicates film eligible for the Caméra d'Or as directorial debut feature. Directors' Fortnight. The line-up for the Directors' Fortnight was announced at a press conference on 23 April with the following films being selected. Feature films - The winner of the Art Cinema Award (and the Prix SACD) has been highlighted. indicates film eligible for the Caméra d'Or as directorial debut feature. Short films Awards. Official awards. The French film \"Blue Is the Warmest Colour\", directed by Abdellatif Kechiche, won the Palme d'Or. In a first for the competition, the jury decided to award the Palme d'Or to Kechiche and the actresses who star in the film: Adèle Exarchopoulos and Léa Seydoux. \"Blue Is the Warmest Colour\" is a coming-of-age film that tells the story of a lesbian relationship between a 15-year-old girl and an older woman. It has shocked some critics with its graphic and controversial sex scenes. A reporter for the Radio France Internationale stated tha",
+        "text_characters": 2068,
+        "title": "2013 Cannes Film Festival"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8254178",
+        "score": 20.404921161614517,
+        "snippet": "Film award ceremony 18th FFCC Awards December 18, 2013 Best Picture: 12 Years a Slave The 18th Florida Film Critics Circle Awards were given on December 18, 2013. Winners. Best Picture. 12 Years a Slave Best Director. Steve McQueen – \"12 Years a Slave\" Best Actor. Chiwetel Ejiofor – \"12 Years a Slave\" Best Actress. Cate Blanchett – \"Blue Jasmine\" Best Supporting Actor. Jared Leto – \"Dallas Buyers Club\" Best Supporting Actress. Lupita Nyong'o – \"12 Years a Slave\" Best Original Screenplay. \"Her\" – Spike Jonze Best Adapted Screenplay. \"12 Years a Slave\" – John Ridley Best Animated Feature. Frozen Best Documentary. The Act of Killing Best Foreign Language Film. \"Blue Is the Warmest Colour\" • France Best Art Direction / Production Design. \"The Great Gatsby\" – Catherine Martin and Beverley Dunn Best Cinematography. \"Gravity\" – Emmanuel Lubezki Best Visual Effects. Gravity Pauline Kael Breakout Award. Lupita Nyong'o – \"12 Years a Slave\" Golden Orange. Dana Keith of the Miami Beach Cinematheque for his tireless championing of foreign, independent and alternative film in South Florida for more than 20 years References.",
+        "text_characters": 1127,
+        "title": "Florida Film Critics Circle Awards 2013"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-807e28dcb5e8cf34"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7150811", "title": "Blue Is the Warmest Colour", "score": 25.300793859685243, "snippet": "\"La Vie d'Adèle – Chapitres 1 & 2\" was released on Blu-ray Disc and DVD in France by Wild Side on 26 February 2014, and in North America, as \"Blue is the Warmest Color\", through The Criterion Collection on 25 February 2014. As \"Blue Is the Warmest Colour\", the film was also released on DVD and Blu-ray Disc in Canada on 25 February 2014 by Mongrel Media, in the United Kingdom on 17 March 2014 by Artificial Eye and on 18 June 2014, in Australia by Transmission Films. In Brazil, as of 2014, Blu-ray manufacturing companies Sonopress and Sony DADC were refusing to produce the film because of its content. The distributor was struggling to reverse this situation. Reception. Box office. \"Blue Is the Warmest Colour\" grossed a worldwide total of $19,492,879. During its opening in France on 9 October 2013, the film debuted with a weekend total of $2.3 million on 285 screens for a $8,200 per-screen average. It took the fourth spot in its first weekend, which was seen as a \"notably good showing because of its nearly three-hour length\". The film had a limited release in the U.S. and it grossed an estimated $101,116 in its first weekend ending 25 October 2013, with an average of $25,279 for four theatres in New York City and Los Angeles. The film grossed $2,199,787 in the U.S. theatrically. It had greater success in the U.S. home entertainment market, generating more than $3,500,000 in U.S. Blu-ray/DVD sales alone. Critical response. On review aggregation website Rotten Tomatoes, 89% of 204", "text_characters": 2434, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7446531", "title": "2013 National Society of Film Critics Awards", "score": 25.028573830471164, "snippet": "The 48th National Society of Film Critics Awards, given on 4 January 2014, honored the best in film for 2013. 48th NSFC Awards January 4, 2014 Best Film: Inside Llewyn Davis Winners. Film titles are listed in order of placings: Best Picture. 1. Inside Llewyn Davis 2. \"American Hustle\" 3. \"12 Years a Slave\" 3. \"Her\" Best Director. 1. Joel Coen and Ethan Coen – \"Inside Llewyn Davis\" 2. Alfonso Cuarón – \"Gravity\" 3. Steve McQueen – \"12 Years a Slave\" Best Actor. 1. Oscar Isaac – \"Inside Llewyn Davis\" 2. Chiwetel Ejiofor – \"12 Years a Slave\" 3. Robert Redford – \"All Is Lost\" Best Actress. 1. Cate Blanchett – \"Blue Jasmine\" 2. Adèle Exarchopoulos – \"Blue Is the Warmest Colour\" 3. Julie Delpy – \"Before Midnight\" Best Supporting Actor. 1. James Franco – \"Spring Breakers\" 2. Jared Leto – \"Dallas Buyers Club\" 3. Barkhad Abdi – \"Captain Phillips\" Best Supporting Actress. 1. Jennifer Lawrence – \"American Hustle\" 2. Lupita Nyong'o – \"12 Years a Slave\" 3. Léa Seydoux – \"Blue Is the Warmest Colour\" 3. Sally Hawkins – \"Blue Jasmine\" Best Screenplay. 1. Richard Linklater, Ethan Hawke, and Julie Delpy – \"Before Midnight\" 2. Joel Coen and Ethan Coen – \"Inside Llewyn Davis\" 3. Eric Warren Singer and David O. Russell – \"American Hustle\" Best Cinematography. 1. Bruno Delbonnel – \"Inside Llewyn Davis\" 2. Emmanuel Lubezki – \"Gravity\" 3. Phedon Papamichael – \"Nebraska\" Best Non-Fiction Film. 1. \"The Act of Killing\" (TIE) 1. \"At Berkeley\" (TIE) 2. \"Leviathan\" Best Foreign-Language Film. 1. Blue Is th", "text_characters": 1570, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7150810", "title": "Blue Is the Warmest Colour", "score": 24.708390489104204, "snippet": "The camerawork and many of Kechiche's directorial decisions give the film a true-to-life feel, which has led audiences to read meaning into it that they derive from their personal experiences. In \"The Yale Review\", Charles Taylor wrote: \"Instead of fencing its young lovers within a petting zoo... Kechiche removes the barriers that separate us from them. He brings the camera so close to the faces of his actresses that he seems to be trying to make their flesh more familiar to us than his own.\" Significance of the colour blue. \"Blue Is the Warmest Colour\" is characterized by visual symbolism. The colour blue is used extensively throughout the film—from the lighting in the gay club Adèle visits to the dress she wears in the last scene and most notably in Emma's hair and eyes. For Adèle, blue represents emotional intensity, curiosity, love, and sadness. Adèle also references Pablo Picasso, who famously went through a melancholy Blue Period. As Emma grows out of her relationship with Adèle and their passion wanes, she removes the blue from her hair and adopts a more natural, conservative hairstyle. Music. Reviewer Spencer Wolff noted Adèle's political stance, which changes as her life experiences change and reflect her alternating views: \"Framed by black and Arab faces, Adèle marches in a protest to demand better funding for education. The music, 'On lâche rien' ('We will never give up! '), by the Algerian-born Kaddour Haddadi, is the official song of the French Communist Party. Y", "text_characters": 2586, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7462648", "title": "List of accolades received by Blue Is the Warmest Colour", "score": 24.58106831505075, "snippet": "\"Blue Is the Warmest Colour\" (; ) is a 2013 French romantic coming-of-age drama film directed by Abdellatif Kechiche, and produced by Kechiche, Brahim Chioua, and Vincent Maraval. The screenplay also co-written by Kechiche was based on Jul Maroh's 2010 graphic novel of the same name. Adèle Exarchopoulos stars as a teenager who falls in love with an older woman played by Léa Seydoux. The film premiered at the 66th Cannes Film Festival on 23 May 2013 where it won the Palme d'Or. For the first time, the jury at Cannes presented the award to three recipients: Kechiche, Exarchopoulos, and Seydoux. At the age of 19, Exarchopoulos became the youngest recipient of the award. The film grossed over €14 million at the worldwide box office on a production budget of €4 million. Rotten Tomatoes, a review aggregator, surveyed 197 reviews and judged 89% to be positive. \"Blue Is the Warmest Colour\" garnered awards and nominations in a variety of categories with particular praise for Kechiche's direction, and the performances of Exarchopoulos and Seydoux. At the 39th César Awards, the film received eight nominations including Best Film, Best Director for Kechiche, and Best Actress for Seydoux. Exarchopoulous was the sole winner for Most Promising Actress. She also won the Critics' Choice Movie Award for Best Young Performer, Lumières Award for Best Female Revelation, and Best Breakthrough Actress from the National Board of Review. Seydoux garnered the Lumières Award for Best Actress as well as", "text_characters": 1658, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7190435", "title": "Adèle Exarchopoulos", "score": 24.468557727373824, "snippet": "French actress (born 1993) Adèle Exarchopoulos (; born 22 November 1993) is a French actress. She had her career breakthrough starring as Adèle in the romance \"Blue Is the Warmest Colour\" (2013). At the 2013 Cannes Film Festival, she became the youngest person in the history of the festival to be awarded the Palme d'Or. She won it with her co-star Léa Seydoux. Exarchopoulos won two César Awards for \"Blue is the Warmest Colour\" (2013) and \"All Your Faces\" (2023). She was also nominated for Cesars for her roles in \"Mandibles\" (2020) and \"Zero Fucks Given\" (2023). Her other notables roles feature her in such films as \"Racer and the Jailbird\" (2017), \"The White Crow\" (2018), \"Sibyl\" (2019), \"The Five Devils\" (2022), and \"Passages\" (2023). She voiced Ennui in the Pixar animated film \"Inside Out 2\" (2024). Early life. Exarchopoulos grew up in the 19th arrondissement of Paris, near the Place des Fêtes. Her father is a French restaurant manager at the Palais omnisports de Paris-Bercy, film producer, and president of the company 1660 Productions. Her mother is a French nurse. She is of Greek ancestry through her paternal great-grandfather, who was born there. Career. 2006–2012: Acting debut and early roles. In 2006, Exarchopoulos was spotted by an agent and made her first television appearance in an episode of the French police series \"R.I.S, police scientifique\". At thirteen, she had a debuting film role in the 2007 film \"Boxes\". She also appeared in the films \"Les Enfants de Timpelb", "text_characters": 2198, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7416301", "title": "Washington D.C. Area Film Critics Association Awards 2013", "score": 23.754822298779406, "snippet": "'s Game '' * Adèle Exarchopoulos – `` Blue Is the Warmest Colour '' * Liam James – `` The Way Way Back '' * Waad Mohammed – `` Wadjda '' The Joe Barber Award for Best Portrayal of Washington , D.C. * `` The East '' * `` Olympus Has Fallen '' * `` Philomena '' * `` White House Down '' Multiple nominations and awards . References.", "text_characters": 330, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5773768", "title": "Léa Seydoux", "score": 22.232386686146935, "snippet": "According to the specialist press, the young woman then appeared as one of the \"essential French actresses in Hollywood\", and even as \"the most sought-after actress of her generation\", who at only 26 years-old, \"has always made the right choices and has tackled almost all genres\". In the process, she became the image of the perfume \"Candy\" for the Italian luxury group Prada. In 2012, she starred in \"Farewell, My Queen\". The film opened the 62nd Berlin International Film Festival, where it was met with critical acclaim. Critics praised director Benoît Jacquot's decision to cast Seydoux in the key-role of Sidonie, stating \"her luminous but watchful eyes suggest a soul wise beyond her years.\" Kenneth Turan of the \"Los Angeles Times\" wrote that Seydoux was an excellent choice for the part, calling her a remarkably versatile young actress and pointed to the stark difference in her characters from her previous roles in \"Midnight in Paris\" and \"\". That same year, she appeared in the Swiss drama film, \"Sister\". The film competed in competition at the 62nd Berlin International Film Festival, where it won the Special Award, the \"Silver Bear\", and was selected as the Swiss entry for the Best Foreign Language Oscar at the 85th Academy Awards. Critics again praised Seydoux for bringing a strong array of emotions to a highly unsympathetic part and called her performance intensely moving. That year, Seydoux was attached to star in Michael Gondry's \"Mood Indigo\", but had to drop out before f", "text_characters": 2396, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7418287", "title": "Online Film Critics Society Awards 2013", "score": 21.653285870478044, "snippet": "17th Online Film Critics Society Awards 17th Online Film Critics Society Awards December 16, 2013 Best Picture: 12 Years a Slave The 17th Online Film Critics Society Awards, honoring the best in film for 2013, were announced on 16 December 2013. Winners and nominees. Best Picture. 12 Years a Slave Best Director. Alfonso Cuarón – \"Gravity\" Best Actor. Chiwetel Ejiofor – \"12 Years a Slave\" Best Actress. Cate Blanchett – \"Blue Jasmine\" Best Supporting Actor. Michael Fassbender – \"12 Years a Slave\" Best Supporting Actress. Lupita Nyong'o – \"12 Years a Slave\" Best Original Screenplay. \"Her\" – Spike Jonze Best Adapted Screenplay. \"12 Years a Slave\" – John Ridley Best Foreign Language Film. Blue Is the Warmest Colour Best Documentary. The Act of Killing Best Animated Feature. The Wind Rises Best Cinematography. \"Gravity\" – Emmanuel Lubezki Best Editing. \"Gravity\" – Alfonso Cuarón and Mark Sanger References.", "text_characters": 913, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7004110", "title": "2013 Cannes Film Festival", "score": 20.779062429068095, "snippet": "The Cinéma de la Plage is a part of the Official Selection. The outdoors screenings at the beach cinema of Cannes are open to the public. Parallel sections. Critics' Week. The line-up for the Critics' Week was announced on 22 April at the section's website. The following films were selected: Feature films - The winner of the Grand Prix Nespresso has been highlighted. indicates film eligible for the Caméra d'Or as directorial debut feature. Short films - The winner of the Canal+ Award has been highlighted. Special Screenings indicates film eligible for the Caméra d'Or as directorial debut feature. Directors' Fortnight. The line-up for the Directors' Fortnight was announced at a press conference on 23 April with the following films being selected. Feature films - The winner of the Art Cinema Award (and the Prix SACD) has been highlighted. indicates film eligible for the Caméra d'Or as directorial debut feature. Short films Awards. Official awards. The French film \"Blue Is the Warmest Colour\", directed by Abdellatif Kechiche, won the Palme d'Or. In a first for the competition, the jury decided to award the Palme d'Or to Kechiche and the actresses who star in the film: Adèle Exarchopoulos and Léa Seydoux. \"Blue Is the Warmest Colour\" is a coming-of-age film that tells the story of a lesbian relationship between a 15-year-old girl and an older woman. It has shocked some critics with its graphic and controversial sex scenes. A reporter for the Radio France Internationale stated tha", "text_characters": 2068, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8254178", "title": "Florida Film Critics Circle Awards 2013", "score": 20.404921161614517, "snippet": "Film award ceremony 18th FFCC Awards December 18, 2013 Best Picture: 12 Years a Slave The 18th Florida Film Critics Circle Awards were given on December 18, 2013. Winners. Best Picture. 12 Years a Slave Best Director. Steve McQueen – \"12 Years a Slave\" Best Actor. Chiwetel Ejiofor – \"12 Years a Slave\" Best Actress. Cate Blanchett – \"Blue Jasmine\" Best Supporting Actor. Jared Leto – \"Dallas Buyers Club\" Best Supporting Actress. Lupita Nyong'o – \"12 Years a Slave\" Best Original Screenplay. \"Her\" – Spike Jonze Best Adapted Screenplay. \"12 Years a Slave\" – John Ridley Best Animated Feature. Frozen Best Documentary. The Act of Killing Best Foreign Language Film. \"Blue Is the Warmest Colour\" • France Best Art Direction / Production Design. \"The Great Gatsby\" – Catherine Martin and Beverley Dunn Best Cinematography. \"Gravity\" – Emmanuel Lubezki Best Visual Effects. Gravity Pauline Kael Breakout Award. Lupita Nyong'o – \"12 Years a Slave\" Golden Orange. Dana Keith of the Miami Beach Cinematheque for his tireless championing of foreign, independent and alternative film in South Florida for more than 20 years References.", "text_characters": 1127, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R002_request.json/messages/4/content`；SHA256：`2ea42554320239cc1bd52643221b989dcf7e847eec9cbf3b580def48abb24b0f`。
+
+### R1 Call `/rounds/0/tool_calls/2` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Blue Ruin FIPRESCI Prize Cannes 2013"
+  },
+  "id": "chatcmpl-tool-87322262b677821f",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Blue Ruin FIPRESCI Prize Cannes 2013\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-87322262b677821f",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Blue Ruin FIPRESCI Prize Cannes 2013"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 3,
+  "event_id": "E003",
+  "latency_seconds": 0.4069538270123303,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7189138",
+        "score": 25.9194996624676,
+        "snippet": "2013 film Manuscripts Don't Burn (, translit. Dast-Neveshtehaa Nemisoozand) is a 2013 Iranian drama film written and directed by Mohammad Rasoulof, about a failed attempt to kill a busload of Iranian writers in 1996. It was screened in the Un Certain Regard section at the 2013 Cannes Film Festival, where it won the FIPRESCI Prize. It was screened in the Contemporary World Cinema section at the 2013 Toronto International Film Festival. Reception. On Rotten Tomatoes, the film has an aggregate score of 93% based on 25 positive and 2 negative critic reviews. The website consensus reads: \"Brave, challenging, and brimming with rage, \"Manuscripts Don't Burn\" is a political statement as much as it is a gripping thriller.\" References.",
+        "text_characters": 735,
+        "title": "Manuscripts Don't Burn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7150814",
+        "score": 23.86599877643681,
+        "snippet": "Exarchopoulos and Seydoux also received the Palme as a special prize. Kechiche dedicated the award to \"the youth of France\" and the Tunisian Revolution, where \"they have the aspiration to be free, to express themselves and love in full freedom\". At Cannes it also won the FIPRESCI Prize. This was also the first film adapted from a graphic novel or a comic to win the Palme d'Or. In December 2013, it received the Louis Delluc Prize for best French film. The film was nominated for the Best Foreign Language Film award at the 71st Golden Globe Awards and the BAFTA Award for Best Film Not in the English Language. At the 39th César Awards, the film received eight nominations, with Exarchopoulos winning the César Award for Most Promising Actress. References.",
+        "text_characters": 759,
+        "title": "Blue Is the Warmest Colour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4127725",
+        "score": 23.652814607342155,
+        "snippet": "This film was partially funded by French sources, with the stipulation that at least fifty-one percent of the dialogue be recorded in French, despite the fact that all of the characters were Algerian. In 2009, Allouache wrote and directed the film \"Harragas\", the story of young Algerian refugees who fled their home country on small boats into the Mediterranean. The film was partly funded by the Algerian government. However, they did not like the end result and the Algerian government has subsequently boycotted Allouache’s films and refused further support. His 2011 film, \"Normal! \", about a filmmaker in the aftermath of the December riots, won the award for Best Film at the 2011 Doha Tribeca Film Festival. This film was a commentary on the Algerian government’s amnesty policy for terrorists. In 2012 he directed \"Le repenti\" (\"The Repentant\"), a film about an Islamist released from prison who struggles to understand forgiveness, which was screened at the Directors' Fortnight at the Cannes Film Festival. It won a FIPRESCI Award at the 17th International Film Festival of Kerala. In 2013 \"Les terrasses\" (\"The Rooftops\") about life in Bab el-Oued, was screened at the Venice Film Festival and in 2015 \"Madame courage\", about a drug-user who tries to kick his habit, was screened at the Venice Film Festival. In 2016 a documentary fiction \"Enquête au paradis\", which combines in-person interviews with a dramatized road trip was screened at the FIPA in Biarritz (Fipa d'or) at the Berlin ",
+        "text_characters": 2015,
+        "title": "Merzak Allouache"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9195594",
+        "score": 23.416019090319743,
+        "snippet": "The film also took part in the international competition of the Warsaw International Film Festival and won the FIPRESCI prize for the best Ukrainian feature film at the Odesa Film Festival 2014. In December 2013, Denis Ivanov initiated the creation of the first winter film market in Kyiv, which became an annual professional event for Ukrainian cinemas, distributors, and producers. The film \"The Tribe\" directed by Miroslav Slaboshpitsky (2014), which Denis Ivanov co-produced, won three prizes at Critic's Week section of the Cannes Film Festival. The film participated in more than 50 film festivals around the world, including the Locarno and Toronto and was released in more than forty countries, becoming the most successful international release of the Ukrainian film in history. In 2014 Denis Ivanov founded «Children KinoFest» – film festival for children and teenagers . In 2017, the festival expanded to 21 cities, the number of visitors exceeded 40 thousand viewers. In 2016, he initiated the organization of annual days of Ukrainian cinema UKRAINE ON FILM in the cultural center BOZAR in Brussels, Belgium. The film \"Black Level\" by Valentin Vasianovich (2017), in which Ivanov participated as an associate producer, received the FIPRESCI prize for the best Ukrainian feature film at the Odesa Film Festival 2017 and became the Ukrainian candidate for the Oscar in the Best Foreign Language film category. In 2017 Denis Ivanov founded annual \"Kyiv Critics Week\" film festival. Well-know",
+        "text_characters": 2478,
+        "title": "Denis Ivanov (filmmaker)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2980891",
+        "score": 23.26632491867757,
+        "snippet": "He then directed The Secret of the Grain (La Graine et le mulet) in 2006, which evokes the journey of a worker of Maghrebian origin who wants to establish a restaurant in the port of Sete as an inheritance for his family, but meets French bureaucratic opposition. He presented \"The Secret of the Grain\" at the 64th Mostra del Cinema in Venice for which he was awarded the Special Jury Prize. The film also received the FIPRESCI Prize, the Louis Delluc Prize and the César Awards for Best Film and Best Director. Kechiche’s next film was selected at the Venice Film Festival 2010, titled Black Venus (Vénus Noire) in reference to the “Vénus Hottentote” (Saartjie Baartman). The film follows the life of Sarah Baartman, a Khoikhoi woman from the early 19th century who was exhibited in Europe for her voluptuous figure and objectified by European women. The film’s critical reception was positive, despite only receiving one nomination at the César Awards in 2011. His 2013 film \"Blue Is the Warmest Colour\" won the \"Palme d'Or\" and the FIPRESCI Prize at the 2013 Cannes Film Festival. Several days later, a controversy erupted about Kechiche's work methods; technicians on the film accused him of harassment, unpaid overtime and violations of labour laws. The two main actresses, Léa Seydoux and Adèle Exarchopoulos, who were also awarded the \"Palme d'Or\", had complained about Kechiche's behavior during the shooting but later, in an extensive interview, claimed that although he was difficult to wor",
+        "text_characters": 1893,
+        "title": "Abdellatif Kechiche"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2660265",
+        "score": 23.18744049542974,
+        "snippet": "(2007); Golam Rabbany Biplob's \"On the Wings of Dreams\" (2007); Mostofa Sarwar Farooki's \"Bachelor\" (2003), \"Third Person Singular Number\" (2009), \"Television\" (2013) and \"\"; Tauquir Ahmed's \"Joyjatra\" (2004) and \"Oggyatonama\" (2016); Rubaiyat Hossain's \"Meherjaan\" (2011) and \"Under Construction\" (2016); Kamar Ahmad Simon's \"Shunte Ki Pao! (Are You Listening!)\" (2012); Zahidur Rahim Anjan's \"Meghmallar\" (2014); Aung Rakhine's \"My Bicycle\" (2015); Bijon Imtiaz's \"Matir Projar Deshe-Kingdom of Clay Subjects\" (2016), Amitabh Reza Chowdhury's \"Aynabaji\" (2016) etc. These films won many international acclaims introducing Bangladeshi films to a wide international audiences. The late Tareque Masud is regarded as one of Bangladesh's outstanding directors due to his numerous productions on historical and social issues. Masud was honored by FIPRESCI at the Cannes Film Festival in 2002 for his film \"The Clay Bird\" (2002). Notable films. Classics. Cult films. Modern era films. Commercial successes. References.",
+        "text_characters": 1013,
+        "title": "Cinema of Bangladesh"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9503859",
+        "score": 23.03519419970653,
+        "snippet": "Mexican film producer Nicolás Celis (born 15 October 1986) is a Mexican film producer. He received a nomination for the Academy Awards for best film for his work as a producer in the film \"Roma\", alongside Alfonso Cuarón and Gabriela Rodríguez. For the same film he received four BAFTA Awards, the award for Best International Film at the British Independent Film Awards, two Golden Globes and three Academy Awards In 2017, the producer was named \"Talent to watch\", by The Hollywood Reporter Career. Among his first works is the drama-horror feature film, \"We Are What We Are\" directed by Jorge Michel Grau, who competed for the Caméra d'Or at the 2010 Cannes Film Festival. This film had an American remake directed by Jim Mickle in 2013. In 2015, he collaborated as executive producer of \"Desierto\", Jonás Cuarón, with Gael García Bernal and Jeffrey Dean Morgan, movie that won he FIPRESCI prize at the Toronto Film Festival. Later on he produced Tatiana Huezo´s documentary Tempestad (2016), a film which was selected by the AMACC to compete for the Best Foreign Language Film Oscar as well as the Goya Award. He has collaborated in several Amat Escalante films, such as \"Heli\" (2013) which won the Palme d'Or for best direction and \"The Untamed\" (2016), feature film which premiered at the Venice Film Festival. Among his most recent co-productions is \"Birds of Passage\", directed by Ciro Guerra and Cristina Gallego, this film was selected to open the Directors' Fortnight at Cannes. Another co-",
+        "text_characters": 1835,
+        "title": "Nicolás Celis (film producer)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4067859",
+        "score": 22.58969732448282,
+        "snippet": "Iranian filmmaker Parviz Shahbazi (; born November 29, 1967) is an Iranian filmmaker. Biography. Shahbazi is a graduate of filmmaking in Iran. During the early 80's he began writing short stories and directing short films. He edited several films and directed 12 short films before making his first feature film, \"Traveler from the South\", in 1996. 'Talla’ is his latest feature movie. Film career. His debut feature film, \"Traveler from the South\" (1996) as well as his second film, \"Whispers\" (2000) went to countless festivals and brought him international recognition, collecting several prizes along the way. In 2002, his third film, \"Deep Breath\" was shown at the Directors' Fortnight at Cannes Film Festival to great success. Among other accolades it won a FIPRESCI award at Pusan and the Jury special award at Turin as well as the Best Film award at the Belgrade Author Festival. In 2016 \"Malaria\" was shown at the 73rd Venice film festival and won the Grand Prix at the Warsaw International Film Festival (2016). Awards. Grand Prix at the Warsaw International Film Festival (2016) PIFF - FIPRESCI Prize - 2003 - Nafas-e amigh (Deep Breath) Fajr Film Festival - Crystal Simorgh - four times for \"Traveller from the south\" 1996; 2003 - Nafas-e amigh; Karat 14 - 2008; Darband - 2012 Annonay film festival France - Best feature film - Traveller from the south - 1998 Zanzibar film festival - Silver boat - Whispers - 2000 Torinno film festival - Deep Breath - 2003 Dhaka International Film Fest",
+        "text_characters": 1785,
+        "title": "Parviz Shahbazi"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1450882",
+        "score": 22.448056037488367,
+        "snippet": "However, Philippe and Andrea cannot bring themselves to eat it. Philippe goes off to bed, leaving Andrea to keep Ugo company during his determined effort to eat the entire pâté. Some time later, she later calls Philippe back downstairs to help her stop his friend from stuffing himself to death. They cannot dissuade Ugo, and end up attending to him on the kitchen table, the one feeding him, the other masturbating him until he orgasms and dies at the same time. On the advice of Andrea, his body is left on the kitchen table, in his \"domain\". The last to die is the diabetic Philippe, on the bench under the lime-tree of Boileau and into the arms of Andrea, after eating a pudding she has made shaped like a pair of breasts. He dies on the bench with Andrea and yet another dog who he keeps calling Ugo, just as another delivery of meat arrives. The delivery men react with incomprehension when Andrea instructs them to leave the meat – whole animals, and sides of pork and beef – in the garden (the kitchen and the cold room now containing the bodies of Ugo, Marcello and Michel). The film ends bizarrely with a scene of the garden filled with dogs who begin chasing and dining on the poultry and meat carcasses. Production. Andréa Ferréol had to gain 25 kilos in two months to get the role. Awards. \"La Grande Bouffe\" received the FIPRESCI Prize given by the International Federation of Film Critics at the 1973 Cannes Film Festival, which it shared with Jean Eustache's \"The Mother and the Whore",
+        "text_characters": 1612,
+        "title": "La Grande Bouffe"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6080308",
+        "score": 21.888014516923633,
+        "snippet": "Iranian filmmaker (born 1972) Mohammad Rasoulof (; born 16 November 1972) is an Iranian independent filmmaker who lives in exile in Europe. He is known for several award-winning films, including \"The Twilight\" (2002), \"Iron Island\" (2005), \"Goodbye\" (2011)\",\" \"Manuscripts Don't Burn\" (2013), \"A Man of Integrity\" (2017) and \"There Is No Evil\" (2020). For the latter, he won the Golden Bear at the 2020 Berlin Film Festival. He has been arrested several times and had his passport confiscated, as the nature and content of his films has brought him into conflict with the Iranian Government. In May 2024, following the announcement that his film \"The Seed of the Sacred Fig\" was selected in the main competition at the 2024 Cannes Film Festival, Mohammad Rasoulof was sentenced by the Islamic Republic to 8 years in prison, whipping, and a fine. Rasoulof fled to a safe house in Germany after the sentencing. Early life and education. Mohammad Rasoulof was born on 16 November 1972 in Shiraz, Iran. He graduated with a bachelor's degree in sociology from Shiraz University, and he has studied film editing at Soore University, Tehran. Career. His first feature-length film, \"The Twilight\" (\"Gagooman\"), was released in 2002 and was awarded the Crystal Simorgh for Best First Film at the Fajr International Film Festival in Tehran. His second feature, \"Iron Island\" (\"Jazire-ye ahani\"), was released in 2005. His feature \"The White Meadows\" (\"Keshtzarha-ye sepid\") was released in 2009. \"Goodbye\" (\"Be",
+        "text_characters": 2411,
+        "title": "Mohammad Rasoulof"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-87322262b677821f"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7189138", "title": "Manuscripts Don't Burn", "score": 25.9194996624676, "snippet": "2013 film Manuscripts Don't Burn (, translit. Dast-Neveshtehaa Nemisoozand) is a 2013 Iranian drama film written and directed by Mohammad Rasoulof, about a failed attempt to kill a busload of Iranian writers in 1996. It was screened in the Un Certain Regard section at the 2013 Cannes Film Festival, where it won the FIPRESCI Prize. It was screened in the Contemporary World Cinema section at the 2013 Toronto International Film Festival. Reception. On Rotten Tomatoes, the film has an aggregate score of 93% based on 25 positive and 2 negative critic reviews. The website consensus reads: \"Brave, challenging, and brimming with rage, \"Manuscripts Don't Burn\" is a political statement as much as it is a gripping thriller.\" References.", "text_characters": 735, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7150814", "title": "Blue Is the Warmest Colour", "score": 23.86599877643681, "snippet": "Exarchopoulos and Seydoux also received the Palme as a special prize. Kechiche dedicated the award to \"the youth of France\" and the Tunisian Revolution, where \"they have the aspiration to be free, to express themselves and love in full freedom\". At Cannes it also won the FIPRESCI Prize. This was also the first film adapted from a graphic novel or a comic to win the Palme d'Or. In December 2013, it received the Louis Delluc Prize for best French film. The film was nominated for the Best Foreign Language Film award at the 71st Golden Globe Awards and the BAFTA Award for Best Film Not in the English Language. At the 39th César Awards, the film received eight nominations, with Exarchopoulos winning the César Award for Most Promising Actress. References.", "text_characters": 759, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4127725", "title": "Merzak Allouache", "score": 23.652814607342155, "snippet": "This film was partially funded by French sources, with the stipulation that at least fifty-one percent of the dialogue be recorded in French, despite the fact that all of the characters were Algerian. In 2009, Allouache wrote and directed the film \"Harragas\", the story of young Algerian refugees who fled their home country on small boats into the Mediterranean. The film was partly funded by the Algerian government. However, they did not like the end result and the Algerian government has subsequently boycotted Allouache’s films and refused further support. His 2011 film, \"Normal! \", about a filmmaker in the aftermath of the December riots, won the award for Best Film at the 2011 Doha Tribeca Film Festival. This film was a commentary on the Algerian government’s amnesty policy for terrorists. In 2012 he directed \"Le repenti\" (\"The Repentant\"), a film about an Islamist released from prison who struggles to understand forgiveness, which was screened at the Directors' Fortnight at the Cannes Film Festival. It won a FIPRESCI Award at the 17th International Film Festival of Kerala. In 2013 \"Les terrasses\" (\"The Rooftops\") about life in Bab el-Oued, was screened at the Venice Film Festival and in 2015 \"Madame courage\", about a drug-user who tries to kick his habit, was screened at the Venice Film Festival. In 2016 a documentary fiction \"Enquête au paradis\", which combines in-person interviews with a dramatized road trip was screened at the FIPA in Biarritz (Fipa d'or) at the Berlin ", "text_characters": 2015, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9195594", "title": "Denis Ivanov (filmmaker)", "score": 23.416019090319743, "snippet": "The film also took part in the international competition of the Warsaw International Film Festival and won the FIPRESCI prize for the best Ukrainian feature film at the Odesa Film Festival 2014. In December 2013, Denis Ivanov initiated the creation of the first winter film market in Kyiv, which became an annual professional event for Ukrainian cinemas, distributors, and producers. The film \"The Tribe\" directed by Miroslav Slaboshpitsky (2014), which Denis Ivanov co-produced, won three prizes at Critic's Week section of the Cannes Film Festival. The film participated in more than 50 film festivals around the world, including the Locarno and Toronto and was released in more than forty countries, becoming the most successful international release of the Ukrainian film in history. In 2014 Denis Ivanov founded «Children KinoFest» – film festival for children and teenagers . In 2017, the festival expanded to 21 cities, the number of visitors exceeded 40 thousand viewers. In 2016, he initiated the organization of annual days of Ukrainian cinema UKRAINE ON FILM in the cultural center BOZAR in Brussels, Belgium. The film \"Black Level\" by Valentin Vasianovich (2017), in which Ivanov participated as an associate producer, received the FIPRESCI prize for the best Ukrainian feature film at the Odesa Film Festival 2017 and became the Ukrainian candidate for the Oscar in the Best Foreign Language film category. In 2017 Denis Ivanov founded annual \"Kyiv Critics Week\" film festival. Well-know", "text_characters": 2478, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2980891", "title": "Abdellatif Kechiche", "score": 23.26632491867757, "snippet": "He then directed The Secret of the Grain (La Graine et le mulet) in 2006, which evokes the journey of a worker of Maghrebian origin who wants to establish a restaurant in the port of Sete as an inheritance for his family, but meets French bureaucratic opposition. He presented \"The Secret of the Grain\" at the 64th Mostra del Cinema in Venice for which he was awarded the Special Jury Prize. The film also received the FIPRESCI Prize, the Louis Delluc Prize and the César Awards for Best Film and Best Director. Kechiche’s next film was selected at the Venice Film Festival 2010, titled Black Venus (Vénus Noire) in reference to the “Vénus Hottentote” (Saartjie Baartman). The film follows the life of Sarah Baartman, a Khoikhoi woman from the early 19th century who was exhibited in Europe for her voluptuous figure and objectified by European women. The film’s critical reception was positive, despite only receiving one nomination at the César Awards in 2011. His 2013 film \"Blue Is the Warmest Colour\" won the \"Palme d'Or\" and the FIPRESCI Prize at the 2013 Cannes Film Festival. Several days later, a controversy erupted about Kechiche's work methods; technicians on the film accused him of harassment, unpaid overtime and violations of labour laws. The two main actresses, Léa Seydoux and Adèle Exarchopoulos, who were also awarded the \"Palme d'Or\", had complained about Kechiche's behavior during the shooting but later, in an extensive interview, claimed that although he was difficult to wor", "text_characters": 1893, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2660265", "title": "Cinema of Bangladesh", "score": 23.18744049542974, "snippet": "(2007); Golam Rabbany Biplob's \"On the Wings of Dreams\" (2007); Mostofa Sarwar Farooki's \"Bachelor\" (2003), \"Third Person Singular Number\" (2009), \"Television\" (2013) and \"\"; Tauquir Ahmed's \"Joyjatra\" (2004) and \"Oggyatonama\" (2016); Rubaiyat Hossain's \"Meherjaan\" (2011) and \"Under Construction\" (2016); Kamar Ahmad Simon's \"Shunte Ki Pao! (Are You Listening!)\" (2012); Zahidur Rahim Anjan's \"Meghmallar\" (2014); Aung Rakhine's \"My Bicycle\" (2015); Bijon Imtiaz's \"Matir Projar Deshe-Kingdom of Clay Subjects\" (2016), Amitabh Reza Chowdhury's \"Aynabaji\" (2016) etc. These films won many international acclaims introducing Bangladeshi films to a wide international audiences. The late Tareque Masud is regarded as one of Bangladesh's outstanding directors due to his numerous productions on historical and social issues. Masud was honored by FIPRESCI at the Cannes Film Festival in 2002 for his film \"The Clay Bird\" (2002). Notable films. Classics. Cult films. Modern era films. Commercial successes. References.", "text_characters": 1013, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9503859", "title": "Nicolás Celis (film producer)", "score": 23.03519419970653, "snippet": "Mexican film producer Nicolás Celis (born 15 October 1986) is a Mexican film producer. He received a nomination for the Academy Awards for best film for his work as a producer in the film \"Roma\", alongside Alfonso Cuarón and Gabriela Rodríguez. For the same film he received four BAFTA Awards, the award for Best International Film at the British Independent Film Awards, two Golden Globes and three Academy Awards In 2017, the producer was named \"Talent to watch\", by The Hollywood Reporter Career. Among his first works is the drama-horror feature film, \"We Are What We Are\" directed by Jorge Michel Grau, who competed for the Caméra d'Or at the 2010 Cannes Film Festival. This film had an American remake directed by Jim Mickle in 2013. In 2015, he collaborated as executive producer of \"Desierto\", Jonás Cuarón, with Gael García Bernal and Jeffrey Dean Morgan, movie that won he FIPRESCI prize at the Toronto Film Festival. Later on he produced Tatiana Huezo´s documentary Tempestad (2016), a film which was selected by the AMACC to compete for the Best Foreign Language Film Oscar as well as the Goya Award. He has collaborated in several Amat Escalante films, such as \"Heli\" (2013) which won the Palme d'Or for best direction and \"The Untamed\" (2016), feature film which premiered at the Venice Film Festival. Among his most recent co-productions is \"Birds of Passage\", directed by Ciro Guerra and Cristina Gallego, this film was selected to open the Directors' Fortnight at Cannes. Another co-", "text_characters": 1835, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4067859", "title": "Parviz Shahbazi", "score": 22.58969732448282, "snippet": "Iranian filmmaker Parviz Shahbazi (; born November 29, 1967) is an Iranian filmmaker. Biography. Shahbazi is a graduate of filmmaking in Iran. During the early 80's he began writing short stories and directing short films. He edited several films and directed 12 short films before making his first feature film, \"Traveler from the South\", in 1996. 'Talla’ is his latest feature movie. Film career. His debut feature film, \"Traveler from the South\" (1996) as well as his second film, \"Whispers\" (2000) went to countless festivals and brought him international recognition, collecting several prizes along the way. In 2002, his third film, \"Deep Breath\" was shown at the Directors' Fortnight at Cannes Film Festival to great success. Among other accolades it won a FIPRESCI award at Pusan and the Jury special award at Turin as well as the Best Film award at the Belgrade Author Festival. In 2016 \"Malaria\" was shown at the 73rd Venice film festival and won the Grand Prix at the Warsaw International Film Festival (2016). Awards. Grand Prix at the Warsaw International Film Festival (2016) PIFF - FIPRESCI Prize - 2003 - Nafas-e amigh (Deep Breath) Fajr Film Festival - Crystal Simorgh - four times for \"Traveller from the south\" 1996; 2003 - Nafas-e amigh; Karat 14 - 2008; Darband - 2012 Annonay film festival France - Best feature film - Traveller from the south - 1998 Zanzibar film festival - Silver boat - Whispers - 2000 Torinno film festival - Deep Breath - 2003 Dhaka International Film Fest", "text_characters": 1785, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1450882", "title": "La Grande Bouffe", "score": 22.448056037488367, "snippet": "However, Philippe and Andrea cannot bring themselves to eat it. Philippe goes off to bed, leaving Andrea to keep Ugo company during his determined effort to eat the entire pâté. Some time later, she later calls Philippe back downstairs to help her stop his friend from stuffing himself to death. They cannot dissuade Ugo, and end up attending to him on the kitchen table, the one feeding him, the other masturbating him until he orgasms and dies at the same time. On the advice of Andrea, his body is left on the kitchen table, in his \"domain\". The last to die is the diabetic Philippe, on the bench under the lime-tree of Boileau and into the arms of Andrea, after eating a pudding she has made shaped like a pair of breasts. He dies on the bench with Andrea and yet another dog who he keeps calling Ugo, just as another delivery of meat arrives. The delivery men react with incomprehension when Andrea instructs them to leave the meat – whole animals, and sides of pork and beef – in the garden (the kitchen and the cold room now containing the bodies of Ugo, Marcello and Michel). The film ends bizarrely with a scene of the garden filled with dogs who begin chasing and dining on the poultry and meat carcasses. Production. Andréa Ferréol had to gain 25 kilos in two months to get the role. Awards. \"La Grande Bouffe\" received the FIPRESCI Prize given by the International Federation of Film Critics at the 1973 Cannes Film Festival, which it shared with Jean Eustache's \"The Mother and the Whore", "text_characters": 1612, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6080308", "title": "Mohammad Rasoulof", "score": 21.888014516923633, "snippet": "Iranian filmmaker (born 1972) Mohammad Rasoulof (; born 16 November 1972) is an Iranian independent filmmaker who lives in exile in Europe. He is known for several award-winning films, including \"The Twilight\" (2002), \"Iron Island\" (2005), \"Goodbye\" (2011)\",\" \"Manuscripts Don't Burn\" (2013), \"A Man of Integrity\" (2017) and \"There Is No Evil\" (2020). For the latter, he won the Golden Bear at the 2020 Berlin Film Festival. He has been arrested several times and had his passport confiscated, as the nature and content of his films has brought him into conflict with the Iranian Government. In May 2024, following the announcement that his film \"The Seed of the Sacred Fig\" was selected in the main competition at the 2024 Cannes Film Festival, Mohammad Rasoulof was sentenced by the Islamic Republic to 8 years in prison, whipping, and a fine. Rasoulof fled to a safe house in Germany after the sentencing. Early life and education. Mohammad Rasoulof was born on 16 November 1972 in Shiraz, Iran. He graduated with a bachelor's degree in sociology from Shiraz University, and he has studied film editing at Soore University, Tehran. Career. His first feature-length film, \"The Twilight\" (\"Gagooman\"), was released in 2002 and was awarded the Crystal Simorgh for Best First Film at the Fajr International Film Festival in Tehran. His second feature, \"Iron Island\" (\"Jazire-ye ahani\"), was released in 2005. His feature \"The White Meadows\" (\"Keshtzarha-ye sepid\") was released in 2009. \"Goodbye\" (\"Be", "text_characters": 2411, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R002_request.json/messages/5/content`；SHA256：`01fd38ecde6657340d17acdbbb8d9ed3329c2465218f1415bd69dfbd8c4b27b8`。
+
+## S002｜评估电影条件并发现Theron获奖关系误配
+
+完整对照首映/演员/奖项，识别Theron不在共享名单，仍接受The Last Face与Sean Penn。
+
+结束状态：电影采用，奖项称谓歧义保留。
+
+边界判断：实际开展多条件比较、纠错和候选接受。
+
+内部KEEP与反证：重读、发现关系冲突和最终电影判断为同次论证，不按Wait切。
+
+### SPLIT原文
+
+````
+provides additional verification points, particularly around "Blue Is the Warmest Colour" and "Blue Ruin". These specific references will help me narrow down the search and confirm the precise film details.
+
+My next step is to conduct targeted searches to validate each interconnected element and ultimately determine the director's birth year with precision.
+
+→ 切点 [1, 0, 0] →
+The user's question is quite complex. Let me break it down:
+
+1. Find the film where Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem
+2. This film had an initial festival premiere date of May 20, 2016
+3. The lead actress of this film had also shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival
+4. The Pa
+````
+
+### R2 `/rounds/1/reasoning_content` [0,2333)
+
+SHA256：`77f1ebf98a5a82caf7932667567e6a772251e252ed3c1a1723f0292745820414`；原字段SHA256：`a1c04e422bf917abc32cff7d0781a476b0915012c57513332dfda34ec1bd4c91`。
+
+````
+The user's question is quite complex. Let me break it down:
+
+1. Find the film where Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem
+2. This film had an initial festival premiere date of May 20, 2016
+3. The lead actress of this film had also shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival
+4. The Palme d'Or was won in the same year that "Blue Ruin" received the FIPRESCI Prize at Cannes
+5. "Blue Ruin" was described by "Hollywood Reporter" as "less disciplined" than "Green Room"
+6. "Green Room" was co-written and directed by Jeremy Saulnier
+7. "Green Room" starred an actress from "Sweet Virginia" who reunited with Anton Yelchin for "Green Room"
+
+Wait, let me re-read the question more carefully. The question asks for the birth year of the director of the film in which Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem.
+
+From the search results, I can see:
+- "The Last Face" is a 2016 film directed by Sean Penn, starring Charlize Theron, Javier Bardem, and Adèle Exarchopoulos
+- It premiered at the 2016 Cannes Film Festival on May 20, 2016
+- The lead actress (Charlize Theron) had also shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival
+
+Wait, but looking at the search results for "Blue Is the Warmest Colour", it says the Palme d'Or was shared by Kechiche, Exarchopoulos, and Seydoux, not Theron. Let me re-read the question.
+
+Actually, the question says "whose lead actress had also shared the Palme d'Or for 'Blue Is the Warmest Colour' at the 2013 Cannes Film Festival". 
+
+I'm puzzled about the lead actress connection. The search results don't clearly link a lead actress from "The Last Face" to the "Blue Is the Warmest Colour" Palme d'Or. There seems to be some ambiguity in the question's description that I need to investigate further.
+
+The key details point to "The Last Face" as the film, with Sean Penn as the director. However, the specific connection to the Palme d'Or remains unclear. I'll need to dig deeper into the actress connections and award details to fully understand the question's intent.
+
+The film's premiere date matches the specified May 20, 2016, and it involves the three actors mentioned. Sean Penn appears to be the director, but I want to verify his birth year carefully.
+
+
+````
+
+## S003｜检索Sean Penn出生年
+
+Search birth year，R3直接反馈片段无年份。
+
+结束状态：只见政治生活片段。
+
+边界判断：候选接受后转向具体答案字段取证。
+
+内部KEEP与反证：R3失败解释归本次Search。
+
+### SPLIT原文
+
+````
+pecific connection to the Palme d'Or remains unclear. I'll need to dig deeper into the actress connections and award details to fully understand the question's intent.
+
+The film's premiere date matches the specified May 20, 2016, and it involves the three actors mentioned. Sean Penn appears to be the director, but I want to verify his birth year carefully.
+
+
+→ 切点 [1, 0, 2333] →
+I'll search for Sean Penn's biographical details to confirm his birth year and ensure I have accurate information.
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [2333,2448)
+
+SHA256：`5435dbf96e86f21b4d8b1c95e9eb3e0e5ce98935a5adadeb585f5cd9f3609b45`；原字段SHA256：`a1c04e422bf917abc32cff7d0781a476b0915012c57513332dfda34ec1bd4c91`。
+
+````
+I'll search for Sean Penn's biographical details to confirm his birth year and ensure I have accurate information.
+
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "Sean Penn birth year"
+  },
+  "id": "chatcmpl-tool-955049f5966d124e",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Sean Penn birth year\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-955049f5966d124e",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sean Penn birth year"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 1.4911546362563968,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:319972",
+        "score": 23.798332767671997,
+        "snippet": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United States lost a friend it never knew it had. And poor people around the world lost a champion. I lost a friend I was blessed to have.\" Penn's friendship with Chávez and his praise for Cuban dictator Raúl Castro have been criticized by human rights activist Thor Halvorssen and media, including \"The New York Times\", the \"Los Angeles Times\", \"The New Criterion\", and \"The Advocate\", each of which alleged that Castro and Chávez's strong anti-LGBT stances clashed with Penn's support for LGBT groups. Actress María Conchita Alonso, who co-starred with Penn in \"Colors\", also issued an \"Open Letter to Sean Penn\", attacking his views on Chávez. In December 2011, Alonso and Penn began verbally fighting at an airport, during which Penn called her \"a pig\" and Alonso called Penn a communist. On January 9, 2016, a day after Mexican officials announced the capture of fugitive Sinaloa Cartel boss Joaquín \"El Chapo\" Guzmán in a militarized raid, \"Rolling Stone\" reported that Penn and actress Kate del Castillo had conducted a secret interview with El Chapo prior to his arrest. Del Castillo was contacted by Guzmán's lawyer, who was then under CISEN surveillance, to discuss producing a biographical film about Guzmán, and communication between the two increased following Guzmán's escape from a Mexican pri",
+        "text_characters": 2660,
+        "title": "Sean Penn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4938852",
+        "score": 20.156235263365403,
+        "snippet": "The Denver Film Society offered that the film mounted \"a thoughtful challenge to Jon Krakauer's \"Into the Wild\" (and actor-director Sean Penn's screen adaptation thereof), \"The Call of the Wild\" presents an alternative to the popular account of Chris McCandless, the self-styled 'aesthetic voyager' who died alone in the Alaskan wilderness in 1992 at age 24.\" They further noted Lamothe's, while filming, having several \"run-ins\" with Penn who was, in the same time-frame and locations, himself involved in the making of a production about McCandless, and made note of how Penn's production had \"the clout to thwart Lamothe at many a turn.\" They concluded: \"ultimately, however, what lies at the film's core is Lamothe's own journey of discovery. The conceit allows him to explore the concept of wilderness and its influence on the American psyche, as well as its reflection on our cultural landscape; the generation gap as measured by changing rites of passage; and the disparity between independent and Hollywood filmmaking.\" British film critic Neil Young wrote that the film was a \"disarmingly fresh, utterly engrossing documentary\" in how it addressed \"specific details of McCandless's controversial life (and even more controversial demise)\" by director Ron Lamothe covering \"a surprisingly expansive amount of geographic and thematic terrain as he journeys cross-county – driving, then hitchhiking – in McCandless's footsteps.\" In watching the production, Young offered \"the film becomes not s",
+        "text_characters": 2580,
+        "title": "The Call of the Wild (2007 film)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4854166",
+        "score": 18.424947779879403,
+        "snippet": "Immediately following the 2010 earthquake in Haiti, Jenkins and actor Sean Penn established the Jenkins-Penn Haitian Relief Organization to deliver hospital supplies and provide medical care to thousands of displaced Haitians. She compared the long-term recovery in Haiti to that in Bosnia and Herzegovina, highlighted the need for basic humanitarian aid, and argued that the U.S. military should not leave the country prematurely. In March 2010, Jenkins posted bail for former President of the Federation of Bosnia and Herzegovina Ejup Ganić, who was detained in London on a Serbian extradition request. Sanela was honored with the Enduring Vision award by the Elton John AIDS Foundation for her activism in the fight against AIDS. Sanela produced a photography book entitled \"Room 23\", photographed by Deborah Anderson. Many of the celebrities in the book are friends of Jenkins, including George Clooney and Elton John. Proceeds from the sale of the book benefit several philanthropic programs. In 2022, Jenkins founded the Sunela Foundation with a donation of $100,000 for the victims of Lion Air Flight 601. Personal life. In 1999, she married Roger Jenkins who was a prominent executive at Barclays Bank. The couple met at the gym at the Barbican, where Jenkins was living after the end of his marriage to his first wife, a banker at Barclays. During their 10 year marriage, they had two children together, a son, Innis, and a daughter, Eneya. In 2020, Jenkins welcomed a daughter, Eliyanah, wi",
+        "text_characters": 1782,
+        "title": "Sanela Diana Jenkins"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3197047",
+        "score": 17.670170762625716,
+        "snippet": "1991 film directed by Sean Penn The Indian Runner is a 1991 crime drama film written and directed by Sean Penn in his directorial debut. Based on Bruce Springsteen's song \"Highway Patrolman\", the film depicts the relationship between two brothers who find themselves on opposite sides of the law. It stars David Morse and Viggo Mortensen as the brothers, alongside Valeria Golino, Patricia Arquette, Jordan Rhodes, Dennis Hopper, Charles Bronson, and Sandy Dennis in her final film role. Plot. The story, set in 1960s Nebraska, involves two very different brothers: small-town deputy sheriff Joe and criminal Frank Roberts. Before the events of the film, Joe had tried to farm for a living, but was unable to make ends meet, and the bank eventually foreclosed on his property. He became a deputy sheriff as a way to support his young wife, Maria, and child. Joe is a good, conscientious man, but has his own demons to fight with. The opening shot of the film shows a car chase which ends with Joe using his gun to kill a man in self-defense. This results in Joe's conflicted feelings about killing the criminal, as well as the praise and scorn from members of his community from this shooting. Frank, who had been involved with run-ins with the law before going to Vietnam, is described by his father as plagued by \"restlessness\". Upon his return to town, he breaks into his brother's home and is nearly shot by Joe's wife. The next day, Frank leaves town without ever stopping by his parents' home. ",
+        "text_characters": 2491,
+        "title": "The Indian Runner"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:213077",
+        "score": 17.535204333319335,
+        "snippet": "Activist Ruby Doris Smith-Robinson was known as Ruby Doris Smith prior to her marriage. Name blending. Although less common than name joining, a growing trend is the blending of two surnames upon marriage. This means adding \"parts\" of the two names. An example is Dawn O'Porter (from \"Porter\" and \"O'Dowd\"). Birth name as middle name. Examples include Amy Coney Barrett, Maryanne Trump Barry, Vera Cahalan Bushfield, Marguerite Stitt Church, Hillary Rodham Clinton (dropped maiden name in 2007), Ruth Bader Ginsburg, Katherine Gudger Langley, Ruth Hanna McCormick, Nelle Wilson Reagan, Edith Nourse Rogers, Sarah Huckabee Sanders, Debbie Wasserman Schultz, Margaret Chase Smith, and Jada Pinkett Smith. During their respective marriages, Kim Kardashian and Robin Wright were known as Kim Kardashian West (from Kanye West) and Robin Wright Penn (from Sean Penn). Politician Nikki Haley is sometimes referred to as Nikki R. Haley; the \"R\" stands for Randhawa, her birth surname. Spouse's surname as middle name. Examples are Brooklyn Peltz Beckham and John Ono Lennon. When British author Neil Gaiman married American musician Amanda Palmer, he added his wife's middle name to his, becoming Neil Richard MacKinnon Gaiman. Another example is Marie Gluesenkamp Perez. New name. Some couples will create an entirely new surname for themselves upon marriage, with no ties to either's original surname. This practice is less common than name blending. North America. Canada. In most of Canada, either partne",
+        "text_characters": 2564,
+        "title": "Maiden and married names"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:419056",
+        "score": 17.35777746845238,
+        "snippet": "Some of the lyrics that were up for auction included hits such as \"So Small\", \"Foolish Games\", \"I'm Yours\", \"I Kissed a Girl\", \"St. Elmo's Fire (Man in Motion)\", \"Live Like You Were Dying\", \"I Don't Need a Man\", \"Superman (It's Not Easy)\" and \"Redneck Woman\". The highest bought lyrics being Jewel's signature song \"You Were Meant For Me\" sold for US$1,505, and \"Who Will Save Your Soul\" and \"Hands\", raising more than $1,005 each. Jewel promised that all items sold by December 18 would be delivered by Christmas. After the majority of the auctions ended on December 18 two new lyrics by Craig Wiseman and Ernie Ashworth were put up for auction ending in January 2009. In May 2013, Jewel served as ambassador for the ReThink: Why Housing Matters initiative. She was included in the initiative's public service announcement (PSA) which asked Americans to rethink their views on public housing and consider how it benefits people in their own communities. Personal life. Jewel and actor Sean Penn began dating in 1995 after Penn spotted her performing on \"Late Night with Conan O'Brien\". Penn invited Jewel to compose a song for his film \"The Crossing Guard\" and followed her on tour. After dating for a decade, Jewel and rodeo cowboy Ty Murray were married in the Bahamas in 2008. She gave birth to their son, Kase Townes Murray, on July 11, 2011. In 2014, after nearly six years of marriage, the couple divorced. Jewel is the daughter of Atz Kilcher, who stars in the Discovery Channel show \"\". All ",
+        "text_characters": 2248,
+        "title": "Jewel (singer)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1281559",
+        "score": 16.515020183852407,
+        "snippet": "The following year he wrote \"The Slab Boys\", the first part of a trilogy of plays which premiered between 1978 and 1982 at the Traverse Theatre Club, Edinburgh. A fourth part was added in 2008. The main characters in the first part, \"The Slab Boys\", generally the most popular, are working-class Glaswegian teenagers, and the play launched the careers of several young actors: Robbie Coltrane in Edinburgh, and in the 1983 Broadway production, Kevin Bacon, Sean Penn, Val Kilmer and Jackie Earle Haley. His writing found much success in the 1987 BBC television series \"Tutti Frutti,\" starring Robbie Coltrane, Emma Thompson and Maurice Roeves, which chronicled the final days of a failing rock 'n' roll band. The series received much critical acclaim, including winning six BAFTA awards, the one for Graphic design naming Byrne himself. He followed this in 1990 with \"Your Cheatin' Heart\", a six-part series set in the Glasgow country music scene, starring John Gordon Sinclair, Ken Stott and Tilda Swinton. Byrne created The John Byrne Awards. Personal life. Byrne was married to Alice Simpson, whom he met in art school, from 1964 until their divorce in 2014. They had a son and a daughter together. During the filming of \"Your Cheatin' Heart\", Byrne began a relationship with Tilda Swinton. They lived together in London and later in Nairn, northern Scotland. Swinton gave birth to twins, a boy and girl, in 1997. They separated in 2004. He began a relationship with the theatre lighting designer ",
+        "text_characters": 1631,
+        "title": "John Byrne (playwright)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7732602",
+        "score": 15.477403483290814,
+        "snippet": "Singaporean actor (born 1954) use both this parameter and |birth_date to display the person's date of birth, date of death, and age at death) --> Lim Kay Tong (born 10 July 1954) is a Singaporean film, television and stage actor. Notably, he starred opposite Sean Penn in \"Shanghai Surprise\" (1986), Pierce Brosnan in \"Noble House\" (1988), and Claire Danes in \"Brokedown Palace\" (1999), and was the lead actor in \"Growing Up\" (1996–2001) and \"Perth\" (2004). Lim has been called \"Singapore's finest actor\", \"Singapore's best-known actor\", and Singapore's answer to thespians Ian McKellen and Alec Guinness. Lim is a co-founder and former board member of TheatreWorks. He played founding Prime Minister Lee Kuan Yew in \"1965\", a film that was shot to celebrate Singapore's Golden Jubilee. Early years. Growing up, Lim's parents introduced him to plays, literature, and all things artistic from the many books around their house. Lim's father, a radiologist, wanted him to become a barrister, but was supportive of his acting dreams. Educated at Anglo-Chinese School and a boarding school in England, Lim was a national rugby player in his youth, playing the wing-forward position. While serving National Service, Lim earned a Singapore Armed Forces Colours award for his accomplishments in rugby. In 1975, Lim moved to East Riding of Yorkshire, England, to further his education. He graduated from the University of Hull in 1978 with a Bachelor of Acts (Honours) in English and Drama, where the late An",
+        "text_characters": 2403,
+        "title": "Lim Kay Tong"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2815819",
+        "score": 15.38012244666287,
+        "snippet": "Phoebe gets revenge by claiming Ursula's paychecks and embarrassing her many male fans. Flashbacks in \"The One Where They All Turn Thirty\" reveal that Ursula sold Phoebe's birth certificate to a Swedish runaway, and that both sisters are thirty-one, not thirty. In \"The One with the Halloween Party\", Ursula introduces Phoebe to Eric (Sean Penn), her fiancé. Phoebe is horrified that Ursula has lied to Eric that she is a teacher, a member of the Peace Corps, a non-smoker, and attends a church group; so she tells Eric the truth, upon which he breaks up with Ursula. The original 1999 series finale of \"Mad About You\", set 22 years into the future, reveals that Ursula becomes Governor of New York. Events in this particular episode, however, were retconned out of existence when \"Mad About You\" returned with new episodes in 2019. Mindy Hunter-Farber. Mindy Hunter-Farber (Jennifer Grey in \"The One with the Evil Orthodontist\", Jana Marie Hupp in \"The One with Barry and Mindy's Wedding\"): Rachel's maid of honor at her failed wedding to Barry. Mindy and Rachel were best friends while growing up and their friendship is tested after Rachel discovers Mindy and Barry are seeing each other. She asks Rachel to be her maid of honor and dresses her in a garish pink dress. Mindy marries Barry in \"The One with Barry and Mindy's Wedding\"; but he later cheats on her and she has divorced him by \"The One That Could Have Been, Part 1\". Ben Geller. Ben Geller (Various actors, 1995–1999; Cole Sprouse, 200",
+        "text_characters": 2283,
+        "title": "List of Friends and Joey characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6241495",
+        "score": 14.851632969194199,
+        "snippet": "Book by Andrew Morton Madonna is a biography by English author Andrew Morton, chronicling the life of American recording artist Madonna. The book was released in November 2001 by St. Martin's Press in the United States and by Michael O'Mara Books in the United Kingdom. Morton decided to write a biography on Madonna in 2000. The release was announced in April 2001 by St. Martin's Press. President and publisher Sally Richardson described the biography to contain details about Madonna's ambitions, her relationships and her lifestyle. Morton interviewed about 70 people who had known Madonna since her youth. He spent many evenings in bars and clubs in New York chatting to people—including artists, musicians, and directors—who had an interesting perspective on Madonna and the world. After its release, \"Madonna\" received mixed reviews from contemporary critics, who panned Morton's writing skills and felt that the book did not present anything new about the singer. The book was a commercial disappointment. In the United States, the book reached eight on \"The New York Times\" Best Seller list, and sold half of its initial print. Madonna herself was critical of Morton writing a biography on her life, and sent a letter to him, asking him to stay away from her family and friends. Morton remained unabashed, saying that he wrote the book because of his interest in the star, not least because she has made a \"difference\" to pop culture and modern culture. In 2004, a lawsuit was filed against ",
+        "text_characters": 2683,
+        "title": "Madonna (book)"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-955049f5966d124e"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:319972", "title": "Sean Penn", "score": 23.798332767671997, "snippet": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United States lost a friend it never knew it had. And poor people around the world lost a champion. I lost a friend I was blessed to have.\" Penn's friendship with Chávez and his praise for Cuban dictator Raúl Castro have been criticized by human rights activist Thor Halvorssen and media, including \"The New York Times\", the \"Los Angeles Times\", \"The New Criterion\", and \"The Advocate\", each of which alleged that Castro and Chávez's strong anti-LGBT stances clashed with Penn's support for LGBT groups. Actress María Conchita Alonso, who co-starred with Penn in \"Colors\", also issued an \"Open Letter to Sean Penn\", attacking his views on Chávez. In December 2011, Alonso and Penn began verbally fighting at an airport, during which Penn called her \"a pig\" and Alonso called Penn a communist. On January 9, 2016, a day after Mexican officials announced the capture of fugitive Sinaloa Cartel boss Joaquín \"El Chapo\" Guzmán in a militarized raid, \"Rolling Stone\" reported that Penn and actress Kate del Castillo had conducted a secret interview with El Chapo prior to his arrest. Del Castillo was contacted by Guzmán's lawyer, who was then under CISEN surveillance, to discuss producing a biographical film about Guzmán, and communication between the two increased following Guzmán's escape from a Mexican pri", "text_characters": 2660, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4938852", "title": "The Call of the Wild (2007 film)", "score": 20.156235263365403, "snippet": "The Denver Film Society offered that the film mounted \"a thoughtful challenge to Jon Krakauer's \"Into the Wild\" (and actor-director Sean Penn's screen adaptation thereof), \"The Call of the Wild\" presents an alternative to the popular account of Chris McCandless, the self-styled 'aesthetic voyager' who died alone in the Alaskan wilderness in 1992 at age 24.\" They further noted Lamothe's, while filming, having several \"run-ins\" with Penn who was, in the same time-frame and locations, himself involved in the making of a production about McCandless, and made note of how Penn's production had \"the clout to thwart Lamothe at many a turn.\" They concluded: \"ultimately, however, what lies at the film's core is Lamothe's own journey of discovery. The conceit allows him to explore the concept of wilderness and its influence on the American psyche, as well as its reflection on our cultural landscape; the generation gap as measured by changing rites of passage; and the disparity between independent and Hollywood filmmaking.\" British film critic Neil Young wrote that the film was a \"disarmingly fresh, utterly engrossing documentary\" in how it addressed \"specific details of McCandless's controversial life (and even more controversial demise)\" by director Ron Lamothe covering \"a surprisingly expansive amount of geographic and thematic terrain as he journeys cross-county – driving, then hitchhiking – in McCandless's footsteps.\" In watching the production, Young offered \"the film becomes not s", "text_characters": 2580, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4854166", "title": "Sanela Diana Jenkins", "score": 18.424947779879403, "snippet": "Immediately following the 2010 earthquake in Haiti, Jenkins and actor Sean Penn established the Jenkins-Penn Haitian Relief Organization to deliver hospital supplies and provide medical care to thousands of displaced Haitians. She compared the long-term recovery in Haiti to that in Bosnia and Herzegovina, highlighted the need for basic humanitarian aid, and argued that the U.S. military should not leave the country prematurely. In March 2010, Jenkins posted bail for former President of the Federation of Bosnia and Herzegovina Ejup Ganić, who was detained in London on a Serbian extradition request. Sanela was honored with the Enduring Vision award by the Elton John AIDS Foundation for her activism in the fight against AIDS. Sanela produced a photography book entitled \"Room 23\", photographed by Deborah Anderson. Many of the celebrities in the book are friends of Jenkins, including George Clooney and Elton John. Proceeds from the sale of the book benefit several philanthropic programs. In 2022, Jenkins founded the Sunela Foundation with a donation of $100,000 for the victims of Lion Air Flight 601. Personal life. In 1999, she married Roger Jenkins who was a prominent executive at Barclays Bank. The couple met at the gym at the Barbican, where Jenkins was living after the end of his marriage to his first wife, a banker at Barclays. During their 10 year marriage, they had two children together, a son, Innis, and a daughter, Eneya. In 2020, Jenkins welcomed a daughter, Eliyanah, wi", "text_characters": 1782, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3197047", "title": "The Indian Runner", "score": 17.670170762625716, "snippet": "1991 film directed by Sean Penn The Indian Runner is a 1991 crime drama film written and directed by Sean Penn in his directorial debut. Based on Bruce Springsteen's song \"Highway Patrolman\", the film depicts the relationship between two brothers who find themselves on opposite sides of the law. It stars David Morse and Viggo Mortensen as the brothers, alongside Valeria Golino, Patricia Arquette, Jordan Rhodes, Dennis Hopper, Charles Bronson, and Sandy Dennis in her final film role. Plot. The story, set in 1960s Nebraska, involves two very different brothers: small-town deputy sheriff Joe and criminal Frank Roberts. Before the events of the film, Joe had tried to farm for a living, but was unable to make ends meet, and the bank eventually foreclosed on his property. He became a deputy sheriff as a way to support his young wife, Maria, and child. Joe is a good, conscientious man, but has his own demons to fight with. The opening shot of the film shows a car chase which ends with Joe using his gun to kill a man in self-defense. This results in Joe's conflicted feelings about killing the criminal, as well as the praise and scorn from members of his community from this shooting. Frank, who had been involved with run-ins with the law before going to Vietnam, is described by his father as plagued by \"restlessness\". Upon his return to town, he breaks into his brother's home and is nearly shot by Joe's wife. The next day, Frank leaves town without ever stopping by his parents' home. ", "text_characters": 2491, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:213077", "title": "Maiden and married names", "score": 17.535204333319335, "snippet": "Activist Ruby Doris Smith-Robinson was known as Ruby Doris Smith prior to her marriage. Name blending. Although less common than name joining, a growing trend is the blending of two surnames upon marriage. This means adding \"parts\" of the two names. An example is Dawn O'Porter (from \"Porter\" and \"O'Dowd\"). Birth name as middle name. Examples include Amy Coney Barrett, Maryanne Trump Barry, Vera Cahalan Bushfield, Marguerite Stitt Church, Hillary Rodham Clinton (dropped maiden name in 2007), Ruth Bader Ginsburg, Katherine Gudger Langley, Ruth Hanna McCormick, Nelle Wilson Reagan, Edith Nourse Rogers, Sarah Huckabee Sanders, Debbie Wasserman Schultz, Margaret Chase Smith, and Jada Pinkett Smith. During their respective marriages, Kim Kardashian and Robin Wright were known as Kim Kardashian West (from Kanye West) and Robin Wright Penn (from Sean Penn). Politician Nikki Haley is sometimes referred to as Nikki R. Haley; the \"R\" stands for Randhawa, her birth surname. Spouse's surname as middle name. Examples are Brooklyn Peltz Beckham and John Ono Lennon. When British author Neil Gaiman married American musician Amanda Palmer, he added his wife's middle name to his, becoming Neil Richard MacKinnon Gaiman. Another example is Marie Gluesenkamp Perez. New name. Some couples will create an entirely new surname for themselves upon marriage, with no ties to either's original surname. This practice is less common than name blending. North America. Canada. In most of Canada, either partne", "text_characters": 2564, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:419056", "title": "Jewel (singer)", "score": 17.35777746845238, "snippet": "Some of the lyrics that were up for auction included hits such as \"So Small\", \"Foolish Games\", \"I'm Yours\", \"I Kissed a Girl\", \"St. Elmo's Fire (Man in Motion)\", \"Live Like You Were Dying\", \"I Don't Need a Man\", \"Superman (It's Not Easy)\" and \"Redneck Woman\". The highest bought lyrics being Jewel's signature song \"You Were Meant For Me\" sold for US$1,505, and \"Who Will Save Your Soul\" and \"Hands\", raising more than $1,005 each. Jewel promised that all items sold by December 18 would be delivered by Christmas. After the majority of the auctions ended on December 18 two new lyrics by Craig Wiseman and Ernie Ashworth were put up for auction ending in January 2009. In May 2013, Jewel served as ambassador for the ReThink: Why Housing Matters initiative. She was included in the initiative's public service announcement (PSA) which asked Americans to rethink their views on public housing and consider how it benefits people in their own communities. Personal life. Jewel and actor Sean Penn began dating in 1995 after Penn spotted her performing on \"Late Night with Conan O'Brien\". Penn invited Jewel to compose a song for his film \"The Crossing Guard\" and followed her on tour. After dating for a decade, Jewel and rodeo cowboy Ty Murray were married in the Bahamas in 2008. She gave birth to their son, Kase Townes Murray, on July 11, 2011. In 2014, after nearly six years of marriage, the couple divorced. Jewel is the daughter of Atz Kilcher, who stars in the Discovery Channel show \"\". All ", "text_characters": 2248, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1281559", "title": "John Byrne (playwright)", "score": 16.515020183852407, "snippet": "The following year he wrote \"The Slab Boys\", the first part of a trilogy of plays which premiered between 1978 and 1982 at the Traverse Theatre Club, Edinburgh. A fourth part was added in 2008. The main characters in the first part, \"The Slab Boys\", generally the most popular, are working-class Glaswegian teenagers, and the play launched the careers of several young actors: Robbie Coltrane in Edinburgh, and in the 1983 Broadway production, Kevin Bacon, Sean Penn, Val Kilmer and Jackie Earle Haley. His writing found much success in the 1987 BBC television series \"Tutti Frutti,\" starring Robbie Coltrane, Emma Thompson and Maurice Roeves, which chronicled the final days of a failing rock 'n' roll band. The series received much critical acclaim, including winning six BAFTA awards, the one for Graphic design naming Byrne himself. He followed this in 1990 with \"Your Cheatin' Heart\", a six-part series set in the Glasgow country music scene, starring John Gordon Sinclair, Ken Stott and Tilda Swinton. Byrne created The John Byrne Awards. Personal life. Byrne was married to Alice Simpson, whom he met in art school, from 1964 until their divorce in 2014. They had a son and a daughter together. During the filming of \"Your Cheatin' Heart\", Byrne began a relationship with Tilda Swinton. They lived together in London and later in Nairn, northern Scotland. Swinton gave birth to twins, a boy and girl, in 1997. They separated in 2004. He began a relationship with the theatre lighting designer ", "text_characters": 1631, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7732602", "title": "Lim Kay Tong", "score": 15.477403483290814, "snippet": "Singaporean actor (born 1954) use both this parameter and |birth_date to display the person's date of birth, date of death, and age at death) --> Lim Kay Tong (born 10 July 1954) is a Singaporean film, television and stage actor. Notably, he starred opposite Sean Penn in \"Shanghai Surprise\" (1986), Pierce Brosnan in \"Noble House\" (1988), and Claire Danes in \"Brokedown Palace\" (1999), and was the lead actor in \"Growing Up\" (1996–2001) and \"Perth\" (2004). Lim has been called \"Singapore's finest actor\", \"Singapore's best-known actor\", and Singapore's answer to thespians Ian McKellen and Alec Guinness. Lim is a co-founder and former board member of TheatreWorks. He played founding Prime Minister Lee Kuan Yew in \"1965\", a film that was shot to celebrate Singapore's Golden Jubilee. Early years. Growing up, Lim's parents introduced him to plays, literature, and all things artistic from the many books around their house. Lim's father, a radiologist, wanted him to become a barrister, but was supportive of his acting dreams. Educated at Anglo-Chinese School and a boarding school in England, Lim was a national rugby player in his youth, playing the wing-forward position. While serving National Service, Lim earned a Singapore Armed Forces Colours award for his accomplishments in rugby. In 1975, Lim moved to East Riding of Yorkshire, England, to further his education. He graduated from the University of Hull in 1978 with a Bachelor of Acts (Honours) in English and Drama, where the late An", "text_characters": 2403, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2815819", "title": "List of Friends and Joey characters", "score": 15.38012244666287, "snippet": "Phoebe gets revenge by claiming Ursula's paychecks and embarrassing her many male fans. Flashbacks in \"The One Where They All Turn Thirty\" reveal that Ursula sold Phoebe's birth certificate to a Swedish runaway, and that both sisters are thirty-one, not thirty. In \"The One with the Halloween Party\", Ursula introduces Phoebe to Eric (Sean Penn), her fiancé. Phoebe is horrified that Ursula has lied to Eric that she is a teacher, a member of the Peace Corps, a non-smoker, and attends a church group; so she tells Eric the truth, upon which he breaks up with Ursula. The original 1999 series finale of \"Mad About You\", set 22 years into the future, reveals that Ursula becomes Governor of New York. Events in this particular episode, however, were retconned out of existence when \"Mad About You\" returned with new episodes in 2019. Mindy Hunter-Farber. Mindy Hunter-Farber (Jennifer Grey in \"The One with the Evil Orthodontist\", Jana Marie Hupp in \"The One with Barry and Mindy's Wedding\"): Rachel's maid of honor at her failed wedding to Barry. Mindy and Rachel were best friends while growing up and their friendship is tested after Rachel discovers Mindy and Barry are seeing each other. She asks Rachel to be her maid of honor and dresses her in a garish pink dress. Mindy marries Barry in \"The One with Barry and Mindy's Wedding\"; but he later cheats on her and she has divorced him by \"The One That Could Have Been, Part 1\". Ben Geller. Ben Geller (Various actors, 1995–1999; Cole Sprouse, 200", "text_characters": 2283, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6241495", "title": "Madonna (book)", "score": 14.851632969194199, "snippet": "Book by Andrew Morton Madonna is a biography by English author Andrew Morton, chronicling the life of American recording artist Madonna. The book was released in November 2001 by St. Martin's Press in the United States and by Michael O'Mara Books in the United Kingdom. Morton decided to write a biography on Madonna in 2000. The release was announced in April 2001 by St. Martin's Press. President and publisher Sally Richardson described the biography to contain details about Madonna's ambitions, her relationships and her lifestyle. Morton interviewed about 70 people who had known Madonna since her youth. He spent many evenings in bars and clubs in New York chatting to people—including artists, musicians, and directors—who had an interesting perspective on Madonna and the world. After its release, \"Madonna\" received mixed reviews from contemporary critics, who panned Morton's writing skills and felt that the book did not present anything new about the singer. The book was a commercial disappointment. In the United States, the book reached eight on \"The New York Times\" Best Seller list, and sold half of its initial print. Madonna herself was critical of Morton writing a biography on her life, and sent a letter to him, asking him to stay away from her family and friends. Morton remained unabashed, saying that he wrote the book because of his interest in the star, not least because she has made a \"difference\" to pop culture and modern culture. In 2004, a lawsuit was filed against ", "text_characters": 2683, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R003_request.json/messages/7/content`；SHA256：`e8eda4622aa30e574a87a58de0f2e1c80bce9c69c1a4ffdfa0eaeb3d219ebca6`。
+
+### R3 `/rounds/2/reasoning_content` [0,88)
+
+SHA256：`f1c3d62f7b07956d04dcae41697e5c20edc514152b3c4b771b5c7c9a3b151b1b`；原字段SHA256：`a899195199c203d9d532522da268b1622a4a579ef39b27c0cfd3dae8683d84ae`。
+
+````
+The search results for Sean Penn don't explicitly state his birth year in the snippets. 
+````
+
+## S004｜打开同一人物片段并逐步扩大范围
+
+R3—R5 Open100/200/500，R6说明未见出生年。
+
+结束状态：仍停在同一政治生活片段。
+
+边界判断：实际改用已选文档读取。
+
+内部KEEP与反证：三次是同一读取计划的范围扩大，无新的对象、独立判断或方法，不逐Call拆。
+
+### SPLIT原文
+
+````
+The search results for Sean Penn don't explicitly state his birth year in the snippets. 
+→ 切点 [2, 0, 88] →
+I need to open the document for Sean Penn to find his birth year.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:319972
+</parameter>
+<parameter=limit>
+100
+</parameter>
+<parameter=offset>
+0
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R3 `/rounds/2/reasoning_content` [88,322)
+
+SHA256：`68a9bbb285dd490ebf1e2539418dceb0d091ed93a3fb8db3ac3c37597d0d61ca`；原字段SHA256：`a899195199c203d9d532522da268b1622a4a579ef39b27c0cfd3dae8683d84ae`。
+
+````
+I need to open the document for Sean Penn to find his birth year.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:319972
+</parameter>
+<parameter=limit>
+100
+</parameter>
+<parameter=offset>
+0
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 100,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:319972\n</parameter>\n<parameter=limit>\n100\n</parameter>\n<parameter=offset>\n0\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 100,
+    "offset": 0
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.020813848823308945,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:319972",
+    "limit": 100,
+    "offset": 0,
+    "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its rev",
+    "title": "Sean Penn",
+    "total_text_characters": 2660
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:319972", "title": "Sean Penn", "offset": 0, "limit": 100, "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its rev", "total_text_characters": 2660, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R004_request.json/messages/9/content`；SHA256：`649723b853a29e8c4c73eb8b895b8f288f399b250bacff91633256ed2fa6608a`。
+
+### R4 `/rounds/3/reasoning_content` [0,264)
+
+SHA256：`a02005d39d99a198222f9b0ead803d3a7fceab07a4a8cca8f04f36cf006c5122`；原字段SHA256：`a02005d39d99a198222f9b0ead803d3a7fceab07a4a8cca8f04f36cf006c5122`。
+
+````
+The search results for Sean Penn didn't show his birth year in the snippet. Let me open the document to get the full information.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:319972
+</parameter>
+<parameter=limit>
+200
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 200
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:319972\n</parameter>\n<parameter=limit>\n200\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 200
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 0.002374805975705385,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:319972",
+    "limit": 200,
+    "offset": 0,
+    "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United S",
+    "title": "Sean Penn",
+    "total_text_characters": 2660
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:319972", "title": "Sean Penn", "offset": 0, "limit": 200, "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United S", "total_text_characters": 2660, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R005_request.json/messages/11/content`；SHA256：`b160debcd7a312e5625cef9521053239792669c9890abac13403dcd10a9f46a9`。
+
+### R5 `/rounds/4/reasoning_content` [0,339)
+
+SHA256：`ec9141c37966818ab09320767d579d05411f6fd4393cae9da259ff681b65560a`；原字段SHA256：`ec9141c37966818ab09320767d579d05411f6fd4393cae9da259ff681b65560a`。
+
+````
+The search for Sean Penn's birth year didn't yield the specific date in the snippet. Let me search more specifically for Sean Penn's birth date or open the full document.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:319972
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+500
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 500,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:319972\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n500\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:319972",
+    "limit": 500,
+    "offset": 0
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 0.00028062472119927406,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:319972",
+    "limit": 500,
+    "offset": 0,
+    "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United States lost a friend it never knew it had. And poor people around the world lost a champion. I lost a friend I was blessed to have.\" Penn's friendship with Chávez and his praise for Cuban dictator Raúl Castro have been criticized by human rights activist Thor Halvorssen and media, including \"The New ",
+    "title": "Sean Penn",
+    "total_text_characters": 2660
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:319972", "title": "Sean Penn", "offset": 0, "limit": 500, "text": "Penn and Chávez maintained a friendship; when Chávez died in 2013, Penn said: \"Venezuela and its revolution will endure under the proven leadership of Vice President Nicolás Maduro. Today the United States lost a friend it never knew it had. And poor people around the world lost a champion. I lost a friend I was blessed to have.\" Penn's friendship with Chávez and his praise for Cuban dictator Raúl Castro have been criticized by human rights activist Thor Halvorssen and media, including \"The New ", "total_text_characters": 2660, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R006_request.json/messages/13/content`；SHA256：`d98ec8b0723846e9f253b3a6eb01233fd87d3b0c3a8332012af8f701791e9b4b`。
+
+### R6 `/rounds/5/reasoning_content` [0,58)
+
+SHA256：`d1c71e94cc798b08d63951c3b0b0fe4675b898be7a9b13ec257863741a685cd8`；原字段SHA256：`017dfe004884b42fda240dcfa7fa82b27eeb44963214544fed56823360088362`。
+
+````
+The snippet for Sean Penn doesn't contain his birth year. 
+````
+
+## S005｜恢复出生信息检索并取得1960
+
+Search Sean Penn born，R7直接提取August17,1960。
+
+结束状态：出生年直接证据取得。
+
+边界判断：读取无果后实际换回搜索入口。
+
+内部KEEP与反证：日期提取是直接反馈，不提前并入整体核对。
+
+### SPLIT原文
+
+````
+The snippet for Sean Penn doesn't contain his birth year. 
+→ 切点 [5, 0, 58] →
+I need to search for his birth year directly.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sean Penn born
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [58,205)
+
+SHA256：`8904c7849c779139aa23b147fc76252d8bd255da24eaefc98100bfcee07e4793`；原字段SHA256：`017dfe004884b42fda240dcfa7fa82b27eeb44963214544fed56823360088362`。
+
+````
+I need to search for his birth year directly.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Sean Penn born
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "Sean Penn born"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSean Penn born\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Sean Penn born"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 1.7643325151875615,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2335863",
+        "score": 21.987360501164463,
+        "snippet": "American actress (1927–2022) Eileen Ryan (née Annucci; October 16, 1927 – October 9, 2022) was an American actress. The wife of actor and director Leo Penn, she was the mother of actors Sean Penn and Chris Penn, and of singer Michael Penn. Life and career. Ryan was born in the Bronx on October 16, 1927. Her father, William, was Italian American and worked as a lawyer and a dentist; her mother, Rose Isabel (née Ryan), was Irish American and employed as a nurse, with her maiden name later chosen by Eileen to be part of her stage name. Ryan studied at New York University, graduating with a bachelor's degree. Career. Ryan debuted on Broadway in 1953, in the play \"Sing Till Tomorrow\". Five years later, she featured in another Broadway production, \"Comes a Day\". Both plays were ultimately short-lived. She began to reduce her involvement in acting in order to look after her young family, which later relocated to the West Coast. During the 1960s and 1970s, Ryan periodically had small roles in television shows, such as \"The Twilight Zone\", \"Bonanza\", and others directed by her husband Leo Penn. Ryan resumed acting on a more frequent basis in 1986, when she appeared with her sons Sean and Chris in \"At Close Range\" as the brothers' grandmother. She subsequently featured as the mother of Sean Penn's character in \"Judgment in Berlin\" (1988), which was directed by her husband. She also starred in \"Parenthood\" a year later opposite Jason Robards – whose withdrawal from his role in \"The Icem",
+        "text_characters": 2375,
+        "title": "Eileen Ryan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:725156",
+        "score": 21.821477116369493,
+        "snippet": "American musician (born 1958) Michael Daniel Penn (born August 1, 1958) is an American musician, singer and composer. His 1989 single \"No Myth\" was a top 20 hit in the US and successful in several other countries. Early life. Penn was born in the Greenwich Village neighborhood of Manhattan. He is the first son of actor and director Leo Penn and actress Eileen Ryan, and the brother of actors Sean Penn and Chris Penn. He is of Lithuanian-Jewish (paternal) and Irish–Italian (maternal) descent. Penn began playing music in junior high school and attended Santa Monica High School. Career. Prior to the release of his 1989 debut album \"March\", Penn was a member of the Los Angeles band Doll Congress. Penn was one of two musical guests as a solo artist on \"Saturday Night Live\" on the October 24, 1987 episode, with his brother Sean hosting. Penn had also appeared as an extra on a few television series, including \"St. Elsewhere\". \"March\", particularly the first single, \"No Myth\", brought Penn attention, as well as the 1990 MTV Video Music Award for Best New Artist. Penn's follow-up albums \"Free-for-All\" (1992), \"Resigned\" (1997), \"MP4: Days Since a Lost Time Accident\" (2000), \"Mr. Hollywood Jr., 1947\" (2005) and \"Palms and Runes, Tarot and Tea\" (2007) weren't able to match the commercial success of \"March\", although critics continued to praise his songcraft. Penn's second album, \"Free-for-All\", was praised by critics but was not as commercially successful as his debut. \"Rolling Stone\" ca",
+        "text_characters": 2194,
+        "title": "Michael Penn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1426120",
+        "score": 21.717928745329036,
+        "snippet": "American actor (1965–2006) Christopher Shannon Penn (October 10, 1965 – January 24, 2006) was an American actor. He was the brother of actor Sean Penn and musician Michael Penn. Noted as a skilled character actor, he was typically cast as a tough character, featured as a villain or a working-class thug, or in a comic role and had roles in such films as \"To Wong Foo, Thanks for Everything! Julie Newmar;\" \"The Wild Life\"; \"Reservoir Dogs\"; \"The Funeral\"; \"Footloose\"; \"Rush Hour\"; \"Corky Romano\"; \"True Romance\"; \"Beethoven's 2nd, Short Cuts\"; \"The Boys Club\"; \"All the Right Moves\"; \"At Close Range\"; \"Pale Rider\"; and \"Starsky & Hutch\". During his career, Penn had won the Volpi Cup for Best Actor for his performance in \"The Funeral\". He also provided the voice of corrupt cop Edward \"Eddie\" Pulaski in the video game \"\". Penn was found dead in his apartment on January 24, 2006 at the age of 40. An autopsy revealed the primary cause for his death was \"nonspecific cardiomyopathy\" (heart disease). Early life. Penn was born in Los Angeles, California, to Leo Penn, an actor and director, and Eileen Ryan (née Annucci), an actress. His paternal grandparents were Jewish immigrants from Lithuania and Russia, and his mother was a Catholic of Italian and Irish descent. His older brothers are actor Sean Penn and musician Michael Penn. Career. Penn started acting at the age of 12 at the Loft Studio and made his film debut in 1979's \"Charlie and the Talking Buzzard\", starring Christopher Hanks. ",
+        "text_characters": 2242,
+        "title": "Chris Penn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9848845",
+        "score": 21.709781015212275,
+        "snippet": "French film producer Thierry Klemeniuk (born July 13, 1969) is a French film producer and events producer, founder and former manager of the restaurant-club Man-Ray in Paris alongside Johnny Depp, Mick Hucknell, Sean Penn and John Malkovich, as well as artistic director of Man Ray, New York and producer of the Man Ray soundtrack. From 1993 to 1995, he was the Executive Manager of the famous Bains Douches. In 2010, Thierry Klemeniuk refocused his career on the positive impact sector, developing projects including the Entertainment Pact, an initiative to reduce the environmental impact of digital. Production. Thierry Klemeniuk is known for producing Bully (2001), Spun (2002) and Mary (2005). The 'Star of the Stars', Klemeniuk worked alongside actors including Jack Nicholson, Adrien Brody, Sean Penn, amongst numerous other figures on the movie and music scene. Currently, Thierry lives between Paris and Los Angeles. His company Klemeniuk Inc advises companies including French AI specialist NamR. and Tech for Good projects such as the Entertainment Pact. Personal life. In 2005, Klemeniuk married the actress Gabriella Wright. Their wedding was held in Paris and attended by Sean Penn and Mick Hucknell. They divorced in 2011. References.",
+        "text_characters": 1249,
+        "title": "Thierry Klemeniuk"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10366373",
+        "score": 21.25455219448438,
+        "snippet": "Canadian American football quarterback (born 2002) Christian Veilleux (born June 28, 2002) is a Canadian American football quarterback for the Georgia State Panthers of the Sun Belt Conference. He formerly played for the Penn State Nittany Lions and Pittsburgh Panthers College career. Penn State. Veilleux became the first Canadian quarterback to play for a Power Five school in 16 years when he decided to play for Penn State. Veilleux spent 2021 as Sean Clifford's backup. On November 29, 2022, Veilleux announced he had entered the transfer portal. Pittsburgh. On December 18, 2022, Veilleux announced his commitment to Pittsburgh. Georgia State. In 2024, Veilleux announced he was committed to Georgia State References.",
+        "text_characters": 724,
+        "title": "Christian Veilleux"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:319967",
+        "score": 21.163839303587178,
+        "snippet": "In 2023 Penn directed his first documentary film, \"Superpower\", profiling the President of Ukraine Volodymyr Zelenskyy which premiered at the Berlin International Film Festival. The film follows Penn as he travels to Ukraine to meet with Zelenskyy, the soldiers and observe firsthand how the Russo-Ukrainian War is being waged. Penn starred as a cab driver in Christy Hall's directorial debut \"Daddio\" (2023) acting opposite Dakota Johnson. Film critic Todd McCarthy of \"Deadline Hollywood\" wrote, \"Sean Penn is at his absolute best here in a tremendously engaging performance as a salty working-class guy with an endless supply of opinions and ways of drawing out his passengers\". Personal life. Marriages and relationships. Penn was engaged to actress Elizabeth McGovern, his co-star in \"Racing with the Moon\" (1984). He also dated Demi Moore and Susan Sarandon. Penn met singer-songwriter Madonna on set of her \"Material Girl\" music video in January 1985. On August 16, 1985, they married on Madonna's 27th birthday; Penn turned 25 the next day. The two starred in the panned \"Shanghai Surprise\" (1986), directed by Jim Goddard, and Madonna dedicated her third studio album \"True Blue\" (1986) to Penn, referring to him in the liner notes as \"the coolest guy in the universe\". Their marriage was marred by Penn's violent outbursts against the press. Madonna filed for divorce in December 1987, but withdrew the papers two weeks later. In January 1989, Madonna filed for divorce again and reportedly",
+        "text_characters": 2513,
+        "title": "Sean Penn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:31664",
+        "score": 21.077743698875548,
+        "snippet": "---\ntitle: Where would you rank male leading men who were born in the 1960s\ndate: 2025-06-09\n---\nThe goal of /r/Movies is to provide an inclusive place for discussions and news about films with major releases. Submissions should be for the purpose of informing or initiating a discussion, not just to entertain readers. Read our extensive list of rules for more information on other types of posts like fan-art and self-promotion, or message the moderators if you have any questions.\n\nWhere would you rank male leading men who were born in the 1960s\n\nOff the top of my head, i'm naming some leading men that happened to be born in the 60s\n\nTom Cruise, Brad Pitt, Sean Penn, Ed Norton, Russell Crowe, John Cusack, Don Cheadle, Johnny Depp, James Spader, Robert Downey Jr, Colin Firth, Hugh Grant, George Clooney and even more\n\nhow would you rank them or how would you place your top 5 of leading men born in that decade\n\nFor me, it'd be\n\n-\n\nEd Norton\n\n-\n\nRussell Crowe\n\n-\n\nSean Penn\n\n-\n\nDon Cheadle\n\n-\n\nTom Cruise",
+        "text_characters": 1012,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9470899",
+        "score": 21.038042674918405,
+        "snippet": "British novelist (born 1970) Richard T. Kelly (born 1970) is a British novelist and writer best known for his 2016 political thriller \"The Knives\". Career. Kelly began his career writing in film and wrote several film-related books. In 1998 he wrote \"Alan Clarke\", a book on the filmmaker Alan Clarke. In 2000 he published \"The Name of this Book is Dogme 95\", a look at the Danish film movement Dogme 95 created by Lars von Trier and Thomas Vinterberg. In 2004 he wrote an authorized biography of actor Sean Penn called \"Sean Penn: His Life & Times\". Kelly made his fictional debut with the 2008 novel \"Crusaders\". Shortly after, in 2009, he began research on a political thriller that would develop into \"The Knives\". His second novel \"The Possessions of Doctor Forrest\" followed in 2011. \"The Knives\" was published in 2016. Since 2008 Kelly has been a Contributing Editor and feature writer for the UK edition of \"Esquire\" magazine. References.",
+        "text_characters": 946,
+        "title": "Richard T. Kelly"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:319961",
+        "score": 20.95654570542738,
+        "snippet": "American actor and filmmaker (born 1960) Sean Justin Penn (born August 17, 1960) is an American actor and film director. He is known for his intense leading man roles in film. Over his career, he has earned numerous accolades including two Academy Awards, a Golden Globe Award, and a Screen Actors Guild Award, as well as nominations for three BAFTA Film Awards. Penn received an Honorary César in 2015. Penn made his feature film debut in the drama \"Taps\" (1981), before taking roles in \"Fast Times at Ridgemont High\" (1982), \"Bad Boys\" (1983), and \"At Close Range\" (1986). He later won the Academy Award for Best Actor twice for playing a grieving father in \"Mystic River\" (2003) and Harvey Milk in \"Milk\" (2008). He was Oscar-nominated for his roles in \"Dead Man Walking\" (1995), \"Sweet and Lowdown\" (1999) and \"I Am Sam\" (2001). Penn's other credits include \"Casualties of War\" (1989), \"State of Grace\" (1990), \"Carlito's Way\" (1993), \"She's So Lovely\" (1997), \"The Game\" (1997), \"The Thin Red Line\" (1998), \"Hurlyburly\" (1998), \"21 Grams\" (2003), \"Fair Game\" (2010), \"The Tree of Life\" (2011), \"Licorice Pizza\" (2021), and \"Daddio\" (2023). Penn made his directorial film debut with the crime drama \"The Indian Runner\" (1991), followed by the films \"The Crossing Guard\" (1995), \"The Pledge\" (2001), and \"Into the Wild\" (2007). On stage, he acted in the Broadway plays \"Heartland\" (1981) and \"Slab Boys\" (1983). On television, he portrayed an astronaut in the Hulu drama series \"The First\" (2018) ",
+        "text_characters": 2001,
+        "title": "Sean Penn"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7557890",
+        "score": 20.9009848524971,
+        "snippet": "American model and actress Dylan Frances Penn (born April 13, 1991) is an American model and actress. She is the daughter of Sean Penn and Robin Wright. Her early public roles included modeling campaigns for Gap Inc., a magazine cover for \"treats! \", a music video appearance in Nick Jonas's \"Chains\" and an acting role in \"Elvis & Nixon\". Early life. Penn was born on April 13, 1991, in Los Angeles, California to actor-director Sean Penn and actress Robin Wright. Wright had surrendered the role of Maid Marian in \"\" due to her pregnancy with Dylan. Penn was raised in Ross, a town in Marin County, California. She has a younger brother named Hopper Jack. Her paternal grandfather Leo Penn is of Russian-Jewish and Lithuanian-Jewish descent, whereas her paternal grandmother Eileen Ryan is Catholic and of Irish and Italian descent. She attended Marin Academy, and dropped out of the University of Southern California after one semester. She spent time living in New York City. Her parents' divorce was finalized in 2010. Before modeling, Penn had worked delivering pizzas, as a waitress, and as a freelance screenplay editor. She also worked in New York City as a restaurant hostess and an intern at an advertising agency. Career. Modeling. Penn's first modeling billboards were for Gap in 2013. Then she appeared in \"GQ\" in December 2013, in \"W\" in January 2014, and \"Elle\" in March 2014. Penn posed for photographer Tony Duran for a partially nude cover and an interior layout in the seventh, 20",
+        "text_characters": 2481,
+        "title": "Dylan Penn"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2335863", "title": "Eileen Ryan", "score": 21.987360501164463, "snippet": "American actress (1927–2022) Eileen Ryan (née Annucci; October 16, 1927 – October 9, 2022) was an American actress. The wife of actor and director Leo Penn, she was the mother of actors Sean Penn and Chris Penn, and of singer Michael Penn. Life and career. Ryan was born in the Bronx on October 16, 1927. Her father, William, was Italian American and worked as a lawyer and a dentist; her mother, Rose Isabel (née Ryan), was Irish American and employed as a nurse, with her maiden name later chosen by Eileen to be part of her stage name. Ryan studied at New York University, graduating with a bachelor's degree. Career. Ryan debuted on Broadway in 1953, in the play \"Sing Till Tomorrow\". Five years later, she featured in another Broadway production, \"Comes a Day\". Both plays were ultimately short-lived. She began to reduce her involvement in acting in order to look after her young family, which later relocated to the West Coast. During the 1960s and 1970s, Ryan periodically had small roles in television shows, such as \"The Twilight Zone\", \"Bonanza\", and others directed by her husband Leo Penn. Ryan resumed acting on a more frequent basis in 1986, when she appeared with her sons Sean and Chris in \"At Close Range\" as the brothers' grandmother. She subsequently featured as the mother of Sean Penn's character in \"Judgment in Berlin\" (1988), which was directed by her husband. She also starred in \"Parenthood\" a year later opposite Jason Robards – whose withdrawal from his role in \"The Icem", "text_characters": 2375, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:725156", "title": "Michael Penn", "score": 21.821477116369493, "snippet": "American musician (born 1958) Michael Daniel Penn (born August 1, 1958) is an American musician, singer and composer. His 1989 single \"No Myth\" was a top 20 hit in the US and successful in several other countries. Early life. Penn was born in the Greenwich Village neighborhood of Manhattan. He is the first son of actor and director Leo Penn and actress Eileen Ryan, and the brother of actors Sean Penn and Chris Penn. He is of Lithuanian-Jewish (paternal) and Irish–Italian (maternal) descent. Penn began playing music in junior high school and attended Santa Monica High School. Career. Prior to the release of his 1989 debut album \"March\", Penn was a member of the Los Angeles band Doll Congress. Penn was one of two musical guests as a solo artist on \"Saturday Night Live\" on the October 24, 1987 episode, with his brother Sean hosting. Penn had also appeared as an extra on a few television series, including \"St. Elsewhere\". \"March\", particularly the first single, \"No Myth\", brought Penn attention, as well as the 1990 MTV Video Music Award for Best New Artist. Penn's follow-up albums \"Free-for-All\" (1992), \"Resigned\" (1997), \"MP4: Days Since a Lost Time Accident\" (2000), \"Mr. Hollywood Jr., 1947\" (2005) and \"Palms and Runes, Tarot and Tea\" (2007) weren't able to match the commercial success of \"March\", although critics continued to praise his songcraft. Penn's second album, \"Free-for-All\", was praised by critics but was not as commercially successful as his debut. \"Rolling Stone\" ca", "text_characters": 2194, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1426120", "title": "Chris Penn", "score": 21.717928745329036, "snippet": "American actor (1965–2006) Christopher Shannon Penn (October 10, 1965 – January 24, 2006) was an American actor. He was the brother of actor Sean Penn and musician Michael Penn. Noted as a skilled character actor, he was typically cast as a tough character, featured as a villain or a working-class thug, or in a comic role and had roles in such films as \"To Wong Foo, Thanks for Everything! Julie Newmar;\" \"The Wild Life\"; \"Reservoir Dogs\"; \"The Funeral\"; \"Footloose\"; \"Rush Hour\"; \"Corky Romano\"; \"True Romance\"; \"Beethoven's 2nd, Short Cuts\"; \"The Boys Club\"; \"All the Right Moves\"; \"At Close Range\"; \"Pale Rider\"; and \"Starsky & Hutch\". During his career, Penn had won the Volpi Cup for Best Actor for his performance in \"The Funeral\". He also provided the voice of corrupt cop Edward \"Eddie\" Pulaski in the video game \"\". Penn was found dead in his apartment on January 24, 2006 at the age of 40. An autopsy revealed the primary cause for his death was \"nonspecific cardiomyopathy\" (heart disease). Early life. Penn was born in Los Angeles, California, to Leo Penn, an actor and director, and Eileen Ryan (née Annucci), an actress. His paternal grandparents were Jewish immigrants from Lithuania and Russia, and his mother was a Catholic of Italian and Irish descent. His older brothers are actor Sean Penn and musician Michael Penn. Career. Penn started acting at the age of 12 at the Loft Studio and made his film debut in 1979's \"Charlie and the Talking Buzzard\", starring Christopher Hanks. ", "text_characters": 2242, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9848845", "title": "Thierry Klemeniuk", "score": 21.709781015212275, "snippet": "French film producer Thierry Klemeniuk (born July 13, 1969) is a French film producer and events producer, founder and former manager of the restaurant-club Man-Ray in Paris alongside Johnny Depp, Mick Hucknell, Sean Penn and John Malkovich, as well as artistic director of Man Ray, New York and producer of the Man Ray soundtrack. From 1993 to 1995, he was the Executive Manager of the famous Bains Douches. In 2010, Thierry Klemeniuk refocused his career on the positive impact sector, developing projects including the Entertainment Pact, an initiative to reduce the environmental impact of digital. Production. Thierry Klemeniuk is known for producing Bully (2001), Spun (2002) and Mary (2005). The 'Star of the Stars', Klemeniuk worked alongside actors including Jack Nicholson, Adrien Brody, Sean Penn, amongst numerous other figures on the movie and music scene. Currently, Thierry lives between Paris and Los Angeles. His company Klemeniuk Inc advises companies including French AI specialist NamR. and Tech for Good projects such as the Entertainment Pact. Personal life. In 2005, Klemeniuk married the actress Gabriella Wright. Their wedding was held in Paris and attended by Sean Penn and Mick Hucknell. They divorced in 2011. References.", "text_characters": 1249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10366373", "title": "Christian Veilleux", "score": 21.25455219448438, "snippet": "Canadian American football quarterback (born 2002) Christian Veilleux (born June 28, 2002) is a Canadian American football quarterback for the Georgia State Panthers of the Sun Belt Conference. He formerly played for the Penn State Nittany Lions and Pittsburgh Panthers College career. Penn State. Veilleux became the first Canadian quarterback to play for a Power Five school in 16 years when he decided to play for Penn State. Veilleux spent 2021 as Sean Clifford's backup. On November 29, 2022, Veilleux announced he had entered the transfer portal. Pittsburgh. On December 18, 2022, Veilleux announced his commitment to Pittsburgh. Georgia State. In 2024, Veilleux announced he was committed to Georgia State References.", "text_characters": 724, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:319967", "title": "Sean Penn", "score": 21.163839303587178, "snippet": "In 2023 Penn directed his first documentary film, \"Superpower\", profiling the President of Ukraine Volodymyr Zelenskyy which premiered at the Berlin International Film Festival. The film follows Penn as he travels to Ukraine to meet with Zelenskyy, the soldiers and observe firsthand how the Russo-Ukrainian War is being waged. Penn starred as a cab driver in Christy Hall's directorial debut \"Daddio\" (2023) acting opposite Dakota Johnson. Film critic Todd McCarthy of \"Deadline Hollywood\" wrote, \"Sean Penn is at his absolute best here in a tremendously engaging performance as a salty working-class guy with an endless supply of opinions and ways of drawing out his passengers\". Personal life. Marriages and relationships. Penn was engaged to actress Elizabeth McGovern, his co-star in \"Racing with the Moon\" (1984). He also dated Demi Moore and Susan Sarandon. Penn met singer-songwriter Madonna on set of her \"Material Girl\" music video in January 1985. On August 16, 1985, they married on Madonna's 27th birthday; Penn turned 25 the next day. The two starred in the panned \"Shanghai Surprise\" (1986), directed by Jim Goddard, and Madonna dedicated her third studio album \"True Blue\" (1986) to Penn, referring to him in the liner notes as \"the coolest guy in the universe\". Their marriage was marred by Penn's violent outbursts against the press. Madonna filed for divorce in December 1987, but withdrew the papers two weeks later. In January 1989, Madonna filed for divorce again and reportedly", "text_characters": 2513, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:31664", "title": "", "score": 21.077743698875548, "snippet": "---\ntitle: Where would you rank male leading men who were born in the 1960s\ndate: 2025-06-09\n---\nThe goal of /r/Movies is to provide an inclusive place for discussions and news about films with major releases. Submissions should be for the purpose of informing or initiating a discussion, not just to entertain readers. Read our extensive list of rules for more information on other types of posts like fan-art and self-promotion, or message the moderators if you have any questions.\n\nWhere would you rank male leading men who were born in the 1960s\n\nOff the top of my head, i'm naming some leading men that happened to be born in the 60s\n\nTom Cruise, Brad Pitt, Sean Penn, Ed Norton, Russell Crowe, John Cusack, Don Cheadle, Johnny Depp, James Spader, Robert Downey Jr, Colin Firth, Hugh Grant, George Clooney and even more\n\nhow would you rank them or how would you place your top 5 of leading men born in that decade\n\nFor me, it'd be\n\n-\n\nEd Norton\n\n-\n\nRussell Crowe\n\n-\n\nSean Penn\n\n-\n\nDon Cheadle\n\n-\n\nTom Cruise", "text_characters": 1012, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9470899", "title": "Richard T. Kelly", "score": 21.038042674918405, "snippet": "British novelist (born 1970) Richard T. Kelly (born 1970) is a British novelist and writer best known for his 2016 political thriller \"The Knives\". Career. Kelly began his career writing in film and wrote several film-related books. In 1998 he wrote \"Alan Clarke\", a book on the filmmaker Alan Clarke. In 2000 he published \"The Name of this Book is Dogme 95\", a look at the Danish film movement Dogme 95 created by Lars von Trier and Thomas Vinterberg. In 2004 he wrote an authorized biography of actor Sean Penn called \"Sean Penn: His Life & Times\". Kelly made his fictional debut with the 2008 novel \"Crusaders\". Shortly after, in 2009, he began research on a political thriller that would develop into \"The Knives\". His second novel \"The Possessions of Doctor Forrest\" followed in 2011. \"The Knives\" was published in 2016. Since 2008 Kelly has been a Contributing Editor and feature writer for the UK edition of \"Esquire\" magazine. References.", "text_characters": 946, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:319961", "title": "Sean Penn", "score": 20.95654570542738, "snippet": "American actor and filmmaker (born 1960) Sean Justin Penn (born August 17, 1960) is an American actor and film director. He is known for his intense leading man roles in film. Over his career, he has earned numerous accolades including two Academy Awards, a Golden Globe Award, and a Screen Actors Guild Award, as well as nominations for three BAFTA Film Awards. Penn received an Honorary César in 2015. Penn made his feature film debut in the drama \"Taps\" (1981), before taking roles in \"Fast Times at Ridgemont High\" (1982), \"Bad Boys\" (1983), and \"At Close Range\" (1986). He later won the Academy Award for Best Actor twice for playing a grieving father in \"Mystic River\" (2003) and Harvey Milk in \"Milk\" (2008). He was Oscar-nominated for his roles in \"Dead Man Walking\" (1995), \"Sweet and Lowdown\" (1999) and \"I Am Sam\" (2001). Penn's other credits include \"Casualties of War\" (1989), \"State of Grace\" (1990), \"Carlito's Way\" (1993), \"She's So Lovely\" (1997), \"The Game\" (1997), \"The Thin Red Line\" (1998), \"Hurlyburly\" (1998), \"21 Grams\" (2003), \"Fair Game\" (2010), \"The Tree of Life\" (2011), \"Licorice Pizza\" (2021), and \"Daddio\" (2023). Penn made his directorial film debut with the crime drama \"The Indian Runner\" (1991), followed by the films \"The Crossing Guard\" (1995), \"The Pledge\" (2001), and \"Into the Wild\" (2007). On stage, he acted in the Broadway plays \"Heartland\" (1981) and \"Slab Boys\" (1983). On television, he portrayed an astronaut in the Hulu drama series \"The First\" (2018) ", "text_characters": 2001, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7557890", "title": "Dylan Penn", "score": 20.9009848524971, "snippet": "American model and actress Dylan Frances Penn (born April 13, 1991) is an American model and actress. She is the daughter of Sean Penn and Robin Wright. Her early public roles included modeling campaigns for Gap Inc., a magazine cover for \"treats! \", a music video appearance in Nick Jonas's \"Chains\" and an acting role in \"Elvis & Nixon\". Early life. Penn was born on April 13, 1991, in Los Angeles, California to actor-director Sean Penn and actress Robin Wright. Wright had surrendered the role of Maid Marian in \"\" due to her pregnancy with Dylan. Penn was raised in Ross, a town in Marin County, California. She has a younger brother named Hopper Jack. Her paternal grandfather Leo Penn is of Russian-Jewish and Lithuanian-Jewish descent, whereas her paternal grandmother Eileen Ryan is Catholic and of Irish and Italian descent. She attended Marin Academy, and dropped out of the University of Southern California after one semester. She spent time living in New York City. Her parents' divorce was finalized in 2010. Before modeling, Penn had worked delivering pizzas, as a waitress, and as a freelance screenplay editor. She also worked in New York City as a restaurant hostess and an intern at an advertising agency. Career. Modeling. Penn's first modeling billboards were for Gap in 2013. Then she appeared in \"GQ\" in December 2013, in \"W\" in January 2014, and \"Elle\" in March 2014. Penn posed for photographer Tony Duran for a partially nude cover and an interior layout in the seventh, 20", "text_characters": 2481, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0583/R007_request.json/messages/15/content`；SHA256：`6c5834ba2fa51e34ff795920bd5f608ee3c76fe310f17140411558fb6043d9d7`。
+
+### R7 `/rounds/6/reasoning_content` [0,80)
+
+SHA256：`854c7fdd42b38f506a62b340a8ce8544a9128905500a09d2321a56667b915370`；原字段SHA256：`8eff8bd860ef33534a0cc9ce7b1d1391fadd4274419851f59df75d55781ca3e6`。
+
+````
+The search results for Sean Penn clearly state he was born on August 17, 1960.
+
+
+````
+
+## S006｜完整核对电影链并提交出生年
+
+九项链条接受与答案构造，Submit1960。
+
+结束状态：正式Final1960。
+
+边界判断：从日期反馈转入全题接受判断。
+
+内部KEEP与反证：整条论证不按每条条件拆；缺少真实查询的GreenRoom等仅记录为原推理声称。
+
+### SPLIT原文
+
+````
+The search results for Sean Penn clearly state he was born on August 17, 1960.
+
+
+→ 切点 [6, 0, 80] →
+Let me verify the chain of reasoning:
+1. The film where Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem is "The Last Face" (2016).
+2. "The Last Face" premiered at the 2016 Cannes Film Festival on May 20, 2016.
+3. The lead actress who shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival was Adèle Exarch
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R7 `/rounds/6/reasoning_content` [80,1142)
+
+SHA256：`057afb1f1a39ed26008fba3bbe21f103b5ee52282a0a2dfd79e17318a8ecec52`；原字段SHA256：`8eff8bd860ef33534a0cc9ce7b1d1391fadd4274419851f59df75d55781ca3e6`。
+
+````
+Let me verify the chain of reasoning:
+1. The film where Adèle Exarchopoulos co-starred with Charlize Theron and Javier Bardem is "The Last Face" (2016).
+2. "The Last Face" premiered at the 2016 Cannes Film Festival on May 20, 2016.
+3. The lead actress who shared the Palme d'Or for "Blue Is the Warmest Colour" at the 2013 Cannes Film Festival was Adèle Exarchopoulos (and Léa Seydoux).
+4. "Blue Is the Warmest Colour" won the Palme d'Or in 2013, the same year "Blue Ruin" received the FIPRESCI Prize at Cannes.
+5. "Blue Ruin" was described by a "Hollywood Reporter" review as "less disciplined" than "Green Room".
+6. "Green Room" was co-written and directed by Jeremy Saulnier.
+7. "Green Room" starred an actress from "Sweet Virginia" who reunited with Anton Yelchin for "Green Room" - this would be Imogen Poots.
+8. The question asks for the birth year of the director of "The Last Face", which is Sean Penn.
+9. Sean Penn was born in 1960.
+
+The answer is 1960.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+1960
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "answer": "1960"
+  },
+  "id": "recovered_call_1",
+  "name": "submit_answer",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=submit_answer>\n<parameter=answer>\n1960\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "1960"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 1.0132789611816406e-05,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "1960",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    8
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 8
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+批次关系完整；R2真实关系纠错未吞入检索；Open3次保持一次操作；R7直接出生反馈与整体判断准确分界。
+
+R2电影判断可连同出生Search视一次候选核验，主方案因完整接受后实际改变到出生字段分开。R7全链也可能为末次Search总结，主方案其独立全题接受与提交单列。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

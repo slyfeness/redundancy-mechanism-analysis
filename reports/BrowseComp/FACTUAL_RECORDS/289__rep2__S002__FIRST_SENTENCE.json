@@ -1,0 +1,42 @@
+{
+ "case_id":"289__rep2__S002__FIRST_SENTENCE",
+ "question_id":"289",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"全部真实Final采用Çılgın Bediş和1996或1996—2001，C；冻结A/C→CCCC不变。"},
+ "review_basis":"同SHA87e1788c50b2217a1e4a67332b9abbb5c8db7398cc188331e622473c11e77283原5轮4Call本轮阅读全文；四新8轮4Call全部Reasoning/Final/真实Query读完，44新块7346字符、22字段。40原新Return位置的实际snippet均与本轮已经全文读过的47650/23585/40897及演员列表逐SHA相同，无新增文档未读。",
+ "pre_state":"R3@294前已经采用Çılgın Bediş1996—2001喜剧/两频道，Return23585有主演Yonca，但P尚没有47650演员戏剧资料、Deliler或词义匹配。",
+ "u_work":"U=R3[294,600)+E3 ac427d82013d84d4+R4[0,526)。从缺演员/戏剧资料出发真实查询Yonca1980s1990s，47650返回剧目，模型选择Deliler、解释mad/crazy与Çılgın近义，首次建立匹配。原后续R4再确认该已选剧目，R5完整接受/Final。",
+ "u_state_update":"候选只满足电视剧条件→演员出演具体戏剧和语义关系得到采用，原下一Query由演员广查转为Deliler定向确认。",
+ "original_action_consequence":"删除后G直接给原U才发现的Deliler及其与Yonca的待确认关系。四次首Call都带Deliler，跳过无剧目名称的演员探索，真实47650补出演资料，下一轮直接完成条件判断并Final，不再第二次确认Query。成本少一Call，但具体剧目选择被G补偿，不能当自主省掉发现工作。",
+ "guidance":{"text":"Let me verify this connection by searching for more information about the play \"Deliler\" and confirming Yonca Evcimik's role in it.","source":"原S003 R4[526,657)，31原生Token，full_successor_guide=true：覆盖后继Stage全部Reasoning工作行，原工具参数/Return未预填。目标R3@294 native118。","audit":"ORACLE_ANCHORED，KEY_FUTURE_ENTITY_AND_ACTION_DIRECTION，FULL_SUCCESSOR_REASONING_PREFILL。Deliler在P未出现，来自被删U的产物，且给出演者/戏剧关联方向。真实首6673=6524+118+31，不回填原E3或未来Return；但不能计严格可省证据。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Now I need to check about the lead actress Yonca Evcimik","use":"切点前未解决演员/舞台剧条件。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"Yonca Evcimik theatre play 1980s 1990s","use":"原U无已知剧目名的取证。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/reasoning_content","quote":"this is very close in meaning to \"Çılgın\" (Crazy)!","use":"U首次语义采用后，原下一Stage才指定Deliler。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"or \"Deliler\" (which is also Turkish for \"crazy/mad people\")","use":"首Return前已用G给的剧目解释，不归为自主发现。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980s 1990s Deliler","use":"R3 b336777bf2a2125d定向Query实际返47650。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/content","quote":"The series first aired on July 8, 1996","use":"正式C，候选与关系在整体判断中被采用。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980s Deliler","use":"R3 a984a10368f8c220无新增显式推理即按G查Deliler。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Yonca Evcimik performed in this play between 1985-1988","use":"真实Return后采用出演资料，非仅由G回答。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/1/content","quote":"**Release Year:** 1996-2001","use":"正式C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980-1990 Deliler","use":"R3 8e8b82a877286b68定向检索，真实返演员资料。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/content","quote":"**Release Year:** 1996","use":"正式C，不再追加确认Call。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The root word of \"Çılgın\" (crazy) and \"Deliler\" (the crazy ones/insane people) are close in meaning.","use":"Return之前沿G具体剧目比较，原U产物部分提前提供。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play Deliler 1980s 1990","use":"R3 815824734b32b9c3返47650后采用出演关系。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/content","quote":"**Çılgın Bediş** (1996-2001)","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"先沿G已有Deliler解释词义，后真实定向演员+剧目查询，而非从未知剧目名单里发现。","state_chain":"G补剧目→生成释义→真实47650确认出演→全题接受/Final。","function_change":"PARTIAL_REBUILT 真实出演取证与比较恢复，剧目发现已由G补偿；819+G31较1004少154生成，1Search/2Actor各少1，Prompt16305较28902少12597。","evidence":["O2","O3","N11","N12","N13"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"G后无额外推理就查已给剧目，返演员履历后直接接受。","state_chain":"G选择对象→定向真实查询→出演/词义被采用→Final。","function_change":"PARTIAL_REBUILT，652+31净-321生成，Search-1、Actor-1，Prompt16215净-12687；不能把发现工作未自主执行当无补偿可省。","evidence":["N21","N22","N23"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"直接执行G指定Deliler核查，不做无剧目名的演员探索，下一轮整体接受。","state_chain":"教师对象→真实履历→近义关系/全题接受→FinalC。","function_change":"PARTIAL_REBUILT，784+31净-189生成，Search-1、Actor-1，Prompt16218净-12684。","evidence":["N31","N32"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"Return前用G给的剧目与剧名进行近义比较，随后查出演关系。","state_chain":"G对象被立即采用→真实定向核查47650→整体接受/Final。","function_change":"PARTIAL_REBUILT，707+31净-266生成，Search-1、Actor-1，Prompt16271净-12631。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"表面同为A且资源下降，这组的具体缩短路径是教师提前给出原U才找到的剧目：原先先查演员再从名单选Deliler、再定向确认，现在四次都从Deliler定向查询开始，一轮取得出演资料后直接提交。实际取证与语义采用仍发生，但发现对象不再自主获得，且后继整句计划被预填。因此成本下降不能等同原发现/比较功能本身无用。",
+ "within_case_support":"C→CCCC/A；4/4首Call已含未来Deliler，4/4真实47650取证，4/4下一轮接受/Final。全部少1Search/Actor，净生成及Prompt下降；共同教师补偿使这些不能计严格可省，不能拿四次C掩盖G路径作用。",
+ "mechanism_chain_checks":[
+  {"chain":"G提前提供原U产出的剧目，直接定向查询并采用出演资料，少走演员发现与二次确认的两段取证结构","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["O2","O3","N11","N12","N13"],"2":["O2","N21","N22","N23"],"3":["O2","N31","N32"],"4":["O2","N41","N42","N43"]},"limits":"定向查询仍真实执行，不能说全部信息都由G给；但剧目选择/完整后继计划的补偿不能消除。"}
+ ],
+ "counterevidence_and_limits":["Deliler并非P已知，必须标未来实体/关系方向，不把它说成普通承接。","G覆盖原下一Stage全部Reasoning行，但不含其真实Call参数/Return；这一条件按封存观察保留，不更改实验。","新2/3没有显式首轮推理仍真实执行，不能伪造额外搜索决定。","返回后仍需采用出演资料，不能仅凭Query含G实体判一切功能均跳过。","演员出演区间仍不等同首演日期；原新都没有消除这项支持缺口。","新1附加creatorZekiKeskin角色支持不足，主答案C不代表解释全文无误。","G31计一次，各分支净节省不相加，严格可省不成立。"],
+ "cost_basis":"原native118后1004生成/2Search/3Actor/28902Prompt(6524+22378)。新819/652/784/707生成，G31，净-154/-321/-189/-266；1Search/2Actor，均各-1；Prompt16305/16215/16218/16271，净-12597/-12687/-12684/-12631。首6524+118+31=6673。",
+ "next_cross_case_test":"与同题rep1S002无具体剧目G的A比较：那里四次需重新查演员/选择Deliler，其中两次多一轮；这里未来剧目定向缩短路径。跨题A资源下降必须区分既有证据冗余、后续恢复和G提前提供工作产物，不以A标签决定机制。"
+}

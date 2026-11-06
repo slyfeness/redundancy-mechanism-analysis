@@ -1,0 +1,3647 @@
+# SAGE_NEW1000_BATCH03__SAGEN_0995｜V1.3.2完整Stage切分
+
+样本序号：64；原件SHA256：`2c4d9b5fd79099b747903418ae89bfe2517797d3deea9ed6dd54d5acd23905ba`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What was the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down?
+````
+
+## 完整求解过程
+
+模型先查Fedsure案，首次返回直接给1998听审与14 October判决。R2采用1998，改查该年南非官方语言数量。连续四次带1998的查询返回几乎都是体育等无关条目，模型重述年份、凭知识提出11与1996宪法，但未取得对应文档。
+
+第六轮实际转回判决年份，open案名条目前100字符后扩大1000字符，重新确认1998。这项工作打断了语言核查，所以其后恢复语言搜索必须保留另一次连续实例，不能跨两次open把前后搜索拼合。
+
+第八至二十三轮持续查询语言数量，交替使用1998、1996 Constitution、11等组合，多次空结果或返回同类体育、宪法修订与其他国家宪法片段。各轮列题目、日期与11的知识，只作为再次确认该事实的背景，没有实际更换语言数量候选、展开冲突比较、对全题作独立接受后再重新查询。直到第二十三轮返回宪法生效日期及一份南非宪政历史中“11 official languages”的片段，最后一轮才说两项信息均已找到并真实submit11。
+
+原件24次Actor、21次search、2次open、1次submit，VALID_FINAL/MODEL_FINAL_STOP。这是SAGE原有24轮，不套用其他数据集20轮上限。原文将1996称作interim等错误保留；机械验收也不把最后材料是否充分证明1998的语义质量混同为答案评价。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 确认Fedsure案判决年为1998 | 年份得到真实资料支持。 | E001 |
+
+| S002 | R2 / 0 / 165 | 首次围绕1998语言数量反复search | 未取得语言数量文档。 | E002,E003,E004,E005 |
+
+| S003 | R6 / 0 / 0 | 回查判决条目并扩大open确认年份 | 判决年重新确定。 | E006,E007 |
+
+| S004 | R8 / 0 / 46 | 恢复语言数量查证并持续重试年份与宪法关键词 | 所需11终于有返回文字，模型随后提交。 | E008,E009,E010,E011,E012,E013,E014,E015,E016,E017,E018,E019,E020,E021,E022,E023 |
+
+| S005 | R24 / 0 / 0 | 接受判决年份与语言数量已齐并提交11 | 11，VALID_FINAL，MODEL_FINAL_STOP。 | E024 |
+
+## S001｜确认Fedsure案判决年为1998
+
+search案名，R2首句提取14 October1998。
+
+结束状态：年份得到真实资料支持。
+
+边界判断：轨迹起点。
+
+内部KEEP与反证：首次拆题与判决日期提取同属这一动作。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,319)
+
+SHA256：`b3d18d8291e852e0b9c4bd7c6c7d7e92987021e35f1e66c48e95b9a082241813`；原字段SHA256：`b3d18d8291e852e0b9c4bd7c6c7d7e92987021e35f1e66c48e95b9a082241813`。
+
+````
+This is a multi-hop question that requires me to:
+1. First find out when the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down
+2. Then find out how many official languages South Africa had in that year
+
+Let me start by searching for information about this case.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year"
+  },
+  "id": "chatcmpl-tool-ad5046a29e0cc2cc",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-ad5046a29e0cc2cc",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 0.31145051307976246,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1813261",
+        "score": 32.288718602732054,
+        "snippet": "The City of Johannesburg Metropolitan Municipality () is a metropolitan municipality that manages the local governance of Johannesburg, the largest city in South Africa. It is divided into several branches and departments in order to expedite services for the city. Zulu is the most spoken home language at 23.4% followed by English at 20.1%. Johannesburg is a divided municipality: the poor mostly live in the southern suburbs or on the peripheries of the far north, and the middle- and upper class live largely in the suburbs of the central and north. As of 2012, unemployment is near 25% and most young people are out of work. Around 20% of the municipality lives in abject poverty in informal settlements that lack proper roads, electricity, or any other kind of direct municipal service. History. Following the end of the apartheid era, in April 1991 the Central Witwatersrand Metropolitan Chamber was formed as a \"people-based\" negotiating forum prior to holding a democratic election and the formation of a new administration for the Johannesburg area. Following the 1993 \"Local Government Transition Act\", the Greater Johannesburg Negotiating Forum was created, and this forum in September 1994 reached an agreement which entailed regrouping the suburbs into new municipal structures, the metropolitan local councils (MLCs), and the overarching Greater Johannesburg Metropolitan Council, also known as the \"Transitional Metropolitan Council\" for the city. The government of Johannesburg's met",
+        "text_characters": 2772,
+        "title": "City of Johannesburg Metropolitan Municipality"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1190853",
+        "score": 29.7687018209459,
+        "snippet": "It was incorporated in the City of Johannesburg Metropolitan Municipality in 2000. In 1982 Parliament passed the Black Local Authorities Act, No. 102 of 1982. In terms of this Act the City Council of Soweto came into being. The New South Africa. The establishment of metropolitan municipalities took a long time. In 1989 the Central Witwatersrand Metropolitan Chamber came into being to show the way for local government transition across the country. In 1993 the Local Government Transition Act, No. 203 of 1993, recognised the importance of negotiation and formalised the Greater Johannesburg Local Negotiating Forum. The Act provided for a two-tier system of government with strong local councils and a weaker metro tier playing a coordinating role. The first fully democratic local government elections were held in November 1995. It gave birth to a Greater Johannesburg Transitional Metropolitan Council and four Transitional Metropolitan Local Councils. Unfortunately this arrangement led to a very serious financial crisis, mainly because the local councils were not obliged to balance their budgets. In the meantime Chapter 7 of the Constitution of the Republic of South Africa, 1996, dealt with local government. In terms of section 155(1)(a) a category A municipality is one that has exclusive municipal executive and legislative authority in its area. In the Municipal Structures Act (Act 117 of 1998) it is laid down that this type of local government is to be used for conurbations, i.e.",
+        "text_characters": 2317,
+        "title": "History of Johannesburg"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6768737",
+        "score": 28.57771390716679,
+        "snippet": "Having regard to item 17 of Schedule 6 to the Constitution of the Republic of South Africa Act 108 of 1996, it is in the interests of justice that in respect of constitutional issues under the interim Constitution which may in future come before it, the SCA, as the successor of the Appellate Division, should exercise the jurisdiction conferred upon it over constitutional matters by Chapter 8 of the 1996 Constitution. Its exercise of that jurisdiction, however, will not affect the principle articulated in \"S v Mhlungu\" and \"Du Plessis v De Klerk\" in terms of which the constitutionality of an act is to be determined by the substantive provisions applicable at the time. The decision in the Witwatersrand Local Division, in \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council\", was thus confirmed. Notes.",
+        "text_characters": 838,
+        "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2304324",
+        "score": 23.677273318625375,
+        "snippet": "Second-level local government structure in South Africa In South Africa, a metropolitan municipality or Category A municipality is a municipality which executes all the functions of local government for a city or conurbation. This is by contrast to areas which are primarily rural, where the local government is divided into district municipalities and local municipalities. The Constitution, section 155.1.a, defines \"Category A\" municipalities. In the Municipal Structures Act it is laid out that this type of local government is to be used for conurbations, \"centre[s] of economic activity\", areas \"for which integrated development planning is desirable\", and areas with \"strong interdependent social and economic linkages\". The metropolitan municipality is similar to the consolidated city-county in the US, although a South African metropolitan municipality is created by notice of the provincial government, not by agreement between district and local municipalities. History. Metropolitan municipalities were brought about during reforms of the 1990s so that cities could be governed as single entities. For example, eThekwini (including Durban) is today a single municipality formed from what were more than 40 separate jurisdictions before 1994. This reform process was a response to the way in which apartheid policy had broken up municipal governance. For example, Soweto had, until 1973, been administered by the Johannesburg City Council, but after 1973 was run by an Administration Boar",
+        "text_characters": 2265,
+        "title": "Metropolitan municipality (South Africa)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6768734",
+        "score": 22.99197098041292,
+        "snippet": "The Court held further that the applicants' constitutional challenge to the validity of the levying of the rates in question by the second respondent (the Eastern Metropolitan Substructure) based on the alleged non-compliance with section 178(2) of the interim Constitution and the challenge to the validity of the budgets of the first and second respondents, based on non-compliance with section 58 of the Local Government Ordinance 17 of 1939 (T), had on an analysis of the facts to fail. The Court held that the rates had been validly imposed. The Court further held that the imposition of a levy by the first respondent on the second respondent in an amount equal to the budgeted surplus of the second respondent for the financial year ended 30 June 1997, and the use of that levy to meet the deficits in the budgets of the first respondent and two other of the first respondent's metropolitan substructures (the fourth and fifth respondents), could not be justified as \"a grant or donation\" under section 79(15)(i) of the Local Government Ordinance, as that had not been the decision which the council of the second respondent had taken. The council had considered the draft budget on the assumption that it fell within the powers of the first respondent to levy a contribution upon the second respondent for the purpose of subsidising itself and the fourth and fifth respondents. It was not known what the attitude of the members of the second respondent's council would have been had they been",
+        "text_characters": 2591,
+        "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6768731",
+        "score": 21.791114794704143,
+        "snippet": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October. The bench was occupied by Chaskalson P, Langa DP, Ackermann J, Goldstone J, Kriegler J, Madala J, Mokgoro J, O'Regan J, Sachs J and Yacoob J. DJB Osborn (with him PJ Van Blerk) appeared for the appellants, RM Wise (with him J. Kentridge) for the first respondent, and CZ Cohen (with him M. Chaskalson) for the second, third, fourth and fifth respondent. Principles. The interim Constitution recognises and makes provision for three levels of government: national, provincial and local. Each level of government derives its powers from the interim Constitution. In the case of local government, however, the powers are subject to definition and regulation by either the national or the provincial governments, which are the \"competent authorities\" for enacting such legislation. Under section 174(1) of the interim Constitution, though, there is a constitutional obligation on the \"competent authority\" to establish local government, which has to be \"autonomous and, within the limits prescribed by or under law [...] entitled to regulate its affairs.\" In section 174(4), it is specifically provided that \"Parliament or a provincial legislature shall not encroach on the powers, functions and structure of a local government to s",
+        "text_characters": 2689,
+        "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1431902",
+        "score": 21.21859958462763,
+        "snippet": "Edenvale is a small city on the East Rand in Gauteng, South Africa. It is part of the Ekurhuleni Metropolitan Municipality. It lies about halfway between the O.R. Tambo International Airport and the Johannesburg city centre and is located 12 km by road from Sandton and about 9 km from the closest Gautrain station. History. It started out in 1903, after the Anglo Boer War as a small settlement named Rietfontein which sprung up around the Rietfontein Gold Mine. It was made a municipality in 1942. It was initially populated by Cornish mineworkers. Suburbs of Edenvale. Residential suburbs include: Industrial suburbs include: Demographics. Edenvale is a busy city that ranges from middle-class areas such as Edenvale Central, Eastleigh and Illiondale, to the more upper-class areas such as Dowerglen and Edenglen. Edenvale Central (locally referred to as The Avenues) has seen high investment over the past few years in the form of upper-income clusters and townhouses. This has resulted in small-scale gentrification and hence an increase in coffee shops and streetside cafes. There is also a trend in Eastleigh and Illiondale to purchase derelict properties and renovate them, which has also benefitted the area. Much of Edenvale widely diversified by immigration to other parts of Africa, notably: Zambians and Malawians. It also hosts a large population of Portuguese, Greeks and Italians. Economy. Retail. In the last ten years, the area to the north of Edenvale (Modderfontein) has expanded ",
+        "text_characters": 2691,
+        "title": "Edenvale, South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6768733",
+        "score": 21.03550829796528,
+        "snippet": "In the past, the action of a municipal council in setting rates was considered to be an action that was subject to judicial review on the principles of administrative law, but the principles upon which that jurisprudence was based are no longer applicable. It follows that the imposition of rates and levies, and the payment of the subsidies, do not constitute \"administrative action\" under section 24 of the interim Constitution. Judgment. The Court accordingly held that the rates imposed by the first respondent, the transitional metropolitan council, and its four metropolitan substructures, the levies paid by two of the substructures to the first respondent and the subsidies paid by the first respondent to the other two substructures, in terms of the powers conferred on them by the interim Constitution, read with Premier's Proclamations 24 of 1994 (Gauteng), 35 of 1995 (Gauteng) and 42 of 1995 (Gauteng), which were enacted in terms of section 10 of the Local Government Transition Act, did not constitute \"administrative action\" under section 24 of the interim Constitution. The primary provisions of the interim Constitution regulating local government are contained in Chapter 10. To the extent, therefore, that a local government acts in breach of one of the direct and mandatory provisions of Chapter 10, it is clear that that infringement will be in breach of the Constitution and subject to constitutional challenge. Local government is also subject to Chapter 3 of the interim Cons",
+        "text_characters": 2438,
+        "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:112480",
+        "score": 19.949752032642017,
+        "snippet": "Previously, the townships were governed by the Johannesburg council, but from the 1970s, the state took control. Black African councilors were not provided by the apartheid state with the finances to address housing and infrastructural problems. Township residents opposed the black councilors as puppet collaborators who personally benefited financially from an oppressive regime. Resistance was spurred by the exclusion of blacks from the newly formed tricameral Parliament (which did include Whites, Indians and Coloreds). Municipal elections in black, coloured, and Indian areas were subsequently widely boycotted, returning extremely low voting figures for years. Popular resistance to state structures dates back to the Advisory Boards (1950) that co-opted black residents to advise whites who managed the townships. Further popular resistance: incorporation into the City. In Soweto, popular resistance to apartheid emerged in various forms during the 1980s. Educational and economic boycotts were initiated, and student bodies were organized. Street committees were formed, and civic organizations were established as alternatives to state-imposed structures. One of the most well-known \"civics\" was Soweto's Committee of Ten, started in 1978 in the offices of \"The Bantu World\" newspaper. Such actions were strengthened by the call issued by African National Congress's 1985 Kabwe congress in Zambia to make South Africa ungovernable. As the state forbade public gatherings, church buildings",
+        "text_characters": 2966,
+        "title": "Soweto"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5301398",
+        "score": 19.591117746928283,
+        "snippet": "South African politician Manny Simão Franca de Freitas is a South African politician, and former Member of Parliament with the Democratic Alliance, was appointed as the Shadow Deputy Minister of Transport from 2009 to 2012, Shadow Minister of Home Affairs from 2012 to 2014 and Shadow Minister of Transport in 2014, a position he held until the end of term in 2019. After the 2019 Elections, de Freitas was appointed as Shadow Minister of Tourism, a position which he held until 2024. In 2020, de Freitas testified at the Zondo Commission where he described his experience in the Transport Portfolio Committee and his vast and varied work he had undertaken with PRASA (Passenger Rail Agency of South Africa). He was born in Lüderitz in South West Africa (now Namibia). He has been a resident of Johannesburg since the age of 7. He joined the Democratic Party (DP), the predecessor to the Democratic Alliance in 1993. He was much involved in the DP Youth Branch and served as its Federal Chairman for 4 years. Amongst numerous organisations, de Freitas was on the executive committee of the Lusito School for the Mentally and Physically Disabled and also served on its council for many years. He has also been involved with the United Cerebral Palsy Association. He served on various boards such as the Portuguese Community Radio and the board of editors of the international LIBEL magazine and Youth Encounter Spirit-Southern Africa. He sits on the board of the Luso-South African Business Council, o",
+        "text_characters": 2486,
+        "title": "Manuel de Freitas"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-ad5046a29e0cc2cc"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:1813261", "title": "City of Johannesburg Metropolitan Municipality", "score": 32.288718602732054, "snippet": "The City of Johannesburg Metropolitan Municipality () is a metropolitan municipality that manages the local governance of Johannesburg, the largest city in South Africa. It is divided into several branches and departments in order to expedite services for the city. Zulu is the most spoken home language at 23.4% followed by English at 20.1%. Johannesburg is a divided municipality: the poor mostly live in the southern suburbs or on the peripheries of the far north, and the middle- and upper class live largely in the suburbs of the central and north. As of 2012, unemployment is near 25% and most young people are out of work. Around 20% of the municipality lives in abject poverty in informal settlements that lack proper roads, electricity, or any other kind of direct municipal service. History. Following the end of the apartheid era, in April 1991 the Central Witwatersrand Metropolitan Chamber was formed as a \"people-based\" negotiating forum prior to holding a democratic election and the formation of a new administration for the Johannesburg area. Following the 1993 \"Local Government Transition Act\", the Greater Johannesburg Negotiating Forum was created, and this forum in September 1994 reached an agreement which entailed regrouping the suburbs into new municipal structures, the metropolitan local councils (MLCs), and the overarching Greater Johannesburg Metropolitan Council, also known as the \"Transitional Metropolitan Council\" for the city. The government of Johannesburg's met", "text_characters": 2772, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1190853", "title": "History of Johannesburg", "score": 29.7687018209459, "snippet": "It was incorporated in the City of Johannesburg Metropolitan Municipality in 2000. In 1982 Parliament passed the Black Local Authorities Act, No. 102 of 1982. In terms of this Act the City Council of Soweto came into being. The New South Africa. The establishment of metropolitan municipalities took a long time. In 1989 the Central Witwatersrand Metropolitan Chamber came into being to show the way for local government transition across the country. In 1993 the Local Government Transition Act, No. 203 of 1993, recognised the importance of negotiation and formalised the Greater Johannesburg Local Negotiating Forum. The Act provided for a two-tier system of government with strong local councils and a weaker metro tier playing a coordinating role. The first fully democratic local government elections were held in November 1995. It gave birth to a Greater Johannesburg Transitional Metropolitan Council and four Transitional Metropolitan Local Councils. Unfortunately this arrangement led to a very serious financial crisis, mainly because the local councils were not obliged to balance their budgets. In the meantime Chapter 7 of the Constitution of the Republic of South Africa, 1996, dealt with local government. In terms of section 155(1)(a) a category A municipality is one that has exclusive municipal executive and legislative authority in its area. In the Municipal Structures Act (Act 117 of 1998) it is laid down that this type of local government is to be used for conurbations, i.e.", "text_characters": 2317, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6768737", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "score": 28.57771390716679, "snippet": "Having regard to item 17 of Schedule 6 to the Constitution of the Republic of South Africa Act 108 of 1996, it is in the interests of justice that in respect of constitutional issues under the interim Constitution which may in future come before it, the SCA, as the successor of the Appellate Division, should exercise the jurisdiction conferred upon it over constitutional matters by Chapter 8 of the 1996 Constitution. Its exercise of that jurisdiction, however, will not affect the principle articulated in \"S v Mhlungu\" and \"Du Plessis v De Klerk\" in terms of which the constitutionality of an act is to be determined by the substantive provisions applicable at the time. The decision in the Witwatersrand Local Division, in \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council\", was thus confirmed. Notes.", "text_characters": 838, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2304324", "title": "Metropolitan municipality (South Africa)", "score": 23.677273318625375, "snippet": "Second-level local government structure in South Africa In South Africa, a metropolitan municipality or Category A municipality is a municipality which executes all the functions of local government for a city or conurbation. This is by contrast to areas which are primarily rural, where the local government is divided into district municipalities and local municipalities. The Constitution, section 155.1.a, defines \"Category A\" municipalities. In the Municipal Structures Act it is laid out that this type of local government is to be used for conurbations, \"centre[s] of economic activity\", areas \"for which integrated development planning is desirable\", and areas with \"strong interdependent social and economic linkages\". The metropolitan municipality is similar to the consolidated city-county in the US, although a South African metropolitan municipality is created by notice of the provincial government, not by agreement between district and local municipalities. History. Metropolitan municipalities were brought about during reforms of the 1990s so that cities could be governed as single entities. For example, eThekwini (including Durban) is today a single municipality formed from what were more than 40 separate jurisdictions before 1994. This reform process was a response to the way in which apartheid policy had broken up municipal governance. For example, Soweto had, until 1973, been administered by the Johannesburg City Council, but after 1973 was run by an Administration Boar", "text_characters": 2265, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6768734", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "score": 22.99197098041292, "snippet": "The Court held further that the applicants' constitutional challenge to the validity of the levying of the rates in question by the second respondent (the Eastern Metropolitan Substructure) based on the alleged non-compliance with section 178(2) of the interim Constitution and the challenge to the validity of the budgets of the first and second respondents, based on non-compliance with section 58 of the Local Government Ordinance 17 of 1939 (T), had on an analysis of the facts to fail. The Court held that the rates had been validly imposed. The Court further held that the imposition of a levy by the first respondent on the second respondent in an amount equal to the budgeted surplus of the second respondent for the financial year ended 30 June 1997, and the use of that levy to meet the deficits in the budgets of the first respondent and two other of the first respondent's metropolitan substructures (the fourth and fifth respondents), could not be justified as \"a grant or donation\" under section 79(15)(i) of the Local Government Ordinance, as that had not been the decision which the council of the second respondent had taken. The council had considered the draft budget on the assumption that it fell within the powers of the first respondent to levy a contribution upon the second respondent for the purpose of subsidising itself and the fourth and fifth respondents. It was not known what the attitude of the members of the second respondent's council would have been had they been", "text_characters": 2591, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6768731", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "score": 21.791114794704143, "snippet": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October. The bench was occupied by Chaskalson P, Langa DP, Ackermann J, Goldstone J, Kriegler J, Madala J, Mokgoro J, O'Regan J, Sachs J and Yacoob J. DJB Osborn (with him PJ Van Blerk) appeared for the appellants, RM Wise (with him J. Kentridge) for the first respondent, and CZ Cohen (with him M. Chaskalson) for the second, third, fourth and fifth respondent. Principles. The interim Constitution recognises and makes provision for three levels of government: national, provincial and local. Each level of government derives its powers from the interim Constitution. In the case of local government, however, the powers are subject to definition and regulation by either the national or the provincial governments, which are the \"competent authorities\" for enacting such legislation. Under section 174(1) of the interim Constitution, though, there is a constitutional obligation on the \"competent authority\" to establish local government, which has to be \"autonomous and, within the limits prescribed by or under law [...] entitled to regulate its affairs.\" In section 174(4), it is specifically provided that \"Parliament or a provincial legislature shall not encroach on the powers, functions and structure of a local government to s", "text_characters": 2689, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1431902", "title": "Edenvale, South Africa", "score": 21.21859958462763, "snippet": "Edenvale is a small city on the East Rand in Gauteng, South Africa. It is part of the Ekurhuleni Metropolitan Municipality. It lies about halfway between the O.R. Tambo International Airport and the Johannesburg city centre and is located 12 km by road from Sandton and about 9 km from the closest Gautrain station. History. It started out in 1903, after the Anglo Boer War as a small settlement named Rietfontein which sprung up around the Rietfontein Gold Mine. It was made a municipality in 1942. It was initially populated by Cornish mineworkers. Suburbs of Edenvale. Residential suburbs include: Industrial suburbs include: Demographics. Edenvale is a busy city that ranges from middle-class areas such as Edenvale Central, Eastleigh and Illiondale, to the more upper-class areas such as Dowerglen and Edenglen. Edenvale Central (locally referred to as The Avenues) has seen high investment over the past few years in the form of upper-income clusters and townhouses. This has resulted in small-scale gentrification and hence an increase in coffee shops and streetside cafes. There is also a trend in Eastleigh and Illiondale to purchase derelict properties and renovate them, which has also benefitted the area. Much of Edenvale widely diversified by immigration to other parts of Africa, notably: Zambians and Malawians. It also hosts a large population of Portuguese, Greeks and Italians. Economy. Retail. In the last ten years, the area to the north of Edenvale (Modderfontein) has expanded ", "text_characters": 2691, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6768733", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "score": 21.03550829796528, "snippet": "In the past, the action of a municipal council in setting rates was considered to be an action that was subject to judicial review on the principles of administrative law, but the principles upon which that jurisprudence was based are no longer applicable. It follows that the imposition of rates and levies, and the payment of the subsidies, do not constitute \"administrative action\" under section 24 of the interim Constitution. Judgment. The Court accordingly held that the rates imposed by the first respondent, the transitional metropolitan council, and its four metropolitan substructures, the levies paid by two of the substructures to the first respondent and the subsidies paid by the first respondent to the other two substructures, in terms of the powers conferred on them by the interim Constitution, read with Premier's Proclamations 24 of 1994 (Gauteng), 35 of 1995 (Gauteng) and 42 of 1995 (Gauteng), which were enacted in terms of section 10 of the Local Government Transition Act, did not constitute \"administrative action\" under section 24 of the interim Constitution. The primary provisions of the interim Constitution regulating local government are contained in Chapter 10. To the extent, therefore, that a local government acts in breach of one of the direct and mandatory provisions of Chapter 10, it is clear that that infringement will be in breach of the Constitution and subject to constitutional challenge. Local government is also subject to Chapter 3 of the interim Cons", "text_characters": 2438, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:112480", "title": "Soweto", "score": 19.949752032642017, "snippet": "Previously, the townships were governed by the Johannesburg council, but from the 1970s, the state took control. Black African councilors were not provided by the apartheid state with the finances to address housing and infrastructural problems. Township residents opposed the black councilors as puppet collaborators who personally benefited financially from an oppressive regime. Resistance was spurred by the exclusion of blacks from the newly formed tricameral Parliament (which did include Whites, Indians and Coloreds). Municipal elections in black, coloured, and Indian areas were subsequently widely boycotted, returning extremely low voting figures for years. Popular resistance to state structures dates back to the Advisory Boards (1950) that co-opted black residents to advise whites who managed the townships. Further popular resistance: incorporation into the City. In Soweto, popular resistance to apartheid emerged in various forms during the 1980s. Educational and economic boycotts were initiated, and student bodies were organized. Street committees were formed, and civic organizations were established as alternatives to state-imposed structures. One of the most well-known \"civics\" was Soweto's Committee of Ten, started in 1978 in the offices of \"The Bantu World\" newspaper. Such actions were strengthened by the call issued by African National Congress's 1985 Kabwe congress in Zambia to make South Africa ungovernable. As the state forbade public gatherings, church buildings", "text_characters": 2966, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5301398", "title": "Manuel de Freitas", "score": 19.591117746928283, "snippet": "South African politician Manny Simão Franca de Freitas is a South African politician, and former Member of Parliament with the Democratic Alliance, was appointed as the Shadow Deputy Minister of Transport from 2009 to 2012, Shadow Minister of Home Affairs from 2012 to 2014 and Shadow Minister of Transport in 2014, a position he held until the end of term in 2019. After the 2019 Elections, de Freitas was appointed as Shadow Minister of Tourism, a position which he held until 2024. In 2020, de Freitas testified at the Zondo Commission where he described his experience in the Transport Portfolio Committee and his vast and varied work he had undertaken with PRASA (Passenger Rail Agency of South Africa). He was born in Lüderitz in South West Africa (now Namibia). He has been a resident of Johannesburg since the age of 7. He joined the Democratic Party (DP), the predecessor to the Democratic Alliance in 1993. He was much involved in the DP Youth Branch and served as its Federal Chairman for 4 years. Amongst numerous organisations, de Freitas was on the executive committee of the Lusito School for the Mentally and Physically Disabled and also served on its council for many years. He has also been involved with the United Cerebral Palsy Association. He served on various boards such as the Portuguese Community Radio and the board of editors of the international LIBEL magazine and Youth Encounter Spirit-Southern Africa. He sits on the board of the Luso-South African Business Council, o", "text_characters": 2486, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R002_request.json/messages/3/content`；SHA256：`bd8911a8b7848b520c96d28762b8f88b650f0493a2b1771873743242079fc1b2`。
+
+### R2 `/rounds/1/reasoning_content` [0,165)
+
+SHA256：`67c581e2f4da173d5c9eb0580c012853ee8e0bf2680820534ad65974a867b67f`；原字段SHA256：`2240f1f63b4a21a225f6647da55e549f0b75f8ee314742fb53768b575526379a`。
+
+````
+The search results indicate that the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down on 14 October 1998.
+
+
+````
+
+## S002｜首次围绕1998语言数量反复search
+
+R2—R5四次带1998的search，重复number等，提出11但仍要求查证。
+
+结束状态：未取得语言数量文档。
+
+边界判断：从案名日期转为特定年份语言数量。
+
+内部KEEP与反证：R3/R4/R5重述日期、简单提11/宪法只是查询背景，没有独立接受或冲突评估；四次普通搜索重试KEEP。
+
+### SPLIT原文
+
+````
+The search results indicate that the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down on 14 October 1998.
+
+
+→ 切点 [1, 0, 165] →
+Now I need to find out how many official languages South Africa had in 1998. I should search for information about South Africa's official languages in 1998 or around that time.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [165,466)
+
+SHA256：`7224198e8ac5e15738f877f6d1297958459bc4bfadf891d1d1fc203545ff7a67`；原字段SHA256：`2240f1f63b4a21a225f6647da55e549f0b75f8ee314742fb53768b575526379a`。
+
+````
+Now I need to find out how many official languages South Africa had in 1998. I should search for information about South Africa's official languages in 1998 or around that time.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 5.740844577085227,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R003_request.json/messages/5/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+### R3 `/rounds/2/reasoning_content` [0,521)
+
+SHA256：`814ab0015b351da69e9c2b6c9a0d4b4ca965d69512b3e40ea088ad26d0919676`；原字段SHA256：`814ab0015b351da69e9c2b6c9a0d4b4ca965d69512b3e40ea088ad26d0919676`。
+
+````
+The search results indicate that the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down on 14 October 1998.
+
+Now I need to find out how many official languages South Africa had in 1998. I know that South Africa's official languages have changed over time. Let me search for information about South Africa's official languages in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 5.822160557843745,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R004_request.json/messages/7/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+### R4 `/rounds/3/reasoning_content` [0,864)
+
+SHA256：`42d4fe299d9e2ad29fcbf32761d900b0aa93275bfe1d67623cdee8345b2768f2`；原字段SHA256：`42d4fe299d9e2ad29fcbf32761d900b0aa93275bfe1d67623cdee8345b2768f2`。
+
+````
+The search results for the case "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" indicate that the judgment was handed down on 14 October 1998. The snippet from doc_id "wiki25:6768731" states: "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October."
+
+So the year is 1998.
+
+Now I need to find the number of official languages in South Africa in 1998.
+
+The interim Constitution of 1996 (which was in effect in 1998) recognized 11 official languages. Let me search for this information.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 3.9529423457570374,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R005_request.json/messages/9/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+### R5 `/rounds/4/reasoning_content` [0,808)
+
+SHA256：`3af40c37a5595bff83cf8c3e53f242db61146ce2368a70c2050a26c815e84084`；原字段SHA256：`3af40c37a5595bff83cf8c3e53f242db61146ce2368a70c2050a26c815e84084`。
+
+````
+The search results for "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year" provided a document (wiki25:6768731) which states: "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October."
+
+So the judgment was handed down in 1998.
+
+Now I need to find the number of official languages in South Africa in 1998.
+
+I should search for "South Africa official languages 1998" or "South Africa official languages" to find out the number.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 4.564354093745351,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R006_request.json/messages/11/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+## S003｜回查判决条目并扩大open确认年份
+
+质疑判决年是否清晰，先open100再1000字符；R8首句再次确认1998。
+
+结束状态：判决年重新确定。
+
+边界判断：实际中断语言核查转回旧判决日期，不能跨段合并。
+
+内部KEEP与反证：读取长度扩大是同次文档核对的连续执行，不因两open另切；R8第一句反馈留本Stage。
+
+### SPLIT原文
+
+````
+the judgment was handed down in 1998.
+
+Now I need to find the number of official languages in South Africa in 1998.
+
+I should search for "South Africa official languages 1998" or "South Africa official languages" to find out the number.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+→ 切点 [5, 0, 0] →
+The previous search results for "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year" did not explicitly state the year the judgment was handed down in a clear snippet, although one result (wiki25:6768731) mentioned the case was heard on 18 and 20 August 1998, with judgment handed down 14 October. Let me open that do
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [0,557)
+
+SHA256：`682cc4f4166aefc865d87b942bf1faa3d13200069a484361c2fb1460205a2809`；原字段SHA256：`682cc4f4166aefc865d87b942bf1faa3d13200069a484361c2fb1460205a2809`。
+
+````
+The previous search results for "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year" did not explicitly state the year the judgment was handed down in a clear snippet, although one result (wiki25:6768731) mentioned the case was heard on 18 and 20 August 1998, with judgment handed down 14 October. Let me open that document to confirm the year.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:6768731
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+100
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:6768731",
+    "limit": 100,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:6768731\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n100\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:6768731",
+    "limit": 100,
+    "offset": 0
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 0.022246211301535368,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:6768731",
+    "limit": 100,
+    "offset": 0,
+    "text": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional M",
+    "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council",
+    "total_text_characters": 2689
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:6768731", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "offset": 0, "limit": 100, "text": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional M", "total_text_characters": 2689, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R007_request.json/messages/13/content`；SHA256：`f8b464fde48c4e845fb4c356e39972ca9a4f41921b4ff6dbad9e88393c79bc13`。
+
+### R7 `/rounds/6/reasoning_content` [0,256)
+
+SHA256：`e1244496e294f5e2a1e04ec308acecc3c6b3a3b9973b2c2771c918eaab4af7d2`；原字段SHA256：`e1244496e294f5e2a1e04ec308acecc3c6b3a3b9973b2c2771c918eaab4af7d2`。
+
+````
+I need to open the document to get the full text to confirm the year of the judgment.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:6768731
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+1000
+</parameter>
+</function>
+</tool_call>
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:6768731",
+    "limit": 1000,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:6768731\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n1000\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:6768731",
+    "limit": 1000,
+    "offset": 0
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 0.00044493190944194794,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:6768731",
+    "limit": 1000,
+    "offset": 0,
+    "text": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October. The bench was occupied by Chaskalson P, Langa DP, Ackermann J, Goldstone J, Kriegler J, Madala J, Mokgoro J, O'Regan J, Sachs J and Yacoob J. DJB Osborn (with him PJ Van Blerk) appeared for the appellants, RM Wise (with him J. Kentridge) for the first respondent, and CZ Cohen (with him M. Chaskalson) for the second, third, fourth and fifth respondent. Principles. The interim Constitution recognises and makes provision for three levels of government: national, provincial and local. Each level of government derives its powers from the interim Constitution. In the case of local government, however, the powers are subject to definition and regulation by either the national or the provincial governments, which are the \"comp",
+    "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council",
+    "total_text_characters": 2689
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:6768731", "title": "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council", "offset": 0, "limit": 1000, "text": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October. The bench was occupied by Chaskalson P, Langa DP, Ackermann J, Goldstone J, Kriegler J, Madala J, Mokgoro J, O'Regan J, Sachs J and Yacoob J. DJB Osborn (with him PJ Van Blerk) appeared for the appellants, RM Wise (with him J. Kentridge) for the first respondent, and CZ Cohen (with him M. Chaskalson) for the second, third, fourth and fifth respondent. Principles. The interim Constitution recognises and makes provision for three levels of government: national, provincial and local. Each level of government derives its powers from the interim Constitution. In the case of local government, however, the powers are subject to definition and regulation by either the national or the provincial governments, which are the \"comp", "total_text_characters": 2689, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R008_request.json/messages/15/content`；SHA256：`6c18e5e42963a3d054899135fc719e0cbe9ab0dd5f8718937bd4fbb873e5654f`。
+
+### R8 `/rounds/7/reasoning_content` [0,46)
+
+SHA256：`ccc507e3277160d833e81672980050cc1d3428d191b1b3f320a0b71655135e8f`；原字段SHA256：`34459ee3aae516e901fd08719aad0273921d075b9c8959a4a917dffabd2c1768`。
+
+````
+The judgment was handed down in October 1998. 
+````
+
+## S004｜恢复语言数量查证并持续重试年份与宪法关键词
+
+R8—R23共16次search，轮流调序、删加1998/1996 Constitution/11，最终返回含11 official languages的宪政历史片段。
+
+结束状态：所需11终于有返回文字，模型随后提交。
+
+边界判断：判决open打断后恢复语言取证，建立新的时间连续实例。
+
+内部KEEP与反证：16Call逐轮审阅：R8—R10同类年份请求；R11加Constitution，R12回原词，R13/R14换1996与11，R15/R16同词空重试，R17/R18回1998，R19换1996+11，R20/R21回1998，R22/R23重排1996宪法词。没有实际改为另一个数量候选、其他语言新增事件或具体条文核验，也没有完成独立全题接受再搜索。各轮背景清单和普通知识11均用于同一事实确认，并非独立决策。KEEP以这些未发生的实质转换反证，不只说同一需求。全部16次事件仍分别完整定位。
+
+### SPLIT原文
+
+````
+The judgment was handed down in October 1998. 
+→ 切点 [7, 0, 46] →
+I need to find the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 10,
+    "batch_id": "B010",
+    "call_pointers": [
+      "/rounds/9/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/9"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 11,
+    "batch_id": "B011",
+    "call_pointers": [
+      "/rounds/10/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/10"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 12,
+    "batch_id": "B012",
+    "call_pointers": [
+      "/rounds/11/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/11"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 13,
+    "batch_id": "B013",
+    "call_pointers": [
+      "/rounds/12/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/12"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 14,
+    "batch_id": "B014",
+    "call_pointers": [
+      "/rounds/13/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/13"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 15,
+    "batch_id": "B015",
+    "call_pointers": [
+      "/rounds/14/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/14"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 16,
+    "batch_id": "B016",
+    "call_pointers": [
+      "/rounds/15/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/15"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 17,
+    "batch_id": "B017",
+    "call_pointers": [
+      "/rounds/16/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/16"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 18,
+    "batch_id": "B018",
+    "call_pointers": [
+      "/rounds/17/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/17"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 19,
+    "batch_id": "B019",
+    "call_pointers": [
+      "/rounds/18/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/18"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 20,
+    "batch_id": "B020",
+    "call_pointers": [
+      "/rounds/19/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/19"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 21,
+    "batch_id": "B021",
+    "call_pointers": [
+      "/rounds/20/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/20"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 22,
+    "batch_id": "B022",
+    "call_pointers": [
+      "/rounds/21/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/21"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 23,
+    "batch_id": "B023",
+    "call_pointers": [
+      "/rounds/22/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/22"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R8 `/rounds/7/reasoning_content` [46,249)
+
+SHA256：`0b2407e074c7477316bc66feb5fc865492cb7a1095aee0b241a5a9d9b017f715`；原字段SHA256：`34459ee3aae516e901fd08719aad0273921d075b9c8959a4a917dffabd2c1768`。
+
+````
+I need to find the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 2.979422762989998,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R009_request.json/messages/17/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R9 `/rounds/8/reasoning_content` [0,682)
+
+SHA256：`495c69dcaec8c048ecd69e2fcab66131bc98e64a0952ff0cc4598f76f7def858`；原字段SHA256：`495c69dcaec8c048ecd69e2fcab66131bc98e64a0952ff0cc4598f76f7def858`。
+
+````
+I have confirmed that the judgment in "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" was handed down on 14 October 1998. Now I need to find out how many official languages South Africa had in 1998.
+
+The official languages of South Africa were established by the Constitution of 1996, which came into effect on 4 February 1997. The interim Constitution (1993) and the final Constitution (1996) both recognized 11 official languages.
+
+Let me search for information about the official languages of South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+official languages South Africa 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nofficial languages South Africa 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 number"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 3.8912524580955505,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：10；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R010_request.json/messages/19/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+### R10 `/rounds/9/reasoning_content` [0,249)
+
+SHA256：`cd7cf3c71e31b22eff43f0b1fd335091aa17989a77862eba39b437002ea4e362`；原字段SHA256：`cd7cf3c71e31b22eff43f0b1fd335091aa17989a77862eba39b437002ea4e362`。
+
+````
+The judgment was handed down in October 1998. I need to find the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+official languages South Africa 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R10 Call `/rounds/9/tool_calls/0` → Return `/tool_events/9`
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nofficial languages South Africa 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 number"
+  },
+  "batch_id": "B010",
+  "batch_ordinal": 1,
+  "event_id": "E010",
+  "latency_seconds": 2.8985888799652457,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：11；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R011_request.json/messages/21/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R11 `/rounds/10/reasoning_content` [0,541)
+
+SHA256：`07be7ffca7e4101f6f599754d3c659e5f1d7d189da4184a2c0f55facccc170a5`；原字段SHA256：`07be7ffca7e4101f6f599754d3c659e5f1d7d189da4184a2c0f55facccc170a5`。
+
+````
+The judgment in "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" was handed down on 14 October 1998.
+
+The question asks for the number of official languages in South Africa in the year 1998.
+
+I need to search for information about the official languages of South Africa in 1998. The official languages were established by the Constitution of 1996. Let me search for that.
+
+<tool_call>
+<function=search>
+<parameter=query>
+official languages South Africa 1998 Constitution
+</parameter>
+</function>
+</tool_call>
+````
+
+### R11 Call `/rounds/10/tool_calls/0` → Return `/tool_events/10`
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 Constitution"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nofficial languages South Africa 1998 Constitution\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998 Constitution"
+  },
+  "batch_id": "B011",
+  "batch_ordinal": 1,
+  "event_id": "E011",
+  "latency_seconds": 1.0451734741218388,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 22.083197628986213,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790167",
+        "score": 21.09839750451639,
+        "snippet": "The Constitution Second Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1998) came into force on 7 October 1998. It had five provisions: Third Amendment. The Constitution Third Amendment Act (formerly the Constitution of the Republic of South Africa Second Amendment Act, 1998) came into force on 30 October 1998. It allowed for municipalities to be established across provincial boundaries by the agreement of the national and the relevant provincial governments. The changes it made were reversed in 2005 by the Twelfth Amendment. Fourth and Fifth Amendments. The Constitution Fourth Amendment Act and Constitution Fifth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1999 and Constitution of the Republic of South Africa Second Amendment Act, 1999) came into force on 19 March 1999. They were passed as two separate amendments because the Fourth contained provisions affecting provincial government, which required the approval of the National Council of Provinces, while the Fifth did not. The Fourth Amendment: The Fifth Amendment: Sixth Amendment. The Constitution Sixth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 2001) came into force on 21 November 2001. Its main effect was to give the title of \"Chief Justice of South Africa\" to the presiding judge of the Constitutional Court of South Africa, who had previously been titled \"President of the Constitutional Court\"",
+        "text_characters": 2982,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5601330",
+        "score": 20.789051173067218,
+        "snippet": "The Third Amendment of the Constitution of South Africa made changes to allow the creation of municipalities that cross provincial boundaries. It was enacted by the Parliament of South Africa, signed by President Mandela on 20 October 1998, and came into force on the 30th of the same month. The changes it made were reversed in 2005 by the Twelfth Amendment. Provisions. The amendment added two clauses to the Constitution. The first allowed municipal boundaries to be established across provincial boundaries by the agreement of the national and the relevant provincial governments, and provided for national legislation to regulate the process. The second provided that in such municipalities, the ward boundaries were not allowed to cross provincial boundaries. Both of these clauses were removed by the Twelfth Amendment, at the same time as many provincial boundaries were altered. Formal title. The official short title of the amendment is \"Constitution Third Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Second Amendment Act, 1998\" and numbered as Act No. 87 of 1997, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 1265,
+        "title": "Third Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2120574",
+        "score": 18.98075433434489,
+        "snippet": "A transitional constitution was then promulgated in April 1994. A Constitutional Act was promulgated in May 1997; draft constitution was proposed but not finalized in March 1998. From April 2, 2003, the country was under a Transition Constitution, which was established as a result of the 2002 Global and Inclusive Agreement of Sun City, South Africa that ended the Second Congo War. This document was in effect until the current constitution came into force on February 18, 2006. References.",
+        "text_characters": 492,
+        "title": "Constitution of the Democratic Republic of the Congo"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2050692",
+        "score": 18.762644902264412,
+        "snippet": "South African legislation The National Prosecuting Authority Act, 1998 (Act No. 32 of 1998) is an act of the Parliament of South Africa which established the National Prosecuting Authority (NPA). The creation of the NPA was required by section 179 of the Constitution of South Africa, which came into force in February 1997. Prior to the passage of the NPA Act, public prosecutions were under the direction of the attorneys-general, with a separate attorney-general appointed by the President for each division of the High Court. The offices of the attorneys-general were merged into a centralised National Prosecuting Authority headed by the National Director of Public Prosecutions, and the various attorneys-general became Directors of Public Prosecutions. The NPA was established as a single national prosecuting authority in terms of section 179(1) of the Constitution of South Africa 1996, which provides as follows: “(1) There is a single national prosecuting authority in the Republic, structured in terms of an Act of Parliament, and consisting of: a. a National Director of Public Prosecutions, who is the head of the prosecuting authority, and is appointed by the President, as head of the national executive; and b. Directors of Public Prosecutions and prosecutors as determined by an Act of Parliament. (2) The prosecuting authority has the power to institute criminal proceedings on behalf of the state, and to carry out any necessary functions incidental to instituting criminal procee",
+        "text_characters": 2895,
+        "title": "National Prosecuting Authority Act, 1998"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6069644",
+        "score": 18.59791468427217,
+        "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru",
+        "text_characters": 2873,
+        "title": "Constitution of the Western Cape"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10683599",
+        "score": 18.097264350553132,
+        "snippet": "This article lists the members of the National Assembly of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage, and served until the elections of 2 June 1999. The African National Congress (ANC) won a comfortable majority of 252 seats in the 400-seat legislature. The former governing party, the National Party (NP), became the official opposition. Nelson Mandela was elected unanimously as President of South Africa during the assembly's first sitting on 9 May 1994, which also saw members sworn in to their seats and Frene Ginwala elected as the inaugural Speaker of the National Assembly. As required by the interim Constitution, the ANC formed a Government of National Unity under President Mandela. On 24 May 1994, the first session of the Constitutional Assembly was held, comprising the joint membership of the National Assembly and the Senate. The Constitutional Assembly, chaired by Cyril Ramaphosa of the National Assembly, adopted South Africa's post-apartheid Constitution on 8 May 1996. Composition. The table below shows the number of seats won by each party in the elections of 27 April 1994. Members. The following lists the Members of the National Assembly as of 3 June 1998. Former Members. The following lists former Members of the National Assembly who were elected in the April 1994 election, but who left their seats before 3 June 1998.",
+        "text_characters": 1512,
+        "title": "List of National Assembly members of the 22nd Parliament of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10683621",
+        "score": 17.869790493600256,
+        "snippet": "This article lists the members of the Senate of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage. Upon the introduction of the new Constitution of South Africa in 1997, the Senate was replaced by the National Council of Provinces. Members of the Senate. The following lists the Members of the Senate as elected in April 1994 and does not consider subsequent changes in membership. Delegates to the National Council of Provinces. The following lists the permanent delegates to the National Council of Provinces as of 13 November 1998. At that time, Mosiuoa Lekota was the Chairperson of the National Council of Provinces, with Naledi Pandor as his permanent deputy. Mathews Phosa held the second deputy chair, which rotated annually, for 1998.",
+        "text_characters": 887,
+        "title": "List of National Council of Provinces members of the 22nd Parliament of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790166",
+        "score": 17.76627977183775,
+        "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on",
+        "text_characters": 2749,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8725050",
+        "score": 17.300363656289516,
+        "snippet": "The new 1996 constitution of South Africa acknowledges the right of self-determination of separate cultural and linguistic groups: Before implemented, this article - and the whole new constitution - was reviewed by the Constitutional Court of South Africa. The Constitutional Court used the 34 constitutional principles as the basis for this review. Moosa-declaration. On 5 June 1998 Valli Moosa, the then minister of Constitutional Development (ANC), said during a parliamentary debate that: Orania. During the rupture of the Afrikaner Volksfront the more moderate Volkstaters left the Afrikaner Volksfront and established the Freedom Front. The main founders of the Freedom Front were Constand Viljoen, Pieter Mulder and Carel Boshoff. Boshoff was also the leader of the Afrikaner town of Orania, although the town is not a signatory of the Accord on Afrikaner self-determination. Since 2000 there have been negotiations between Orania and the South African and Northern Cape governments about the status of the village. No agreement has been reached and Orania is the only village outside of the municipal structure of South Africa, because it still has its own transitional representative council in place. References.",
+        "text_characters": 1222,
+        "title": "Accord on Afrikaner self-determination"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：12；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 22.083197628986213, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790167", "title": "Constitution of South Africa", "score": 21.09839750451639, "snippet": "The Constitution Second Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1998) came into force on 7 October 1998. It had five provisions: Third Amendment. The Constitution Third Amendment Act (formerly the Constitution of the Republic of South Africa Second Amendment Act, 1998) came into force on 30 October 1998. It allowed for municipalities to be established across provincial boundaries by the agreement of the national and the relevant provincial governments. The changes it made were reversed in 2005 by the Twelfth Amendment. Fourth and Fifth Amendments. The Constitution Fourth Amendment Act and Constitution Fifth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1999 and Constitution of the Republic of South Africa Second Amendment Act, 1999) came into force on 19 March 1999. They were passed as two separate amendments because the Fourth contained provisions affecting provincial government, which required the approval of the National Council of Provinces, while the Fifth did not. The Fourth Amendment: The Fifth Amendment: Sixth Amendment. The Constitution Sixth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 2001) came into force on 21 November 2001. Its main effect was to give the title of \"Chief Justice of South Africa\" to the presiding judge of the Constitutional Court of South Africa, who had previously been titled \"President of the Constitutional Court\"", "text_characters": 2982, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5601330", "title": "Third Amendment of the Constitution of South Africa", "score": 20.789051173067218, "snippet": "The Third Amendment of the Constitution of South Africa made changes to allow the creation of municipalities that cross provincial boundaries. It was enacted by the Parliament of South Africa, signed by President Mandela on 20 October 1998, and came into force on the 30th of the same month. The changes it made were reversed in 2005 by the Twelfth Amendment. Provisions. The amendment added two clauses to the Constitution. The first allowed municipal boundaries to be established across provincial boundaries by the agreement of the national and the relevant provincial governments, and provided for national legislation to regulate the process. The second provided that in such municipalities, the ward boundaries were not allowed to cross provincial boundaries. Both of these clauses were removed by the Twelfth Amendment, at the same time as many provincial boundaries were altered. Formal title. The official short title of the amendment is \"Constitution Third Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Second Amendment Act, 1998\" and numbered as Act No. 87 of 1997, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 1265, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2120574", "title": "Constitution of the Democratic Republic of the Congo", "score": 18.98075433434489, "snippet": "A transitional constitution was then promulgated in April 1994. A Constitutional Act was promulgated in May 1997; draft constitution was proposed but not finalized in March 1998. From April 2, 2003, the country was under a Transition Constitution, which was established as a result of the 2002 Global and Inclusive Agreement of Sun City, South Africa that ended the Second Congo War. This document was in effect until the current constitution came into force on February 18, 2006. References.", "text_characters": 492, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2050692", "title": "National Prosecuting Authority Act, 1998", "score": 18.762644902264412, "snippet": "South African legislation The National Prosecuting Authority Act, 1998 (Act No. 32 of 1998) is an act of the Parliament of South Africa which established the National Prosecuting Authority (NPA). The creation of the NPA was required by section 179 of the Constitution of South Africa, which came into force in February 1997. Prior to the passage of the NPA Act, public prosecutions were under the direction of the attorneys-general, with a separate attorney-general appointed by the President for each division of the High Court. The offices of the attorneys-general were merged into a centralised National Prosecuting Authority headed by the National Director of Public Prosecutions, and the various attorneys-general became Directors of Public Prosecutions. The NPA was established as a single national prosecuting authority in terms of section 179(1) of the Constitution of South Africa 1996, which provides as follows: “(1) There is a single national prosecuting authority in the Republic, structured in terms of an Act of Parliament, and consisting of: a. a National Director of Public Prosecutions, who is the head of the prosecuting authority, and is appointed by the President, as head of the national executive; and b. Directors of Public Prosecutions and prosecutors as determined by an Act of Parliament. (2) The prosecuting authority has the power to institute criminal proceedings on behalf of the state, and to carry out any necessary functions incidental to instituting criminal procee", "text_characters": 2895, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6069644", "title": "Constitution of the Western Cape", "score": 18.59791468427217, "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru", "text_characters": 2873, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10683599", "title": "List of National Assembly members of the 22nd Parliament of South Africa", "score": 18.097264350553132, "snippet": "This article lists the members of the National Assembly of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage, and served until the elections of 2 June 1999. The African National Congress (ANC) won a comfortable majority of 252 seats in the 400-seat legislature. The former governing party, the National Party (NP), became the official opposition. Nelson Mandela was elected unanimously as President of South Africa during the assembly's first sitting on 9 May 1994, which also saw members sworn in to their seats and Frene Ginwala elected as the inaugural Speaker of the National Assembly. As required by the interim Constitution, the ANC formed a Government of National Unity under President Mandela. On 24 May 1994, the first session of the Constitutional Assembly was held, comprising the joint membership of the National Assembly and the Senate. The Constitutional Assembly, chaired by Cyril Ramaphosa of the National Assembly, adopted South Africa's post-apartheid Constitution on 8 May 1996. Composition. The table below shows the number of seats won by each party in the elections of 27 April 1994. Members. The following lists the Members of the National Assembly as of 3 June 1998. Former Members. The following lists former Members of the National Assembly who were elected in the April 1994 election, but who left their seats before 3 June 1998.", "text_characters": 1512, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10683621", "title": "List of National Council of Provinces members of the 22nd Parliament of South Africa", "score": 17.869790493600256, "snippet": "This article lists the members of the Senate of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage. Upon the introduction of the new Constitution of South Africa in 1997, the Senate was replaced by the National Council of Provinces. Members of the Senate. The following lists the Members of the Senate as elected in April 1994 and does not consider subsequent changes in membership. Delegates to the National Council of Provinces. The following lists the permanent delegates to the National Council of Provinces as of 13 November 1998. At that time, Mosiuoa Lekota was the Chairperson of the National Council of Provinces, with Naledi Pandor as his permanent deputy. Mathews Phosa held the second deputy chair, which rotated annually, for 1998.", "text_characters": 887, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790166", "title": "Constitution of South Africa", "score": 17.76627977183775, "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on", "text_characters": 2749, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8725050", "title": "Accord on Afrikaner self-determination", "score": 17.300363656289516, "snippet": "The new 1996 constitution of South Africa acknowledges the right of self-determination of separate cultural and linguistic groups: Before implemented, this article - and the whole new constitution - was reviewed by the Constitutional Court of South Africa. The Constitutional Court used the 34 constitutional principles as the basis for this review. Moosa-declaration. On 5 June 1998 Valli Moosa, the then minister of Constitutional Development (ANC), said during a parliamentary debate that: Orania. During the rupture of the Afrikaner Volksfront the more moderate Volkstaters left the Afrikaner Volksfront and established the Freedom Front. The main founders of the Freedom Front were Constand Viljoen, Pieter Mulder and Carel Boshoff. Boshoff was also the leader of the Afrikaner town of Orania, although the town is not a signatory of the Accord on Afrikaner self-determination. Since 2000 there have been negotiations between Orania and the South African and Northern Cape governments about the status of the village. No agreement has been reached and Orania is the only village outside of the municipal structure of South Africa, because it still has its own transitional representative council in place. References.", "text_characters": 1222, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R012_request.json/messages/23/content`；SHA256：`c9469a0c7f232b89165c3fa55bae3d3cec68120fc4f86c13c7d154197c341bef`。
+
+### R12 `/rounds/11/reasoning_content` [0,241)
+
+SHA256：`1c9d282455b8eb43d5755ddafa3581fbe087a005adb4ce02ca0b10acf65a4a8b`；原字段SHA256：`1c9d282455b8eb43d5755ddafa3581fbe087a005adb4ce02ca0b10acf65a4a8b`。
+
+````
+The judgment was handed down in 1998. I need to find the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 number
+</parameter>
+</function>
+</tool_call>
+````
+
+### R12 Call `/rounds/11/tool_calls/0` → Return `/tool_events/11`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998 number\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 number"
+  },
+  "batch_id": "B012",
+  "batch_ordinal": 1,
+  "event_id": "E012",
+  "latency_seconds": 2.973824409302324,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：13；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R013_request.json/messages/25/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R13 `/rounds/12/reasoning_content` [0,814)
+
+SHA256：`240ecb139c0e712680b92dfa43572a6ce7f16839b7d1632702f34165de02dfa1`；原字段SHA256：`240ecb139c0e712680b92dfa43572a6ce7f16839b7d1632702f34165de02dfa1`。
+
+````
+The user is asking for the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down.
+
+From the search results, I found that the judgment was handed down on 14 October 1998. So the year is 1998.
+
+Now I need to find out how many official languages South Africa had in 1998.
+
+The official languages of South Africa were established by the 1996 Constitution, which came into effect on 4 February 1997. The 1996 Constitution recognized 11 official languages.
+
+Let me search for information about the official languages of South Africa in 1998 or the 1996 Constitution.
+
+<tool_call>
+<function=search>
+<parameter=query>
+official languages South Africa 1996 Constitution 11
+</parameter>
+</function>
+</tool_call>
+````
+
+### R13 Call `/rounds/12/tool_calls/0` → Return `/tool_events/12`
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1996 Constitution 11"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nofficial languages South Africa 1996 Constitution 11\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1996 Constitution 11"
+  },
+  "batch_id": "B013",
+  "batch_ordinal": 1,
+  "event_id": "E013",
+  "latency_seconds": 2.309748839121312,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3033352",
+        "score": 16.901528715414447,
+        "snippet": "Fundamental law of Thailand from 1997 to 2006; landmark of Thai democratic reform The Constitution of the Kingdom of Thailand, Buddhist Era 2540 (1997) (, ) was a constitution of Thailand enacted on 11 October 1997 to replace the 1991 Constitution, and was widely hailed as a landmark in Thai democratic constitutional reform, it represented the most democratic constitution in the nation's history. The Constituent assembly was elected by the National Assembly (Thailand) on 26 December 1996, shortly after 1996 Thai general election. The 1997 constitution was the first constitution to be drafted by a popularly elected Constitutional Drafting Assembly, hence was popularly called the \"People's Constitution\". The 1997 constitution created a bicameral legislature. For the first time in Thai history, both houses were directly elected. Many human rights are explicitly acknowledged in the text, and measures were established to increase the stability of elected governments. The Constitution was repealed by the Council for Democratic Reform on 19 September 2006 following a successful military coup, and was replaced by the 2006 Constitution on 1 October 2006. Constitution drafting process. The \"Black May\" public uprising against a military-dominated government that gained power due to the 1991 Constitution provoked public calls for a more accountable system of government. In June 1994, the Committee of Democracy Development of the House of Representatives was established during the governm",
+        "text_characters": 2981,
+        "title": "1997 constitution of Thailand"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6069644",
+        "score": 16.380549408487816,
+        "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru",
+        "text_characters": 2873,
+        "title": "Constitution of the Western Cape"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4268999",
+        "score": 16.295524795033153,
+        "snippet": "Parliamentary elections were held in the Gambia on 2 January 1997 three months after presidential elections. The first parliamentary elections since Yahya Jammeh's 1994 coup, they were also the first parliamentary elections to be held under the new constitution approved in a 1996 referendum. However, Decree 89 meant that pre-1994 parties (such as the former ruling People's Progressive Party) were still banned. Freedom House characterized the election as \"deeply flawed.\" The elections were originally scheduled for 11 December 1996, but following an attack on military barracks at Farafenni at the start of November, they were postponed, and all political rallies were banned. Jammeh's Alliance for Patriotic Reorientation and Construction won 33 of the 45 elected seats, enough to change the constitution. References.",
+        "text_characters": 822,
+        "title": "1997 Gambian parliamentary election"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2989131",
+        "score": 16.068347320988224,
+        "snippet": "The constitution allowed Suchinda Kraprayoon to be appointed as prime minister, which led to a violent public uprising in May 1992 that brought down the government. 1997 constitution. The 1997 constitution was widely hailed as a landmark in democratic political reform. Promulgated on 11 October 1997, it was the first constitution to be drafted by an elected assembly, and hence was popularly called the \"people's constitution\". The constitution drafting process. The \"Black May\" public uprising against the NPKC-dominated government that arose due to the 1991 constitution provoked public calls for a more accountable system of government. In June 1994, the Prawase Wasi-led House Committee for Democracy Development amended the 1991 constitution, but was unable to push through significant reform. After the collapse of the Chuan government, the 1995-1996 government of Banharn Silpa-archa amended the 1991 constitution again on 22 October 1996. The 1996 amendment called for the creation of an entirely new constitution by a 99-member Constitution Drafting Assembly (CDA). Seventy-six members would be directly elected from each province and 23 members would be selected by parliament. Anand Panyarachun, PM in 1991 under the military regime, was elected as a member of the CDA and appointed Chairman of the Drafting Committee. Political scientists and jurists Chai-Anan Samudavanija, Amorn Chantarasomboon, Uthai Pimchaichon, and Borwornsak Uwanno played key roles in the assembly. Public consul",
+        "text_characters": 3008,
+        "title": "Constitution of Thailand"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10473617",
+        "score": 15.58475121760528,
+        "snippet": "Members of Punjab Legislative Assembly 1997 Punjab Legislative Assembly election for the constitution of the Eleventh Legislative Assembly of Punjab was held in the Indian state of Punjab. The term of the tenth Punjab assembly ended with its dissolution on 11 March 1996. The dissolution was necessitated after the results of the election was declared. References.",
+        "text_characters": 364,
+        "title": "11th Punjab Assembly"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3259608",
+        "score": 15.584448799730954,
+        "snippet": "Armenian politician (born 1948) Gagik Garushi Harutyunyan (; born 23 March 1948) is an Armenian politician and jurist who served as the president of the Constitutional Court of Armenia from 1996 to 2018. He served as Prime Minister of Armenia from 22 November 1991 to 30 July 1992. Harutyunyan was elected as Vice President of Levon Ter-Petrossian and served from 11 November 1991 until February 1996, when the post was abolished by the new constitution. As replacement, the National Assembly elected him as the president of the center of constitutional law of Armenia. References.",
+        "text_characters": 581,
+        "title": "Gagik Harutyunyan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10131960",
+        "score": 15.236444485531429,
+        "snippet": "The Constitution of Kyrgyzstan (; ) is the supreme law of the Kyrgyz Republic. Kyrgyzstan first got a constitution in 1993, a year and a half after the country had gained independence from the Soviet Union in 1991. It has gone through a few constitutions, with the last one being adopted in April 2021. History. 1993 constitution. The first constitution was adopted on 5 May 1993. The 1993 constitution was amended several times: first on 10 February 1996, then on 2 February 2003, and finally twice in quick succession on 9 November 2006 and 15 January 2007 after the Tulip Revolution of March 2005. The last two amendments were adopted under pressure from protracted public protests in the capital Bishkek, but they were annulled in September 2007 by the Constitutional Court, which restored the 2003 constitution and paved the way for another constitutional referendum in October 2007. 2010 constitution. The Constitution of Kyrgyzstan was the supreme law of the Kyrgyz Republic. The constitution in force from 2010 until 2021 was passed by referendum on June 27, 2010, replacing the previous constitution. It introduced a strong parliament to the country, reducing the power of the historically strong president. The constitution is similar in many ways to the previous one. 2021 constitution. The current constitution of Kyrgyzstan was passed by referendum on 11 April 2021, replacing the 2010 Constitution of Kyrgyzstan. Dubbed the \"khanstitution\" due to its concentration of power in the presi",
+        "text_characters": 1908,
+        "title": "Constitution of Kyrgyzstan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8558115",
+        "score": 15.12775732942723,
+        "snippet": "A constitutional referendum was held in Kyrgyzstan on 11 December 2016. The constitutional amendments were approved by around 80% of voters. Background. The post-independence constitution was introduced in 1993, with modifications made following referendums in 1996, 1998, 2003, 2007 and 2010. However, the current constitution prohibits any amendments being made until 2020. The original version of the 2010 constitution has been lost. Proposed changes. The proposed changes to the constitution were put forward by five parties, and included increasing the powers of the Prime Minister and Supreme Council, as well as making reforms to the judicial system. The proposed reforms also established that marriage could be only \"between a man and a woman\" instead of \"between two persons\"; this was criticized by the Venice Commission of the Council of Europe. Conduct. There were some reports of alleged fraud. Some that political parties had resorted to vote buying and people told that they were offered 500 to 1,000 soms ($7 to $14) per vote. Speaking at a press conference, deputy Interior Minister Almaz Orozaliev reported five such cases (three in the Bishkek and two in the northern Chui region). References.",
+        "text_characters": 1212,
+        "title": "2016 Kyrgyz constitutional referendum"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9176957",
+        "score": 15.124374599490224,
+        "snippet": "Political and socioeconomic beliefs of Gennady Zyuganov Gennady Zyuganov, a member of the State Duma since 1993, leader of the Communist Party and four-time Russian presidential candidate, has taken positions on many political issues through his public comments, his presidential campaign statements, and his voting record. During the 1980s, Zyuganov was an ardent opponent of reforms introduced by Mikhail Gorbachev, such as glasnost and perestroika. As leader of the Communist Party of the Russian Federation Zyuganov has been widely considered to be a nationalist. Constitutional reforms. In his earlier career, Zyuganov opposed strong executive authority. He held a position in which he evoked Lenin's slogan \"all power to the soviets\" in order to illustrate a desire for an executive branch subordinate to the legislature, as is the case in Great Britain. Zyuganov also proposed strengthening legislative control, particularly the role of the legislature in confirming cabinet members. For his 1996 campaign, Zyuganov abandoned his previous stance on executive authority. Instead, Zyuganov adopted a new policy favoring a non-subordinate executive branch. While still rallying against \"excessive\" concentration of executive authority, Zyuganov now expressed his desire for the Russian president to have \"twice\" the power of the French president and \"four times\" that of the American president. Zyuganov's Communist Party had earlier opposed a \"strong presidency\", and Zyuganov criticized the \"ex",
+        "text_characters": 2962,
+        "title": "Political positions of Gennady Zyuganov"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7365314",
+        "score": 15.033698156238138,
+        "snippet": "Fiji's third constitution was called the \"Constitution of the Republic of the Fiji Islands\" and was the supreme law of Fiji from its adoption in 1997 until 2009. It was also suspended for a period following the 2000 \"coup d'état\". Constitutional process. In 1995, a three member Fiji Constitution Review Commission was appointed. Their report was presented to the President Ratu Sir Kamisese Mara on 6 September 1996. The report was subsequently tabled in Parliament, at a joint sitting of the Senate and the House of Representatives, on 11 September. A parliamentary committee, composed of members of both chambers, was established to study the report. Eight months later, the committee tabled its response in Parliament on 14 May 1997, endorsing most of the recommendations. The Great Council of Chiefs, a powerful gathering of mainly high chiefs which, among other prerogatives, elects the President of Fiji, also endorsed the report in June. The Constitution (Amendment) Bill 1997 was passed by the House of Representatives on 3 July that year, and by the Senate on 10 July. President Mara signed it into law on 25 July 1997. It took effect from 27 July. Under its provisions, ethnic Fijians agreed to give up their guaranteed majority in the House of Representatives and their monopoly on the Prime Minister's office, but in return, their ownership of most of the land was written into the constitution. Their rights were also protected by institutionalising of the Great Council of Chiefs, whic",
+        "text_characters": 2745,
+        "title": "Constitution of Fiji"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：14；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:3033352", "title": "1997 constitution of Thailand", "score": 16.901528715414447, "snippet": "Fundamental law of Thailand from 1997 to 2006; landmark of Thai democratic reform The Constitution of the Kingdom of Thailand, Buddhist Era 2540 (1997) (, ) was a constitution of Thailand enacted on 11 October 1997 to replace the 1991 Constitution, and was widely hailed as a landmark in Thai democratic constitutional reform, it represented the most democratic constitution in the nation's history. The Constituent assembly was elected by the National Assembly (Thailand) on 26 December 1996, shortly after 1996 Thai general election. The 1997 constitution was the first constitution to be drafted by a popularly elected Constitutional Drafting Assembly, hence was popularly called the \"People's Constitution\". The 1997 constitution created a bicameral legislature. For the first time in Thai history, both houses were directly elected. Many human rights are explicitly acknowledged in the text, and measures were established to increase the stability of elected governments. The Constitution was repealed by the Council for Democratic Reform on 19 September 2006 following a successful military coup, and was replaced by the 2006 Constitution on 1 October 2006. Constitution drafting process. The \"Black May\" public uprising against a military-dominated government that gained power due to the 1991 Constitution provoked public calls for a more accountable system of government. In June 1994, the Committee of Democracy Development of the House of Representatives was established during the governm", "text_characters": 2981, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6069644", "title": "Constitution of the Western Cape", "score": 16.380549408487816, "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru", "text_characters": 2873, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4268999", "title": "1997 Gambian parliamentary election", "score": 16.295524795033153, "snippet": "Parliamentary elections were held in the Gambia on 2 January 1997 three months after presidential elections. The first parliamentary elections since Yahya Jammeh's 1994 coup, they were also the first parliamentary elections to be held under the new constitution approved in a 1996 referendum. However, Decree 89 meant that pre-1994 parties (such as the former ruling People's Progressive Party) were still banned. Freedom House characterized the election as \"deeply flawed.\" The elections were originally scheduled for 11 December 1996, but following an attack on military barracks at Farafenni at the start of November, they were postponed, and all political rallies were banned. Jammeh's Alliance for Patriotic Reorientation and Construction won 33 of the 45 elected seats, enough to change the constitution. References.", "text_characters": 822, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2989131", "title": "Constitution of Thailand", "score": 16.068347320988224, "snippet": "The constitution allowed Suchinda Kraprayoon to be appointed as prime minister, which led to a violent public uprising in May 1992 that brought down the government. 1997 constitution. The 1997 constitution was widely hailed as a landmark in democratic political reform. Promulgated on 11 October 1997, it was the first constitution to be drafted by an elected assembly, and hence was popularly called the \"people's constitution\". The constitution drafting process. The \"Black May\" public uprising against the NPKC-dominated government that arose due to the 1991 constitution provoked public calls for a more accountable system of government. In June 1994, the Prawase Wasi-led House Committee for Democracy Development amended the 1991 constitution, but was unable to push through significant reform. After the collapse of the Chuan government, the 1995-1996 government of Banharn Silpa-archa amended the 1991 constitution again on 22 October 1996. The 1996 amendment called for the creation of an entirely new constitution by a 99-member Constitution Drafting Assembly (CDA). Seventy-six members would be directly elected from each province and 23 members would be selected by parliament. Anand Panyarachun, PM in 1991 under the military regime, was elected as a member of the CDA and appointed Chairman of the Drafting Committee. Political scientists and jurists Chai-Anan Samudavanija, Amorn Chantarasomboon, Uthai Pimchaichon, and Borwornsak Uwanno played key roles in the assembly. Public consul", "text_characters": 3008, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10473617", "title": "11th Punjab Assembly", "score": 15.58475121760528, "snippet": "Members of Punjab Legislative Assembly 1997 Punjab Legislative Assembly election for the constitution of the Eleventh Legislative Assembly of Punjab was held in the Indian state of Punjab. The term of the tenth Punjab assembly ended with its dissolution on 11 March 1996. The dissolution was necessitated after the results of the election was declared. References.", "text_characters": 364, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3259608", "title": "Gagik Harutyunyan", "score": 15.584448799730954, "snippet": "Armenian politician (born 1948) Gagik Garushi Harutyunyan (; born 23 March 1948) is an Armenian politician and jurist who served as the president of the Constitutional Court of Armenia from 1996 to 2018. He served as Prime Minister of Armenia from 22 November 1991 to 30 July 1992. Harutyunyan was elected as Vice President of Levon Ter-Petrossian and served from 11 November 1991 until February 1996, when the post was abolished by the new constitution. As replacement, the National Assembly elected him as the president of the center of constitutional law of Armenia. References.", "text_characters": 581, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10131960", "title": "Constitution of Kyrgyzstan", "score": 15.236444485531429, "snippet": "The Constitution of Kyrgyzstan (; ) is the supreme law of the Kyrgyz Republic. Kyrgyzstan first got a constitution in 1993, a year and a half after the country had gained independence from the Soviet Union in 1991. It has gone through a few constitutions, with the last one being adopted in April 2021. History. 1993 constitution. The first constitution was adopted on 5 May 1993. The 1993 constitution was amended several times: first on 10 February 1996, then on 2 February 2003, and finally twice in quick succession on 9 November 2006 and 15 January 2007 after the Tulip Revolution of March 2005. The last two amendments were adopted under pressure from protracted public protests in the capital Bishkek, but they were annulled in September 2007 by the Constitutional Court, which restored the 2003 constitution and paved the way for another constitutional referendum in October 2007. 2010 constitution. The Constitution of Kyrgyzstan was the supreme law of the Kyrgyz Republic. The constitution in force from 2010 until 2021 was passed by referendum on June 27, 2010, replacing the previous constitution. It introduced a strong parliament to the country, reducing the power of the historically strong president. The constitution is similar in many ways to the previous one. 2021 constitution. The current constitution of Kyrgyzstan was passed by referendum on 11 April 2021, replacing the 2010 Constitution of Kyrgyzstan. Dubbed the \"khanstitution\" due to its concentration of power in the presi", "text_characters": 1908, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8558115", "title": "2016 Kyrgyz constitutional referendum", "score": 15.12775732942723, "snippet": "A constitutional referendum was held in Kyrgyzstan on 11 December 2016. The constitutional amendments were approved by around 80% of voters. Background. The post-independence constitution was introduced in 1993, with modifications made following referendums in 1996, 1998, 2003, 2007 and 2010. However, the current constitution prohibits any amendments being made until 2020. The original version of the 2010 constitution has been lost. Proposed changes. The proposed changes to the constitution were put forward by five parties, and included increasing the powers of the Prime Minister and Supreme Council, as well as making reforms to the judicial system. The proposed reforms also established that marriage could be only \"between a man and a woman\" instead of \"between two persons\"; this was criticized by the Venice Commission of the Council of Europe. Conduct. There were some reports of alleged fraud. Some that political parties had resorted to vote buying and people told that they were offered 500 to 1,000 soms ($7 to $14) per vote. Speaking at a press conference, deputy Interior Minister Almaz Orozaliev reported five such cases (three in the Bishkek and two in the northern Chui region). References.", "text_characters": 1212, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9176957", "title": "Political positions of Gennady Zyuganov", "score": 15.124374599490224, "snippet": "Political and socioeconomic beliefs of Gennady Zyuganov Gennady Zyuganov, a member of the State Duma since 1993, leader of the Communist Party and four-time Russian presidential candidate, has taken positions on many political issues through his public comments, his presidential campaign statements, and his voting record. During the 1980s, Zyuganov was an ardent opponent of reforms introduced by Mikhail Gorbachev, such as glasnost and perestroika. As leader of the Communist Party of the Russian Federation Zyuganov has been widely considered to be a nationalist. Constitutional reforms. In his earlier career, Zyuganov opposed strong executive authority. He held a position in which he evoked Lenin's slogan \"all power to the soviets\" in order to illustrate a desire for an executive branch subordinate to the legislature, as is the case in Great Britain. Zyuganov also proposed strengthening legislative control, particularly the role of the legislature in confirming cabinet members. For his 1996 campaign, Zyuganov abandoned his previous stance on executive authority. Instead, Zyuganov adopted a new policy favoring a non-subordinate executive branch. While still rallying against \"excessive\" concentration of executive authority, Zyuganov now expressed his desire for the Russian president to have \"twice\" the power of the French president and \"four times\" that of the American president. Zyuganov's Communist Party had earlier opposed a \"strong presidency\", and Zyuganov criticized the \"ex", "text_characters": 2962, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7365314", "title": "Constitution of Fiji", "score": 15.033698156238138, "snippet": "Fiji's third constitution was called the \"Constitution of the Republic of the Fiji Islands\" and was the supreme law of Fiji from its adoption in 1997 until 2009. It was also suspended for a period following the 2000 \"coup d'état\". Constitutional process. In 1995, a three member Fiji Constitution Review Commission was appointed. Their report was presented to the President Ratu Sir Kamisese Mara on 6 September 1996. The report was subsequently tabled in Parliament, at a joint sitting of the Senate and the House of Representatives, on 11 September. A parliamentary committee, composed of members of both chambers, was established to study the report. Eight months later, the committee tabled its response in Parliament on 14 May 1997, endorsing most of the recommendations. The Great Council of Chiefs, a powerful gathering of mainly high chiefs which, among other prerogatives, elects the President of Fiji, also endorsed the report in June. The Constitution (Amendment) Bill 1997 was passed by the House of Representatives on 3 July that year, and by the Senate on 10 July. President Mara signed it into law on 25 July 1997. It took effect from 27 July. Under its provisions, ethnic Fijians agreed to give up their guaranteed majority in the House of Representatives and their monopoly on the Prime Minister's office, but in return, their ownership of most of the land was written into the constitution. Their rights were also protected by institutionalising of the Great Council of Chiefs, whic", "text_characters": 2745, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R014_request.json/messages/27/content`；SHA256：`8fc298acbee5ba2f9ec981456565c165389f599f7e887c373c62c6c13d264a27`。
+
+### R14 `/rounds/13/reasoning_content` [0,524)
+
+SHA256：`aeae23337298a560ac685212bffdc665b6b59b86392a5b38bc5b24a727e0efb2`；原字段SHA256：`aeae23337298a560ac685212bffdc665b6b59b86392a5b38bc5b24a727e0efb2`。
+
+````
+I need to find the number of official languages in South Africa in 1998.
+
+The judgment was handed down on 14 October 1998.
+
+I need to search for information about the official languages of South Africa in 1998.
+
+Let me search for "official languages South Africa 1998" or "South Africa official languages 1996 constitution" since the 1996 constitution established the official languages.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1996 constitution
+</parameter>
+</function>
+</tool_call>
+````
+
+### R14 Call `/rounds/13/tool_calls/0` → Return `/tool_events/13`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 constitution"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1996 constitution\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 constitution"
+  },
+  "batch_id": "B014",
+  "batch_ordinal": 1,
+  "event_id": "E014",
+  "latency_seconds": 37.26381226396188,
+  "name": "search",
+  "observation": {
+    "results": []
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：15；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": []}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R015_request.json/messages/29/content`；SHA256：`6cecb20c79fa62eb775e45270a3cb9f2ca33c6a540c960ca88bb7a1d3700dcb5`。
+
+### R15 `/rounds/14/reasoning_content` [0,212)
+
+SHA256：`21d26b886ec50e938d55361fa186c621e14872722c5837c99cee5aa4616c9620`；原字段SHA256：`21d26b886ec50e938d55361fa186c621e14872722c5837c99cee5aa4616c9620`。
+
+````
+I need to search for the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+number of official languages South Africa 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R15 Call `/rounds/14/tool_calls/0` → Return `/tool_events/14`
+
+````json
+{
+  "arguments": {
+    "query": "number of official languages South Africa 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nnumber of official languages South Africa 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "number of official languages South Africa 1998"
+  },
+  "batch_id": "B015",
+  "batch_ordinal": 1,
+  "event_id": "E015",
+  "latency_seconds": 25.49512303294614,
+  "name": "search",
+  "observation": {
+    "results": []
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：16；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": []}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R016_request.json/messages/31/content`；SHA256：`6cecb20c79fa62eb775e45270a3cb9f2ca33c6a540c960ca88bb7a1d3700dcb5`。
+
+### R16 `/rounds/15/reasoning_content` [0,212)
+
+SHA256：`21d26b886ec50e938d55361fa186c621e14872722c5837c99cee5aa4616c9620`；原字段SHA256：`21d26b886ec50e938d55361fa186c621e14872722c5837c99cee5aa4616c9620`。
+
+````
+I need to search for the number of official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+number of official languages South Africa 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R16 Call `/rounds/15/tool_calls/0` → Return `/tool_events/15`
+
+````json
+{
+  "arguments": {
+    "query": "number of official languages South Africa 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nnumber of official languages South Africa 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "number of official languages South Africa 1998"
+  },
+  "batch_id": "B016",
+  "batch_ordinal": 1,
+  "event_id": "E016",
+  "latency_seconds": 0.9242999898269773,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：17；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R017_request.json/messages/33/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R17 `/rounds/16/reasoning_content` [0,524)
+
+SHA256：`ca5e35b48131fb2e0daddc04b7a1c31542e524640a2aa5839cfd33f93ea62825`；原字段SHA256：`ca5e35b48131fb2e0daddc04b7a1c31542e524640a2aa5839cfd33f93ea62825`。
+
+````
+I need to find the number of official languages in South Africa in 1998.
+
+From my search results, I found that the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down on 14 October 1998.
+
+Now I need to find the number of official languages in South Africa in 1998.
+
+Let me search for information about official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R17 Call `/rounds/16/tool_calls/0` → Return `/tool_events/16`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "batch_id": "B017",
+  "batch_ordinal": 1,
+  "event_id": "E017",
+  "latency_seconds": 6.003858563955873,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7452459",
+        "score": 13.529333615434133,
+        "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.",
+        "text_characters": 527,
+        "title": "1998 FIBA Africa Under-18 Championship"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 13.48934826960824,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6732004",
+        "score": 13.47717990029966,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6740090",
+        "score": 13.47717990029966,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6742547",
+        "score": 13.47717990029966,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6747877",
+        "score": 13.47717990029966,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.",
+        "text_characters": 235,
+        "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728290",
+        "score": 13.454479702150106,
+        "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6728310",
+        "score": 13.454479702150106,
+        "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6729425",
+        "score": 13.454479702150106,
+        "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6730786",
+        "score": 13.454479702150106,
+        "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.",
+        "text_characters": 249,
+        "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：18；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7452459", "title": "1998 FIBA Africa Under-18 Championship", "score": 13.529333615434133, "snippet": "11th iteration of an Africa-based basketball competition, hosted in Egypt The 1998 FIBA Africa Under-18 Championship was the 9th FIBA Africa Under-18 Championship, played under the rules of FIBA, the world governing body for basketball, and the FIBA Africa thereof. The tournament was hosted by Egypt from August 27 to September 3, 1998. Nigeria ended the round-robin tournament with a 5–0 unbeaten record to win their fourth title. Both winner and runner-up qualified for the 1999 FIBA Under-19 World Championship. References.", "text_characters": 527, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 13.48934826960824, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6732004", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool C", "score": 13.47717990029966, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6740090", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool D", "score": 13.47717990029966, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6742547", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool B", "score": 13.47717990029966, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6747877", "title": "1998 Fed Cup Europe/Africa Zone Group II – Pool A", "score": 13.47717990029966, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group II was one of five pools in the Europe/Africa zone of the 1998 Fed Cup. Five teams competed in a round robin competition, with the top team advancing to Group I for 1999. References.", "text_characters": 235, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728290", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool A", "score": 13.454479702150106, "snippet": "Group A of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6728310", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool B", "score": 13.454479702150106, "snippet": "Group B of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6729425", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool C", "score": 13.454479702150106, "snippet": "Group C of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6730786", "title": "1998 Fed Cup Europe/Africa Zone Group I – Pool D", "score": 13.454479702150106, "snippet": "Group D of the 1998 Fed Cup Europe/Africa Zone Group I was one of four pools in the Europe/Africa Zone Group I of the 1998 Fed Cup. Four teams competed in a round robin competition, with the top two teams advancing to the knockout stage. References.", "text_characters": 249, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R018_request.json/messages/35/content`；SHA256：`0e028127e17352819dec44478083c26e0d3853105b8dc170ca29eb8ea7cb2f8f`。
+
+### R18 `/rounds/17/reasoning_content` [0,740)
+
+SHA256：`85354844b7205c179168cdd2640bec1962ae5cfbbebba4f3f7f5431926627a63`；原字段SHA256：`85354844b7205c179168cdd2640bec1962ae5cfbbebba4f3f7f5431926627a63`。
+
+````
+I need to find the number of official languages in South Africa in the year 1998. The judgment "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" was handed down on 14 October 1998.
+
+I know from general knowledge that the official languages of South Africa were established by the 1996 Constitution, which came into effect on 4 February 1997. The 1996 Constitution established 11 official languages in South Africa.
+
+However, I should search for this information in the corpus to verify. Let me search for "official languages South Africa 1998" or "11 official languages South Africa".
+
+<tool_call>
+<function=search>
+<parameter=query>
+official languages South Africa 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R18 Call `/rounds/17/tool_calls/0` → Return `/tool_events/17`
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nofficial languages South Africa 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "official languages South Africa 1998"
+  },
+  "batch_id": "B018",
+  "batch_ordinal": 1,
+  "event_id": "E018",
+  "latency_seconds": 1.9545819191262126,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：19；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R019_request.json/messages/37/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R19 `/rounds/18/reasoning_content` [0,1310)
+
+SHA256：`aebe0310529c59f793f2c89a6122d2cb7e8aa5425db58e2d5a774596b00da2e2`；原字段SHA256：`aebe0310529c59f793f2c89a6122d2cb7e8aa5425db58e2d5a774596b00da2e2`。
+
+````
+The user is asking for the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down.
+
+1.  **Identify the year of the judgment:**
+    *   From the search results, specifically the snippet from `wiki25:6768731` titled "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council": "South African legal case Fedsure Life Assurance Ltd and Others v Greater Johannesburg Transitional Metropolitan Council and Others is an important case in South African law, heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October."
+    *   So, the judgment was handed down in **1998**.
+
+2.  **Determine the number of official languages in South Africa in 1998:**
+    *   I need to search for information about the official languages of South Africa in 1998.
+    *   The 1996 Constitution of South Africa established 11 official languages.
+    *   I need to confirm this fact from the provided corpus.
+    *   Let's search for "official languages South Africa 1996 Constitution" or "11 official languages South Africa".
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1996 Constitution 11
+</parameter>
+</function>
+</tool_call>
+````
+
+### R19 Call `/rounds/18/tool_calls/0` → Return `/tool_events/18`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 Constitution 11"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1996 Constitution 11\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 Constitution 11"
+  },
+  "batch_id": "B019",
+  "batch_ordinal": 1,
+  "event_id": "E019",
+  "latency_seconds": 1.3965723793953657,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3033352",
+        "score": 16.901528715414447,
+        "snippet": "Fundamental law of Thailand from 1997 to 2006; landmark of Thai democratic reform The Constitution of the Kingdom of Thailand, Buddhist Era 2540 (1997) (, ) was a constitution of Thailand enacted on 11 October 1997 to replace the 1991 Constitution, and was widely hailed as a landmark in Thai democratic constitutional reform, it represented the most democratic constitution in the nation's history. The Constituent assembly was elected by the National Assembly (Thailand) on 26 December 1996, shortly after 1996 Thai general election. The 1997 constitution was the first constitution to be drafted by a popularly elected Constitutional Drafting Assembly, hence was popularly called the \"People's Constitution\". The 1997 constitution created a bicameral legislature. For the first time in Thai history, both houses were directly elected. Many human rights are explicitly acknowledged in the text, and measures were established to increase the stability of elected governments. The Constitution was repealed by the Council for Democratic Reform on 19 September 2006 following a successful military coup, and was replaced by the 2006 Constitution on 1 October 2006. Constitution drafting process. The \"Black May\" public uprising against a military-dominated government that gained power due to the 1991 Constitution provoked public calls for a more accountable system of government. In June 1994, the Committee of Democracy Development of the House of Representatives was established during the governm",
+        "text_characters": 2981,
+        "title": "1997 constitution of Thailand"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6069644",
+        "score": 16.380549408487816,
+        "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru",
+        "text_characters": 2873,
+        "title": "Constitution of the Western Cape"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4268999",
+        "score": 16.295524795033153,
+        "snippet": "Parliamentary elections were held in the Gambia on 2 January 1997 three months after presidential elections. The first parliamentary elections since Yahya Jammeh's 1994 coup, they were also the first parliamentary elections to be held under the new constitution approved in a 1996 referendum. However, Decree 89 meant that pre-1994 parties (such as the former ruling People's Progressive Party) were still banned. Freedom House characterized the election as \"deeply flawed.\" The elections were originally scheduled for 11 December 1996, but following an attack on military barracks at Farafenni at the start of November, they were postponed, and all political rallies were banned. Jammeh's Alliance for Patriotic Reorientation and Construction won 33 of the 45 elected seats, enough to change the constitution. References.",
+        "text_characters": 822,
+        "title": "1997 Gambian parliamentary election"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2989131",
+        "score": 16.068347320988224,
+        "snippet": "The constitution allowed Suchinda Kraprayoon to be appointed as prime minister, which led to a violent public uprising in May 1992 that brought down the government. 1997 constitution. The 1997 constitution was widely hailed as a landmark in democratic political reform. Promulgated on 11 October 1997, it was the first constitution to be drafted by an elected assembly, and hence was popularly called the \"people's constitution\". The constitution drafting process. The \"Black May\" public uprising against the NPKC-dominated government that arose due to the 1991 constitution provoked public calls for a more accountable system of government. In June 1994, the Prawase Wasi-led House Committee for Democracy Development amended the 1991 constitution, but was unable to push through significant reform. After the collapse of the Chuan government, the 1995-1996 government of Banharn Silpa-archa amended the 1991 constitution again on 22 October 1996. The 1996 amendment called for the creation of an entirely new constitution by a 99-member Constitution Drafting Assembly (CDA). Seventy-six members would be directly elected from each province and 23 members would be selected by parliament. Anand Panyarachun, PM in 1991 under the military regime, was elected as a member of the CDA and appointed Chairman of the Drafting Committee. Political scientists and jurists Chai-Anan Samudavanija, Amorn Chantarasomboon, Uthai Pimchaichon, and Borwornsak Uwanno played key roles in the assembly. Public consul",
+        "text_characters": 3008,
+        "title": "Constitution of Thailand"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10473617",
+        "score": 15.58475121760528,
+        "snippet": "Members of Punjab Legislative Assembly 1997 Punjab Legislative Assembly election for the constitution of the Eleventh Legislative Assembly of Punjab was held in the Indian state of Punjab. The term of the tenth Punjab assembly ended with its dissolution on 11 March 1996. The dissolution was necessitated after the results of the election was declared. References.",
+        "text_characters": 364,
+        "title": "11th Punjab Assembly"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3259608",
+        "score": 15.584448799730954,
+        "snippet": "Armenian politician (born 1948) Gagik Garushi Harutyunyan (; born 23 March 1948) is an Armenian politician and jurist who served as the president of the Constitutional Court of Armenia from 1996 to 2018. He served as Prime Minister of Armenia from 22 November 1991 to 30 July 1992. Harutyunyan was elected as Vice President of Levon Ter-Petrossian and served from 11 November 1991 until February 1996, when the post was abolished by the new constitution. As replacement, the National Assembly elected him as the president of the center of constitutional law of Armenia. References.",
+        "text_characters": 581,
+        "title": "Gagik Harutyunyan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10131960",
+        "score": 15.236444485531429,
+        "snippet": "The Constitution of Kyrgyzstan (; ) is the supreme law of the Kyrgyz Republic. Kyrgyzstan first got a constitution in 1993, a year and a half after the country had gained independence from the Soviet Union in 1991. It has gone through a few constitutions, with the last one being adopted in April 2021. History. 1993 constitution. The first constitution was adopted on 5 May 1993. The 1993 constitution was amended several times: first on 10 February 1996, then on 2 February 2003, and finally twice in quick succession on 9 November 2006 and 15 January 2007 after the Tulip Revolution of March 2005. The last two amendments were adopted under pressure from protracted public protests in the capital Bishkek, but they were annulled in September 2007 by the Constitutional Court, which restored the 2003 constitution and paved the way for another constitutional referendum in October 2007. 2010 constitution. The Constitution of Kyrgyzstan was the supreme law of the Kyrgyz Republic. The constitution in force from 2010 until 2021 was passed by referendum on June 27, 2010, replacing the previous constitution. It introduced a strong parliament to the country, reducing the power of the historically strong president. The constitution is similar in many ways to the previous one. 2021 constitution. The current constitution of Kyrgyzstan was passed by referendum on 11 April 2021, replacing the 2010 Constitution of Kyrgyzstan. Dubbed the \"khanstitution\" due to its concentration of power in the presi",
+        "text_characters": 1908,
+        "title": "Constitution of Kyrgyzstan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8558115",
+        "score": 15.12775732942723,
+        "snippet": "A constitutional referendum was held in Kyrgyzstan on 11 December 2016. The constitutional amendments were approved by around 80% of voters. Background. The post-independence constitution was introduced in 1993, with modifications made following referendums in 1996, 1998, 2003, 2007 and 2010. However, the current constitution prohibits any amendments being made until 2020. The original version of the 2010 constitution has been lost. Proposed changes. The proposed changes to the constitution were put forward by five parties, and included increasing the powers of the Prime Minister and Supreme Council, as well as making reforms to the judicial system. The proposed reforms also established that marriage could be only \"between a man and a woman\" instead of \"between two persons\"; this was criticized by the Venice Commission of the Council of Europe. Conduct. There were some reports of alleged fraud. Some that political parties had resorted to vote buying and people told that they were offered 500 to 1,000 soms ($7 to $14) per vote. Speaking at a press conference, deputy Interior Minister Almaz Orozaliev reported five such cases (three in the Bishkek and two in the northern Chui region). References.",
+        "text_characters": 1212,
+        "title": "2016 Kyrgyz constitutional referendum"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9176957",
+        "score": 15.124374599490224,
+        "snippet": "Political and socioeconomic beliefs of Gennady Zyuganov Gennady Zyuganov, a member of the State Duma since 1993, leader of the Communist Party and four-time Russian presidential candidate, has taken positions on many political issues through his public comments, his presidential campaign statements, and his voting record. During the 1980s, Zyuganov was an ardent opponent of reforms introduced by Mikhail Gorbachev, such as glasnost and perestroika. As leader of the Communist Party of the Russian Federation Zyuganov has been widely considered to be a nationalist. Constitutional reforms. In his earlier career, Zyuganov opposed strong executive authority. He held a position in which he evoked Lenin's slogan \"all power to the soviets\" in order to illustrate a desire for an executive branch subordinate to the legislature, as is the case in Great Britain. Zyuganov also proposed strengthening legislative control, particularly the role of the legislature in confirming cabinet members. For his 1996 campaign, Zyuganov abandoned his previous stance on executive authority. Instead, Zyuganov adopted a new policy favoring a non-subordinate executive branch. While still rallying against \"excessive\" concentration of executive authority, Zyuganov now expressed his desire for the Russian president to have \"twice\" the power of the French president and \"four times\" that of the American president. Zyuganov's Communist Party had earlier opposed a \"strong presidency\", and Zyuganov criticized the \"ex",
+        "text_characters": 2962,
+        "title": "Political positions of Gennady Zyuganov"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7365314",
+        "score": 15.033698156238138,
+        "snippet": "Fiji's third constitution was called the \"Constitution of the Republic of the Fiji Islands\" and was the supreme law of Fiji from its adoption in 1997 until 2009. It was also suspended for a period following the 2000 \"coup d'état\". Constitutional process. In 1995, a three member Fiji Constitution Review Commission was appointed. Their report was presented to the President Ratu Sir Kamisese Mara on 6 September 1996. The report was subsequently tabled in Parliament, at a joint sitting of the Senate and the House of Representatives, on 11 September. A parliamentary committee, composed of members of both chambers, was established to study the report. Eight months later, the committee tabled its response in Parliament on 14 May 1997, endorsing most of the recommendations. The Great Council of Chiefs, a powerful gathering of mainly high chiefs which, among other prerogatives, elects the President of Fiji, also endorsed the report in June. The Constitution (Amendment) Bill 1997 was passed by the House of Representatives on 3 July that year, and by the Senate on 10 July. President Mara signed it into law on 25 July 1997. It took effect from 27 July. Under its provisions, ethnic Fijians agreed to give up their guaranteed majority in the House of Representatives and their monopoly on the Prime Minister's office, but in return, their ownership of most of the land was written into the constitution. Their rights were also protected by institutionalising of the Great Council of Chiefs, whic",
+        "text_characters": 2745,
+        "title": "Constitution of Fiji"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：20；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:3033352", "title": "1997 constitution of Thailand", "score": 16.901528715414447, "snippet": "Fundamental law of Thailand from 1997 to 2006; landmark of Thai democratic reform The Constitution of the Kingdom of Thailand, Buddhist Era 2540 (1997) (, ) was a constitution of Thailand enacted on 11 October 1997 to replace the 1991 Constitution, and was widely hailed as a landmark in Thai democratic constitutional reform, it represented the most democratic constitution in the nation's history. The Constituent assembly was elected by the National Assembly (Thailand) on 26 December 1996, shortly after 1996 Thai general election. The 1997 constitution was the first constitution to be drafted by a popularly elected Constitutional Drafting Assembly, hence was popularly called the \"People's Constitution\". The 1997 constitution created a bicameral legislature. For the first time in Thai history, both houses were directly elected. Many human rights are explicitly acknowledged in the text, and measures were established to increase the stability of elected governments. The Constitution was repealed by the Council for Democratic Reform on 19 September 2006 following a successful military coup, and was replaced by the 2006 Constitution on 1 October 2006. Constitution drafting process. The \"Black May\" public uprising against a military-dominated government that gained power due to the 1991 Constitution provoked public calls for a more accountable system of government. In June 1994, the Committee of Democracy Development of the House of Representatives was established during the governm", "text_characters": 2981, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6069644", "title": "Constitution of the Western Cape", "score": 16.380549408487816, "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru", "text_characters": 2873, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4268999", "title": "1997 Gambian parliamentary election", "score": 16.295524795033153, "snippet": "Parliamentary elections were held in the Gambia on 2 January 1997 three months after presidential elections. The first parliamentary elections since Yahya Jammeh's 1994 coup, they were also the first parliamentary elections to be held under the new constitution approved in a 1996 referendum. However, Decree 89 meant that pre-1994 parties (such as the former ruling People's Progressive Party) were still banned. Freedom House characterized the election as \"deeply flawed.\" The elections were originally scheduled for 11 December 1996, but following an attack on military barracks at Farafenni at the start of November, they were postponed, and all political rallies were banned. Jammeh's Alliance for Patriotic Reorientation and Construction won 33 of the 45 elected seats, enough to change the constitution. References.", "text_characters": 822, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2989131", "title": "Constitution of Thailand", "score": 16.068347320988224, "snippet": "The constitution allowed Suchinda Kraprayoon to be appointed as prime minister, which led to a violent public uprising in May 1992 that brought down the government. 1997 constitution. The 1997 constitution was widely hailed as a landmark in democratic political reform. Promulgated on 11 October 1997, it was the first constitution to be drafted by an elected assembly, and hence was popularly called the \"people's constitution\". The constitution drafting process. The \"Black May\" public uprising against the NPKC-dominated government that arose due to the 1991 constitution provoked public calls for a more accountable system of government. In June 1994, the Prawase Wasi-led House Committee for Democracy Development amended the 1991 constitution, but was unable to push through significant reform. After the collapse of the Chuan government, the 1995-1996 government of Banharn Silpa-archa amended the 1991 constitution again on 22 October 1996. The 1996 amendment called for the creation of an entirely new constitution by a 99-member Constitution Drafting Assembly (CDA). Seventy-six members would be directly elected from each province and 23 members would be selected by parliament. Anand Panyarachun, PM in 1991 under the military regime, was elected as a member of the CDA and appointed Chairman of the Drafting Committee. Political scientists and jurists Chai-Anan Samudavanija, Amorn Chantarasomboon, Uthai Pimchaichon, and Borwornsak Uwanno played key roles in the assembly. Public consul", "text_characters": 3008, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10473617", "title": "11th Punjab Assembly", "score": 15.58475121760528, "snippet": "Members of Punjab Legislative Assembly 1997 Punjab Legislative Assembly election for the constitution of the Eleventh Legislative Assembly of Punjab was held in the Indian state of Punjab. The term of the tenth Punjab assembly ended with its dissolution on 11 March 1996. The dissolution was necessitated after the results of the election was declared. References.", "text_characters": 364, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3259608", "title": "Gagik Harutyunyan", "score": 15.584448799730954, "snippet": "Armenian politician (born 1948) Gagik Garushi Harutyunyan (; born 23 March 1948) is an Armenian politician and jurist who served as the president of the Constitutional Court of Armenia from 1996 to 2018. He served as Prime Minister of Armenia from 22 November 1991 to 30 July 1992. Harutyunyan was elected as Vice President of Levon Ter-Petrossian and served from 11 November 1991 until February 1996, when the post was abolished by the new constitution. As replacement, the National Assembly elected him as the president of the center of constitutional law of Armenia. References.", "text_characters": 581, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10131960", "title": "Constitution of Kyrgyzstan", "score": 15.236444485531429, "snippet": "The Constitution of Kyrgyzstan (; ) is the supreme law of the Kyrgyz Republic. Kyrgyzstan first got a constitution in 1993, a year and a half after the country had gained independence from the Soviet Union in 1991. It has gone through a few constitutions, with the last one being adopted in April 2021. History. 1993 constitution. The first constitution was adopted on 5 May 1993. The 1993 constitution was amended several times: first on 10 February 1996, then on 2 February 2003, and finally twice in quick succession on 9 November 2006 and 15 January 2007 after the Tulip Revolution of March 2005. The last two amendments were adopted under pressure from protracted public protests in the capital Bishkek, but they were annulled in September 2007 by the Constitutional Court, which restored the 2003 constitution and paved the way for another constitutional referendum in October 2007. 2010 constitution. The Constitution of Kyrgyzstan was the supreme law of the Kyrgyz Republic. The constitution in force from 2010 until 2021 was passed by referendum on June 27, 2010, replacing the previous constitution. It introduced a strong parliament to the country, reducing the power of the historically strong president. The constitution is similar in many ways to the previous one. 2021 constitution. The current constitution of Kyrgyzstan was passed by referendum on 11 April 2021, replacing the 2010 Constitution of Kyrgyzstan. Dubbed the \"khanstitution\" due to its concentration of power in the presi", "text_characters": 1908, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8558115", "title": "2016 Kyrgyz constitutional referendum", "score": 15.12775732942723, "snippet": "A constitutional referendum was held in Kyrgyzstan on 11 December 2016. The constitutional amendments were approved by around 80% of voters. Background. The post-independence constitution was introduced in 1993, with modifications made following referendums in 1996, 1998, 2003, 2007 and 2010. However, the current constitution prohibits any amendments being made until 2020. The original version of the 2010 constitution has been lost. Proposed changes. The proposed changes to the constitution were put forward by five parties, and included increasing the powers of the Prime Minister and Supreme Council, as well as making reforms to the judicial system. The proposed reforms also established that marriage could be only \"between a man and a woman\" instead of \"between two persons\"; this was criticized by the Venice Commission of the Council of Europe. Conduct. There were some reports of alleged fraud. Some that political parties had resorted to vote buying and people told that they were offered 500 to 1,000 soms ($7 to $14) per vote. Speaking at a press conference, deputy Interior Minister Almaz Orozaliev reported five such cases (three in the Bishkek and two in the northern Chui region). References.", "text_characters": 1212, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9176957", "title": "Political positions of Gennady Zyuganov", "score": 15.124374599490224, "snippet": "Political and socioeconomic beliefs of Gennady Zyuganov Gennady Zyuganov, a member of the State Duma since 1993, leader of the Communist Party and four-time Russian presidential candidate, has taken positions on many political issues through his public comments, his presidential campaign statements, and his voting record. During the 1980s, Zyuganov was an ardent opponent of reforms introduced by Mikhail Gorbachev, such as glasnost and perestroika. As leader of the Communist Party of the Russian Federation Zyuganov has been widely considered to be a nationalist. Constitutional reforms. In his earlier career, Zyuganov opposed strong executive authority. He held a position in which he evoked Lenin's slogan \"all power to the soviets\" in order to illustrate a desire for an executive branch subordinate to the legislature, as is the case in Great Britain. Zyuganov also proposed strengthening legislative control, particularly the role of the legislature in confirming cabinet members. For his 1996 campaign, Zyuganov abandoned his previous stance on executive authority. Instead, Zyuganov adopted a new policy favoring a non-subordinate executive branch. While still rallying against \"excessive\" concentration of executive authority, Zyuganov now expressed his desire for the Russian president to have \"twice\" the power of the French president and \"four times\" that of the American president. Zyuganov's Communist Party had earlier opposed a \"strong presidency\", and Zyuganov criticized the \"ex", "text_characters": 2962, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7365314", "title": "Constitution of Fiji", "score": 15.033698156238138, "snippet": "Fiji's third constitution was called the \"Constitution of the Republic of the Fiji Islands\" and was the supreme law of Fiji from its adoption in 1997 until 2009. It was also suspended for a period following the 2000 \"coup d'état\". Constitutional process. In 1995, a three member Fiji Constitution Review Commission was appointed. Their report was presented to the President Ratu Sir Kamisese Mara on 6 September 1996. The report was subsequently tabled in Parliament, at a joint sitting of the Senate and the House of Representatives, on 11 September. A parliamentary committee, composed of members of both chambers, was established to study the report. Eight months later, the committee tabled its response in Parliament on 14 May 1997, endorsing most of the recommendations. The Great Council of Chiefs, a powerful gathering of mainly high chiefs which, among other prerogatives, elects the President of Fiji, also endorsed the report in June. The Constitution (Amendment) Bill 1997 was passed by the House of Representatives on 3 July that year, and by the Senate on 10 July. President Mara signed it into law on 25 July 1997. It took effect from 27 July. Under its provisions, ethnic Fijians agreed to give up their guaranteed majority in the House of Representatives and their monopoly on the Prime Minister's office, but in return, their ownership of most of the land was written into the constitution. Their rights were also protected by institutionalising of the Great Council of Chiefs, whic", "text_characters": 2745, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R020_request.json/messages/39/content`；SHA256：`8fc298acbee5ba2f9ec981456565c165389f599f7e887c373c62c6c13d264a27`。
+
+### R20 `/rounds/19/reasoning_content` [0,803)
+
+SHA256：`36cb48107a0747816f3146054dc1b87b119f175178f7a8c8ed31b2a8356a1599`；原字段SHA256：`36cb48107a0747816f3146054dc1b87b119f175178f7a8c8ed31b2a8356a1599`。
+
+````
+The user is asking for the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down.
+
+From the search results, I found that the judgment was handed down on 14 October 1998 (from the document "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" which states: "heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October").
+
+So the year is 1998.
+
+Now I need to find out how many official languages South Africa had in 1998.
+
+Let me search for information about official languages in South Africa in 1998.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998
+</parameter>
+</function>
+</tool_call>
+````
+
+### R20 Call `/rounds/19/tool_calls/0` → Return `/tool_events/19`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998"
+  },
+  "batch_id": "B020",
+  "batch_ordinal": 1,
+  "event_id": "E020",
+  "latency_seconds": 2.340403167065233,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7488463",
+        "score": 17.391367977550548,
+        "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.",
+        "text_characters": 1392,
+        "title": "Kerishnie Naicker"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7935801",
+        "score": 17.381071468444702,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.",
+        "text_characters": 720,
+        "title": "South Africa at the 1998 Commonwealth Games"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7177666",
+        "score": 17.217794050458718,
+        "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.",
+        "text_characters": 315,
+        "title": "1998 South Africa rugby union tour of Britain and Ireland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 17.130568690284974,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:74582",
+        "score": 17.07831856085619,
+        "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M",
+        "text_characters": 2213,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10822599",
+        "score": 17.048434135692133,
+        "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.",
+        "text_characters": 912,
+        "title": "1998–99 Southern Africa Tour"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642441",
+        "score": 17.02595928856394,
+        "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.",
+        "text_characters": 455,
+        "title": "South Africa at the 1998 Winter Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1512390",
+        "score": 16.948190975985113,
+        "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.",
+        "text_characters": 506,
+        "title": "1998 in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9779042",
+        "score": 16.843729234576116,
+        "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.",
+        "text_characters": 359,
+        "title": "Prison reform in South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3109455",
+        "score": 16.675580161759967,
+        "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.",
+        "text_characters": 183,
+        "title": "South Africa at the 1998 Winter Olympics"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：21；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:7488463", "title": "Kerishnie Naicker", "score": 17.391367977550548, "snippet": "South African beauty pageant titleholder Kerishnie Naiker is a South African pharmacist and beauty pageant titleholder who was crowned Miss South Africa 1997. Naiker placed Top 5 at Miss World 1998 and later that year, she went on Miss Universe 1998 and placed among the Top 10 finalists. Early life. Kerishnie Naiker grew up in Reservoir Hills, Durban with her parents Amra and Joey, a self-employed businessman and two siblings. She attained an honours degree in pharmacy in 1995 and practiced as a senior pharmacist in hospital and retail pharmacy. During her final year, her father died from a heart attack. She was studying towards her masters in pharmacy practice researching \"The Social and Behavioural Factors Affecting Tuberculosis in South Africa\" in 1997, when she became Miss South Africa. Miss South Africa 1997. Kerishnie Naiker was crowned as \"Miss South Africa 1997\". By entering the election, she intended to bring public attention to the large population of South Africans of Indian ancestry, who are an important part of South Africa's history, identity, culture and population, and to raise awareness on tuberculosis. Upon winning the competition, she became the first South African of Indian descent elected Miss South Africa. She became the eventual winner of the title, gaining the right to represent South Africa in Miss Universe 1998, and Miss World 1998. References.", "text_characters": 1392, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7935801", "title": "South Africa at the 1998 Commonwealth Games", "score": 17.381071468444702, "snippet": "Sporting event delegation South Africa competed at the 1998 Commonwealth Games in Kuala Lumpur, Malaysia from 11 to 21 September 1998. It was South Africa's 8th appearance at the Commonwealth Games. Medalists. The following South African competitors won medals at the games. In the discipline sections below, the medalists' names are bolded. Cricket. South Africa named the below squad for the tournament. Lance Klusener withdrew from the South African squad after sustaining an ankle injury during the third Test of South Africa's tour of England in July. Adam Bacher was also unavailable for the Games, suffering an injury to his shoulder. They were replaced by Alan Dawson and Andrew Hudson, respectively. References.", "text_characters": 720, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7177666", "title": "1998 South Africa rugby union tour of Britain and Ireland", "score": 17.217794050458718, "snippet": "The 1998 South Africa rugby union tour of Britain and Ireland was a series of rugby matches played by the Springboks in November and December 1998. A potential Grand Slam was lost due to the defeat by England in the final Test match. Results. \"Scores and results list South Africa's points tally first.\" References.", "text_characters": 315, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 17.130568690284974, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:74582", "title": "", "score": 17.07831856085619, "snippet": "---\ntitle: First Lady of South Africa - Wikipedia\ndate: 2012-07-30\n---\npost: First Lady\nbody: theRepublic of South Africa\nincumbent: Tshepo Motsepe\nincumbentsince: 15 February 2018\nresidence: Mahlamba Ndlopfu (Pretoria)Genadendal (Cape Town)Dr. John L. Dube House (Durban)\nformation: 31 May 1961\ninaugural: Cornelia Swart\n\nFirst Lady of South Africa is the title held by the wife or most senior wife of the president of South Africa. The title can occasionally be used for the daughter or other female relative of the president.\n\nFirst ladies of South Africa\n\nApartheid era\n\n**Table 1**\n\n| Portrait | First Lady | State President | In Office |\n|---|---|---|---|\n| 100px | Cornelia Swart | Charles Robberts Swart | 1961–1967 |\n| 100px | Lettie Fouché | Jacobus Johannes Fouché | 1968–1975 |\n| | Marga Potgeiter | Nico Diederichs | 1975–1978 |\n| 100px | Martini Vorster | B. J. Vorster | 1978–1979 |\n| | Dorothea Viljoen | Marais Viljoen | 1979–1984 |\n| 100px | Elize Botha | Pieter Willem Botha | 1984–1989 |\n| 100px | Marike de Klerk | F. W. de Klerk | 1989–1994 |\n\nPost-Apartheid era\n\n**Table 2**\n\n| No. | Portrait | First Lady | President | In Office |\n|---|---|---|---|---|\n| 1 | 130px | Zindzi Mandela-Hlongwane(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Zenani Mandela-Dlamini(daughter) | Nelson Mandela | 1994–1998 |\n| 1 | 130px | Graça Machel(married in 1998) | Nelson Mandela | (married in 1998)-1999 |\n| 2 | 130px | Zanele Mbeki | Thabo Mbeki | 1999–2008 |\n| 3 | 130px | Mapula M", "text_characters": 2213, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10822599", "title": "1998–99 Southern Africa Tour", "score": 17.048434135692133, "snippet": "Golf tour season The 1998–99 Southern Africa Tour, titled as the 1998–99 Vodacom Tour for sponsorship reasons, was the 28th season of the Southern Africa Tour, the main professional golf tour in South Africa since it was formed in 1971. It was the second season of the tour under a title sponsorship agreement with Vodacom, that was announced in June 1997. Changes for 1998–99. The season marked the first year in which the South African Open was granted \"flagship event\" status by the Official World Golf Ranking, awarding a minimum of 32 points to the winner. Schedule. The following table lists official events during the 1998–99 season. Unofficial events. The following events were sanctioned by the Southern Africa Tour, but did not carry official money, nor were wins official. Order of Merit. The Order of Merit was based on prize money won during the season, calculated in South African rand. References.", "text_characters": 912, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5642441", "title": "South Africa at the 1998 Winter Paralympics", "score": 17.02595928856394, "snippet": "Sporting event delegation South Africa made its Winter Paralympic Games début at the 1998 Winter Paralympics in Nagano, Japan. The country entered only one athlete, Bruce Warner, who competed in alpine skiing. He did not win any medals. South Africa thus became the second African country ever to compete at the Winter Paralympics, following Uganda in 1976. Alpine skiing. Bruce Warner, South Africa's only representative, entered four events: References.", "text_characters": 455, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1512390", "title": "1998 in South Africa", "score": 16.948190975985113, "snippet": "The following events happened in South Africa in the year 1998. Incumbents. Cabinet. The Cabinet, together with the President and the Deputy President, forms part of the Executive. Sports. Soccer. Bafana Bafana participate in their first ever FIFA World Cup hosted in France, eventually being eliminated in the group stages. Cricket. The South Africa national cricket team wins the 1998 ICC KnockOut Trophy (now ICC Champions Trophy), which is the only ICC trophy the country has won till date. References.", "text_characters": 506, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9779042", "title": "Prison reform in South Africa", "score": 16.843729234576116, "snippet": "3 (2011): 627–43. “Regulation Gazette.\" Section 134. July 30, 2004. \"Correctional Services Act 111 of 1998\". Dullah Omar Institute, 2019. \"South Africa:Prison Reform Legislation in South Africa. South Africa. Africa Criminal Justice Reform\" World Prison Brief. \"South Africa.\" World Prison Brief Data, 2019. https://www.prisonstudies.org/country/south-africa.", "text_characters": 359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3109455", "title": "South Africa at the 1998 Winter Olympics", "score": 16.675580161759967, "snippet": "Sporting event delegation South Africa competed at the 1998 Winter Olympics in Nagano, Japan. Competitors. The following is the list of number of competitors in the Games. References.", "text_characters": 183, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R021_request.json/messages/41/content`；SHA256：`b59153a2e4be98a3637ee29aa7a666cbd29f5c5f629c701c8ed67b9a028a158b`。
+
+### R21 `/rounds/20/reasoning_content` [0,639)
+
+SHA256：`8d6d30a1bd7e375c5581e727b72c83ece06e667fad563a261c26c4f5bb29ddc5`；原字段SHA256：`8d6d30a1bd7e375c5581e727b72c83ece06e667fad563a261c26c4f5bb29ddc5`。
+
+````
+The user is asking for the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down.
+
+From the search results, I found that the judgment was handed down on 14 October 1998.
+
+Now I need to find out how many official languages South Africa had in 1998.
+
+Let me search for information about official languages in South Africa in 1998 or the current constitution which would have been in effect.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1998 Constitution
+</parameter>
+</function>
+</tool_call>
+````
+
+### R21 Call `/rounds/20/tool_calls/0` → Return `/tool_events/20`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 Constitution"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1998 Constitution\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1998 Constitution"
+  },
+  "batch_id": "B021",
+  "batch_ordinal": 1,
+  "event_id": "E021",
+  "latency_seconds": 0.4970074249431491,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5442965",
+        "score": 22.083197628986213,
+        "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 755,
+        "title": "Second Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790167",
+        "score": 21.09839750451639,
+        "snippet": "The Constitution Second Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1998) came into force on 7 October 1998. It had five provisions: Third Amendment. The Constitution Third Amendment Act (formerly the Constitution of the Republic of South Africa Second Amendment Act, 1998) came into force on 30 October 1998. It allowed for municipalities to be established across provincial boundaries by the agreement of the national and the relevant provincial governments. The changes it made were reversed in 2005 by the Twelfth Amendment. Fourth and Fifth Amendments. The Constitution Fourth Amendment Act and Constitution Fifth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1999 and Constitution of the Republic of South Africa Second Amendment Act, 1999) came into force on 19 March 1999. They were passed as two separate amendments because the Fourth contained provisions affecting provincial government, which required the approval of the National Council of Provinces, while the Fifth did not. The Fourth Amendment: The Fifth Amendment: Sixth Amendment. The Constitution Sixth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 2001) came into force on 21 November 2001. Its main effect was to give the title of \"Chief Justice of South Africa\" to the presiding judge of the Constitutional Court of South Africa, who had previously been titled \"President of the Constitutional Court\"",
+        "text_characters": 2982,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5601330",
+        "score": 20.789051173067218,
+        "snippet": "The Third Amendment of the Constitution of South Africa made changes to allow the creation of municipalities that cross provincial boundaries. It was enacted by the Parliament of South Africa, signed by President Mandela on 20 October 1998, and came into force on the 30th of the same month. The changes it made were reversed in 2005 by the Twelfth Amendment. Provisions. The amendment added two clauses to the Constitution. The first allowed municipal boundaries to be established across provincial boundaries by the agreement of the national and the relevant provincial governments, and provided for national legislation to regulate the process. The second provided that in such municipalities, the ward boundaries were not allowed to cross provincial boundaries. Both of these clauses were removed by the Twelfth Amendment, at the same time as many provincial boundaries were altered. Formal title. The official short title of the amendment is \"Constitution Third Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Second Amendment Act, 1998\" and numbered as Act No. 87 of 1997, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.",
+        "text_characters": 1265,
+        "title": "Third Amendment of the Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2120574",
+        "score": 18.98075433434489,
+        "snippet": "A transitional constitution was then promulgated in April 1994. A Constitutional Act was promulgated in May 1997; draft constitution was proposed but not finalized in March 1998. From April 2, 2003, the country was under a Transition Constitution, which was established as a result of the 2002 Global and Inclusive Agreement of Sun City, South Africa that ended the Second Congo War. This document was in effect until the current constitution came into force on February 18, 2006. References.",
+        "text_characters": 492,
+        "title": "Constitution of the Democratic Republic of the Congo"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2050692",
+        "score": 18.762644902264412,
+        "snippet": "South African legislation The National Prosecuting Authority Act, 1998 (Act No. 32 of 1998) is an act of the Parliament of South Africa which established the National Prosecuting Authority (NPA). The creation of the NPA was required by section 179 of the Constitution of South Africa, which came into force in February 1997. Prior to the passage of the NPA Act, public prosecutions were under the direction of the attorneys-general, with a separate attorney-general appointed by the President for each division of the High Court. The offices of the attorneys-general were merged into a centralised National Prosecuting Authority headed by the National Director of Public Prosecutions, and the various attorneys-general became Directors of Public Prosecutions. The NPA was established as a single national prosecuting authority in terms of section 179(1) of the Constitution of South Africa 1996, which provides as follows: “(1) There is a single national prosecuting authority in the Republic, structured in terms of an Act of Parliament, and consisting of: a. a National Director of Public Prosecutions, who is the head of the prosecuting authority, and is appointed by the President, as head of the national executive; and b. Directors of Public Prosecutions and prosecutors as determined by an Act of Parliament. (2) The prosecuting authority has the power to institute criminal proceedings on behalf of the state, and to carry out any necessary functions incidental to instituting criminal procee",
+        "text_characters": 2895,
+        "title": "National Prosecuting Authority Act, 1998"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6069644",
+        "score": 18.59791468427217,
+        "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru",
+        "text_characters": 2873,
+        "title": "Constitution of the Western Cape"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10683599",
+        "score": 18.097264350553132,
+        "snippet": "This article lists the members of the National Assembly of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage, and served until the elections of 2 June 1999. The African National Congress (ANC) won a comfortable majority of 252 seats in the 400-seat legislature. The former governing party, the National Party (NP), became the official opposition. Nelson Mandela was elected unanimously as President of South Africa during the assembly's first sitting on 9 May 1994, which also saw members sworn in to their seats and Frene Ginwala elected as the inaugural Speaker of the National Assembly. As required by the interim Constitution, the ANC formed a Government of National Unity under President Mandela. On 24 May 1994, the first session of the Constitutional Assembly was held, comprising the joint membership of the National Assembly and the Senate. The Constitutional Assembly, chaired by Cyril Ramaphosa of the National Assembly, adopted South Africa's post-apartheid Constitution on 8 May 1996. Composition. The table below shows the number of seats won by each party in the elections of 27 April 1994. Members. The following lists the Members of the National Assembly as of 3 June 1998. Former Members. The following lists former Members of the National Assembly who were elected in the April 1994 election, but who left their seats before 3 June 1998.",
+        "text_characters": 1512,
+        "title": "List of National Assembly members of the 22nd Parliament of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10683621",
+        "score": 17.869790493600256,
+        "snippet": "This article lists the members of the Senate of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage. Upon the introduction of the new Constitution of South Africa in 1997, the Senate was replaced by the National Council of Provinces. Members of the Senate. The following lists the Members of the Senate as elected in April 1994 and does not consider subsequent changes in membership. Delegates to the National Council of Provinces. The following lists the permanent delegates to the National Council of Provinces as of 13 November 1998. At that time, Mosiuoa Lekota was the Chairperson of the National Council of Provinces, with Naledi Pandor as his permanent deputy. Mathews Phosa held the second deputy chair, which rotated annually, for 1998.",
+        "text_characters": 887,
+        "title": "List of National Council of Provinces members of the 22nd Parliament of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790166",
+        "score": 17.76627977183775,
+        "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on",
+        "text_characters": 2749,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8725050",
+        "score": 17.300363656289516,
+        "snippet": "The new 1996 constitution of South Africa acknowledges the right of self-determination of separate cultural and linguistic groups: Before implemented, this article - and the whole new constitution - was reviewed by the Constitutional Court of South Africa. The Constitutional Court used the 34 constitutional principles as the basis for this review. Moosa-declaration. On 5 June 1998 Valli Moosa, the then minister of Constitutional Development (ANC), said during a parliamentary debate that: Orania. During the rupture of the Afrikaner Volksfront the more moderate Volkstaters left the Afrikaner Volksfront and established the Freedom Front. The main founders of the Freedom Front were Constand Viljoen, Pieter Mulder and Carel Boshoff. Boshoff was also the leader of the Afrikaner town of Orania, although the town is not a signatory of the Accord on Afrikaner self-determination. Since 2000 there have been negotiations between Orania and the South African and Northern Cape governments about the status of the village. No agreement has been reached and Orania is the only village outside of the municipal structure of South Africa, because it still has its own transitional representative council in place. References.",
+        "text_characters": 1222,
+        "title": "Accord on Afrikaner self-determination"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：22；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5442965", "title": "Second Amendment of the Constitution of South Africa", "score": 22.083197628986213, "snippet": "The Second Amendment of the Constitution of South Africa extended the terms of municipal councils and made various changes relating to certain independent commissions. It was enacted by the Parliament of South Africa, and signed by President Mandela on 28 September 1998. It came into force on 7 October of the same year. Provisions. The Act made various changes to the Constitution: Formal title. The official short title of the amendment is \"Constitution Second Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Amendment Act, 1998\" and numbered as Act No. 65 of 1998, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 755, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790167", "title": "Constitution of South Africa", "score": 21.09839750451639, "snippet": "The Constitution Second Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1998) came into force on 7 October 1998. It had five provisions: Third Amendment. The Constitution Third Amendment Act (formerly the Constitution of the Republic of South Africa Second Amendment Act, 1998) came into force on 30 October 1998. It allowed for municipalities to be established across provincial boundaries by the agreement of the national and the relevant provincial governments. The changes it made were reversed in 2005 by the Twelfth Amendment. Fourth and Fifth Amendments. The Constitution Fourth Amendment Act and Constitution Fifth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 1999 and Constitution of the Republic of South Africa Second Amendment Act, 1999) came into force on 19 March 1999. They were passed as two separate amendments because the Fourth contained provisions affecting provincial government, which required the approval of the National Council of Provinces, while the Fifth did not. The Fourth Amendment: The Fifth Amendment: Sixth Amendment. The Constitution Sixth Amendment Act (formerly the Constitution of the Republic of South Africa Amendment Act, 2001) came into force on 21 November 2001. Its main effect was to give the title of \"Chief Justice of South Africa\" to the presiding judge of the Constitutional Court of South Africa, who had previously been titled \"President of the Constitutional Court\"", "text_characters": 2982, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5601330", "title": "Third Amendment of the Constitution of South Africa", "score": 20.789051173067218, "snippet": "The Third Amendment of the Constitution of South Africa made changes to allow the creation of municipalities that cross provincial boundaries. It was enacted by the Parliament of South Africa, signed by President Mandela on 20 October 1998, and came into force on the 30th of the same month. The changes it made were reversed in 2005 by the Twelfth Amendment. Provisions. The amendment added two clauses to the Constitution. The first allowed municipal boundaries to be established across provincial boundaries by the agreement of the national and the relevant provincial governments, and provided for national legislation to regulate the process. The second provided that in such municipalities, the ward boundaries were not allowed to cross provincial boundaries. Both of these clauses were removed by the Twelfth Amendment, at the same time as many provincial boundaries were altered. Formal title. The official short title of the amendment is \"Constitution Third Amendment Act of 1998\". It was originally titled \"Constitution of the Republic of South Africa Second Amendment Act, 1998\" and numbered as Act No. 87 of 1997, but the Citation of Constitutional Laws Act, 2005 renamed it and abolished the practice of giving Act numbers to constitutional amendments.", "text_characters": 1265, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2120574", "title": "Constitution of the Democratic Republic of the Congo", "score": 18.98075433434489, "snippet": "A transitional constitution was then promulgated in April 1994. A Constitutional Act was promulgated in May 1997; draft constitution was proposed but not finalized in March 1998. From April 2, 2003, the country was under a Transition Constitution, which was established as a result of the 2002 Global and Inclusive Agreement of Sun City, South Africa that ended the Second Congo War. This document was in effect until the current constitution came into force on February 18, 2006. References.", "text_characters": 492, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2050692", "title": "National Prosecuting Authority Act, 1998", "score": 18.762644902264412, "snippet": "South African legislation The National Prosecuting Authority Act, 1998 (Act No. 32 of 1998) is an act of the Parliament of South Africa which established the National Prosecuting Authority (NPA). The creation of the NPA was required by section 179 of the Constitution of South Africa, which came into force in February 1997. Prior to the passage of the NPA Act, public prosecutions were under the direction of the attorneys-general, with a separate attorney-general appointed by the President for each division of the High Court. The offices of the attorneys-general were merged into a centralised National Prosecuting Authority headed by the National Director of Public Prosecutions, and the various attorneys-general became Directors of Public Prosecutions. The NPA was established as a single national prosecuting authority in terms of section 179(1) of the Constitution of South Africa 1996, which provides as follows: “(1) There is a single national prosecuting authority in the Republic, structured in terms of an Act of Parliament, and consisting of: a. a National Director of Public Prosecutions, who is the head of the prosecuting authority, and is appointed by the President, as head of the national executive; and b. Directors of Public Prosecutions and prosecutors as determined by an Act of Parliament. (2) The prosecuting authority has the power to institute criminal proceedings on behalf of the state, and to carry out any necessary functions incidental to instituting criminal procee", "text_characters": 2895, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6069644", "title": "Constitution of the Western Cape", "score": 18.59791468427217, "snippet": "The Constitution of the Western Cape is, subject to the Constitution of South Africa, the highest law regulating the structure and powers of the government of the Western Cape province of South Africa. It was enacted by the Western Cape Provincial Legislature in terms of Chapter 6 of the national constitution, and came into force on 16 January 1998. The Western Cape is the only South African province to have adopted a constitution. History. The current nine provinces of South Africa were created by the Interim Constitution, which was drawn up during the negotiations to end apartheid. The Interim Constitution included provisions for a provincial legislature to adopt a provincial constitution by a two-thirds vote, but none was successfully adopted under its terms. (A proposed constitution for KwaZulu-Natal was rejected by the Constitutional Court in 1996.) The final (and current) national constitution includes similar provisions, which allow a provincial legislature to adopt a provincial constitution by the vote of two thirds of its members. The process of drawing up a provincial constitution for the Western Cape was initiated in July 1996 by Premier Hernus Kriel, and the final national constitution was still under negotiation. The bill to enact the new constitution was passed by the Provincial Legislature on 21 February 1997 and referred to the Constitutional Court, which determined whether it was consistent with the national constitution, which had come into effect on 4 Febru", "text_characters": 2873, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10683599", "title": "List of National Assembly members of the 22nd Parliament of South Africa", "score": 18.097264350553132, "snippet": "This article lists the members of the National Assembly of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage, and served until the elections of 2 June 1999. The African National Congress (ANC) won a comfortable majority of 252 seats in the 400-seat legislature. The former governing party, the National Party (NP), became the official opposition. Nelson Mandela was elected unanimously as President of South Africa during the assembly's first sitting on 9 May 1994, which also saw members sworn in to their seats and Frene Ginwala elected as the inaugural Speaker of the National Assembly. As required by the interim Constitution, the ANC formed a Government of National Unity under President Mandela. On 24 May 1994, the first session of the Constitutional Assembly was held, comprising the joint membership of the National Assembly and the Senate. The Constitutional Assembly, chaired by Cyril Ramaphosa of the National Assembly, adopted South Africa's post-apartheid Constitution on 8 May 1996. Composition. The table below shows the number of seats won by each party in the elections of 27 April 1994. Members. The following lists the Members of the National Assembly as of 3 June 1998. Former Members. The following lists former Members of the National Assembly who were elected in the April 1994 election, but who left their seats before 3 June 1998.", "text_characters": 1512, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10683621", "title": "List of National Council of Provinces members of the 22nd Parliament of South Africa", "score": 17.869790493600256, "snippet": "This article lists the members of the Senate of South Africa during the 22nd South African Parliament, which sat between 1994 and 1999. Members were elected during the elections of 27 April 1994, South Africa's first under universal suffrage. Upon the introduction of the new Constitution of South Africa in 1997, the Senate was replaced by the National Council of Provinces. Members of the Senate. The following lists the Members of the Senate as elected in April 1994 and does not consider subsequent changes in membership. Delegates to the National Council of Provinces. The following lists the permanent delegates to the National Council of Provinces as of 13 November 1998. At that time, Mosiuoa Lekota was the Chairperson of the National Council of Provinces, with Naledi Pandor as his permanent deputy. Mathews Phosa held the second deputy chair, which rotated annually, for 1998.", "text_characters": 887, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790166", "title": "Constitution of South Africa", "score": 17.76627977183775, "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on", "text_characters": 2749, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8725050", "title": "Accord on Afrikaner self-determination", "score": 17.300363656289516, "snippet": "The new 1996 constitution of South Africa acknowledges the right of self-determination of separate cultural and linguistic groups: Before implemented, this article - and the whole new constitution - was reviewed by the Constitutional Court of South Africa. The Constitutional Court used the 34 constitutional principles as the basis for this review. Moosa-declaration. On 5 June 1998 Valli Moosa, the then minister of Constitutional Development (ANC), said during a parliamentary debate that: Orania. During the rupture of the Afrikaner Volksfront the more moderate Volkstaters left the Afrikaner Volksfront and established the Freedom Front. The main founders of the Freedom Front were Constand Viljoen, Pieter Mulder and Carel Boshoff. Boshoff was also the leader of the Afrikaner town of Orania, although the town is not a signatory of the Accord on Afrikaner self-determination. Since 2000 there have been negotiations between Orania and the South African and Northern Cape governments about the status of the village. No agreement has been reached and Orania is the only village outside of the municipal structure of South Africa, because it still has its own transitional representative council in place. References.", "text_characters": 1222, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R022_request.json/messages/43/content`；SHA256：`c9469a0c7f232b89165c3fa55bae3d3cec68120fc4f86c13c7d154197c341bef`。
+
+### R22 `/rounds/21/reasoning_content` [0,918)
+
+SHA256：`02ee3ba5f635b782e3125ca975263dea30792cc02af09084f63a1aa1002191fc`；原字段SHA256：`02ee3ba5f635b782e3125ca975263dea30792cc02af09084f63a1aa1002191fc`。
+
+````
+The user is asking for the number of official languages in South Africa in the year the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down.
+
+From the search results, I found that the judgment was handed down on 14 October 1998 (from the snippet: "heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October").
+
+So the year is 1998.
+
+Now I need to find out how many official languages South Africa had in 1998.
+
+The current constitution of South Africa (1996) established 11 official languages. This is a well-known fact about South Africa's post-apartheid constitution.
+
+Let me search for information about official languages in South Africa in 1998 or the 1996 Constitution.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1996 constitution 11 languages
+</parameter>
+</function>
+</tool_call>
+````
+
+### R22 Call `/rounds/21/tool_calls/0` → Return `/tool_events/21`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 constitution 11 languages"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1996 constitution 11 languages\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 constitution 11 languages"
+  },
+  "batch_id": "B022",
+  "batch_ordinal": 1,
+  "event_id": "E022",
+  "latency_seconds": 1.5629833419807255,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6881166",
+        "score": 16.876940314409254,
+        "snippet": "Sporting event delegation 40 athletes (29 men and 11 women) from South Africa competed at the 1996 Summer Paralympics in Atlanta, United States and finished 15th on the medal table. References.",
+        "text_characters": 193,
+        "title": "South Africa at the 1996 Summer Paralympics"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8129362",
+        "score": 16.501010779050397,
+        "snippet": "South African cricketer (born 1996) Lwandiswa Zuma (born 11 July 1996) is a South African first-class cricketer. He was included in the Free State cricket team squad for the 2015 Africa T20 Cup. In September 2018, he was named in KwaZulu-Natal Inland's squad for the 2018 Africa T20 Cup. In April 2021, he was named in North West's squad, ahead of the 2021–22 cricket season in South Africa. References.",
+        "text_characters": 403,
+        "title": "Lwandiswa Zuma"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5341675",
+        "score": 16.35603863828226,
+        "snippet": "The FIBA Africa Championship 1995 took place in Algiers, Algeria from December 11 to December 18, 1995. The top country in this FIBA Africa Championship earned the berth allocated to Africa for the 1996 Summer Olympics in Atlanta. Angola won the tournament, the country's 4th consecutive African championship, by beating Senegal in the final. Competing Nations. The following national teams competed: Preliminary rounds. Group A. Day 1 Day 2 Day 3 Day 4 Day 5 Group B. Day 1 Day 2 Day 3 Final standings. Angola qualified for the 1996 Summer Olympics in Atlanta.",
+        "text_characters": 561,
+        "title": "FIBA Africa Championship 1995"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:7004517",
+        "score": 16.342461875878556,
+        "snippet": "Karate competition The 1996 World Karate Championships are the 13th edition of the World Karate Championships, and were held in Sun City, South Africa from 7 to 11 November 1996. References.",
+        "text_characters": 190,
+        "title": "1996 World Karate Championships"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9498144",
+        "score": 15.878280793756389,
+        "snippet": "\"Born in Africa\" is a song recorded by Sweden-based musician and producer Dr. Alban, released in 1996 by Dr. Records and Tempo Records as the second single from Alban's fourth studio album, \"Born in Africa\" (1996). The song was written by Alban with Ari Lehtonen and Jorge Vasconcelo. It peaked at number-one in Finland, number seven in Hungary and number eleven in Sweden, as well as topping the Swedish dance chart, with a total of 11 weeks inside that chart. On the Eurochart Hot 100, \"Born in Africa\" reached number 91 in April 1996. Critical reception. Pan-European magazine \"Music & Media\" wrote, \"It's not often that remixes make a difference, but in this you get two radio hits for the price of one. The original radio version has an up-tempo reggae rhythm and a poppy chorus, while Pierre J's Radio Remix is fast, hard techno with exotic background vocals and dubs.\" Charts. References.",
+        "text_characters": 895,
+        "title": "Born in Africa (song)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5956360",
+        "score": 15.695856852825706,
+        "snippet": "Mexican boxer (born 1969) Alberto Jiménez (born 8 April 1969) is a Mexican former professional boxer who competed from 1988 to 2000. He held the WBO flyweight title from 1995 to 1996, making six title defences. Professional career. In June 1991, Alberto won the Mexican National flyweight title by beating veteran Gonzalo Villalobos. WBC Flyweight Championship. In his first world title attempt, he lost a very disputed twelve round majority decision to Muangchai Kittikasem in Lumpinee Boxing Stadium, Bangkok, Thailand. WBO Flyweight Championship. On February 11, 1995, Jiménez won the WBO flyweight title by upsetting South Africa's Jacob Matlala with an eighth round T.K.O. in Carousel Casino, Hammanskraal, Gauteng, South Africa. References. External links. ! colspan=\"3\" style=\"border-top: 5px solid #FFF179;\" |Achievements February 11, 1995 – December 13, 1996",
+        "text_characters": 867,
+        "title": "Alberto Jiménez (boxer)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9687656",
+        "score": 15.639505354809799,
+        "snippet": "Zone A of the 1995 Davis Cup Europe/Africa Group III was one of two zones in the Europe/Africa Group III of the 1995 Davis Cup. 11 teams competed across two pools in a round robin competition, with the top team in each pool advancing to Group II in 1996. Participating nations. Draw. Group A Group B References.",
+        "text_characters": 311,
+        "title": "1995 Davis Cup Europe/Africa Zone Group III – Zone A"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9045778",
+        "score": 15.546494577957972,
+        "snippet": "South African cricketer (born 1996) Yamkela Oliphant (born 2 April 1996) is a South African cricketer. He made his List A debut for Border in the 2017–18 CSA Provincial One-Day Challenge on 11 March 2018. In September 2018, he was named in South Western Districts' squad for the 2018 Africa T20 Cup. He made his Twenty20 debut for South Western Districts in the 2018 Africa T20 Cup on 15 September 2018. He made his first-class debut for South Western Districts in the 2018–19 CSA 3-Day Provincial Cup on 25 October 2018. References.",
+        "text_characters": 533,
+        "title": "Yamkela Oliphant"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8989586",
+        "score": 15.271711389710186,
+        "snippet": "South African cricketer (born 1996) Fritz de Beer (born 6 July 1996) is a South African cricketer. He made his first-class debut for Boland in the 2017–18 Sunfoil 3-Day Cup on 11 January 2018. He made his List A debut for Boland in the 2017–18 CSA Provincial One-Day Challenge on 14 January 2018. In September 2018, he was named in Boland's squad for the 2018 Africa T20 Cup. He made his Twenty20 debut for Boland in the 2018 Africa T20 Cup on 15 September 2018. In September 2019, he was named in Boland's squad for the 2019–20 CSA Provincial T20 Cup. References.",
+        "text_characters": 564,
+        "title": "Fritz de Beer"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6296862",
+        "score": 15.195465440073669,
+        "snippet": "Municipal elections were held in South Africa in 1995 and 1996. Over 11 000 seats were contested of which the African National Congress won 6 032, the National Party 1 814, the Inkhata Freedom Party 754 and the Democratic Party 138. The elections were held on 1 November 1995 in most of the country, but delayed to 29 May 1996 in the Western Cape and 26 June 1996 in KwaZulu-Natal due to boundary demarcation disputes. References.",
+        "text_characters": 430,
+        "title": "1995–96 South African municipal elections"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：23；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:6881166", "title": "South Africa at the 1996 Summer Paralympics", "score": 16.876940314409254, "snippet": "Sporting event delegation 40 athletes (29 men and 11 women) from South Africa competed at the 1996 Summer Paralympics in Atlanta, United States and finished 15th on the medal table. References.", "text_characters": 193, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8129362", "title": "Lwandiswa Zuma", "score": 16.501010779050397, "snippet": "South African cricketer (born 1996) Lwandiswa Zuma (born 11 July 1996) is a South African first-class cricketer. He was included in the Free State cricket team squad for the 2015 Africa T20 Cup. In September 2018, he was named in KwaZulu-Natal Inland's squad for the 2018 Africa T20 Cup. In April 2021, he was named in North West's squad, ahead of the 2021–22 cricket season in South Africa. References.", "text_characters": 403, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5341675", "title": "FIBA Africa Championship 1995", "score": 16.35603863828226, "snippet": "The FIBA Africa Championship 1995 took place in Algiers, Algeria from December 11 to December 18, 1995. The top country in this FIBA Africa Championship earned the berth allocated to Africa for the 1996 Summer Olympics in Atlanta. Angola won the tournament, the country's 4th consecutive African championship, by beating Senegal in the final. Competing Nations. The following national teams competed: Preliminary rounds. Group A. Day 1 Day 2 Day 3 Day 4 Day 5 Group B. Day 1 Day 2 Day 3 Final standings. Angola qualified for the 1996 Summer Olympics in Atlanta.", "text_characters": 561, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:7004517", "title": "1996 World Karate Championships", "score": 16.342461875878556, "snippet": "Karate competition The 1996 World Karate Championships are the 13th edition of the World Karate Championships, and were held in Sun City, South Africa from 7 to 11 November 1996. References.", "text_characters": 190, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9498144", "title": "Born in Africa (song)", "score": 15.878280793756389, "snippet": "\"Born in Africa\" is a song recorded by Sweden-based musician and producer Dr. Alban, released in 1996 by Dr. Records and Tempo Records as the second single from Alban's fourth studio album, \"Born in Africa\" (1996). The song was written by Alban with Ari Lehtonen and Jorge Vasconcelo. It peaked at number-one in Finland, number seven in Hungary and number eleven in Sweden, as well as topping the Swedish dance chart, with a total of 11 weeks inside that chart. On the Eurochart Hot 100, \"Born in Africa\" reached number 91 in April 1996. Critical reception. Pan-European magazine \"Music & Media\" wrote, \"It's not often that remixes make a difference, but in this you get two radio hits for the price of one. The original radio version has an up-tempo reggae rhythm and a poppy chorus, while Pierre J's Radio Remix is fast, hard techno with exotic background vocals and dubs.\" Charts. References.", "text_characters": 895, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5956360", "title": "Alberto Jiménez (boxer)", "score": 15.695856852825706, "snippet": "Mexican boxer (born 1969) Alberto Jiménez (born 8 April 1969) is a Mexican former professional boxer who competed from 1988 to 2000. He held the WBO flyweight title from 1995 to 1996, making six title defences. Professional career. In June 1991, Alberto won the Mexican National flyweight title by beating veteran Gonzalo Villalobos. WBC Flyweight Championship. In his first world title attempt, he lost a very disputed twelve round majority decision to Muangchai Kittikasem in Lumpinee Boxing Stadium, Bangkok, Thailand. WBO Flyweight Championship. On February 11, 1995, Jiménez won the WBO flyweight title by upsetting South Africa's Jacob Matlala with an eighth round T.K.O. in Carousel Casino, Hammanskraal, Gauteng, South Africa. References. External links. ! colspan=\"3\" style=\"border-top: 5px solid #FFF179;\" |Achievements February 11, 1995 – December 13, 1996", "text_characters": 867, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9687656", "title": "1995 Davis Cup Europe/Africa Zone Group III – Zone A", "score": 15.639505354809799, "snippet": "Zone A of the 1995 Davis Cup Europe/Africa Group III was one of two zones in the Europe/Africa Group III of the 1995 Davis Cup. 11 teams competed across two pools in a round robin competition, with the top team in each pool advancing to Group II in 1996. Participating nations. Draw. Group A Group B References.", "text_characters": 311, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9045778", "title": "Yamkela Oliphant", "score": 15.546494577957972, "snippet": "South African cricketer (born 1996) Yamkela Oliphant (born 2 April 1996) is a South African cricketer. He made his List A debut for Border in the 2017–18 CSA Provincial One-Day Challenge on 11 March 2018. In September 2018, he was named in South Western Districts' squad for the 2018 Africa T20 Cup. He made his Twenty20 debut for South Western Districts in the 2018 Africa T20 Cup on 15 September 2018. He made his first-class debut for South Western Districts in the 2018–19 CSA 3-Day Provincial Cup on 25 October 2018. References.", "text_characters": 533, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8989586", "title": "Fritz de Beer", "score": 15.271711389710186, "snippet": "South African cricketer (born 1996) Fritz de Beer (born 6 July 1996) is a South African cricketer. He made his first-class debut for Boland in the 2017–18 Sunfoil 3-Day Cup on 11 January 2018. He made his List A debut for Boland in the 2017–18 CSA Provincial One-Day Challenge on 14 January 2018. In September 2018, he was named in Boland's squad for the 2018 Africa T20 Cup. He made his Twenty20 debut for Boland in the 2018 Africa T20 Cup on 15 September 2018. In September 2019, he was named in Boland's squad for the 2019–20 CSA Provincial T20 Cup. References.", "text_characters": 564, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6296862", "title": "1995–96 South African municipal elections", "score": 15.195465440073669, "snippet": "Municipal elections were held in South Africa in 1995 and 1996. Over 11 000 seats were contested of which the African National Congress won 6 032, the National Party 1 814, the Inkhata Freedom Party 754 and the Democratic Party 138. The elections were held on 1 November 1995 in most of the country, but delayed to 29 May 1996 in the Western Cape and 26 June 1996 in KwaZulu-Natal due to boundary demarcation disputes. References.", "text_characters": 430, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R023_request.json/messages/45/content`；SHA256：`6ad61f3cd1e6742a34064f41c98b5f3992dfbf4d464bfb5fa732d60bd93a5e3b`。
+
+### R23 `/rounds/22/reasoning_content` [0,641)
+
+SHA256：`d4bd51357c3b116bdd6e885c13db5b1b877ef2243be4004b9075e781d107e729`；原字段SHA256：`d4bd51357c3b116bdd6e885c13db5b1b877ef2243be4004b9075e781d107e729`。
+
+````
+I need to find the number of official languages in South Africa in 1998.
+
+From the search results, I found that the "Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council" judgment was handed down on 14 October 1998.
+
+Now I need to find information about the official languages of South Africa in 1998. The official languages of South Africa were established by the Constitution of South Africa, 1996.
+
+Let me search for information about the official languages of South Africa.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1996 Constitution
+</parameter>
+</function>
+</tool_call>
+````
+
+### R23 Call `/rounds/22/tool_calls/0` → Return `/tool_events/22`
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 Constitution"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nSouth Africa official languages 1996 Constitution\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "South Africa official languages 1996 Constitution"
+  },
+  "batch_id": "B023",
+  "batch_ordinal": 1,
+  "event_id": "E023",
+  "latency_seconds": 0.8343368656933308,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2546557",
+        "score": 21.288772767738937,
+        "snippet": "Laws in South Africa The Constitution of the Republic of South Africa. \"The Constitution of the Republic of South Africa Act\", No. 108 of 1996 is the piece of legislation against which each prior piece of legislation must be judged and if necessary be amended, and it is backdrop which has coloured each subsequent piece of legislation promulgated. It was negotiated after the collapse of the race-based apartheid government and the political redefinition of South Africa. During the negotiations around this change the \"Interim Constitution of the Republic of South Africa Act\", No. 200 of 1993 held the fort, as it were, until the final Constitution of the Republic of South Africa, 1996, was negotiated and promulgated. The Interim Constitution was repealed by the Constitution of the Republic of South Africa, 1996. The Constitution of the Republic of South Africa holds the all important Bill of Rights, sets up the administrative, judicial and political systems and structures, defines provincial and municipal systems and structures, provides for the passing of laws to necessary to enforce aspects of the Constitution, and sets up institutions such as the Human Rights Commission, which are necessary to safeguard the ideals contained in the Constitution. \"The Constitution of the Republic of South Africa Act\", 1996, is very much the torch held up by the population of South Africans as the light to guide them. However, there has increasingly been an increasing number of challenges to the ",
+        "text_characters": 2581,
+        "title": "South African statutes and other legislation"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790160",
+        "score": 21.14944847405922,
+        "snippet": "Supreme and fundamental law of South Africa The Constitution of South Africa is the supreme law of the Republic of South Africa. It provides the legal foundation for the existence of the republic, it sets out the human rights and duties of its citizens, and defines the structure of the Government. The current constitution, the country's fifth, was drawn up by the Parliament elected in 1994 general election. It was promulgated by President Nelson Mandela on 18 December 1996 and came into effect on 4 February 1997, replacing the Interim Constitution of 1993. The first constitution was enacted by the South Africa Act 1909, the longest-lasting to date. Since 1961, the constitutions have promulgated a republican form of government. Since 1997, the Constitution has been amended by eighteen amendments. The Constitution is formally entitled the \"Constitution of the Republic of South Africa, 1996.\" It was previously also numbered as if it were an Act of Parliament – Act No. 108 of 1996 – but, since the passage of the Citation of Constitutional Laws Act, neither it nor the acts amending it are allocated act numbers. History. Previous Constitutions of South Africa. The South Africa Act 1909, an act of the Parliament of the United Kingdom, unified four British colonies – Cape Colony, Transvaal Colony, Orange River Colony and Natal Colony – into the Union of South Africa, a self-governing dominion. The Republic of South Africa Constitution Act, 1961 transformed the union into a republic, ",
+        "text_characters": 2786,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2546558",
+        "score": 21.128137526892733,
+        "snippet": "South Africa's nine provinces each produce a number of statutes a year, in areas for which they have either concurrent, or exclusive, legislative competence under section 104 of the \"Constitution of the Republic of South Africa Act\", 1996. (See Schedule 4 of the Constitution for a list of the functions areas in respect of which a province may legislate). Local government legislation. South Africa's municipalities may, in terms of the Constitution of the Republic of South Africa, 1996, make by-laws for the effective administration of the matters it has a right to administer. The areas within which a municipality may make by-laws are listed in Schedule 4 Part B, and Schedule 5 Part B, of the Constitution.",
+        "text_characters": 712,
+        "title": "South African statutes and other legislation"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6356674",
+        "score": 20.023741913277174,
+        "snippet": "Act of the Parliament of South Africa The Citation of Constitutional Laws Act, 2005 (Act No. 5 of 2005) is an act of the Parliament of South Africa which altered the way in which the Constitution and its amendments are numbered and referred to. An ordinary act of Parliament is referred to by the year in which it is passed and an identifying number within that year; the identifying number is allocated by the Presidency when the act is signed by the President. The Constitution was originally numbered as \"Act No. 108 of 1996\". Various jurists, including Chief Justice Arthur Chaskalson, expressed the opinion that the Constitution should not be treated as an ordinary act of Parliament, because it was enacted by the Constitutional Assembly rather than by Parliament and because it was supreme over all other law. The Citation of Constitutional Laws Act put this suggestion into effect, removing the Constitution's act number and determining that it was to be referred to only by its title, \"Constitution of the Republic of South Africa, 1996\". The act also dealt similarly with the eleven (at the time) acts amending the constitution. They had originally been given titles of the form \"Constitution of the Republic of South Africa \"[Second]\" Amendment Act, \"[year]\"\" and act numbers in the ordinary sequence. The Citation Act removed their act numbers, and retitled them in a single chronological sequence. The following table makes it clear: It also decreed that subsequent constitutional amendm",
+        "text_characters": 1547,
+        "title": "Citation of Constitutional Laws Act, 2005"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:27990",
+        "score": 19.48718911184226,
+        "snippet": "---\ntitle: Constitutional history of South Africa\ndate: 2024-08-13\n---\nLocated in the southern tip of the continent, South Africa is bordered in the northwestern region by the Orange River that separates it from Namibia, in the eastern region by the Limpopo River that separates it from Zimbabwe and Southeastern Botswana. It is Africa's most multiracial nation comprising peoples of African, Asian and European descent. It has 11 official languages and a population of over 49 million people. Population data compiled in 2010, according to racial categories, put blacks at 79.4%, Whites at 9.2%, Coloured at 8.8%, and Indian or Asian at 2.6%. It is Africa's largest economy and most industrialized nation.\n\nPolitical system and history\n\nThe territory of present day South Africa was formerly a British colony until its accession to independence, as a self governing dominion within the British Commonwealth in 1910. This was shortly after the British Parliament passed the South Africa Act (1909), merging the four British dependencies of Cape Colony, Orange Free State, Natal and Transvaal. Although the objective of the British in merging the dependencies was to unite South Africa and consolidate its imperialist interests, what resulted was a divided South Africa, with blacks excluded from political participation. This development fuelled discontent and racial conflict that would define the country's post colonial and twentieth century history. The practice of exclusionary politics was late",
+        "text_characters": 14152,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6741578",
+        "score": 19.37046324274352,
+        "snippet": "Legal interpretation and application of the Constitution South African constitutional law is the area of South African law relating to the interpretation and application of the Constitution of the Republic of South Africa by the country's courts. All laws of South Africa must conform with the Constitution; any laws inconsistent with the Constitution have no force or effect. Constitutions. South Africa is generally considered to have had five constitutional documents since the Union was established in 1910, including the current one. The constitutions in chronological order are: The Interim Constitution abolished South Africa's system of parliamentary sovereignty and replaced it with a dispensation wherein the Constitution is the supreme law, as opposed to the will of Parliament. The previous three constitutions were all subject to parliamentary amendment with, generally, a simple majority, therefore were not considered extraordinary statutes. Doctrines of constitutional application. Constitutional supremacy. This Constitution is the supreme law of the Republic; law or conduct inconsistent with it is invalid, and the obligations imposed by it must be fulfilled. – Constitution of 1996, section 2 Section 2 of the Constitution of 1996, the so-called supremacy clause, excludes parliamentary sovereignty and, in the extra-curial words of Justice Kate O'Regan, \"shifts the foundations of our legal system\". Section 2 holds that all law or conduct inconsistent with the Constitution is i",
+        "text_characters": 2870,
+        "title": "South African constitutional law"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1326445",
+        "score": 19.255689263620994,
+        "snippet": "Other languages spoken in South Africa not mentioned in the constitution, include many of those already mentioned above, such as KheLobedu, SiNrebele, SiPhuthi, as well as mixed languages like Fanakalo (a pidgin language used as a lingua franca in the mining industry), and Tsotsitaal or S'Camtho, an argot that has found wider usage as an informal register. Many unofficial languages have been variously claimed to be dialects of official languages, which largely follows the apartheid practice of the Bantustans, wherein minority populations were legally assimilated towards the official ethnos of the Bantustan or \"Homeland\". Significant numbers of immigrants from Europe, elsewhere in Africa, China, and the Indian subcontinent (largely as a result of the British Indian indenture system) means that a wide variety of other languages can also be found in parts of South Africa. In the older immigrant communities there are: Greek, Gujarati, Hindi, Portuguese, Tamil, Telugu, Bhojpuri, Awadhi, Urdu, Yiddish, Italian and smaller numbers of Dutch, French and German speakers. Older Chinese tend to speak Cantonese or Hokkien, but recent immigrants mainly speak Mandarin Chinese. These non-official languages may be used in limited semi-official use where it has been determined that these languages are prevalent. More importantly, these languages have significant local functions in specific communities whose identity is tightly bound around the linguistic and cultural identity that these non-of",
+        "text_characters": 2924,
+        "title": "Languages of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:790166",
+        "score": 19.081704619090637,
+        "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on",
+        "text_characters": 2749,
+        "title": "Constitution of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:107836",
+        "score": 18.999395899873964,
+        "snippet": "It sets out the structure of the government, protects fundamental human rights, creates mechanisms of accountability and divides legislative and executive power among the national, provincial and local spheres of government. Government. South Africa is a parliamentary representative democratic republic, wherein the President of South Africa, elected by parliament, is the head of government, and of a multi-party system. It consists of three branches. The executive branch consists of the President of South Africa and the Cabinet of South Africa. The President is elected by the Parliament of South Africa for a five-year term. The President may only serve two terms. By convention this position is occupied by the leader of the largest party in the National Assembly. The President appoints other members of the Cabinet called Ministers. Ministers oversee executive government departments. The Cabinet forms and executes policy and most legislative proposals originate from the Cabinet. The President and members of the Cabinet are accountable to the National Assembly. It has the power to remove them from office by passing a motion of no confidence and it has the power to hold them accountable through oral and written replies to questions from Members of Parliament. The legislative branch consists of the Parliament. The Parliament consists of two chambers: the upper house is the National Council of Provinces (NCOP) and the lower house is the National Assembly. In practice, the National A",
+        "text_characters": 2954,
+        "title": "Politics of South Africa"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6857107",
+        "score": 18.93029842463713,
+        "snippet": "Addressed the right to healthcare, mandating the government to provide antiretroviral drugs to prevent mother-to-child transmission of HIV. Ubuntu Jurisprudence and its specificity. Ubuntu Jurisprudence. It is imperative to examine the Constitution of South Africa and case law to reveal the principles of ubuntu jurisprudence. Ubuntu and the 1996 Constitution. It is surprising and important to note that the word ‘ubuntu’ does not feature in the 1996 South African Constitution, which created a perception that the African philosophy was excised from the law of the land - a significant point of criticism towards the Constitution. Such a point of criticism can be analysed in various essays including ‘Tensions in legal and religious values in the 1996 South African Constitution’. This critical point itself has been subjected to much criticism as it presupposes that the 'moral fabric' of African society is absent from the Constitution itself. However, upon closer inspection at the substance of the Constitution and its firm prioritisation of Human Rights, another interpretation states that - \"Although the Constitution did not expressly mention ubuntu, a teleological interpretation or an investigation of its intent reveals that the Constitution carries within it the spirit of ubuntu. In this respect it calls for equality, dignity, nondiscrimination and all other fundamental rights recorded in the Bill of Rights.\" Notes.",
+        "text_characters": 1434,
+        "title": "South African jurisprudence"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：24；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2546557", "title": "South African statutes and other legislation", "score": 21.288772767738937, "snippet": "Laws in South Africa The Constitution of the Republic of South Africa. \"The Constitution of the Republic of South Africa Act\", No. 108 of 1996 is the piece of legislation against which each prior piece of legislation must be judged and if necessary be amended, and it is backdrop which has coloured each subsequent piece of legislation promulgated. It was negotiated after the collapse of the race-based apartheid government and the political redefinition of South Africa. During the negotiations around this change the \"Interim Constitution of the Republic of South Africa Act\", No. 200 of 1993 held the fort, as it were, until the final Constitution of the Republic of South Africa, 1996, was negotiated and promulgated. The Interim Constitution was repealed by the Constitution of the Republic of South Africa, 1996. The Constitution of the Republic of South Africa holds the all important Bill of Rights, sets up the administrative, judicial and political systems and structures, defines provincial and municipal systems and structures, provides for the passing of laws to necessary to enforce aspects of the Constitution, and sets up institutions such as the Human Rights Commission, which are necessary to safeguard the ideals contained in the Constitution. \"The Constitution of the Republic of South Africa Act\", 1996, is very much the torch held up by the population of South Africans as the light to guide them. However, there has increasingly been an increasing number of challenges to the ", "text_characters": 2581, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790160", "title": "Constitution of South Africa", "score": 21.14944847405922, "snippet": "Supreme and fundamental law of South Africa The Constitution of South Africa is the supreme law of the Republic of South Africa. It provides the legal foundation for the existence of the republic, it sets out the human rights and duties of its citizens, and defines the structure of the Government. The current constitution, the country's fifth, was drawn up by the Parliament elected in 1994 general election. It was promulgated by President Nelson Mandela on 18 December 1996 and came into effect on 4 February 1997, replacing the Interim Constitution of 1993. The first constitution was enacted by the South Africa Act 1909, the longest-lasting to date. Since 1961, the constitutions have promulgated a republican form of government. Since 1997, the Constitution has been amended by eighteen amendments. The Constitution is formally entitled the \"Constitution of the Republic of South Africa, 1996.\" It was previously also numbered as if it were an Act of Parliament – Act No. 108 of 1996 – but, since the passage of the Citation of Constitutional Laws Act, neither it nor the acts amending it are allocated act numbers. History. Previous Constitutions of South Africa. The South Africa Act 1909, an act of the Parliament of the United Kingdom, unified four British colonies – Cape Colony, Transvaal Colony, Orange River Colony and Natal Colony – into the Union of South Africa, a self-governing dominion. The Republic of South Africa Constitution Act, 1961 transformed the union into a republic, ", "text_characters": 2786, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2546558", "title": "South African statutes and other legislation", "score": 21.128137526892733, "snippet": "South Africa's nine provinces each produce a number of statutes a year, in areas for which they have either concurrent, or exclusive, legislative competence under section 104 of the \"Constitution of the Republic of South Africa Act\", 1996. (See Schedule 4 of the Constitution for a list of the functions areas in respect of which a province may legislate). Local government legislation. South Africa's municipalities may, in terms of the Constitution of the Republic of South Africa, 1996, make by-laws for the effective administration of the matters it has a right to administer. The areas within which a municipality may make by-laws are listed in Schedule 4 Part B, and Schedule 5 Part B, of the Constitution.", "text_characters": 712, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6356674", "title": "Citation of Constitutional Laws Act, 2005", "score": 20.023741913277174, "snippet": "Act of the Parliament of South Africa The Citation of Constitutional Laws Act, 2005 (Act No. 5 of 2005) is an act of the Parliament of South Africa which altered the way in which the Constitution and its amendments are numbered and referred to. An ordinary act of Parliament is referred to by the year in which it is passed and an identifying number within that year; the identifying number is allocated by the Presidency when the act is signed by the President. The Constitution was originally numbered as \"Act No. 108 of 1996\". Various jurists, including Chief Justice Arthur Chaskalson, expressed the opinion that the Constitution should not be treated as an ordinary act of Parliament, because it was enacted by the Constitutional Assembly rather than by Parliament and because it was supreme over all other law. The Citation of Constitutional Laws Act put this suggestion into effect, removing the Constitution's act number and determining that it was to be referred to only by its title, \"Constitution of the Republic of South Africa, 1996\". The act also dealt similarly with the eleven (at the time) acts amending the constitution. They had originally been given titles of the form \"Constitution of the Republic of South Africa \"[Second]\" Amendment Act, \"[year]\"\" and act numbers in the ordinary sequence. The Citation Act removed their act numbers, and retitled them in a single chronological sequence. The following table makes it clear: It also decreed that subsequent constitutional amendm", "text_characters": 1547, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:27990", "title": "", "score": 19.48718911184226, "snippet": "---\ntitle: Constitutional history of South Africa\ndate: 2024-08-13\n---\nLocated in the southern tip of the continent, South Africa is bordered in the northwestern region by the Orange River that separates it from Namibia, in the eastern region by the Limpopo River that separates it from Zimbabwe and Southeastern Botswana. It is Africa's most multiracial nation comprising peoples of African, Asian and European descent. It has 11 official languages and a population of over 49 million people. Population data compiled in 2010, according to racial categories, put blacks at 79.4%, Whites at 9.2%, Coloured at 8.8%, and Indian or Asian at 2.6%. It is Africa's largest economy and most industrialized nation.\n\nPolitical system and history\n\nThe territory of present day South Africa was formerly a British colony until its accession to independence, as a self governing dominion within the British Commonwealth in 1910. This was shortly after the British Parliament passed the South Africa Act (1909), merging the four British dependencies of Cape Colony, Orange Free State, Natal and Transvaal. Although the objective of the British in merging the dependencies was to unite South Africa and consolidate its imperialist interests, what resulted was a divided South Africa, with blacks excluded from political participation. This development fuelled discontent and racial conflict that would define the country's post colonial and twentieth century history. The practice of exclusionary politics was late", "text_characters": 14152, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6741578", "title": "South African constitutional law", "score": 19.37046324274352, "snippet": "Legal interpretation and application of the Constitution South African constitutional law is the area of South African law relating to the interpretation and application of the Constitution of the Republic of South Africa by the country's courts. All laws of South Africa must conform with the Constitution; any laws inconsistent with the Constitution have no force or effect. Constitutions. South Africa is generally considered to have had five constitutional documents since the Union was established in 1910, including the current one. The constitutions in chronological order are: The Interim Constitution abolished South Africa's system of parliamentary sovereignty and replaced it with a dispensation wherein the Constitution is the supreme law, as opposed to the will of Parliament. The previous three constitutions were all subject to parliamentary amendment with, generally, a simple majority, therefore were not considered extraordinary statutes. Doctrines of constitutional application. Constitutional supremacy. This Constitution is the supreme law of the Republic; law or conduct inconsistent with it is invalid, and the obligations imposed by it must be fulfilled. – Constitution of 1996, section 2 Section 2 of the Constitution of 1996, the so-called supremacy clause, excludes parliamentary sovereignty and, in the extra-curial words of Justice Kate O'Regan, \"shifts the foundations of our legal system\". Section 2 holds that all law or conduct inconsistent with the Constitution is i", "text_characters": 2870, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1326445", "title": "Languages of South Africa", "score": 19.255689263620994, "snippet": "Other languages spoken in South Africa not mentioned in the constitution, include many of those already mentioned above, such as KheLobedu, SiNrebele, SiPhuthi, as well as mixed languages like Fanakalo (a pidgin language used as a lingua franca in the mining industry), and Tsotsitaal or S'Camtho, an argot that has found wider usage as an informal register. Many unofficial languages have been variously claimed to be dialects of official languages, which largely follows the apartheid practice of the Bantustans, wherein minority populations were legally assimilated towards the official ethnos of the Bantustan or \"Homeland\". Significant numbers of immigrants from Europe, elsewhere in Africa, China, and the Indian subcontinent (largely as a result of the British Indian indenture system) means that a wide variety of other languages can also be found in parts of South Africa. In the older immigrant communities there are: Greek, Gujarati, Hindi, Portuguese, Tamil, Telugu, Bhojpuri, Awadhi, Urdu, Yiddish, Italian and smaller numbers of Dutch, French and German speakers. Older Chinese tend to speak Cantonese or Hokkien, but recent immigrants mainly speak Mandarin Chinese. These non-official languages may be used in limited semi-official use where it has been determined that these languages are prevalent. More importantly, these languages have significant local functions in specific communities whose identity is tightly bound around the linguistic and cultural identity that these non-of", "text_characters": 2924, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:790166", "title": "Constitution of South Africa", "score": 19.081704619090637, "snippet": "The chapter establishes the Financial and Fiscal Commission, to advise government on financial matters, and the Reserve Bank, to oversee the currency. Economist Jacques Jonker has criticised the provisions of Chapter 13 as being insufficient to guard against fiscal imprudence, and has suggested that it be amended in line with other constitutions such as that of Spain in order to enforce fiscal discipline. Chapter 14: General Provisions. The final chapter deals with transitional and incidental provisions. In particular, the first part deals with international law, providing that existing agreements binding South Africa will continue to bind it, and that new agreements (except those of a technical nature) will only be binding once approved by Parliament. It also provides that customary international law applies in South African unless it conflicts with national law, and that the courts must, where possible, interpret national law to be consistent with international law. The remainder of the chapter contains a miscellaneous collection of provisions, Chapter 14 also repeals the Interim Constitution and refers to Schedule 6 to govern the process of transition to the new Constitution. Finally, it gives the Constitution its formal title, \"Constitution of the Republic of South Africa, 1996,\" and defines the schedule for its commencement, under which the President set the date of commencement for most sections, although certain sections dealing with financial matters commenced only on", "text_characters": 2749, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:107836", "title": "Politics of South Africa", "score": 18.999395899873964, "snippet": "It sets out the structure of the government, protects fundamental human rights, creates mechanisms of accountability and divides legislative and executive power among the national, provincial and local spheres of government. Government. South Africa is a parliamentary representative democratic republic, wherein the President of South Africa, elected by parliament, is the head of government, and of a multi-party system. It consists of three branches. The executive branch consists of the President of South Africa and the Cabinet of South Africa. The President is elected by the Parliament of South Africa for a five-year term. The President may only serve two terms. By convention this position is occupied by the leader of the largest party in the National Assembly. The President appoints other members of the Cabinet called Ministers. Ministers oversee executive government departments. The Cabinet forms and executes policy and most legislative proposals originate from the Cabinet. The President and members of the Cabinet are accountable to the National Assembly. It has the power to remove them from office by passing a motion of no confidence and it has the power to hold them accountable through oral and written replies to questions from Members of Parliament. The legislative branch consists of the Parliament. The Parliament consists of two chambers: the upper house is the National Council of Provinces (NCOP) and the lower house is the National Assembly. In practice, the National A", "text_characters": 2954, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:6857107", "title": "South African jurisprudence", "score": 18.93029842463713, "snippet": "Addressed the right to healthcare, mandating the government to provide antiretroviral drugs to prevent mother-to-child transmission of HIV. Ubuntu Jurisprudence and its specificity. Ubuntu Jurisprudence. It is imperative to examine the Constitution of South Africa and case law to reveal the principles of ubuntu jurisprudence. Ubuntu and the 1996 Constitution. It is surprising and important to note that the word ‘ubuntu’ does not feature in the 1996 South African Constitution, which created a perception that the African philosophy was excised from the law of the land - a significant point of criticism towards the Constitution. Such a point of criticism can be analysed in various essays including ‘Tensions in legal and religious values in the 1996 South African Constitution’. This critical point itself has been subjected to much criticism as it presupposes that the 'moral fabric' of African society is absent from the Constitution itself. However, upon closer inspection at the substance of the Constitution and its firm prioritisation of Human Rights, another interpretation states that - \"Although the Constitution did not expressly mention ubuntu, a teleological interpretation or an investigation of its intent reveals that the Constitution carries within it the spirit of ubuntu. In this respect it calls for equality, dignity, nondiscrimination and all other fundamental rights recorded in the Bill of Rights.\" Notes.", "text_characters": 1434, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0995/R024_request.json/messages/47/content`；SHA256：`9646244f94f8f5dda4f5dd3c421ef41dc35bbbcba33a6f3dfef074a4d92f5d86`。
+
+## S005｜接受判决年份与语言数量已齐并提交11
+
+明确两项信息已找到，作停止接受决定并submit11。
+
+结束状态：11，VALID_FINAL，MODEL_FINAL_STOP。
+
+边界判断：前段持续寻证尚未宣布足够回答，此处首次真正结束核查并提交。
+
+内部KEEP与反证：短判断与真实提交保持完整，不把协议字段单列。
+
+### SPLIT原文
+
+````
+the official languages of South Africa in 1998. The official languages of South Africa were established by the Constitution of South Africa, 1996.
+
+Let me search for information about the official languages of South Africa.
+
+<tool_call>
+<function=search>
+<parameter=query>
+South Africa official languages 1996 Constitution
+</parameter>
+</function>
+</tool_call>
+→ 切点 [23, 0, 0] →
+I have found the year the judgment was handed down (1998) and information about the number of official languages in South Africa (11). I can now submit the answer.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+11
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 24,
+    "batch_id": "B024",
+    "call_pointers": [
+      "/rounds/23/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/23"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R24 `/rounds/23/reasoning_content` [0,261)
+
+SHA256：`7c287d6c4f4922fb3c39fd1f7096e97422c899bc6776372b62a422b18d2f139a`；原字段SHA256：`7c287d6c4f4922fb3c39fd1f7096e97422c899bc6776372b62a422b18d2f139a`。
+
+````
+I have found the year the judgment was handed down (1998) and information about the number of official languages in South Africa (11). I can now submit the answer.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+11
+</parameter>
+</function>
+</tool_call>
+````
+
+### R24 Call `/rounds/23/tool_calls/0` → Return `/tool_events/23`
+
+````json
+{
+  "arguments": {
+    "answer": "11"
+  },
+  "id": "recovered_call_1",
+  "name": "submit_answer",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=submit_answer>\n<parameter=answer>\n11\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "11"
+  },
+  "batch_id": "B024",
+  "batch_ordinal": 1,
+  "event_id": "E024",
+  "latency_seconds": 9.973999112844467e-06,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "11",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    23
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 23
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整阅读24轮24事件。重点审核16Call长Stage及所有条件盘点，没有被吞并的独立候选评估或全题接受。保留案名核对中断/恢复，open扩大KEEP。原始24轮预算与终态照实记录，不套用BrowseComp配置。
+
+R11/R13转用Constitution可以备选视为新的证据策略，但原文在R4/R9已用同一宪法知识，后续只调整查询词且很快回原请求，未实质比较方法或定位具体条款，主方案KEEP。R24非常短，也可作为最终返回的局部接受；主方案保留其明确停止并提交这一实际决定。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

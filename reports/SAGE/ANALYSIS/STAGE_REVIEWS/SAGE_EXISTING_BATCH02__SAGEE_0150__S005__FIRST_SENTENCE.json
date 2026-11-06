@@ -1,0 +1,98 @@
+{
+ "schema_version":"SAGE100_CODEX_SEMANTIC_REVIEW_V1","unit_id":"SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE","trajectory_id":"SAGE_EXISTING_BATCH02__SAGEE_0150","stage_id":"S005","sample_order":8,"condition":"FIRST_SENTENCE",
+ "source_files":{
+  "O":{"source_file":"RAW/SAGE_EXISTING_BATCH02__SAGEE_0150/trajectory.json","source_sha256":"793fbcb76d3defc3c271739f25eac3369b2e8e92e24c5552b6eb8da9b164fe16"},
+  "M":{"source_file":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0150.json","source_sha256":"6fac6620e5b7f31366f402c6f35ba525e59d65a9b8dafa732b4a42330730e43b"},
+  "I":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json","source_sha256":"c9017769df744352d4544c10dbac21ba8772e25f11f07bd811ca08f6e2c76b5e"},
+  "N1":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat01/trajectory.json","source_sha256":"c2c9cfa5e5250f564775a76223a405692913725fc8ffcf49879c3d2f8a5be28d"},
+  "N2":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat02/trajectory.json","source_sha256":"2f2c6a4cf40b65f6ee5510f0da33cb0d3765ac076cf26e0244eb9166df3ffc4d"},
+  "N3":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat03/trajectory.json","source_sha256":"4cc7d3dfc3e93cfbc74ca87c733b8b4f37194efa250ccc7a7cd0f53eaba9c7a0"},
+  "N4":{"source_file":"POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat04/trajectory.json","source_sha256":"b54f66d84eab6b59b49cf28018d5fcbfe843e47f5ec405e5da9ffa5f9e00c326"}
+ },
+ "question_and_gold":{"question":"What is the theatrical release date of the David Fincher-directed Best Picture-nominated film, which is an adaptation of a short story by the author of 'The Great Gatsby', a film whose lead actor later produced an Academy Award-winning Best Picture, and was directed by the same person who directed the movie Rashida Jones was filming instead of appearing in the 'Woman of the Year' episode of Parks and Recreation?","gold":"December 25, 2008","gold_reference":"EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0150/0/answer/0"},
+ "read_scope":"原整条6轮、全部工具和Final已读，原R3全文及S005起止再读。四新路径53854字符完整连续[0,26000)、[26000,53854)实际读，所有Reasoning与Call/Return/Final均保留；完全同文Return只参考已读原件及同题其他完成组，不使用标签代替阅读。",
+ "original_outcome":{"outcome":"C","actual_final":"December 25, 2008","terminal":"MODEL_FINAL_STOP","reason":"Date正式正确；原制片奖项旁支取证不充分，证据质量另记。","reference":"ANALYSIS/OUTCOME_SCREENING_ROOT/DECISIONS/SAGE_EXISTING_BATCH02__SAGEE_0150.json"},
+ "prestate":{"actual_input":"原R3@1890，当前保留[0,1890)完整电影条件比较，已采用Button、共同导演关系，尚未在当前Reasoning写出Date。P早期真实Return已给Date；Brad制片获奖仍为提问/待查。","evidence_levels":"主影片已经接受并可决定查谁，Date可见但当前P尚未明确采用；制作条件无直接支持。不能将原后续Date采用回填进P。","remaining_gap":"待从可见文档提取所问Date，另需核Brad最佳影片制作身份。U列两项待办却只真查制作。","input_accounting":"基础Prompt8554，当前保留466派生Token，P9020，G9，首实际9029，首max9534，历史Actor2。字符精确恢复，原nativeIDs缺失。","evidence":["I_ACCEPT","I_GAP","I_DATE_DOC","I_G"]},
+ "original_U":{"range":"原R3 /rounds/2/reasoning_content[1890,2262)，SHA9352250fa28b79f72973fa5fca1ece578f9a37661283e16390b75838c1c8bf2a；/tool_events/3 E004/B003/recovered_call_1完整Return，结束R4@0。","mapping_reference":"MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0150.json#/stages/4","actual_goal":"在主影片被接受后，列明制作身份和Date两项待办，实际优先核制作关系。","actual_operations":"真正执行Brad Pitt produced Academy Award winning Best Picture，返回BestPicture/Academy通用材料，没有Brad制作获奖直接关系；DateSearch只是未来待办未执行。","product":"一次没有闭合关系缺口的Search，原R4继续匹配并采用P Date，后续又两次制作Query才提交。","judgment_change":"U没有带来明确新答案或候选更新，主要保留未解决关系并启动一次取证；不可把其未来Date计划写成已经查证日期。","full_original_text_location":"M/stages/4/items完整原文及NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0150/R004_request.json#/messages/8/content。","evidence":["O_U_PLAN","O_QUERY","O_GENERIC_RETURN"]},
+ "original_followup":"S006首次在原日志中采用Date，S007/S009继续制作查询，S008/S010重复主链和接受。制作身份最后仍不直接闭合，原R6误称BigShortBestPicture后提交Date C；原三次后续Search都不是所问日期首次外部证据来源。",
+ "function_features":"核心候选已采用、主属性仍可从P直接提取时，为旁支识别关系继续外部核验。本组有真实重查，也有以知识比较替代外部核验；需要分别记录操作是否消失、所需关系是否有支持、内部论证是否反而变长。",
+ "guide_audit":{"text":"Let me analyze the clues step by step:","origin":"原R4 /rounds/3/reasoning_content[0,38)，9派生Token，冒号完整首行。","P_comparison":"无Button/Date/制片作品等新事实，仅重分析方向；不覆盖下一Stage全部Reasoning。G可能促成再次盘点，但没有给出原U应取得的关系证据。","novelty":"GENERIC_ANALYSIS_DIRECTION_WITHOUT_NEW_ENTITY_OR_FACT","oracle_status":"ORACLE_ANCHORED_NO_IDENTIFIED_NEW_ANSWER_FACT","evidence":["I_G","I_ACCEPT","I_DATE_DOC"]},
+ "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE.json",
+ "rollouts":[
+  {
+   "repeat_id":1,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat01","actual_final":"December 25, 2008","terminal":"MODEL_FINAL_STOP","adopted_answer":"Button，2008年12月25日","outcome":"C","outcome_reason":"正式Date正确且P直接支持；制作关系未从新Return补齐，R4又错误采用Hollywood获最佳影片等关系。","outcome_evidence":["N1_DATE","N1_FINAL"],
+   "work_and_evidence_timeline":"R3按G重做全题匹配，知识先称12Years/Moonlight符合，已从P两个DocID采用Date后仍真实发原U同一Query；Return这次为空，不是原通用Oscars返回。R4空反馈后猜Hollywood制作最佳影片，临时误将SocialNetwork当目标、想查Jesse但未执行，随后用Fitzgerald冲突修回Button和共同导演关系，带错误Hollywood论证仍提交P Date。",
+   "first_judgment_divergence":"原U先派取证，新先整体采用Date再仍派同Query；失败后曾把Rashida正在拍的电影误当题目目标，但同一轮被Fitzgerald条件纠回，没形成真实Jesse查询。",
+   "first_actual_tool_divergence":"Query与原U完全相同，真实Return空与原不同；原后续还两次Search，新R4直接submit。",
+   "function_correspondence":[{"original":"列制作缺口并真正Search核验","new":"R3同QuerySearch完整恢复、空返回，后续没有再Search而改用知识和语法判断","evidence":["O_QUERY","N1_QUERY","N1_EMPTY_FEEDBACK","N1_WRONG_HOLLYWOOD"]},{"original":"计划从目标影片获取Date但尚未执行日期查询","new":"直接从仍可见的P文档提取Date，没有额外DateSearch","evidence":["I_DATE_DOC","N1_DATE"]}],
+   "function_recovery":"FULL_REBUILT","function_recovery_reason":"原U真实操作和待核条件恢复，虽然实际结果不同；减少发生在原后续两次核验与多轮盘点，不是目标Query本身未执行。",
+   "judgment_action_outcome_chain":"电影已定、Date仍在P→新先采用Date并查同制作需求→空回后知识/关系自纠替代继续外部取证→核心Fitzgerald约束恢复Button并提交同Date；工具后续减少，但旁支支持没有补齐且错误断言增加。",
+   "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE.json#/records/0","cost_work_locations":"1411生成/17606Prompt/1Search0Open2Actor，原切后3Search0Open4Actor；少2Search2Actor，生成保守新减原[-844,-293]明确较少。省在原后续另外两次制作Search及R4—R6多轮盘点合并，仍有874Token的R4角色自纠。G9预填单列。",
+   "counterevidence_and_alternatives":"不能因更省更正确便认定原制作功能无用：功能已重做且失败，原新都缺直接关系，且新错误Hollywood推断不是质量完全不变。真实Return差异也可能影响停止选择。"
+  },
+  {
+   "repeat_id":2,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat02","actual_final":"December 25, 2008","terminal":"MODEL_FINAL_STOP","adopted_answer":"Button，2008年12月25日","outcome":"C","outcome_reason":"P Date被真实采用并提交；没有新外部取证，制作知识中混入ShapeOfWater/Joker等未证错误，不能当完整证据质量保持。","outcome_evidence":["N2_DATE","N2_FINAL"],
+   "work_and_evidence_timeline":"R3唯一生成轮10950字符，直接用知识列Brad制作12Years/Moonlight/ShapeOfWater/Joker等，认定关系满足；从P引述两个DocID Date。之后反复排除Fincher其他片、检查题干导演关系/日期地区、重复计划提交，最终真实submit；无Search或Open。",
+   "first_judgment_divergence":"原把制作关系当需外部核查，新用未经返回支持的知识立即认定满足。主对象仍由Fitzgerald条件保持，Date直接P，旁支证据需求被内部知识接受替代。",
+   "first_actual_tool_divergence":"原U应发制作Search的位置新没有发，直到同一Round末直接submit；各种Let me check只是内部文字。",
+   "function_correspondence":[{"original":"外部核实制作关系并处理返回","new":"未真实Search/Return，使用知识列制片获奖作品后认为条件满足；关系判断仍在，外部验证未恢复","evidence":["O_QUERY","N2_KNOWLEDGE","N2_FINAL"]}],
+   "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"制作条件被实际评估但无工具核实，改为知识推断；不能仅没Call说完全没做条件判断，也不能把推断当外部取证恢复。",
+   "judgment_action_outcome_chain":"P已采用Button且Date可见→知识把制作缺口判满足→不再外部查询→仍不断重开候选/日期/语法检查→最终C；所有工具省掉却内部重盘点很长，故Search/Actor减少与生成增加同时成立。",
+   "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE.json#/records/1","cost_work_locations":"2801生成/9029Prompt/0Search0Open1Actor；少3Search3Actor、Prompt大幅少，但生成保守增加[546,1097]。新增消耗在同轮长篇已闭合主线复述和制片知识枚举，不是检索上下文变大。",
+   "counterevidence_and_alternatives":"直接提交C仍含旁支虚构，不得由Date正确说明所有条件检查可靠；较少工具未必生成也更少。与N3/N4同样无Search但不同篇幅，是内部表达波动的对照。"
+  },
+  {
+   "repeat_id":3,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat03","actual_final":"December 25, 2008","terminal":"MODEL_FINAL_STOP","adopted_answer":"Button，2008年12月25日","outcome":"C","outcome_reason":"正式Date正确且有P支持；知识错误反复称Brad制作SocialNetwork且其赢BestPicture，未外部验证。","outcome_evidence":["N3_DATE","N3_FINAL"],
+   "work_and_evidence_timeline":"R3唯一8221字符Reasoning，将12Years/Moonlight/SocialNetwork制作获奖关系列为满足条件，直接从P采用Date；反复判断地区日期、重读Rashida共同导演关系、排除其他Fincher片。没有任何新Search/Open，末尾submit。错误SocialNetwork制作/获奖陈述多次强化，核心影片仍由Fitzgerald指向Button。",
+   "first_judgment_divergence":"待核制作关系被知识接受替代，且把错误SocialNetwork关系当额外支持；该错误没有改变目标电影，因改编条件在后续反复排除了SocialNetwork。",
+   "first_actual_tool_divergence":"原U的制作Search和原后续两次Search全部未执行，新只真实submit。",
+   "function_correspondence":[{"original":"用真实返回核制作身份","new":"只在推理中给出制作关系判断，不进行外部核验；认知需求部分恢复，证据操作没有恢复","evidence":["O_QUERY","N3_FALSE_RELATION","N3_DATE","N3_FINAL"]}],
+   "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"条件比较与接受存在，但原真正取证尝试没有重现；知识代替不等同获得了实际Return。",
+   "judgment_action_outcome_chain":"P强改编约束/Date→制作缺口被无证知识关掉→不做Search却重复全题确认→同Date C；错误旁支支持未移走电影对象，但不能把这种答案稳定解释为证据质量不变。",
+   "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE.json#/records/2","cost_work_locations":"2170生成/9029Prompt/0Search0Open1Actor；少3Search3Actor，Prompt少。生成新减原保守[-85,466]跨零，不能宣称生成明确降低；8221字符重复内部确认替代了部分外部交互。",
+   "counterevidence_and_alternatives":"零Search并不说明原证据一定多余，原新都未直接证明制作关系，新还增加错误断言。依旧C由高辨识主线支持，是正确性与全部证据质量分离的案例。"
+  },
+  {
+   "repeat_id":4,"task_id":"SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE__repeat04","actual_final":"December 25, 2008","terminal":"MODEL_FINAL_STOP","adopted_answer":"Button，2008年12月25日","outcome":"C","outcome_reason":"正式Date正确，P有直接文档；制作方面混大量未证作品关系及BigShort获奖错误，SocialNetwork制作先错后自纠。","outcome_evidence":["N4_DATE","N4_FINAL"],
+   "work_and_evidence_timeline":"R3唯一7652字符Reasoning，从知识罗列大量Brad作品制作/奖项，先说SocialNetwork制作后自己否定，仍误BigShort最佳影片等；以12Years/Moonlight等认为制作条件满足。P中共同导演与Fitzgerald关系保持Button，读取已可见Date，随后多轮式内部复核/反问，实际无Search/Open，最后submit。",
+   "first_judgment_divergence":"原要真查制作，新以大量知识枚举代替检索；局部自纠SocialNetwork没转成真实查询，最终并未获得新制作证明。",
+   "first_actual_tool_divergence":"原U及后续Search不再执行，只有同Round末submit。",
+   "function_correspondence":[{"original":"实际制作获奖取证","new":"外部操作未重建，只用知识比较并自纠部分关系，再以判断满足条件","evidence":["O_QUERY","N4_KNOWLEDGE","N4_SELF_CORRECTION","N4_FINAL"]}],
+   "function_recovery":"PARTIAL_REBUILT","function_recovery_reason":"待核关系的思考与接受存在，真实Call/Return没有；是替代证据路径质量待审，不是完全无工作。",
+   "judgment_action_outcome_chain":"主候选已确定/Date可见→知识枚举让制作条件不再派发工具→局部关系自纠但无外证→反复重核稳定主线→C；省掉工具交互，内部论证仍占2000生成，不能直接说整体计算更少。",
+   "cost_fact_reference":"ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0150__S005__FIRST_SENTENCE.json#/records/3","cost_work_locations":"2000生成/9029Prompt/0Search0Open1Actor；少3Search3Actor，Prompt少。生成保守[-255,296]跨零，不报精确节省；主要减少是原三个Search及相应输入上下文，新增知识枚举和反复确认抵消部分生成。",
+   "counterevidence_and_alternatives":"知识推断中有局部修正也有持续错误；不能因一种错误被纠回就说制作关系已全面查清。全部C仍不足唯一归因于原U没用。"
+  }
+ ],
+ "four_run_comparison":"原C→四C，A0change。N1完整恢复目标Search而省掉原后续两次；N2—4没有任何新Search，以知识判断替代核查。四条都重新从P采用Date。N1生成明确少、N2明确多、N3/4区间跨零；工具和Prompt普遍少，却不能把各资源混成同一节省结论。所有路径制作支撑仍有缺口或错误，原同样未真正闭合，不把共享缺口全归删除。",
+ "conditional_mechanism_proposals":[
+  {"proposal":"主对象已受高辨识条件约束、所问属性直接在P时，旁支外部核查可以被知识接受替代而保持答案；实际变化是哪些条件仍触发工具，不必是电影或Date丢失。","support_scope":"N2—4制作条件经知识接受后零Search，Date取自P，四条均C；N1同Query重建但失败后同样以知识终止。仅1题1Stage，不能直接称普遍冗余。","limits":"替代知识混错误关系，答案正确不等证据质量保持；G重分析、采样、工具回空也可影响提交，不能作纯删除因果证明。"},
+  {"proposal":"外部核查被取消后，内部对稳定候选和属性的反复确认可以替代原交互并占用更多生成；工具节省与生成节省不必同向。","support_scope":"N2零Search/1Actor却2801生成且保守高于原；N3/4同零Search但生成不确定增减，N1少两Search且生成明确少，是同组资源权衡反例。","limits":"不能只看字符长短，结论采用真实成本及切点保守区间。"}
+ ],
+ "counterevidence_and_limits":"G是通用重分析、无新事实但保留ORACLE_ANCHORED。Date是P中真实返回而非G泄漏；当前P尚未明确采用，不回填未来原R4判断。NoSearch只有实际新事件账本可确认，多个搜索意向不当Call。非native切点不直接用466派生前缀扣原生成，只报区间。不同分支成本不相加，未将同题不同Stage算跨题支持。",
+ "evidence":[
+  {"evidence_id":"I_ACCEPT","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":3,"event_type":"retained_current_reasoning","json_pointer":"/current_reasoning_prefix","exact_quote":"So the film is \"The Curious Case of Benjamin Button\"."},
+  {"evidence_id":"I_GAP","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":3,"event_type":"retained_current_reasoning","json_pointer":"/current_reasoning_prefix","exact_quote":"Did Brad Pitt produce an Academy Award-winning Best Picture?"},
+  {"evidence_id":"I_DATE_DOC","source_ref":"I","source_side":"ORIGINAL_ACTOR_INPUT","round_id":3,"event_type":"historical_actor_visible_return","json_pointer":"/actual_normalized_history/3/content","exact_quote":"The film was theatrically released on December 25, 2008, in the United States"},
+  {"evidence_id":"I_G","source_ref":"I","source_side":"GUIDE","round_id":3,"event_type":"guide","json_pointer":"/anchor_text","exact_quote":"Let me analyze the clues step by step:"},
+  {"evidence_id":"O_U_PLAN","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/2/reasoning_content","exact_quote":"Now I need to confirm:\n1.  Brad Pitt produced an Academy Award-winning Best Picture.\n2.  Get the theatrical release date of \"The Curious Case of Benjamin Button\"."},
+  {"evidence_id":"O_QUERY","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":3,"event_type":"actual_search","json_pointer":"/tool_events/3/arguments/query","exact_quote":"Brad Pitt produced Academy Award winning Best Picture","call_id":"recovered_call_1"},
+  {"evidence_id":"O_GENERIC_RETURN","source_ref":"O","source_side":"ORIGINAL_LOG","round_id":3,"event_type":"search_return","json_pointer":"/tool_events/3/observation/results/0/snippet","exact_quote":"Academy Award for Best Picture","call_id":"recovered_call_1"},
+  {"evidence_id":"N1_QUERY","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":3,"event_type":"actual_search","json_pointer":"/tool_events/0/arguments/query","exact_quote":"Brad Pitt produced Academy Award winning Best Picture","call_id":"recovered_call_1"},
+  {"evidence_id":"N1_EMPTY_FEEDBACK","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":4,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"The search for \"Brad Pitt produced Academy Award winning Best Picture\" returned no results."},
+  {"evidence_id":"N1_WRONG_HOLLYWOOD","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":4,"event_type":"reasoning","json_pointer":"/rounds/1/reasoning_content","exact_quote":"Brad Pitt produced \"Once Upon a Time in Hollywood\" which won Best Picture at the 92nd Academy Awards (2020)."},
+  {"evidence_id":"N1_DATE","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The film was theatrically released on December 25, 2008, in the United States"},
+  {"evidence_id":"N1_FINAL","source_ref":"N1","source_side":"NEW_REPEAT01","round_id":4,"event_type":"final","json_pointer":"/final_answer","exact_quote":"December 25, 2008"},
+  {"evidence_id":"N2_KNOWLEDGE","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"He produced \"The Shape of Water\" (2017), which won Best Picture."},
+  {"evidence_id":"N2_DATE","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Based on the documents, the date is December 25, 2008."},
+  {"evidence_id":"N2_FINAL","source_ref":"N2","source_side":"NEW_REPEAT02","round_id":3,"event_type":"final","json_pointer":"/final_answer","exact_quote":"December 25, 2008"},
+  {"evidence_id":"N3_FALSE_RELATION","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Brad Pitt produced \"The Social Network\" (2010), which won Best Picture at the 83rd Academy Awards."},
+  {"evidence_id":"N3_DATE","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"The theatrical release date is December 25, 2008 (in the United States)."},
+  {"evidence_id":"N3_FINAL","source_ref":"N3","source_side":"NEW_REPEAT03","round_id":3,"event_type":"final","json_pointer":"/final_answer","exact_quote":"December 25, 2008"},
+  {"evidence_id":"N4_KNOWLEDGE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Brad Pitt produced \"The Big Short\" (2015), which won Best Picture."},
+  {"evidence_id":"N4_SELF_CORRECTION","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"Actually, Brad Pitt produced \"The Social Network\"? No"},
+  {"evidence_id":"N4_DATE","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"reasoning","json_pointer":"/rounds/0/reasoning_content","exact_quote":"So the theatrical release date is December 25, 2008."},
+  {"evidence_id":"N4_FINAL","source_ref":"N4","source_side":"NEW_REPEAT04","round_id":3,"event_type":"final","json_pointer":"/final_answer","exact_quote":"December 25, 2008"}
+ ],
+ "review_status":"CODEX_MODEL_REVIEW_COMPLETE"
+}

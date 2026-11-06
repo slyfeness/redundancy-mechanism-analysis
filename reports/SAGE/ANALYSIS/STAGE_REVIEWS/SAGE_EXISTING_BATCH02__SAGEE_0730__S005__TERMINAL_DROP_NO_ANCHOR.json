@@ -1,0 +1,441 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0730",
+  "stage_id": "S005",
+  "sample_order": 17,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0730/trajectory.json",
+      "source_sha256": "7d00003a6edd3c6bb23be5491cc0dbd24f83a87298aa0d747fbcd2ba896a22c0"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0730.json",
+      "source_sha256": "1ff16e5920273956670230403534a98674f081debbcc98ed9d7d10536b0ac4b4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "9cc03031bdadeaf76ab62e5f9bfd6668195a8c8c2e1c831bb4785da23f676cf0"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "2aebd7a295731bfed6f8fde7a743fa0b8ce6013a26c3c21702648a77e4db6b5b"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "a7cc0b74e4778f639605cd0eb8bd300139a96108081c93fc7a81efaa638edce6"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "186419f4d1bb62634f62f698ebaa7117df3d3c0336b540f25b8059957bb1f691"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "78dadfb27a75a1cd04f4dd3cdefaa802665eb9d97ac6c0a3dfaeb55772a2b134"
+    }
+  },
+  "question_and_gold": {
+    "question": "On what specific date did the 1983 Heisman Trophy winner, whose professional career included playing for the Pittsburgh Maulers, Jacksonville Bulls, Houston Oilers, and Atlanta Falcons, appear on the television show \"Family Feud\" with family members?",
+    "gold": "October 22, 2013",
+    "gold_use": "只用于事后Final评价。"
+  },
+  "read_scope": {
+    "original": "原9Round、5Search、3Open、Submit及全部完整Return已读；73800字符原文视图完整阅读。",
+    "new": "4条全部Reasoning、真实Search/Submit及完整Return和Final；31473字符视图全部读完。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "October 22, 2013",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R9@0，当前推理为空。",
+    "original_process_state": "R5采用Mike Rozier，R6已从Search提取日期，之后3Open仍为核实该日期；R8大Open完整737字符与此前Search snippet内容相同。尚未执行S005接受/Submit。",
+    "actual_visible_P": "8次历史Actor及其所有Return保留；历史Assistant content规范化为空，不能把日志里的旧推理直接当新Actor输入。文档965709给Heisman及Maulers/Bulls/Oilers履历但该片段截至NFL Supplemental Draft，未明确显示Falcons。965710完整给Family Feud家人和日期。",
+    "state_distinction": "日期关系已有直接证据且原流程已经提取；四队最后Falcons条件在已返回履历片段中仍缺直接句。不能以题目自身列Falcons当独立文档证实。",
+    "budget": "历史8Actor已消耗，P21728，G0，首轮10000，仍沿20总上限。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 9,
+        "json_pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 354
+      }
+    ],
+    "goal": "把球员身份与节目日期关系接受为答案并正式提交。",
+    "operations": "再次确认Rozier对应四队和1983奖项，引用文档Family Feud日期，真实Submit October22,2013。",
+    "product": "正式Final；不新增工具证据。",
+    "judgment_change": "当前回合重新联结身份/节目日期并决定停止取证、提交；不是新的日期发现。",
+    "evidence": [
+      "O_IDENTITY_RETURN",
+      "O_DATE_RETURN",
+      "O_ACCEPT",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "末Stage直接Submit，之后无Reasoning；无原Final或后继G注入。",
+    "evidence_limit": "原答案正确但四队履历中的Falcons未在已读965709片段中直接支持；其中三队与1983奖项、Family Feud日期有支持。"
+  },
+  "function_features": [
+    "已有日期/候选上的接受及正式提交",
+    "身份条件与答案属性分开：日期已知仍可能保留一个真实履历证据缺口",
+    "核心提交功能四条均重建，一条另补Falcons关系，不能把增加取证一概称重复"
+  ],
+  "guide_audit": {
+    "condition": "NO_ANCHOR",
+    "text": "",
+    "tokens": 0,
+    "information_risk": "没有教师事实、方向或结论；可用日期来自合法P。仍是同P重采样，不能强制原接受功能消失。"
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R9实际Submit日期，同Gold。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R9重新确认Mike Rozier、四队与1983，引用已有965710的wife/threefamily/date；明确需要specific date后Submit。",
+        "没有新Search或Open；对Falcons仍直接接受，未补文档句。"
+      ],
+      "first_judgment_divergence": "未见对象/日期实质分歧，原简明接受工作重现。",
+      "first_actual_tool_divergence": "只Submit，与原同类型/日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受身份日期并提交",
+          "original_operation": "联结已有证据、Submit",
+          "original_product": "日期Final",
+          "new_goal": "同一目标",
+          "new_operation": "R9身份/日期联结并Submit",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_ACCEPT",
+            "O_SUBMIT",
+            "N1_ADOPT",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U的接受、停止查询和真实提交都恢复，无新取证不等于没有认知工作。",
+      "judgment_action_outcome_chain": "P已有准确日期→重新接受对应关系→直接SubmitC；日期功能可恢复，Falcons直接支持仍未补。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "131生成/21728Prompt/0S0O1A；原R9全98生成/21728Prompt/0S0O1A，记录生成+33。不同表达更长，工具没减少。",
+      "counterevidence_and_alternatives": "答案保持不是整U冗余或成本减少证据。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R10真实Submit日期；额外Search补了原片段未见的Falcons关系。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R9逐队检查实际snippet，明确965709只列Maulers、Bulls、Oilers，尚不显示Falcons；Larry Swider也只部分队伍，不把Question当查证。",
+        "实际Query Mike Rozier Atlanta Falcons；e0结果1 wiki25:965708明确Heisman1983及四队完整关系，新证据原P没有。其他结果虽杂，但该直接句足以补该缺口。",
+        "R10沿已有965710日期句接受并Submit，既没换人也没重新搜索日期。"
+      ],
+      "first_judgment_divergence": "R9没有像原直接断言四队全部匹配，而是识别真实Falcons文档支持缺口；这项差异改变了下一实际Call。",
+      "first_actual_tool_divergence": "原R9直接Submit；新R9先Search Mike Rozier Atlanta Falcons，R10才Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受身份和日期",
+          "original_operation": "直接断言四队匹配、Submit",
+          "original_product": "正确日期但Falcons片段不足",
+          "new_goal": "同一接受目标并核实缺队",
+          "new_operation": "补查Falcons实际取得965708，再Submit已有日期",
+          "new_product": "同日期Final，四队支持更完整",
+          "evidence": [
+            "O_IDENTITY_RETURN",
+            "O_ACCEPT",
+            "N2_GAP",
+            "N2_QUERY",
+            "N2_FALCONS_RETURN",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原接受和Submit最终恢复，增加一个原未完成的具体条件查证，不能因为操作多就降为目标未恢复。",
+      "judgment_action_outcome_chain": "日期已定但履历片段缺Falcons→识别这一具体证据缺口→真实定向Search直接补齐→回到已有日期SubmitC；成本增加对应真实质量增益。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "723生成/48978Prompt/1S0O2A；相对原生成+625、Prompt+27250、Search+1、Actor+1。R9的539生成在明确和反复说明缺口，Search返回大包增加R10 Prompt；不将全部新增Token都等同必要，也不把整次查询叫无增量。",
+      "counterevidence_and_alternatives": "补证没有改C/W/N，但增强身份支持；这是答案不变也可能存在合理新增工作的反例，不是越早停越好。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R9真实Submit日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R9先将Rozier与题目身份对应，再引用wife/threefamily/date，得出specific date；实际Submit。",
+        "0Search/Open；未补Falcons句，原共享证据限制保留。"
+      ],
+      "first_judgment_divergence": "没有显著实质分歧。",
+      "first_actual_tool_divergence": "仅同日期Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "身份到日期接受/提交",
+          "original_operation": "确认+Submit",
+          "original_product": "日期Final",
+          "new_goal": "相同",
+          "new_operation": "R9确认+Submit",
+          "new_product": "同Final",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_ADOPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "接受和真实提交实际发生。",
+      "judgment_action_outcome_chain": "已有日期支持→重做接受→C，无新证据或换候选。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "128生成/21728Prompt/0S0O1A，记录生成+30，其他相同。",
+      "counterevidence_and_alternatives": "推理比原略短字符也不能代替真实Token计数；实际completion usage反而更多。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0730__S005__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "October 22, 2013",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "October 22, 2013",
+      "outcome": "C",
+      "outcome_reason": "R9真实Submit同日期。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "重新确认Rozier和FamilyFeud日期，明确题目要specific date，准备回答后实际Submit。",
+        "不另查资料，未消解Falcons直接证据缺口。"
+      ],
+      "first_judgment_divergence": "同原接受路径，未见重要对象变化。",
+      "first_actual_tool_divergence": "同一Submit，无新Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受及提交日期",
+          "original_operation": "关系确认、Submit",
+          "original_product": "日期Final",
+          "new_goal": "同目标",
+          "new_operation": "重新确认并Submit",
+          "new_product": "相同Final",
+          "evidence": [
+            "O_ACCEPT",
+            "N4_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "末段判断/提交功能恢复。",
+      "judgment_action_outcome_chain": "日期可见、候选不变→重新接受→C；未发生省去接受功能。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "136生成/21728Prompt/0S0O1A，生成+38，其他相同。",
+      "counterevidence_and_alternatives": "不能把同C和无新Search称全部功能可省，原本就无Search。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4/4 FULL_REBUILT接受和提交，3条直接同P提交，1条先补缺失Falcons句。",
+    "specific_difference": "新2将原先无文档直接支持的四队断言变为具体Falcons核查，取到新证据却仍答同日期。答案不变与证据质量改进可以同时发生。",
+    "cost": "4条生成均增加；3条工具/Prompt/Actor不变，1条各增加。不存在整个U工作不再执行且全维度省耗的观察。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "已有候选和答案属性不代表所有身份条件已被文档支持：若模型把一项缺失条件识别为真实待核对象，会增加一次定向取证而保持同答案；若直接接受则成本少但证据缺口保留。",
+      "chain": "P日期已知、前三队已支持而Falcons未见→新2识别缺队→定向Search返回四队完整身份→原日期提交C；另3条直接接受C但不补这项。",
+      "support": [
+        "O_IDENTITY_RETURN",
+        "N2_GAP",
+        "N2_QUERY",
+        "N2_FALCONS_RETURN"
+      ],
+      "scope": "1Stage/1题/4续跑，不宣称这项核查必然改变答案或总是必须追加。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G0，不能把四条C归给后继提示补偿；日期合法存在P。",
+    "原日志R5/R6早称四队齐全，但工具片段没有Falcons，不能把模型的断言当文档证明。",
+    "同C情况下新2多查确实补了支持，反驳持续核验都无用；另3条没有新Search也不能证明整Stage未重做。",
+    "R9@0可比较整轮usage，但原native IDs缺失，不冒充原生截点精确节省。",
+    "无替代无G对照及多seed因果识别，保留采样解释。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_TOOL_HISTORY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 9,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "Atlanta Falcons"
+    },
+    {
+      "evidence_id": "O_IDENTITY_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/3/observation/results/4/snippet",
+      "exact_quote": "In 1985 Rozier played for the Jacksonville Bulls in the spring and the Houston Oilers in the fall.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965709"
+    },
+    {
+      "evidence_id": "O_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "Rozier, along with his wife and three other family members, appeared on the October 22, 2013 episode of \"Family Feud\".",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965710"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "According to the document, he appeared on \"Family Feud\" with his family members on October 22, 2013."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/8/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The date is October 22, 2013."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_GAP",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The snippet doesn't explicitly mention the Falcons for Rozier."
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Mike Rozier Atlanta Falcons",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_FALCONS_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "Afterward, he played for the Pittsburgh Maulers and the Jacksonville Bulls of the USFL, then played for the Houston Oilers and the Atlanta Falcons of the NFL.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:965708"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-86f2645ed040624b"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the specific date is October 22, 2013."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-a988ebc740e3cc62"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The question asks for the specific date. The date is October 22, 2013."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "October 22, 2013",
+      "call_id": "chatcmpl-tool-8f888e9907e91883"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

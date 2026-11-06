@@ -1,0 +1,436 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0112",
+  "stage_id": "S003",
+  "sample_order": 43,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the specific calendar date of the formal declaration of independence for the South American nation in which the poet, famously known for his 'yaravíes' and his participation in the Battle of Umachiri, was executed by firing squad?",
+    "gold": [
+      "July 28, 1821"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "July 28, 1821",
+    "adopted_answer": "July 28, 1821",
+    "outcome": "C",
+    "reason": "正式提交与Gold同日期。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@829保留当前完整两日期提取，国家Peru已采用；初Corrales诗人线索、第一次日期Search均真实可见。15签署/28宣告两日期及事件归属已被提取，但尚无最终选择。",
+    "evidence_states": "事实可见且已明确提取，缺的是题目formal对应哪事件，不是文档日期没有返回。",
+    "evidence": [
+      "I_P",
+      "O_DUAL"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 829,
+        "end": 1107
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 749
+      }
+    ],
+    "goal": "Open日期相关文档确认正式宣告含义。",
+    "operations": "Open6623804首500，只有保护国简介无日期；R4仍重述原Search的15与28。",
+    "product": "无新日期/消歧信息，后继改Search。",
+    "judgment_change": "未闭合formal含义，仍派发进一步核查。",
+    "evidence": [
+      "O_OPEN",
+      "O_TEXT",
+      "O_AFTER"
+    ]
+  },
+  "original_followup": {
+    "use": "随后July1821Search返回多条28公开宣告，R5接受28Submit。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已有双日期后的文档再确认尝试和缺口维持。",
+    "state_relation": "前三支不Open，转真实日期Search后完成选择；第四先Search已有充分来源却继续vs双日期检索和5/10字符Open，最后仍28但大增成本。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_MORE",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Let me search more specifically for the formal declaration date of Peru's independence to be sure.",
+    "source_position": "R4[749,847)，18派生Token。",
+    "novelty": "Peru与待核formal日期已在真实P，无新实体/事实；明确把下一操作从Open改为Search。",
+    "risk": "ORACLE_ANCHORED策略/动作提示，前三支Open不再现不能视无提示自然替代。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "选择公开宣告28后Submit。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_J"
+      ],
+      "work_and_evidence_timeline": "R3重提双日期需辨formal，真实日期Search虽去formal词仍返回与原E4完全相同；R4区别15签署/28proclamation，认定题目指28Submit。无Open。",
+      "first_judgment_divergence": "不再先读无日期500字符，而直接搜索消歧。",
+      "first_actual_tool_divergence": "日期Search代原Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认formal日期",
+          "original_operation": "Open500",
+          "original_product": "无消歧信息",
+          "new_goal": "同",
+          "new_operation": "Search日期新多源",
+          "new_product": "28被采用",
+          "evidence": [
+            "O_OPEN",
+            "O_TEXT",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核查目标继续、以Search替代，原Open动作未发生，不标完全跳过目标信息需求。",
+      "chain": "双事实已提取→G指Search替代短Open→多源公开宣告→C，省无信息Open及其反馈。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "396生成15757Prompt2Actor1Search0Open；P5831/G18单列；减少在原Open与反馈，原后继Search仍实际执行。",
+      "counterevidence_and_alternatives": "仍有额外Search，不是完全不用核验；G明确动作提示。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "解释签署/宣告区别后Submit28。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_J"
+      ],
+      "work_and_evidence_timeline": "R3先列双日期，年份Search无July返回Trujillo及国家宣告；R4长3407字符多次重新比较formal/Act/国家独立日，仍28，真实Call仅Submit。",
+      "first_judgment_divergence": "替代Search后日期选择没有变，但反复解释歧义而篇幅更长。",
+      "first_actual_tool_divergence": "Search年份代Open500。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认日期事件含义",
+          "original_operation": "Open失败",
+          "original_product": "未闭合",
+          "new_goal": "同",
+          "new_operation": "Search后长比较",
+          "new_product": "28判断恢复",
+          "evidence": [
+            "O_TEXT",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核查需求通过别的实际入口完成，Open没重做。",
+      "chain": "已知双日期→Search新材料→反复词义对照→C，工具下降但文字增加。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1071生成15605Prompt2Actor1Search0Open；R4 952生成长比较为新增篇幅，不是新检索。",
+      "counterevidence_and_alternatives": "正确结果不能认为语义比较毫无作用；无新Call也有独立判断。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "多源宣告日期直接采用Submit。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_J"
+      ],
+      "work_and_evidence_timeline": "R3按G直接执行与原E4同Query，Return也相同；R4接受28，列材料复核后Submit，无Open。误把Pumacahua文也称Melgar证据，原字段不支持该引用，Corrales支持人物关联仍在。",
+      "first_judgment_divergence": "直接绕过短Open用原后继Search，新同事实更短处理。",
+      "first_actual_tool_divergence": "日期Search替Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认宣告日",
+          "original_operation": "Open500",
+          "original_product": "无日期",
+          "new_goal": "同",
+          "new_operation": "与原后继同Search",
+          "new_product": "28直接来源采用",
+          "evidence": [
+            "O_OPEN",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "目标核查替代实现，原动作不重现。",
+      "chain": "G改入口→得到充分日期→采用提交C，省Open及原反馈。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "384生成15723Prompt2Actor1Search0Open；减少短Open和一轮解释，但保留真实日期搜索。",
+      "counterevidence_and_alternatives": "C伴随错误证据归属，不写完整质量无损；诗人yaravies仍共享缺证。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "July 28, 1821",
+      "adopted_answer": "July 28, 1821",
+      "outcome": "C",
+      "outcome_reason": "长篇反复两日期后正式采用28。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_J"
+      ],
+      "work_and_evidence_timeline": "R3年份Search得公开宣告资料；R4双日期vsQuery返回生日、其他国家等无关条目；R5已按多源选28却Open10551965首5仅Overv；R6重述双日期仍Open6623807首10仅Arenalesw；R7再双日期长Query，Return与前vs批完全相同；R8长7586字符在15/28反复解释，最后Submit28。没有新增有效消歧证据。",
+      "first_judgment_divergence": "取得足够公开宣告材料后没有收束，而把同一词义缺口继续派发为Search/Open任务。",
+      "first_actual_tool_divergence": "先Search不是Open，随后新增两个错误极短Open和重复vs检索。",
+      "function_correspondence": [
+        {
+          "original_goal": "读文确认formal日期",
+          "original_operation": "Open500无日期",
+          "original_product": "缺口不解",
+          "new_goal": "同",
+          "new_operation": "新文档Open5/10均无日期及多Search",
+          "new_product": "同样未补消歧证据，最后凭已有来源选28",
+          "evidence": [
+            "O_TEXT",
+            "N4_MORE",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "文档核查尝试重新出现并仍失败；目标工作不是没有重做。",
+      "chain": "双日期已知→已先采用28→词义不确定仍触发查询→无关Return/极短Open未改变判断→继续同查询与长比较→C但消耗大增。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3943生成77719Prompt6Actor3Search2Open；相比原切点后1Open1Search3响应，新增在vs检索两次、额外短Open、R8 1981生成反复，不能称U省成本。",
+      "counterevidence_and_alternatives": "formal确有题义歧义，持续核验不全可判不必要；但当前选择的Query/窗口没有提供新辨别信息，具体止查原因未唯一证实。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C；前三PARTIAL替代核验，第四FULL尝试恢复。",
+    "shared_and_different": "均Search先行，但前三一轮后提交，第四已选28仍持续核验到6轮；题目和P/G相同仍有很大成本波动。",
+    "cost": "396/1071/384/3943生成；Search1/1/1/3、Open0/0/0/2、Actor2/2/2/6，需逐维统计不把答案保持当节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当缺口是如何解释题目事件而非缺两个日期事实时，重复取证只有提供新的区分依据才推进；后续可一轮关系判断收束，也可在已接受后因同一词义缺口持续派发无增量工作，导致同答案高消耗。",
+      "support": [
+        "I_P",
+        "N1_J",
+        "N2_J",
+        "N4_MORE",
+        "N4_J"
+      ],
+      "limits": "单题4支、G主动提示Search；formal措辞歧义须保留，不据多数C认定所有比较多余。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "有source噪声和错误引文不能用C抹掉；原新诗人附加细节共享缺口。",
+    "PARTIAL描述目标需求通过Search实现而Open不出现，避免把取证方式与信息功能混为一谈。",
+    "DERIVED_CHAR_EXACT，旧R3部分response成本区间见表，不计算伪原生精确节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The Act of Independence of Peru was signed on July 15, 1821."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me search more specifically for the formal declaration date of Peru's independence to be sure."
+    },
+    {
+      "evidence_id": "O_DUAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/5/snippet",
+      "exact_quote": "San Martín proclaimed independence in the city's Plaza Mayor on July 28, 1821."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:6623804"
+    },
+    {
+      "evidence_id": "O_TEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "Polity created in 1821 after Peru's declaration of independence"
+    },
+    {
+      "evidence_id": "O_AFTER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The Act of Independence of Peru was signed on July 15, 1821."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The Act of Independence was signed on July 15, 1821, but the proclamation (formal declaration) happened on July 28, 1821."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Given the distinction between signing the act and proclaiming independence"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Doc 1730664 (Mateo Pumacahua) mentions Melgar fought"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    },
+    {
+      "evidence_id": "N4_MORE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Peru formal declaration of independence date July 15 1821 July 28 1821"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Actually, I'm still not entirely sure."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "July 28, 1821"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0112/trajectory.json",
+      "source_sha256": "39d4f1796eeef13e82c3156d100dfd47829b8585d7f9d96c25be5910405af2db"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0112.json",
+      "source_sha256": "51dfda15da68f4dcd775a6aaf563f6edca0e24e5b05c2d36902d0450915bff5d"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "3dd139ed29d5aae6261da87fd5f9f707c0c9cbb3c3d00182c0540952cffcd310"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "a57a7bfe88a5b4c1a250aba0d2fa86a769250637eecf4ffd43d863ba62624233"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c3f5ddbd2235627eb03fb8a8fbb34887bd6b1ff2560172e1dccfb272e87540b8"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "946385b0b906c6086eaf081866f1801ed8ffaa1dfa4c4c926c22371d724dadb8"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0112__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "cac35de5316ba5b4ecced4d68fb6e0331947a5d01f3b4ccb8ee393ab917127da"
+    }
+  }
+}

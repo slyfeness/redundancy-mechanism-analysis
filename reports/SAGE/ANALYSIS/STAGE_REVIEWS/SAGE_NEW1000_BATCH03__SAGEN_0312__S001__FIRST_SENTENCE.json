@@ -1,0 +1,470 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0312",
+  "stage_id": "S001",
+  "sample_order": 45,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "Following the 1885 expansion of the Lake Condah Aboriginal reserve, a site initially granted with 827 hectares for the Gunditjmara people, and considering the Victorian \"protectionist policies\", if you multiply the total number of Assistant Protectors appointed for the Port Phillip Protectorate in 1839 by the number of children born to the Assistant Protector specifically assigned to the Melbourne and Westernport regions, what is the resulting number?",
+    "gold": [
+      "36"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原13Actor，末轮持续推理计划，无正式答案。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0仅原题和系统工具，无人数、人物或返回；当前reasoning前缀为空。",
+    "evidence_states": "Thomas姓名由U获得，而G提前给姓名、职务地区关系和人数搜索目标。",
+    "evidence": [
+      "O_Q",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 424
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 407
+      }
+    ],
+    "goal": "制度Search解出助手总人数与地区指定人物。",
+    "operations": "1839 Port Phillip Protectorate真实Search，读取四名助手地区清单，R2提取Thomas及第一因子4。",
+    "product": "4与Thomas—Melbourne/Westernport关系，未得家庭人数。",
+    "judgment_change": "匿名地区角色转换成具体人物查询对象，第一因子由未知转为4。",
+    "evidence": [
+      "O_QUERY",
+      "O_RETURN",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "依Thomas查家庭、Open前2000，始终未见末段9；重复Search与长篇备选计划，无Final。",
+    "evidence": [
+      "O_FAMILY",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始多跳拆解、制度人数计数和地区角色识别。",
+    "state_relation": "四次均恢复4与指定人物，有三次重做制度Search，一次先受G引导查Thomas后再补制度核查。全部目标功能恢复，C/N差在后段有效读取。",
+    "evidence": [
+      "N1_FIRST",
+      "N2_FOUR",
+      "N3_FOUR",
+      "N4_FOUR"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find the number of children born to William Thomas, who was specifically assigned to the Melbourne and Westernport regions.",
+    "source_position": "O R2[407,544)",
+    "novelty": "P原题无William Thomas；G新增候选实体、角色地区事实关系及定向家庭行动，不含4、9或36。",
+    "risk": "ORACLE_ANCHORED，关键身份事实提前注入，有目标产物补偿；R1从Question重启，不计严格跳过功能证据。",
+    "evidence": [
+      "O_Q",
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "R10真实全页家庭九，R11区分出生与存活、4×9Submit。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1说尚不确信G，仍制度Search同原批；R2采用4/Thomas再家庭Search。R3–6Open5/10/20/100只有开头，R7–9三次家庭Query，R10终于Open3000含末段，R11计算36提交。",
+      "first_judgment_divergence": "G并未使原制度判断省去，模型主动先核实；后段短Open5/10/20延长缺口。",
+      "first_actual_tool_divergence": "第一Query语序不同但同完整返回；R3原2000变5，R10才实际足量读取。",
+      "function_correspondence": [
+        {
+          "original_goal": "助手人数与地区角色",
+          "original_operation": "制度Search和四人采用",
+          "original_product": "4及Thomas",
+          "new_goal": "同制度核验",
+          "new_operation": "R1Search、R2采用",
+          "new_product": "同4/Thomas并用于家庭Query",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "N1_FIRST",
+            "N1_FOUR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "人数、身份和实际制度取证全部恢复。",
+      "chain": "G身份提示仍被核实→功能恢复→多个过短Open→改3000获取9→采用出生口径→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1458生成90885Prompt11Actor5Search5Open；原11112生成250737Prompt13Actor10Search2Open；少5Search多3Open少2Actor。生成下降主要无原R13超长未执行计划，不等于U被绕开。",
+      "counterevidence_and_alternatives": "几次几乎只读姓名虽低增量仍C；完整结果不保证原功能没重做。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R15 10000生成无Submit；零、六等只为未采用猜测，不当W。",
+      "outcome_evidence": [
+        "N2_STOP",
+        "N2_BAD"
+      ],
+      "work_and_evidence_timeline": "R1沿G直接Thomas家庭Search；R2从生平one of four提取4但想核对年份，Open50，R3Open1000。R4泛Query空返回，R5含four children的Query得Parker等，R6空，R7–10家庭Query同批/噪声。R11担心1838与1839→真实制度Search，R12采用原四助手地区清单。后再家庭Query噪声、R13Open1000重复，R14家庭Search。R15 36561字符误以total_text_characters2839等于已显示片段长度，反复认全文无人数并计划其他Search，未实际执行，长度终止。",
+      "first_judgment_divergence": "G直接固定Thomas，制度取证延至R11；关键失真是把总文长当已见长度，认为正确文档已查尽。",
+      "first_actual_tool_divergence": "首查Thomas非制度，制度Search后补；所有Open最多1000，从未见Family。",
+      "function_correspondence": [
+        {
+          "original_goal": "4与Thomas地区关系",
+          "original_operation": "制度检索及采用",
+          "original_product": "第一因子/身份",
+          "new_goal": "核对1839助手",
+          "new_operation": "早从生平提4，R11制度Search、R12采用",
+          "new_product": "同4与Thomas地区关系恢复",
+          "evidence": [
+            "O_ADOPT",
+            "N2_FOUR",
+            "N2_INSTITUTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "虽后移制度核验但功能恢复，N非原身份未重建。",
+      "chain": "身份与4恢复→片段/全文错误等同→未见家庭段却排除原页→重复计划与10000生成→N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "12195生成208056Prompt15Actor11Search3Open；较原多1083生成2Actor1Search1Open，却Prompt少42681，早部多空/短返回导致；R15单10000是生成大头。",
+      "counterevidence_and_alternatives": "G给身份也未保证完成；误认全文无信息是原新日志可观察判断，不能猜测隐藏原因。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "两个真实Search与默认全文Open支撑4×9。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1重做原完全相同制度Query/返回；R2四人地区清单采用并家庭Search；R3判片段截断→Open默认4000，完整Family返回；R4九出生非三存活、36Submit。",
+      "first_judgment_divergence": "制度认知与原相同，关键R3将截断反馈转为实际足量读取。",
+      "first_actual_tool_divergence": "R3同人物Open未填limit，实际4000而原2000。",
+      "function_correspondence": [
+        {
+          "original_goal": "4与Thomas",
+          "original_operation": "Search采用",
+          "original_product": "人数地区",
+          "new_goal": "同需求",
+          "new_operation": "R1制度Search、R2采用",
+          "new_product": "同4与Thomas",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "N3_FOUR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全过程重做原制度取证而成功。",
+      "chain": "原功能恢复→正确全文读取→9成为操作数→36C→终止后续检索。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "586生成23502Prompt4Actor2Search1Open；省掉原8Search1Open9Actor与长R13。P536/G26单列，原Round起点整段usage可比但原生ID不存在。",
+      "counterevidence_and_alternatives": "原U近乎逐功能恢复仍改善，不能把改善归因原U无用。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "R7真实全文九，R8按出生而非存活计算Submit36。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1制度Search同原批，R2采用四与Thomas、家庭Search，R3–6反复改Query但都原E4相同返回。R7承认片段未见人数，默认Open全文；R8采用9→36。",
+      "first_judgment_divergence": "原功能恢复后仍四次低增量家庭搜索，R7才改读取入口，结果C但比N3多消耗。",
+      "first_actual_tool_divergence": "首Query字序不同但同返回；原R3Open改为连续Search至R7足量Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "制度人数角色",
+          "original_operation": "Search采用",
+          "original_product": "4/Thomas",
+          "new_goal": "同问题",
+          "new_operation": "R1Search，R2采用",
+          "new_product": "同判断",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "N4_FOUR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原查询判断行动都恢复；G不是唯一证据来源。",
+      "chain": "制度取证恢复→缺口仍触发同查四次→换全文读取→九采用→36C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "969生成99689Prompt8Actor6Search1Open；同C较N3多4Search4Actor，成本差明确在R3–6重复取证。较原少4Search1Open5Actor，长R13不再发生。",
+      "counterevidence_and_alternatives": "与N3同功能恢复和同最终证据，但成本不同；不是只凭同题频率确定机制。"
+    }
+  ],
+  "four_rollout_comparison": "C/N/C/C；四条都恢复原4及身份功能。三条充分Open后立即采用九并C，一条只短窗、将总长度混同片段而长生成N。G提前身份可影响路径，不能证明删除起始Stage有纯因果收益。",
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当正确文档已定位但关键字段尚不可见时，决定后续工作的可能是对‘已见范围’的判断：识别片段未完并实际扩大读取能结束缺口，错当全文已查尽会不断派发替代Search和未执行计划。",
+      "support": "N3/4足量Open后采用九；N1延迟到3000才C；N2明确错误长度判断且不再执行全文读取。",
+      "limits": "仅本题十二支含三重叠目标，计题数1；不同seed与G身份提示保留，不能说三独立题证明。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原U没有错误人数，其删除并未取消必要的第一因子和身份工作。",
+    "G关键未来姓名关系泄漏，起点仅Question属于受提示重新采样。",
+    "不把计划Search当调用、不将推理猜测当Final；成本不跨独立分支相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 0,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "the Assistant Protector specifically assigned to the Melbourne and Westernport regions"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find the number of children born to William Thomas, who was specifically assigned to the Melbourne and Westernport regions."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Port Phillip Protectorate Assistant Protectors 1839"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "four assistants were appointed to particular regions: William Thomas to the Melbourne and Westernport regions"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the first number is 4 (total number of Assistant Protectors appointed in 1839)."
+    },
+    {
+      "evidence_id": "O_FAMILY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "William Thomas"
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 13,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "But I'm not sure about that yet."
+    },
+    {
+      "evidence_id": "N1_FOUR",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "four Assistant Protectors were appointed"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "The question asks for the number of children **born**, not the number that survived."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    },
+    {
+      "evidence_id": "N2_FOUR",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "So, the number of Assistant Protectors appointed in 1839 is 4."
+    },
+    {
+      "evidence_id": "N2_INSTITUTION",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/rounds/10/tool_calls/0/arguments/query",
+      "exact_quote": "Assistant Protectors appointed 1839 Port Phillip Protectorate number"
+    },
+    {
+      "evidence_id": "N2_BAD",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/14/reasoning_content",
+      "exact_quote": "So the full text of `wiki25:3730003` does not mention the number of children."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 15,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_FOUR",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "there were four Assistant Protectors appointed"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "he and his wife Susannah Jackson had **nine** children"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    },
+    {
+      "evidence_id": "N4_FOUR",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "the number of Assistant Protectors appointed for the Port Phillip Protectorate in 1839 is 4."
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The question asks for the number of children *born*. The text states they had **nine** children."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0312/trajectory.json",
+      "source_sha256": "0d1c48866dda1dbb6b6bccbeffc71e03aa9a1139a0be503f3a9938132ad1ee56"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0312.json",
+      "source_sha256": "0e097b0c25fd9c572dab52851799584f19cad9f7e2888498abe58d0d67284a19"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "ed48962ca95ef07ce2e5162949234310b8d4bde4bb4b270299eae0d64b3e391e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "0eeff1065867a8d00b54bbc204b3cfa74928abe012a5062754beec4b1293bfca"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "dd0817b33ea541f5a7f9e6977e53d3909d4ce425ac5b10a1f7d5797198751478"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b8418039e81d2e7aed0cf4b6afba135d1518bfb089b5841ad3b6f430895736d8"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "10955e6c73e3b9f703feaffc2a3ca1f385f634aa1e1fb281c9ac0a6c49da33d1"
+    }
+  }
+}

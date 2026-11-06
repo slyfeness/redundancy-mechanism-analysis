@@ -1,0 +1,541 @@
+{
+  "schema_version": "SAGE100_CODEX_SEMANTIC_REVIEW_V1",
+  "unit_id": "PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE",
+  "trajectory_id": "PILOT200_BATCH01__MS200_192",
+  "stage_id": "S002",
+  "sample_order": 10,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/PILOT200_BATCH01__MS200_192/trajectory.json",
+      "source_sha256": "c8fbe6d6254f9d408a19d7cd9a3c9f207517de93d8911093ddce5b95f5826bc6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/PILOT200_BATCH01__MS200_192.json",
+      "source_sha256": "073b0187a8057e2575c06c4667492c3cd6acc1c9e109200b9799b418bc6f61a0"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "2aa6b42048f43c9702c4755e25dbfab7db5eee4afe115eff61811647ffff307c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "5b1e08dffb2031e7cdbed9950ed499d377857da774baa4e184ce904f08befa0d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "6c6b48c7a02e252a7082d800b09caadeb8a319da9affa967942b9a5cdba6c77e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3b857e7d55066756ff4bd23f1d96aa712fbe4a05f94c2eac4a831094c797dfbb"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "3ba48104a21de81627899f61ddf546d98f23e59777f4506e7d6305f88459972b"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the historical name of the major thoroughfare from Warsaw that led to the central Polish city where the 13th-century \"Statute of Kalisz\" was granted by Prince Bolesław V the Chaste, with this Prince being the husband of Saint Kinga, legendary patroness of the Wieliczka Salt Mine (a site noted for salt-carved works by miners, reflecting a regional artistic tradition similar to that of primitivist painter Teofil Ociepka, whose \"Janowska Group\" was based in a district of the Silesian city containing the Silesian Museum, a prominent institution founded in 1929 with a 2015 campus on a former mine site)?",
+    "gold": "Kalisz Road",
+    "offline_only": true
+  },
+  "read_scope": "原3轮与全部实际Return、Final已完整读，原目标R2片段/Call复核。四新82355字符连续[0,25000)、[25000,50000)、[50000,75000)、[75000,82355)完整阅读，尤其N2 R5 16756字符、N3 R5 18718字符均全读。没有把文中多次Let us search当真实Call；真实工具事件逐一对照，N3两次Ociepka实际Search与新全文片段单独读。",
+  "original_outcome": {
+    "outcome": "C",
+    "actual_final": "Kalisz Road",
+    "terminal": "MODEL_FINAL_STOP",
+    "reason": "原道路Search直接支持旧名并实际接受提交；公爵/文化旁支并未全部外证核验。",
+    "reference": "ANALYSIS/OUTCOME_SCREENING_ROOT/DECISIONS/PILOT200_BATCH01__MS200_192.json"
+  },
+  "prestate": {
+    "actual_input": "原R2@192，当前P接受法令城市Kalisz并把Pious/Chaste当同人；历史只有法令Search Return，没有道路文档、Połczyńska实体或Kalisz Road旧名。",
+    "evidence_levels": "城市已提取/采用，但关键道路关系尚未取得，不能用原E2未来Return解释新正确；文化条件多仅题干提供，当前没有实际博物馆/画派查证。",
+    "remaining_gap": "真正查明Warsaw通Kalisz的道路及历史名；P中公爵同一性无文档支持，须作为共享问题保留，不认为删该Stage产生。",
+    "input_accounting": "历史Actor1，基础3980、保留53派生Token，P4033，G20，首4053，max9947，非原native精确。",
+    "evidence": [
+      "I_CITY",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "range": "原R2 /rounds/1/reasoning_content[192,508)，SHA350c14711d65cb2ed49843ccdfff46b4a57e082dd8dac867c3c75e2bb4a0a4ef；真实/tool_events/1 E002 Search，完整Return首次原R3可见。",
+    "mapping_reference": "MAPPINGS/PILOT200_BATCH01__MS200_192.json#/stages/1",
+    "actual_goal": "用已定位的Kalisz作为目的地检索道路及旧名。",
+    "actual_operations": "真实Search Warsaw Kalisz road thoroughfare historical name，返回Połczyńska全文片段，明列Kalisz Road/Poznań Road/Greater Poland Road和路线关系。",
+    "product": "主问题所问道路关系第一次成为模型可见材料，尚待原R3采用和别名选择。",
+    "judgment_change": "本U提供回答所需新文档，后续从未知道路变可选择具体旧名；不把接收直接等同于已接受Final。",
+    "full_original_text_location": "M#/stages/1原字段与完整工具事件；O#/tool_events/1/observation真实全文。",
+    "evidence": [
+      "O_QUERY",
+      "O_ROAD_RETURN"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "原R3采用道路文档、按Kalisz目的地选择旧名，反复文化背景说明但没有新查证，原草稿后submit。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": "首次补主答案直接证据的定向取证，与S003材料已到后的接受盘点和S004答案已接受后的草稿不同。结果保持若来自重新取得同材料，应计取证重建；后续表达/补证工作仍可能增减。",
+  "guide_audit": {
+    "text": "The user's question is very convoluted, but let's break it down step by step:",
+    "origin": "原R3[0,77)，20派生Token，只取冒号开场，不含任何清单或道路名。",
+    "P_comparison": "没有新实体、道路、历史名或新事实，只有完整拆题方向；不能把G当模型自主已经执行全条件判断，也不能当它提供未知Kalisz Road。",
+    "novelty": "GENERIC_QUESTION_DECOMPOSITION_ORIENTATION",
+    "oracle_status": "ORACLE_ANCHORED_NO_IDENTIFIED_NEW_ANSWER_FACT",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "Kalisz Road",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Kalisz Road",
+      "outcome": "C",
+      "outcome_reason": "新真实道路Query取到原同全文并实际接受，正式正确；附带Wrocław/Katowice解释自生冲突无新证据核实。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2先按G拆主线和全部文化约束，再真查Warsaw to Kalisz historical name road thoroughfare，Return完整同原U。R3 7620字符采用正确道路和旧名，同时自述Ociepka画派在Wrocław、博物馆却Katowice/Gliwice等反复矛盾，最后把旁支当描述可能混淆仍以主线提交。无新Search/Open。",
+      "first_judgment_divergence": "原U短定向查询，新先长盘点但仍恢复正确入口；得到主答案后自主加入未有文档支持的文化地点关系，造成额外内部解释任务，而不改道路。",
+      "first_actual_tool_divergence": "Query词序变化但结果全文相同，1Search2Actor同原切后；没有实际文化查询。",
+      "function_correspondence": [
+        {
+          "original": "获得道路及旧名直接文档",
+          "new": "真Query取得同完整Return，R3采用",
+          "evidence": [
+            "O_QUERY",
+            "O_ROAD_RETURN",
+            "N1_QUERY",
+            "N1_ACCEPT"
+          ]
+        },
+        {
+          "original": "新材料用于选择和提交",
+          "new": "同Kalisz Road接受/submit，旁支解释改变另记",
+          "evidence": [
+            "O_ACCEPT",
+            "N1_SIDE",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标取证、材料和采用全部恢复，不因为后来更贵而否认重建。",
+      "judgment_action_outcome_chain": "P目的地→重新道路Search→正确旧名采用→无证文化关系互相冲突→大量内部解释后将其降背景→C且生成更多；增加不在目标功能缺失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2364生成/9342Prompt/1Search0Open2Actor；原切后生成[1547,1672]，增加[692,817]。Search/Actor同，Prompt整请求口径+73；额外在R2拆题和R3文化推论，不说搜索循环。",
+      "counterevidence_and_alternatives": "没有查证Wrocław断言，不能以题干可能错误为该判断确证；公爵同一性原P已有也未解决，非删除新增。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "Kalisz Road",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Kalisz Road",
+      "outcome": "C",
+      "outcome_reason": "道路直证真正恢复并多次采用，最终submit正确；两次短Open均未包含历史名，模型错把片段短当文档短，非新答案缺失。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2完整拆题后真道路Query得同原全文；R3明确正确旧名，却Open7374939 offset0 limit100，仅返回头部，不含已在Search见过的旧名。R4说document very short需要full text，实际再次相同offset/limit100，完整同返回。R5 16756字符反复自生Janowska/Kraków/Katowice和博物馆矿址疑问，文本多次说要搜但没有再执行Search，末段content实际生成解释，真实submit Kalisz。",
+      "first_judgment_divergence": "核心判断已正确采用，却把再读正文当验证要求；对Open截断的反馈没有转成参数更新，再读同头部。之后旁支自述冲突维持内部工作，未形成新实际核验。",
+      "first_actual_tool_divergence": "目标道路Search恢复后额外两次同Open100，原从切点无Open。两次是独立新Call，不是自动翻页，返回和参数均同。",
+      "function_correspondence": [
+        {
+          "original": "获取道路旧名材料",
+          "new": "第一Search完整同文，R3已采用并选名，FULL",
+          "evidence": [
+            "O_ROAD_RETURN",
+            "N2_QUERY",
+            "N2_ACCEPT"
+          ]
+        },
+        {
+          "original": "原后续接受后提交",
+          "new": "接受后未直接提交，重复Open无新信息，再长篇旁支解释后submit",
+          "evidence": [
+            "N2_OPEN_SHORT",
+            "N2_RETRY_REASON",
+            "N2_RETRY_QUERY",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "取证功能已完成，额外重复操作和更长判断属于后续新工作，不是目标尚未重建。",
+      "judgment_action_outcome_chain": "重取主答案→已接受仍要求正文确认→误解释短返回/计划要全文却不改参数→再次同Return→文化缺口内部重述→C但成本大增。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "5792生成/20256Prompt/1Search2Open4Actor；原生成[1547,1672]，多[4120,4245]；多2Open2Actor，Prompt整请求口径+10987。R5实际4867生成Token是主要生成位置，不能把总增量全当两次Open本身Token。",
+      "counterevidence_and_alternatives": "‘想搜索’不是Search次数；上下文里已有关键完整Search，不能说因为Open100没旧名所以主答案未返回。内在冲突产生原因未确定，采样/G亦可能影响展开。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "Kalisz Road",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Kalisz Road",
+      "outcome": "C",
+      "outcome_reason": "主道路证据恢复并接受，之后两次新人物背景Search不足以全面闭合所有旁支，最终仍选正确道路。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2长3602字符重盘题干，曾想Via Regia但没有真查该候选；实际仍道路Query同原Return。R3接受KaliszRoad但认为剩余画家/博物馆条件要完整核，真实查Ociepka/Janowska，Return6720092说明Janów出生、Katowice煤矿工作、Janów社团，截到艺术经历开头，未给完整博物馆2015和画派所在地闭环。R4再用Janowska/Katowice/Museum Query得同人物片段及噪声。R5 18718字符多次纠缠Pious/Chaste、地区/矿址与同路名，反复提检索但没有第三个旁支Call，最终submit。",
+      "first_judgment_divergence": "在主答案已采用后，将文化补全提升为实际外查任务；取得背景片段并不能解决全部约束，随后内部反复处理姓名同一性而没有真查该问题。不是无证据的循环，也不是全部必要信息已经齐备。",
+      "first_actual_tool_divergence": "道路Search恢复后新增两次文化人物Search，第二换Query但关键人物片段相同；原这两项都只是知识/题干复述。",
+      "function_correspondence": [
+        {
+          "original": "道路及旧名取证",
+          "new": "R2真实同文恢复，R3已明确采用",
+          "evidence": [
+            "O_QUERY",
+            "N3_QUERY",
+            "N3_ACCEPT"
+          ]
+        },
+        {
+          "original": "原后续文化链作为背景处理",
+          "new": "新真正执行两Search，获得人物工作/社团背景，但未补博物馆全条件，再内在纠缠后submit",
+          "evidence": [
+            "N3_START_SIDE",
+            "N3_SIDE_QUERY",
+            "N3_SIDE_RETURN",
+            "N3_SECOND_SIDE_QUERY",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U目标工作完整重做；新验证其他约束不构成原目标缺失，而是扩展后续任务。",
+      "judgment_action_outcome_chain": "重取道路直证并接受→认为剩余背景必须补齐→真实背景Search只部分补足→再查同片段仍缺完整关系→内部姓名/背景反复→最终C；成本增加兼有实查与未闭合疑问长表达。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "7181生成/21813Prompt/3Search0Open4Actor，原[1547,1672]，增加[5509,5634]生成，多2Search2Actor。R5单轮5594生成Token是主增量位置，两真实背景Search另计；不是全部Search都毫无信息。",
+      "counterevidence_and_alternatives": "首次人物Return确给新信息，不能把它等同完全重复。第二次关键片段相同，但真实检验对象从人物泛背景转画派/博物馆关联，不仅按Query相似度判机制；最终关系尚未完全证实。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "Kalisz Road",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Kalisz Road",
+      "outcome": "C",
+      "outcome_reason": "同道路Return真正取得并采用，正式正确；文化无证Wrocław断言存在但未转新查询或主答案变化。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2 1157字符拆主线后真同N1道路Query、同Return。R3 1496字符采用道路旧名，少量旁支说明含Wrocław无证断言，未继续核查，直接submit。",
+      "first_judgment_divergence": "目标工作没有缺失，原长5630字符盘点缩成较短主线判断，保留一些未证旁支但没有让它们继续驱动工作。",
+      "first_actual_tool_divergence": "Query词序变化而Return完整同原，随后同submit，Search/Actor不变。",
+      "function_correspondence": [
+        {
+          "original": "主问题直接取证与后续采用",
+          "new": "首真Search返回同完整道路文本，R3选同历史名",
+          "evidence": [
+            "O_ROAD_RETURN",
+            "N4_QUERY",
+            "N4_ACCEPT"
+          ]
+        },
+        {
+          "original": "后续完整接受与提交",
+          "new": "较短对应后直接submit，不增加取证",
+          "evidence": [
+            "O_ACCEPT",
+            "N4_ACCEPT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标功能完全恢复；更短发生在后续论证组织，不是无需取得未知道路事实。",
+      "judgment_action_outcome_chain": "P城市→真道路查询恢复关键关系→短主线采用并接受→C；不把文化不确定性提升为后续待办，省较长解释与追加核验。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_192__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "738生成/9342Prompt/1Search0Open2Actor，原[1547,1672]，生成保守少[809,934]。Search/Actor同，Prompt整请求口径+73；少在后续判断展开，原目标Query完整恢复。",
+      "counterevidence_and_alternatives": "新有Wrocław和矿址无证细节，较短不等于旁支更正确；四次同P/G唯本条明显少生成，不能从单条认定删除必省。"
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_change_count": 0,
+    "screen_group": "A",
+    "common_work": "4/4重新实际查到同一完整道路Return并采用，目标取证均FULL，G没提供道路旧名。",
+    "important_differences": "主答案形成后，N1自生地域矛盾只内部解释；N2重复同参数短Open两次；N3真正查背景两次仍有未解条件；N4较短提交。不能统一叫工作重建后一样，也不能将所有额外核验当冗余。",
+    "cost_not_pooled": "生成2364/5792/7181/738，前三确定较原保守上界高、N4低。Search1/1/3/1，Open0/2/0/0，Actor2/4/4/2，Prompt各实际记，独立不相加。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当上游城市已稳定但主答案道路证据尚未知，删除定向取证会在新路径中被恢复；答案多数保持不能说明这个取证不必要。关键成本差发生在取得并采用主答案以后：背景条件被保持为待办、短返回被误作全文不足却不改执行参数，或自生知识冲突需反复解释，都可以让后续继续工作；较短路径没有让这些问题持续派发任务。",
+      "support_scope": "本Stage1题4路径，三种增耗路径与N4较短形成内部对照；与S003资料已到后的比较删除形成状态对照，但不计两独立题。",
+      "counterevidence": "N3背景Search有真实新信息，不能一概无价值；N2已有主答案仍额外Open，不能由正确性判断其确认是否必要。",
+      "limits": "日志可以定位行动选择与额外工作，不能唯一证明删除某项判断导致这些选择，也不能用最终C取消共享公爵/文化证据缺口。"
+    }
+  ],
+  "counterevidence_and_limits": "所有新Call真实执行，首Return完整相同不是原未来回填，已查新原始工具记录。G仅一般拆题方向，仍ORACLE。只按真实目标切点成本区间，不整条原1920生成冒作原后续。原没有nativeIDs，P派生53单列不直接扣为精确原生节省。Codex模型自审不是独立人工验收。",
+  "evidence": [
+    {
+      "evidence_id": "I_CITY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_current_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The statute was granted in the city of Kalisz."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user's question is very convoluted, but let's break it down step by step:"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Warsaw Kalisz road thoroughfare historical name",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ROAD_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "first_visible_round": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "Historically the street, variously known as the Kalisz Road, Poznań Road or Greater Poland Road",
+      "doc_id": "wiki25:7374939"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "\"Kalisz Road\" is the most appropriate answer given the destination."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kalisz Road"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Warsaw to Kalisz historical name road thoroughfare",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The most direct name related to Kalisz is \"Kalisz Road\"."
+    },
+    {
+      "evidence_id": "N1_SIDE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The \"Janowska Group\" was in Wrocław. This might be a slight conflation in the query"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kalisz Road"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Warsaw Kalisz road historical name thoroughfare",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the historical name of the major thoroughfare from Warsaw that led to Kalisz was the **Kalisz Road**."
+    },
+    {
+      "evidence_id": "N2_OPEN_SHORT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "first_visible_round": 4,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "Street in Warsaw Połczyńska Street (, lit. Połczyn Street) is a major thoroughfare in Warsaw, Poland",
+      "doc_id": "wiki25:7374939"
+    },
+    {
+      "evidence_id": "N2_RETRY_REASON",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The document for Połczyńska Street is very short. I need to see the full text to find the historical name."
+    },
+    {
+      "evidence_id": "N2_RETRY_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:7374939",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7374939"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kalisz Road"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "historical name major thoroughfare Warsaw Kalisz road",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The answer is Kalisz Road (or Kaliska Droga)."
+    },
+    {
+      "evidence_id": "N3_START_SIDE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Now I should verify the remaining details about Teofil Ociepka and the Silesian Museum to ensure completeness, though the core answer appears clear."
+    },
+    {
+      "evidence_id": "N3_SIDE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Teofil Ociepka Janowska Group Silesian city district Silesian Museum",
+      "call_id": "chatcmpl-tool-bd972962492d2282"
+    },
+    {
+      "evidence_id": "N3_SIDE_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "first_visible_round": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "eventually becoming a power plant machinist at the Giesche coal mine in Katowice, where he worked until his retirement.",
+      "doc_id": "wiki25:6720092"
+    },
+    {
+      "evidence_id": "N3_SECOND_SIDE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Janowska Group Katowice district Silesian Museum",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kalisz Road"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Warsaw to Kalisz historical name road thoroughfare",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "According to the document, Połczyńska Street was historically known as the \"Kalisz Road\" (among other names)."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Kalisz Road"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

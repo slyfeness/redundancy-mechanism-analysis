@@ -1,0 +1,37 @@
+{
+  "schema_version": "SAGE100_FINAL_SCREEN_V1",
+  "sample_order": 56,
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0162",
+  "input_file": "ANALYSIS/OUTCOME_SCREENING_PEER/INPUTS/SAGE_NEW1000_BATCH03__SAGEN_0162.json",
+  "input_sha256": "dd8df200c96b012cb8023dae0feda4812d141af1d2316733eab28aa1c5b9bc75",
+  "reviewer": "Codex model",
+  "review_scope": "题目、全部正式Final；1938答案补读真实末轮及实际返回，不调用新检索",
+  "answer_decisions": [
+    {
+      "answer_id": "ANSWER_001",
+      "exact_final": "1904",
+      "adopted_answer": "1904年",
+      "outcome": "W",
+      "reason": "1904与Gold1937不同，未给所问Macalister完整英文首卷出版年；当前没有相应1904来源支持或同年别名问题。",
+      "needs_context_review": false
+    },
+    {
+      "answer_id": "ANSWER_002",
+      "exact_final": "1938",
+      "adopted_answer": "1938年",
+      "outcome": "UNCERTAIN",
+      "reason": "按冻结Gold1937不匹配；但所问Macalister完整英译首卷，1938可能涉及源Gold书目年份错误，不能凭相差1年直接当已证错误。该实际末轮承认只凭记忆1938，返回中出现的1938均是其他同姓人物无目标书目支持；当前材料不能独立消解1937/1938，待书目核实。保持EMfalse与语义UNCERTAIN分列。",
+      "needs_context_review": true
+    }
+  ],
+  "context_checks": [
+    {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0162__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "note": "真实末轮明说没有文档明确首卷年份，只凭记忆1938；实际1938返回指MollyMacalister等无关人物，未用来证明书目。",
+      "source_sha256": "7a995d7bb9b4a4f5374e09f40a3f231d62c5bf9072b93a4fcc4794e6f5d3107a",
+      "json_pointer": "/rounds/13/reasoning_content"
+    }
+  ],
+  "review_status": "CODEX_FINAL_REVIEW_COMPLETE",
+  "limits": "不以本模型记忆自动改Gold，也不把Gold冲突强行算C。"
+}

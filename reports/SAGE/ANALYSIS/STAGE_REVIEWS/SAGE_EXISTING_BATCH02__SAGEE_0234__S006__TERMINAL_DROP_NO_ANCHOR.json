@@ -1,0 +1,395 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0234",
+  "stage_id": "S006",
+  "sample_order": 99,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What year did the \"Badenia\" steam locomotive, built by the founder of the company that manufactured the cars for the Stuttgart funicular railway—a system operated by the same entity as the Stuttgart Stadtbahn and whose cars were manufactured by a firm founded in 1846—begin its experimental service?",
+    "gold": [
+      "1841"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "1841",
+    "adopted_answer": "1841",
+    "outcome": "C",
+    "reason": "正式选择1841，与Gold一致；Baden I b返回把1841建造与随后试验服役相连。",
+    "evidence": [
+      "O_SERV",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R10@0之前已有缆车SSB/ME关系、ME1846/EmilKessler、Badenia1841建造，并已反复倾向1841；刚R9真实Search返回5040730把这辆机车与experimentally in service连接，尚无下一轮对该新句的显式采用。",
+    "evidence_states": "1841已是接受倾向但此前服役只有推断；新直接服役句已返回但未被R10采用，不能把晚到证据算在R9推理中。",
+    "evidence": [
+      "O_PRIOR",
+      "O_SERV"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items",
+    "ranges": [
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 1423
+      }
+    ],
+    "goal": "将新服役句与前面的身份链整合、作时间判断并正式提交。",
+    "operations": "重列SSB/ME/Kessler链，引用BadenIb原句，将建造1841及随后服役语境连接，实际submit1841。没有新Search/Open。",
+    "product": "新服役证据被采用，1841正式Final。",
+    "judgment_change": "从已倾向1841但服役缺直接表述，变为依据新句接受并提交。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "末Stage提交后终止，无原后继Reasoning。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在目标证据刚返回后完成多跳链整合、时间关系接受与提交。",
+    "state_relation": "四次都重新整合并使用刚到服役句；三次比原更长、一次更短，答案保持不是末段判断未发生。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "",
+    "source_position": "TERMINAL，无后继首句。",
+    "novelty": "无教师G，保留的P包含真实已返回证据；末段可自然重建。",
+    "risk": "无ORACLE文本，但同P独立采样不是功能未发生证明。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "正式1841且直接用5040730服役句。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R10 2178字符六项身份链/年份与服役原句，随后第二遍chain重列并submit。无Search/Open。",
+      "first_judgment_divergence": "无答案或行动方向实质分歧，恢复同证据到1841的时间推断但篇幅更长。",
+      "first_actual_tool_divergence": "无新增取证，唯一submit同1841。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合新证据并提交",
+          "original_operation": "全链+服役句时间判断",
+          "original_product": "1841Final",
+          "new_goal": "同整合提交",
+          "new_operation": "六项比较再重列chain",
+          "new_product": "同1841正式提交",
+          "evidence": [
+            "O_U",
+            "N1_J",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标判断和提交均真实重做，非只有Final字符串。",
+      "judgment_action_outcome_chain": "新服役句已在P→重新引用接入身份链→1841被接受→提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "628生成27131Prompt1Actor0Search0Open；原363生成，同请求/工具量，记录生成多265，增加在第二遍链条重述。G0/P27131。",
+      "counterevidence_and_alternatives": "没有新增证据≠没有必要认知动作；不能把A四C称末段冗余。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "完整链条及服役句支持后submit1841。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R10 2278字符七项事实、服役原句，再次七项逻辑链逐项核对，submit。无取证Call。",
+      "first_judgment_divergence": "无实质候选分歧，扩大链条复盘。",
+      "first_actual_tool_divergence": "仍仅submit，Search/Open均无。",
+      "function_correspondence": [
+        {
+          "original_goal": "服役时间接受与提交",
+          "original_operation": "新句结合身份链",
+          "original_product": "1841",
+          "new_goal": "同判断",
+          "new_operation": "七项事实加二次逻辑核对",
+          "new_product": "1841正式Final",
+          "evidence": [
+            "O_U",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "判断与正式提交完整重现。",
+      "judgment_action_outcome_chain": "服役证据已可见→完整复核身份与1841关系→提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "684生成27131Prompt1Actor0Search0Open，比原363多321；增加在双重清单，非新查询。",
+      "counterevidence_and_alternatives": "更长表达仍同判断，不能由Token多直接给冗余分类；功能与篇幅分开。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "六项证据含服役原句，选择并提交1841。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R10 889字符六项事实及单次结论，直接submit，没有第二次完整清单或新核验。",
+      "first_judgment_divergence": "判断一致，表达更紧凑，没有重复第二遍链条。",
+      "first_actual_tool_divergence": "无新增取证，仅submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全链整合提交",
+          "original_operation": "证据/时间判断",
+          "original_product": "1841Final",
+          "new_goal": "同工作",
+          "new_operation": "简短六项事实加结论",
+          "new_product": "同提交",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "功能完整，减少的是原段引文/再次核对篇幅。",
+      "judgment_action_outcome_chain": "P证据充分用于同结论→更短整合→同C且生成下降。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "254生成27131Prompt1Actor0Search0Open，记录生成少109；没有省工具/Actor，明确落在末段解释更短。",
+      "counterevidence_and_alternatives": "这是重建且更省的反例，不能用FULL标签排除压缩空间；不是证明提交判断可完全删。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "比较Kessler/Baillie/BadenIb三来源，接受1841并submit。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R10 1598字符五项身份事实、BadenIb完整句，继而逐一对照Kessler建造、Baillie1841引入、BadenIb试验服役三段已有证据；没有真实Open/Search。",
+      "first_judgment_divergence": "更明确使用Baillie时间旁证，但材料在P已到，无新取证。",
+      "first_actual_tool_divergence": "仍仅submit1841。",
+      "function_correspondence": [
+        {
+          "original_goal": "时间证据整合",
+          "original_operation": "建造与随后服役关联",
+          "original_product": "1841Final",
+          "new_goal": "同时间论证",
+          "new_operation": "三已见来源交叉解释",
+          "new_product": "同正式1841",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "证据充分性和正式提交均出现。",
+      "judgment_action_outcome_chain": "已有多个来源→重建时间关系并接受→同C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "409生成27131Prompt1Actor0Search0Open，多46记录生成；增加在三来源文字核对，不是工具。",
+      "counterevidence_and_alternatives": "说Let me verify不等于新核查Call，不能虚增Search或Open。"
+    }
+  ],
+  "four_run_comparison": "四C四FULL，都是P真实新服役证据到达后的整合/提交重建。r1/r2双清单更长，r3短一次整合少109生成，r4三旧来源对照略长；结果一致但表达组织不同。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "关键支持刚返回且候选已倾向时，删除末段整合可能只触发同判断重新执行；计算差来自整合是否重复展开，不来自功能是否保留。",
+      "support_evidence": [
+        "O_PRIOR",
+        "O_SERV",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limit": "同题四次不能推所有末段可删；证据语境推断并非明确独立服役日期句，质量判断保留这一边界。"
+    }
+  ],
+  "counterevidence_and_limits": "原与新都由建造1841及then实验服役语境推年，未提供精确日期额外资料；本题Gold年份一致。完整响应usage可比但缺原nativeIDs，不称原生精确Token省；四分支不相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_PRIOR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "I'll submit 1841 as the answer."
+    },
+    {
+      "evidence_id": "O_SERV",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/2/snippet",
+      "exact_quote": "Kessler built this engine together with his partner Martiensen at his own expense and then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "So the Badenia was built in 1841 and placed experimentally in service in 1841."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 10,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "According to the text, Emil Kessler built the \"Badenia\" in 1841 and then placed it experimentally in service."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The engine is identified as the \"Badenia\" built in 1841."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "According to the \"Baden I b (old)\" document, the Badenia \"was placed experimentally in service\" after being built by Kessler in 1841."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "From the John Baillie document:"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0234/trajectory.json",
+      "source_sha256": "a25b2fa8fe293960549afd48775dd9ec8b997053ae9fdd769c5da309c323562e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0234.json",
+      "source_sha256": "b3a0858646e452cdd66043a5deb30f7e0852ee701b9555f4561292e4f4cf5eba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "2152a3ed036d2d1ba10f43e2f859fa5223c3862ff84190d35cb0abcba5b0185d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "44d89700ec0272708fee2ee7b4abb7695d63129559828da6a5269f98ee1ae4c5"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "c739ed253d7c30bc03a9df404cfe10c2a0f90f301b50a32ff689f968621b3905"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "3cab909d6c4e7a92175a84ce7b85c547cc9dbcd57613827579ff725cf5030cda"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0234__S006__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "72b1e318400bde61523b9688f356e0796d4ae6087f1e4c42c651e33f306a8de8"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+ "batch_id":"PEER_002","reviewer":"PEER","status":"COMPLETE_CODEX_REVIEW_NOT_HUMAN_GOLD",
+ "case_ids":["18__rep1__S001__FIRST_SENTENCE","20__rep1__S006__FIRST_SENTENCE","68__rep1__S001__FIRST_SENTENCE","170__rep1__S002__FIRST_SENTENCE","202__rep1__S001__FIRST_SENTENCE","23__rep2__S004__FIRST_SENTENCE","205__rep3__S001__TERMINAL_DROP_NO_ANCHOR","231__rep1__S002__FIRST_SENTENCE","233__rep3__S004__TERMINAL_DROP_NO_ANCHOR","266__rep2__S001__FIRST_SENTENCE"],
+ "functions":[
+  {"description":"从题目获得初始候选材料，尚未必完成采用；或查询准备没落实工具，根本没有外部材料。","members":["18__rep1__S001__FIRST_SENTENCE","68__rep1__S001__FIRST_SENTENCE","202__rep1__S001__FIRST_SENTENCE","266__rep2__S001__FIRST_SENTENCE","205__rep3__S001__TERMINAL_DROP_NO_ANCHOR"],"distinction":"前三真正取得可用主体，266得到目标条目但没采用，205零Call只有假设。68/202 G提前给候选；18/266 G不含实体；205无G。不能都计自主发现省略。"},
+  {"description":"P已返具体关系后，首次采用并落实具名查询，允许直接证据修正年代疑问。","members":["170__rep1__S002__FIRST_SENTENCE"],"distinction":"首次采用而非第一次材料可见，真实补1958/慈善，不是纯总结。"},
+  {"description":"主体部分采用或尚未成立时，补属性/关系并持续失败反馈；也可能更换年份继续同假设。","members":["231__rep1__S002__FIRST_SENTENCE","233__rep3__S004__TERMINAL_DROP_NO_ANCHOR","23__rep2__S004__FIRST_SENTENCE"],"distinction":"231身份14岁未核，233MMA/指代未证，23书年已经硬不合仍重访；前态及排除机会不同。"},
+  {"description":"主体已明确采用之后核另一个题目约束，但返回属于另对象，引发别对象的工作。","members":["20__rep1__S006__FIRST_SENTENCE"],"distinction":"题名可保留而学校关系未闭，新增模量和学历是不同证据缺口。"}
+ ],
+ "comparisons":[
+  {"id":"C01","cases":["170__rep1__S002__FIRST_SENTENCE","68__rep1__S001__FIRST_SENTENCE","202__rep1__S001__FIRST_SENTENCE","18__rep1__S001__FIRST_SENTENCE"],"finding":"A稳定可来自不同补偿：170 P已留具体故事，G仅评价，四次真实恢复；68/202空P的G给关键人物，恢复不可当自主发现；18无实体G，四次都取到Lillian线索但一个转Neal到N。","counter":"同为A仍有个别N、证据下降和全成本增加，保留具体分支。"},
+  {"id":"C02","cases":["170__rep1__S002__FIRST_SENTENCE","23__rep2__S004__FIRST_SENTENCE","231__rep1__S002__FIRST_SENTENCE"],"finding":"说出冲突、恢复正确比较与真实对象更新不同。170新4把时间疑问转具名核验并C；23新2/3确排除并换片仍N；231新1说Young却实际仍Chief，new4真实Young后才更新Mozzy。","counter":"反证识别不充分预测C/W/N；既有误解后修复C，也有正确排除后找不到新目标N。"},
+  {"id":"C03","cases":["20__rep1__S006__FIRST_SENTENCE","233__rep3__S004__TERMINAL_DROP_NO_ANCHOR","266__rep2__S001__FIRST_SENTENCE"],"finding":"局部真材料与完整关系分开：UNC增长不能证Chalmers，Miz/Morrison双打不能证2018淘汰，博客条目/author不能证题目经历。错误或未证解释会创建新的具体核验任务。","counter":"20新2已识别学校不同，233新3/4有新真实双打增量，266目标片段也非充分答案证明；不一概归无证据或忽略完整证据。"},
+  {"id":"C04","cases":["205__rep3__S001__TERMINAL_DROP_NO_ANCHOR","266__rep2__S001__FIRST_SENTENCE","18__rep1__S001__FIRST_SENTENCE"],"finding":"无执行长规划、真实同Query重查、按频率猜答是三种不同后段。205新2零Call10000Token；266新1末轮计划、new2/4真实循环、new3目录猜答；18new4在错对象长期真查。","counter":"不能把它们同叫搜索循环，更不能以生成少当有效省耗。"}
+ ],
+ "mechanism_tests":[
+  {"id":"PEER002_T1","description":"保留关系/实体锚点使功能可重新执行，但是否由P已采用还是G给定，决定能否讨论无补偿恢复；同功能在不同前态下解释不同。","links":[{"case_id":"170__rep1__S002__FIRST_SENTENCE","local_id":"170S2_A"},{"case_id":"202__rep1__S001__FIRST_SENTENCE","local_id":"202S1_A"}],"relation":"170支持P1_K2；202仅作为G补偿/执行组织对照，不能一起算独立自主恢复。","counterexamples":["170新4延迟恢复仍C更贵；202新3同G全成本增，不能把有锚点视为必省。"],"unresolved":"同源已有候选与教师新候选要分列，不能为扩大支持并为一个确定机制。"},
+  {"id":"PEER002_T2","description":"信息状态/事件解释只有改变下一真实Call才进入作用链，单说冲突或另一个候选不算已改变行动。","links":[{"case_id":"170__rep1__S002__FIRST_SENTENCE","local_id":"170S2_B"},{"case_id":"231__rep1__S002__FIRST_SENTENCE","local_id":"231R1S2_B"},{"case_id":"23__rep2__S004__FIRST_SENTENCE","local_id":"23S4_A"}],"relation":"分别检验P1_K1、P2_R1与冲突未约束属性任务，保留方向和条件不同，不用统一结局数作支持。","counterexamples":["23新2/3真实排除后换对象仍N；170new4误读后能修复；231new1口头Young未进Call而W。"],"unresolved":"这些链解释可见查询选择，尚不能唯一解释为什么某seed会修改前提。"},
+  {"id":"PEER002_T3","description":"弱身份或未证关系被当后续属性任务前提，缺证反馈不撤销对象；可能最后将题目条件反填事实，或继续耗预算。","links":[{"case_id":"18__rep1__S001__FIRST_SENTENCE","local_id":"18S1_B"},{"case_id":"231__rep1__S002__FIRST_SENTENCE","local_id":"231R1S2_A"},{"case_id":"233__rep3__S004__TERMINAL_DROP_NO_ANCHOR","local_id":"233S4_A"},{"case_id":"266__rep2__S001__FIRST_SENTENCE","local_id":"266S1_B"}],"relation":"支持PEER001_T1/ROOT001_T2上位研究方向。原已错前提、原U新错解释、G给错对象、新自主猜关系四种来源必须保留；FIRST_SENTENCE和无G分别计数。","counterexamples":["231new4前半同错却后面更新截断；233new3/4真实双打史有新增信息；266new3按频率接受而new4仅持续取证不Final。"],"unresolved":"多子环节尚不冻结一个机制；不得把质量弱点与U独特删除因果混同。"},
+  {"id":"PEER002_T4","description":"未解缺口持续派发相同取证而无可见行动反馈更新，工具与累计输入上升；同样缺口也可有限核验后带保留提交。","links":[{"case_id":"68__rep1__S001__FIRST_SENTENCE","local_id":"68S1_B"},{"case_id":"266__rep2__S001__FIRST_SENTENCE","local_id":"266S1_A"}],"relation":"与P2_R3下游及查询反馈任务重派关联，实际固定Query/Return的窗口清楚才计出现。","counterexamples":["68new4未证typhoid也能停止，new3不同入口后C；266new1无Call纯生成不是同机制，new3猜答也不是。"],"unresolved":"不能从重复次数解释为什么触发下一次，现可见触发是持续未解条件，没有独立终止阈值证据。"},
+  {"id":"PEER002_T5","description":"查询计划落实真实工具并用返回更新候选，可以替代长无证模拟，但这是单Stage从空题重启的执行对照，不是局部删功能因果证据。","links":[{"case_id":"205__rep3__S001__TERMINAL_DROP_NO_ANCHOR","local_id":"205R3S1_A"}],"relation":"保留新候选研究方向，只有一题本批，不能并入普通局部FIRST_SENTENCE。","counterexamples":["new1长规划后仍发Call成功，new2承认卡规划仍无Call；长短和自我反思均非执行充分条件。"],"unresolved":"工具计划未落实的内部原因未知，不凭日志造工程故障解释。"}
+ ],
+ "unresolved":[
+  {"case_id":"18__rep1__S001__FIRST_SENTENCE","issue":"离职证据采用延迟、论坛占位误用和最后专栏最后性仍有证据边界。"},
+  {"case_id":"20__rep1__S006__FIRST_SENTENCE","issue":"学校增长/BSc原新未核，G重返UNC提示不能忽略。"},
+  {"case_id":"68__rep1__S001__FIRST_SENTENCE","issue":"G未来人物、病种来源和停止原因分开；疾病启发未证。"},
+  {"case_id":"170__rep1__S002__FIRST_SENTENCE","issue":"错误生年来源未知，算术犹豫不是硬冲突；具体慈善覆盖不全相同。"},
+  {"case_id":"202__rep1__S001__FIRST_SENTENCE","issue":"G正确人名及优劣判断补偿，真实分数不存在；品牌/两片/博士年缺证。"},
+  {"case_id":"23__rep2__S004__FIRST_SENTENCE","issue":"N的两条实际排除更新有效，不可强归一链；movie排纪录片题意不明。"},
+  {"case_id":"205__rep3__S001__TERMINAL_DROP_NO_ANCHOR","issue":"单Stage重启、无G、从空题；本地历史支持仍不足。"},
+  {"case_id":"231__rep1__S002__FIRST_SENTENCE","issue":"G错歌、三未证合作者、父亲15年及专辑归属来源不齐。"},
+  {"case_id":"233__rep3__S004__TERMINAL_DROP_NO_ANCHOR","issue":"无G但P已有Miz MMA假设，指代歧义和具体淘汰无证。"},
+  {"case_id":"266__rep2__S001__FIRST_SENTENCE","issue":"目标条目不含全部题目经历，Azanspy→GoodDoctor缺显式决策解释，频率不是唯一原因证明。"}
+ ],
+ "source_handling":"逐案读六类已核完整材料与必要原文/Call列表，脚本仅定位证据/验证/复算。既有充分材料不重新展开巨量Token。20题史料错校与同题切点归属、末返回未消费、纯计划未执行均单独核对。",
+ "limitations":"十题均为本批不同题，但170/68/202/18等与前批/试点同题，不新增独立题目数；终态变化和正确性变化不同。两TERMINAL条件独立统计，205全轨迹重采样不可称局部重要Stage。"
+}

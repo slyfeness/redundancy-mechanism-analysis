@@ -1,0 +1,449 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0358",
+  "stage_id": "S001",
+  "sample_order": 67,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0358/trajectory.json",
+      "source_sha256": "941ff00db3497bcacde31062f6d9f979fe45951b96909eb2e6936dc7b9b62098"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0358.json",
+      "source_sha256": "cf36795f4ab6c66b3c807d52356b196647de0c1ff886e717cfdd63ee0e350fdd"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "35514bab1341e3c9103829adb1b4db0e89a1518d0bac09cef83bb89715ad00ab"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "2311bdd55a9f18ffbc3816b8a8071f8216d393325ce690a01861c467c5b12cb3"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "319c5a69e0dc4a250f4e353c2c876659ced423f3d84c526f3d9c4f113b48d2fa"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "e1d49033bca65646935dcd2490b6b3d1a32d7e95e65c5a7a91b09835bf328181"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "ea978632a1aa67b975f08b4c12383ed9bdd1dedb8547bec43853dbd1d19009e5"
+    }
+  },
+  "question_and_gold": {
+    "question": "What city did the Secretariat of the European Materials Handling Federation relocate to in order to be closer to the decision-making center?",
+    "gold": [
+      "Brussels"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0358/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Brussels",
+    "adopted_answer": "Brussels",
+    "outcome": "C",
+    "reason": "真正采用FEM而非邻近Federation of European Publishers材料；6598177明确city和relocation purpose。正式SubmitBrussels正确。",
+    "evidence": [
+      "O_DOC",
+      "O_ADOPT",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "唯一Stage从R1@0开始，P468Token只有system和原Question，无旧Search/Return、候选或已接受判断；删除整Stage等于从题目重启自然求解。",
+    "evidence_states": "FEM组织和迁址目的来自题目，目标城市未知，无先前独立证据。",
+    "evidence": [
+      "I_Q",
+      "I_MODE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items，覆盖整条：R1[0,368)、E1Search完整Return，R2[0,316)、E2Submit。Final字段单独。",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 368
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 316
+      }
+    ],
+    "goal": "确定FEM秘书处迁往哪座靠近决策中心的城市。",
+    "operations": "R1真实组织名+Secretariat relocation city decision-making center查询，E1第三文6598177直接2000 moved to Brussels；R2明确指第三文并逐字引用，Submit。其他机构Geneva、Makati、FEP Brussels等返回未被误当目标。",
+    "product": "城市Brussels及直接文档支持，正式C。",
+    "judgment_change": "未知城市→从准确组织的直接关系句提取Brussels→提交，不增加第二核查。",
+    "evidence": [
+      "O_CALL",
+      "O_DOC",
+      "O_ADOPT",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "U已覆盖全部工作；没有后继Reasoning Stage。R2引用属于U内直接处理，不另伪造原后续，Final为Brussels。",
+    "evidence": [
+      "O_ADOPT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "单一组织属性取证，准确实体文的一句直接关系足以确定并提交。",
+    "information_state_dependence": "P无城市，四条A的结果保持靠完整功能重新执行而非前文判断已完成。单Stage重启不能证明Stage可删除或冗余。",
+    "first_update": "城市和迁址目的的首次外部证据均在U。"
+  },
+  "guide_audit": {
+    "text": "",
+    "source": "NO_ANCHOR",
+    "oracle_status": "NO_ANCHOR",
+    "P_comparison": "没有G，不注原Final/Gold或未来Return。唯一Stage的TERMINAL干预需标RESTART_NOT_PROVEN_STAGE_SKIP；无引导不等于成功绕过功能。",
+    "evidence": [
+      "I_MODE",
+      "I_Q"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "Brussels",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Brussels",
+      "outcome": "C",
+      "outcome_reason": "正式Brussels，真实6598177准确FEM迁址句支持。",
+      "outcome_evidence": [
+        "N1_ADOPT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1说明特定组织事实需查，实际Query与原完全相同，完整Return也同；R2识别第三文FEM并引迁址句，直接提交Brussels。没有额外搜索或重新判断。",
+      "first_judgment_divergence": "无实质判断分歧，同一关系句被采用；仅开头和解释措辞不同。",
+      "first_actual_tool_divergence": "无：同Query与同完整Return，新独立Call真实执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查询FEM迁址→第三文Brussels→正式提交。",
+          "new_goal_operation_product": "同Query/Return，R2主动提取Brussels并Submit，目标操作产物全恢复。",
+          "evidence": [
+            "O_DOC",
+            "N1_CALL",
+            "N1_ADOPT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "首次取证到正式提交全重做，不是只有相似Query。",
+      "judgment_action_outcome_chain": "未知城市→精准组织文直接关系→接受而不再核→C。结果稳定来自可复现直接证据和实际采用，Stage并未被绕过。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "199生成/4816Prompt/1Search2Actor，原214/4816/1S2A；生成少15仅表达与协议开销，无外部动作减少。",
+      "counterevidence_and_alternatives": "整题重启非Stage skip证据，且与另一路多15生成相对，不能推广Token下降。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "Brussels",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Brussels",
+      "outcome": "C",
+      "outcome_reason": "正式同Gold，引用准确迁址关系；初始缩写EMHF不规范但查询全名正确，未改变实体。",
+      "outcome_evidence": [
+        "N2_ADOPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1描述FEM时写EMHF，实际全组织名Query比原去city词，Return全同；R2指出第三文并引Brussels迁址句，原生文本Call Submit真实执行，C。",
+      "first_judgment_divergence": "无实质候选/关系变化；EMHF缩写没有成为后续实际核查对象。",
+      "first_actual_tool_divergence": "首Query去city但同具体计划、同Return，非新证据入口。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实取城市、从正确组织文采用并提交。",
+          "new_goal_operation_product": "微调Query仍真实得同材料，准确引用城市并Submit，全恢复。",
+          "evidence": [
+            "O_DOC",
+            "N2_CALL",
+            "N2_ADOPT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "取得/采用/提交全部有新路径依据，不仅凭城市词判断。",
+      "judgment_action_outcome_chain": "同组织检索→直接迁址关系句可用→无冲突或新缺口→提交C。无新增独立判断可支持‘删去某轮总结’解释。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "184生成/4815Prompt/1Search2Actor，生成少30、Prompt少1、工具/Actor同；Query少词及较短提交解释/协议是可见差别，不是原功能省去。",
+      "counterevidence_and_alternatives": "与原采样/服务档不同，不将30Token当原Stage可省长度。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "Brussels",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Brussels",
+      "outcome": "C",
+      "outcome_reason": "准确组织文原关系句被正式采用，Brussels正确。",
+      "outcome_evidence": [
+        "N3_ADOPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1真实同原Query，完整Return同；R2明确doc6598177，引用整个Consequently句后Submit。没有其他实际核查。",
+      "first_judgment_divergence": "没有，取证—采用—提交相同，改了理解问题的表达。",
+      "first_actual_tool_divergence": "无Query/Return差异，仅独立CallID/执行时间不同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "获得FEM迁址城市并提交。",
+          "new_goal_operation_product": "重新同取证、准确采用同关系、正式同答案。",
+          "evidence": [
+            "O_DOC",
+            "N3_CALL",
+            "N3_ADOPT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "所有原整题功能实际重建，非跳过。",
+      "judgment_action_outcome_chain": "相同直接文→相同城市判断→立即Submit，C；篇幅略增不影响行动。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "229生成/4816Prompt/1Search2Actor，生成比原多15，其余同。只是有限措辞展开，反驳四C必更省。",
+      "counterevidence_and_alternatives": "小幅生成变化与另三条相反，不能人为称所有A更节省。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "Brussels",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Brussels",
+      "outcome": "C",
+      "outcome_reason": "真实迁址句直接支持Brussels且正式提交。",
+      "outcome_evidence": [
+        "N4_ADOPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1实际去city的全名Query与r2同，完整Return同原；R2标doc6598177、引关系句并立即Submit。没有靠其他同样Brussels机构错误对应。",
+      "first_judgment_divergence": "没有，准确FEM而非出版社/其他机构同名城市作为依据。",
+      "first_actual_tool_divergence": "仅首Query少city一词，不换需求/对象。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "对准确组织提取迁址城市并交答。",
+          "new_goal_operation_product": "同精确组织文重新取证采用，正式Brussels，全恢复。",
+          "evidence": [
+            "O_DOC",
+            "N4_CALL",
+            "N4_ADOPT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "新证据定位与实际采用清楚，不只凭答案相同。",
+      "judgment_action_outcome_chain": "全名Query→同直接关系→无需追加核查即可提交C。没有被删判断缺失或G补偿可解释本条稳定。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0358__S001__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "207生成/4815Prompt/1Search2Actor，比原生成少7、Prompt少1，行动次数不变；小幅表达变化。",
+      "counterevidence_and_alternatives": "单Stage整题重启，不能用4/4C叫末段冗余。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "四条完整重新Search、取得同一完整Return、识别相同正确FEM关系句并提交。Query只有是否city微差，不同机构材料没有被混用。不是前文已知答案或工作没重做。",
+    "costs": "生成199/184/229/207对原214，三减一增，1Search2Actor不变。相同工作重建的短表达波动，不是功能被省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "直接单事实问题在整题重启中的稳定证据采用",
+      "chain": "P无答案→全名迁址Query稳定返回明确主体/动作/地点/目的的一句关系→四条均定位准确主体而非邻近同城市机构→直接提交。稳定答案源于整个必要过程恢复，而非原Stage重复无新增作用。",
+      "limits": "单题4次独立重启，RESTART_NOT_PROVEN_STAGE_SKIP，不可据此总结某种可有可无Stage或构成跨题机制支持。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原19710、四新19130字符阅读完整；全部Return真实执行，原件不改。",
+    "唯一Stage整题删除，无G不属ORACLE_ANCHORED；单Stage重采样限制明确，不据A就算不必要。",
+    "原nativeIDs缺，cutR1@0记录完整response usage可比但不宣称原生Stage精确Token节省，P468预填单列。",
+    "四条证据质量保持，生成却有增有减；表达长度不与正确率等价。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_Q",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What city did the Secretariat of the European Materials Handling Federation relocate to"
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "O_CALL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "European Materials Handling Federation Secretariat relocation city decision-making center",
+      "call_id": "chatcmpl-tool-b825e54440d97668"
+    },
+    {
+      "evidence_id": "O_DOC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "Consequently, in 2000 FEM Secretariat was moved to Brussels to be closer to the decision-making centre.",
+      "doc_id": "wiki25:6598177",
+      "call_id": "chatcmpl-tool-b825e54440d97668"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I have found the answer: Brussels."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Brussels"
+    },
+    {
+      "evidence_id": "N1_CALL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "European Materials Handling Federation Secretariat relocation city decision-making center",
+      "call_id": "chatcmpl-tool-ad4b17214fd44ae4"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This directly answers the user's question. The city is Brussels."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Brussels"
+    },
+    {
+      "evidence_id": "N2_CALL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "European Materials Handling Federation Secretariat relocation decision-making center",
+      "call_id": "chatcmpl-tool-a1f68cc80f9e4811"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Consequently, in 2000 FEM Secretariat was moved to Brussels to be closer to the decision-making centre."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Brussels"
+    },
+    {
+      "evidence_id": "N3_CALL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "European Materials Handling Federation Secretariat relocation city decision-making center",
+      "call_id": "chatcmpl-tool-88463d9ee546d630"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This directly answers the question. The city is Brussels."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Brussels"
+    },
+    {
+      "evidence_id": "N4_CALL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "European Materials Handling Federation Secretariat relocation decision-making center",
+      "call_id": "chatcmpl-tool-96f90d41710fdbba"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This directly answers the question. The city is Brussels."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Brussels"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

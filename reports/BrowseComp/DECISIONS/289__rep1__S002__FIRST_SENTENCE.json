@@ -1,0 +1,22 @@
+{
+ "case_id":"289__rep1__S002__FIRST_SENTENCE","batch_id":"PEER_001","reviewer":"PEER","review_status":"REVIEWED",
+ "function":"对已采用电视剧补主演戏剧履历，从多剧目中选择Deliler并作词根语义比较，首次建立题目所需剧名联系。不是重复电视剧名称确认。",
+ "prestate":{"returned":"两次广搜，23585有主演/剧集年份/频道及喜剧。","extracted":"R3@154前已提取Çılgın Bediş及Yonca，尚无Deliler或演员履历。","adopted":"电视剧候选已采用，词义条件尚未核。","action":"需查演员1980—90剧目，然后比较具体剧名。"},
+ "stage_effect":"U真实演员Query取47650，名单1985—88含Deliler，R4解释mad/crazy对应Çılgın；Z联合Query再确认后提交。出演区间尚不是戏剧首演年，不能把语义匹配自动补成全部条件证据。",
+ "four":[
+  {"repeat":1,"state":"C","first_decision_divergence":"首动作仍演员履历，与原同需求，未出现实质对象分歧；恢复后更具体查询Deliler1985。","first_actual_call_divergence":"首Query与原只少末尾theatre，返回同履历；第二Call查Deliler1985，原第二Call为剧集/演员/剧名联合。","judgment":"重新从履历选Deliler并解释词义，不是直接沿用G给的剧名。","action":"2Search/3Actor，正式剧名1996。","restoration":"信息取得、名单选择及语义比较完整恢复，原功能未跳过。","cost_location":"1110生成另加G19，Search/Actor与原2/3相同，Prompt27904比27772多132；生成只按CHAR区间复算，不虚报精确节省。","quality":"C，出演年仍未直接证明首演年。","evidence":["O1","O2","O3","N11","N12","N13"]},
+  {"repeat":2,"state":"C","first_decision_divergence":"首选剧集+演员联合入口，没取到履历后R4才改纯演员，较原推迟一次缺口填充。","first_actual_call_divergence":"首Call含Çılgın Bediş，主要返回剧集；E2真实查Yonca戏剧年份才得47650。","judgment":"没有先获得正确履历又忽视它；首入口未补缺口，补查后完整恢复词义判断。","action":"3Search/4Actor，最后再核Deliler并C。","restoration":"U完整重建，多的是首联合Query失败实例。","cost_location":"1567加19，Search/Actor各多1，Prompt43291增15519；增加明确落在补查和多轮历史输入，不是更复杂答案。","quality":"C，共同首演年缺证保留。","evidence":["N21","N22","N23","N24"]},
+  {"repeat":3,"state":"C","first_decision_divergence":"先演员Query恢复比较，之后把末次查询明确用于戏剧准确release年，目标较原一般确认更具体。","first_actual_call_divergence":"首Query与新1相同近原；第二Call为Deliler play theatre1980—90。","judgment":"主动识别首演年需要核，但返回仍主要是出演区间，最后把条件当满足；有核验意图不等于证据闭合。","action":"2Search/3Actor，正式1996。","restoration":"U功能完全恢复，额外认知年份缺口不产生额外Call数。","cost_location":"1459加19，Search/Actor同原，Prompt28158增386；文字增加不能与工具次数混算。","quality":"C，准确首演年未证明，不以Perfect自述替证据。","evidence":["N31","N32","N33"]},
+  {"repeat":4,"state":"C","first_decision_divergence":"同新2先联合剧集Query，补演员后R5把Deliler误绑1984—85，后再确认改1985—88。","first_actual_call_divergence":"首Query含剧集；E2转演员后得履历，E3具名Deliler1985。","judgment":"核心词义恢复，过程年表错配被修正，不能因FinalC抹去中间错绑。","action":"3Search/4Actor，正式C。","restoration":"U完整重建，日期解释先错后修；不是省掉原核验。","cost_location":"1185加19，Search/Actor各多1，Prompt43130增15358；首Query未补缺口造成额外交互，日期确认包含在其后。","quality":"C，修正出演区间仍不自动证明作品首演。","evidence":["N41","N42","N43","N44"]}
+ ],
+ "guidance_review":"G不含Deliler/词义/年份，却以this connection预设有可确认联系；P有电视剧和演员而无该联系。19原生G，P仅空格局部重编码，全部ORACLE_ANCHORED。",
+ "local_chain":"剧集已采用但戏剧联系未知→U真实履历取证并从名单提取语义匹配→四新全部重建→直接演员入口两Call、联合剧集先回偏题材料需三Call→全C但功能未省且输入/部分调用增加。",
+ "attribution_limit":"A稳定来自完整重建而非工作不需要。G暗示联系存在，召回差异与采样未分离；在本例可定位入口覆盖对一次交互差异，不能外推联合查询总较差。",
+ "source_review_sufficiency":"完整读取六类事实卡、U演员名单及语义比较、原新所有真实Call与四次采用引文；特别对照同首Query/Return的1/3和2/4，未将剧集材料等同履历材料。机械验证再核引用与成本区间。",
+ "unresolved":["47650演员出演1985—88不能直接证明Deliler首演在该区间，原新共同缺口。","新4年表错绑来源仅能定位推理，无法断言是具体哪一行触发。"],
+ "evidence_ids":["O1","O2","O3","N11","N12","N13","N21","N22","N23","N24","N31","N32","N33","N41","N42","N43","N44"],
+ "mechanism_links":[
+  {"local_id":"289S2_A","description":"保留已采用剧集和演员使具体关系缺口可被重新检索、选择并解释；功能恢复保持答案，不等于原认知比较可无补偿跳过。","locus":"U R3—R4及四新履历返回后的语义比较。","stage_attribution":"原U首次填此联系，四新各有真实重建，不观察到不做该功能仍成功路径。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"1":["N11","N12","N13"],"2":["N22","N23","N24"],"3":["N31","N32","N33"],"4":["N42","N43","N44"]},"candidate_registry_id":"P1_K2","counterevidence":"全C伴共同首演年缺证，恢复是具体词义关系而非全部条件；G还预设联系可确认。"},
+  {"local_id":"289S2_B","description":"已明确人物的履历缺口，若首入口仍被剧集词主导只返回已知剧集，需另一次演员取证；成本增加来自缺口覆盖次序，不是功能变多或答案变坏。","locus":"NEW2/4首Call至次Call，与NEW1/3纯演员入口对照。","stage_attribution":"U本为纯演员入口，新2/4先联合检索后补回，新增一次Call有明确可见落点。","observed_repeats":[2,4],"not_observed_repeats":[1,3],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"2":["N21","N22","N23"],"4":["N41","N42","N44"],"1":["N11","N12"],"3":["N31","N32"]},"candidate_registry_id":"","counterevidence":"同批试点291联合Query可同时覆盖学校而更省，联合本身不是坏策略；需看实际返回是否补此缺口。不能由本题推检索字符串的普遍效果。"}
+ ]
+}

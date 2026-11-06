@@ -1,0 +1,50 @@
+{
+  "case_id":"23__rep2__S002__FIRST_SENTENCE","question_id":"23","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"W","4":"N"},"basis":"原R16正式拒答W，新3R15也正式拒答并仅列不符候选，W；新1/4为CONTEXT_BLOCKED，新2为GENERATION_LENGTH_STOP，均N，不从候选枚举补正式答案。旧冻结标签不改。"},
+  "review_basis":"原16轮15Call/Return及Final在上一同源单位完整阅读，本轮重读R7/R8/R9与Final。四新43轮41真实Call/完整Return和Final全部实际阅读；280返回槽，24新片段全文已读、六个其它来源全文另读取验SHA，其余使用本线程已读精确SHA。新2R16首13000字符实际读，余39420字符201段全部逐字符匹配已读前缀，覆盖回执EXACT_REPETITION_READING_23rep2S002_new2R16.json，无独有文字省略。",
+  "pre_state":"R7@0，保留前六轮与六次真实Return、Big Short书2010和Wolf书2007不符的原判断，但尚无正确影片。金融诈骗/真实犯罪是P自选搜索解释，题目本身未限定此题材；P没有Bad Blood候选的实质评估，也没有12th Fail资料。",
+  "u_work":"R7[0,734)提出Bad Blood/2018书及记忆性作者1973，E7实际查Elizabeth Holmes与导演；R8[0,556)采用Theranos/书信息，识别The Inventor是纪录片而非所找feature，并发E8查书作者和Scorsese；R9[0,254)仍未找到、回到诚实警察情节。两次工具结果没有确证对应feature、导演和警察感化情节。",
+  "u_state_update":"原U把财务题材缩到具体Theranos书/影视关系，得到纪录片不充分的判断，随后恢复宽搜。原后续仍多次回Big Short/Scorsese，最后识别书年与导演年冲突并拒答；U没有完成正确影片采用，也没永久关闭未合格候选的待办。",
+  "original_action_consequence":"本组B为原拒答变三次无Final，并非删除正确判断导致答错。删除后四次都恢复Bad Blood/Inventor的部分或具体核查，仍未取得目标影片；差别在何时用局部命中继续追同分支、何时回广搜、何时停止Search转长篇计划或拒答。",
+  "guidance":{"text":"Let me search for movies about scams/fraud that have this specific storyline.","source":"原S003 R9[254,331)，15Token，LOCAL_EDGE_RETOKENIZED_GUIDE；P切点R7@0为NATIVE_TOKEN_EXACT，不因G派生而误称P非精确。","audit":"ORACLE_ANCHORED。G无候选实体/新事实/答案；财务骗局及情节方向已在完整P多次存在。G立即接回泛搜动作，原U具体候选与两Return均未注入；仍可能补偿下一行动方向，不能称无引导删除。"},
+  "evidence":[
+    {"id":"O_PROPOSE","source":"original","pointer":"/rounds/6/reasoning_content","quote":"Some possibilities:","use":"R7先提出Bad Blood书/影视候选，不是已证身份。"},
+    {"id":"O_DOCUMENTARY","source":"original","pointer":"/rounds/7/reasoning_content","quote":"but that's a documentary, not a feature film.","use":"R8局部影视关系判断，后实际再查，不等于已完成全题排除。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/7/exact_arguments","quote":"John Carreyrou","use":"chatcmpl-tool-8b023ae076bc2041，第二次实际查询仍带无证Scorsese联系；完整返回按源保留。"},
+    {"id":"O_REFUSE","source":"original","pointer":"/rounds/15/content","quote":"I cannot definitively identify the specific movie","use":"真实FormalFinal拒答为W，不把财经候选列表当采纳。"},
+    {"id":"N1_RECOVER_QUERY","source":"new1","pointer":"/tool_events/4/exact_arguments","quote":"Elizabeth Holmes Theranos fraud","use":"chatcmpl-tool-94ab3df22aaad979，R11实际恢复原U的Theranos核查入口，不只是提及计划。"},
+    {"id":"N1_RECOVER_JUDGMENT","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"Bad Blood","use":"R13恢复书/纪录片不足判断，随后实际广搜，不是纯删除未恢复。"},
+    {"id":"N1_LAST_QUERY","source":"new1","pointer":"/tool_events/11/exact_arguments","quote":"fraud","use":"chatcmpl-tool-873759fb8f219557，R18仍实际广搜，返回仅进入未发R19guard。"},
+    {"id":"N2_BADBLOOD_QUERY","source":"new2","pointer":"/tool_events/3/exact_arguments","quote":"Bad Blood Elizabeth Holmes movie based on book 2019 John Carreyrou","use":"chatcmpl-tool-89d312fbf2b01c07，R10具体恢复，不把新路径标签继承原轨迹。"},
+    {"id":"N2_SUBTASK","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"Now I need to find a movie based on","use":"R11把书2018/作者记忆性1964当局部合格，形成寻找对应影片的下一真实查询；返回不证作者出生。"},
+    {"id":"N2_TED_RETURN","source":"new2","pointer":"/tool_events/5/exact_result","quote":"Betting On Zero","use":"chatcmpl-tool-bdd9363a24ae4ed8，R12回68486真实TedBraun纪录片/2016/Herbalife信息，未给导演1964或原作书/警察情节。"},
+    {"id":"N2_BAD_RANGE","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"Ted Braun was born in 1964, so this fits!","use":"R13错误范围接受，后R15明确改为1964不在1950—60，不能说从未识别冲突。"},
+    {"id":"N2_CORRECTION","source":"new2","pointer":"/rounds/8/reasoning_content","quote":"Wait, no, 1964 is outside that range.","use":"R15纠正范围，仍实际查Betting On Zero；查一个候选不自动等同重新接受。"},
+    {"id":"N2_LONG_STOP","source":"new2","pointer":"/rounds/9/reasoning_content","quote":"This doesn't seem to match all the criteria.","use":"R16明确不匹配后，无真实Call，52420字符继续反复准备搜索，10000Token技术上限；不能把计划当Search。"},
+    {"id":"N3_MEMORY","source":"new3","pointer":"/rounds/5/reasoning_content","quote":"But that's a documentary.","use":"R12从记忆恢复Inventor/BadBlood局部判断，未执行该候选定向核查，实际转DumbMoney。"},
+    {"id":"N3_DUMB_RETURN","source":"new3","pointer":"/tool_events/2/exact_result","quote":"Dumb Money draws inspiration from the very recent past","use":"R9 Doc381已返回片名/GameStop2021/KeithGill，早于R12采用并实查；E12再次回同片段。没有该片发行年2022、书源、导演出生或警察情节。"},
+    {"id":"N3_DUMB_QUERY","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"Dumb Money movie 2022 book based fraud GameStop Keith Gill","use":"chatcmpl-tool-9a6264b36ea9b77d，R12采用已有局部题材线索转真实Query；返回再次给381而未补齐关键关系，不能把未给日期2022当Return事实。"},
+    {"id":"N3_REFUSE","source":"new3","pointer":"/rounds/8/content","quote":"I cannot find a specific movie that matches all the criteria","use":"R15正式拒答并列候选，W不是N/C；Final列名不等于正式选中。"},
+    {"id":"N4_RECOVER_QUERY","source":"new4","pointer":"/tool_events/3/exact_arguments","quote":"Elizabeth Holmes fraud scam film","use":"chatcmpl-tool-89e519da30993629，R10真实恢复Theranos方向，回Holmes近况等无警察情节。"},
+    {"id":"N4_RECOVER_REJECT","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"However, this is a documentary, not a traditional movie.","use":"R11恢复原U相似影视类型判断后真正换广搜，不是相同Query一直不变。"},
+    {"id":"N4_DUMB_RETURN","source":"new4","pointer":"/tool_events/4/exact_result","quote":"Dumb Money draws inspiration from the very recent past","use":"R11 Doc381真实返回片名/GameStop2021/KeithGill，下一轮确实采用，不可说无依据找到。"},
+    {"id":"N4_FOUND","source":"new4","pointer":"/rounds/5/reasoning_content","quote":"I found","use":"R12实际采用上一Return的DumbMoney局部线索；同时自己明确GameStop故事似不符警察情节，书和导演仍待查，发行2022未被该段支持。"},
+    {"id":"N4_DUMB_QUERY","source":"new4","pointer":"/tool_events/5/exact_arguments","quote":"Dumb Money movie 2022 book author director cast characters","use":"chatcmpl-tool-a271a52b22fee7d9，R12实查又回381和Billions等，381仍只有局部梗概、没补书/导演/警察情节，后恢复广搜。"},
+    {"id":"N4_LATE_PLAN","source":"new4","pointer":"/rounds/10/reasoning_content","quote":"This is a very specific plot point.","use":"R17同前轮完整Reasoning再次出现但仍有新真实Call；与新2无Call文字空转不同。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后从情节和财务类广搜开始，R11才具体回Theranos，随后认识纪录片不足并重回宽搜/Madoff。","state_chain":"原U具体候选被跳过→重新泛搜仍由财务解释约束→真实补Theranos且恢复纪录片疑虑→用同一警察线索/书年重构多次Query但未得目标→最后Return后guard无Final。","function_change":"PARTIAL_REBUILT：具体Theranos查找和类型不足判断重现，作者/Scorsese联查未重现；没有正确候选转换。多三次Search、更多Prompt，生成更短不等于取证更省。","evidence":["N1_RECOVER_QUERY","N1_RECOVER_JUDGMENT","N1_LAST_QUERY"],"semantic_result":"W→N；未观测到足够新证据后作提交选择。"},
+    {"repeat":2,"first_divergence":"先试Madoff再R10回BadBlood，书/作者局部合格被转为寻找影视改编的实际任务；R12结果引出BettingOnZero。","state_chain":"恢复BadBlood特定取证→非目标Ted纪录片被用于新候选→1964曾误判范围内、后自纠且仍查→R16明确未满足却将未解决反复改写成准备搜索→无新Call耗满10000，N。","function_change":"原目标/实际具体查询/电影关系判断大部分重建，细节错误改变；最后剧烈生成增加来自一次已排候选后未执行的新搜索规划反复，不是Search次数更多。","evidence":["N2_BADBLOOD_QUERY","N2_SUBTASK","N2_TED_RETURN","N2_BAD_RANGE","N2_CORRECTION","N2_LONG_STOP"],"semantic_result":"W→N；实际纠错存在，不能用没注意条件概括，也不能把文字准备算后续真实检索。"},
+    {"repeat":3,"first_divergence":"多轮财务广搜后，R12以记忆提Inventor/BadBlood并保留纪录片不符，采用R9已回381的DumbMoney/GameStop线索改查。","state_chain":"原U具体两Call未恢复→类型疑虑从记忆恢复→已有片名/题材被用于新真实Call→回同381局部梗概未补关键关系→继续广搜→R15承认约束未全满足、正式拒答。","function_change":"PARTIAL_REBUILT：候选关系比较恢复，原专门作者/影视查询未执行，增DumbMoney替代尝试；原新均W拒答，少一次Search/一Actor且生成更短，不证明发现目标所需工作可省。","evidence":["N3_MEMORY","N3_DUMB_RETURN","N3_DUMB_QUERY","N3_REFUSE"],"semantic_result":"W→W，候选列表含错误日期但并未选中其为答案，不能误判C。"},
+    {"repeat":4,"first_divergence":"R10重新实际查Holmes，R11纪录片疑虑且真实回381，R12采用其中DumbMoney并实查，未补关键关系而再泛搜。","state_chain":"同一候选功能恢复→局部不符与新返回推动一次真实换对象→新对象题材可见但关键书/导演/警察关系仍缺→保持未解决情节、多个广搜实际执行→R16/R17同段推理而不同新Call→guard无Final。","function_change":"PARTIAL_REBUILT：Theranos实查/纪录片判断恢复，无作者Scorsese联查；新增DumbMoney、BACNord/PuppetMaster比较不等同简单原样重做。多三次Search/两Actor，生成少但Prompt大增。","evidence":["N4_RECOVER_QUERY","N4_RECOVER_REJECT","N4_DUMB_RETURN","N4_FOUND","N4_DUMB_QUERY","N4_LATE_PLAN"],"semantic_result":"W→N，没有发现正确影片后拒绝采用的证据链，只有非目标候选更换与真实预算终止。"}
+  ],
+  "mechanism_candidate":"本B的共同前提是P已将题意具体化为财务骗局但尚无正确影片。原U只在这个解释内探BadBlood影视关系，没取得目标；删后四次均以不同方式恢复其部分工作，仍未解除这个搜索范围。恢复具体比较并不保证后续推进：局部书年/题材命中会生成继续找该候选改编/属性的真实待办；未闭合警察情节又触发更泛财务Query。新2的范围纠错后，未解条件仅驱动无Call的反复计划；新1/4则真的继续Search至guard，新3选择拒答。这是具体任务如何延续和如何终止的分化，不能由三次W→N断言U对正确性有必要贡献。",
+  "within_case_support":"四条都再次出现BadBlood/Inventor而不是功能全消失；新1/2/4还有真实定向核查，新3只有记忆判断。只有新2出现BettingOnZero后长篇无Call空转，不能把它当四次共同链；新1/4新Search增加，新3减少，成本方向由实际工作而非U长度解释。",
+  "mechanism_chain_checks":[
+    {"chain":"既有财务解释不变→具体候选局部不符/缺证→再回同题材广搜而未形成新候选采用。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_RECOVER_QUERY","N1_RECOVER_JUDGMENT","N1_LAST_QUERY"],"2":["N2_BADBLOOD_QUERY","N2_CORRECTION","N2_LONG_STOP"],"3":["N3_MEMORY","N3_DUMB_QUERY","N3_REFUSE"],"4":["N4_RECOVER_REJECT","N4_DUMB_QUERY","N4_LATE_PLAN"]},"limits":"题材限定是模型推断但非充分证明失败原因；未获得目标与已获得未采用必须分开。没有脱离财务解释的本单位正例作因果对照。"},
+    {"chain":"识别具体候选不符→持续重新设计搜索但不发真实Call→生成预算耗尽。","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N2_CORRECTION","N2_LONG_STOP"]},"limits":"本单位仅一条，另外两N仍有真实Search；禁止以相同N把它们合成一种循环机制。"}
+  ],
+  "counterevidence_and_limits":["原新完整Return均未出现12thFail或其真实书源，不能解释为正确证据返回后没采用；但新3/4确实已回DumbMoney局部题材并被用于下一Query，不可把不充分资料说成没有资料。初稿误记这一点，语义反查已修正。","真实68486只支持Ted纪录片和2016，不支持1964；新2R13范围误接受后来明确自纠，不能只挑错误不记修复。","原U作者1973、新2作者1964都是当时记忆性断言，未被对应Return证实，不借外部资料代替轨迹事实。","同书/纪录片讨论是功能部分恢复，不表示恢复了原特定两Call或全部产物；具体动作/结果逐项分开。","G无实体事实但补行动方向，ORACLE_ANCHORED及不同seed、预算限制保留，非纯因果删除。","原W与新W均拒答，结果状态保持不等于工作/消耗相同；B另外三条是无Final，不是丢失正确答案。","最后Return仅进未发guard不能算采用，完整工具对照另核。","同题不同Stage单位不能作为多个独立问题支持，独立分支成本差不相加。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R7@0，原真实后缀4795生成/9Search/10Actor，Prompt19569+317748=337317。G15一次；新原生3865/12247/3491/3732，加G3880/12262/3506/3747，差−915/+7467/−1289/−1048。Search12/9/8/12、Actor12/10/9/12，Prompt440010/334269/290104/447116。G的局部派生不改变P原生精确口径。新2多7467生成主要来自末轮无Call重复规划；新1/4少生成却更多Search/Prompt，新3少Search但仍拒答。延迟不可从整条原总量当原后缀，重放历史开销分列。",
+  "next_cross_case_test":"与23S001比较同题材限定和约束排除是否真正改变实际待办，保留没有目标证据前提；跨题再比较已有目标却不用的20题、1188对象不退出等不同链，不预先以循环统一。A侧恢复却压缩执行须保留为反例。"
+}

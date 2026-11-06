@@ -1,0 +1,718 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0226",
+  "stage_id": "S002",
+  "sample_order": 25,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0226/trajectory.json",
+      "source_sha256": "336813ee093a01e04d37a58cf3edc33d13aa930fec055bdf75824c299913d799"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0226.json",
+      "source_sha256": "f31ea7f7a4b1724550f6c6ea5f06b581d1517db6375225982ba84b38e85beb52"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c5d7b17c9ac3d7933c79bb654aab5eb9b002a230cf749d7ad66d5f1e9613173f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ddbe00a7b6491857d3c09534daa2b0f04160d2c47c8e2e93dae5c610e372e19f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c0fef6d34e5eb054a10f4c19d910c46861b68a5a2e7f04b4314d5b8cab60d6c6"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f94be3888096b0093648036c9691092b2d07f2c18f93ae7cb27e3f5d9f0b2568"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "dfc0c9ba2414fbdc17f87a8cfb945a7f9cf72b115a86dec333cce9aa856dede1"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the name of the company, recognized as the first firm exclusively dedicated to microprocessors, founded by the lead architect of the pioneering single-chip microprocessor developed by a corporation co-founded by one of the co-inventors of the integrated circuit, a technology that fundamentally advanced from the transistor, a device whose digital functionality was enabled by the practical application of formalized binary logic, a mathematical concept whose philosophical underpinnings were admired by Gottfried Wilhelm Leibniz?",
+    "offline_gold": [
+      "Zilog"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整原轨迹65405字符已全读；原R2的U和R3反馈重新核对。",
+    "new": "四分支148299字符完整阅读，七个连续窗口无缺漏；所有工具Return含不相关文档也已读，不按C结果跳过失败取证。",
+    "semantic_author": "Codex直接撰写语义，不由脚本推断标签。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "available_evidence": "P仅第一份LeibnizSearch；9145428说binaryrepresentations贡献，不直接证明admiration。",
+    "actual_input": "R2@103，当前保留一句把admiration说成已确认，旧Return保留；尚无IC共同发明人Query或Return。P2332派生Token，G6。",
+    "gap": "需从IC共同发明人定位其创办企业及后续设计者公司。",
+    "evidence": [
+      "I_P",
+      "O_U_QUERY"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 103,
+        "end": 826
+      },
+      {
+        "round": 2,
+        "json_pointer": "/tool_events/1",
+        "event": "Search和完整Return"
+      },
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 235
+      }
+    ],
+    "goal": "将技术链中的IC共同发明人定位为Noyce/Kilby，作为企业关系入口。",
+    "operations": [
+      "重排问题关系",
+      "真实Search共同发明人",
+      "取得6929424明确共同发明句并在R3采用"
+    ],
+    "product": "Noyce/Kilby共同发明身份和下一步企业关系缺口。",
+    "judgment_change": "共同发明人从题目角色变成实际姓名，后续以Noyce作为真实Search对象。",
+    "evidence": [
+      "O_U_QUERY",
+      "O_U_RETURN",
+      "O_U_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R3明确选Noyce/Intel真实取证，R4推Faggin/Zilog并核验，R5提交Zilog。",
+    "true_suffix": "3Search/0Open/4Actor片段，原后缀生成[1574,1747]，不可用原整条1960作基线；未来HTTPPrompt30502。",
+    "evidence": [
+      "O_NEXT_QUERY",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "定位中间关系人物，使抽象多跳关系变为可执行企业查询。",
+    "同一身份可在直接共同发明Search、TI史料或知识推断中恢复，外部证据覆盖不同。",
+    "失败取证后加入已知姓名可恢复有效材料；明确证据已采用后再次核同一限定属于另一种行为。"
+  ],
+  "guide_audit": {
+    "G": "Now I need to find:",
+    "origin": "原R3[235,254)，只冒号引导行，无后面名单。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "没有候选姓名、企业、答案或具体行动方向，不能把新Noyce/Faggin/Zilog归因于G泄漏。当前P的Leibniz确认过度本来就存在。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "先查数字晶体管和综合IC/微处理器关系，返回大多不相关，但后续凭知识定位Noyce/Intel/Faggin，实际FagginSearch取得终点直接句后C。",
+      "outcome_evidence": [
+        "N1_QUERY1",
+        "N1_QUERY2",
+        "N1_CHAIN",
+        "N1_VERIFY_QUERY",
+        "N1_RETURN",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2列全链但真实Query查transistordigitalbinary，收到冰箱、ASIC等泛资料，未补共同发明人直接句。",
+        "R3改综合Query co-inventors/corporation/singlechip，主要返回后期处理器等；其中4004设计背景可用但不是原共同发明人直接材料。",
+        "R4凭知识明确Noyce/Intel/4004/Faggin，Zilog仍orothercompany，实际核Faggin创办关系。",
+        "R5取得717519后完整接受Zilog，未再专门查共同发明人，Submit。"
+      ],
+      "first_substantive_judgment_difference": "从更早transistor背景取证而非直接共同发明人，低相关返回后仍由知识推进，不是连续取得与原相同支持。",
+      "first_actual_tool_difference": "第一Query转背景，第二综合Query也非原明确共同发明人入口；第三才到有效终点。",
+      "function_correspondence": [
+        {
+          "original_goal": "外部确定IC共同发明人并采用",
+          "original_operation": "直接共同发明人Search",
+          "original_product": "Noyce/Kilby直接身份支持",
+          "new_goal": "串技术和企业链",
+          "new_operation": "两泛Query后凭知识采用Noyce/Kilby，再实查Faggin",
+          "new_product": "人物判断及后续行动恢复，原直接共同发明文献未完整重取",
+          "evidence": [
+            "O_U_RETURN",
+            "O_U_ADOPT",
+            "N1_QUERY1",
+            "N1_QUERY2",
+            "N1_CHAIN",
+            "N1_VERIFY_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_KNOWLEDGE_SUBSTITUTION",
+      "decision_action_result_chain": "身份原缺口→泛背景Query低相关→仍自主采用知识链→有效Faggin终点材料→C。原身份判断在使用层恢复，但不能说外部证据步骤完全重做。",
+      "costs": {
+        "new_generation": 1550,
+        "new_prompt": 33304,
+        "new_search": 3,
+        "new_open": 0,
+        "new_actor": 4,
+        "P_replay": 2332,
+        "G_prefill": 6,
+        "new_minus_original_generation_interval": [
+          -197,
+          -24
+        ],
+        "prompt_excluding_replay_including_G": 30972
+      },
+      "limits": "生成略少、工具不变、Prompt略增；低相关Search不能全部解释为答案错误，因为终点后续取得足够直接支持。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "真实同原共同发明Query恢复证据并采用，后取Noyce企业/Faggin直接支持，完整链最终C。",
+      "outcome_evidence": [
+        "N2_QUERY",
+        "N2_RETURN",
+        "N2_ADOPT",
+        "N2_REDUNDANT_VERIFY",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2与原相同共同发明人Query及完整Return。",
+        "R3明确采用Noyce/Kilby，真实查NoyceFairchild，得到NoyceIntel创办及Faggin背景。",
+        "R4长6428字符多次在Fairchild/Intel间重新比较，形成正确链后实际SearchFaggin4004，取得原717519。",
+        "R5引用717519首家专营完整句并说答案Zilog，却再次实查同一专营属性，取得相同Faggin句。",
+        "R6再列全链Submit。"
+      ],
+      "first_substantive_judgment_difference": "共同发明人工作与原完全恢复；主要差别在其后长篇重比公司及已经证实专营后的再检索。",
+      "first_actual_tool_difference": "第二查Fairchild而非原Intel，但仍返回Intel支持；最后增加一次已直接支持的Zilog专营Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定共同发明人并用于企业关系",
+          "original_operation": "Search及明确采用",
+          "original_product": "Noyce/Kilby入口",
+          "new_goal": "相同身份定位",
+          "new_operation": "完全相同Query/Return后采用并QueryNoyceFairchild",
+          "new_product": "原目标、操作、产物和使用全部恢复",
+          "evidence": [
+            "O_U_QUERY",
+            "O_U_RETURN",
+            "N2_QUERY",
+            "N2_RETURN",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "原身份核验恢复→企业链正确但反复重比→终点直接材料已引用→仍追加专营Query→C。增量消耗可定位到后续多次解释和一次重复验证，不归因于身份功能未恢复。",
+      "costs": {
+        "new_generation": 3030,
+        "new_prompt": 53021,
+        "new_search": 4,
+        "new_open": 0,
+        "new_actor": 5,
+        "P_replay": 2332,
+        "G_prefill": 6,
+        "new_minus_original_generation_interval": [
+          1283,
+          1456
+        ],
+        "prompt_excluding_replay_including_G": 50689
+      },
+      "limits": "原U完全重建仍可多耗资源；不能只看C称无影响或省成本。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "前两Query不相关但未直接猜答；R4明确识别缺具体共同发明人材料，加入姓名的真实Query补齐，再查Faggin直接终点后C。",
+      "outcome_evidence": [
+        "N3_QUERY1",
+        "N3_WRONG_HOFF",
+        "N3_QUERY2",
+        "N3_FAILURE",
+        "N3_REPAIR_QUERY",
+        "N3_REPAIR_RETURN",
+        "N3_FIXED_CHAIN",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2共同发明人corporationQuery返回数据库/EInk等无关资料。",
+        "R3凭知识已说Noyce/Intel，却错说TedHoff创立Zilog；实际Query只查pioneeringmicroprocessorleadarchitect，返回Kocher等无关对象。",
+        "R4明确说没找到具体共同发明人/企业，改为带JackKilbyRobertNoyce姓名Query，取得共同发明和Intel创办实际文献。",
+        "R5据材料采用NoyceIntel并改设计者为Faggin，实际SearchFaggin4004；R6采用717519创办Zilog专营并较短Submit。"
+      ],
+      "first_substantive_judgment_difference": "两个低相关返回后识别具体不足并选择带姓名的新入口；同时Hoff创办Zilog错误被修复，不等于整条一直正确。",
+      "first_actual_tool_difference": "初始泛corporation/leadarchitect两Query失败，第三补姓名才恢复原身份事实。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得并采用共同发明人身份",
+          "original_operation": "直接共同发明人Search",
+          "original_product": "Noyce/Kilby及可查公司关系",
+          "new_goal": "失败后补同一身份关系",
+          "new_operation": "两个泛Query无果，明确反馈后加入姓名真查并采用",
+          "new_product": "原身份支持及行动用途全部恢复，发生位置更晚",
+          "evidence": [
+            "O_U_RETURN",
+            "O_U_ADOPT",
+            "N3_FAILURE",
+            "N3_REPAIR_QUERY",
+            "N3_REPAIR_RETURN",
+            "N3_FIXED_CHAIN"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "低相关取证+错误知识绑定→识别材料不足→具名查询改变返回→采用共同发明/公司关系并纠正设计者→新终点材料→C。更多Search但短反馈/接受，生成反而较少。",
+      "costs": {
+        "new_generation": 1031,
+        "new_prompt": 53078,
+        "new_search": 4,
+        "new_open": 0,
+        "new_actor": 5,
+        "P_replay": 2332,
+        "G_prefill": 6,
+        "new_minus_original_generation_interval": [
+          -716,
+          -543
+        ],
+        "prompt_excluding_replay_including_G": 50746
+      },
+      "limits": "只观察到反馈后行动变更和返回改善，不证明某个词单独导致召回；工具与Prompt增加，不统一叫节省。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "首个真实晶体管/IC发明Query直接返回TI历史说明Kilby和Noyce及后者创Intel；R3采用、知识推出Faggin/Zilog并核，R4用直接材料纠正共同创办人后Submit。",
+      "outcome_evidence": [
+        "N4_QUERY",
+        "N4_RETURN",
+        "N4_PREVERIFY_ADOPT",
+        "N4_VERIFY_QUERY",
+        "N4_POSTVERIFY_CORRECTION",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R2Query同时含transistor/integratedcircuitinventor，171870直接给KilbyTI及NoyceFairchild后来创Intel。",
+        "R3采用身份并推进链，比较Hoff概念设计/Faggin芯片设计，选Zilog；长知识推断中编造MassimoGhio/StanleyMazor共同创办。",
+        "明确承认此前Return无Zilog/Faggin，实际定向Search终点，取得717519与219726。",
+        "R4采用正确RalphUngermann共同创办人及专营，长篇全链比对后Submit。"
+      ],
+      "first_substantive_judgment_difference": "一次跨技术的较广Query同时取得原身份及后续公司关系，但并未由此直接取得终点；之后较长Hoff/Faggin比较。",
+      "first_actual_tool_difference": "合并IC身份和Intel创办证据入口，少一次原企业Search；随后仍真正核终点。",
+      "function_correspondence": [
+        {
+          "original_goal": "外部定位共同发明人并选择企业",
+          "original_operation": "共同发明人Query及采用",
+          "original_product": "Noyce/Kilby入口",
+          "new_goal": "同一身份及公司连接",
+          "new_operation": "TI历史不同Query取同身份及Intel关系，实际采用后推进",
+          "new_product": "原功能完整恢复，额外完成部分后继企业关系取证",
+          "evidence": [
+            "O_U_RETURN",
+            "O_U_ADOPT",
+            "N4_QUERY",
+            "N4_RETURN",
+            "N4_PREVERIFY_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT_ALTERNATIVE_DOCUMENT",
+      "decision_action_result_chain": "不同入口一次补身份+公司关系→知识推终点并实核→直接文献修正共同创办细节→C。少Search/Actor但更多候选比较与全链重述，生成增加。",
+      "costs": {
+        "new_generation": 2843,
+        "new_prompt": 19816,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 2332,
+        "G_prefill": 6,
+        "new_minus_original_generation_interval": [
+          1096,
+          1269
+        ],
+        "prompt_excluding_replay_including_G": 17484
+      },
+      "limits": "不能将工具少等同工作少；知识中的无据旁支确实存在，最终核心改正才答对。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "A",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "common": "G无实体补偿，四条仍恢复共同发明人身份及下游链，但只有r2完全重放原身份资料，r3后补，r4替代TI证据，r1主要知识代替原直接身份文献。",
+    "internal_control": "r2重复已证终点增Search和长表述；r3前两失败后换具名Query得新有效证据、文字短而工具多；r4合并证据入口工具少但长推理。",
+    "cost_location": "不能以3/4/4/2Search给统一效率解释，生成分别1550/3030/1031/2843；真实账本按各切点保守区间分列。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "失败取证若导致具体缺失识别和具名入口选择，可把低相关材料转成可用身份/企业关系；这种多一次核验是推进，不是只因同缺口就重复。",
+      "support": [
+        "N3_FAILURE",
+        "N3_REPAIR_QUERY",
+        "N3_REPAIR_RETURN",
+        "N3_FIXED_CHAIN"
+      ],
+      "limit": "一条内部可见链，需跨题支持，不能推论所有加入姓名都会成功。"
+    },
+    {
+      "claim": "同一身份功能由替代资料一次同时覆盖企业关系时，工具交互可少，但若后续反复重新比较和重列，生成不必减少；答案和成本需独立解释。",
+      "support": [
+        "N4_RETURN",
+        "N4_PREVERIFY_ADOPT",
+        "N4_VERIFY_QUERY",
+        "N4_POSTVERIFY_CORRECTION"
+      ],
+      "limit": "r4明确有后续真实核验，不属于原功能没有恢复。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "r3更多Search包含有效修复，r2额外终点Search在已获直接句之后，不能都归一种循环。",
+    "r1只有知识恢复人物身份、外部支持较弱，C不等于与原所有证据相同。",
+    "r3曾错误绑定Hoff创办Zilog、r4曾编造共同创办人，后续修复必须保留，不因C抹掉。",
+    "所有路径共享保留P的Leibnizadmiration过度确认；未获得背景直接证据不应算删后新增遗漏。",
+    "这里只支持题内四条差异，不能直接给全量冗余率。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results confirm that Gottfried Wilhelm Leibniz admired binary logic (mathematical concept)."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find:"
+    },
+    {
+      "evidence_id": "O_U_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "co-inventors of the integrated circuit",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "Today, Noyce and Kilby are usually regarded as co-inventors of the integrated circuit",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:6929424"
+    },
+    {
+      "evidence_id": "O_U_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Jack Kilby and Robert Noyce are co-inventors of the integrated circuit"
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Robert Noyce co-founded corporation Intel microprocessor",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_QUERY1",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "transistor device digital functionality binary logic",
+      "call_id": "chatcmpl-tool-bba0a76e1ad01598"
+    },
+    {
+      "evidence_id": "N1_QUERY2",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "co-inventors integrated circuit corporation single-chip microprocessor",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_CHAIN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Robert Noyce co-founded **Intel** (with Gordon Moore and others)."
+    },
+    {
+      "evidence_id": "N1_VERIFY_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Federico Faggin lead architect Intel 4004 founded company microprocessor",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "He was co-founder (with Ralph Ungermann) and CEO of Zilog, the first company solely dedicated to microprocessors",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:717519"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "co-inventors of the integrated circuit",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Today, Noyce and Kilby are usually regarded as co-inventors of the integrated circuit",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:6929424"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The integrated circuit (IC) was co-invented by Jack Kilby (Texas Instruments) and Robert Noyce (Fairchild)."
+    },
+    {
+      "evidence_id": "N2_REDUNDANT_VERIFY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "According to the search results on Federico Faggin: \"He was co-founder (with Ralph Ungermann) and CEO of Zilog, the first company solely dedicated to microprocessors\""
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "chatcmpl-tool-a018da9fa3933e81"
+    },
+    {
+      "evidence_id": "N3_QUERY1",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "co-inventors integrated circuit corporation",
+      "call_id": "chatcmpl-tool-912cfcfd1e25daca"
+    },
+    {
+      "evidence_id": "N3_WRONG_HOFF",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Ted Hoff founded Zilog."
+    },
+    {
+      "evidence_id": "N3_QUERY2",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "pioneering single-chip microprocessor lead architect",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FAILURE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results didn't give me the specific co-inventors of the integrated circuit or the corporation they co-founded."
+    },
+    {
+      "evidence_id": "N3_REPAIR_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "co-inventors integrated circuit Jack Kilby Robert Noyce",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_REPAIR_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "Noyce and Gordon Moore founded Intel in 1968 when they left Fairchild Semiconductor.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:101067"
+    },
+    {
+      "evidence_id": "N3_FIXED_CHAIN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The lead architect of the pioneering single-chip microprocessor (the Intel 4004) was Federico Faggin."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "transistor inventor co-inventor integrated circuit co-inventor",
+      "call_id": "chatcmpl-tool-ad7d73e47e3606bc"
+    },
+    {
+      "evidence_id": "N4_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "Robert Noyce of Fairchild Semiconductor (who went on to co-found Intel) independently developed the integrated circuit",
+      "call_id": "chatcmpl-tool-ad7d73e47e3606bc",
+      "doc_id": "wiki25:171870"
+    },
+    {
+      "evidence_id": "N4_PREVERIFY_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Zilog (Z-Logic) was founded in 1974 by Federico Faggin, Massimo Ghio, and Stanley Mazor."
+    },
+    {
+      "evidence_id": "N4_VERIFY_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Zilog founded Federico Faggin first company exclusively dedicated to microprocessors",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_POSTVERIFY_CORRECTION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Federico Faggin founded **Zilog** (with Ralph Ungermann)."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

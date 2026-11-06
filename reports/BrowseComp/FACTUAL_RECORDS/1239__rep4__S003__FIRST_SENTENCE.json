@@ -1,0 +1,31 @@
+{
+ "case_id":"1239__rep4__S003__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五正式Final均采用Gold物种，研究A k0；旧整段EM W不改，地方名拼写误差另留。"},
+ "review_basis":"原4轮3Call已完整读；四新各2轮、4Call/完整Return及四Final全文独立读完，35原新返回槽按SHA复用已读全文，无新增片段。",
+ "pre_state":"R3@0，原P已采用Nepenthes，R2定向Query刚返回81986/60995等完整Garo篮子名。P中先前Reasoning仍近似把tiewrakot=demonflower当篮子，没有最新返回后正确Garo对应；人口无证。",
+ "u_work":"S003 R3[0,509)将最新物种材料与条件重新对应，采用完整Garo篮子词义，保留人口待核；后继S004单查人口。U虽重复部分EN/唯一属，但对词义是从近似匹配到更精确支持，不能全称无新增判断。",
+ "u_state_update":"原在物种已定的前提下整合更精确词义并选择人口剩余任务；删除后G直接给人口任务，四次在Return后恢复全部对应/正确Garo关系，前三立即发Query、第四仅简短人口背景。",
+ "original_action_consequence":"原先完整条件盘点再查人口、再接受；新把较长盘点集中到查证后，四次都保留必要证据和核心采用，生成较少而实际查询不减。",
+ "guidance":{"text":"Let me search for the population density information for Meghalaya in 2011 to confirm this matches the clue.","source":"原S004 R3@509，25Token，ORACLE_ANCHORED。","audit":"Meghalaya与人口需求已在P/Question，但G预先安排原U产物中的剩余行动，不含物种/132确认。首Prompt6194=6169+25；有方向补偿而非无引导。"},
+ "evidence":[
+  {"id":"P_PREVIOUS_APPROXIMATE_RELATION","source":"original","pointer":"/rounds/1/reasoning_content","quote":"which could translate to \"devil's or ghost's basket\"","use":"原R2把demonflower作近似匹配，最新返回后有更精确Garo。"},
+  {"id":"P_NAME_DOCUMENT","source":"original","pointer":"/tool_events/1/exact_result","quote":"The Garo call the plant memang-koksi","use":"853c5e695ab3f083 Doc81986已实际可见完整关系。"},
+  {"id":"U_ADOPTS_GARO","source":"original","pointer":"/rounds/2/reasoning_content","quote":"The Garo people call it","use":"R3原U采用最新词义，原自身拼pembang不符来源，保留错误。"},
+  {"id":"N1_GARO_AFTER_POPULATION","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"The Garo people call it \"memang-koksi\"","use":"R4 9d10c348a06544cd人口返回后恢复关系并Final。"},
+  {"id":"N2_ACCEPTS_AFTER_QUERY","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The scientific name is Nepenthes khasiana.","use":"R4人口Query9972d7988d6d360e后恢复完整比较，地方名拼megam。"},
+  {"id":"N3_ACCEPTS_AFTER_QUERY","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The scientific name is Nepenthes khasiana.","use":"R4 b0c62f9dfe7cba83返回后恢复Garo/EN/132等对应。"},
+  {"id":"N4_SHORT_PREQUERY","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me search for Meghalaya population density 2011.","use":"R3先短背景，ba4f0f0b9304081a实际查；R4再完整比较。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后立即Call，原U词义/条件采用后移R4。","state_chain":"人口返回→Garo与其他条件一并采用→Final。","function_change":"FULL_REBUILT后移，G先给剩余行动。","evidence":["N1_GARO_AFTER_POPULATION"],"semantic_result":"C；含G637较原867少230，1Search/2Actor不变。"},
+  {"repeat":2,"first_divergence":"直接人口查证后一次整合，不先展开原509字符盘点。","state_chain":"真Query→所有条件对应→同答案。","function_change":"FULL_REBUILT后移。","evidence":["N2_ACCEPTS_AFTER_QUERY"],"semantic_result":"C；含G707少160，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"同样直接执行G，后恢复六项比较。","state_chain":"真实132→词义等采用→正确Final。","function_change":"FULL_REBUILT。","evidence":["N3_ACCEPTS_AFTER_QUERY"],"semantic_result":"C；含G588少279，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"只简短交代人口问题、Call后才全比较。","state_chain":"人口查证→正确Garo采用→Final。","function_change":"FULL_REBUILT，前置部分压缩。","evidence":["N4_SHORT_PREQUERY"],"semantic_result":"C；含G698少169，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类局部条件整合的文字可以在后续查证后的整体接受中恢复：P保留精确词义材料，G提供剩余人口行动，四次把原前后两次盘点集中到后段，恢复功能且减少篇幅。原U并非全部重复，它有词义采用更新；节省来自这项更新不必以原独立长段出现，不能解释为功能无用。",
+ "within_case_support":"四C、四次条件整合恢复，前三完全后移、第四短前置；生成四降，Search/Actor四平。",
+ "mechanism_chain_checks":[{"chain":"P已有更精确词义材料，G先给剩余取证，完整条件采用后移查证后而压缩生成","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_GARO_AFTER_POPULATION"],"2":["N2_ACCEPTS_AFTER_QUERY"],"3":["N3_ACCEPTS_AFTER_QUERY"],"4":["N4_SHORT_PREQUERY"]},"limits":"有G方向补偿，不作为纯删首次采用的证明；地方名转写仍有误，不说所有细节质量等价。"}],
+ "counterevidence_and_limits":["原包含真实词义采用，不以重复清单全部排除其作用。","同题其他比较Stage会先重建且生成增加，成本压缩不是任何盘点的必然性质。","Final仍再次解释所有条件，独立草稿没再现不等于答案组织消失。"],
+ "cost_basis":"原867生成/1Search/2Actor、15141Prompt；新含G637/707/588/698，净−230/−160/−279/−169；Prompt15030/15030/15030/15074少111/111/111/67，Search/Actor相同。生成减少落在前置比较压缩/后移，G25计一次且已含Prompt。",
+ "next_cross_case_test":"检查其他A类整合工作是否有必要更新以及后续何处恢复；与B类材料仍在但从未用于行动的案例对照采用是否真实发生，而非按总结标签定重要性。"
+}

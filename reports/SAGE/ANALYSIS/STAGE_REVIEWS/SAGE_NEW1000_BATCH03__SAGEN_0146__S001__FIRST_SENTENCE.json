@@ -1,0 +1,810 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0146",
+  "stage_id": "S001",
+  "sample_order": 28,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0146/trajectory.json",
+      "source_sha256": "6017fe8a893dcbf57af60845c7c2409e3143e8259074cbd8cf264a11a464461d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0146.json",
+      "source_sha256": "69489aad7994bef1db00e72ffb600fa44cdb56a134e2447c1424a344ae2d4eb5"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "9a76b64d34cd347240a1abb82af9c17c570e59e4fd528f4109d9f14993b47160"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "35b862d4be12bca97a33d4b685a67551f2d67afeb43e29ab6c9b42eff660d532"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a849b607544224e018accd3ef8e77b0a77a0243880b5a8c478f58676c5d07b8d"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "d257ae9062c2ddd818cb0224e46f3b7b48a9a5f7921aabc66f4968c03ec16b46"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "eda55978345f56f2201407edcbe61f9c407e29fa18ec628b3baf09f5e7c9e386"
+    }
+  },
+  "question_and_gold": {
+    "question": "Following the widespread riots in Indonesia during May 1998, what was the exact date that the governmental body, created by the subsequent president to initiate significant changes in response to the unrest, officially commenced its operations?",
+    "offline_gold": [
+      "May 23, 1998"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原六轮75249字符全Reasoning/真实Return已读，原过程ROOT_028_ORIGINAL_PROCESS.md。",
+    "new": "四条129753字符视图从0连续读至结尾；与已全文读过S002四路径完全相同的Return采用精确内容哈希别名，全部新Reasoning和新Call仍完整阅读。四条分别7/7/14/16轮，未执行R17预算请求单列。",
+    "semantic_author": "Codex独立阅读后直接撰写，不复制同题S002四次结论，不由Python生成语义。"
+  },
+  "original_outcome": "W",
+  "prestate": {
+    "actual_input": "切在R1@0，P仅系统工具说明和原Question，当前reasoning空，无任何历史工具、候选、总统人名或日期。P487派生Token。",
+    "evidence_state": "只有题目约束，尚未取得骚乱与政权交接文献。不能把原R1取证产物当作P已有知识。",
+    "gap": "接任总统身份、其创建机构、机构正式开始日期三层都未解。",
+    "evidence": [
+      "I_QUESTION",
+      "I_BOUNDARY"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 498
+      },
+      {
+        "round": 1,
+        "json_pointer": "/tool_events/0",
+        "event": "一次骚乱背景Search及完整Return"
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 89
+      }
+    ],
+    "goal": "把题目模糊的subsequent president落实为可查询人物，并确认骚乱/交接背景。",
+    "operations": [
+      "拆出骚乱、后继总统创建机构、开办日期三个需求。",
+      "真实Query未带Habibie人名，返回10399535中的Suharto辞职及Habibie背景。",
+      "R2开头明确采用Suharto辞职与Habibie接任，将后者作为下一机构取证条件。"
+    ],
+    "product": "Habibie身份由泛事件搜索所得并实际采用；机构身份和日期仍未知。",
+    "judgment_change": "从匿名subsequent president到具名Habibie，直接改变原R2实际Query。不是先确认正确机构或日期。",
+    "evidence": [
+      "O_DECOMPOSE",
+      "O_QUERY",
+      "O_RESIGN_RETURN",
+      "O_ADOPT",
+      "O_NEXT_QUERY"
+    ]
+  },
+  "original_followup": {
+    "use": "原R2以Habibie+justice/human rights找机构。R2返回已有Cabinet/部长23May线索，但未采用，R3转KomnasHAM，R4转truth/justice，R5接受妇女委员会10598388的15Oct1998成立日，R6SubmitW。原总统判断是正确的，错在后续机构选择，不可倒因说Habibie身份错误导致W。",
+    "true_suffix": "从R1起的整响应usage1333生成、54577累计Prompt、4Search/1Open/6Actor均可直接记录；没有原生IDs，仍不称原生Token精确。",
+    "evidence": [
+      "O_NEXT_QUERY",
+      "O_CABINET_HINT",
+      "O_WRONG_OBJECT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "初始事件取证完成匿名角色到具名人物的更新，使后续能够定向机构查找；但这次干预的G本身已提供该人名。",
+    "第一批返回包含内阁线索，与是否真正采用是两个阶段；较早取到并采用Cabinet也不保证及时取得日期或提交。",
+    "日期间接支持和直接文献、对其是否充分的评价，可使同机构路线出现短确认、反复查询后猜中或预算耗尽。"
+  ],
+  "guide_audit": {
+    "G": "I need to find more specific information about the governmental body created by Habibie to initiate significant changes after the May 1998 riots.",
+    "origin": "原R2[89,234)，145字符，29派生Token，未带原U返回。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "Habibie在原Question/P未出现，G提前提供了被删U才确认的人物身份，并提示直接查其机构。是新候选实体及行动限定，有实质补偿/未来信息风险；无Cabinet名、23May日期或最终答案。不能把G当模型自主恢复总统身份的证据。",
+    "tokens": "P487；G29；首请求516。G预填只计一次，不叠加为新生成。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION",
+      "O_ADOPT"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "23 May 1998",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "23 May 1998",
+      "outcome": "C",
+      "outcome_reason": "先采用Cabinet，R4取得3345992的直接任期，后完整Open并用SeventhCabinet替换关系交叉核对，Submit23May。",
+      "outcome_evidence": [
+        "N1_FIRST_QUERY",
+        "N1_ADOPT_CABINET",
+        "N1_DIRECT_RETURN",
+        "N1_SMALL_OPEN",
+        "N1_FULL_OPEN",
+        "N1_ACCEPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "G已给Habibie；R1实际Query直接带人名，返回与原R2整包相同，既含接任背景又含内阁/部长日期。R2仍泛commission/reform再查一次，相同整包，并非获得另一份新证明。",
+        "R3从相同包提取Cabinet并真正具名查inauguration，返回部长/其他内阁包；R4明确最突出governmental body为内阁，Query Habibie established commenced operations取得直接3345992及SeventhCabinet替换资料。",
+        "R5已摘23May但Open limit100只读到Habibie名字半截；R6再Open默认4000取完整1006字符，真正补齐刚才短Open。R7多条件判断引SeventhCabinet替换、任期始日；虽然说letmesearch，没有新Search，实际SubmitC。"
+      ],
+      "first_substantive_judgment_difference": "原U自主从事件资料确定总统；新一开始使用G已提供的人名。其后R3采用Cabinet、R4确认其符合governmental body，原路径未作此对象更新。",
+      "first_actual_tool_difference": "原R1无Habibie的人名Query，新首Query有Habibie并提前取原R2包；R3后真实CabinetQuery取代原KomnasHAM路线。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别接任总统",
+          "original_operation": "匿名事件Query后从Return提取人物",
+          "original_product": "Habibie作为下一查询条件",
+          "new_goal": "起步直接查G指定总统创建机构",
+          "new_operation": "首Query带Habibie、返回资料再确认接任，R2实际使用",
+          "new_product": "总统事实也被真实返回支持，但其首次指定由G补偿，不能证明原识别功能自主绕过",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "I_G",
+            "N1_FIRST_QUERY"
+          ]
+        },
+        {
+          "original_goal": "原后续选择政府机构及日期",
+          "original_operation": "人权框架→妇女委员会日期",
+          "original_product": "错误对象15Oct",
+          "new_goal": "选择同题机构及日期",
+          "new_operation": "从Habibie包采用Cabinet，取得直接页并短Open后完整Open",
+          "new_product": "机构改变且23May有直接任期支持",
+          "evidence": [
+            "O_WRONG_OBJECT",
+            "N1_ADOPT_CABINET",
+            "N1_DIRECT_RETURN",
+            "N1_FULL_OPEN",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "PRESIDENT_IDENTIFICATION_GUIDE_COMPENSATED_REAL_RETURN_RECONFIRMED_DOWNSTREAM_OBJECT_CHANGED",
+      "decision_action_result_chain": "G提前提供总统→具名首查提前拿到内阁线索→两次相同包后才采用→取得直接内阁任期→短Open不足后补完整→据替换关系和起日提交C。改善发生在机构采用，不是纠正了原总统；Open多一次/后续解释使生成与Prompt均增加。",
+      "costs": {
+        "new_generation": 1470,
+        "new_prompt": 76170,
+        "new_search": 4,
+        "new_open": 2,
+        "new_actor": 7,
+        "P_replay": 487,
+        "G_prefill": 29,
+        "recorded_complete_response_generation_difference": 137
+      },
+      "limits": "与原4Search相同但查询工作不同；Open多1、Actor多1；不能按同搜索次数说工作相同，也不按G给人物推纯删除因果。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "23 May 1998",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "23 May 1998",
+      "outcome": "C",
+      "outcome_reason": "R2采用Cabinet，虽先Open无效Habibie标题，R5改具名形成日期Query取3345992，R7实际以Search任期而非短Open接受Submit。",
+      "outcome_evidence": [
+        "N2_ADOPT",
+        "N2_BAD_OPEN",
+        "N2_DIRECT_QUERY",
+        "N2_SMALL_OPEN",
+        "N2_ENOUGH",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R1带G人物Query，返回与原R2相同；R2已经提取Cabinet名并真实查询Habibie ReformCabinet commencement，但仍同包。",
+        "R3提取Durin23May，Open Habibie limit50只得人物标题；R4说无具体日期，Cabinet start date Query得其他内阁杂包。",
+        "R5改Development Reform Cabinet B.J.Habibie formed date，取得直接3345992任期。R6已明确接受23May，却再Open该页limit50只得前50字符无日期。",
+        "R7仍正确引用早先Search的完整任期及SeventhCabinet替换关系、判断已足够而Submit。短Open没有核验到日期，不能将提交根据错挂在Open上。"
+      ],
+      "first_substantive_judgment_difference": "总统由G预先指定；R2已把Cabinet投入真实查询，原R2仍人权框架。之后对证据充分性的判断建立在Search直接任期上。",
+      "first_actual_tool_difference": "首Query加G人物提前返回内阁包，第二实际Query已带ReformCabinet；两次Open都未增加日期支持，与原1次妇女委员会Open工作不同。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别接任总统并用以机构查询",
+          "original_operation": "无名事件Query/反馈采用",
+          "original_product": "Habibie",
+          "new_goal": "同人物限定及机构身份",
+          "new_operation": "使用G人名查得背景后迅速转Cabinet",
+          "new_product": "人物事实重获但起始方向由G补偿，后续机构采用改变",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "I_G",
+            "N2_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "取目标日期并提交",
+          "original_operation": "错误机构成立日与Open",
+          "original_product": "15OctW",
+          "new_goal": "取内阁起日",
+          "new_operation": "两次无日期短Open之间具名Query取得直接任期，随后引用Search",
+          "new_product": "23MayC，实际依据为真实Search而非Open",
+          "evidence": [
+            "O_WRONG_OBJECT",
+            "N2_BAD_OPEN",
+            "N2_DIRECT_QUERY",
+            "N2_SMALL_OPEN",
+            "N2_ENOUGH"
+          ]
+        }
+      ],
+      "function_recovery": "PRESIDENT_GUIDE_COMPENSATED_RECONFIRMED_CORRECT_OBJECT_DIRECT_SEARCH_SUPPORT",
+      "decision_action_result_chain": "人名预填→内阁较快采用→短Open没补日期→查询改为具名形成日取得直接页→再次短Open无增量但已有Search足够→C。生成比原少42、Prompt反增，不能把少42归为原背景Stage无用。",
+      "costs": {
+        "new_generation": 1291,
+        "new_prompt": 66996,
+        "new_search": 4,
+        "new_open": 2,
+        "new_actor": 7,
+        "P_replay": 487,
+        "G_prefill": 29,
+        "recorded_complete_response_generation_difference": -42
+      },
+      "limits": "只有生成Token略减，Search相同、Open/Actor/累计Prompt增加；G补偿和不同后续工作共同变化，不是严格可省证据。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "23 May 1998",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "23 May 1998",
+      "outcome": "C",
+      "outcome_reason": "接受Cabinet、部长任期及SeventhCabinet替换支持，最终推23May并提交；从未取得3345992内阁直接页，正确日期证据较间接。",
+      "outcome_evidence": [
+        "N3_INITIAL_QUERY",
+        "N3_ADOPT_DATE",
+        "N3_DATE_AMBIGUITY",
+        "N3_REPEAT_QUERY",
+        "N3_FINAL_REASON",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "虽然G已给Habibie，首Query并未写其名，返回与原R1整包完全相同；R2再带Habibie真实查，不是所有改善都来自第一Query提前取内阁包。",
+        "R2返回Habibie人物资料但无Ghalib/Durin，R3泛机构Query才取含Cabinet/部长任期/SeventhCabinet包。R4采用Cabinet和Durin日期并真实查询Cabinet startdate。",
+        "R4—R8几次日期Query都返回完全相同部长/其他内阁包；R6一度把需求写成Habibie开始执政和创建机构日期，但实际仍查Cabinet。R9把Durin23May与Ghalib June并列为起日线索，混合部长任期与机构起始，随后加23May检索。",
+        "R9、R11、R12真实results空，约25/18.9/19.8秒，仅记录空不擅自归服务故障。R10另一杂内阁包、R13加21May返回SeventhCabinet解散日和Durin旧日期，无直接Cabinet页。",
+        "R14明确引用替换关系和Durin23May推起始日，SubmitC。没有任何Open。"
+      ],
+      "first_substantive_judgment_difference": "原总统识别产物由G已给且真实事件取证也重做；真正后续差异在R4从新返回采用内阁/部长起日。首次相同背景Return并未阻止后来选择正确机构。",
+      "first_actual_tool_difference": "首Query措辞不同但返回与原R1相同；R2加入Habibie与原R2不同且不带人权justice限定，R4转内阁而非Komnas。",
+      "function_correspondence": [
+        {
+          "original_goal": "由骚乱背景确定总统",
+          "original_operation": "一次背景Search并采用Habibie",
+          "original_product": "接任人物",
+          "new_goal": "同背景与机构限定",
+          "new_operation": "在G补偿下仍首查事件得到原相同Return，R2采用Habibie查机构",
+          "new_product": "原背景取证和采用真实重建，不能称完全跳过；G使自主发现贡献不可分离",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "I_G",
+            "N3_INITIAL_QUERY",
+            "N3_ADOPT_DATE"
+          ]
+        },
+        {
+          "original_goal": "选择机构日期",
+          "original_operation": "妇女委员会直接成立记录",
+          "original_product": "错误对象日期",
+          "new_goal": "内阁起日",
+          "new_operation": "十三Search含相同包及三空结果，最终从部长任期外推",
+          "new_product": "C但直接内阁日期证据未得；核验更长不等于证明更充分",
+          "evidence": [
+            "O_WRONG_OBJECT",
+            "N3_DATE_AMBIGUITY",
+            "N3_REPEAT_QUERY",
+            "N3_FINAL_REASON",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "ORIGINAL_EVENT_SEARCH_REBUILT_UNDER_GUIDE_COMPENSATION_CABINET_CHOSEN_WITH_INDIRECT_DATE",
+      "decision_action_result_chain": "相同事件结果→在G人物限定下再取政府资料→内阁采用→部长不同任期让准确起日仍作缺口→多次重复/空返→最终据同一间接线索接受23May。C没有来自直接内阁文献；13Search带来主要额外输入/交互成本。",
+      "costs": {
+        "new_generation": 2164,
+        "new_prompt": 311041,
+        "new_search": 13,
+        "new_open": 0,
+        "new_actor": 14,
+        "P_replay": 487,
+        "G_prefill": 29,
+        "recorded_complete_response_generation_difference": 831
+      },
+      "limits": "Search多9、Open少1、Actor多8；空结果可能影响路线与延迟，原因不能由日志确定。不是所有重复只有同字符串，也有不同日期假设及别入口。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0146__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "CONTEXT_LIMIT_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "虽已采用Cabinet及推得23May，仍持续要求准确正式日期，16次实际Search后R17上下文预检未发送，无Submit或正式Final，不能从Reasoning补23May答案。",
+      "outcome_evidence": [
+        "N4_ADOPT",
+        "N4_EXACT_REPEAT_A",
+        "N4_EXACT_REPEAT_B",
+        "N4_GAP",
+        "N4_AROUND",
+        "N4_LAST_QUERY"
+      ],
+      "work_timeline": [
+        "G给人物，R1猜无证PERPU但实际Query与r1相同，返回原R2包。R2已采用Cabinet并查日期；R3又猜NationalEconomicCouncil、泛查政府机构，R4回Cabinet，说明早期采用尚可摇摆。",
+        "R4/R5/R6三轮reasoning和Query完全相同，真实三次Search返回同部长/旧内阁包。每轮只重申缺口和再查，没有显示依据结果改变方法或对象。",
+        "R7提取Durin23May和替换关系，但不把它们当准确开办日，继续查；R8相似Query同包；R9officialstartdate真实空结果约21秒。",
+        "R10从Cabinet转ReformasiCommission，得到另一杂包；R11回内阁但杂内阁包，R12返回旧部长包，R13又杂包。R14明言keydate23May仍查，R15/R16又是完全相同reasoning/Query，返回同杂内阁包。",
+        "从未拿到3345992直接内阁页、没有Open。R17实际prompt55478，预留10000生成和256余量超65536，请求未发送而停止。按真实预算终态N，不是模型完成判断后正式提交。"
+      ],
+      "first_substantive_judgment_difference": "原背景识别正确且新也已确认；新R2提前采用Cabinet，后仍对机构/起日摇摆和核验。结果N不能解释为没恢复Habibie或没找到正确候选。",
+      "first_actual_tool_difference": "首Query带G人物提前取原R2包；R2已经查Cabinet，其后重复/转Commission/回Cabinet而非原妇女委员会路线，累积上下文到预检停止。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认接任总统并启动机构查找",
+          "original_operation": "背景Query后采用Habibie",
+          "original_product": "具名查询条件",
+          "new_goal": "已由G指定总统的机构取证",
+          "new_operation": "首带Habibie查询获真实背景，R2采用内阁",
+          "new_product": "总统功能获G补偿和真实Return再确认，正确候选也真实采用",
+          "evidence": [
+            "O_ADOPT",
+            "I_G",
+            "N4_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "取准确机构日期并完成提交",
+          "original_operation": "接受妇女委员会真成立日而提交错误对象",
+          "original_product": "有FinalW",
+          "new_goal": "准确内阁日期",
+          "new_operation": "16Search反复日期缺口未取直接页，末端仍要求核验",
+          "new_product": "正确候选及间接23May恢复，但精确支持未闭合，没发生Submit",
+          "evidence": [
+            "O_WRONG_OBJECT",
+            "O_SUBMIT",
+            "N4_GAP",
+            "N4_AROUND",
+            "N4_LAST_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PRESIDENT_GUIDE_COMPENSATED_CABINET_ADOPTED_DATE_VERIFICATION_CONTINUES_WITHOUT_FINAL",
+      "decision_action_result_chain": "具名总统补偿→内阁早期采用→间接日期不被认为足够→相同及改写查询继续派发、偶尔改机构→同资料与杂返未补直接日期→完整工具历史累积触发上下文保护→N。消耗增加由真实16Search及输入累积支持，不推测隐藏信心或停止阈值。",
+      "costs": {
+        "new_generation": 2893,
+        "new_prompt": 440215,
+        "new_search": 16,
+        "new_open": 0,
+        "new_actor": 16,
+        "P_replay": 487,
+        "G_prefill": 29,
+        "recorded_complete_response_generation_difference": 1560
+      },
+      "limits": "R17未发送不计17Actor；无Final的P03正式提交类行为不适用。不能把N等同答错日期；reasoning已有正确日期，也不能冒充正式答案。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "B",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "N"
+    ],
+    "common": "Habibie身份均由G先给，随后真实查询背景；四条都实际采用Cabinet，原路径没有。故原正确总统识别并非被删除后丢失，B四次状态变化不能证明原U重要或有害。",
+    "contrast": "r1/r2最终真实Search得直接内阁任期，r1完整Open而r2两短Open都无日期；r3/r4无直接页，r3据部长任期最后提交C，r4仍继续核验直至N。候选相同、间接信息相近，接受与实际后续行动不同。",
+    "cost_location": "原1333生成/54577Prompt/4Search/1Open/6Actor；新r1生成+137、r2−42、r3+831、r4+1560。r1/r2同4Search但多1Open/1Actor及Prompt；r3/r4多9/12Search、少1Open、多8/10Actor。生成略减不代表总成本下降。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "第一Stage把匿名角色变具名人物，是后续查询的条件更新；若后继G提前提供该人物，新路径即使不重复原发现方式也能直接定向取证，不能把答案保持/改善解释为原身份更新没有作用。",
+      "support": [
+        "O_QUERY",
+        "O_ADOPT",
+        "I_G",
+        "N1_FIRST_QUERY",
+        "N2_ADOPT",
+        "N3_INITIAL_QUERY",
+        "N4_ADOPT"
+      ],
+      "limit": "本条件有实质未来实体补偿；r3还真实重做事件背景取证。属于干预解释限制，不从该组推纯删除因果。"
+    },
+    {
+      "claim": "正确机构采用后，直接日期支持及是否接受间接日期会改变继续查还是提交：两条取得直接页后正常提交，一条反复后以间接日期提交，一条始终将相同日期缺口派成搜索而上下文停止。机制必须落在每轮证据是否足够与真实查询决定，不能仅叫找到候选/循环。",
+      "support": [
+        "N1_DIRECT_RETURN",
+        "N1_ACCEPT",
+        "N2_ENOUGH",
+        "N3_DATE_AMBIGUITY",
+        "N3_FINAL_REASON",
+        "N4_GAP",
+        "N4_AROUND",
+        "N4_LAST_QUERY"
+      ],
+      "limit": "r3/r4未得直接页的差异还含检索返回和采样，未唯一解释为何相同间接线索在不同轮成为提交依据；不可假定内部停止阈值。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "r3首Query返回与原R1相同仍最终C，反驳所有改善都因跳过背景Query提前取Cabinet线索；r4提前采用Cabinet却N，反驳采用正确对象就足够正常完成。",
+    "G泄漏人物不泄漏内阁或日期；四条内阁采用是实际新推理/取证，但不能消除总统识别被G补偿这一限制。",
+    "r3与r4都只有部长任期等间接证据，前者提交C、后者N，不把最终C当证据完整，亦不由持续搜索断言必要或冗余。",
+    "r1短Open后全文Open是对第一次返回不足的实际修复；r2两次短Open没有补日期但Search已包含，不可只按重复Open数量一概判功能无增量。",
+    "r4中三轮及末两轮Reasoning逐字重复，真实Call也重复，所有事件均分别执行保存；可能与历史Assistant reasoning在输入中不重放有关，但本组不能单独确定生成循环根因，保持观察层。",
+    "空Search真实发生且耗时，原因未确定；不把它们一律当无关文献或基础设施错误。",
+    "原首Round起点完整usage差可以记，但原生切点不能还原；所有P/G预填和Prompt分列，四独立分支节省不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "input_question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "created by the subsequent president to initiate significant changes"
+    },
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "input_boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find more specific information about the governmental body created by Habibie to initiate significant changes after the May 1998 riots."
+    },
+    {
+      "evidence_id": "O_DECOMPOSE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "1. Widespread riots in Indonesia during May 1998\n2. A governmental body created by the subsequent president"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Indonesia May 1998 riots governmental body president changes",
+      "call_id": "chatcmpl-tool-895643b4566df252"
+    },
+    {
+      "evidence_id": "O_RESIGN_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Suharto's resignation on 21 May 1998",
+      "call_id": "chatcmpl-tool-895643b4566df252",
+      "doc_id": "wiki25:10399535"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results mention Suharto's resignation in May 1998 and President B.J. Habibie."
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Habibie governmental body commission justice human rights Indonesia 1998",
+      "call_id": "chatcmpl-tool-ba56462c0d72b59e"
+    },
+    {
+      "evidence_id": "O_CABINET_HINT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "In 1998, Indonesia President B. J. Habibie appointed Durin to his Development Reform Cabinet as State Minister of Agrarian Affairs.",
+      "call_id": "chatcmpl-tool-ba56462c0d72b59e",
+      "doc_id": "wiki25:8453806"
+    },
+    {
+      "evidence_id": "O_WRONG_OBJECT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "To initiate significant changes in response to the unrest (specifically to address the sexual violence during the riots)"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "15 October 1998",
+      "call_id": "chatcmpl-tool-ad603279d3517654"
+    },
+    {
+      "evidence_id": "N1_FIRST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Indonesia May 1998 riots governmental body president Habibie",
+      "call_id": "chatcmpl-tool-b333d45675429e7e"
+    },
+    {
+      "evidence_id": "N1_ADOPT_CABINET",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Let me search more specifically for \"Development Reform Cabinet\" or \"Kabinet Reformasi Pembangunan\" and its inauguration date."
+    },
+    {
+      "evidence_id": "N1_DIRECT_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "from 23 May 1998 to 20 October 1999",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3345992"
+    },
+    {
+      "evidence_id": "N1_SMALL_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "The Development Reform Cabinet () was the Indonesian cabinet which served under President B. J. Habi",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3345992"
+    },
+    {
+      "evidence_id": "N1_FULL_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "from 23 May 1998 to 20 October 1999",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3345992"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "This confirms that the Development Reform Cabinet was the replacement for the Seventh Development Cabinet, which ended on 21 May 1998."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "23 May 1998",
+      "call_id": "chatcmpl-tool-a76eff776dd3239c"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Indonesia 1998 governmental body Habibie Reform Cabinet commencement date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_BAD_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "President of Indonesia from 1998 to 1999",
+      "call_id": "chatcmpl-tool-b2a6db1400ecdb6d",
+      "doc_id": "wiki25:612080"
+    },
+    {
+      "evidence_id": "N2_DIRECT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Development Reform Cabinet B.J. Habibie formed date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_SMALL_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "The Development Reform Cabinet () was the Indonesi",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3345992"
+    },
+    {
+      "evidence_id": "N2_ENOUGH",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I have enough information to submit the answer."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "23 May 1998",
+      "call_id": "chatcmpl-tool-bf728db09aa467e1"
+    },
+    {
+      "evidence_id": "N3_INITIAL_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Indonesia May 1998 riots governmental body president created after unrest",
+      "call_id": "chatcmpl-tool-8aaba7a306238167"
+    },
+    {
+      "evidence_id": "N3_ADOPT_DATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "This suggests the cabinet started on May 23, 1998."
+    },
+    {
+      "evidence_id": "N3_DATE_AMBIGUITY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "This suggests June 1998."
+    },
+    {
+      "evidence_id": "N3_REPEAT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Development Reform Cabinet Indonesia start date May 1998",
+      "call_id": "chatcmpl-tool-9dc88d918b0e3b5d"
+    },
+    {
+      "evidence_id": "N3_FINAL_REASON",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "This indicates that the Development Reform Cabinet started on 23 May 1998."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "23 May 1998",
+      "call_id": "chatcmpl-tool-b33bae7ef8a952ea"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the search results, I can see mentions of the \"Development Reform Cabinet\" of President B.J. Habibie."
+    },
+    {
+      "evidence_id": "N4_EXACT_REPEAT_A",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Development Reform Cabinet Indonesia inauguration date May 1998",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_EXACT_REPEAT_B",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Development Reform Cabinet Indonesia inauguration date May 1998",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_GAP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "However, I need to find the specific date when the Development Reform Cabinet officially commenced operations. The results don't explicitly state this date."
+    },
+    {
+      "evidence_id": "N4_AROUND",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "This suggests the Development Reform Cabinet was formed around 23 May 1998.\n\nHowever, I need to find the exact date"
+    },
+    {
+      "evidence_id": "N4_LAST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/15/arguments/query",
+      "exact_quote": "Development Reform Cabinet Indonesia formation date official commencement",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "Exact source hashes, quotes, event metadata, ranges and recorded costs passed; not independent human semantic gold."
+}

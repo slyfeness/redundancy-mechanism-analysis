@@ -1,0 +1,490 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0298",
+  "stage_id": "S009",
+  "sample_order": 41,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "The date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China, occurring shortly after the passing of a prominent leader whose last public appearance involved meeting with a visiting dignitary from Pakistan.?",
+    "gold": [
+      "October 6, 1976"
+    ],
+    "gold_source": "冻结答案，仅离线评价。"
+  },
+  "original_outcome": {
+    "actual_final": "October 6, 1976",
+    "adopted_answer": "October 6, 1976",
+    "outcome": "C",
+    "reason": "原E10确切日支持后Submit。",
+    "evidence": [
+      "O_DAY",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6@1982，当前保留推理已将1968年芒果赠送误当最后公开会见，并从9月9去世、一月后被捕猜测约10月6。P确有这两项判断，但材料只支持月份和1968年赠送，不支持最后公开露面或精确日。",
+    "evidence_states": "Mao/Gang/月级关系已返回并采用；最后露面被错误采用；6日已作为候选接受而未获直接日期支持。",
+    "evidence": [
+      "O_P",
+      "O_APPROX"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/8/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 1982,
+        "end": 2243
+      }
+    ],
+    "goal": "查证四人帮被捕的准确日期。",
+    "operations": "R6重新选择日期Query并真实Search，返回同E4泛文革批次，未提供确切日；本Stage没有独立结果分析段。",
+    "product": "完成一次日期取证但仍无精确日期。",
+    "judgment_change": "从已经猜测6日转为外部核验；没有成功更新日期支持。",
+    "evidence": [
+      "O_QUERY"
+    ]
+  },
+  "original_followup": {
+    "use": "R7开始另项最后露面纠错并真实搜到5月27布托；R8—R10重查日期经历空/无关Return，E10才得到179223直接6日，R11提交。不能把这些后继成果归入U。",
+    "evidence": [
+      "O_MEETING",
+      "O_DAY",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已有日期猜测后的具体日取证尝试。",
+    "state_relation": "四次都恢复日期Search，A类四答仍C；真正分化是是否纠正保留P的1968错误及何时停止。相同答案掩盖3次会见条件仍错。",
+    "evidence": [
+      "N1_WRONG",
+      "N2_WRONG",
+      "N3_FIX",
+      "N4_WRONG"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The user is asking for the date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China.",
+    "source_position": "R7[0,134)，24派生Token。",
+    "novelty": "只重述原题目标；没有6日、布托、1976会见或新的证据入口。",
+    "risk": "ORACLE_ANCHORED，未见独有事实泄漏；仍可能有续写/采样影响。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "新日期Return精确支持并Submit；最后露面解释仍错误。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_WRONG"
+      ],
+      "work_and_evidence_timeline": "R6日期Search取得泛材料；R7明确需具体日，改Query arrested October1976 date 得原E10完整批次；R8共6509字符反复发现1968不合理又接受它，提到继续核验但没有新会见Call，最后Submit。",
+      "first_judgment_divergence": "日期缺口先恢复；R8没有像原R7那样把1968冲突落实为会见检索，而继续解释后接受。",
+      "first_actual_tool_divergence": "第一Search同类，第二直接改日期Query成功，跳过原最后露面核查。",
+      "function_correspondence": [
+        {
+          "original_goal": "准确被捕日",
+          "original_operation": "真实日期Search",
+          "original_product": "未补日期",
+          "new_goal": "准确被捕日",
+          "new_operation": "两次Search及结果采用",
+          "new_product": "179223直接6日",
+          "evidence": [
+            "O_QUERY",
+            "N1_QUERY",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期取证和不足反馈真实重做并成功；不以会见条件未恢复否定U日期功能恢复。",
+      "judgment_action_outcome_chain": "已有错误会见认定/日期猜测→恢复日期取证→确切日已知→会见冲突只在文字中反复不转Call→C但支持条件有错。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1783生成51977Prompt3Actor2Search；原1595..2150生成，差[-367,188]，不能确定生成节省。少3Search3Actor主要是省会见纠错和失败重试；R8长解释抵消部分生成下降。P14568/G24一次。",
+      "counterevidence_and_alternatives": "日期查成功亦因Return不同；答案C不能证明全部题目关系保持。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "一次日期Search直接命中，仍将1968称最后露面。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_WRONG"
+      ],
+      "work_and_evidence_timeline": "R6保留1968解释后查短日期Query，返回原E10；R7共8608字符质疑1968相隔8年、想到布托但只形成计划，最终把问题/资料差异当成容忍错误会见解释的理由，Submit6日。",
+      "first_judgment_divergence": "首轮获得具体日后，没有执行原路径会见条件纠错；把不一致降格为可忽略问题。",
+      "first_actual_tool_divergence": "直接短日期查询成功，之后唯一Call为Submit，没有会见检索。",
+      "function_correspondence": [
+        {
+          "original_goal": "具体被捕日",
+          "original_operation": "日期Search",
+          "original_product": "未得精确日",
+          "new_goal": "同",
+          "new_operation": "一次Search并采用6日",
+          "new_product": "精确日已获",
+          "evidence": [
+            "O_QUERY",
+            "N2_QUERY",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "U具体取证工作恢复并取得更强产物。",
+      "judgment_action_outcome_chain": "日期缺口一次闭合→会见异常被口头发现但未更新行动→长篇为1968解释辩护→仍C但证据解释错误、少工具更多生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "2512生成32717Prompt2Actor1Search；差[362,917]确定增加生成，少4Search4Actor；增量集中R7长反复解释而非新证据。",
+      "counterevidence_and_alternatives": "工具减少和Token增加同时发生；不能把A类当无功能或成本必降。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "最后真实会见资料和日期资料均恢复后Submit。",
+      "outcome_evidence": [
+        "N3_FIX",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6先质疑1968并搜会见，返回芒果；R7又接受1968并按ForeignMinister限定查询；R8转日期搜获泛材料；R9再查相同会见入口又芒果；R10泛1976会见未命中；R11加August1976错误月份搜，WangHongwen文档已有6日；R12转短日期Query得179223；R13仍说需最后露面资料并搜1976meetingPakistan，3529115返回5月27布托；R14真正采用并Submit。",
+      "first_judgment_divergence": "先把当前P1968解释视为待核冲突，优先会见而非原U日期；但失败Return又使其反复接受1968。",
+      "first_actual_tool_divergence": "首Call改为Mao最后露面；之后来回切换会见/日期共8Search，最后才恢复正确关系。",
+      "function_correspondence": [
+        {
+          "original_goal": "确切日期核验",
+          "original_operation": "日期Search无确切日",
+          "original_product": "待查",
+          "new_goal": "同",
+          "new_operation": "R8日期尝试及R12短日期Search",
+          "new_product": "直接6日支持",
+          "evidence": [
+            "O_QUERY",
+            "N3_DATE_QUERY",
+            "N3_FINAL"
+          ]
+        },
+        {
+          "original_goal": "U不负责会见纠错",
+          "original_operation": "原后继另做会见核查",
+          "original_product": "5月27布托",
+          "new_goal": "补会见条件",
+          "new_operation": "多轮失败后R13广搜、R14采用",
+          "new_product": "正确会见关系终于恢复",
+          "evidence": [
+            "O_MEETING",
+            "N3_FIX"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "U日期核验真实执行且完成；额外会见工作也恢复，但经历错误限定与重复接受。",
+      "judgment_action_outcome_chain": "识别1968不符→错误ForeignMinister/August限制延续旧对象→多轮未推进→解除限制搜到布托→真正更新会见判断→C、多工具高上下文消耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "3675生成256442Prompt9Actor8Search；差[1525,2080]；较原多3Search3Actor，具体在反复会见Query及错误月份限制，不是U日期查询不可省的直接证明。",
+      "counterevidence_and_alternatives": "R11Wang文档已带6日，不等于R12前明确采用了该句；R13资料仅lastforeignguest，R14将之推作lastpublic，直接措辞证据弱于原9541138。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "October 6, 1976",
+      "adopted_answer": "October 6, 1976",
+      "outcome": "C",
+      "outcome_reason": "Query含候选6日但Return179223独立支持日期；会见仍错误。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_WRONG"
+      ],
+      "work_and_evidence_timeline": "R6共3508字符接受6日，又多次说要verify，最终真实查询包含6日；返回原E10；R7共3501字符先说1968notlast，随后仍说lastpublic1968ConfirmedbyMango，Submit6日。",
+      "first_judgment_divergence": "日期初步接受与原相同，但把已知候选日加入Query；原后继会见纠错没有完成。",
+      "first_actual_tool_divergence": "一次带6日的日期Search替代原多轮取证；没有实际会见Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "确切被捕日",
+          "original_operation": "日期Search",
+          "original_product": "未得精确日",
+          "new_goal": "同",
+          "new_operation": "查询候选6日并读取179223",
+          "new_product": "日期直接支持",
+          "evidence": [
+            "O_QUERY",
+            "N4_QUERY",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "U核验恢复，不能以同答案声称功能未做。",
+      "judgment_action_outcome_chain": "候选日已在P→带日查询得到直接支持→忽略会见纠错继续错误匹配→C、少交互但长篇反复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1801生成32720Prompt2Actor1Search；差[-349,206]不确定生成下降；少4Search4Actor，省去会见核查及后继失败日期尝试。",
+      "counterevidence_and_alternatives": "Query含答案来自P已有猜测，不来自G；真实Return有6日支持，不能仅凭查询带答案否定该证据。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C；U日期功能4FULL；只有r3最终恢复5月27布托，其余会见条件错仍C。",
+    "mechanism": "日期答案已有候选但尚待证据，四条都重新查；日期被补齐后，对另一条件矛盾是否真正更新行动决定额外消耗，非日期功能简单消失。",
+    "counterexample": "r3恢复较全面证据反而成本最高；r2少工具但生成确定增加。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "若主答案已作为候选接受，删后重新核验可保留答案，但周边约束的错误解释可能在无实际纠错下持续存在；Final相同不表示信息状态相同。",
+      "support": [
+        "N1_WRONG",
+        "N2_WRONG",
+        "N3_FIX",
+        "N4_WRONG"
+      ],
+      "limits": "单题四次，不把错误会见必然导致正确答案推广。"
+    },
+    {
+      "proposal": "冲突只有落实为适当检索对象才能纠正；按旧ForeignMinister或错误月份继续约束查询会拖长路径，解除限制后才取得替代关系。",
+      "support": [
+        "N3_FIRST",
+        "N3_FIX"
+      ],
+      "limits": "r3内部链，检索实际Return变化和采样同时影响。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "全为ORACLE_ANCHORED；G仅题目复述，未见事实补偿。",
+    "原生IDs缺失，DERIVED_CHAR_EXACT，原生成1595..2150保守范围；无精确净省Token主张。",
+    "r1/r2/r4纠错意向并未产生真实会见Call；不能算已执行核验。",
+    "本记录不是独立人工金标准。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This meeting occurred on August 5, 1968."
+    },
+    {
+      "evidence_id": "O_APPROX",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "That would be around October 6, 1976."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "arrest Gang of Four date October 1976 Cultural Revolution end",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_MEETING",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "27 May 1976"
+    },
+    {
+      "evidence_id": "O_DAY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "return",
+      "json_pointer": "/tool_events/9/observation/results/8/snippet",
+      "exact_quote": "On 6 October 1976",
+      "doc_ids": [
+        "wiki25:179223"
+      ]
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the date of a pivotal political event that marked the practical conclusion of the Cultural Revolution in China."
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Gang of Four arrested October 1976 date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_WRONG",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "August 5, 1968"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Gang of Four arrest date October 1976"
+    },
+    {
+      "evidence_id": "N2_WRONG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "August 5, 1968"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N3_FIRST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Mao Zedong last public appearance meeting Pakistani Foreign Minister"
+    },
+    {
+      "evidence_id": "N3_DATE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Gang of Four arrest date October 1976"
+    },
+    {
+      "evidence_id": "N3_FIX",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "On 27 May 1976, Mao Zedong received Pakistani President Zulfiqar Ali Bhutto"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "arrest of Gang of Four October 6 1976 date"
+    },
+    {
+      "evidence_id": "N4_WRONG",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "(Confirmed by \"Mango cult\" snippet)."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "October 6, 1976"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0298/trajectory.json",
+      "source_sha256": "bf3197a6fec2db1bc51d22d0ee599c78abac05856a655a10fcf5e4f813b00eeb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0298.json",
+      "source_sha256": "bb0b87d53cce546f6a34f83925efd1323dffe4dd3a90b6a18c0d47e6351882f1"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5093e6ff11c61bda9785489b7b4249cf6fce10f39da675edd3f40e725a02bf3d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f9d3671fb6953de209560a8af934e7c0009618523db7604cf1a7570e0fcc546d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "69d6f7fa9db5e5b8814b7e371cb219f2298b070f4afb4bd51a0b53e373059090"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "8e9f39f6f2e4b6b02b0bbc40234cdee7cfa9c97b188c17c07047aba4e13d414e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0298__S009__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "36ee73e0ca3f6920d69205c40e4ffee36ca0455ca5045ee3b83d283b34a0f9b2"
+    }
+  }
+}

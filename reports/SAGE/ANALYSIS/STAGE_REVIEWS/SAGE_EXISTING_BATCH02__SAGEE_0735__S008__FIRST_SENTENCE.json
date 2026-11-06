@@ -1,0 +1,802 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0735",
+  "stage_id": "S008",
+  "sample_order": 29,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0735/trajectory.json",
+      "source_sha256": "abb613982659e665568bdb9e0ddb9538a5b6d55b3ebf40446e0143061cd0836e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0735.json",
+      "source_sha256": "9e75cef3a12bc4876fa1e82a96d921c597d24fd8966eab80cc79a7d74ac83882"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "3c15d799837362219aad9bd7db8222e7b6c9046f7c1a6ae1ddd3bd842ab1be18"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "9d0e9128dd2de330277b57a23292b279a86e764bf01b8e2434416d048b02057f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "cb4a675712d2b7fc4c3593de25ea6087ceb2b62b15c22c63c30fa469fd053a78"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "a92980ffc4559d9ee55f61e16ab5a6d6ec5ed85a2171262c540d5cdede60258a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "3c20042dd182c098f09c7939276e7ab87cae33c56c62e855a11757b161eb7d08"
+    }
+  },
+  "question_and_gold": {
+    "question": "Consider the highest peak in the Northern Calcareous Alps. What is the result of adding the quotient of its elevation (in meters) and the duration (in millions of years) of the Norian stage, to the product of the duration (in millions of years) of the Rhaetian stage and the number of known specimens of the genus Caviramus, and then subtracting the year the genus Carniadactylus was named from this sum?",
+    "offline_gold": [
+      "-1830.5"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原10轮109484字符阅读视图及全部Search/Open/Submit真实返回完整读完；另存ROOT_029_ORIGINAL_PROCESS.md，先理解后分析。",
+    "new": "本组四条164326字符阅读视图从0连续读至164326，包含r1 R9—12、r2 R9—13、r3 R9—12、r4 R9—10；长推理全文阅读。仅已全文阅读且完整内容精确相同的返回使用哈希别名，未按DocID省略不同返回。",
+    "semantic_author": "以下判断由Codex阅读后直接撰写；脚本只读取、定位、算账、绑定哈希及验证，没有生成语义结论。"
+  },
+  "original_outcome": "W",
+  "prestate": {
+    "actual_input": "切于R9@989，保留当前R9[0,989)及已经真实发生的工具历史。Parseierspitze3036已采用；刚区分1995物种命名与2009属命名，接受2009。规范化历史Assistant reasoning为空，不能声称原R8完整判断重放；但相关旧Return仍在P。",
+    "evidence_state": "3036已经提取并采用；2009关系重读已完成。此前Norian检索带217/213，只返回动物生存区间，尚未证明整个地质阶长度；Rhaetian搜索多为无关材料；Caviramus只从相关属Raeticodactylus页被提及，尚无属页的第二标本证据。",
+    "gap": "两地质阶的实际持续时间及Caviramus标本数，进而完成五输入算式。P尚没有原U才得到的1895083边界争议、117743冷期或3260299属页。",
+    "evidence": [
+      "I_P",
+      "I_BOUNDARY",
+      "O_QUESTION",
+      "O_OLD_CAVIRAMUS"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 9,
+        "json_pointer": "/rounds/8/reasoning_content",
+        "start": 989,
+        "end": 1520
+      },
+      {
+        "round": 9,
+        "json_pointer": "/tool_events/22",
+        "event": "B009第1个真实Search及完整Return"
+      },
+      {
+        "round": 9,
+        "json_pointer": "/tool_events/23",
+        "event": "B009第2个真实Search及完整Return"
+      },
+      {
+        "round": 9,
+        "json_pointer": "/tool_events/24",
+        "event": "B009第3个真实Search及完整Return"
+      }
+    ],
+    "goal": "命名关系重读结束后，联合补齐Norian、Rhaetian和Caviramus三项数值输入。",
+    "operations": [
+      "同一批次发起Norian217/213、Rhaetian209/201及Caviramus holotype specimen count三项查询，没有批内看完返回再决定后Call。",
+      "Norian仍返回动物分布年代；Rhaetian首次返回边界争议及Triassic页的Rhaetian Cool Interval209—201；Caviramus首次返回3260299，明确holotype和second specimen。"
+    ],
+    "product": "补回标本数2的直接属页支持，取得新的年代材料，但这些材料并未直接证明原后续所采用的整阶4Ma和8Ma。U不是完成正确参数核验，而是给后续接受数值提供了真但范围不同的材料。",
+    "judgment_change": "U发起的是三缺口取证；将动物年代等同整阶、冷期等同整阶以及接受所有参数的判断实际在后继R10发生，不能倒记成U已完成。",
+    "evidence": [
+      "O_U",
+      "O_NORIAN_RANGE",
+      "O_RHAETIAN_COOL",
+      "O_CAVIRAMUS_COUNT"
+    ]
+  },
+  "original_followup": {
+    "use": "R10采用3036/4/8/2/2009，计算759+16−2009=−1234，逐项重述为Correct并Submit。算术与已选参数相符，错误在参数范围对应；且把117743的冷期句也归到1895083，实际来源不能混写。原路径对负数没有额外疑虑，正常提交W。",
+    "true_suffix": "原切点后生成保守1141—1574；3Search/0Open/2Actor生成段；原当前请求Prompt30085、后继35535合65620。无原生IDs，不能计算精确原生节省。",
+    "evidence": [
+      "O_ACCEPT_NORIAN",
+      "O_ACCEPT_RHAETIAN",
+      "O_COMPUTE",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "这是多输入算式中的联合补证，数值被找到与数值是否对应题目所问的同一对象/范围是两层工作。取得日期范围不等于已证明整阶长度。",
+    "原U中的属页入口会把标本缺口转成可采用的2；删后有的路线重新取得并使用，有的反复只得到相关属，缺口并未闭合。",
+    "全部参数齐备的表述、实际有理由选择唯一参数、以及正式提交是不同节点；既有以较长值为由提交W，也有接近正确数值仍无Final。"
+  ],
+  "guide_audit": {
+    "G": "I have gathered the following information from the search results:",
+    "origin": "原R10 /rounds/9/reasoning_content [0,66)，完整冒号开头行，不含后面的五项清单，11派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "没有新增实体、年份、标本数、时长、算式结果；只是引入整理已获得材料的方向和完成式语气。不能将其视为无引导条件，也不能把后续自发数值判断说成G注入。P30370派生Token，首Prompt30381，G只计预填一次。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat01",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R12曾计算−1830.49...，但没有Submit或正式Final；10000生成Token截断，不能把中间近Gold数值算正确。",
+      "outcome_evidence": [
+        "N1_NEAR_GOLD",
+        "N1_NEGATIVE_ODD",
+        "N1_STOP"
+      ],
+      "work_timeline": [
+        "R9沿用3036、2009、动物年代推Norian4，联合查Rhaetian和Caviramus；Rhaetian首返杂，但标本查询实际返回原E24完全相同的属页。",
+        "R10采用标本2，曾猜Rhaetian0.3，没有返回支持；真实改查地质阶时长，得到1895080的2或4.5两种边界估计。",
+        "R11明确认识2/4.5不唯一，Open1895079前500字符，只拿到生物带简介，没有补时长。该Open是实际操作，但未解决所需数值。",
+        "R12在4Ma动物范围与18.5Ma标准知识、Rhaetian2/4.5/7.2等之间反复计算。已得−1830.49...又说负数奇怪；后面多次重开已支持的高度/标本/命名和边界问题，未发新Call，长推理到长度上限。"
+      ],
+      "first_substantive_judgment_difference": "原U明确再查Norian；新R9首先把旧动物范围当作Norian4，待补项缩成Rhaetian及标本。之后读到边界歧义，没有像原R10直接把8当定值。",
+      "first_actual_tool_difference": "原R9联合3Call；新R9只有Rhaetian201与Caviramus single specimen两Call。后者确实得到同一个完整属页包；无原未来回填。",
+      "function_correspondence": [
+        {
+          "original_goal": "补标本数",
+          "original_operation": "holotype specimen count搜索",
+          "original_product": "3260299支持2",
+          "new_goal": "补同一标本缺口",
+          "new_operation": "holotype single specimen搜索、R10采用",
+          "new_product": "相同属页及2已恢复并进入计算",
+          "evidence": [
+            "O_CAVIRAMUS_COUNT",
+            "N1_COUNT_RETURN",
+            "N1_COUNT_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "取得两阶长度",
+          "original_operation": "带年代3项联合搜索中的两Call",
+          "original_product": "动物范围和冷期/边界材料",
+          "new_goal": "核唯一时长",
+          "new_operation": "Rhaetian重搜并短Open",
+          "new_product": "2/4.5歧义已识别，未形成可提交的唯一参数；原冷期8未稳定恢复",
+          "evidence": [
+            "O_U",
+            "N1_DURATION_QUERY",
+            "N1_DURATION_RETURN",
+            "N1_OPEN",
+            "N1_NEGATIVE_ODD"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_COUNT_OBTAINED_AND_USED_DURATION_SEARCH_CHANGED_NO_FINAL",
+      "decision_action_result_chain": "数值缺口→标本真证据恢复、时长取得多解释→短Open未补唯一值→计算结果为负被当作重新选参数的理由→反复重算但无新证据动作→长度N。前半是有效新增核验，主要生成增加在R12无Call反复计算，而非搜索次数本身。",
+      "costs": {
+        "new_generation": 11388,
+        "new_prompt": 137123,
+        "new_search": 3,
+        "new_open": 1,
+        "new_actor": 4,
+        "P_replay": 30370,
+        "G_prefill": 11,
+        "conservative_new_minus_original_generation_interval": [
+          9814,
+          10247
+        ]
+      },
+      "limits": "Search与原相同、Open多1、Actor多2，仍耗更多生成。不能把所有不确定归于负数预期，文献边界歧义和原范围错误也真实存在。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat02",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R13试算−1832.333等但无正式提交，最终10000Token长度截断，不能把数值猜测算W/C。",
+      "outcome_evidence": [
+        "N2_ODD",
+        "N2_STOP"
+      ],
+      "work_timeline": [
+        "R9前两查询和原U完全相同，真实得到完全相同的动物年代包与Rhaetian冷期包；第三查询holotype词序不同，只得到Raeticodactylus，没有3260299。",
+        "R10实际指出217—213可能只是Norian内部区间；从其他时间分段尝试18Ma，Rhaetian仍沿冷期取8；标本缺口引发第二次Caviramus搜索。",
+        "R11、R12再改标本Query，各次仍只返回同相关属资料，没有直接数目。模型明确分辨相关属单标本不等于Caviramus数。",
+        "R13在知道未找到直接计数的情况下猜1；以18、8、1计算得到负分数，称odd并反复重查阶段范围和已知项，既没发起第五轮后的新工具，也没正式提交，长度结束。"
+      ],
+      "first_substantive_judgment_difference": "新路径收到原相同Norian材料后真实质疑其是否整阶；同时没有拿到属页计数。不能概括成所有原U信息都没重做。",
+      "first_actual_tool_difference": "R9第三个Call由原Caviramus holotype specimen count变为Caviramus number of specimens holotype，返回从属页2转为只有相关属。前两个Call及返回与原一致。",
+      "function_correspondence": [
+        {
+          "original_goal": "两阶取证",
+          "original_operation": "217213/209201两次搜索",
+          "original_product": "动物范围、冷期和边界材料",
+          "new_goal": "同两阶取证",
+          "new_operation": "原两Query重新真实执行",
+          "new_product": "材料完全恢复但Norian整阶解释被重新质疑，尝试18替代4",
+          "evidence": [
+            "O_U",
+            "N2_NORIAN_QUERY",
+            "N2_RHAETIAN_QUERY",
+            "N2_SCOPE"
+          ]
+        },
+        {
+          "original_goal": "补Caviramus计数",
+          "original_operation": "属页入口一次Search",
+          "original_product": "2的直接支持",
+          "new_goal": "同计数缺口",
+          "new_operation": "4次不同词序/属名搜索",
+          "new_product": "仅相关属，计数不明；最终试假设1而不是恢复2的支持",
+          "evidence": [
+            "O_CAVIRAMUS_COUNT",
+            "N2_COUNT_QUERY",
+            "N2_RETRY_QUERY",
+            "N2_MISSING_COUNT",
+            "N2_ODD"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_DURATION_MATERIAL_RETRIEVED_COUNT_SUPPORT_NOT_RESTORED",
+      "decision_action_result_chain": "两份原年代材料恢复→Norian范围被质疑但没有确证替代值；标本入口未取得直接页→反复计数取证仍无新增→以假设1参与计算又对结果形式怀疑→长篇内部往返且无Final。新增成本分布在3次额外计数Search及R13长重算，不能只叫Query循环。",
+      "costs": {
+        "new_generation": 13162,
+        "new_prompt": 170195,
+        "new_search": 6,
+        "new_open": 0,
+        "new_actor": 5,
+        "P_replay": 30370,
+        "G_prefill": 11,
+        "conservative_new_minus_original_generation_interval": [
+          11588,
+          12021
+        ]
+      },
+      "limits": "Search多3、Actor多3，假设计数和时长都未可靠定值；W→N不证明原U正确或必要，只证明此四次多数更难形成提交。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat03",
+      "actual_final": "-1241",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "-1241",
+      "outcome": "W",
+      "outcome_reason": "R12实际Submit−1241，选3036/4/4.5/2/2009，与Gold−1830.5不符。不是仅因Final字符串不同：Norian仍用动物区间，Rhaetian在2/4.5并列估计中以更长为由采用4.5，未证明是题目指定整阶值。",
+      "outcome_evidence": [
+        "N3_SELECT_LONGER",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R9两条一般地质时长Query得到Rhaetian2/4.5估计和ChinleFormation；标本Query仍只得相关属。",
+        "R10对时长不唯一明确再查2million/4.5million，返回同一边界研究包；R11说需definitive却无新来源，实际转Caviramus holotype specimen count。",
+        "R11该Call与原U完全相同，真实取得同3260299属页包，R12采用2。",
+        "R12将Norian4和Rhaetian4.5代入，承认文献未唯一指定，却以较长值为由选择4.5；数次重述核对后实际提交−1241。"
+      ],
+      "first_substantive_judgment_difference": "原后续以冷期8为Rhaetian长度；新路径真实取得2/4.5估计后转向该组数，并在未消解边界条件时选择较长4.5。",
+      "first_actual_tool_difference": "R9先查询通用geologic time duration而非原带217213/209201，后续加2和4.5做进一步Query；标本Call到R11才恢复原入口。",
+      "function_correspondence": [
+        {
+          "original_goal": "补计数",
+          "original_operation": "原U holotype specimen count",
+          "original_product": "属页支持2",
+          "new_goal": "同计数",
+          "new_operation": "R11完全相同Query后采用属页",
+          "new_product": "2及实际计算功能恢复",
+          "evidence": [
+            "O_CAVIRAMUS_COUNT",
+            "N3_COUNT_QUERY",
+            "N3_COUNT_RETURN",
+            "N3_SELECT_LONGER"
+          ]
+        },
+        {
+          "original_goal": "确定可用于公式的时长",
+          "original_operation": "年代范围取证",
+          "original_product": "后续采用4/8并提交W",
+          "new_goal": "同两长度",
+          "new_operation": "多边界研究取证、选择较长4.5",
+          "new_product": "不同参数集已接受且提交，证据范围/选择理由仍不足",
+          "evidence": [
+            "O_ACCEPT_NORIAN",
+            "O_ACCEPT_RHAETIAN",
+            "N3_DURATION_QUERY",
+            "N3_SELECT_LONGER",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_COUNT_RESTORED_DURATION_ROUTE_CHANGED_ARBITRARY_PARAMETER_ACCEPTANCE",
+      "decision_action_result_chain": "时长取证改入口→返回并列研究估计→再搜未消解→恢复计数2→选择较长4.5作为唯一值→正常提交另一W。它说明资料更多、完成提交都不保证参数与题意对应；与其余三N的区别是实际结束参数选择，而不是证据已充分。",
+      "costs": {
+        "new_generation": 3489,
+        "new_prompt": 145846,
+        "new_search": 5,
+        "new_open": 0,
+        "new_actor": 4,
+        "P_replay": 30370,
+        "G_prefill": 11,
+        "conservative_new_minus_original_generation_interval": [
+          1915,
+          2348
+        ]
+      },
+      "limits": "Search多2、Actor多2，无改善且生成保守增加。与原W同态并非相同答案或相同思路。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0735__S008__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R10只在范围解释和检索意向之间往返，没有实际第二Call或Final，10000生成Token后截断。",
+      "outcome_evidence": [
+        "N4_FORMATION_SCOPE",
+        "N4_SEARCH_INTENT",
+        "N4_STOP"
+      ],
+      "work_timeline": [
+        "R9保留3036、2009，列三缺口但只真实查Norian217213，得到原旧动物包。",
+        "R10把动物区间推Norian4；对Raeticodactylus地层213—209明确说这只是formation年龄、未明确整阶。",
+        "它在Rhaetian8/12等可能值之间反复假设、说需要找文中时长或再搜索，每次又回到同一段材料。没有真实执行这些搜索，没有取得新Caviramus计数资料。",
+        "连续30509字符推理因长度终止，不能把文字中的Let's search统计为Search，也不能把未提交的假设视为答案。"
+      ],
+      "first_substantive_judgment_difference": "原联合执行三缺口取证，新R9计划三项却只执行Norian；R10实际认识formation年龄不能直接当Rhaetian整阶，但没有将这个反馈转成新工具行动。",
+      "first_actual_tool_difference": "原三Call缩成单个NorianQuery，之后无Call；不是工具服务失败或预算耗尽禁止第二次调用的证据。",
+      "function_correspondence": [
+        {
+          "original_goal": "联合补三数",
+          "original_operation": "三Call同批",
+          "original_product": "计数2和Rhaetian新材料",
+          "new_goal": "同三项待查",
+          "new_operation": "只执行Norian；其余仅重复意向",
+          "new_product": "动物材料重得，但Rhaetian/计数直接取证未重建",
+          "evidence": [
+            "O_U",
+            "N4_QUERY",
+            "N4_FORMATION_SCOPE",
+            "N4_SEARCH_INTENT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_ONE_OF_THREE_SEARCHES_REEXECUTED_OTHER_NEEDS_UNEXECUTED",
+      "decision_action_result_chain": "三缺口仍在→只检索已多次见过的动物年代→意识到其他地层范围不等于整阶→假设和搜索意向反复出现但未形成Call→生成长度N。工具次数少并不是成功省工作：未取得必要输入，生成仍多、无答案。",
+      "costs": {
+        "new_generation": 10146,
+        "new_prompt": 62753,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 30370,
+        "G_prefill": 11,
+        "conservative_new_minus_original_generation_interval": [
+          8572,
+          9005
+        ]
+      },
+      "limits": "Search少2、Actor相同、Prompt较记录合计少2867，但因原已进入R9请求及P重放需分列，不叫同口径全面节省；生成大增且无Final。没有日志支持推断是故意不查或隐藏信心变化。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "B",
+    "outcomes": [
+      "N",
+      "N",
+      "W",
+      "N"
+    ],
+    "common": "四条保留高度和2009，但没有一条完成可靠的整阶持续时间验证。均有真实再取证，恢复程度不同：r1/r3重新取得并采用2，r2重复两原年代Query却计数未得，r4仅单项Query。",
+    "contrast": "r1近Gold中间计算仍以负数奇怪反复开回；r2计数未闭合并假设1；r3用较长值结束歧义并提交W；r4识别地层不等于整阶却始终停在意向。3/4W→N由不同缺口/判断路径形成，不是一个统一的丢失动作。",
+    "cost_location": "四条生成保守均增加，r1/r2/r4主要是末轮10000Token内部往返；r2另多计数Search，r3多边界取证及接受复盘。r4Search下降不等于功能不必要。",
+    "not_claimed": "本B组并非删除正确关键判断致错：原已W，新三条未提交。U可有效带回计数，但原后续本身存在范围错配，不能把原提交速度当作质量。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "多输入算式中，检索返回的时间范围若未先对齐题目对象/范围，会从动物出现年代或冷期被提升为整阶时长，继而作为算术的固定输入。对算术反复核对无法修复这个前提；删后若只改变时长来源而仍以未消解的边界估计选值，可换成另一错误结果。",
+      "support": [
+        "O_NORIAN_RANGE",
+        "O_RHAETIAN_COOL",
+        "O_ACCEPT_NORIAN",
+        "O_COMPUTE",
+        "N3_SELECT_LONGER",
+        "N3_SUBMIT"
+      ],
+      "limit": "r2已明确质疑Norian动物范围，r4也识别formation区别，反驳所有新路径都未看懂范围。发现冲突不等于已经取得替代输入或形成提交。只本题，尚不记跨题支持。"
+    },
+    {
+      "claim": "数值依据未唯一化时，结果形式也可能被当成重开参数的依据：r1/r2明确因负数或odd重查同一输入，随后既无新证据也无正式接受，计算不断往返至长度停止。应区分合理边界歧义与题目未要求的结果形式期待。",
+      "support": [
+        "N1_NEGATIVE_ODD",
+        "N1_NEAR_GOLD",
+        "N2_ODD",
+        "N4_FORMATION_SCOPE",
+        "N4_STOP"
+      ],
+      "limit": "负数期待只在r1/r2有直接支持，r4主要是时长未解，不能强套；r3同样有歧义却完成W，说明歧义不是无法停止的充分条件。未证明删除U单独造成这种行为。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "原U确实取得标本直接支持，新r1/r3也重做；工作恢复与正确整阶判断是不同层面。不能以2恢复就称FULL，也不能以N就称全部未恢复。",
+    "r3选较长值不等于文献支持唯一4.5；r2没有Caviramus页不等于所有检索无信息，原两年代包实际完整恢复。",
+    "r1在中间算出接近Gold，不存在正式Final；不可将语义准确率与中间猜数混淆。",
+    "r4全文多次说search却仅一个真实Call，剩余均认知意向，Search账本不能按措辞增加。",
+    "固定G为整理开头，未含数值；仍有ORACLE_ANCHORED方向提示、采样及检索变化，不能声称无引导因果删除效果。",
+    "原没有native IDs，生成区间1141—1574；G11计预填、P30370单列，成本不能用原总3893代替切点后。",
+    "旧映射称得到时段边界并不等于边界已直接且正确确定；保留冻结边界不改，但本次语义审阅区分真实文献内容、采用和证据充分性。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_QUESTION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "the duration (in millions of years) of the Norian stage"
+    },
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 9,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So Carniadactylus was named in 2009."
+    },
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 9,
+      "event_type": "input_boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 9,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have gathered the following information from the search results:"
+    },
+    {
+      "evidence_id": "O_OLD_CAVIRAMUS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/21/observation/results/0/snippet",
+      "exact_quote": "Caviramus",
+      "doc_id": "wiki25:4391646"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "Now I need to find:\n1. Norian stage duration\n2. Rhaetian stage duration\n3. Number of Caviramus specimens"
+    },
+    {
+      "evidence_id": "O_NORIAN_RANGE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/22/observation/results/0/snippet",
+      "exact_quote": "Norian stage, 217-213 million years ago",
+      "doc_id": "wiki25:8062065",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RHAETIAN_COOL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/23/observation/results/1/snippet",
+      "exact_quote": "The Rhaetian Cool Interval (RCI) lasted from 209 to 201 Ma.",
+      "doc_id": "wiki25:117743",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "O_CAVIRAMUS_COUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/24/observation/results/0/snippet",
+      "exact_quote": "A second specimen",
+      "doc_id": "wiki25:3260299",
+      "call_id": "recovered_call_3"
+    },
+    {
+      "evidence_id": "O_ACCEPT_NORIAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "Duration = 217 - 213 = **4 million years**."
+    },
+    {
+      "evidence_id": "O_ACCEPT_RHAETIAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "This suggests the Rhaetian stage is from 209 to 201 Ma"
+    },
+    {
+      "evidence_id": "O_COMPUTE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "- Result = 775 - 2009 = -1234"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/25/arguments/answer",
+      "exact_quote": "-1234",
+      "call_id": "chatcmpl-tool-a0c85ed2c495b826"
+    },
+    {
+      "evidence_id": "N1_COUNT_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "A second specimen",
+      "doc_id": "wiki25:3260299",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N1_COUNT_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So there are **2 known specimens**"
+    },
+    {
+      "evidence_id": "N1_DURATION_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Rhaetian stage age duration million years",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DURATION_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "4.5 million years",
+      "doc_id": "wiki25:1895080",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 11,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/3/arguments/doc_id",
+      "exact_quote": "wiki25:1895079",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_NEGATIVE_ODD",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "But this is a negative number, which seems odd. Let's check if the Norian duration is different."
+    },
+    {
+      "evidence_id": "N1_NEAR_GOLD",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "178.508 - 2009 = -1830.49...\n\nThis also seems odd."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N2_NORIAN_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Norian stage 217 213 million years duration",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RHAETIAN_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Rhaetian stage 209 201 million years duration",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N2_COUNT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Caviramus number of specimens holotype",
+      "call_id": "recovered_call_3"
+    },
+    {
+      "evidence_id": "N2_RETRY_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Caviramus specimens count known",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_SCOPE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "this might be a specific time within the Norian, not the entire stage"
+    },
+    {
+      "evidence_id": "N2_MISSING_COUNT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "But it doesn't specify the number of specimens."
+    },
+    {
+      "evidence_id": "N2_ODD",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "But this seems like an odd number. Let me re-check the Norian stage duration."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_DURATION_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Rhaetian stage duration 2 million years 4.5 million years",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_COUNT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Caviramus holotype specimen count",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_COUNT_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "A second specimen",
+      "doc_id": "wiki25:3260299",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_SELECT_LONGER",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I'll use **4.5 million years** as the duration of the Rhaetian stage (the longer duration)."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "-1241",
+      "call_id": "chatcmpl-tool-9f3e57ccc35d55f6"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Norian stage duration 217 213 million years",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FORMATION_SCOPE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "No, 213-209 is the formation age."
+    },
+    {
+      "evidence_id": "N4_SEARCH_INTENT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Let's search for \"Rhaetian\" specifically."
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "Seven source SHA bindings, 38 exact references, Call/Round/Doc metadata and all four recorded-cost rows checked; this is not independent human semantic gold."
+}

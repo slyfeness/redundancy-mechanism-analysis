@@ -1,0 +1,38 @@
+{
+  "case_id":"20__rep2__S011__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原和四新都有真实Final明确采纳正确题名；本科时间与招生仍无直接支持，旧EM保留，题名C不等于全条件已证。"},
+  "review_basis":"原完整14轮13Call已阅读，四新8轮4Call/Return及全部Reasoning和Final逐字读完；85返回槽无新片段，全部已读18/20 SHA，无他线程未读片段。",
+  "pre_state":"R13@157前P刚第二次本科查询失败，已有论文、作者学校和19071模量支持；技术匹配已多次实际盘点，招生和学历一直未证。不是候选未知或刚获新答案。",
+  "u_work":"R13[157,1019)完整比较技术条件与两未知背景，并认为论文符合可验证部分；没有正式Final和实际Call。其作用是将失败取证与仍可接受的题名支持放在同一当前判断里，而不是新增事实。",
+  "u_state_update":"保持现论文为强候选、两条件仍待证，后面仍决定一次学校Search。不能因后续搜索而否认这次比较已经发生，也不能把它说成所有条件已充分证明。",
+  "original_action_consequence":"原R13学校E13又失败，R14重列同证据并最终接受；对照要区分原当前比较恢复与额外学校是否减少。",
+  "guidance":{"text":"Let me try one more search to verify the Chalmers University student numbers in the 1850s and Simon Isakson's B.Sc.","source":"原R13[1019,1134)，32原生Token。","audit":"ORACLE_ANCHORED，GUIDE_SENTENCE_EXTRACTION_ANOMALY：真实原句继续completion date.，提取在B.Sc.缩写处提前截止，audit却标FIRST_COMPLETE_TERMINAL_SENTENCE/abbreviations_checked。保持原实验与原G，不修改重跑。无新实体/事实/答案，给one more search行动/次数框架，可能补偿比较后任务选择。新1自行续completion date、新2续date，不能把模型补的词算教师全文。"},
+  "evidence":[
+    {"id":"O_U_JUDGE","source":"original","pointer":"/rounds/12/reasoning_content","quote":"matches all the verifiable criteria","use":"U对可验证部分作判断，而非已证明所有条件。"},
+    {"id":"O_REAL_SENTENCE","source":"original","pointer":"/rounds/12/reasoning_content","quote":"Simon Isakson's B.Sc. completion date.","use":"核实首句提取提前截断，不回填缺词。"},
+    {"id":"O_LAST_CALL","source":"original","pointer":"/tool_events/12/exact_arguments","quote":"Chalmers University of Technology founded 1829 1850s students enrollment history","use":"chatcmpl-tool-bf5f46de2e792ade，原比较后仍真实学校核验。"},
+    {"id":"N1_COMPARE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the remaining criteria one more time:","use":"R13在执行Call前恢复五技术支持与两缺口比较。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Need to verify: Simon Isakson completed B.Sc between 2005-2013","use":"R14同样未证但最终题名接受。"},
+    {"id":"N2_COMPARE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Actually, let me step back and review what I have confirmed so far:","use":"R13完整比较恢复，没有把U认知动作真的绕过。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"The other criteria (university history and author's B.Sc. date) would need to be verified but the core match is very strong.","use":"R14明确承认缺口仍接受，Final又将两项无证打勾。"},
+    {"id":"N3_COMPARE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the key criteria:","use":"R13实际盘点五支持/两待证。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The remaining criteria (Chalmers University student numbers in 1850s and Simon Isakson's B.Sc. completion date) are harder to verify","use":"R14未消缺但选择提交，不是工具返回证明。"},
+    {"id":"N4_COMPARE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Actually, I think I have enough information to provide an answer.","use":"R13出现接受倾向和完整总结，随后仍真查学校，不把想回答当已结束。"},
+    {"id":"N4_CALL","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Chalmers University Technology founded 1829 student enrollment 1850s history Sweden","use":"chatcmpl-tool-9da67881d3e575f5，R13实际Call。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"would have completed B.Sc. between 2005-2013","use":"R14把尚未知日期转换为通常学业时间推测，后Final肯定；没有真实新日期。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"先自主补G的completion date后马上重建原完整比较，而非直接执行搜索。","state_chain":"恢复技术支持/两未知比较→真实一次学校→无新支持→R14同题名提交C。","function_change":"原纯认知比较完整重建，原后缀唯一学校也保留；生成比原短而Prompt略多。没有目标功能跳过证据。","evidence":["N1_COMPARE","N1_ACCEPT"],"semantic_result":"C，Final无证招生/学位肯定。"},
+    {"repeat":2,"first_divergence":"补date后先回顾所有支持和缺口，再查学校。","state_chain":"原比较恢复→学校失败→再次完整比较→按核心匹配提交C。","function_change":"比较及学校实际操作都重建，生成和Prompt都略多，不是原Stage冗余被绕过。","evidence":["N2_COMPARE","N2_ACCEPT"],"semantic_result":"C，Reasoning诚实缺口但Final打勾，质量分列。"},
+    {"repeat":3,"first_divergence":"G后不补日期尾词，直接恢复技术条件比较再查学校。","state_chain":"完整比较→学校失败→核心支持足够的接受→C。","function_change":"原比较/学校都恢复，表述比原略短而Prompt略多；未解决背景信息的处理没有变成新证据。","evidence":["N3_COMPARE","N3_ACCEPT"],"semantic_result":"C，学校身份代招生、学历用时间推测。"},
+    {"repeat":4,"first_divergence":"先说足够回答并盘点所有条件，却继续一次真实学校核验。","state_chain":"比较与接受倾向恢复→仍按G实际学校→无证→以学校早期增长和学业通常时序推测接受C。","function_change":"原判断不仅恢复还重复两次，学校Call保留；生成和Prompt都多。未把某次准备回答误算正式Final。","evidence":["N4_COMPARE","N4_CALL","N4_ACCEPT"],"semantic_result":"C，推测转Final肯定不能算证据验证。"}
+  ],
+  "mechanism_candidate":"P已有技术支持、背景核验失败，删除当前完整比较后四条仍在同轮重新组织这些支持与缺口，且都继续一次学校尝试，最终仍依核心匹配接受。这说明本组答案保持是判断过程恢复而非判断过程消失；表述长度可变但取证次数并未减少。G提供one more search框架且缩写提取异常，需保留额外干预限制。",
+  "within_case_support":"四条都在唯一Call前重建完整盘点，四条Call后仍无招生支持却接受。新4在Call前已说足够回答仍去查，是判断与行动分开记录的重要反例；没有一条直接跳过比较可证明U无功能。",
+  "mechanism_chain_checks":[
+    {"chain":"已有技术支持及两缺口→完整比较自行恢复→一次学校未补证→核心匹配接受同题名。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_COMPARE","N1_ACCEPT"],"2":["N2_COMPARE","N2_ACCEPT"],"3":["N3_COMPARE","N3_ACCEPT"],"4":["N4_COMPARE","N4_CALL","N4_ACCEPT"]},"limits":"G预先给最后一次查询框架且实际不是完整原句，不作纯因果推断。"}
+  ],
+  "counterevidence_and_limits":["跨越搜索的比较/接受已实际发生，不因后来搜索而取消其认知作用。","G在B.Sc.处误截，未修历史实验；与完整首句条件不能静默等同。","没有学校新数据或本科日期，Final题名正确不可作证据充分标准。","四Call都真实执行且Return进入后继Actor，不以意向替代调用。","同题重复比较实例不算跨题支持，也不按生成降低就称认知工作消失。"],
+  "cost_basis":"CHAR_EXACT_RETOKENIZED R13@157，37原生前缀IDs至156加空格220，覆盖原4213至164；原R13—14生成1228，切点后保守1190—1191。原1Search/2Actor、Prompt39176+42507=81683；G32一次。新1097/1198/1053/1239加G1129/1230/1085/1271，差少61—62/多39—40/少105—106/多80—81。四新Search1、Actor2均原数，Prompt81739/81783/81782/81783都略增56/100/99/100，没有四资源全降。P38IDs重放单列；原延迟含P不算精确节省，分支不相加。",
+  "next_cross_case_test":"A/B分别检查已形成证据结构后被删比较是否重新组成，并区分准备提交、继续取证和正式Final。G缩写异常单列，不为了凑机制剔除反例或静默归正常。"
+}

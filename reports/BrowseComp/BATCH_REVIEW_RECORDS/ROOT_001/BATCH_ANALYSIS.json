@@ -1,0 +1,36 @@
+{
+ "batch_id":"ROOT_001","reviewer":"ROOT","status":"COMPLETE_CODEX_REVIEW_NOT_HUMAN_GOLD",
+ "case_ids":["55__rep2__S002__FIRST_SENTENCE","69__rep1__S002__FIRST_SENTENCE","78__rep1__S001__FIRST_SENTENCE","83__rep1__S003__FIRST_SENTENCE","87__rep1__S001__FIRST_SENTENCE","92__rep3__S001__TERMINAL_DROP_NO_ANCHOR","226__rep1__S001__FIRST_SENTENCE","228__rep1__S001__FIRST_SENTENCE","257__rep1__S001__FIRST_SENTENCE","261__rep2__S001__FIRST_SENTENCE"],
+ "functions":[
+  {"description":"在尚无对象时用题目可区分线索取证，形成后继可实际查询的名字或关系入口。","members":["78__rep1__S001__FIRST_SENTENCE","87__rep1__S001__FIRST_SENTENCE","92__rep3__S001__TERMINAL_DROP_NO_ANCHOR","226__rep1__S001__FIRST_SENTENCE","228__rep1__S001__FIRST_SENTENCE","257__rep1__S001__FIRST_SENTENCE","261__rep2__S001__FIRST_SENTENCE"],"distinction":"78/87/228原U确有具体候选；226/257/261的U只完成尚未成功的探索；92原U连真实工具执行都没有。空P初始工作不能统称第一次正确采用。"},
+  {"description":"已有题目或候选入口，定向取得此前缺少的身份事实，交给后继具体条件核验。","members":["55__rep2__S002__FIRST_SENTENCE","69__rep1__S002__FIRST_SENTENCE"],"distinction":"55P仅Mani动画身份，U取得学历/奖项和书评人关系；69P没有Nicole，U用独特新闻关系发现她。新路径即使恢复相同核心产物，取证尝试次数和后续缺口不同。"},
+  {"description":"在材料已见、候选已提取后，完整比较条件并安排有限补查。","members":["83__rep1__S003__FIRST_SENTENCE"],"distinction":"Hooker名字和Mate候选在P已取出；U不是首次文档发现，而是把已有直接记录与其余未证条件比较。四支都重新比较，不以C保持判它没有作用。"}
+ ],
+ "comparisons":[
+  {"id":"ROOT001_C1","cases":["69__rep1__S002__FIRST_SENTENCE","226__rep1__S001__FIRST_SENTENCE","228__rep1__S001__FIRST_SENTENCE","261__rep2__S001__FIRST_SENTENCE"],"finding":"从返回中出现对象到真实下一Query使用对象，是独立可见环节。69四支新闻人名实际进入下一Query；226新2把未完全匹配的Wexford地址用作可查入口，新1/3不采用；228新3很晚采用建筑关系才改查Ding；261新4确采用教授并查姓名仍无论文。","counter":"不能把采用写成充分成功条件，261直接反例；226/228看似相同片段并非整批或输入相同，不能称严格同证据随机实验。"},
+  {"id":"ROOT001_C2","cases":["55__rep2__S002__FIRST_SENTENCE","78__rep1__S001__FIRST_SENTENCE","228__rep1__S001__FIRST_SENTENCE","257__rep1__S001__FIRST_SENTENCE"],"finding":"对关系或字段的解释决定下一项工作：55新1把author字段当刊名，78新2将父亲角色又向上一代偏移，228新4把规划/赠款日期补成开放匹配，257新1把再版角色当原版并误读成立年。错误未只留在文字，而被实际Query执行。","counter":"78新4和87新2的错误被真实返回修正；55及78错误过程仍可核心C，228另两N并非同一时间错误，不能统一解释所有终态。"},
+  {"id":"ROOT001_C3","cases":["55__rep2__S002__FIRST_SENTENCE","83__rep1__S003__FIRST_SENTENCE","87__rep1__S001__FIRST_SENTENCE","261__rep2__S001__FIRST_SENTENCE"],"finding":"已有核心对象后的未闭关系与完全没有论文对象时的未定位缺口不同。55期刊卷次/工作关系、83历史细节、87分类河流是具体待核；261多支只是题面条件不断改词并无论文。","counter":"83全部提交而55有一N，261一W三N，都不能用有缺口必然循环解释。87新4省去真实分类/河流核查仍C，属于支持减少，不是证明核查没有价值。"},
+  {"id":"ROOT001_C4","cases":["69__rep1__S002__FIRST_SENTENCE","83__rep1__S003__FIRST_SENTENCE","87__rep1__S001__FIRST_SENTENCE","92__rep3__S001__TERMINAL_DROP_NO_ANCHOR"],"finding":"同样结果稳定或改善，成本原因不同：69多数少一次未命中尝试但功能恢复，83比较恢复后表达缩短却有一支更多补查，87一支直接少了原Z核验，92是从未真实执行到完整重求解且成本全上升。","counter":"协议N的少Token、缺证C的少Search、重求解C的高成本不可当同一种冗余证据。"},
+  {"id":"ROOT001_C5","cases":["78__rep1__S001__FIRST_SENTENCE","83__rep1__S003__FIRST_SENTENCE","257__rep1__S001__FIRST_SENTENCE","261__rep2__S001__FIRST_SENTENCE"],"finding":"引导提供的东西不同：78空P接入正确人物/王国，257空P接入错误作品/作者，83已有候选但G给下一优先查询，261仅换法承接。应分别核对实体、确定性、行动补偿。","counter":"不把教师正确实体的稳定答案计自主恢复；教师错误实体也不必锁死，新257新1/3仍回描述性检索发现Freddie。"}
+ ],
+ "mechanism_tests":[
+  {"id":"ROOT001_T1","description":"材料中的具体对象或关系成为真实下一Query的连接键，才使后继从全题词拼接转成具名关系核验；转换发生与成功提交分开。","links":[{"case_id":"69__rep1__S002__FIRST_SENTENCE","local_id":"NEWS_TO_NAMED_RELATION_QUERY"},{"case_id":"87__rep1__S001__FIRST_SENTENCE","local_id":"DISTINCTIVE_STORY_TO_CLASSIFICATION_QUERY"},{"case_id":"92__rep3__S001__TERMINAL_DROP_NO_ANCHOR","local_id":"SOLO_EVIDENCE_TO_PERSON_QUERY_AFTER_RESTART"},{"case_id":"226__rep1__S001__FIRST_SENTENCE","local_id":"PARTIAL_ADDRESS_TO_LOCATION_QUERY"},{"case_id":"228__rep1__S001__FIRST_SENTENCE","local_id":"RELATIONAL_BUILDING_EVIDENCE_TO_PERSON_ACTION"},{"case_id":"261__rep2__S001__FIRST_SENTENCE","local_id":"PERSON_ADOPTION_WITHOUT_RELATIONAL_PAPER_RETURN"}],"relation":"对应P2_R1；其中261是已转换却未取得论文的作用边界，92是无G根重求解过程，不增加局部删除因果证据。各local_id须程序核查，若命名不同按实际文件更正引用，不生成语义。","counterexamples":["261新4教授采用及真实具名查文献仍N；228晚查错误Sobrato反而召回正确关系，错误Query不意味着证据绝不可能进入。","69四支均C且功能恢复，区别在发现前多试几次；226的部分地址不是答案，但可作为有价值的入口。"],"unresolved":"不能唯一解释同一关键片段为何某支不采用；可观察的是下一Call和后继关系状态。"},
+  {"id":"ROOT001_T2","description":"未证或错配的关系被提升为下一工作前提，生成了本不应由该返回推出的属性核验任务；检索开销增加可能来自该误解释，而非题目原有难度。","links":[{"case_id":"55__rep2__S002__FIRST_SENTENCE","local_id":"ROLE_TO_WRONG_WORK_OBJECT"},{"case_id":"78__rep1__S001__FIRST_SENTENCE","local_id":"REFERENT_SHIFT_CREATES_EDUCATION_TASK"},{"case_id":"228__rep1__S001__FIRST_SENTENCE","local_id":"EVENT_YEAR_PROMOTED_TO_BUILDING_MATCH"},{"case_id":"257__rep1__S001__FIRST_SENTENCE","local_id":"EDITION_RELATION_SELECTS_PUBLISHER_TASK"}],"relation":"比P1_K1原定义更宽：原K1重点错误不符导致排除，这里还包括正向确认/制造子任务。不得直接扩大K1再把旧全部成员自动算支持；提交注册修订提案，待统一回查。","counterexamples":["78新4错误被后返修正、87新2家庭/地理层次被真实材料修正；解释可错但不持续。","55新1、78新2仍核心C，意味着该链可影响成本和证据而不改变核心答案；257新2错误停在Eightball，不是再版角色链。"],"unresolved":"错误字段/时间的内部来源不能由日志唯一还原；只跟踪明确解释到Call的外显连接。"},
+  {"id":"ROOT001_T3","description":"实际未证的具体关系仍触发核查，而后续提交可能来自改用其它匹配接受，并非补齐该关系；需与已有条件再次确认、无候选泛搜区分。","links":[{"case_id":"55__rep2__S002__FIRST_SENTENCE","local_id":"UNSOLVED_PUBLICATION_RELATION"},{"case_id":"83__rep1__S003__FIRST_SENTENCE","local_id":"UNVERIFIED_CONDITIONS_AND_FINITE_STOP"}],"relation":"核对P1_K3与P2_R3交集而不合并：R3要求核心正确候选已经采用，K3允许错误固定对象。55/83是已采用主体但缺具体关系的对照。","counterexamples":["83新4补两次仍C；55新4持续到Actor上限N，缺口存在并不能预测停止。","261无论文候选，不能套核心已恢复的R3；其未定位反馈另留待分类。"],"unresolved":"可定位查了什么/何时提交，仍不能证明原U有唯一停止阈值作用。"},
+  {"id":"ROOT001_T4","description":"明确指出冲突没有必然取消候选属性任务；检验应落在冲突后实际查谁以及最终重新接受是否发生。","links":[{"case_id":"257__rep1__S001__FIRST_SENTENCE","local_id":"RECOGNIZED_FOUNDING_CONFLICT_NOT_ENFORCED"}],"relation":"与上一轮反证不约束行动的线索相连，但本批只有257新2完整确定链。228新2识别Kim冲突后没重新接受Kim，不能算同一完整重接受实例。","counterexamples":["228新2未获得新人选虽仍N，但没有正式重接旧候选；不能由失败推出该完整行为。"],"unresolved":"只有一个新题确定链，不据该单例冻结通用新机制。"}
+ ],
+ "unresolved":[
+  {"case_id":"55__rep2__S002__FIRST_SENTENCE","issue":"期刊/卷次/任职直接关系多支未证；原新正确人名不能替代支持审查。"},
+  {"case_id":"69__rep1__S002__FIRST_SENTENCE","issue":"同故事查询何时命中受采样与Query差异影响，不能称任意重查必然恢复。"},
+  {"case_id":"78__rep1__S001__FIRST_SENTENCE","issue":"G给正确初始对象，大学年代层级多支未证，A稳定不等于原发现可省。"},
+  {"case_id":"83__rep1__S003__FIRST_SENTENCE","issue":"新1先假引1940s后又承认缺口；只截前半会夸大证据虚构闭合。"},
+  {"case_id":"87__rep1__S001__FIRST_SENTENCE","issue":"新3零工具协议停止排除语义链；新4省后继查证却有支持下降。"},
+  {"case_id":"92__rep3__S001__TERMINAL_DROP_NO_ANCHOR","issue":"整题无G重求解，原空工具停止不能被解释成某成功Stage必要。"},
+  {"case_id":"226__rep1__S001__FIRST_SENTENCE","issue":"两C仍未共同证明全部100米与截至2023店铺条件；共享片段不是整批相同。"},
+  {"case_id":"228__rep1__S001__FIRST_SENTENCE","issue":"早身份资料和晚建筑关系强度不同；三N没有单一共同错误链。"},
+  {"case_id":"257__rep1__S001__FIRST_SENTENCE","issue":"原U没有正确书目，出版角色差异在原Z/新路径；空P错误G仍是强替代解释。"},
+  {"case_id":"261__rep2__S001__FIRST_SENTENCE","issue":"三W→N只有终止类别变化，全部仍未答对；教授查询完成却无目标论文的反例保留。"}
+ ],
+ "source_handling":"复用已保存六类事实与完整U、Call序列和精确引用；关键解释定向回查实际字段。所有语义JSON为Codex逐案写入，Python只定位证据、校验引用和复算成本。20试点复用不重标。批内链接以每案已保存local_id为准，编写时描述名经机械核对后更正，不修改语义裁定。",
+ "limitations":"这批10题结果分层选择，不给904整体比例；一个Stage四支不是四题。只有本批资料支持的中间行动链才计正例，局部原U因果、G、采样与预算均分列。语义建议不是独立人工金标准。"
+}

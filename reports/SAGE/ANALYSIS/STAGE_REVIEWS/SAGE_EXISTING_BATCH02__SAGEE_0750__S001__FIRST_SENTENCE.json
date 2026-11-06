@@ -1,0 +1,559 @@
+{
+  "schema_version": "SAGE100_CODEX_SEMANTIC_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0750",
+  "stage_id": "S001",
+  "sample_order": 9,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0750/trajectory.json",
+      "source_sha256": "4fb18a904433fe39fb673e5fb62804c4af3dfcb1077f390c7b69aa694a0d0beb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0750.json",
+      "source_sha256": "ad04278421833e9ccd7cb4766ef4c2eac0d43a00b17d5be5d70cfa5556e574f8"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "d8761876143699ba8b868c1423c56b0fd0d5380606c1fa6cd7f0e905f5cbc79b"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "11f937f0591b54f6f9521f5dca0120085439f9a5bdba4240059073a3a8dbf0bf"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9478e69ae30c132d8c811bfa49a05b69891d189e164a853721853a037dd9b756"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "d70b757ea1ce3469d0970aab69cc93898cf01a4548caad1f961f7cdad00a35c8"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "b34bf8726f5d21a932148d69127355c2bfb670df605bf5d5c60aadf0b79af95d"
+    }
+  },
+  "question_and_gold": {
+    "question": "The city where the opera that premiered at Foroni's Teatro Filarmonico in 1840 by the composer of \"Tutti in maschera\" first debuted.?",
+    "gold": "Verona",
+    "offline_only": true
+  },
+  "read_scope": "原4轮及所有Return已完整读，本U跨R1—R2范围再核。四新48908字符[0,26000)、[26000,48908)完整读，N1新增完整Pedrotti2497字符Open与N2 Open100原文均读；其他同文只引用本题已经完整读过的原/S002—S006片段。两批联合Call不虚构批内读后再决策。",
+  "original_outcome": {
+    "outcome": "C",
+    "actual_final": "Verona",
+    "terminal": "MODEL_FINAL_STOP",
+    "reason": "原后续剧院城市直证被采用并提交。",
+    "reference": "ANALYSIS/OUTCOME_SCREENING_ROOT/DECISIONS/SAGE_EXISTING_BATCH02__SAGEE_0750.json"
+  },
+  "prestate": {
+    "actual_input": "R1@0，仅系统与原题，无原Reasoning/Return/候选。原题未给作曲者姓名Pedrotti、作品Lina或Verona，G却提前给Pedrotti。",
+    "evidence_levels": "原U前作曲者关系未知；没有可见原工具材料，所有新Return是本分支真实取证，不从未来恢复。",
+    "remaining_gap": "作曲者、1840作品、首演城市三跳都尚待建立。",
+    "input_accounting": "P479，G30，首509，max10000，历史Actor0；字符重建非原native精确。",
+    "evidence": [
+      "I_G",
+      "O_QUERY"
+    ]
+  },
+  "original_U": {
+    "range": "R1 /rounds/0/reasoning_content[0,364)，SHA21122119d0009512d8cc6aa319baa3586f9c938d17641722743addfd38fac652；真实E001 /tool_events/0，首次Return原R2可见；R2 /rounds/1/reasoning_content[0,175)，SHA6ac6002cfc77f6f6b01afd4e5de3044e7bcff64160f5d75f39259c44778ecd41。",
+    "mapping_reference": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0750.json#/stages/0",
+    "actual_goal": "从Tutti in maschera线索实际查明作曲者。",
+    "actual_operations": "拆三跳，真Search Tutti in maschera composer，首结果Pedrotti文档同时含Lina/Clara和Verona生平；R2直接提取Tutti作者Pedrotti并接受。",
+    "product": "作曲者从未知变已采用，后续目标作品与地点材料同时可见，但本U直接反馈只采用作曲者。",
+    "judgment_change": "决定接下来在Pedrotti作品中找1840演出，而不是跨所有作曲者寻找。",
+    "full_original_text_location": "M#/stages/0/items完整两段原字段及真实Call/Return，O#/tool_events/0/observation完整保留实际结果。",
+    "evidence": [
+      "O_QUERY",
+      "O_RETURN",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R2余段识别Lina，按人物生平猜Verona并Open500；R3再次确认作品、查Foroni城市，R4接受并submit。作曲者关系一直用于限定作品，并非从未改变后续对象。",
+    "evidence": [
+      "O_LINA",
+      "O_CITY_QUERY",
+      "O_FINAL"
+    ]
+  },
+  "function_features": "首次外部查明上游实体关系的取证与采用，不是重复确认。但教师句已经泄漏该上游实体，必须检查是否实际跳过取证；四条均重新真实查作曲者，G给事实与功能恢复可同时成立。",
+  "guide_audit": {
+    "text": "Now I need to find the opera that premiered at Foroni's Teatro Filarmonico in 1840 by Carlo Pedrotti.",
+    "origin": "原R2[175,276)，30派生Token。",
+    "P_comparison": "P只有Question，无Carlo Pedrotti；G提前提供原U查得的作曲者实体及其作为1840作品作者的关系、下一步作品方向。它不是完整后继或Final，也没给Lina/Verona，但已是被删U关键产物的未来事实。",
+    "novelty": "NEW_COMPOSER_ENTITY_AND_TARGET_RELATION_FROM_DELETED_STAGE",
+    "oracle_status": "ORACLE_ANCHORED_KEY_FUTURE_FACT_RISK_NOT_STRICT_SAVABILITY_EVIDENCE",
+    "evidence": [
+      "I_G",
+      "O_ADOPT"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "作曲者重新外查，Lina首演新Return直证真实可见且R4采用，R5正式城市正确。",
+      "outcome_evidence": [
+        "N1_ADOPT_CITY",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1虽G已给Pedrotti仍从Tutti作曲者Query重做，完整Return同原。R2采用作者/Lina、猜Verona，真查Lina首演城；新Marcello直接首演句返回，R3未明确采用仍仅核原Lina/Clara并再次首演Query。R4明确采用Marcello，已说city Verona，仍Open原Pedrotti全文2497字符确认；R5回到出生/求学Verona的弱位置说明，最终submit。",
+      "first_judgment_divergence": "原U取证并采用重新执行，没有上游实体丢失；下游第一次城市直证到达未更新待办，第二次后采用又追加读文，区别发生在已支持结论如何结束核验。",
+      "first_actual_tool_divergence": "首Query/Return同原，之后从原Open500改Lina首演Search，再重复该入口，末Open全文而非原Foroni城市Search。",
+      "function_correspondence": [
+        {
+          "original": "查明作曲者并采用Pedrotti",
+          "new": "R1真实同Query/Return，R2明确同关系采用，完整恢复",
+          "evidence": [
+            "O_QUERY",
+            "O_ADOPT",
+            "N1_COMPOSER_QUERY",
+            "N1_COMPOSER_ADOPT"
+          ]
+        },
+        {
+          "original": "作者关系用于找目标作品",
+          "new": "后续一直限定Pedrotti/Lina并查首演，不是G直接给答案后跳过原工作",
+          "evidence": [
+            "N1_FIRST_CITY_QUERY",
+            "N1_ADOPT_CITY",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原实际取证和产物采用都重做，即使G已提供其核心事实，也不能称目标功能跳过。",
+      "judgment_action_outcome_chain": "G先给作曲者但仍重新检索→采用作者与作品→首演城直证一次未采用、再次采用后仍Open确认→C；工作增加来自城市采用/确认组织，不是作者查询少做。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1208生成/33858Prompt/3Search1Open5Actor，原979/17113/2Search1Open4Actor；记录生成+229，Search+1Actor+1，Prompt+16745。第一作曲者查询没省，新增一次首演查询及确认组织是落点。",
+      "counterevidence_and_alternatives": "没有证据解释为什么第一次直证未采用，也不能说新已采用后Open必然无用；只记录该Open提供哪些新文本且核心首演句早已支持。G关键事实泄漏，不能严格可省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "正式城市正确，但新路径没有查Foroni直接位置或Marcello首演直证，主要以人物出生/求学Verona推剧院。不能把C解释成原证据质量保持。",
+      "outcome_evidence": [
+        "N2_INFER",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1联合查Tutti作曲者和Foroni1840歌剧，前者同原，后者只有同Pedrotti片段；R2采用作者/Lina后用出生求学推Verona，Open100仅标题和生卒句；R3 3848字符重复该弱关系、语法与首演含义，另无依据说Foroni owned剧院，没有新地点Search，submit。",
+      "first_judgment_divergence": "上游作者与作品关系均恢复，下游把人物学于Verona/Foroni关系当剧院位置确认，原独立位置核验没有恢复，缺口在弱推理中被关闭。",
+      "first_actual_tool_divergence": "首批额外同时查1840作品，第二Open100替代原500，之后直接submit而不查Foroni城市。两Search分布在同Actor，不虚构按首结果再决定第二。",
+      "function_correspondence": [
+        {
+          "original": "作者取证与采用",
+          "new": "R1真实Tutti Query同原Return，R2接受作者，完整恢复",
+          "evidence": [
+            "O_QUERY",
+            "N2_COMPOSER_QUERY",
+            "N2_COMPOSER_ADOPT"
+          ]
+        },
+        {
+          "original": "作者用于限定1840作品",
+          "new": "R1联合作品Query，R2明确Lina关系；后位置却只推断",
+          "evidence": [
+            "N2_INFER",
+            "N2_OPEN_RETURN",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标U是上游作曲者取证，完整恢复；后续城市证据不足另外记录，不能用最终缺证否定作者重建。",
+      "judgment_action_outcome_chain": "G给作者仍真查→作者/作品恢复→把地理关联当确认→短Open无增量却不再补位置直证→C但支撑弱化，长篇反复增加生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1674生成/11504Prompt/2Search1Open3Actor；比原生成+695，Prompt-5609、Actor-1，Search/Open相同。Actor少因首批2Call合并而非少1Search；生成多在R3 1062Token重复弱推断，不称质量完全保持的节省。",
+      "counterevidence_and_alternatives": "新Return与Question允许合理推测但不直接蕴涵地点，未外部证明false，不能把无直接文档等同答错。G实体泄漏和批量组织需单列。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "真实重取作者/作品关系，第二轮首演Query得到Marcello直证，R3立即采用并正式提交。",
+      "outcome_evidence": [
+        "N3_DIRECT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1联合Tutti作者与Foroni1840作品两Query，返回同Pedrotti；R2采用作者/Lina，真查Lina/Pedrotti premiere city；Return有Marcello直接首演城，R3简洁三跳联结并submit，没有Open或额外地点Query。",
+      "first_judgment_divergence": "原U没有消失，恢复后用更直接首演关系关闭城市缺口，未先多次出生地猜测或独立重复确认作品。",
+      "first_actual_tool_divergence": "首批联合多1作品Query，后首演Search替原Open+城市Query；总3Search对原2Search1Open，总取证数均3，Actor因批量及合并少1。",
+      "function_correspondence": [
+        {
+          "original": "查作者并采用",
+          "new": "真实同作者Query和Return，R2明确采用，完整重建",
+          "evidence": [
+            "O_QUERY",
+            "N3_COMPOSER_QUERY",
+            "N3_COMPOSER_ADOPT"
+          ]
+        },
+        {
+          "original": "将作者关系用于限定作品和地点任务",
+          "new": "先联合作品查询再查首演，采用直接城市句提交",
+          "evidence": [
+            "N3_CITY_QUERY",
+            "N3_DIRECT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "作者目标、真实操作、产物及后续使用完整有原新证据。",
+      "judgment_action_outcome_chain": "G给作者仍外查→作者/作品采用→直查首演且立即用关键句→C；较少独立读文和重复解释，目标功能未省掉。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "576生成/14366Prompt/3Search0Open3Actor；原979/17113/2Search1Open4Actor，记录少403生成、2747Prompt、1Actor，Search+1Open-1，总取证不降。更短来自取证后简洁接受和省原重复作品盘点，不是首个作者Search被跳过。",
+      "counterevidence_and_alternatives": "ORACLE事实泄漏仍存在，尽管实际作者查询恢复。不能称无引导纯删除的节省证明，独立分支不相加。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "Verona",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Verona",
+      "outcome": "C",
+      "outcome_reason": "两轮联合取证恢复作者/作品并同时取得剧院城市与直接首演支持，R3明确采用提交。",
+      "outcome_evidence": [
+        "N4_DIRECT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1联合查作者和1840作品，R2 3264字符接受作者/Lina并多次以出生/求学背景猜Verona，最后同批发Foroni location Verona和Lina1840 premiere两Query；前者同原位置直证，后者Marcello首演直证。R3同时采用两条城市关系并submit，无Open。",
+      "first_judgment_divergence": "上游完整恢复，下游弱推测没有直接结束任务，而是安排两个不同入口联合验证；取得后即提交。",
+      "first_actual_tool_divergence": "首批2Search，第二批2Search，原分别1Search/Open/1Search/submit；4Search但只有3Actor，批次数与调用数分列。",
+      "function_correspondence": [
+        {
+          "original": "作者实际取证并采用",
+          "new": "真实同Tutti Query/Return，R2明确采用，完整恢复",
+          "evidence": [
+            "O_QUERY",
+            "N4_COMPOSER_QUERY",
+            "N4_COMPOSER_ADOPT"
+          ]
+        },
+        {
+          "original": "作者选择后续目标作品",
+          "new": "Lina/Clara比较及城市双入口核验以Pedrotti限定，R3采用",
+          "evidence": [
+            "N4_CITY_QUERY",
+            "N4_PREMIERE_QUERY",
+            "N4_DIRECT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "上游功能全部重做；后续联合取证更多不证明目标U重要或多余，只说明执行路径不同。",
+      "judgment_action_outcome_chain": "G作者仍重新核→作品采用和城市推测→不把推测当充分而双入口核验→两直证采用C；Actor更少但Search和生成更多。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0750__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1348生成/14794Prompt/4Search0Open3Actor；比原+369生成、Search+2Open-1总取证+1，Actor-1Prompt-2319。少Actor来自批量而非少工作；R2长解释和双Query是新增落点。",
+      "counterevidence_and_alternatives": "两直证联合不证明两者都必要，也不能先看第一Return再算第二自主决策。G泄漏与采样均限制纯因果归因。"
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_change_count": 0,
+    "screen_group": "A",
+    "common_work": "4/4实际同作者Query/Return和采用完整恢复，即使G已提前给作者。A不能定义成作者识别无需执行。",
+    "important_differences": "N1首演直证到后仍重复并Open；N2仅出生关系推断直接提交、支持更弱；N3直证一次采用简洁结束；N4联合两直证结束。原功能重建相同但证据采用、工作组织与开销不同。",
+    "cost_not_pooled": "生成1208/1674/576/1348，原979；Search3/2/3/4，Open1/1/0/0，Actor5/3/3/3。只有N3生成较低；少Actor不能当少Search。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "上游关键关系即使由教师句提前提供，模型仍可能重新执行原取证并实际采用；结果保持更多取决于下游缺口如何被证据闭合，而不是上游功能消失。相同上游恢复可以接直接证据接受、弱关系猜答、或证据已到仍继续核验三种路径。",
+      "support_scope": "本Stage1题4路径，作者Search均FULL；N2弱支持、N3直证立即采用、N1重复后采用与Open、N4双入口形成对照。",
+      "counterevidence": "不能据四条重做证明作者功能在无G下不可省；也不能据G给作者断言后续C只靠泄漏，实际取证和采用均有独立记录。",
+      "limits": "关键未来实体泄漏，排除严格可省证据；仅同题4路径不作跨题机制成立计数。"
+    }
+  ],
+  "counterevidence_and_limits": "此Stage起点P只有问题，G引入原U才查得Pedrotti应标关键事实风险；不得将其当原先就知道。四次全部重查也不能消除ORACLE实验限制。原无nativeIDs，整响应usage可比不叫原生精确净节省；P479、G30单列不重复计费。全部为Codex模型自审，非人工金标准。",
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find the opera that premiered at Foroni's Teatro Filarmonico in 1840 by Carlo Pedrotti."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Tutti in maschera composer",
+      "call_id": "chatcmpl-tool-914139cb7aaa51a0"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "first_visible_round": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "the commedia lirica \"Tutti in maschera\" (1856), his best-known work",
+      "doc_id": "wiki25:5651800"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results show that \"Tutti in maschera\" was composed by Carlo Pedrotti."
+    },
+    {
+      "evidence_id": "O_LINA",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the opera is \"Lina\"."
+    },
+    {
+      "evidence_id": "O_CITY_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Foroni's Teatro Filarmonico city location",
+      "call_id": "chatcmpl-tool-9e57b5810832b33d"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N1_COMPOSER_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Tutti in maschera composer",
+      "call_id": "chatcmpl-tool-a64e00c25f08e01d"
+    },
+    {
+      "evidence_id": "N1_COMPOSER_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results show that Carlo Pedrotti composed \"Tutti in maschera\" in 1856."
+    },
+    {
+      "evidence_id": "N1_FIRST_CITY_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Lina opera Carlo Pedrotti premiere city",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ADOPT_CITY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "\"Lina\" premiered in Verona in 1840."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N2_COMPOSER_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Tutti in maschera composer",
+      "call_id": "chatcmpl-tool-a0223ff3e7a766ec"
+    },
+    {
+      "evidence_id": "N2_COMPOSER_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "\"Tutti in maschera\" was composed by Carlo Pedrotti."
+    },
+    {
+      "evidence_id": "N2_OPEN_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "first_visible_round": 3,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "Italian conductor, administrator and composer Carlo Pedrotti (12 November 1817 – 16 October 1893) wa",
+      "doc_id": "wiki25:5651800"
+    },
+    {
+      "evidence_id": "N2_INFER",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "It is standard knowledge that Foroni's Teatro Filarmonico is in Verona."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N3_COMPOSER_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Tutti in maschera composer",
+      "call_id": "chatcmpl-tool-acffb02fa04783e8"
+    },
+    {
+      "evidence_id": "N3_COMPOSER_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "\"Tutti in maschera\" was composed by Carlo Pedrotti."
+    },
+    {
+      "evidence_id": "N3_CITY_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Lina opera Carlo Pedrotti premiere city",
+      "call_id": "chatcmpl-tool-a52dd89b56372172"
+    },
+    {
+      "evidence_id": "N3_DIRECT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The same document states that \"Lina\" premiered in Verona in 1840 (from the search for Marco Marcelliano Marcello, which confirms the premiere location)."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    },
+    {
+      "evidence_id": "N4_COMPOSER_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Tutti in maschera composer",
+      "call_id": "chatcmpl-tool-aca50cdf7e460b43"
+    },
+    {
+      "evidence_id": "N4_COMPOSER_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "\"Tutti in maschera\" was composed by Carlo Pedrotti"
+    },
+    {
+      "evidence_id": "N4_CITY_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Foroni Teatro Filarmonico location Verona",
+      "call_id": "chatcmpl-tool-a836dab204d1d221"
+    },
+    {
+      "evidence_id": "N4_PREMIERE_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Lina opera Carlo Pedrotti 1840 premiere city",
+      "call_id": "chatcmpl-tool-bd964e0791be535d"
+    },
+    {
+      "evidence_id": "N4_DIRECT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "4. \"Lina\" premiered in Verona in 1840."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Verona"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,481 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0145",
+  "stage_id": "S002",
+  "sample_order": 65,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0145/trajectory.json",
+      "source_sha256": "45494ca53de2133ec658ce1555355644e25fb64acc45575bb8fc91dbbad69943"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0145.json",
+      "source_sha256": "b8a4bab29403221004b217b6cd3777e54a9fa54342527f256d9e4c75515cf54c"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c4602093696d8d5953eda061a9cba0bfa9a0d03cdbe330504305c57d6d7bc3f3"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3e46a0fc6342b5b7c5c9e835063163fca98fac167d9ef56903a4cbd19fcc0cf2"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "895bf0cf1dfb2468f63774b5543260cf9ac94b44411d45c99b9f1ceda7198792"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "0286ad9cf0b675304615d317ef760016b0bae3107f5982da97ede2d4c06b9706"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "a36060c87644df0cf40cad1a75c931f22069c5237b800735a4ed9aed5b3a19af"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the birth city of the U.S. President who signed the act admitting the state that formed as a direct result of the conventions attended by delegates from Fairfax County, Virginia, including Ebenezer E. Mason and John Hawxhurst?",
+    "gold": [
+      "Hodgenville, Kentucky"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0145/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Hodgenville, Kentucky",
+    "adopted_answer": "Hodgenville, Kentucky",
+    "outcome": "C",
+    "reason": "正式城市正确，原签署链得到直接文档，farmsouthofcity解释可核。",
+    "evidence": [
+      "O_SIGN",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2[0,274)明确从E1采用Wheeling/RestoredGovernment/WestVirginia；P1946Token有三文档和当前前缀，没有Lincoln候选或签署资料。",
+    "evidence_states": "州已经被提取、采用；总统仍未知，没有签署关系Return。",
+    "evidence": [
+      "I_P",
+      "O_STATE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items，R2[274,481)、E2，R3[0,301)、E3，R4[0,862)、E4，R5[0,316)。",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 274,
+        "end": 481
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 301
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 862
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 316
+      }
+    ],
+    "goal": "取得WestVirginia加入法案签署总统，以确定出生地查询的人。",
+    "operations": "两次签署Query无关，R4用1863时间知识提出Lincoln并实际加1863查；E4含130625/2021715直接1862-12-31Lincoln批准，R5采用。",
+    "product": "Lincoln作为出生城市Search的对象。",
+    "judgment_change": "签署人未知→知识候选→文档支持后明确采用。",
+    "evidence": [
+      "O_QUERY",
+      "O_SIGN",
+      "O_NEXT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R5/6两次同birthQuery同Return，R7比较farmnearcity、完整链后Hodgenville提交。",
+    "evidence": [
+      "O_NEXT",
+      "O_BIRTH",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把已定州与签署人关系落实，为下一人物属性核查选择对象。",
+    "information_state_dependence": "原U是初次签署人核验，删后G提前给Lincoln，三条仍回头真实核签署，一条只断言；同四C不等于同支持路径。",
+    "first_update": "Lincoln不在实际P，原实际关系来自U。"
+  },
+  "guide_audit": {
+    "text": "Now I need to find the birth city of Abraham Lincoln.",
+    "source": "O#/rounds/4/reasoning_content[316,369)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "12教师Token直接给原U才确定的Lincoln及查出生地行动方向。既有州候选被增强为已解决签署关系，关键未来实体泄漏；不含Hodgenville。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式城市正确，原签署关系实际补回；R4一度错报签署为April12,1862，之后R7引回April20proclamation，解释误差保留。",
+      "outcome_evidence": [
+        "N1_REDO",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2按G先birthQuery，R3重新识别缺签署支持，知识Lincoln后真实签署Query取得130625；R4误引日期/LaRue家族角色，一边选Hodgenville一边再实际birthQuery；R5/6又同birthQuery共四次，Return全同原；R7终于按near-city表述接受Submit。",
+      "first_judgment_divergence": "由G先查人物属性，随后回头补关系；后已得birth仍把精确城市当未完任务反复同查。",
+      "first_actual_tool_divergence": "首Call由签署查证变birth；下一轮签署功能恢复。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "签署Query取得Lincoln关系并用于birth。",
+          "new_goal_operation_product": "R3真实签署Search130625取得关系，R4采用Lincoln后再birth，全目标与外部支持恢复，但顺序相反。",
+          "evidence": [
+            "O_SIGN",
+            "N1_REDO",
+            "N1_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是只G名字，关系查询/Return/采用真实齐全。",
+      "judgment_action_outcome_chain": "G人名先带去birth→原关系缺口在R3恢复→birth资料已有城市但仍追精确表达→四次同Query没新增支持→R7解释近郊城镇后C；取证交互从原签署重试转移到birth重复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1564生成/64831Prompt/5Search6Actor，原后5Search6段，生成保守+399至+534；总Search没少，原3签署+2birth变1签署+4birth。净差位置明确不是U全省。",
+      "counterevidence_and_alternatives": "反复Query仍同Return，最终C不证明这些重复都必要；G人名可能先改变顺序，不能纯因果。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "Hodgenville",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville",
+      "outcome": "C",
+      "outcome_reason": "正式城市名同Gold，签署及birth资料均有；附带把签署/实际入联日期混同不改city但不算细节全对。",
+      "outcome_evidence": [
+        "N2_REDO",
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2主动‘Wait’重核签署而不直接照G查birth，实际签署Query立即有效；R3采用Lincoln后birthQuery同原；R4简洁全链、farmnearHodgenville解释Submit城市无州名。",
+      "first_judgment_divergence": "G给人名仍识别关系需确认，首自主动作重核；直接有效Return后不再重复birth。",
+      "first_actual_tool_divergence": "首签署Query少act等词立即得130625，有别原前两失败；随后一次birth。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "签署人取证并变下一属性查询对象。",
+          "new_goal_operation_product": "首真实签署核验取得Lincoln，R3实际查birth，全功能恢复。",
+          "evidence": [
+            "O_SIGN",
+            "N2_REDO",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "独立查询和关系采用都有，不以G已给名字忽略重做。",
+      "judgment_action_outcome_chain": "G候选不是足够证据→真实签署核验一次得支持→一次birth资料能闭合城市措辞→C。省原两次失败签署和一次重复birth，原目标没有被省。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "550生成/15630Prompt/2Search3Actor，生成保守-615至-480，Search-3/Actor段-3；来源相同支持更少交互取得，加上短全链表达。",
+      "counterevidence_and_alternatives": "相较r1同G仍查询顺序不同，不能由G必然推出一种路线。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式city正确，签署130625最终获得；农场/城市和少数Bostic说法在末轮明确比较。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_LONG",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2照GbirthQuery；R3回签署statehoodQuery无关；R4用1863知识再实际Query，文档130625在第10位仍实际R5采用；R5又birthQuery，R6已识别Hodgenville但要更精确，再Query加born仍同Return；R7长6229字符多次全链/near-city/Bostic排除后Submit。",
+      "first_judgment_divergence": "先birth后补签署；有效关系得后城市措辞缺口继续驱动额外同证据查询与长比较。",
+      "first_actual_tool_divergence": "先birth，之后两个签署Query，然后再两birth，顺序与原不同但全部关系最终查到。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查到Lincoln签署关系供birth。",
+          "new_goal_operation_product": "两次真实签署尝试第二130625支持，R5引用采用，全核验恢复。",
+          "evidence": [
+            "O_SIGN",
+            "N3_QUERY",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不仅有候选，实际补到外部签署关系，顺序改变单列。",
+      "judgment_action_outcome_chain": "G人物先验促birth→签署缺口恢复→近郊城市已可用却要求精确城市再查同文→长内部反复表述比较→C但计算增。原关系恢复不保证原后序组织/停止长度恢复。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2696生成/70919Prompt/5Search6Actor，同原后Search和Actor，生成保守+1531至+1666、Prompt更高；原3签署2birth变2签署3birth，R7单轮1601是主要新增生成。",
+      "counterevidence_and_alternatives": "130625虽排末尾被实际采用，不能写没找到关系；末轮计划不算新工具。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式city正确并有birth支持，但签署关系只G人名和知识断言，没有实际新签署Return。",
+      "outcome_evidence": [
+        "N4_ASSERT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2按GbirthQuery；R3重新说下一步识别总统但直接‘would beLincoln’，没有签署Call，反而再同birthQuery；R4长3951字符复盘、farmnearcity解释与自问是否其他总统，最后提交。全两Search都birth，无Open。",
+      "first_judgment_divergence": "原需外部确认签署的关系被作为知识/G前提接受，后续直接围绕该人的出生地展开；这是接受方式不同，不是证明关系不存在。",
+      "first_actual_tool_divergence": "R2与R3都birth，无任何原签署核查。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "实际查证签署总统，文档支持Lincoln。",
+          "new_goal_operation_product": "R3/4重新断言Lincoln签署，但没有外部关系查询，输入也无原E2—4；候选判断在，取证/产物缺，G提供关键人名。",
+          "evidence": [
+            "O_SIGN",
+            "I_G",
+            "N4_ASSERT",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "内部关系采用恢复，原查证操作/文档支持未恢复，不能称完全重建或完全没有工作。",
+      "judgment_action_outcome_chain": "G预给Lincoln→按知识接受该关系而不查→两次birth取证→长内部措辞确认→C。关系查证少了但G补实体，不能作无补偿省功能证据。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1172生成/16982Prompt/2Search3Actor；生成保守+7至+142，Search-3/Actor段-3。省三签署Query但R4单轮935completion，仍可能不省生成。",
+      "counterevidence_and_alternatives": "最终C与来源支持保持不是同指标；P没Lincoln，G不可忽略。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "三条真实恢复签署核查，一条只知识采用；r1/r3先查birth再补签署，r2先补签署最短，r4不补也C但G预给人物。重复birth与城市表述长短决定后续成本差异。",
+    "costs": "只有r2生成减少，r1/r3明显增加，r4保守微增；Search总数r1/r3相同只是工作分配不同。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "已给州、未核签署人时实体引导与后续任务排序",
+      "chain": "原核验把州推进到有证据的总统，G提前给该总统后，模型有时仍补原关系、有时只作前提。即使补回同关系，先查birth再补关系会把剩余精确城市问题重新派发，可能增加同Return重复和长内部解释；先补关系且接受一次birth足够时成本较低。",
+      "limits": "这是四条可观察顺序与缺口处理，不能唯一证明顺序造成计算差；G、采样和真实Return内容差异保留。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四续跑69582字符全文读完；没有签署Call只对r4成立，不能从Query不完全相同判断重建缺席。",
+    "局部R2@274原IDs缺失，原后生成1030—1165，只保守区间；G12计Prompt、P1946单列。",
+    "birth city与nearHodgenville为实际答案解释，日期混同不改C但单列支持质量。",
+    "原/新生产采样和最大Actor30/20不一致，不作无引导纯因果论证。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_current_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "which led to the creation of the state of West Virginia."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find the birth city of Abraham Lincoln."
+    },
+    {
+      "evidence_id": "O_STATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "led to the creation of the state of West Virginia.",
+      "call_id": "chatcmpl-tool-b652c801a51071a6",
+      "doc_id": "wiki25:8669686"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "West Virginia state admission act signed by President",
+      "call_id": "chatcmpl-tool-8d55466d7bd362fc"
+    },
+    {
+      "evidence_id": "O_SIGN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/3/observation/results/2/snippet",
+      "exact_quote": "On December 31, 1862, an enabling act was approved by President Lincoln",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:2021715"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Abraham Lincoln birth city",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_BIRTH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/4/observation/results/7/snippet",
+      "exact_quote": "birth, which occurred a few miles south of Hodgenville on February 12, 1809.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4982729"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N1_REDO",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "West Virginia admission act signed by president",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "President Abraham Lincoln signed the act admitting West Virginia"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N2_REDO",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "West Virginia admission act signed president",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The West Virginia admission was signed by President Abraham Lincoln"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "West Virginia admission act signed by president 1863",
+      "call_id": "chatcmpl-tool-9a0393cf4ffedf92"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "President Abraham Lincoln approved the enabling act and issued the proclamation admitting West Virginia."
+    },
+    {
+      "evidence_id": "N3_LONG",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Is there any other city?"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N4_ASSERT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This would be Abraham Lincoln."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

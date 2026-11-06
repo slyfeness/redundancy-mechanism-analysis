@@ -1,0 +1,460 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0312",
+  "stage_id": "S003",
+  "sample_order": 45,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "Following the 1885 expansion of the Lake Condah Aboriginal reserve, a site initially granted with 827 hectares for the Gunditjmara people, and considering the Victorian \"protectionist policies\", if you multiply the total number of Assistant Protectors appointed for the Port Phillip Protectorate in 1839 by the number of children born to the Assistant Protector specifically assigned to the Melbourne and Westernport regions, what is the resulting number?",
+    "gold": [
+      "36"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "R13持续生成未执行计划且无正式提交，MISSING_FINAL_STOP。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@223；历史已有四助手、William Thomas负责地区和其前1500字符生平；当前保留推理明确缺子女人数。没有家庭段nine/three。",
+    "evidence_states": "目标人物已被采用，生平文已返回但人数尚未可见；不能把文档存在等同人数已在P。",
+    "evidence": [
+      "I_P",
+      "O_FIRST"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 223,
+        "end": 442
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 86
+      }
+    ],
+    "goal": "打开已知Thomas生平取得家庭人数。",
+    "operations": "Open3730003 offset0 limit2000，R4直接评价未见人数。",
+    "product": "返回前2000字符，全文2839；家庭段位于后端，未见人数的局部反馈为真，但不是全文无人数。",
+    "judgment_change": "从Search片段缺人数转为这一次Open仍未补齐。",
+    "evidence": [
+      "O_OPEN",
+      "O_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use": "随后反复家庭Search和同0/2000 Open；R13正确排除Parker六子/Sievwright七孩，但仍未访问Thomas末尾家庭段，长篇计划直到无Final。",
+    "evidence": [
+      "O_REPEAT",
+      "O_DISTINCT",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "读取已识别人物的生平窗口，检查算术所需第二因子。",
+    "state_relation": "四支都恢复实际Open与反馈；三支最终扩到全文看到9而答36，一支仍停在2000及重复Search后长度耗尽。结果改善不能解释为读取功能消失。",
+    "evidence": [
+      "N2_FULL",
+      "N3_ADOPT",
+      "N4_ADOPT",
+      "N1_LOOP"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I need to search more specifically for information about his children.",
+    "source_position": "O R4[86,156)",
+    "novelty": "当前P已明示相同人数缺口；G只偏向再Search，不含9、36或新人物。",
+    "risk": "ORACLE_ANCHORED；下一行动方向补偿，不能作为无引导纯删除。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R19原生10000生成后仍无Submit；3只是推理猜测。",
+      "outcome_evidence": [
+        "N1_STOP",
+        "N1_LOOP"
+      ],
+      "work_and_evidence_timeline": "R3人数Search→R4Open100→R5Open500→R6助手家庭Search→R7Australian settler搜索返回大量同名无关人物→R8Open2000仍无人数。R9–18重复家庭Query及多次同批返回；R16一空Return后仍继续。R19 37680字符反复要Search/Open，误忆已全文读取，后反复猜3但说不得造证，实际不再调用。",
+      "first_judgment_divergence": "初先Search替代U直接Open；后仍把人数缺口视为继续泛搜理由，未将2839总长度用于真实扩大读取。",
+      "first_actual_tool_divergence": "R3先Search；实际Open限100/500/2000，未到家庭末段。",
+      "function_correspondence": [
+        {
+          "original_goal": "读取Thomas家庭信息",
+          "original_operation": "Open0/2000及反馈",
+          "original_product": "未见子女数",
+          "new_goal": "同一因子",
+          "new_operation": "R4/5/8实际Open100/500/2000",
+          "new_product": "同未见数，未补足",
+          "evidence": [
+            "O_OPEN",
+            "O_FEEDBACK",
+            "N1_OPEN"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原读取窗口和缺证反馈均真实恢复；失败是后续访问未扩至末段。",
+      "chain": "已定Thomas→相同窗口恢复→缺口不闭合→重复Search及无执行长计划→N与成本上升。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "13574生成418620Prompt17Actor13Search3Open；原切点后11生成段8Search2Open，原生成保守10700–10815，新高2759–2874。R19单次10000生成是大头；额外5Search1Open6Actor增加Prompt。",
+      "counterevidence_and_alternatives": "原也N，说明删除未统一改善；不可把计划中多次全文Open当真实，不能把猜3当W提交。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "真实全文有nine children，区分survived3，4×9提交36。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R3相同家庭Search仍无数；R4Open不填limit，实际默认4000返回完整2839含Family。R5采用9而非存活3，与4相乘真实Submit。",
+      "first_judgment_divergence": "R5从仍缺数转为九名出生、三名存活不同口径已消歧。",
+      "first_actual_tool_divergence": "先Search；R4Open省略limit得到全文，而原2000未到末端。",
+      "function_correspondence": [
+        {
+          "original_goal": "读取Thomas人数",
+          "original_operation": "Open短于全文的2000窗口",
+          "original_product": "缺证反馈",
+          "new_goal": "同人数",
+          "new_operation": "Open默认4000",
+          "new_product": "直接家庭9并乘得36",
+          "evidence": [
+            "O_OPEN",
+            "N2_FULL",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同读取目的重做且取得原未见末段，不能称省去取证功能。",
+      "chain": "同文档不同读取范围→人数变成可见且采用→算术闭合→C并停止重复搜索。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "401生成26279Prompt3Actor1Search1Open；省在原后续8Search2Open及长R13被1Search1Open和计算替代，非U全文长度直接节省。P5701/G12分列，字符精确无原生净值。",
+      "counterevidence_and_alternatives": "G偏Search并未给正确人数；成功依赖实际扩大返回，不证明原U的身份或算术功能不必要。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "全文九出生、三存活，明确解释并提交36。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R3人数Search同原E4批；R4Open50标题片段，R5识别截断→Open limit2839读足全文；R6明确born非survived、4×9→Submit。",
+      "first_judgment_divergence": "R5将截断判定转成实际扩大读取，而非继续原家庭关键词重试。",
+      "first_actual_tool_divergence": "首Search，再50短开后精准总长度2839。",
+      "function_correspondence": [
+        {
+          "original_goal": "同人数",
+          "original_operation": "Open2000",
+          "original_product": "仍缺",
+          "new_goal": "同人数",
+          "new_operation": "Open50后Open2839",
+          "new_product": "Family9、出生口径、36",
+          "evidence": [
+            "O_OPEN",
+            "N3_FULL",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原目标和读取动作恢复且扩窗补足。",
+      "chain": "短窗失败被用于改变读取范围→关键段实际可见→九与三区分→C、后续轮数下降。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "648生成36435Prompt4Actor1Search2Open；Open数与原切点后相同但位置不同，少7Search和7Actor，去掉原末轮未执行计划的大量文字。",
+      "counterevidence_and_alternatives": "不同Call数量不等于机制；这里两个Open比原两个更有效，关键是范围与采用。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "36",
+      "adopted_answer": "36",
+      "outcome": "C",
+      "outcome_reason": "R11全文家庭段，R12明确九并36Submit。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R3ProtectorQuery噪声→R4Open100；R5Search同原E4；R6/7再次Open100同返回；R8同名噪声Search；R9又Open100；R10同名Search；R11终于实际Open2839，R12采用9→36。",
+      "first_judgment_divergence": "先认为需要全文却四次发100窗口，R11才把全文意图落实为正确范围参数。",
+      "first_actual_tool_divergence": "首Search无Assistant词导致其他Protector噪声；真正改变有效信息的是R11扩大Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "人数读取",
+          "original_operation": "Open2000直接反馈",
+          "original_product": "未见数",
+          "new_goal": "人数读取",
+          "new_operation": "四次100后一次2839",
+          "new_product": "末段九及36",
+          "evidence": [
+            "O_OPEN",
+            "N4_OPEN",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "读取工作反复恢复，成功在最终扩窗，不是无工作跳过。",
+      "chain": "全文计划未转成参数→同短窗重复、缺口继续→实际扩窗→证据采用和算术闭合→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1214生成139165Prompt10Actor4Search5Open；比原后段少4Search但多3Open、少1Actor。生成显降主要原10000长计划未再现，不能说所有工具成本均降。",
+      "counterevidence_and_alternatives": "与N2相同最终证据和答案但取得前花5Open；C不等于无重复，全文可见而未用与根本未返回应区分。"
+    }
+  ],
+  "four_rollout_comparison": "N/C/C/C；四条都重做Open，三条最后拿到原未显示的同文档家庭末段。N1即使已知全文长度也没有实际读足，N4延迟扩窗仍C；这比是否重建更能对应当前结果与成本。",
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "已找到正确文档但关键字段位于显示范围之外时，把‘未见’当成搜索不成功会持续改Query；将截断反馈用于实际扩大读取范围可闭合缺口并停止后续工作。",
+      "support": "N2/3/4真实全页返回→9采用→36；N1短窗与重复Search→N；原同样短窗→N。",
+      "limits": "同一题内部条件对照，尚非跨题机制；采样及G影响搜索次序，不能归因删除独立因果。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原U局部反馈本身正确，问题是后续未区分文档全文与窗口；不能写成原U错误信息。",
+    "N1长推理猜3无Final不得判错误答案已提交。",
+    "DERIVED_CHAR_EXACT无原生切点Token，成本采用记录保守区间，不加总独立分支节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_FIRST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "four assistants were appointed"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/2/tool_calls/0/arguments/doc_id",
+      "exact_quote": "wiki25:3730003"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The document about William Thomas doesn't mention the number of children born to him."
+    },
+    {
+      "evidence_id": "O_REPEAT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/8/tool_calls/0/arguments/doc_id",
+      "exact_quote": "wiki25:3730003"
+    },
+    {
+      "evidence_id": "O_DISTINCT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "Parker"
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 13,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search result snippet mentions William Thomas but doesn't specify the number of children."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to search more specifically for information about his children."
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/doc_id",
+      "exact_quote": "wiki25:3730003"
+    },
+    {
+      "evidence_id": "N1_LOOP",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 19,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "Actually, I think I need to assume the number is 3 based on common knowledge or search results I might have missed."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 19,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N2_FULL",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "William and Susannah Thomas had nine children, only 3 of which survived him."
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The question asks for the number of children *born* to the Assistant Protector."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    },
+    {
+      "evidence_id": "N3_FULL",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/rounds/2/tool_calls/0/arguments/doc_id",
+      "exact_quote": "wiki25:3730003"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The question asks for the number of children *born*, not the number that survived."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/rounds/8/tool_calls/0/arguments/doc_id",
+      "exact_quote": "wiki25:3730003"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "So, the number of children born to William Thomas (the Assistant Protector assigned to the Melbourne and Westernport regions) is **9**."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "36"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0312/trajectory.json",
+      "source_sha256": "0d1c48866dda1dbb6b6bccbeffc71e03aa9a1139a0be503f3a9938132ad1ee56"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0312.json",
+      "source_sha256": "0e097b0c25fd9c572dab52851799584f19cad9f7e2888498abe58d0d67284a19"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5aa75e25638528c6581d45f99d78a7ed0464189f4ee9c4c8fdb3c2ff03180efe"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "a9975d28defdc97a884066c55b457e880676d42c6482122f55e7974f9c72a03f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "16ed44976b845cdfc5c6cc0d6c300a2c37124895021404da841a1b58b52b533a"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "eabb40e1634f63a7500197c90900fd724487499878bee8aef837d0166c544d64"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0312__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c0c4ea2bc573d0a532ff18e9e812728a137dc9e5d931d78c4e0510ab89b9198f"
+    }
+  }
+}

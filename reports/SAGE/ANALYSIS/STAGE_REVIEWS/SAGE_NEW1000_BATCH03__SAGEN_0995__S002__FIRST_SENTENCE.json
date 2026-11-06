@@ -1,0 +1,519 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0995",
+  "stage_id": "S002",
+  "sample_order": 64,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0995/trajectory.json",
+      "source_sha256": "2c4d9b5fd79099b747903418ae89bfe2517797d3deea9ed6dd54d5acd23905ba"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0995.json",
+      "source_sha256": "751cd09d2d668cbd1d4b46a8c11d64d99d3a3d9a510a0a14402b000e872aea89"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c68cfe2c727a401eae9475772b409e65d899f533260c170a5e7008c0292adbad"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e63f19b550b3dcd4c04b3ea9bc30ba478704a6bd0d800dc5a3f1e98e6ac3eeb4"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "3b3c610d4a9a1ef24a18d175b58d6f171fcf9ab1286dde3ab2d9d1a42b244aed"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "005481f7cfd0c7e5d3d35c68e3cc3a20ba03f720435da86cce179463ef2b1d3b"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "ca02b22e747006ed1db6668ca0a4dad77d64ef19b44c2951d96fcf7a5c1f870f"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the number of official languages in South Africa in the year the \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council\" judgment was handed down?",
+    "gold": [
+      "11"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "11",
+    "adopted_answer": "11种",
+    "outcome": "C",
+    "reason": "正式数值正确；原路径一般11片段和1997生效资料，并没有直接1998语言条文。",
+    "evidence": [
+      "O_FINAL",
+      "O_COUNT"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "实际R2前缀[0,165)已经明确采用判决日1998-10-14；历史有完整案件Return6768731，P4399Token。尚无语言数量检索/返回，不把未保留的原历史reasoning当P。",
+    "evidence_states": "日期已经返回、提取且采用；语言数量仍未知，没有11在实际P。",
+    "evidence": [
+      "I_P",
+      "O_DATE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items；E2—E5及其完整Return保留在原件。",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 165,
+        "end": 466
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 521
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 864
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 808
+      }
+    ],
+    "goal": "根据已采用1998取得该年的官方语言数量。",
+    "operations": "连续四次1998语言Query（两次加number），返回赛事等无关片段；重述年份和数值缺口，期间知识猜11但没有取到数量证据。",
+    "product": "语言缺口未解决；相近查询没有提供可采用的数量支持。",
+    "judgment_change": "1998稳定，查询失败却没有在U内部转向有效证据入口。",
+    "evidence": [
+      "O_QUERY",
+      "O_RETRY",
+      "O_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R6反而重开案件年份的Open100和1000，虽1998早已明确；R8再次采用1998后16次语言/宪法Search，到R23才得27990一般11，R24Submit。U失败没有立即改变语言检索入口。",
+    "evidence": [
+      "O_REOPEN",
+      "O_COUNT",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在时间约束已确定时，尝试取得对应事实并评价未命中的返回。",
+    "information_state_dependence": "原U未新得11，删后四条仍实际重查同数量缺口；后续差异取决于检索入口、时间适用判断和停止选择，不能因四C说原数量工作完全省掉。",
+    "first_update": "U不是日期首次采用；语言数值没有在U证实。"
+  },
+  "guide_audit": {
+    "text": "The previous search results for \"Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council judgment year\" did not explicitly state the year the judgment was handed down in a clear snippet, although one result (wiki25:6768731) mentioned the case was heard on 18 and 20 August 1998, with judgment handed down 14 October.",
+    "source": "O#/rounds/5/reasoning_content[0,340)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "81教师Token。日期、案件和DocID都已在P；没有新数值11。新增的是未来的‘日期不够明确’评价及重核方向，与P明确日期并不一致；r1立即Open日期，其他三条仍直接查语言。不能把G反馈当新模型独立判断，也不能称完全无提示干扰。",
+    "evidence": [
+      "I_P",
+      "I_G",
+      "N1_OPEN"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "正式11匹配；但仍说1998处于已于1997被替换的Interim Constitution，解释自身冲突。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_WRONG"
+      ],
+      "work_and_evidence_timeline": "R2先Open6768731 limit5只South；R3确认P日期查语言/宪法，R4同1998词体育，R5空，R6知识9/11猜测，R7长重述再查，R8重复；R9判断1998适用1993临时宪法，实际改查Interim Constitution；R10继续此假设；R11另一宪法入口才得一般11，R12Open1326445 limit10只Other，R13再查临时宪法，R14/15长篇反复1993/1996和列表，最后提交11。",
+      "first_judgment_divergence": "首步受G日期不明确评价牵引，明知1998仍回头核日期；后续把临时宪法当1998法律的判断实际生成新的查询任务。",
+      "first_actual_tool_divergence": "R2Open已知日期取代原R2语言Search；后R3起恢复语言Query。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "按1998查语言，处理失败返回，数量仍缺证。",
+          "new_goal_operation_product": "R3—8真实相近语言Search及失败评价恢复该工作；之后改变宪法入口得到一般11，但临时/最终宪法角色混乱未完全纠正。",
+          "evidence": [
+            "O_QUERY",
+            "O_FEEDBACK",
+            "N1_RETRY",
+            "N1_WRONG"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "数量取证、失败处理和再次实际查询完整发生；并不是要求机械重演原四Call。",
+      "judgment_action_outcome_chain": "日期P明确但G重开核验→额外日期Open无信息→数量Search屡失败→把1998错误绑定临时宪法，实际查询其语言条款→一般11后来可见但制度时间关系仍矛盾→正确数值C，解释可靠性有限。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "3651生成/260413Prompt/11Search2Open14Actor；相对原切点后生成保守增加436—546，Search少9、Open同、Actor段少9。增加落在R11、14、15制度/语言列表长比较，交互减少不代表生成更少。",
+      "counterevidence_and_alternatives": "正确11不能证明临时宪法解释正确；G方向、工具空/非空和生产参数变化保留，不能只归因删U。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "明确从当前12与2023新增第12种区分历史时间，并结合1997生效支持1998十一；仍非全文历史条文。",
+      "outcome_evidence": [
+        "N2_NEW_INFO",
+        "N2_ADOPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2、R3两次带1998的语言Query均空；R4明确换去年份的number泛Query，得到1326443十二语言和2023新增手语；R5实际读取并采用这一时间变化，推1998十一，再查1996宪法；返回一般11与1997生效，R6比较后提交11。",
+      "first_judgment_divergence": "前两失败与原工作相近；R4将‘带1998找不到’反馈转成去掉年份的实际查询，随后区分现时十二与历史十一，获得可用时间桥接。",
+      "first_actual_tool_divergence": "R2数量Query较原多number，先两空；R4真实改无年份词，新的材料早返回。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "语言取证，原四尝试未得数量。",
+          "new_goal_operation_product": "同缺口真实两次失败并评价，随后改入口取得当前数值/新增年份，再据此完成历史推断；恢复原取证功能并推进。",
+          "evidence": [
+            "O_QUERY",
+            "N2_RESELECT",
+            "N2_NEW_INFO",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是G提供11，而是自主实际查到12/2023并作时间区分，原数量工作被重做且改法。",
+      "judgment_action_outcome_chain": "日期稳定→带年份查证失败→去掉年份取得新资料→明确将2023增加事件用于区分1998→用宪法生效补桥接→5次Actor内C。省的是原后续多轮无效查证与日期Open，非数量功能缺席。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1547生成/33407Prompt/4Search0Open5Actor；相对切点生成保守-1668至-1558，Search-16/Open-2/Actor段-18。新实际材料入口替代原后续长失败链，G81计Prompt不再扣两次。",
+      "counterevidence_and_alternatives": "同题S001r3也获得同1326443但在最后20轮无后续Actor；这里早到且明确采用。该对比支持可见与消费时机区别，不能把不同切点续跑当单变量实验。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "11",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "正式数值对；最终仍写Interim Constitution在1998生效，与已知1997替代自相矛盾，时间支持主要由知识补。",
+      "outcome_evidence": [
+        "N3_TIME",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2空、R3/4赛事；R5换interim Constitution入口，返回18thAmendment关于2023手语等；R6说临时1994/最终1997时间并实际查临时宪法，R7用最终1997推1998十一但再查；R8终于一般11片段，R9再查1996数字仍无关；R10长3259字符，注意一般11是2010数据不能直接当1998，但又说临时宪法在1998生效，仍以11知识与时间桥接提交。",
+      "first_judgment_divergence": "先恢复语言失败链，后将临时宪法视证据入口；2023修正案实际返回但没有像r2那样明确用于十二减一的判断。",
+      "first_actual_tool_divergence": "R5改查询interim Constitution；真实新返回不能和r2采用链混同。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查1998语言数量并处理失败。",
+          "new_goal_operation_product": "多次真实语言Query失败评价及换宪法入口，后数值11出现并评估历史适用；原工作完整恢复。",
+          "evidence": [
+            "O_QUERY",
+            "N3_SWITCH",
+            "N3_TIME"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "数量需求/查询/反馈齐全，后来仍有错误解释不取消已发生的重做。",
+      "judgment_action_outcome_chain": "语言失败触发宪法检索→新修正案返回没有明确转化为历史数值判断→一般11后仍要补时间→内部反复宪法/列表推理，最后相同数字C。比r2更长不是候选不同，而是新证据没有以同样方式解决历史适用缺口。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2291生成/114762Prompt/8Search0Open9Actor；生成保守-924至-814，Search-12/Open-2/Actor段-14。省原长失败链，同时R10独立长推理增加，不能全归被删四Query。",
+      "counterevidence_and_alternatives": "2023材料已返回≠已采用；原路径也无直接1998数字文句。不是只凭DocID相同判断功能恢复。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "The judgment in *Fedsure Life Assurance v Greater Johannesburg Transitional Metropolitan Council* was handed down on **14 October 1998**.\n\nIn 1998, South Africa had **11** official languages. This number was established by the Constitution of the Republic of South Africa, 1996 (Act 108 of 1996), which came into effect on 4 February 1997. The Constitution lists the following 11 official languages: Zulu, Xhosa, Afrikaans, English, Northern Sotho, Tswana, Southern Sotho, Tsonga, Swazi, Venda, and Ndebele. (Previously, the Interim Constitution of 1993 recognized 9 official languages).\n\n**11**",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "11种",
+      "outcome": "C",
+      "outcome_reason": "实际content Final正式采纳11，不能因无submit_answer工具判无答案；附带临时宪法9的断言没有返回支持，证据质量另记。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R2仍直接查语言而非按GOpen；R3/4改宪法年份，R5/6两不同顺序相近1996/11 Query返回同无关材料；R6知识已认十一适用1998仍要求确认；R7再查11空，R8在无新直接数量证据下6856字符反复列语言，把同语不同名重复计数并修正，反复说1993九/1996十一，最终content正式回答11。",
+      "first_judgment_divergence": "没有按G重查日期；在R6已形成正确年份-数量判断后，继续Search没有新增证据，最后的长名单纠错也未改变答案。",
+      "first_actual_tool_divergence": "起始number语言Query空；R4起走1996宪法加11查询，未见原早期四Query后日期Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "在已定1998后查语言数量，结果不相关。",
+          "new_goal_operation_product": "六次真实语言/宪法Search及结果不足处理恢复原尝试；最终知识判断和内部名单检查完成答案，直接历史证据依然缺。",
+          "evidence": [
+            "O_QUERY",
+            "N4_SEARCH",
+            "N4_FEEDBACK",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际取证工作重做，后续长篇反复内部名单并不是没有查的替代。",
+      "judgment_action_outcome_chain": "1998稳定→多次无关返回→已知识接受十一但仍继续确认→空Return没有让计数证据更充分→长篇反复别名计数和时间判断→同数值C。答案不变仍可能把交互成本转成单轮内部生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0995__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3192生成/73538Prompt/6Search0Open7Actor；生成区间-23至+87，不能断言省生成，Search-14/Open-2/Actor段-16。R8单轮2471completion含Final，是少交互但长推理的落点。",
+      "counterevidence_and_alternatives": "不能把最终十一和同义语言最终列对当1993九的独立验证；正确率不记录这些解释错误，必要单列质量。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "四条都重做数量取证。r1先额外日期Open并临时宪法错误派发查询；r2从当前12/2023资料直接做历史区分最短；r3收到相关修正案但未明确用同一推断；r4反复内数名单，交互少却生成不确定省。",
+    "costs": "r1生成增加、r2/r3减少、r4区间跨0，全部Search/Actor少。不能把四C或工具少写成原U未必要。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "同题已确定年份之后数量缺口的四次变化",
+      "chain": "固定1998并不自动闭合语言数量缺口。带年份Query失败后是否改变证据入口、是否把当前数值与变化年份作时间区分，影响实际查询长度；若只重复知识或把年代错绑到临时宪法，就会继续派发不充分核验或增加内部推理。四C说明结果可恢复，不等于原四次取证功能消失。",
+      "limits": "仅此题内部差异；r2机制不是解释全部四条，r1/r3仍C属于结果反例。G未来反馈与参数/检索差异不排除。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原完整123052字符及本四续跑156370字符实际阅读完毕；直接Return不是只看Query。",
+    "原生IDs缺失，部分R2切点只能报告3215/3105保守区间；不把新Final长解释字面不等Gold当W。",
+    "历史制度条款准确性不能只凭本研究Gold11证明；证据不足与模型解释冲突保留。",
+    "原24Actor才提交、新20上限不同；本四新都在预算内，但差额不是纯干预因果。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_current_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "judgment was handed down on 14 October 1998."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "did not explicitly state the year the judgment was handed down in a clear snippet"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/0/observation/results/5/snippet",
+      "exact_quote": "heard in the Constitutional Court on 18 and 20 August 1998, with judgment handed down 14 October.",
+      "doc_id": "wiki25:6768731",
+      "call_id": "chatcmpl-tool-ad5046a29e0cc2cc"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "South Africa official languages 1998",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "South Africa official languages 1998 number",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Now I need to find out how many official languages South Africa had in 1998."
+    },
+    {
+      "evidence_id": "O_REOPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let me open that document to confirm the year."
+    },
+    {
+      "evidence_id": "O_COUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 23,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/22/observation/results/4/snippet",
+      "exact_quote": "It has 11 official languages and a population of over 49 million people.",
+      "doc_id": "browsecomp_plus:27990",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 24,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me open this document to confirm the year."
+    },
+    {
+      "evidence_id": "N1_RETRY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The search results for \"South Africa official languages 1998\" didn't return a specific document about the number of official languages."
+    },
+    {
+      "evidence_id": "N1_WRONG",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "South Africa was operating under the **Interim Constitution** of 1993"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N2_RESELECT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "South Africa official languages number",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_NEW_INFO",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "South African Sign Language was recognised as the twelfth official language of South Africa by the National Assembly on 3 May 2023.",
+      "doc_id": "wiki25:1326443",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Let me check if South African Sign Language was added later."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N3_SWITCH",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Interim Constitution 1993 official languages South Africa",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_TIME",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "The Interim Constitution of 1993 (in force during the judgment year 1998)"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11"
+    },
+    {
+      "evidence_id": "N4_SEARCH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "South Africa 11 official languages 1996 constitution",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FEEDBACK",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The search results did not directly provide the number of official languages."
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The Final Constitution came into effect on 4 February 1997."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "In 1998, South Africa had **11** official languages."
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

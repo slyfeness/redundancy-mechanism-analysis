@@ -1,0 +1,41 @@
+{
+  "case_id":"20__rep3__S006__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新全部真实Final采用正确题名；1/2Final列身份未证属性，3明示关系差异及学历未证，4无证推学历；旧EM保留，不以C覆盖证据质量。"},
+  "review_basis":"原13轮12Call已完整读，四新32轮28Call/Return与全部Reasoning/Final实际阅读全文。200返回槽4篇新增50923/77611/89537/33043全文读完，另78049本线程此前已读SHA，其他均已读18/20，没有仅凭索引标读。",
+  "pre_state":"R7@479前P刚实际取得/采用11288正确论文和19071模量，Simon/Chalmers实体及五技术支持齐。此前13319已使UNC成为学校候选，但尚未专门查Chalmers招生，也未查作者本科。",
+  "u_work":"列出Chalmers招生/本科两个缺口，但真实E7只查学校；R8前190字符反馈无Chalmers人数，只得UNC与其他学校。不能把同一计划中的作者核查虚构成该Call已执行。",
+  "u_state_update":"学校属性仍未知，明确区分返回是UNC而非Chalmers，后继转作者。原后来还查一次Chalmers且仍无数据，最终接受技术强匹配论文。",
+  "original_action_consequence":"原U没有改变论文采用，也未给否定Chalmers的充分证据。新路径比较应看学校工作是否以后恢复、如何处理UNC与正确论文不相连，并追踪提交而非仅结果同C。",
+  "guidance":{"text":"Let me search more specifically for Simon Isakson's background and B.Sc completion date, and also search for more information about the thesis title.","source":"原后继R8[190,339)，29局部边缘重编码Token。","audit":"ORACLE_ANCHORED。Simon和学历/论文需求P及Question已有，没有新实体、日期或答案；预选作者/题名取证顺序，四首Call都真实查作者，不能把该顺序误认自主恢复原学校工作。原E7与Return未注入，新学校核验要按后续实际Call识别。"},
+  "evidence":[
+    {"id":"O_U_QUERY","source":"original","pointer":"/tool_events/6/exact_arguments","quote":"Chalmers University student numbers 1850s rapid increase","use":"chatcmpl-tool-969bdbb4185e8bec，学校真实尝试。"},
+    {"id":"O_U_FEEDBACK","source":"original","pointer":"/rounds/7/reasoning_content","quote":"The results show information about UNC Chapel Hill (not Chalmers) and other universities.","use":"反馈知道资料归属，不等于Chalmers已被否证。"},
+    {"id":"O_ACCEPT","source":"original","pointer":"/rounds/12/reasoning_content","quote":"not directly confirmed in the search results, but this appears to be the most likely match","use":"原最后仍未知背景而交题名。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/tool_events/2/exact_arguments","quote":"Chalmers University student number 1850s history","use":"chatcmpl-tool-b0cceb5aa2cb04f3，R9作者/题名后恢复学校。"},
+    {"id":"N1_RELATION","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"However, the thesis I found is from Chalmers University, not UNC Chapel Hill.","use":"R10明确实体关系，不因相同招生DocID就当该论文学校支持。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"Actually, looking at the evidence, I believe the answer is","use":"R13在两缺口仍待证时按五技术匹配接受。"},
+    {"id":"N2_REBUILD","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"Chalmers University student number increased 1850s","use":"chatcmpl-tool-b476e35d07edfbfc，R8学校恢复且R11再查。"},
+    {"id":"N2_FALSE_NEGATIVE","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"✗ University student number increase in 1850s: Chalmers - I need to verify this","use":"R10未证却打叉，不能替模型说成已查到否定证据。"},
+    {"id":"N2_UNKNOWN_AGAIN","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"? University student number increase in 1850s: Chalmers University - I need to verify this","use":"R13又回未知并接受，需保留状态变化。"},
+    {"id":"N3_REBUILD","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Chalmers University student numbers 1850s rapid increase","use":"chatcmpl-tool-8fc2931280a6d9c0，R9真查学校，目标功能恢复。"},
+    {"id":"N3_REOPEN","source":"new3","pointer":"/rounds/7/reasoning_content","quote":"Let me search for one more time to see if there's information about Chalmers University student numbers in the 1850s.","use":"R14已经说most likely但真再次学校查询，不把意向当正式提交。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/8/reasoning_content","quote":"Let me provide the answer based on the best match I found.","use":"R15学校仍有差异，不靠新证据解决而接受。"},
+    {"id":"N4_REBUILD","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Chalmers University student number increased 1850s","use":"chatcmpl-tool-aec119055fce1816，R9恢复，R13第二次。"},
+    {"id":"N4_EXTRA_AUTHOR","source":"new4","pointer":"/tool_events/5/exact_arguments","quote":"Simon Isakson B.Sc 2007 Chalmers","use":"chatcmpl-tool-b49b54fff23f4966，无据改为特定2007核查；还R14再查2007，未得到日期。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/8/reasoning_content","quote":"Need to verify Chalmers student enrollment in 1850s","use":"R15明确未知，依其他支持题名提交；Final泛增长/学历断言不是获得证据。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"按G先作者、题名，R9才恢复学校，原学校先于作者的顺序倒换。","state_chain":"作者失败→已知论文再确认→学校仍回UNC→本科再查→学校再查→带UNC论文查询→仍两缺口→R13提交C。","function_change":"原学校目标、操作、无证反馈全恢复且两次学校和两次本科，主要后缀构成相近；重查题名/关系顺序不同，生成Prompt更多。","evidence":["N1_REBUILD","N1_RELATION","N1_ACCEPT"],"semantic_result":"C，Final列身份不证明两属性。"},
+    {"repeat":2,"first_divergence":"首作者后R8真学校，随后题名/本科/学校/题名。","state_chain":"学校恢复→把未知条件打叉→核验仍无支持→又标未知→按技术匹配接受C。","function_change":"学校工作全恢复，Call/Actor同原、生成短160但Prompt略增；新比较并非始终保持正确未知状态，不能以更短即质量相同。","evidence":["N2_REBUILD","N2_FALSE_NEGATIVE","N2_UNKNOWN_AGAIN"],"semantic_result":"C，Final省略招生与本科日期。"},
+    {"repeat":3,"first_divergence":"先作者/题名，R9学校后真正转UNC论文查证，随后作者更多。","state_chain":"学校恢复并与Chalmers区分→真实UNC论文/学历/题名循环核验→R14已有最可能题名又再学校→无新证明→R15按最佳匹配提交C。","function_change":"目标全恢复，额外一次作者和一次题名/相关查证使多两Call/Actor；返回无新背景事实，最后停止不因消缺而因接受选择。","evidence":["N3_REBUILD","N3_REOPEN","N3_ACCEPT"],"semantic_result":"C，Final明示来源差异、学历仅一致性推测。"},
+    {"repeat":4,"first_divergence":"先作者/题名，再学校；以后对学历更集中，未真实执行反复提到的UNC定向计划。","state_chain":"学校恢复→四次作者查询含无据2007→两次学校仍无证→完整技术支持/两未知比较→R15接受C。","function_change":"原学校两次恢复，作者由原后缀两次增四次，题名相关也保留；原UNC论文方向只被提及没有对应真实Call，不能算全同操作。生成加G仅多1但Prompt/交互显著增加。","evidence":["N4_REBUILD","N4_EXTRA_AUTHOR","N4_ACCEPT"],"semantic_result":"C，Final本科和泛学校增长无直接支持。"}
+  ],
+  "mechanism_candidate":"A四次保持中，G先把当前工作转作者，但原学校核验之后都真实恢复；P已采用正确论文/物性，使学校无证可以被保留为背景缺口而不必换掉技术候选。路径对缺口仍反复查，甚至将未知标不符后又回未知；最后没有新增学校/本科证明，而是重新允许最佳技术匹配提交。差别在后续取证重排和次数，不是学校功能消失。",
+  "within_case_support":"四条都实际查Chalmers两次、仍看到UNC材料并保持论文；新2在叉/问号间变化且最终交，新3已经最可能又继续实际Call，新4更多本科而不实际UNCQuery。没有一条凭新学校证据闭合两条件；成本表现不同不能被全C抹平。",
+  "mechanism_chain_checks":[
+    {"chain":"P已采用正确论文/物性→学校核查恢复但资料仍别校→背景保持未知或被暂时误判→最后按技术匹配提交。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_REBUILD","N1_RELATION","N1_ACCEPT"],"2":["N2_REBUILD","N2_FALSE_NEGATIVE","N2_UNKNOWN_AGAIN"],"3":["N3_REBUILD","N3_REOPEN","N3_ACCEPT"],"4":["N4_REBUILD","N4_ACCEPT"]},"limits":"未知如何处理有差别，G预先改作者顺序，不能当同一无引导处理。"}
+  ],
+  "counterevidence_and_limits":["学校前提在本组最后不再阻止提交，与早期B相似学校疑问却无Final形成同题反例，不能以同词判机制。","原U提作者但Call只有学校，新路径真正作者取证是新实际行为，不补造原操作。","新2未知打叉后回问号，保留原错误而非合理化成查证排除。","新3R14再查学校有真Call，其他单纯说要搜索不算；新4UNC计划没有定向Call。","G无新实体/事实，但明确作者方向与原顺序不同，不据此作纯因果必要性。","Final身份、时间推测和明示来源差异各有质量限制，不能因C而统一称完整证据保持。","同题多Stage不算不同问题支持。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R7@479，P175生成前缀IDs重放单列。原2112生成/6Search/7Actor、Prompt19465+183477=202942；G29一次。新2309/1923/2786/2084加G2338/1952/2815/2113，精确差+226/-160/+703/+1；Search6/6/8/8、Actor7/7/9/9、Prompt204040/203263/291579/288970均增。只有新2生成减少，其他资源持平/增；增加位置为作者/题名/学校反复与接受后的再核查，不将原Stage长度算节省。原延迟含P不报精确差，独立分支不相加。",
+  "next_cross_case_test":"A/B分别检验候选已采用后未证背景怎样进入后续任务，未知、反证与别校正证的区别是否影响真实查谁/何时交；同时对比最后仍无学校证据却能停与一直查的不同题反例。"
+}

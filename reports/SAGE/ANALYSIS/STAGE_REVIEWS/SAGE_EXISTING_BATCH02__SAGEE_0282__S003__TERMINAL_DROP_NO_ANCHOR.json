@@ -1,0 +1,494 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0282",
+  "stage_id": "S003",
+  "sample_order": 26,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0282/trajectory.json",
+      "source_sha256": "332553eb4116ca144470168ce9bd70b087679dbbcf304e692bdd9a2aa26b0806"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0282.json",
+      "source_sha256": "f863e1d60524281ce2c92fc4e45eaf0ab31cc02645d7e4d6ef6f0dac50ec7061"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "e9c5f1ce73b869e76410367df5c55447a9982f60f48290cfc0e6af95442521ff"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "439e740d6291e75d1747cc726f4482d27ee5dfe5e487ea5dae312ac759751753"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "cc043ca33efc4f32f901244775f4d14b914091c638ab45da8ca31e948b684237"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "3c112076d709863217803c8dca35b9cf225c1f1ff1fd7089b07df6e9297ec93a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "157f7b32e5a0d0a80a8bf80720ba50d840f3913fbbf926071462c251e75840fc"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the peak position on the UK Albums Chart for the debut solo album of the artist who performed \"What Took You So Long?\", a song co-written by Julian Gallagher, one of the co-writers of Melanie B's \"Lullaby\"?",
+    "offline_gold": [
+      "4"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "54465字符原3轮全部Reasoning、同批双Search全部完整Return及后续排名Search和Submit读完。",
+    "new": "本组13885字符四条完整全读，各一Round且无新Search/Open，含r4正文及结构化Submit。",
+    "semantic_author": "Codex阅读后直接撰写，不由脚本合成。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "available_evidence": "P中2412065及2008728证明共同作者链；2302490直接给EmmaBunton及首专AGirlLikeMe。最新排名包8632445、1757070、1757072等多条直接指首专UKAlbums最高4；也有其他专辑7/50/65/11、单曲1/5/13等干扰数字。",
+    "actual_input": "R3@0当前推理空；旧两Round的Assistant reasoning不额外注入，三份真实Search Return保留。P14266派生Token，无G。",
+    "decision_state": "外部证据已经直接充分指向目标第4，但尚需自主正确绑定对象/首专/榜单并提交，不能直接把出现数字当采用。",
+    "evidence": [
+      "O_IDENTITY",
+      "O_RANK",
+      "I_MODE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 604
+      },
+      {
+        "round": 3,
+        "json_pointer": "/tool_events/3",
+        "event": "Submit和Return"
+      }
+    ],
+    "goal": "核对多跳对象和多条首专排名来源，接受4并正式提交。",
+    "operations": [
+      "重列Gallagher/歌曲/Emma/首专关系",
+      "将多来源Albums峰值4绑定正确专辑",
+      "Submit4"
+    ],
+    "product": "正式正确Final4，无进一步取证。",
+    "judgment_change": "已返回数字及关系成为整体接受和实际提交。",
+    "evidence": [
+      "O_U_ACCEPT",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use": "目标为末段，无后继Reasoning。",
+    "true_suffix": "原R3单Round168生成/14266Prompt/0Search/0Open/1Actor，不能用全程528生成比。",
+    "evidence": [
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "充足直接证据下的对象绑定、整体接受和提交。",
+    "同功能在删后可被重新展开得更长；Final不变不表示认知功能未执行。",
+    "多个干扰数字在本组均未导致实际错绑，不应虚构原U在续跑中曾被丢失。"
+  ],
+  "guide_audit": {
+    "G": "",
+    "origin": "NO_ANCHOR",
+    "oracle_status": "NO_TEACHER_GUIDE",
+    "P_comparison": "全部关系及4来自切点前真实工具资料，不来自引导、Gold或旧Final。",
+    "evidence": [
+      "I_EMPTY_G",
+      "O_RANK"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "4",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4",
+      "outcome": "C",
+      "outcome_reason": "明确恢复共同作者和演唱者/首专链，逐篇引用四个正确首专排名来源后真实Submit。",
+      "outcome_evidence": [
+        "N1_ACCEPT",
+        "N1_CITATIONS",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3先完整对象链→明确最高4。",
+        "逐列2305583/8632445/1757070/1757072四项对应首专的排名，随后Submit。"
+      ],
+      "first_substantive_judgment_difference": "同一判断恢复，引用四条比原两条更展开，无证据显示候选或数值改变。",
+      "first_actual_tool_difference": "无取证差异，仅真实Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "正确对象/数字接受提交",
+          "original_operation": "全链核对及多来源比对",
+          "original_product": "正式4",
+          "new_goal": "相同关系接受",
+          "new_operation": "先绑定后逐列四个来源再Submit",
+          "new_product": "原完整功能恢复，文本更长",
+          "evidence": [
+            "O_U_ACCEPT",
+            "O_SUBMIT",
+            "N1_ACCEPT",
+            "N1_CITATIONS",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "直接证据P→同一首专/榜单绑定→四来源接受→C；更多消耗在引用与解释，不是必要新查。",
+      "costs": {
+        "new_generation": 344,
+        "new_prompt": 14266,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 14266,
+        "G_prefill": 0,
+        "whole_round_usage_new_minus_original_generation": 176
+      },
+      "limits": "无功能绕过、无成本下降，不能因A判冗余。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "4",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4",
+      "outcome": "C",
+      "outcome_reason": "明示Gallagher/Emma/首专并核正确榜单第4，真实Submit。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3概述检索确认并四项重列关系和排名。",
+        "没有新Call，Submit4。"
+      ],
+      "first_substantive_judgment_difference": "几乎相同接受动作，较原增加少量重述。",
+      "first_actual_tool_difference": "仍只有Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "完整接受并正式提交",
+          "original_operation": "逐条关系确认及峰值采用",
+          "original_product": "4",
+          "new_goal": "同一接受",
+          "new_operation": "四项复盘后Submit",
+          "new_product": "原功能恢复",
+          "evidence": [
+            "O_U_ACCEPT",
+            "O_SUBMIT",
+            "N2_ACCEPT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "P直接材料→相同条件绑定→C；无可辨认自主路线变更。",
+      "costs": {
+        "new_generation": 172,
+        "new_prompt": 14266,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 14266,
+        "G_prefill": 0,
+        "whole_round_usage_new_minus_original_generation": 4
+      },
+      "limits": "仅4采样Token差不能解释成有实质工作增长；非原生精确条件保留。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "4",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4",
+      "outcome": "C",
+      "outcome_reason": "五步骤对应题目完整链，最后明确引用目标专辑UKAlbums第4后Submit。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3重新从共同作者到歌曲、歌手、首专依次五项说明。",
+        "采用首专排名句，正式Submit。"
+      ],
+      "first_substantive_judgment_difference": "按问题关系顺序更完整展开，没有新事实或改变候选。",
+      "first_actual_tool_difference": "无Search/Open，Submit同答案。",
+      "function_correspondence": [
+        {
+          "original_goal": "多跳整体接受和提交",
+          "original_operation": "题目链核对",
+          "original_product": "4",
+          "new_goal": "相同全链理解",
+          "new_operation": "五项详细核对再Submit",
+          "new_product": "全部恢复且解释更长",
+          "evidence": [
+            "O_U_ACCEPT",
+            "N3_ACCEPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "已有各环支持→重建关系解释→正确采用4→C；多129生成在链条展开。",
+      "costs": {
+        "new_generation": 297,
+        "new_prompt": 14266,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 14266,
+        "G_prefill": 0,
+        "whole_round_usage_new_minus_original_generation": 129
+      },
+      "limits": "功能确实重建，不能说删除后直接没有任何判断就答案保持。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0282__S003__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "4",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4",
+      "outcome": "C",
+      "outcome_reason": "明确目标歌手/首专和排名，另有自然正文解释且真实结构化Submit4。",
+      "outcome_evidence": [
+        "N4_ACCEPT",
+        "N4_CONTENT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3直接匹配首专和排名，再复述题目对象核对。",
+        "正文写Emma首专峰值4，同时实际Submit4。"
+      ],
+      "first_substantive_judgment_difference": "不详细重列共同作者，直接用主链接受；有短正文但功能仍完整，不等于没有答案组织。",
+      "first_actual_tool_difference": "结构化Submit而非原reasoning标签恢复，不改变实际终态。",
+      "function_correspondence": [
+        {
+          "original_goal": "目标关系接受与正式提交",
+          "original_operation": "核首专和UK榜单数值",
+          "original_product": "4",
+          "new_goal": "同一对象绑定",
+          "new_operation": "直接核关系及引文，再生成正文和Submit",
+          "new_product": "功能恢复，部分背景描述简化",
+          "evidence": [
+            "O_U_ACCEPT",
+            "N4_ACCEPT",
+            "N4_CONTENT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "P明确首专排名→直接采用并简述→C；正文产生额外生成32，不归为搜索或证据补齐。",
+      "costs": {
+        "new_generation": 200,
+        "new_prompt": 14266,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 14266,
+        "G_prefill": 0,
+        "whole_round_usage_new_minus_original_generation": 32
+      },
+      "limits": "省背景复述未让总采样生成减少，因为额外正文也计入。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "A",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "recovery": "4/4完整恢复目标对象/榜单绑定和接受提交；0/4新增Search/Open。",
+    "cost_location": "新生成344/172/297/200相对原168全部增加；P、Search、Actor均相同。差异在引用、逐步关系说明及r4正文，而不是获取证据。",
+    "inference_limit": "充分P下可直接重建接受，但这不证明接受功能能完全取消；本组也不支持成本节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当P同时有身份链和多份明确目标数值，删除一次整体接受可由新接受直接恢复，答案稳定而无再取证；不同解释组织仍改变生成篇幅。",
+      "support": [
+        "O_RANK",
+        "N1_CITATIONS",
+        "N2_ACCEPT",
+        "N3_ACCEPT",
+        "N4_ACCEPT"
+      ],
+      "limit": "单题四路径，没有出现数字错绑反例；不能推广为所有数字题都稳定。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "有其他专辑和单曲数字并未实际导致错答，不能臆测原末段是唯一防错功能。",
+    "相同答案和无新Search也不是功能未恢复：四条有明确独立条件接受。",
+    "4C全比原生成更多，A与可省成本严格分开。",
+    "SAGE无原生IDs，整轮usage比较不冒称原生Token截断精确。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_IDENTITY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/8/snippet",
+      "exact_quote": "is the debut solo single of English singer Emma Bunton from her debut solo studio album, \"A Girl Like Me\" (2001).",
+      "call_id": "chatcmpl-tool-a7c57aac3168d2f2",
+      "doc_id": "wiki25:2302490"
+    },
+    {
+      "evidence_id": "O_RANK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/6/snippet",
+      "exact_quote": "\"A Girl Like Me\" debuted and peaked at number four on the UK Albums Chart",
+      "call_id": "chatcmpl-tool-935ea2fa9f911f76",
+      "doc_id": "wiki25:1757072"
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "input_boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_EMPTY_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_U_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Multiple sources confirm this peak position:"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "4",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The peak position is clearly stated as number 4."
+    },
+    {
+      "evidence_id": "N1_CITATIONS",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "From doc_id \"wiki25:1757072\""
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "4",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The album debuted and peaked at number 4 on the UK Albums Chart"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "4",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Therefore, the peak position is 4."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "4",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Her debut solo album is \"A Girl Like Me\"."
+    },
+    {
+      "evidence_id": "N4_CONTENT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "assistant_content",
+      "json_pointer": "/rounds/0/content",
+      "exact_quote": "Her debut solo album, \"A Girl Like Me\", peaked at number 4 on the UK Albums Chart."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "4",
+      "call_id": "chatcmpl-tool-b2d3e8dab1415ced"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

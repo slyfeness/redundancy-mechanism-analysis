@@ -1,0 +1,53 @@
+{
+  "case_id":"261__rep4__S001__FIRST_SENTENCE",
+  "question_id":"261",
+  "status":"CODEX_REANALYZED",
+  "selection_exception":"RESTART_NOT_PROVEN_STAGE_SKIP：R1@0无旧生成历史，P为原题/系统/工具协议，属于带未来方向句的整题重新采样。研究正确性C→四N属B变化4/4，但不能当局部Stage功能不可省的因果证据。",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原正式Final采用正确题名；四新均没有正式Final。新3途中正确论文被明确采用并用于真实Search，也不能从Reasoning补成正式C。新1/3/4 CONTEXT_BLOCKED，新2真实20次Actor SAFETY_CEILING_STOP。"},
+  "review_basis":"原11轮10Call完整已读。本组四新77轮Reasoning/content、77实际Call及所有完整Return逐次阅读，共原新88轮87Call、435文档槽位。4个全新完整返回32269/74188/22225/47827及个人额外未覆盖83777全文已读；其余相同片段以个人阅读SHA核对，每次Query、顺序、采用与失败反馈仍读。重复Query/完整Return相等由脚本逐字符串核实，不以相同DocID代替。",
+  "pre_state":"R1@0前只有真实原题与服务工具协议，没有原教授、合作者、论文文档或搜索反馈。G的this author在此P没有已知具体人名，保留这一悬空承接问题。不能偷偷把原R4的Yaşar前置给模型。",
+  "u_work":"原R1–R3初始分析六约束并做三次真实Search：首联合Query已返回正确论文28761但R2未采用；第三次学校/数字/二作者Query返回88698教授资料，R4[0,78)明确认出Yaşar/Harran。局部产物是已有目标文档可见、教授身份成为后续真实查询对象，并非三次都没有信息。",
+  "u_state_update":"U将原题变为具体学校教授方向；正确目标材料虽然首Call就可见，却直到后段再次返回才被采用。工作是否起效必须区分材料获取、教授采用、论文采用以及真实Query更新。",
+  "original_action_consequence":"原R4开始查询具体教授，R5再查合作者Yılmaz，随后数字/期刊/教育主题Query于E8重返目标；R9采用并转具体论文取证，R11提交正确题名。原路径也未直接证实六表和13.53，正确题名不能反向证明所有约束已核验。",
+  "guidance":{"text":"Let me search more specifically for papers by this author that have emotion percentages and six tables.","source":"原R4[78,181)，18个LOCAL_EDGE_RETOKENIZED_GUIDE Token。","audit":"ORACLE_ANCHORED。未给Yaşar名字、题名、未知事实，但作者特定搜索方向和this author预设来自原未来；根P中该人未被建立，不能称普通已知实体承接。P原生精确0Token，首Prompt464=原446+G18；G仅注入一次，没有旧返回。首句方向与重启本身会影响后续，不能唯一归U的因果效应。"},
+  "evidence":[
+    {"id":"O_U_START","source":"original","pointer":"/rounds/0/reasoning_content","quote":"The clues mention emotions and percentages, which suggests this might be about emotional analysis or psychology research.","use":"原U初始假设与查找方向，不从最终正确题名倒推。"},
+    {"id":"O_PROF","source":"original","pointer":"/rounds/3/reasoning_content","quote":"I found information about Prof. Mehmet Diyaddin Yaşar from Harran University.","use":"原U结果实际转成教授身份采用，接下原S002取证。"},
+    {"id":"O_QUERY","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"{\"query\": \"Mehmet Diyaddin Yaşar emotion 13.53 percent six tables research paper\"}","use":"原U的教授产物进入下一真实行动。"},
+    {"id":"O_TITLE","source":"original","pointer":"/rounds/8/reasoning_content","quote":"I found a promising result! Docid 28761 mentions a paper by Yılmaz, Z. A., & Yaşar, M. D. (2022)","use":"原后续后段才明确采用论文。"},
+    {"id":"N1_LOOP","source":"new1","pointer":"/rounds/10/reasoning_content","quote":"Let me try searching for papers with more specific criteria related to emotion percentages and tables. I should also try searching for the specific percentage value and emotion name more directly.","use":"新1后期未形成新对象/价值判断，反复同一数字取证理由。"},
+    {"id":"N1_CALL","source":"new1","pointer":"/tool_events/10/exact_arguments","quote":"{\"query\": \"13.53 emotion research paper table six authors\"}","use":"R11–R19同Query且完整scored Return逐字相同，前八次已被后Actor读到仍重复。"},
+    {"id":"N2_FEEDBACK","source":"new2","pointer":"/rounds/13/reasoning_content","quote":"The search results are not providing me with the specific paper I'm looking for. Let me try searching for \"13.53\" combined with \"emotion\" and \"percentage\" to find the specific paper.","use":"新2实际失败反馈不改变持续裸数字Query策略，不能只以相似字符串断言。"},
+    {"id":"N2_CALL","source":"new2","pointer":"/tool_events/13/exact_arguments","quote":"{\"query\": \"13.53 emotion percentage table\"}","use":"R14–R20连续七次真实相同Query/完整Return；R20Return无后Actor因已20调用。"},
+    {"id":"N3_PROF","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Good, I found a connection to Harran University with Prof. Mehmet Diyarddin Yasar.","use":"新3真实教授采用恢复，原拼写Diyarddin保留，不替模型纠错。"},
+    {"id":"N3_PERSON_CALL","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"{\"query\": \"Harran University Mehmet Diyarddin Yasar research paper emotion\"}","use":"身份采用实际进入Query，不是只提到人名。"},
+    {"id":"N3_TITLE","source":"new3","pointer":"/rounds/10/reasoning_content","quote":"Great! I found a promising result! Docid 28761 contains a research paper by Zeynel Abidin YILMAZ and Mehmet Diyaddin YAŞAR from Harran University.","use":"第十Return后正确候选被实际识别。"},
+    {"id":"N3_TITLE_CALL","source":"new3","pointer":"/tool_events/10/exact_arguments","quote":"{\"query\": \"Yılmaz Yaşar 2022 science education six tables emotion 13.53\"}","use":"R11实际采用候选指导新Query，不能把其N说成未完成候选更新。"},
+    {"id":"N3_GAP","source":"new3","pointer":"/rounds/13/reasoning_content","quote":"However, I need to verify if this paper has six tables and contains the specific emotion percentage of 13.53%. The searches I've done don't provide that specific information.","use":"候选已恢复但剩余精确缺口继续驱动后续六次取证，未转正式提交。"},
+    {"id":"N4_BROAD","source":"new4","pointer":"/rounds/6/reasoning_content","quote":"Let me search for \"Harran University emotion research paper\" to find papers by authors affiliated with Harran University that study emotions.","use":"即使E1/E5已返回教授资料，R7仍未采用具体教授，实际仍泛学校入口。"},
+    {"id":"N4_CALL","source":"new4","pointer":"/tool_events/8/exact_arguments","quote":"{\"query\": \"13.53 emotion table percentage six tables research paper two authors Harran\"}","use":"R9–R19连续十一Query/完整Return完全相同，已消费前十返回仍持续。"},
+    {"id":"N4_STILL","source":"new4","pointer":"/rounds/18/reasoning_content","quote":"Let me try searching more specifically for emotion percentages in tables, particularly with the specific percentage value. Let me search for \"13.53\" with emotion-related terms and tables.","use":"末轮仍是相同取证选择，没有正式Final。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"从原题+悬空作者G重新开始，首Query只数字/表格，未如原首Call联合期刊/学校，后续没有返回88698或目标28761/35398。","state_chain":"泛数字/学校Search→始终未采用教授或论文→R11–19同Query同完整Return九次重复，反馈仍称再细查数字→R20请求在上下文guard前被阻止，未正式提交。","function_change":"PARTIAL_REBUILT：题目线索与广泛检索实际进行；原U的教授识别产物未恢复，更无论文采用。不能以Call多就算完整重建。","evidence":["O_PROF","O_QUERY","N1_LOOP","N1_CALL"],"semantic_result":"N，19真实Actor/19Search，最后返回仅进入未发送guard，不当已被模型看到。"},
+    {"repeat":2,"first_divergence":"首Call只数字表格，后学校、期刊元数据均没有教授/目标返回，逐渐固定在裸数字Query。","state_chain":"失败反馈明确存在→从学校/期刊入口回裸数字→R14–20同Query/完整Return连续七次，仍认为specific number可定位→实际Actor20上限，最后Return未有下一Actor，0Final。","function_change":"PARTIAL_REBUILT：初始广查和条件使用恢复，但原U的具体教授识别不恢复，不能算原功能绕过。","evidence":["O_U_START","O_PROF","N2_FEEDBACK","N2_CALL"],"semantic_result":"N，真实SAFETY_CEILING_STOP；不是CPU预检BLOCKED，也不是答案错误FormalFinal。"},
+    {"repeat":3,"first_divergence":"根重启重新广查，第四个Return得到教授并R5明确采用、真正查其姓名；第十Return得到正确论文，R11亦采用并真实转二作者/题目核验。","state_chain":"教授采用恢复→真实个人Query→正确文献获取并采用→真实候选定向Query→六表/13.53仍无证→多条件盘点后持续不同数字/主题查询，最后两次相同Query/Return→上下文耗尽无Final。","function_change":"FULL_REBUILT原U的主要广查、学校教授识别及行动更新；后续连正确论文采用也恢复。失败落在候选已知后的取证持续与未提交，不是初始功能未恢复。","evidence":["O_PROF","O_QUERY","N3_PROF","N3_PERSON_CALL","N3_TITLE","N3_TITLE_CALL","N3_GAP"],"semantic_result":"N，正确中间候选不当正式答案；19Actor19Call后R20未发送。"},
+    {"repeat":4,"first_divergence":"首Query已含学校和数字，E1就返回88698，E5再返该教授，但两次后均未明确采用其名或实际查其人。","state_chain":"教授证据早可见→泛学校/数字Query仍继续→R9–19十一轮同Query同完整Return，没把资料变成具体作者行动→最终上下文guard无Final，也从未获得目标论文。","function_change":"PARTIAL_REBUILT：真实获取学校教授资料但未恢复原U的身份识别/用于行动；材料返回不能当功能已完成。","evidence":["O_PROF","O_QUERY","N4_BROAD","N4_CALL","N4_STILL"],"semantic_result":"N；末次Return只到未发guard，不补造模型读后评价。"}
+  ],
+  "mechanism_candidate":"本B变化4/4不能归结成同一失效过程：新1/2没有取得具体教授/论文，新4取得教授资料却未采用为行动，新3则教授与正确论文采用和Query更新都恢复，仍因六表/13.53缺口持续核验而无Final。共同可见的是未解决条件继续触发取证，但其前置信息状态不同；简单说被删初始Stage重要会吞掉三个不同中间环节。根位置和悬空作者引导又使其更接近重新采样，作为机制对照保留，不能作干净局部必要性证据。",
+  "within_case_support":"新1/2/4形成长段完全相同Query+完整返回复用，分别R11–19九次、R14–20七次、R9–19十一次；新3多数Query不同且候选已更新，仍N。因此精确重复不是全部失败路径的必要解释，恢复候选也不是正常提交的充分条件。所有最后Return均真实执行，73进入实际下一Actor，3只在未发guard，1处真正Actor预算耗尽。",
+  "mechanism_chain_checks":[
+    {"chain":"学校/教授材料未转为具体作者查询→泛取证持续→未定位目标且无Final","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N1_LOOP","N1_CALL"],"2":["N2_FEEDBACK","N2_CALL"],"3":["N3_PROF","N3_PERSON_CALL","N3_TITLE_CALL"],"4":["N4_BROAD","N4_CALL","N4_STILL"]},"limits":"新1/2根本没获得该教授资料，新4得到未采用，不合并成同种证据丢失；根干预不是已知教授状态下的控制实验。"},
+    {"chain":"正确候选已采用并用于新Query→残留精确条件继续触发核查→未提交且耗尽上下文","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"1":["N1_CALL"],"2":["N2_CALL"],"3":["N3_TITLE","N3_TITLE_CALL","N3_GAP"],"4":["N4_CALL"]},"limits":"只有新3完整支持该链；不能用无Final倒推候选采用没恢复，也不能单凭存在缺口猜测隐藏停止阈值。"}
+  ],
+  "counterevidence_and_limits":[
+    "RESTART_NOT_PROVEN_STAGE_SKIP：切点R1@0，相当于重新生成整题；四N不证明原初始三Call不可删除或具有唯一因果必要性。",
+    "G未给具体人名，却用了this author的未来预设，属于引导适配局限；不偷偷补实体，不把该G当模型自主制定方向。",
+    "新3功能完整重建且正确候选更新恢复仍无Final，是重建/正确候选不足以解释成功的关键反例。",
+    "新4教授资料已返回而未采用；新1/2未返回，不能统一写没有证据或证据已采用。",
+    "重复取证没有让必要条件被证明；但本组不能证明停止检索就一定答对，原正式答对也缺精确表格证据。",
+    "原生根切点允许精确生成计数，仍不可把更少生成而Search/Prompt/Actor上升的失败路径称净节省；不把独立分支节省相加。"
+  ],
+  "cost_basis":"原切点R1@0，原后续2226生成Token、10Search、11Actor、Prompt171404。新生成1340/1566/2553/1493，G18只加一次，含G1358/1584/2571/1511，精确净生成变化−868/−642/+345/−715。Search19/20/19/19，Actor19/20/19/19，Prompt518974/539859/508315/525000。首Prompt464=原446+G18，P重放446单列。新3生成增加，其余虽生成减少却交互/Prompt显著增加且均N，不能算严格资源下降成功。",
+  "next_cross_case_test":"将根重启单列，不混同中间Stage删除。B侧分材料未得、已得未用、采用已恢复却未提交，A侧分别比较既有证据与后续恢复如何让正确候选实际进入Query，以及未闭合条件何时不再驱动新Search。跨题支持必须共享具体作用链而不只共享N终态。"
+}

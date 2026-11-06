@@ -1,0 +1,41 @@
+{
+ "case_id":"301__rep4__S004__FIRST_SENTENCE","question_id":"301","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"W","3":"W","4":"W"},"basis":"原无Final；四新均实际MODEL_FINAL_STOP且有完整content，新1承认无法确认并夹带错误Spencer背景，仍是有Final的未答对W，不是无Final N；另三最终选择Windsor，均非Nwoko。研究B k4，旧评测保留。"},
+ "review_basis":"原完整17轮17Call及P/U/Z先前本轮实际阅读可复用；本组四新7轮3Call完整Reasoning、真实参数、Return与正式Final独立读完。100返回槽全为已读SHA相同片段，无新增片段；原R11–R17累计文本已用精确共同前缀/所有新后缀核对，不按相似度跳过。",
+ "pre_state":"R13@2367，P已经反复考虑William/Catherine，知道Catherine是art history、cyber fraud不合，却还没有可靠身份或家族匹配。原E11曾真实查William/Catherine法史+LLM，返回泛学位与婚礼资料，未证所需资格。此处保留当前长Reasoning前2367字符，不是跳到后继R14输入。",
+ "u_work":"S004原R13[2367,2540)决定更具体核Catherine学历/商业，并实际Query；五Return是艺术史学生、一般BA名人、Alison Moyet、艺术学院史和设计企业主，未取得Catherine法史/LLM或同名律所。随后R14[0,2541)又完整复制旧候选/缺口文本，产物是这次具体核验仍未闭合。原Z再转Meghan学历、重读出生关系，但R16/17仍查William直至N。",
+ "u_state_update":"并无支持Catherine满足题目的新正事实；一次具体查询没有匹配结果后，模型没有稳定排除这一身份。删除后G提前给‘可能找错人’反馈，四条也能重述出生角色/学历不符，却三条继续认英国对象并给无证解释，一条以未确认的Final结束。",
+ "original_action_consequence":"原U没有真正把错误候选排除，后续仍绕英国夫妇。四新不再执行Catherine专门学历/商业Query，减少了原Z五次核验及长累计文本，但并未获得替代身份；全部从原N变成正式未答对W，不能以正常结束或资源下降称改进。",
+ "guidance":{"text":"Wait - I think I may have been searching for the wrong person.","source":"原S005 R14@2541，14原生Token。","audit":"ORACLE_ANCHORED。没有新姓名/事实/家族，但提前给原查询之后的反思/错误候选信号；P已经承认法史/涉诈不匹配，G不新增该冲突材料。G本身不能当新模型自主识别错误人。四条如何处理这个反馈仍各自读。"},
+ "evidence":[
+  {"id":"O_U_SPECIFIC_QUERY","source":"original","pointer":"/tool_events/12/exact_arguments","quote":"Catherine Middleton art history degree LLM firm business","use":"R13 b2cf3ffc561cd175原U真实查询；返回59653/28983/16156/5449/46304不直接证Catherine目标资格。"},
+  {"id":"O_U_RESULT_NOT_TARGET_BIO","source":"original","pointer":"/tool_events/12/exact_result","quote":"Current Grad Students in History of Art","use":"Doc59653实际为其它艺术史学生，不把搜索意图当取得Catherine的LLM资料。"},
+  {"id":"O_CONFLICT_PERSISTS_AFTER_U","source":"original","pointer":"/rounds/15/reasoning_content","quote":"Catherine was born into the Middleton family, not a royal family.","use":"原R16识别出生关系仍继续WilliamQuery，不能说U已经成功排除且后面完全改线。"},
+  {"id":"N1_PLAN_WITHOUT_CALL","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me search for information about someone who matches these criteria more specifically.","use":"新R13工具列表实际空，随后Final；不把计划计Search或功能重建。"},
+  {"id":"N1_ACKNOWLEDGES_CONFLICT","source":"new1","pointer":"/rounds/0/content","quote":"Catherine Middleton (now Princess of Wales) has a degree in **art history** from the University of St Andrews, not law and history with an LLM.","use":"正式Final保留不符且无法确认；原P已有相关学历，不是删U后完全丢失排除依据。"},
+  {"id":"N1_WRONG_ADDED_FAMILY","source":"new1","pointer":"/rounds/0/content","quote":"Catherine was born into the **Spencer family**","use":"新Final无证新增家族混淆；最终未找Nwoko且有真实Final，记W并保留答复无法确认。"},
+  {"id":"N2_CONFLICT_BUT_REINTERPRETS","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"this could mean the royal family that the spouse was born into (i.e., the royal family they married into)","use":"R14明知Catherine非王室出生仍尝试将born into重释married into，最后回文字原义却未换候选。"},
+  {"id":"N2_LAST_GENERIC_CALL","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"cyber fraud 2015 2020 2023 article businessperson child 2015 2021","use":"R14 92ee074da4680806只是泛诈查询，未补人物资格；R15更早猜Windsor。"},
+  {"id":"N2_ACCEPTS_DESPITE_NO_MATCH","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"I need to accept that I cannot find the specific information through my searches.","use":"R15随后以最可能英国王室提交W，不是新证据达到充分。"},
+  {"id":"N3_ONE_GENERIC_QUERY","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"2023 article cyber fraud 2015 2020 individual businessperson royal family spouse","use":"R13 9850675d21b70ee7实际只返回一般网络犯罪及Beckman案，未给Catherine学历/公司。"},
+  {"id":"N3_INVENTS_LLM","source":"new3","pointer":"/rounds/1/content","quote":"She later obtained a **Master of Laws (LLM)** degree from the University of Edinburgh","use":"R14正式Final无真实原新Return支持该学历，不能把填满条件的文字当证据闭合。"},
+  {"id":"N3_INVENTS_FIRM","source":"new3","pointer":"/rounds/1/content","quote":"She owns and operates **Horizon & Co.**","use":"同Final补造公司使原缺口看似符合，实际没有相应工具材料。"},
+  {"id":"N4_KNOWS_BIRTH_CONFLICT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"But Catherine was born into the Middletons, not a royal family.","use":"R13明确认识角色约束，没有新Call却仍准备Windsor。"},
+  {"id":"N4_ACCEPTS_MARRIED_AS_BORN","source":"new4","pointer":"/rounds/0/content","quote":"Catherine (Kate) Middleton married into the House of Windsor through her marriage to Prince William","use":"正式Final以嫁入关系替代题目出生关系选择Windsor；冲突已知并未约束最后提交。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后只正确重述配偶出生关系，说查更具体人却无Call，马上Final承认不符/无法确认，还错加Spencer。","state_chain":"P冲突依然可用→未执行另找人的计划→有正式Final但未识别目标，夹错误家族说明→W。","function_change":"NOT_OBSERVED原Catherine具体核验；已有学历冲突直接回用而不需再Query，但没有成功替代身份。","evidence":["N1_PLAN_WITHOUT_CALL","N1_ACKNOWLEDGES_CONFLICT","N1_WRONG_ADDED_FAMILY"],"semantic_result":"W；415+14G=429较原5383少4954，Search0较5少5、Actor1较5少4、Prompt39294较230379少191085。减少来自直接结束和不再实际核验，不称质量保持省略。"},
+  {"repeat":2,"first_divergence":"G后先改泛查一次，下一轮仍回William，明知出生不符却尝试把出生改嫁入；再泛查一次后选择英国王室。","state_chain":"出生角色反思→泛搜未匹配→回旧候选且重释约束→承认具体人找不到→猜答W。","function_change":"NOT_OBSERVED原具体学历/商业核验，以两次其它泛搜替代；出生冲突和Catherine学历在P仍可用，却未导向排除。","evidence":["N2_CONFLICT_BUT_REINTERPRETS","N2_LAST_GENERIC_CALL","N2_ACCEPTS_DESPITE_NO_MATCH"],"semantic_result":"W；3000+14=3014少2369，Search2少3、Actor3少2、Prompt128390少101989。少的是后续具体候选核验与累计复制长尾，仍有4627/5162字符长推理反复，不是有效完成。"},
+  {"repeat":3,"first_divergence":"先比较Harry/Meghan并认学历不符，实际只泛诈搜索一次；下一轮仍回William，Final新造Catherine的LLM和公司来满足约束。","state_chain":"识别英国配偶不符→无对应人物新证据→最终旧对象保持→无证补学历/公司并错误出生关系→W。","function_change":"NOT_OBSERVED原具体核验，改为泛搜与无证条件补齐；不能把Final里出现学历/公司当相同核验功能已完成。","evidence":["N3_ONE_GENERIC_QUERY","N3_INVENTS_LLM","N3_INVENTS_FIRM"],"semantic_result":"W；1486+14=1500少3883，Search1少4、Actor2少3、Prompt81934少148445。更低费用部分是没再验证、直接用无来源断言提交，不算有效节省。"},
+  {"repeat":4,"first_divergence":"无新Call，自己认Middleton不是王室出生却依据英国相关搜索背景决定Windsor，Final改用嫁入解释。","state_chain":"约束冲突明确仍在→不再取证→以嫁入关系替换出生条件→提交W。","function_change":"NOT_OBSERVED原Catherine具体核验，纯重新判断/组织恢复但产物不是支持正确答案。","evidence":["N4_KNOWS_BIRTH_CONFLICT","N4_ACCEPTS_MARRIED_AS_BORN"],"semantic_result":"W；663+14=677少4706，Search0少5、Actor1少4、Prompt39294少191085。少后续核验而错答，非充分替代证据路线。"}
+ ],
+ "mechanism_candidate":"B四次从N变W，不是丢失一项有效排除后从正确变错。原U只是对已不符Catherine再次查询且没取得目标资料，四新不重做专门Query仍能说出相同冲突；变化在是否继续核验还是以不充分Final结束。新2/4将出生王室改成嫁入以保留旧对象，新3直接补无来源学历/公司，新1保留不确定答复；它们具体解释低成本和错误提交，但不是同一条机制四次发生。",
+ "within_case_support":"k4四个W；保持已认不符英国对象并通过重释出生关系接受在新2/4两次，无证学历/公司补齐只新3，停止核验并保留未确认说明只新1。四次都无原Catherine专门Query；G给错误人物反思不代表实际更换成功。",
+ "mechanism_chain_checks":[
+  {"chain":"明知旧候选配偶非王室出生，仍把嫁入关系当出生关系以保留旧对象并提交W","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"2":["N2_CONFLICT_BUT_REINTERPRETS","N2_ACCEPTS_DESPITE_NO_MATCH"],"4":["N4_KNOWS_BIRTH_CONFLICT","N4_ACCEPTS_MARRIED_AS_BORN"]},"limits":"新3也最后错答但同时补造资格，未显式同样重释过程，不为凑支持纳入；原也知道不符却继续查至N。"},
+  {"chain":"未取得对应人物资格证据，却在Final补出符合要求的LLM和同名公司，旧对象被错误提交","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_ONE_GENERIC_QUERY","N3_INVENTS_LLM","N3_INVENTS_FIRM"]},"limits":"仅一次具体案例，不把所有猜答都叫补造条件机制；无新证据能支持这些Final断言。"}
+ ],
+ "counterevidence_and_limits":["新1有正式Final但不能确认，按已有Final状态口径W不是N；四态终止与回答充分性分开，未从Reasoning补答案。","P已有Catherine art history与涉诈不符，删除U并没有删除全部排除依据，因此不能把后续W简化为缺少该Stage的关键负证据。","没有新的Nwoko材料，不能说已得正确证据却没采用；那是本题S001新2的不同前提。","原U查询也未得到Catherine目标资料，不将查询失败推断为客观穷尽或证明相关学历不存在。","三条猜答与一条未确认Final都耗费更少，但原N/新W质量问题不同，不能把终态变化当总体成功率提高。","G提前给可能查错人的方向，仍没有新候选事实；采样、剩余预算与原P已偏英国都是替代解释。","同题四条并非四题支持；跨题需区分已认冲突却重释条件、无证补条件以及正常承认不足三种过程。"],
+ "cost_basis":"原生精确R13@2367，保留592原生生成Token。原同切点5383生成/5Search/5Actor，Prompt38688+191691=230379。新415/3000/1486/663生成，G14各一次，净−4954/−2369/−3883/−4706；Search0/2/1/0、Actor1/3/2/1、Prompt39294/128390/81934/39294。原切点之前十余轮费用均不计省略，原前缀重放另列。",
+ "next_cross_case_test":"B中分别检查冲突已存在P时再核候选是否真正增加排除作用，以及删后错误提交是停止标准改变、条件被重释还是无证补齐。A可比较同样负证据已在P时省重复查询但最终仍有充分正确路线的情况。"
+}

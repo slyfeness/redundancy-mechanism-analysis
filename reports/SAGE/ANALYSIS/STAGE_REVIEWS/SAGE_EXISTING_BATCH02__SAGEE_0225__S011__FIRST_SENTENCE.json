@@ -1,0 +1,416 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0225",
+  "stage_id": "S011",
+  "sample_order": 87,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference in years between the César Award for Best Director won by the director of 'Quest for Fire', and the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose', a film starring the actor who played Daniel Dravot in the 1975 cinematic adaptation of Rudyard Kipling's 'The Man Who Would Be King'?",
+    "gold": [
+      "5"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "5",
+    "adopted_answer": "5",
+    "outcome": "C",
+    "reason": "正式5；原年份只电影年份有直接材料、典礼年用惯例。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8[0,9980)完整保留，已多次正确指定Annaud、BlackWhite、1982/1977及差5，经历定语归属反复，但最后接受有足够信息可回答。全部先前Search/Open仍在。",
+    "evidence_states": "影片身份和上映年已返回采用，典礼年推断已用于算差；未有直接典礼年证据。",
+    "evidence": [
+      "I_P",
+      "O_CHOICE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/10/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 9980,
+        "end": 10341
+      }
+    ],
+    "goal": "已答5之后再查两个精确颁奖年份。",
+    "operations": "同一批两个Search，带Quest1982和BlackWhite1977，不是模型看了前者再决定后者。",
+    "product": "Quest歌手/其他导演与Oscar其他片，无所求精确日期；没有改变已采用答案。",
+    "judgment_change": "从可回答5转为再双查，结果未使年份获得直接支持。",
+    "evidence": [
+      "O_Q1",
+      "O_Q2",
+      "O_RET"
+    ]
+  },
+  "original_followup": {
+    "use": "R9再次从已有电影年和次年惯例得5，原两新Return未提供相应奖年，提交仍依赖旧材料+推断。",
+    "evidence": [
+      "O_CHOICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已接受候选与算差后，针对精确典礼年的补充取证。",
+    "state_relation": "P已具相同判断，原本这次搜索未增证；删后四条都不再实际查证却保持5。要分开搜的动作未恢复与答案构造仍完整恢复。",
+    "evidence": [
+      "I_P",
+      "O_Q1",
+      "O_RET"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Based on the search results, I have the following information:",
+    "source_position": "R9[0,62)冒号完整引导行，不含列表",
+    "oracle_anchored": true,
+    "novelty": "12Token普通已得结果整理开头，没有新实体、年份或5；P已这些判断。可能促使答案整理，故不称无引导纯删除。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5；两边同推典礼次年一致，未有新直接日期返回。",
+      "outcome_evidence": [
+        "N1_CALC",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R8新增10909chars先列既有1982/1977，反复把定语归BlackWhite/首作并觉得没Connery、重读原题；多次说search cast或verify但没有实际Call，最终绕回既定导演和差5，以reasoning_tag Submit完成。",
+      "first_judgment_divergence": "实际放弃原双Search直接进入整理，但未一直保持定语清楚，重建了很长句法讨论。",
+      "first_actual_tool_divergence": "原R8双Search替换为唯一Submit5，0Search/Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "核实两个奖年",
+          "original_operation": "两真实Search",
+          "original_product": "无直接日期增量",
+          "new_goal": "讨论年份并最终接受",
+          "new_operation": "说要查但没有Search，只有复盘与Submit",
+          "new_product": "仍靠P年份推断5，查证功能未执行",
+          "evidence": [
+            "O_Q1",
+            "O_Q2",
+            "O_RET",
+            "N1_CALC",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "全部新增路径只有Submit；口头search/verify不算原实际取证恢复。答案整理功能另存在。",
+      "judgment_action_outcome_chain": "P已选5→跳过未增证的双查→反复句法却保持候选/年口径→Submit5；无日期新证也能维持原同等支持的核心答案。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "2899gen35961Prompt0Search1Actor；省2Search与一轮交互，新增10909chars复盘，原切点后gen区间[1384,4117]，差[-1218,1515]跨0，不能声称精确Token更省。",
+      "counterevidence_and_alternatives": "相比原S012删后r3会4，这里P完整9980字已5且G整理方向不同，不能直接两干预强因果比较。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，两边按典礼年1982/1977。",
+      "outcome_evidence": [
+        "N2_CALC",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R8新增3603chars列年份、仍疑定语，最后竟把定语说成描述ManWhoWouldBeKing而非Rose，身份答案仍Annaud首作正确，未真查演员/日期，Submit5。",
+      "first_judgment_divergence": "不再执行双查，定语解释仍不准确但没有据此改查询对象。",
+      "first_actual_tool_divergence": "只有Submit，原双Search未恢复。",
+      "function_correspondence": [
+        {
+          "original_goal": "精确奖年取证",
+          "original_operation": "双Search",
+          "original_product": "未增证",
+          "new_goal": "采用已有年份构造答案",
+          "new_operation": "讨论Search未执行、复盘Submit",
+          "new_product": "5而非新增奖年证明",
+          "evidence": [
+            "O_Q1",
+            "O_Q2",
+            "N2_CALC",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有新取证；不要将‘needto search’算真实Search。",
+      "judgment_action_outcome_chain": "已稳定的导演/首作和两边同类年份维持→即便定语解释不稳仍未改比较对象→提交5；删除非增量搜索不影响这一路答案。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "989gen35961Prompt0Search1Actor；原gen区间[1384,4117]，新减区间[-3128,-395]确定usage更少但非native精确；少的是原两Search和后轮复盘，仍有3603字新整理。",
+      "counterevidence_and_alternatives": "C只核心5，定语新解释仍错误，不能称全语义推导正确。G是整理承接，可能补偿停止选择。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，保持两边次年口径。",
+      "outcome_evidence": [
+        "N3_CALC",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R8 1572chars先五项已有信息→1982−1977=5→简短题意和典礼年复核→Submit，只有Submit调用。",
+      "first_judgment_divergence": "不接受必须继续补文档的要求，沿P判断直接构造答案。",
+      "first_actual_tool_divergence": "原双Search替换Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "查证精确年份",
+          "original_operation": "两Search",
+          "original_product": "无增证",
+          "new_goal": "接受P已有年份推断",
+          "new_operation": "算差/简短整理Submit，0Search",
+          "new_product": "5，未补直接日期文档",
+          "evidence": [
+            "O_Q1",
+            "O_Q2",
+            "N3_CALC",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "查证完全未再执行，答案构造确存在不等同原查证功能。",
+      "judgment_action_outcome_chain": "已有判断已能支持相同输出→不再派双查→短计算提交→同C且交互/表达减少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "439gen35961Prompt0Search1Actor；保守gen差[-3678,-945]确定少，少2Search一后轮，G12预填只一次。",
+      "counterevidence_and_alternatives": "原准确典礼年本来是推断非新Return确认，不能说跳过已被证明必要的核验。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，1982/1977差一致。",
+      "outcome_evidence": [
+        "N4_CALC",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R8仅1235chars列五项/算5，再次确认两边次年，Submit。没有查询或其他证据。",
+      "first_judgment_divergence": "跳过原‘再核精确年’行动决策，直接整理接受，实体/值不变。",
+      "first_actual_tool_divergence": "首新Call就是Submit5，不是原两Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "精确典礼年补证",
+          "original_operation": "双Search",
+          "original_product": "无日期增量",
+          "new_goal": "完成已有算差提交",
+          "new_operation": "短复核、Submit，无取证",
+          "new_product": "5，同证据局限",
+          "evidence": [
+            "O_Q1",
+            "O_Q2",
+            "N4_CALC",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "未再执行取证，只有原后续答案工作重建。",
+      "judgment_action_outcome_chain": "相同P已经接受候选和5→不把精确年缺口重新变成搜索任务→直接提交→同C少查询和重复复盘。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "365gen35961P0Search1Actor；保守gen差[-3752,-1019]确定少，工具省两Search，Prompt重放P35949与G12分列。",
+      "counterevidence_and_alternatives": "不能从四次C断言所有精确日期核验无用，仅此两个实际Query未增证且P已完成相同接受判断。"
+    }
+  ],
+  "four_run_comparison": "4C全部0Search，原双取证动作确未再做，G无具体答案；三条表达明显更短，一条仍新增10909chars，不一定省生成。原取证未产生年份新证，P已多次选5，后续只需接受/组织。此处比‘删后恢复所以非冗余’更具体：省的是已接受后的一批实际失败补证；答案组织仍在。",
+  "conditional_mechanism_proposals": [
+    "当当前Assistant保留前缀已反复接受候选、两边同口径年份和差值，且拟补的精确年份查询实际未增证，跳过该批查询可沿已有判断提交而保持原结果与证据水平。是否压缩生成还取决于后面是否重新展开句法/年份讨论，不能由Search减少推所有成本减少。"
+  ],
+  "counterevidence_and_limits": [
+    "同题四条不能当四道题，G整理提示和采样混杂，原本年份直接证据不全。",
+    "r1多一万字符仍C，r2定语错仍C，说明核心答案相同不保证推导规范或表达更短。",
+    "S012无G另一次混口径4，提示保留前缀和判定窗口重要，但两Stage干预起点不同不能作一对一因果证明。",
+    "原部分Round cut无原生IDs，r1gen区间跨0，三条可确定usage减少但不声称native精确量。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 8,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Actually, I think I have enough information to answer the question. The difference is 5 years."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Based on the search results, I have the following information:"
+    },
+    {
+      "evidence_id": "O_Q1",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/12/arguments/query",
+      "exact_quote": "Quest for Fire César Award Best Director 1982",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_Q2",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Black and White in Color Academy Award Best Foreign Language Film 1977",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "O_RET",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/12/observation/results/0/title",
+      "exact_quote": "Quest (singer)",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:6907177"
+      ]
+    },
+    {
+      "evidence_id": "O_CHOICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "If we take the years of the films (1981 and 1976), the difference is 5 years.\nIf we take the years of the awards (1982 and 1977), the difference is 5 years."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the difference in years is: 1982 - 1977 = 5 years."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, I think the phrase \"a film starring the actor who played Daniel Dravot\" is describing 'The Man Who Would Be King', not 'Black and White in Color'."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The difference in years is: 1982 - 1977 = 5 years."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The difference in years is 1982 - 1977 = 5 years."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0225/trajectory.json",
+      "source_sha256": "dad7c40bf4b24d3bb344e38664adaf8ba508a9f3e53e7354edca180e9e4e181d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0225.json",
+      "source_sha256": "94db9aff7cea271430a33afb2f46e01d04c5e65847880b4c69b1de0cda8bac45"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "024b7af1861d4029a4c5cda54b9c3cbb0164030dd89e07490dd52d7e982930fc"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "1646974c1270850c92c437f3cc394d277157b1f7b379562931883bcb4e557d20"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "fffc3ecd057e06de807a818b4878aecc9644eaeb4cf6cf8b2b0dc113764f0a78"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "194c972b58d263863c0e2326adc71d72de77cbc78dc9a713dd555456928cfe7d"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S011__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "a45c7c10dfb7f16358062a9e438c566ecbde2d5e6c70e8479a1d421533eff5dc"
+    }
+  }
+}

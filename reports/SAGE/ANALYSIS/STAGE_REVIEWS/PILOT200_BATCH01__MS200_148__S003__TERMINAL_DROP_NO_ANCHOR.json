@@ -1,0 +1,395 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "PILOT200_BATCH01__MS200_148",
+  "stage_id": "S003",
+  "sample_order": 96,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What was the total production number of the Mercury Marauder, a car model that, like the Rover 75's performance variant, was powered by a 4.6-liter Ford Modular V8 but produced a peak horsepower of 305, as opposed to the Rover 75's performance variant which produced 260 horsepower?",
+    "gold": [
+      "11,052"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "11,052",
+    "adopted_answer": "11052",
+    "outcome": "C",
+    "reason": "正式产量数字等于Gold；原文记录302与题305冲突未额外消解，正确数字与全部描述核实分开。",
+    "evidence": [
+      "O_F",
+      "O_U"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6[0,271)保留明确引用11,052并已写结论。更早R2 Search7702873有两年11052，R3/R4相同Open500只回前500无产量，R5扩大2764获得全部资料，其中最后302hp与题305不同。",
+    "evidence_states": "产量已返回、提取、采用两次（R3和当前R6）；原始Raw未核实Rover260，hp冲突文档已可见但独立比较在U。",
+    "evidence": [
+      "O_P",
+      "O_RETURN"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 271,
+        "end": 1267
+      }
+    ],
+    "goal": "检查题目305hp与资料302hp是否影响已采用的Marauder产量。",
+    "operations": "比较两马力数，重读Mach1上下文，认为小差异不改变题目明确车型及两年产量，提交11052；无Search/Open。",
+    "product": "接受数字并正式提交；没有证明差异真是舍入。",
+    "judgment_change": "将未消解的描述冲突判为不足以推翻车型与产量。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "U含末段提交，后无原Reasoning。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已采用数字后的冲突评估、答案接受及提交。",
+    "state_relation": "P已直接支持并采用数字。r1重新讨论冲突但不执行计划的Search；r2/3/4无冲突比较直接提交。四C并不证明305/302已消解，只显示明确题名和直接产量支持可维持数字，三条省去显式冲突展开。",
+    "evidence": [
+      "O_P",
+      "N1_COMPARE",
+      "N2_SUBMIT",
+      "N3_SUBMIT",
+      "N4_SUBMIT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "NO_ANCHOR",
+    "oracle_anchored": false,
+    "novelty": "末段无引导；原Final不注入，P中的11052是切点前真实已生成结论。",
+    "evidence": [
+      "I_EMPTY",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "正式数字同Gold，不是计划中的搜索结果。",
+      "outcome_evidence": [
+        "N1_COMPARE",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R6 729字符重新比较302/305，猜可能舍入或版本，先说search more specifically但无真实Search，转而认为11052明确，实际submit。",
+      "first_judgment_divergence": "原U倾向小差异，新同类比较只换舍入/版本猜测，不改变车型或数字。",
+      "first_actual_tool_divergence": "均只有submit，0Search/Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "评估马力冲突并接受产量",
+          "original_operation": "比较302/305、决定数字可接受",
+          "original_product": "11052提交",
+          "new_goal": "相同",
+          "new_operation": "重做冲突比较后直接submit，未执行Search意向",
+          "new_product": "同数字提交，冲突仍未证实消解",
+          "evidence": [
+            "O_U",
+            "N1_COMPARE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "冲突比较、接受、提交实际全部重新出现。",
+      "judgment_action_outcome_chain": "P数字已采用→冲突再比较但不否定明确车型产量→C；不需新增取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "218生成7304Prompt1Actor0Search0Open。原当前Round总363含P，切点后无精确Token，差[-145,218]不能断言精确生成节省。P重放7304单列。",
+      "counterevidence_and_alternatives": "FULL重建不意味着同篇幅必要；也不能把未执行Search计成本或证据。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "正式submit11052同Gold。",
+      "outcome_evidence": [
+        "N2_SUBMIT",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R6仅18字符I have an answer，然后真实submit11052。没有重新比较或Search。",
+      "first_judgment_divergence": "直接沿用P数字，不重新展开冲突。",
+      "first_actual_tool_divergence": "只submit，与原相同工具类型但少原比较。",
+      "function_correspondence": [
+        {
+          "original_goal": "冲突评估和提交",
+          "original_operation": "比较马力、接受数字",
+          "original_product": "11052",
+          "new_goal": "提交P已定答案",
+          "new_operation": "不比较冲突、直接submit",
+          "new_product": "同数字，冲突未消解",
+          "evidence": [
+            "O_P",
+            "O_U",
+            "N2_SUBMIT",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "答案提交保留，独立马力比较未观察到。",
+      "judgment_action_outcome_chain": "P证据与数字已接受→无需显式再判断→直接C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "39生成7304Prompt1Actor0Search/Open；文字明显短，生成差保守[-324,39]不伪精确计省。没有工具/Actor下降。",
+      "counterevidence_and_alternatives": "未展开冲突≠冲突已解决；只支持数字保持，未知如何处理其他更关键冲突。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "真实提交带千分位同数。",
+      "outcome_evidence": [
+        "N3_SUBMIT",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R6直接原生工具submit_answer，没有认知比较或查询。",
+      "first_judgment_divergence": "沿用P数字直接提交，不重评马力。",
+      "first_actual_tool_divergence": "同submit，没有任何Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "冲突评估与提交",
+          "original_operation": "比较后接受",
+          "original_product": "11052",
+          "new_goal": "提交已定数字",
+          "new_operation": "直接工具提交",
+          "new_product": "同答案，冲突比较未再现",
+          "evidence": [
+            "O_P",
+            "O_U",
+            "N3_SUBMIT",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "提交功能在，冲突分析未出现。",
+      "judgment_action_outcome_chain": "P已采用且直接产量可见→直接C，省显式比较文字。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "32生成7304Prompt1Actor0Search/Open；差[-331,32]，不报精确节省。",
+      "counterevidence_and_alternatives": "无语言解释不能推出隐藏判断；只记录可见行为。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "正式提交11052。",
+      "outcome_evidence": [
+        "N4_SUBMIT",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R6仅Let me submit the answer，然后真实submit，无核查。",
+      "first_judgment_divergence": "直接提交P结论，无独立冲突评估。",
+      "first_actual_tool_divergence": "同submit，无新增取证。",
+      "function_correspondence": [
+        {
+          "original_goal": "冲突评估、接受、提交",
+          "original_operation": "重读马力差异",
+          "original_product": "11052",
+          "new_goal": "提交已接受数字",
+          "new_operation": "短承接后submit",
+          "new_product": "同答案，无显式冲突判断",
+          "evidence": [
+            "O_P",
+            "O_U",
+            "N4_SUBMIT",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "提交保留，比较未重做。",
+      "judgment_action_outcome_chain": "P已形成数字判断→直接提交C，非新证据/G补偿。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "41生成7304Prompt1Actor0Search/Open；差[-322,41]，无原生精确节省。",
+      "counterevidence_and_alternatives": "正式答案正确但Rover侧条件没有新增核实，不扩大成全约束充分保证。"
+    }
+  ],
+  "four_run_comparison": "4C，r1FULL冲突比较恢复，另3PARTIAL只保留提交。P中直接证据与数字采用已经完成，所以不再显式处理小马力冲突也能保持数字。不是四条都没重做，也不是都重建；实际无Search差异。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当题目已明确车型且P已从该车型文档采用产量，最后一次描述差异比较可能不再改变数字或行动；删后可直接提交，也可短篇重评后提交。",
+      "support": "三条跳过显式302/305比较仍C，一条重评也C，全部利用既有11052而非新证据。",
+      "limits": "一题；马力差异未充分消解、题内车型已明示，不能推广为关键约束冲突不必查。成本仅文字短与区间，非精确节省证明。"
+    }
+  ],
+  "counterevidence_and_limits": "全部12279字符四新路径已读；原完整32624字符已读。源码、切点只读；partial Round无原生IDs。Codex自审。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The total production number of the Mercury Marauder was 11,052."
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "For production Marauders, Mercury used a 302 hp 4.6 L DOHC V8",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:7702873"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This is a slight discrepancy (302 vs 305), but the question is asking about the Mercury Marauder specifically"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "N1_COMPARE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This is slightly different (302 vs 305), but this might be a rounding difference or a specific variant."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11052"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I have an answer."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11052"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/name",
+      "exact_quote": "submit_answer",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me submit the answer."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/PILOT200_BATCH01__MS200_148/trajectory.json",
+      "source_sha256": "1f33889ae1342ca7c2cd7b40f5389a1b98c171a84be61dd7204443d945b30415"
+    },
+    "M": {
+      "source_file": "MAPPINGS/PILOT200_BATCH01__MS200_148.json",
+      "source_sha256": "e7d5e96ee8dde6eb9595210c047c0bbf4c95bfe76762621891b45bc2b4fb71a2"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "264da254c77a80bf878a421898bbfca153567c49cb148fa4cef9008706c715fe"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "f10e549a91eed12b368538917fa3cb74d80fa2c9b5aa957dae052c345aa30e2e"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "d08209e2d88d1719443786930bce4e70a70979c1ff119b0233e0681558f8bdc0"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "a2733b5f0a3cbda65fc782f9d26dfb372e400c16c544d4c528e113772929ea8e"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/PILOT200_BATCH01__MS200_148__S003__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "405c6eb3b557d0403c0a8cc09b6e10d60dd1f26b035ca5044def1816e76d92ad"
+    }
+  }
+}

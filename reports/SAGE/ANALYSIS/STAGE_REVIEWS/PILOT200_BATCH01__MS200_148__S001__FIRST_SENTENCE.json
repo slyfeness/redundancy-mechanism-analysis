@@ -1,0 +1,491 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE",
+  "trajectory_id": "PILOT200_BATCH01__MS200_148",
+  "stage_id": "S001",
+  "sample_order": 96,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total production number of the Mercury Marauder, a car model that, like the Rover 75's performance variant, was powered by a 4.6-liter Ford Modular V8 but produced a peak horsepower of 305, as opposed to the Rover 75's performance variant which produced 260 horsepower?",
+    "gold": [
+      "11,052"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "11,052",
+    "adopted_answer": "11052",
+    "outcome": "C",
+    "reason": "提交正确数字，原302/305冲突未外部核实。",
+    "evidence": [
+      "O_F",
+      "O_HP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，仅题目和工具说明，没有既有Search、docid或已知产量。",
+    "evidence_states": "题目已明确车型，无取证。11052未出现；G没有给具体docid。",
+    "evidence": [
+      "O_QUESTION"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 521
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 508
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 430
+      }
+    ],
+    "goal": "取得Marauder总产量并采用数字。",
+    "operations": "先带发动机/305长Query只得Mach1关联信息；反馈缺生产数后改车型总产量Query，R3摘7702873两年11052并采用。",
+    "product": "11052与2003/04两年关系，随后打开文档确认。",
+    "judgment_change": "从无数字到直接采用车型产量；失败反馈让下一Query从马力堆条件转到真正所求产量。",
+    "evidence": [
+      "O_FIRSTQ",
+      "O_FEEDBACK",
+      "O_SECONDQ",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "三Open（500、500、2764）再次确认原已见数字；全文末302引发最后马力比较，最终接受11052。",
+    "evidence": [
+      "O_HP",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "目标属性定向检索、失败后改Query以及数值采用。",
+    "state_relation": "四条都真实重新Search得到并采用11052。两个从长Query重复起步，两个先因G暗含已存在document而Open虚构doc_1/doc_0报错，再直接产量Query。G没有答案事实却有不适合空P的动作前提。",
+    "evidence": [
+      "N1_ADOPT",
+      "N2_ADOPT",
+      "N3_BAD_OPEN",
+      "N3_ADOPT",
+      "N4_BAD_OPEN",
+      "N4_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me verify this by opening the document to make sure I have the complete and accurate information.",
+    "source_position": "R3[430,531)",
+    "oracle_anchored": true,
+    "novelty": "19Token未来Open行动及已有document的指代前提，P无document。无新实体/产量数字，不能记事实答案泄漏；两条开头真实Open虚构docid失败，提示此前提与空历史不相容的可见行为，但不能单次归因证明。",
+    "evidence": [
+      "I_G",
+      "O_QUESTION",
+      "N3_BAD_OPEN",
+      "N4_BAD_OPEN"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "R3实际产量Search已有11052，最后用该Search数字提交。",
+      "outcome_evidence": [
+        "N1_ADOPT",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R1无新增文字但真实长条件Search只Mach1；R2定向生产units Query得到7702873，R3采用11052再Open1000。R4/5同offset0/limit1000重复，R6反改limit500，都没有产量段；R7回用原Search产量并将Mach1的305误当车型匹配，submit。2Search4Open7Actor。",
+      "first_judgment_divergence": "原数字定位完全恢复；后续读取范围不是原第三次扩大，反复前1000后缩小，未取得全文302。",
+      "first_actual_tool_divergence": "R1词序略变无实质；Open1000替原500链，重复更多。",
+      "function_correspondence": [
+        {
+          "original_goal": "找到并采用产量",
+          "original_operation": "长Query失败→定向产量Search",
+          "original_product": "11052",
+          "new_goal": "相同",
+          "new_operation": "R1/2两Search、R3采用",
+          "new_product": "同数字，后续读取不增产量证据",
+          "evidence": [
+            "O_FEEDBACK",
+            "O_ADOPT",
+            "N1_ADOPT",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "两步取证及采用真实完整重做。",
+      "judgment_action_outcome_chain": "失败反馈转产量Query恢复→数字已采用但持续短Open→无新年款/马力证据→仍回用Search C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1060生成35313Prompt2Search4Open7Actor，对原1061/27779/2Search3Open6Actor，记录生成仅-1、Open/Actor+1，Prompt+7534；不能叫资源节省。P514/G19另计。",
+      "counterevidence_and_alternatives": "305来自Mach1不是Marauder直接确认，C数字不消除关系误用；初始Stage功能没跳过。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "真实Search和offset500读取都支持同数。",
+      "outcome_evidence": [
+        "N2_ADOPT",
+        "N2_OFFSET",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1长条件Search，R2具体产量Search，R3采用11052后Open100；R4同100重复；R5明确改offset500/limit1000，真正覆盖产量段，R6接受提交。2Search3Open6Actor。",
+      "first_judgment_divergence": "初始工作同原重建，后续失败反馈使读取策略从重复首段变offset，而非全文2764。",
+      "first_actual_tool_divergence": "R5offset500的有效定位读取与原扩大全文不同。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得产量",
+          "original_operation": "两Search及采用",
+          "original_product": "11052",
+          "new_goal": "相同",
+          "new_operation": "相同方向两Search后采用",
+          "new_product": "11052，另有效offset确认",
+          "evidence": [
+            "O_ADOPT",
+            "N2_ADOPT",
+            "N2_OFFSET",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原信息获取与采用完整恢复。",
+      "judgment_action_outcome_chain": "产量证据恢复→短Open失败→调整offset到目标段→有限确认C，不再展开原马力冲突。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "598生成26742Prompt2Search3Open6Actor，记录生成-463、Prompt-1037，Search/Open/Actor不变。省开头论述和最后马力比较，offset目标读取短，不能说少了取证功能。",
+      "counterevidence_and_alternatives": "没有读到原全文末302，部分篇幅减少伴随信息较少；不能把两路线证据状态说完全一样。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "Open虚构doc失败后真实产量Search得正确数，最后回用片段提交。",
+      "outcome_evidence": [
+        "N3_BAD_OPEN",
+        "N3_ADOPT",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R1直接Open doc_1 limit10，真实DOC_NOT_FOUND；R2直接车型产量Query，R3已采用11052再Open100，R4offset100、R5offset200各100。R6错误说三块是fulltext但实际仅前300字符、不含产量，随后明确回读Search中的11052，submit。1Search4Open（含失败doc）6Actor。",
+      "first_judgment_divergence": "空P下G的打开文档承接被执行成虚构doc；失败后直接按所求属性检索，省原发动机长Query。",
+      "first_actual_tool_divergence": "R1非法docid的真实失败Open，R2单步定向Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得并采用产量",
+          "original_operation": "两Search最终定向产量",
+          "original_product": "11052",
+          "new_goal": "相同",
+          "new_operation": "无效Open后一次直接产量Search并采用",
+          "new_product": "同数恢复，但后续读取不提供独立目标支持",
+          "evidence": [
+            "O_SECONDQ",
+            "O_ADOPT",
+            "N3_BAD_OPEN",
+            "N3_ADOPT",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标获取和采用完整重新执行，一次更直接Search替两Search。",
+      "judgment_action_outcome_chain": "G动作前提不具备→虚构Open失败→实际直接产量Query得答案→不完整逐块读取→回用Search C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "1012生成22030Prompt1Search4Open6Actor，记录生成-49，少1Search却多1失败Open，Actor相同；路径替代不是工作消失。",
+      "counterevidence_and_alternatives": "声称fulltext不等于真全文；R6自己实际引用Search所以数字有支持，但不能据此宣称逐块核验有效。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "11,052",
+      "adopted_answer": "11052",
+      "outcome": "C",
+      "outcome_reason": "真实产量Search及后续Open2000支持数字，额外马力Search没有直接确认305。",
+      "outcome_evidence": [
+        "N4_ADOPT",
+        "N4_HP",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R1 Open doc_0 limit50真报错；R2直接产量Search，R3采用11052再Open50；R4同50重复；R5改2000取得产量和概念车335，却没到全文末生产车302。R6先把335当2003/04车型冲突，随后识别concept与production区别，真实查Marauder305只回Mach1和无关资料；R7不再追，依据产量C。2Search4Open7Actor。",
+      "first_judgment_divergence": "首失败doc后原产量功能恢复；后续部分读取引出概念车335冲突，核验对象从产量转动力，最终未直接验证305仍提交。",
+      "first_actual_tool_divergence": "R1错误Open、R2直接产量；R6新增马力Query原未做。",
+      "function_correspondence": [
+        {
+          "original_goal": "获取产量并采用",
+          "original_operation": "定向Search",
+          "original_product": "11052",
+          "new_goal": "同产量",
+          "new_operation": "真实Search后采用，后另查马力",
+          "new_product": "数字完整恢复，发动机核查不同",
+          "evidence": [
+            "O_ADOPT",
+            "N4_BAD_OPEN",
+            "N4_ADOPT",
+            "N4_HP",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心产量获取和采用都实际再现，新增动力任务另列。",
+      "judgment_action_outcome_chain": "G前提缺失失败→定向产量证据恢复→部分读取的概念车335触发新Search→返回Mach1仍无直接消解→保持已证产量C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1152生成30902Prompt2Search4Open7Actor，记录生成+91、Prompt+3123、Open/Actor+1。省一原长Query但新增马力Search和失败Open/重读，净增。",
+      "counterevidence_and_alternatives": "C不能否定核验对象偏移和多成本；概念车335与生产车302属于不同角色，逐字段解释很重要。"
+    }
+  ],
+  "four_run_comparison": "4C、4FULL原产量功能重建，答案保持不是原工作不必要。两条两Search同原，一条直接产量少1Search、一条直接产量后新增马力Search；两条先虚构docid真实失败。成本仅r2明显篇幅少，r4净增，四C不代表一致路径。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "题目明确所求属性时，失败反馈可将堆叠发动机条件的查询改为直接产量查询并恢复答案；但答案已采用后，笼统必须读全文的要求若不更新读取范围，会生成无增量Open。局部读取还可能暴露概念车属性并派新核验，影响成本而不改变最终数字。",
+      "support": "四条都重新取产量；r2改offset有效确认，r1反复相同前1000未推进，r4概念335触发新Search。",
+      "limits": "一题且开头P为空接近重新采样。G的Open预设令两条真实doc错误，不能当无引导删除。正确数字与所有车型描述核实分别记录。"
+    }
+  ],
+  "counterevidence_and_limits": "63527字符四路径全读；原文完整32624字符全读。R1开头完整response差仅记录口径，不冒充原生精确切点节省。P514/G19另计，分支成本不相加。自审非人工标准。",
+  "evidence": [
+    {
+      "evidence_id": "O_QUESTION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 0,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "What was the total production number of the Mercury Marauder"
+    },
+    {
+      "evidence_id": "O_FIRSTQ",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Mercury Marauder 4.6-liter Ford Modular V8 305 horsepower production number",
+      "call_id": "chatcmpl-tool-901ef92f070fb93e"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "However, the search results do not provide the total production number of the Mercury Marauder."
+    },
+    {
+      "evidence_id": "O_SECONDQ",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "query",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Mercury Marauder total production number",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the total production number of the Mercury Marauder was 11,052."
+    },
+    {
+      "evidence_id": "O_HP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "This is a slight discrepancy (302 vs 305)"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this by opening the document to make sure I have the complete and accurate information."
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This indicates that the total production number of the Mercury Marauder was 11,052 units"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The Mercury Marauder (third generation, 2003-2004) sold 11,052 units over its two-year production run."
+    },
+    {
+      "evidence_id": "N2_OFFSET",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "with only 11,052 sold over its two-year production",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:7702873"
+      ]
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    },
+    {
+      "evidence_id": "N3_BAD_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/error",
+      "exact_quote": "DOC_NOT_FOUND",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "doc_1"
+      ]
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the total production number of the Mercury Marauder was 11,052."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11052"
+    },
+    {
+      "evidence_id": "N4_BAD_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/error",
+      "exact_quote": "DOC_NOT_FOUND",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "doc_0"
+      ]
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This indicates the total production number was 11,052."
+    },
+    {
+      "evidence_id": "N4_HP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/query",
+      "exact_quote": "Mercury Marauder 305 horsepower",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "11,052"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/PILOT200_BATCH01__MS200_148/trajectory.json",
+      "source_sha256": "1f33889ae1342ca7c2cd7b40f5389a1b98c171a84be61dd7204443d945b30415"
+    },
+    "M": {
+      "source_file": "MAPPINGS/PILOT200_BATCH01__MS200_148.json",
+      "source_sha256": "e7d5e96ee8dde6eb9595210c047c0bbf4c95bfe76762621891b45bc2b4fb71a2"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "8bc412d315d751ada97afe0123e42cad1bf88de1b9d2677437e07eb19d21489d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "dc1f59dd6d362f70e012006aca62311b9a44c17e2a019044b5692cde66451077"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "5d6348be0d87d3e1716d6cf51cb7acbad4dee5cd6c0f577c249c8715fe032174"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "aeb94c66d5736fb70cc5642a0b5f23cb61af62fce7f77fa8a985e79865a162c5"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/PILOT200_BATCH01__MS200_148__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "6fd3b16c3fd1c34711fcdde8f08b8fa6bb98b311b49166cb27122d0ee7cea285"
+    }
+  }
+}

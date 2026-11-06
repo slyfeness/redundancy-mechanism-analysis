@@ -1,0 +1,437 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0916",
+  "stage_id": "S009",
+  "sample_order": 97,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "What traditional musical instrument, considered a national symbol for Manipuris, accompanies the folk song form associated with the \"Old Kuki tribes\" such as the Milhiem ethnic group found in Manipur?",
+    "gold": [
+      "Pena"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "pena",
+    "adopted_answer": "Pena",
+    "outcome": "C",
+    "reason": "正式答案同Gold；资料支持national symbol及pena eshei伴奏，但没有直接族群—歌曲关系证明。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8@0当前Reasoning空，但完整R1—7及六Search、一Open在。R3返回1408738直接Pena伴奏/象征，R4已提取并发现OldKuki关系缺口；R4/R5补族群只返族群资料，R6接受Pena，Open100截断无核心内容，R7再PenaQuery又回同音乐文档。",
+    "evidence_states": "乐器事实和采用早已完成且用于真实Pena Query。族群归属资料可见、采用；族群与pena eshei连接没有直接证据，不能用同地Manipur自动连边。",
+    "evidence": [
+      "O_RETURN",
+      "O_GAP",
+      "O_ACCEPT",
+      "O_REPEAT"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/8/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 1503
+      }
+    ],
+    "goal": "重评题目条件，决定是否接受Pena提交。",
+    "operations": "整理乐器、歌曲、象征及Milhiem归属，承认还需确认歌曲族群连接，却凭现有信息接受Pena并正式提交，无新Search。",
+    "product": "答案Pena，关系缺口未真实补足。",
+    "judgment_change": "从已接受候选且仍想核验，转为现有特征足够提交。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "末Stage含提交，无后续Reasoning。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已有候选与未闭合关系的证据充分性判断和提交。",
+    "state_relation": "四次都重做整体比较且最终C；两次不再查询但展开更长解释，两次把族群关系继续派Search，无直接增量后仍接受同乐器。候选已知不等于同样停止动作。",
+    "evidence": [
+      "N1_ASSESS",
+      "N2_ASSESS",
+      "N3_Q",
+      "N3_ACCEPT",
+      "N4_Q",
+      "N4_ACCEPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "NO_ANCHOR",
+    "oracle_anchored": false,
+    "novelty": "末段无G，保留R7真实Search返回，原R8判断/Final未注入。",
+    "evidence": [
+      "I_EMPTY",
+      "O_REPEAT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "正式Pena同Gold，明确承认Meitei与OldKuki联系可能混淆。",
+      "outcome_evidence": [
+        "N1_ASSESS",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R8 3365字符提取已有文档，发现问题可能把Meitei与OldKuki混合、Milhiem文档没音乐；以Pena唯一象征+伴奏匹配提交，无Search。",
+      "first_judgment_divergence": "比原更明确指出题内族群连接可能误导，但仍决定主体特征足够回答。",
+      "first_actual_tool_divergence": "仍直接submit，无新增工具。",
+      "function_correspondence": [
+        {
+          "original_goal": "评估缺口后接受提交",
+          "original_operation": "多条件盘点/接受",
+          "original_product": "Pena且族群关系未补",
+          "new_goal": "同充分性判断",
+          "new_operation": "更长比较、指出文化混淆可能",
+          "new_product": "同Pena，缺口仍保留",
+          "evidence": [
+            "O_U",
+            "N1_ASSESS",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整全题证据比较和提交全部恢复。",
+      "judgment_action_outcome_chain": "P事实已接受→族群缺口被视可能题意混淆而非必须再查→直接C，但文字更长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "751生成17187Prompt1Actor0Search/Open，原420生成同Prompt1Actor，记录生成+331；新增在3365字符充分性论证，工具没省。",
+      "counterevidence_and_alternatives": "承认不充分不是证明题目真错，仅记模型实际判断；没有新关系证据。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "提交Pena，但将共享Manipur语境作为关系推断，未直接验证。",
+      "outcome_evidence": [
+        "N2_ASSESS",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R8 3913字符反复盘点两份资料和族群连接，明确没有直接说OldKuki唱pena eshei，认为题目通过地区/象征暗示，最终submit。",
+      "first_judgment_divergence": "以题目结构和共同地区解释未证关系，多次同义确认不新取证。",
+      "first_actual_tool_divergence": "同直接submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "证据充分性/提交",
+          "original_operation": "条件比较",
+          "original_product": "同Pena，关系未证",
+          "new_goal": "相同",
+          "new_operation": "更长完整比较/题意解释",
+          "new_product": "同C和未闭合关系",
+          "evidence": [
+            "O_U",
+            "N2_ASSESS",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原整体接受工作完整再现。",
+      "judgment_action_outcome_chain": "已知乐器→关系缺口用共享地区推断替代证据→接受C，篇幅增加而无新事实。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "973生成17187Prompt1Actor0Search/Open，生成+553，其他不降。",
+      "counterevidence_and_alternatives": "数值C不能证明族群—歌曲边由材料建立；此处推断比r1承认可能混淆不同。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "补Query只重得Milhiem，R9仍按既有Pena象征采用提交。",
+      "outcome_evidence": [
+        "N3_Q",
+        "N3_ACCEPT",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R8 1401字符先识别Pena，仍要查OldKuki连接，实际同原R4 Query，再返Milhiem无音乐。R9 3063字符承认无直接连接、比较Jhal与Pena，觉得national symbol唯一且族群可视地区语境，submit。",
+      "first_judgment_divergence": "原R8已直接接受，新再次把族群缺口派真实查询，失败后才接受。",
+      "first_actual_tool_divergence": "R8 Search而非submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "判断足够与提交",
+          "original_operation": "多条件比较后接受",
+          "original_product": "Pena",
+          "new_goal": "同充分性判断另补关系",
+          "new_operation": "先查询关系、无增量，再比较替代乐器和接受",
+          "new_product": "同Pena，关键连接未解决",
+          "evidence": [
+            "O_U",
+            "N3_Q",
+            "N3_ACCEPT",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "整体判断和提交全部恢复，额外核查另记。",
+      "judgment_action_outcome_chain": "候选已恢复→未解关系仍触发一次旧取证→仅族群资料无增量→以主特征接受C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "1073生成34858Prompt2Actor1Search0Open，生成+653；多1Search/Actor，输入随历史重放增加，目标功能重建且净消耗增。",
+      "counterevidence_and_alternatives": "回同DocID不证明音乐关系取得；R9候选仍Pena，新增查询没有改变该判断。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Pena",
+      "adopted_answer": "Pena",
+      "outcome": "C",
+      "outcome_reason": "新Query仅族群资料，最后仍依据原音乐文档回答Pena。",
+      "outcome_evidence": [
+        "N4_Q",
+        "N4_ACCEPT",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R8 1924字符识别Pena与Meitei/OldKuki差别，真实Query pena eshei Old Kuki tribes folk song；返回Ranglong、语言和政治族群资料，没有歌曲关系。R9 1859字符再比较三份旧证据，以似乎rural/tribal语境承接，submit。",
+      "first_judgment_divergence": "同已知候选仍把关系差别实际核验，返回无解决后转为地区解释接受。",
+      "first_actual_tool_divergence": "新增R8关系Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "评估所有条件与接受",
+          "original_operation": "盘点后提交",
+          "original_product": "Pena但关系未证",
+          "new_goal": "同评估并核查族群",
+          "new_operation": "先Search再重评",
+          "new_product": "同Pena未补关系",
+          "evidence": [
+            "O_U",
+            "N4_Q",
+            "N4_ACCEPT",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "判断和提交真实全部再现；新Search不是功能未恢复的证据。",
+      "judgment_action_outcome_chain": "关系缺口仍派任务→返回只证明族群分类→用宽地区关联替代直接支持→PenaC，额外取证无答案变化。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "980生成38574Prompt2Actor1Search，生成+560，多1Search/Actor，新增成本为关系核查及再盘点。",
+      "counterevidence_and_alternatives": "本次返回不同内容和长度使Prompt多于r3；不能只按相同1Search推断等成本。"
+    }
+  ],
+  "four_run_comparison": "4C/4FULL整体判断恢复，生成全部增加。两条0Search直接接受，两条再查同未闭合族群关系，无直接增量后接受。结果同不等于原Stage没有停止作用或净省；共同Pena关键特征早已采用，关系缺口被容忍/解释而非文档补足。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "主候选的强特征已支持、但族群关系未证时，整体接受可将该缺口视背景不影响答案，或再次派取证；额外关系Search若只回族群分类，不改候选，之后仍同答案，表现为结果保持而消耗增加。",
+      "support": "两直接、两补查，最终都回到1408738的象征和伴奏；没有任何新关系文档，解释差异可直接定位。",
+      "limits": "本题四条，题目关系是否真实需要另证；不能将所有剩余约束都视可忽略，也不能把C当证据完整。"
+    }
+  ],
+  "counterevidence_and_limits": "原62545字符全读、新35381字符四条全读。Round开头完整response差可比但无原生精确IDs；P17187预填另列，无G。Codex语义自审。",
+  "evidence": [
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "The pena is an ancient instrument that is a sort of national symbol for Manipuris.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1408738"
+      ]
+    },
+    {
+      "evidence_id": "O_GAP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "but doesn't explicitly mention pena eshei."
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the answer is the \"Pena\" (or \"Pena instrument\")."
+    },
+    {
+      "evidence_id": "O_REPEAT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "query",
+      "json_pointer": "/rounds/6/tool_calls/0/arguments/query",
+      "exact_quote": "pena instrument Manipur national symbol folk song",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Let me verify if \"pena eshei\" is associated with the Old Kuki tribes or if there's another connection."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "pena"
+    },
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "N1_ASSESS",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The question might be implying that the pena eshei is associated with these tribes, or perhaps the question is slightly conflating different cultural elements."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    },
+    {
+      "evidence_id": "N2_ASSESS",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "While the text doesn't explicitly say \"pena eshei is sung by Old Kuki tribes\", the question structure implies a connection through the location (Manipur) and the instrument's status."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "pena"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "pena eshei Old Kuki tribes Milhiem",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "However, the core of the question is about the \"national symbol\" instrument."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "pena eshei Old Kuki tribes folk song",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The pena eshei appears to be associated with the rural/tribal culture of Manipur"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Pena"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0916/trajectory.json",
+      "source_sha256": "03b951c72acc95c19781e7ca575f5325863786f44fb011f9455e0f1b7b18897c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0916.json",
+      "source_sha256": "01c981c69ed2d2f7f0cf3df7541b6d7f68561c027216407e7500e2ab441a9016"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "469f1e496724a27dcbb06a0f3ae2cca8039ff3d7ab64d9cc5a3e204cd04c57c1"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "20dc0046f9769f00663315d7c2dd7d4f2330a44ea2db52d87b59bb4afa830ed1"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "aa9e05949f9924cc9b8f9612cc68b0e2a04b874ab87e2f803fbdfd5ace3e38c7"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "342a036d7a0052fa23d081230e9439f12cd01975ec76466994f13222d8c0652a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0916__S009__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "811386d16ea4899f4409c027c67815a0d589d507a5d29de745a28e8a2a9d4455"
+    }
+  }
+}

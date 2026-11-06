@@ -1,0 +1,392 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0309",
+  "stage_id": "S002",
+  "sample_order": 36,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference between the publication year of Gabriel García Márquez's novel, which became his best-selling and most translated work, and the publication year of his novel whose title refers to a season and a specific title of nobility?",
+    "gold": [
+      "8"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "8",
+    "adopted_answer": "8",
+    "outcome": "C",
+    "reason": "两年差正确。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@74保留首Search不含所需信息的反馈；首Return只有图书馆/词列表噪声。原R1日志曾知识提出OneHundred/Autumn等，但历史reasoning未进模板，不当作当前P可见。",
+    "evidence_states": "两书身份和年份均无有效工具支持，未解决。",
+    "evidence": [
+      "I_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 74,
+        "end": 282
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 74
+      }
+    ],
+    "goal": "暂转第二书season/nobility线索，尝试泛检索入口。",
+    "operations": "真实泛Query，Return仅同词列表，R3明确反馈没有所需。",
+    "product": "本次入口未取得书名/年份，保留失败反馈。",
+    "judgment_change": "没有候选确认，下一Stage转具体第一书。",
+    "evidence": [
+      "O_QUERY",
+      "O_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use": "数字100题名尝试失败后全拼成功，得1967；再泛查第二书仍失败，具体Autumn得1975，算8。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "检索失败后更换题目线索的一次真实尝试及无用反馈。",
+    "state_relation": "r1/r2/r4仍在后面重做同一泛题名Search，r3只一轮失败第一书Query后长枚举未执行该泛取证。",
+    "evidence": [
+      "N1_U",
+      "N2_U",
+      "N3_ENUM",
+      "N4_U"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Let me try a more direct search for \"Gabriel García Márquez 100 years of solitude\" since that is likely his best-selling and most translated work.",
+    "source_position": "O R3[74,220)",
+    "novelty": "P工具中无第一书名，G将知识候选100yearsofsolitude及畅销译介猜测提前给出；原R1日志提过不等于模板P含此内容。无年份/差8。",
+    "risk": "ORACLE_ANCHORED候选与行动方向提示；四支首Query均按其100拼法失败，不将G当自主发现。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "真实两年支持8。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R2按G100题名Search噪声；R3谈第二题名矛盾却实际改全拼第一书成功得1967；R4采用第一书并发泛seasonnobilityQuery同原无用词表；R5宽义选择Autumn、具体Search得1975；R6长比较后Submit8。",
+      "first_judgment_divergence": "先查第一书，再恢复原泛第二书尝试；失败并不产生第二书确认，具体候选仍由知识比较选择。",
+      "first_actual_tool_divergence": "R2首Query第一书而非原第二书泛Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "泛线索查第二书",
+          "original_operation": "seasonnobilitySearch/失败处理",
+          "original_product": "无有效信息",
+          "new_goal": "相同",
+          "new_operation": "R4同Query及无用Return、R5继续选具体书",
+          "new_product": "同样无用反馈，后换具体查询",
+          "evidence": [
+            "O_QUERY",
+            "N1_U"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "原取证尝试及失败处理重新出现，FULL不表示它成功或必要。",
+      "chain": "G先第一书→失败后全拼成功→泛第二书仍失败→具体Autumn成功→8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2391gen/31061Prompt/5Actor/4Search/0Open，原gen[993,1056]/5Search/6段，gen多[1335,1398]，增加在多轮候选词义比较/最后689gen，Search少1不代表总体省。",
+      "counterevidence_and_alternatives": "原U无有效新事实，本支重做不证明它必需；质量题名宽义歧义保留。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "1967/1975直接资料支持8。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R2同100Query失败；R3长列候选后泛season/nobilitySearch同噪声；R4改全拼第一书+1967取得传播支持；R5确认第一书后查询具体Autumn+1975取得815597与旁证；R6算8Submit。",
+      "first_judgment_divergence": "原U第二书尝试延后一个首书失败Call后恢复，随后具体书双查闭合。",
+      "first_actual_tool_divergence": "R2先100题名Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "第二书泛线索取证",
+          "original_operation": "真实泛Search失败",
+          "original_product": "无效结果",
+          "new_goal": "相同",
+          "new_operation": "R3同泛Search、R4反馈无年",
+          "new_product": "无有效题名证据，改具体书",
+          "evidence": [
+            "O_FEEDBACK",
+            "N2_U"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "同尝试恢复并据失败继续调整。",
+      "chain": "首书拼法失败→泛线索失败→具体两书年证成→8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1479gen/29311Prompt/5Actor/4Search，比原多[423,486]gen，主要R3的771gen比较，少1Search/Actor。",
+      "counterevidence_and_alternatives": "Search含1975来自此前知识猜测，不是本实验注Gold；仍有实际1975Return核证。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "无正式答案，原文仅猜测和长枚举。",
+      "outcome_evidence": [
+        "N3_ENUM"
+      ],
+      "work_and_evidence_timeline": "R2执行G的100Query，返回与原E3相同噪声；R3知道第一书1967来自知识，随后将其它小说反复用or连接枚举34403字符，未选择第二书、未真实再Search，10000token长度停止。",
+      "first_judgment_divergence": "首个无效返回后没有把任何候选变成下一取证决定，枚举持续而不执行。",
+      "first_actual_tool_divergence": "只执行第一书100Query，没有原泛第二书Call或后续。",
+      "function_correspondence": [
+        {
+          "original_goal": "执行第二书泛检索",
+          "original_operation": "真实Search加反馈",
+          "original_product": "一次无用结果已评",
+          "new_goal": "停在第二书候选枚举",
+          "new_operation": "没有第二书Search",
+          "new_product": "无该尝试结果或可用候选决定",
+          "evidence": [
+            "O_QUERY",
+            "N3_ENUM"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "reason": "搜索意向/书名出现不等于原真实取证实例。",
+      "chain": "G定向首书失败→未转成实质新查询→同一批候选无收束枚举→长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "10040gen/4958Prompt/2Actor/1Search/0Open，较原多[8984,9047]gen；10000都在R3，未把长列表计为真实多次Search。",
+      "counterevidence_and_alternatives": "单seed的长度失败不能证明原无效泛Search有因果必要性，G拼法、采样均需保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "8最终两年有Return支持，传播排名较原支持更弱。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R2数字题名Query失败；R3长词义比较后泛Query同词表；R4全拼第一书但无作者Query返回电视剧1967，R5明确区分2024电视剧与1967原小说，接着泛nobility+DukeMarquis仍无用；R6具体AutumnQuery无1975直段，R7长8498字符承认缺年、反复说要查但最后才真实加1975查询，取得直接8155971975；R8采用年差Submit。",
+      "first_judgment_divergence": "选择可用关联电视剧资料获得1967，但第二书年未返回时没有直接当证成，长篇反复后真正补查。",
+      "first_actual_tool_divergence": "先首书，再泛第二书两次，原为先泛再首书。",
+      "function_correspondence": [
+        {
+          "original_goal": "泛第二书尝试",
+          "original_operation": "seasonnobilitySearch失败",
+          "original_product": "失败反馈",
+          "new_goal": "同一泛线索",
+          "new_operation": "R3同Query/R5加爵位再次尝试",
+          "new_product": "仍无有效信息，最终具体年查询才闭合",
+          "evidence": [
+            "O_QUERY",
+            "N4_U",
+            "N4_YEAR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "原泛查完整恢复还多做一次，非省去此功能。",
+      "chain": "泛查无效→首书关联证据可用→再泛查无效→具体书未返日期→长表达后真正针对年补查→8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3976gen/52061Prompt/7Actor/6Search，比原gen多[2920,2983]，Search/Actor各增1；R7的2054gen及额外泛Query/年Query明确增加。",
+      "counterevidence_and_alternatives": "无作者Query的实际返回不同于原成功批，不可仅按同书DocID认支持相等；50m/46未全部恢复，数字正确与完整身份支持分开。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/N/C",
+    "function": "r1/r2/r4完整重做原泛查，r3未观察；全四首先按G进行数字题名Query且全失败。",
+    "cost": "四支生成都高于原后缀，r3无真实后继查询；r1/2Call较少但表达长。",
+    "inference": "原U没有新事实，答案保持主要靠后续具体书取证；仍不能用一次未恢复且N宣称原泛尝试必要。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "失败反馈只有进一步形成可执行对象/方法选择才可能推进；重复候选列表、泛词义检索与具体书年取证不是同一产物。",
+      "support": "三C最终发出具体题名Query，N支只列表；r4泛查重复而具体年才提供所缺事实。",
+      "limits": "仅题内观察，G提供第一书候选方向且有拼法效应，不能把四终态频率替代机制证据。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "P不含历史reasoning候选，G提供100题名是实际新候选提示而非纯承接，但非被删第二书发现的事实。",
+    "Patriarch严格爵位不符是原题歧义；宽义接受不能写成外部证据已消解。",
+    "DERIVED_CHAR_EXACT原gen[993,1056]，P1574/G34分列不重复；独立分支节省不加总。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 2,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results don't seem to contain the specific information I need."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me try a more direct search for \"Gabriel García Márquez 100 years of solitude\" since that is likely his best-selling and most translated work."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Gabriel García Márquez novel season nobility title"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results don't seem to contain the specific information I need."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N1_U",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/rounds/2/tool_calls/0/arguments/query",
+      "exact_quote": "Gabriel García Márquez novel title season nobility"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N2_U",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Gabriel García Márquez novel title season nobility"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N3_ENUM",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The other novel is likely"
+    },
+    {
+      "evidence_id": "N4_U",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Gabriel García Márquez novel title season nobility"
+    },
+    {
+      "evidence_id": "N4_YEAR",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/query",
+      "exact_quote": "Autumn of the Patriarch 1975 publication year"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0309/trajectory.json",
+      "source_sha256": "d5b10c68a465ea04f47c7f7dc899ec8bc9f4be3926f39169affc385f866b569c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0309.json",
+      "source_sha256": "8fffc94fbd3e4dc1b6404700494c1016f067afd75d7545788bd405bb8f95ddb5"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "b8984b8b753c8287d63262c54819c9531c57690870ced3dbfcd45d0e555f068a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "71531443495f922a52193910ce6f80390e26517d2e7a9badf480bcc5631902a7"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a127d116871952fa6cd1831a6152d762e572d990dd9d4d3b5eef53b06b2e2100"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "af965b516e6f27485c52e961fc593c6810926eef93be00f07ccaeef44a13b428"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "204081e672f91e95bf148c81374b5204d84cd090aadf6f65d8d2e79552b0e71f"
+    }
+  }
+}

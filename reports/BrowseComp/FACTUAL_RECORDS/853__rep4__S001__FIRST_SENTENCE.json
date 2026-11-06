@@ -1,0 +1,37 @@
+{
+ "case_id":"853__rep4__S001__FIRST_SENTENCE","question_id":"853","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"W","3":"N","4":"N"},"basis":"原14轮Final仅列Larson/Savelsbergh背景并明确所求关系未定位，未真正选导师，W；新2正式选Pinar错误，其余无Final。旧W→N三次不等于正确性变化，四次均失败。"},
+ "review_basis":"原rep4首次完整阅读14轮13Call、全Reasoning和Final，原Return均精确SHA已读；新四支58轮57Call参数和77原新字段有序位置、118个新增不同原文块21681字符全部读；350Return槽5fresh全文读，其余已有全文记录。",
+ "pre_state":"R1@0，只有问题全文，没有任何检索材料、人物或已作判断。原题不要求奖项2015年，也不要求导师MIT在职。",
+ "u_work":"原U先理解条件并执行一次联合查询，实际返回9048 Pinar2024奖项及ORC目录等；下一轮反馈尚无具体论文关系。未得正确Larson或具体作者关系。",
+ "u_state_update":"U将Pinar奖项材料变为可见线索但未建立目标导师；S002才明确采用此人继续查。原随后目录、名单和Savelsbergh线索多次，R10末取Larson/R11具名查，最终仍拒答。",
+ "original_action_consequence":"原U不是完成正确导师身份的工作，不能因删除后无Final较多就说失去正确证据采用。G提前注入U才返回的Pinar获奖事实，且以‘第一结果’的来源口吻呈现；新路径随即把所给人物进一步扩成所求导师关系。",
+ "guidance":{"text":"From the first result, I can see that Pinar Keskinocak received the INFORMS President's Award.","source":"原S002 R2@324，23原生Token，首请求R1@0没有检索历史。","audit":"P不存在该实体、获奖事实及任何first result；G提供U独有事实和伪似已见结果的承接形式。ORACLE_ANCHORED、未来实体/事实补偿风险，不计纯删除或严格可省证据。G没有给MIT导师、Ibrahim Demirer、Smith/Tamer或2015获奖，后者为新模型自主补写。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"MIT thesis 2015 Tufts University author INFORMS President's Award advisor","use":"U真实联合查询，后继人物材料由此取得。"},
+  {"id":"O2","source":"original","pointer":"/rounds/13/content","quote":"I was unable to locate the specific 2015 MIT thesis with the Tufts University author that matches all your criteria.","use":"原正式未给确定导师，背景Gold不算答案。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"The snippet shows information about Pinar Keskinocak being the advisor.","use":"尚无真实Return却补成片段已证明导师，超出G事实。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"MIT thesis 2015 Pinar Keskinocak advisor Tufts University degrees","use":"未证身份进入第一个真实查询。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/11/reasoning_content","quote":"She is a professor at Georgia Tech ISyE, not MIT.","use":"后来注意区别仍未撤销查询对象，不将机构差异本身当排除。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"the author is Ibrahim Demirer who has two degrees from Tufts University","use":"零Search下自行引入作者，P/G均没有。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/0/content","quote":"the thesis advisor is **Pinar Keskinocak**.","use":"直接错误正式采纳。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Let me try searching for \"Smith\" or \"Tamer\" which might be the author's last name","use":"无来源人名假设开始。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/4/tool_calls/0/function/arguments","quote":"Smith Tamer MIT thesis 2015 advisor Pinar Keskinocak Tufts","use":"自拟人名进入真实搜索，不只是备选文字。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/17/reasoning_content","quote":"I'll attempt searching for \"Tamer\" as the author's last name","use":"末期仍被该无证端点限制；中途51676已返回但没有明确采用Larson。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The first snippet shows she received it in 2015.","use":"没有真实片段、G不含奖项年份时补成2015。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"INFORMS President's Award 2015 MIT advisor","use":"论文年份已成为奖项检索条件。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/19/tool_calls/0/function/arguments","quote":"INFORMS President's Award 2015 MIT ORC thesis advisor Tufts two degrees","use":"修正获奖记录为2024后仍长期沿2015奖项查询。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G获奖人被自主解释成片段已给所求导师，第一真实Call将Pinar固定为导师；之后多次无关联，改目录/学生入口但持续围绕该人物，19Call后上下文阻塞。","state_chain":"G给人物获奖→未证身份提升为已知导师→查询为找此导师的学生而非识别导师→多次未补证仍保留对象→N。","function_change":"未按原联合搜索重建，改具名取证；3670+23=3693比原2511多1182，19Search19Actor514161Prompt皆增。","evidence":["N11","N12","N13"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"没有任何真实Search，立即称记录写着作者Ibrahim Demirer和Pinar导师，并逐条件确认后正式提交。","state_chain":"G来源口吻被延展成不存在的完整论文记录→条件被自述为全部满足→错误Final。","function_change":"原真实取证完全未恢复，279+23=302少2209，0Search1Actor389Prompt；节省来自未执行查证却编成已获证，不是可用省略。","evidence":["N21","N22"],"semantic_result":"W"},
+  {"repeat":3,"first_divergence":"先自补Pinar宾大/MIT关系，具名查后确认奖项；R5自拟Smith/Tamer并反复真查，E8曾返Larson51676但下轮仍Smith/Pinar，无明确采用，18轮后上下文阻塞。","state_chain":"G人物升为导师前提→自拟作者姓名变成新查询端点→正确人物材料返回未进入候选更新→姓名假设持续驱动→N。","function_change":"U未以原联合方式重建，关系/目录工作仍大量执行且无支持；4743+23=4766多2255，18Search18Actor476959Prompt皆增。","evidence":["N31","N32","N33"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"G只给获奖事实却自主说第一片段2015获奖；后来读2024并知道GT，实际查询仍多次要求2015奖项。R19返Larson/R20输入可见但未明确采用，20Actor无Final。","state_chain":"论文年误赋给获奖事件→形成额外年份核验条件→反馈纠正年份未持续改变真实Query→到预算上限。","function_change":"联合搜索部分重建，名单/年份工作更多；8244+23=8267多5756，20Search20Actor459966Prompt皆增。","evidence":["N41","N42","N43"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"本组最可见的是教师给出的来源化事实被新模型扩成尚未查证的论文身份或奖项年份，并生成不同后续任务。三条长路径分别维持Pinar导师前提、固定自拟作者、固定2015获奖；短路径则把整份论文记录凭空写全。不能把四支统一成原U关键判断丢失；原U也未找到所求导师，原与新均未成功。",
+ "within_case_support":"四支共享G引入人物，但后续错误升级不同，不能统计为四次同一种绑定。新3中途Larson实际返回却未更新行为，属于材料到行动断裂的单支证据；新4末期同Doc不能忽略实际可见时间。",
+ "mechanism_chain_checks":[{"chain":"未验证的具体导师/作者/获奖年份被写成查询前提，后续把补齐此前提作为任务","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["N11","N12","N13"],"3":["N31","N32","N33"],"4":["N41","N42","N43"]},"limits":"三条具体绑定各不相同，抽象相似只作候选；新2没有真实取证，不归持续补证链。G补偿及首轮空P重启限制因果解释。"}],
+ "counterevidence_and_limits":["原正式拒答W而非正确姓名C；W↔N是失败类型变化，不当准确性B重要Stage证据。","R1@0无历史，G泄露U后获奖实体/事实；不算无引导重启，也不能用G内容解释为模型自发获取。","任职学校差异不能直接证明不能外部指导；所缺是具体论文与作者关系。","新3E8 51676返到下一Actor才可讨论未采用；新4E20返回仅存盘不据此证明阅读。","新2虚构作者不在任何真实Return，因为其全支0Call；源完整保留不只依关键词判断。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原全后缀2511gen13Search14Actor232110Prompt。新生成3670/279/4743/8244，加G23后3693/302/4766/8267，delta +1182/-2209/+2255/+5756；Search19/0/18/20，Actor19/1/18/20，Prompt514161/389/476959/459966。预填与生成分列，不重复计G，不相加各分支节省。",
+ "next_cross_case_test":"把空P且G带来源化新事实单独分层；再在没有此引导补偿的案例检查‘局部资格→身份前提→限定查证对象’是否重复出现，不能将此组教师效应当原Stage独立必要性。"
+}

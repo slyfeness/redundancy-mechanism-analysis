@@ -1,0 +1,609 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0618",
+  "stage_id": "S002",
+  "sample_order": 80,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0618/trajectory.json",
+      "source_sha256": "5153621f3f410a8385152b01a0044d12b517fb8f98f8948749d6a8d09ce1afd2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0618.json",
+      "source_sha256": "94bb3624288219d4564e8c2792a9e458a24d1b50dcd7bc123994a5d50e47e540"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c0f4dea8c197c8c4a0426a8efb538a15d270fa9f6f675b9321fbaf0529b700cd"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "42b339de63c2daf15955d0cb6aa7b1b5e272d07ffd097bc605230434d81c445a"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "66938a33a5c8002af0bcd41920ca1473eaaa82ad0c4465f5b7227eecaf2876f0"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b49de839f0b8323de85999446ac4a4098a8cc0a9b108edc63c2957ebd99fb4a9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "a5298935eb630cb54334dd927bf4f3691e39e9f9bf587a60e3cce63d5b8e2ff7"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the numerical difference between the year when food rationing completely ended in the United Kingdom after World War II and the establishment year of the London hotel where the specific vegetable pie, popularly promoted by the British Minister of Food during that wartime period, was originally created?",
+    "gold": [
+      "65"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0618/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "65",
+    "adopted_answer": "65",
+    "outcome": "C",
+    "reason": "真实三证据及1954-1889减法支持。",
+    "evidence": [
+      "O_FINAL",
+      "O_ADOPT"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@363，E1完整配给Return及当前直接采用1954的363字符保留。P4547派生Token。没有派名、Savoy或1889；原下一Stage这些事实都不注入。",
+    "evidence_states": "配给年已返回、提取、采用；派→酒店关系和酒店开业年待查。",
+    "evidence": [
+      "I_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items；R2[363,815)+E2,R3[0,395)+E3,R4[0,444)",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 363,
+        "end": 815
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 395
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 444
+      }
+    ],
+    "goal": "识别题干的蔬菜派及其诞生酒店，建立后续查年对象。",
+    "operations": "先泛搜部长派，取Woolton人物线索，再具体搜Wooltonpie，2742417返回Latry/Savoy和推广关系；R4明确采用。",
+    "product": "Wooltonpie→Savoy关系确定，酒店成为下一开业年Query对象。",
+    "judgment_change": "泛题干线索→有文档依据的具体酒店，改变下一取证对象。",
+    "evidence": [
+      "O_PIEQUERY",
+      "O_LINK",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "S003实际查Savoy开业1889，R5把已得1954/1889减为65。后续五Open及重算并未改变答案，R10提交。",
+    "evidence": [
+      "O_NEXTQUERY",
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把部长/菜肴线索转成酒店身份和下一事实查询对象。",
+    "state_relation": "P尚无酒店，正确计算不能只沿用旧答案；四条均真实找回并采用关系，所以全C并不支持原关系工作无用。",
+    "evidence": [
+      "I_P",
+      "O_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Now I need to find:",
+    "source_position": "原R4[444,463)，冒号完整引导行，不连列表。",
+    "novelty": "只承接待查工作，没有带入Savoy、Woolton、1889或65，P1954已由原保留前缀明确。6引导Token，仍ORACLE_ANCHORED，不作自主语义证据。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实找回派酒店关系、查得1889并使用P中1954。",
+      "outcome_evidence": [
+        "N1_LINKUSE",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "R2—3泛派Query空，R4原同Query得到部长，R5采用Woolton假设具体查派酒店。",
+          "evidence": [
+            "N1_QUERY"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "R5返回2742417后R6明确采用Savoy并真实查询开业年，R7算65。",
+          "evidence": [
+            "N1_LINKUSE",
+            "N1_QUERY"
+          ]
+        },
+        {
+          "round": 7,
+          "work": "R7—10 Openration20/100/50/500，均不到1954；R11再搜1954返回无关年表，R12又Open200仍无年；R13回引用旧Search三证据并提交。",
+          "evidence": [
+            "N1_OPEN",
+            "N1_FINISH",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原R3即具体Woolton，新泛Query多两次才R5具体化；接受的酒店关系相同。",
+      "first_actual_tool_divergence": "R2 Query换WorldWarIIpromoted为空，而原E2有部长材料；关键关系查询延至R5。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实搜派并采用Savoy作为查年对象。",
+          "new_goal_operation_product": "R5真实派Query，R6采用关系并实际查Savoy，完整恢复。",
+          "evidence": [
+            "O_LINK",
+            "O_ADOPT",
+            "O_NEXTQUERY",
+            "N1_LINKUSE",
+            "N1_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "关系取得、采用和改变实际查询均存在，不只相同酒店名。",
+      "judgment_action_outcome_chain": "关系恢复→1889取得并算65→仍将已知年当待验证而多次短Open/额外Search→最终重新接受旧Search支持提交C；候选正确不保证立刻停止。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2052生成/142043 Prompt/6Search/5Open/12Actor；原后缀3Search/5Open/9段，生成差区间[-421,-231]但Prompt/查询/Actor增加。新增工作在两次空Query与后期年份复查，非全面省计算。",
+      "counterevidence_and_alternatives": "同题r2/r3直接提交；本条关系正确采用与多数C一致，但核验循环仍出现，不能以C判断无消耗问题。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实派关系、酒店年份与P已知配给年份三者闭合。",
+      "outcome_evidence": [
+        "N2_LINKUSE",
+        "N2_CALC",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "泛派首空，R3部长原Query，R4又宽Query空，R5列其他菜名后具体LordWooltonpiehotel取得正确信息。",
+          "evidence": [
+            "N2_PIEQUERY"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "明确采用Woolton/Savoy后实际查Savoy，R7列三证据算65并Submit，无Open。",
+          "evidence": [
+            "N2_LINKUSE",
+            "N2_CALC",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "泛搜失败后一度猜SpottedDick/Tattie/Cottage等，但实际最终QueryWoolton并被证据确认；原更快具体化。",
+      "first_actual_tool_divergence": "R2泛Query变化；R5才执行具体派酒店Query。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "确认派酒店关系并用于新Query。",
+          "new_goal_operation_product": "R5取得、R6采用并查酒店年，完整恢复。",
+          "evidence": [
+            "O_ADOPT",
+            "O_NEXTQUERY",
+            "N2_PIEQUERY",
+            "N2_LINKUSE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实关系链和行动更新恢复，猜菜名不是最终接受其他菜。",
+      "judgment_action_outcome_chain": "派酒店假设经真实Return确认→Savoy1889补齐→P1954不再需外部核验→R7直接计算提交C，省在后续五Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1327生成/50134 Prompt/5Search/0Open/6Actor；净生成区间[-1146,-956]。比原少5Open但多2Search，新的早期失败消耗与后续省掉的核验分别记账。",
+      "counterevidence_and_alternatives": "G没给酒店，不能说纯G补答案；后续及时提交也受采样影响，不把五Open取消全归U删除。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实2742417/725547与P563365支持计算。",
+      "outcome_evidence": [
+        "N3_LINKUSE",
+        "N3_CALC",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "R2—3两次宽Query空，R4部长Query取得Woolton线索，R5具体派酒店。",
+          "evidence": [
+            "N3_PIEQUERY"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "明确采用Latry/Savoy并查询酒店，R7完整条件比较和两次内部复算后Submit，无Open。",
+          "evidence": [
+            "N3_LINKUSE",
+            "N3_CALC",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "查派用三次泛查询再具体化，比原延后，但最终关系完全相同。",
+      "first_actual_tool_divergence": "R2/3宽Query空，原R2就返回部长；R5关系Query词序不同但全文一致。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "从派来源确定Savoy并转查其年份。",
+          "new_goal_operation_product": "R5真实取回关系，R6明确酒店、实际SavoyQuery，功能恢复。",
+          "evidence": [
+            "O_LINK",
+            "O_NEXTQUERY",
+            "N3_PIEQUERY",
+            "N3_LINKUSE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际证据采用与取证对象更新均有原文。",
+      "judgment_action_outcome_chain": "新取证恢复关系→得到1889→全条件内部比较即可接受Search已有证据→C，减少外部验证但内部完整检查仍有2061字符。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1462生成/46495 Prompt/5Search/0Open/6Actor，净生成区间[-1011,-821]；减少在原五Open和多Round重算，非原关系功能未执行。",
+      "counterevidence_and_alternatives": "同r2无Open但更长内部比较，不能将所有推理表述也视为消失；r1同关系恢复却反而工具更多。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "核心派酒店及两年由真实原/新Return支持，后增无关年份Query没有被当新证据。",
+      "outcome_evidence": [
+        "N4_LINKUSE",
+        "N4_CALC",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 2,
+          "work": "部长泛Query取得人物，R3猜Carrotpie并搜，R4仍把carrot当假设，真实Query实际给2742417。",
+          "evidence": [
+            "N4_PIEQUERY"
+          ]
+        },
+        {
+          "round": 5,
+          "work": "R5明确改用Wooltonpie/Savoy，实际查年1889。R6再搜配给1954，返回无关英国年表，不代替P已知支持。",
+          "evidence": [
+            "N4_LINKUSE"
+          ]
+        },
+        {
+          "round": 7,
+          "work": "R7算65后OpenSavoy50，仅开头；R8直接从Search引用1889并Submit。",
+          "evidence": [
+            "N4_TINY",
+            "N4_CALC",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "暂猜carrotpie，真实Return之后改为具体Wooltonpie；没有把猜测固化成排除其他菜的前提。",
+      "first_actual_tool_divergence": "R3LordWooltonvegetablepieQuery只得Carrot等，R4carrotpiehotelQuery反取得正确派条目；接受取决实际返回。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查出并采用Woolton/Savoy关系推动SavoyQuery。",
+          "new_goal_operation_product": "R4真实Return纠正菜名，R5采用Savoy并查年，功能完整恢复。",
+          "evidence": [
+            "O_ADOPT",
+            "O_NEXTQUERY",
+            "N4_PIEQUERY",
+            "N4_LINKUSE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "候选不相同的初猜后被新证据修正，最终原目标/关系/行动完整。",
+      "judgment_action_outcome_chain": "部分匹配菜假设→真实文档改成Woolton/Savoy→年份闭合算65→一项小Open不增加日期但随后沿已有Search提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1439生成/92770 Prompt/5Search/1Open/7Actor，净生成区间[-1034,-844]。减少四Open，新增配给Search与不同派查询；仍一Open不达目标年份。",
+      "counterevidence_and_alternatives": "R3/R4返回含browsecomp_plus命名材料但真正采用来自wiki25派条目；不把出现DocID等同采用，也不归新候选guess为确定接受。"
+    }
+  ],
+  "four_run_comparison": "四次都真实重建派→酒店→查询酒店年的链，四C。区别在初始失败查询数及闭合后是否继续核验：r2/r3无Open，r4一小Open，r1五小Open再多一次配给Search。相同关系采用并不自动决定停止，A功能重建和后续成本压缩可共存。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "P只缺派酒店与酒店年→关系取证及采用在删除后恢复→酒店成为真实下一Query对象→必要信息闭合后可以直接用Search证据完成减法→C保持；若仍把已知年重新派为核验任务，则成本增加而判断不变。",
+      "support_scope": "本Stage四条内部对照，r1持续核验是反例；与本题S001不是独立题目支持。",
+      "limits": "不预设新机制类别，不用多数C证明U无用；实际停止差别具体识别但独特诱因未确定。"
+    }
+  ],
+  "counterevidence_and_limits": "P保留当前1954提取但历史Reasoning按原协议有剥离，不能把未输入旧总结称可见。G只有冒号行但ORACLE仍在。原切点为部分Round且无原生IDs，只报成本区间；原五Open并未真正取得年份新增事实，新部分Open同样如此。",
+  "evidence": [
+    {
+      "evidence_id": "O_PIEQUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "query",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Woolton pie vegetable pie Minister of Food WWII",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_LINK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/4/snippet",
+      "exact_quote": "The recipe was created by François Latry, Maître Chef des Cuisines at the Savoy Hotel in London",
+      "doc_ids": [
+        "wiki25:2742417"
+      ],
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Maître Chef des Cuisines at the **Savoy Hotel** in London."
+    },
+    {
+      "evidence_id": "O_NEXTQUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So the year food rationing completely ended in the UK after WWII is 1954."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 2,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find:"
+    },
+    {
+      "evidence_id": "N1_LINKUSE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The search results indicate that the Woolton pie was created at the Savoy Hotel in London by François Latry."
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Savoy Hotel London established year opened",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "Civilian peacetime r",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:563365"
+      ]
+    },
+    {
+      "evidence_id": "N1_FINISH",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "Difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N2_PIEQUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Lord Woolton pie London hotel",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_LINKUSE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "I have found that the \"Woolton pie\" was created by François Latry at the Savoy Hotel in London."
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N3_PIEQUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Woolton Pie hotel London created",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LINKUSE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "So the hotel is the Savoy Hotel. I need to find the establishment year of the Savoy Hotel."
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Calculation: 1954 - 1889 = 65."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N4_PIEQUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Lord Woolton carrot pie pie hotel created",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_LINKUSE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "It was created by François Latry, Maître Chef des Cuisines at the **Savoy Hotel** in London."
+    },
+    {
+      "evidence_id": "N4_TINY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "Historic luxury hotel in London, England The Savoy",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:725547"
+      ]
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

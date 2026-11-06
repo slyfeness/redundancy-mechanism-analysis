@@ -1,0 +1,45 @@
+{
+ "case_id":"289__rep4__S002__FIRST_SENTENCE",
+ "question_id":"289",
+ "status":"CODEX_FULL_ORIGINAL_AND_FOUR_SUFFIXES_READ",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"逐条真实Final均Çılgın Bediş和1996或1996—2001，原C，冻结A不变。"},
+ "review_basis":"同SHA0aa3f8ac3f00d2ad33040c27df54fe838273487585ba48fac22672e1e7006c70原4轮3Call本轮已亲读；四新9轮5Call全部Reasoning/Final直接阅读，62新块10492字符、22字段。40原新Return位置新增本轮未读73098演员舞台死亡名单已全文读取，62346及其他逐SHA对应已阅读全文。",
+ "pre_state":"R2@349前P已首Query取得23585并采用Çılgın Bediş年代/喜剧/频道/主演Yonca；没有演员剧目履历或Deliler，尚缺戏剧/语义条件。",
+ "u_work":"U=R2[349,762)+E2 99f815fb5fceec59+R3[0,733)。查Yonca tiyatro1980—1990，47650返回出演名单；模型引用土耳其原文，选Deliler，首次采用其与Çılgın近义。原后续才针对该剧目再确认，再全题接受。",
+ "u_state_update":"已知电视候选→通过演员资料找具体剧目并建立关系→下一步由演员广查变Deliler确认。",
+ "original_action_consequence":"G提前给出Deliler及其与演员的关联核查，四次仍真实查演员并采用出演资料。新2直接将Deliler纳入Query，一次返回后答；新3/4虽查泛演员但G已经提示目标剧目，取得资料后也直接答；新1泛演员后仍追加一次剧目确认，返回没有新演员资料或首演支持，最后仍沿P和首新Return接受。结果相同，成本因是否多确认分叉。",
+ "guidance":{"text":"Let me verify this more specifically by searching for more details about the play \"Deliler\" or any connection between Yonca Evcimik and this play.","source":"原S003 R3[733,879)，33原生Token，full_successor_guide=true覆盖后继全部Reasoning行，工具参数/Return未预填。目标R2@349 native131。","audit":"ORACLE_ANCHORED/KEY_FUTURE_ENTITY/FULL_SUCCESSOR_REASONING_PREFILL。Yonca已P，Deliler则P未知，为原U产物；G给关系方向，不给出演年/释义/完整答案。首3705=3541+131+33，原E2及未来Return未注入，但严格可省不成立。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Now I need to verify the other criteria:","use":"演员剧目缺口仍未处理。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/1/exact_arguments","quote":"Yonca Evcimik tiyatro oyunu 1980-1990","use":"原U无具体剧目名的真实查询。"},
+  {"id":"O3","source":"original","pointer":"/rounds/2/reasoning_content","quote":"One of the plays is \"Deliler\"","use":"原U找到并选择具体剧目。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik tiyatro oyunu 1980-1990","use":"R2 abe4eb6e28eca99e恢复泛演员查询。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"This translates to:","use":"明确阅读47650并解释出演名单，不只Query重合。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Deliler oyunu Devekuşu Kabare Tiyatrosu 1985-1988","use":"R3 80d87615c4d0527e追加确认，返回47327/23585/40897/62346/73098，没有新演员或首演支持。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/2/content","quote":"**Release Year:** 1996","use":"正式C，所需出演信息来自前一次新Return。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik theatre play 1980-1990 Deliler","use":"R2 9a005922ff13ce03直接用G未知剧目定向Query。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Yonca Evcimik performed in a play called \"Deliler\" during 1985-1988","use":"真实履历后采用出演关系，随后直接接受。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/1/content","quote":"**Release Year:** **1996**","use":"正式C。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik tiyatro oyunu 1980-1990","use":"R2 bab3cf39b6e6bc33真实泛演员Query，但G已给剧目。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"From the first search result (docid 47650)","use":"实际引用履历，近义关系与全题接受在同轮恢复。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/1/content","quote":"1996-2001 (between 1990-2005)","use":"正式C。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Yonca Evcimik tiyatro oyunu 1980-1990","use":"R2 b05028adb5feb7c1真实取得47650。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"These are semantically close in meaning.","use":"真实Return后解释G剧目与剧名近义，直接全题接受。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/content","quote":"Aired from July 8, 1996 to March 3, 2001","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"虽然G给剧目，仍从泛演员取证，翻译名单后另查一次具体剧目。","state_chain":"G提示Deliler→真实演员履历与词义采用→追加确认未补关系材料→按已有支持提交。","function_change":"PARTIAL_REBUILT：实际取证/采用恢复，但自主剧目发现受G补偿；1161+G33较1287少93生成，2Search/3Actor同原，Prompt20431较19862多569。","evidence":["O2","O3","N11","N12","N13","N14"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"直接用GDeliler定向演员Query，返回后不再追加确认。","state_chain":"教师对象→真实出演材料→语义/全题接受→Final。","function_change":"PARTIAL_REBUILT，875+33净-379生成，1Search/2Actor各少1，Prompt10423净-9439。","evidence":["N21","N22","N23"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"首泛演员Query和原一致，但G已给Deliler，Return后直接将该剧目作为匹配并提交。","state_chain":"未来剧目提示→真实履历引用→语义采用→整体接受，不再查第二次。","function_change":"PARTIAL_REBUILT，976+33净-278生成，Search-1/Actor-1，Prompt10454净-9408。","evidence":["N31","N32","N33"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"同泛演员取证后立即整体接受，不再执行原后继的定向确认。","state_chain":"G对象保留→真实履历→近义关系被采用→Final。","function_change":"PARTIAL_REBUILT，966+33净-288生成，Search-1/Actor-1，Prompt10403净-9459。","evidence":["N41","N42","N43"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"原U通过从演员资料挑出合适剧目来建立条件联系；删除后该剧目被G提前给定，真实出演资料和语义采用仍需执行，但可以一轮完成后直接接受。三次这样少一轮，另一次仍追加确认且未新增关键支持，答案保持而Prompt反增。既要记录教师补偿，也要区分同G下是否继续确认；不能把全部成本下降归为原演员/关系功能消失。",
+ "within_case_support":"A/C→CCCC；4/4演员真实取证/采用恢复，4/4G提前给剧目，3/4不再确认，1/4追加确认但关系材料无新增。三次Search/Actor下降，一次不变且Prompt增加；答案保持4次与省确认3次不同。",
+ "mechanism_chain_checks":[
+  {"chain":"G给原U才发现的剧目，真实演员资料后直接关系接受并提交，省去下一确认轮","observed_repeats":[2,3,4],"not_observed_repeats":[1],"evidence_by_repeat":{"2":["N21","N22","N23"],"3":["N31","N32","N33"],"4":["N41","N42","N43"]},"limits":"未来剧目与完整后继计划预填，不构成严格可省证据。"},
+  {"chain":"演员关系已被采用后仍追加查询，未补新关键证据而同答案，额外消耗保留","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N11","N12","N13","N14"]},"limits":"对照同题rep1S003有新词典证据支持的查询，不说所有确认无价值。"}
+ ],
+ "counterevidence_and_limits":["GDeliler为P未知而Yonca为已知，实体新颖性分别审计。","Query没出现G剧目不证明选择完全自主：新3/4上下文已经预填该剧目。","新1追加确认没有47650或首演材料，实际Return不能支撑新关系已证实。","原新演员出演期均非首演直接日期；部分same root表述过强。","新2附加creator角色支持不足，主答案C与解释支持分开。","完整后继Reasoning计划预填按封存条件保留，不改边界、不新增运行。","G33计一次，独立成本不相加。"],
+ "cost_basis":"原native131后1287生成/2Search/3Actor/19862Prompt(3541+16321)。新1161/875/976/966生成，G33，净-93/-379/-278/-288；Search2/1/1/1，Actor3/2/2/2；Prompt20431/10423/10454/10403差+569/-9439/-9408/-9459。首3541+131+33=3705。",
+ "next_cross_case_test":"跨题A中既有实体/未来实体/定向选择和真实资料采用分别比较，进一步看同G是否仍追加确认；不能以功能重建或一律G泄漏二元标签替代过程。"
+}

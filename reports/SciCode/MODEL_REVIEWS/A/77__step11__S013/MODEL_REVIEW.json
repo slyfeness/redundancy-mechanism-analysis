@@ -1,0 +1,158 @@
+{
+  "case_id": "77__step11__S013",
+  "category": "A",
+  "trajectory_id": "77__step11",
+  "stage_id": "S013",
+  "main_problem_id": "77",
+  "official_subproblem_id": "77.11",
+  "intervention": "FIRST_SENTENCE",
+  "review_status": "COMPLETE",
+  "evidence_index": "RESOLVED_EVIDENCE.json",
+  "objective_cost_table": "OBJECTIVE_COSTS.json",
+  "sources": {
+    "original_read": "同一77__step11源f7614d9d...的11子题33轮31真实Call和全部Return已本人阅读全文，覆盖保存在77__step11__READING_COVERAGE.md。本组再次全文读U77.8两轮、确认两次同SHA正式代码；复核77.9自造216.7预期、77.10与77.11依赖及目标正式提交。没有以其他题的轨迹或旧标签代替本源。",
+    "new_read": "四条完整新轨迹78轮78事件全部Reasoning、content、实际参数、完整Return、正式代码与终态逐条阅读：22/22、22/22、15/15、19/19。NEW2压力R1的22654字符工具参数在长输出截断后，按65个逐字不同原段及全部127段位置完整补读；其12466字符R2、NEW4温度11465字符R3及6171字符R5均完整读。没有用摘要或关键词筛段。",
+    "input_read": "四份完整INPUT审计及实际首请求/响应/逻辑请求/Assistant解析流均保存；切77.8 R1@0，空当前draft，21历史Actor/20工具，六个前题正式产物。G6词元，P3053+G6=3059，首轮max10000，原新逐工具配对与新正式代码向后传播另经机械核验。"
+  },
+  "original": {
+    "pre_state": "当前77.8尚无E_pot草稿；P已有dist、dist_v、E_ij、f_ij、E_tail、P_tail六项正式代码。模型可见函数签名及截断移位LJ题意，尚未把唯一粒子对求和写成当前正式产物。此前77.1长度停止不是可用正式产物。",
+    "U_goal": "实现并提交系统总势能E_pot，而不是目标评分函数forces或后续温度。",
+    "U_operations": "77.8 R1将唯一i<j粒子对、最小影像dist、E_ij求和并加E_tail组成函数，真实write_code获ACCEPTED；R2将完全同1263字符/ddb64...代码submit_code。未执行数值测试。",
+    "U_product": "一个真实已提交的总势能函数及其接口实现；不能把ACCEPTED等同物理算法正确性的独立验证。",
+    "judgment_before_after": "从已有辅助函数但无总势能实现，转为确认可按唯一粒子对累加、追加尾修正并正式提交；没有发生候选切换或依据新测试修复。",
+    "original_suffix_use": "E_pot加入后续prior code，但原77.9温度只由速度、质量与常数计算，77.10压力用dist_v/f_ij，评分77.11 forces也只用dist_v/f_ij。未见它们数值调用E_pot。原温度真输出2166.7却与自造216.7比较，长篇重算到length无正式提交；压力与forces随后仍提交且目标C。因而末题C不足以证明势能实现必要或不必要。",
+    "evidence": ["U1", "U2", "O1", "O2", "O3"]
+  },
+  "guide_audit": {
+    "G": "Let me understand the problem:",
+    "P_relation": "来自原S014/77.9 R1[0,30)，但只预填普通理解开场；实际首请求仍是77.8题面与切前代码，不恢复77.9消息。",
+    "novelty": "没有新增候选、单位数值、势能算法、测试结果或答案。四路均自行继续实现77.8，未凭G跳至温度。",
+    "risk": "ORACLE_ANCHORED仍保留；跨子题选取的语言承接可能影响生成，不能称无引导纯删除。未发现这句包含U独有事实。",
+    "evidence": ["G1", "G2"],
+    "uncertainty": "单次教师引导与独立采样可改变后续单位推导/测试方式，日志不足将其差异唯一归因于被删U。"
+  },
+  "rollouts": [
+    {
+      "branch_id": "77__step11__S013__FIRST_SENTENCE__rep1",
+      "official_state": "C",
+      "first_material_divergence": "77.8 R1先实际read_code看到空draft，R2才写势能，而原U直接write；仍恢复同一i<j+E_tail算法。",
+      "work_reconstruction": {
+        "goal": "重新完成总势能函数。",
+        "operation": "read空→write8284...→测试导入dist_v被拒→原样write8284...→测试脚本语法错误→read→同版submit；不是跳过势能工作。",
+        "product": "同原算法的已提交E_pot，具体实现用len而非shape；两个失败均不是成功的数值验证。",
+        "assessment": "FULL_REBUILT"
+      },
+      "judgment_change": "把测试脚本语法失败说成previous write_code错误，读回却是同版；温度早期还漏速度平方换算/粒子平均，后来重新采用SI一致并除N，真输出与独立直接计算相同后提交。",
+      "action_chain": "势能入口/脚本失败引出重复write/read，未改变势能算法；温度两次sys导入拒绝又引出长推导和改写，R7正确公式→R8真实2166.707双路径一致→R9正式提交；压力误以1e6作bar转换，exec测试拒绝后原版提交；forces内联LJ/最小影像，exec测试被拒仍提交。",
+      "result_explanation": "目标forces C且正式提交不调用E_pot/temperature/pressure；压力单位错不能由末题C掩盖，也不能把C归因于省掉势能。",
+      "cost_localization": "原后缀12Actor/11工具变22/22，势能2→7、温度4→9、压力2→3、forces4→3轮。生成含G少4996记录Token，主要少了原温度长篇未提交推导；Prompt增加39551，Actor+10工具+11。局部重做和额外交互与生成篇幅减少同时存在，未全资源下降。",
+      "evidence": ["N11", "N12", "N13", "N14", "N15", "N16"],
+      "counterevidence": "forces实际测试未运行成功；温度后来确有数值检查和正确公式，不能把整条描述为一味错误改写。",
+      "unknowns": "未独立评分所有中间子题，不推算原生精确节省或势能功能的纯因果效应。"
+    },
+    {
+      "branch_id": "77__step11__S013__FIRST_SENTENCE__rep2",
+      "official_state": "C",
+      "first_material_divergence": "77.8 R1重写同势能算法后R2真测试试图import prior_code，被拒而原U直接提交；R3把入口拒绝解释为辅助函数不可直接使用，内联一版。",
+      "work_reconstruction": {
+        "goal": "恢复唯一粒子对与尾修正。",
+        "operation": "write原算法→import prior_code测试拒绝→write内联dist/E_ij/E_tail→submit却回初版f5cd...，不是提交刚写的f5d1...。",
+        "product": "恢复原i<j+E_tail的正式势能，额外内联修改未进入最终产物。",
+        "assessment": "FULL_REBUILT"
+      },
+      "judgment_change": "入口限制被当作函数作用域问题使辅助实现膨胀；压力把除1e-27误算为乘1e-27，错误转成怀疑f_ij单位，长推导甚至写进22654字符代码注释，后识别代码过长再统一到10bar换算。",
+      "action_chain": "温度四轮一致SI公式、真实481.089结果后提交；压力首write大量注释且length→R2清理并重得10倍→read→自包含真测试180.1368→submit；forces九轮中forces/sys导入接连拒绝，改写函数、重复测试入口、猜假阳性、read，再提交。没有一条forces数值测试实际成功。",
+      "result_explanation": "forces C来自最终唯一粒子对及相反力累加产物，与恢复E_pot并不形成可见数值依赖。原新都C但中间判断及测试路线不同。",
+      "cost_localization": "生成含G增加1944，Prompt增加82016，Actor+10工具+11；势能4轮、温度4轮、压力5轮、forces9轮。压力单位误推导和把推导写进参数占大量生成；forces入口错误又增加改写/读回，不能按势能Stage长度计算节省。",
+      "evidence": ["N21", "N22", "N23", "N24", "N25", "N26", "N27"],
+      "counterevidence": "压力后来确实纠正10bar并实际运行测试；温度数值运行正常。不能把全部额外计算归为无效或认为所有新产物相同。",
+      "unknowns": "原新随机数测试输入不同，测试通过不足证明全部参数下正确。"
+    },
+    {
+      "branch_id": "77__step11__S013__FIRST_SENTENCE__rep3",
+      "official_state": "C",
+      "first_material_divergence": "势能算法和两轮write/submit几乎原样恢复，没有显著方向改变；后续温度推导明说速度平方需1e6，但实际写入遗漏该因子。",
+      "work_reconstruction": {
+        "goal": "恢复总势能的唯一对求和及尾修正。",
+        "operation": "两轮真实write、同版submit，和原U一样没有数值测试。",
+        "product": "2c423...正式E_pot，原功能完整观察到。",
+        "assessment": "FULL_REBUILT"
+      },
+      "judgment_change": "温度测试exec入口拒绝后以write validation passed为由提交漏1e6的温度；forces起初把tuple除r，测试dist_v导入拒绝却被解释为作用域缺函数，内联helpers并同时改成np.array(r_vec)/r。",
+      "action_chain": "温度read→write漏换算→入口拒绝→提交，无数值验证；压力10bar真测试后提交；forces写tuple/r→导入拒绝→内联并转换array→read→真输出(4,3)、和零→submit。实际修复tuple运算伴随入口误归因，但不能说是返回直接证明tuple错。",
+      "result_explanation": "目标forces C保持且有有限数值运行；中间温度实现不保持单位质量，末题未用温度，所以评分保持不能证明整个求解质量相同。",
+      "cost_localization": "生成含G少13301记录Token，但Prompt+24937，Actor+3工具+4。主要避开原温度两段长错误预期反复推导，代价是未核对遗漏单位直接提交；forces额外内联/读回/测试6轮对原4轮，不是势能功能被省。",
+      "evidence": ["N31", "N32", "N33", "N34", "N35", "N36"],
+      "counterevidence": "forces最终实测成功，压力也实测；不能以温度缺陷否定目标C或反称整个分支无验证。",
+      "unknowns": "没独立运行新评分，温度问题是代码量纲比对，非新增Judge结论。"
+    },
+    {
+      "branch_id": "77__step11__S013__FIRST_SENTENCE__rep4",
+      "official_state": "C",
+      "first_material_divergence": "77.8 R1只恢复唯一对E_ij求和，未恢复原U追加E_tail；R2 exec测试被拒，read后原样提交。",
+      "work_reconstruction": {
+        "goal": "恢复系统势能求和，但对尾项的选择不同。",
+        "operation": "write无tail版本→exec测试拒绝→read→同版submit。",
+        "product": "dc8c...正式函数恢复粒子对求和，原U的尾修正未观察到。题面本身主要要求截断移位求和，不能自动断言无tail版错。",
+        "assessment": "PARTIAL_REBUILT"
+      },
+      "judgment_change": "温度总能量先漏除N，真输出12027239与自己打印的401不符；长篇反复在总量/平均量间切换，最终采用题面明确average而补N。第二次变更测试质量/N仍保留401，输出33676271，继续逆推后最终信公式提交。",
+      "action_chain": "势能测试不执行但读回即交；温度R3长论证补N、R4真实新测试仍与虚设401冲突、R5继续推导但选择提交正确平均公式；压力dist/dist_v导入拒绝引出内联/read/自包含测试，实际virial0只覆盖远距离配置；forces先run被拒未write→write→submit变体，没新数值运行。",
+      "result_explanation": "forces C保持，但不是完整保留U所有工作；未见forces依赖tail或E_pot。可以观察tail未恢复而末题保持，却不能据此证明势能子题tail多余或删除整U成功。",
+      "cost_localization": "生成含G少4694，Prompt+40084，Actor+7工具+8。温度5轮但约长推导仍多，压力2→7轮入口误归因增加工作；forces4→3轮并省掉数值测试。净生成下降不能等同必要检查全部保持。",
+      "evidence": ["N41", "N42", "N43", "N44", "N45", "N46", "N47"],
+      "counterevidence": "真温度反馈触发了必要的除N修复，而非所有反复都无新增作用；压力确有后续真实测试，但零virial不能验证非零pair行为。",
+      "unknowns": "无tail版相对题目正误未单独评分；不根据最终forces得分倒推该实现正确性。"
+    }
+  ],
+  "cross_rollout_comparison": {
+    "same_changes": "4/4重新实现并正式提交势能求和；3/4恢复原tail，1/4未恢复。4/4目标C，4/4累计Prompt、Actor与工具均增加。没有一路证明完整势能工作被直接绕过。",
+    "different_paths_same_result": "NEW1/4内联forces且无实际数值验证；NEW2依赖helpers、反复入口失败仍交；NEW3先tuple/r再变array并真测试。相同目标C与不同中间代码质量、验证路线并存。",
+    "mechanism_strength": "支持的局部链是：测试入口/调用方式被拒→把失败错误归到已保存实现或依赖作用域→增加改写/read/重试；若接受与真实数值验证混淆，则可未验证而提交。这解释消耗和代码路线，不足以解释删除势能为何使目标C保持；后者首先受末题不调用势能及功能重建限制。",
+    "counterexamples": "NEW3/4温度分别漏单位和后修N，说明终题C不能代表辅助任务质量；NEW2资源增加、NEW1/3/4生成减少但Prompt工具增加，反驳A类必省计算。NEW3 forces真实测试与NEW4温度必要修复反驳把所有新检查归为冗余。"
+  },
+  "stage_function": "把已可调用的势能/距离/尾项辅助关系组合成唯一粒子对总势能，并正式提交当前子题实现。",
+  "candidate_mechanism_chain": "前文有辅助函数但无总势能草稿→U首次组合并提交→删除后同题面和helpers使四路重新组合，三路完整恢复、一路少tail→目标forces仍从dist_v/f_ij另行实现，四路C→成本差主要落在温度单位/自造Expected及测试入口反馈如何被解释，而非观察到势能功能被省。跨题归纳时应把辅助产物与评分目标的真实依赖、恢复程度、测试反馈归因分开。",
+  "limits": [
+    "这是题77已有多个Stage中的另一个干预，不增加不同题目支持数。",
+    "所有首输入为RECONSTRUCTED_CHAR_EXACT，不给原生词元精确节省；当前切R1@0的整请求生成记录差可以复算，但仍保持该边界标记。G6只计一次。",
+    "无Search/Open，工具均为编程工具；run_python被拒不是数值执行。",
+    "不相加四条独立分支成本，Prompt不等于独特上下文或实测GPU预填耗时。",
+    "没有新增执行候选代码、GPU或重新评分；语义自审不是独立人工金标准。"
+  ],
+  "evidence_specs": [
+    {"id":"U1","source_key":"ORIGINAL","json_pointer":"/steps/7/rounds/0/reasoning_content","exact_quote":"5. Add the tail correction (E_tail) for the entire system"},
+    {"id":"U2","source_key":"ORIGINAL","json_pointer":"/steps/7/tool_events/1/arguments/code","exact_quote":"total_energy += E_tail(N, L, sigma, epsilon, rc)"},
+    {"id":"O1","source_key":"ORIGINAL","json_pointer":"/steps/8/tool_events/1/model_visible_return/stdout","exact_quote":"Single particle temperature (v=[1,1,1] nm/ps): 2166.7072293777455 K\nExpected T for v=[1,1,1]: 216.7 K"},
+    {"id":"O2","source_key":"ORIGINAL","json_pointer":"/steps/8/rounds/2/reasoning_content","exact_quote":"The test shows that the expected temperature for v=[1,1,1] should be 216.7 K, but my code gives 2166.7 K (10x too high)."},
+    {"id":"O3","source_key":"ORIGINAL","json_pointer":"/steps/10/submitted_code","exact_quote":"dx, dy, dz = dist_v(xyz[i], xyz[j], L)"},
+    {"id":"G1","source_key":"G1","json_pointer":"/G","exact_quote":"Let me understand the problem:"},
+    {"id":"G2","source_key":"INPUT1","json_pointer":"/G_source/pointer","exact_quote":"/steps/8/rounds/0/reasoning_content"},
+    {"id":"N11","source_key":"NEW1","json_pointer":"/steps/0/rounds/0/tool_calls/0/name","exact_quote":"read_code"},
+    {"id":"N12","source_key":"NEW1","json_pointer":"/steps/0/tool_events/6/arguments/code","exact_quote":"total_energy += E_tail(N, L, sigma, epsilon, rc)"},
+    {"id":"N13","source_key":"NEW1","json_pointer":"/steps/0/rounds/5/reasoning_content","exact_quote":"The previous write_code call had a syntax error."},
+    {"id":"N14","source_key":"NEW1","json_pointer":"/steps/1/tool_events/7/model_visible_return/stdout","exact_quote":"Temperature: 2166.7072293777455 K\nDirect calculation: 2166.7072293777455 K"},
+    {"id":"N15","source_key":"NEW1","json_pointer":"/steps/2/tool_events/2/arguments/code","exact_quote":"P_kinetic = (N * k_B * T) / V * 10**6"},
+    {"id":"N16","source_key":"NEW1","json_pointer":"/steps/3/tool_events/1/model_visible_return/validation/name","exact_quote":"exec"},
+    {"id":"N21","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"This means I cannot directly use the `dist` and `E_ij` and `E_tail` functions that were written in prior subproblems."},
+    {"id":"N22","source_key":"NEW2","json_pointer":"/steps/0/tool_events/3/model_visible_return/code_sha256","exact_quote":"f5cdac41d13ad43bd282e7edbbe78e3b4ded5bac9eff8b807163049a32ca4f40"},
+    {"id":"N23","source_key":"NEW2","json_pointer":"/steps/1/tool_events/2/model_visible_return/stdout","exact_quote":"Temperature: 481.0895874277537 K"},
+    {"id":"N24","source_key":"NEW2","json_pointer":"/steps/2/rounds/1/reasoning_content","exact_quote":"The code I wrote is too long and contains my reasoning process rather than the actual implementation."},
+    {"id":"N25","source_key":"NEW2","json_pointer":"/steps/2/tool_events/3/model_visible_return/stdout","exact_quote":"P_total: 180.13683779328 bar"},
+    {"id":"N26","source_key":"NEW2","json_pointer":"/steps/3/rounds/7/reasoning_content","exact_quote":"The error might be a false positive or from a previous attempt."},
+    {"id":"N27","source_key":"NEW2","json_pointer":"/steps/3/tool_events/6/arguments/code","exact_quote":"import sys\nsys.path.insert(0, '/mnt/data')"},
+    {"id":"N31","source_key":"NEW3","json_pointer":"/steps/0/tool_events/1/arguments/code","exact_quote":"total_energy += E_tail(N, L, sigma, epsilon, rc)"},
+    {"id":"N32","source_key":"NEW3","json_pointer":"/steps/1/tool_events/3/arguments/code","exact_quote":"K_joules = 0.5 * m_particle_kg * v_sq_sum"},
+    {"id":"N33","source_key":"NEW3","json_pointer":"/steps/1/rounds/3/reasoning_content","exact_quote":"Let me submit the code as the validation passed."},
+    {"id":"N34","source_key":"NEW3","json_pointer":"/steps/3/tool_events/0/arguments/code","exact_quote":"unit_vec = r_vec / r"},
+    {"id":"N35","source_key":"NEW3","json_pointer":"/steps/3/tool_events/2/arguments/code","exact_quote":"unit_vec = np.array(r_vec) / r"},
+    {"id":"N36","source_key":"NEW3","json_pointer":"/steps/3/tool_events/4/model_visible_return/stdout","exact_quote":"Sum of forces (should be near zero for equilibrium): [0. 0. 0.]"},
+    {"id":"N41","source_key":"NEW4","json_pointer":"/steps/0/tool_events/3/arguments/code","exact_quote":"E_total += E_ij(r, sigma, epsilon, rc)\n    \n    return E_total"},
+    {"id":"N42","source_key":"NEW4","json_pointer":"/steps/1/tool_events/1/model_visible_return/stdout","exact_quote":"Temperature with v=100 nm/ps: 12027239.68569384 K\nExpected temperature: ~401 K"},
+    {"id":"N43","source_key":"NEW4","json_pointer":"/steps/1/rounds/2/reasoning_content","exact_quote":"My current implementation is missing the division by N. Let me update it."},
+    {"id":"N44","source_key":"NEW4","json_pointer":"/steps/1/tool_events/3/model_visible_return/stdout","exact_quote":"Calculated temperature: 33676271.11994276 K\nExpected temperature: ~401 K"},
+    {"id":"N45","source_key":"NEW4","json_pointer":"/steps/2/rounds/2/reasoning_content","exact_quote":"I need to inline the minimum image convention calculation directly in the pressure function instead of calling the external function."},
+    {"id":"N46","source_key":"NEW4","json_pointer":"/steps/2/tool_events/5/model_visible_return/stdout","exact_quote":"P_virial: 0.0"},
+    {"id":"N47","source_key":"NEW4","json_pointer":"/steps/3/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"}
+  ]
+}

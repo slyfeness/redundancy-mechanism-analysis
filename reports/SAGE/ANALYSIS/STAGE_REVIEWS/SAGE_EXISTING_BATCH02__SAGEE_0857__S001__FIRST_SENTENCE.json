@@ -1,0 +1,675 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0857",
+  "stage_id": "S001",
+  "sample_order": 20,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0857/trajectory.json",
+      "source_sha256": "7ded54490fd523ab26cb16a2fea096b730cd4ebc3fa5915f6f6c26137e7304f7"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0857.json",
+      "source_sha256": "26c59ff9b685cf8df2862e86fe2ed8b8976603192547b9a02fe1fc616ce12757"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "35e88ea38b09b8f0c4e61f6a1d89f623ebdcf4372d98868e9aabccd22ea2828a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3b5ee93fcebae1706e647448b73081b4399d74ab0c4e3662798b943da2564f29"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "74ac3054eec6197c2c0db2bdb066b4ee1ee29a70fa6ed09dfaea3063bc9dc2aa"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b6c2c29a530fe8cd1cf630ec52269128c5d2438aab07353b8a509bf921c6e471"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "772309cec8322288dc0bfcab67d0f1be5e042ba36189c52e15fd858377af9533"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the reported acquisition price, in millions of U.S. dollars, for the cloud security company whose product was rebranded as Microsoft Cloud App Security, and whose founders were former members of the Israeli Intelligence Corps' Unit 8200, given that the acquisition occurred after the launch of Microsoft's Trustworthy Computing Initiative?",
+    "gold": [
+      "320"
+    ],
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整原3轮/所有事件返回已读，ROOT_020_ORIGINAL_PROCESS.md。",
+    "new": "57685字符四完整新路径，15轮15真实工具事件；所有Reasoning和不同返回全文已读，完全相同全文才引用已读来源。",
+    "actual_input": "R1@0仅system与原题，当前P空；没有原Search包、原Final或Gold。教师G带来Adallom和精确DocID。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "known": "只有改名产品、创始人背景、收购先于/后于关系及价格问题；未给Adallom名称、DocID或收购价。",
+    "target_gap": "由产品/创始人等线索发现具体公司并取得可用文档。",
+    "evidence": [
+      "I_QUESTION",
+      "I_GUIDE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 495
+      }
+    ],
+    "goal": "拆题后按改名产品检索，发现符合线索的云安全公司及其文档资料。",
+    "operations": "真实Query Microsoft Cloud App Security acquisition rebranded，返回十项中第三条Adallom7476796，完整片段给320/2015、改名及Unit8200。",
+    "product": "具体候选文档及答案属性首次从工具返回进入可见状态；明确采用发生在下一S002，不能提前归给U。",
+    "judgment_change": "从未定位公司转为有可用候选/价格证据，但此Stage末尚未写出条件比较。",
+    "evidence": [
+      "O_QUERY",
+      "O_RETURN",
+      "O_PRODUCT_RETURN"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R2明确识别Adallom并采用320等条件，Open同Doc；R3年份比较后Submit320。",
+    "evidence": [
+      "O_ADOPT",
+      "O_OPEN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "间接产品线索到具体候选文档的发现和取证",
+    "教师已给名称/DocID时，自主发现部分与真实文档取证部分必须拆开核对",
+    "后续定向查询可以新增价格冲突，不能按原同C忽略证据选择工作"
+  ],
+  "guide_audit": {
+    "text": "The search results contain a document about Adallom (doc_id: wiki25:7476796) which seems to match the description:",
+    "tokens": 33,
+    "source": {
+      "round": 2,
+      "pointer": "/rounds/1/reasoning_content",
+      "start": 0,
+      "end": 114
+    },
+    "compared_with_complete_actual_P": true,
+    "new_entity": "Adallom与精确wiki25:7476796均P未知，来自原被删检索产物。",
+    "new_fact_or_relation": "预设Search已发现匹配文档，实际上P还没有任何Search结果；G自身不是新模型自主检索或真实Return。",
+    "new_action_direction": "可直接Open该Doc绕过候选发现；四条实际都先Open教师给定Doc。",
+    "new_answer": "不带320/327/2015或2002，价格必须从真实新工具材料取得，不能称所有答案直接预填。",
+    "information_risk": "ORACLE_ANCHORED且目标产物名称/DocID关键未来信息泄漏；任何短路径不计严格可省或无引导纯删除证据。",
+    "evidence": [
+      "I_QUESTION",
+      "I_GUIDE",
+      "N4_DIRECT_OPEN"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit320；真实新Search公司条目给320，另一Nicosia条目给327，模型明确选择前者。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1照G的具体Doc Open100只头部；R2再Open200仍未到价格/改名/创始人，模型明确说资料不足。之前列题目条件不是文档已证。",
+        "R3转定向Adallom acquisitionMCAS Query，取得7476796全原Search片段和10865535 Nicosia327million等。R4实质采用公司身份与价格，明确对比320/327，以公司条目更直接为理由选320。",
+        "倡议启动仍凭记忆2002，无真实时间Query，实际Submit。"
+      ],
+      "first_judgment_divergence": "原自主广义检索发现公司；新公司/Doc由G给定，先从文档头读不到价格，再定向查给定公司；之后新增价格冲突。",
+      "first_actual_tool_divergence": "原产品Search，新教师Doc Open100→200后才公司Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "从线索发现公司",
+          "original_operation": "产品Query不含Adallom，取得候选",
+          "original_product": "候选及文献",
+          "new_goal": "候选已由G预先给定",
+          "new_operation": "直接Open/公司定向Query，不重新从未知公司集合发现",
+          "new_product": "自主发现未重现，教师补偿",
+          "evidence": [
+            "O_QUERY",
+            "I_GUIDE",
+            "N1_FIRST_OPEN",
+            "N1_TARGET_QUERY"
+          ]
+        },
+        {
+          "original_goal": "取得公司/价格支持材料",
+          "original_operation": "Search返回身份/320",
+          "original_product": "完整候选片段",
+          "new_goal": "查给定公司的具体事实",
+          "new_operation": "R3定向Query实际得到并R4采用公司片段",
+          "new_product": "文献取证恢复，另新增327冲突并明确裁定",
+          "evidence": [
+            "O_RETURN",
+            "N1_TARGET_QUERY",
+            "N1_320_RETURN",
+            "N1_327_RETURN",
+            "N1_PRICE_CHOICE",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "取证/价格材料恢复，但原由线索发现未知候选的工作由G名称/DocID代替。若只采用宽泛“取得公司资料”可称FULL，主方案保留这一细分而不掩盖教师补偿。",
+      "judgment_action_outcome_chain": "P未知公司+G精确Doc→短Open不足→定向Search真取得公司证据但产生320/327分歧→明确按公司页直接相关性选320→C；不是原U完全无作用。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "660生成/4695Prompt/1S2O4A，原499/8726/1S1O3A；生成+161、Prompt-4031、Open+1/Actor+1、Search同1但改为更定向小返回包。输入下降不是整项工作减少。",
+      "counterevidence_and_alternatives": "语料价格有两数，模型的来源优先理由可观察，但不在本轮外部求证哪个价格唯一真实；按已冻结Gold为C。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit320，已实际比较两价格，且新时间Search支持先后。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1 Open教师Doc50只头；R2明确片段不足，Query Adallom MicrosoftCloudAppSecurityacquisitionprice，Return与新1定向查询整包相同。",
+        "R3采用320并识别Nicosia327冲突，明确优先主公司条目；再真实Search倡议日期取得January15,2002。",
+        "R4采用时间先后，又陈述选320原因，实际Submit。"
+      ],
+      "first_judgment_divergence": "G给候选后重新取得事实，还面对原广义Search没有返回的价格冲突，新增来源选择及时间补证。",
+      "first_actual_tool_divergence": "先Open50代替原Search，后定向Query并多一时间Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "发现未知公司并取文献",
+          "original_operation": "产品Query发现Adallom",
+          "original_product": "候选和价格片段",
+          "new_goal": "核查G指定公司",
+          "new_operation": "教师Doc短Open→定向Search取证，非重新发现未知候选",
+          "new_product": "取证恢复而候选发现由G补偿",
+          "evidence": [
+            "O_QUERY",
+            "I_GUIDE",
+            "N2_TARGET_QUERY",
+            "N2_PRICE_CHOICE",
+            "N2_SUBMIT"
+          ]
+        },
+        {
+          "original_goal": "获得公司直接支持",
+          "original_operation": "真实Search返回",
+          "original_product": "公司身份/320",
+          "new_goal": "同取证部分",
+          "new_operation": "真实返回公司/327资料并比较，另查时间",
+          "new_product": "核心事实恢复且时间支持加强",
+          "evidence": [
+            "O_RETURN",
+            "N2_PRICE_CHOICE",
+            "N2_TIME_QUERY",
+            "N2_TIME_RETURN",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "明确区分被G替代的候选定位与真实恢复的公司材料，不按相同Final或Search次数判全部恢复/全部省掉。",
+      "judgment_action_outcome_chain": "教师候选→真实公司材料/价格冲突→主公司来源优先→真实补时间条件→C；价格正确依靠可观察证据选择和真实材料，仍有关键G混杂。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "813生成/10063Prompt/2S1O4A；相对原生成+314、Prompt+1337、Search+1/Actor+1、Open同数但范围不同。新增时间证据和价格比较对应额外工作。",
+      "counterevidence_and_alternatives": "有新合理取证不意味所有表达都必要；两次价格冲突说明反复不全是无新信息。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R5真实Submit320，R4真实公司返回给正确价；此前接受327，切换原因未明确论证。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1 OpenG指定Doc100只头；R2试图continue reading却offset2429恰等于文档总长，实际返回空，不能把它当全文已读取。",
+        "R3定向Query Adallom acquisitionpricemillions，只返回Nicosia327及无关资料，没有320公司条目。R4明确暂采用327，并把IsraeliIntelligenceCorps推成Unit8200/改名（当前返回未直接证明）。",
+        "R4为核创始人真实Query Adallom MicrosoftCloudAppSecurityUnit8200founders，取得7476796直接320/产品/Unit8200和其他资料；R5改引用320并Submit。没有明确解释为何放弃327，不能替模型补来源优先动机。",
+        "倡议2002仍记忆，没有实际时间Search。"
+      ],
+      "first_judgment_divergence": "首次价格材料来自327侧页，暂接受后因其他条件查询取得320再换价；最终C不表示中间价格一直正确或冲突已显式解决。",
+      "first_actual_tool_divergence": "教师Doc直接Open后错误读到文末空范围，再定向价Search而非原产品发现Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "未知候选发现",
+          "original_operation": "改名Query返回公司",
+          "original_product": "公司文档定位",
+          "new_goal": "教师公司/Doc已给",
+          "new_operation": "直接Open并定向Query该公司，没有独立定位过程",
+          "new_product": "发现工作由G补偿",
+          "evidence": [
+            "I_GUIDE",
+            "N3_EMPTY_OPEN",
+            "N3_FIRST_QUERY"
+          ]
+        },
+        {
+          "original_goal": "公司/价格证据可见",
+          "original_operation": "取得320及身份资料",
+          "original_product": "完整片段",
+          "new_goal": "给定公司资料核验",
+          "new_operation": "先327后查创始人实际取得公司320，R5采用",
+          "new_product": "取证恢复但价格转换未给明确裁定理由",
+          "evidence": [
+            "O_RETURN",
+            "N3_327_RETURN",
+            "N3_327_ADOPT",
+            "N3_CORRECT_QUERY",
+            "N3_320_RETURN",
+            "N3_320_ADOPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "文献取证恢复，候选发现不独立；不把一开始拿错价格到后来答对等同全程同功能同判断。",
+      "judgment_action_outcome_chain": "G给公司→短Open/空范围未得价→侧页327进入暂接受→创始人条件尚缺触发新Query→公司320返回后被采用并C；这次条件核查确实带回改变价格的信息，但为何优先新价没有明确原文。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "791生成/9444Prompt/2S2O5A；原499/8726/1S1O3A，生成+292/Prompt+718/Search+1/Open+1/Actor+2；空范围Open和查创始人分别是失败动作与有效纠正入口，不能混称冗余。",
+      "counterevidence_and_alternatives": "价格选择动机未确定，保留新证据更新/采样或最近材料效应等可能但不裁定；单位/Gold按原评价不重写。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0857__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "320",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "320",
+      "outcome": "C",
+      "outcome_reason": "R2真实Submit320，真实Open全文直接支持价格/身份；时间仍记忆。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1 G提供精确Doc后直接Open未设limit，默认4000读取全文2429字符，一次取得原Search中身份/320等信息。",
+        "R2完整对应公司/产品/创始人/价格，明确文档不含倡议时间后记忆2002<2015，直接Submit；0Search，无新价格冲突。"
+      ],
+      "first_judgment_divergence": "候选来源由原开放产品搜索变为教师DocID，材料取得路径缩短；仍实际重新读取与条件匹配，并非凭G给出价格。",
+      "first_actual_tool_divergence": "原Search产品，新直接Open已知Doc；一次全文读取替代原Search+Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "候选发现及取得支持材料",
+          "original_operation": "产品Search发现公司/Doc后Open",
+          "original_product": "公司与价格证据",
+          "new_goal": "G已定位Doc后的查证",
+          "new_operation": "一次直接全文Open取得身份和320，后完整采用",
+          "new_product": "证据获取完成，定位工作由教师补偿",
+          "evidence": [
+            "O_QUERY",
+            "I_GUIDE",
+            "N4_DIRECT_OPEN",
+            "N4_PRICE_RETURN",
+            "N4_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "支持材料和采用恢复，原未知候选发现由G替代；少Search不证明定位无用。",
+      "judgment_action_outcome_chain": "G精确名称/Doc替代原定位→一次真实全文Open覆盖价格和身份→记忆时间接受→C且较短；节省路径依赖关键教师信息，不计严格可省。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "378生成/1744Prompt/0S1O2A，较原生成-121、Prompt-6982、Search-1/Actor-1、Open同1。低Prompt主要取消原十项Search包，多得自G定位而非独立更好发现策略。",
+      "counterevidence_and_alternatives": "价格未在G，所以不是直接答案回填，但位置提示足以改变执行路线；这两类风险不能混淆。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4PARTIAL：独立候选定位未重现、由G补偿，真实目标文献获取均恢复。若用过宽取得公司资料定义可看作FULL，但主方案区分具体工作，不掩盖定位泄漏。",
+    "specific_difference": "1/2真实取到320/327后明确按公司页直接性选320；3先暂接受327，创始人Query后来带回320后换价但未解释冲突；4直接全文读取无Search冲突。",
+    "cost": "只有4生成下降，1/2/3增加；1虽生成和交互增加，Prompt反降。正确性和成本、G风险、证据选择分别记录。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "提供具体候选文档的位置提示可以替代候选发现，而真实取证仍需执行；不同证据入口随后可能引入或避免事实冲突。已知公司不等于价格已定，来源比较或另一个条件的查询可以改变价格，答案保持不能证明原定位/核验无作用。",
+      "chain": "P公司未知→G给名称/DocID→4条真实读取或定向查证→三条接触327冲突且各自处理不同、一条直接公司全文320→同C但证据选择过程和成本不同。",
+      "support": [
+        "I_GUIDE",
+        "N1_PRICE_CHOICE",
+        "N2_PRICE_CHOICE",
+        "N3_327_ADOPT",
+        "N3_320_ADOPT",
+        "N4_PRICE_RETURN"
+      ],
+      "scope": "1Stage/1题四续跑，未来实体/Doc引导严重混杂，不作无引导删除因果或原工作冗余结论。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "新1/2称主公司页primarysource是模型的相关性判断，不把百科公司页升格成真实一手官方来源；只解释其实际选择依据。",
+    "新3创始人核查确实带来新320材料，是持续核验可以纠正答案属性的反例，不因最终C将其视作低收益。",
+    "同Doc直接访问合法真实执行，不是回填旧Return；G未来DocID来源风险另审。",
+    "原nativeIDs缺失，R1整轮usage可比较但标DERIVED_CHAR_EXACT，G33预填/P510单列，独立分支不累加节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "whose product was rebranded as Microsoft Cloud App Security"
+    },
+    {
+      "evidence_id": "I_GUIDE",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The search results contain a document about Adallom (doc_id: wiki25:7476796) which seems to match the description:"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Microsoft Cloud App Security acquisition rebranded",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655"
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_PRODUCT_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "The Adallom product was rebranded as Microsoft Cloud App Security (MCAS)",
+      "call_id": "chatcmpl-tool-b8fa032fe9cc6655",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "which seems to match the description:"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:7476796",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-aca62874f1cbb61e"
+    },
+    {
+      "evidence_id": "N1_FIRST_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:7476796",
+      "call_id": "chatcmpl-tool-8b59abc69a1be2ef"
+    },
+    {
+      "evidence_id": "N1_TARGET_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Adallom acquisition Microsoft Cloud App Security",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_320_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N1_327_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/1/snippet",
+      "exact_quote": "its acquisition by Microsoft for a substantial sum of $327 million.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:10865535"
+    },
+    {
+      "evidence_id": "N1_PRICE_CHOICE",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Another document (Michael Nicosia) mentions $327 million, but the Adallom document is more direct about the acquisition price."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-a28929a512898529"
+    },
+    {
+      "evidence_id": "N2_TARGET_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Adallom Microsoft Cloud App Security acquisition price",
+      "call_id": "chatcmpl-tool-87c27d335e1adfdc"
+    },
+    {
+      "evidence_id": "N2_PRICE_CHOICE",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "There is a conflicting snippet in the Michael Nicosia document stating the acquisition was for $327 million, but the primary Adallom document states $320 million."
+    },
+    {
+      "evidence_id": "N2_TIME_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Microsoft Trustworthy Computing Initiative launch date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_TIME_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "with a January 15, 2002 memo",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1591203"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_EMPTY_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:7476796",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FIRST_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Adallom Microsoft acquisition price millions",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_327_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "its acquisition by Microsoft for a substantial sum of $327 million.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:10865535"
+    },
+    {
+      "evidence_id": "N3_327_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Acquired by Microsoft for $327 million"
+    },
+    {
+      "evidence_id": "N3_CORRECT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Adallom Microsoft Cloud App Security Unit 8200 founders",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_320_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N3_320_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The price is $320 million."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-9d3324566bd1a059"
+    },
+    {
+      "evidence_id": "N4_DIRECT_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/0/arguments/doc_id",
+      "exact_quote": "wiki25:7476796",
+      "call_id": "chatcmpl-tool-8c36ac1c62dadf08"
+    },
+    {
+      "evidence_id": "N4_PRICE_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "Adallom was reportedly acquired by Microsoft for $320 million in July 2015.",
+      "call_id": "chatcmpl-tool-8c36ac1c62dadf08",
+      "doc_id": "wiki25:7476796"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The text also confirms that the founders (Assaf Rappaport, Ami Luttwak, and Roy Reznik) were former members of the Israeli Intelligence Corps' Unit 8200."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "320",
+      "call_id": "chatcmpl-tool-a6d914f0e32776de"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

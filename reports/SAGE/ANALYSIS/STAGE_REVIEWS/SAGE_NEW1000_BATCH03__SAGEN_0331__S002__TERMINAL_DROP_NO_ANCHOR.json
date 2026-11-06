@@ -1,0 +1,423 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0331",
+  "stage_id": "S002",
+  "sample_order": 13,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0331/trajectory.json",
+      "source_sha256": "e864bfc7572515aff831c57d6ccb2bbe92c01ca3f54da1b837f41fb087d49616"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0331.json",
+      "source_sha256": "4774c8b34c639fbb34a30a5dda7041f43c8528cb57bb7c24758df3796ccf1baa"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c1b050e872ad38fb6144132245941c5af7771ff16582e5de5856b6a84a632d1f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "6937858d0324ed84cb0cf5c4446c0b5651064edf95ac17f9e23b7c1795e6aed4"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "a58aaf87ca8e3522bcddd4d02774b5dbf67e158cf31a813b3b344ba08972f704"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "1345f8c381af0d4088c40423da62f675c097891afdf88f96d1d302259f574700"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "578bce118f8d5b488fbea6af85e641d4d02c3ee92913cf3a652d11537c33041e"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the precise unveiling date of the primary memorial structure in Kings Park, whose establishment coincided with a state centenary, and which serves as a central roll of honour for Western Australian servicemen who perished in the earliest major conflict broadly commemorated by the historical avenues of honour maintained by the group originally responsible for the Kings Park Honour Avenues plaques?",
+    "gold": "24 November 1929",
+    "gold_use": "只用于事后评价，不加入生成。"
+  },
+  "read_scope": {
+    "original": "原3Round、2Search和Submit及全部完整Return；31251字符固定原文视图全部读完。",
+    "new": "4条完整新Reasoning、Submit/Return及Final全部读完，15158字符固定视图。",
+    "actual_input": "INPUT_AUDIT真实历史保留两个Search Return，历史Assistant content为空；当前R3前226字符包含已提取的Cenotaph日期。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "C",
+    "actual_final": "24 November 1929",
+    "terminal": "MODEL_FINAL_STOP"
+  },
+  "prestate": {
+    "cut": "R3@226。",
+    "current_retained_reasoning": "已经引用wiki25:1921557的Cenotaph unveiling句，包括24 November 1929和百年，但尚未开始This matches the criteria之后的独立多条件判断。",
+    "visible_evidence": "原E1结果0 wiki25:1921560完整253字符给1922 West Perth RSL维护、现称Honour Avenues Group；结果1 wiki25:1921557给日期、百年和Cenotaph下名录包括Boer War/WWI/WWII等。",
+    "state_distinction": "日期已经返回、提取；P尚未真正完成全题接受/战争关系比较，不能把它说成接受判断早已完成。R2日志还猜earliest likely WWI，R3待处理为Boer War。",
+    "input_budget": "历史已消耗2Actor；P8141（原R3 prompt8077+当前派生64）；首轮预算9936；G0。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 226,
+        "end": 1080
+      }
+    ],
+    "goal": "把已提取日期对应到全部条件并正式提交。",
+    "operations": "多条件匹配Cenotaph、1929百年、roll of honour、Boer War早于WWI、RSL维护组织；采用24 November 1929并Submit。",
+    "product": "全题接受判断及正式Final，不是新取证。",
+    "judgment_change": "从日期可见转为把所述建筑接受为题目对象；将早期WWI暂猜修正为名录里更早的Boer War。",
+    "evidence": [
+      "O_MATCH",
+      "O_BOER",
+      "O_SUBMIT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "U就是末尾完整接受和提交，没有其后的Reasoning Stage；不能把原Final再作为G注入。",
+    "quality_limits": "文档直接支持日期、百年、名录和维护者，但模型用同一文档中Honour Avenues与名录并列，将earliest broadly commemorated等表述解释为Boer War，未另取完整战争覆盖证明。保留这项关系强度限制。"
+  },
+  "function_features": [
+    "可见日期→多条件身份匹配和正式提交",
+    "已有资料上的战争先后解释，不新增Call",
+    "无G四条均重新进行条件判断，答案保持不能证明认知工作未执行"
+  ],
+  "guide_audit": {
+    "condition": "NO_ANCHOR",
+    "text": "",
+    "tokens": 0,
+    "novelty": "无教师信息；已知日期来自合法P，不是G补偿。",
+    "limits": "只能观察同P重采样的接受/提交路径，不能强制保证该功能被真正跳过。"
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "真实Submit同日期。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新R3完整列Cenotaph/百年/名录/Boer早于其他/维护组织，引用两个已有Doc；没有新Search/Open。",
+        "判断The Boer War would be the earliest major conflict，再实际提交日期。1146字符新推理比原U854字符还长，不能仅凭C称省略判断。"
+      ],
+      "first_judgment_divergence": "没有可确认的实质分歧；同证据重新接受同建筑和日期。",
+      "first_actual_tool_divergence": "没有新的取证；只Submit，原末段也是只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题匹配/提交",
+          "original_operation": "比较五条件、Boer战争解释、Submit",
+          "original_product": "接受Cenotaph日期",
+          "new_goal": "同一匹配/提交",
+          "new_operation": "新R3五项比较、引用维护句、Submit",
+          "new_product": "相同日期Final",
+          "evidence": [
+            "O_MATCH",
+            "O_BOER",
+            "N1_MATCH",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "接受判断和提交实际完整恢复，不是只借P现成数字直接裸答。",
+      "judgment_action_outcome_chain": "P已有日期和关系证据→重做全题匹配/战争先后判断→Submit同日期C；无新取证。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "270生成/8141Prompt/0Search/0Open/1Actor；相对原真实切点生成差保守[-23,270]，不能报精确省23。P重放8141，含226字符派生64不当作原native IDs。",
+      "counterevidence_and_alternatives": "完整功能重建且新文本更长；不支持整个U无新增作用的强结论。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "R3实际Submit日期。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新R3以数字清单逐项验证全部条件，单列Boer早于WWI，引用维护组织完整关系；之后Submit。",
+        "没有Search/Open；1094字符，五项判断实际重现而非仅说准备回答。"
+      ],
+      "first_judgment_divergence": "没有实质改变；日期、建筑、百年、Boer和维护者均沿已有证据。",
+      "first_actual_tool_divergence": "只有Submit，参数日期一致。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受条件链",
+          "original_operation": "多条件判断和提交",
+          "original_product": "日期Final",
+          "new_goal": "同一接受",
+          "new_operation": "五点比较和真实Submit",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_BOER",
+            "O_SUBMIT",
+            "N2_BOER",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全题比较与提交均恢复。",
+      "judgment_action_outcome_chain": "可见材料足够形成同一匹配→再执行完整评估→C；不是评估消失。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "293生成/8141Prompt/0S/0O/1A；原U切点区间差[0,293]，即便与原整个R3生成相等也不能称原U精确等长。",
+      "counterevidence_and_alternatives": "重复执行不等于原认知功能不必要，当前只证明其可在同P重现。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "真实提交同日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新R3用四条短列表保留建筑/百年/名录全部战争/维护组织，未像原U那样展开一句明确earliest=Boer的说明。",
+        "仍进行其他条件匹配后Submit，不新Search/Open；585字符，是四条中最简洁。"
+      ],
+      "first_judgment_divergence": "未观察到换候选或战争接受相反；只是没有完整展开earliest单独论证，不能把省略文字说成原战争解释已由新模型明确验证。",
+      "first_actual_tool_divergence": "只有同日期Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全题匹配并提交",
+          "original_operation": "五条件比较含显式Boer最早",
+          "original_product": "接受日期",
+          "new_goal": "建筑匹配并提交",
+          "new_operation": "四点简化核对保留战争名单，省略最早单句",
+          "new_product": "同日期Final；earliest显式论证较少",
+          "evidence": [
+            "O_MATCH",
+            "O_BOER",
+            "N3_MATCH",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核心多条件接受和Submit恢复，但原U关于earliest战争的显式比较未完整出现。不能仅凭列出战争名单判同样独立判断已执行。",
+      "judgment_action_outcome_chain": "P日期已提取→较短条件匹配，未展开最早战争解释→仍SubmitC；可见表达/论证减少，但证据关系验收不自动等同原。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "174生成/8141Prompt/0S/0O/1A；生成差[-119,174]跨0，不做native精确节省；新文本比原U短，但这不是Token净省已证实。",
+      "counterevidence_and_alternatives": "没有错误战争判断不等于已完成相同earliest核验；答案保持和完整条件论证保持分开。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0331__S002__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "24 November 1929",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 November 1929",
+      "outcome": "C",
+      "outcome_reason": "R3真实Submit同日期。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "新R3逐项核对建筑/百年/名录/Boer最早/1922维护者，采用已有日期后Submit。",
+        "877字符，无新Search/Open；与原U主要动作相同。"
+      ],
+      "first_judgment_divergence": "没有可靠实质分歧，earliest解释明确重现。",
+      "first_actual_tool_divergence": "仅相同日期Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "接受完整条件并提交",
+          "original_operation": "材料到对象确认，显式Boer最早",
+          "original_product": "日期Final",
+          "new_goal": "同一对象确认",
+          "new_operation": "同证据多条件核对、Boer最早、Submit",
+          "new_product": "同日期Final",
+          "evidence": [
+            "O_BOER",
+            "O_SUBMIT",
+            "N4_BOER",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "包括关键战争先后判断和正式提交均重现。",
+      "judgment_action_outcome_chain": "P已有相关Return和日期→重新进行接受比较→无补证即提交C。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "242生成/8141Prompt/0S/0O/1A；区间差[-51,242]，无法证明精确净省；工具与Actor并未减少。",
+      "counterevidence_and_alternatives": "不是少了搜证，因为原U也没有搜证。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "3 FULL、1 PARTIAL；4条核心对象匹配/提交都恢复，r3未显式展开最早战争判断。",
+    "observable_answer_stability": "日期在合法P内已提取且没有竞争日期，四条不需新工具即可再接受。",
+    "not_redundancy_proof": "这不是四条都绕过完整判断；多数重建原U，r3仅较短，不应称整个Stage已证实无用。",
+    "cost_limits": "4条均0S0O1A；三条生成区间跨0，一条[0,293]。不把原整个R3的293全当被删U Token，也不减派生64去伪造native净省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "对象日期已在当前P明确提取、关键关系Return也仍可见时，删除末尾接受Stage后，模型可用同证据重做匹配并提交；结果稳定来自可恢复判断，不等同判断从未执行。",
+      "chain": "P已给日期和多条件证据→3条完整、1条简化重新匹配→不另派检索→同日期C；文字长度变化而工具/Actor不变。",
+      "scope": "1Stage/1题/4续跑，仅本题支持；与此前终态Stage恢复案例可后续跨题核对，不预先并类。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "r3没有显式Boer最早说明，不能以相同Final反推全部论证相同。",
+    "原与新都未独立证明broadly commemorated最早战争关系；同文并列支持是共享限制。",
+    "没有G，因此不能用教师未来答案补偿解释此四条稳定；合法P确实已经包含日期。",
+    "功能可以重建但表达长度不同，不能将FULL_REBUILT作为否认表达压缩的理由；同时当前无nativeIDs，压缩不能报伪精确Token省值。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_DATE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 3,
+      "event_type": "retained_current_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "on 24 November 1929 by the Governor William Campion"
+    },
+    {
+      "evidence_id": "O_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/1/snippet",
+      "exact_quote": "The Cenotaph was unveiled in the year of the centenary of Western Australia, on 24 November 1929",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1921557"
+    },
+    {
+      "evidence_id": "O_RSL_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "Today they are known as the Honour Avenues Group.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1921560"
+    },
+    {
+      "evidence_id": "O_MATCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This matches the criteria:"
+    },
+    {
+      "evidence_id": "O_BOER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The earliest major conflict would be the Boer War."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-bd33f2009ed15194"
+    },
+    {
+      "evidence_id": "N1_MATCH",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The Boer War would be the earliest major conflict."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_BOER",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The Boer War was the earliest (before WWI)"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-aa636131f6bdfc6a"
+    },
+    {
+      "evidence_id": "N3_MATCH",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "It serves as a central roll of honour with names of servicemen who died in Boer War, World War I, World War II, Korean War or Vietnam"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-9839810c37eb4fdb"
+    },
+    {
+      "evidence_id": "N4_BOER",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The Boer War is the earliest mentioned"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "24 November 1929",
+      "call_id": "chatcmpl-tool-8b43e497094a3db9"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

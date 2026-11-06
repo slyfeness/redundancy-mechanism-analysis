@@ -1,0 +1,696 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0226",
+  "stage_id": "S003",
+  "sample_order": 25,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0226/trajectory.json",
+      "source_sha256": "336813ee093a01e04d37a58cf3edc33d13aa930fec055bdf75824c299913d799"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0226.json",
+      "source_sha256": "f31ea7f7a4b1724550f6c6ea5f06b581d1517db6375225982ba84b38e85beb52"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "9e517298eb794f5ae765f80bee315f97606e65d6bde14ef4523b9d57f4140e3d"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "57c0da1627b3a25b38cdc85bc99281ccefe595b2d25cf6947e9a23ab0e8f5de3"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c613b664cb205f29b57162074d0e4b2c70e81eb9b36321440274db887e1af1a7"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "20f6a059d2eeec67162d1a0cc3414341617f6969f306873842b8077d3f6f6574"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "14e96dad2afc68bb4c1c4300746267a52e94ff7297933adb7f5300acfb89bd5b"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the name of the company, recognized as the first firm exclusively dedicated to microprocessors, founded by the lead architect of the pioneering single-chip microprocessor developed by a corporation co-founded by one of the co-inventors of the integrated circuit, a technology that fundamentally advanced from the transistor, a device whose digital functionality was enabled by the practical application of formalized binary logic, a mathematical concept whose philosophical underpinnings were admired by Gottfried Wilhelm Leibniz?",
+    "offline_gold": [
+      "Zilog"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "全部原5轮、4Search包及Submit已完整读；本R3完整818字符和S003定位重新核对。",
+    "new": "67297字符完整视图三段全读；四条所有Reasoning、实际Query/完整Return及Final均读，包括N1/N3先误选Intel再改Zilog。",
+    "semantic_author": "Codex实际阅读独立撰写，Python仅定位和账本计算。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "available_evidence": "两份旧Search确定IC共同发明人Noyce/Kilby；尚无原E2提供的Intel创办/4004/Faggin公司关系包。",
+    "actual_input": "R3@235，当前前235字符保留，含IC共同发明人和过度确认的Leibnizadmiration；旧历史Reasoning不再额外注入，真实两份工具Return保留。P6229派生Token，G11。",
+    "gap": "尚需选定共同发明人创立的企业、该企业的微处理器、设计者及后续创办公司。",
+    "evidence": [
+      "I_P",
+      "O_U_PLAN"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 235,
+        "end": 818
+      },
+      {
+        "round": 3,
+        "json_pointer": "/tool_events/2",
+        "event": "Search及完整Return"
+      }
+    ],
+    "goal": "以Noyce共同创办企业为入口取得Intel和微处理器关系。",
+    "operations": [
+      "列关系缺口并选择Noyce/Intel",
+      "真实Search",
+      "获取Noyce创立Intel、Intel4004和Faggin转入Intel的返回"
+    ],
+    "product": "把企业链落实到Intel/4004，提供下一步推Faggin/Zilog的入口。",
+    "judgment_change": "从共同发明人身份推进到具体企业及处理器关系；工具结果进入原R4链条。",
+    "evidence": [
+      "O_U_PLAN",
+      "O_QUERY",
+      "O_INTEL_RETURN"
+    ]
+  },
+  "original_followup": {
+    "use": "原R4用Intel4004推出Faggin和Zilog，再独立核Faggin；R5整链接受Zilog并Submit。",
+    "true_suffix": "原切点后2Search/0Open/3生成片段；原当前R3有181生成但含保留前缀，后两整轮1393，所以原后缀只能[1393,1574]。",
+    "evidence": [
+      "O_NEXT_INTEL",
+      "O_NEXT_ZILOG",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "为多跳链确定具体企业关系并取得支持，不是初始共同发明人识别。",
+    "公司角色可被临时混同：制造4004的公司不等于设计者之后创办的专营公司。",
+    "新路径可跳过原企业资料入口而用微处理器/设计者文献恢复终点，仍需区分原外部企业核验是否重做。"
+  ],
+  "guide_audit": {
+    "G": "The user's question is a complex multi-hop question.",
+    "origin": "原R4[0,52)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "普通题型描述，无候选、年份、关系或查询方向新内容。新路径Intel/Faggin/Zilog均为自主知识和真实返回，不是G提供答案。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "先误认Intel为专营终点，真实4004/Faggin查询得到717519后，R4明确区分制造微处理器的CorpY与设计者创办的CompanyX，改选Zilog。",
+      "outcome_evidence": [
+        "N1_WRONG_INTEL",
+        "N1_QUERY",
+        "N1_RETURN",
+        "N1_ROLE_REPAIR",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3凭知识先把TI当Kilby创办、把Intel当首家专营；虽也想到Faggin，仍重复Intel终点判断。",
+        "实际SearchfirstsinglechipIntel4004Faggin，得到与原终点核验E3相同包，未先检索原Noyce公司包。",
+        "R4完整区分CompanyX和CorpY，采用717519创办/专营直接句，1450生成多次重列后Submit。"
+      ],
+      "first_substantive_judgment_difference": "在企业与终点角色上先误把Intel当答案；随后实际使用返回纠正，而非一开始沿原正确链。",
+      "first_actual_tool_difference": "原SearchNoyce创办关系，本条直接Search4004/Faggin，一次拿到设计者和终点支持，减少原中间资料入口。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得共同发明人创办企业及其微处理器关系",
+          "original_operation": "Noyce企业Query后采用Intel资料",
+          "original_product": "外部Intel创办/4004证据及Faggin入口",
+          "new_goal": "识别处理器及设计者后代公司",
+          "new_operation": "直接微处理器Search，Intel创办主要凭知识，返回后明确两公司角色并改Zilog",
+          "new_product": "企业/终点判断最终恢复，但未重取原企业直接文献，入口被替代",
+          "evidence": [
+            "O_QUERY",
+            "O_INTEL_RETURN",
+            "N1_QUERY",
+            "N1_RETURN",
+            "N1_ROLE_REPAIR"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_ALTERNATIVE_EVIDENCE_ROUTE",
+      "decision_action_result_chain": "IC身份已知→知识误把制造公司当终点→真查设计者→新返回明确设计者后来创办Zilog→区分两种公司角色并改选→C。少一次Search/Actor，但大篇幅纠错与反复整链生成增加。",
+      "costs": {
+        "new_generation": 1994,
+        "new_prompt": 16835,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "G_prefill": 11,
+        "P_replay": 6229,
+        "new_minus_original_generation_interval": [
+          420,
+          601
+        ],
+        "prompt_excluding_replay_including_G": 10606
+      },
+      "limits": "少工具不代表计算总少；企业共同创办文献未独立补齐，终点直接证据充分。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "真实Noyce/Intel查询恢复原关系包，R4提出Zilog并再真核Faggin，R5采用直接句后Submit。",
+      "outcome_evidence": [
+        "N2_QUERY",
+        "N2_INTEL_RETURN",
+        "N2_ZILOG",
+        "N2_VERIFY_QUERY",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3重列缺口并SearchNoyceIntel，完整返回与原E2相同。",
+        "R4采用Noyce创立Intel，整链提出Faggin/Zilog，实际Search设计者创办关系。",
+        "R5采用与原E3相同包，核心全链正确；背景技术连接有表达倒置，但Submit公司正确。"
+      ],
+      "first_substantive_judgment_difference": "与原企业工作基本一致，仅重列题目较长；没有观察到终点错选。",
+      "first_actual_tool_difference": "Query去掉microprocessor仍原公司包，同样2Search后Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "外部核实Noyce/Intel/处理器关系",
+          "original_operation": "Noyce企业Search",
+          "original_product": "Intel和Faggin入口",
+          "new_goal": "相同关系入口",
+          "new_operation": "真实NoyceIntelSearch和返回采用，再核Faggin",
+          "new_product": "原目标操作和判断全部恢复",
+          "evidence": [
+            "O_QUERY",
+            "O_INTEL_RETURN",
+            "N2_QUERY",
+            "N2_INTEL_RETURN",
+            "N2_ZILOG",
+            "N2_VERIFY_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "共同发明人已知→重新取得公司关系→采用Intel/4004并推FagginZilog→真实核验→C；未省功能，也不能以文字差异称机制改变。",
+      "costs": {
+        "new_generation": 1447,
+        "new_prompt": 30569,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "G_prefill": 11,
+        "P_replay": 6229,
+        "new_minus_original_generation_interval": [
+          -127,
+          54
+        ],
+        "prompt_excluding_replay_including_G": 24340
+      },
+      "limits": "生成区间跨0，不给节省结论；背景admiration共享原缺口。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "先错误否认Noyce创Intel又自己修正，仍把Intel当专营公司；第一次真实处理器Query返回Zilog创办材料后R4采用并另查专营，R5直接确认Zilog提交。",
+      "outcome_evidence": [
+        "N3_WRONG_FOUNDING",
+        "N3_WRONG_INTEL",
+        "N3_QUERY",
+        "N3_ZILOG_RETURN",
+        "N3_ADOPT",
+        "N3_VERIFY_QUERY",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3先说Intel不是Noyce创办、Fairchild开发首芯片，随后自纠Noyce/Intel，却继续把Intel当首家专营、设计者误强调TedHoff。",
+        "实际SearchfirstcompanyIntel4004，未见原717519但得到717521设计者、219726Zilog创办等。",
+        "R4已把设计者改Faggin、公司改Zilog，承认尚缺首家专营直接支持，真实SearchZilog/Faggin专营。",
+        "该返回717519后R5反复确认Intel而非Fairchild，明确采用专营句并Submit。"
+      ],
+      "first_substantive_judgment_difference": "先错误企业创办/设计者/终点判断，后来依返回分别修复；不是简单相同Query重试。",
+      "first_actual_tool_difference": "以错误终点Intel的专营假设取证，返回却提供Zilog创办关系，下一次Query真正转换到Zilog专营。",
+      "function_correspondence": [
+        {
+          "original_goal": "企业共同创办及处理器外部核实",
+          "original_operation": "Noyce企业Search",
+          "original_product": "Intel创办和设计者入口",
+          "new_goal": "纠正公司终点并核专营",
+          "new_operation": "企业创办关系主要自纠，实际Search处理器及随后Zilog专营",
+          "new_product": "最终公司链恢复但原企业外部证据入口未完整重做，另一路证据纠正终点",
+          "evidence": [
+            "O_INTEL_RETURN",
+            "N3_WRONG_FOUNDING",
+            "N3_QUERY",
+            "N3_ZILOG_RETURN",
+            "N3_ADOPT",
+            "N3_VERIFY_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT_ALTERNATIVE_EVIDENCE_ROUTE",
+      "decision_action_result_chain": "错误Intel终点→带假设Search却返回Zilog创办→采用新实体及角色→把真未证的专营限定列为新缺口并定向查→直接支持后C。这次第二Search解决真实证据缺口，不能把持续核验一概叫重复浪费。",
+      "costs": {
+        "new_generation": 1875,
+        "new_prompt": 32076,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "G_prefill": 11,
+        "P_replay": 6229,
+        "new_minus_original_generation_interval": [
+          301,
+          482
+        ],
+        "prompt_excluding_replay_including_G": 25847
+      },
+      "limits": "成本增加主要前段长误推与纠错，不是无意义工具重复；Shima共同创办旁注未被直接返回支持。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0226__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "Zilog",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Zilog",
+      "outcome": "C",
+      "outcome_reason": "先真实查Noyce/Kilby/Intel，取得Noyce创Intel直接材料，再推Faggin/Zilog并真核创办/专营，R5更短接受提交。",
+      "outcome_evidence": [
+        "N4_QUERY",
+        "N4_INTEL_RETURN",
+        "N4_ZILOG",
+        "N4_VERIFY_QUERY",
+        "N4_CORRECT_COFUNDER",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R3虽提Intel和AMD未来候选，实际只查Noyce/Kilby/Intel企业关系。",
+        "R4据返回采用NoyceIntel→4004→Faggin→Zilog，错误补充共同创办人MassimoVardi，真实SearchFagginZilogfounder。",
+        "新包明确Faggin和RalphUngermann，R5采用正确共同创办人并专营直接句，Submit。"
+      ],
+      "first_substantive_judgment_difference": "企业入口与原一致，新增错误共同创办人后被实际证据修正；AMD只是计划/背景提及，没有AMD真实Query。",
+      "first_actual_tool_difference": "第一Query多Kilby且返回不同包但101067仍直接证明NoyceIntel；第二核Faggin。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定企业关系并推进设计者",
+          "original_operation": "实际NoyceIntelSearch",
+          "original_product": "Intel创办及后续入口",
+          "new_goal": "同一企业关系核验",
+          "new_operation": "Noyce/KilbyIntelSearch后采用，再核Faggin/Zilog",
+          "new_product": "原功能完整恢复、后续共同创办细节得到纠正",
+          "evidence": [
+            "O_QUERY",
+            "O_INTEL_RETURN",
+            "N4_QUERY",
+            "N4_INTEL_RETURN",
+            "N4_ZILOG",
+            "N4_VERIFY_QUERY",
+            "N4_CORRECT_COFUNDER"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "IC共同发明人→真实企业材料→Intel4004及终点知识推断→新返回修正共同创办人并直接支持专营→C。完整功能仍执行，减少的是多次全链表述篇幅。",
+      "costs": {
+        "new_generation": 919,
+        "new_prompt": 31284,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "G_prefill": 11,
+        "P_replay": 6229,
+        "new_minus_original_generation_interval": [
+          -655,
+          -474
+        ],
+        "prompt_excluding_replay_including_G": 25055
+      },
+      "limits": "生成下降但Prompt比原后续更高，不称所有资源下降；查到共创信息与证据被用来修正要分开定位。"
+    }
+  ],
+  "four_run_comparison": {
+    "screen_group": "A",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "recovery": "r2/r4完整恢复原外部企业关系核验；r1/r3靠知识及微处理器/设计者替代入口，最终判断恢复但原企业文献操作仅部分重建。",
+    "decisive_contrast": "r1/r3实际从错误Intel终点转向返回中的Zilog，r2/r4原正确入口直接推进。四C不是四个相同认知过程。",
+    "cost_location": "r1少一次Search/Actor却生成更多；r3第二Search真实补专营，生成也更多；r4工具数不变而复盘更短；r2生成差异不确定。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "多跳任务中，制造技术的企业与设计者后来创办的企业被混为同一角色时，带错假设的Search仍可能返回正确关系；明确拆分两公司角色后才能把新实体用于答案选择。",
+      "support": [
+        "N1_WRONG_INTEL",
+        "N1_ROLE_REPAIR",
+        "N3_WRONG_INTEL",
+        "N3_ZILOG_RETURN",
+        "N3_ADOPT"
+      ],
+      "limit": "本题两次恢复成功，不证明所有错误假设都能自纠；需要跨题反例。"
+    },
+    {
+      "claim": "功能判断恢复不要求复用原中间资料入口；替代设计者文献可跳过一次企业Search，但更多纠错和重述可能使生成反增。",
+      "support": [
+        "O_QUERY",
+        "N1_QUERY",
+        "N1_ROLE_REPAIR"
+      ],
+      "limit": "原企业关系直接外部证明未完全恢复，不能把相同Final等同全链质量完全相同。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "r3第二次专营查询在第一次返回缺直接限定时是必要补证反例，不能用相同信息需求抹掉实质新证据。",
+    "r1/r3错误曾被接受但最后纠正，不能只看早期Intel措辞标最终错误。",
+    "G普通句无实体，不应把自主纠错归于G提供答案。",
+    "现有旧背景admiration过度确认仍持续，不能从C断言全链证据闭合。",
+    "不同成本维度不可合并成单一节省值，局部切点只报保守区间。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Jack Kilby and Robert Noyce are co-inventors of the integrated circuit"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user's question is a complex multi-hop question."
+    },
+    {
+      "evidence_id": "O_U_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Let me search for information about Robert Noyce and the pioneering single-chip microprocessor."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Robert Noyce co-founded corporation Intel microprocessor",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_INTEL_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "In 1968, Noyce and Gordon Moore started Intel in Mountain View.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7207345"
+    },
+    {
+      "evidence_id": "O_NEXT_INTEL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The pioneering single-chip microprocessor is the Intel 4004, developed by Intel."
+    },
+    {
+      "evidence_id": "O_NEXT_ZILOG",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Federico Faggin founded Zilog, which was recognized as the first firm exclusively dedicated to microprocessors."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_WRONG_INTEL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Intel became the first company exclusively dedicated to microprocessors."
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first single-chip microprocessor Intel 4004 Federico Faggin lead architect",
+      "call_id": "chatcmpl-tool-a2f0c2429fd7dd36"
+    },
+    {
+      "evidence_id": "N1_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "He was co-founder (with Ralph Ungermann) and CEO of Zilog, the first company solely dedicated to microprocessors",
+      "call_id": "chatcmpl-tool-a2f0c2429fd7dd36",
+      "doc_id": "wiki25:717519"
+    },
+    {
+      "evidence_id": "N1_ROLE_REPAIR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Company X was founded by Federico Faggin."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Robert Noyce co-founded corporation Intel",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_INTEL_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "In 1968, Noyce and Gordon Moore started Intel in Mountain View.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:7207345"
+    },
+    {
+      "evidence_id": "N2_ZILOG",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Federico Faggin founded Zilog, which was the first firm exclusively dedicated to microprocessors"
+    },
+    {
+      "evidence_id": "N2_VERIFY_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Federico Faggin lead architect Intel 4004 founded Zilog first microprocessor company",
+      "call_id": "chatcmpl-tool-a93f91c2ca84c5a3"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "chatcmpl-tool-9b0eede7b0aafdd1"
+    },
+    {
+      "evidence_id": "N3_WRONG_FOUNDING",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "But Intel wasn't co-founded by Kilby or Noyce"
+    },
+    {
+      "evidence_id": "N3_WRONG_INTEL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The first company exclusively dedicated to microprocessors was Intel"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first company exclusively dedicated to microprocessors Intel 4004",
+      "call_id": "chatcmpl-tool-806338055607db7d"
+    },
+    {
+      "evidence_id": "N3_ZILOG_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/6/snippet",
+      "exact_quote": "The company was founded in 1974 by Federico Faggin and Ralph Ungermann",
+      "call_id": "chatcmpl-tool-806338055607db7d",
+      "doc_id": "wiki25:219726"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "But wait, I need to check if Zilog was the \"first firm exclusively dedicated to microprocessors\"."
+    },
+    {
+      "evidence_id": "N3_VERIFY_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "first company exclusively dedicated to microprocessors Zilog Federico Faggin",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Jack Kilby Robert Noyce co-founded corporation Intel",
+      "call_id": "chatcmpl-tool-8fccf6cc0be3a196"
+    },
+    {
+      "evidence_id": "N4_INTEL_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "Noyce and Gordon Moore founded Intel in 1968 when they left Fairchild Semiconductor.",
+      "call_id": "chatcmpl-tool-8fccf6cc0be3a196",
+      "doc_id": "wiki25:101067"
+    },
+    {
+      "evidence_id": "N4_ZILOG",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The company founded by Federico Faggin is **Zilog** (specifically, he founded it in 1974 with Massimo Vardi and others)."
+    },
+    {
+      "evidence_id": "N4_VERIFY_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Federico Faggin Zilog founder",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_CORRECT_COFUNDER",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This company is **Zilog** (founded by Faggin and Ralph Ungermann in 1974)."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "Zilog",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

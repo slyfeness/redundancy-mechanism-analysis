@@ -1,0 +1,47 @@
+{
+  "case_id":"23__rep2__S004__FIRST_SENTENCE","question_id":"23","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"W"},"basis":"原FormalFinal拒答W。新1/2/3各真实8次Actor后CONTEXT_BLOCKED，无FinalN；新4虽中途称不能确定，最后明确The movie is: The Wolf of Wall Street，W，不能因含拒答就错读成无Final，也不能由W→N称原正确丢失。"},
+  "review_basis":"同源原16轮15Call/Final此前完整阅读，本轮重读R11/R12及E11目标。四新31轮30Call/完整Return和Final已全读；225返回槽，20新全文和四个外国既有全文实际阅读验SHA，其余为本线程精确已读SHA。没有按旧标签写新行为。",
+  "pre_state":"R11@554，保留前十轮所有已发生历史及本轮[0,554)。P早已探BadBlood/Inventor且明确纪录片疑虑，当前又明确BigShort书2010不符。仍未有正确影片或诚实警察具体人物关系；财务骗局限定来自模型自己的解释。",
+  "u_work":"R11[554,684)决定再查Inventor/BadBlood是否有feature；E11真实Query The Inventor movie 2019 Elizabeth Holmes John Carreyrou director，回Holmes/调查/书目等；R12[0,771)仍未找到，整理特异警察情节并重选更具体查询。完整Return没有补影片导演出生、对应警察情节或目标12thFail。",
+  "u_state_update":"本次重访未闭合电影身份，后续实际改查BigShort人物/导演；原R16再次比较BigShort书2010/导演1968不符而拒答。它是已试候选的又一次有限核查，并未产生新正确候选，也不能说U防止后续回访已排除对象。",
+  "original_action_consequence":"删后没有再执行原Inventor定向Call；一条仅记忆提纪录片，其余换BigShort或广搜。四次均未找到目标，三个到上下文guard、一条明知Wolf书年不符仍最后选中。关键分歧是未关闭候选的其它属性继续成为工作、以及有无证据支持时最终拒绝还是勉强选择，不是原U有没有重建这一单字段。",
+  "guidance":{"text":"Actually, let me try searching for \"The Big Short\" movie details to see if it matches the criteria, even though I know the book was published in 2010, not 2015-2022.","source":"原R12[771,936)，49原生Token。P为R11@554 NATIVE_TOKEN_EXACT，保留135原生生成前缀。","audit":"ORACLE_ANCHORED。BigShort和书2010冲突均P早有，不是新事实；但G明确重新选择已不符候选的详细取证方向。新1/2/4首Call直接执行此方向，新3先泛搜、R14才实查BigShort，G不是四次相同强制执行。不能把这种回访完全归因于删除U或称无补偿自然恢复。"},
+  "evidence":[
+    {"id":"O_ALREADY_CONFLICT","source":"original","pointer":"/rounds/10/reasoning_content","quote":"but that was based on a book from 2010, not 2015-2022","use":"R11@554前P已保留书年排除，不能说此冲突被删。"},
+    {"id":"O_REVISIT","source":"original","pointer":"/rounds/10/reasoning_content","quote":"to see if there's a feature film version.","use":"U实际目标是已谈过的纪录片/书是否有feature。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/10/exact_arguments","quote":"The Inventor movie 2019 Elizabeth Holmes John Carreyrou director","use":"chatcmpl-tool-86c660f67c843c72，R11真实Call，返回73719/88430/8145/42474/73799而未有目标片。"},
+    {"id":"O_REFUSE","source":"original","pointer":"/rounds/15/content","quote":"I cannot definitively identify the specific movie","use":"原W为实际正式拒答。"},
+    {"id":"N1_G_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"The Big Short movie 2015 Adam McKay director born 1950 1960 book Michael Lewis","use":"chatcmpl-tool-b21996ab001abfaa，首Call立即执行G方向。"},
+    {"id":"N1_REAL_BIRTH","source":"new1","pointer":"/tool_events/0/exact_result","quote":"17 April 1968","use":"Doc46180真实返回导演出生和影片关系，不是模型自猜。"},
+    {"id":"N1_EXCLUDE","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"So \"The Big Short\" doesn't match the director criteria.","use":"R12采用真实1968并明确排除，后仍核同片角色。"},
+    {"id":"N1_CAST_QUERY","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"The Big Short movie 2015 characters cast list based on book Michael Lewis","use":"chatcmpl-tool-a2e6d80195f29ded，排除同轮仍用Call核同片角色/警察情节；回BigShort概述、FifthEstate演员、Billions等非所需警察关系。"},
+    {"id":"N1_LATER_CAST","source":"new1","pointer":"/tool_events/5/exact_arguments","quote":"The Big Short 2015 movie characters cast Mark Baum Charlie Geller Greg Lippmann","use":"chatcmpl-tool-8979e2c5c6cd2448，R16再次实际核角色，未有书年冲突消解。"},
+    {"id":"N2_RANGE_ERROR","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"He was born in 1968, which is between 1950-1960.","use":"R12误算导演范围，但同段仍以书2010判不符；不是全条件已接受。"},
+    {"id":"N2_BOOK_EXCLUDE","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"So this doesn't match the criteria.","use":"随后确实泛搜，不因范围局部错误就归为后续仍核BigShort的同一链。"},
+    {"id":"N2_WOLF_CALL","source":"new2","pointer":"/tool_events/5/exact_arguments","quote":"movie The Wolf of Wall Street 2013 director Martin Scorsese born 1942","use":"chatcmpl-tool-8b5aa0d8b5c89c7e，R16换另候选实查，真实返回13932/21511/15270等导演1942，不伪称没证。"},
+    {"id":"N2_WOLF_EXCLUDE","source":"new2","pointer":"/rounds/6/reasoning_content","quote":"So \"The Wolf of Wall Street\" (2013) directed by Martin Scorsese doesn't match","use":"R17采用真实导演出生冲突，后续真宽搜至guard，未重新接受Wolf。"},
+    {"id":"N3_MEM_U","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"But that was a documentary, not a feature film.","use":"R13恢复U部分类型判断，但无原Inventor定向实查。"},
+    {"id":"N3_ACTUAL_BIGSHORT","source":"new3","pointer":"/tool_events/3/exact_arguments","quote":"The Big Short movie Michael Lewis book 2015 director Adam McKay born","use":"chatcmpl-tool-bb3931c3eadf66bd，R14才跟G实查，早三轮不是强制直接回放后继。"},
+    {"id":"N3_CORRECT_RANGE","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"wait, no, 1968 is not between 1950 and 1960.","use":"R15同段先误算后纠错，双冲突排除后实际转Laundromat，保留修复。"},
+    {"id":"N3_LAUNDROMAT","source":"new3","pointer":"/tool_events/5/exact_arguments","quote":"The Laundromat movie 2019 book Panama Papers author born 1960 1980 director born 1950 1960","use":"chatcmpl-tool-8e8a248b3c35cec7，R16实际新核查；返回其他影片/导演文章，不证该片书作者/导演年。"},
+    {"id":"N4_DIRECTOR_EXCLUDE","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"which doesn't fit the criteria of being born between 1950 and 1960.","use":"R12真实读46180后排BigShort，随后广搜；并非这条从未排过候选。"},
+    {"id":"N4_FINAL_ACKNOWLEDGE","source":"new4","pointer":"/rounds/6/content","quote":"as the book was published in 2007, not 2015-2022","use":"正式Final仍承认Wolf书年不符，未出现消解的新证据。"},
+    {"id":"N4_FORMAL_CHOICE","source":"new4","pointer":"/rounds/6/content","quote":"**The movie is: The Wolf of Wall Street**","use":"同一FormalFinal最后明确选择，W不是拒答/NO_FINAL。Return没给诚实警察感化情节，也没将2007变合法。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后直接实查BigShort，R12获得真实1968且排除，却同轮继续查角色，R16又实际查角色一次。","state_chain":"已知书年冲突且新增导演冲突→未关闭候选其它角色/情节待办→两次实际同片取证未消解硬条件→再泛搜→guard无Final。","function_change":"原U专门Inventor查询未恢复；替换成多次已被排候选的属性查询及广搜。生成短却多三Search、两Actor，P已知冲突没有约束具体后续Call。","evidence":["O_ALREADY_CONFLICT","N1_G_CALL","N1_REAL_BIRTH","N1_EXCLUDE","N1_CAST_QUERY","N1_LATER_CAST"],"semantic_result":"W→N，未看到全条件接受，不将它与新4的正式错选合并。"},
+    {"repeat":2,"first_divergence":"直接查BigShort后虽然误算1968在范围内，仍以书年不符切换泛搜；后真查Wolf导演再明确排除。","state_chain":"书年冲突仍有效驱动离开BigShort→无新身份后选择Wolf核导演→真实1942用于排除→继续泛搜而无目标→guard无Final。","function_change":"原Inventor工作未重做，BigShort和Wolf排除有可见行动更新；不能为统一机制把所有新N都称不受排除约束。不同泛搜未找到目标以及预算终止仍存在。","evidence":["N2_RANGE_ERROR","N2_BOOK_EXCLUDE","N2_WOLF_CALL","N2_WOLF_EXCLUDE"],"semantic_result":"W→N，局部范围错误与完整行动后果分开。"},
+    {"repeat":3,"first_divergence":"没有直接执行G，先泛搜；R13记忆恢复纪录片不符，R14实查BigShort、R15纠范围并排除，R16转Laundromat。","state_chain":"原U类型判断部分恢复→已有具体BigShort资料进全比较→纠错使其退出当前核查→新Laundromat任务未补身份→泛搜至guard。","function_change":"PARTIAL_REBUILT仅认知类型判断，原定向Inventor未查；多出的真实Call为前端泛搜与Laundromat而不是单纯同Call重复。G方向采用较迟，结果N不证明U不可省。","evidence":["N3_MEM_U","N3_ACTUAL_BIGSHORT","N3_CORRECT_RANGE","N3_LAUNDROMAT"],"semantic_result":"W→N；采用正确排除也未找到正确影片，保留反例。"},
+    {"repeat":4,"first_divergence":"首Call跟G，真实1968排BigShort后实际广搜；末R17无新证据转给最可能答案。","state_chain":"BigShort已排、Wolf也自称不符→广搜仍未找到警察情节→既不取得目标也不消解书年→最终一面承认2007不符一面正式选Wolf。","function_change":"原Inventor取证未恢复；P已有其疑虑，后续改多次财务广搜。生成低但Search/Actor/Prompt均高，错误从原保留拒答变为带已知硬冲突的正式选择。","evidence":["N4_DIRECTOR_EXCLUDE","N4_FINAL_ACKNOWLEDGE","N4_FORMAL_CHOICE"],"semantic_result":"W→W；标签相同而正式接受行为不同，未把部分接近当C。"}
+  ],
+  "mechanism_candidate":"此B不是原正确信息被删，而是一次已探候选重访被跳过，G直接把另一已排候选带回待办。新1明确双冲突仍核同片其它属性，说明排除文字没有约束工作队列；新2/3却实际离开已排对象仍未找到目标，是反例。新4末端没有新关系证据却让最可能选择越过已知书年冲突，体现排除与正式接受未一致。需要分别记录冲突对查询的约束、对提交的约束，不能把它们合成统一忽略条件。",
+  "within_case_support":"真实相同Adam出生返回被四次读取，新1/4正确排、新2范围错但书年排、新3同段自纠；不同判断虽仍三N一W，却不是四次同一链。新1排后又查同片角色，新2/3转对象，新4最终承认冲突而选择。四次内部对照足以反对仅依状态频率称U因果重要。",
+  "mechanism_chain_checks":[
+    {"chain":"已明确候选硬冲突→没有消解证据→仍以该候选其它属性驱动真实取证。","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_EXCLUDE","N1_CAST_QUERY","N1_LATER_CAST"]},"limits":"G明确提示重新查该片，保留方向补偿/干扰；新2/3/4之后主要换对象，不为同N强行归类。"},
+    {"chain":"已承认候选违反题目条件→没有修复→末端仍正式接受该候选。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_FINAL_ACKNOWLEDGE","N4_FORMAL_CHOICE"]},"limits":"只有一条有FormalFinal，其余无Final不支持已发生提交；原W为拒答，错误状态相同掩盖采用差异。"}
+  ],
+  "counterevidence_and_limits":["原新均无12thFail返回，不是正确证据回后被忽略的正例。","新2/3确有排除驱动真实对象更新的行为，但仍N，说明有这一更新并不足以找到答案。","G带BigShort回访动作而P已知其书年冲突；不把后续回访只归于被删Inventor动作。","原U再次取证没补关键条件，不代表该候选功能客观没用；本题没有正确路径对照证明可省。","新4正文同时拒绝确定和最后明确选Wolf，以最终实际选择判断W，不能只截有利一句。","候选名称/书年重复不自动算真实核验，全部按Call核；Return最后仅进未发guard不当采用。","G49只计一次，生成下降与Search/Prompt上升分别保留；独立分支不相加。"],
+  "cost_basis":"原生R11@554保留135生成Token，原后缀3751生成/5Search/6Actor，Prompt32192+208022=240214。G49一次，新2848/2428/2899/2946加G2897/2477/2948/2995，差−854/−1274/−803/−756。新Search8/8/8/6、Actor8/8/8/7，Prompt347239/346743/346952/294451均高原。生成下降来自更短后续表达及原长末轮对照，不能说Search成本降低；前三最后Return只入guard。重放原135前缀单列，原延迟含预切生成不报伪精确时间节省。",
+  "next_cross_case_test":"对照23S001作者生日待办和20钢假设过滤，区分排除是否约束Query、是否约束Final；保留G引回已排候选及原W的条件。A侧同样确认P已接受后再查是否少做，不预设这三种是固定Pattern。"
+}

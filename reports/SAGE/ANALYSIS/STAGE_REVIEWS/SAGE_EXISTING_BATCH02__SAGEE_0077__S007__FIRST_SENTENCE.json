@@ -1,0 +1,424 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0077",
+  "stage_id": "S007",
+  "sample_order": 42,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the name of the recipient of the Turing Award for foundational work in operating systems, particularly related to the development of Unix, who is an alumnus of a university located in the same state as the city of Pinole?",
+    "gold": [
+      "Ken Thompson"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "Ken Thompson",
+    "adopted_answer": "Ken Thompson",
+    "outcome": "C",
+    "reason": "正式提交Ken满足母校州别。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R7@0。初Search完整教育句已在历史；Pinole州别标题已返回；三次Open100/200/500只短前缀；R6定向教育Search返回无关Thompson，没有否定初始正确资料。当前无保留Reasoning。",
+    "evidence_states": "Ken Berkeley教育早已可见且原日志R2采用过。实际P保留Search证据，不保证早先Reasoning接受陈述在模板中；没有真正缺失教育事实。",
+    "evidence": [
+      "O_P_ED",
+      "O_P_CITY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/6/items",
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 508
+      },
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 0,
+        "end": 321
+      }
+    ],
+    "goal": "重新打开Ken原文以确认母校。",
+    "operations": "Open0/1000尚未教育，指出截断后Open0/2000终于教育。",
+    "product": "把原Search已给的教育句再次显示于Open。",
+    "judgment_change": "没有新候选或母校，改变的是对确认已完成的状态。",
+    "evidence": [
+      "O_U",
+      "O_OPEN_ED"
+    ]
+  },
+  "original_followup": {
+    "use": "R9直接用同母校和Pinole州别排除Dennis并提交，未再核验。",
+    "evidence": [
+      "O_FINAL",
+      "O_J"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已知教育事实的原文再确认，逐步扩大Open窗口。",
+    "state_relation": "四条均引用旧Search教育句；两条仍短Open但未达到母校段便放弃，另两条不Open。材料本来充分而追加确认不稳定。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_J",
+      "N4_J"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I have found that Ken Thompson is a Turing Award recipient for foundational work in operating systems (specifically Unix).",
+    "source_position": "R9[0,122)，22派生Token。",
+    "novelty": "奖项和姓名在最初Search已明确，G不是新事实，没有母校/州别答案的完整确认，但重申Ken为焦点候选。",
+    "risk": "ORACLE_ANCHORED候选显著性/确定性提示，不能当完全无引导删除。",
+    "evidence": [
+      "I_G",
+      "O_P_ED"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "正式Submit引用旧Search中的正确学校。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_J"
+      ],
+      "work_and_evidence_timeline": "R7仍OpenKen0/200，仅职业介绍；R8指出没完整但回看初Search直接引用教育句，将其与Pinole加州对应后Submit。说trydifferentapproach未真实再Search。",
+      "first_judgment_divergence": "短Open未补母校也不继续扩大窗口，而承认旧Search足够。",
+      "first_actual_tool_divergence": "Open200代原1000/2000两次；随后直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "核实Ken教育",
+          "original_operation": "两次扩大Open",
+          "original_product": "Open显示教育句",
+          "new_goal": "同",
+          "new_operation": "短Open后改用旧Search",
+          "new_product": "学校关系采用成功，新增Open验证未完成",
+          "evidence": [
+            "O_U",
+            "O_OPEN_ED",
+            "N1_J"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核查尝试恢复，但没恢复Open直接教育证据；依赖已有Search完成判断。",
+      "chain": "已有教育证据→短Open仍截断→改为接受旧Search→C，少一次Open/Actor。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "421生成26456Prompt2Actor0Search1Open；原两次Open加提交，减少来自取消第二次扩读，非没有母校比较。P13123/G22预填单列。",
+      "counterevidence_and_alternatives": "仍有一次低增量Open，不能称全跳过。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "旧Search明确学校并与州别匹配后Submit。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_J"
+      ],
+      "work_and_evidence_timeline": "R7逐字引用旧Search Berkeley句，认定与Pinole同州，直接Submit，无新Search/Open。",
+      "first_judgment_divergence": "确认学校可由既有Search完成，不再索要Open重复显示。",
+      "first_actual_tool_divergence": "首Call直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "追加原文确认",
+          "original_operation": "Open1000/2000",
+          "original_product": "重复学校证据",
+          "new_goal": "采用已知学校并回答",
+          "new_operation": "直接引用初Search",
+          "new_product": "同答案，未再追加验证",
+          "evidence": [
+            "O_OPEN_ED",
+            "N2_J",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "追加Open验证未发生；必要学校匹配判断仍存在，不等于所有功能缺失。",
+      "chain": "事实早已可见→直接采用→C，省两个Open和中间交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "246生成13145Prompt1Actor0Search0Open；G22已经在Prompt，不重复扣费。",
+      "counterevidence_and_alternatives": "G肯定Ken奖项可能促成直接采用；不能作纯删除必要性证明。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "用旧教育句提交正确姓名。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_J"
+      ],
+      "work_and_evidence_timeline": "R7先明确旧Search学校与同州，却仍Openoffset200limit100只得Unix/B语言；R8说没得到具体信息，随后实际引用初Search完整学校句，取消再次Search/Open意向并Submit。",
+      "first_judgment_divergence": "结果已足够但仍尝试核查；失败后改用已有材料而不再扩大。",
+      "first_actual_tool_divergence": "Open200/100非原0/1000，之后Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "追加教育验证",
+          "original_operation": "扩大原文到教育段",
+          "original_product": "教育直接Open",
+          "new_goal": "同",
+          "new_operation": "错误窗口短Open",
+          "new_product": "Open无教育、旧Search被采用",
+          "evidence": [
+            "O_OPEN_ED",
+            "N3_J",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "实际核查重做，产物未恢复；采用动作改由旧Search支持。",
+      "chain": "旧事实可见→仍发Open但错窗口→未补证后承认旧事实足够→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "314生成26372Prompt2Actor1Open0Search；少一次Open，节省不意味着该次Open有新增价值。",
+      "counterevidence_and_alternatives": "返回没有教育，但原P教育足够，非新证据缺口。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "Ken Thompson",
+      "adopted_answer": "Ken Thompson",
+      "outcome": "C",
+      "outcome_reason": "整体条件比较后Submit。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_J"
+      ],
+      "work_and_evidence_timeline": "R7引用旧Search学历，实际在Reasoning里逐条doublecheck奖项/Unix/同州；没有真实Search/Open，随后Submit。",
+      "first_judgment_divergence": "doublecheck是证据比较，非索要额外文档。",
+      "first_actual_tool_divergence": "直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "追加教育文档确认",
+          "original_operation": "Open两次",
+          "original_product": "重复学校句",
+          "new_goal": "用既有证据匹配条件",
+          "new_operation": "Reasoning逐条件核对",
+          "new_product": "Ken答案，无新增Open证明",
+          "evidence": [
+            "O_U",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "取证执行没重做；最终匹配由原P材料完成。",
+      "chain": "已有事实→文本条件核对→C，无额外取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "251生成13145Prompt1Actor0Search0Open；减少在删除重复Open及相应请求。",
+      "counterevidence_and_alternatives": "不能把doublecheck字样当真实工具工作。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "4C；2PARTIAL_REBUILT、2NOT_OBSERVED追加验证。",
+    "shared_and_different": "全部实际引用初始Search已有母校；r1/3仍无收益短Open，r2/4跳过Open。区别在是否继续把已知事实当取证缺口，未改变答案。",
+    "cost": "成本表记录原完整R7起后缀及新费用；全DERIVED_CHAR_EXACT，无原生精确节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当正确关系已在历史Search完整显示，后来的Open可能只是再次确认；删掉扩读后，是否接受旧Search决定额外工具执行，必要比较仍可完成并保持答案。",
+      "support": [
+        "O_P_ED",
+        "O_OPEN_ED",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J"
+      ],
+      "limits": "4条同题；G肯定焦点候选，排他同州事实并非全由新路径获得。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "普通Open失败与事实缺失必须分开；本例初Search含教育原句，后来短Open不含。",
+    "NOT_OBSERVED仅追加取证，不是把教育判断功能也判为未做。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_P_ED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "from the University of California, Berkeley"
+    },
+    {
+      "evidence_id": "O_P_CITY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/0/title",
+      "exact_quote": "Pinole, California"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Let me open that document to verify."
+    },
+    {
+      "evidence_id": "O_OPEN_ED",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/7/observation/text",
+      "exact_quote": "from the University of California, Berkeley"
+    },
+    {
+      "evidence_id": "O_J",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "So the answer is Ken Thompson."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 7,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have found that Ken Thompson is a Turing Award recipient for foundational work in operating systems (specifically Unix)."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Actually, looking at the search results from the first query"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Therefore, the answer is Ken Thompson."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The initial search result `wiki25:5245548` snippet mentioned:"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This matches the condition."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Ken Thompson"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0077/trajectory.json",
+      "source_sha256": "e1e902213f72dc1a72f9dd348144bdf9dcd971521e40a270b32f170167e82996"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0077.json",
+      "source_sha256": "cea37db1dfec82fd5e8947bfd971aae59dfc528a2bd063097221bc522aecf877"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "021ec83fe6e0df01a5ca3d0bf8d12e210f938c2388413282b69c0fc7815147c9"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e6e0d406808fba30f06a970a1fd672b0e477ecdef7c2094a7e5e0cceb88b9446"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "26ffc819d8e14096f1e59fd6956c2d7ec61ae9cb7f5b6dd1259f25d34b7df0b3"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "85e1031042d435025878c9caa713cb0faf11513921b27920d9d07b5cd9c3480a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0077__S007__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c0d8f6111b8ad819acca3963998e282c4cfce61a7df578030c1857742bb53d78"
+    }
+  }
+}

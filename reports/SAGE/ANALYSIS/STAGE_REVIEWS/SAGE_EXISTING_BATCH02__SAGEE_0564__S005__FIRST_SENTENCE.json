@@ -1,0 +1,587 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0564",
+  "stage_id": "S005",
+  "sample_order": 34,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0564/trajectory.json",
+      "source_sha256": "35d81c30d265492cb6920db32a09423c606953071f6f4b6c4af51f9d90b9f9f2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0564.json",
+      "source_sha256": "ca2f5eb61384529b5f184b6174b00f7baf3a8da0b4c96ee555b9fcb69d71ad84"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "62bf74cb4d7237016b0ecf08a86b6a20349719b87b74c7cabb435c954ed480ca"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "180593891a7f1b710c30a5a6a9fc628492e78fcf6aeb9297c81e7120228bf27f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "818d66c5d43aca1d56dd9a1d23509fd3027c182dd3b2f220098a4250612f72ea"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "337daa5b50b07d95b06fb284364586aa017a6ec999ee42019e56acb9d44464db"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "24391b857616932a9a6cd8d87afd650f83f5c4cb8f2fca87adc93df67dbe20ae"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the dollar amount, rounded to the nearest million, of the 3D contribution to the opening weekend gross of the Marvel Cinematic Universe film directed by the individual who also directed the movie for which Jennifer Carpenter received the 2006 MTV Movie Award for 'Best Frightened Performance'?",
+    "offline_gold": [
+      "24 million"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "整原14Round和真实Call/Return已完整读，重定位纯推理R7[1496,3284)。",
+    "new": "四支102123字符0—27000—55000—83000—102123全部读，全部实际工具事件和新文档片段已读；精确相同Return用已读全观察SHA引用。",
+    "semantic_author": "Codex直接从原文写语义，不由脚本或旧标签产生。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R7@1496前缀已识别EmilyRose表演评论和Derrickson姓氏，列出Carpenter获奖缺口、Derek提名Hostel；还未保留本U的电影—导演—MCU候选比较。旧Assistant Reasoning被规范化为空，当前前缀与已发生Return仍在。",
+    "evidence_state": "已返回Carpenter表演和别人的提名，不是Carpenter获奖证明；当前正在选链条，尚无MCU查询或票房金额。",
+    "gap": "怎样从几部奖项相关电影选择符合MCU导演约束的关系链，同时保留未证第一跳。",
+    "evidence": [
+      "I_P",
+      "O_U_COMPARE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 7,
+        "json_pointer": "/rounds/6/reasoning_content",
+        "start": 1496,
+        "end": 3284
+      }
+    ],
+    "goal": "比较EmilyRose/Scott与Hostel/EliRoth，利用是否导过MCU选后续电影范围。",
+    "operations": [
+      "对照Carpenter/EmilyRose与Derek/Hostel，并承认Derek只是提名。",
+      "解释两片导演Scott/EliRoth，以EliRoth未导MCU倾向Scott；却把2022续集也错算给Scott，保留两电影。",
+      "将票房3D贡献列为后续目标，没有实际Call；S006随后又先查奖项。"
+    ],
+    "product": "倾向Scott/DoctorStrange电影链和金额任务，兼有错误续集候选，并未使原下一Call立即转金额。",
+    "judgment_change": "候选链被比较和收窄，但不是完整外部核实；原U最后拟查票房不等于原实际行动。",
+    "evidence": [
+      "O_U_COMPARE",
+      "O_U_SELECT",
+      "O_U_ERROR",
+      "O_U_PLAN",
+      "O_NEXT_CALL"
+    ]
+  },
+  "original_followup": {
+    "use": "原仍查奖项4次，之后实际ScottMCU查证2016和Sam接任，条件接受前提查24；再核奖后Submit。U的一部分选择后来重复建立，错误续集归属被真实Return修正。",
+    "true_suffix": "原切点生成6903—7789保守区间，7Search0Open1Submit、8生成段；未来HTTP Prompt247133。",
+    "evidence": [
+      "O_NEXT_CALL",
+      "O_MCU_RETURN",
+      "O_AMOUNT",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "一次纯推理将题目约束用于关系链选择，不能以无Call当无工作。",
+    "四支都恢复核心Scott/2016关系，但不必复刻Hostel/EliRoth比较表；这是相同产物经不同操作恢复。",
+    "原比较混入错误续集导演；删后正确可以同时来自后续真实纠正、常识恢复和更少额外反复，不能简单说原整段无新增作用。"
+  ],
+  "guide_audit": {
+    "G": "Let's start by confirming Jennifer Carpenter's award.",
+    "origin": "原S006 R7[3284,3337)，10派生Token。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "P已明确要查同一奖项，G只承接该行动方向；没有Scott/DoctorStrange新实体、候选结论或金额，未直接补原比较结果。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat01",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R13真实Submit，新票房Search与Open1000直接支持24；第一跳获奖仍未精确证实。",
+      "outcome_evidence": [
+        "N1_TARGET",
+        "N1_AMOUNT_QUERY",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R7跟G查奖，R8从旧姓氏评论换查EmilyRose导演，真实取得1940054/2023087及Carpenter简介。",
+        "R9已采用Scott/2016但再核奖，R10以一般MTV奖和题目前提条件接受转金额。",
+        "R11有24又回查奖，R12再整体盘点并Open金额1000，R13长篇接受链和Submit。"
+      ],
+      "first_substantive_judgment_difference": "没有重列Hostel/EliRoth表，直接独立核电影导演后建立Scott/2016；旧缺口会重开，但未阻断最终提交。",
+      "first_actual_tool_difference": "原首奖项Search相同，第二Call改查EmilyRose导演而非同winner重试；以后多一次金额Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "选择满足MCU约束的电影导演链",
+          "original_operation": "比较两电影两导演",
+          "original_product": "倾向Scott/DoctorStrange且续集错误未解",
+          "new_goal": "相同电影链确认",
+          "new_operation": "独立查EmilyRose导演→采用Scott2016，不复刻EliRoth比较",
+          "new_product": "核心链完整恢复，具体比较操作未观察复刻",
+          "evidence": [
+            "O_U_SELECT",
+            "N1_DIRECTOR_QUERY",
+            "N1_TARGET"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "旧片/姓氏→新导演证据→Scott2016可用→金额24→奖项再核/Open后C；少2Search1Actor、多1Open，生成少1684—2570来自少4次原连续奖项展开及后续思考压缩，非关系链选择消失。",
+      "costs": {
+        "new_generation": 5219,
+        "new_prompt": 213078,
+        "new_search": 5,
+        "new_open": 1,
+        "new_actor": 7,
+        "P_replay": 18551,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -2570,
+          -1684
+        ]
+      },
+      "limits": "新简介只有一般MTV奖，不能补成精确2006类别；仍有额外反复接受，不把整个成本差归因U。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat02",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R12真Submit，R10真实票房Return有24；未取得新增Carpenter奖项文献。",
+      "outcome_evidence": [
+        "N2_RECOVER",
+        "N2_AMOUNT_QUERY",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R7/8两次相同奖项Search，R9重建Scott/2016思路但仍第3次查奖。",
+        "R10条件接受EmilyRose链，不独立核导演便查金额；R11有24再真核奖一次，旧Return相同。",
+        "R12长篇win/nom和2016/续集比较，明确SamRaimi续集，最后Submit。"
+      ],
+      "first_substantive_judgment_difference": "核心Scott关系从常识恢复而非复制原两候选表；最后纠正续集归属。",
+      "first_actual_tool_difference": "3次奖项后直接票房，未执行原独立ScottMCU查询；金额后仍核奖。",
+      "function_correspondence": [
+        {
+          "original_goal": "候选关系链选择",
+          "original_operation": "比较电影导演及MCU约束",
+          "original_product": "Scott电影链",
+          "new_goal": "相同",
+          "new_operation": "R9/10从姓氏和常识恢复2016，R12区分Sam续集",
+          "new_product": "核心关系恢复但缺独立导演新证据",
+          "evidence": [
+            "O_U_SELECT",
+            "N2_RECOVER",
+            "N2_SEQUEL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "重复奖项未证→条件接受Scott2016→24真实返回→一次旧缺口再查→长篇有界收束C；少2Search2Actor和2182—3068生成主要是未再查独立MCU与少原后续反复展开，必要选择功能仍发生。",
+      "costs": {
+        "new_generation": 4721,
+        "new_prompt": 173386,
+        "new_search": 5,
+        "new_open": 0,
+        "new_actor": 6,
+        "P_replay": 18551,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -3068,
+          -2182
+        ]
+      },
+      "limits": "少核关系和奖项支持不完整与答案C并存，质量不能只看状态。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat03",
+      "actual_final": "24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R9真Submit，R8金额Return直接给24；将Carpenter奖项说成提名无相应材料，关系条件仍有误表述。",
+      "outcome_evidence": [
+        "N3_RECOVER",
+        "N3_AMOUNT_QUERY",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R7仅核奖一次，Return旧同。",
+        "R8从Derrickson姓氏直接采用Scott和2016，不与Hostel比较，不独立核MCU，直接查金额。",
+        "R9短链采用24Submit，并错误把Carpenter前提写作nomination。"
+      ],
+      "first_substantive_judgment_difference": "原候选收窄的核心产物在R8很短恢复；省去显式候选表和多次奖项核查，没有新文献支持第一跳。",
+      "first_actual_tool_difference": "首奖项同，第二Call已票房而原还有多个winner重试和MCU查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定能查金额的MCU电影",
+          "original_operation": "实质比较两导演路径",
+          "original_product": "Scott/DoctorStrange候选",
+          "new_goal": "相同",
+          "new_operation": "R8直接采用Scott2016，真实查金额",
+          "new_product": "核心选择恢复，未见两候选比较及外部导演核验",
+          "evidence": [
+            "O_U_SELECT",
+            "N3_RECOVER",
+            "N3_AMOUNT_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "姓氏线索→短关系推断直接接受→真实金额→立即SubmitC；少5Search5Actor和6292—7178生成，落在大片前置反复取证与全条件重盘未展开，而非模型不需选择关系。",
+      "costs": {
+        "new_generation": 611,
+        "new_prompt": 67665,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 18551,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -7178,
+          -6292
+        ]
+      },
+      "limits": "正确金额并不证明未核导演/奖项可以普遍省略；常识和采样可提供恢复。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0564__S005__FIRST_SENTENCE__repeat04",
+      "actual_final": "$24 million",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "24 million",
+      "outcome": "C",
+      "outcome_reason": "R10真Submit美元24million与Gold语义一致，票房真实Return支持。",
+      "outcome_evidence": [
+        "N4_MCU_QUERY",
+        "N4_AMOUNT_QUERY",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R7核奖一次，R8重建EmilyRose/Scott后直接查MCU，实际Return确认2016及退出续集。",
+        "R9虽仍讨论win/nom，条件允许推进并查金额。",
+        "R10长篇重复全链与获奖含义，只出现计划不再发Search，最后Submit。"
+      ],
+      "first_substantive_judgment_difference": "先短恢复电影/导演再由真实MCU证据稳定2016对象，不需要原错误双片候选表；后续缺口只在推理内重述未继续派发工具。",
+      "first_actual_tool_difference": "第2Call已MCU，原本仍四次奖项；下一金额Call正常执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "选择符合MCU关系的候选",
+          "original_operation": "两电影导演比较",
+          "original_product": "Scott倾向但电影歧义",
+          "new_goal": "相同",
+          "new_operation": "短采用Scott→实际MCU返回→2016确定",
+          "new_product": "核心关系恢复且续集歧义由新材料消解",
+          "evidence": [
+            "O_U_COMPARE",
+            "N4_MCU_QUERY",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "前提条件采用→真实MCU证据→金额24→缺口反复措辞但不再执行→C；少4Search4Actor，生成少3267—4153，仍有长答案组织；不把每一句准备搜索计Search。",
+      "costs": {
+        "new_generation": 3636,
+        "new_prompt": 99180,
+        "new_search": 3,
+        "new_open": 0,
+        "new_actor": 4,
+        "P_replay": 18551,
+        "G_prefill": 10,
+        "conservative_new_minus_original_generation_interval": [
+          -4153,
+          -3267
+        ]
+      },
+      "limits": "最后7307字符并非短直接答，但实际只有一次Submit，无声称的额外Search。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "C/C/C/C；核心Scott/2016关系四支都恢复，原完整两候选比较表均未原样复刻。",
+    "shared": "G只有核奖方向；短关系判断能从旧姓氏和常识/新材料重建，并真实用于票房查询。",
+    "differences": "r1新导演入口和Open，r2/3无独立导演工具，r4独立MCU工具；r1/2得到金额后仍核奖，r3/4不再工具回查。",
+    "A_class_interpretation": "支持核心功能可用其他方式和更少篇幅恢复，不支持功能本身不必要；同时原错误续集归属说明Stage不能整体等同有效证据。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当旧材料足以唤起关系链、下一步目标可由常识或新关系文献恢复时，完整候选对照可被较短的选择或另一入口替代；成本主要取决于后续是否反复重新证明已暂时采用的前置链。",
+      "support": "r3短恢复后2SearchC，r4独立MCU后3SearchC，r1/2回核更多仍C，原4次前置重试不是所有成功路径必须复刻。",
+      "counterexample": "r1/2仍多次核奖且有长篇解释，所以删U不自动消除反复；各支第一跳支持不齐，不能以C判完整质量相同。",
+      "scope": "同题4支，只给跨题比较变量，不预设冗余类或把不同Stage当独立题。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "删除的是纯推理候选比较，不是真实Search；新支关系选择恢复不等于恢复原每项操作。",
+    "原U错误归属续集被原后续和新部分路径修正，不能预设原U全是有益工作。",
+    "4C是状态保持，均未直接给2006Carpenter指定奖完整证明；必要证据质量须单列。",
+    "G方向已有P支持但实验仍有教师预填和独立采样，不能解释为无引导纯删除因果。",
+    "成本均区间，原U部分Round无nativeIDs；无伪精确Token节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 7,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Let's search for \"Jennifer Carpenter 2006 MTV Movie Award\"."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 7,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let's start by confirming Jennifer Carpenter's award."
+    },
+    {
+      "evidence_id": "O_U_COMPARE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "If the movie is \"Hostel\", the director is Eli Roth."
+    },
+    {
+      "evidence_id": "O_U_SELECT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "So the individual is likely Scott Derrickson."
+    },
+    {
+      "evidence_id": "O_U_ERROR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Scott Derrickson directed \"Doctor Strange\" (2016) and \"Doctor Strange in the Multiverse of Madness\" (2022)."
+    },
+    {
+      "evidence_id": "O_U_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Let's search for \"Doctor Strange opening weekend gross 3D contribution\"."
+    },
+    {
+      "evidence_id": "O_NEXT_CALL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Jennifer Carpenter 2006 MTV Movie Award Best Frightened Performance winner",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_MCU_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/results/1/snippet",
+      "exact_quote": "Sam Raimi took over.",
+      "doc_id": "wiki25:2023088",
+      "call_id": "chatcmpl-tool-843b40c8f3b8a9d3"
+    },
+    {
+      "evidence_id": "O_AMOUNT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "return",
+      "json_pointer": "/tool_events/11/observation/results/4/snippet",
+      "exact_quote": "with 3D contributing $24 million.",
+      "doc_id": "wiki25:7461444",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-81b4ad4283e1221c"
+    },
+    {
+      "evidence_id": "N1_DIRECTOR_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "The Exorcism of Emily Rose director",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_TARGET",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Scott Derrickson directed \"Doctor Strange\" (2016) in the MCU."
+    },
+    {
+      "evidence_id": "N1_AMOUNT_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Doctor Strange opening weekend gross 3D contribution",
+      "call_id": "chatcmpl-tool-b865191ad97f1cee"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RECOVER",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Scott Derrickson directed \"Doctor Strange\" (2016) in the MCU."
+    },
+    {
+      "evidence_id": "N2_SEQUEL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "*Doctor Strange in the Multiverse of Madness* was directed by **Sam Raimi**."
+    },
+    {
+      "evidence_id": "N2_AMOUNT_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Doctor Strange opening weekend gross 3D contribution",
+      "call_id": "chatcmpl-tool-8089a59fa5faa6c6"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "chatcmpl-tool-a6c7939bf7b05aff"
+    },
+    {
+      "evidence_id": "N3_RECOVER",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Scott Derrickson directed \"Doctor Strange\" (2016) in the MCU."
+    },
+    {
+      "evidence_id": "N3_AMOUNT_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Doctor Strange opening weekend gross 3D",
+      "call_id": "chatcmpl-tool-a4033617a105e7cb"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "24 million",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_MCU_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Scott Derrickson Marvel Cinematic Universe film",
+      "call_id": "chatcmpl-tool-a576c9f4c55c62c5"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the MCU film is \"Doctor Strange\"."
+    },
+    {
+      "evidence_id": "N4_AMOUNT_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Doctor Strange 2016 opening weekend gross 3D contribution",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "$24 million",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: seven source SHA,25 exact evidence quotes and correct source sides,Round/Call ID/DocID metadata,frozen range,four actual cost ledgers. Codex self-review is not independent human gold."
+}

@@ -1,0 +1,449 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0008",
+  "stage_id": "S002",
+  "sample_order": 98,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the date of the maiden flight of the second prototype of the German flying boat, whose initial version was flown by Flight Captain Erich Gundermann, and which was designed by the company that also developed an experimental aircraft in the 1950s to test a tilting-propeller system for STOL, a concept initially explored with the pre-World War II Dornier Do 10?",
+    "gold": [
+      "23 November 1938"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "23 November 1938",
+    "adopted_answer": "23 November 1938",
+    "outcome": "C",
+    "reason": "原路径完整Do26原型记录直接证日期，正式提交。",
+    "evidence": [
+      "O_DATE",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2[0,77)由首次姓名检索采用Do26及Dornier厂商。原Question已有Do10技术线索，但Do10对应的检索材料尚未取得；Gundermann/V2日期尚在截断摘要后，不可见。",
+    "evidence_states": "Do26/厂商已提取采用，辅助技术关系尚未文档核实，目标日期未返回；G只是题目剩余要求。",
+    "evidence": [
+      "O_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 77,
+        "end": 498
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 166
+      }
+    ],
+    "goal": "核对Do10倾转发动机/螺旋桨STOL线索以确认厂商。",
+    "operations": "真实Search Dornier Do10 tilting propeller STOL，取到813883完整603字符，R3明确采用早期技术试验关系和Dornier公司。",
+    "product": "厂商/前战Do10技术关系有独立文档支持；未取得V2日期，也未核实1950sDo29。",
+    "judgment_change": "由型号推测厂商转成技术线索支持的厂商确认。",
+    "evidence": [
+      "O_U",
+      "O_REL"
+    ]
+  },
+  "original_followup": {
+    "use": "确认厂商后恢复飞行员与原型检索，后来扩大Do26原文得到日期，另查1950sDo29，提交C。技术核验支持身份链而非直接产生日期。",
+    "evidence": [
+      "O_DATE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "沿辅助技术线索核实已猜厂商，稳定多跳身份关系。",
+    "state_relation": "四次均保留厂商Dornier；r1没有真实恢复技术核查且N，r2真正核Do29却W，r3恢复Do10仍N，r4核Do29且日期段真正可见后C。恢复辅助条件不足以区分最终质量。",
+    "evidence": [
+      "N1_J",
+      "N2_J",
+      "N3_REL",
+      "N4_DATE",
+      "N4_F"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find the German flying boat whose initial version was flown by Flight Captain Erich Gundermann, and find the date of the maiden flight of its second prototype.",
+    "source_position": "O R3[166,339)，I#/anchor_text，36Token。",
+    "novelty": "全文复述Question已有飞行员/第二原型日期需求，无新实体或答案；把后继主线行动方向提早接入，可能使本次技术旁线被搁置。",
+    "risk": "ORACLE_ANCHORED，无决定性事实泄漏不等于无提示影响。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R18长推演10000Token截断，内部20October1938不是实际提交。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_STOP"
+      ],
+      "work_and_evidence_timeline": "R2姓名prototypeSearch；R3 OpenDo26 limit50、R4/5姓名Search、R6 Open100；R7–11姓名/Seeadler/V2Query，R12 Open500仍日期前；R13–17姓名/SeefalkeQuery同摘要/军事史；R15已误称Do10为1928飞行艇。R18 28978字符10000Token反复猜Do31/27并否认Do29存在，声称V1/V2为19/20October1938且计划检索不执行。13Search3Open17Actor。",
+      "first_judgment_divergence": "首步跟G回主飞行员线，技术关系只以内部记忆代替真实文档；后续知道文档截断却Open范围一直不足。",
+      "first_actual_tool_divergence": "R2姓名maiden prototype替Do10STOL查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "技术关系支持厂商",
+          "original_operation": "Do10技术Search并采用",
+          "original_product": "早期STOL试验事实",
+          "new_goal": "厂商由题干推定，实际追主飞行员",
+          "new_operation": "无技术线真实核查，Do26小范围读取三次",
+          "new_product": "厂商仍Dornier但技术解释错误，主日期无证",
+          "evidence": [
+            "O_U",
+            "O_REL",
+            "N1_J",
+            "N1_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整17Actor没有对应技术取证，内部说Do10不是实际核查。",
+      "judgment_action_outcome_chain": "辅助核验被跳过→厂商仍沿用但技术/型号无证猜测扩大→目标页始终短读→虚构日期与反复计划→长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "13717生成120477Prompt17Actor13Search3Open，原2360–2491生成12段9Search2Open，差[11226,11357]；多4Search1Open5Actor，R18一万Token是主要增加。P1575/G36另计。",
+      "counterevidence_and_alternatives": "N不能唯一归因技术核验缺失，直接未取得日期的读取问题更可观察；同组r3恢复技术仍N。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "20 August 1938",
+      "adopted_answer": "20 August 1938",
+      "outcome": "W",
+      "outcome_reason": "正式选择20August1938，既非Gold也无实际返回支持，不能因解释中机型正确判C。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R2姓名Do10混合Query回Do26/18；R3 Open50，R4/5重复姓名；R6查Do18，R7识别Blankenburg非Gundermann回姓名；R8姓名，R9 Open100，R10姓名；R11真实1950sSearch得Do29并R12采用；R12再Open100，R13 Open500仍不见日期；R14姓名；R15凭内部记忆转Do24飞行员假说，Query回无关材料；R16飞行艇姓名Search仍Do26。R17 7513字符2287Token自编V1 20June1937、V2 Sibylle20August1938，明知日期不在片段仍以内部知识接受并submit。11Search4Open16Actor。",
+      "first_judgment_divergence": "技术旁线改成Do29并真正采用，主文档仍短读；首次实质偏离身份在R6猜Do18，R15又猜Do24，最终回Do26却捏造原型名/日期。",
+      "first_actual_tool_divergence": "R2混合姓名Do10而非技术专查；R11另查Do29，始终不扩大主文档超过500。",
+      "function_correspondence": [
+        {
+          "original_goal": "厂商技术关系验证",
+          "original_operation": "Do10Search/采用",
+          "original_product": "Dornier的早期STOL关系",
+          "new_goal": "同厂商技术身份",
+          "new_operation": "R11实际Do29技术Search、后续采用",
+          "new_product": "1950sDo29支持厂商，Do10早期关系未直接恢复",
+          "evidence": [
+            "O_U",
+            "O_REL",
+            "N2_AUX",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "通过另一年代技术对象恢复厂商核验，却没有原Do10前战STOL直接证据，故不全重建。",
+      "judgment_action_outcome_chain": "厂商技术证据明确→主日期段仍不可见→用‘检索结果指向Do26’提升为具体日期可信→未经返回的内部日期被正式采纳→W。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "6416生成109086Prompt16Actor11Search4Open，差[3925,4056]；多2Search2Open4Actor，多个短Open与R15/R17长无证日期论证增加，Prompt略低不代表生成更省。",
+      "counterevidence_and_alternatives": "获得Do29辅助证据仍错，不能称厂商关系缺失导致W；错误日来自无证内部断言，而非返回错误日期。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R20 10000Token重复检索意向后截断，无Final。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R2姓名prototype、R3 Open100、R4–6姓名；R7真正Do10tiltingQuery返回813883及Do24/12等新入口，R8明确采用STOL关系；R8/9飞行员，R10 Open1000，R11–14姓名反复；R15 V2V3组合无关版本页，R16姓名；R17转Do24假说，R18实际OpenDo24 1000只有设计，R19回姓名；R20 37060字符10000Token反复同名/型号与‘可能在Do26全文’但没有新Call。15Search3Open19Actor。",
+      "first_judgment_divergence": "技术核验延迟至R7真正恢复并支持厂商，但主日期读取未达到句子；无姓名被误用来重新怀疑Do26，转Do24读。",
+      "first_actual_tool_divergence": "R2先主线，R7恢复Do10Query；R18选Do24而非扩大Do26。",
+      "function_correspondence": [
+        {
+          "original_goal": "Do10技术支持厂商",
+          "original_operation": "真实Search并采用603字符",
+          "original_product": "DornierSTOL关系",
+          "new_goal": "同Do10技术核验",
+          "new_operation": "R7真实技术Query，R8解释采用",
+          "new_product": "原技术关系恢复，日期仍缺",
+          "evidence": [
+            "O_U",
+            "O_REL",
+            "N3_REL",
+            "N3_J",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "具体Do10技术查询、返回与采用确实发生，不因最终N否定恢复。",
+      "judgment_action_outcome_chain": "技术关系恢复→厂商稳定而飞行员日期仍缺→把短读当检查过全文→转另一飞机→最后重复计划长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "13518生成205880Prompt19Actor15Search3Open，差[11027,11158]；多6Search1Open7Actor，R20一万Token与无日期的多次姓名搜索具体增加。",
+      "counterevidence_and_alternatives": "这是原U FULL却失败的本组反例，不能用U恢复情况单独解释终态。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "23 November 1938",
+      "adopted_answer": "23 November 1938",
+      "outcome": "C",
+      "outcome_reason": "R5 Open2000已含原型/飞行员日期段，R6提取，R8正式C。",
+      "outcome_evidence": [
+        "N4_DATE",
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R2/3姓名Search，R4 Open100只有开头；R5实际提高limit2000取得日期句；R6明确V1/V2并采用23November1938，真实1950sSearch得Do29；R7全条件判断并OpenDo29 2000核背景，R8承认Do29本文讲Fa269、Do10关系只由题干推断，保留正确主日期提交。3Search3Open7Actor。",
+      "first_judgment_divergence": "不先恢复Do10检索，短Open后下一轮真正提高读取范围，先取得直接日期，再核厂商技术。",
+      "first_actual_tool_divergence": "R2姓名；关键R5 Open2000而非继续姓名Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "厂商技术身份",
+          "original_operation": "Do10Search并采用",
+          "original_product": "前战STOL证据",
+          "new_goal": "同身份链辅助核验",
+          "new_operation": "Do29 Search+Open，Do10关系仅保留题干推断",
+          "new_product": "1950s厂商技术证据，早期Do10直接证未恢复",
+          "evidence": [
+            "O_U",
+            "O_REL",
+            "N4_J",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "实际另入口完成厂商旁线，不把题干Do10重述当原技术核查已执行。",
+      "judgment_action_outcome_chain": "目标文档截断→实际扩大到含日期段→提取原型角色与正确日期→补Do29身份证据→C；辅助核验换路径而主事实直接支持。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1910生成32980Prompt7Actor3Search3Open，差[-581,-450]；少6Search5Actor但多1Open，节省在更早主文档扩读、减少姓名循环，非所有核验被取消。",
+      "counterevidence_and_alternatives": "原Do10直接支持缺失、新Do29返回并不直接讲Do10，C只说明问答主日期正确，不替所有辅助证据宣称完整等价。"
+    }
+  ],
+  "four_run_comparison": "N W N C。r3原Do10核验FULL恢复仍N；r2/r4改Do29均PARTIAL，分别W/C，真正区分是主日期段是否返回并被采用。r1缺技术核验但也有独立短读取/无证推演问题。r4恢复日期而实际少搜索更省，不能把三次退化都解释为原技术Stage独有作用。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "辅助身份关系核验与目标事实读取是可分的状态更新：厂商已稳定后，恢复技术旁线并不能自动补日期；关键段未可见时，模型可能以候选身份吻合作为具体日期断言的替代。扩大读取取得日期并采用，才在此组区分C路径。",
+      "support_evidence": [
+        "O_REL",
+        "N2_AUX",
+        "N2_J",
+        "N3_REL",
+        "N3_J",
+        "N4_DATE",
+        "N4_J"
+      ],
+      "limit": "单Stage四次是路径对照，非证明Do10可删或Open必需；G、取证顺序和采样影响均保留。"
+    }
+  ],
+  "counterevidence_and_limits": "三次改变结果来自不同具体工作链，不能强讲U删除造成同一错误。ToolReturn实际片段范围、是否采用均须分开。仅原native缺失下保守区间，不把Token差全归目标U或把独立分支相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results mention the Dornier Do 26, which was designed by Dornier."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Dornier Do 10 tilting propeller STOL"
+    },
+    {
+      "evidence_id": "O_REL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results confirm that the Dornier Do 10 was used to test a tilting engine installation and propellers for STOL tests. This confirms the company is Dornier."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find the German flying boat whose initial version was flown by Flight Captain Erich Gundermann, and find the date of the maiden flight of its second prototype."
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 18,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "Actually, the **Dornier Do 29** is not a thing."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 18,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N2_AUX",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "The search results confirm that the company is Dornier (designed the Do 29 for tilting propellers in the 1950s, and the Do 10 was a pre-WWII Dornier)."
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "Since I can only see snippets, I will proceed with the known historical fact associated with the identified aircraft."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "20 August 1938"
+    },
+    {
+      "evidence_id": "N3_REL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The search results show that the Dornier Do 10 was used to test a tilting engine installation and propellers for STOL tests"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 18,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "Wait, I already opened the Dornier Do 26 document (wiki25:3638520) and it didn't mention Erich Gundermann."
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_DATE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The second prototype (V2 \"Seefalke\") had its maiden flight on 23 November 1938."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0008/trajectory.json",
+      "source_sha256": "cc74e26e4a5b1f1ebf5742a00f51d948daa3ab611f6070f8629fbaa065d87a50"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0008.json",
+      "source_sha256": "7fc501e9424351c2e6478a20bea5c3a57722b59bc1de64b5ca3c3b7db254e595"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "8c78faedeb2fe54d80d15d672e48c78baf517693e7bc6e12a47e736f58d3b5a7"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "75995e0d66505b2372f178aab04e45f42bcf82c9a3760d4f93ece42dcbfc4ebc"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "f8cdbc660a603bc57b575b0296bc6725f2a4a8c4fa04175692dccbaa894aa237"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3ae69da08cbdd4e9203d85ed10335515c61501a64273888271cd2f8aefa08e5f"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "a4f4d96445d07a3b92f5be8320e209f4f4c3b8ae51f25d57dde48a9dce2d6974"
+    }
+  }
+}

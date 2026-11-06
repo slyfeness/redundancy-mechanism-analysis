@@ -1,0 +1,595 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0618",
+  "stage_id": "S001",
+  "sample_order": 80,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0618/trajectory.json",
+      "source_sha256": "5153621f3f410a8385152b01a0044d12b517fb8f98f8948749d6a8d09ce1afd2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0618.json",
+      "source_sha256": "94bb3624288219d4564e8c2792a9e458a24d1b50dcd7bc123994a5d50e47e540"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "26b1699698885cf8a37b1c6e49dabf64e9e79905ea33e855f47c7eccc8541d83"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "5a783f4fd701c5097968ae472494164c07f3f4d1e679654379fa373df7be0b85"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "b5701d8a18ece9a53653cefff8e2d2ccb90e1532e1aaa34a5c6ec71d9b5cd300"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "edb3122d4a4694928d168fb8480cdba4780d9b74791659dcd8b1ba9ab51a47db"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "cecf212cd188803f26a120ef39911cf2fc01f6739d2c26b67db040e15386c2a9"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the numerical difference between the year when food rationing completely ended in the United Kingdom after World War II and the establishment year of the London hotel where the specific vegetable pie, popularly promoted by the British Minister of Food during that wartime period, was originally created?",
+    "gold": [
+      "65"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0618/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "65",
+    "adopted_answer": "65",
+    "outcome": "C",
+    "reason": "真实三返回支持配给1954、派在Savoy创制及1889开业，减法65正确。",
+    "evidence": [
+      "O_DATE",
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0只有原题和工具说明，派生497Token，无1954/1889或派酒店证据。",
+    "evidence_states": "所需两个年及派酒店关系都待确定，不能把后继G或原结果提前计入P。",
+    "evidence": [
+      "I_EMPTY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items；R1[0,561)+E1及R2[0,363)",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 561
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 363
+      }
+    ],
+    "goal": "确定英国战后食品配给彻底结束年份作为减法输入。",
+    "operations": "问题分解后Search，563365明确全部配给1954终止，R2引用采用。",
+    "product": "第一个年份1954成为已知，转向派与酒店关系。",
+    "judgment_change": "待查年份→有文档支持的1954。",
+    "evidence": [
+      "O_QUERY",
+      "O_DATE",
+      "O_USE"
+    ]
+  },
+  "original_followup": {
+    "use": "R5取得Savoy1889后首次以1954作减法65。R5—9还五次Open，但只开100/100/100/200/500字符未到关键日期；R10仍用原Search三条资料提交。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "获取并采用数值推导需要的一项外部事实。",
+    "state_relation": "P还没有年份，删后同值计算若需证据须重取；四次都实际重取，所以本StageA并不意味着这项输入不必要。",
+    "evidence": [
+      "O_USE",
+      "I_EMPTY"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Now I need to find information about a specific vegetable pie that was popularly promoted by the British Minister of Food during the wartime period, and the London hotel where it was originally created.",
+    "source_position": "原R2[363,565)",
+    "novelty": "主要重复题干并把下一行动指向派和酒店，未提供Woolton/Savoy、1954/1889、65。引导使四次先派后配给，不能当自然无引导删除。37GToken计Prompt一次。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_EMPTY"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实取回两个年和派酒店关系后计算并正式Submit。",
+      "outcome_evidence": [
+        "N1_CALC",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "R1—2派酒店宽Query都空，R3简化Minister of Food vegetable pie得Woolton/Savoy。",
+          "evidence": [
+            "N1_PIE"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "真实配给Search回原563365支持1954；R5采用再查Savoy1889。",
+          "evidence": [
+            "N1_DATEQUERY",
+            "N1_DATEUSE"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "三证据汇合，内部再次比较后Submit65，没有任何Open。",
+          "evidence": [
+            "N1_CALC",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "先完成派/酒店身份，再补配给年；原先先查配给。",
+      "first_actual_tool_divergence": "R1实际派Query代替配给Query，配给工作推迟R4。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "检索英国完全终止配给并采用1954。",
+          "new_goal_operation_product": "R4真实查配给，R5明确引用563365采用1954，R6用于减法，功能恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_USE",
+            "N1_DATEQUERY",
+            "N1_DATEUSE",
+            "N1_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "事实取得、采用、实际运算均恢复，不只是Final重复65。",
+      "judgment_action_outcome_chain": "前态无年→先派酒店再真实补年→三条关系闭合且算65→未执行原五Open而直接SubmitC；少耗主要在后续验证组织。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1284生成/26251 Prompt/5Search/0Open/6Actor；原2619/111366/4/5/10。五Open及其间重算消失；新增空Search使Search反多1，不能只称少检索。",
+      "counterevidence_and_alternatives": "G给派优先方向；原U功能全部重建。r2仍出现短Open，说明少复核不是确定性必然后果。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "年份和酒店证据来自真实Search；短Open不提供日期但旧Search支持足够。",
+      "outcome_evidence": [
+        "N2_EXIT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "两次泛派查询空，R3据Woolton假设查得派与Savoy。",
+          "evidence": [
+            "N2_DATEQUERY"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "配给Query1954取得原同Return，R5采用并查Savoy，R6算65。",
+          "evidence": [
+            "N2_DATEQUERY",
+            "N2_CALC"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "已算65仍Openration5、R7Open10、R8再Open10，只有Civil/Civilian p；R9承认Open截断，回用Search年份正式Submit。",
+          "evidence": [
+            "N2_TINY",
+            "N2_EXIT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "先查派，R4才恢复配给；已计算后保留多次核验，但末轮改为接受Search支持。",
+      "first_actual_tool_divergence": "R1派Query；R4配给Query含1954，仍真实执行而非G提供。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "外部取证1954并实际采用。",
+          "new_goal_operation_product": "R4Search取得同依据，R6以1954运算，功能恢复；后续Open不改变此事实。",
+          "evidence": [
+            "O_DATE",
+            "O_USE",
+            "N2_DATEQUERY",
+            "N2_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "年份来源/采用/使用均明确。",
+      "judgment_action_outcome_chain": "全部必要事实已采用→仍认为需Open核验，但小limit反复不给目标句→R9承认截断而使用已有Search提交→C，保留了部分低增量交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1771生成/64467 Prompt/5Search/3Open/9Actor；与原少2Open、1Actor，Search多1。减少的核验不是全无，R6—8三次Open及反复描述仍耗成本。",
+      "counterevidence_and_alternatives": "同C不能说验证路线完全相同；工具截断由真实limit5/10/10所致，不武断归服务错误。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "另一个英国配给条目1368061直接formally1954，配合Savoy1889和派来源，推算65。",
+      "outcome_evidence": [
+        "N3_DATE",
+        "N3_CALC",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "派Query空；R2部长资料识别Woolton，R3查LordWooltonpiehotel取得Savoy。",
+          "evidence": [
+            "N3_CALC"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "UK year1954真实Query返回1368061及其他支持，R5采用1954并查Savoy。",
+          "evidence": [
+            "N3_DATE"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "两年份计算、说明派来源，直接Submit，无Open复查。",
+          "evidence": [
+            "N3_CALC",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "换先查派的顺序，并使用另一个配给文档；不是缺失配给核查。",
+      "first_actual_tool_divergence": "R1派Query，R4配给Query不同，1368061替代原563365成为明确依据。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "文档支持1954作为输入。",
+          "new_goal_operation_product": "R4真实取得替代独立文档相同事实并R6使用，功能完整以别的证据完成。",
+          "evidence": [
+            "O_DATE",
+            "N3_DATE",
+            "N3_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不要求DocID一致；信息需求、真实取证、采用及产物一致。",
+      "judgment_action_outcome_chain": "关系和年份顺序重排→更直接来源补1954→减法闭合后立即Submit→C，原五Open与多轮重算未再出现。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "728生成/38955 Prompt/5Search/0Open/6Actor。减少后续Open/重算，新增1Search，不能全归原U被跳过。",
+      "counterevidence_and_alternatives": "R4Query含内部候选年1954，但原Question/G都没给年；独立真实Return仍支持，并非未取证猜答案。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "R6真实原配给Return及R7酒店Return完整支持R8计算。",
+      "outcome_evidence": [
+        "N4_DATEQUERY",
+        "N4_CALC",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "R1—2空、R3WooltonpieQuery仍未出正确派条目，R4泛部长再R5具体人物酒店取得正确关系。",
+          "evidence": [
+            "N4_DATEQUERY"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "用原配给Query取得原Return，R7引用1954并查Savoy。",
+          "evidence": [
+            "N4_DATEQUERY",
+            "N4_DATEUSE"
+          ]
+        },
+        {
+          "round": 8,
+          "work": "全部条件计算65后内部验证旧Search句，直接Submit，无Open。",
+          "evidence": [
+            "N4_CALC",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "初始派路线多次失败但继续简化/具体化，直到取得关系，配给移至R6。",
+      "first_actual_tool_divergence": "R1派Query代替原配给，R6才执行原配给Query。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "真实查配给结束年并采用。",
+          "new_goal_operation_product": "R6原Query和相同Return恢复，R7采用R8算65。",
+          "evidence": [
+            "O_QUERY",
+            "O_USE",
+            "N4_DATEQUERY",
+            "N4_DATEUSE",
+            "N4_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原工作只是后移，完全真实重做。",
+      "judgment_action_outcome_chain": "派方向早期困难→后取得Savoy→配给/酒店年份补齐→算65后不再调用Open→C；无答案变化但查询路径及成本结构不同。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1176生成/51010 Prompt/7Search/0Open/8Actor。比原Search多3，但5Open取消使Actor少2；生成/Prompt减少不能称取证全面减少。",
+      "counterevidence_and_alternatives": "R3真实Return含browsecomp_plus命名材料但未给派酒店，继续换Query；工具来源变化保留，不归Stage删除独有因果。"
+    }
+  ],
+  "four_run_comparison": "四次均恢复配给1954的真实取证与使用，都C；r1/r2/r4同563365，r3替代1368061。四次均先派后配给，受G方向影响。三次无Open，一次三个短Open，Search全部增加而Actor总体减少；降低主要来自后续反复验证与表达组织，非目标事实无需取得。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "两个年份和中间酒店关系必须获得→初始某项取证被删可在后面真实补回→一旦三条关系已用于运算，直接接受已有Search可结束→C保持但原低增量Open和多轮重算缩短。",
+      "support_scope": "本Stage四条；r2仍三次Open是内部反例，不能泛化所有A功能可省。",
+      "limits": "删除本Stage没有直接操纵后续Open，后续压缩受采样/G/检索影响；不能用少耗倒推原U无用。"
+    }
+  ],
+  "counterevidence_and_limits": "A是结果保持频率，不是严格冗余标签。所有年份功能实际恢复；G仅方向但仍ORACLE_ANCHORED。Round起点整响应成本可比，原生IDs缺失不报原生精确净节省；教师预填和重放P分列，独立差值不相加。",
+  "evidence": [
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "food rationing ended United Kingdom World War II year",
+      "call_id": "chatcmpl-tool-9e307cf95b1d8738"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/6/snippet",
+      "exact_quote": "in 1954, all rationing was abolished when cheese and meats came off ration.",
+      "call_id": "chatcmpl-tool-9e307cf95b1d8738",
+      "doc_ids": [
+        "wiki25:563365"
+      ]
+    },
+    {
+      "evidence_id": "O_USE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the year food rationing completely ended in the UK after WWII is 1954."
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "empty_guide",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about a specific vegetable pie that was popularly promoted by the British Minister of Food during the wartime period, and the London hotel where it was originally created."
+    },
+    {
+      "evidence_id": "N1_PIE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The vegetable pie is called \"Woolton pie\", created by François Latry at the Savoy Hotel in London."
+    },
+    {
+      "evidence_id": "N1_DATEQUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "food rationing ended United Kingdom after World War II year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATEUSE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "So food rationing completely ended in **1954** in the UK."
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "So the numerical difference is 1954 - 1889 = 65."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N2_DATEQUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "food rationing ended United Kingdom 1954",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The difference is 1954 - 1889 = 65."
+    },
+    {
+      "evidence_id": "N2_TINY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "Civil",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:563365"
+      ]
+    },
+    {
+      "evidence_id": "N2_EXIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "The search results contain snippets of the document, but the open function seems to be returning truncated text."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N3_DATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "Although rationing formally ended in 1954, cheese production was affected for decades afterwards.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1368061"
+      ]
+    },
+    {
+      "evidence_id": "N3_CALC",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The numerical difference is: 1954 - 1889 = **65**"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N4_DATEQUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "food rationing ended United Kingdom World War II year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_DATEUSE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Food rationing in the UK ended in 1954."
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

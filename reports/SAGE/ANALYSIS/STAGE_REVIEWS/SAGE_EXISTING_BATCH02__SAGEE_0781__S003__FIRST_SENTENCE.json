@@ -1,0 +1,460 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0781",
+  "stage_id": "S003",
+  "sample_order": 59,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0781/trajectory.json",
+      "source_sha256": "d0bf10b1d8686ba785622478c24b3b3708fd557f55903f9847319bf9a1c9ad81"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0781.json",
+      "source_sha256": "48807cef0894c552b74757b259523d822e506d4a590af92cc02a4ebcba88b5bf"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "8fa258b943fdaa1f43907819f920cd5077095505710c000d999638503b0032e9"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3e0b32644be380e5800eb0f2c3b49d7588b7d2afea7d0be39a6696734f4b94c3"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "b6c8184e5d094c2f09d50134e2a5553428d7311e1c7f4eeebeba5931adbc274c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "5d601bc4c88bea51a34c4cc566b7821be4b32b21f3e21208de5f77c45a958f41"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "2bfb9b8e37e85cf1935596d2f18091ffb389b3e65c543322d4a053492a717719"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date of the presidential inauguration for the individual who won the United States presidential election in the same year that Caledonia, Nova Scotia, became the central point for the gold rush in its nearby communities?",
+    "gold": [
+      "March 4, 1885"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "March 4, 1885",
+    "adopted_answer": "1885年3月4日",
+    "outcome": "C",
+    "reason": "实际提交正确第一任期日期。",
+    "evidence": [
+      "O_FINAL",
+      "O_LINK"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@206保留当前已采用Cleveland为1884胜者的206字符，6条历史消息含地方与各州大选Return；日期尚无直接文档。P4863Token。",
+    "evidence_states": "地方1884、人物Cleveland均已采用；日期仍未知，且必须区分两次非连续任期。旧历史reasoning不在normalizedP，当前人物采用确实保留。",
+    "evidence": [
+      "I_CURRENT",
+      "I_YEAR"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items，R3[206,387)及E003完整Return。",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 206,
+        "end": 387
+      }
+    ],
+    "goal": "为已采用的总统取得具体就职日期材料。",
+    "operations": "规划并实际Search Grover Cleveland inauguration date；一次返回第二任期1893和第一任期1885等文档。",
+    "product": "日期有直接支持，但Return中两次就职需下一认知工作与1884胜选关联。",
+    "judgment_change": "人物已定而日期未知→取得可按任期选择的直接文档。",
+    "evidence": [
+      "O_QUERY",
+      "O_DATE",
+      "O_SECOND"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R4将地方年/胜者/第一任期连接，明确1884胜选对应1885而非1893，正式Submit。",
+    "evidence": [
+      "O_LINK",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在人物已采用时获取后续属性证据，供下一步关系约束选择。",
+    "information_state_dependence": "P已有真实人物采用但未见日期，不能把该取证当重复已有日期；四条都重新取得同证据。",
+    "first_update": "日期材料首次返回，不等于U内已完成整个答案接受。"
+  },
+  "guide_audit": {
+    "text": "Based on the search results:",
+    "source": "O#/rounds/3/reasoning_content[0,28)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "6Token普通总结开头，不含日期、人名新事实、列表或原Final；但暗示整理现有结果的方向。四条自主确认仍缺日期并真实查，不把G列为模型自发完整判断。",
+    "evidence": [
+      "I_G",
+      "I_CURRENT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "March 4, 1885",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1885年3月4日",
+      "outcome": "C",
+      "outcome_reason": "正式日期正确，同原First inauguration直接支持。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_REASON"
+      ],
+      "work_and_evidence_timeline": "R3仍实际发原同Query、同完整Return；R4先完成正确三跳、区分1893第二任期，随后在同一9776字符推理中反复重读同问题、再考虑Blaine、同年是否指就职、是否Klondike、第一或第二任期，反复得到相同1885结论，没有新Search/Open，最后真实Submit。",
+      "first_judgment_divergence": "实际证据路径与原无差；接受正确第一任期后反复重新提出已解决解释疑问，未更新候选/证据/真实行动。",
+      "first_actual_tool_divergence": "首Call和Return与原相同，仍总1Search+Submit，无新工具分歧。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查Cleveland就职、获得两次任期日期。",
+          "new_goal_operation_product": "同Query同完整Return恢复，后续正确选择也完成，额外是多次内部再确认。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N1_QUERY",
+            "N1_REASON"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "全部实际取证重演；答案构造更长不是功能缺失。",
+      "judgment_action_outcome_chain": "人物已定→同日期取证恢复→正确绑定1884第一任期→重新将语法/州赢家/其他淘金热设为内部疑问→每次相同证据再次接受同日期→C；增加的是接受后的重复论证，不是搜索量。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2994生成/13292Prompt/1Search/0Open/2Actor；原切点后229–313生成、同1Search2段，净生成+2681至+2765。R4单轮2897生成是主要增量，不能误叫新增Search循环。",
+      "counterevidence_and_alternatives": "相同P下rep3同Query同Return只346生成后提交，说明长再确认非证据必然需求；无法仅日志解释随机何时停，也不能归因原U控制信心。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "March 4, 1885",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1885年3月4日",
+      "outcome": "C",
+      "outcome_reason": "真实日期文档及Submit一致。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_REASON"
+      ],
+      "work_and_evidence_timeline": "R3已识别1884胜选对应第一任期1885，Query多加1885获得直接日期文档；R4完整三跳后简短复核有没有其他日期，无新Call，正式Submit。",
+      "first_judgment_divergence": "取证前先区分第一任期并将1885用于Query，不是新资料首次给1885；仍真实补证。",
+      "first_actual_tool_divergence": "首日期Query新增1885，工具总数不变。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得已选人物就职直证。",
+          "new_goal_operation_product": "同需求不同Query获得同4957486日期，完整恢复。",
+          "evidence": [
+            "O_DATE",
+            "N2_QUERY",
+            "N2_REASON"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是凭常识直接提交，有真实Search返回与采用。",
+      "judgment_action_outcome_chain": "人物已定→先建立1884对应1885的目标→查具体日期→有限复盘后C；较rep1少反复解释但较原仍展开更多三跳文字。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "563生成/12641Prompt/1Search0Open2Actor；原229–313生成，+250至+334，工具Actor不变；增量是R4的1484字符完整复盘，不是目标取证省掉。",
+      "counterevidence_and_alternatives": "限于该题，不能把有限复盘定为冗余；C并不要求逐字原证明，仍需承认原新配置混杂。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "March 4, 1885",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1885年3月4日",
+      "outcome": "C",
+      "outcome_reason": "实际正确提交，日期由同原Search直接支持。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_REASON"
+      ],
+      "work_and_evidence_timeline": "R3发同原Query，Return与原及rep1完全相同；R4列三跳并再次核对日期一句，Submit。没有改人物或继续查询。",
+      "first_judgment_divergence": "没有重要候选/关系改变，仅比原完整复述略长；不能为了填首次分歧而捏造新决策。",
+      "first_actual_tool_divergence": "无，Query和Return相同，总1Search+Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "日期取证→提供第一任期日期。",
+          "new_goal_operation_product": "相同完整执行并使用日期，原功能完整恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N3_QUERY",
+            "N3_REASON"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "确切同取证事件与采用，不能因A判无需日期核查。",
+      "judgment_action_outcome_chain": "人物采用已在P→同日期证据→三跳校对后直接C，没有rep1那样多次重开解释→同工具下更短生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "444生成/13292Prompt/1Search0Open2Actor；原229–313，+131至+215；与rep1完全同工具返回/Prompt却少2550生成，差在9776对1208字符的接受后论证篇幅。",
+      "counterevidence_and_alternatives": "这是同结果、同证据路径的反例，长推理并非必要新增工作；但不能从两条差值推原U因果节省。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "March 4, 1885",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1885年3月4日",
+      "outcome": "C",
+      "outcome_reason": "日期正式正确；复述部分各州来源有瑕疵但不改变最终已获第一任期直证。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_REASON"
+      ],
+      "work_and_evidence_timeline": "R3知识说明旧就职规则March4、1884对应1885，实际定向日期Search；R4三跳列出直接文档日期后Submit。称所列各州都Cleveland胜选不实，Maine/Ohio等实际Blaine，但第一任期文档给全国胜选与日期。",
+      "first_judgment_divergence": "先用常识形成日期猜测后查证；结果采用无关键偏离，但各州支持被错误概括。",
+      "first_actual_tool_divergence": "Query增加1885，与rep2相同；无额外工具。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查询并得到具体就职日期。",
+          "new_goal_operation_product": "同日期需求实际补证、采用和Submit恢复，知识先验不替代实际Call。",
+          "evidence": [
+            "O_DATE",
+            "N4_QUERY",
+            "N4_REASON"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实日期Search而非仅G承接；事实概括错误独立记录。",
+      "judgment_action_outcome_chain": "人物与选举年已采用→常识先猜1885March4→具体文档确认→短复盘C；未产生额外核验路线，节省相对长rep1在文字，不是Search减少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0781__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "471生成/12641Prompt/1Search0Open2Actor；原229–313，+158至+242，工具与Actor同。",
+      "counterevidence_and_alternatives": "C不保证每句引证都准确；不要把列DocID数量等同关系充分支持，也不能因错误概括认定正式日期错误。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "四条全部恢复日期取证，均仅1Search后提交；rep1与rep3同Query同Return同Prompt，却生成2994对444，主要差在已完成判断之后反复重新校对。无证据表明原工作实际省掉。",
+    "costs": "四条生成均超过原保守上界，Search/Actor不变。不同Query的两组Prompt差来自工具Return内容长度，不归给U判断。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "一题人物已定/日期待证、G不含事实的四路径",
+      "chain": "原U取得日期，删除后仍识别缺口并完整重查→正确第一任期接受均恢复→有的反复把已解决语法/选举赢家/另一任期变回内部待判问题，有的有限校对便Submit→答案同C、实际Search同而篇幅大不同。",
+      "limits": "复盘何时重新启动及终止并无独特原因可确定；这说明成本落点在取证后论证，不足把认知稳定性机制定为已跨题证实。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原36048、四新33457字符全文阅读，Return完全同文以原件SHA确认复用阅读，未丢工具。",
+    "G为ORACLE_ANCHORED普通6Token开头，没有直接补日期，仍不同于无G对照；P4863预填和G计入实际Prompt一次。",
+    "原R3@206无nativeIDs，原后缀229–313保守生成范围；不将独立分支节省相加，不把四C当证据充分/功能不需要。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_CURRENT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 3,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "the winner of the United States presidential election was Grover Cleveland"
+    },
+    {
+      "evidence_id": "I_YEAR",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 3,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/3/content",
+      "exact_quote": "In 1884, Caledonia served as the hub for the gold rush",
+      "doc_id": "wiki25:2338403",
+      "call_id": "chatcmpl-tool-92ee058b64202150"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 3,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Based on the search results:"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/rounds/2/tool_calls/0/arguments/query",
+      "exact_quote": "Grover Cleveland inauguration date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/2/observation/results/2/snippet",
+      "exact_quote": "Wednesday, March 4, 1885",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4957486"
+    },
+    {
+      "evidence_id": "O_SECOND",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "March 4, 1893",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4957490"
+    },
+    {
+      "evidence_id": "O_LINK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Grover Cleveland's first term (after winning the 1884 election) was March 4, 1885"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "March 4, 1885"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Grover Cleveland inauguration date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_REASON",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "That's his second term. The 1884 election led to his first term (22nd president)."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "March 4, 1885"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Grover Cleveland inauguration date 1885",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_REASON",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The date is March 4, 1885."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "March 4, 1885"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Grover Cleveland inauguration date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_REASON",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Let me double check the inauguration date. The snippet says \"Wednesday, March 4, 1885\"."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "March 4, 1885"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Grover Cleveland inauguration date 1885",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_REASON",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "all mention Cleveland winning various states in 1884"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "March 4, 1885"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

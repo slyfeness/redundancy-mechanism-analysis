@@ -1,0 +1,1301 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0560｜V1.3.2完整Stage切分
+
+样本序号：91；原件SHA256：`9d0f42bb45d748ce96bd8696f93d18b036ab1e3547cb466bf4a5b9ed4b40a6c4`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+Disillusioned by his time as an infiltrator within the Fellowship of St. Giles, a priest originally devoted to a feudalistic organization ruled by the Red King, Martin engineered the Chichen Itza confrontation during the events of "Changes" (published April 6, 2010), aiming to activate a bloodline curse. This curse, intended to eradicate Harry Dresden's grandfather, Ebenezer McCoy, was famously redirected by Dresden using his now fully transformed ex-girlfriend, Susan Rodriguez, as the sacrifice. This resulted in the near-total obliteration of all individuals from a specific supernatural group older than Susan, thereby creating a significant power vacuum in the supernatural world. What was the name of this supernatural group whose elder members were virtually eradicated?
+````
+
+## 完整求解过程
+
+# 完整求解过程
+
+题目要求被血脉诅咒消灭的群体。模型先拆解Martin、Susan、Chichen Itza、Red King关系，前四轮围绕同一事件检索计划改写关键词，取得Changes剧情与Martin潜入Red Court/Fellowship背景但未读到结局。第五轮选择Martin角色原文Open0—2000；第六轮直接解释时无依据声称Susan为Sidhe、被灭者为Sidhe，未实际比较候选或查Sidhe。随后继续查血咒与群体，第七、八轮沿用同计划微调词，终于返回2935055，直接写Susan转吸血鬼、血咒转向Red Court并消灭之。
+
+第九轮引用该文本、确定代词对象为Red Court，并对照题意检查是否另有群体，正式Submit Red Court。完整九轮7 Search、1 Open和Submit。无根据Sidhe叙述保留在原文直接反馈中，不把几句断言扩写成已经完成实质核验。前四轮与后面三轮重试均检查过，没有以新Call或新Round强制切分。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 围绕Martin血咒事件连续搜索群体名称 | 取得Martin背景，无结局直接证据。 | E001,E002,E003,E004 |
+
+| S002 | R5 / 0 / 187 | 选择Martin角色原文核查血咒后果 | 原文截在Susan转化前，尚缺结局。 | E005 |
+
+| S003 | R6 / 0 / 475 | 继续血咒群体查询并取得Red Court结局证据 | 取得血咒消灭Red Court的直接片段。 | E006,E007,E008 |
+
+| S004 | R9 / 0 / 0 | 核对血咒对象指代并接受提交Red Court | VALID_FINAL。 | E009 |
+
+## S001｜围绕Martin血咒事件连续搜索群体名称
+
+R1—R4同计划改人物、地点、群体关键词，逐次保留Call/Return。
+
+结束状态：取得Martin背景，无结局直接证据。
+
+边界判断：起始动作。
+
+内部KEEP与反证：未采用独立候选、未改证据方法，普通关键词重试KEEP；R5首段概括已有文档是反馈。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,1190)
+
+SHA256：`a7e2f098b1313c13f717a36ccf39e80b62f537a1b1d49a4820c479be4451c901`；原字段SHA256：`a7e2f098b1313c13f717a36ccf39e80b62f537a1b1d49a4820c479be4451c901`。
+
+````
+This is a complex question about the Dresden Files universe. Let me break down what's being asked:
+
+1. Martin was a priest who was disillusioned by his time as an infiltrator within the Fellowship of St. Giles
+2. He was originally devoted to a feudalistic organization ruled by the Red King
+3. Martin engineered the Chichen Itza confrontation during "Changes" (published April 6, 2010)
+4. This was to activate a bloodline curse to eradicate Harry Dresden's grandfather, Ebenezer McCoy
+5. Dresden redirected this curse using Susan Rodriguez as the sacrifice
+6. This resulted in the near-total obliteration of all individuals from a specific supernatural group older than Susan
+7. The question asks: What was the name of this supernatural group whose elder members were virtually eradicated?
+
+This is clearly about the Dresden Files novels. The key elements I need to verify:
+- Martin (likely Martin "the priest")
+- The Chichen Itza confrontation in "Changes"
+- The bloodline curse targeting Ebenezer McCoy
+- Susan Rodriguez being used as the sacrifice
+- A supernatural group whose elder members were eradicated
+
+I need to search for information about this. Let me search for relevant terms.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Martin Chichen Itza Changes bloodline curse Ebenezer McCoy Susan Rodriguez"
+  },
+  "id": "chatcmpl-tool-bd53a69b24da9168",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Martin Chichen Itza Changes bloodline curse Ebenezer McCoy Susan Rodriguez\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-bd53a69b24da9168",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Martin Chichen Itza Changes bloodline curse Ebenezer McCoy Susan Rodriguez"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 2.324495054781437,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:81290",
+        "score": 0.33348055218812594,
+        "snippet": "---\ntitle: Links\nauthor: Policies; Help Documentation\ndate: 2016-02-01\n---\nTheses and Dissertations Available from ProQuest\n\nFull text is available to Purdue University faculty, staff, and students on campus through this site. No login is required.\n\nOff-campus Purdue users may download theses and dissertations by logging into the Libraries' proxy server with your Purdue Career Account. Links to log in to the proxy server directly below the download button of each thesis or dissertation page.\n\nNon-Purdue users, may purchase copies of theses and dissertations from ProQuest or talk to your librarian about borrowing a copy through Interlibrary Loan. (Some titles may also be available free of charge in our Open Access Theses and Dissertations Series, so please check there first.)\n\nAccess to abstracts is unrestricted.\n\nDissertations & Theses from 2024\n\nFortney, Sarah Katherine (2024) The Role of Trait and Specific Expectations in the Experience of Dysmenorrhea\n\nDissertations & Theses from 2023\n\nAbdullah, Umm E. Hani (2023) Exploratory Study of Deep Brain Stimulation in the Syngap1+/- Mouse Model of Autism Spectrum Disorder Using Electrophysiology\n\nAbney, Douglas John (2023) Broadband's Role in Agricultural Job Postings In U.S. Counties\n\nAbou-Rached, John (2023) Counting Closed Geodesics in Orbit Closures\n\nAdams, Caitlin J (2023) Implementation of Superabsorbent Polymers for Internally Cured Concrete\n\nAdekunle, Tiwaladeoluwa Beloved (2023) Communication Influences on US Black Women'",
+        "text_characters": 4683826,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.22531681988776564,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.21391751673526666,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.051697522714802976,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.040279752674919414,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-bd53a69b24da9168"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:81290", "title": "", "score": 0.33348055218812594, "snippet": "---\ntitle: Links\nauthor: Policies; Help Documentation\ndate: 2016-02-01\n---\nTheses and Dissertations Available from ProQuest\n\nFull text is available to Purdue University faculty, staff, and students on campus through this site. No login is required.\n\nOff-campus Purdue users may download theses and dissertations by logging into the Libraries' proxy server with your Purdue Career Account. Links to log in to the proxy server directly below the download button of each thesis or dissertation page.\n\nNon-Purdue users, may purchase copies of theses and dissertations from ProQuest or talk to your librarian about borrowing a copy through Interlibrary Loan. (Some titles may also be available free of charge in our Open Access Theses and Dissertations Series, so please check there first.)\n\nAccess to abstracts is unrestricted.\n\nDissertations & Theses from 2024\n\nFortney, Sarah Katherine (2024) The Role of Trait and Specific Expectations in the Experience of Dysmenorrhea\n\nDissertations & Theses from 2023\n\nAbdullah, Umm E. Hani (2023) Exploratory Study of Deep Brain Stimulation in the Syngap1+/- Mouse Model of Autism Spectrum Disorder Using Electrophysiology\n\nAbney, Douglas John (2023) Broadband's Role in Agricultural Job Postings In U.S. Counties\n\nAbou-Rached, John (2023) Counting Closed Geodesics in Orbit Closures\n\nAdams, Caitlin J (2023) Implementation of Superabsorbent Polymers for Internally Cured Concrete\n\nAdekunle, Tiwaladeoluwa Beloved (2023) Communication Influences on US Black Women'", "text_characters": 4683826, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.22531681988776564, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.21391751673526666, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.051697522714802976, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.040279752674919414, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R002_request.json/messages/3/content`；SHA256：`ce02a73efdf3801b33d3918f43e698d5c836845bacdbf57334d1d9fd32d0a978`。
+
+### R2 `/rounds/1/reasoning_content` [0,447)
+
+SHA256：`a08b43ef61b54c0a5569c4e3ac4989d9d010a9609899bff5fe2d4ad60890c0ee`；原字段SHA256：`a08b43ef61b54c0a5569c4e3ac4989d9d010a9609899bff5fe2d4ad60890c0ee`。
+
+````
+The search results don't seem to contain relevant information about the Harry Dresden universe, Martin, the Chichen Itza confrontation, or the specific supernatural group mentioned. Let me try a more specific search focusing on the Dresden Files universe and the specific event mentioned.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Harry Dresden Changes Chichen Itza Martin Susan Rodriguez vampire elder
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "Harry Dresden Changes Chichen Itza Martin Susan Rodriguez vampire elder"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nHarry Dresden Changes Chichen Itza Martin Susan Rodriguez vampire elder\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Harry Dresden Changes Chichen Itza Martin Susan Rodriguez vampire elder"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 1.3556042178533971,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5172883",
+        "score": 23.41855974924412,
+        "snippet": "2010 fantasy novel by Jim Butcher Changes is the 12th book in \"The Dresden Files\", Jim Butcher's continuing series about wizard detective Harry Blackstone Copperfield Dresden. \"Changes\" was released on April 6, 2010, and debuted at #1 on \"The New York Times\" Best Seller list for Hardcover Fiction, dropping to #3 in its second week on the list. Plot summary. Susan Rodriguez contacts Dresden to tell him they have a daughter, Margaret Angelica (\"Maggie\" for short), who has been kidnapped by the Duchess Arianna, the widow of a Red Court duke that Ebenezar McCoy thought he had killed several years earlier. Dresden goes to Edinburgh to seek help from the council. However, upon his arrival, he discovers Arianna is there, hosting a peace conference with the rest of the council. Dresden openly challenges Arianna to a duel to the death over his daughter's kidnapping, but is prevented from carrying it through by the other members of the council. Infuriated, Dresden returns home. After an explosion destroys his office building, Dresden learns from Karrin Murphy he is under investigation by the FBI. After being released and having a talk with his fairy godmother, Dresden is eventually directed to the Norse God Odin, who tells him that the Red Court is going to use Maggie for a powerful blood curse that will kill everyone related to her, including Dresden. Dresden decides to investigate Rudolph, the Chicago police detective who implicated him in the office explosion, reasoning that he must",
+        "text_characters": 2582,
+        "title": "Changes (Butcher novel)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935053",
+        "score": 18.015948994952026,
+        "snippet": "Outsiders do not respect the neutrality of the pub, as shown during \"Cold Days\" when they attack it while Harry is inside. In \"Dead Beat\", Harry bribes a security guard at the medical examiner's office with a batch of Mac's beer so he can get in to see Waldo Butters. In \"Small Favor\", after Karrin Murphy faces down a Gruff that has entered the pub to pick a fight with Harry, Mac shows his respect for her bravery by serving them a particularly good brew (described by Harry as \"God's beer\"). In \"Changes\", Mac makes his longest speech to date offering wisdom to Harry about the danger of the road he is on and the choices he must make. He advises caution. Once the speech is done, Mac looks visibly pained to have spoken more than three syllables at one time. In \"Cold Days\", Mac is drawn into Harry's horrible day and reveals hints of unexpected depth, displaying accelerated healing (which he tries to conceal) and familiarity with such high powers as Outsiders and Sidhe Queens. The Outsider refers to him as a \"watcher\". It is alluded that he once used to be involved in the conflicts of magic, but he refuses to discuss this part of his past beyond saying, \"I'm out\". Harry attempts to get Mac to talk about his past after one of the skirmishes with the Outsiders telling him \"We'll talk about this later\". Mac responds with a deadpan look telling Harry flatly, \"No, we won't\". In \"Skin Game\", Mac is present when Harry and Mab meet with Kringle (another mantle worn by Donar Vadderung, AKA O",
+        "text_characters": 2334,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935010",
+        "score": 16.690740666337913,
+        "snippet": "While smooth-talking and obsessed with women, it was rather ironically revealed during the events of \"White Night\" that Ramirez is still a virgin. In battle he heavily favors water magic and conventional weaponry; he has on more than one occasion used grenades and firearms instead of his magic in order to conserve his strength. His principal magical weapon is the use of a type of emerald green energy which seems to break down materials into more component pieces, although on organic matter it seems to work as a desiccant, removing all traces of moisture from the area it hits, turning it into a form of sand. His defensive magic consists of a jelly-like shield that allows incoming projectiles to pass through, but uses their own kinetic energy to break them down into small harmless particles. Like Harry, Ramirez has guessed the existence of the Black Council (his original name for them being \"the Black Hats\"). He and Harry consider each other to be good friends and hold each other in considerable respect. Ramirez regards Harry's power level with some awe and has often later referred to some impressive feat of magic that Harry performed with great admiration. In \"Changes\", Ramirez led a team of Wardens to confront Cristos, resulting in the capture and arrest of all members of the team except one (Warden Chandler). In \"Ghost Story\", it appears that he is still functioning for the White Council as Murphy talks about calling Ramirez. In \"Cold Days\", it is reported that he is recover",
+        "text_characters": 2485,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:22808",
+        "score": 4.55041159060608,
+        "snippet": "---\ntitle: 57th Annual Grammy Awards - Wikipedia\ndate: 2013-05-14\n---\nname: 57th Annual Grammy Awards\ndate: February 8, 2015\nlocation: Staples Center, Los Angeles, California, U.S.\nhost: LL Cool J\nnetwork: CBS\nratings: 25.3 million viewers February 10, 2015 TV Ratings: Grammy Awards Lose 3 Million Viewers From Last Year Michael O'Connell The Hollywood Reporter February 9, 2015 February 10, 2015\nmost_awards: Sam Smith (4)\nmost_nominations: Beyoncé, Sam Smith, Pharrell Williams (6 each)\nprevious: 56th\nmain: Grammy Awards\nnext: 58th\n\nThe 57th Annual Grammy Awards were held on February 8, 2015, at the Staples Center in Los Angeles, California. The show was broadcast live by CBS at 5:00 p.m. PST (UTC−8). Rapper LL Cool J hosted the show for the fourth consecutive time.\n\nThe Grammy nominations were open for recordings released between October 1, 2013, and September 30, 2014. Breaking from tradition of a prime-time concert approach, the Grammy nominees were announced during an all-day event on December 5, 2014, starting with initial announcements on the CBS This Morning telecast, followed by updates made through The Grammys' official Twitter account.\n\nSam Smith won four awards, including Best New Artist, Record of the Year, Song of the Year for \"Stay with Me\" and Best Pop Vocal Album for In the Lonely Hour. Beck's album Morning Phase was named Album of the Year. This prompted Kanye West, who later said he thought Beyoncé should have won, to jokingly leap onstage to interrupt Beck in",
+        "text_characters": 51787,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:84086",
+        "score": 2.981978176031838,
+        "snippet": "---\ntitle: Abstracts\ndate: 2019-09-07\n---\n- Split View\n\n-\n\nViews\n\n-\n\nCite\n\nCite\n\nAbstracts, Chemical Senses, Volume 44, Issue 7, September 2019, Pages e1–e121, \n\nClose - Share Icon Share\n\nGIVAUDAN LECTURE\n\nSUNDAY, 6:00 PM - 7:00 PM\n\nThe chemical senses and eating: mouth as integrator, the temporal aesthetics of the meal, and reversing innate aversions\n\nPaul Rozin\n\nDepartment of Psychology, University of Pennsylvania, Philadelphia, PA, USA\n\nAside from breathing, eating is our most pressing and important function, and has a special relation to the mouth and the chemical senses. Typically, in a meal we have a sequence of chemosensory experiences, and the way this sequence is experienced and integrated influences the aesthetic pleasure of the meal. Main dishes in most cuisines present a characteristic set of flavors (flavor principles). One of the most common such flavorings is chili pepper, which is surprising because it is innately aversive. The process through which an innately aversive oral experience becomes positive will be discussed, and related to a much more general and uniquely human phenomenon: benign masochism.\n\nFCOI Declarations: None\n\nDIGITAL POSTERS\n\nPOSTER SESSION I\n\nMONDAY, 8:00 AM - 10:00 AM\n\nPD100 Creeping on Ants: Developing the PiSpy, an Affordable and Flexible Video Recording Platform for Monitoring Animal Behavior\n\nMarcy J Kittredge1, Andrew Hawk2, Owen Meng2, Matt Lamparter2, Thomas Thul3, Gregory M Pask1\n\n1Bucknell University Department of Biology, Lewisb",
+        "text_characters": 659632,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:10949",
+        "score": 1.976115013483465,
+        "snippet": "---\ntitle: News: 2024\ndate: 2024-01-01\n---\nNews: 2024\n\nAdvertisement\n\n-\n\n2030 WC: Spanish Federation thinks leaving out Nou Mestalla is \"illogical\"\n\nOnce again, the new RFEF president Rafael Louzán insists on his \"commitment\" to including Valencia in the list of 2030 World Cup venues. He assures that he doesn't forget about Vigo as well, but gives only the reasons to host the tournament at Nou Mestalla.\n\n-\n\nAustralia: Brisbane selects Olympic stadiums for 2032 Games\n\nThe 2032 Olympic Games present a huge opportunity and challenge for Brisbane. The Queensland capital has begun a 100-day site review for an Olympic stadium. Options are plentiful, with choices including the legendary The Gabba or the futuristic Northshore Hamilton.\n\n-\n\nSpain: Mayor reminds Burgos CF of stand extension\n\nThe mayor of Burgos intends to hold a meeting with the owners of Burgos CF in January to remind them of their commitment to start redeveloping the stands at the stadium. The contract clearly states that work must begin by April 19, 2025 at the latest.\n\n-\n\nSpain: Modular stadium construction in Zaragoza will begin in early January\n\nTwo parking lots, a fan zone, picnic areas, and flood protection—this is how the surroundings of the temporary football stadium at Parking Nord will look, where Real Zaragoza will play for the next two seasons.\n\n-\n\nUSA: Alamodome reveals freshly painted field for 32nd Valero Alamo Bowl\n\nThe Alamodome's freshly painted field was revealed on Sunday in preparation for the 32",
+        "text_characters": 335977,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:79288",
+        "score": 1.7514990551117133,
+        "snippet": "---\ntitle: 100 best architecture firms in the world\nauthor: Surabhi Patil\ndate: 2024-04-04\n---\nArchitecture is the nexus between culture, society and history, reflecting man's constant quest for advancement. The challenges posed by anthropogenic activities bring about this question: how can architecture play a role in addressing the pressing issues of climate change, social disparity and urbanization? The recent changes in the built environment brought about by the pandemic have necessitated a reevaluation of spatial requirements and health considerations influencing human perception of architectural spaces.\n\nAs cities grow denser and more diverse, design practices are now re-imagining built spaces through the application of digital technologies including building information modeling and parametric architecture integrated with sustainable design principles. Across continents, leading architecture practices are striving towards robust and resilient design solutions that enhance people's lives and stand the test of time. The 100 architecture firms listed below are redefining the limits of the practice across the world.\n\nThe '100 best firms' is curated by the Archello editorial team. The selection process is multifaceted and takes into account various criteria. These include: the number of projects a firm has uploaded to its Archello profile in the last two years; the number of projects that have been featured by Archello in the last two years; the scale and caliber of the proj",
+        "text_characters": 63581,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:89654",
+        "score": 1.4309131830351156,
+        "snippet": "---\ndate: 2019-05-05\n---\nEUROPEAN COMMISSION\n\nBrussels, 4.2.2022\n\nSWD(2022) 24 final\n\nCOMMISSION STAFF WORKING DOCUMENT\n\nCohesion in Europe towards 2050\n\nAccompanying the document\n\nCOMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS\n\non the 8th Cohesion Report: Cohesion in Europe towards 2050\n\n{COM(2022) 34 final}\n\nCHAPTER 1 The regional dimension of the COVID-19 pandemic\n\n·The outbreak of the COVID-19 pandemic has led to at least 872,000 more deaths in the EU compared to previous years. Excess mortality was higher in less developed regions than in transition and more developed ones. While the first wave affected primarily north-western regions and southern regions, the following waves led to the highest mortality in eastern regions.\n\n·The restrictions put in place to contain the pandemic led to the deepest post-1945 recession. The impact was largest on southern regions, especially those dependent on tourism, where the reduction in hours worked and GDP were the most severe.\n\n·The travel restrictions not only affected the tourism sector, but also border areas where people could no longer cross a national border to go to work or to access services.\n\n·Thanks to job retention schemes the impact of employment and unemployment was much smaller compared to the reduction in hours worked and GDP. This allowed the EU to avoid a big spike in unemployment.\n\n·The number of people usually wor",
+        "text_characters": 566089,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:98547",
+        "score": 0.868550067995812,
+        "snippet": "---\ntitle: LRO (Lunar Reconnaissance Orbiter)\ndate: 2009-09-16\n---\nLRO (Lunar Reconnaissance Orbiter)\n\nQuick facts\n\nOverview\n\n| Launch date | 18 Jun 2009 |\n\nLRO (Lunar Reconnaissance Orbiter) + LCROSS\n\nLRO is a NASA mission to the moon within the Lunar Precursor and Robotic Program (LPRP) in preparation for future manned missions to the moon and beyond (Mars). LRO is the first mission of NASA's `New Vision for Space Exploration', which President Bush announced on January 14, 2004, in sending more robot and human explorers beyond Earth orbit. The LRO requirements call for a mission life of one year in lunar orbit. The objectives of LRO are to: 1) 2) 3) 4) 5)\n\n• Identify potential lunar resources\n\n• Gather detailed maps of the lunar surface\n\n• Collect data on the moon's radiation levels\n\n• Study the moons polar regions for resources that could be used in future manned missions or robotic sample return missions\n\n• Provide measurements to characterize future robotic explorers, human lunar landing sites and to derive measurements that can be used directly in support of future Lunar Human Exploration Systems.\n\nThe orbiter project is managed by NASA/GSFC while NASA/ARC manages the LRO payload. The CDR (Critical Design Review) of LRO was completed in Nov. 2006.\n\nSpacecraft\n\nThe spacecraft is being built and integrated at NASA/GSFC (inhouse development), Greenbelt, MD. The spacecraft architecture emphasizes modularity through the use of standard interfaces. LRO is a 3-axis stabilized,",
+        "text_characters": 241611,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:1756",
+        "score": 0.8036974304529036,
+        "snippet": "---\ntitle: Art\ndate: 2005-01-01\n---\n1,082 106 100MB\n\nEnglish Pages [513] Year 2005\n\n- Author / Uploaded\n\n- Cumming R.\n\n- Commentary\n\n- eBook\n\nE YE WITNESS COMPANIONS\n\nArt robert cumming\n\nText previously published in ART: A Field Guide\n\nPA I N T I NG • SCULPTU R E • ART I S TS • ST YLES • SCHO OL S\n\nE YE WITNESS COMPANIONS\n\nArt ROBERT CUMMING Text previously published in Art: A Field Guide\n\nLONDON, NEW YORK, MUNICH, MELBOURNE, AND DELHI Senior Art Editor Senior Editor Design assistance Editorial assistance Additional text contribution Picture Research DTP Production Managing Editor Managing Art Editor Executive Managing Editor Editorial Director Art Director Publisher\n\nJuliette Norsworthy Ferdie McDonald Peter Laws David John, Rob Houston Thomas Cussans Sarah Smithies, Celia Dearing, Carlo Ortu John Goldsmid Rita Sinha Debra Wolter Phil Ormerod Liz Wheeler Andrew Heritage Bryn Walls Jonathan Metcalf\n\nat Studio Cactus\n\nDesign Editorial\n\nLaura Watson, Dawn Terrey, Sharon Rudd, Peter Radcliffe Aaron Brown, Jennifer Close, Lorna Hankin, Clare Wallis\n\nFirst published in 2005 by Dorling Kindersley Limited 80 Strand, London WC2R ORL Penguin Group First American Edition, 2005 Published in the United States by DK Publishing, Inc. 375 Hudson Street, New York, New York 10014 04 05 06 08 09 10 9 8 7 6 5 4 3 2 1 Text © Robert Cumming 2005 All rights reserved under International and Pan-American Copyright Convention. No part of this publication may be reproduced, stored in a retrieval syste",
+        "text_characters": 1283667,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5172883", "title": "Changes (Butcher novel)", "score": 23.41855974924412, "snippet": "2010 fantasy novel by Jim Butcher Changes is the 12th book in \"The Dresden Files\", Jim Butcher's continuing series about wizard detective Harry Blackstone Copperfield Dresden. \"Changes\" was released on April 6, 2010, and debuted at #1 on \"The New York Times\" Best Seller list for Hardcover Fiction, dropping to #3 in its second week on the list. Plot summary. Susan Rodriguez contacts Dresden to tell him they have a daughter, Margaret Angelica (\"Maggie\" for short), who has been kidnapped by the Duchess Arianna, the widow of a Red Court duke that Ebenezar McCoy thought he had killed several years earlier. Dresden goes to Edinburgh to seek help from the council. However, upon his arrival, he discovers Arianna is there, hosting a peace conference with the rest of the council. Dresden openly challenges Arianna to a duel to the death over his daughter's kidnapping, but is prevented from carrying it through by the other members of the council. Infuriated, Dresden returns home. After an explosion destroys his office building, Dresden learns from Karrin Murphy he is under investigation by the FBI. After being released and having a talk with his fairy godmother, Dresden is eventually directed to the Norse God Odin, who tells him that the Red Court is going to use Maggie for a powerful blood curse that will kill everyone related to her, including Dresden. Dresden decides to investigate Rudolph, the Chicago police detective who implicated him in the office explosion, reasoning that he must", "text_characters": 2582, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2935053", "title": "The Dresden Files characters", "score": 18.015948994952026, "snippet": "Outsiders do not respect the neutrality of the pub, as shown during \"Cold Days\" when they attack it while Harry is inside. In \"Dead Beat\", Harry bribes a security guard at the medical examiner's office with a batch of Mac's beer so he can get in to see Waldo Butters. In \"Small Favor\", after Karrin Murphy faces down a Gruff that has entered the pub to pick a fight with Harry, Mac shows his respect for her bravery by serving them a particularly good brew (described by Harry as \"God's beer\"). In \"Changes\", Mac makes his longest speech to date offering wisdom to Harry about the danger of the road he is on and the choices he must make. He advises caution. Once the speech is done, Mac looks visibly pained to have spoken more than three syllables at one time. In \"Cold Days\", Mac is drawn into Harry's horrible day and reveals hints of unexpected depth, displaying accelerated healing (which he tries to conceal) and familiarity with such high powers as Outsiders and Sidhe Queens. The Outsider refers to him as a \"watcher\". It is alluded that he once used to be involved in the conflicts of magic, but he refuses to discuss this part of his past beyond saying, \"I'm out\". Harry attempts to get Mac to talk about his past after one of the skirmishes with the Outsiders telling him \"We'll talk about this later\". Mac responds with a deadpan look telling Harry flatly, \"No, we won't\". In \"Skin Game\", Mac is present when Harry and Mab meet with Kringle (another mantle worn by Donar Vadderung, AKA O", "text_characters": 2334, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2935010", "title": "The Dresden Files characters", "score": 16.690740666337913, "snippet": "While smooth-talking and obsessed with women, it was rather ironically revealed during the events of \"White Night\" that Ramirez is still a virgin. In battle he heavily favors water magic and conventional weaponry; he has on more than one occasion used grenades and firearms instead of his magic in order to conserve his strength. His principal magical weapon is the use of a type of emerald green energy which seems to break down materials into more component pieces, although on organic matter it seems to work as a desiccant, removing all traces of moisture from the area it hits, turning it into a form of sand. His defensive magic consists of a jelly-like shield that allows incoming projectiles to pass through, but uses their own kinetic energy to break them down into small harmless particles. Like Harry, Ramirez has guessed the existence of the Black Council (his original name for them being \"the Black Hats\"). He and Harry consider each other to be good friends and hold each other in considerable respect. Ramirez regards Harry's power level with some awe and has often later referred to some impressive feat of magic that Harry performed with great admiration. In \"Changes\", Ramirez led a team of Wardens to confront Cristos, resulting in the capture and arrest of all members of the team except one (Warden Chandler). In \"Ghost Story\", it appears that he is still functioning for the White Council as Murphy talks about calling Ramirez. In \"Cold Days\", it is reported that he is recover", "text_characters": 2485, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:22808", "title": "", "score": 4.55041159060608, "snippet": "---\ntitle: 57th Annual Grammy Awards - Wikipedia\ndate: 2013-05-14\n---\nname: 57th Annual Grammy Awards\ndate: February 8, 2015\nlocation: Staples Center, Los Angeles, California, U.S.\nhost: LL Cool J\nnetwork: CBS\nratings: 25.3 million viewers February 10, 2015 TV Ratings: Grammy Awards Lose 3 Million Viewers From Last Year Michael O'Connell The Hollywood Reporter February 9, 2015 February 10, 2015\nmost_awards: Sam Smith (4)\nmost_nominations: Beyoncé, Sam Smith, Pharrell Williams (6 each)\nprevious: 56th\nmain: Grammy Awards\nnext: 58th\n\nThe 57th Annual Grammy Awards were held on February 8, 2015, at the Staples Center in Los Angeles, California. The show was broadcast live by CBS at 5:00 p.m. PST (UTC−8). Rapper LL Cool J hosted the show for the fourth consecutive time.\n\nThe Grammy nominations were open for recordings released between October 1, 2013, and September 30, 2014. Breaking from tradition of a prime-time concert approach, the Grammy nominees were announced during an all-day event on December 5, 2014, starting with initial announcements on the CBS This Morning telecast, followed by updates made through The Grammys' official Twitter account.\n\nSam Smith won four awards, including Best New Artist, Record of the Year, Song of the Year for \"Stay with Me\" and Best Pop Vocal Album for In the Lonely Hour. Beck's album Morning Phase was named Album of the Year. This prompted Kanye West, who later said he thought Beyoncé should have won, to jokingly leap onstage to interrupt Beck in", "text_characters": 51787, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:84086", "title": "", "score": 2.981978176031838, "snippet": "---\ntitle: Abstracts\ndate: 2019-09-07\n---\n- Split View\n\n-\n\nViews\n\n-\n\nCite\n\nCite\n\nAbstracts, Chemical Senses, Volume 44, Issue 7, September 2019, Pages e1–e121, \n\nClose - Share Icon Share\n\nGIVAUDAN LECTURE\n\nSUNDAY, 6:00 PM - 7:00 PM\n\nThe chemical senses and eating: mouth as integrator, the temporal aesthetics of the meal, and reversing innate aversions\n\nPaul Rozin\n\nDepartment of Psychology, University of Pennsylvania, Philadelphia, PA, USA\n\nAside from breathing, eating is our most pressing and important function, and has a special relation to the mouth and the chemical senses. Typically, in a meal we have a sequence of chemosensory experiences, and the way this sequence is experienced and integrated influences the aesthetic pleasure of the meal. Main dishes in most cuisines present a characteristic set of flavors (flavor principles). One of the most common such flavorings is chili pepper, which is surprising because it is innately aversive. The process through which an innately aversive oral experience becomes positive will be discussed, and related to a much more general and uniquely human phenomenon: benign masochism.\n\nFCOI Declarations: None\n\nDIGITAL POSTERS\n\nPOSTER SESSION I\n\nMONDAY, 8:00 AM - 10:00 AM\n\nPD100 Creeping on Ants: Developing the PiSpy, an Affordable and Flexible Video Recording Platform for Monitoring Animal Behavior\n\nMarcy J Kittredge1, Andrew Hawk2, Owen Meng2, Matt Lamparter2, Thomas Thul3, Gregory M Pask1\n\n1Bucknell University Department of Biology, Lewisb", "text_characters": 659632, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:10949", "title": "", "score": 1.976115013483465, "snippet": "---\ntitle: News: 2024\ndate: 2024-01-01\n---\nNews: 2024\n\nAdvertisement\n\n-\n\n2030 WC: Spanish Federation thinks leaving out Nou Mestalla is \"illogical\"\n\nOnce again, the new RFEF president Rafael Louzán insists on his \"commitment\" to including Valencia in the list of 2030 World Cup venues. He assures that he doesn't forget about Vigo as well, but gives only the reasons to host the tournament at Nou Mestalla.\n\n-\n\nAustralia: Brisbane selects Olympic stadiums for 2032 Games\n\nThe 2032 Olympic Games present a huge opportunity and challenge for Brisbane. The Queensland capital has begun a 100-day site review for an Olympic stadium. Options are plentiful, with choices including the legendary The Gabba or the futuristic Northshore Hamilton.\n\n-\n\nSpain: Mayor reminds Burgos CF of stand extension\n\nThe mayor of Burgos intends to hold a meeting with the owners of Burgos CF in January to remind them of their commitment to start redeveloping the stands at the stadium. The contract clearly states that work must begin by April 19, 2025 at the latest.\n\n-\n\nSpain: Modular stadium construction in Zaragoza will begin in early January\n\nTwo parking lots, a fan zone, picnic areas, and flood protection—this is how the surroundings of the temporary football stadium at Parking Nord will look, where Real Zaragoza will play for the next two seasons.\n\n-\n\nUSA: Alamodome reveals freshly painted field for 32nd Valero Alamo Bowl\n\nThe Alamodome's freshly painted field was revealed on Sunday in preparation for the 32", "text_characters": 335977, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:79288", "title": "", "score": 1.7514990551117133, "snippet": "---\ntitle: 100 best architecture firms in the world\nauthor: Surabhi Patil\ndate: 2024-04-04\n---\nArchitecture is the nexus between culture, society and history, reflecting man's constant quest for advancement. The challenges posed by anthropogenic activities bring about this question: how can architecture play a role in addressing the pressing issues of climate change, social disparity and urbanization? The recent changes in the built environment brought about by the pandemic have necessitated a reevaluation of spatial requirements and health considerations influencing human perception of architectural spaces.\n\nAs cities grow denser and more diverse, design practices are now re-imagining built spaces through the application of digital technologies including building information modeling and parametric architecture integrated with sustainable design principles. Across continents, leading architecture practices are striving towards robust and resilient design solutions that enhance people's lives and stand the test of time. The 100 architecture firms listed below are redefining the limits of the practice across the world.\n\nThe '100 best firms' is curated by the Archello editorial team. The selection process is multifaceted and takes into account various criteria. These include: the number of projects a firm has uploaded to its Archello profile in the last two years; the number of projects that have been featured by Archello in the last two years; the scale and caliber of the proj", "text_characters": 63581, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:89654", "title": "", "score": 1.4309131830351156, "snippet": "---\ndate: 2019-05-05\n---\nEUROPEAN COMMISSION\n\nBrussels, 4.2.2022\n\nSWD(2022) 24 final\n\nCOMMISSION STAFF WORKING DOCUMENT\n\nCohesion in Europe towards 2050\n\nAccompanying the document\n\nCOMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS\n\non the 8th Cohesion Report: Cohesion in Europe towards 2050\n\n{COM(2022) 34 final}\n\nCHAPTER 1 The regional dimension of the COVID-19 pandemic\n\n·The outbreak of the COVID-19 pandemic has led to at least 872,000 more deaths in the EU compared to previous years. Excess mortality was higher in less developed regions than in transition and more developed ones. While the first wave affected primarily north-western regions and southern regions, the following waves led to the highest mortality in eastern regions.\n\n·The restrictions put in place to contain the pandemic led to the deepest post-1945 recession. The impact was largest on southern regions, especially those dependent on tourism, where the reduction in hours worked and GDP were the most severe.\n\n·The travel restrictions not only affected the tourism sector, but also border areas where people could no longer cross a national border to go to work or to access services.\n\n·Thanks to job retention schemes the impact of employment and unemployment was much smaller compared to the reduction in hours worked and GDP. This allowed the EU to avoid a big spike in unemployment.\n\n·The number of people usually wor", "text_characters": 566089, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:98547", "title": "", "score": 0.868550067995812, "snippet": "---\ntitle: LRO (Lunar Reconnaissance Orbiter)\ndate: 2009-09-16\n---\nLRO (Lunar Reconnaissance Orbiter)\n\nQuick facts\n\nOverview\n\n| Launch date | 18 Jun 2009 |\n\nLRO (Lunar Reconnaissance Orbiter) + LCROSS\n\nLRO is a NASA mission to the moon within the Lunar Precursor and Robotic Program (LPRP) in preparation for future manned missions to the moon and beyond (Mars). LRO is the first mission of NASA's `New Vision for Space Exploration', which President Bush announced on January 14, 2004, in sending more robot and human explorers beyond Earth orbit. The LRO requirements call for a mission life of one year in lunar orbit. The objectives of LRO are to: 1) 2) 3) 4) 5)\n\n• Identify potential lunar resources\n\n• Gather detailed maps of the lunar surface\n\n• Collect data on the moon's radiation levels\n\n• Study the moons polar regions for resources that could be used in future manned missions or robotic sample return missions\n\n• Provide measurements to characterize future robotic explorers, human lunar landing sites and to derive measurements that can be used directly in support of future Lunar Human Exploration Systems.\n\nThe orbiter project is managed by NASA/GSFC while NASA/ARC manages the LRO payload. The CDR (Critical Design Review) of LRO was completed in Nov. 2006.\n\nSpacecraft\n\nThe spacecraft is being built and integrated at NASA/GSFC (inhouse development), Greenbelt, MD. The spacecraft architecture emphasizes modularity through the use of standard interfaces. LRO is a 3-axis stabilized,", "text_characters": 241611, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:1756", "title": "", "score": 0.8036974304529036, "snippet": "---\ntitle: Art\ndate: 2005-01-01\n---\n1,082 106 100MB\n\nEnglish Pages [513] Year 2005\n\n- Author / Uploaded\n\n- Cumming R.\n\n- Commentary\n\n- eBook\n\nE YE WITNESS COMPANIONS\n\nArt robert cumming\n\nText previously published in ART: A Field Guide\n\nPA I N T I NG • SCULPTU R E • ART I S TS • ST YLES • SCHO OL S\n\nE YE WITNESS COMPANIONS\n\nArt ROBERT CUMMING Text previously published in Art: A Field Guide\n\nLONDON, NEW YORK, MUNICH, MELBOURNE, AND DELHI Senior Art Editor Senior Editor Design assistance Editorial assistance Additional text contribution Picture Research DTP Production Managing Editor Managing Art Editor Executive Managing Editor Editorial Director Art Director Publisher\n\nJuliette Norsworthy Ferdie McDonald Peter Laws David John, Rob Houston Thomas Cussans Sarah Smithies, Celia Dearing, Carlo Ortu John Goldsmid Rita Sinha Debra Wolter Phil Ormerod Liz Wheeler Andrew Heritage Bryn Walls Jonathan Metcalf\n\nat Studio Cactus\n\nDesign Editorial\n\nLaura Watson, Dawn Terrey, Sharon Rudd, Peter Radcliffe Aaron Brown, Jennifer Close, Lorna Hankin, Clare Wallis\n\nFirst published in 2005 by Dorling Kindersley Limited 80 Strand, London WC2R ORL Penguin Group First American Edition, 2005 Published in the United States by DK Publishing, Inc. 375 Hudson Street, New York, New York 10014 04 05 06 08 09 10 9 8 7 6 5 4 3 2 1 Text © Robert Cumming 2005 All rights reserved under International and Pan-American Copyright Convention. No part of this publication may be reproduced, stored in a retrieval syste", "text_characters": 1283667, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R003_request.json/messages/5/content`；SHA256：`08ddda28ccff880f24b0880db237640c510a3277f9ca64de12597de3a06e3a74`。
+
+### R3 `/rounds/2/reasoning_content` [0,521)
+
+SHA256：`12131cfa03ae0c73d129d2788c3495765044b8c2ae9135d202593f850b46cbb2`；原字段SHA256：`12131cfa03ae0c73d129d2788c3495765044b8c2ae9135d202593f850b46cbb2`。
+
+````
+The search results show the book "Changes" but don't provide specific details about Martin, the Chichen Itza confrontation, or the supernatural group that was eradicated. I need to search more specifically for details about Martin, the Chichen Itza confrontation, and the group that was eradicated.
+
+Let me search for "Martin Chichen Itza" or "Martin Dresden Files" to find more specific information.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Martin Chichen Itza Dresden Files
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Martin Chichen Itza Dresden Files"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nMartin Chichen Itza Dresden Files\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Martin Chichen Itza Dresden Files"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 1.1008747261948884,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935054",
+        "score": 33.40175875699061,
+        "snippet": "While seemingly dismissive of Dresden, Martin nevertheless assists him against members of the Order of the Blackened Denarius, proving himself to be both highly skilled and extremely ruthless in the process. After the duel, he leaves Chicago with Susan, promising Harry that he'll take care of her. Martin reappears eight years later in the book \"Changes\", when he returns to Chicago with Susan after the kidnap of Maggie Dresden, Susan's daughter with Dresden, with the aim of using her in a bloodline curse to destroy Dresden. He is heavily involved with the events of that book, ultimately accompanying Dresden and his team to their confrontation with the Red Court at Chichen Itza. During the climax of that battle, some of Martin's back story is finally revealed. For approximately fifty years Martin served the Red Court as a priest, proving his loyalty and devotion, before being assigned to infiltrate the Fellowship of St. Giles as an undercover agent of the Red Court. He then served with the Fellowship for one hundred and fifty years, making him their longest surviving operative, but also working for the Red Court, being provided targets by his secret masters and being allowed to escape from traps that snared other members of the group. After fifty years, including the \"detection\" and execution of two other Red Court agents within the group, he was deemed trustworthy and spent the next hundred years learning their secrets in order to take them down from the inside. At a critical ",
+        "text_characters": 2603,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:88664",
+        "score": 2.1656349352582223,
+        "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\nAlbania\n\nAlgeria\n\nAndorra\n\nAngola\n\nAntigua and Barbuda\n\nArgentina\n\n- Los Glaciares National Park #\n\n- Jesuit Missions of the Guaranis: San Ignacio Mini, Santa Ana, Nuestra Señora de Loreto and Santa Maria Mayor (Argentina), Ruins of Sao Miguel das Missoes (Brazil) *\n\n- Iguazu National Park\n\n- Cueva de las Manos, Río Pinturas\n\n- Península Valdés\n\n- Ischigualasto / Talampaya Natural Parks\n\n- Jesuit Block and Estancias of Córdoba\n\n- Quebrada de Humahuaca\n\n- Qhapaq Ñan, Andean Road System *\n\n- The Architectural Work of Le Corbusier, an Outstanding Contribution to the Modern Movement *\n\n- Los Alerces National Park\n\n- ESMA Museum and Site of Memory – Former Clandestine Centre of Detention, Torture and Extermination\n\nArmenia\n\nAustralia\n\n- Great Barrier Reef\n\n- Kakadu National Park\n\n- Willandra Lakes Region\n\n- Lord Howe Island Group\n\n- Tasmanian Wilderness\n\n- Gondwana Rainforests of Australia 2\n\n- Uluru-Kata Tjuta National Park 3\n\n- Wet Tropics of Queensland\n\n- Shark Bay, Western Australia\n\n- K'gari (Fraser Island)\n\n- Australian Fossil Mammal Sites (Riversleigh / Naracoorte)\n\n- Heard and McDonald Islands\n\n- Macquarie Island\n\n- Greater Blue Mountains Area\n\n- Purnululu National Park\n\n- Royal Exhibition Building and Carlton Gardens\n\n- Sydney Opera House\n\n- Australian Convict Sites\n\n- Ningaloo Coast\n\n- Budj Bim Cultural Landscape\n\nAustria\n\n- Historic Centre of the City of Salzburg\n\n- Palace and Gardens ",
+        "text_characters": 47760,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.9398567395966957,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:49962",
+        "score": 0.33204804784066677,
+        "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\n- Minaret and Archaeological Remains of Jam\n\nThe 65m-tall Minaret of Jam is a graceful, soaring structure, dating back to the 12th century. Covered in elaborate brickwork with a blue tile inscription at the top, it is noteworthy for the quality of its architecture and decoration, which represent the culmination of an architectural and artistic tradition in this region. Its impact is heightened by its dramatic setting, a deep river valley between towering mountains in the heart of the Ghur province.\n\n- Cultural Landscape and Archaeological Remains of the Bamiyan Valley\n\nThe cultural landscape and archaeological remains of the Bamiyan Valley represent the artistic and religious developments which from the 1st to the 13th centuries characterized ancient Bakhtria, integrating various cultural influences into the Gandhara school of Buddhist art. The area contains numerous Buddhist monastic ensembles and sanctuaries, as well as fortified edifices from the Islamic period. The site is also testimony to the tragic destruction by the Taliban of the two standing Buddha statues, which shook the world in March 2001.\n\nAlbania\n\n- Natural and Cultural Heritage of the Ohrid region\n\n*\n\n1\n\nA superlative natural phenomenon, Lake Ohrid provides a refuge for numerous endemic species of freshwater fauna and flora dating from the Tertiary period. Situated on the shores of the lake, the town of Ohrid is one of the o",
+        "text_characters": 851727,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:49204",
+        "score": 0.22644162112975885,
+        "snippet": "---\ntitle: World Heritage Site\ndate: 2015-01-01\n---\n|\n\nAfghanistan |\n\n|\n\nMinaret of Jam |\n\n|\n\n|\n\n|\n\nThe Minaret and Archaeological Remains of Jam comprise a masterwork of Islamic architecture and decoration.\n\nThe well-preserved minaret and its surrounding remains are the products of the Ghurid civilization, which in the 12th and 13th centuries controlled not only Afghanistan but also parts of eastern Iran, Northern India and parts of Pakistan. The 65-metre-high minaret is built entirely of baked bricks, with intricate brick, stucco and glazed tile decorations such as alternating bands of calligraphy, geometric patterns, and verses from the Qur'an.\n\nCommunity Perspective: this site has been rarely visited in the past. Since the most recent takeover by the Taliban in 2021, tourists have been reaching it again. Wojciech was the first to capture a visit in a review. |\n\n|\n\nBamiyan Valley |\n\n|\n\n|\n\n|\n\nThe Cultural Landscape and Archaeological Remains of the Bamiyan Valley is an outstanding representation of Gandharan Buddhist art and culture in Central Asia.\n\nThe kingdom of Bamiyan was a Buddhist state strategically located on the Silk Road and an important pilgrimage center. The site has eight components, including caves with painted decorations and Buddha statues carved into the cliffs. The cliffs held two standing Buddhas, measuring 55 and 37 meters high respectively, that were the largest examples of standing Buddha carvings in the world. They were deliberately destructed in Mar",
+        "text_characters": 1063038,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.17713992172158008,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.11695843038572716,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.039156798444976465,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2935054", "title": "The Dresden Files characters", "score": 33.40175875699061, "snippet": "While seemingly dismissive of Dresden, Martin nevertheless assists him against members of the Order of the Blackened Denarius, proving himself to be both highly skilled and extremely ruthless in the process. After the duel, he leaves Chicago with Susan, promising Harry that he'll take care of her. Martin reappears eight years later in the book \"Changes\", when he returns to Chicago with Susan after the kidnap of Maggie Dresden, Susan's daughter with Dresden, with the aim of using her in a bloodline curse to destroy Dresden. He is heavily involved with the events of that book, ultimately accompanying Dresden and his team to their confrontation with the Red Court at Chichen Itza. During the climax of that battle, some of Martin's back story is finally revealed. For approximately fifty years Martin served the Red Court as a priest, proving his loyalty and devotion, before being assigned to infiltrate the Fellowship of St. Giles as an undercover agent of the Red Court. He then served with the Fellowship for one hundred and fifty years, making him their longest surviving operative, but also working for the Red Court, being provided targets by his secret masters and being allowed to escape from traps that snared other members of the group. After fifty years, including the \"detection\" and execution of two other Red Court agents within the group, he was deemed trustworthy and spent the next hundred years learning their secrets in order to take them down from the inside. At a critical ", "text_characters": 2603, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:88664", "title": "", "score": 2.1656349352582223, "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\nAlbania\n\nAlgeria\n\nAndorra\n\nAngola\n\nAntigua and Barbuda\n\nArgentina\n\n- Los Glaciares National Park #\n\n- Jesuit Missions of the Guaranis: San Ignacio Mini, Santa Ana, Nuestra Señora de Loreto and Santa Maria Mayor (Argentina), Ruins of Sao Miguel das Missoes (Brazil) *\n\n- Iguazu National Park\n\n- Cueva de las Manos, Río Pinturas\n\n- Península Valdés\n\n- Ischigualasto / Talampaya Natural Parks\n\n- Jesuit Block and Estancias of Córdoba\n\n- Quebrada de Humahuaca\n\n- Qhapaq Ñan, Andean Road System *\n\n- The Architectural Work of Le Corbusier, an Outstanding Contribution to the Modern Movement *\n\n- Los Alerces National Park\n\n- ESMA Museum and Site of Memory – Former Clandestine Centre of Detention, Torture and Extermination\n\nArmenia\n\nAustralia\n\n- Great Barrier Reef\n\n- Kakadu National Park\n\n- Willandra Lakes Region\n\n- Lord Howe Island Group\n\n- Tasmanian Wilderness\n\n- Gondwana Rainforests of Australia 2\n\n- Uluru-Kata Tjuta National Park 3\n\n- Wet Tropics of Queensland\n\n- Shark Bay, Western Australia\n\n- K'gari (Fraser Island)\n\n- Australian Fossil Mammal Sites (Riversleigh / Naracoorte)\n\n- Heard and McDonald Islands\n\n- Macquarie Island\n\n- Greater Blue Mountains Area\n\n- Purnululu National Park\n\n- Royal Exhibition Building and Carlton Gardens\n\n- Sydney Opera House\n\n- Australian Convict Sites\n\n- Ningaloo Coast\n\n- Budj Bim Cultural Landscape\n\nAustria\n\n- Historic Centre of the City of Salzburg\n\n- Palace and Gardens ", "text_characters": 47760, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.9398567395966957, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:49962", "title": "", "score": 0.33204804784066677, "snippet": "---\ntitle: World Heritage List\ndate: 2025-01-01\n---\nWorld Heritage List\n\nAfghanistan\n\n- Minaret and Archaeological Remains of Jam\n\nThe 65m-tall Minaret of Jam is a graceful, soaring structure, dating back to the 12th century. Covered in elaborate brickwork with a blue tile inscription at the top, it is noteworthy for the quality of its architecture and decoration, which represent the culmination of an architectural and artistic tradition in this region. Its impact is heightened by its dramatic setting, a deep river valley between towering mountains in the heart of the Ghur province.\n\n- Cultural Landscape and Archaeological Remains of the Bamiyan Valley\n\nThe cultural landscape and archaeological remains of the Bamiyan Valley represent the artistic and religious developments which from the 1st to the 13th centuries characterized ancient Bakhtria, integrating various cultural influences into the Gandhara school of Buddhist art. The area contains numerous Buddhist monastic ensembles and sanctuaries, as well as fortified edifices from the Islamic period. The site is also testimony to the tragic destruction by the Taliban of the two standing Buddha statues, which shook the world in March 2001.\n\nAlbania\n\n- Natural and Cultural Heritage of the Ohrid region\n\n*\n\n1\n\nA superlative natural phenomenon, Lake Ohrid provides a refuge for numerous endemic species of freshwater fauna and flora dating from the Tertiary period. Situated on the shores of the lake, the town of Ohrid is one of the o", "text_characters": 851727, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:49204", "title": "", "score": 0.22644162112975885, "snippet": "---\ntitle: World Heritage Site\ndate: 2015-01-01\n---\n|\n\nAfghanistan |\n\n|\n\nMinaret of Jam |\n\n|\n\n|\n\n|\n\nThe Minaret and Archaeological Remains of Jam comprise a masterwork of Islamic architecture and decoration.\n\nThe well-preserved minaret and its surrounding remains are the products of the Ghurid civilization, which in the 12th and 13th centuries controlled not only Afghanistan but also parts of eastern Iran, Northern India and parts of Pakistan. The 65-metre-high minaret is built entirely of baked bricks, with intricate brick, stucco and glazed tile decorations such as alternating bands of calligraphy, geometric patterns, and verses from the Qur'an.\n\nCommunity Perspective: this site has been rarely visited in the past. Since the most recent takeover by the Taliban in 2021, tourists have been reaching it again. Wojciech was the first to capture a visit in a review. |\n\n|\n\nBamiyan Valley |\n\n|\n\n|\n\n|\n\nThe Cultural Landscape and Archaeological Remains of the Bamiyan Valley is an outstanding representation of Gandharan Buddhist art and culture in Central Asia.\n\nThe kingdom of Bamiyan was a Buddhist state strategically located on the Silk Road and an important pilgrimage center. The site has eight components, including caves with painted decorations and Buddha statues carved into the cliffs. The cliffs held two standing Buddhas, measuring 55 and 37 meters high respectively, that were the largest examples of standing Buddha carvings in the world. They were deliberately destructed in Mar", "text_characters": 1063038, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.17713992172158008, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.11695843038572716, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.039156798444976465, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R004_request.json/messages/7/content`；SHA256：`79a805b88162ff067b6ad0bbedab622ea42c49891492d65b52a646c25bceed67`。
+
+### R4 `/rounds/3/reasoning_content` [0,419)
+
+SHA256：`1e409206bd533fe1308e44bb5c65852c6271aab3fe21b390f509bfc2167ef778`；原字段SHA256：`1e409206bd533fe1308e44bb5c65852c6271aab3fe21b390f509bfc2167ef778`。
+
+````
+The search results provide information about Martin and his role in "Changes", but I need more specific information about the supernatural group that was eradicated. Let me search for more details about the bloodline curse and the group affected.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Chichen Itza bloodline curse Susan Rodriguez Fellowship of St. Giles eradicated group
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "Chichen Itza bloodline curse Susan Rodriguez Fellowship of St. Giles eradicated group"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nChichen Itza bloodline curse Susan Rodriguez Fellowship of St. Giles eradicated group\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Chichen Itza bloodline curse Susan Rodriguez Fellowship of St. Giles eradicated group"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.9995286487974226,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:72925",
+        "score": 1.9393337277553502,
+        "snippet": "---\ntitle: Dental Work in Mexico: Best Prices To Unlock Your New Smile!\ndate: 2025-02-07\n---\nAffordable, safe, and high-quality dental work in Mexico [1] is a blessing for those who can't afford the costs back home. Interested? Explore prices, all-inclusive packages, procedures, best clinics, and dentists in top 14 dental destinations in Mexico.\n\nDental Care in Mexico: Save up 70 – 90% on U.S. costs!\n\nLow-cost Dental Services in Mexico – Patient Testimonial\n\nDental care is expensive and often inaccessible in most Western countries.\n\nFor self-paying Americans, dental tourism in Mexico provides an affordable solution.\n\nBut if you're considering treatment there, you likely have several questions.\n\nAs a dental tourist, some of your common queries include:\n\n- Why choose Mexico for dental work?\n\n- How much can you save with dental tourism in Mexico?\n\n- Is dental treatment in Mexico safe?\n\n- What are the best cities in Mexico for dental work in 2025?\n\n- How to find a reputable dental provider in Mexico?\n\nDespite the assured quality, a common question is, \"Are dentists really cheaper in Mexico?\"\n\nIf you travel by flight or drive, is it worth the trip considering additional expenses?\n\nWe will address all of these questions below.\n\nLet's start by comparing Mexico dentist prices in 2025 to understand why it has become the preferred destination for top-quality dental work abroad.\n\nCost of Dental Work in Mexico in 2025\n\nYou can enjoy substantial cost savings with affordable dental work in",
+        "text_characters": 51739,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.31201862855825563,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.19670466234231732,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.07160971271719947,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.03785582773608388,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:72925", "title": "", "score": 1.9393337277553502, "snippet": "---\ntitle: Dental Work in Mexico: Best Prices To Unlock Your New Smile!\ndate: 2025-02-07\n---\nAffordable, safe, and high-quality dental work in Mexico [1] is a blessing for those who can't afford the costs back home. Interested? Explore prices, all-inclusive packages, procedures, best clinics, and dentists in top 14 dental destinations in Mexico.\n\nDental Care in Mexico: Save up 70 – 90% on U.S. costs!\n\nLow-cost Dental Services in Mexico – Patient Testimonial\n\nDental care is expensive and often inaccessible in most Western countries.\n\nFor self-paying Americans, dental tourism in Mexico provides an affordable solution.\n\nBut if you're considering treatment there, you likely have several questions.\n\nAs a dental tourist, some of your common queries include:\n\n- Why choose Mexico for dental work?\n\n- How much can you save with dental tourism in Mexico?\n\n- Is dental treatment in Mexico safe?\n\n- What are the best cities in Mexico for dental work in 2025?\n\n- How to find a reputable dental provider in Mexico?\n\nDespite the assured quality, a common question is, \"Are dentists really cheaper in Mexico?\"\n\nIf you travel by flight or drive, is it worth the trip considering additional expenses?\n\nWe will address all of these questions below.\n\nLet's start by comparing Mexico dentist prices in 2025 to understand why it has become the preferred destination for top-quality dental work abroad.\n\nCost of Dental Work in Mexico in 2025\n\nYou can enjoy substantial cost savings with affordable dental work in", "text_characters": 51739, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.31201862855825563, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.19670466234231732, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.07160971271719947, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.03785582773608388, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R005_request.json/messages/9/content`；SHA256：`fc6c6d8a7ba5876d386a6f91ba6c009365cb517fb2b9f97271f18a380f20d380`。
+
+### R5 `/rounds/4/reasoning_content` [0,187)
+
+SHA256：`607151da19af341db6c6de1811b54c37ebf027ee1e986bd228ee95bef2e3c041`；原字段SHA256：`1ff241059e2e0c9df33cf49a28f5950390ba1393f6a354bf1ec652e84247dff0`。
+
+````
+The search results contain a document about "The Dresden Files characters" (doc_id: wiki25:2935054) which mentions Martin's backstory and his infiltration of the Fellowship of St. Giles. 
+````
+
+## S002｜选择Martin角色原文核查血咒后果
+
+Open2935054，处理R6返回并作出无依据Sidhe推断。
+
+结束状态：原文截在Susan转化前，尚缺结局。
+
+边界判断：搜索结束后选择具体文档原文入口。
+
+内部KEEP与反证：R6Sidhe断言仅直接解释，无条件比较或独立核查，不额外制造候选评估Stage；保留错误。
+
+### SPLIT原文
+
+````
+The search results contain a document about "The Dresden Files characters" (doc_id: wiki25:2935054) which mentions Martin's backstory and his infiltration of the Fellowship of St. Giles. 
+→ 切点 [4, 0, 187] →
+I need to find more specific information about the confrontation at Chichen Itza, the bloodline curse, and the group that was eradicated. Let me open this document to get more details.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:2935054
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+2000
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R5 `/rounds/4/reasoning_content` [187,542)
+
+SHA256：`34a2842f088a3260c8a3d99b9920a9c78904d77625462e84ec26e6f21958bc60`；原字段SHA256：`1ff241059e2e0c9df33cf49a28f5950390ba1393f6a354bf1ec652e84247dff0`。
+
+````
+I need to find more specific information about the confrontation at Chichen Itza, the bloodline curse, and the group that was eradicated. Let me open this document to get more details.
+
+<tool_call>
+<function=open>
+<parameter=doc_id>
+wiki25:2935054
+</parameter>
+<parameter=offset>
+0
+</parameter>
+<parameter=limit>
+2000
+</parameter>
+</function>
+</tool_call>
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:2935054",
+    "limit": 2000,
+    "offset": 0
+  },
+  "id": "recovered_call_1",
+  "name": "open",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=open>\n<parameter=doc_id>\nwiki25:2935054\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n2000\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "doc_id": "wiki25:2935054",
+    "limit": 2000,
+    "offset": 0
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.0016392888501286507,
+  "name": "open",
+  "observation": {
+    "corpus_id": "wiki25_shared_global_context",
+    "doc_id": "wiki25:2935054",
+    "limit": 2000,
+    "offset": 0,
+    "text": "While seemingly dismissive of Dresden, Martin nevertheless assists him against members of the Order of the Blackened Denarius, proving himself to be both highly skilled and extremely ruthless in the process. After the duel, he leaves Chicago with Susan, promising Harry that he'll take care of her. Martin reappears eight years later in the book \"Changes\", when he returns to Chicago with Susan after the kidnap of Maggie Dresden, Susan's daughter with Dresden, with the aim of using her in a bloodline curse to destroy Dresden. He is heavily involved with the events of that book, ultimately accompanying Dresden and his team to their confrontation with the Red Court at Chichen Itza. During the climax of that battle, some of Martin's back story is finally revealed. For approximately fifty years Martin served the Red Court as a priest, proving his loyalty and devotion, before being assigned to infiltrate the Fellowship of St. Giles as an undercover agent of the Red Court. He then served with the Fellowship for one hundred and fifty years, making him their longest surviving operative, but also working for the Red Court, being provided targets by his secret masters and being allowed to escape from traps that snared other members of the group. After fifty years, including the \"detection\" and execution of two other Red Court agents within the group, he was deemed trustworthy and spent the next hundred years learning their secrets in order to take them down from the inside. At a critical moment at Chichen Itza, he reveals his allegiance, turning the course of the conflict against Dresden, and reveals that, just before the battle started, Red Court strike teams began taking out Fellowship safe houses under his authority. He reveals that it was he who informed the Red Court about the existence of Dresden's daughter, something that enrages Susan. Losing all control, she breaks free of his grip and turns on him, tearing his throat out with her teeth, beginning her final conversion t",
+    "title": "The Dresden Files characters",
+    "total_text_characters": 2603
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"doc_id": "wiki25:2935054", "title": "The Dresden Files characters", "offset": 0, "limit": 2000, "text": "While seemingly dismissive of Dresden, Martin nevertheless assists him against members of the Order of the Blackened Denarius, proving himself to be both highly skilled and extremely ruthless in the process. After the duel, he leaves Chicago with Susan, promising Harry that he'll take care of her. Martin reappears eight years later in the book \"Changes\", when he returns to Chicago with Susan after the kidnap of Maggie Dresden, Susan's daughter with Dresden, with the aim of using her in a bloodline curse to destroy Dresden. He is heavily involved with the events of that book, ultimately accompanying Dresden and his team to their confrontation with the Red Court at Chichen Itza. During the climax of that battle, some of Martin's back story is finally revealed. For approximately fifty years Martin served the Red Court as a priest, proving his loyalty and devotion, before being assigned to infiltrate the Fellowship of St. Giles as an undercover agent of the Red Court. He then served with the Fellowship for one hundred and fifty years, making him their longest surviving operative, but also working for the Red Court, being provided targets by his secret masters and being allowed to escape from traps that snared other members of the group. After fifty years, including the \"detection\" and execution of two other Red Court agents within the group, he was deemed trustworthy and spent the next hundred years learning their secrets in order to take them down from the inside. At a critical moment at Chichen Itza, he reveals his allegiance, turning the course of the conflict against Dresden, and reveals that, just before the battle started, Red Court strike teams began taking out Fellowship safe houses under his authority. He reveals that it was he who informed the Red Court about the existence of Dresden's daughter, something that enrages Susan. Losing all control, she breaks free of his grip and turns on him, tearing his throat out with her teeth, beginning her final conversion t", "total_text_characters": 2603, "corpus_id": "wiki25_shared_global_context"}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R006_request.json/messages/11/content`；SHA256：`ccb0467f52eba51332f45047fa6af39929aa855dbd94501904a01d70738d6ec6`。
+
+### R6 `/rounds/5/reasoning_content` [0,475)
+
+SHA256：`9691c4e8c20f7cdbb7bf1081994703a70fc4db5b982a39948b8ec09e4069cbfb`；原字段SHA256：`e5df4c321b8a80eaf790ae8e0e5cf3db14b0b25c5b6a801719697f0e3197ed74`。
+
+````
+The text provided mentions Martin's backstory and his infiltration of the Fellowship of St. Giles, but it doesn't explicitly mention the specific supernatural group whose elder members were eradicated by the bloodline curse. The curse was intended to kill Dresden's grandfather, Ebenezer McCoy, but was redirected to kill everyone older than Susan Rodriguez. Susan Rodriguez is an Elder Fae (Sidhe). The curse killed all the older Sidhe (Elder Fae), creating a power vacuum. 
+````
+
+## S003｜继续血咒群体查询并取得Red Court结局证据
+
+R6—R8同计划三Search，最后返回2935055。
+
+结束状态：取得血咒消灭Red Court的直接片段。
+
+边界判断：Open未解后实际恢复搜索，不跨Open合并旧搜索。
+
+内部KEEP与反证：R7/R8只是同一查询计划词语调整，无实质新判断，KEEP。
+
+### SPLIT原文
+
+````
+xplicitly mention the specific supernatural group whose elder members were eradicated by the bloodline curse. The curse was intended to kill Dresden's grandfather, Ebenezer McCoy, but was redirected to kill everyone older than Susan Rodriguez. Susan Rodriguez is an Elder Fae (Sidhe). The curse killed all the older Sidhe (Elder Fae), creating a power vacuum. 
+→ 切点 [5, 0, 475] →
+I need to search for more specific information about the curse and the group affected.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Chichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 7,
+    "batch_id": "B007",
+    "call_pointers": [
+      "/rounds/6/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/6"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 8,
+    "batch_id": "B008",
+    "call_pointers": [
+      "/rounds/7/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/7"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [475,740)
+
+SHA256：`a1547227d93f112734785ec1a4732246b2e6f386056ec2eed631c61c0501cde3`；原字段SHA256：`e5df4c321b8a80eaf790ae8e0e5cf3db14b0b25c5b6a801719697f0e3197ed74`。
+
+````
+I need to search for more specific information about the curse and the group affected.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Chichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group
+</parameter>
+</function>
+</tool_call>
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "query": "Chichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nChichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Chichen Itza bloodline curse Susan Rodriguez older than Susan eradicated supernatural group"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 1.1431197677738965,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:81290",
+        "score": 0.9741529889234011,
+        "snippet": "---\ntitle: Links\nauthor: Policies; Help Documentation\ndate: 2016-02-01\n---\nTheses and Dissertations Available from ProQuest\n\nFull text is available to Purdue University faculty, staff, and students on campus through this site. No login is required.\n\nOff-campus Purdue users may download theses and dissertations by logging into the Libraries' proxy server with your Purdue Career Account. Links to log in to the proxy server directly below the download button of each thesis or dissertation page.\n\nNon-Purdue users, may purchase copies of theses and dissertations from ProQuest or talk to your librarian about borrowing a copy through Interlibrary Loan. (Some titles may also be available free of charge in our Open Access Theses and Dissertations Series, so please check there first.)\n\nAccess to abstracts is unrestricted.\n\nDissertations & Theses from 2024\n\nFortney, Sarah Katherine (2024) The Role of Trait and Specific Expectations in the Experience of Dysmenorrhea\n\nDissertations & Theses from 2023\n\nAbdullah, Umm E. Hani (2023) Exploratory Study of Deep Brain Stimulation in the Syngap1+/- Mouse Model of Autism Spectrum Disorder Using Electrophysiology\n\nAbney, Douglas John (2023) Broadband's Role in Agricultural Job Postings In U.S. Counties\n\nAbou-Rached, John (2023) Counting Closed Geodesics in Orbit Closures\n\nAdams, Caitlin J (2023) Implementation of Superabsorbent Polymers for Internally Cured Concrete\n\nAdekunle, Tiwaladeoluwa Beloved (2023) Communication Influences on US Black Women'",
+        "text_characters": 4683826,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:4634",
+        "score": 0.7899521827522491,
+        "snippet": "---\ntitle: Exhibition History\ndate: 2025-01-01\n---\nExhibition History\n\nThe New Mexico Museum of Art has been presenting exhibitions for over a century! Explore the links on the left to search past exhibitions by decade or use the search icon on the top right of this page to keyword search for your favorite artists. Where available click on highlighted exhibition titles for more information.\n\nLooking for more information? Contact Librarian and Archivist Abby Smith at abby.smith@dca.nm.gov with your research inquiries!\n\nExhibition Title |\n\nOpening Date |\n\nClosing Date |\n\n| Museums in the 21st Century: Concepts, Projects, Buildings | January 29, 2010 | April 18, 2010 |\n\n| New Arrivals: Works from the Collection | February 12, 2010 | April 4, 2010 |\n\n| Shirley Klinghoffer | March 30, 2010 | May 7, 2010 |\n\n| Art on the Edge (2010): FOCA Biennial Juried Exhibition | April 16, 2010 | August 1, 2010 |\n\n| Sole Mates: Cowboy Boots in Art | May 15, 2010 | October 24, 2010 |\n\n| Play It Louder: Alexander Girard and the Girard Foundation Collection | June 18, 2010 | September 10, 2010 |\n\n| Traces: Johnnie Winona Ross | August 13, 2010 | January 9, 2011 |\n\n| Drip Tease: John Tinker's Narrative Sculptures | August 13, 2010 | January 9, 2011 |\n\n| The Governor's Award For Excellence in the Arts, 2010 | September 24, 2010 | December 10, 2010 |\n\n| Case Studies from the Bureau of Contemporary Art | November 19, 2010 | March 20, 2010 |\n\n| Cloudscapes: Photographs from the Collection | January 14, ",
+        "text_characters": 208131,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.36666571793061964,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.23721214367643956,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.07816656001761854,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.037984244086971555,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：7；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:81290", "title": "", "score": 0.9741529889234011, "snippet": "---\ntitle: Links\nauthor: Policies; Help Documentation\ndate: 2016-02-01\n---\nTheses and Dissertations Available from ProQuest\n\nFull text is available to Purdue University faculty, staff, and students on campus through this site. No login is required.\n\nOff-campus Purdue users may download theses and dissertations by logging into the Libraries' proxy server with your Purdue Career Account. Links to log in to the proxy server directly below the download button of each thesis or dissertation page.\n\nNon-Purdue users, may purchase copies of theses and dissertations from ProQuest or talk to your librarian about borrowing a copy through Interlibrary Loan. (Some titles may also be available free of charge in our Open Access Theses and Dissertations Series, so please check there first.)\n\nAccess to abstracts is unrestricted.\n\nDissertations & Theses from 2024\n\nFortney, Sarah Katherine (2024) The Role of Trait and Specific Expectations in the Experience of Dysmenorrhea\n\nDissertations & Theses from 2023\n\nAbdullah, Umm E. Hani (2023) Exploratory Study of Deep Brain Stimulation in the Syngap1+/- Mouse Model of Autism Spectrum Disorder Using Electrophysiology\n\nAbney, Douglas John (2023) Broadband's Role in Agricultural Job Postings In U.S. Counties\n\nAbou-Rached, John (2023) Counting Closed Geodesics in Orbit Closures\n\nAdams, Caitlin J (2023) Implementation of Superabsorbent Polymers for Internally Cured Concrete\n\nAdekunle, Tiwaladeoluwa Beloved (2023) Communication Influences on US Black Women'", "text_characters": 4683826, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:4634", "title": "", "score": 0.7899521827522491, "snippet": "---\ntitle: Exhibition History\ndate: 2025-01-01\n---\nExhibition History\n\nThe New Mexico Museum of Art has been presenting exhibitions for over a century! Explore the links on the left to search past exhibitions by decade or use the search icon on the top right of this page to keyword search for your favorite artists. Where available click on highlighted exhibition titles for more information.\n\nLooking for more information? Contact Librarian and Archivist Abby Smith at abby.smith@dca.nm.gov with your research inquiries!\n\nExhibition Title |\n\nOpening Date |\n\nClosing Date |\n\n| Museums in the 21st Century: Concepts, Projects, Buildings | January 29, 2010 | April 18, 2010 |\n\n| New Arrivals: Works from the Collection | February 12, 2010 | April 4, 2010 |\n\n| Shirley Klinghoffer | March 30, 2010 | May 7, 2010 |\n\n| Art on the Edge (2010): FOCA Biennial Juried Exhibition | April 16, 2010 | August 1, 2010 |\n\n| Sole Mates: Cowboy Boots in Art | May 15, 2010 | October 24, 2010 |\n\n| Play It Louder: Alexander Girard and the Girard Foundation Collection | June 18, 2010 | September 10, 2010 |\n\n| Traces: Johnnie Winona Ross | August 13, 2010 | January 9, 2011 |\n\n| Drip Tease: John Tinker's Narrative Sculptures | August 13, 2010 | January 9, 2011 |\n\n| The Governor's Award For Excellence in the Arts, 2010 | September 24, 2010 | December 10, 2010 |\n\n| Case Studies from the Bureau of Contemporary Art | November 19, 2010 | March 20, 2010 |\n\n| Cloudscapes: Photographs from the Collection | January 14, ", "text_characters": 208131, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.36666571793061964, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.23721214367643956, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.07816656001761854, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.037984244086971555, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R007_request.json/messages/13/content`；SHA256：`bc872753b1d4069d3e1fb0ce84fd05fd536b4c2b82804d0ee0ea52232ebd7096`。
+
+### R7 `/rounds/6/reasoning_content` [0,570)
+
+SHA256：`174ce14a792d287cf5fc775fa6667750835814c95a0e1ab70f92e204a653d0b1`；原字段SHA256：`174ce14a792d287cf5fc775fa6667750835814c95a0e1ab70f92e204a653d0b1`。
+
+````
+The search results so far haven't provided the specific name of the supernatural group whose elder members were eradicated. The snippet from "The Dresden Files characters" mentions Martin's backstory with the Fellowship of St. Giles, but doesn't explicitly state the name of the group that was eradicated. I need to search for more specific information about the Chichen Itza confrontation and the bloodline curse, specifically looking for the name of the group that was targeted.
+
+Let me search for "Fellowship of St. Giles" and "bloodline curse" to find more details.
+
+````
+
+### R7 Call `/rounds/6/tool_calls/0` → Return `/tool_events/6`
+
+````json
+{
+  "arguments": {
+    "query": "Fellowship of St. Giles bloodline curse Chichen Itza Susan Rodriguez sacrifice"
+  },
+  "id": "chatcmpl-tool-82987fe63db043ac",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Fellowship of St. Giles bloodline curse Chichen Itza Susan Rodriguez sacrifice\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-82987fe63db043ac",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Fellowship of St. Giles bloodline curse Chichen Itza Susan Rodriguez sacrifice"
+  },
+  "batch_id": "B007",
+  "batch_ordinal": 1,
+  "event_id": "E007",
+  "latency_seconds": 0.8952070460654795,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:72925",
+        "score": 1.9393337277553502,
+        "snippet": "---\ntitle: Dental Work in Mexico: Best Prices To Unlock Your New Smile!\ndate: 2025-02-07\n---\nAffordable, safe, and high-quality dental work in Mexico [1] is a blessing for those who can't afford the costs back home. Interested? Explore prices, all-inclusive packages, procedures, best clinics, and dentists in top 14 dental destinations in Mexico.\n\nDental Care in Mexico: Save up 70 – 90% on U.S. costs!\n\nLow-cost Dental Services in Mexico – Patient Testimonial\n\nDental care is expensive and often inaccessible in most Western countries.\n\nFor self-paying Americans, dental tourism in Mexico provides an affordable solution.\n\nBut if you're considering treatment there, you likely have several questions.\n\nAs a dental tourist, some of your common queries include:\n\n- Why choose Mexico for dental work?\n\n- How much can you save with dental tourism in Mexico?\n\n- Is dental treatment in Mexico safe?\n\n- What are the best cities in Mexico for dental work in 2025?\n\n- How to find a reputable dental provider in Mexico?\n\nDespite the assured quality, a common question is, \"Are dentists really cheaper in Mexico?\"\n\nIf you travel by flight or drive, is it worth the trip considering additional expenses?\n\nWe will address all of these questions below.\n\nLet's start by comparing Mexico dentist prices in 2025 to understand why it has become the preferred destination for top-quality dental work abroad.\n\nCost of Dental Work in Mexico in 2025\n\nYou can enjoy substantial cost savings with affordable dental work in",
+        "text_characters": 51739,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:55273",
+        "score": 0.31201862855825563,
+        "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur",
+        "text_characters": 9962379,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.19670466234231732,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:82668",
+        "score": 0.07160971271719947,
+        "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL",
+        "text_characters": 6727084,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97992",
+        "score": 0.03785582773608388,
+        "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ",
+        "text_characters": 7306364,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-82987fe63db043ac"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：8；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "browsecomp_plus:72925", "title": "", "score": 1.9393337277553502, "snippet": "---\ntitle: Dental Work in Mexico: Best Prices To Unlock Your New Smile!\ndate: 2025-02-07\n---\nAffordable, safe, and high-quality dental work in Mexico [1] is a blessing for those who can't afford the costs back home. Interested? Explore prices, all-inclusive packages, procedures, best clinics, and dentists in top 14 dental destinations in Mexico.\n\nDental Care in Mexico: Save up 70 – 90% on U.S. costs!\n\nLow-cost Dental Services in Mexico – Patient Testimonial\n\nDental care is expensive and often inaccessible in most Western countries.\n\nFor self-paying Americans, dental tourism in Mexico provides an affordable solution.\n\nBut if you're considering treatment there, you likely have several questions.\n\nAs a dental tourist, some of your common queries include:\n\n- Why choose Mexico for dental work?\n\n- How much can you save with dental tourism in Mexico?\n\n- Is dental treatment in Mexico safe?\n\n- What are the best cities in Mexico for dental work in 2025?\n\n- How to find a reputable dental provider in Mexico?\n\nDespite the assured quality, a common question is, \"Are dentists really cheaper in Mexico?\"\n\nIf you travel by flight or drive, is it worth the trip considering additional expenses?\n\nWe will address all of these questions below.\n\nLet's start by comparing Mexico dentist prices in 2025 to understand why it has become the preferred destination for top-quality dental work abroad.\n\nCost of Dental Work in Mexico in 2025\n\nYou can enjoy substantial cost savings with affordable dental work in", "text_characters": 51739, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:55273", "title": "", "score": 0.31201862855825563, "snippet": "---\ntitle: Full text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\ndate: 2016-10-23\n---\nFull text of \"en_wikipedia_article_titles_by_pagerank_dated_20131202.txt\"\n\nSee other formats\n\nIP_address United_States International_Standard_Book_Number Tilde Geographic_coordinate_system Wikipedia Association_football Canada Digital_object_identifier France Australia Authority_control Virtual_International_Authority_File United_Kingdom Creative_Commons Network_address_translation Germany Public_domain Copyright_infringement Fair_use Poland Open_proxy Internet_Movie_Database Copyright PubMed U.S._state United_States_copyright_law Russia MOS:FILM Africa China Copyright_law_of_the_United_States England Lepidoptera Italy International_Standard_Name_Identifier PubMed_Identifier Computer_program Japan English_language India Song Music_genre Spain Nofollow Record_label Biological_classification Automated World_War_II Sweden Time_zone False_positives Automation New_Zealand Television Integrated_Authority_File Library_of_Congress_Control_Number Brazil Insect London The_New_York_Times Race_and_ethnicity_in_the_United_States_Census California Norway Wikimedia_Commons Type_I_and_type_II_errors New_York_City Animal Wikimedia_Foundation Baseball Switzerland Internet Free_content Netherlands International_Standard_Serial_Number List_of_sovereign_states Mexico OCLC Closed_proxy Anthroponymy Internet_service_provider Latin Scotland Daylight_saving_time GNU_Free_Documentation_License Eur", "text_characters": 9962379, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.19670466234231732, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:82668", "title": "", "score": 0.07160971271719947, "snippet": "---\ntitle: Diccionario\ndate: 2025-01-01\n---\nTranscript\n\n123456 123456789 A A acid A b station A battery A bond A derrick A la marengo A la maryland A level A major A minor 1ac@ A natural A one A pole A powder A star A switchboard A&M A&P A'S A-b-c book A-b-c method A-flat A-flat major A-shaped A-sharp AAA AAAS AABERG AACHEN AAKER AALSETH AAMODT AANCOR AARDEMA AARDVARK AARON AARON'S AARONS AARONSON AASE AASEN AAU ABA ABABA ABACHA ABACK ABACO ABACUS ABAD ABADIE ABAIR ABALKIN ABALONE ABALOS ABANDON\n\nABANDONED ABANDONING ABANDONMENT ABANDONMENTS ABANDONS ABANTO ABARCA ABARE ABASCAL ABASHED ABATE ABATED ABATEMENT ABATEMENTS ABATES ABATING ABBA ABBADO ABBAS ABBASI ABBATE ABBATIELLO ABBE ABBENHAUS ABBETT ABBEY ABBEY'S ABBIE ABBITT ABBOT ABBOTT ABBOTT'S ABBOUD ABBREVIATE ABBREVIATED ABBREVIATION ABBREVIATIONS ABBRUZZESE ABBS ABBY ABCO ABCOTEK ABDALLA ABDALLAH ABDEL ABDELLA ABDICATE ABDICATED ABDICATING ABDICATION ABDNOR ABDO ABDOLLAH ABDOMEN ABDOMINAL ABDUCTED ABDUCTING ABDUCTION ABDUCTIONS\n\nABDUCTOR ABDUCTORS ABDUL ABDULAZIZ ABDULLA ABDULLAH ABE ABED ABEDI ABEE ABEL ABELA ABELARD ABELE ABELES ABELL ABELLA ABELN ABELOW ABELS ABELSON ABEND ABENDROTH ABER ABERCROMBIE ABERDEEN ABERFORD ABERG ABERLE ABERMIN ABERNATHY ABERNETHY ABERRANT ABERRATION ABERRATIONS ABERT ABET ABETTED ABETTING ABEX ABEYANCE ABEYTA ABHOR ABHORRED ABHORRENCE ABHORRENT ABHORS ABID ABIDE ABIDED ABIDES ABIDING ABIE ABIGAIL ABILA ABILENE ABILITIES ABILITY ABINGTON\n\nABIO ABIOLA ABIOLA'S ABIOMED ABITIBI ABITZ ABJECT ABL", "text_characters": 6727084, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97992", "title": "", "score": 0.03785582773608388, "snippet": "---\ntitle: Rae\ndate: 2025-01-01\n---\nTranscript\n\nde la que el en y a los se del las un por con no una su para es al lo como más o pero sus le ha me si sin sobre este ya entre cuando todo esta ser son dos también fue había era muy años hasta desde está mi porque qué sólo han yo hay vez puede\n\ntodos así nos ni parte tiene él uno donde bien tiempo mismo ese ahora cada e vida otro después te otros aunque esa eso hace otra gobierno tan durante siempre día tanto ella tres sí dijo sido gran país según menos mundo año antes estado contra sino forma caso nada hacer general estaba poco estos presidente mayor ante unos les\n\nalgo hacia casa ellos ayer hecho primera mucho mientras además quien momento millones esto españa hombre están pues hoy lugar madrid nacional trabajo otras mejor nuevo decir algunos entonces todas días debe política cómo casi toda tal luego pasado primer medio va estas sea tenía nunca poder aquí ver veces embargo partido personas grupo cuenta pueden tienen misma nueva cual\n\nfueron mujer frente josé tras cosas fin ciudad he social manera tener sistema será historia muchos juan tipo cuatro dentro nuestro punto dice ello cualquier noche aún agua parece haber situación fuera bajo grandes nuestra ejemplo acuerdo habían usted estados hizo nadie países horas posible tarde ley importante guerra desarrollo proceso realidad sentido lado mí tu cambio allí mano eran\n\nestar san número sociedad unas centro padre gente final relación cuerpo obra incluso través último madre mis modo ", "text_characters": 7306364, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R008_request.json/messages/15/content`；SHA256：`fc6c6d8a7ba5876d386a6f91ba6c009365cb517fb2b9f97271f18a380f20d380`。
+
+### R8 `/rounds/7/reasoning_content` [0,326)
+
+SHA256：`367765fc983b2958d86a154ec09c46833abdaa11df8c1bcae04f9de413923989`；原字段SHA256：`367765fc983b2958d86a154ec09c46833abdaa11df8c1bcae04f9de413923989`。
+
+````
+The search results are not giving me the specific information about the bloodline curse and the group that was eradicated. Let me search more specifically for the curse and the group.
+
+<tool_call>
+<function=search>
+<parameter=query>
+bloodline curse Susan Rodriguez Fellowship of St. Giles
+</parameter>
+</function>
+</tool_call>
+````
+
+### R8 Call `/rounds/7/tool_calls/0` → Return `/tool_events/7`
+
+````json
+{
+  "arguments": {
+    "query": "bloodline curse Susan Rodriguez Fellowship of St. Giles"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nbloodline curse Susan Rodriguez Fellowship of St. Giles\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "bloodline curse Susan Rodriguez Fellowship of St. Giles"
+  },
+  "batch_id": "B008",
+  "batch_ordinal": 1,
+  "event_id": "E008",
+  "latency_seconds": 0.076355897821486,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9773910",
+        "score": 21.24150546432427,
+        "snippet": "Puerto Rican psychiatrist Carolyn I. Rodriguez is a Puerto Rican psychiatrist, neuroscientist, and clinical researcher developing treatments for obsessive compulsive disorder as well as mapping circuit dysfunction in the human brain. Rodriguez holds appointments in both clinical and academic departments at Stanford University. Rodriguez is a Clinical Lab Director at the Stanford Center for Cognitive and Neurobiological Imaging, an associate professor and Associate Chair of Psychiatry and Behavioral Sciences, and a Director of several specialized translational research programs. Early life and education. Rodriguez was born in San Juan, Puerto Rico. She moved to Boston for her undergraduate degree in Computer Science at Harvard University. After graduating in 1996, Rodriguez stayed in Boston to pursue her MD-PhD training within the Harvard-MIT Health Sciences and Technology program where she conducted research in Neuroscience and completed her MD training at Harvard Medical School. During her PhD, Rodriguez was mentored by Susan Dymecki where she developed an innovative genetic technology to map the development of the Precerebellar System in rodents. Her technology has been cited hundreds of times and is now widely used many researchers in neuroscience. Rodriguez moved to New York City to complete her internship, residency, and postdoctoral training at Columbia University Medical Center-NYSPI. In 2005, Rodriguez completed her Internship in Pediatrics and in 2008, she completed ",
+        "text_characters": 3022,
+        "title": "Carolyn I. Rodriguez"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10151230",
+        "score": 19.725909069619817,
+        "snippet": "Notable arts professionals curating exhibitions for the Sanchez Art Center include: René de Guzman; Jack Fischer, Jack Fischer Gallery, San Francisco; Betti-Sue Hertz, Director of Visual Arts at Yerba Buena Center for the Arts; Susan Hillhouse, Curator, Triton Museum; Karen Kienzle, Curator, de Saisset Museum; Philip Linhares, Chief Curator, Oakland Museum of California; Maria Medua, Director, SFMOMA Artists Gallery; JoAnne Northrup, Katie and Drew Gibson Chief Curator, San Jose Museum of Art; Jack Rasmussen, Executive Director, di Rosa Preserve; Larry Rinder, Director and Chief Curator of the UC Berkeley Art Museum and Pacific Film Archive; Jan Rindfleisch, Director Emeritus, Euphrat Museum of Art; Patricia Rodriguez, Gallery Director and Curator at the Mission Cultural Center; Peter Selz, founding director of the Berkeley Art Museum; Don Soker, Don Soker Gallery, San Francisco; and Karen Tsujimoto, Senior Curator, Oakland Museum of California. Educational programming includes art classes in local schools, workshops and summer camps. These have been funded in part by the California Arts Council. The Sanchez Art Center is a host to Santa Cruz County’s Rydell Visual Arts Fellows Awardees’ exhibitions. The 2006 and 2007 awardees were: Beverly Rayner, Hanna Hannah, Robert Larson, William Marino. The exhibition was curated by Susan Hillhouse, Santa Cruz Museum of Art & History. The 2008 and 2009 awardees were: William “Skip” Epperson, Terri Garland, Felicia Rice, and Daniella Woo",
+        "text_characters": 2579,
+        "title": "Sanchez Art Center"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935055",
+        "score": 19.16630238762665,
+        "snippet": "Aware that telling Susan that he had betrayed her daughter would make her lose control and finally succumb to becoming a full vampire, he arranged that Dresden would be there, knowing that ultimately Dresden would be able to finally put an end to the Red Court by sacrificing the changed Susan in Maggie's place, turning the bloodline curse against the Red Court instead, and wiping them out. Martin's long game was finally finished with the fall of the Red Court, something that he had methodically planned with his customary ruthlessness, knowing that it would require the destruction of the Fellowship, the sacrifice of his partner and ultimately the loss of his own life, something that didn't seem to bother him in the slightest, knowing that it would lead to the completion of his goal. Margaret Angelica Mendoza Dresden. Species: Human Description: Child Margaret (\"Maggie\") is the daughter of Harry Dresden and Susan Rodriguez, born approximately nine months after \"Death Masks\" (when Harry and Susan had their last sexual encounter). Susan named her daughter after Harry's mother and hid her with a family she was friends with, concealing her birth from her father. They were betrayed by Susan's partner Martin, and Maggie was kidnapped by Duchess Arianna Ortega. The Red Court planned to kill her great-grandfather Ebenezer McCoy with a bloodline curse, but Harry and his friends managed to rescue her before the ritual sacrifice. Maggie was placed in the care of Father Forthill, so he cou",
+        "text_characters": 2604,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935053",
+        "score": 18.872288274934917,
+        "snippet": "Outsiders do not respect the neutrality of the pub, as shown during \"Cold Days\" when they attack it while Harry is inside. In \"Dead Beat\", Harry bribes a security guard at the medical examiner's office with a batch of Mac's beer so he can get in to see Waldo Butters. In \"Small Favor\", after Karrin Murphy faces down a Gruff that has entered the pub to pick a fight with Harry, Mac shows his respect for her bravery by serving them a particularly good brew (described by Harry as \"God's beer\"). In \"Changes\", Mac makes his longest speech to date offering wisdom to Harry about the danger of the road he is on and the choices he must make. He advises caution. Once the speech is done, Mac looks visibly pained to have spoken more than three syllables at one time. In \"Cold Days\", Mac is drawn into Harry's horrible day and reveals hints of unexpected depth, displaying accelerated healing (which he tries to conceal) and familiarity with such high powers as Outsiders and Sidhe Queens. The Outsider refers to him as a \"watcher\". It is alluded that he once used to be involved in the conflicts of magic, but he refuses to discuss this part of his past beyond saying, \"I'm out\". Harry attempts to get Mac to talk about his past after one of the skirmishes with the Outsiders telling him \"We'll talk about this later\". Mac responds with a deadpan look telling Harry flatly, \"No, we won't\". In \"Skin Game\", Mac is present when Harry and Mab meet with Kringle (another mantle worn by Donar Vadderung, AKA O",
+        "text_characters": 2334,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3687521",
+        "score": 17.767349957843873,
+        "snippet": "2003 urban fantasy novel by Jim Butcher Death Masks is a 2003 novel by science fiction and fantasy author Jim Butcher. It is the fifth novel in \"The Dresden Files\", his first published series that follows the character of Harry Dresden, professional wizard. This book is published by New American Library with the . Plot summary. Harry shares a TV panel with a Vatican priest, Father Vincent, and São Paulo University Professor Don Paolo Ortega, a disguised Red Court Vampire noble. Father Vincent hires Dresden to recover the stolen Shroud of Turin while Ortega challenges Harry to a duel to end the war between the White Council and the Red Court. After the show concludes, Dresden is attacked by the Denarian Ursiel, a fallen angel attached to a mortal host. Michael Carpenter and two other Knights of the Cross, Shiro and Sanya, rescue him and ask him to drop the Shroud investigation, but Dresden refuses. Dresden tracks the Shroud to a boat, but is captured by the thieves. Deirdre, another Denarian, attacks the boat and kills one of the thieves. Dresden fools her into taking a decoy safe rather than the Shroud itself. The surviving thief, Anna Valmont, flees with the Shroud. Dresden's onetime lover, Susan Rodriguez, escorts him to a high society art sales charity event run by Johnny Marcone, where the Shroud will likely be sold. The sale is interrupted by the Denarians, who seize the Shroud and kidnap Dresden. Nicodemus, leader of the Denarians, pressures Harry to join with the Denar",
+        "text_characters": 2575,
+        "title": "Death Masks"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2935010",
+        "score": 16.899254184257895,
+        "snippet": "While smooth-talking and obsessed with women, it was rather ironically revealed during the events of \"White Night\" that Ramirez is still a virgin. In battle he heavily favors water magic and conventional weaponry; he has on more than one occasion used grenades and firearms instead of his magic in order to conserve his strength. His principal magical weapon is the use of a type of emerald green energy which seems to break down materials into more component pieces, although on organic matter it seems to work as a desiccant, removing all traces of moisture from the area it hits, turning it into a form of sand. His defensive magic consists of a jelly-like shield that allows incoming projectiles to pass through, but uses their own kinetic energy to break them down into small harmless particles. Like Harry, Ramirez has guessed the existence of the Black Council (his original name for them being \"the Black Hats\"). He and Harry consider each other to be good friends and hold each other in considerable respect. Ramirez regards Harry's power level with some awe and has often later referred to some impressive feat of magic that Harry performed with great admiration. In \"Changes\", Ramirez led a team of Wardens to confront Cristos, resulting in the capture and arrest of all members of the team except one (Warden Chandler). In \"Ghost Story\", it appears that he is still functioning for the White Council as Murphy talks about calling Ramirez. In \"Cold Days\", it is reported that he is recover",
+        "text_characters": 2485,
+        "title": "The Dresden Files characters"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:13151",
+        "score": 16.79119239277722,
+        "snippet": "---\ntitle: Rosenberg lab\ndate: 2024-07-11\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNoah A Rosenberg\n\n+1 650 721 2599 (office phone)\n\n+1 650 724 5122 (lab phone)\n\n+1 650 724 5114 (fax)\n\nMailing address\n\nDepartment of Biology\n\nStanford University\n\n371 Jane Stanford Way\n\nStanford, CA 94305-5s020 USA\n\nLast modified 11-7-2024 |\n\n|\n\nRosenberg Lab, December 2019:\n\nFront: Gili Greenbaum, Jaehee Kim, Susan Mello, Alissa Severson, Airam\n\nBlancas, Alyssa Fortier; Back: Xiran Liu, Kayla Denton, Egor Alimpiev,\n\nDanny Cotter, Noah Rosenberg.\n\n|\n\n|\n\nNoah Rosenberg, principal investigator.\n\n[ brief bio]\n\n|\n\n|\n\nPhD students and postdocs:\n\n|\n\n|\n\n|\n\n|\n\nLily Agranat-Tamir, postdoc. Lily completed her B.Sc. in\n\nMathematics, her M.S. in Genetics, and separate Ph.D. degrees in Molecular\n\nBiology and Statistics, all at the Hebrew University of Jerusalem. In her\n\nmost recent work, Lily has pursued statistical population genetics, with\n\nan emphasis on population-genomic data analysis. Her work includes a large\n\nstudy of the ancient genomics of the Levant region, and she is the author\n\nof LINADMIX, a program for analyzing admixture in modern populations in\n\nterms of contributions of ancient populations. In the lab, Lily's research\n\ninterests focus on population-genetic models and statistics, particularly\n\non admixture, genealogical models, and identity by descent. (Dec 2021 -\n\npresent)\n\n|\n\n|\n\n|\n\nKennedy Agwamba, postdoc. Kennedy completed his B.S. in\n\nMathematical & Computational Biology at Harvey Mudd ",
+        "text_characters": 8626,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3147894",
+        "score": 15.23299127465895,
+        "snippet": "Fellowship artists include (1993–2021): Tenesh Webber, Diyan Achjadi, Angie Eng, Debra Hampton, Juri Kim, Sheila Manion-Artz, Fay Torres Yap, Elizabeth Zechel, Enid Crow, Christine Gedeon, Marni Horwitz, Fay Ku, Diane Meyer, Jinnine Pak, Hye-Kyung Kim, Jill Parisi, Sarah Blackwelder, Pattie Lee Becker, Soyeon Cho, Betsy Alwin, Megan Biddle, Margarida Correia, Stephanie Lempert, Brynna K. Tucker, Claudia Vieira, Lauren Simkin Berke, Barbara Hatfield, Kharis Kennedy, Katherine Dolgy Ludwig, Anita Ragusa, Hanna Sandin, Nivi Alroy, Monica Carrier, Ari Tabei, Elena Wen, Jennifer Williams, Jennifer Wroblewski, Damali Abrams, Suzanne Broughel, Kira Nam Greene, Jee Hwang, Keun Young Park, Annette Rusin, Jiyoon Koo, Juliana Cerqueira Leite, Meghan Mcinnis, Anne Percoco, Sam Vernon, Elisabeth Waterston, Rachel Farmer, Dina Kantor, Amelia Marzec, Jayanthi Moorthy, Laura Petrovich-Cheney, Susan Stainman, Ian Gerson, Shanti Grumbine, Jessie Henson, Sujin Lee, Hannah Smith Allen, Naho Taruishi, Aimée Burg, Annie Ewaskio, Bang-Geul Han, Einat Imber, Katherine Tzu-Ian Mann, Régine Romain, Željka Blakšić, Amber Esseiva, Sara Mejia Kriendler, Amanda Turner Pohan, Alexandria Smith, Claudia Sohrens, Fanny Allié, Andrea Burgay, Shadi Harouni, Daniela Kostova, Kameelah Janan Rasheed, Negin Sharifzadeh, Manal Abu-Shaheen, Elizabeth Hoy, Eleanor King, Marykate Maher, Alison Owen, Naomi Elena Ramirez, Rachelle Dang, H. A. Halpert, Sareh Imani, Victoria Manganiello, Aliza Shvarts, Crys Yin, Melanie Cr",
+        "text_characters": 2594,
+        "title": "A.I.R. Gallery"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:80011",
+        "score": 9.291963006025895,
+        "snippet": "---\ntitle: New Appointments & Promotions\nauthor: Fall\ndate: 2015-01-01\n---\nNew\n\nAppointments\n\n&\n\nPromotions\n\nEmory College of Arts and Sciences welcomes an extraordinary group of 50 new faculty members to campus this year. They reflect ambitious recruitment and hiring over the last year.\n\nOur newest faculty continues to enhance the diversity of the Emory community. Their contributions will push the boundaries of research and discovery, scholarly impact, and pedagogy in the liberal arts and sciences.\n\nThe College also celebrates several faculty who have been promoted to associate and full professors with tenure, and teaching professors.\n\nMeet Our New Faculty\n\nArash Abazari\n\nAssistant Professor,\n\nPhilosophy\n\nArash Abazari completed his PhD in Philosophy at Johns Hopkins University (2017). Dr. Abazari's research focuses on 19th century German philosophy (especially Hegel) and social and political philosophy. He is the author of Hegel's Ontology of Power: The Structure of Social Domination in Capitalism, Cambridge University Press (2020). He was also the recipient of a Humboldt Fellowship (2022-24) and a Mellon/ACLS Dissertation Completion Fellowship (2015-16).\n\nHector Alvarez\n\nAssistant Teaching Professor,\n\nTheater Studies Program\n\nin the Department of Theater and Dance\n\nHéctor Alvarez completed his MFA in Directing at the California Institute of the Arts (2023). Prior to joining the faculty at Emory in 2024, Professor Alvarez held positions at Lehigh University and North Park U",
+        "text_characters": 41176,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:19055",
+        "score": 9.1022215729386,
+        "snippet": "---\ntitle: Bancroft fellowships and awards\ndate: 2022-02-01\n---\nBancroft fellowships and awards\n\nThe Bancroft Library at UC Berkeley is pleased to offer fellowships for graduate students, undergraduates, and independent scholars conducting research in the collections.\n\nThe Bancroft Library is committed to fostering a diverse and inclusive research environment, and seeks to support students and scholars using the collections for archival and bibliographic research, as well as those wishing to use the collections for creative projects.\n\nScholarships are divided by those open to graduate students, undergraduates, and independent scholars (there will be overlap). Click on each scholarship to learn details about the eligibility requirements, and any additional application requirements specific to that award. Go to the How to apply section below to download the application, and to learn more about the application process.\n\nThe application deadline for all Bancroft fellowships and awards is the first Monday in February by 5 p.m.\n\nOpen to graduate students\n\n- The Bancroft Library Hill Study Award assists advanced graduate students from any University of California campus and is funded by the Kenneth E. and Dorothy V. Hill Fellowship Fund.\n\n- The Bancroft Library Meylan Study Award assists advanced graduate students from any recognized institution of higher education in the United States or abroad, and is funded by the Edward F. and Marianne E. Meylan Fellowship Fund.\n\n- The Bancroft ",
+        "text_characters": 47534,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：9；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:9773910", "title": "Carolyn I. Rodriguez", "score": 21.24150546432427, "snippet": "Puerto Rican psychiatrist Carolyn I. Rodriguez is a Puerto Rican psychiatrist, neuroscientist, and clinical researcher developing treatments for obsessive compulsive disorder as well as mapping circuit dysfunction in the human brain. Rodriguez holds appointments in both clinical and academic departments at Stanford University. Rodriguez is a Clinical Lab Director at the Stanford Center for Cognitive and Neurobiological Imaging, an associate professor and Associate Chair of Psychiatry and Behavioral Sciences, and a Director of several specialized translational research programs. Early life and education. Rodriguez was born in San Juan, Puerto Rico. She moved to Boston for her undergraduate degree in Computer Science at Harvard University. After graduating in 1996, Rodriguez stayed in Boston to pursue her MD-PhD training within the Harvard-MIT Health Sciences and Technology program where she conducted research in Neuroscience and completed her MD training at Harvard Medical School. During her PhD, Rodriguez was mentored by Susan Dymecki where she developed an innovative genetic technology to map the development of the Precerebellar System in rodents. Her technology has been cited hundreds of times and is now widely used many researchers in neuroscience. Rodriguez moved to New York City to complete her internship, residency, and postdoctoral training at Columbia University Medical Center-NYSPI. In 2005, Rodriguez completed her Internship in Pediatrics and in 2008, she completed ", "text_characters": 3022, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10151230", "title": "Sanchez Art Center", "score": 19.725909069619817, "snippet": "Notable arts professionals curating exhibitions for the Sanchez Art Center include: René de Guzman; Jack Fischer, Jack Fischer Gallery, San Francisco; Betti-Sue Hertz, Director of Visual Arts at Yerba Buena Center for the Arts; Susan Hillhouse, Curator, Triton Museum; Karen Kienzle, Curator, de Saisset Museum; Philip Linhares, Chief Curator, Oakland Museum of California; Maria Medua, Director, SFMOMA Artists Gallery; JoAnne Northrup, Katie and Drew Gibson Chief Curator, San Jose Museum of Art; Jack Rasmussen, Executive Director, di Rosa Preserve; Larry Rinder, Director and Chief Curator of the UC Berkeley Art Museum and Pacific Film Archive; Jan Rindfleisch, Director Emeritus, Euphrat Museum of Art; Patricia Rodriguez, Gallery Director and Curator at the Mission Cultural Center; Peter Selz, founding director of the Berkeley Art Museum; Don Soker, Don Soker Gallery, San Francisco; and Karen Tsujimoto, Senior Curator, Oakland Museum of California. Educational programming includes art classes in local schools, workshops and summer camps. These have been funded in part by the California Arts Council. The Sanchez Art Center is a host to Santa Cruz County’s Rydell Visual Arts Fellows Awardees’ exhibitions. The 2006 and 2007 awardees were: Beverly Rayner, Hanna Hannah, Robert Larson, William Marino. The exhibition was curated by Susan Hillhouse, Santa Cruz Museum of Art & History. The 2008 and 2009 awardees were: William “Skip” Epperson, Terri Garland, Felicia Rice, and Daniella Woo", "text_characters": 2579, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2935055", "title": "The Dresden Files characters", "score": 19.16630238762665, "snippet": "Aware that telling Susan that he had betrayed her daughter would make her lose control and finally succumb to becoming a full vampire, he arranged that Dresden would be there, knowing that ultimately Dresden would be able to finally put an end to the Red Court by sacrificing the changed Susan in Maggie's place, turning the bloodline curse against the Red Court instead, and wiping them out. Martin's long game was finally finished with the fall of the Red Court, something that he had methodically planned with his customary ruthlessness, knowing that it would require the destruction of the Fellowship, the sacrifice of his partner and ultimately the loss of his own life, something that didn't seem to bother him in the slightest, knowing that it would lead to the completion of his goal. Margaret Angelica Mendoza Dresden. Species: Human Description: Child Margaret (\"Maggie\") is the daughter of Harry Dresden and Susan Rodriguez, born approximately nine months after \"Death Masks\" (when Harry and Susan had their last sexual encounter). Susan named her daughter after Harry's mother and hid her with a family she was friends with, concealing her birth from her father. They were betrayed by Susan's partner Martin, and Maggie was kidnapped by Duchess Arianna Ortega. The Red Court planned to kill her great-grandfather Ebenezer McCoy with a bloodline curse, but Harry and his friends managed to rescue her before the ritual sacrifice. Maggie was placed in the care of Father Forthill, so he cou", "text_characters": 2604, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2935053", "title": "The Dresden Files characters", "score": 18.872288274934917, "snippet": "Outsiders do not respect the neutrality of the pub, as shown during \"Cold Days\" when they attack it while Harry is inside. In \"Dead Beat\", Harry bribes a security guard at the medical examiner's office with a batch of Mac's beer so he can get in to see Waldo Butters. In \"Small Favor\", after Karrin Murphy faces down a Gruff that has entered the pub to pick a fight with Harry, Mac shows his respect for her bravery by serving them a particularly good brew (described by Harry as \"God's beer\"). In \"Changes\", Mac makes his longest speech to date offering wisdom to Harry about the danger of the road he is on and the choices he must make. He advises caution. Once the speech is done, Mac looks visibly pained to have spoken more than three syllables at one time. In \"Cold Days\", Mac is drawn into Harry's horrible day and reveals hints of unexpected depth, displaying accelerated healing (which he tries to conceal) and familiarity with such high powers as Outsiders and Sidhe Queens. The Outsider refers to him as a \"watcher\". It is alluded that he once used to be involved in the conflicts of magic, but he refuses to discuss this part of his past beyond saying, \"I'm out\". Harry attempts to get Mac to talk about his past after one of the skirmishes with the Outsiders telling him \"We'll talk about this later\". Mac responds with a deadpan look telling Harry flatly, \"No, we won't\". In \"Skin Game\", Mac is present when Harry and Mab meet with Kringle (another mantle worn by Donar Vadderung, AKA O", "text_characters": 2334, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3687521", "title": "Death Masks", "score": 17.767349957843873, "snippet": "2003 urban fantasy novel by Jim Butcher Death Masks is a 2003 novel by science fiction and fantasy author Jim Butcher. It is the fifth novel in \"The Dresden Files\", his first published series that follows the character of Harry Dresden, professional wizard. This book is published by New American Library with the . Plot summary. Harry shares a TV panel with a Vatican priest, Father Vincent, and São Paulo University Professor Don Paolo Ortega, a disguised Red Court Vampire noble. Father Vincent hires Dresden to recover the stolen Shroud of Turin while Ortega challenges Harry to a duel to end the war between the White Council and the Red Court. After the show concludes, Dresden is attacked by the Denarian Ursiel, a fallen angel attached to a mortal host. Michael Carpenter and two other Knights of the Cross, Shiro and Sanya, rescue him and ask him to drop the Shroud investigation, but Dresden refuses. Dresden tracks the Shroud to a boat, but is captured by the thieves. Deirdre, another Denarian, attacks the boat and kills one of the thieves. Dresden fools her into taking a decoy safe rather than the Shroud itself. The surviving thief, Anna Valmont, flees with the Shroud. Dresden's onetime lover, Susan Rodriguez, escorts him to a high society art sales charity event run by Johnny Marcone, where the Shroud will likely be sold. The sale is interrupted by the Denarians, who seize the Shroud and kidnap Dresden. Nicodemus, leader of the Denarians, pressures Harry to join with the Denar", "text_characters": 2575, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2935010", "title": "The Dresden Files characters", "score": 16.899254184257895, "snippet": "While smooth-talking and obsessed with women, it was rather ironically revealed during the events of \"White Night\" that Ramirez is still a virgin. In battle he heavily favors water magic and conventional weaponry; he has on more than one occasion used grenades and firearms instead of his magic in order to conserve his strength. His principal magical weapon is the use of a type of emerald green energy which seems to break down materials into more component pieces, although on organic matter it seems to work as a desiccant, removing all traces of moisture from the area it hits, turning it into a form of sand. His defensive magic consists of a jelly-like shield that allows incoming projectiles to pass through, but uses their own kinetic energy to break them down into small harmless particles. Like Harry, Ramirez has guessed the existence of the Black Council (his original name for them being \"the Black Hats\"). He and Harry consider each other to be good friends and hold each other in considerable respect. Ramirez regards Harry's power level with some awe and has often later referred to some impressive feat of magic that Harry performed with great admiration. In \"Changes\", Ramirez led a team of Wardens to confront Cristos, resulting in the capture and arrest of all members of the team except one (Warden Chandler). In \"Ghost Story\", it appears that he is still functioning for the White Council as Murphy talks about calling Ramirez. In \"Cold Days\", it is reported that he is recover", "text_characters": 2485, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:13151", "title": "", "score": 16.79119239277722, "snippet": "---\ntitle: Rosenberg lab\ndate: 2024-07-11\n---\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\n|\n\nNoah A Rosenberg\n\n+1 650 721 2599 (office phone)\n\n+1 650 724 5122 (lab phone)\n\n+1 650 724 5114 (fax)\n\nMailing address\n\nDepartment of Biology\n\nStanford University\n\n371 Jane Stanford Way\n\nStanford, CA 94305-5s020 USA\n\nLast modified 11-7-2024 |\n\n|\n\nRosenberg Lab, December 2019:\n\nFront: Gili Greenbaum, Jaehee Kim, Susan Mello, Alissa Severson, Airam\n\nBlancas, Alyssa Fortier; Back: Xiran Liu, Kayla Denton, Egor Alimpiev,\n\nDanny Cotter, Noah Rosenberg.\n\n|\n\n|\n\nNoah Rosenberg, principal investigator.\n\n[ brief bio]\n\n|\n\n|\n\nPhD students and postdocs:\n\n|\n\n|\n\n|\n\n|\n\nLily Agranat-Tamir, postdoc. Lily completed her B.Sc. in\n\nMathematics, her M.S. in Genetics, and separate Ph.D. degrees in Molecular\n\nBiology and Statistics, all at the Hebrew University of Jerusalem. In her\n\nmost recent work, Lily has pursued statistical population genetics, with\n\nan emphasis on population-genomic data analysis. Her work includes a large\n\nstudy of the ancient genomics of the Levant region, and she is the author\n\nof LINADMIX, a program for analyzing admixture in modern populations in\n\nterms of contributions of ancient populations. In the lab, Lily's research\n\ninterests focus on population-genetic models and statistics, particularly\n\non admixture, genealogical models, and identity by descent. (Dec 2021 -\n\npresent)\n\n|\n\n|\n\n|\n\nKennedy Agwamba, postdoc. Kennedy completed his B.S. in\n\nMathematical & Computational Biology at Harvey Mudd ", "text_characters": 8626, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3147894", "title": "A.I.R. Gallery", "score": 15.23299127465895, "snippet": "Fellowship artists include (1993–2021): Tenesh Webber, Diyan Achjadi, Angie Eng, Debra Hampton, Juri Kim, Sheila Manion-Artz, Fay Torres Yap, Elizabeth Zechel, Enid Crow, Christine Gedeon, Marni Horwitz, Fay Ku, Diane Meyer, Jinnine Pak, Hye-Kyung Kim, Jill Parisi, Sarah Blackwelder, Pattie Lee Becker, Soyeon Cho, Betsy Alwin, Megan Biddle, Margarida Correia, Stephanie Lempert, Brynna K. Tucker, Claudia Vieira, Lauren Simkin Berke, Barbara Hatfield, Kharis Kennedy, Katherine Dolgy Ludwig, Anita Ragusa, Hanna Sandin, Nivi Alroy, Monica Carrier, Ari Tabei, Elena Wen, Jennifer Williams, Jennifer Wroblewski, Damali Abrams, Suzanne Broughel, Kira Nam Greene, Jee Hwang, Keun Young Park, Annette Rusin, Jiyoon Koo, Juliana Cerqueira Leite, Meghan Mcinnis, Anne Percoco, Sam Vernon, Elisabeth Waterston, Rachel Farmer, Dina Kantor, Amelia Marzec, Jayanthi Moorthy, Laura Petrovich-Cheney, Susan Stainman, Ian Gerson, Shanti Grumbine, Jessie Henson, Sujin Lee, Hannah Smith Allen, Naho Taruishi, Aimée Burg, Annie Ewaskio, Bang-Geul Han, Einat Imber, Katherine Tzu-Ian Mann, Régine Romain, Željka Blakšić, Amber Esseiva, Sara Mejia Kriendler, Amanda Turner Pohan, Alexandria Smith, Claudia Sohrens, Fanny Allié, Andrea Burgay, Shadi Harouni, Daniela Kostova, Kameelah Janan Rasheed, Negin Sharifzadeh, Manal Abu-Shaheen, Elizabeth Hoy, Eleanor King, Marykate Maher, Alison Owen, Naomi Elena Ramirez, Rachelle Dang, H. A. Halpert, Sareh Imani, Victoria Manganiello, Aliza Shvarts, Crys Yin, Melanie Cr", "text_characters": 2594, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:80011", "title": "", "score": 9.291963006025895, "snippet": "---\ntitle: New Appointments & Promotions\nauthor: Fall\ndate: 2015-01-01\n---\nNew\n\nAppointments\n\n&\n\nPromotions\n\nEmory College of Arts and Sciences welcomes an extraordinary group of 50 new faculty members to campus this year. They reflect ambitious recruitment and hiring over the last year.\n\nOur newest faculty continues to enhance the diversity of the Emory community. Their contributions will push the boundaries of research and discovery, scholarly impact, and pedagogy in the liberal arts and sciences.\n\nThe College also celebrates several faculty who have been promoted to associate and full professors with tenure, and teaching professors.\n\nMeet Our New Faculty\n\nArash Abazari\n\nAssistant Professor,\n\nPhilosophy\n\nArash Abazari completed his PhD in Philosophy at Johns Hopkins University (2017). Dr. Abazari's research focuses on 19th century German philosophy (especially Hegel) and social and political philosophy. He is the author of Hegel's Ontology of Power: The Structure of Social Domination in Capitalism, Cambridge University Press (2020). He was also the recipient of a Humboldt Fellowship (2022-24) and a Mellon/ACLS Dissertation Completion Fellowship (2015-16).\n\nHector Alvarez\n\nAssistant Teaching Professor,\n\nTheater Studies Program\n\nin the Department of Theater and Dance\n\nHéctor Alvarez completed his MFA in Directing at the California Institute of the Arts (2023). Prior to joining the faculty at Emory in 2024, Professor Alvarez held positions at Lehigh University and North Park U", "text_characters": 41176, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:19055", "title": "", "score": 9.1022215729386, "snippet": "---\ntitle: Bancroft fellowships and awards\ndate: 2022-02-01\n---\nBancroft fellowships and awards\n\nThe Bancroft Library at UC Berkeley is pleased to offer fellowships for graduate students, undergraduates, and independent scholars conducting research in the collections.\n\nThe Bancroft Library is committed to fostering a diverse and inclusive research environment, and seeks to support students and scholars using the collections for archival and bibliographic research, as well as those wishing to use the collections for creative projects.\n\nScholarships are divided by those open to graduate students, undergraduates, and independent scholars (there will be overlap). Click on each scholarship to learn details about the eligibility requirements, and any additional application requirements specific to that award. Go to the How to apply section below to download the application, and to learn more about the application process.\n\nThe application deadline for all Bancroft fellowships and awards is the first Monday in February by 5 p.m.\n\nOpen to graduate students\n\n- The Bancroft Library Hill Study Award assists advanced graduate students from any University of California campus and is funded by the Kenneth E. and Dorothy V. Hill Fellowship Fund.\n\n- The Bancroft Library Meylan Study Award assists advanced graduate students from any recognized institution of higher education in the United States or abroad, and is funded by the Edward F. and Marianne E. Meylan Fellowship Fund.\n\n- The Bancroft ", "text_characters": 47534, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0560/R009_request.json/messages/17/content`；SHA256：`95982c97e417371c525cfd4a00771eecf6352c27868d3167fd2a6319c736a41f`。
+
+## S004｜核对血咒对象指代并接受提交Red Court
+
+引用决定性片段，判断wiping them out指Red Court，对照群体条件并Submit。
+
+结束状态：VALID_FINAL。
+
+边界判断：对已取得结局做完整候选接受与正式回答。
+
+内部KEEP与反证：引用、对象判断、排除其他指代与提交是同次论证；不再切碎。
+
+### SPLIT原文
+
+````
+The search results are not giving me the specific information about the bloodline curse and the group that was eradicated. Let me search more specifically for the curse and the group.
+
+<tool_call>
+<function=search>
+<parameter=query>
+bloodline curse Susan Rodriguez Fellowship of St. Giles
+</parameter>
+</function>
+</tool_call>
+→ 切点 [8, 0, 0] →
+I found the relevant information in the snippet from "The Dresden Files characters" (doc_id: wiki25:2935055). It states:
+
+"The Red Court planned to kill her great-grandfather Ebenezer McCoy with a bloodline curse, but Harry and his friends managed to rescue her before the ritual sacrifice. ... Aware that telling Susan that he had betrayed her daughter would 
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 9,
+    "batch_id": "B009",
+    "call_pointers": [
+      "/rounds/8/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/8"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R9 `/rounds/8/reasoning_content` [0,1022)
+
+SHA256：`a806180609e0acbeec73f71548c0a8fce774d498da9674542733881ff577f788`；原字段SHA256：`a806180609e0acbeec73f71548c0a8fce774d498da9674542733881ff577f788`。
+
+````
+I found the relevant information in the snippet from "The Dresden Files characters" (doc_id: wiki25:2935055). It states:
+
+"The Red Court planned to kill her great-grandfather Ebenezer McCoy with a bloodline curse, but Harry and his friends managed to rescue her before the ritual sacrifice. ... Aware that telling Susan that he had betrayed her daughter would make her lose control and finally succumb to becoming a full vampire, he arranged that Dresden would be there, knowing that ultimately Dresden would be able to finally put an end to the Red Court by sacrificing the changed Susan in Maggie's place, turning the bloodline curse against the Red Court instead, and wiping them out."
+
+So the supernatural group that was wiped out is the **Red Court**.
+
+Let me verify this is correct by checking if there's any other group mentioned. The question asks about the supernatural group whose elder members were virtually eradicated. The text says "wiping them out" referring to the Red Court.
+
+The answer is the Red Court.
+
+````
+
+### R9 Call `/rounds/8/tool_calls/0` → Return `/tool_events/8`
+
+````json
+{
+  "arguments": {
+    "answer": "Red Court"
+  },
+  "id": "chatcmpl-tool-87e44434663d2b81",
+  "name": "submit_answer",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"answer\": \"Red Court\"}",
+      "name": "submit_answer"
+    },
+    "id": "chatcmpl-tool-87e44434663d2b81",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "Red Court"
+  },
+  "batch_id": "B009",
+  "batch_ordinal": 1,
+  "event_id": "E009",
+  "latency_seconds": 1.3604294508695602e-05,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "chatcmpl-tool-87e44434663d2b81"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "Red Court",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    8
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 8
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+检查普通重试与独立判断的区别，未按八个取证Call切八段。保留R6错误推断及R9正式接受；没有伪造Sidhe核查。
+
+R9亦可视最后Search的直接结果解释，主方案因展开指代核对与正式候选接受而单列。R6简单Sidhe断言缺乏实质比较，主方案不独立。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

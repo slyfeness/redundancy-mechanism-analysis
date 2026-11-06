@@ -1,0 +1,46 @@
+{
+ "case_id":"724__rep2__S009__FIRST_SENTENCE","question_id":"724","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"N"},"basis":"原正式拒答W，新1—3CONTEXT_BLOCKED，新4GENERATION_LENGTH_STOP；均无新FinalN。"},
+ "review_basis":"原17轮完整推理/Call/Return已阅读；本组77新增不同推理块15769字符及55字段有序位置全部核对，32实际Call/Return已读。240文档槽位12新增不同Return全文读；新4末轮45587字符由已全文阅读的四精确块118/119/122/123循环58次及首尾块构成，已逐序位置核对，不以摘要代读。32Call配对29返回进入实际Actor，3仅guard。",
+ "pre_state":"R11@314前十次检索未找到医生。P已有Philadelphia/Boston城市、Holmes等名医与Harvard朋友尝试，但无正确身份或创会关系确认。",
+ "u_work":"U从R11后部到R13@1039，实际两次查American College of Physicians1915创始成员及奖学金，包含R12重新组织查询与R13未匹配反馈、JohnHarveyKellogg等计划。没有新医生候选被确认；计划名字不是实际Call。",
+ "u_state_update":"创会组织入口持续未找到对象，原后继再转Philadelphia/Boston长期执业，最终仍拒答。没有已经完成的正确条件判断被删除。",
+ "original_action_consequence":"四新按G先实际查Philadelphia长期行医，之后分别转导师人物链、组织/名医轮换、Barnor死亡核查或Harvard朋友计划循环；无一精确恢复原ACP1915两次操作，不能因仍查医生都算FULL_REBUILT。",
+ "guidance":{"text":"Actually, let me try searching for information about doctors who practiced in Philadelphia or Boston for 40+ years, as these are major cities with old universities.","source":"S010 R13@1039首句，32原生Token；截点R11@314保留54原生Token。","audit":"城市已在完整P，G把城市长期执业重新提为下一入口，四首Call均Philadelphia，属于未来行动提示的共同锚定；没有新答案或关键人物事实，但不能说首行动是自主恢复。ORACLE_ANCHORED。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/tool_events/10/exact_arguments","quote":"American College of Physicians founded 1915 doctor founding member","use":"U第一真实取证。"},
+  {"id":"O2","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"American College of Physicians 1915 founding member doctor scholarship","use":"U第二次同组织取证。"},
+  {"id":"O3","source":"original","pointer":"/rounds/16/content","quote":"I was unable to find a specific doctor","use":"原结果拒答。"},
+  {"id":"N11","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Philadelphia doctor practiced 50 years founded organization 1940s","use":"G后先城市入口，非重放ACP。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"But he died in 1883, which is before the 1970s","use":"明确Gross死亡冲突，实际接着查ASA成员/城市而非Gross本人。"},
+  {"id":"N13","source":"new1","pointer":"/tool_events/7/exact_arguments","quote":"Allen Ginsberg doctor friend psychiatrist Boston","use":"导师材料引出的关系路径真实执行，不是仅提名字。"},
+  {"id":"N14","source":"new1","pointer":"/tool_events/8/exact_arguments","quote":"Stevan Weine doctor psychiatrist born died scholarship","use":"最后真查现代传记人物，返回只guard不冒称下一轮消费。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"But he died in 1919, not the 1970s.","use":"Osler冲突认识存在，下一实际Call改组织，不能一概反馈未生效。"},
+  {"id":"N22","source":"new2","pointer":"/tool_events/6/exact_arguments","quote":"Howard Atwood Kelly doctor founded organization scholarship","use":"末段又试另一具体人，未确认身份。"},
+  {"id":"N23","source":"new2","pointer":"/tool_events/7/exact_arguments","quote":"Howard Atwood Kelly doctor born 1858 died 1943","use":"最后查询已带年代外死亡，未有后续判断/正式接受。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"I found something interesting in the last result - Matthew Arnum Barnor!","use":"R13确采用部分匹配，并明确缺死亡/城市/组织/朋友。"},
+  {"id":"N32","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Matthew Arnum Barnor died 1970s","use":"采用后实际核验死亡。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"still doesn't give me his death date","use":"持续明确同一缺口。"},
+  {"id":"N34","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"Matthew Arnum Barnor died 1978 1979 1977 1976 1975","use":"未闭合死亡缺口触发精确年份枚举。"},
+  {"id":"N35","source":"new3","pointer":"/tool_events/7/exact_arguments","quote":"Matthew Arnum Barnor Wikipedia biography","use":"末段从died/年份改传记入口，仍未确认也未交卷。"},
+  {"id":"N41","source":"new4","pointer":"/tool_events/5/exact_arguments","quote":"Harvard PhD friend doctor born 1940","use":"倒数第二真实朋友查询。"},
+  {"id":"N42","source":"new4","pointer":"/tool_events/6/exact_arguments","quote":"Harvard PhD doctor friend born 1945","use":"最后真实Search后才进入长篇无Call输出。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"Actually, I think I need to try a completely different search approach.","use":"R18末轮多次重复计划，实际tool_calls为空。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"Maybe I should try searching for \"Harvard PhD\" combined with \"doctor friend\" or similar.","use":"反复号称改方法但文字仍相同入口，没有形成真实执行。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后Philadelphia，继而ASA创始人；明知Gross1883/Brendler1986不符仍换其他入口，后沿Weinstein→Keefer→Ingbar→Ginsberg→Weine材料关联查人，N。","state_chain":"城市未匹配→组织/师承材料提供相邻名字→不断把关系人当待核查对象→仍无全条件身份，继续至上下文止。","function_change":"ACP原两次操作未恢复，其他创会查询部分替代；9Search9Actor比原6/7多3/2，1547+32生成少1488，Prompt385398增加。","evidence":["N11","N12","N13","N14"],"semantic_result":"N"},
+  {"repeat":2,"first_divergence":"Philadelphia后改出生1915、医学组织、Keefer/Weinstein，再出生1925/1974/大学1770，末试Kelly，最后Call自带1943死亡，N。","state_chain":"局部冲突有时触发换Query→不同未证条件组合/人物接力→没有目标对象确认→预算前未形成接受或拒答。","function_change":"创会广查恢复但ACP具体操作未观察，8Search8Actor多2/1。2225+32生成少810，Prompt333948增加。","evidence":["N21","N22","N23"],"semantic_result":"N"},
+  {"repeat":3,"first_divergence":"城市后转组织年代，R13采用Barnor部分条件，并把死亡/城市等列为缺口；随后六次真实围绕Barnor查death、年份或传记，始终缺死亡，N。","state_chain":"部分匹配采用→明确死亡待查→重复未补齐反馈未改变对象→追加1970s精确年份与传记入口→无终止判断，耗尽上下文。","function_change":"原ACP两Call未恢复，其他组织检索引入不同人物工作；8Search8Actor多2/1，998+32生成少2037但Prompt332536增加。局部表达更短不等于取证次数少。","evidence":["N31","N32","N33","N34","N35"],"semantic_result":"N"},
+  {"repeat":4,"first_divergence":"Philadelphia后Apgar/Boston/Weinstein，末两真查Harvard朋友1940/1945；R18改为45587字符反复新计划，10K生成到上限且没有任何新Call，N。","state_chain":"相同缺口持续→朋友方向两次实际取证→随后想换方法但仅复述同一计划→不发Call也不提交→生成长度上限。","function_change":"具体ACP未重演；7Search比原多1、8Actor多1，11524+32生成多8489，Prompt332045增加。末轮的消耗是纯生成，不能当58次真实搜索。","evidence":["N41","N42","N43","N44"],"semantic_result":"N"}
+ ],
+ "mechanism_candidate":"四N必须拆开中间过程：新3有真实候选采用，未解决的死亡缺口反复驱动同人核查；新4则在最后一次真实返回后陷入计划文本重复，58次精确四段块循环没有实际Call。两者都说换方法，但一条增加真实检索，另一条增加无执行的生成，节省/增加落点完全不同。原U没有答案产物，不能解释成关键正确接受被删。",
+ "within_case_support":"Barnor采用后持续查只新3；最后长篇无Call只新4；1/2有明示冲突后确实换入口的反例，不能说四条都忽略负反馈。四首Call统一Philadelphia与G方向一致，不能当四次独立自主城市选择证据。",
+ "mechanism_chain_checks":[
+  {"chain":"已采用部分匹配候选，但未闭合死亡条件持续驱动真实查询；更多返回没有改换对象或形成停止决策","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N31","N32","N33","N34","N35"]},"limits":"未证Barnor全部符合，继续死亡核查有真实信息需求，不仅因失败就认定查询本身无必要。"},
+  {"chain":"实际取证反馈后反复计划同一查询而未发Call，也未停止，额外消耗集中在10K纯生成","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43","N44"]},"limits":"工程记录长度终态而非Final；不能把Search意向作Search次数，不由一次续跑断言删除因果。"}
+ ],
+ "counterevidence_and_limits":["原W拒答并非C，B频率不意味着正确答案依赖该ACP工作。","新3实际采用候选，反驳四条一概没有证据采用；但该候选未有完整条件证明。","新1/2有负反馈后换实际Query，不能由最终失败倒推反馈完全无用。","新4最后生成10000Token且tool_calls空，不能按计划出现次数计Search或功能重建。","G明确城市方向且四首Call同向，保留Oracle/seed/硬预算混杂；P已有城市不等于G没有行动影响。","四新Return未见Gold姓名；不能说正确医生已返回未采用。","旧U是否执行充分不能由其无新增人物直接推无用，仍需跨题相同前提的A/B对照。","三个生成较少的支Search/Actor/Prompt增加；第四生成也增加，独立支差不相加。"],
+ "cost_basis":"nativeR11@314，P54Token，G32。原3067生成6Search7Actor，Prompt30733+251684=282417。新1547/2225/998/11524，含G净−1488/−810/−2037/+8489；Search9/8/8/7，Actor9/8/8/8；Prompt385398/333948/332536/332045。新4末轮10000生成0Search；后缀延迟不能扣同轮旧前缀冒充精确。",
+ "next_cross_case_test":"分别比较同一缺口持续触发真实核查与仅重复计划两条链的A/B前提，检查已有反馈是否改变对象或停止；先定位真实消耗动作，再跨题归纳而不合并为循环标签。"
+}

@@ -1,0 +1,22 @@
+{
+ "case_id":"266__rep2__S002__FIRST_SENTENCE","batch_id":"PEER_003","reviewer":"PEER","review_status":"REVIEWED",
+ "function":"从已返评论目录的author字段选择Jessie作为找博客入口，真实查询后仍未找到特定帖。它将人名转行动，但没有证明作者名与题目博客身份相同。",
+ "prestate":{"returned":"六轮有Jessie/Wine目录及84916目标条目2019/One Spring Night，未含完整职业/作者相似经历。","extracted":"原仍猜doctor/librarian及地域，未采用具体博客。","adopted":"无博客确认，正确条目只是可见。","action":"可以按某作者找博客或改职业/关系入口。"},
+ "stage_effect":"U E7真查Jessie，回目录/占位/同名小说及泛列表，R8前46字符失败；Z继续职业/作者，最后把Wine标签猜成博客而W。原不是成功的身份更新。",
+ "four":[
+  {"repeat":1,"state":"N","first_decision_divergence":"不查Jessie，直接关系经历，再职业配对；虽想到pharmacist，实际只扩nurse。","first_actual_call_divergence":"首blogger relates Query而原Jessie，之后从未具名Jessie。","judgment":"作者工作被替代而未建立新博客；职业文字扩展没有全部进入工具，不能称已尝试药师。","action":"11Search/11Actor，guard。","restoration":"具体Jessie操作未观察，总体博客需求用别入口继续；核心正确身份未确认。","cost_location":"4440加G8较5025少577，Search多1、Actor同11、Prompt383048较381327多1721；无Final非有效省耗。","quality":"N，无正式提交。","evidence":["O1","O2","N11","N12","N13","N14"]},
+  {"repeat":2,"state":"N","first_decision_divergence":"改Japanese职业/关系入口，不查作者，反复准备答或再查却无终止动作。","first_actual_call_divergence":"首关系、次Japanese，不同原Jessie；八Call后无后续真实Call。","judgment":"没有具体身份形成，末轮足以回答只是文字，在10000Token中反复计划。","action":"8Search/9Actor，GENERATION_LENGTH_STOP。","restoration":"Jessie未重建，别检索未解决定位；不把未执行答案计划算Final。","cost_location":"13184加8多8167，Search/Actor少2/2、Prompt少97082；生成增长末轮10000，较少工具是单轮停滞而非任务成功。","quality":"N，P已有目标条目不等充分答案被采用。","evidence":["N21","N22","N23"]},
+  {"repeat":3,"state":"N","first_decision_divergence":"不查作者，首返TimeTraveler'sWife作书/男性librarian类型排除，有依据；后回职业猜测。","first_actual_call_divergence":"首doctor/librarian，后十一种职业/剧名Query，没有Jessie。","judgment":"存在有效局部排除，不为统一解释抹掉；仍未确定博客，末轮只推理改计划。","action":"11Search/12Actor，末10000Token长度N。","restoration":"原作者操作未执行，其他类型/职业工作替代，未完成正确定位。","cost_location":"14581加8多9564，Search/Actor各多1、Prompt增53988；更多请求与末长段分别计账。","quality":"N，真正局部判断有证据但不保证全题成功。","evidence":["N31","N32","N33"]},
+  {"repeat":4,"state":"N","first_decision_divergence":"R10主动采用In Asian Spaces为Query对象，R11却无返回依据说OneSpringNight职业不符，回职业；R17才再查原博客。","first_actual_call_divergence":"首职业而非作者，第四Call真实目标博客；第五回职业，最后第十一又目标博客。","judgment":"有实际有效候选查询，不等已完整接受；无支持的排除使正确对象未沿帖子关系核验，HerPrivateLife的curator排除则有文档根据。","action":"11Search/11Actor，末目标Return只进未发guard，CONTEXT_BLOCKED。","restoration":"Jessie未做，替代路线曾找到目标却未完成核验接受；不能说完全没利用线索。","cost_location":"6118加8多1101，Search多1、Actor同11、Prompt少1538；不是工具少，额外职业往返更长。","quality":"N，不用末未读Return补采用；正确目标片段尚不充分证明题目经历。","evidence":["N41","N42","N43","N44","N45","N46"]}
+ ],
+ "guidance_review":"G8Token只重新想，没有实体/事实，与P重复姿态；ORACLE_ANCHORED。P R7@569原生精确保留110，G局部重编码，首18940，不与P模式混。",
+ "local_chain":"材料多但无采用博客→U选择作者查失败→四新不做该操作而另查→三个没有具体身份且两个纯生成长停，一个真实查到正确博客后无据排除又回查但预算先尽→原W变四N不证明原失败作者查询是正确必要环节。",
+ "attribution_limit":"B为W/N互换，0次正确性退化；G无事实仍有承接效应，P及预算/随机不同影响。没有原正确候选产物可称丢失。",
+ "source_review_sufficiency":"已完整读六类事实、U两字段、四条Call/原文；区分新1药师意向与实际护士、新2/3长段无工具、新4两种候选排除的证据充分性，末Return可见性按真实Actor核。",
+ "unresolved":["OneSpringNight职业否定无当前Return支持，原因不明，不能补模型记忆。","84916条目没有完整关系经历，不能倒推已经足够答。","两guard由上下文非20轮，不能统一记Actor上限。"],
+ "evidence_ids":["O1","O2","O3","O4","N11","N12","N13","N14","N21","N22","N23","N31","N32","N33","N41","N42","N43","N44","N45","N46"],
+ "mechanism_links":[
+  {"local_id":"266S2_A","description":"相关对象进入真实Query后，未经证实的约束否定可把它退出当前核验，改回泛职业入口；后来恢复对象时预算可能已不足。","locus":"NEW4 R10目标Call→R11否定→职业/其他剧→R17恢复Call。","stage_attribution":"原U是另一作者失败查，不含目标接受；新路径转出原因可定位但不能唯一归删除。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"4":["N41","N42","N43","N44","N45","N46"],"1":["N12","N13"],"2":["N21","N22"],"3":["N31","N32"]},"candidate_registry_id":"P1_K1","counterevidence":"HerPrivateLife与TimeTraveler排除有事实，不能全叫无据冲突；正确博客刚查并不保证片段足以解决所有条件，不能说这次转出唯一导致N。"},
+  {"local_id":"266S2_B","description":"未定位对象时，继续规划回答/新搜索未落实实际Call，生成在单轮大量增加；真实减少Search可伴无Final而非效率提高。","locus":"NEW2最后R15、NEW3最后R18。","stage_attribution":"原U有真实Call，这一无执行长段是新后继，不是原认知工作恢复。","observed_repeats":[2,3],"not_observed_repeats":[1,4],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"2":["N23"],"3":["N33"],"1":["N14"],"4":["N45","N46"]},"candidate_registry_id":"","counterevidence":"new3 Search反多1，长生成不一定少Call；new1/4同N但是真实多次搜索到guard，终态相同路径不同。"}
+ ]
+}

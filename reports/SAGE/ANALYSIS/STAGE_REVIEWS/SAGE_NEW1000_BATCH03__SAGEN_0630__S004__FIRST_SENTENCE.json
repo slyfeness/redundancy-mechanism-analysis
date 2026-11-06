@@ -1,0 +1,778 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0630",
+  "stage_id": "S004",
+  "sample_order": 22,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0630/trajectory.json",
+      "source_sha256": "dfc62a59ac8ed1e97766a4e853b99cd8279222100ea6f24a3a2214e0815383ae"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0630.json",
+      "source_sha256": "4b42a060d8b7e949fbe897d9b6c80ad8a1bd71ecedd88b5186dcb8dfda1bd933"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "b252a6b6b6c4989257f474716600e9b89dc404ba67d738ff2cdbc40bbe7d8335"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e138784603e53973c7e8a31a9157c43fdc5225d8320aebe604ba6dc33c182bd7"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "35593ee7cb7f7e1317d0313d154974c5e84ca8f229d0e9464737e31c27e3f8b5"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "bc0b478a29422d2e79901029a13818f659c2b52e165a2588790e13e41ff7c849"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c72a52b7a28f75e48a2e0d81fa0b90a3ae9f60eb0b3f69e62863656606e83fb5"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the specific hereditary title adopted by the head of the royal family historically associated with the Sree Padmanabhaswamy Temple, which has connections to Vilwamangalam Swamiyar?",
+    "offline_gold": [
+      "Sree Padmanabhadasa"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整11轮、10Search、Submit及所有完整不同Return已阅读，ROOT_022_ORIGINAL_READING_VIEW.txt[0,86324)。",
+    "new": "四分支完整阅读视图[0,38615)，所有新Reasoning、真实Search/Return、Submit和终态均阅读；相同返回仅定位到已完整阅读的原文。",
+    "semantic_author": "由Codex模型亲自撰写本JSON；Python仅提取、定位、计算成本和核对引用。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "visible_evidence": "E8中的941178描述某王生活如Padmanabhadasa，4330092的继任者全名含Sree Padmanabhadasa；1897742给圣人samadhi和目标庙的关系。因此候选字符串和庙/圣人联系已返回，但尚没有每位Travancore King的普遍标题规则。",
+    "actual_P": "R9@229，当前保留R9[0,229)说结果未明确头衔、打算专项搜索；原历史assistant正文为空，但八份真实Return保留。原R9 Query尚未发生。P为16338模板基底加52派生保留前缀Token，共16390。",
+    "adoption_state": "候选在工具材料中出现，R9保留前缀没有明确接受Padmanabhadasa为王族首领世袭头衔。不能用原后续R10的常识判断倒推已采用。",
+    "remaining_need": "区分个人虔诚称呼/名字前缀和题目要求的世袭称号；把该头衔与正确王族、目标庙和圣人联系对齐。",
+    "evidence": [
+      "I_P",
+      "O_CANDIDATE",
+      "O_SUCCESSOR_NAME",
+      "O_SWAMI"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 9,
+        "json_pointer": "/rounds/8/reasoning_content",
+        "start": 229,
+        "end": 370
+      },
+      {
+        "round": 9,
+        "json_pointer": "/tool_events/8",
+        "event": "真实Search和完整Return"
+      },
+      {
+        "round": 10,
+        "json_pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 185
+      }
+    ],
+    "goal": "针对Padmanabhadasa候选执行世袭称号专项取证并评价本次是否补齐关系。",
+    "operations": [
+      "没有额外显式名字计划，实际Call查询Padmanabhadasa hereditary title Travancore royal family",
+      "读取仅含941177财产争议片段的Return",
+      "R10直接反馈尚未明确把圣人与头衔联系起来"
+    ],
+    "product": "一次真实但未取得目标规则的核查；没有新增每王称号证据。",
+    "judgment_change": "从泛查具体头衔转为用已可见候选名发起核查，但失败返回没有让该候选得到直接规则支持。",
+    "evidence": [
+      "O_TARGET_QUERY",
+      "O_UNHELPFUL_RETURN",
+      "O_LOCAL_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "原R10将失败反馈留在前项工作，接着凭常识和E8旧个人描述实质采用Padmanabhadasa；实际联合候选与Vilwamangalam再搜，才得到4768189的每王标题及授名规则，R11接受并Submit。",
+    "important_distinction": "最终正确的强证据来自下一次真实Query，不是被删U这次专项Search取得。不能将后续成功回填成U的产物。",
+    "evidence": [
+      "O_ADOPT_LATER",
+      "O_LATER_QUERY",
+      "O_LATER_RULE",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "候选已在材料中但未接受时，执行候选身份/称号专项核查；一次尝试可真实发生而没有取得所需证据。",
+    "三条新路径用一次不同措辞的候选Query直接取得普遍规则；一条继续带hereditary词反复失败，答案虽保持，证据支持变弱。",
+    "所有新路径都有真实候选核查，不能将Search少1直接解释为原功能消失。"
+  ],
+  "guide_audit": {
+    "G": "However, I know from general knowledge that the head of the Travancore royal family is often referred to as the \"Padmanabhadasa\" (a title meaning \"Servant of Lord Padmanabha\").",
+    "origin": "原R10[185,361)，S005首句；派生44Token，只注入一次。",
+    "P_comparison": "Padmanabhadasa及带Sree的名字在P两处真实材料已出现，不能标为全新候选实体。但G把它明确绑定为王族首领的称号，并增加Servant of Lord Padmanabha释义；这是从未确认候选到有常识背书的确定性增强。完整P没有这一释义句，原当前前缀还说头衔未明确。",
+    "risk": "ORACLE_ANCHORED；新采用/角色关系和行动方向补偿。不能把G中的I know当作新模型自主完成的候选采用，也不能把答案保持归为无引导删除证据。",
+    "original_target_unique_fact_leak": "被删U只回财产争议，G的角色断言来自后继S005，不是U独有成功证据；但仍是未来判断补偿，不能当普通无内容承接。",
+    "evidence": [
+      "I_G",
+      "I_P",
+      "O_CANDIDATE",
+      "O_SUCCESSOR_NAME",
+      "O_ADOPT_LATER"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "Sree Padmanabhadasa",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Sree Padmanabhadasa",
+      "outcome": "C",
+      "outcome_reason": "真实Submit标题，新的真实Return含每位Travancore King的普遍规则，R10实际采用，旧P提供圣人庙联系。",
+      "outcome_evidence": [
+        "N1_RULE_RETURN",
+        "N1_RULE_ADOPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "R9在G后立即说要verify，真实查Padmanabhadasa title royal family Travancore。",
+        "该Return直接包含4768189每王前缀和授名规则、现任首领资料，而原专项Return只有941177财产争议。",
+        "R10明确采用标题规则，引用P中1897742圣人samadhi关系，比较男女称号后真实Submit。"
+      ],
+      "first_substantive_judgment_difference": "G已经提供候选角色接受，模型新生成首先把它当待verify对象；真正新增支持是本次新Return及R10采用，不是将G本身算自主结论。",
+      "first_actual_tool_difference": "原带hereditary的专项Query换为title royal family Travancore，直接回目标规则；只做1Search而原后缀有2。",
+      "function_correspondence": [
+        {
+          "original_goal": "候选是否是目标世袭称号",
+          "original_operation": "带候选名专项Search并处理Return",
+          "original_product": "未获规则的失败核查",
+          "new_goal": "核实同一候选",
+          "new_operation": "R9真实候选title Query，R10读取采用规则",
+          "new_product": "同一核查功能重建，且取得比U更强的直接规则",
+          "evidence": [
+            "O_TARGET_QUERY",
+            "O_UNHELPFUL_RETURN",
+            "N1_QUERY",
+            "N1_RULE_RETURN",
+            "N1_RULE_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "补后续关系证据后提交",
+          "original_operation": "原另一次候选+圣人Query后Submit",
+          "original_product": "有普遍规则的C",
+          "new_goal": "接受完整题意",
+          "new_operation": "一次取证即获规则，结合已有圣人联系Submit",
+          "new_product": "两次原取证的一部分产物由一次取得",
+          "evidence": [
+            "O_LATER_QUERY",
+            "O_LATER_RULE",
+            "O_SUBMIT",
+            "N1_RULE_ADOPT",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际候选核查被重新执行，直接处理完整返回并采用；不是原核查功能未出现。原失败与后续成功取证在新路径合为一次有效核查。",
+      "decision_action_result_chain": "P候选已出现未接受→G增强角色关系→真实候选Query取得规则→R10采用及与P圣人联系对应→C；少一轮失败取证和预填。",
+      "cost": {
+        "generation_tokens": 514,
+        "prompt_tokens": 37489,
+        "search": 1,
+        "open": 0,
+        "actor": 2,
+        "generation_difference_interval": [
+          -133,
+          -45
+        ],
+        "prompt_difference_vs_original_cut_round_inclusive": -17291,
+        "new_prompt_excluding_replayed_P_including_G": 21099,
+        "search_difference": -1,
+        "actor_difference": -1,
+        "where_changed": "省掉原失败专项Query加另一次补证的两步结构，改一次有效候选取证；生成保守区间全负，但不叫原生精确节省。"
+      },
+      "limits": [
+        "G有称号角色补偿。",
+        "Query改词与返回变化是观察证据，未做单词因果消融，不能把效应唯一归于删hereditary这个词。"
+      ]
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "Sree Padmanabhadasa",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Sree Padmanabhadasa",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确称号，规则与圣人联系明确用于最终接受，不只是G出现答案字符串。",
+      "outcome_evidence": [
+        "N2_RULE_RETURN",
+        "N2_RULE_ADOPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "R9实际查Padmanabhadasa Travancore royal family title，取得与第1条完全相同的新规则结果包。",
+        "R10引4768189的每王前缀规则和授名条件，结合P的samadhi/寺庙联系。",
+        "实际区分Sree/Sri称号书写，重述一次接受后Submit Sree Padmanabhadasa。"
+      ],
+      "first_substantive_judgment_difference": "G之后继续核实已被引导为头衔的候选；新Return直接闭合普遍称号规则缺口，R10接受。",
+      "first_actual_tool_difference": "候选Query不再带hereditary，单次获得原第二次Query才取得的规则。",
+      "function_correspondence": [
+        {
+          "original_goal": "核查候选称号",
+          "original_operation": "Search并评估规则缺口",
+          "original_product": "失败返回",
+          "new_goal": "同一称号核查",
+          "new_operation": "R9真实Search、R10采用规则",
+          "new_product": "核查重建并成功补证",
+          "evidence": [
+            "O_TARGET_QUERY",
+            "O_LOCAL_FEEDBACK",
+            "N2_QUERY",
+            "N2_RULE_RETURN",
+            "N2_RULE_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "进一步补证后形成Final",
+          "original_operation": "下一Search取得称号规则",
+          "original_product": "C",
+          "new_goal": "使用规则和旧关系回答",
+          "new_operation": "一次Search后条件整合Submit",
+          "new_product": "C、少一次交互",
+          "evidence": [
+            "O_LATER_RULE",
+            "O_SUBMIT",
+            "N2_RULE_ADOPT",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核查操作和对返回的采用都真实存在；更少执行次数不是功能消失。",
+      "decision_action_result_chain": "可见候选加G角色背书→一次核查取得每王规则→对齐关系接受→C，取消一次原失败取证。",
+      "cost": {
+        "generation_tokens": 546,
+        "prompt_tokens": 37489,
+        "search": 1,
+        "open": 0,
+        "actor": 2,
+        "generation_difference_interval": [
+          -101,
+          -13
+        ],
+        "prompt_difference_vs_original_cut_round_inclusive": -17291,
+        "new_prompt_excluding_replayed_P_including_G": 21099,
+        "search_difference": -1,
+        "actor_difference": -1,
+        "where_changed": "一条直接结果取代原失败加补证两条；R10接受稍长，保守生成差仍负。"
+      },
+      "limits": [
+        "相同结果包不等于与第1条同一运行，任务与实际Return独立保存。",
+        "Sree/Sri是书写差别，不是新候选。"
+      ]
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "Padmanabhadasa",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Padmanabhadasa",
+      "outcome": "C",
+      "outcome_reason": "真实提交核心称号，缺Sree敬称不改变所答身份，按语义C；但没有获得原后续的每王固定称号规则，世袭属性仍基于个人描述及G推断。",
+      "outcome_evidence": [
+        "N3_OLD_QUOTE",
+        "N3_WEAK_ACCEPT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R9先实际引用P中941178个人Padmanabhadasa描述与7456900庙守护者关系；随后真实Query Padmanabhadasa hereditary title royal family Travancore。",
+        "Return与原U一样，仅941177财产争议片段，没规则。R10继续依靠旧个人描述推该词是头衔，再查引号Padmanabhadasa title hereditary。",
+        "第二次仍同一个财产争议snippet；R11再次复述旧个人描述，第三次查Padmanabhadasa Travancore royal family hereditary title，完整Return与首次相同。",
+        "R12仍没有每王/授名规则，用appears/possibly hereditary从个人虔诚称呼推为目标头衔，真实Submit Padmanabhadasa。"
+      ],
+      "first_substantive_judgment_difference": "新R9已经从P明确提取个人称呼以核G，但尚未取得其世袭规则；此后保持这个候选却没有用原后续的候选+圣人入口改查。",
+      "first_actual_tool_difference": "与原U功能和Query几乎相同，首次Return相同；后续两次仍围绕同候选加hereditary改词，而非原R10 Padmanabhadasa Vilwamangalam Swamiyar的另入口。",
+      "function_correspondence": [
+        {
+          "original_goal": "核查候选是否为世袭称号",
+          "original_operation": "候选名Search和失败反馈",
+          "original_product": "财产争议、未获规则",
+          "new_goal": "同一候选核查",
+          "new_operation": "R9–R11三次实际Search及结果处理",
+          "new_product": "原失败尝试完整重建，新增两次仍未获规则",
+          "evidence": [
+            "O_TARGET_QUERY",
+            "O_UNHELPFUL_RETURN",
+            "N3_QUERY1",
+            "N3_QUERY2",
+            "N3_QUERY3",
+            "N3_RETURN1"
+          ]
+        },
+        {
+          "original_goal": "通过下一入口取得普遍称号规则",
+          "original_operation": "候选+圣人Search",
+          "original_product": "每王标题及仪式规则",
+          "new_goal": "从现有材料接受标题",
+          "new_operation": "只用旧个人描述和G角色断言推世袭，未执行有效另入口",
+          "new_product": "核心答案C、证据支持弱于原后续",
+          "evidence": [
+            "O_LATER_QUERY",
+            "O_LATER_RULE",
+            "N3_OLD_QUOTE",
+            "N3_WEAK_ACCEPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "以原U本身的一次候选核查尝试及失败反馈为定义，三次新尝试真实重建了它。原后续强证据获取没有恢复，单列在对应表中，不把FULL误解成证据质量保持。",
+      "decision_action_result_chain": "P个人称呼加G角色加强→核查仍只回财产争议→缺口未闭合继续相同方法两次→没有新规则却由个人描述推世袭→C但支持下降，查询和推理均增加。",
+      "cost": {
+        "generation_tokens": 1612,
+        "prompt_tokens": 68426,
+        "search": 3,
+        "open": 0,
+        "actor": 4,
+        "generation_difference_interval": [
+          965,
+          1053
+        ],
+        "prompt_difference_vs_original_cut_round_inclusive": 13646,
+        "new_prompt_excluding_replayed_P_including_G": 52036,
+        "search_difference": 1,
+        "actor_difference": 1,
+        "where_changed": "原两次候选核查替换为三次低增量同候选取证；R10/R11反复引用同个人描述，最后仍猜测世袭属性。"
+      },
+      "limits": [
+        "不是没有证据返回：有个人称呼与守护者关系；缺的是普遍称号/世袭规则。",
+        "不能因Final核心词C就说与三条有直接规则的路径质量相同。",
+        "也不能把三次真实Search写成仅搜索意向。"
+      ]
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0630__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": "Sree Padmanabhadasa",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Sree Padmanabhadasa",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确称号；新的4768189规则与P中1897742明确用于接受。",
+      "outcome_evidence": [
+        "N4_RULE_RETURN",
+        "N4_RULE_ADOPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R9计划中顺带提Kumara Swami/Thiruvithamkoor，但真实只执行Padmanabhadasa title Travancore royal family一条Query，不能把备选词计为额外Search。",
+        "返回与第1/2条同包，每王称号规则及现任头衔直接可见。",
+        "R10采用规则，借1897742 samadhi明确对齐圣人条件，接受后Submit。"
+      ],
+      "first_substantive_judgment_difference": "G给出候选后仍要核实，实际有效返回而非纯常识完成接受。备选名称只提及，未独立展开候选排除或查询。",
+      "first_actual_tool_difference": "单次候选title Query直接获规则，未再执行原后续联合Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "专项验证候选头衔",
+          "original_operation": "实际Search和反馈",
+          "original_product": "失败未补规则",
+          "new_goal": "同一候选核查",
+          "new_operation": "真实title Query及R10规则采用",
+          "new_product": "核查重建且有效取证",
+          "evidence": [
+            "O_TARGET_QUERY",
+            "O_LOCAL_FEEDBACK",
+            "N4_QUERY",
+            "N4_RULE_RETURN",
+            "N4_RULE_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "规则及庙关系齐全后提交",
+          "original_operation": "后续Search加整体接受",
+          "original_product": "C",
+          "new_goal": "整合已有两端证据提交",
+          "new_operation": "一次新取证补规则，旧P补圣人关系",
+          "new_product": "C、少一次Search和Actor",
+          "evidence": [
+            "O_LATER_RULE",
+            "O_SWAMI",
+            "O_SUBMIT",
+            "N4_RULE_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原取证功能真实重做；比原有效次数结构更短，不意味着没有做该功能。",
+      "decision_action_result_chain": "P候选未充分确认→G明确角色→一次真实取证得到每王规则→完整接受→C，取证次数降低。",
+      "cost": {
+        "generation_tokens": 542,
+        "prompt_tokens": 37489,
+        "search": 1,
+        "open": 0,
+        "actor": 2,
+        "generation_difference_interval": [
+          -105,
+          -17
+        ],
+        "prompt_difference_vs_original_cut_round_inclusive": -17291,
+        "new_prompt_excluding_replayed_P_including_G": 21099,
+        "search_difference": -1,
+        "actor_difference": -1,
+        "where_changed": "取代原失败加另入口补证的两步结构，G提供候选角色承接；新核查一次就得到规则。"
+      },
+      "limits": [
+        "R10将4725861也并称为目标庙圣人联系，该文实际关于Sreevallabha Temple，正当联系应以确实可见的1897742为准；保留引用归属误差，不用它支撑标题结论。"
+      ]
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": "原C→C/C/C/C，A类0次变化；第3条裸称号与带Sree的指向一致。",
+    "function": "4/4都有真实候选专项检索与结果处理，原U一次失败工作均恢复。不得用三条少一次Search说功能未重建。",
+    "support_difference": "第1/2/4条一次即得4768189规则，能说明每位王与仪式；第3条三次都无该规则，只反复用P个人描述，最后以appears/possibly hereditary接受。",
+    "where_savings_happen": "三条取消原失败Query+后续补证两步，用一次有效候选查询完成；第3条反而增加一次无增量Query和相应解释。",
+    "guide_limit": "所有路径收到同一头衔角色断言G，候选原已出现但G增强采用且给意义，不能据四C推工作无用。",
+    "cost_difference": "生成保守区间第1[-133,-45]、第2[-101,-13]、第4[-105,-17]；第3[965,1053]。Search分别1/1/3/1对原2，Prompt分别37489/37489/68426/37489。结果一致、路线/支持/成本并不一致。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "hypothesis": "候选已出现但角色未被证实时，后继G的角色确认加更有效的候选检索，可能把原一次失败和一次成功补证压成一次有效取证；答案稳定由功能替代执行解释。",
+      "chain": "个人称呼/继任者名字已返回→原U专项Query失败→原后继凭常识接受后另Query取得规则；新G先给角色确认→三次单Query直接获规则→少一次Search/Actor且C。",
+      "support_scope": "该Stage3条支持、1条反例；仅1道题，不直接冻结为通用机制。",
+      "counterexample": "第3条同G但查询持续返回财产片段，规则未恢复且成本增；G不足以保证有效取证。"
+    },
+    {
+      "hypothesis": "候选稳定时，同一证据缺口能在两种状态下导向相同Final：直接规则闭合后接受，或多次未闭合后从个人描述猜为世袭称号。",
+      "chain": "同一候选和G→有规则的三条明确采用后提交；无规则的一条重复取证后用appears/possibly接受→四条答案C，但一条证据更弱且更费。",
+      "support_scope": "该组内部对照；不是证明世袭条件可以省略，而是证明答案统计会掩盖证据支持差异。",
+      "limits": "Query中hereditary与结果差异可追溯，但未做词项受控实验，不把单词本身定为唯一原因。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原U只有失败尝试，不将原后继成功规则倒算为其工作产物；功能重建按原目标/操作/产物界定。",
+    "G中的候选实体在P已出现，不能误标首次泄漏；G增强头衔角色/释义仍是未来信息补偿。",
+    "三条更省路径仍重做核查，是执行结构压缩的案例；不因FULL_REBUILT否定计算减少。",
+    "第3条C有较弱世袭证据，不能计为完整证据质量保持的省算案例，而且成本实际增加。",
+    "原R9切点229在生成字段中，无原native IDs，原本轮88Token不可按重编码52直接相减冒充精确删除长度。后缀仅能在559至647之间保守比较。",
+    "重放P16390、G44作为预填单列，首请求16434；G已计Prompt，不重复记生成。",
+    "本记录为Codex模型审阅，机械验收不等于研究者金标准。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 9,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "but don't explicitly state the hereditary title of the head of the royal family. Let me search more specifically for the title."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 9,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "the head of the Travancore royal family is often referred to as the \"Padmanabhadasa\" (a title meaning \"Servant of Lord Padmanabha\")"
+    },
+    {
+      "evidence_id": "O_CANDIDATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/7/observation/results/1/snippet",
+      "exact_quote": "Sree Chithira Thirunal led a simple life as \"Padmanabhadasa\"",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:941178"
+    },
+    {
+      "evidence_id": "O_SUCCESSOR_NAME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/7/observation/results/8/snippet",
+      "exact_quote": "Uthradom Thirunal Marthanda Varma successor is Sree Padmanabhadasa Sree Moolam Thirunal Rama Varma",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4330092"
+    },
+    {
+      "evidence_id": "O_SWAMI",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/7/observation/results/5/snippet",
+      "exact_quote": "The samadhi (final resting place) of the \"swamiyar\" exists to the west of the Padmanabhaswamy Temple.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1897742"
+    },
+    {
+      "evidence_id": "O_TARGET_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Padmanabhadasa hereditary title Travancore royal family",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_UNHELPFUL_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/8/observation/results/0/snippet",
+      "exact_quote": "The terms of division of properties was accepted by all members of both branches.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:941177"
+    },
+    {
+      "evidence_id": "O_LOCAL_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "The search results have not yet explicitly linked Vilwamangalam Swamiyar to a specific hereditary title of the head of the royal family associated with the Sree Padmanabhaswamy Temple."
+    },
+    {
+      "evidence_id": "O_ADOPT_LATER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "However, I know from general knowledge that the head of the Travancore royal family is often referred to as the \"Padmanabhadasa\""
+    },
+    {
+      "evidence_id": "O_LATER_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/9/arguments/query",
+      "exact_quote": "Padmanabhadasa Vilwamangalam Swamiyar",
+      "call_id": "chatcmpl-tool-b798dc8bc42e377a"
+    },
+    {
+      "evidence_id": "O_LATER_RULE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/9/observation/results/1/snippet",
+      "exact_quote": "The title of \"Sree Padmanabhadasa\" is prefixed to the name of every Travancore King",
+      "call_id": "chatcmpl-tool-b798dc8bc42e377a",
+      "doc_id": "wiki25:4768189"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/10/arguments/answer",
+      "exact_quote": "Sree Padmanabhadasa",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Padmanabhadasa title royal family Travancore",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RULE_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "The title of \"Sree Padmanabhadasa\" is prefixed to the name of every Travancore King",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4768189"
+    },
+    {
+      "evidence_id": "N1_RULE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This title is explicitly mentioned in the document \"Travancore royal family\" (doc_id: wiki25:4768189)"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 10,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Sree Padmanabhadasa",
+      "call_id": "chatcmpl-tool-b00a524f2a9e77f3"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Padmanabhadasa Travancore royal family title",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RULE_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "The title of \"Sree Padmanabhadasa\" is prefixed to the name of every Travancore King",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4768189"
+    },
+    {
+      "evidence_id": "N2_RULE_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results clearly state that \"Sree Padmanabhadasa\" is the title prefixed to the name of every Travancore King"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Sree Padmanabhadasa",
+      "call_id": "chatcmpl-tool-b8168f03084af900"
+    },
+    {
+      "evidence_id": "N3_OLD_QUOTE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "From the snippet of Chithira Thirunal Balarama Varma (doc_id: wiki25:941178)"
+    },
+    {
+      "evidence_id": "N3_QUERY1",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Padmanabhadasa hereditary title royal family Travancore",
+      "call_id": "chatcmpl-tool-bcda94b8999d0f19"
+    },
+    {
+      "evidence_id": "N3_RETURN1",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "The terms of division of properties was accepted by all members of both branches.",
+      "call_id": "chatcmpl-tool-bcda94b8999d0f19",
+      "doc_id": "wiki25:941177"
+    },
+    {
+      "evidence_id": "N3_QUERY2",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "\"Padmanabhadasa\" title hereditary",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_QUERY3",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Padmanabhadasa Travancore royal family hereditary title",
+      "call_id": "chatcmpl-tool-94e56160baadb2f6"
+    },
+    {
+      "evidence_id": "N3_WEAK_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "This suggests it's a title they adopted, possibly hereditary for those who are devoted to the temple."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 12,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "Padmanabhadasa",
+      "call_id": "chatcmpl-tool-a5df5c89bc6901c6"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Padmanabhadasa title Travancore royal family",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RULE_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "The title of \"Sree Padmanabhadasa\" is prefixed to the name of every Travancore King",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:4768189"
+    },
+    {
+      "evidence_id": "N4_RULE_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the \"Travancore royal family\" document (wiki25:4768189)"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "Sree Padmanabhadasa",
+      "call_id": "chatcmpl-tool-9c43d2386f75304d"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

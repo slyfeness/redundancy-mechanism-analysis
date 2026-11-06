@@ -1,0 +1,30 @@
+{
+ "case_id":"1239__rep4__S004__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新正式科学名均正确，研究A k0，旧EM W保留；新地方名仍部分继承原误拼。"},
+ "review_basis":"原4轮3Call全部已读；本组四新8轮、4Call/完整Return/四Final独立全文读完，35槽全部SHA复用真实已读片段。",
+ "pre_state":"R3@509，原U前已采用物种和精确Garo关系，但本原自身写pembang而非源memang；人口132只有题面和待核计划，没有独立人口Return。",
+ "u_work":"S004原R3[509,618)安排并8228bdd670efd69e真实核人口，取得59761/58196/85269/38962/91643，后继R4整体接受。U新增人口事实支持，不是重复已有证据。",
+ "u_state_update":"四新仍认为需要verify人口，实际同目标Call/Return恢复；答案候选不变，生成减少主要同功能的复盘/Final篇幅，不是人口核验消失。",
+ "original_action_consequence":"原补人口后R4确认，四新同样先短复述物种/词义或待办，再真查，R4采用132并提交；新1R4有额外第二段重复已接受物种，但整体仍较原短。",
+ "guidance":{"text":"Perfect!","source":"原S005 R4首句2Token，ORACLE_ANCHORED。","audit":"无事实/实体；137原生生成Token重放，首Prompt6308=6169+137+2，重放6306。并未把原人口Return注入，所有新人口证据由新Call取得。"},
+ "evidence":[
+  {"id":"U_POPULATION_RETURN","source":"original","pointer":"/tool_events/2/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"R3 8228bdd670efd69e Doc85269真实新增人口证据。"},
+  {"id":"N1_RESTORES_POPULATION","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me search to confirm the population density of 132 per sq km for Meghalaya in 2011.","use":"R3 80a4d590d8afea4b真实Call，R4采用返回。"},
+  {"id":"N2_RESTORES_POPULATION","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Now I need to verify the population density clue about 132 per sq km in 2011.","use":"R3 b1de2562132af3df真实Call。"},
+  {"id":"N3_RESTORES_POPULATION","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Now I need to confirm the population density clue","use":"R3 8e81df4fcfc22fb3真实Call。"},
+  {"id":"N4_RESTORES_POPULATION","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me search for the population density information to confirm the 132 per sq km figure","use":"R3 b3f0febaa3838e72真实Call。"},
+  {"id":"N4_RETURN_ADOPTED","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Meghalaya's population density in 2011 census was 132 per sq km","use":"R4明确采用新返回，后Final正确。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"先复述已接受物种/地方名，再查人口，未直接提交。","state_chain":"恢复待核→真Query→采用132→Final。","function_change":"FULL_REBUILT。","evidence":["N1_RESTORES_POPULATION"],"semantic_result":"C；含G690较原730少40，1Search/2Actor不变。"},
+  {"repeat":2,"first_divergence":"地方名反馈后恢复人口，路径不变。","state_chain":"同缺口恢复→新证据→接受。","function_change":"FULL_REBUILT。","evidence":["N2_RESTORES_POPULATION"],"semantic_result":"C；含G697少33，Search/Actor相同。"},
+  {"repeat":3,"first_divergence":"用短句重申候选与人口缺口。","state_chain":"同查询→132确认→同答案。","function_change":"FULL_REBUILT，篇幅较短。","evidence":["N3_RESTORES_POPULATION"],"semantic_result":"C；含G614少116，Search/Actor相同。"},
+  {"repeat":4,"first_divergence":"短承接后立即恢复人口Query。","state_chain":"真实查证→132采用→Final。","function_change":"FULL_REBUILT。","evidence":["N4_RESTORES_POPULATION","N4_RETURN_ADOPTED"],"semantic_result":"C；含G578少152，Search/Actor相同。"}
+ ],
+ "mechanism_candidate":"A类该核验结果保持因为P中待核条件仍触发真实行动，四次完整重建并用人口结果接受，不能说该事实不需要验证；同时较短后段表达带来生成减少，说明重建和计算减少可并存。与rep1/rep3同功能恢复却生成增加相反，成本落在表述而非Search次数。",
+ "within_case_support":"四C、四重建人口核验及采用、四生成下降，Search/Actor均不变。",
+ "mechanism_chain_checks":[{"chain":"同人口功能恢复、产物被采用，答案保持但同次表达更短","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_RESTORES_POPULATION"],"2":["N2_RESTORES_POPULATION"],"3":["N3_RESTORES_POPULATION"],"4":["N4_RESTORES_POPULATION","N4_RETURN_ADOPTED"]},"limits":"不能由本组四次较短推所有人口核验Stage都可压缩，其他rep为反例；没有未重建分支的同P对照。"}],
+ "counterevidence_and_limits":["原U确实新增人口事实，重复功能由新轨迹重新做，不是原P已核过。","GPerfect有承接语气但不供人口事实，保持ORACLE_ANCHORED。","原新均有地方名拼写不严谨，科学名质量与附加说明分列。"],
+ "cost_basis":"原730生成/1Search/2Actor、15141Prompt。新含G690/697/614/578，净−40/−33/−116/−152；Prompt15340/15328/15300/15298反增199/187/159/157，含重放137原生成前缀，不能宣称所有资源下降。Call/Actor完全恢复，生成差是认知/Final表达，G2不重复计费。",
+ "next_cross_case_test":"A侧将功能重建、生成篇幅、Prompt重放和工具次数分别核算，B侧比较同待办恢复后是否得到/采用有效证据，避免用重建二元标签终结机制。"
+}

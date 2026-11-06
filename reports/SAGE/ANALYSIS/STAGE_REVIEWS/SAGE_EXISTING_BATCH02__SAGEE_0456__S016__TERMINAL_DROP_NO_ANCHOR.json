@@ -1,0 +1,399 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0456",
+  "stage_id": "S016",
+  "sample_order": 90,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "question_and_gold": {
+    "question": "In the decade when the Ginetta G4 Series IV was revived with a Ford engine, Ginetta re-entered the complete car business with a specific mid-engined model. What was the 1990 retail price for the open-top variant of that particular model?",
+    "gold": [
+      "£14,600"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "£14,600",
+    "adopted_answer": "£14,600",
+    "outcome": "C",
+    "reason": "G32敞篷价正确，原E15有直接价款。",
+    "evidence": [
+      "O_F",
+      "O_PRICE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R16@0，前15轮真实历史完整；1981复产年代已定，R11由Open后部句子首次把G33改G32，R12又退回G33、R13纠回G32，R14再Open0，R15Open2000得到完整价格串。",
+    "evidence_states": "P中年代、G32回归业务、convertible以及£14600均直接可见；R15当前Open返回尚待新Actor进行价款采用。不能把P证据已返回等同原末段核对已发生。",
+    "evidence": [
+      "I_BOUNDARY",
+      "O_MODEL",
+      "O_PRICE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/15/items",
+    "ranges": [
+      {
+        "round": 16,
+        "pointer": "/rounds/15/reasoning_content",
+        "start": 0,
+        "end": 566
+      }
+    ],
+    "goal": "将原文价款匹配G32敞篷并正式回答。",
+    "operations": "四条件对照，采用convertible14600而非coupé13700/G3317800，Submit。",
+    "product": "正式£14600。",
+    "judgment_change": "从返回中的多个价格到选定G32敞篷的提交。",
+    "evidence": [
+      "O_U",
+      "O_F"
+    ]
+  },
+  "original_followup": {
+    "use": "本段包含正式提交，后无原Reasoning续段。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "明确型号与车身版本的价款抽取、条件核对和正式提交。",
+    "state_relation": "四条全部重建这一核对/提交工作且都C，生成全部高于原186；不支持原末段功能或篇幅多余。",
+    "evidence": [
+      "O_U",
+      "N1_USE",
+      "N2_USE",
+      "N3_USE",
+      "N4_USE"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "",
+    "source_position": "无后继，无G",
+    "oracle_anchored": false,
+    "novelty": "TERMINAL_DROP_NO_ANCHOR；没有教师答案或总结方向注入，沿完整P自然续写。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "实际选G32convertible14600并提交。",
+      "outcome_evidence": [
+        "N1_USE",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R16 594字符回顾1981、G32、中置、两车身价，明确open-top=convertible，Submit14600；无Search/Open。",
+      "first_judgment_divergence": "无实质候选或价款分歧，主要文字组织不同。",
+      "first_actual_tool_divergence": "无，仍一个Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "核车身与价并提交",
+          "original_operation": "四项核对+Submit",
+          "original_product": "14600",
+          "new_goal": "同价款匹配",
+          "new_operation": "594字符核对+Submit",
+          "new_product": "14600",
+          "evidence": [
+            "O_U",
+            "N1_USE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原核对与正式提交完整再现。",
+      "judgment_action_outcome_chain": "P完整价格返回→重新区分敞篷/硬顶→采用14600→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR.json#repeat01",
+      "cost_work_locations": "192生成19288Prompt0Search0Open1Actor，对原186/19288/0S0O1A多6生成；原生精确不可声称。G0，P重放19288单列。",
+      "counterevidence_and_alternatives": "答案不变来自重做终末抽取，不是不用这项工作。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "明确引P的offset2000价格，匹配敞篷。",
+      "outcome_evidence": [
+        "N2_USE",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R16 2897字符先重列复产、业务回归型号，特别区分G33较新但非所问G32，引用offset2000三价格，重查字面题意而非工具，Submit14600。",
+      "first_judgment_divergence": "重开G33/G32比较但保持原G32采用，无实际路线改换。",
+      "first_actual_tool_divergence": "无Search或Open，仅Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "提交G32敞篷价",
+          "original_operation": "四项对照",
+          "original_product": "14600",
+          "new_goal": "同价与车型再对照",
+          "new_operation": "较长型号比较+价格引用+Submit",
+          "new_product": "14600",
+          "evidence": [
+            "O_U",
+            "O_PRICE",
+            "N2_USE",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整重做并扩展型号甄别；无新工具不等于无认知工作。",
+      "judgment_action_outcome_chain": "P证据足够→再次用业务回归原文约束型号→排除较近G33价格干扰→14600C；多花纯推理。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR.json#repeat02",
+      "cost_work_locations": "947生成19288Prompt0S0O1A，对原186多761；增加来自约2900字符型号/年份重复对照，非工具成本。",
+      "counterevidence_and_alternatives": "对照可能防错但本分支未找到新证；单次不能断言所有较长核对无用，其他三条短对照C可作同P反例。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "原文convertible£14600被采用。",
+      "outcome_evidence": [
+        "N3_USE",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R16 948字符列1980年代、回归G32、三种价格与敞篷映射，重复引用同价格串一次后Submit。",
+      "first_judgment_divergence": "无实质分歧，重复价格引用使生成略长。",
+      "first_actual_tool_divergence": "无，单Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "条件匹配与提交",
+          "original_operation": "四项核对",
+          "original_product": "14600",
+          "new_goal": "同价款条件",
+          "new_operation": "六点列证并Submit",
+          "new_product": "14600",
+          "evidence": [
+            "O_U",
+            "N3_USE",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原认知与提交功能恢复。",
+      "judgment_action_outcome_chain": "P中足够证据→车身价正确抽取→直接C，无新取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR.json#repeat03",
+      "cost_work_locations": "328生成19288Prompt0S0O1A，原186多142生成。差异在同证据引用篇幅，其他计数同。",
+      "counterevidence_and_alternatives": "完整P足够但仍需新的实际提交，不把重述答案当独立再核查工具。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "G32敞篷价匹配正确。",
+      "outcome_evidence": [
+        "N4_USE",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R16 669字符直接引回归G32句和三价句，明确open-top=convertible，Submit14600。",
+      "first_judgment_divergence": "未复述复产年代，仍据业务句选型并据车身选价。",
+      "first_actual_tool_divergence": "无，单Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "全条件核对后提交",
+          "original_operation": "四条件盘点",
+          "original_product": "14600",
+          "new_goal": "用决定性型号与价款回答",
+          "new_operation": "两句引文+敞篷匹配+Submit",
+          "new_product": "14600",
+          "evidence": [
+            "O_U",
+            "N4_USE",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心选型选价与提交完整，省略复产复述不影响P已完成的年代采用。",
+      "judgment_action_outcome_chain": "年代已确定且业务句直接定G32→重做版本匹配无需所有条件全文→14600C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR.json#repeat04",
+      "cost_work_locations": "204生成19288Prompt0S0O1A，原186多18生成；略少条件复述仍未低于原usage。",
+      "counterevidence_and_alternatives": "少复述一条件不等于其事实未使用，P长期已有；同样没构成成本下降证据。"
+    }
+  ],
+  "four_run_comparison": "4C、4个FULL_REBUILT、均0Search0Open1Actor；生成192/947/328/204均高于原186。P已返回的决定性证据使新的末段可独立选型选价提交，但不是该功能被跳过，也不是删除让成本下降。",
+  "conditional_mechanism": {
+    "observed_chain": "决定性关系与价格全部在P→重新用业务句选G32、用车身词选择14600→无需新工具即可正确提交；长短差异来自重复盘点程度。",
+    "support_scope": "1Stage1题4路径，四次无引导，不能与FIRST_SENTENCE混统计。",
+    "counterexamples": "r2扩展型号比较仍C却增761生成；四次结果不变没有一条实际生成省于原，反对A即冗余推断。",
+    "limits": "原生ID缺失，usage可对照非native精确；没有对其他证据状态作自然因果外推。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 16,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 16,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_MODEL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "return",
+      "json_pointer": "/tool_events/9/observation/text",
+      "exact_quote": "It was decided to re-enter the complete car business with the mid-engined G32"
+    },
+    {
+      "evidence_id": "O_PRICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "return",
+      "json_pointer": "/tool_events/14/observation/text",
+      "exact_quote": "In 1990, the G32 coupé cost £13,700 (), the convertible £14,600 (), and the G33 £17,800 ().",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "The question asks for the 1990 retail price for the open-top variant of that particular model (the G32). The price is £14,600."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N1_USE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The open-top variant is the convertible."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N2_USE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The G33 is a different model (front engined, Rover V8, speedster)."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N3_USE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The open-top variant is the **convertible**."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N4_USE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The G32 is the mid-engined model. The open-top variant is the convertible."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0456/trajectory.json",
+      "source_sha256": "7fde058b641875bbb1a65489d6d34f825db5062f8aee66777f9020395db3d3f3"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0456.json",
+      "source_sha256": "f567f403f7f562d9dc03b2511d0b92e59aa28bb8f4ac62876af0bba50bdf1062"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5b4df60ca48a3a21a77ee9f7550a35203f71130eac34e20d733119aecde8eace"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "4027fed475630c5ad6284897b04efb3b1ae097580579100ac1d246dbd0544b69"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "0b072628db88281bfdb18cf1836b9bc152a9d799a7636c7a1136be9469ab97c0"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "88721589ed1b87dd3bc4add7b31d4345b304c71795bc161593272077cf1c8010"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0456__S016__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "580cce6dd59b6f34fce38efee9861b428456203b1a82516cde8c18dbd5804adf"
+    }
+  }
+}

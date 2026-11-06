@@ -1,0 +1,593 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0618",
+  "stage_id": "S003",
+  "sample_order": 80,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0618/trajectory.json",
+      "source_sha256": "5153621f3f410a8385152b01a0044d12b517fb8f98f8948749d6a8d09ce1afd2"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0618.json",
+      "source_sha256": "94bb3624288219d4564e8c2792a9e458a24d1b50dcd7bc123994a5d50e47e540"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0191896a2974b06a577169c39271cd112d173490d4bb0b353b8b3049a0d436eb"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ecf50e4ccf75aa3daf12ead7e4a8e468436d2666c19c5f8bdad91c0517625848"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "c24cba88f164aa66fce1e3095559479c1db5406c9590746f8075e3526fa07098"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "87b616a6ef6f6daff180a41949a08eaa4ca88a972a9714218b89df1dcd8344bd"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c76ecefa659ab916a5a017a6ee46021a1a87569bd86e0cda9fa546fd114a790d"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the numerical difference between the year when food rationing completely ended in the United Kingdom after World War II and the establishment year of the London hotel where the specific vegetable pie, popularly promoted by the British Minister of Food during that wartime period, was originally created?",
+    "gold": [
+      "65"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0618/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "65",
+    "adopted_answer": "65",
+    "outcome": "C",
+    "reason": "正确酒店1889与英国配给1954的差值，关系有真实返回。",
+    "evidence": [
+      "O_DATE",
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R4@444，当前完整采用Wooltonpie/Savoy关系的444字符保留，前三批Search Return含1954。酒店身份已采用，尚无1889或65。P10868派生Token。",
+    "evidence_states": "1954已返回；当前P派酒店关系已提取采用并决定下一对象，但酒店年份未查。",
+    "evidence": [
+      "I_LINK"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items；R4[444,1099)+E4真实Search与完整Return。",
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 444,
+        "end": 1099
+      }
+    ],
+    "goal": "取得已识别Savoy的创建/开业年份，作为第二个减法输入。",
+    "operations": "重述仍缺两年但从旧Search确认1954，实际Search Savoy establishment取得725547开业1889。",
+    "product": "补齐第二年1889，三条关系材料全部可用于计算。",
+    "judgment_change": "已知酒店但年份未知→日期直接可见，下一Stage正式采用计算。",
+    "evidence": [
+      "O_QUERY",
+      "O_DATE"
+    ]
+  },
+  "original_followup": {
+    "use": "S004/R5立即采用1889并第一次计算65，之后五Open不改变年份或答案。",
+    "evidence": [
+      "O_CALC",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "针对已确认关系链终点获取计算输入事实。",
+    "state_relation": "P没有酒店年，四次均重新执行同Query才计算；不是因为事实已有而省去U。",
+    "evidence": [
+      "I_LINK",
+      "O_DATE"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I have found the key information:",
+    "source_position": "原R5[0,33)，冒号完整行。",
+    "novelty": "未给1889、1954或65，也没酒店新实体；当前P自己已经以相同句式列出派关系，G作为完成感/确定性承接但没有补被删年份。7GToken，ORACLE_ANCHORED。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_LINK"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "同Query真实得到1889后，使用配给1954计算提交。",
+      "outcome_evidence": [
+        "N1_USE",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 4,
+          "work": "复述派关系后明确仍需酒店年，真实同Query取得原相同完整Return。",
+          "evidence": [
+            "N1_QUERY"
+          ]
+        },
+        {
+          "round": 5,
+          "work": "采用1889和1954计算65，额外Open酒店10只回Historic l。",
+          "evidence": [
+            "N1_USE",
+            "N1_TINY"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "未取得新的外部日期，重新用三Search引文比较后Submit。",
+          "evidence": [
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "G说找到关键信息并未让模型跳过酒店年，仍明确待查；后续只多一次酒店小Open。",
+      "first_actual_tool_divergence": "首Search与原完全同Query/Return；第一个不同工具为R5酒店Open10而原pieOpen100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "SearchSavoy开业年取得1889。",
+          "new_goal_operation_product": "R4同Search及Return重做，R5明确使用1889，功能恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N1_QUERY",
+            "N1_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实调用、同日期证据及采用均完整。",
+      "judgment_action_outcome_chain": "仍缺酒店年→同查询恢复输入→计算65→一次无日期小Open后接受旧材料并提交C，减少后续多次Open而非目标取证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "872生成/39923 Prompt/1Search/1Open/3Actor，原后缀1Search/5Open/7段。净生成区间[-1322,-1028]；减少四Open及其间重算。",
+      "counterevidence_and_alternatives": "小Open没有真正验证1889，但P/新Search已提供直接证据；G确定性提示/采样可能影响停止。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实Search酒店日期后复算，配给全文也真实重取。",
+      "outcome_evidence": [
+        "N2_USE",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 4,
+          "work": "同SavoyQuery取得1889。",
+          "evidence": [
+            "N2_QUERY"
+          ]
+        },
+        {
+          "round": 5,
+          "work": "采用两年算65，再同一决策批量Open配给/酒店/派各100；不能虚构批内逐个读后再决定其他调用。",
+          "evidence": [
+            "N2_USE",
+            "N2_BATCH_A",
+            "N2_BATCH_B",
+            "N2_BATCH_C"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "扩大配给Open至2790，完整真实读回1954句（原短Open未做到）。",
+          "evidence": [
+            "N2_FULL"
+          ]
+        },
+        {
+          "round": 7,
+          "work": "再完整条件接受和复算后Submit65。",
+          "evidence": [
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "同查酒店年恢复后，把验证组织成三Open同批和一次全文，而非原多Round短Open。",
+      "first_actual_tool_divergence": "R5首次出现三Call同批，原单pie100。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得酒店开业年供运算。",
+          "new_goal_operation_product": "同Query真实取得1889并R5使用，完整重建。",
+          "evidence": [
+            "O_QUERY",
+            "O_DATE",
+            "N2_QUERY",
+            "N2_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原目标工作逐项存在，后续验证方法改变不抵消其恢复。",
+      "judgment_action_outcome_chain": "酒店年恢复→算65→批量验证+扩大读取取得全文而结束核验→C；节约交互来自组织批次和减少无效短读，不是没做条件核验。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1444生成/56003 Prompt/1Search/4Open/4Actor，净生成区间[-750,-456]。三Open一Actor保持批关系；不能把Call少1当Actor少3的全部来源。",
+      "counterevidence_and_alternatives": "完整配给文本增加真实可核查内容，但1954原已在Search，新增证据并未改变值；不能称它为C的唯一必要因子。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "真实酒店年份及旧配给/派返回支持，反复Open并未改结果。",
+      "outcome_evidence": [
+        "N3_USE",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 4,
+          "work": "同Search真实取得酒店1889。",
+          "evidence": [
+            "N3_QUERY"
+          ]
+        },
+        {
+          "round": 5,
+          "work": "采用、算65后Openration100；R6—8仍Open相同100三次，原文开头完全相同、没有1954。R9再Open200也无日期。",
+          "evidence": [
+            "N3_USE",
+            "N3_REPEATQUERY",
+            "N3_REPEATTEXT"
+          ]
+        },
+        {
+          "round": 10,
+          "work": "仍引用Search中1954和1889，长篇对比计算后Submit。",
+          "evidence": [
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "目标酒店年没有分歧；后续未从短返回更新操作，连续同Open100重做。",
+      "first_actual_tool_divergence": "R5变配给Open100而原pieOpen100，后续四次100加200；Search同原。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "查酒店年并使1889可用于减法。",
+          "new_goal_operation_product": "同Query取得，同值R5实际使用，功能完全恢复。",
+          "evidence": [
+            "O_DATE",
+            "N3_QUERY",
+            "N3_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "相同真实取证与采用齐全。",
+      "judgment_action_outcome_chain": "正确输入已恢复→仍以需确认同年份触发短Open→反馈无日期未改变查询范围→多轮后回用原Search确认并C，额外成本没有新增判断。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2041生成/99391 Prompt/1Search/5Open/7Actor，原工具/Actor同数量；净生成区间[-153,141]跨零，Prompt近原但不以此伪称节省。",
+      "counterevidence_and_alternatives": "同C、同原目标重建却没有工具下降，是r4直接提交的反例；不能按多数成功给原U冗余资格。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "65",
+      "adopted_answer": "65",
+      "outcome": "C",
+      "outcome_reason": "同Query真实取得酒店年份后两年运算、正式提交。",
+      "outcome_evidence": [
+        "N4_USE",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 4,
+          "work": "虽承接关键资料已得，仍查缺失Savoy年份，同Query同Return。",
+          "evidence": [
+            "N4_QUERY"
+          ]
+        },
+        {
+          "round": 5,
+          "work": "三关系及两年完整比较，算65后直接Submit，无Open。",
+          "evidence": [
+            "N4_USE",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "目标年份工作恢复；不同在信息闭合后直接提交而非安排外部复核。",
+      "first_actual_tool_divergence": "R4Search同原，R5Submit代替原pieOpen。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取回酒店开业年1889。",
+          "new_goal_operation_product": "R4真实同Query恢复、R5采用和计算，完整恢复。",
+          "evidence": [
+            "O_DATE",
+            "N4_QUERY",
+            "N4_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原工作不是被事实泄漏替代，实际重新执行。",
+      "judgment_action_outcome_chain": "年份未知→真实恢复1889→全部题干关系已有支持→R5接受并C，省掉五Open但保留完整比较。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0618__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "645生成/25385 Prompt/1Search/0Open/2Actor，净生成区间[-1549,-1255]；下降发生在原后续五Open与分散Round复算，不是查酒店年消失。",
+      "counterevidence_and_alternatives": "同P/G下r3仍重复核验，因此停止选择不是仅由某事实是否存在决定，不能擅自补隐藏信心原因。"
+    }
+  ],
+  "four_run_comparison": "四次首工具同Query同返回，原U事实功能全部真实恢复。后续从0/1/4/5Open到2/3/4/7Actor，答案均C。r2三Open同批且后读完整配给，r3连续同100重复；可直接定位交互组织和读取范围差异，而非以重建标签停止分析。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "已采用酒店身份但缺年份→目标Search恢复缺失输入→信息闭合形成65判断→后续选择直接接受已有Search，或不断重新派发确认任务→同正确结果但计算差异。",
+      "support_scope": "本Stage四路径同题对照；与S001/S002不计独立题目数。",
+      "limits": "原U无用结论不成立；为何某次继续确认的独特内部原因未确定，只报告可见操作。"
+    }
+  ],
+  "counterevidence_and_limits": "没有原生IDs，部分R4成本只有区间；G有完成感提示、无日期/答案。r2批量读取真实顺序及CallID保留，不能误算逐个决策。原Search材料足够，短Open未取得关键信息与证据不存在是两回事。",
+  "evidence": [
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/2/snippet",
+      "exact_quote": "it opened on 6 August 1889.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:725547"
+      ]
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "I_LINK",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Maître Chef des Cuisines at the **Savoy Hotel** in London."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 4,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have found the key information:"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_USE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The Savoy Hotel was **originally created/opened on 6 August 1889**."
+    },
+    {
+      "evidence_id": "N1_TINY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "Historic l",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_USE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Numerical difference: 1954 - 1889 = 65"
+    },
+    {
+      "evidence_id": "N2_BATCH_A",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "batch_open",
+      "json_pointer": "/tool_events/1/batch_id",
+      "exact_quote": "B005",
+      "call_id": "chatcmpl-tool-95f84400f9c011ca"
+    },
+    {
+      "evidence_id": "N2_BATCH_B",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "batch_open",
+      "json_pointer": "/tool_events/2/batch_id",
+      "exact_quote": "B005",
+      "call_id": "chatcmpl-tool-b6d3ba1164bb5614"
+    },
+    {
+      "evidence_id": "N2_BATCH_C",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "batch_open",
+      "json_pointer": "/tool_events/3/batch_id",
+      "exact_quote": "B005",
+      "call_id": "chatcmpl-tool-9de1c1dfd5e41d98"
+    },
+    {
+      "evidence_id": "N2_FULL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "in 1954, all rationing was abolished when cheese and meats came off ration.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:563365"
+      ]
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_USE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Numerical difference**: 1954 - 1889 = **65**"
+    },
+    {
+      "evidence_id": "N3_REPEATQUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let me open that document to confirm."
+    },
+    {
+      "evidence_id": "N3_REPEATTEXT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "Civilian peacetime rationing of food has been employed after natural disasters, during contingencies",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Savoy Hotel London establishment year founded",
+      "call_id": "chatcmpl-tool-a1aa6eab4258e06e"
+    },
+    {
+      "evidence_id": "N4_USE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the establishment year is **1889**."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "65"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

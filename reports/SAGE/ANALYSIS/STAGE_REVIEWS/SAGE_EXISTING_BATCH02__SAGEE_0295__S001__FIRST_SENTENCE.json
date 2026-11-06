@@ -1,0 +1,828 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0295",
+  "stage_id": "S001",
+  "sample_order": 21,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0295/trajectory.json",
+      "source_sha256": "103824d3180be9a982f96d762456d98916f488eb440f590066b3a94569d217c3"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0295.json",
+      "source_sha256": "46cb1f4316e8cd70ffa7a17831868945ae5a217fd66e7c958c35b1b20e04bf08"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "fa2ab77b07d41ae2b2bdd45c02df0b9e826511433987b9a11cb157f561ec7ba2"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "968c2d18baf6790f109f6b115b7dd7da44d1cba19264f1d34502e5bef2507c55"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "6e055c5ca0c50b3280356ef9fd23f8fc2447720e3692a091c48dcf4b00191579"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "963607b2f4ef4e3c05daacd1c91dd4c84043b098bb2a2715db2284d1d79aa10f"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "fe6058a4d7ebfad79a01709e927d8050ee82785d7d71b9295e4630716964ff05"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the designation prefix given to the naval fleet of the country where the Royal New Zealand Foundation of the Blind is based was formally approved by the monarch who granted the Royal prefix to the institution that originally began as the Jubilee Institute for the Blind?",
+    "offline_gold": [
+      "October 1, 1941"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "原15轮、14Search、所有不同Return及HTTP400已完整阅读，ROOT_021_ORIGINAL_READING_VIEW.txt[0,53746)。",
+    "new": "ROOT_021_S001_FOUR_BRANCH_READING_VIEW.txt[0,271132)全部阅读。首24000字符在前一检查点已读，本次连续读取[24000,271132)；所有新的Reasoning及不同Return均展示，相同Return精确引用原轨迹或已完整读完的S003四路径。",
+    "actual_input": "R1@0，P只有system和原Question，没有历史工具或推理；G仅Now I need to find:。",
+    "semantic_author": "Codex模型实际阅读后逐条撰写；Python只定位原文、构建成本事实与引用校验。"
+  },
+  "original_outcome": "N",
+  "prestate": {
+    "known_before_U": "只有Question中给出的机构名称、Jubilee前身与同君主关系约束。名字含New Zealand可用于猜国家，但没有外部返回或已验证采用。",
+    "evidence_state": "尚无任何Search或Open结果。原U首次取得机构4091169，并把国家和Jubilee前身从返回中明确提取采用。",
+    "actual_P": "P重建496Token；当前保留reasoning为空。不能把原R1未来返回、原R2采用结论或日期补入P。",
+    "gaps": "国家、机构身份、海军designation、授衔君主、批准日期均待模型实际核查；其中国家线索题面已经明显。",
+    "evidence": [
+      "I_QUESTION",
+      "I_MODE",
+      "O_INITIAL_PLAN",
+      "O_COUNTRY_ADOPT"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 546
+      },
+      {
+        "round": 1,
+        "json_pointer": "/tool_events/0",
+        "event": "Search及完整Return，不切工具文本"
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 233
+      }
+    ],
+    "goal": "把嵌套题分解为查询任务，先确认机构所在国家及Jubilee前身。",
+    "operations": [
+      "拆解国家、海军称号、君主和日期关系",
+      "实际Search机构所在国",
+      "读取机构4091169完整可见snippet",
+      "R2明确采用New Zealand及1890 Jubilee身份"
+    ],
+    "product": "国家与机构前身已证实并采用；没有授衔君主、海军日期证据。2002仅为允许法人化法案。",
+    "judgment_change": "题面名称所暗示的New Zealand变成检索支持的明确采用状态，后续可把海军对象限定在新西兰。",
+    "evidence": [
+      "O_INITIAL_PLAN",
+      "O_INITIAL_QUERY",
+      "O_INSTITUTE_RETURN",
+      "O_COUNTRY_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R2–R14持续沿用New Zealand和Jubilee身份，实际却仅查机构Royal授予君主；R5独立采用RNZN/Royal解释，仍未在任何一次Call里查询海军日期。",
+    "outcome": "14Search中机构包反复返回，未获得目标日期，R15请求预算超上下文HTTP400，Final为None、N。",
+    "not_proven": "国家识别没有失败，不可用最后N反推原初检不足或无用。",
+    "evidence": [
+      "O_U_LATER_RELATION",
+      "O_LAST_QUERY",
+      "O_HTTP400"
+    ]
+  },
+  "function_features": [
+    "初始关系分解、外部证据获取及国家/机构身份采用，是具体的前态更新。",
+    "国家易从题面猜出，但外部核实仍在4条中实际重新执行，不能因为容易或结果改善就标NOT_OBSERVED。",
+    "删除点为首次生成起点，G又不含内容事实；四次本质上从原题重新组织完整求解。后段变化离被删初检很远，不能当初检功能因果有害的证据。"
+  ],
+  "guide_audit": {
+    "G": "Now I need to find:",
+    "origin": "原R2[233,252)，S002开头完整冒号行，无后续清单；派生6Token，输入共502。",
+    "P_comparison": "G无新实体、关系、年份、候选、答案或具体检索对象。只是列表式承接，不能把Now误标新事实或实体。",
+    "oracle_status": "ORACLE_ANCHORED",
+    "future_fact_leak_observed": false,
+    "action_direction": "仅要求列出待查任务；相较S003分支的具体双入口G，本G不提示海军Royal的解释。",
+    "interpretation_limit": "仍是教师选定的原后继文本和独立采样，不是无引导纯删除因果证明。",
+    "evidence": [
+      "I_G",
+      "I_QUESTION"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确日期；海军事件有8355138直接证据，机构授衔君主仍未证实，最后以题目同君主前提推断。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_DATE_ADOPT",
+        "N1_ASSUMPTION"
+      ],
+      "work_timeline": [
+        "R1改为机构+Jubilee联合Query，真实返回中4091169列第2；R2明确采用New Zealand和前身，原U产物已经恢复。",
+        "R2 Open4091169 limit10只回The Royal；R3承认cut off，但改查机构授衔，不增加Open范围。R4重复同包。",
+        "R5由1890/Jubilee猜Victoria并实际带Queen Victoria查机构，得到护士机构/庆典等；R7再做近似Query得到完全相同结果包。R9、R11把Victoria限定加入海军Query，两次返回相同噪声，未得海军批准日期。",
+        "R12实际去掉Victoria，Query Royal New Zealand Navy Royal prefix date granted，才取得Operation Neptune的1941日期。R13明确采用日期及George VI，又因机构关系未闭合做一次真实机构Search。",
+        "R14展开12438字符、3011生成Token的关系比较，反复提出未执行的查询，承认机构君主没有直接证据，最终假设同君主成立并Submit日期。"
+      ],
+      "first_substantive_judgment_difference": "原初检核心判断在R2完整恢复；R5将Victoria从猜测带入实查，R11更明确当作机构君主，是后续错误关系具体化。R12取消这个限定后才得到目标材料。",
+      "first_actual_tool_difference": "R1 Query字符串改变但仍完成同一初检；首个独立策略变化R2短Open。真正影响目标材料获取的是R9/R11错误君主限定与R12取消限定后的不同召回。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认所在国与机构前身",
+          "original_operation": "Search所在地、从4091169提取",
+          "original_product": "New Zealand及1890 Jubilee身份",
+          "new_goal": "确认同一国家与机构",
+          "new_operation": "R1机构/Jubilee联合Search，R2明确提取",
+          "new_product": "原产物完整恢复",
+          "evidence": [
+            "O_INITIAL_QUERY",
+            "O_COUNTRY_ADOPT",
+            "N1_INITIAL_QUERY",
+            "N1_COUNTRY_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "形成后续可用的对象与缺口",
+          "original_operation": "拆题后带New Zealand进入后续",
+          "original_product": "机构君主仍缺",
+          "new_goal": "执行后续关系核查",
+          "new_operation": "国家保持；Victoria猜测限制Query，之后取消限定并查海军",
+          "new_product": "日期取得且提交，机构授衔关系仍为假设",
+          "evidence": [
+            "O_INITIAL_PLAN",
+            "N1_VICTORIA_QUERY",
+            "N1_REMOVE_LIMIT_QUERY",
+            "N1_ASSUMPTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有真实初检Return与R2明确采用，不仅凭最后日期或相同DocID；原U的国家/机构信息产物完整恢复。",
+      "decision_action_result_chain": "初检恢复→机构君主仍缺→把Jubilee/1890提升为Victoria假设并限制搜索→无目标日期→取消君主限制真实查海军取得1941→未证机构关系仍反复讨论→假设同君主后C。",
+      "cost": {
+        "generation_tokens": 8911,
+        "prompt_tokens": 299358,
+        "search": 12,
+        "open": 1,
+        "actor": 14,
+        "generation_difference_vs_recorded_original_suffix": 5795,
+        "prompt_difference_vs_cut_round_inclusive": -59566,
+        "search_difference": -2,
+        "open_difference": 1,
+        "actor_difference_vs_recorded_HTTP_attempts": -1,
+        "where_changed": "仅少2Search且多1短Open；后期候选关系反复推理使生成增加5795。R12/R13/R14推理约各1203/1213/3011Token，不能把这解释为计算普遍下降。"
+      },
+      "limits": [
+        "1890成立不证明授Royal时间，护士Jubilee机构不是盲人机构。",
+        "R2限10是10字符，不是读完文档或10Token。",
+        "R14多条search计划没有Call，不计Search。"
+      ]
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "正式Submit与Gold日期等价；核心海军日期已获并采用，但机构授衔者未直接证明。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_DATE_ADOPT",
+        "N2_INFER_LINK"
+      ],
+      "work_timeline": [
+        "R1同一批次联合两次Search：所在地及机构授衔；两个Return后R2明确采用New Zealand和1890前身。并非看到第一个Return才决定第二个Call。",
+        "R2又同批查机构和海军，海军Query返回空；R3同批机构+具体RNZN Query，后者直接返回8355138日期。",
+        "R4已提取日期，将一开始误写的2 October自纠成1 October；同轮9249字符2187Token后实际发出两次机构Query，其中加入George VI；未补机构授衔证据。",
+        "R5已确定海军George VI，却真实查Queen Victoria机构授衔，返回护士机构等；R6又机构重复Search。",
+        "R7整轮16617字符4156Token，反复计划验证但无新Search，最后从海军George VI和题目同君主前提反推机构关系，提交1941。"
+      ],
+      "first_substantive_judgment_difference": "R1即把机构授衔与所在地并行安排，不再严格等初检后才发出第二需求。关键后续R2/R3实际尝试海军，不再被机构缺口完全阻断。",
+      "first_actual_tool_difference": "R1双Call是联合决策，原R1仅1Call；R2已有海军空查询，R3具体海军Query取得日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认机构国家及前身",
+          "original_operation": "所在地Search→提取采用",
+          "original_product": "New Zealand、1890Jubilee",
+          "new_goal": "同一身份核查",
+          "new_operation": "R1批量所在地和授衔Search，R2明确采用",
+          "new_product": "国家及机构身份已重建",
+          "evidence": [
+            "O_INITIAL_QUERY",
+            "O_COUNTRY_ADOPT",
+            "N2_INITIAL_QUERY",
+            "N2_COUNTRY_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "拆题并为后续提供国家限制",
+          "original_operation": "列出多跳后顺序检索",
+          "original_product": "国家已定、君主日期待查",
+          "new_goal": "获取海军日期与机构君主",
+          "new_operation": "两端同批取证，拿到海军日期后又查机构",
+          "new_product": "海军日期充分，机构链接以推理假设代替证据",
+          "evidence": [
+            "O_INITIAL_PLAN",
+            "N2_NAVY_QUERY",
+            "N2_DATE_ADOPT",
+            "N2_INFER_LINK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U目标、真实检索操作和采用产物均存在，且明确先于后续海军日期；并行组织变化不等于跳过初检。",
+      "decision_action_result_chain": "批量初检恢复→两端联合检索且一空一有效→采用具体日期→机构关系缺口持续触发查George VI及Victoria→仍未取证→长篇以题目同君主推断→C。",
+      "cost": {
+        "generation_tokens": 8378,
+        "prompt_tokens": 120894,
+        "search": 10,
+        "open": 0,
+        "actor": 7,
+        "generation_difference_vs_recorded_original_suffix": 5262,
+        "prompt_difference_vs_cut_round_inclusive": -238030,
+        "search_difference": -4,
+        "actor_difference_vs_recorded_HTTP_attempts": -8,
+        "where_changed": "两Call批次使10Search装在6次取证Actor中，比原单Call序列少很多Prompt重复预填；R4和R7长推理分别2187/4156Token，生成反而增加5262。"
+      },
+      "limits": [
+        "Actor少不全是Search少，也来自联合批次；不能把同批Call伪造顺序阅读决策。",
+        "R5回查Victoria缺证仍未证明原假设；最后日期C不能替代机构君主证据。"
+      ]
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "1 October 1941",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1 October 1941",
+      "outcome": "C",
+      "outcome_reason": "正式Submit正确日期；末轮已明确区分护士机构的Royal Charter不是盲人机构，但同君主链接仍靠题目前提填补。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_NURSE_DISTINCTION",
+        "N3_INFER_LINK"
+      ],
+      "work_timeline": [
+        "R1批量查国家和机构君主；R2明确采用New Zealand、1890前身，完整恢复原初检。",
+        "R2单查机构，R3批量机构+海军Query，直接返回Operation Neptune日期和George VI；R4只先采用George VI、计划Open海军却实际查机构。",
+        "R5明确引用1 October 1941，又说先前同缺口Query已搜过仍没君主信息，实际再次执行与R4完全相同Query并得到完全相同Return。",
+        "R6仍将2002法案误推为Royal授予在2002或以后，虽已引用海军1941仍实际查机构Royal George VI；返回另一个Jubilee护士机构Royal Charter材料。",
+        "R7明确指出1889Royal Charter关于护士、不是盲人机构；20950字符5382Token中反复提出未执行查询，最后认为海军君主已定、题目隐含机构同君主，无直接关系证据仍Submit日期。"
+      ],
+      "first_substantive_judgment_difference": "R1联合安排机构君主，R2核心国家采用相同；有效后续变化是R3真实海军取证、R4先提取君主、R5再明确日期。R5已知失败反馈没有阻止同Query重复。",
+      "first_actual_tool_difference": "R1双Call而非原单Call；R3海军Call是首次有效进入目标事件证据的入口。R4/R5同Query同Return属于真实重复，不是仅词面相似。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认国家与前身",
+          "original_operation": "Search并提取机构事实",
+          "original_product": "New Zealand及Jubilee身份",
+          "new_goal": "同一基础事实核查",
+          "new_operation": "R1两Call后R2引用并采用",
+          "new_product": "原产物完整恢复",
+          "evidence": [
+            "O_INSTITUTE_RETURN",
+            "O_COUNTRY_ADOPT",
+            "N3_INITIAL_QUERY",
+            "N3_COUNTRY_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "使后续查询有国家约束",
+          "original_operation": "国家采用后继续多跳",
+          "original_product": "海军/君主待查",
+          "new_goal": "海军日期取证与关系连接",
+          "new_operation": "R3取得日期；R5采用后继续机构相同Query；R7区分护士机构但假设同君主",
+          "new_product": "日期充分，机构君主未补证；错误类比部分识别未导致新证据",
+          "evidence": [
+            "N3_NAVY_QUERY",
+            "N3_DATE_ADOPT",
+            "N3_REPEAT_FEEDBACK",
+            "N3_NURSE_DISTINCTION",
+            "N3_INFER_LINK"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U真正的基础事实核查在R1/R2已经恢复；后面的重复取证、长篇假设既不是该初检的缺失，也不能反向证明它不需要。",
+      "decision_action_result_chain": "初检恢复→海军有效材料返回→先采用君主后采用日期→机构缺口仍驱动相同Query重复→识别护士材料不能证明目标关系→未再搜而长篇推断同君主→C。",
+      "cost": {
+        "generation_tokens": 9277,
+        "prompt_tokens": 115150,
+        "search": 8,
+        "open": 0,
+        "actor": 7,
+        "generation_difference_vs_recorded_original_suffix": 6161,
+        "prompt_difference_vs_cut_round_inclusive": -243774,
+        "search_difference": -6,
+        "actor_difference_vs_recorded_HTTP_attempts": -8,
+        "where_changed": "Search减少6、部分批次联合减少Prompt回放；但R7独轮5382Token与前几轮反复条件重列，使生成仍增加6161。"
+      },
+      "limits": [
+        "指出护士不是盲人是实际纠错，不应吞并为单纯重复陈述；但没有带来真实新核查。",
+        "采用George VI与采用具体日期为不同节点，不能在R3Return时自动补模型采用。"
+      ]
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0295__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "真实无Submit和Final，R8生成满10000Token；Reasoning中的错误年份不能作为正式W答案，更不能补Gold日期判C。",
+      "outcome_evidence": [
+        "N4_STOP",
+        "N4_LENGTH",
+        "N4_LOOP"
+      ],
+      "work_timeline": [
+        "R1机构所在地Search返回空，R2承认没结果并从名称猜New Zealand；实际转查Jubilee机构君主，Return中仍含机构4091169。",
+        "R3明确引用真实Return，采用New Zealand、1890Jubilee及2002incorporation，至此原U的检索支持产物也恢复。R3再次执行与R2同一Query同一Return。",
+        "R4–R7重列海军/君主/日期条件，但7个真实Search全部仍查机构，未执行海军Query；R5不同词包也没有海军日期。",
+        "R8突然断言1935获Royal、George V，并把海军年份猜成1946；无Return支持这些赋值。随后在George V died in 1951? No.上机械重复，持续到整轮10000Token，没有新Call、没有Final。"
+      ],
+      "first_substantive_judgment_difference": "R2初次空结果后把国家暂作名称推断；R3真实证据采用才恢复原U产物。与三条C的关键差别：后面始终没有执行海军取证，R8把无证年份猜测变成当前推理前提并陷入字面重复。",
+      "first_actual_tool_difference": "R1近似所在地Query返回空，原因在已存工具记录中未确定，不能硬归因关键词；R2改机构Query仍补回国家证据。后续没有三条C都具有的海军Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得并采用机构国家和前身",
+          "original_operation": "所在地Search→R2采用",
+          "original_product": "有返回支持的New Zealand/Jubilee身份",
+          "new_goal": "恢复同一基础事实",
+          "new_operation": "初次Search空→R2机构Search取得事实→R3明确采用",
+          "new_product": "产物延迟一轮但完整恢复，不是仅靠题面猜测",
+          "evidence": [
+            "O_INSTITUTE_RETURN",
+            "O_COUNTRY_ADOPT",
+            "N4_INITIAL_QUERY",
+            "N4_COUNTRY_ADOPT"
+          ]
+        },
+        {
+          "original_goal": "拆解多跳并启动求解",
+          "original_operation": "列约束并查机构",
+          "original_product": "国家更新、君主日期仍缺",
+          "new_goal": "继续解决君主和日期",
+          "new_operation": "R3–R7继续同一机构入口；R8无依据赋年份后机械重复",
+          "new_product": "没有海军日期证据，最终无正式答案",
+          "evidence": [
+            "O_INITIAL_PLAN",
+            "N4_LAST_QUERY",
+            "N4_UNSUPPORTED_YEAR",
+            "N4_LOOP",
+            "N4_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "R3已有真实机构Return及明确采用，原U核心目标确已完成；失败发生在后续从未进入海军入口及末轮退化，不可笼统标为原工作未重建。",
+      "decision_action_result_chain": "空初检→机构检索恢复国家/身份→君主缺口反复触发机构Search→没有海军证据→无依据赋1935/1946与George V→单轮字面重复耗尽10000生成→N。",
+      "cost": {
+        "generation_tokens": 12946,
+        "prompt_tokens": 92527,
+        "search": 7,
+        "open": 0,
+        "actor": 8,
+        "generation_difference_vs_recorded_original_suffix": 9830,
+        "prompt_difference_vs_cut_round_inclusive": -266397,
+        "search_difference": -7,
+        "actor_difference_vs_recorded_HTTP_attempts": -7,
+        "where_changed": "工具次数和Prompt较原少，但原因包括末轮不再调用工具而持续生成，10000Token在无进展重复中耗尽；生成比原增加9830，不属于有效省算。"
+      },
+      "limits": [
+        "初次空结果的基础设施/召回原因未从Return证明，保留未知，不改原实验终态。",
+        "R8循环前为何转成1935/1946无证猜测，日志仅能定位首次赋值，不能解释隐藏内部原因。",
+        "无Final的P03正式提交类行为不能从本轨迹成立。"
+      ]
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": "原N→C/C/C/N，B类3/4状态改变，三条为真实正确提交改善，一条仍N但终止原因由上下文请求失败变为生成长度停止。",
+    "function": "4/4完整重建原初检功能：第1/2/3条R2采用，第4条R3采用。不能用三次改善说明原初检有害或可省，也不能说N一路只是缺初检。",
+    "shared_difference_within_three_C": "都实际查海军并取得8355138直接日期，分别R12/R3/R3返回，随后R13/R4/R5明确采用。N一路没有任何海军Call或该日期Return。",
+    "different_paths_with_same_C": "第1条受Victoria假设限制查询两次，去掉限定才取得日期；第2/3条批量双端检索较早取得日期，但之后仍各有机构取证和长篇纯推理，均未证明同君主链接。",
+    "different_outcome_shared_work": "第四条同样恢复基础身份和多跳拆题，却没有实际执行另一端取证；因此初检是否恢复不足以解释C/N。",
+    "cost_split": "Search/Prompt/HTTP请求四次均低于原完整后缀，但生成四次均增加。第4条少工具不表示更有效：以10000Token无进展生成终止。",
+    "sampling_and_anchor": "起点P仅原题且G通用，不带未来候选；改善与整体重新采样、不同批次查询、返回差异都相关，不是受控证明某个初检动作必须删除。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "hypothesis": "基本身份已经恢复后，决定性差别可能在是否让另一端真实取证摆脱未闭合前置关系的阻挡，而不是在是否继续完整重列题目。",
+      "chain": "4条均国家与身份采用→三条实际查海军取得日期，一条一直查机构→三条以未完全证明的同君主关系提交C，一条无海军证据且末轮退化N。",
+      "support": "该Stage的3C与1N内部对照；同题S003四路径有相近海军入口变化，仍只算1个不同题目，不能把8条当8题。",
+      "boundary": "机构关系确是题目条件，不能据此主张不必核查；只说明原先策略没有在失败反馈后实际尝试另一端。"
+    },
+    {
+      "hypothesis": "未经证实的君主身份被用作查询限制，会把搜索引向同名/邻近机构，使模型继续为这个假设补证；取消限制可能恢复目标事件材料。",
+      "chain": "第1条从Jubilee/1890猜Victoria→实际Victoria机构Query召回护士机构，Victoria海军Query两次噪声→R12移除Victoria取得1941George VI→先前假设冲突仍增加后续论证。",
+      "support": "第1条作用链最完整；第2条取得George VI后仍实际回查Victoria，第3条末轮明确区分护士不是盲人，是部分纠错反例；跨题支持待检验。",
+      "boundary": "不得仅因为检索词包含君主姓名就认定错误约束；必须有原文无依据采用及实际召回/后续行动对应。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "这是首次生成起点删除，实际更接近从题目加通用承接重新采样；不能把后面的所有变化归于国家识别Stage。",
+    "4条均FULL_REBUILT但C/N和工具/生成成本差异很大；恢复标签不是机制终点。",
+    "三个正确日期未取得机构Royal授予者直接证据。可能依靠题目已给关系推断，但不等同完整外部支持。",
+    "第4条明确承认incorporation不是授Royal，仍在后面出现无依据新年份并退化，不能只用2002误解释解释所有N。",
+    "原后缀即R1起全轨迹，因为确实在R1@0切；不是把其他切点也套用整轨迹成本。",
+    "所有原生生成IDs缺失、字符精确重建，完整usage可比较但不能给NATIVE_TOKEN_EXACT净省；G6Token是预填并已在Prompt，不重复记生成。",
+    "独立四条节省不可加；A/B是结果筛选而非冗余或必要性的标签。",
+    "Codex语义审阅不等于独立人工验收。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What was the date when the designation prefix given to the naval fleet"
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "boundary_mode",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find:"
+    },
+    {
+      "evidence_id": "O_INITIAL_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "First, I need to find out where the Royal New Zealand Foundation of the Blind is based (which country)"
+    },
+    {
+      "evidence_id": "O_INITIAL_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Royal New Zealand Foundation of the Blind based country",
+      "call_id": "chatcmpl-tool-8cef6308b759369a"
+    },
+    {
+      "evidence_id": "O_INSTITUTE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "The Foundation began in 1890 as the Jubilee Institute for the Blind with a school and residence in Parnell, Auckland.",
+      "call_id": "chatcmpl-tool-8cef6308b759369a",
+      "doc_id": "wiki25:4091169"
+    },
+    {
+      "evidence_id": "O_COUNTRY_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the country is New Zealand."
+    },
+    {
+      "evidence_id": "O_U_LATER_RELATION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Then I need to find when that same monarch formally approved the designation prefix \"Royal\" for the New Zealand naval fleet."
+    },
+    {
+      "evidence_id": "O_LAST_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "Jubilee Institute for the Blind Royal prefix granted monarch",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_HTTP400",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "http_error",
+      "json_pointer": "/rounds/14/error/message",
+      "exact_quote": "your prompt contains at least 55537 input tokens, for a total of at least 65537 tokens"
+    },
+    {
+      "evidence_id": "N1_INITIAL_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Royal New Zealand Foundation of the Blind Jubilee Institute for the Blind",
+      "call_id": "chatcmpl-tool-be3a075fa58d18fb"
+    },
+    {
+      "evidence_id": "N1_COUNTRY_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The Royal New Zealand Foundation of the Blind is based in New Zealand. It began as the Jubilee Institute for the Blind."
+    },
+    {
+      "evidence_id": "N1_SHORT_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "The Royal ",
+      "call_id": "chatcmpl-tool-86805178451d87ea",
+      "doc_id": "wiki25:4091169"
+    },
+    {
+      "evidence_id": "N1_VICTORIA_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Royal New Zealand Navy prefix approved date Queen Victoria",
+      "call_id": "chatcmpl-tool-b87e6991675b61ba"
+    },
+    {
+      "evidence_id": "N1_REMOVE_LIMIT_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "Royal New Zealand Navy Royal prefix date granted",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "The date is 1 October 1941."
+    },
+    {
+      "evidence_id": "N1_ASSUMPTION",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "(Assumption: George VI also granted the Royal prefix to the Jubilee Institute/Foundation, which is the premise of the question)."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/13/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-b427697ee647abdc"
+    },
+    {
+      "evidence_id": "N2_INITIAL_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Royal New Zealand Foundation of the Blind country location",
+      "call_id": "chatcmpl-tool-a3474ecd90f3b49e"
+    },
+    {
+      "evidence_id": "N2_COUNTRY_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the search results, it's clearly New Zealand."
+    },
+    {
+      "evidence_id": "N2_NAVY_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Royal New Zealand Navy Royal prefix approved date monarch",
+      "call_id": "chatcmpl-tool-b925cc08bb10742e"
+    },
+    {
+      "evidence_id": "N2_DATE_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Date for Navy = 1 October 1941."
+    },
+    {
+      "evidence_id": "N2_INFER_LINK",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Therefore, King George VI must be the one who granted the Royal prefix to the Jubilee Institute."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/10/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-9c9a3c7b3c2eee4b"
+    },
+    {
+      "evidence_id": "N3_INITIAL_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Royal New Zealand Foundation of the Blind country based",
+      "call_id": "chatcmpl-tool-b6dae1911127eddb"
+    },
+    {
+      "evidence_id": "N3_COUNTRY_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the search results, the \"Royal New Zealand Foundation of the Blind\" is based in **New Zealand**."
+    },
+    {
+      "evidence_id": "N3_NAVY_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "New Zealand Royal Navy prefix approved date monarch",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N3_DATE_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Actually, let's look at the snippet for \"Operation Neptune (New Zealand)\" (wiki25:8355138)"
+    },
+    {
+      "evidence_id": "N3_REPEAT_FEEDBACK",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Wait, I already did that search. The results for \"Jubilee Institute for the Blind Royal prefix monarch\" didn't explicitly name the monarch in the snippets."
+    },
+    {
+      "evidence_id": "N3_NURSE_DISTINCTION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "This is about nurses, not the blind institute."
+    },
+    {
+      "evidence_id": "N3_INFER_LINK",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Actually, I don't need to find the specific document for the institute if the question structure implies the same monarch."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "submit_call",
+      "json_pointer": "/tool_events/8/arguments/answer",
+      "exact_quote": "1 October 1941",
+      "call_id": "chatcmpl-tool-8d49e22478ec130f"
+    },
+    {
+      "evidence_id": "N4_INITIAL_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Royal New Zealand Foundation of the Blind location country",
+      "call_id": "chatcmpl-tool-aa59711f97862a8a"
+    },
+    {
+      "evidence_id": "N4_COUNTRY_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results indicate that the Royal New Zealand Foundation of the Blind is based in New Zealand. It began as the Jubilee Institute for the Blind in 1890."
+    },
+    {
+      "evidence_id": "N4_LAST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "search_call",
+      "json_pointer": "/tool_events/6/arguments/query",
+      "exact_quote": "Jubilee Institute for the Blind Royal prefix date granted",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_UNSUPPORTED_YEAR",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The Jubilee Institute for the Blind became the \"Royal Jubilee Institute for the Blind\" in **1935**. The monarch at the time was **King George V**."
+    },
+    {
+      "evidence_id": "N4_LOOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "George V died in 1951? No. George V died in 1951? No."
+    },
+    {
+      "evidence_id": "N4_LENGTH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "finish_reason",
+      "json_pointer": "/rounds/7/finish_reason",
+      "exact_quote": "length"
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,629 @@
+{
+  "schema_version": "SAGE100_DEEP_WORK_JUDGMENT_ACTION_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0719",
+  "stage_id": "S001",
+  "sample_order": 12,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0719/trajectory.json",
+      "source_sha256": "67ac2972163d06d1059444deac2c6ef30c090d77b918c0088344a82acb6fbfb7"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0719.json",
+      "source_sha256": "9f96ce0310effb67030baf0915018d3f4389e83fa795aed9ea68f045a3605b09"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "84517fda09a74f03662d463f0ba783fa5f2b68f401586087e50c548e1f22a3eb"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "512693d5ac68dc13ecb1d3bcfbba0845e7bcb0e82b71b352e4120203c26a3d38"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "e8f491fabde95b61c79eabfab694029fdf70a39237dcd196573a8bb32c49665c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "e9047c5916175b389ad745f2f75ffd807f261cca2d14dc741d707ea546509a41"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c4d5e32dc3d3dd1d3794570e08a22aa863a64d4a860fcddba904875c074d957e"
+    }
+  },
+  "question_and_gold": {
+    "question": "What is the sum of the numerical ranking of 2002 as Australia's driest year since 1900 (where 1 is the driest) and the result of subtracting the total number of Central Pacific El Niño events from the total number of all distinct El Niño events that occurred globally between 2000 and 2016?",
+    "gold": "6",
+    "gold_use": "事后评价；未用Gold补入任何生成输入，也不以数值相符代替事件分类证据验收。"
+  },
+  "read_scope": {
+    "original": "完整原始18条Round日志、17个真实Search及全部模型可见Return，Final缺失；完整阅读125797字符去除完全相同Return展示的视图。R18是上下文阻塞记录，没有第18次正常生成。",
+    "new": "四条全部Reasoning、实际Call、完整Return、Final/停止原因；read_four_branches固定视图294067字符已连续阅读[0,294067)。仅完全相同的已读文档字符串/完整Return用精确引用缩短展示；所有真实事件仍各自保留。",
+    "semantic_author": "Codex实际阅读后逐项书写；Python只取证、定位、复算、绑定源SHA及检查引用。",
+    "not_independent_human_gold": true
+  },
+  "original_outcome": {
+    "state": "N",
+    "actual_final": null,
+    "terminal": "CONTEXT_LIMIT_STOP",
+    "reason": "原R18未进入正常生成，原轨迹没有正式提交。不能从前文排名4或计划加减法补出答案。"
+  },
+  "prestate": {
+    "cut": "R1@0，原第一条Assistant推理之前。",
+    "actual_actor_visible_P": "原Question及冻结系统/工具模板；当前Reasoning前缀为空。没有干旱排名的Return、4、事件清单或CP数量。",
+    "existing_candidate_and_gaps": "没有已采用的数值候选；需要排名、全球事件数、CP事件数和最后加减运算。Question已经点明El Niño、时间窗和两种计数，G中的实体/年份不是新事实。",
+    "evidence_levels": "删前P只有任务条件。原S001随后使排名事实从返回→提取fourth-driest→采用4，原S002据此转入另一项计数；不是已有判断的重复确认。",
+    "budget": "从原R1开始；实际新首请求P521+G26=547 Token，20次Actor总限，非原生Token精确边界模式。"
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "json_pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 749
+      },
+      {
+        "round": 2,
+        "json_pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 367
+      }
+    ],
+    "tool_event": "/tool_events/0；R1单次Search，结果进入R2。",
+    "goal": "确定排名，建立最终算式中的第一个明确数值。",
+    "operations": "先拆解排名/总事件/CP事件/减法/加法，真实Search干旱排名；读wiki25:5409718的fourth-driest并转换为4。",
+    "product": "有直接文档支持的排名4；没有取得El Niño事件清单、分类或总数，也尚未完成最终算式。",
+    "judgment_change": "排名未知→明确采用4，随后实际查询El Niño统计。这个子问题在原路径中确实被解决，不能因全题N反说这项工作错误或无用。",
+    "evidence": [
+      "O_PLAN",
+      "O_RANK_QUERY",
+      "O_RANK_RETURN",
+      "O_RANK_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "R2@367转入El Niño统计，后续多次明确保留排名4。R2–R17累计另16次Search，大部分得到人名/El等无关材料，R13一次空结果；没有获得实际事件统计或正式提交。",
+    "observed_failure_chain": "排名已经解决，但第二项证据缺口反复触发相近的计数/年份查询；虽多次承认无关，未实际进入ENSO缩写得到的相关文档，也没有完成事件计数。上下文最终耗尽。",
+    "not_claimed": "不能把原全题失败归因于获得正确排名4；也不能由一个删除点后的随机路径变化证明该Stage造成后面的检索问题。"
+  },
+  "function_features": [
+    "首次从外部材料取得并采用算式的一个输入，不是答案组织或重复总结。",
+    "将多子问题分解并串行推进，原后续保留已知4，未解决的是另一个独立计数条件。",
+    "四条新路径均在R1联合发出排名和事件Search，R2取得且采用同样的4：目标核心功能全部重建。"
+  ],
+  "guide_audit": {
+    "text": "Now I need to find information about El Niño events between 2000 and 2016, specifically:",
+    "origin": "原R2 /rounds/1/reasoning_content [367,455)，冒号引导完整行，不含后面的清单。",
+    "teacher_tokens_derived": 26,
+    "novelty_against_full_P": "El Niño、2000–2016以及查事件的需求已经在原Question。G没有引入排名4、事件数、分类、6或其他新候选；但它是来自原后继的行动方向提示，把第二项工作放到当前开放推理开头。",
+    "observed_use": "四条并没有因此真的跳过排名；R1都把排名与事件Search放进同一批，R2均采用4。",
+    "risk": "ORACLE_ANCHORED；不存在已发现的关键数值事实泄漏，但不能据此称纯无引导删除。采样和联合查询组织也可解释路径变化。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": null,
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R14在推理中算出6但实际又发Search；R20结束仍无Submit，不能把中间6当Final。",
+      "outcome_evidence": [
+        "N1_MEMORY_SUM",
+        "N1_LAST_QUERY"
+      ],
+      "work_and_evidence_timeline": [
+        "R1同批Search排名和事件。排名Return与原E0完全相同；事件Return空。R2直接采用fourth-driest→4，原U的核心成果恢复。",
+        "R2–R8继续list/count/Central Pacific词序变化，El相关人名或空结果。R6/R7推理493字符完全相同，真实又搜；不是仅有搜索意向。",
+        "R9认识到people with El in names并添加climate，但仍得到同类材料；R10枚举2000–2016全部年份仍空。R11用完整Southern Oscillation词组，返回以中微子/地磁等oscillation材料为主；其中气候展望为La Niña冬季统计，不是题目所需事件表。",
+        "R14改用自身知识列4个总事件、2个CP并算6，随后真实查询这份分类；该Call返回空。这个计算的中间输入没有实际文档支持，不能因为6正确就称证据充分。",
+        "R15还重新Search已知排名，R16/R17枚举年份仍空，R18–R20连续同一个年份Query、同一个空Return；最后耗尽20次Actor，无Final。"
+      ],
+      "first_judgment_divergence": "未看到排名判断丢失：R2已经恢复4。与原先始终未形成事件算式相比，R14首次出现记忆中的事件列表/6，但没有转为实际提交；随后又回到事件清单搜索。",
+      "first_actual_tool_divergence": "R1从原先单排名Call变为排名与事件联合两个真实Call。不是G自己作为真实Search执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定干旱排名",
+          "original_operation": "R1 Search→读wiki25:5409718",
+          "original_product": "R2采用4",
+          "new_goal": "同一排名",
+          "new_operation": "R1 batch中e0实际Search，R2解释",
+          "new_product": "同样有文档支持的4",
+          "evidence": ["O_RANK_QUERY", "O_RANK_RETURN", "O_RANK_ADOPT", "N1_RANK_QUERY", "N1_RANK_ADOPT"],
+          "original_evidence": [
+            "O_RANK_QUERY",
+            "O_RANK_RETURN",
+            "O_RANK_ADOPT"
+          ],
+          "new_evidence": [
+            "N1_RANK_QUERY",
+            "N1_RANK_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "排名的目标、真实取证、直接采用全部恢复；原U没有要求必须在单独一轮只查排名。",
+      "judgment_action_outcome_chain": "排名4已恢复→事件缺口仍未闭合→相似查询反复无关/空；中间记忆计算6没有实际提交而继续核验→20次Actor耗尽N。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "3769生成、513820累计Prompt、21Search、0Open、20Actor。原同切点记录3076/489400/17Search/0Open/18请求（最后1请求为上下文阻塞，无正常生成）。生成+693、Search+4；联合首批没有减少总工作，额外的排名重查和末尾空结果重复是真实增量。G26计prefill，P521另列，不重复算生成。",
+      "counterevidence_and_alternatives": "四次中唯一N已经正确恢复排名，还曾算6。反驳删除重要子功能失败必因该功能未恢复；实际哪个内在因素使它未Submit不能从日志唯一确定。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "6",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "6",
+      "outcome": "C",
+      "outcome_reason": "R13实际submit_answer(6)，与Gold一致；分类口径存在明确文档歧义，答案匹配和证据唯一性分别记录。",
+      "outcome_evidence": [
+        "N2_ACCEPT_COUNTS",
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1联合排名+事件Search，排名Return相同且R2采用4。R3为了事件信息Open排名文档limit50，仅得开头残句，没有新增计数事实。",
+        "R4–R8多次El Niño查询返回无关；R8联合总事件和CP仍未找到。R9真正改用缩写ENSO events 2000 2016，在同一批e11取得wiki25:645541，明确主列表CP 2002–03/2004–05/2009–10，又列some sources说2006–07/2014–16也属CP。",
+        "R10Open这个文档limit100，仅开头定义，不能把后面列表归因于Open100；完整分类列表此前已在Search snippet中。R11正确采用主表与附加争议两部分，承认仍缺全球总事件表，R11/R12继续Search均无关/空。",
+        "R13列主CP3和潜在CP5，计算总事件5，比较4+(5−3)=6与4+(5−5)=4；选择以主列表3为预期口径，实际Submit6。总事件穷尽性并没有另一个独立表验证。"
+      ],
+      "first_judgment_divergence": "排名4与原相同；重要分歧是R9取得相关ENSO列表、R11/R12明确采用分类及其争议，不再只有未解决缺口。R13通过选定主列表口径形成可提交算式。",
+      "first_actual_tool_divergence": "R1联合两个Search；后续真正改变证据入口的节点为R9缩写ENSO查询，原没有执行这一查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "排名数值",
+          "original_operation": "Search并解释fourth",
+          "original_product": "4",
+          "new_goal": "排名数值",
+          "new_operation": "R1e0 Search、R2采用",
+          "new_product": "4",
+          "evidence": ["O_RANK_QUERY", "O_RANK_ADOPT", "N2_RANK_QUERY", "N2_RANK_ADOPT"],
+          "original_evidence": [
+            "O_RANK_QUERY",
+            "O_RANK_ADOPT"
+          ],
+          "new_evidence": [
+            "N2_RANK_QUERY",
+            "N2_RANK_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "排名外部证据和换算完整恢复，非由G提供4。",
+      "judgment_action_outcome_chain": "原子问题4恢复→缩写检索得到相关事件分类→提取CP3与另2个争议事件→在没有额外总表的情况下选主列表口径→实际6/C；少了后半段无休止检索，但新增了分类解释和长算式评估。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "5246生成、234831Prompt、13Search、2Open、13Actor；生成+2170，Search−4但Open+2，总Search/Open调用15对17，实际请求13对原18记录（原仅17有生成），Prompt−254569。R12的1057和R13的1765生成Token是新增的实质分类/算式工作；不能叫全维度节省。",
+      "counterevidence_and_alternatives": "C并不证明CP争议客观消解，文本本身同时支持不同分类定义；模型选定口径没有取得独立验证。R1联合取证/G方向/采样都不能排除，不能把改善因果归给删除排名取证。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "8",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "8",
+      "outcome": "W",
+      "outcome_reason": "R17实际Submit8，与Gold6不同；排名正确，错误来自缺乏返回支持的事件列表/分类和4+(5−1)。",
+      "outcome_evidence": [
+        "N3_KNOWLEDGE_LIST",
+        "N3_SUM",
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1联合排名和事件Call，排名Return同原；R2采用4。后续多次年限/关键词变化仍无关或空。",
+        "R4将窗口扩大1950–2020，返回出生卒年匹配的演员等；R6去掉年份List of El Niño events返回El/ni姓名、歌曲；R7加入完整Southern Oscillation词组取得相关气候背景/ENSO提及但没有可计数事件表，R10/R16重复同Query同Return。",
+        "R9加引号不解决，R12 Query返回Ni相关化学、音阶、人名。R11/R13提过可以ENSO events 2000 2016，但实际执行的并不是r2那条缩写查询；计划和Call分开。",
+        "R17明确承认未找到列表，转用Common knowledge/According to NOAA式记忆列年：把2006–07称La Niña，将2014–15和2015–16分开，主列表算5、CP只1，反复算4+(5−1)=8并实际提交。没有任何实际Return支持这份NOAA事件表。"
+      ],
+      "first_judgment_divergence": "排名仍相同；真正决定W的是R17从未解决计数缺口转为接受自身记忆列表/分类，错误输入带来8，不是排名4消失。",
+      "first_actual_tool_divergence": "R1联合取证；后续完整Southern Oscillation入口未得到列表，提及ENSO缩写不等于实际执行，跟N2 R9的真正Call不同。",
+      "function_correspondence": [
+        {
+          "original_goal": "排名数值",
+          "original_operation": "真实排名Search→解释",
+          "original_product": "4",
+          "new_goal": "排名数值",
+          "new_operation": "R1e0 Search→R2读Return",
+          "new_product": "4",
+          "evidence": ["O_RANK_QUERY", "O_RANK_ADOPT", "N3_RANK_QUERY", "N3_RANK_ADOPT"],
+          "original_evidence": [
+            "O_RANK_QUERY",
+            "O_RANK_ADOPT"
+          ],
+          "new_evidence": [
+            "N3_RANK_QUERY",
+            "N3_RANK_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "被删排名功能全部重新执行；W不能当作排名功能未重建或重建失败。",
+      "judgment_action_outcome_chain": "排名4恢复→没有找到事件表→较晚改为记忆构造5/1分类并接受→实际Submit8/W。原N转W意味着多了正式但错误的答案，不是改善。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "3949生成、405711Prompt、17Search、0Open、17Actor；生成+873，Search与原相同，Prompt−83689。17Actor都有响应，不能把与原18记录相比少1请求说成少1次有生成的推理；原最后记录是上下文阻塞。R17的1722生成Token对应记忆列表及反复算式，并未带来可靠证据。",
+      "counterevidence_and_alternatives": "模型做了更多内部解释并形成Final仍错，反驳有Final即质量改善；也反驳提过ENSO就等于利用ENSO返回。没有直接证据将错误分类追溯为原排名Stage的独特效应。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0719__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "6",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "6",
+      "outcome": "C",
+      "outcome_reason": "R16真实Submit6；与Gold相符，但分类口径在最后10360字符中反复4/6摆动，证据争议并未真正消除。",
+      "outcome_evidence": [
+        "N4_ALTERNATIVES",
+        "N4_CHOOSE_PRIMARY",
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1联合排名和事件Search，排名Return相同且R2采用4。R3列全部年份仍空；提到Open排名但实际没有执行该Open。",
+        "R4实际联合global Query与无年份Central Pacific El Niño events，后者e5返回wiki25:645541完整同段分类，R5明确提取主CP3和争议2。这个证据比N2早5轮可见。",
+        "R5 Open100只有定义，R6又Open2000得到更长文本但主要分类与原Search snippet相同；不能说Open新增了CP事件数。后续继续global total缺口，R7–R11 list Query同类无关，R12/R15枚举年份空。",
+        "R15仍逐项比较主3/含争议5，不把La Niña列表混算El Niño。R16长10360字符、3947生成Token，反复比较总5−CP5→4和总5−CP3→6，多次说要最明确来源但并未再实际Search；最后采用主列表3，Submit6。"
+      ],
+      "first_judgment_divergence": "排名不变；R5实际采用了CP类别材料，但总事件穷尽与是否纳入争议事件仍未定。最终选择主列表解释，形成与N3记忆分类不同的算式。",
+      "first_actual_tool_divergence": "R1联合取证；R4去掉年份直接查CP事件取得相关ENSO文档，与原16次统计查询所得材料不同。",
+      "function_correspondence": [
+        {
+          "original_goal": "排名数值",
+          "original_operation": "Search和序数换算",
+          "original_product": "4",
+          "new_goal": "排名数值",
+          "new_operation": "R1e0真实Search和R2换算",
+          "new_product": "4",
+          "evidence": ["O_RANK_QUERY", "O_RANK_ADOPT", "N4_RANK_QUERY", "N4_RANK_ADOPT"],
+          "original_evidence": [
+            "O_RANK_QUERY",
+            "O_RANK_ADOPT"
+          ],
+          "new_evidence": [
+            "N4_RANK_QUERY",
+            "N4_RANK_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有真实Call/同样的Return/明确4，G没有提供4。",
+      "judgment_action_outcome_chain": "4恢复→较早得到分类材料→分类采用但缺口未闭合持续Search→同一证据上反复比较两种口径→最终选择3而提交6/C。早取得证据不保证早停止或低计算。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "8219生成、374530Prompt、15Search、2Open、16Actor；生成+5143、Search−2而Open+2，所以Search/Open合计17与原相同；Prompt−114870。R15有1211、R16有3947生成Token，大量增加来自对同一分类歧义的重复比较，不是更多实际Call。不能将Search减少单独称整体更省。",
+      "counterevidence_and_alternatives": "N2同样分类材料较晚获得却更早提交、更少生成，N4较早获得仍成本更高；证据获取时间不能单独解释提交和成本。最后选择主表并无新Return证明其必然正确，是保留的口径歧义。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "N",
+      "C",
+      "W",
+      "C"
+    ],
+    "screen_group": "B",
+    "state_changes_from_original_N": 3,
+    "actual_improvement_to_C": 2,
+    "all_U_recovery": "4/4 FULL_REBUILT，均实际重新查排名且采用4，首批联合事件查询。",
+    "shared_and_distinct_middle_links": "排名不是四次差异。两条C都实际取得wiki25:645541并采用主CP3+其他2构成算式；W未取得事件表而接受记忆CP1；N曾记忆算6却仍Search到预算耗尽。两个C之间还存在取得早晚、重复查询、长分类比较和Open数量差异。",
+    "evidence_support": "排名4四条有直接证据；C路径有CP主列表与明确争议但独立全球总表未验证；W的计数/NOAA归属无实际Return支持；N中的6无已见分类表支持。",
+    "cost": "4条生成均高于原记录；只有r1累计Prompt更高，另3更低。r2实际Search/Open总数降低，r4总数不降，r3一样；答案变化、证据变化、生成变化不可互相替代。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "多子问题任务中，一个Stage正确解决了第一个数值；删除后若该功能普遍重建，后续结果变化可能来自另一个子问题的证据入口、分类判断及是否提交，而不是该Stage功能失落。",
+      "chain": "排名未定→原U真实取证采用4→四条都恢复4→事件证据入口分化：ENSO/CP去年份取得相关分类，或仍无关→有材料选主3得6、无表记忆造1得8、未提交则N；成本分别落在重复空查询、扩展Open、长分类比较。",
+      "support": [
+        "N1_RANK_ADOPT",
+        "N2_RANK_ADOPT",
+        "N3_RANK_ADOPT",
+        "N4_RANK_ADOPT",
+        "N2_ENSO_QUERY",
+        "N2_CP_RETURN",
+        "N3_SUM",
+        "N4_CP_QUERY"
+      ],
+      "scope": "1 Stage、1题、4续跑；是B状态变化不能直接等同目标必要性的反例，不宣称独立跨题机制已经成立。"
+    },
+    {
+      "statement": "取得并采用分类证据之后，若材料本身有不同口径，未解决的计数条件仍会推动补证或内部反复比较；最终选定口径才能形成算式和提交，较早返回不能独自决定成本。",
+      "contrast": "r2 R9得到CP表、R13采用主3并提交；r4 R4已得到同表，仍多次无增量Search/Open和R16长比较后提交；r3无表也提交但错误；r1无表且算过正确数也未提交。",
+      "limits": "尚不能解释为何r4多次摆动而r2较早结束，不能用信心/停止阈值等隐藏状态填补。C只说明Gold匹配，真实分类争议仍需研究者判断。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "B3/4状态改变中只有2/4为N→C，另1/4是N→W；不能把3/4全部算改善。",
+    "原U解决的排名在四条中均重建，且原路径也始终保留4；不能将此B案例作为排名取证原本错误、有害或不可省的因果证据。",
+    "R14中正确6不构成N1正式Final；N3自称NOAA知识不构成真实NOAA Return。",
+    "ENSO文档明确有主列表和some sources附加事件，口径没有由新证据唯一消解。两个6保持现有C评价，但证据充分性不是自动PASS。",
+    "原R18为CONTEXT_LIMIT_STOP请求记录、新r1为20Actor耗尽，两种N的终止链不同；不能统一称同一预算失败。",
+    "当前边界R1@0，旧原始Token IDs未保存；成本用完整响应usage比较，不冒充原生截断精确节省。",
+    "ORACLE_ANCHORED、不同采样、新首批双查询及工具材料差异都存在；没有无G同P对照，不能给唯一删除因果解释。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about El Niño events between 2000 and 2016, specifically:"
+    },
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "actual_question_input",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "What is the sum of the numerical ranking of 2002 as Australia's driest year since 1900"
+    },
+    {
+      "evidence_id": "O_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Finally, I need to add the ranking from step 1 to the result from step 4."
+    },
+    {
+      "evidence_id": "O_RANK_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Australia driest year since 1900 2002 ranking",
+      "call_id": "chatcmpl-tool-8cb4a78f9c56304e"
+    },
+    {
+      "evidence_id": "O_RANK_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/2/snippet",
+      "exact_quote": "It was, at the time, Australia's fourth-driest year since 1900.",
+      "call_id": "chatcmpl-tool-8cb4a78f9c56304e",
+      "doc_id": "wiki25:5409718"
+    },
+    {
+      "evidence_id": "O_RANK_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the numerical ranking of 2002 as Australia's driest year since 1900 is 4 (where 1 is the driest)."
+    },
+    {
+      "evidence_id": "N1_RANK_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "2002 Australia driest year since 1900 ranking",
+      "call_id": "chatcmpl-tool-979fba5b431f614d"
+    },
+    {
+      "evidence_id": "N1_RANK_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "So the ranking is 4."
+    },
+    {
+      "evidence_id": "N1_MEMORY_SUM",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 14,
+      "event_type": "unsubmitted_calculation",
+      "json_pointer": "/rounds/13/reasoning_content",
+      "exact_quote": "4 + (4 - 2) = 4 + 2 = 6"
+    },
+    {
+      "evidence_id": "N1_LAST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 20,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/20/arguments/query",
+      "exact_quote": "El Niño 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 events count",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RANK_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Australia driest year 2002 ranking 1900",
+      "call_id": "chatcmpl-tool-bf9484ca1255d113"
+    },
+    {
+      "evidence_id": "N2_RANK_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the numerical ranking of 2002 as Australia's driest year since 1900 is 4 (where 1 is the driest)."
+    },
+    {
+      "evidence_id": "N2_ENSO_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "ENSO events 2000 2016",
+      "call_id": "recovered_call_2"
+    },
+    {
+      "evidence_id": "N2_CP_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/11/observation/results/1/snippet",
+      "exact_quote": "Some sources say that the El Niños of 2006-07 and 2014-16 were also Central Pacific El Niños.",
+      "call_id": "recovered_call_2",
+      "doc_id": "wiki25:645541"
+    },
+    {
+      "evidence_id": "N2_CP_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "I need to find the total number of all distinct El Niño events (both Central Pacific and Eastern Pacific) between 2000 and 2016."
+    },
+    {
+      "evidence_id": "N2_ACCEPT_COUNTS",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "So, CP events = 3, Total El Niños = 5."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 13,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/15/arguments/answer",
+      "exact_quote": "6",
+      "call_id": "chatcmpl-tool-92ecef8314ee881f"
+    },
+    {
+      "evidence_id": "N3_RANK_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "2002 Australia driest year since 1900 ranking",
+      "call_id": "chatcmpl-tool-9907cc4c2af1e881"
+    },
+    {
+      "evidence_id": "N3_RANK_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the ranking is 4."
+    },
+    {
+      "evidence_id": "N3_KNOWLEDGE_LIST",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 17,
+      "event_type": "reasoning_without_supporting_return",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "Total Central Pacific El Niño events: 1 (2014-2015)."
+    },
+    {
+      "evidence_id": "N3_SUM",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "Sum = 4 (ranking) + 4 (result) = 8."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 17,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/17/arguments/answer",
+      "exact_quote": "8",
+      "call_id": "chatcmpl-tool-a441a022cb4de27a"
+    },
+    {
+      "evidence_id": "N4_RANK_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Australia driest year 2002 ranking since 1900",
+      "call_id": "chatcmpl-tool-8302bfddbda102a3"
+    },
+    {
+      "evidence_id": "N4_RANK_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the numerical ranking is 4 (where 1 is the driest)."
+    },
+    {
+      "evidence_id": "N4_CP_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Central Pacific El Niño events",
+      "call_id": "chatcmpl-tool-8454d61b04097f85"
+    },
+    {
+      "evidence_id": "N4_CP_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/5/observation/results/4/snippet",
+      "exact_quote": "Recent Central Pacific El Niños happened in 1986–87, 1991–92, 1994–95, 2002–03, 2004–05 and 2009–10.",
+      "call_id": "chatcmpl-tool-8454d61b04097f85",
+      "doc_id": "wiki25:645541"
+    },
+    {
+      "evidence_id": "N4_ALTERNATIVES",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "If we take the definitive count, it would be 3 Central Pacific El Niño events, and 5 total El Niño events. Then the subtraction would be 5 - 3 = 2."
+    },
+    {
+      "evidence_id": "N4_CHOOSE_PRIMARY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "Given the question asks for \"the total number of Central Pacific El Niño events\", I'll use the definitive count of 3."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 16,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/17/arguments/answer",
+      "exact_quote": "6",
+      "call_id": "chatcmpl-tool-87bca4e24d476277"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,16 @@
+{
+ "case_id":"92__rep1__S001__FIRST_SENTENCE",
+ "function":"从空前缀解析题目并做多入口候选搜集，形成2011个人首单与潜在歌手材料；未在U内获得绰号，也尚未把Jun.K落实为具体演出核查。",
+ "prestate":{"returned":"P仅原题与工具说明。","extracted":"尚无检索材料。","adopted":"无歌手或歌曲候选。","action":"初始问题含个人首单2011与组合出道后海外演出，二者不是同一出道年份。"},
+ "stage_effect":"U完成八Call广搜，取得Jun.K首单及人物线索，却反复错误合并组合出道与个人首单。Z后来修正为solo2011并查具体Jun.K演出，取得Goat Flower，再核原唱/翻唱方向才提交。",
+ "four":[
+  {"repeat":1,"state":"N","judgment":"只有搜索意向及工具格式文本，没有可执行Call。","action":"零工具事件，NONFINAL_PROTOCOL_STOP。","restoration":"真实取证功能未观察到；不能据此判定人物采用机制失效。","cost_location":"低Token/零Search来自协议提前停止，不能计有效节省。","quality":"没有正式Final，不能从意向补答案。","evidence":["N1_ONLY_TOOL_TEXT"]},
+  {"repeat":2,"state":"N","judgment":"见到Jun.K个人2011首单但因组合出道绑定未追查；又从Chinese zodiac推成Chinese singer，转Jia。","action":"宽搜后实际查Jia，后段重复相同Query/Return至上下文guard；未取得绰号16130。","restoration":"宽泛取证部分恢复，但材料没有转为正确人物的演出查询。","cost_location":"19Search/19Actor高于原11/7；后段Jia无更新的检索与输入堆积是主要增长落点。","quality":"无Final；不是绰号证据返回后被忽略，而是关键文档未取得。","evidence":["N2_SOLO_SEEN_NOT_PURSUED","N2_CHINESE_INFERENCE","N2_JIA_SELECTED","N2_REPEAT_QUERY_A","N2_REPEAT_QUERY_B","N2_FEEDBACK_NO_UPDATE"]},
+  {"repeat":3,"state":"N","judgment":"重述约束后仍只输出工具样式字符串。","action":"tool_calls为空，未产生Search及Return即非Final停止。","restoration":"思考准备有，真实取证无；与新2的语义路线失败不同。","cost_location":"少消耗是早停，不解释成Stage冗余。","quality":"无正式Final。","evidence":["N3_ONLY_TOOL_TEXT"]},
+  {"repeat":4,"state":"C","judgment":"第二条泛Query较早共同取回个人首单与具体演出报道，采用人物/绰号。","action":"随后查Jun.K出生，再提交Goat Flower；没有复现原后继的翻唱方向核验。","restoration":"用更短材料入口完成候选发现，不必重演原八Call；原关系核查未恢复。","cost_location":"3Search/4Actor，既有更早命中，也有少做歌曲关系校验，不能全归原U可省。","quality":"绰号C，但Final把原唱/翻唱语言方向说反。","evidence":["N4_EARLY_BROAD_QUERY","N4_DOCUMENT_ADOPTED","N4_PERSON_QUERY","N4_WRONG_COVER_RELATION"]}
+ ],
+ "guidance_review":"G仅Let me try a different approach，不含未来人名、事实或答案；但空P出现换方法姿态，并非无引导。原生精确P与局部重编码G来源分开披露。",
+ "local_chain":"初始约束拆解/广搜→是否把个人首单与组合出道区分并落实到具体演出Query→是否取得绰号文档→原路径和新4形成答案；新2误绑定条件后转无关人物持续搜索，另两条在真实工具执行前就停了。",
+ "attribution_limit":"B类三N只有一条可用于候选路线的语义对照，另两条是协议终态。删除长初始U后从题目开始，不证明其每步宽搜都必要；关键答案文档原在Z而非U。",
+ "evidence_ids":["O_INITIAL_INTERPRETATION","O_EARLY_SOLO_EVIDENCE","O_CANDIDATE_PROBLEM","O_REFRAME_SOLO","O_TARGETED_PERSON_QUERY","O_NICKNAME_DOCUMENT","O_NICKNAME_ADOPTED","O_COVER_RELATION_UPDATED","N1_ONLY_TOOL_TEXT","N2_SOLO_SEEN_NOT_PURSUED","N2_GENERIC_REPLACEMENT_QUERY","N2_SOLO_REAPPEARS","N2_CHINESE_INFERENCE","N2_JIA_SELECTED","N2_REPEAT_QUERY_A","N2_REPEAT_QUERY_B","N2_FEEDBACK_NO_UPDATE","N3_ONLY_TOOL_TEXT","N4_EARLY_BROAD_QUERY","N4_DOCUMENT_ADOPTED","N4_PERSON_QUERY","N4_WRONG_COVER_RELATION"]
+}

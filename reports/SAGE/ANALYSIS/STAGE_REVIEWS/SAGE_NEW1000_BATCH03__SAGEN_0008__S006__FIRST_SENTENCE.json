@@ -1,0 +1,442 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0008",
+  "stage_id": "S006",
+  "sample_order": 98,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the date of the maiden flight of the second prototype of the German flying boat, whose initial version was flown by Flight Captain Erich Gundermann, and which was designed by the company that also developed an experimental aircraft in the 1950s to test a tilting-propeller system for STOL, a concept initially explored with the pre-World War II Dornier Do 10?",
+    "gold": [
+      "23 November 1938"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "23 November 1938",
+    "adopted_answer": "23 November 1938",
+    "outcome": "C",
+    "reason": "原全文读取区分V1与V2日期，正式提交正确日期。",
+    "evidence": [
+      "O_DATE",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8[0,167)已明确姓名查询只回截断Do26，V1名称之后内容不可见；Do26强候选，Dornier由Do10技术线索确认，目标V2首飞日期未获得。此前Open1000也没有日期。",
+    "evidence_states": "Do26文档已找到但不是全文可见，原型日期尚未提取/采用；不能把总长度2528当已经读到2528字。",
+    "evidence": [
+      "O_P",
+      "O_SHORT"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 167,
+        "end": 513
+      }
+    ],
+    "goal": "针对Do26第二原型V2及首飞日期寻找直接材料。",
+    "operations": "从姓名切换到Dornier Do26 prototype V2 maiden flight真实Search，回Do26旧截断片段、军事史/规格等页面，未给日期。",
+    "product": "新增原型/军事史材料入口，没有取得V2首飞日，也没有接受日期。",
+    "judgment_change": "将检索对象从飞行员姓名收窄到原型标识，然而本次结果没有闭合目标事实。",
+    "evidence": [
+      "O_U"
+    ]
+  },
+  "original_followup": {
+    "use": "R9仍查Gundermann关系，R10同姓名型号检索；R11终于实际Open2528读目标文档完整段，R12接受V2日期，再核1950s旁线后提交。原U本身不含答案，不能把后来成功全归本次Query。",
+    "evidence": [
+      "O_NEXT",
+      "O_DATE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "在姓名检索不充分时改以具体原型编号寻找日期证据；这次尝试并未直接产出目标事实。",
+    "state_relation": "四次删后都没有日期，但其中r1重新做原型搜索，r4查清Do29旁线，r2/r3主要损失在无真实新工具的长推演；不能据4N断言U提供了不可替代日期证据。",
+    "evidence": [
+      "N1_V2",
+      "N1_STOP",
+      "N2_J",
+      "N3_J",
+      "N4_J",
+      "N4_STOP"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The search results for \"Erich Gundermann\" didn't directly show his name in the snippets.",
+    "source_position": "O R9[0,88)，I#/anchor_text，21Token。",
+    "novelty": "只是重复P已明确的姓名不在片段中，无新日期/候选/关系；但它在原V2查询被删后重新强调姓名缺口，可能影响优先查姓名的方向。不是自主新判断。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ],
+    "risk": "ORACLE_ANCHORED；无可见决定性事实泄漏，仍有反馈/行动方向及采样影响，非无引导因果删除。"
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat01",
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R8–20真实13Actor用尽，仍无V2日期，没有Final。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_STOP"
+      ],
+      "work_and_evidence_timeline": "R8 Gundermann Dornier Do26；R9 Do26 second prototype maiden flight转回多无关航空/软件资料；R10 Open3638520 offset500 limit1000仍在日期句前截断；R11–14飞行员变体反复相同Do26开头；R15第二原型日期Query、R16 V2 V3组合回大量无关版本页；R17实际Open3638521军事史全文，只含战争命运和V1/V2名称；R18再V2日期Search，R19/20姓名Query仍旧截断，最后返回后无后续Actor。",
+      "first_judgment_divergence": "原本马上查V2，删后首先回到姓名；后来虽恢复原型查询，仍没把缺口转成读取3638520的日期段。",
+      "first_actual_tool_divergence": "R8姓名Query替原V2 Query；R10读取500–1500而非后续完整2528。",
+      "function_correspondence": [
+        {
+          "original_goal": "V2首飞事实",
+          "original_operation": "原型日期Search",
+          "original_product": "原型材料但无日期",
+          "new_goal": "同原型日期查找",
+          "new_operation": "R9/15/16/18原型Search实际执行，另做两个局部Open",
+          "new_product": "恢复目标搜索，仍未见日期，军事史不是首飞证据",
+          "evidence": [
+            "O_U",
+            "N1_V2",
+            "N1_J",
+            "N1_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U的原型取证尝试确实重新执行，FULL不表示后来读取/日期判断也恢复，更不表示成功。",
+      "judgment_action_outcome_chain": "姓名缺口重新居首→恢复原型Query却反复旧摘要或版本号无关页→Open范围/对象未覆盖目标日期→仍以未解决为理由继续姓名Search→Actor耗尽。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "2871生成244436Prompt13Actor11Search2Open；原后续1712–1856生成6段4Search1Open，生成差[1015,1159]，多7Search1Open7Actor。额外成本落在无日期重复检索及局部读取；P8803/G21单列。",
+      "counterevidence_and_alternatives": "恢复U取证却N，反驳仅缺一次V2查询就解释失败；末返回未消费，不能算模型忽略了它。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R10一轮10000Token未形成Call/Final，真实长度终止。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_STOP"
+      ],
+      "work_and_evidence_timeline": "R8 Gundermann泛搜回歌手等，R9 Erich Gundermann Dornier回Do26截断。R10 26440字符/10000Token重复Do18/26/28/31、1950s旁线、Open范围猜测及V1至V248等检索计划，但没有执行第三次工具。实际仅两Search零Open。",
+      "first_judgment_divergence": "先泛搜姓氏，再把缺少日期转成大量无新证据型号与工具长度猜测，没有真正执行扩大读取。",
+      "first_actual_tool_divergence": "R8 Gundermann替原V2 Query；R10计划的数百查询全未调用。",
+      "function_correspondence": [
+        {
+          "original_goal": "查原型日期",
+          "original_operation": "真实V2 Search",
+          "original_product": "返回原型材料",
+          "new_goal": "同日期与型号识别",
+          "new_operation": "两姓名Search后列原型查询/读取意向，没有实际V2 Search",
+          "new_product": "无新原型材料或日期",
+          "evidence": [
+            "O_U",
+            "N2_J",
+            "N2_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "完整窗口里只有姓名Search，原型检索在文字中反复提出而未执行。",
+      "judgment_action_outcome_chain": "姓名搜索无直接证据→重新猜型号/误读总长度与可见文本→计划代替行动并逐号枚举→生成上限N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "10540生成33268Prompt3Actor2Search0Open，生成差[8684,8828]；Search比原少2但R10单轮10000Token，减少工具/Prompt不等于整体更省或功能绕过成功。",
+      "counterevidence_and_alternatives": "与r1同N但不是实际搜索循环；无Final不可根据内部Do26猜测判W。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R13无工具长推演达10000Token，没有正式Final。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R8说open但实际Gundermann Dornier Search；R9泛姓氏回歌手，R10/11/12三次姓名/Flight Captain组合仍同截断Do26。R13 28602字符10000Token反复Do27是飞行艇/水上机及Do22、搜姓名和1950s计划，没有实际Call。总5Search0Open6Actor。",
+      "first_judgment_divergence": "把没有姓名片段当型号不稳的理由，不执行明知截断文档的读取，而在Do27/Do22之间反复未经证据的猜测。",
+      "first_actual_tool_divergence": "R8是姓名Search，尽管推理最后说open；从未真正执行Open或原型专查。",
+      "function_correspondence": [
+        {
+          "original_goal": "原型日期取证",
+          "original_operation": "V2专查",
+          "original_product": "实际返回的原型材料",
+          "new_goal": "定位飞行员/型号",
+          "new_operation": "五姓名Search，原型/Do22查询只在内部计划",
+          "new_product": "同摘要、无日期",
+          "evidence": [
+            "O_U",
+            "N3_J",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有实际原型专查，不能把一再提出搜索视为完成原U。",
+      "judgment_action_outcome_chain": "姓名未显现→无法稳定对应飞机→无证据型号断言反复→工具行动消失而推理继续→长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "11218生成73447Prompt6Actor5Search0Open，生成差[9362,9506]；额外主体为R13一万Token非执行计划，不是五Search本身。",
+      "counterevidence_and_alternatives": "r2也长度N但先前实际两Search，此条五Search；相同终态不允许合并成本路径。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat04",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R20一万Token截断，无日期、无Final；不是上下文停止。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_STOP"
+      ],
+      "work_and_evidence_timeline": "R8姓氏、R9引号飞行员、R10–12姓名型号查询；R13实际换1950s tilting propeller STOL取得Do29，R14明确采用厂商证据但仍缺飞行员/型号；R14–19六次实际飞行员/Do26查询只回旧摘要；R20 27038字符10000Token多次说读全文/再搜但没有实际Open或Call。12Search0Open13Actor。",
+      "first_judgment_divergence": "删除后转泛姓名；后来真正完成的是辅助厂商条件，关键日期缺口未转成原文后段读取。",
+      "first_actual_tool_divergence": "R8 Gundermann替V2 Query；R13新1950s查询先完成旁线。",
+      "function_correspondence": [
+        {
+          "original_goal": "原型V2日期",
+          "original_operation": "V2专查",
+          "original_product": "实际原型材料",
+          "new_goal": "飞行员关系与厂商技术",
+          "new_operation": "多姓名Search及1950s Search，没有真正V2专查/Open",
+          "new_product": "Do29厂商条件被采用，目标日期仍缺",
+          "evidence": [
+            "O_U",
+            "N4_AUX",
+            "N4_J",
+            "N4_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "原型专查仅被计划；实际补的是另一条件，不能以Do29取证认定恢复U。",
+      "judgment_action_outcome_chain": "姓名缺口持续→旁线核验成功只稳定厂商→关键飞机/日期仍无直接证据→反复姓名Search→最后内部计划循环长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "15468生成217523Prompt13Actor12Search0Open，差[13612,13756]；多8Search7Actor，额外反复姓名、辅助Query及R20一万Token，不能全归U本次Search成本。",
+      "counterevidence_and_alternatives": "有真实新证据被采用却没有目标进展，说明不能用新增DocID/完成一条件替代目标事实；G提示与采样仍混杂。"
+    }
+  ],
+  "four_run_comparison": "NNNN但中间路径不同。r1实际恢复V2取证并做两个Open，仍未见日期；r2/r3未执行原型检索，分别在R10/R13内部枚举长度停止；r4成功补Do29厂商关系，目标日期仍缺，最终R20长度停止。U未直接提供日期，四N不能证明其本身不可替代；更直接观察是删后均未完成原后续对3638520日期段的扩大读取与采用。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "关键文档已识别但日期句被截断时，继续以姓名缺口驱动查询可能维持同一不可见状态。重新取得辅助关系或重复型号搜索，都不等于取得目标日期；只有把截断判断转为实际读取范围/对象改变才可能推进这一缺口。",
+      "support_evidence": [
+        "O_P",
+        "O_SHORT",
+        "O_DATE",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_AUX",
+        "N4_J"
+      ],
+      "limit": "这里四次都失败，没有本组内部成功反例；原U本身无日期且r1已重建，因此不把4N说成U必要性证明。其他Stage删后成功对照须另列，不冒充同干预因果。"
+    }
+  ],
+  "counterevidence_and_limits": "原U为低直接产出检索，不含正确日期；因其删除改变整体路线不等于该次工具必需。G重复缺口可能放大姓名检索优先级；原/新采样及余下13Actor混杂。Return全文按实际limit判断，最后未消费返回不据以称忽略证据。生成成本无原native精确索引仅区间。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "The snippet for \"Dornier Do 26\" mentions the first prototype V1 \"Seeadler\" but cuts off."
+    },
+    {
+      "evidence_id": "O_SHORT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "The rear (pusher) engines could be swung upwards through 10° du",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "Dornier Do 26 prototype V2 maiden flight"
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "I need to check the Dornier Do 26 document more carefully for mentions of Gundermann."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "return",
+      "json_pointer": "/tool_events/10/observation/text",
+      "exact_quote": "followed on 23 November 1938, piloted by Flight Captain Egon Fath.",
+      "doc_ids": [
+        "wiki25:3638520"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "23 November 1938"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 9,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The search results for \"Erich Gundermann\" didn't directly show his name in the snippets."
+    },
+    {
+      "evidence_id": "N1_V2",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "query",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Do 26 second prototype maiden flight"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 18,
+      "event_type": "query",
+      "json_pointer": "/tool_events/10/arguments/query",
+      "exact_quote": "Dornier Do 26 V2 maiden flight date"
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Let's try to open with a larger limit or different offset."
+    },
+    {
+      "evidence_id": "N2_STOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The **Dornier Do 27** was a flying boat?"
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 13,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_AUX",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "I have identified the company as Dornier (from the Dornier Do 29 document"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 20,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "Let's try to open the Dornier Do 26 document fully to see if it mentions Gundermann."
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0008/trajectory.json",
+      "source_sha256": "cc74e26e4a5b1f1ebf5742a00f51d948daa3ab611f6070f8629fbaa065d87a50"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0008.json",
+      "source_sha256": "7fc501e9424351c2e6478a20bea5c3a57722b59bc1de64b5ca3c3b7db254e595"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "34cd1b9d78922dac4fd9c1658e47b87592aa60a8a92742040950b55e7e379e35"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "7aa43be324144ecbabae36c48dac8fb6593fc6eb74b0032db284d870e7d81b46"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9b36d047abd360f0c40fa9cae9b1c562a10e168514fcf4b396e421ba4be7fd9c"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "e4cf60524c2ced8127062123636fa7840c633588d467292a56a4f268f9363120"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0008__S006__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "63812a3fb53429253c0a65187e8a39eee6e1d8a13ea9e30e1279e5c6e11da9b6"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id":"20__rep2__S008__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原与四新均正式采纳正确题名；学校招生/作者本科仍未证，Final题名正确不当全部条件证据通过；旧EM保留。"},
+  "review_basis":"原14轮13Call完整上下文已读；四新20轮16Call完整Reasoning/Call/Return/Final读完。145槽无新增片段，唯一他线程78049已在此前本线程阅读全文并记过SHA，其他为已读18/20片段。",
+  "pre_state":"R10@718前P已采用11288论文并完整比较四技术支持/三待证。退火70060已在P，19071和16500尚未进入可见历史，模量明确待证，不是已经完成的重复确认。",
+  "u_work":"真实模量Search E10返回19071，R11[0,152)采用16500并比较10000—18000范围。其产物是从模量待证到直接来源支持的具体更新，而非仅重新列条件。",
+  "u_state_update":"物性缺口闭合，论文技术匹配加强，剩学校招生/本科两缺口。原后续依据更新后状态交替核验两条件，仍未补证而最终提交。",
+  "original_action_consequence":"原后缀保留模量、两次学校、一次作者共四Call；不能因四C就推模量核查不必要，须查新路径是否重新取得并使用该证据。",
+  "guidance":{"text":"Now I have verified:","source":"原R11[152,172)，5原生Token，完整冒号引导行，不带已验证条件清单。","audit":"ORACLE_ANCHORED。没有16500或新实体，但有已验证的确定性框架，不能当中性无G。新四条并未把它自动当模量已证，而都明确说需要核查并真发模量Call；G自身不算自主判断，后继数值来自各分支真实返回。"},
+  "evidence":[
+    {"id":"O_PENDING","source":"original","pointer":"/rounds/9/reasoning_content","quote":"Need to verify: Modulus of elasticity of Ti-6Al-4V","use":"P末待证，不能把原未来数值当早已知道。"},
+    {"id":"O_CALL","source":"original","pointer":"/tool_events/9/exact_arguments","quote":"Ti-6Al-4V modulus of elasticity ksi 10000 18000","use":"chatcmpl-tool-8a3de7ce38d48a5e，R10真实取证。"},
+    {"id":"O_UPDATE","source":"original","pointer":"/rounds/10/reasoning_content","quote":"16500 ksi (from docid 19071)","use":"R11实际采用并匹配范围。"},
+    {"id":"N1_REBUILD","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"16,500 ksi (from docid 19071)","use":"首Call chatcmpl-tool-b6c1bd0f1f04e972后R11真实采用。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"Based on my research, I believe the thesis title is","use":"R14两缺口未补而正式接受；所有原后缀操作保留，表达较短。"},
+    {"id":"N2_REBUILD","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"the Modulus of Elasticity is 113.8 GPa which equals 16,500 ksi.","use":"首Call chatcmpl-tool-af54ee2da158ba88后R11采用19071。"},
+    {"id":"N2_GAP","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"The only remaining constraints to verify are:","use":"R13仅一次学校一次作者，缺口仍在而接受，学校没有重试第二次。"},
+    {"id":"N2_SPECULATION","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"might be referring to Chalmers' predecessor institution (Royal Institute of Technology)","use":"无据学校关系当潜在解释，不是工具证据。"},
+    {"id":"N3_REBUILD","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Modulus of Elasticity 113.8 GPa 16500 ksi","use":"首Call chatcmpl-tool-a61c8cac1f3c9dfa后R11真实采用。"},
+    {"id":"N3_STOP_REVERSAL","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Actually, let me search for one more time to verify Chalmers University's history","use":"R14已决定提供题名又真多查一次学校；R15才提交，不把意向算停止。"},
+    {"id":"N3_LAST_CALL","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"Chalmers University of Technology 1829 1850s student enrollment history rapid increase","use":"chatcmpl-tool-a656353c2b31d93c，新增第三次学校核查，未改变缺口状态。"},
+    {"id":"N4_REBUILD","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"16,500 ksi, which falls within the required range of 10,000-18,000 ksi.","use":"首Call chatcmpl-tool-a3ebda6fecdbc04c后R11直接采用。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"harder to verify with the available search results","use":"R14两属性仍待证，但以其他匹配提交，不是所有证据闭合。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"G后只列退火已证，立即明确模量仍需查，未直接承接已验证为事实。","state_chain":"首Call直接模量→19071真实采用→学校→作者→学校→仍两缺口但按技术匹配提交C。","function_change":"原目标、操作、16500采用完整重建，原后缀四Call构成也保持；生成略少而Prompt略增，说明表达可不同但非所有成本降。","evidence":["N1_REBUILD","N1_ACCEPT"],"semantic_result":"C，Final无据肯定招生/本科。"},
+    {"repeat":2,"first_divergence":"G后仍写Need to check modulus并真查，随后学校和作者各只一次。","state_chain":"真实补模量→一次学校失败→一次作者失败→R13技术匹配接受；将未知学校关系用前身猜测解释。","function_change":"原U完整重建；少原后缀第二次学校核查，但生成更多。Prompt/Search/Actor降而生成增，不能一个总节省标签。","evidence":["N2_REBUILD","N2_GAP","N2_SPECULATION"],"semantic_result":"C，Final本科用通常时间推测，招生未证。"},
+    {"repeat":3,"first_divergence":"首Call重建模量，与原相同；后学校再查次序与接受后的再次搜索不同。","state_chain":"真实物性→学校两次→作者→R14已想交答案又查第三次学校→R15接受C。","function_change":"原U完整恢复，新增一次学校尝试未提供新支持，生成PromptSearchActor均增。关键是原工作恢复后，剩余缺口继续驱动一次实际核验，不能只称原U被重建。","evidence":["N3_REBUILD","N3_STOP_REVERSAL","N3_LAST_CALL"],"semantic_result":"C，Final只列大学作者身份而不证明属性。"},
+    {"repeat":4,"first_divergence":"先复述P已有题名作者，再真实查模量，未新增别候选。","state_chain":"19071真实采用→学校→本科→学校→承认未证属性仍以其余匹配接受C。","function_change":"原U完整重建，原后缀四Call结构保持，生成少71但Prompt多566。来源与数值更新保留，不是绕过核查。","evidence":["N4_REBUILD","N4_ACCEPT"],"semantic_result":"C，Final学校/作者名代属性。"}
+  ],
+  "mechanism_candidate":"A的四次保持中，原Stage是首次关闭具体物性缺口，四条都在第一新Call重新完成这次证据→范围匹配更新，故不能把原物性核查判为已由P完成的重复。G虽给已验证框架，模型实际仍识别模量未知并补证。答案保持下的成本差别主要来自后续学校核查重复次数与表达长度；恢复同一关键更新后，未闭合的背景条件可能只查一次、两次或三次，最后都接受同题名。",
+  "within_case_support":"四条独立新Return都有19071且R11都明确采用，原功能全恢复证据比Query重合更强。新1/4原Call构成保留却生成减少；新2少学校但生成反增；新3已想回答又多学校并全资源增。四C不能抹掉内部消费差异及属性证据不充分。",
+  "mechanism_chain_checks":[
+    {"chain":"P明确物性未知→新真实查询与返回→采用16500更新范围匹配→保留正确论文提交。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_REBUILD","N1_ACCEPT"],"2":["N2_REBUILD","N2_GAP"],"3":["N3_REBUILD","N3_STOP_REVERSAL"],"4":["N4_REBUILD","N4_ACCEPT"]},"limits":"未观察到完全跳过模量还能保持的分支，不能推其功能可省。"},
+    {"chain":"已形成题名接受意向→未证学校仍触发真实额外查证→没有新支持仍最终接受。","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_STOP_REVERSAL","N3_LAST_CALL"],"2":["N2_GAP"],"4":["N4_ACCEPT"]},"limits":"单路径显示何处增加消耗，不证明原Stage引发或阻止这个再查。"}
+  ],
+  "counterevidence_and_limits":["同题其他被删Stage可不查模量而靠知识估算，不等于本Stage四条也如此，必须各读实际路径。","G无16500但有已验证框架，保留确定性增强风险，不能将有G路径当纯删除。","新3说提供答案后仍实际调用，不能把前一句当正式提交。","Final题名正确，其他约束未证；无证肯定与诚实未知/身份替属性不同。","独立分支成本不能相加，同题多Stage不算跨题独立复现。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R10@718，P240生成前缀IDs重放单列。原后缀1821生成/4Search/5Actor、Prompt29458+150398=179856。G5一次；新1680/1933/2427/1745加G为1685/1938/2432/1750，精确生成差-136/+117/+611/-71。Search4/3/5/4、Actor5/4/6/5、Prompt179967/138284/227364/180422，Prompt差+111/-41572/+47508/+566。新2少学校一次，新3多学校一次，新1/4主要表达变化；没有一条全部四资源下降。原延迟含切点前生成，不报精确延迟节省。",
+  "next_cross_case_test":"把首次直接事实核查和P已完成后的再确认分开；A/B分别比较更新是否重新获得并采用、剩余缺口怎样触发后续查询及提交。不能因全C就称首次核查冗余，也不能因重建就忽略原执行篇幅可压缩。"
+}

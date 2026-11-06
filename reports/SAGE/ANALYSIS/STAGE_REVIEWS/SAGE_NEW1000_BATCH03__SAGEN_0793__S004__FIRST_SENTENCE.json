@@ -1,0 +1,436 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S004",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "数量正确，但原路径始终没有取得满足March18/243days的天体。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R4@185保留刚从返回采用的LuXun于1936年10月19日去世；早先真实Search的1936 Olympics medal table已经直接给49/129/19，仍在工具历史。P不含后面三个Open及天体/机场结果。",
+    "evidence_states": "49已经返回；原日志R2已采用1936赛事，当前R4将年份与赛事衔接，随后要求再读文档。历史reasoning是否保留按normalized输入，不能把旧日志全当P。",
+    "evidence": [
+      "I_P",
+      "O_49"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/3/items",
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 185,
+        "end": 649
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 1168
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 248
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 376
+      }
+    ],
+    "goal": "再读1936奥运文档，确认参赛NOC数与129/19条件。",
+    "operations": "连续Open同一doc1148006：100、100、1000字符；前两次只是短标题，第三次才显示49；R7将四项核心链归拢。",
+    "product": "既有Search中的49在较大Open窗口被再次证实并明确接受。",
+    "judgment_change": "不是首次获得数字，而是重读后的接受与转向外围核验。",
+    "evidence": [
+      "O_49",
+      "O_OPEN",
+      "O_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use": "从核心49转天体日期，先错查Oct18，再改March18、取243，六次外围重试没有闭合，最终仍49。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已有直接数字支持后的文档重读及核心条件接受。",
+    "state_relation": "功能恢复和具体Open实例分开：r2/r3重读达到49，r1短Open未到信息但换Search证实，r4直接依赖旧Search不再Open。",
+    "evidence": [
+      "N1_ALT",
+      "N2_OPEN",
+      "N3_ACCEPT",
+      "N4_ACCEPT"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find information about the asteroid discovery date and the Wausau Downtown Airport's NDB navaid frequency to verify the calendar date connection.",
+    "source_position": "O R7[376,535)",
+    "novelty": "实体和关系均在题面，未给49、243或具体天体；把下一工作指向外围验证，是原后继行动计划预填。",
+    "risk": "ORACLE_ANCHORED；即使无新事实也可能绕过重读、改变核验顺序，不是纯无引导删除。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "真实提交49。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R4先查March18小行星；R5 Open20，R6再查日期；R7—R10四次Open50仍只有短开头。R11明确短窗口未给数据，改Search129events/19sports获得原E2同一完整批次的49；R12采用核心数并提交。",
+      "first_judgment_divergence": "G后先查外围，随后仍想核NOC，但反复小窗口未实现获取；最终把Search直接数字作为足够支持。",
+      "first_actual_tool_divergence": "R4 Search天体，原是Open100。",
+      "function_correspondence": [
+        {
+          "original_goal": "核实49/129/19",
+          "original_operation": "Open100/100/1000",
+          "original_product": "49的文档重证及接受",
+          "new_goal": "同一数字核实",
+          "new_operation": "五个短Open失败后改Search",
+          "new_product": "Search证实49，核心功能经替代入口完成",
+          "evidence": [
+            "O_OPEN",
+            "N1_ALT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "reason": "确有重读工作却没有读到原大窗口内容，最后由Search完成同一确认；不是完全不做确认。",
+      "chain": "49已有支持→小窗未新增→改入口拿到49→核心足够而停止外围→仍C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2025gen/156472Prompt/9Actor/3Search/5Open；比原切点9Search/3Open/13生成段，Open增加2但外围搜索减6，保守生成差[-1349,-1151]。",
+      "counterevidence_and_alternatives": "并非原Open功能可无条件取消；此支主动再Search确认。天体仍未闭合，与原路径共享缺口。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "提交49；有天体候选冲突未消解。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R4日期搜索取得1927Suvanto的March18,1936；R5采用日期局部匹配，查周期得到1577days；R6查机场得243。R7识别1577≠243但未真正换掉Suvanto，Open50；R8扩大1000实际取得49；R9重查Suvanto，R10再次完整对照并查一般March18，R11退回核心链提交49。",
+      "first_judgment_divergence": "以日期匹配采用Suvanto，随后即使识别周期冲突，仍反复重新解释其与频率关系，而非立即改候选。",
+      "first_actual_tool_divergence": "R4日期Search先于原NOC Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "重证NOC49",
+          "original_operation": "扩大Open读核心段",
+          "original_product": "49/129/19接受",
+          "new_goal": "同一NOC确认",
+          "new_operation": "Open50后1000",
+          "new_product": "原核心段已读且接受49",
+          "evidence": [
+            "O_OPEN",
+            "N2_OPEN",
+            "N2_CONFLICT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "NOC重读功能完整恢复，但额外候选及冲突推理增加。",
+      "chain": "先认部分匹配天体→冲突触发重查同候选和长篇解释→NOC确认完整恢复→最终以核心作答，仍C但生成更长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "4266gen/165074Prompt/8Actor/5Search/2Open；生成较原后缀保守增加[892,1090]，主要是R7、R9、R10对1577/243反复整理，不能把Actor下降当全成本下降。",
+      "counterevidence_and_alternatives": "1577冲突始终公开识别；不能写成未发现冲突，也不能因Final49正确就说完整证据链通过。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "提交直接文档支持49。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "未按G转外围，R4/5 Open20，R6/7 Open100，R8 Open1000终于显示49。R9完整核心判断，明确不需要全查天体而直接Submit。",
+      "first_judgment_divergence": "重读功能恢复后把核心直接匹配视为足够，不再为外围条件派发查询。",
+      "first_actual_tool_divergence": "仍Open原DocID，但起始窗口20而非100；之后五次而非三次。",
+      "function_correspondence": [
+        {
+          "original_goal": "读NOC并接受核心链",
+          "original_operation": "三次Open递增窗口",
+          "original_product": "49接受",
+          "new_goal": "同一核心重证",
+          "new_operation": "五次Open20/20/100/100/1000",
+          "new_product": "实际读到49并整体接受",
+          "evidence": [
+            "O_OPEN",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "完全恢复原核心重证，节省发生于不再执行外围Search，而非删除该功能。",
+      "chain": "核心条件重证→判断附加链不影响所问数量→不Search直接答→C且低成本。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "910gen/80200Prompt/6Actor/0Search/5Open；Open反增2但九次原外围Search不再做，生成保守减少[2266,2464]。",
+      "counterevidence_and_alternatives": "天体缺口没有补回，但原路径也没有；其声称外围在确认年份是自己解释，不是已验证关系。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49正确且新增天体支持闭合。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R4再查死亡年，R5采用旧Search49并查March18，R6查机场243，R7—R9三次完整条件Query只得无关243返回；R10去掉日期、改asteroid243orbitalperioddays，实际返回2002FB3的March18/243days；R11明确采用并整合全链提交。没有Open。",
+      "first_judgment_divergence": "直接沿用旧Search的NOC证据，不重读；外围三次无效后才改变入口、取得可用天体。",
+      "first_actual_tool_divergence": "R4再次查死亡年而非Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "NOC数字再读确认",
+          "original_operation": "Open100/100/1000",
+          "original_product": "再度确认49",
+          "new_goal": "回答NOC并验证外围",
+          "new_operation": "沿用P Search数字，不做NOC Open",
+          "new_product": "49沿用；新Search另补天体关系",
+          "evidence": [
+            "O_49",
+            "N4_ACCEPT",
+            "N4_AST"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "reason": "原U的额外Open重证未重做；后文引用P的直接数字是答案组织，不自动算再次执行同一核验。",
+      "chain": "已有49可用→不重读核心→前几次外围无效→改变Query约束找到天体→全链支持后答49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2639gen/213307Prompt/8Actor/7Search/0Open；三Open消失、Search净减2，生成保守减少[537,735]。新机场/天体搜索仍有成本，且证据更充分。",
+      "counterevidence_and_alternatives": "去掉日期为何带来正确天体仅可描述实际Return变化，不能证明普遍检索策略。G指定外围有方向补偿。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "r2/r3完整重读恢复，r1替代入口完成确认，r4不重读；相同答案并不对应相同功能恢复。",
+    "work_difference": "r3最少生成但最多Open之一；r2请求更少却生成增加；r4补齐原未解天体。",
+    "inference": "P已含直接49使重读不是唯一答案来源，但不能将所有成本差都归于U长度。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "答案数字已有直接可见支持时，额外重读的删除未必改变数字；决定成本的是是否再次确认、短窗口是否扩大、以及核心接受后仍给外围缺口多少工作。",
+      "support": "四支共享49材料但有Open5/2/5/0及Search3/5/0/7差别。",
+      "limits": "单题四seed，ORACLE指向外围；只有r4完全取得新天体，质量不能仅用C比较。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "完整四条新推理和Return已阅读；代码仅绑定来源、引用及成本。",
+    "局部重编码DERIVED_CHAR_EXACT，原后缀gen[3176,3374]不冒充精确原生节省。",
+    "G32派生Token只计一次，P重放13101单列；独立分支节省不相加。",
+    "不由该一题推出重读均冗余或外围均不必要。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 4,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Lu Xun died on October 19, 1936."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 4,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find information about the asteroid discovery date and the Wausau Downtown Airport's NDB navaid frequency to verify the calendar date connection."
+    },
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N1_ALT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/rounds/7/tool_calls/0/arguments/query",
+      "exact_quote": "1936"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "N2_CONFLICT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "1,577 days ≠ 243 kHz"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "I don't need to verify all those details since I've already found the answer in the document."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From my previous search"
+    },
+    {
+      "evidence_id": "N4_AST",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "It was discovered on 18 March 2002"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "8d8cf68d3aeea4d603b5858fd4efbe0d02851f15f8244006a4e90f505f11becb"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ca3499d230904e5be40de01341aae180a45d553869928869a7bb553c9775ad5c"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "cf10d6e652ae3ab51c4ac65aca5e0662f04254af6d7045484726ba17922c3ec6"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "164d766cc9f2a561c1acf8b38c06ac70bcc42685985c7a63850767d9f41dc070"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "cf624442ae8735034e9f9659ea5d36fce136e4434501e3bfd21955c8d6fb5c9c"
+    }
+  }
+}

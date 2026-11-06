@@ -1,0 +1,414 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0477",
+  "stage_id": "S007",
+  "sample_order": 62,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0477/trajectory.json",
+      "source_sha256": "3c9f094dc3381f901557c35757500548d94d56ce9a07701dd89ae131063f87c9"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0477.json",
+      "source_sha256": "24ca1f606e1f56b81c9e8e1a05fffb3cdeacf2e475dc22759a1d675374b5ad37"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "da8ac69ac243782c7fa0077f89d83d40e26c6720c1ab095215c07906cd56e1c5"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3fc81c66f9eca9fc9d6fdb50c1ed68b0d14c6cfa17f7b27b530c6b1adb44d25b"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "87be957b1841db08bee77ebe18f8a89174398286dd8dad293b345b2a6f0395b6"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3d09d8dc6502ea2ab30e564fd4b4cc30e7ede3f774ade52efe929da568983d51"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "e6c3a52f3a8050d596fafa51e163de06e47cdbcc334ed3a2c89ad1eae1fbfde4"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the initial magazine publication year of the Abraham Merritt story whose depiction of Nan Madol inspired its use in H. P. Lovecraft and Hazel Heald's \"Out of the Aeons\"?",
+    "gold": [
+      "1918"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "1918",
+    "adopted_answer": "1918年",
+    "outcome": "C",
+    "reason": "初刊年直接书目且正式答案正确；影响关系共享未直接证明。",
+    "evidence": [
+      "O_RETURN",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R8@686当前完整写明1918原短篇/1919续篇和小说，已明确Based on search ...initial publication was1918；16历史消息含E7书目3571720/5405579。P19000Token。",
+    "evidence_states": "不是资料仅返回，1918及出版类型区别已提取、采用并直接用于答案判断；尚未额外Open复核。",
+    "evidence": [
+      "I_ACCEPT",
+      "I_BOOK"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/6/items；R8[686,984)及E8完整Open/Return。",
+    "ranges": [
+      {
+        "round": 8,
+        "pointer": "/rounds/7/reasoning_content",
+        "start": 686,
+        "end": 984
+      }
+    ],
+    "goal": "对已经采用的1918初刊年再Open书目确认。",
+    "operations": "Open3571720offset0limit1000，Return前书目与E7Snippet同句，额外全文部分为小说情节。",
+    "product": "再次看到1918/1919版本句，没有改变年份/对象。",
+    "judgment_change": "1918已接受→同书目再确认，未见新候选或纠错。",
+    "evidence": [
+      "O_PLAN",
+      "O_RETURN"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R9再列关系和版本顺序，引用同书目句并提交1918；未采用Open新增情节信息改变判断。",
+    "evidence": [
+      "O_FINAL_REASON",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已采用的出版年份执行外部同源复核。",
+    "information_state_dependence": "关键区别已在当前P完成，Open所需书目句也已在历史Snippet，不是首次证据到判断转化。",
+    "first_update": "本U没有可见新事实/判断更新，主要追加一次外部确认。"
+  },
+  "guide_audit": {
+    "text": "The user is asking for the initial magazine publication year of the Abraham Merritt story whose depiction of Nan Madol inspired its use in H. P. Lovecraft and Hazel Heald's \"Out of the Aeons\".",
+    "source": "O#/rounds/8/reasoning_content[0,192)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "44教师Token完整重述原题，同句已在当前P开头，无新实体/年份/方向或确定性。不是把1918预填进新推理；仍保留原后继来源标记。",
+    "evidence": [
+      "I_G",
+      "I_ACCEPT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat01",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "根据P实际书目再次核对出版事件并正式C，无新取证也有直接日期依据。",
+      "outcome_evidence": [
+        "N1_VERIFY",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8从P重列1918/1919、引用3571720和3571721，同一轮直接Submit；没有Search或Open。",
+      "first_judgment_divergence": "未发原额外Open，改为内部回读P同Snippet，年份判断保持。",
+      "first_actual_tool_divergence": "原首Open复核，新唯一Call是Submit1918；没有实际复核工具。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "同源外部Open确认已有1918。",
+          "new_goal_operation_product": "再次对照P中同源书目并接受1918，确认认知保留，外部Open操作未执行；没有新增证据。",
+          "evidence": [
+            "O_PLAN",
+            "O_RETURN",
+            "I_BOOK",
+            "N1_VERIFY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "内部同源检查出现，原外部核验未重建；总体接受不是零工作。",
+      "judgment_action_outcome_chain": "当前P已经完成1918选择→直接回读同证据而不再Open→无候选/日期变化即可C；少一交互并少生成，是已完成判断不依赖再获得相同句的局部证据。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "316生成/19044Prompt/0Search0Open1Actor；原344–616生成/0S1O2段，生成-300至-28、Open/Actor各-1；省在外部同源复核及其下一请求，G44计入19044。",
+      "counterevidence_and_alternatives": "共有影响关系缺口仍在，不能称全部条件直接已证。原新服务/采样配置差别仍阻止纯因果断言。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat02",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "P的1918直证有效，正式提交；未因讨论影响缺口改年。",
+      "outcome_evidence": [
+        "N2_ENOUGH",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8已答1918，提议Open随后明确已经足够，接着又问Moon Pool是否真正影响Out Aeons，比较Call of Cthulhu与古尸沉岛，计划Search又未执行，最后按题目前提和地点选同故事Submit。",
+      "first_judgment_divergence": "取消外部Open同时在内部重新开启影响关系身份问题，前次已采用年份不变。",
+      "first_actual_tool_divergence": "只有Submit，无实际Open或计划中的Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "外部再看书目以核1918。",
+          "new_goal_operation_product": "内部检查认为Snippet已足够并再比较身份，确认功能部分重建，外部复核没有执行。",
+          "evidence": [
+            "O_RETURN",
+            "N2_ENOUGH",
+            "N2_GAP"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "同证据确认存在，独立身份检查额外出现，不把未执行Open算真实恢复。",
+      "judgment_action_outcome_chain": "P正确年份已定→认为不必Open→影响关系未直接证仍触发内部疑问但无新行动→最终接受同对象C；交互少而生成增加，说明取消工具不保证内部计算短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "637生成/19044Prompt/0S0O1Actor，原344–616/0S1O2段，生成+21至+293，Open/Actor各-1。新增在2293字符条件/身份反复检查，非真实Search。",
+      "counterevidence_and_alternatives": "没有新增检索不能标重复Search；相同C也不能说没有新增认知工作，这条多内部身份判断。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat03",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "已见真实书目1918与题目版本关系对应，正式C。",
+      "outcome_evidence": [
+        "N3_VERIFY",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8引用P同书目句内部确认1918，再引用Moon Pool地点及Out Aeons沉岛接受故事关系，一轮Submit，0新取证。",
+      "first_judgment_divergence": "同源外部复核改为内部引用，进一步展开关系接受但没有新证据支持直接影响。",
+      "first_actual_tool_divergence": "无Open，唯一Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "Open文档重见1918。",
+          "new_goal_operation_product": "从P已返回的同句内部再确认1918，外部Call不恢复，年份接受与提交仍执行。",
+          "evidence": [
+            "O_RETURN",
+            "I_ACCEPT",
+            "N3_VERIFY"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "验证认知部分保留，外部取证NOT_OBSERVED；不能将最终重述本身当新的外部核验。",
+      "judgment_action_outcome_chain": "已接受1918和版本关系→回读同书目、主题比较→无新资料仍正式C；取消工具后表达较长，净生成差区间跨零。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "541生成/19044Prompt/0S0O1Actor；原344–616，生成-75至+197跨零，Open/Actor各-1，不声称精确生成节省。",
+      "counterevidence_and_alternatives": "将Nan Madol地点与沉岛直接等于影响关系是原新共享过强推断，C不消除该证据限制。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE__repeat04",
+      "actual_final": "1918",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1918年",
+      "outcome": "C",
+      "outcome_reason": "真实P书目中1918采用并正式答对。",
+      "outcome_evidence": [
+        "N4_ENOUGH",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R8重述1918/1919，提出Open后立即说已经有Search资料，再检查题目并Submit；没有任何新Search/Open。",
+      "first_judgment_divergence": "明确取消额外Open，同源Snippet被视为充分；无需新事实或新的候选选择。",
+      "first_actual_tool_divergence": "唯一Submit，不执行原Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "外部重看已采用的书目事实。",
+          "new_goal_operation_product": "内部回读同事实并明确不需Open，确认工作部分恢复，外部操作省去。",
+          "evidence": [
+            "O_PLAN",
+            "I_BOOK",
+            "N4_ENOUGH"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "已检查过的证据在P再次被使用，但真实Open未发生，不能称原全部工作重建。",
+      "judgment_action_outcome_chain": "P有正确判断与直接支持→认为Search资料足够，取消原Open→检查题意后C；消耗少一交互，生成差受同一轮重复表述影响不能精确定降。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0477__S007__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "355生成/19044Prompt/0S0O1Actor；原344–616，生成-261至+11跨零，Open/Actor各-1。G只是题目重复，未新增日期。",
+      "counterevidence_and_alternatives": "意向Open取消不是工具调用；原新不同采样/配置仍保留，不能称无引导条件下必然也省。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "4条都取消外部Open但保留内部同源核对/答案判断；两条明确说已有Search足够。4条均C，一条重新在内部追问影响关系更长。",
+    "costs": "4条Open/Actor各少1、Prompt下降；只有rep1生成明确下降，rep2明确上升，余区间跨零。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "单题初刊区别与答案判断已在当前P完成的四路径",
+      "chain": "P不仅有书目还已采用1918→原U再Open同源句无可见判断更新→删除后内部回读既有支持可直接提交，4条真实Open不再执行仍C；若未解决的身份关系重新展开内部评估，工具省去也会生成更多。",
+      "limits": "支持外部同源复核在此处未改变目标值，非最终判断功能全无；共享关系证据缺口与采样/G配置混杂保留。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "完整原68576及四新21911字符已阅读；所有Let me search/Open意向均对照真实Call，0Search0Open。",
+    "G只是当前P已有同题重述，没有1918事实补偿；与前几组G给候选的条件不同，不混为一类。",
+    "原344–616部分Round区间，P19000重放、G44已计Prompt，无原生精确净省，四独立分支不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_ACCEPT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 8,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Based on the search results, the initial publication was in 1918 in \"All-Story Weekly\"."
+    },
+    {
+      "evidence_id": "I_BOOK",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 7,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/15/content",
+      "exact_quote": "These were then reworked into a novel released in 1919.",
+      "doc_id": "wiki25:3571720"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 8,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the initial magazine publication year of the Abraham Merritt story"
+    },
+    {
+      "evidence_id": "O_PLAN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "Let me verify this information by opening the document about \"The Moon Pool\""
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/7/observation/text",
+      "exact_quote": "\"The Moon Pool\" (1918) and its sequel, \"Conquest of the Moon Pool\" (1919).",
+      "doc_id": "wiki25:3571720",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_FINAL_REASON",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "So the initial magazine publication year is 1918."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N1_VERIFY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me verify this information is correct by looking at the search results again:"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N2_ENOUGH",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, I already have enough information from the search results."
+    },
+    {
+      "evidence_id": "N2_GAP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "But the question is about \"Out of the Aeons\", not \"The Call of Cthulhu\"."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N3_VERIFY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me verify this by checking the document more carefully."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    },
+    {
+      "evidence_id": "N4_ENOUGH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Actually, I already have the information from the search results."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1918"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

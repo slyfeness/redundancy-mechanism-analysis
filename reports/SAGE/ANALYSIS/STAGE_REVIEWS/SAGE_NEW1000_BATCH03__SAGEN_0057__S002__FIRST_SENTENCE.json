@@ -1,0 +1,644 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0057",
+  "stage_id": "S002",
+  "sample_order": 18,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0057/trajectory.json",
+      "source_sha256": "fabb5b9ad03fff5f388061dd6ada70683b55b34ca97a762426e2b9bfdca3eea6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0057.json",
+      "source_sha256": "2aabbc143903aa5d66ef09f053ec1c4767056a8704bcebc3ab5f4ab5b878cda4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "a4c7bfc106d3c6f303bc6d7f4d68bd93cf678502cf73bdcba0999b849bf05bba"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "8ebb2dd4d37704319a4340797dc9e9179e1035c04b30f1b65e117d66aa03de95"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7145b49ebbdf12fcd333be418a9240c2027037f3d6daef512e663333f223c1dd"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f13bda0417b2959d2149f0217a5b106fa65e10a5a398559e2bafaf90c1e11d6a"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "1b8d3da3706c509c85c2d9540f8d31ac99fc66029b6558dc17e8a8f11849f7ae"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the exact termination date of the public online service that was operated by the French telecommunications company which was a key consortium member in the construction of the first transatlantic fiber-optic cable that became operational in 1988, where this service itself utilized a Videotex standard running on a packet-switched protocol initially employed by AARNet?",
+    "gold": "June 30, 2012",
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整原Question/7轮/所有Call和实际Return。",
+    "new": "84508字符四条完整路径；20轮20真实事件，所有Reasoning及新增片段已读，同一全文精确引用已读来源而非略读。",
+    "actual_input": "完整实际P只有问题、TAT8查询及返回、当前R2[0,298)公司采用；逐字段文本定位未发现X.25/Minitel/30 June2012，不把字符串检查单独当语义裁定。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "known": "TAT8及France Télécom身份已由文档返回并在当前P明确采用。",
+    "unknown": "尚未查到或采用服务Minitel、X.25协议名、停用日；Question只有Videotex、packet-switched及AARNet描述。",
+    "actual_input_limit": "删除原服务查询及全部其返回，不回填日期或原Minitel文档；G却明确带入P未知的X.25。",
+    "evidence": [
+      "I_COMPANY",
+      "O_COMPANY_RETURN",
+      "I_GUIDE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 298,
+        "end": 987
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 432
+      }
+    ],
+    "goal": "由法国公司和Videotex/协议线索定位在线服务并提取终止日期。",
+    "operations": "计划服务查询，真实France Telecom Videotex service packet-switched AARNet取得Minitel/X25/Transpac/Alex；R3明确采用Minitel、X25、30June2012，留下AARNet关系待核。",
+    "product": "首次文档支持的服务候选、协议及具体日期，实际后续围绕Minitel与AARNet分工继续。",
+    "judgment_change": "公司已知但服务/日期未定→具体服务与日期成为已采用工作状态。",
+    "evidence": [
+      "O_SERVICE_QUERY",
+      "O_SERVICE_DATE_RETURN",
+      "O_PROTOCOL_RETURN",
+      "O_SERVICE_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "后继R3真实查AARNet关系，R4比较日期并OpenMinitel，R6再查协议关系，R7Submit同日期。U服务和日期一直被保留，没有后来更换对象。",
+    "evidence": [
+      "O_AARNET_QUERY",
+      "O_DATE_OPEN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "由已采用公司转为首次有文献支持的具体服务和答案属性",
+    "同一发现功能可以经不同Query/证据路径完整恢复",
+    "已恢复正确服务与日期，不决定后续核验次数/读取范围是否压缩"
+  ],
+  "guide_audit": {
+    "text": "However, I need to verify the connection between AARNet and X.25 protocol to ensure the question's details are accurate.",
+    "tokens": 27,
+    "source": {
+      "round": 3,
+      "pointer": "/rounds/2/reasoning_content",
+      "start": 432,
+      "end": 552
+    },
+    "compared_with_complete_actual_P": true,
+    "new_entity": "X.25是P尚未出现的具体协议名；AARNet在Question已有。Minitel没有在G出现。",
+    "new_fact_or_relation": "提前将AARNet与X.25作为应核关系，未宣称关系已证但提供原U之后才明确的协议假设。",
+    "new_action_direction": "给定协议与专项核验方向，可能帮助由法国Videotex想起Minitel，不能将此部分视为完全自主发现。",
+    "new_answer": "不提供停用日期或最终答案；四条都真实取得日期证据。",
+    "information_risk": "ORACLE_ANCHORED及未来协议/关系方向泄漏风险；不计无关键未来信息的严格可省证据，功能四条亦全部重建。",
+    "evidence": [
+      "I_GUIDE",
+      "I_COMPANY"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat01",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R7实际Submit准确日期，有真实X25和Minitel返回支持。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2用G给定X25联想到Minitel，真实联合Query FranceTélécom Minitel terminationdate X25 AARNet；返回Minitel605514部分历史、Transpac月份与X25精确日，R3明确采用服务/日期。",
+        "随后连续Open605514 50、100，两次都是该子文档头部，不含日期；R5换OpenTranspac100仍仅头部，虽然旧X25明确日已经被引用。",
+        "R6再以已知日期发真实Minitel terminationdate30June2012查询，取得605516/605512日期资料；R7同日期Submit，却错误声称X25文档已确认AARNet。没有实际AARNet专项Query。"
+      ],
+      "first_judgment_divergence": "使用教师具体协议假设选Minitel，先通过X25条目而非原Minitel605512得到日期；接受后仍把日期核验反复派给短Open。",
+      "first_actual_tool_divergence": "公司泛服务Query变为带具体Minitel和X25的Query；随后Open的是605514而非605512。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别服务并取得准确日期",
+          "original_operation": "公司/Videotex查询→采用Minitel/X25/日期",
+          "original_product": "具体服务和日期",
+          "new_goal": "相同",
+          "new_operation": "R2定向Query→R3采用X25/Transpac日期→R6补Minitel日期",
+          "new_product": "同服务和具体日期实际恢复",
+          "evidence": [
+            "O_SERVICE_QUERY",
+            "O_SERVICE_ADOPT",
+            "N1_FIRST_QUERY",
+            "N1_X25_RETURN",
+            "N1_ADOPT",
+            "N1_CONFIRM_QUERY",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实查询、候选及日期采用全部发生，证据路径不同；G先给协议不抹去重建但削弱无引导推断。",
+      "judgment_action_outcome_chain": "公司已定+G协议假设→自主提出Minitel并真实取得日期→多次短Open未覆盖日期仍继续确认→新Search补相同日→C；工作未省掉，增耗在已知日之后的取证组织。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "1815生成/57206Prompt/2S3O6A；原切后3S2O6A，新少1Search多1Open、Actor不变；生成差[357,582]。三次短Open和额外日期查询与原后继不同，不能按净Call数解释工作。",
+      "counterevidence_and_alternatives": "R7误将AARNet关系归于X25文档，不能因C忽略；额外日期查询提供新片段但没有改变既定日期。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat02",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R6真实Submit正确日期。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2从G协议猜Minitel，真实Query France Telecom Minitel terminationdate，返回605512精确日、605516退休日、Transpac等；R3已经采用日期。",
+        "R3真实AARNet原Query→噪声，R4又加Minitel协议Query→标题名录；R5推测PVD等协议但没有采纳成实际不同服务，最后OpenMinitel默认4000整文。",
+        "R6重新全链接受并Submit；AARNet关系没有被这两Search直接证实，MinitelOpen也不提供该关系。"
+      ],
+      "first_judgment_divergence": "服务/日期恢复后，协议缺口使后续多查，暂时考虑其他协议没有变成更换服务的实际行动。",
+      "first_actual_tool_divergence": "首先定向Minitel停用Query，之后不同于原重复同Query，而加Minitel联合Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "服务/协议/日期发现采用",
+          "original_operation": "真实查询与材料采用",
+          "original_product": "Minitel+X25+具体日",
+          "new_goal": "同目标",
+          "new_operation": "R2真实取得服务日期、R3采用，后来整文确认",
+          "new_product": "同服务及日期状态恢复，侧链仍未证实",
+          "evidence": [
+            "O_SERVICE_ADOPT",
+            "N2_FIRST_QUERY",
+            "N2_DATE_RETURN",
+            "N2_ADOPT",
+            "N2_FULL_OPEN",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整发现/采用功能真实执行，不能把猜到Minitel视作自动已有完整证据。",
+      "judgment_action_outcome_chain": "公司+G协议→Minitel定向查询日期恢复→剩余协议缺口触发两次低相关查询→整文确认既有日期后SubmitC；生成增加在全题/协议复盘，不是失去服务日期。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "1788生成/45511Prompt/3S1O5A；Search同3，少1Open/1Actor，生成差[330,555]仍增加；累计Prompt比原cut-inclusive56291少10780。指标方向不能混为一项省耗。",
+      "counterevidence_and_alternatives": "G给X25，但未直接给服务或日期；日期真实取证存在，不能把C全部称答案泄漏。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat03",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R5实际Submit同日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2先按G查AARNet协议，仅原同噪声，未得关系；R3回到法国公司服务，真实Query与原U完全相同，取得原完整服务资料包。",
+        "R4首次明确采用Minitel/X25/日期，OpenMinitel100只头部；R5仍从Search准确日期提交，没有扩Open或再查协议。"
+      ],
+      "first_judgment_divergence": "先核G方向后才恢复服务发现；噪声之后确实换回法国服务入口。",
+      "first_actual_tool_divergence": "原先查服务，新先查AARNet；第二个Query才与原服务Query同。",
+      "function_correspondence": [
+        {
+          "original_goal": "法国服务发现/日期采用",
+          "original_operation": "同Query及直接材料采用",
+          "original_product": "服务和日期",
+          "new_goal": "同目标在首查噪声后恢复",
+          "new_operation": "R3同Query/同Return，R4真实采用",
+          "new_product": "服务/日期完整恢复",
+          "evidence": [
+            "O_SERVICE_QUERY",
+            "O_SERVICE_DATE_RETURN",
+            "N3_GUIDED_QUERY",
+            "N3_RECOVER_QUERY",
+            "N3_RETURN",
+            "N3_ADOPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原服务Query和材料状态更新实际重做，不只是Query重合，R4明确采用并用于Open/Submit。",
+      "judgment_action_outcome_chain": "G提前核协议未得→回到原有效公司服务入口→同材料转为Minitel/日期并实际Open/Submit→C；功能重做仍少一轮日期Open与后继重查，降低生成。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "1008生成/31254Prompt/2S1O4A；少1Search1Open2Actor，生成差[-450,-225]；并非跳过整个服务发现工作。",
+      "counterevidence_and_alternatives": "AARNet用X25仍无直接句而被接受；短Open也没补日期，核心日期源是已重取Search。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S002__FIRST_SENTENCE__repeat04",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R6真实Submit同日。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R2按协议线索猜Minitel，实际Minitel France Télécom terminationdate Query只返回页面名录/西语词典等噪声，未得到日期。",
+        "R3再按法国公司/Videotex/协议/AARNet联合Query仍噪声；R4改成原U类似但含protocol的ASCII France Telecom查询，取得与原U完全同服务资料包。",
+        "R5明确采用Minitel/X25/日期，Open605512默认4000整文；R6完整链条后Submit，无实际后继AARNetQuery。"
+      ],
+      "first_judgment_divergence": "最初已猜到服务不等于已获得日期；两轮无相关返回后重新选择公司服务入口，才完成文档采用。",
+      "first_actual_tool_divergence": "先两次不同Query无效，第三次才恢复有效公司服务检索；不能凭语义相似认定前两次已有证据。",
+      "function_correspondence": [
+        {
+          "original_goal": "有效服务与日期证据发现",
+          "original_operation": "公司服务查询、采用",
+          "original_product": "Minitel和停用日",
+          "new_goal": "相同",
+          "new_operation": "两次噪声后第三Query取得原资料包，R5采用并Open全文",
+          "new_product": "原功能完整恢复",
+          "evidence": [
+            "O_SERVICE_QUERY",
+            "N4_FIRST_QUERY",
+            "N4_NOISE",
+            "N4_EFFECTIVE_QUERY",
+            "N4_RETURN",
+            "N4_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不仅提名Minitel，还实际取到可见日期证据并采用，才称恢复；不将G协议提示当自主证据。",
+      "judgment_action_outcome_chain": "公司+G协议→猜服务但查询噪声→两次改写后取得有效资料→日期采用/完整Open→C；新增前期低收益查询被取消后继重查和一次完整读取部分抵消，生成仍略增。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "1523生成/45236Prompt/3S1O5A；Search同3，少1Open/1Actor，生成差[65,290]，Prompt cut-inclusive少11055。原始无效尝试和后继压缩同时记账。",
+      "counterevidence_and_alternatives": "观察到不同Query有不同返回，不据此证明音符/词序是唯一原因，不更改检索环境或宣称基础设施错误。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4FULL恢复服务发现及日期采用。",
+    "specific_difference": "所有路径最后都把具体材料用于Minitel及日期，但达到这一状态的Query数和后续读取/协议核验不同。新3重走原有效入口后较短；新1已得日仍三次短Open；新4猜对服务却两次噪声后才得证据。",
+    "cost": "只新3生成区间下降，其他三条增加；工具/Prompt部分下降不能替代生成及证据质量分析。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "首次服务/答案发现的作用即使在A组也可被完整重建。结果保持来自四条都恢复有效材料到采用和真实行动的转换；总成本主要随有效入口到达速度、采用后是否继续低增量读取而变化，不能由是否重建二分预测。",
+      "chain": "公司已定、服务日未知→G提供未来协议假设→不同查询路径均真实取到Minitel/日期并采用→同C；无效前期尝试、短Open和侧链重复决定各指标不同增减。",
+      "support": [
+        "I_GUIDE",
+        "N1_ADOPT",
+        "N2_ADOPT",
+        "N3_RECOVER_QUERY",
+        "N3_ADOPT",
+        "N4_NOISE",
+        "N4_ADOPT"
+      ],
+      "scope": "1Stage/1题四续跑；G未来X25信息混杂，不算严格可省或纯删除因果证据。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "四条服务发现功能全部重建，反驳把A类或同C称U可有可无；重建也不排除部分后继组织可压缩。",
+    "G的X25新颖性核对实际完整P，而不是原日志未来知识；未将AARNet已在题目误判为新实体。",
+    "新1错误声称X25文档证AARNet；新2/4最终也凭推断接受。核心日期正确与整链证据充分分开。",
+    "原nativeIDs缺失，保守区间，不以整条原轨迹成本冒充切点后成本；独立分支节省不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_COMPANY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 2,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So the French telecommunications company is France Télécom"
+    },
+    {
+      "evidence_id": "I_GUIDE",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "However, I need to verify the connection between AARNet and X.25 protocol to ensure the question's details are accurate."
+    },
+    {
+      "evidence_id": "O_COMPANY_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "It was constructed in 1988 by a consortium of companies led by AT&T Corporation, France Télécom, and British Telecom.",
+      "call_id": "chatcmpl-tool-85b57b95c2c841d5",
+      "doc_id": "wiki25:155720"
+    },
+    {
+      "evidence_id": "O_SERVICE_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "France Telecom Videotex service packet-switched AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SERVICE_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "O_PROTOCOL_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "Known as Minitel it was based on Videotex, itself running on X.25.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:158019"
+    },
+    {
+      "evidence_id": "O_SERVICE_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results mention that Minitel was discontinued on 30 June 2012."
+    },
+    {
+      "evidence_id": "O_AARNET_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "AARNet X.25 packet-switched protocol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/3/arguments/doc_id",
+      "exact_quote": "wiki25:605512",
+      "call_id": "chatcmpl-tool-bf28644ad684e97e"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-bdff0018ee94a12c"
+    },
+    {
+      "evidence_id": "N1_FIRST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "France Télécom Minitel termination date X.25 AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_X25_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/3/snippet",
+      "exact_quote": "As planned, service was terminated 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:158019"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The exact termination date of the Minitel service was **30 June 2012**."
+    },
+    {
+      "evidence_id": "N1_CONFIRM_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Minitel termination date 30 June 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-baf798adcda3ca01"
+    },
+    {
+      "evidence_id": "N2_FIRST_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "France Telecom Minitel termination date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_DATE_RETURN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "From the search results, Minitel service was discontinued by France Télécom on 30 June 2012."
+    },
+    {
+      "evidence_id": "N2_FULL_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-ad609681be9c929b"
+    },
+    {
+      "evidence_id": "N3_GUIDED_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "AARNet packet-switched protocol X.25",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RECOVER_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "France Telecom Videotex service packet-switched AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "According to the Minitel document (wiki25:605512), the service was discontinued by France Télécom on 30 June 2012."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Minitel France Télécom termination date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_NOISE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Full text of",
+      "call_id": "recovered_call_1",
+      "doc_id": "browsecomp_plus:55273"
+    },
+    {
+      "evidence_id": "N4_EFFECTIVE_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "France Telecom Videotex service packet-switched protocol AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/2/observation/results/0/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The answer to the question is: 30 June 2012"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

@@ -1,0 +1,492 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0014",
+  "stage_id": "S001",
+  "sample_order": 40,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the date of the first recorded successful human treatment using the antibiotic discovered by Alexander Fleming?",
+    "gold": [
+      "25 November 1930"
+    ],
+    "gold_source": "冻结离线答案。"
+  },
+  "original_outcome": {
+    "actual_final": "The date of the first recorded successful human treatment using penicillin (the antibiotic discovered by Alexander Fleming) was **25 November 1930**. This treatment was performed by Cecil George Paine, a pathologist at the Royal Infirmary in Sheffield, who used penicillin to cure eye infections (conjunctivitis) in one adult and three infants.",
+    "adopted_answer": "25 November 1930",
+    "outcome": "C",
+    "reason": "真实Final明确该日，文档5613直接首次成功/日期支持。",
+    "evidence": [
+      "O_FINAL",
+      "O_DATE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，仅原始Question和系统/工具协议，尚无任何Return或候选推理。没有预先得到Paine、日期或文档号。",
+    "evidence_states": "题目Fleming入口可见，penicillin身份/首次治疗日期尚未检索验证；G也不含这些事实。",
+    "evidence": [
+      "O_Q",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 292
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 468
+      }
+    ],
+    "goal": "识别抗生素并找到其首次成功人体治疗日期。",
+    "operations": "R1拆成抗生素/日期两跳，SearchFlemingdiscovery。E1返回5607直接身份penicillin；5613直接Paine首次成功及1930-11-25，同时含1929失败和1928无记录；R2提取完整成功病例并明确日期。",
+    "product": "成功日期有直接依据并被模型采用，尚未提交。",
+    "judgment_change": "从只有人名入口转为有证据的抗生素/成功病例/日期；已形成答案候选，随后工作变为复核已知日期。",
+    "evidence": [
+      "O_U",
+      "O_DATE",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "S002再三Open5613前100/前500/offset1000，未读到新的日期；R5回到原Search引文，S003正式回答。U的直接日期支持一直是最终依据，而不是后来Open才带来。",
+    "evidence": [
+      "O_ADOPT",
+      "O_REUSE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把人物入口接到具体药物和首次成功病例，提取日期并转为答案候选。",
+    "state_relation": "切点前没有答案材料，四条都重新真实Search并在R2采用同日期，所以四C主要是功能稳定恢复，非原工作没有作用。恢复后核验路线差异很大，r3用5Search5Open仍只回最初证据提交。",
+    "evidence": [
+      "N1_ADOPT",
+      "N2_ADOPT",
+      "N3_ADOPT",
+      "N4_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Let me verify this by opening the relevant document to ensure accuracy.",
+    "source_position": "原R2[468,539)，13派生Token。",
+    "novelty": "没有新药物、病例、日期或DocID，给出已经有对象可核验的行动姿态；P原没有文档，所以四条实际先Search，未按G凭空Open。",
+    "risk": "ORACLE_ANCHORED，核验倾向提示可能影响后续；不把这句当新模型自主决定，也不把四C等同无引导纯删。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "25 November 1930",
+      "adopted_answer": "25 November 1930",
+      "outcome": "C",
+      "outcome_reason": "实际Submit该日正确。",
+      "outcome_evidence": [
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1直接Search带penicillin/首次成功目标，完整Return与原E1相同。R2采用5613的Paine日期，Open前50未见答案。R3仍保留初始引文、区分1929失败和1932后次，实际新Search全名Paine成功日期；返回5613及新90665也给同日。R4引用两文档双支持后Submit。",
+      "first_judgment_divergence": "初始不再长拆两跳，直接把penicillin写进Query，但真实返回后才明确采用日期；核心判断与原相同。下游换独立Search获取另一条日期支持。",
+      "first_actual_tool_divergence": "首Query加入penicillin首次日期，但完整Return与原完全相同；R3额外Search替代原继续Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "找药物及首次成功日期",
+          "original_operation": "一Search后提取采用",
+          "original_product": "1930-11-25有证据",
+          "new_goal": "同",
+          "new_operation": "一同ReturnSearch后同样采用，后另增确认Query",
+          "new_product": "同日期，后90665增加独立文字支持",
+          "evidence": [
+            "O_U",
+            "O_DATE",
+            "N1_ADOPT",
+            "N1_NEW_SUPPORT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原初始取证及证据→日期采用均重现；并未真正绕过目标。",
+      "judgment_action_outcome_chain": "首Search恢复直接日期材料→采用同答案→短Open不足促另搜→第二来源支持→SubmitC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "780生成18875Prompt4Actor2Search1Open1Submit；原整后缀774生成19970Prompt5Actor1Search3Open，记录生成+6，少2Open/1Actor多1Search/1Submit。节省在后续读取组织而非初始发现未做；G13/P462单列，非native精确节省。",
+      "counterevidence_and_alternatives": "有新增第二来源，不能统一说删后证据更少；题目仍同，首Query不同不等同不同Return。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "November 25, 1930",
+      "adopted_answer": "25 November 1930",
+      "outcome": "C",
+      "outcome_reason": "美式同日期contentFinal正确。",
+      "outcome_evidence": [
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1查Flemingtreatmentdate，完整Return仍原E1。R2明确penicillin并采用Paine1930日期，Open100只见1929失败。R3比较1932Rogers不是首例，再真实SearchCecilPaine成功日期。回90665直接同日及无关长文前1500片段；R4只引用90665并content回答。",
+      "first_judgment_divergence": "初始采用相同；下游从短Open转另一具体PaineQuery，不再做原Open500与offset1000。",
+      "first_actual_tool_divergence": "首Query不同但Return相同；R3以新Search替代原第二Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别药物/日期",
+          "original_operation": "Search和日期提取",
+          "original_product": "日期确定",
+          "new_goal": "同",
+          "new_operation": "同首Return后采用，后新Search另一来源",
+          "new_product": "日期和支持恢复",
+          "evidence": [
+            "O_DATE",
+            "O_ADOPT",
+            "N2_ADOPT",
+            "N2_SUPPORT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整重建初始发现与采用，后续确认手段改变。",
+      "judgment_action_outcome_chain": "同初始证据恢复→排除更晚成功治疗→新Search得直接日期支持→contentFinalC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "640生成19180Prompt4Actor2Search1Open0Submit；记录生成差-134、少2Open/1Actor、多1Search。成本减少可定位到两个后续Open及回复被一次Search/短Final替代，初始功能重做。P462/G13。",
+      "counterevidence_and_alternatives": "少生成不证明U冗余；这里补了90665，替代后续证据组织。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "November 25, 1930",
+      "adopted_answer": "25 November 1930",
+      "outcome": "C",
+      "outcome_reason": "最终Submit同日；许多无关返回未改变答案。",
+      "outcome_evidence": [
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同r1Query/Return，R2采用正确日期，Open10只Thetreatm。R3搜Paine1930回其他Cecil/1930人物，无有效支持。R4想更长却Open20；R5再Open50；R6重述正确日期却又查Paine1930，Return与R3完全同。R7加全名/确切日期回其他Paine。R8再确认首返回直接回答，仍Open100；R9又引同日但Openoffset200limit50仍不在日期段；R10再次Paine1930Search回R3同Return。R11最终回到首Search全文明确采用日期，真实Submit。",
+      "first_judgment_divergence": "核心日期早恢复；区别在其后反复认为必须再打开文档确认，虽每轮引用已有直接证据，短Open/无关Search仍触发下次核验。",
+      "first_actual_tool_divergence": "首Search同r1仍与原Return相同；R2把Open100变10，后不断短读/新Search，而原三Open即停止。",
+      "function_correspondence": [
+        {
+          "original_goal": "首轮取得并采用日期",
+          "original_operation": "一Search/日期采用",
+          "original_product": "正确日期",
+          "new_goal": "同",
+          "new_operation": "同Search/采用，后四次额外Search五Open",
+          "new_product": "日期始终同，额外核验无更好支持，仍用首Return",
+          "evidence": [
+            "O_DATE",
+            "O_ADOPT",
+            "N3_ADOPT",
+            "N3_KNOWN",
+            "N3_OPEN",
+            "N3_LAST",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "初始材料取得/提取/采用均明确恢复；后续大量工作不能反推未恢复。",
+      "judgment_action_outcome_chain": "初始答案已明→短读取不到已引用句→已有日期仍不能结束再核验要求→无关Paine返回也未解除该要求→多次Open/Search后回同证据提交C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "2314生成112729Prompt11Actor5Search5Open1Submit；记录生成+1540，Search+4、Open+2、Actor+6。消耗增加在R3—R10多次短读/重复PaineQuery及每轮完整日期复述，不是得到更多题目约束。P462/G13。",
+      "counterevidence_and_alternatives": "最终仍C，是正确率不敏感却成本大增反例；不能凭A四C说原Stage可有可无，不能将每次不同查询都叫完全重复。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "25 November 1930",
+      "adopted_answer": "25 November 1930",
+      "outcome": "C",
+      "outcome_reason": "真实Submit正确日期。",
+      "outcome_evidence": [
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R1同r1Search/Return，R2采用日期Open5613前500，只到Paine开头，R3说要更充分打开但没有执行，直接重引最初全文确认日期并Submit。",
+      "first_judgment_divergence": "初始采用未变；后续只一次Open后就以初始搜索材料足够提交，不像原继续两Open。",
+      "first_actual_tool_divergence": "R2直接Open500而非100，之后没有第二Open，改Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别并采用正确日期",
+          "original_operation": "首Search/采用",
+          "original_product": "同日期",
+          "new_goal": "同",
+          "new_operation": "同Return和采用",
+          "new_product": "同日期C，后续读取未新增日期",
+          "evidence": [
+            "O_ADOPT",
+            "O_DATE",
+            "N4_ADOPT",
+            "N4_J",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原功能全做，差别仅后续确认次数/输出形式。",
+      "judgment_action_outcome_chain": "完整首Return取得日期→采用→一次短Open不补日期→仍认首证据足够→SubmitC。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "391生成9902Prompt3Actor1Search1Open1Submit；记录生成-383，Search同1、Open少2、Actor少2。减少在后续两个核验读取及其解释，不是U发现/采用阶段未执行。P462/G13。",
+      "counterevidence_and_alternatives": "R3有更充分核验意向但真实只Submit，不能编为额外Open。"
+    }
+  ],
+  "four_run_comparison": "四C且初始发现功能四次完整恢复。r1/r2以第二Search得90665独立支持；r4只一次短Open回首证据提交；r3五Search五Open仍只靠首证据并成本大增。相同日期采用不能决定后续核验是否停止，A结果稳定与成本稳定分开。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "从无证据切点删首发现工作后，相同题目入口仍能重新获得同一直接日期材料并恢复答案；后续成本主要取决于是否把已有明确材料视为足够，还是反复要求短文读取再次展示同一句。取证功能易重建解释四C，重复核验退出方式解释成本分化，两者不是同一冗余结论。",
+      "support_evidence": [
+        "O_ADOPT",
+        "N1_ADOPT",
+        "N2_ADOPT",
+        "N3_ADOPT",
+        "N3_KNOWN",
+        "N3_OPEN",
+        "N4_J"
+      ],
+      "limit": "单题内部支持；G核验姿态可能影响后续，未匹配无G对照；不声称完全恢复隐态或纯删除因果。"
+    }
+  ],
+  "counterevidence_and_limits": "原24732和新108079字符完整读完，返回全文或精确同文引用已核对。相同Return无未来回填，新的90665实际返回才可采用。初始P无答案，四次均重做Search；原nativeIDs缺失，只报完整usage记录差而非原生精确节省。",
+  "evidence": [
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/question",
+      "exact_quote": "first recorded successful human treatment"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Alexander Fleming antibiotic discovery",
+      "call_id": "chatcmpl-tool-8287d2c72c01ef6c"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/results/5/snippet",
+      "exact_quote": "He cured eye infections (conjunctivitis) of one adult and three infants (neonatal conjunctivitis) on 25 November 1930.",
+      "doc_ids": [
+        "wiki25:5613"
+      ]
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This gives the date: 25 November 1930."
+    },
+    {
+      "evidence_id": "O_REUSE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The search results indicate that Cecil George Paine was the first to use penicillin successfully for medical treatment."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "was **25 November 1930**."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this by opening the relevant document to ensure accuracy."
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The date is November 25, 1930."
+    },
+    {
+      "evidence_id": "N1_NEW_SUPPORT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/2/observation/results/7/snippet",
+      "exact_quote": "on November 25, 1930.",
+      "doc_ids": [
+        "wiki25:90665"
+      ]
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "25 November 1930"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This appears to be the answer."
+    },
+    {
+      "evidence_id": "N2_SUPPORT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The search result for \"Penicillin\" (doc_id: wiki25:90665) contains the relevant information."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "November 25, 1930"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "curing eye infections (conjunctivitis) of one adult and three infants on 25 November 1930."
+    },
+    {
+      "evidence_id": "N3_KNOWN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "This directly answers the question. The date is 25 November 1930."
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/8/arguments/doc_id",
+      "exact_quote": "wiki25:5613",
+      "call_id": "chatcmpl-tool-98fb8cb78fd91f45",
+      "doc_ids": [
+        "wiki25:5613"
+      ]
+    },
+    {
+      "evidence_id": "N3_LAST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "This is the key information needed."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "November 25, 1930"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This seems to be the first recorded successful human treatment."
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This clearly states the date as 25 November 1930."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "25 November 1930"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0014/trajectory.json",
+      "source_sha256": "46060b2c3f58c9339df2e056c4e8499764751d22532c3e7c81185a5db824f845"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0014.json",
+      "source_sha256": "6784f9c2c74059b80bb7c7e01dc7bbdc53554ad974e85fcda77e3dc53324824a"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "4362814c335aa8faed6d7a1d2a42ffa3e7623449146a2efc5e6ba0b7f6fc8621"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "c4b312378203acda155efd7c0c5d79384f6859a72ee0ddad8201e35185ddfb31"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "16c9e42bf324adccfd4b67006e9f02e70d3b91fc35a224e57b0743920a26f6a5"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b02937ff16a5cee3b24127fef0eb594761e0772c26e1737d78449516115e80a9"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0014__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "7eb8e08cccf6b6f26b803554c10daba7ed4928ba4eac47e291ae442d05af0723"
+    }
+  }
+}

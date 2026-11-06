@@ -1,0 +1,396 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0222",
+  "stage_id": "S006",
+  "sample_order": 72,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0222/trajectory.json",
+      "source_sha256": "cc3cf5435a2af194f17d23bbc0e224a7d96ad13298cedb06ab2b38a297c42c93"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0222.json",
+      "source_sha256": "e6ff232c344dd03661623388f153db18b8f210b7e0d75b78c8c1c8f680ea0488"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "68106ee7d9c1f3e5cbfd338cc55b2be2ae50414ca062af45ff99f00f338af68e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f69d95eeb052a5db8b964c509d3ab359bbb21e5e589c2bc993d38dca14f100f7"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "be156a0f4e4dac3b90098284d9153c6ead300a020148ffcccd3e61c772502de4"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "9d2893bbac033694c3acce224b093a6e7d24a698467af78d82b74b63fd5690c6"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "07559ccbc25d84eebf8e64ba0f57ff93baf4cfd2d61e9df0e3a76d71fb460682"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the date when the individual who served as director of cinematics for the \"Halo\" game that introduced reusable armor abilities, and who subsequently worked on the game \"Destiny\" whose soundtrack composer also worked on its \"The Taken King\" expansion, rejoined Microsoft Studios as a senior creative director?",
+    "gold": [
+      "January 9, 2014"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_NEW1000_BATCH03__SAGEN_0222/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "January 9, 2014",
+    "adopted_answer": "January 9, 2014",
+    "outcome": "C",
+    "reason": "正式日期准确且已有直接文支持。",
+    "evidence": [
+      "O_FINAL",
+      "O_DOC"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6@2003，历史E1–E5真实Return加当前完整2003字符复盘，P19003派生Token。当前已多次明确Joseph与January9,2014，末尾逐字引3245334日期；游戏reusable疑点也保留。",
+    "evidence_states": "日期已返回、提取、采用，不是删除后待重取；原尚缺的是游戏/音乐限定的直接支持，所删Open实际并不服务这些疑点。",
+    "evidence": [
+      "I_P",
+      "I_MODE",
+      "O_DOC"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/5/items；R6[2003,2241)+E6 Open3245334 offset0 limit2000完整Return，止R7@0。",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 2003,
+        "end": 2241
+      }
+    ],
+    "goal": "对已准确采用的Joseph重返日期再打开原来源确认。",
+    "operations": "真实Open同3245334，全部1670字符与E4Search首文一致，日期无新变化。",
+    "product": "同一来源同一日期再次可见，没有新增独立支持或消解游戏/音乐缺口。",
+    "judgment_change": "日期已接受→同来源再次确认；未发现新冲突或改变候选。",
+    "evidence": [
+      "O_CALL",
+      "O_DOC"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R7再次引用同日期句并Submit；Open不是独立新来源，也没有补游戏/音乐条件。",
+    "evidence": [
+      "O_FINAL_REASON",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "同来源、已采用具体事实的再次确认。",
+    "information_state_dependence": "P当前明确接受且逐字引用日期，额外Open无新产物；四续跑直接利用旧证据而非另找替代。",
+    "first_update": "不是首次事实采用；S003得证，S005当前采用，S006重复确认。"
+  },
+  "guide_audit": {
+    "text": "I have found the answer.",
+    "source": "O#/rounds/6/reasoning_content[0,24)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "G6教师Token，不含新日期/姓名/关系，但强化答案已定的接受/停止方向；P已有准确日期，G可能促提交，不能称无引导纯删除。实际输入19009=P19003+G6。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat01",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "唯一新Call正式准确日期，无新增外部取证。",
+      "outcome_evidence": [
+        "N1_TEXT",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6仅30字符说日期January9,2014，立即Submit；新路径没有Search/Open，没有重建重复来源确认。",
+      "first_judgment_divergence": "已接受日期直接进入提交，不再重开来源。",
+      "first_actual_tool_divergence": "首Call Submit取代Open3245334。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "对已采用日期实际Open同来源，得到相同日期。",
+          "new_goal_operation_product": "日期直接从P采用，未观察实际再Open或其他验证；原外部确认功能未重做。",
+          "evidence": [
+            "I_P",
+            "O_CALL",
+            "N1_TEXT",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "所指是重复外部确认，不能把保留日期及提交误算成重建Open。",
+      "judgment_action_outcome_chain": "P已完整日期判断→G答案已找到→直接提交→C，跳过同源重复确认及原R7长解释。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "51生成/19009Prompt/0Search0Open1Actor；原切后0S1O2段，少1Open/1Actor；生成差保守-663..-143，定位含重复Open与更短提交解释。",
+      "counterevidence_and_alternatives": "G明确接受信号，采样配置也不同；不能唯一归因删除。原共享游戏/音乐证据缺口仍在。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat02",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "即使Reasoning只说提交，实际Submit参数为准确日期，正式C。",
+      "outcome_evidence": [
+        "N2_TEXT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6只Let me submit it，立即真实Submit准确日期，无独立核验。",
+      "first_judgment_divergence": "没有新增日期判断，从已保留日期直接提交。",
+      "first_actual_tool_divergence": "Submit取代重复日期Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "外部重复确认日期。",
+          "new_goal_operation_product": "未执行该确认，只正式输出已有日期，保留功能与新执行分开。",
+          "evidence": [
+            "I_P",
+            "O_CALL",
+            "N2_TEXT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "全部新事件只有Submit，不把相同答案认作实际核查。",
+      "judgment_action_outcome_chain": "日期已采用、G促接受→无额外工作直接Submit→同C且交互少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "43生成/19009Prompt/0S0O1A，少1Open/1Actor，生成差-671..-151；提交措辞最短。",
+      "counterevidence_and_alternatives": "没有新证据链，正确依赖P；Oracle停止方向不能排除。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat03",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "明示日期并真实提交C，无Open。",
+      "outcome_evidence": [
+        "N3_TEXT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6一句准确日期、一句submit intention，再真实Submit；无Search/Open或新候选比较。",
+      "first_judgment_divergence": "直接接受提交，不重复文档确认。",
+      "first_actual_tool_divergence": "首Call为Submit。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "已采用日期重新打开来源确认。",
+          "new_goal_operation_product": "没有重新核查，沿用P日期直接答；答案可用与确认操作不同。",
+          "evidence": [
+            "O_CALL",
+            "I_P",
+            "N3_TEXT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "明确只有Submit，日期重复表述不是验证动作。",
+      "judgment_action_outcome_chain": "已有判断可复用→跳过同源确认→直接C，减少一轮外部交互与后续复述。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "58生成/19009Prompt/0S0O1A，少1Open/1Actor，生成差-656..-136。G6为预填不双计。",
+      "counterevidence_and_alternatives": "不把四次相同提交提升为所有类似确认都冗余，需要冲突有无与来源独立性条件。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE__repeat04",
+      "actual_final": "January 9, 2014",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "January 9, 2014",
+      "outcome": "C",
+      "outcome_reason": "最终真实准确提交，反复游戏核验意向没有执行，仍无Open。",
+      "outcome_evidence": [
+        "N4_PLAN",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R6先给日期，重新质疑new/reusable并两次说要搜；随后用knowledge和原评论支持Halo4，回引已有日期后Submit。没有实际Search或Open。",
+      "first_judgment_divergence": "较另三次多恢复游戏疑点讨论，但不影响最终沿用日期；原日期外部确认未重做。",
+      "first_actual_tool_divergence": "全部新Call只有Submit，意向不算Search。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "重复Open日期来源。",
+          "new_goal_operation_product": "仅内述游戏/日期，不实际打开来源；其他认知讨论不等于被删确认功能。",
+          "evidence": [
+            "O_CALL",
+            "I_P",
+            "N4_PLAN",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "有别的推理工作但没有目标外部确认，不能因长一些就标重建。",
+      "judgment_action_outcome_chain": "日期已稳定→旁支疑点又短暂触发计划→没有实际取证而用既有假设结束→C；生成较其他三条多但仍少一次Open。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0222__S006__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "294生成/19009Prompt/0S0O1A，少1Open/1Actor；保守生成差-420..+100跨0，不能声称精确生成节省。新增游戏讨论1168字符可定位。",
+      "counterevidence_and_alternatives": "即使工具减少，原部分切点不支持确定净生成差；游戏疑点并未证实，质量限制仍共享。"
+    }
+  ],
+  "four_run_comparison": "四条都利用P准确日期直接Submit，零Search/Open，目标重复确认均NOT_OBSERVED。前三条生成保守下降，r4多游戏讨论使生成区间跨0。共同结果保持与P已完成具体日期判断相联系，而G接受方向及采样差异仍不能排除。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "P已从同来源提取并接受具体答案，U再次Open同文未改变判断/行动→删后直接复用P而不重做确认→C保持、少一次Open与Actor。",
+      "support": "四续跑内部一致；尚需跨题支持，G促接受是限制。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G虽没有答案事实，却是明确停止信号，不能称严格无引导冗余证明。",
+    "Shared证据缺口不等于删后新增缺口；原Open也没解决Halo游戏/音乐。",
+    "原IDs缺失，部分Round保守区间；不把被删Stage字符长度当净节省。四新21810字符视图全读，无GPU。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 6,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "He rejoined Microsoft Studios as a senior creative director on January 9, 2014."
+    },
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 6,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I have found the answer."
+    },
+    {
+      "evidence_id": "O_DOC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "as a senior creative director on January 9, 2014",
+      "doc_ids": [
+        "wiki25:3245334"
+      ]
+    },
+    {
+      "evidence_id": "O_CALL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/5/arguments/doc_id",
+      "exact_quote": "wiki25:3245334"
+    },
+    {
+      "evidence_id": "O_FINAL_REASON",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The date is January 9, 2014."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N1_TEXT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The date is January 9, 2014."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N2_TEXT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me submit it."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N3_TEXT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The date is January 9, 2014."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    },
+    {
+      "evidence_id": "N4_PLAN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Let me search for more information about Halo armor abilities to confirm which game introduced them."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "January 9, 2014"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

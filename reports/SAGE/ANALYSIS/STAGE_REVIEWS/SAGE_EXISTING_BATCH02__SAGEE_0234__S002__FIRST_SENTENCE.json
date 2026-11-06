@@ -1,0 +1,483 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0234",
+  "stage_id": "S002",
+  "sample_order": 99,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What year did the \"Badenia\" steam locomotive, built by the founder of the company that manufactured the cars for the Stuttgart funicular railway—a system operated by the same entity as the Stuttgart Stadtbahn and whose cars were manufactured by a firm founded in 1846—begin its experimental service?",
+    "gold": [
+      "1841"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "1841",
+    "adopted_answer": "1841",
+    "outcome": "C",
+    "reason": "原后续取得BadenIb服务关系并正式采用1841。",
+    "evidence": [
+      "O_SERVICE",
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "当前R6[0,180)明确SSB、ME缆车厂商。此前真实缆车/SSB返回仍在工具历史；创办人、1846成立与Badenia1841尚未实际取得，不能将题目中给定1846误记已证。",
+    "evidence_states": "厂商已返回并采用；创办人与机车年份是下一步未知。",
+    "evidence": [
+      "O_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 180,
+        "end": 580
+      },
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 404
+      }
+    ],
+    "goal": "用已识别厂商追查创办人和成立年份，连接到机车。",
+    "operations": "Search ME founded，返回Kessler和ME资料；R7前五项整理将Emil、1846、Badenia1841纳入身份链。",
+    "product": "首次取得并采用创办人与1841建造年，仍未证明试验服役关系。",
+    "judgment_change": "由只知ME厂商变为具体人物和机车年份候选1841。",
+    "evidence": [
+      "O_U",
+      "O_ME",
+      "O_K"
+    ]
+  },
+  "original_followup": {
+    "use": "R7以Kessler为Open对象核验事件年，R8–R9转Badenia具体Search，最终BadenIb补服务关系后R10提交。U真正改变后续对象，不是纯重复已知事实。",
+    "evidence": [
+      "O_U",
+      "O_SERVICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "沿已知厂商关系检索创办人、核对题目成立年，并将新人物及机车年份变成下一核验对象。",
+    "state_relation": "四次虽A类四C，全部重新Search founder并提取同人物/年份；答案保持依赖功能恢复，不能称原关系推进不必要。差异主要出现在后续事件补查与判断组织。",
+    "evidence": [
+      "N1_Q",
+      "N2_Q",
+      "N3_Q",
+      "N4_Q"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The question asks for the year the \"Badenia\" steam locomotive began its experimental service.",
+    "source_position": "原R7[404,497)，I#/anchor_text；19派生Token。",
+    "novelty": "纯原题目标重述，没有给创办人、1841或来源；对完整P不新增事实，只将事件年份任务提前点明。",
+    "risk": "ORACLE_ANCHORED，仍提供下一需求方向，不能解释为纯删除无引导因果。",
+    "evidence": [
+      "I_G",
+      "O_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "真实取得并采用BadenIb服务关系，正式1841。",
+      "outcome_evidence": [
+        "N1_J",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R6 founderQuery取得Kessler/ME及Manila机车新杂项；R7完整身份/建造链后OpenKessler全文；R8仍区分服役，直接带1841搜索得BadenIb；R9采用并提交，没有再执行所说的额外verify。",
+      "first_judgment_divergence": "原先founded变founder，但人物关系采用一致；重要后续变化是首事件查询已带年份。",
+      "first_actual_tool_divergence": "首Query founder对原founded；R8直接具体Query省原泛查一步。",
+      "function_correspondence": [
+        {
+          "original_goal": "创办人及成立年、机车年份",
+          "original_operation": "厂商Search与结果整理",
+          "original_product": "Emil、1846、1841",
+          "new_goal": "同关系链",
+          "new_operation": "founderSearch后五项整理",
+          "new_product": "同三事实并用于Open/事件查询",
+          "evidence": [
+            "O_ME",
+            "O_K",
+            "N1_Q",
+            "N1_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "目标、实际取证、关系采用与行动均恢复，不仅返回同Doc。",
+      "judgment_action_outcome_chain": "ME已采用→恢复人物/年份→直接用年份约束事件Query→获得服役关系→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "1228生成74287Prompt4Actor2Search1Open；生成差[-438,-308]，比原少1Search1生成段。省在原无年份事件检索与重复盘点，不是创办人功能消失。P17033/G19另列。",
+      "counterevidence_and_alternatives": "此条更短不是证明U可跳过；真实首Call仍取人物关系。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "先取得BadenIb片段，再额外Open正文1000，最后正式1841。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R6 founderSearch；R7六项身份链并OpenKessler；R8泛事件Search未得服务，R9具体1841Search得服务句；R10已经采用1841但实际OpenBadenIb1000再次核；R11同关系整合后submit。",
+      "first_judgment_divergence": "主身份链恢复，无早期实质错误；服务关系已支持后仍选择再次读正文。",
+      "first_actual_tool_divergence": "首founder词替founded，后R10新增Open5040730。",
+      "function_correspondence": [
+        {
+          "original_goal": "厂商到创办人/年",
+          "original_operation": "Search并采用",
+          "original_product": "完整身份链",
+          "new_goal": "同关系推进",
+          "new_operation": "同Search提取后用于KesslerOpen",
+          "new_product": "同候选1841",
+          "evidence": [
+            "O_ME",
+            "O_K",
+            "N2_Q",
+            "N2_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原信息需求和采用动作实际全部发生。",
+      "judgment_action_outcome_chain": "身份恢复→泛查无服务句→具体查有句→再Open相同关系→C；最后Open主要重复核实片段已有事实。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1608生成125468Prompt6Actor3Search2Open；生成差[-58,72]不能证明省生成，Search相同、Open多1、生成段多1；新增成本落在已取得服务关系后的正文核验。",
+      "counterevidence_and_alternatives": "正文1000已实际读完整可见部分，不能把意向verify与该真实Open混淆；与r1四C但成本方向不同。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R9引用服务句和上下文1841，真实提交。",
+      "outcome_evidence": [
+        "N3_J",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R6列三项剩余任务并founderSearch，R7采用Emil/1846/1841后Open全文，R8直接带1841事件Search回BadenIb，R9完整链及服务原句后submit。",
+      "first_judgment_divergence": "原功能恢复一致，后续少一次补证前的泛查和反复接受判断。",
+      "first_actual_tool_divergence": "founder替founded；首事件Query直接含1841。",
+      "function_correspondence": [
+        {
+          "original_goal": "厂商创办与机车链",
+          "original_operation": "检索并整理关系",
+          "original_product": "Emil、1846、1841",
+          "new_goal": "同",
+          "new_operation": "founderSearch+身份链+据此Open",
+          "new_product": "同事实实际用于事件核验",
+          "evidence": [
+            "O_ME",
+            "O_K",
+            "N3_Q",
+            "N3_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不是G给人物或年份，四步均由真实Search后生成。",
+      "judgment_action_outcome_chain": "身份事实重获并采用→已知年约束下一Query→直接服务关系→C并更短。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "1054生成74287Prompt4Actor2Search1Open；生成差[-612,-482]，省1Search1生成段，另缩短盘点；U功能仍完整。",
+      "counterevidence_and_alternatives": "与r1相似同题内部重复支持，不计两道独立题；单次Query更好也受采样选择影响。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "1841",
+      "adopted_answer": "1841",
+      "outcome": "C",
+      "outcome_reason": "R10具体查询终于得服务关系，R11采用并提交。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R6 founderSearch恢复人物与年份，R7事件Query不带年，R8同Query再次搜索同返回；R9仍缺关系，OpenKessler limit5只返Emil空格；R10改带1841事件Query得BadenIb；R11六项链条后submit。",
+      "first_judgment_divergence": "没有先按原Open读取全文，未闭合事件缺口使下一次仍执行同一泛Query，之后又用过小Open。",
+      "first_actual_tool_divergence": "founder替founded；R7 Search替Open，R8重复Search；R9 limit5无可用机车内容。",
+      "function_correspondence": [
+        {
+          "original_goal": "创办人、成立年与Badenia年份",
+          "original_operation": "Search并整理采用",
+          "original_product": "人物/年份链",
+          "new_goal": "同链",
+          "new_operation": "founderSearch后四/五项整理",
+          "new_product": "同事实用作后续检索依据",
+          "evidence": [
+            "O_ME",
+            "O_K",
+            "N4_Q",
+            "N4_J"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原U关系工作已恢复，增耗在更后面的服务补查。",
+      "judgment_action_outcome_chain": "身份链恢复→事件缺口未解→相同Query重复不更新方法→Open5无新增→具体年份Query才推进→C但增耗。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1786生成138145Prompt6Actor4Search1Open，生成差[120,250]，多1Search1生成段。额外真实泛Search、无信息Open和重复盘点抵消删除篇幅，不能凭4C称省。",
+      "counterevidence_and_alternatives": "Open limit5是实际字符限制，不能误读为5篇或5Token。最终同C得证充分，不等于中间重复都有必要。"
+    }
+  ],
+  "four_run_comparison": "四C四FULL人物关系恢复；r1/r3直接年份Query减少步骤，r2片段已支持后多Open，r4重复泛Query及Open5之后才换具体查询。结果稳定来自原关系功能重建，不同成本来自后续处理缺口的方法与证据足够后的继续核实。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "当厂商已经采用而创办人尚未知，删除连接人物与机车年份的Stage后，四条仍重新取得并采用该关系；因此答案保持不能说明连接工作可无。关系恢复之后，已知年份是否用于收窄事件查询、已有片段是否被接受为足够，才区分后续少查、重复查或额外Open及其成本。",
+      "support_evidence": [
+        "O_U",
+        "N1_Q",
+        "N1_J",
+        "N2_J",
+        "N3_J",
+        "N4_J",
+        "N4_REPEAT"
+      ],
+      "limit": "这是同一Stage四路径及同题邻Stage对照，跨题数量留后续统计。"
+    }
+  ],
+  "counterevidence_and_limits": "完整阅读59556字符视图，重复Return仅对已全文阅读且逐字段相同的原件引用，未截断原存档。原切点派生字符精确无原生IDs，生成差区间而非原生精确；G19只重述原题，仍保留ORACLE_ANCHORED及采样差异。",
+  "evidence": [
+    {
+      "evidence_id": "O_P",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The cars were manufactured by Maschinenfabrik Esslingen."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Now I need to find information about Maschinenfabrik Esslingen, specifically who founded it and when."
+    },
+    {
+      "evidence_id": "O_ME",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/results/1/snippet",
+      "exact_quote": "It was founded by Emil Kessler on 11 March 1846 in Stuttgart",
+      "doc_ids": [
+        "wiki25:4677832"
+      ]
+    },
+    {
+      "evidence_id": "O_K",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/results/0/snippet",
+      "exact_quote": "in 1841 he built his first steam locomotive, the \"Badenia\"",
+      "doc_ids": [
+        "wiki25:4593167"
+      ]
+    },
+    {
+      "evidence_id": "O_SERVICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/2/snippet",
+      "exact_quote": "then placed it experimentally in service.",
+      "doc_ids": [
+        "wiki25:5040730"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 7,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The question asks for the year the \"Badenia\" steam locomotive began its experimental service."
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founder",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_J",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The document \"Baden I b (old)\" states:"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founder",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Let me verify this by checking the exact text in the \"Baden I b (old)\" document."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founder",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_J",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The snippet from \"Baden I b (old)\" states:"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "query",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Maschinenfabrik Esslingen founder",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_REPEAT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "query",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Badenia steam locomotive experimental service year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "According to the search result for \"Baden I b (old)\""
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "1841"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0234/trajectory.json",
+      "source_sha256": "a25b2fa8fe293960549afd48775dd9ec8b997053ae9fdd769c5da309c323562e"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0234.json",
+      "source_sha256": "b3a0858646e452cdd66043a5deb30f7e0852ee701b9555f4561292e4f4cf5eba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0d976a72b3f40eeace24b4d18ab32fe0db2451c44e98c3eff2db33bf1f9288a3"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f6500146de9a743d05a30614b1cf12210656cff5cc94dfa3d03d1ed7df193f9e"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "f16f480f9d87a9e76d7e91fba94aa68d2fbccdb36f6fa37d199702f8e4292d92"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "0984960c971c038763a05161c6958eaa953c8e8559b8f2796dc717dbf35a0507"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0234__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "8d0f3d8e80fe35e83d4504f1db1b3085fb9a4d608ed53249aa4e0ff6eedcbc9a"
+    }
+  }
+}

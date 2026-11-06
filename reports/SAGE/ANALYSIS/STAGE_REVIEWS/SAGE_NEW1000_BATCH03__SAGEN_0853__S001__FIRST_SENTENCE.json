@@ -1,0 +1,476 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0853",
+  "stage_id": "S001",
+  "sample_order": 86,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "How many original members comprised \"The Order,\" a white supremacist terrorist organization founded by the individual who originated the \"14 Words\" slogan, a phrase found in a database maintained by an organization known for monitoring extremist groups, which is a well-known characteristic of an entity that combats racism and antisemitism, an entity that could criticize controversial content from newsletters published by a former congressman, who co-sponsored a 2005 resolution with Walter B. Jones Jr. calling for a withdrawal of U.S. forces from Iraq by October 2006?",
+    "gold": [
+      "9"
+    ],
+    "gold_audit": "四条正式Final9，与人数直接返回one of nine founding members一致；不是接受其附带议员说明。"
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原未取得九人直接证据，后转议员查询耗尽上下文，没有Final。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，只有题目及工具系统，没有任何先前检索或Mathews姓名证据。",
+    "evidence_states": "组织名称/人数问题已给定；创立者/口号作者、人数和议员链均未查明。",
+    "evidence": [
+      "I_BOUNDARY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 940
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 216
+      }
+    ],
+    "goal": "找组织原始人数及口号源头。",
+    "operations": "R1两Search联合决策：组织originalmembers与14Words originator；R2直接提取组织创立者Mathews。",
+    "product": "547452组织开头含Mathews但Search截断未见成员名单；口号Query无关，未得到人数、未得到Lane。",
+    "judgment_change": "从未知创立者到Mathews采用，随后把此人是否口号作者作为核查对象；人数未解决。",
+    "evidence": [
+      "O_Q",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "S002围绕Mathews口号核验失败，R4再拆链并Search，R5–11转入议员决议反复查询；没有取得九人、没有提交。",
+    "evidence": [
+      "O_AUTHOR",
+      "O_CONGRESS",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始多跳问题拆解、联合取证和组织创立者采用。",
+    "state_relation": "四条均重新实际检索组织/口号关系，因此初始寻找功能未消失；原查询得到的创立者并非人数答案。",
+    "evidence": [
+      "O_Q",
+      "O_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Now I need to verify that Robert Jay Mathews originated the \"14 Words\" slogan.",
+    "source_position": "R2[216,294)",
+    "oracle_anchored": true,
+    "novelty": "P原题无Mathews；G引入未来人物及待验证的口号作者绑定方向，且原并未证实该绑定。未泄露9，仍不是无引导纯删除。四新路径多纠为Lane，但r2/r3解释中又把Mathews与Lane混写。",
+    "evidence": [
+      "I_G",
+      "I_BOUNDARY",
+      "O_ADOPT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "9",
+      "adopted_answer": "9",
+      "outcome": "C",
+      "outcome_reason": "正式Submit9；R2实际25295和1687486直接九创始成员，R3提取，附加Open未新增人数。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_NINE"
+      ],
+      "work_and_evidence_timeline": "R1口号Query空结果；R2缩成14 Words slogan取得Lane/九人；R3采用9、Open1164371 limit50只有Prussia开头；R4同doc100无人数；R5回用Search明确句提交。未查议员。",
+      "first_judgment_divergence": "未沿Mathews必须等于口号作者确认，R3用Lane/九人直接回答核心；原R2仅采用Mathews无人数。",
+      "first_actual_tool_divergence": "R1从原联合组织+口号变单口号origin founder空返回，R2简短Query成功。",
+      "function_correspondence": [
+        {
+          "original_goal": "发现组织/口号源头人数",
+          "original_operation": "两Search及Mathews提取",
+          "original_product": "组织创立者，无人数",
+          "new_goal": "口号源头和人数",
+          "new_operation": "两Search、两个小Open及结果采用",
+          "new_product": "Lane/九人，提交9；未重现原Mathews错误核查链",
+          "evidence": [
+            "O_Q",
+            "O_ADOPT",
+            "N1_Q",
+            "N1_NINE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "初始发现取证和采用均重新执行且取得原未得人数，非功能跳过。",
+      "judgment_action_outcome_chain": "简短口号入口返回直接人数→提取为所求→小Open无新增后仍使用已得人数提交，核心证据足够回答的判断没有继续触发议员链。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "815生成/15276Prompt/2Search2Open5Actor；相对原1715/338784/14Search0Open12Actor，避免R4后议员查询，但新增两个无人数Open。P556、G19单列；无原生精确节省。",
+      "counterevidence_and_alternatives": "首Query空返回是实际记录，不将无结果当语义排除。G人物引导和采样、检索返回变化混杂；原尚未得到9，不能只解释停止阈值。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "9",
+      "adopted_answer": "9",
+      "outcome": "C",
+      "outcome_reason": "正式9且R3真实25295/1687486直接九人，最终人数对；最终仍把Mathews作者标confirmed且议员未证实，不能称全链质量正确。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1Mathews口号Query同原无关；R2组织+口号Query泛白人组织；R3一度无依据认Butler，实际联合口号Query+议员，前者得九人后者空；R4识别Lane九人却R4–6议员空重试；R7人数+SPLC查询；R8议员；R9又人数和议员；R10Open547452完整列九个名字不含Mathews，R11/12再查创始人数均空；R13明确议员未确认但直接人数够，提交9。",
+      "first_judgment_divergence": "R3前的Butler猜测不同原Mathews，随后真返回Lane/九人纠正人数；首次直接采用R4，仍未立即改变议员行动。",
+      "first_actual_tool_divergence": "R1单Mathews口号Query先行；原R1组织与口号两Call。",
+      "function_correspondence": [
+        {
+          "original_goal": "初始事实入口与组织人数",
+          "original_operation": "两Search提Mathews",
+          "original_product": "无人数",
+          "new_goal": "组织、口号、人数发现",
+          "new_operation": "多Search和547452完整Open",
+          "new_product": "九人已采用，后来允许在议员缺证时提交9",
+          "evidence": [
+            "O_Q",
+            "O_ADOPT",
+            "N2_ADOPT",
+            "N2_ACCEPT",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际检索、创始者解释、人数采用均恢复，连议员旁支亦恢复；未跳过寻找功能。",
+      "judgment_action_outcome_chain": "直接九人已识别但议员仍派查询→完整名单又产生完整性缺口→两次空搜索后R13把核心答案与未证议员链分开→提交。四条中较长而仍正确的反例，不可把有旁支查证直接等同失败。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "3887生成/206563Prompt/14Search1Open13Actor；Search与原一样而生成、Actor增加，Prompt减少与空Return大量出现有关，不单归删除；未声称总成本下降。",
+      "counterevidence_and_alternatives": "R13仍将Mathews口号误写confirmed；C只指9匹配，附带链有错误。独立Open名单不是明确九创始人数，关键直接句仍来自FourteenWords。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "9",
+      "adopted_answer": "9",
+      "outcome": "C",
+      "outcome_reason": "R1真实Nine句，R2明确采用，R16正式9；Final解释有无依据FrankWolf/决议说法，人数正确不抹掉附带错误。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1三Search同时组织/口号/议员，口号得Lane九人、议员空；R2已9仍联合议员/人数；R3Open54745250，R4重复50，R5改2649取得成员名单；R6计九但不含Mathews疑问再Search空；R7–15议员/HConRes101或20无依据编号、相同空或无关Return持续；R16在content长解释FrankWolf无文档支持后正式Submit9。",
+      "first_judgment_divergence": "R2已经区分十人受审≠九人创立，原从未得九人；但未立即停止旁支，R7后延续原式议员任务。",
+      "first_actual_tool_divergence": "R1比原增加议员联合Call且口号Query较短取得九人。",
+      "function_correspondence": [
+        {
+          "original_goal": "组织创立者/口号/人数",
+          "original_operation": "联合两Search采用Mathews",
+          "original_product": "未知人数",
+          "new_goal": "全链与人数",
+          "new_operation": "三联合Search、重复及扩长Open、计数、议员查证",
+          "new_product": "九人已采用并最终提交，附带议员捏造未消解",
+          "evidence": [
+            "O_Q",
+            "O_ADOPT",
+            "N3_ADOPT",
+            "N3_OPEN",
+            "N3_LATE",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原初始联合发现与采用充分恢复，不是工作未执行；新增旁支和小Open重复。",
+      "judgment_action_outcome_chain": "直接人数早得且正确区分受审人数→仍把题干链作为待办→长议员失败查询→最终回到人数提交但夹杂无依据关系；核心C与证据解释质量分离。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "4322生成/368676Prompt/18Search3Open16Actor，各主要消耗都比原增加；反复议员Query及两次同50Open、第三次扩长是具体增耗。无原生精确Token净节省。",
+      "counterevidence_and_alternatives": "正确人数未立即停止却最终C，所以不能从旁支循环单独推断N；实际空Return与原完整无关Return不同，实验环境返回差异必须保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "9",
+      "adopted_answer": "9",
+      "outcome": "C",
+      "outcome_reason": "R1真实九人句，R2采用，R5解释创始人数≠受审人数后正式9。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_ADOPT"
+      ],
+      "work_and_evidence_timeline": "R1单口号白人组织founderQuery得25295/1687486；R2采用9后Open25295 limit100只有标题；R3同100不变；R4人数Query回原组织摘要十人受审；R5明确用FourteenWords九人且区分受审，取消再Open/搜索意向，直接提交。无议员Call。",
+      "first_judgment_divergence": "R2根据口号源头真实句采用人数；原仅创立者Mathews。",
+      "first_actual_tool_divergence": "R1单口号Query替代原两Call并得到新文档。",
+      "function_correspondence": [
+        {
+          "original_goal": "初始口号/组织人数发现",
+          "original_operation": "两Search与创立者采用",
+          "original_product": "无人数",
+          "new_goal": "同初始信息需求",
+          "new_operation": "两Search两Open并比较创始/受审",
+          "new_product": "有证据9及明确计数口径，停止旁支",
+          "evidence": [
+            "O_Q",
+            "O_ADOPT",
+            "N4_ADOPT",
+            "N4_ACCEPT",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实际发现和判断重新执行，正确终态来自不同取证入口与接受判断，不是省掉整个功能。",
+      "judgment_action_outcome_chain": "短Query给直接人数→同100Open无新增→另一摘要十人不被误当创始人数→R5评估直接句已足够，放弃额外查询并提交。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "1261生成/22151Prompt/2Search2Open5Actor；主要少了原议员旁支，增加无增量小Open；G19计上下文一次，不算自主查证。",
+      "counterevidence_and_alternatives": "多次重述nine仍需R5接受，不以重复就判无效；r2/r3有更多旁支仍C，说明不同成本路线可同答案。"
+    }
+  ],
+  "four_run_comparison": "四条C且原N，但全部恢复实际发现功能，人数来自原从未取得的FourteenWords句。r1/r4不展开议员，r2/r3已采用9仍真查议员、最后接受；r2/r3生成更多，r3全维更贵。因而B变化可来自有效入口+核心证据足够提交，而非原初始发现不必要。r3最终有假议员附带解释反例。",
+  "conditional_mechanism_proposals": [
+    "当题干已明确询问对象和属性，原长链查证没得到所求值时，较短关联入口可能直接返回值；模型是否将此直接句用于回答、是否继续把其他题干关系列为必须完成的任务，决定后续动作与消耗。此题四条取得9均采用，但提交时点差异很大；原没有9不能用作‘证据已知却不用’的正例。"
+  ],
+  "counterevidence_and_limits": [
+    "只有一道题，四续跑不是四个不同问题。G未来Mathews是错误待验关系提示；采样、工具返回空/非空与查询变化混杂，不纯因果。",
+    "所有四条恢复发现；不能由4/4改善宣布原U冗余。C不保证附带议员/作者关系正确。",
+    "原无native completion IDs，不宣称原生精确Token节省；成本表可用整Round生成usage比较但分列Prompt与Open。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to verify that Robert Jay Mathews originated the \"14 Words\" slogan."
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "The Order white supremacist terrorist organization original members",
+      "call_id": "chatcmpl-tool-85fa65b30dac1c7e"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results show that \"The Order\" was founded by Robert Jay Mathews."
+    },
+    {
+      "evidence_id": "O_AUTHOR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "\"14 Words\" slogan Robert Jay Mathews originator",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_CONGRESS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/10/arguments/query",
+      "exact_quote": "H.Res. 110 2005 Iraq withdrawal October 2006 co-sponsor",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "CONTEXT_LIMIT_STOP"
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "14 Words slogan",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_NINE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "David Eden Lane, one of nine founding members of the defunct white supremacist terrorist organization The Order",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "browsecomp_plus:25295"
+      ]
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "9"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I found that David Eden Lane is the originator of the \"14 Words\" slogan and was one of the founding members of \"The Order\"."
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "Actually, looking at the search results, I don't see direct confirmation of the congressman connection. But based on the information I have about The Order, the answer should be 9 original members."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "9"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So there were 9 founding members. But let me verify this and also search for the resolution."
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/7/observation/text",
+      "exact_quote": "Members of the Order included Randy Evans, Gary Yarborough, Bruce Pierce, Denver Parmenter, Frank DeSilva (also known as Frank Silva), Richard Scutari, David Lane, Randy Duey, and David Tate.",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:547452"
+      ]
+    },
+    {
+      "evidence_id": "N3_LATE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "content",
+      "json_pointer": "/rounds/15/content",
+      "exact_quote": "Frank R. Wolf co-sponsored H.Con.Res. 20 with Walter B. Jones Jr. in 2005."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "9"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "This indicates there were 9 original/founding members."
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "This mentions 10 members were tried, but the question asks for \"original members\" or \"founding members\", not necessarily those who were tried."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "9"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0853/trajectory.json",
+      "source_sha256": "3da89dfe2344a1088b375e7dba14d4ffeec4b9dd1e4620a9de685da4790fe804"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0853.json",
+      "source_sha256": "275bf663cc5fba4b223163dbea6ac43af60a18b243b94f3dcd8e3965d9033df2"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "70a7b6b9fcfd5d7e65abc47033a65d691a2b74db4559d3474e6fbb05c85d4c94"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "e79a36bda1b44532fd3af0076081ff718b1bd923b9ebe60593ceafe2be2b35bc"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "2faa8fd210b744962e442dc9cb03c9eb4cd278f119ab65c3da1a774b9893fb84"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "7e83e47e78d2ac4a797736d87d0a6cd6dbeff562202e8e8ad79ab8ea97009e3b"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0853__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "9ab9d44bc967e9739f1e6d78279351b9ee5f16a0b4a92ee7598138c1d0a1e960"
+    }
+  }
+}

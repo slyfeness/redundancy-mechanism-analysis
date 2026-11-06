@@ -1,0 +1,461 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0225",
+  "stage_id": "S001",
+  "sample_order": 87,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference in years between the César Award for Best Director won by the director of 'Quest for Fire', and the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose', a film starring the actor who played Daniel Dravot in the 1975 cinematic adaptation of Rudyard Kipling's 'The Man Who Would Be King'?",
+    "gold": [
+      "5"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "5",
+    "adopted_answer": "5",
+    "outcome": "C",
+    "reason": "正式提交5；值正确不替代角色与典礼年的证据验收。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "首Round@0，只有原问题和系统/工具定义，没有历史Return、候选或推理。",
+    "evidence_states": "所有导演、首作、年份与角色链均尚未检索；后继G仅待查引导。",
+    "evidence": [
+      "I_BOUNDARY",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 571
+      }
+    ],
+    "goal": "把复杂导演—首作—奖年链分解并执行首次联合取证。",
+    "operations": "六步拆题，实际同批Search Quest导演、Rose导演、Dravot演员。",
+    "product": "794119提供Annaud双导演、首作BlackWhite1976/Quest1981及获奖；Rose查询空；演员仅共演Connery/Caine，没直接角色映射和典礼年。",
+    "judgment_change": "从问题文本进入具体对象资料获取，奠定后续导演与首作选择，尚未接受5。",
+    "evidence": [
+      "O_U",
+      "O_Q",
+      "O_FACTS"
+    ]
+  },
+  "original_followup": {
+    "use": "R2使用794119选择导演首作，继续查日期和角色；R5接受5但之后Open及错误Sean首作查询，反复纠错，R9正式5。",
+    "evidence": [
+      "O_NEXT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "问题关系拆解与首次对象证据获取。",
+    "state_relation": "四次均重新执行首次取证，G无人物或答案，属于带普通承接的从头新执行，不能因3C称初检功能可省。",
+    "evidence": [
+      "O_U",
+      "N1_Q",
+      "N2_Q",
+      "N3_Q",
+      "N4_Q"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I need to find the following information:",
+    "source_position": "R2[0,41)",
+    "oracle_anchored": true,
+    "novelty": "8Token没有后继清单、候选、日期或5，只改变拆题的开头组织方式；源自未来仍保留ORACLE_ANCHORED。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5；演员角色及奖年主要推断，且典礼编号/日期多处自造，不能说全证据正确。",
+      "outcome_evidence": [
+        "N1_CALC",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R1 526字符正确把演员约束归Rose，同批原3Query得原返回；R2 1842字符提取Annaud/首作并联合3Query；R3 3827字符接受Connery角色但无直接证据，重查两奖年；R4 19256字符无新增Search，反复法文名、典礼年/片年与定语，最终选两典礼年1982/1977=5并Submit。",
+      "first_judgment_divergence": "起初明确演员核Rose而非导演处女作；后续仍重新疑问但最后保留正确关系。",
+      "first_actual_tool_divergence": "首次三个Search与原相同，实际工具差异在后续查询次数与取消Open/Sean首作。",
+      "function_correspondence": [
+        {
+          "original_goal": "拆题并初检导演/演员",
+          "original_operation": "六步拆解+3Search",
+          "original_product": "核心导演首作资料",
+          "new_goal": "同对象链拆题初检",
+          "new_operation": "R1四项拆解+3Search",
+          "new_product": "同794119核心资料，后续采用",
+          "evidence": [
+            "O_U",
+            "O_Q",
+            "N1_Q",
+            "N1_CALC"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "初始拆题、实际资料获取与后续采用全恢复，非只是同名词出现。",
+      "judgment_action_outcome_chain": "空P→重建初检取得正确导演首作→奖年缺口驱动五次追加Search→长定语/法名复盘但仍回到Rose关系→5正式提交。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "7539生成31699Prompt8Search0Open4Actor；原首轮起8504生成184371Prompt13Search1Open9Actor。usage少965生成5Search1Open5Actor，主要后续互动减少，首检完整重做；G8与重放P527单列，非native精确节省。",
+      "counterevidence_and_alternatives": "仍花5864生成Token在最后一Round，短于原不等于避免反复；同差5可掩盖日期细节错误。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，奖年次年推断；初始RichardHarris假设被共演返回/后续知识纠回Connery，不能视始终正确。",
+      "outcome_evidence": [
+        "N2_INITIAL",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1 2201字符误认Dravot为RichardHarris、定语归处女作，但实际仍原3Query；R2 1258字符采用Annaud首作，演员改为Connery/Caine待辨，3Search；R3 1630字符两Search；R4 2432字符又三Search，带年份较长Query返回无关人物/语言文献，角色仍旧无直接；R5 6464字符承认材料够，反复1982/1977和典礼口径，5Submit。",
+      "first_judgment_divergence": "检索前先引入错误演员假设，未让它主宰首次实际Query；检索后恢复正确导演链。",
+      "first_actual_tool_divergence": "首次实际Query同原，后续11次Search分批无Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "首次关系链取证",
+          "original_operation": "拆解3Search",
+          "original_product": "Annaud资料",
+          "new_goal": "同初检含错误演员猜测",
+          "new_operation": "R1仍3Search取得相同核心Return",
+          "new_product": "导演首作被采用，后续角色纠回Connery",
+          "evidence": [
+            "O_U",
+            "N2_INITIAL",
+            "N2_Q",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "问题分解和首次联合取证全实际恢复，初始误判不等于功能未执行。",
+      "judgment_action_outcome_chain": "错误预设没有改变首批检索→正确Annaud资料被采用→多轮日期/角色查询没有精确新证→接受通常次年口径5退出；原错误演员首作/长后段未照走。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "3874生成66866Prompt11Search0Open5Actor，原8504/184371/13S1O9A；少4630生成2Search1Open4Actor。减少后段解释与交互，仍反复检索同缺口，不能以短解释说取证没重建。",
+      "counterevidence_and_alternatives": "R4的新返回不相关但R5正常提交，说明检索无增益不必然导致不停止；G与采样都不同于纯去U。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "多次写5/准备提交但无实际Submit或Final，R4用满10000Token停止。",
+      "outcome_evidence": [
+        "N3_WRONG",
+        "N3_STOP"
+      ],
+      "work_and_evidence_timeline": "R1 609字符原3Query；R2 4648字符采用正确Annaud/首作并推奖年，但把主演限定放到BlackWhite，实际查其SeanConnery演员+两奖年；R3 5273字符明确错误断言Rose不演Connery，再发同类3Query；R4 33674字符不断重复处女作必须演Connery、候选与导演不可能错、5或4或6，几十次写将提交却没Call，length停止。共9Search。",
+      "first_judgment_divergence": "R2首次把正确资料之后的工作改成BlackWhite必须演Connery，R3以Rose不演Connery的错误断言巩固此任务。",
+      "first_actual_tool_divergence": "R2新增BlackWhite1976castSeanConnery查询，替代原纯三缺口批次之一。",
+      "function_correspondence": [
+        {
+          "original_goal": "拆题及初检",
+          "original_operation": "3Search",
+          "original_product": "正确导演首作",
+          "new_goal": "同首次对象链",
+          "new_operation": "R1实际3Search",
+          "new_product": "同核心资料R2采用，后来错误定语未被解除",
+          "evidence": [
+            "O_U",
+            "N3_Q",
+            "N3_WRONG",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整初检恢复，失败在其后关系解释与未能实际提交，不是没找到导演。",
+      "judgment_action_outcome_chain": "正确核心资料恢复→错误主演归属成为待解决前提→连续重新解释而非获新证或提交→最后10000Token重复不结束→N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "12811生成51201Prompt9Search0Open4Actor；比原多4307生成但少4Search1Open5Actor。增加落R4纯推理10000Token而非实际Search，不能把工具减少称质量保持节省。",
+      "counterevidence_and_alternatives": "r2也曾错误定语却最终C，不能仅错误出现唯一解释N；可观察差别是r3反复保持此前提且没有提交，停止阈值内部原因不确定。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，直接新返回支持1982与Rose主演，但Oscar1977仍推断；输出自造April30不能说整段证据完整。",
+      "outcome_evidence": [
+        "N4_USE",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R1 678字符正确演员修饰Rose，三Search，较具体QuestQuery直接得3997219典礼1982；R2 1715字符采用典礼年并3Search；R3 5120字符倒置Caine/Connery角色，把BlackWhite须演Caine当待查，真实演员Query+两奖年；R4 7030字符纠回Connery并正确重解析Rose，实际查Rose1986castConnery，获2781999直接；R5 2278字符又Quest年份Query；R6 13365字符明确引用Rose主演与典礼1982，反复口径后5Submit。",
+      "first_judgment_divergence": "首个更具体Quest导演获奖Query取到原首批没有的典礼资料；中段角色仍一度倒置，后经正确Rose查询恢复。",
+      "first_actual_tool_divergence": "R1 QuestforFiredirectorCésarAwardBestDirector，原仅director；R3BlackWhitecastMichaelCaine，R4Rosecast。",
+      "function_correspondence": [
+        {
+          "original_goal": "首次导演演员证据获取",
+          "original_operation": "3Search",
+          "original_product": "Annaud与共演资料",
+          "new_goal": "同导演演员链含明确奖项",
+          "new_operation": "3Search并追加Rose主演验证",
+          "new_product": "核心资料恢复并多得典礼与主演直接依据，均被后续引用",
+          "evidence": [
+            "O_U",
+            "N4_Q",
+            "N4_CORRECT_QUERY",
+            "N4_USE",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原初检全部实做，查询具体化提升部分证据而非省去功能。",
+      "judgment_action_outcome_chain": "初检获得更强日期证据→演员倒置制造错误BlackWhitecast任务→重新把从句绑Rose并真实查证→Return采用解除关系疑问→5提交，但长复盘仍增加生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "9045生成94449Prompt11Search0Open6Actor，原8504/184371/13S1O9A；多541生成、少2Search1Open3Actor。增加为关系和年份复盘，部分新Search有确切证据产物；不能统一称低收益。",
+      "counterevidence_and_alternatives": "材料增强没有确保生成更少；相同5与r1/r2的证据支持不同，采样/不同Query导致新返回是替代解释。"
+    }
+  ],
+  "four_run_comparison": "C/C/N/C，四次全部重建首次三Search。r1/r2以不同程度错误与推断最后仍提交5，r3把错误从句维持到10K无提交，r4实际新证据后纠正且C但生成高于原。不能按初检去掉之后3C宣称初检无用，也不能把错误定语一出现视必失败。",
+  "conditional_mechanism": {
+    "observed_chain": "起点无证据→四次都重新获取核心资料→差异主要在如何解释演员从句并将它转成后续核验对象、能否最终结束判断；错误任务可实际造成额外搜索，也可只造成无Call长推理。",
+    "support_scope": "本Stage1题4续跑，与本题其他Stage40条一起仅同题比较，不能当不同题目支持。",
+    "counterexamples": "r2初误RichardHarris但不改变首批Query后恢复C；r4有错误Caine任务但经实际Rose证据修复；r3N不能由错误首次出现单独解释。",
+    "limits": "ORACLE普通承接+不同seed自然再执行；不能声称纯删除因果或数值5证明所有关系准确。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the following information:"
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "This is a complex multi-hop question. Let me break it down step by step:"
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire director"
+    },
+    {
+      "evidence_id": "O_FACTS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Black and White in Color",
+      "doc_ids": [
+        "wiki25:794119"
+      ]
+    },
+    {
+      "evidence_id": "O_NEXT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Jean-Jacques Annaud"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire director",
+      "call_id": "chatcmpl-tool-8b1e512dde06ed64"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The appositive \"a film...\" most naturally refers to the nearest noun phrase, which is 'The Name of the Rose'."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N2_INITIAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "the actor who played Daniel Dravot in 'The Man Who Would Be King' (1975) is Richard Harris."
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire director",
+      "call_id": "chatcmpl-tool-afb85ed29647c834"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire director",
+      "call_id": "chatcmpl-tool-8f3742bd4c5b9f51"
+    },
+    {
+      "evidence_id": "N3_WRONG",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "\"The Name of the Rose\" (1986) did not star Sean Connery."
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire director César Award Best Director",
+      "call_id": "chatcmpl-tool-80f8c06e590af744"
+    },
+    {
+      "evidence_id": "N4_CORRECT_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/9/arguments/query",
+      "exact_quote": "The Name of the Rose 1986 cast Sean Connery",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_USE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "From wiki25:2781999: \"Sean Connery stars as the Franciscan friar William of Baskerville... in 'The Name of the Rose' (1986).\""
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0225/trajectory.json",
+      "source_sha256": "dad7c40bf4b24d3bb344e38664adaf8ba508a9f3e53e7354edca180e9e4e181d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0225.json",
+      "source_sha256": "94db9aff7cea271430a33afb2f46e01d04c5e65847880b4c69b1de0cda8bac45"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "56aa9456546620dadf1a8015593f21a8f1c3cbc49d870c376e091728f99e533c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "a3ea4eb0325622164b05d9a593b238c7591a7cab6829a7307d135d0c3775c56d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a273dc83499ae3b51d5f9f48490f6ec19a9b2545261a6f0ee39581ecfd4d55fc"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "0df6322cd1d776d55d61df233723adcd293e83161841744d7cbe9248c25105fe"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "4f4145ba4279b6f4cb8436d5ad8aa9b820d5b54c9d639d2fae5d3024a283e8ab"
+    }
+  }
+}

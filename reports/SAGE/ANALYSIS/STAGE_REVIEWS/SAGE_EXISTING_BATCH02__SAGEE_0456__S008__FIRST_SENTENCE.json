@@ -1,0 +1,553 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0456",
+  "stage_id": "S008",
+  "sample_order": 90,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "In the decade when the Ginetta G4 Series IV was revived with a Ford engine, Ginetta re-entered the complete car business with a specific mid-engined model. What was the 1990 retail price for the open-top variant of that particular model?",
+    "gold": [
+      "£14,600"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "£14,600",
+    "adopted_answer": "£14,600",
+    "outcome": "C",
+    "reason": "原后续取得G32convertible价格14600，提交正确。",
+    "evidence": [
+      "O_F",
+      "O_PRICE"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R9[0,912)已知1981复活及1980年代，摘要只有G27 1985/G33 1990、speedster和整车资料。已偏选G33且说应查其价格；G32业务句与价格都不在当前可见材料。",
+    "evidence_states": "摘要已返回、G27/G33信息已提取，G33已采用为下一步查价对象；1980年代与1990不协调但尚未有效排除。G32不是已知但未用，而是决定性文段未返回。",
+    "evidence": [
+      "I_P",
+      "O_U",
+      "O_OPEN"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/7/items",
+    "ranges": [
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 912,
+        "end": 1376
+      },
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 512
+      }
+    ],
+    "goal": "在已偏选G33之后补1990敞篷价格。",
+    "operations": "引用G33摘要指出缺价、实际Search Ginetta G33 price 1990；返回同旧片段，R10直接反馈仍把G33作为回归整车业务中置车型，确认仍无价。",
+    "product": "没有新增价格或车型关系；原错误对象采用被重复强化，随后决定改Open入口。",
+    "judgment_change": "未纠正G33，而是将既有偏向写成确认，缺价促使下一Stage打开原文。",
+    "evidence": [
+      "O_U",
+      "O_QUERY",
+      "O_FEEDBACK"
+    ]
+  },
+  "original_followup": {
+    "use": "S009改Open0limit2000才首次露G32业务句；S010首次改选G32。后来仍回退G33又纠正，再Open后半价格提交。原U无直接价格产物，不能因最终C倒推其查错车型必要；也不能由删后3N认定这次旧Query独有价值。",
+    "evidence": [
+      "O_OPEN",
+      "O_CORRECT",
+      "O_PRICE",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "对已选但未证实的车型追加价格取证，并在无新增支持时继续确认该对象。",
+    "state_relation": "B的N/C/N/N由不同后续取证范围和纯推理循环组成；三条仍真实重做G33价格搜索，唯一C先错选G27/G33也重做，后因全长Open纠正。删除并未稳定移除错误对象的工作。",
+    "evidence": [
+      "N1_Q",
+      "N2_Q",
+      "N3_Q",
+      "N4_Q"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I need to open the document to find the price.",
+    "source_position": "R10[512,558)",
+    "oracle_anchored": true,
+    "novelty": "11Token无新车型或价格，但将原U无价之后才产生的Open方向提前。四次都立即打开同DocID；不能将这一步视为完全自主选择的替代策略，也不能称G含答案事实。",
+    "evidence": [
+      "I_G",
+      "I_P",
+      "N1_OPEN",
+      "N2_OPEN",
+      "N3_OPEN",
+      "N4_OPEN"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat01",
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R20仍查G27价格，无价无Final。",
+      "outcome_evidence": [
+        "N1_STOP"
+      ],
+      "work_and_evidence_timeline": "R9直接Open0limit50；R10回归业务宽Search；R11 1605字符比较G27/G33并查G27mid-engined；R12 4950字符多车型猜测后仍真实G33价Search。R13长盘点转G27中置/价格联合查；R14Open0limit1000只前段；R15–20六次G27价Query，反复同不含价格片段，R18把derived from G4解释为中置。共10Search2Open12Actor。",
+      "first_judgment_divergence": "G使先Open而非原G33Search，但短读无效；后来G27因1985被认定，而非据直接业务句确定。",
+      "first_actual_tool_divergence": "首Call Open50；原首Call G33priceSearch。",
+      "function_correspondence": [
+        {
+          "original_goal": "G33价核查",
+          "original_operation": "真实Search及缺价反馈",
+          "original_product": "仍无价格、G33采用强化",
+          "new_goal": "先查业务车型后补价格",
+          "new_operation": "R12真实G33priceQuery并评价无价，随后G27方向",
+          "new_product": "原错误候选价格工作重做而未得到价格，后转另一错误对象",
+          "evidence": [
+            "O_U",
+            "O_QUERY",
+            "N1_Q",
+            "N1_ADOPT",
+            "N1_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "G33价真实查询和直接无价处理均恢复；最终N不等于未执行。",
+      "judgment_action_outcome_chain": "G提前Open→50字符无新关系→日期条件引向G27，猜G33为其版本→价格搜索恢复但错误对象未获纠正→Open1000仍未到G32句→G27缺价持续派发6次Query→ActorN。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "4487生成212969Prompt10Search2Open12Actor；原[1564,1987]生成4Search3Open8段，至少多2500生成、6Search、4Actor，少1Open。增加在多车型推断和六次G27价补查；P14575/G11分列。",
+      "counterevidence_and_alternatives": "原U查询没有新增事实，但删除后失败不证明那次低增量工作必要；G与后续Open范围、采样、剩余预算均影响。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "£14,600",
+      "adopted_answer": "£14,600",
+      "outcome": "C",
+      "outcome_reason": "真实Open全2514字符，拿到业务车型和三价后改G32convertible提交。",
+      "outcome_evidence": [
+        "N2_PRICE",
+        "N2_USE",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R9同样Open50；R10 880字符按1985错误采用G27并查价；R11/12两次G33价，R12明确误称G33是G27敞篷。R13 767字符仍错选G27/G33，但改Open0limit2514，完整返回G32业务句和13700/14600/17800。R14 948字符据实改G32及convertible，复核1981与价格句，正式Submit14600。3Search2Open6Actor。",
+      "first_judgment_divergence": "开始也同失败支选择错误G27/G33；实质改善在R13全范围取证后纠正，而不是从一开始更清楚。",
+      "first_actual_tool_divergence": "立即Open50替代U的Search；随后仍恢复两次G33价，但一次Open2514代替原三次Open分页。",
+      "function_correspondence": [
+        {
+          "original_goal": "G33价格补证",
+          "original_operation": "Query和无价反馈",
+          "original_product": "仍待查",
+          "new_goal": "同G33价格",
+          "new_operation": "R11/12真实查询和无价解释，R13转全长Open",
+          "new_product": "原工作重建且发现其对象错误，新增直接关系和价后改选",
+          "evidence": [
+            "O_QUERY",
+            "N2_Q",
+            "N2_PRICE",
+            "N2_USE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "两次G33价实际取证，随后用更足够的文档覆盖完成校正；不把替代路径当没重做。",
+      "judgment_action_outcome_chain": "错误车型采用恢复→价Query仍无果→缺价反馈落实为全长Open→新增G32业务句及车身价款共同纠正车型/版本→C且少交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "1386生成95710Prompt3Search2Open6Actor，原[1564,1987]生成4Search3Open8段；保守少178–601生成、1Search1Open2Actor。节省落在更短比较和一次全长读取替代原分段及车型回退；不能把全部节省归给删除U。P14575/G11只计一次。",
+      "counterevidence_and_alternatives": "这是同样错误初态和初始Open50之后的成功反例，关键新证据来自真实Open不是G；但G引导了Open方向，不能称纯删除证据。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat03",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R14单轮10000生成Token，反复计划Search而无真实新Call，长度止。",
+      "outcome_evidence": [
+        "N3_STOP",
+        "N3_LOOP"
+      ],
+      "work_and_evidence_timeline": "R9Open100；R10真实G27/G33价联合Search；R11–13分别广搜中置车型、G27/G33中置与业务回归，均未得到G32段。R14 30015字符不断比较1981/1985/1990和G27/G33 kit/complete、反复说Let's search，但本轮没有任何工具。4Search1Open6Actor，最后长度N。",
+      "first_judgment_divergence": "没有重新只查G33价，而围绕G27/G33合并检验型号；判断始终没有直接关系证据。",
+      "first_actual_tool_divergence": "首Open100；随后联合价Query替代原单G33价，四次Search后纯思考未执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "选定G33之后补价",
+          "original_operation": "单G33价Query和反馈",
+          "original_product": "仍无价，继续同对象",
+          "new_goal": "同时验证G27/G33及价格",
+          "new_operation": "R10联合价Search后转回车型身份核验",
+          "new_product": "价格取证部分执行，未形成可靠型号或价款结论",
+          "evidence": [
+            "O_U",
+            "N3_Q",
+            "N3_LOOP",
+            "N3_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "真实联合价Search覆盖原一部分需求，未恢复同样稳定选定G33的查价与直接反馈；后期计划不算新增Search。",
+      "judgment_action_outcome_chain": "短Open未扩展证据→联合查询仍只已有车型摘要→型号年代矛盾不断触发比较→没有将不足反馈落实为实际更完整读取→单轮长篇计划耗尽N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "11749生成94159Prompt4Search1Open6Actor；原4Search3Open8段，Search相同、Open−2/Actor−2，但生成至少多9762。增加主要定位在R14的10000Token纯重复推导，不能因交互少称低计算。",
+      "counterevidence_and_alternatives": "无后续真实Search的R14不统计计划次数；B中N既可因轮数也可因单轮长度，分别保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat04",
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R20仍G27价Query，未读G32/价格，无Final。",
+      "outcome_evidence": [
+        "N4_STOP"
+      ],
+      "work_and_evidence_timeline": "R9Open100；R10 1541字符将G27定为1980s型号、G33视作敞篷，真实联合价Search；R11 3477字符继续此假设，联合业务Query返回Ginetta及无关加法器/巴赫；R12/13G27价；R14 2781字符意识到可能前置，转1980s车型宽搜；R15仍G27mid-engined；R16价；R17长比较又回G33价；R18G33价；R19宽搜；R20又G27价。11Search1Open12Actor，未再Open。",
+      "first_judgment_divergence": "G后Open100不够；随后以年份相符认G27，再凭同设计把G33当版本，搜索范围在两者间往返。",
+      "first_actual_tool_divergence": "立即Open100，后联合/宽查询替代U单G33Query；R17/18真实恢复G33价。",
+      "function_correspondence": [
+        {
+          "original_goal": "G33价验证",
+          "original_operation": "真实Query并说明无价",
+          "original_product": "价仍缺",
+          "new_goal": "G27/G33价格及车型验证",
+          "new_operation": "联合Query后R17/18真实G33priceSearch、解释缺价",
+          "new_product": "原功能恢复却不提供新关系，回退另一错误车型",
+          "evidence": [
+            "O_QUERY",
+            "N4_Q",
+            "N4_ADOPT",
+            "N4_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不仅Query重合，R17/18解释G33作为complete/model并真实找价；原操作和无价产物均恢复，但错误前提不消解。",
+      "judgment_action_outcome_chain": "短Open→日期局部匹配被升为车型接受→错版本解释约束后续查询→多次意识到中置未证但无新文段→同价/宽搜交替→ActorN。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "9091生成239939Prompt11Search1Open12Actor；至少多7104生成、7Search、4Actor，Open少2；成本增加在反复全题盘点与两错误对象交替，未读完整文档造成缺口一直未闭合。",
+      "counterevidence_and_alternatives": "实际曾质疑前置/中置，不是从未发现冲突；这些质疑没有形成排除或足范围Open，不能仅靠conflict关键词解释。"
+    }
+  ],
+  "four_run_comparison": "四次均被G导向立即短Open，之后1/2/4恢复G33价，r3联合查价；只有r2后续Open2514得到G32与价格并采用，另三条决定性文段未返回。r1/r4轮数N而r3长度N。原U本身低增量且强化错误G33；成功支删除后仍重做此工作，但用全长读取减少其他后续交互与表达。不能以B三次状态变化认定那次旧Query独有必要性。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "缺失事实若实际位于已定位文档后段，持续用猜测关系确定查询对象会重复消耗；对失败反馈的有效更新须落实为覆盖缺失文段的操作，而非只说应读全文。",
+      "chain": "P G33偏选且关键段未返回→U旧价Search未新增证据→原后续Open扩大范围才有纠正入口；删后G提前Open但初始范围很短→三支没有实质扩展、错误身份仍派发查询/推导→N；一支读全获得同句型号/价格映射→纠正并C且短后续。",
+      "support": "本Stage1题4路径，3失败1成功；source90S009/S010/S014是同题关联对照，不冒充多个独立题目。",
+      "limits": "不能由日志唯一证明U的某句造成读取参数选择，G、随机生成及预算替代解释保留。"
+    }
+  ],
+  "counterevidence_and_limits": "B筛选只描述多数结果变化，不给Stage先验重要性。原U无新事实、候选错误，删后路径仍多数失败，说明功能/边界与全过程需分开分析。真正成功来自真实新Return，G只有方向无答案；仍ORACLE_ANCHORED。原无原生ID，成本保守区间，独立分支节省不可相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 9,
+      "event_type": "retained_prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "Let's look for more details on the G33's price."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 9,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to open the document to find the price."
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "It doesn't mention the price. I need to search for more specific information about the G33's price, particularly the open-top variant."
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Ginetta G33 price 1990"
+    },
+    {
+      "evidence_id": "O_FEEDBACK",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "The G33 is the mid-engined model Ginetta re-entered the complete car business with."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 10,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/9/observation/text",
+      "exact_quote": "G32. It was decided to re-enter the complete car business with the mid-engined G32",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "O_CORRECT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "Wait, the question says"
+    },
+    {
+      "evidence_id": "O_PRICE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/14/observation/text",
+      "exact_quote": "the convertible £14,600",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "While the G31 was the last addition to the G26 lin",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N1_Q",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Ginetta G33 1990 retail price open-top",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "the G27 is the model I need to focus on."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    },
+    {
+      "evidence_id": "N2_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 9,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "While the G31 was the last addition to the G26 lin",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 12,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "Ginetta G33 price 1990 retail",
+      "call_id": "chatcmpl-tool-9bbdd04692ac1916"
+    },
+    {
+      "evidence_id": "N2_PRICE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/4/observation/text",
+      "exact_quote": "the convertible £14,600",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N2_USE",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The model is the Ginetta G32 (re-entered complete car business, mid-engined)."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "£14,600"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "While the G31 was the last addition to the G26 line, it sold pretty well",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Ginetta G27 G33 1990 retail price open-top",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LOOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Let's search for \"Ginetta G27 mid-engined\" again."
+    },
+    {
+      "evidence_id": "N3_STOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 14,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 9,
+      "event_type": "tool_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "While the G31 was the last addition to the G26 line, it sold pretty well",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:1945361"
+      ]
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 17,
+      "event_type": "tool_call",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Ginetta G33 1990 retail price open-top",
+      "call_id": "chatcmpl-tool-8775fa490081c311"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 20,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "So the model in question is the G27."
+    },
+    {
+      "evidence_id": "N4_STOP",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0456/trajectory.json",
+      "source_sha256": "7fde058b641875bbb1a65489d6d34f825db5062f8aee66777f9020395db3d3f3"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0456.json",
+      "source_sha256": "f567f403f7f562d9dc03b2511d0b92e59aa28bb8f4ac62876af0bba50bdf1062"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "105b46ffe2e142c0a5b797459be3f03285db0c16638f015422c5ed252ae2e09e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "b69065fc7686466369eb79df4cff1315d53c66e04394bb9a9293f4fe751d8aa9"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "148d05dec4d4bf68d306735af0153bc7e139361e0cfebe6d0b60d3e9fb2f96db"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "eb654de945ae75c7997e6701fcba1798ecc250ca65150dfeaab3812068bf61e4"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0456__S008__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "49fac7c61b85715008b04815a2f7914f5cf93320cefa4a3d11516d065d8a5990"
+    }
+  }
+}

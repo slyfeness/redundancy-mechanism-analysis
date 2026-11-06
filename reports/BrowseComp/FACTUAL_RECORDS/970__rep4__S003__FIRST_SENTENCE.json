@@ -1,0 +1,48 @@
+{
+ "case_id":"970__rep4__S003__FIRST_SENTENCE","question_id":"970","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原与四个真实正式Final均采用完整出生名；导演复合条件缺证/解释错误分开评，旧EM不改。"},
+ "review_basis":"原7轮完整推理/7Call/Return/Final已读同源；本组四新43轮全部Reasoning/Final、39真实Call参数/ID/批次/完整Return亲读。161精确块中127新块25204字符逐块和顺序字段阅读；新增9405全文1493字符读完，其他按完整内容SHA复用已读文本。源SHA c3440f3e89708f60b3a16998c99ce31272914428687c159fa6b0f656d1ce3a9b。",
+ "pre_state":"R2@592，P已从E1采用Audret及正确姓名/兄弟/第二配偶/演员女儿/生卒，但明确第一配偶癌症死亡仍待核，电影导演关系待核。E1没有89469 Coggio癌症专条，不能把此属性先验当已核；婚年也无直接日期。",
+ "u_work":"U R2[592,1000)+E2/E3同批两Call，再R3[0,590)消费并盘点。真实分别查Coggio死亡癌症和电影，89469返回2001癌症使第一配偶条件转已确认；电影返回仍是人物/片单，未给目标导演证明。原下一工作从片单选Cayatte，反复四查后R7提交。",
+ "u_state_update":"删后即使G把下一工作说为电影，四支仍在首轮自主返回第一配偶死亡缺口，并真实查Coggio；下一轮读到89469后明确确认癌症2001，原核验目标/操作/产物均恢复。区别主要不是姓名恢复与否，而是原联合批量任务被串行重做，之后导演缺口触发更多对象和查询；四C但成本全升。",
+ "original_action_consequence":"四支第一Call都是Coggio死亡癌症，随后共同恢复确认；新1Cayatte两查→1961影片→Tinto五查（含编造real name入口），R12止；新2Cayatte两查→Tinto/两次Fellini孩子→多次Tinto，到R15无源给1929/Anna/独子；新3广泛电影→Tinto→Fellini孩子/合作→另电影，R10止；新4广泛→Cayatte→Tinto→Fellini→两部影片，R10止。实际计划与Call不完全相同，逐项按真实39Call记录。",
+ "guidance":{"text":"Now I need to verify the movie between 1957-1967 directed by someone born in the 1920s, died in Rome, had one child.","source":"原S004 R3[590,706)，原生39Token。","audit":"ORACLE_ANCHORED，电影复合约束题目已有，非新候选事实；G预先把行动焦点放电影，却没有给Coggio癌症确认。四支自主补回该确认，不能把它归G泄漏。P原生精确R2@592保留185，首3503=3279+185+39，重放P3464；不注入原同批E2/E3返回或R3包装。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/1/reasoning_content","quote":"First spouse passed away from cancer between 1995-2005 - Need to verify this","use":"P确有明确待核条件。"},
+  {"id":"O2","source":"original","pointer":"/rounds/1/reasoning_content","quote":"Let me search for more specific information about Pascale Audret's first spouse Roger Coggio and his death.","use":"U原真实查询意图，随后和电影同批两Call。"},
+  {"id":"O3","source":"original","pointer":"/rounds/2/reasoning_content","quote":"Roger Coggio died October 22, 2001 from cancer","use":"U返回后的实际确认使缺口关闭。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Pascale Audret first spouse Roger Coggio cancer death 1995-2005","use":"R2真实ad4a236019e5d3a8，电影G后自主返回癌症缺口。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Great! I found that Roger Coggio (Pascale Audret's first spouse) died of cancer on October 22, 2001","use":"R3新Return明确采用，不只是检索重复。"},
+  {"id":"N13","source":"new1","pointer":"/rounds/7/tool_calls/0/function/arguments","quote":"Tinto Brass real name Ugo Peretti born 1922","use":"R9实际a5ff44d057682cc7，未证别名/年代形成新的检索任务。"},
+  {"id":"N14","source":"new1","pointer":"/rounds/10/reasoning_content","quote":"The movie constraint is the only one I haven't fully verified","use":"R12条件仍缺但停止，五次Tinto尝试没闭合关系。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Pascale Audret first spouse Roger Coggio death cancer 1995-2005","use":"R2真实bfcae32e7bd729f5，同目标恢复。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Great! I've found that Roger Coggio (Pascale Audret's first spouse) died of cancer on October 22, 2001","use":"R3真实采用产物。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/6/tool_calls/0/function/arguments","quote":"Federico Fellini children son daughter Francesca","use":"R8真实9bfef263b87b6305，新增子女任务而非仅想查。"},
+  {"id":"N24","source":"new2","pointer":"/rounds/13/reasoning_content","quote":"Based on my knowledge, Tinto Brass was born in 1929 (in the 1920s), died in Rome, and had one child (daughter Anna).","use":"R15未有相关返回仍自补决定性属性，不把质量与正确姓名混为一项。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Pascale Audret first spouse Roger Coggio death cancer 1995-2005","use":"R2真实a044b782c89ebd48。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Great! I found that Roger Coggio died of cancer on October 22, 2001","use":"R3核验产物明确恢复。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/5/tool_calls/0/function/arguments","quote":"Pascale Audret Federico Fellini film","use":"R7真实858bc144ac37dace，检查合作关系而非只是子女。"},
+  {"id":"N34","source":"new3","pointer":"/rounds/6/reasoning_content","quote":"I don't see a direct connection between Pascale Audret and Federico Fellini in the search results.","use":"R8合作失败反馈后又真实查Fellini孩子，未据缺联系停止该对象。"},
+  {"id":"N35","source":"new3","pointer":"/rounds/8/reasoning_content","quote":"However, I have enough information to confirm that Pascale Audret is the person described.","use":"R10对Cayatte/Tinto年代口头排除但仍接受人物提交。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"But wait, I need to check about the first spouse dying from cancer.","use":"R2从G电影方向主动回缺口，无新事实提示。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Pascale Audret first spouse Roger Coggio death cancer 1995-2005","use":"R2真实98d5f07a04d8c900。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Roger Coggio died on October 22, 2001 from cancer","use":"R3实际核验采用。"},
+  {"id":"N44","source":"new4","pointer":"/rounds/6/tool_calls/0/function/arguments","quote":"Give Me Ten Desperate Men 1961 director","use":"R8真实bc3439d117043692，R9失败后又换Carmelites，增加路径。"},
+  {"id":"N45","source":"new4","pointer":"/rounds/8/reasoning_content","quote":"given the specificity of all the other criteria, I'm confident the person is Pascale Audret.","use":"R10最终接受理由仍是其他匹配，不是最后影片查证成功。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"首Call仍癌症，但将原批量两Call串行；确认后转Cayatte/1961影片/Tinto，编造别名继续检索。","state_chain":"P显式缺口→自主恢复查询/新返回→癌症确认进入已知→电影缺口持续驱动多入口→R12未闭仍C。","function_change":"FULL_REBUILT U癌症与电影核验、实际采用。10Search11Actor201281Prompt比原6/6/79383多；2242+39=2281比2013多268生成，费用增来自联合改串行及后续额外核验。","evidence":["N11","N12","N13","N14"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"癌症确认后Cayatte转Tinto，Fellini孩子两次后回Tinto，最后无源给独子/女儿Anna。","state_chain":"U功能恢复→候选姓名稳定→未闭导演触发长串取证→未返回事实用知识式断言补成匹配→C。","function_change":"FULL_REBUILT U目标/操作/产物；13Search14Actor317424Prompt更多；2944+39=2983比2013多970生成。原已知癌症不再查，但导演多轮引起主要增长。","evidence":["N21","N22","N23","N24"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"补回癌症后广泛电影查询转Fellini，实际查合作没得关系还查孩子，换Carmelites后停止。","state_chain":"原核验恢复→新证据不能闭电影关系→对象/子问题交替→姓名保持/用其他匹配提交C。","function_change":"FULL_REBUILT U，8Search9Actor138112Prompt更多；2062+39=2101比2013多88生成。额外交互显著、表达未按比例长，分开记成本。","evidence":["N31","N32","N33","N34","N35"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"G电影后明确回癌症，再Cayatte/Tinto/Fellini/两影片，未形成导演闭合证明。","state_chain":"缺口从P被重新提取→真实取证确认并重建U→电影未证导致变换入口→最终其他人物关系支持C。","function_change":"FULL_REBUILT U，8Search9Actor141423Prompt；2636+39=2675比2013多662生成。没有实际省略核心核验，额外对象核验不能只归于一次原Stage篇幅。","evidence":["N41","N42","N43","N44","N45"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"此A的P已经采用正确姓名却保留明确癌症缺口。删掉原核验后，四条都自行把该缺口变成第一项真实查询，返回后确认，再处理电影；G只有电影方向没有提供确认事实。结果稳定来自关键核验功能可靠恢复，而非原工作未做或P本来全部证实。原联合批量被串行重做后，剩余电影缺口驱动更广的对象/子问题和更晚停止，四次费用全升。它与后期重复盘点A不同，不能将所有A当同一种冗余。",
+ "within_case_support":"四C、四次同癌症目标/真实89469返回/明确采用，原电影核验也恢复；后续导演路线1/2/3/4不同，但全未完成复合证明。4条成本都高于原，2增长最大且无源补属性，说明核心恢复与最终正确不保证高效或证据充分。",
+ "mechanism_chain_checks":[
+  {"chain":"P明确待核癌症条件虽被G绕向电影仍自主触发真实查询，返回后关闭该缺口再开展电影核验","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"],"3":["N31","N32"],"4":["N41","N42","N43"]},"limits":"四次都是同题同P，不能推出所有关键缺口都会恢复；该G虽无癌症事实仍改变实验条件。"},
+  {"chain":"已恢复正确人物关系后，导演关系缺口触发更多实际工作而非立即提交，最终其他匹配支持同名C","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N13","N14"],"2":["N23","N24"],"3":["N33","N34","N35"],"4":["N44","N45"]},"limits":"不能由工具多解释全部生成差，2的错误属性和3的角色误读独立记录，不强归同一原因。"}
+ ],
+ "counterevidence_and_limits":["原E2/E3是联合批次不是顺序决策；四新各单Call串行，不混淆Call数和Actor数。","G并未给癌症确认，不能把恢复归教师事实；P也不是已完成此核验，不能解释为重复证据天然无用。","新3称Bertolucci more than one child时引用其father Attilio，是角色错置/推断，不是实际子女返回；该错误不单独决定最终姓名。","新2末轮无源1929/Anna/独子，原路径也无源Cayatte1922/Rome；姓名C与证据评价不同。","新4若说要查Fellini合作但实际还Tinto，按Call而非意向记。所有39真实Call均保留完整Return，首次可见待输入检查。","同题多Stage和四次采样只支持内部对照，需跨题反例核实后再归纳；不得以重建标签结束机制解释。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R2@592，保留185；原后缀2013生成6Search6Actor，Prompt3279+76104=79383。G39计一次，首3503，重放P3464。新生成2242/2944/2062/2636，含G2281/2983/2101/2675，差+268/+970/+88/+662；Search10/13/8/8、Actor11/14/9/9、Prompt201281/317424/138112/141423。不同分支费用不可相加。",
+ "next_cross_case_test":"与U前信息已证而只是重复确认的A，以及关键缺口未明确写在P、删后未被重新发现的B比较；观察缺口是否触发真实工作、产物是否采用，以及恢复后剩余任务如何驱动费用，不能由四C断言U功能无用。"
+}

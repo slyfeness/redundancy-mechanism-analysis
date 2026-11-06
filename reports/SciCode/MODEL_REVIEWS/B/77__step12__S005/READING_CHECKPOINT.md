@@ -1,0 +1,34 @@
+# B111 IN_PROGRESS — not counted as complete
+
+Current scope SciCode100 CODE_STAGE V1.0, not BrowseComp/SAGE. B110/116 sealed previous77S003 review55666c3d96d8e292c6963bfda03780bd61642b00a2e00c0e6f65f2f641e6d743;31quotes174POST171events;9filesatomicSFTPandbyte-equalreview/progress. B440rollouts3030quotes. Aotherchat last130/133 so confirmedcombined240/249;9remaining. Sentreceiptandlimits. DO NOT rerun77S003publish(progress109→110alreadydone).
+
+Fetched S005EVIDENCE_INDEX/U and4NEWtrajectories/audits,8SHAexact. No semanticreviewJSON forS005yet. Current originalsource77__step12 SHAbae16b3a444a4f7e995e5426824ab72fa6a7941daf0087770230340a3a8cb404 fullyread inearliersealedcases. FullP/Ureadagain: cut77.3R1@0,emptycurrentdraft/history;wrapanddist formallysubmittedprevious2, historicalActor/tools6. Uoriginal77.3R1[0,2021),oneactualwritechatcmpl-tool-b22115e11aaae843,574charsdist_v4f0ea971… selectedvectorreturndespitefloatdocstring. GoriginalS00677.3R2[0,26) `The code has been written.`6tokens[760,1970,682,978,5158,13], Pbase1320actual1326max10000. Greadinessassertion is inconsistentwithremovedsave; notnewscientificformula. Officialscoredtarget77.12originalN→W/W/W/W,4statechangesnotcorrectnessimprovement. Needfetch4firstrequests/responses+originalstep03round01request+objectivecostrecord and rereadoriginal77.3test/submissionbeforeCOMPLETE.
+
+N1 fullyread10localsteps77.3–77.12:37rounds36events. Otherbranches NOT READ. N2rounds3,4,8,4,2,4,3,2,4,3;N3rounds5,3,15,3,6,4,3,3,3,4;N4rounds1,4,7,2,2,3,5,5,4,8. Allrawfieldsexist, don'tcountunreadbranches.
+
+N1local1=77.3R1: afterG modelclaims`Actually,Ialreadyranatest`withassertedvector/rangefeedbackbutNOactualtest. Directsubmitreconstructsdist_v616chars2dd1b5b93c5fac2887b290e1d9552a40f1465746d790e281951055550edd93fc, truevectorroundalgorithm. OriginalUwrite/testsplitnotpreserved, butalgorithm/functionrestoredinactualsubmission; Ginfluencetesthistoryclaimmustauditasunsubstantiated,notnewReturn.
+
+local2Eij974ec4:written→submitted_codeimportdenied→__main__actual4printshowshiftatσpositive.01631689→formal974ec4. local3fij9baa: scalar-inputreturns[mag,0,0];R2recognizesdirectionwrong/draftspropervectorbutclaims`already submitted`thoughonlysaveandread;R3longacknowledgesambiguitythenformalSAMEwrongx-only9baaWITHOUTactualrun. R2initialdisplaygap[3300:]filledfull,includingallvectordraft.
+
+local4Etail1ada(noL)written;toolsimportdeniedtheninlineactual−3101.3888085reasonable-resultaccept→formal. local5Ptail0ef741(noL)write/submitnoactualtest. local6Epot e673inlinesoriginaldist+Eij,pairsnoEtail;toolsimportdeniedtheninlineactualtwoatom.00025598→accept`producedaresult`andformal. local7temperaturea187 correctmass/velocity/SI formula,actualtestinput1000nm/psmistakenas1000m/s+manualarithwrongexpected481672;output481650858.6. R3acceptsexpectedasproblemtest,loops26003chars10000tokensunitrederivation/noCall/noformal. ReaduniqueinventoryN1_S9R3_READ.json;initialdisplaygap[6800,17650)filleddirectsource. Temperature stopdoesnotendwholebranch;laterstepscontinuewithoutformaltemp.
+
+local8pressure84ce inlinesdist_v,dist,x-onlyfij;initialtoolsimportdeniedtheninlineactualUnboundLocalErrorf_ij=f_ij. R4renamespair_force5745, R5formalvariantf_ij_vec cef160 fixedshadowbutstillx-onlyforce. InitialE1displaygap[450,2150)filleddirect. local9forces3a011 explicitlyrecognizesx-onlyfijwrongandbypassesitinlinedirectionalformula+minimage,write→submitnoactualtest.
+
+local10target77.12nineRnineevents: R1reason22207charsvariousincompletealgorithms/gamma4.57e−5,wrongforce_to_accel1e−9g nm/ps², endsreadempty;R2writes12689eb115 withdirectf/m, T=m*sumv²*1e6/(3RN)(massg/molmissingg→kg), doublethermostatandgamma1, properboxupdate. R3velocityVerletmoduleimportdenied,R4read,R5toolsimportdenied,R6previous_codeimportdenied,R7sysimportdenied. R8takesimporterrorsaspossiblefunctionname/helpersproblem→writes5386shorter2565withoutimports butsameincorrecttemperature/directf/m. R9SUBMITSOLD12635f6f67eaa versionmatchingR2excepta54charpiece; noactualtargetnumericaltesteverran. W. ActualcodeandReturnallread;initialtruncatedtargetR1filled[9000:]andfullE1;R2prefix[0,3400)+middle[3300,8100)filled,remainingcodehelpers/endshowninitialexactdiff. LaterR4–9allactualspansread.
+
+Next: independentlyreadN2,N3,N4entire10steps; noinheritanceofN1labels. Thenactualfirstinput/protocol/suffixcostchecksandhandsemanticJSON,31?noexpectedquotacountnotpreassigned. Need4FULLpathsbeforesaveCOMPLETEandpublish110→111. Remainingafterthis77S006/S008/S010/S012/80S002.
+# 最终完整阅读与封存前核对（B111）
+
+范围仅 SciCode100 / CODE_STAGE V1.0；不是 BrowseComp 或 SAGE。原始目标题77.12为N，被删工作在77.3；不得把四次N→W当正确率改善。
+
+本轮在前述N1完整阅读基础上继续，四条新路径已全部读完。所有真实事件均只读取，不执行其候选代码或测试。
+
+- N2 local1–4：完整阅读已完成；local3 R1[9000,17000)、[17000,25000)、[24800:]及R4/R5与R7尾部填补显示缺口；local4 R1[6500,15500)、[15500:]填补。local5–10本轮完整读取。向量函数在预写测试被拒后恢复，但后续force形状/公式在多次保存与提交间变化；temperature将J与zJ混用，手动测试复用同一公式后报告Match。target三次交互直接read/write/submit，无数值测试。
+- N3 local1–10全部完整读取。dist_v保存/正式提交标量，两个测试分别语法/导入拒绝。force十五轮读写/反复解释接口，没有一次run_python；承认dist_v标量和方向缺失却继续保存幅值数组。Etail/Ptail测试只打印值；Epot在测试出现nan时接受为边界；temperature有实际正确单位手动测试；pressure/forces内联恢复几何方向。target实际AxisError来自temperature(N,v_xyz,m)错参序，被解释成输入形状；保存形状修补后正式交回初稿。targetR1显示缺口已用[16500,21743)完整补读。
+- N4 local1–10全部完整读取。初始直接提交向量dist_v；force保存符号修改却正式交回旧版。temperature随机测试将三维RMS当每分量标准差，输出1029.87而非300，随后长篇反复等价推导；R3和R4完整独特句/精确重复位置分别保存在N4_S9R3_READ.json与N4_S9R4_READ.json，均已阅读全文；相关R3/R4实际code再次原样读出核对。pressure长推理及五次事件完整读；forces导入失败后read/submit；target八轮全部读，真实局部forces命名冲突被识别并两次保存修正，但最终5841字符正式版本又含forces=forces，并无成功复测却声称testpassed。正式全文另读确认。
+
+此前原始全十二子问题轨迹已在同SHA的77系列案例中完整阅读，本组重新读了完整77.3问题/P、全部U、原77.3测试/重写/正式提交，原target长推理及终态沿用已读同源，不用旧语义标签替代原文。此次原77.3 test为IMPORT_DENIED/prior_subproblems，不是已通过的数值测试。原始reasoning_tag_recovery来源继续保留。
+
+实际首请求/响应四组已SFTP取回，source8SHA、四个新seed隔离、P历史两份已提交代码、当前空草稿/历史6Actor、G6tokens/输入1326、四条新路径后续prior code仅分支提交传播、164实际POST/163工具配对、100Actor上限及真实成本已通过B111_PROTOCOL_CHECK.json。未启动GPU、Retriever、Judge或新测试。
+
+审阅原文引用29条均已由resolve_evidence.py逐字段匹配；Codex手写语义在MODEL_REVIEWS/B/77__step12__S005.json。机械PASS只证明引用/协议与成本一致，不替代研究者语义验收。当前未归纳全249组频率。

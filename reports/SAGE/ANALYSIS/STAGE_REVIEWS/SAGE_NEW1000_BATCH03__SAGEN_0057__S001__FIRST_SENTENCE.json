@@ -1,0 +1,635 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0057",
+  "stage_id": "S001",
+  "sample_order": 18,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0057/trajectory.json",
+      "source_sha256": "fabb5b9ad03fff5f388061dd6ada70683b55b34ca97a762426e2b9bfdca3eea6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0057.json",
+      "source_sha256": "2aabbc143903aa5d66ef09f053ec1c4767056a8704bcebc3ab5f4ab5b878cda4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "c7263c8db4997ec0f8fce48eddc354d32159087983fc81570733a448d5bd2c21"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "4c0545f90dc9b20a5c4d86fc7d17c74ff670607f869dcf4a4a5b220d05806281"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "11a4ee8c2f18a1d71fad9f999745f0ab286156b959896039bbb81da02134caf1"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "ffae7ad6cc0e8795ec0abdb90d6eddea9ba1131e1ab7f57c1be2a31613500251"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "35a97f47bfac496bb2a4b8aca551b42a259243d2822e02e5d082099fee42a314"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the exact termination date of the public online service that was operated by the French telecommunications company which was a key consortium member in the construction of the first transatlantic fiber-optic cable that became operational in 1988, where this service itself utilized a Videotex standard running on a packet-switched protocol initially employed by AARNet?",
+    "gold": "June 30, 2012",
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整原7轮/7实际事件/全部返回，原始求解笔记ROOT_018_ORIGINAL_PROCESS.md。",
+    "new": "171053字符四路径完整读完（从先前[0,24000)继续到末尾），共37轮37实际事件；长篇重复推理均实际阅读全文，所有不同Return全文已读，只有完全相同已读全文使用精确引用。",
+    "actual_input": "R1@0当前P为空，仅system及完整Question。没有原查询返回、原Final或Gold，G唯一加入France Télécom。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "known": "仅Question描述1988第一条跨大西洋光缆、法国财团公司、Videotex和AARNet协议，未给具体公司/光缆/服务/停用日。",
+    "target_gap": "先识别光缆和法国公司，建立下一服务查询对象。",
+    "actual_input": "I历史只有system/user，保留Reasoning为空；不要将后继G已给公司当删除前自主识别。",
+    "evidence": [
+      "I_QUESTION",
+      "I_GUIDE"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 613
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 298
+      }
+    ],
+    "goal": "拆解多跳任务，查1988光缆，确定法国公司并转为后续服务取证入口。",
+    "operations": "真实Query first transatlantic fiber-optic cable1988consortium，TAT8片段直接给France Télécom；R2明确采用TAT8与公司。",
+    "product": "文档支持的TAT8/France Télécom身份，不含服务/协议/停用日。",
+    "judgment_change": "泛法国公司线索转为具体公司，并用于S002查询。",
+    "evidence": [
+      "O_FIRST_QUERY",
+      "O_TAT_RETURN",
+      "O_COMPANY_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "France Telecom进入下一实际服务Query，返回Minitel/Transpac/X25/具体日；之后保持该公司和服务，最终Submit日期。",
+    "evidence": [
+      "O_NEXT_QUERY",
+      "O_DATE_RETURN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "从题目间接描述到文献支持的具体公司入口",
+    "教师已提前给公司时，重新Search提供支持但不是无提示独立首次识别",
+    "共同恢复初始工作不能解释后续剩余关系处理及成本差异"
+  ],
+  "guide_audit": {
+    "text": "Now I need to find a public online service operated by France Télécom that:",
+    "tokens": 16,
+    "source": {
+      "round": 2,
+      "pointer": "/rounds/1/reasoning_content",
+      "start": 298,
+      "end": 373
+    },
+    "compared_with_complete_actual_P": true,
+    "new_entity": "France Télécom为P未知的具体法国公司，提前给出原U查得的实体。",
+    "new_fact_or_relation": "预设应找France Télécom运营的服务，给公司到服务的行动对象；不含TAT8名、Minitel名、X25或日期。",
+    "new_action_direction": "跳向该公司在线服务；但四条实际仍先查询光缆，不能因G措辞称查证被跳过。",
+    "certainty_effect": "将具体公司作为已定对象，无原Return支撑；后面真实查询补其证据。",
+    "information_risk": "ORACLE_ANCHORED，目标U产物实体泄漏；不计严格可省或纯删除因果证明。",
+    "evidence": [
+      "I_QUESTION",
+      "I_GUIDE"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat01",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R15真实Submit同日期，X25/R12 Minitel退休日提供准确日支持；附带AARNet/AUSTPAC关系仍未证实。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1即使G已给公司仍先查光缆+FranceTélécom，真实TAT8返回给财团句，R2明确采用公司并展开服务Query；原U查证完整恢复。",
+        "R2/R3两次完全同公司/Videotex/AARNet Query同噪声；R4换AARNet/Videotex仍噪声，R5公司长Query仍噪声；没有明确失败策略更新，只反复重述缺口。",
+        "R6才加入X25检索得Alex/Transpac/X25，R7明确采用Minitel和30June2012，真实OpenX25 limit20只文档头。",
+        "已知日期后R8/R9同Query同噪声，R10变体仍噪声；R11 Australia变体得到Packet switching158067关于AUSTPAC和DATAPAC，不等于AARNet。R12错误将AARNet与AUSTPAC相连，并一度在Minitel/Transpac服务网络之间犹豫，转查Transpac date。",
+        "R12真实返回605516退役句加强已有30June2012；R13采用后Open该Doc30只头，R14又真实短AARNet查询得真实文档头而非协议关键句。R15仍将AUSTPAC作AARNet前身/相关网络推断，最后沿正确日Submit。"
+      ],
+      "first_judgment_divergence": "原R2有效公司服务Query直接带回Minitel；新R2开始的同类Query先连续噪声，没有立即改变检索方法，R6才有效。初始TAT8/公司身份没有分歧。",
+      "first_actual_tool_divergence": "首Query加G给定FranceTélécom，但同样有效补证；之后R2/R3相同无效Query成为与原有效入口的实质行动分歧。",
+      "function_correspondence": [
+        {
+          "original_goal": "光缆/法国公司文献识别",
+          "original_operation": "真实查询→采用财团公司",
+          "original_product": "TAT8/FranceTélécom成为服务查询对象",
+          "new_goal": "同查证目标，G已先给公司",
+          "new_operation": "R1真实Query并得TAT8财团句，R2明确采用并用于服务Query",
+          "new_product": "同身份/行动对象得到真实支持",
+          "evidence": [
+            "O_FIRST_QUERY",
+            "O_TAT_RETURN",
+            "O_COMPANY_ADOPT",
+            "N1_FIRST_QUERY",
+            "N1_TAT_RETURN",
+            "N1_COMPANY_ADOPT",
+            "N1_SERVICE_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "查证和证据用于下一查询均发生；G实体预填削弱自主发现解释但不消除实际取证。",
+      "judgment_action_outcome_chain": "Question+G公司→真实恢复初始查证→服务入口多次噪声后取到正确日→剩余协议缺口持续触发查询/短Open且发生AUSTPAC错绑→最终C但Search/Actor和生成大增；不是原公司判断缺失。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "3814生成/161298Prompt/12S2O15A；原全后缀1632/56806/4S2O7A，记录生成+2182/Prompt+104492/Search+8/Actor+8/Open不变但对象不同。日期已采用后仍9个真实事件（含Submit），分别保留。",
+      "counterevidence_and_alternatives": "正确日期恢复后仍多查，不等于所有查询无效；R12带来新增日期支持，R11资料却不能证明AARNet。四条共同G不是唯一差异，采样和Query返回也影响。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat02",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R10真实Submit同日期，R2已得Minitel直接句；长篇中说会提交不另算Final。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1真实查光缆，R2明确采用TAT8和公司；公司服务Query中主动加入Minitel，R2真实Return直接给605512日期，R3采用。",
+        "R3/R4完全相同AARNet X25 packet-switchedprotocol Query两次同噪声；R5 16204字符/4906生成Token在已有答案、应查协议、可能其他服务、准备Submit之间多次往返，最终只一次真实Search AARNet packet-switchedprotocol。所有中间意向不算Call。",
+        "R6–R9四次真实AARNet查询变体，部分取AARNet头部/IP描述但不Open到initialX25句；没有新日期或服务改变。",
+        "R10又12290字符/3621生成Token完整链条和协议争议多次重复，最后真实Submit正确日期；没有执行其间口头计划的Open或更多Search。"
+      ],
+      "first_judgment_divergence": "初始身份恢复；与原后续不同的是服务更快采用后，关系缺口在噪声反馈后反复成为继续工作理由，而不是凭证据改变日期。",
+      "first_actual_tool_divergence": "首Query加公司，与新1同Return；R2早加Minitel有效。R3/R4重复Query后还增加多个协议Query，没有原两次日期Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别光缆及公司并作为入口",
+          "original_operation": "Query/财团句/采用",
+          "original_product": "TAT8与公司",
+          "new_goal": "同目标，教师公司提示在前",
+          "new_operation": "真实R1查询后R2公司采用，服务Query实际沿用",
+          "new_product": "同身份及实际行动对象恢复",
+          "evidence": [
+            "O_TAT_RETURN",
+            "O_COMPANY_ADOPT",
+            "N2_FIRST_QUERY",
+            "N2_COMPANY_ADOPT",
+            "N2_SERVICE_QUERY"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不能因G给公司便称未查证；查证及后续使用都有真实记录。",
+      "judgment_action_outcome_chain": "初始公司查证恢复→R2有效资料R3正确日已采用→协议缺口被噪声/头部反复保持为待核→两轮长篇反复决定查或提交及多次真实查询→最终C，巨大生成增量在后继未定行动而非目标U。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "11225生成/105590Prompt/9S0O10A，相对原+9593生成/+48784Prompt/+5Search/-2Open/+3Actor。R5与R10合计8527生成，是本分支内部已记录的主要工作位置；不是把独立分支节省相加。",
+      "counterevidence_and_alternatives": "长篇出现多种AARNet历史假说且最终核心C，并不证明这些支持断言正确。也不能因0Open认定不做认知核验；内部比较真实很长。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat03",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit，Minitel/X25日期双源可见。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1真实光缆公司Query，同财团返回，R2明确采用身份。",
+        "R2先AARNet/Videotex Query只噪声，R3改回France Telecom Videotex servicepacket-switchedprotocolAARNet，取得与原服务Query完整相同资料包；R4采用Minitel和具体日。",
+        "R4内部完整比较但对AARNet1987/1988/早期X25直接推断，无新查询；直接Submit。没有原两Open及两次关系Query。"
+      ],
+      "first_judgment_divergence": "公司未变；一轮噪声后换回有效公司服务入口，得到正确日期后不让协议缺口继续派发工具。",
+      "first_actual_tool_divergence": "先查光缆同功能，第二Query先走AARNet噪声，第三Query取回原服务资料；后面直接Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "光缆公司入口确立",
+          "original_operation": "实际Search→采用→服务Query",
+          "original_product": "文档支持公司入口",
+          "new_goal": "同目标，G先给公司",
+          "new_operation": "R1Search/R2采用，R3服务Query沿用",
+          "new_product": "原功能完整恢复",
+          "evidence": [
+            "O_FIRST_QUERY",
+            "O_COMPANY_ADOPT",
+            "N3_FIRST_QUERY",
+            "N3_COMPANY_ADOPT",
+            "N3_SERVICE_QUERY",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有真实财团证据、采用和用于下一服务取证，不是仅复述G。",
+      "judgment_action_outcome_chain": "初始查证恢复→短噪声后找到有效服务入口→日期采用→凭主体/日期强支持结束而未补AARNet关系→C且工具/生成都少；省的是后续查询和读取，非初始功能没做。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "1185生成/19378Prompt/3S0O4A，原1632/56806/4S2O7A；记录生成-447、Prompt-37428、Search-1、Open-2、Actor-3。R4仍748生成完整复盘，未将所有思考消失。",
+      "counterevidence_and_alternatives": "侧链支持仍不足，AARNet成立年猜测未经资料；少算与同C不是质量全维度同等的证明。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S001__FIRST_SENTENCE__repeat04",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R8真实Submit正确日期，R5真实MinitelReturn给准确日。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R1光缆公司真实Query、R2采用，随后R2/R3不同服务联合Query却同噪声。",
+        "R4内部猜PacketCable/X25/CLIPPER不代表采用错误协议；实际Query AARNet packet-switchedprotocolinitial仍通用噪声。R5选择具体Minitel查询得605512日期，R6明确采用并Open50，只标题。",
+        "R7回到AARNet关系实际Query仍噪声；R8全链比较并直接接受关系Submit同日。没有扩大日期Open或真正取得AARNet协议直接句。"
+      ],
+      "first_judgment_divergence": "公司已恢复，却服务入口连续无效；R5改为具体Minitel才使有效材料进入采用，协议猜测没有实际换服务。",
+      "first_actual_tool_divergence": "首Query加G公司；后继公司服务两次噪声后，定向Minitel有效；额外协议Query与短Open均在后继。",
+      "function_correspondence": [
+        {
+          "original_goal": "法国公司文献确认/查询入口",
+          "original_operation": "Search→采用公司",
+          "original_product": "公司入口",
+          "new_goal": "相同，有G实体先验",
+          "new_operation": "真实R1Query及R2采用，并用于后继服务Query",
+          "new_product": "原功能完整恢复",
+          "evidence": [
+            "O_TAT_RETURN",
+            "O_COMPANY_ADOPT",
+            "N4_FIRST_QUERY",
+            "N4_COMPANY_ADOPT",
+            "N4_EFFECTIVE_QUERY",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核查和采用真实重做；公司预填是混杂，不是没有取证的证明。",
+      "judgment_action_outcome_chain": "公司确认恢复→多次低相关服务/协议入口→R5定向Minitel直接材料→日期采用仍短Open及关系重查→C，工具增加/少一次Open抵消部分输入，生成略增。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "1822生成/54179Prompt/6S1O8A；相对原生成+190、Prompt-2627、Search+2、Open-1、Actor+1。不能因为累计Prompt少就说整体更省。",
+      "counterevidence_and_alternatives": "PacketCable等只是短暂备选未实际采用，不把全部猜测都叫错误判断驱动行动。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "4FULL恢复初始光缆/公司查证及用于服务Query；G先给公司所以不是无提示重建检验。",
+    "specific_difference": "共同初始功能恢复后，new1晚至R6才得有效服务日期，new2R2很早得日期却长篇协议推论，new3一轮噪声后有效服务Query便较早提交，new4R5具体MinitelQuery才有效；是否早得日期也不能单独预测最终成本。",
+    "cost": "只有new3生成/工具/输入同向下降；new1/new2多指标增加；new4生成/Search/Actor增而Prompt/Open降。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "共同的初始实体查证即使完整恢复，后续效率仍取决于两个不同环节：何时使服务证据进入采用，以及采用后剩余关系是否持续派发工作。早有正确日期不保证短路径，错误或缺证的侧链解释也不必改变核心日期，却能增加查询和长篇决策往返。",
+      "chain": "Question/G具体公司→4条真实恢复公司支持→服务入口及日期采用时刻不同→协议缺口在部分路径持续触发工具或内部争议→同C但生成1185至11225、Search3至12。",
+      "support": [
+        "N1_COMPANY_ADOPT",
+        "N1_DATE_ADOPT",
+        "N1_REOPEN_GAP",
+        "N2_DATE_ADOPT",
+        "N2_LONG_FIRST",
+        "N2_LONG_LAST",
+        "N3_SERVICE_QUERY",
+        "N3_SUBMIT",
+        "N4_DATE_ADOPT"
+      ],
+      "scope": "1Stage/1题/4续跑；与同题其他Stage只是内部对照，需跨题支持/反例，不作初始Stage冗余或必要性因果结论。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G把FranceTélécom身份提前给模型，是被删U产物泄漏；即使四条仍查证，也不得算严格可省。",
+    "新1虽R7已经接受准确日，后来仍短暂把服务/网络混淆并改查Transpac；不能只记录首次正确日而忽略后续状态。",
+    "新2R5/R10说提交多次不算多次实际Final；两个长Round只各一个实际Call。",
+    "新3成本下降并不因为初始公司查证消失，它完整重建；后继AARNet直接支持仍缺。",
+    "原nativeIDs不存在，R1整轮usage可比较但标DERIVED_CHAR_EXACT，不伪称NATIVE_TOKEN_EXACT；G16预填与P515单列。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_QUESTION",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "question",
+      "json_pointer": "/actual_normalized_history/1/content",
+      "exact_quote": "the French telecommunications company which was a key consortium member"
+    },
+    {
+      "evidence_id": "I_GUIDE",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find a public online service operated by France Télécom that:"
+    },
+    {
+      "evidence_id": "O_FIRST_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first transatlantic fiber-optic cable 1988 consortium",
+      "call_id": "chatcmpl-tool-85b57b95c2c841d5"
+    },
+    {
+      "evidence_id": "O_TAT_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "It was constructed in 1988 by a consortium of companies led by AT&T Corporation, France Télécom, and British Telecom.",
+      "call_id": "chatcmpl-tool-85b57b95c2c841d5",
+      "doc_id": "wiki25:155720"
+    },
+    {
+      "evidence_id": "O_COMPANY_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the French telecommunications company is France Télécom"
+    },
+    {
+      "evidence_id": "O_NEXT_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "France Telecom Videotex service packet-switched AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-bdff0018ee94a12c"
+    },
+    {
+      "evidence_id": "N1_FIRST_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first transatlantic fiber-optic cable 1988 consortium France Télécom",
+      "call_id": "chatcmpl-tool-90d2a28f6cab256f"
+    },
+    {
+      "evidence_id": "N1_TAT_RETURN",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/0/observation/results/1/snippet",
+      "exact_quote": "It was constructed in 1988 by a consortium of companies led by AT&T Corporation, France Télécom, and British Telecom.",
+      "call_id": "chatcmpl-tool-90d2a28f6cab256f",
+      "doc_id": "wiki25:155720"
+    },
+    {
+      "evidence_id": "N1_COMPANY_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The consortium included France Télécom (the French telecommunications company)."
+    },
+    {
+      "evidence_id": "N1_SERVICE_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "France Télécom Videotex packet-switched AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_DATE_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The termination date is 30 June 2012."
+    },
+    {
+      "evidence_id": "N1_REOPEN_GAP",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/7/arguments/query",
+      "exact_quote": "AARNet Videotex packet-switched",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 15,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/14/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-bf54e1d830c53ca0"
+    },
+    {
+      "evidence_id": "N2_FIRST_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first transatlantic fiber-optic cable 1988 consortium France Télécom",
+      "call_id": "chatcmpl-tool-b5c8cbe263ab64f8"
+    },
+    {
+      "evidence_id": "N2_COMPANY_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The French company is France Télécom."
+    },
+    {
+      "evidence_id": "N2_SERVICE_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "France Télécom Videotex packet-switched AARNet Minitel",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_DATE_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Minitel was discontinued by France Télécom on 30 June 2012"
+    },
+    {
+      "evidence_id": "N2_LONG_FIRST",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Actually, I don't need to search if the logic is sound and the document `wiki25:605512` gives the exact date."
+    },
+    {
+      "evidence_id": "N2_LONG_LAST",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/9/reasoning_content",
+      "exact_quote": "Wait, I should check if there is any nuance about \"initially employed by AARNet\"."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/9/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-964204288693793a"
+    },
+    {
+      "evidence_id": "N3_FIRST_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first transatlantic fiber-optic cable operational 1988 France Télécom consortium",
+      "call_id": "chatcmpl-tool-8179e2043d020914"
+    },
+    {
+      "evidence_id": "N3_COMPANY_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the French telecommunications company is France Télécom."
+    },
+    {
+      "evidence_id": "N3_SERVICE_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "France Telecom Videotex service packet-switched protocol AARNet",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FIRST_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "first transatlantic fiber-optic cable 1988 consortium France Télécom",
+      "call_id": "chatcmpl-tool-9b694f7555ad2e15"
+    },
+    {
+      "evidence_id": "N4_COMPANY_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results confirm that the first transatlantic fiber-optic cable (TAT-8) was constructed in 1988 by a consortium including France Télécom"
+    },
+    {
+      "evidence_id": "N4_EFFECTIVE_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "France Telecom Minitel Videotex termination date closed",
+      "call_id": "chatcmpl-tool-91b024f2c3f945fb"
+    },
+    {
+      "evidence_id": "N4_DATE_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The exact termination date of the Minitel public online service operated by France Télécom was 30 June 2012."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/7/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-9e363363be49f799"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

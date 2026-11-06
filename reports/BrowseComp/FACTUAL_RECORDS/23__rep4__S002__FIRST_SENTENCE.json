@@ -1,0 +1,47 @@
+{
+  "case_id":"23__rep4__S002__FIRST_SENTENCE","question_id":"23","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"W"},"basis":"原R17正式拒答W；新1/2/3在R13各生成10000Token但无Call/Final，GENERATION_LENGTH_STOP为N；新4R17正式拒答W，列Laundromat/BigShort不等于采用答案。旧封存标签不改。"},
+  "review_basis":"首次完整读原17轮16Call/完整Return和Final，远端原SHA12d66ca4bb55fb23d09da3ba0b444ec1ab7ccee1db7652fa2bed3cfed3e464d5实际重核匹配。四新24轮20Call/Return及Final全读；180返回槽6新全文，外国81829另读，其余逐SHA复用本线程已读完整片段。三长R13分别37514/42934/48738字符，首12000逐字读、余246/247/221段全部精确等于已读前缀，覆盖/hash回执各存，无未读独有内容。原R17和截断的新2R12/新3R9R10均补读。",
+  "pre_state":"R9@676，P含八次真实Search和Return及本轮前676字符。Doc19497已在R2和R8返回Laundromat/洗钱/PanamaPapers梗概，但此前没有对此具体对象定向核查；财务诈骗是模型解释，仍无正确影片。不能说原U新增了片名事实，它新增的是把局部线索用作定向查询。",
+  "u_work":"R9[676,1004)明确注意Laundromat/PanamaPapers并决定核片/类似电影，E9实际查movie based on book Panama Papers Laundromat 2018 director born 1950 1960；返回19497同梗概以及其它书/导演资料，没补书作者、导演出生、警察情节。R10[0,69)仍反馈不匹配，随后回广搜。",
+  "u_state_update":"原U确实将已回局部候选用于真实Call，但未形成合格身份；后续仍主要财务片/警察情节/年份查询，明确察觉同文档反复回，却未取得目标，R17拒答。不能以原U产生了一次候选采用就称它解决了任务。",
+  "original_action_consequence":"删后四次都没执行Laundromat/PanamaPapers定向Call；新3多次再回19497也未转该对象。三条只做四次其它Search即转无Call规划文字直到长度上限，一条继续八Search后拒答。原新都无正确身份，这里改变的是工作执行/结束方式，不是正确答案保持失败。",
+  "guidance":{"text":"Let me try a different approach.","source":"原R10[69,101)，7Token LOCAL_EDGE_RETOKENIZED_GUIDE；P切点CHAR_EXACT_RETOKENIZED，原生131Token后补1空格ID220，保留132实际ID。","audit":"ORACLE_ANCHORED，无实体/事实/答案，泛换方向意向在P多次存在。字符边界未移，不能以132重编码IDs冒充原生精确切点；不报伪精确生成节省。"},
+  "evidence":[
+    {"id":"O_P_LAUNDROMAT","source":"original","pointer":"/tool_events/7/exact_result","quote":"The Panama Papers revealed","use":"chatcmpl-tool-a8b4fdc64e1944d6，R8 Doc19497在P已给真实洗钱电影关系，不是未来泄漏。"},
+    {"id":"O_U_ADOPT","source":"original","pointer":"/rounds/8/reasoning_content","quote":"I notice \"The Laundromat\" was mentioned","use":"R9@676首次将片名梗概转具体核查，而不是新增片名本身。"},
+    {"id":"O_U_CALL","source":"original","pointer":"/tool_events/8/exact_arguments","quote":"movie based on book Panama Papers Laundromat 2018 director born 1950 1960","use":"chatcmpl-tool-81fd1913689b171e，真实R9定向Call，回19497/书改编列表/导演文章无核心关系。"},
+    {"id":"O_FAILURE_FEEDBACK","source":"original","pointer":"/rounds/10/reasoning_content","quote":"the search results keep returning the same documents","use":"R11已实际识别反馈不足，仍继续更多具体Query；不能称完全没察觉重复。"},
+    {"id":"O_REFUSE","source":"original","pointer":"/rounds/16/content","quote":"I haven't found a specific movie that matches all the detailed criteria","use":"正式Final原W拒答。"},
+    {"id":"N1_OTHER_MOVIE","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"But this is a documentary, not a feature film with more than 6 cast members.","use":"R10改用返回6071的Inventor/书关系做局部类型排除，作者1974是无直接出生证据的记忆。"},
+    {"id":"N1_REPEAT_ACK","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"I'm getting the same results repeatedly.","use":"R11识别相同返回仍发真实Query，后R13失去实际Call，不是四轮始终无Search。"},
+    {"id":"N1_LAST_CALL","source":"new1","pointer":"/tool_events/3/exact_arguments","quote":"movie character inspired by honest cop stop scam emulation integrity based on non-fiction book","use":"chatcmpl-tool-93c7e7a707d77b04，R12第四次实际Search；完整Return进R13，之后才纯文字反复。"},
+    {"id":"N1_LONG_PLAN","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"I've been searching for similar queries.","use":"R13反复提出改写Query，但tool_calls为空，10000Token长度终止；不把这些句子计成Search。"},
+    {"id":"N2_FIRST_INVENTOR","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"movie Theranos Elizabeth Holmes 2023 based on book Bad Blood John Carreyrou director born 1950 1960","use":"chatcmpl-tool-8c9d718a17696894，首Call转另一个候选；作者1968未被返回证实。"},
+    {"id":"N2_UNPROVEN_ROLES","source":"new2","pointer":"/tool_events/3/exact_arguments","quote":"movie The Social Network 2010 Michael Lewis born 1960 director Steven Spielberg born 1946","use":"chatcmpl-tool-8fcb7e6ad368fc3b，R12把未证影片—作者—导演关系写入Query，返回五个Spielberg传记段，不能当证明关联。"},
+    {"id":"N2_REAL_RETURN","source":"new2","pointer":"/tool_events/3/exact_result","quote":"Steven Allan Spielberg was born in 1946","use":"20746/3721/93999/23579/74798真实回导演1946；下一轮未核此硬冲突或角色绑定，继续计划循环。"},
+    {"id":"N2_LONG_PLAN","source":"new2","pointer":"/rounds/4/reasoning_content","quote":"Wait, I realize I'm stuck in a loop.","use":"R13识别循环的文字自身也反复，仍无真实Call/Final直至技术上限。"},
+    {"id":"N3_P_DOC_RETURN","source":"new3","pointer":"/tool_events/0/exact_result","quote":"The Panama Papers revealed","use":"R9再次回19497，R11/R12还回同片段，但始终没实际采用Laundromat为核查对象。"},
+    {"id":"N3_BOOK_CONFLICT","source":"new3","pointer":"/rounds/3/reasoning_content","quote":"that book was published in 2010, not between 2015-2022","use":"R12识别BigShort书年不符，下一实际Query泛搜；之后不再执行Call，不是重新正式接受它。"},
+    {"id":"N3_LONG_PLAN","source":"new3","pointer":"/rounds/4/reasoning_content","quote":"Given all my searches, I'm not finding a direct match.","use":"R13此反馈和再规划交替重复，四万多字符未生成真实Call，10000Token停。"},
+    {"id":"N4_FIRST_QUERY","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"movie based on book honest cop integrity inspiration scam fraud character","use":"chatcmpl-tool-a711f422a43e441b，G后未指定候选而执行情节查询。"},
+    {"id":"N4_REPEAT_ACK","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"I've been searching in circles.","use":"R11也有失败反馈，却仍能发新Call并继续至八次Search；是与三条文字空转的同组反例。"},
+    {"id":"N4_LAST_SEARCH","source":"new4","pointer":"/tool_events/7/exact_arguments","quote":"movie 2019 2020 2021 2022 based on non-fiction book about fraud scam","use":"chatcmpl-tool-a6b48812f40862f5，R16最后真实Call，其返回进R17后正式拒答。"},
+    {"id":"N4_REFUSE","source":"new4","pointer":"/rounds/8/content","quote":"I cannot find a movie that matches all the specific criteria","use":"R17有真正Final；列Laundromat只在无法确认的候选里，不把它当原功能定向核验恢复。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"跳过Laundromat，先泛搜，再以真实Inventor书/纪录片材料作局部判断。","state_chain":"已有局部候选未进定向Query→广搜返回未补核心情节→已察觉同文档仍改写查询→第四次Return后转无Call计划反复→长度终止N。","function_change":"NOT_OBSERVED针对Laundromat的目标/操作未恢复；泛搜工作持续但不等同原具体候选取证。少四Search/四Actor却生成显著多，不能称认知省略成功。","evidence":["N1_OTHER_MOVIE","N1_REPEAT_ACK","N1_LAST_CALL","N1_LONG_PLAN"],"semantic_result":"W→N，原也没成功识别电影，不称正确证据丢失。"},
+    {"repeat":2,"first_divergence":"首Call改Theranos，后把SocialNetwork/MichaelLewis/Spielberg记忆关系放入真实Query。","state_chain":"原具体局部核查未恢复→无证角色假设成检索输入→真实只回Spielberg1946且不证影片关系→下一轮不处理关联/年份→自述循环与再规划重复但无Call→长度N。","function_change":"原Laundromat工作未恢复，换对象并执行四Call；错误关联不能由查回真实Spielberg传记就算证实。重复规划消耗是实在生成增加，不能用少Call掩盖。","evidence":["N2_FIRST_INVENTOR","N2_UNPROVEN_ROLES","N2_REAL_RETURN","N2_LONG_PLAN"],"semantic_result":"W→N，未观测到正式接受错误SocialNetwork，不强贴提交机制。"},
+    {"repeat":3,"first_divergence":"首批再次回Laundromat梗概却只泛搜，随后BigShort有书年冲突但没有采用新正确对象。","state_chain":"P与新返回同局部线索→未变成具体对象核查→沿题材/年份泛搜仍缺情节→已识别旧片书年冲突→未执行的新Query规划交替反馈→长度N。","function_change":"原U特定采用与实际定向Call都未恢复；这里有材料可见但未使用的局部电影，并非正确答案资料。少Search而三长轮最久，不能靠相同信息需求合并掉实际执行差别。","evidence":["N3_P_DOC_RETURN","N3_BOOK_CONFLICT","N3_LONG_PLAN"],"semantic_result":"W→N，局部候选采用缺失不直接证明其为成功关键。"},
+    {"repeat":4,"first_divergence":"直接查情节，后多次实际更换年份/书条件的广搜；没有真正采用Laundromat定向核查。","state_chain":"反馈重复→仍执行新的真实Call→未获目标且BigShort情节不符/书年冲突持续→第八Return后正式拒答。","function_change":"原Laundromat定向工作未恢复，8Call/9Actor和原后缀相同，部分查询不同；认知背景复述持续累加但没有单轮10000空转，和三条N分开。","evidence":["N4_FIRST_QUERY","N4_REPEAT_ACK","N4_LAST_SEARCH","N4_REFUSE"],"semantic_result":"W→W，候选未识别但正常提交状态保持，不把它当任务正确。"}
+  ],
+  "mechanism_candidate":"本B删除一次基于已回局部线索的候选定向取证后，四条都未恢复该动作；三条四Call后转无Call规划空转，另一条八Call后拒答。可观察共同前提是身份始终未解决，反馈“同结果/没匹配”不断被翻译为更具体关键词计划，却没有明确可检验候选关系或完成决定。三条额外生成发生在执行准备没有转实际Call的环节，不是检索增加。新4在相似反馈下仍执行并能拒答，是重要反例：不能说少掉Laundromat动作唯一造成空转，或用相同失败反馈推断隐藏心理。",
+  "within_case_support":"1/2/3在同R13共用终态但前四Call对象不同，三条完整长文本证明无新增独立证据判断/真实Call；新2另有未证关系进Query，属于具体路径附加问题。四条都没有目标12thFailReturn；原U局部线索的实查也未使原成功，B频率不足因果必要性。",
+  "mechanism_chain_checks":[
+    {"chain":"不足反馈与改查询计划反复交替→停止发真实Call却未提交→生成长度耗尽。","observed_repeats":[1,2,3],"not_observed_repeats":[4],"evidence_by_repeat":{"1":["N1_LAST_CALL","N1_LONG_PLAN"],"2":["N2_REAL_RETURN","N2_LONG_PLAN"],"3":["N3_BOOK_CONFLICT","N3_LONG_PLAN"]},"limits":"这是可见的消耗发生过程，未证明由删除具体候选核查唯一触发；相似P/G的新4继续真Call且拒答。"},
+    {"chain":"未证影片—作者—导演关系进入真实Query→返回单人传记而关系仍未证→未采用反馈修正角色。","observed_repeats":[2],"not_observed_repeats":[1,3,4],"evidence_by_repeat":{"2":["N2_UNPROVEN_ROLES","N2_REAL_RETURN","N2_LONG_PLAN"]},"limits":"未发生错误Final，不把查某人和正式重新接受候选等同；仅一条。"}
+  ],
+  "counterevidence_and_limits":["Doc19497在P及新3真实返回，原U确实把它用于真实Query；但它只支持财务片局部身份，不是正确电影证据。","三条N没有无视真实正解：完整Return都无12thFail。新4能拒答，反驳反馈重复必然单轮空转。","新2所回Spielberg1946是真事实，但不证明SocialNetwork导演；不得从DocID出现造采用。","原三次返回Laundromat但只一次定向Query；普通Final列名和搜索意向不算功能恢复。","G仅泛方向承接、局部空格重编码、不同seed与剩余预算限制保留，不能从单次P+G作纯因果断言。","机械验收只验证原文引用/计数/输入，不替代研究者语义审核。","三长字段重复用逐字符同文映射，保留每段原范围/hash，未靠关键词或相似度跳过独有原文。","独立分支的节省不能相加；无Final不因少Call就算质量保持。"],
+  "cost_basis":"CHAR_EXACT_RETOKENIZED R9@676，一空格补回。原R9及后生成总4852，已完整原生前缀131，覆盖Token内切原后缀仅保守4720—4721，不报原生精确值。新原生11202/11011/11320/4490，加G7为11209/11018/11327/4497。前三增加约6.3—6.6k生成，第四减少约223—224；Search4/4/4/8对原8，Actor5/5/5/9对原9，Prompt159817/159466/159124/347681对原25481+317407=342888。前三Prompt/Search少是较早停在长轮而非找对答案，第四Prompt仍多；132重放ID及G计入实际prefill但不冒充新生成。",
+  "next_cross_case_test":"与23rep2S002的新2无Call规划空转、20rep3S002的长轮对照，逐题定位未解任务如何被改写成计划；也与A中资料齐后短接受/重建对照，不预设循环总类或认为所有长生成同因。"
+}

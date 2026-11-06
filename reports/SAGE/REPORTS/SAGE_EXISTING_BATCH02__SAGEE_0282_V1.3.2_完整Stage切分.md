@@ -1,0 +1,691 @@
+# SAGE_EXISTING_BATCH02__SAGEE_0282｜V1.3.2完整Stage切分
+
+样本序号：26；原件SHA256：`332553eb4116ca144470168ce9bd70b087679dbbcf304e692bdd9a2aa26b0806`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What was the peak position on the UK Albums Chart for the debut solo album of the artist who performed "What Took You So Long?", a song co-written by Julian Gallagher, one of the co-writers of Melanie B's "Lullaby"?
+````
+
+## 完整求解过程
+
+模型先联合查询Gallagher参与Mel B的Lullaby与What Took You So Long的演唱者，两Call同一Assistant批次，不能虚构读第一返回再决定第二Call。返回确认共同作者、Emma Bunton及首张专辑A Girl Like Me，R2直接提取这三项。
+
+接着它针对该专辑查UK Albums Chart最高排名，得到专辑本身、Free Me背景及巡演资料多处number four的支持。R3完整联结作者、歌曲、歌手和首专关系，比较多个来源的排名一致性，接受4并提交。正式Final有效，MODEL_FINAL_STOP。没有把单曲冠军与专辑第四混淆，也没有为实际未进行的进一步查询补工具。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 联合查歌曲共同作者、演唱者并提取Emma Bunton首专身份 | 歌手与首专明确。 | E001,E002 |
+
+| S002 | R2 / 0 / 282 | 查询A Girl Like Me的UK专辑榜峰值 | 专辑排名材料返回。 | E003 |
+
+| S003 | R3 / 0 / 0 | 核对多跳关系和多来源排名一致性，提交4 | VALID_FINAL，MODEL_FINAL_STOP。 | E004 |
+
+## S001｜联合查歌曲共同作者、演唱者并提取Emma Bunton首专身份
+
+同批两次search分别覆盖Lullaby作者及What Took You So Long演唱者；R2直接提取Gallagher、Bunton与A Girl Like Me链。
+
+结束状态：歌手与首专明确。
+
+边界判断：原轨迹起点，联合取证与直接结果解释完整保留。
+
+内部KEEP与反证：两Call来自一个联合决策，不能按工具数量切开或伪造批内读后决策；R2三项为直接资料采用，不独立全题判断。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0",
+      "/rounds/0/tool_calls/1"
+    ],
+    "return_pointers": [
+      "/tool_events/0",
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,571)
+
+SHA256：`3b5a580e105512eed6e8dcd1dddd4cab62cc905ae9cafa186a9d3e4eb3b6f0a6`；原字段SHA256：`3b5a580e105512eed6e8dcd1dddd4cab62cc905ae9cafa186a9d3e4eb3b6f0a6`。
+
+````
+This is a multi-hop question that requires me to find information step by step:
+
+1. First, I need to find out who performed "What Took You So Long?" - a song co-written by Julian Gallagher
+2. Then I need to find out who is one of the co-writers of Melanie B's "Lullaby" - Julian Gallagher
+3. Then I need to find the debut solo album of the artist who performed "What Took You So Long?"
+4. Finally, I need to find the peak position on the UK Albums Chart for that debut solo album
+
+Let me start by searching for information about Julian Gallagher and the songs mentioned.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Julian Gallagher co-writer Melanie B Lullaby"
+  },
+  "id": "chatcmpl-tool-ae0c2b5721574723",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Julian Gallagher co-writer Melanie B Lullaby\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-ae0c2b5721574723",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Julian Gallagher co-writer Melanie B Lullaby"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 1.172631680034101,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2412065",
+        "score": 35.098952784651644,
+        "snippet": "2001 single by Melanie B \"Lullaby\" is a song by English singer Melanie B. It was co-written by Melanie B, Richard Stannard, Julian Gallagher, and Richard Norris for her debut solo album, \"Hot\" (2000), while production was helmed by Fred Jerkins III. It was released by Virgin Records as the album's final single on 4 June 2001 and peaked at number 13 on the UK Singles Chart. The music video features her daughter Phoenix Chi Gulzar. Reception. The song earned largely mixed reviews from music critics. Lennat Mak from MTV Asia wrote about the song: \"Written about Phoenix's birth and the joy she is bringing, the guitar-y ballad \"Lullaby\" has a heartfelt touch injected with such sincerity that it reveals a rarely seen side of Mel B: Motherly, affectionate, and loving.\" \"NME\" called the song \"a pretty TLC-style ballad.\" Caroline Sullivan, writing for \"The Guardian\", remarked that \"Lullabye\" was \"one of those lapses into slurpiness, like Oasis's \"Little James,\" that can happen to anyone.\" Nigel Packer of BBC Music called \"Lullaby\" a \"lightweight feel-good anthem which could have stepped straight from a cereal ad. Commercial performance. \"Lullaby\" was released by Virgin Records on 4 June 2001 as the third and final single from \"Hot\". The song debuted and peaked at number 13 on the UK Singles Chart in the week ending 16 June 2001, becoming Melanie B's fifth consecutive top twenty entry on the chart. \"Lullaby\" also reached number 18 on the Scottish Singles Chart and number 47 on the Iris",
+        "text_characters": 1932,
+        "title": "Lullaby (Mel B song)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:66815",
+        "score": 2.1133790485315833,
+        "snippet": "---\ntitle: What's New\ndate: 2019-12-03\n---\nConversing with 7th grade students of JL Simpson MS\n\nMet JL Simpson MS's fantastic 7th grade students (11 classes!) and their educators via google meets this morning and yesterday ...\n\nCover reveal for Kidnapped from Ukraine #3: Still Alive!\n\nThrilled to reveal the cover for book #3, to be published on April 21, 2026! Here are all three books: ...\n\nPysanky and friends\n\nWanted to get a picture of these before I gave some away. Met with four of my longtime writer friends ...\n\nVisiting with St. Sophia's 10th grade students\n\nThis morning I did another presentation with St Sophia Religious Assn of Ukrainian Catholics, USA (Philadelphia). This audience was two 10th ...\n\nSt. Sophia youth\n\nIt was such an honor to speak with the youth group at St. Sophia Religious Assn USA of Ukrainian Catholics ...\n\nAuthor Honours Deathbed Promise to Write About WWII Lebensborn Program\n\nThe interview was originally published on Christine Kohler's website here. One piece of advice that writers are given is to ...\n\nNine more pysanky and now it's all put away til next year!\n\nI had seven quail eggs and two XS eggs cleaned and ready to go last week but had to put ...\n\nRoberts ES 5th grade students\n\nIt was such a pleasure to speak with 5th grade students from Roberts Elementary in Suwanee GA on Good Friday ...\n\nHickson Central Public School visit\n\nIt was nice to visit with grade 7 and 8 students at Hickson Central today! I had passed right by ...\n\nCYM London\n\nLove",
+        "text_characters": 73359,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:26023",
+        "score": 1.4155245069780404,
+        "snippet": "---\ntitle: 1999 in music - Wikipedia\ndate: 2002-12-22\n---\nThis is a list of notable events in music that took place in 1999.\n\nSpecific locations\n\n*1999 in British music\n*1999 in Norwegian music\n*1999 in South Korean music\n\nSpecific genres\n\n*1999 in classical music\n*1999 in country music\n*1999 in heavy metal music\n*1999 in hip hop music\n*1999 in Latin music\n*1999 in jazz\n\nEvents\n\nJanuary\n\n*January 7\n**After eight years of marriage, musician husband Rod Stewart and supermodel wife Rachel Hunter announce their separation.\n**Paul McCartney attends the launch of his daughter Heather's first housewares collection in Georgia.\n*January 11 – During the American Music Awards, Billy Joel is awarded the Special Award of Merit for his \"inspired songwriting skills\" and \"exciting showmanship.\"\n*January 12\n**Britney Spears releases her hit album ...Baby One More Time. The album is the second best-selling album of the 90s in the US and the third best-selling album of the 90s worldwide. It also enters the list of the top 20 best-selling albums of all time.\n**Fredrik Johansson is fired from Dark Tranquillity.\n*January 15–31 – After a short hiatus in 1998, the Big Day Out festival returns to Australia and New Zealand, headlined by Hole and Marilyn Manson.\n*January 21 – A&M Records is shut down and merged into the Universal Music Group umbrella label Interscope Geffen A&M. It would be relaunched in 2007.\n*January 22 – German industrial band KMFDM announces that it has disbanded.\n*January 28 – Kir",
+        "text_characters": 79367,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:86108",
+        "score": 1.3837881667963035,
+        "snippet": "---\ntitle: List of 2019 albums - Wikipedia\ndate: 2018-07-10\n---\nThe following is a list of albums, EPs, and mixtapes released in 2019. These albums are (1) original, i.e. excluding reissues, remasters, and compilations of previously released recordings, and (2) notable, defined as having received significant coverage from reliable sources independent of the subject.\n\nFor additional information about bands formed, reformed, disbanded, or on hiatus, for deaths of musicians, and for links to musical awards, see 2019 in music.\n\nFirst quarter\n\nJanuary\n\n**Table 1**: List of albums released in January 2019\n\n| Release date | Artist | Album | Genre | Label | |\n|---|---|---|---|---|---|\n| January1 | Rogério Skylab | Nas Portas do Cu | Experimental rock, art rock, MPB | Rogério Skylab | |\n| January4 | Legion of the Damned | Slaves of the Shadow Realm | | Napalm | |\n| January8 | Gang Parade | Last Gang Parade | J-pop | WACK, T-Palette | |\n| January11 | Born of Osiris | The Simulation | Progressive metalcore, djent | Sumerian | |\n| January11 | The Delines | The Imperial | Country, soul | Decor Records | |\n| January11 | Gnash | We | | Atlantic | |\n| January11 | Randy Houser | Magnolia | Country | Stoney Creek | |\n| January11 | Soilwork | Verkligheten | Melodic death metal | Nuclear Blast | |\n| January14 | GFriend | Time for Us | K-pop, hip-hop, R&B | Source, Kakao M | |\n| January15 | Falz | Moral Instruction | Hip-hop, Afrobeat | Bahd Guys Records | |\n| January16 | Astro | All Light | K-po",
+        "text_characters": 92898,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:79043",
+        "score": 1.2267262089147795,
+        "snippet": "---\ndate: 1995-10-07\n---\n| 48:6 (July/Aug 2025) |\n\nBertil van Boer: BACH, JOHANN SEBASTIAN: Cantatas Nos. 170, 54, 53; No.... (Charles Humphries) |\n\nRaymond Tuttle: Slightly Off the Beat |\n\nChristopher Brodersen: A Most Unusual Voice: An Interview with Countertenor... |\n\nColin Clarke: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nHenry Fogel: GRUNDMAN: Quartet for Strings, \"Surviving... (Brodsky Qrt) |\n\nDominic Hartley: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nPeter J. Rabinowitz: GRUNDMAN: A Mortuis Resurgere (The Resurrection... (Brodsky Qrt) |\n\nPeter Burwasser: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nColin Clarke: GRUNDMAN: A Mortuis Resurgere (The Resurrection... (Brodsky Qrt) |\n\nKen Meltzer: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nHenry Fogel: Questions for Jorge Grundman |\n\nDominic Hartley: American Music for Violin and Horn: An Interview... |\n\nMaria Nockin: HARPSICHORD AT THE HOLIDAYS: Christmas Carols... (Elaine Funaro) |\n\nRobert Schulslaper: A Stark House of Crime: A Conversation with Publisher... |\n\nChristopher Brodersen: New Life for an Old Instrument: An Interview... |\n\nDominic Hartley: SCOTT, DEREK: Dance Suites... (Paul Mann) |\n\nCarla Maria Verdino-Süllwold: WHITACRE, ERIC: Water Night. Three Songs of Faith.... (Ronald Staheli) |\n\nColin Clarke: SCOTT, DEREK: Dance Suites... (Paul Mann) |\n\nLynn René Bayley: DUKE, VERNON: Surrealist Suite. Parisian Suite.... (Scott Holden) |\n\nKen Meltzer: SCOTT, DEREK: D",
+        "text_characters": 539037,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:11178",
+        "score": 1.125243002503339,
+        "snippet": "---\ntitle: List of musical supergroups - Wikipedia\ndate: 2016-01-13\n---\nThis is a list of supergroups, music groups whose members are already successful as solo artists or as part of other groups. Usually used in the context of rock bands such as Audioslave and Chickenfoot, the term has also been applied to groups based in other musical genres such as the Three Tenors in Opera, as well as in R&B/Pop with such popular acts like Bell Biv DeVoe (BBD), LSG & TGT. The term is applied in hip-hop to collaborations such as The Firm, Westside Connection, Method Man & Redman, Kids See Ghosts, and Mount Westmore.\n\nSupergroups are sometimes formed as side projects and thus not intended to be permanent, while other times can become the primary project of the members' careers. Charity supergroups, where prominent musicians perform or record together in support of a particular cause, have been common since the 1980s.\n\nList of groups\n\nGroups with numerous albums and/or live appearances\n\nThis is a list of notable supergroups which have performed or recorded more than a single song/album or live shows together.\n\n**Table 1**\n\n| Founded | Band/project name | Members | Notes | Citations | None |\n|---|---|---|---|---|---|\n| 1960 | The 4 Seasons | * Frankie Valli (The Four Lovers, solo) * Bob Gaudio (The Royal Teens) * Tommy DeVito (The Four Lovers) * Charles Calello ---- * Nick Massi (The Hollywood Playboys, among othersWalter Gollender. Bim Bam Boom No. 8 (December 1972).Florio, Steve (December 2",
+        "text_characters": 133952,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:17104",
+        "score": 1.0032983483442712,
+        "snippet": "---\ntitle: Similar Songs\ndate: 2024-12-22\n---\nThis page has three sections: user submissions, songs I think sound similar, and a snapshot from SoundsJustLike.com.\n\nI hope these lists help people discover new music and find those songs that are on the tip of their ears. They've already helped me rediscover a similar-sounding song I couldn't figure out from memory alone.\n\nTo search, use your browser's built-in find-on-page functionality: Command+F, Ctrl+F, or on iOS tap into the address bar and type the text to find on page.\n\nIf you can't find what you're looking for, check out WhoSampled.com or try humming/singing into SoundHound.\n\nLearn more about this page here.\n\nYou can\n\n- Lenny Kravitz - It Ain't Over 'Til It's Over sounds like Robert Bradley's Blackwater Surprise - Baby\n\n- Submitted 4/11/25 by mdoubleub with note \"They also kind just mash up well with each other.\"\n\n- Lorde - Solar Power sounds like George Michael - Freedom! '90\n\n- Submitted 4/10/25 by lonneke_l with note \"Verse is Freedom '90 chord progression exactly\"\n\n- Jamiroquai - Canned Heat sounds like The Whispers - This Kind of Lovin\n\n- Submitted 4/10/25 by magsparkles\n\n- Steely Dan - Kings sounds like America - Sandman\n\n- Submitted 4/4/25\n\n- Post Malone - Circles sounds like Lenny Kravitz - Honey\n\n- Submitted 4/4/25 by Idan\n\n- Bruce Springsteen - Hungry Heart sounds like John Cruz - Little Bit of Love\n\n- Submitted 4/2/25 by Gigi\n\n- Barry Manilow - Could It Be Magic? sounds like Toni Braxton - Un-Break My Heart\n\n-",
+        "text_characters": 635987,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:46016",
+        "score": 0.5375402701954636,
+        "snippet": "---\ntitle: Titles owned by Pope Memorial Library\ndate: 2001-09-11\n---\nThis document is primarily intended for consumption by computers. The catalog interface designed for people can be found at \n\nHow to Say Goodbye [OverDrive]\n\nNot my father's son: a memoir [Book] Alan Cumming.\n\nCroatian [Book] Lonely planet phrasebooks and Gordana & Ivan Ivetac.\n\nBirds of prey [Book] — J.P. Beaumont - Yellow #15 J.A. Jance.\n\nEvery fifteen minutes [Book] Lisa Scottoline.\n\nFlights [Book] Olga Tokarczuk ; translated by Jennifer Croft.\n\nDeath in Sandpiper Bay: A Riley Harper Mystery, #1 [OverDrive]\n\nThe Secret History of Spies [OverDrive]\n\nA Conspiracy of Paper: Benjamin Weaver Series, Book 1 [OverDrive]\n\nThe Heart of the World [OverDrive]\n\nThe Merry Misogynist: Dr. Siri Paiboun Series, Book 6 [OverDrive]\n\nTurn a Blind Eye: William Warwick Series, Book 3 [OverDrive]\n\nWho Let the Dog Out: Andy Carpenter Series, Book 13 [OverDrive]\n\nJudas 62: Box 88 Series, Book 2 [OverDrive]\n\nKnife River: a novel [Book] Justine Champine.\n\nA Lady Cyclist's Guide to Kashgar: A Novel [OverDrive]\n\nVillains, Scoundrels, and Rogues: Incredible True Tales of Mischief and Mayhem [OverDrive]\n\n3 days to live [Book] James Patterson.\n\nAncient Ones: Emmett Parker and Anna Turnipseed Mystery Series, Book 3 [OverDrive]\n\nSaving Winslow [Juv. Book] Sharon Creech.\n\nRobert B. Parker's Blackjack: Virgil Cole and Everett Hitch Series, Book 8 [OverDrive]\n\nDifferent... Not Less [OverDrive]\n\nThe Tomb of Shadows: Seven Wonders Series, Bo",
+        "text_characters": 2490964,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:70554",
+        "score": 0.3470107416601991,
+        "snippet": "---\ntitle: Song Title :: I (Music Database :: Dave Tompkins)\ndate: 1996-01-01\n---\n|\n\nARTIST |\n\nTITLE |\n\nTIME |\n\nBPM |\n\nYEAR |\n\nGENRE |\n\nDISC-TRACK |\n\nDETAILS |\n\n| Tom Jones |\n\nI (Who Have Nothing) |\n\n3:00 |\n\n130.2 |\n\n1992 |\n\nRock 1980s |\n\nTOMJONES_GH1-14 |\n\n(details...) |\n\n| Color Me Badd |\n\nI Adore Mi Amor |\n\n4:51 |\n\n92.0 |\n\n1991 |\n\nSlow |\n\nPOWERTRK_111-05 |\n\n(details...) |\n\n| Color Me Badd |\n\nI Adore Mi Amor |\n\n4:50 |\n\n92.0 |\n\n1991 |\n\nRock 1980s |\n\nTHEN_____02B-10 |\n\n(details...) |\n\n| Cypress Hill |\n\nI Ain't Goin' Out Like That [Radio Edit] |\n\n4:26 |\n\n100.8 |\n\n1993 |\n\nRock 1990s |\n\nCYPRSHIL_BSR-02 |\n\n(details...) |\n\n| The Temptations |\n\nI Ain't Got Nothin' |\n\n3:35 |\n\n92.8 |\n\n1965 |\n\nRock 1960s |\n\nTEMPTTNS_G1B-09 |\n\n(details...) |\n\n| The Black Crowes |\n\nI Ain't Hiding |\n\n3:47 |\n\n121.4 |\n\n2009 |\n\nRock |\n\nCHRRADIO_197-14 |\n\n(details...) |\n\n| 2Pac |\n\nI Ain't Mad at Cha |\n\n4:51 |\n\n85.1 |\n\n1996 |\n\nRap |\n\nHOTTRACK_030-12 |\n\n(details...) |\n\n| Shania Twain |\n\nI Ain't No Quitter |\n\n3:29 |\n\n160.5 |\n\n2005 |\n\nCountry |\n\nCHRRADIO_094-19 |\n\n(details...) |\n\n| Shania Twain |\n\nI Ain't No Quitter |\n\n3:30 |\n\n160.5 |\n\n2004 |\n\nCountry |\n\nSHANIATW_GH1-21 |\n\n(details...) |\n\n| Lynyrd Skynyrd |\n\nI Ain't the One |\n\n3:52 |\n\n93.0 |\n\n1989 |\n\nRock 1980s |\n\nLSKYNRYD_GH1-03 |\n\n(details...) |\n\n| Papa Roach |\n\nI Almost Told You That I Loved You |\n\n3:08 |\n\n93.0 |\n\n2009 |\n\nRock |\n\nCHRRADIO_197-12 |\n\n(details...) |\n\n| Live |\n\nI Alone |\n\n3:50 |\n\n90.5 |\n\n1994 |\n\nRock 1990s |\n\nLIVE_____THC-03 |\n\n(details...) |\n\n| ",
+        "text_characters": 313605,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:25096",
+        "score": 0.2617284981807153,
+        "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a",
+        "text_characters": 839983,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-ae0c2b5721574723"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2412065", "title": "Lullaby (Mel B song)", "score": 35.098952784651644, "snippet": "2001 single by Melanie B \"Lullaby\" is a song by English singer Melanie B. It was co-written by Melanie B, Richard Stannard, Julian Gallagher, and Richard Norris for her debut solo album, \"Hot\" (2000), while production was helmed by Fred Jerkins III. It was released by Virgin Records as the album's final single on 4 June 2001 and peaked at number 13 on the UK Singles Chart. The music video features her daughter Phoenix Chi Gulzar. Reception. The song earned largely mixed reviews from music critics. Lennat Mak from MTV Asia wrote about the song: \"Written about Phoenix's birth and the joy she is bringing, the guitar-y ballad \"Lullaby\" has a heartfelt touch injected with such sincerity that it reveals a rarely seen side of Mel B: Motherly, affectionate, and loving.\" \"NME\" called the song \"a pretty TLC-style ballad.\" Caroline Sullivan, writing for \"The Guardian\", remarked that \"Lullabye\" was \"one of those lapses into slurpiness, like Oasis's \"Little James,\" that can happen to anyone.\" Nigel Packer of BBC Music called \"Lullaby\" a \"lightweight feel-good anthem which could have stepped straight from a cereal ad. Commercial performance. \"Lullaby\" was released by Virgin Records on 4 June 2001 as the third and final single from \"Hot\". The song debuted and peaked at number 13 on the UK Singles Chart in the week ending 16 June 2001, becoming Melanie B's fifth consecutive top twenty entry on the chart. \"Lullaby\" also reached number 18 on the Scottish Singles Chart and number 47 on the Iris", "text_characters": 1932, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:66815", "title": "", "score": 2.1133790485315833, "snippet": "---\ntitle: What's New\ndate: 2019-12-03\n---\nConversing with 7th grade students of JL Simpson MS\n\nMet JL Simpson MS's fantastic 7th grade students (11 classes!) and their educators via google meets this morning and yesterday ...\n\nCover reveal for Kidnapped from Ukraine #3: Still Alive!\n\nThrilled to reveal the cover for book #3, to be published on April 21, 2026! Here are all three books: ...\n\nPysanky and friends\n\nWanted to get a picture of these before I gave some away. Met with four of my longtime writer friends ...\n\nVisiting with St. Sophia's 10th grade students\n\nThis morning I did another presentation with St Sophia Religious Assn of Ukrainian Catholics, USA (Philadelphia). This audience was two 10th ...\n\nSt. Sophia youth\n\nIt was such an honor to speak with the youth group at St. Sophia Religious Assn USA of Ukrainian Catholics ...\n\nAuthor Honours Deathbed Promise to Write About WWII Lebensborn Program\n\nThe interview was originally published on Christine Kohler's website here. One piece of advice that writers are given is to ...\n\nNine more pysanky and now it's all put away til next year!\n\nI had seven quail eggs and two XS eggs cleaned and ready to go last week but had to put ...\n\nRoberts ES 5th grade students\n\nIt was such a pleasure to speak with 5th grade students from Roberts Elementary in Suwanee GA on Good Friday ...\n\nHickson Central Public School visit\n\nIt was nice to visit with grade 7 and 8 students at Hickson Central today! I had passed right by ...\n\nCYM London\n\nLove", "text_characters": 73359, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:26023", "title": "", "score": 1.4155245069780404, "snippet": "---\ntitle: 1999 in music - Wikipedia\ndate: 2002-12-22\n---\nThis is a list of notable events in music that took place in 1999.\n\nSpecific locations\n\n*1999 in British music\n*1999 in Norwegian music\n*1999 in South Korean music\n\nSpecific genres\n\n*1999 in classical music\n*1999 in country music\n*1999 in heavy metal music\n*1999 in hip hop music\n*1999 in Latin music\n*1999 in jazz\n\nEvents\n\nJanuary\n\n*January 7\n**After eight years of marriage, musician husband Rod Stewart and supermodel wife Rachel Hunter announce their separation.\n**Paul McCartney attends the launch of his daughter Heather's first housewares collection in Georgia.\n*January 11 – During the American Music Awards, Billy Joel is awarded the Special Award of Merit for his \"inspired songwriting skills\" and \"exciting showmanship.\"\n*January 12\n**Britney Spears releases her hit album ...Baby One More Time. The album is the second best-selling album of the 90s in the US and the third best-selling album of the 90s worldwide. It also enters the list of the top 20 best-selling albums of all time.\n**Fredrik Johansson is fired from Dark Tranquillity.\n*January 15–31 – After a short hiatus in 1998, the Big Day Out festival returns to Australia and New Zealand, headlined by Hole and Marilyn Manson.\n*January 21 – A&M Records is shut down and merged into the Universal Music Group umbrella label Interscope Geffen A&M. It would be relaunched in 2007.\n*January 22 – German industrial band KMFDM announces that it has disbanded.\n*January 28 – Kir", "text_characters": 79367, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:86108", "title": "", "score": 1.3837881667963035, "snippet": "---\ntitle: List of 2019 albums - Wikipedia\ndate: 2018-07-10\n---\nThe following is a list of albums, EPs, and mixtapes released in 2019. These albums are (1) original, i.e. excluding reissues, remasters, and compilations of previously released recordings, and (2) notable, defined as having received significant coverage from reliable sources independent of the subject.\n\nFor additional information about bands formed, reformed, disbanded, or on hiatus, for deaths of musicians, and for links to musical awards, see 2019 in music.\n\nFirst quarter\n\nJanuary\n\n**Table 1**: List of albums released in January 2019\n\n| Release date | Artist | Album | Genre | Label | |\n|---|---|---|---|---|---|\n| January1 | Rogério Skylab | Nas Portas do Cu | Experimental rock, art rock, MPB | Rogério Skylab | |\n| January4 | Legion of the Damned | Slaves of the Shadow Realm | | Napalm | |\n| January8 | Gang Parade | Last Gang Parade | J-pop | WACK, T-Palette | |\n| January11 | Born of Osiris | The Simulation | Progressive metalcore, djent | Sumerian | |\n| January11 | The Delines | The Imperial | Country, soul | Decor Records | |\n| January11 | Gnash | We | | Atlantic | |\n| January11 | Randy Houser | Magnolia | Country | Stoney Creek | |\n| January11 | Soilwork | Verkligheten | Melodic death metal | Nuclear Blast | |\n| January14 | GFriend | Time for Us | K-pop, hip-hop, R&B | Source, Kakao M | |\n| January15 | Falz | Moral Instruction | Hip-hop, Afrobeat | Bahd Guys Records | |\n| January16 | Astro | All Light | K-po", "text_characters": 92898, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:79043", "title": "", "score": 1.2267262089147795, "snippet": "---\ndate: 1995-10-07\n---\n| 48:6 (July/Aug 2025) |\n\nBertil van Boer: BACH, JOHANN SEBASTIAN: Cantatas Nos. 170, 54, 53; No.... (Charles Humphries) |\n\nRaymond Tuttle: Slightly Off the Beat |\n\nChristopher Brodersen: A Most Unusual Voice: An Interview with Countertenor... |\n\nColin Clarke: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nHenry Fogel: GRUNDMAN: Quartet for Strings, \"Surviving... (Brodsky Qrt) |\n\nDominic Hartley: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nPeter J. Rabinowitz: GRUNDMAN: A Mortuis Resurgere (The Resurrection... (Brodsky Qrt) |\n\nPeter Burwasser: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nColin Clarke: GRUNDMAN: A Mortuis Resurgere (The Resurrection... (Brodsky Qrt) |\n\nKen Meltzer: AMERICAN MUSIC FOR VIOLIN AND HORN (Elmira Darvarova) |\n\nHenry Fogel: Questions for Jorge Grundman |\n\nDominic Hartley: American Music for Violin and Horn: An Interview... |\n\nMaria Nockin: HARPSICHORD AT THE HOLIDAYS: Christmas Carols... (Elaine Funaro) |\n\nRobert Schulslaper: A Stark House of Crime: A Conversation with Publisher... |\n\nChristopher Brodersen: New Life for an Old Instrument: An Interview... |\n\nDominic Hartley: SCOTT, DEREK: Dance Suites... (Paul Mann) |\n\nCarla Maria Verdino-Süllwold: WHITACRE, ERIC: Water Night. Three Songs of Faith.... (Ronald Staheli) |\n\nColin Clarke: SCOTT, DEREK: Dance Suites... (Paul Mann) |\n\nLynn René Bayley: DUKE, VERNON: Surrealist Suite. Parisian Suite.... (Scott Holden) |\n\nKen Meltzer: SCOTT, DEREK: D", "text_characters": 539037, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:11178", "title": "", "score": 1.125243002503339, "snippet": "---\ntitle: List of musical supergroups - Wikipedia\ndate: 2016-01-13\n---\nThis is a list of supergroups, music groups whose members are already successful as solo artists or as part of other groups. Usually used in the context of rock bands such as Audioslave and Chickenfoot, the term has also been applied to groups based in other musical genres such as the Three Tenors in Opera, as well as in R&B/Pop with such popular acts like Bell Biv DeVoe (BBD), LSG & TGT. The term is applied in hip-hop to collaborations such as The Firm, Westside Connection, Method Man & Redman, Kids See Ghosts, and Mount Westmore.\n\nSupergroups are sometimes formed as side projects and thus not intended to be permanent, while other times can become the primary project of the members' careers. Charity supergroups, where prominent musicians perform or record together in support of a particular cause, have been common since the 1980s.\n\nList of groups\n\nGroups with numerous albums and/or live appearances\n\nThis is a list of notable supergroups which have performed or recorded more than a single song/album or live shows together.\n\n**Table 1**\n\n| Founded | Band/project name | Members | Notes | Citations | None |\n|---|---|---|---|---|---|\n| 1960 | The 4 Seasons | * Frankie Valli (The Four Lovers, solo) * Bob Gaudio (The Royal Teens) * Tommy DeVito (The Four Lovers) * Charles Calello ---- * Nick Massi (The Hollywood Playboys, among othersWalter Gollender. Bim Bam Boom No. 8 (December 1972).Florio, Steve (December 2", "text_characters": 133952, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:17104", "title": "", "score": 1.0032983483442712, "snippet": "---\ntitle: Similar Songs\ndate: 2024-12-22\n---\nThis page has three sections: user submissions, songs I think sound similar, and a snapshot from SoundsJustLike.com.\n\nI hope these lists help people discover new music and find those songs that are on the tip of their ears. They've already helped me rediscover a similar-sounding song I couldn't figure out from memory alone.\n\nTo search, use your browser's built-in find-on-page functionality: Command+F, Ctrl+F, or on iOS tap into the address bar and type the text to find on page.\n\nIf you can't find what you're looking for, check out WhoSampled.com or try humming/singing into SoundHound.\n\nLearn more about this page here.\n\nYou can\n\n- Lenny Kravitz - It Ain't Over 'Til It's Over sounds like Robert Bradley's Blackwater Surprise - Baby\n\n- Submitted 4/11/25 by mdoubleub with note \"They also kind just mash up well with each other.\"\n\n- Lorde - Solar Power sounds like George Michael - Freedom! '90\n\n- Submitted 4/10/25 by lonneke_l with note \"Verse is Freedom '90 chord progression exactly\"\n\n- Jamiroquai - Canned Heat sounds like The Whispers - This Kind of Lovin\n\n- Submitted 4/10/25 by magsparkles\n\n- Steely Dan - Kings sounds like America - Sandman\n\n- Submitted 4/4/25\n\n- Post Malone - Circles sounds like Lenny Kravitz - Honey\n\n- Submitted 4/4/25 by Idan\n\n- Bruce Springsteen - Hungry Heart sounds like John Cruz - Little Bit of Love\n\n- Submitted 4/2/25 by Gigi\n\n- Barry Manilow - Could It Be Magic? sounds like Toni Braxton - Un-Break My Heart\n\n-", "text_characters": 635987, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:46016", "title": "", "score": 0.5375402701954636, "snippet": "---\ntitle: Titles owned by Pope Memorial Library\ndate: 2001-09-11\n---\nThis document is primarily intended for consumption by computers. The catalog interface designed for people can be found at \n\nHow to Say Goodbye [OverDrive]\n\nNot my father's son: a memoir [Book] Alan Cumming.\n\nCroatian [Book] Lonely planet phrasebooks and Gordana & Ivan Ivetac.\n\nBirds of prey [Book] — J.P. Beaumont - Yellow #15 J.A. Jance.\n\nEvery fifteen minutes [Book] Lisa Scottoline.\n\nFlights [Book] Olga Tokarczuk ; translated by Jennifer Croft.\n\nDeath in Sandpiper Bay: A Riley Harper Mystery, #1 [OverDrive]\n\nThe Secret History of Spies [OverDrive]\n\nA Conspiracy of Paper: Benjamin Weaver Series, Book 1 [OverDrive]\n\nThe Heart of the World [OverDrive]\n\nThe Merry Misogynist: Dr. Siri Paiboun Series, Book 6 [OverDrive]\n\nTurn a Blind Eye: William Warwick Series, Book 3 [OverDrive]\n\nWho Let the Dog Out: Andy Carpenter Series, Book 13 [OverDrive]\n\nJudas 62: Box 88 Series, Book 2 [OverDrive]\n\nKnife River: a novel [Book] Justine Champine.\n\nA Lady Cyclist's Guide to Kashgar: A Novel [OverDrive]\n\nVillains, Scoundrels, and Rogues: Incredible True Tales of Mischief and Mayhem [OverDrive]\n\n3 days to live [Book] James Patterson.\n\nAncient Ones: Emmett Parker and Anna Turnipseed Mystery Series, Book 3 [OverDrive]\n\nSaving Winslow [Juv. Book] Sharon Creech.\n\nRobert B. Parker's Blackjack: Virgil Cole and Everett Hitch Series, Book 8 [OverDrive]\n\nDifferent... Not Less [OverDrive]\n\nThe Tomb of Shadows: Seven Wonders Series, Bo", "text_characters": 2490964, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:70554", "title": "", "score": 0.3470107416601991, "snippet": "---\ntitle: Song Title :: I (Music Database :: Dave Tompkins)\ndate: 1996-01-01\n---\n|\n\nARTIST |\n\nTITLE |\n\nTIME |\n\nBPM |\n\nYEAR |\n\nGENRE |\n\nDISC-TRACK |\n\nDETAILS |\n\n| Tom Jones |\n\nI (Who Have Nothing) |\n\n3:00 |\n\n130.2 |\n\n1992 |\n\nRock 1980s |\n\nTOMJONES_GH1-14 |\n\n(details...) |\n\n| Color Me Badd |\n\nI Adore Mi Amor |\n\n4:51 |\n\n92.0 |\n\n1991 |\n\nSlow |\n\nPOWERTRK_111-05 |\n\n(details...) |\n\n| Color Me Badd |\n\nI Adore Mi Amor |\n\n4:50 |\n\n92.0 |\n\n1991 |\n\nRock 1980s |\n\nTHEN_____02B-10 |\n\n(details...) |\n\n| Cypress Hill |\n\nI Ain't Goin' Out Like That [Radio Edit] |\n\n4:26 |\n\n100.8 |\n\n1993 |\n\nRock 1990s |\n\nCYPRSHIL_BSR-02 |\n\n(details...) |\n\n| The Temptations |\n\nI Ain't Got Nothin' |\n\n3:35 |\n\n92.8 |\n\n1965 |\n\nRock 1960s |\n\nTEMPTTNS_G1B-09 |\n\n(details...) |\n\n| The Black Crowes |\n\nI Ain't Hiding |\n\n3:47 |\n\n121.4 |\n\n2009 |\n\nRock |\n\nCHRRADIO_197-14 |\n\n(details...) |\n\n| 2Pac |\n\nI Ain't Mad at Cha |\n\n4:51 |\n\n85.1 |\n\n1996 |\n\nRap |\n\nHOTTRACK_030-12 |\n\n(details...) |\n\n| Shania Twain |\n\nI Ain't No Quitter |\n\n3:29 |\n\n160.5 |\n\n2005 |\n\nCountry |\n\nCHRRADIO_094-19 |\n\n(details...) |\n\n| Shania Twain |\n\nI Ain't No Quitter |\n\n3:30 |\n\n160.5 |\n\n2004 |\n\nCountry |\n\nSHANIATW_GH1-21 |\n\n(details...) |\n\n| Lynyrd Skynyrd |\n\nI Ain't the One |\n\n3:52 |\n\n93.0 |\n\n1989 |\n\nRock 1980s |\n\nLSKYNRYD_GH1-03 |\n\n(details...) |\n\n| Papa Roach |\n\nI Almost Told You That I Loved You |\n\n3:08 |\n\n93.0 |\n\n2009 |\n\nRock |\n\nCHRRADIO_197-12 |\n\n(details...) |\n\n| Live |\n\nI Alone |\n\n3:50 |\n\n90.5 |\n\n1994 |\n\nRock 1990s |\n\nLIVE_____THC-03 |\n\n(details...) |\n\n| ", "text_characters": 313605, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:25096", "title": "", "score": 0.2617284981807153, "snippet": "---\n---\n- a,a's,aa,aa's,aaa,aaa's,aaaa,aaah,aaas,aab,aac,aacc,aachen,aacn,aacsb,aad,aadmi,aadvantage,aaf,aafia,aafp,aag,aah,aahs,aai,aaj,aakash,aal,aalborg,aaliyah,aalto,aam,aama,aamc,aami,aamir,aan,aanbieding,aand,aang,aao,aap,aapl,aar,aardvark,aarhus,aaron,aaron's,aarons,aarp,aarti,aas,aasa,aashto,aat,aau,aauw,aav,ab,ab's,aba,aba's,ababa,abacha,aback,abaco,abacus,abad,abaddon,abaft,abalone,abandon,abandoned,abandoning,abandonment,abandons,abap,abarth,abashed,abate,abated,abatement,abatements,abating,abattoir,abattoirs,abaya,abaye,abb,abba,abbas,abbasi,abbasid,abbe,abbess,abbeville,abbey,abbey's,abbeys,abbi,abbie,abbigliamento,abbot,abbots,abbotsford,abbott,abbott's,abbottabad,abbreviate,abbreviated,abbreviation,abbreviations,abby,abby's,abc,abc's,abcd,abcs,abd,abdallah,abdel,abdi,abdicate,abdicated,abdicating,abdication,abdo,abdom,abdomen,abdomens,abdominal,abdominals,abdominis,abdominoplasty,abdu,abduct,abducted,abductees,abducting,abduction,abductions,abductor,abductors,abdul,abdulaziz,abdulla,abdullah,abdullah's,abdullahi,abdulmutallab,abdur,abe,abe's,abed,abedin,abel,abel's,abelard,abell,aber,abercrombie,aberdeen,aberdeen's,aberdeenshire,aberfoyle,abergavenny,abernathy,abernethy,aberrant,aberration,aberrations,aberystwyth,abet,abetment,abetted,abetting,abettor,abeyance,abf,abg,abhay,abhishek,abhisit,abhor,abhorred,abhorrence,abhorrent,abhors,abi,abia,abid,abide,abided,abides,abideth,abiding,abidjan,abigail,abigail's,abilene,abilify,abilitie,abilities,ability,abimelech,a", "text_characters": 839983, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0282/R002_request.json/messages/3/content`；SHA256：`c6be45bdd6640569f8c6e7a696cfbb2eb054052c184264c92a5ddfa324b26536`。
+
+### R1 Call `/rounds/0/tool_calls/1` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "\"What Took You So Long?\" song Julian Gallagher performer"
+  },
+  "id": "chatcmpl-tool-a7c57aac3168d2f2",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"\\\"What Took You So Long?\\\" song Julian Gallagher performer\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-a7c57aac3168d2f2",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "\"What Took You So Long?\" song Julian Gallagher performer"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 2,
+  "event_id": "E002",
+  "latency_seconds": 3.235040305647999,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2008728",
+        "score": 26.07117922629835,
+        "snippet": "British songwriter and record producer (born 1968) Julian Gallagher (born 17 July 1968 in Bromley, London) is a British songwriter and record producer, known for being a member of the music production/songwriting team Biffco. He has co-wrote and produced for many artists including Kylie Minogue on her 2001 album \"Fever\", Gabrielle on her 2007 album \"Always\", as well as co-writing many songs for boy band Five, including the chart-topping singles \"Keep On Movin'\" and \"Let's Dance\". Other songs co-written by Gallagher include \"Lullaby\" for Mel B, and the UK chart-topper \"What Took You So Long?\" for Emma Bunton. Although mainly a rhythm and lead guitarist, Gallagher is also proficient on keyboards, bass guitar and drums. In addition to his own songwriting career, he has worked on many projects with his elder brother, producer and engineer Dillon Gallagher. Gallagher's father is Scottish singer-songwriter Benny Gallagher, one half of the duo Gallagher and Lyle.",
+        "text_characters": 970,
+        "title": "Julian Gallagher"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3408566",
+        "score": 21.87656072070298,
+        "snippet": "2003 single by Atomic Kitten \"If You Come to Me\" is a song by British girl group Atomic Kitten. It was written by Julian Gallagher, Martin Harrington, Ash Howes, Sharon Murphy, and Richard \"Biff\" Stannard for their third studio album, \"Ladies Night\" (2003). Production was helmed by Gallagher and Stannard, with Harrington and Howes credited as additional producers. Recording of \"If You Come to Me\" took place at Stannard's recording studio, Biffco, in Dublin, Ireland. A romantic, soulful uptempo ballad, which the band labeled \"classic Atomic Kitten\", it talks about a woman's desire to be with her partner. The song was released as the lead single from \"Ladies Night\" on 27 October 2003 in the United Kingdom where it peaked at number three on the UK Singles Chart, becoming the group's fifth consecutive top-five hit. Elsewhere, \"If You Come to Me\" entered the top five in Hungary, Scotland and on a composite Eurochart Hot 100, and reached the top ten in Austria, Ireland, Germany, New Zealand, Poland, and Switzerland. A CGI-heavy music video, directed by duo Adam Townley and Simon Atkinson, was filmed at the Asylum Studios in North London in early October 2003. Background. \"If You Come to Me\" was written by British songwriters and record producers Julian Gallagher and Richard \"Biff\" Stannard along with Martin Harrington, Ash Howes, and Sharon Murphy. Specially written with Atomic Kitten in their minds, it was suggested for recording after Gallagher and Stannard had spoken to the band",
+        "text_characters": 2456,
+        "title": "If You Come to Me"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3863046",
+        "score": 21.13144007191344,
+        "snippet": "Always is the fifth studio album by English singer Gabrielle. It was released by Systemtactic Limited and Go! Beat Records on 1 October 2007 through Universal Music. Her first release in over three years, Gabrielle reteamed with longtime collaborators Julian Gallagher and The Boilerhouse Boys to work on the album. \"Always\" received positive reviews from music critics and entered the UK Albums Chart at number 11 and the UK R&B Album Chart at number 4. A supporting tour took place in February 2008. Personnel. Adapted from AllMusic. References.",
+        "text_characters": 547,
+        "title": "Always (Gabrielle album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5049155",
+        "score": 19.052316659487254,
+        "snippet": "United States Army officer Colonel Julian Aaron Cook (October 7, 1916 – June 19, 1990) was an officer of the United States Army who gained fame during World War II for his crossing of the Waal river during Operation Market Garden in September 1944. Biography. Cook was born at Mount Holly, Vermont, on October 7, 1916, to an American father Nelson Pingrey Cook and an English mother of Irish descent, Honora (nee Gallagher). His parents met when Nelson, a travelling salesman in the UK, stopped for the night in a hotel in West Auckland, County Durham, and having enjoyed his evening meal, asked to compliment the cook, Honora Gallagher. Julian Cook attended the United States Military Academy at West Point, and was commissioned as a second lieutenant on graduation in 1940. He volunteered for the airborne forces in 1941, joining the 504th Parachute Infantry Regiment (504th PIR) as a cadre member on May 1, 1942, which became part of the 82nd \"All American\" Airborne Division. Cook started as Regimental Adjutant, as described in detail in \"Birth of a Regiment\". Cook made combat jumps into Sicily, Salerno, and Anzio before taking command of the 3rd Battalion of the 504th PIR in the spring of 1944, just months before Operation Market Garden. The regiment, due to heavy losses in Italy and a lack of airborne replacements, did not participate in the Allied invasion of Normandy. On September 17, 1944, Major Cook jumped into the Netherlands near Overasselt. His battalion was initially involved ",
+        "text_characters": 2518,
+        "title": "Julian Cook"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4430337",
+        "score": 18.189466900472027,
+        "snippet": "Shortly afterwards, the boy sees the swing move as they enter the house, implying Candace is still present. Production and release. Filming for \"Imaginary Playmate\" was planned to take three weeks. Two weeks were filmed in East Sooke, while the remaining week was filmed at places near Victoria. Filming also took place at Shawnigan Lake and at St. John the Baptist Church and Emery Family Hall in Colwood. Scenes were filmed at Milinear Mill in Shawnigan Lake and Western Forest Products mill in Cowichan Bay. \"Imaginary Playmate\" had a production budget of $1.3million. \"Imaginary Playmate\" was directed by William Fruet and produced by Paul Raymond. The film was written by Christine Gallagher, who was inspired by a real-life story that took place in 2002. She had started living in a house in Laurel Canyon, Los Angeles with her family. Julian, her four-year-old son, informed her a boy was staying in his room, and she immediately moved them out of the home. \"Imaginary Playmate\" was released in November 2006. According to \"Emmy\", it was the \"highest-rate original movie\" on Lifetime Movie Network. Michael D. Reid of the \"Times Colonist\" described the film as a \"moody thriller\". VideoHound gave it two stars. References.",
+        "text_characters": 1229,
+        "title": "Imaginary Playmate"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:581141",
+        "score": 18.15102930143175,
+        "snippet": "\"What's Love\" proved very popular in South Africa, albeit the only territory where it charted, peaking at number 10 in April 1982. In 2002, Hurst released recordings from this time on the Angel Air label. Hopkin and Visconti divorced in 1981. The following year she provided vocals on \"Rachael's Song\" for the Vangelis soundtrack of \"Blade Runner\". Around 1984, Peter Skellern asked her to join him and Julian Lloyd Webber in a group called Oasis. Their self-titled and only album, \"Oasis\", was released on WEA along with two singles. The album reached number 23 on the UK album chart in 1984 and remained there for 14 weeks. A tour of the UK was planned but was brought to an abrupt end because Hopkin became ill. The group disbanded shortly afterwards. During the 1980s, Hopkin appeared in several charity shows, including an appearance at the London Palladium with Ralph McTell. In 1988, she took part in George Martin's production of Dylan Thomas' \"Under Milk Wood\". She played the character Rosie Probert and performed a piece called \"Love Duet\" with Freddie Jones as Captain Cat. The making of the record was filmed and made into a special edition of \"The South Bank Show\", where Hopkin and Jones were shown rehearsing and recording \"Love Duet\". In 1992, the cast reunited for a performance of the play as a tribute to Thomas in the presence of Prince Charles for The Prince's Trust. Hopkin recorded an album called \"Spirit\" in 1989. This was released on the Trax label and is a collection of l",
+        "text_characters": 2294,
+        "title": "Mary Hopkin"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9510393",
+        "score": 17.340477378962056,
+        "snippet": "In January 2020, \"The Nikkei\" wrote that the season would follow Muranishi's downfall, mirroring Japan's economic slump of the early 1990s. The second season was released on June 24, 2021. Casting. Alongside the initial series announcement, it was confirmed that Takayuki Yamada, Shinnosuke Mitsushima and Tetsuji Tamayama would star in the series. Take revealed that Yamada was attached to the show from the very beginning, and said that Misato Morita \"totally became Kuroki in her mind. She didn't resemble her, but her voice became exactly the same.\" In July 2019, it was announced that Jade Albany Pietrantonio would star in the series. Filming. Principal photography for the first season took place in 2018. In January 2020, \"The Nikkei\" reported that production for season two would begin in the spring. Release. Marketing. On June 25, 2019, the official trailer for the series was released. Reception. \"HuffPost\" columnist Soichiro Matsutani called the first season of \"The Naked Director\" a \"masterpiece\" and compared it to the acclaimed films \"The People vs. Larry Flynt\" and \"Boogie Nights\". He praised the show's depiction of the early days of Japan's adult video industry, particularly how it showed the connections between the AV industry, the criminal underworld, and the police, something the original book did not. Another difference from the source material that Matsutani noted, is how the porn industry is never portrayed as a bright and glamorous world; it features characters who",
+        "text_characters": 2559,
+        "title": "The Naked Director"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:929593",
+        "score": 17.266618852279226,
+        "snippet": "When recording began in New York, bass guitarist Paul Simonon was busy making a film called \"Ladies and Gentlemen, The Fabulous Stains\", and he was replaced briefly by Ian Dury and the Blockheads bassist Norman Watt-Roy; this later caused some bad feeling when Watt-Roy and keyboard player Mickey Gallagher, a fellow Blockhead, claimed they were responsible for co-composing the song \"The Magnificent Seven\", as the song was based on a tune of theirs. Watt-Roy and Gallagher would subsequently be given a co-writing credit. Dread, too, was upset that he was not credited as the album's producer, although he was credited with \"Version Mix\". Other guests on the album include singer Ellen Foley (Jones' partner at the time), guitarist Ivan Julian formerly of the Voidoids, harmonica player Lew Lewis (formerly of Eddie and the Hot Rods), and Strummer's old friend and musical collaborator Tymon Dogg, who plays violin, sings on and wrote the track \"Lose This Skin\"; he later joined Strummer's band the Mescaleros. Gallagher's children also made appearances: his two sons, Luke and Ben, singing a version of \"Career Opportunities\" from the band's first album, and his daughter Maria singing a snippet of \"The Guns of Brixton\", from \"London Calling\", at the end of the track \"Broadway\". This is also the only Clash album on which all four members have a lead vocal. Drummer Topper Headon made a unique lead vocal contribution on the song \"Ivan Meets G.I. Joe\", and Simonon sings lead on \"The Crooked Bea",
+        "text_characters": 2404,
+        "title": "Sandinista!"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2302490",
+        "score": 16.954901649004725,
+        "snippet": "2001 single by Emma Bunton \"What Took You So Long?\" is the debut solo single of English singer Emma Bunton from her debut solo studio album, \"A Girl Like Me\" (2001). The song was written by Bunton, Richard Stannard, Julian Gallagher, Martin Harrington, John Themis and Dave Morgan, and produced by Stannard and Gallagher in Biffco Studios in Dublin, Ireland. It was released as the album's lead single in the United Kingdom on 2 April 2001. A pop rock song, its sound is influenced by the work of AOR artists such as Sheryl Crow, Gabrielle, and the band Texas. For the lyrics, Bunton explained that the song is about men taking longer than women to realise they are in love, a concept inspired by her past romantic relationships. The song received mixed to positive reviews from music critics, with many of them praising the melody and Bunton's vocal delivery, while others were critical of its production. The song topped the UK Singles Chart for two weeks, becoming Bunton's first and only number-one, making her the fourth member of the Spice Girls to top the chart with a solo record. \"What Took You So Long?\" attracted moderate success in Europe and Oceania, topping the chart in New Zealand and peaking inside the top 10 in the charts of Australia, Denmark, Ireland, Italy, Portugal and Romania. An accompanying music video, directed by Gregg Masuak, was shot in mid-February 2001 at the Mojave Desert near Lancaster, California. The song's promotional campaign included a series of appearances",
+        "text_characters": 2502,
+        "title": "What Took You So Long?"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10430050",
+        "score": 15.623124596250587,
+        "snippet": "On 7 February, Harvey Jabara and Graham Rossini joined the clubs board. On 15 February, Pablo Webster, Evan Mitz and Brian Anderson made a significant investment in Lincoln City. March. On 15 March, Sean Roughan, Oisin Gallagher and Julian Donnery were called up for Republic of Ireland U21, Republic of Ireland U19 and Scotland U18 teams respectively. On 17 March, Carl Rushworth was called up to the England U21 squad for their upcoming fixture. April. On 20 April, Lasse Sørensen was named the PFA Community Champion for Lincoln City. May. On 10 May, the clubs retained list was published. Competitions. League One. Matches. On Thursday, 23 June 2022, the EFL League One fixtures were revealed. FA Cup. Lincoln City were drawn away to Hendon or Chippenham Town in the first round on 17 October 2022. It was confirmed as Chippenham Town on 18 October. EFL Cup. Lincoln were drawn against Doncaster Rovers in the first round on 23 June 2022. The second round draw took place on 10 August 2022 by Clinton Morrison and Michael Gray in which Lincoln were drawn against Barrow. The third round draw took place on 24 August 2022 and Lincoln City were drawn against Bristol City. A trip to Premier League Southampton was next in the fourth round. EFL Trophy. \"The Imps\" were drawn into Group E of the Northern section alongside Doncaster Rover, Barnsley and a TBC invited club. Newcastle United U21 were later added to the group. In the second round, Lincoln were drawn at home against Morecambe. In the t",
+        "text_characters": 1835,
+        "title": "2022–23 Lincoln City F.C. season"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-a7c57aac3168d2f2"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2008728", "title": "Julian Gallagher", "score": 26.07117922629835, "snippet": "British songwriter and record producer (born 1968) Julian Gallagher (born 17 July 1968 in Bromley, London) is a British songwriter and record producer, known for being a member of the music production/songwriting team Biffco. He has co-wrote and produced for many artists including Kylie Minogue on her 2001 album \"Fever\", Gabrielle on her 2007 album \"Always\", as well as co-writing many songs for boy band Five, including the chart-topping singles \"Keep On Movin'\" and \"Let's Dance\". Other songs co-written by Gallagher include \"Lullaby\" for Mel B, and the UK chart-topper \"What Took You So Long?\" for Emma Bunton. Although mainly a rhythm and lead guitarist, Gallagher is also proficient on keyboards, bass guitar and drums. In addition to his own songwriting career, he has worked on many projects with his elder brother, producer and engineer Dillon Gallagher. Gallagher's father is Scottish singer-songwriter Benny Gallagher, one half of the duo Gallagher and Lyle.", "text_characters": 970, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3408566", "title": "If You Come to Me", "score": 21.87656072070298, "snippet": "2003 single by Atomic Kitten \"If You Come to Me\" is a song by British girl group Atomic Kitten. It was written by Julian Gallagher, Martin Harrington, Ash Howes, Sharon Murphy, and Richard \"Biff\" Stannard for their third studio album, \"Ladies Night\" (2003). Production was helmed by Gallagher and Stannard, with Harrington and Howes credited as additional producers. Recording of \"If You Come to Me\" took place at Stannard's recording studio, Biffco, in Dublin, Ireland. A romantic, soulful uptempo ballad, which the band labeled \"classic Atomic Kitten\", it talks about a woman's desire to be with her partner. The song was released as the lead single from \"Ladies Night\" on 27 October 2003 in the United Kingdom where it peaked at number three on the UK Singles Chart, becoming the group's fifth consecutive top-five hit. Elsewhere, \"If You Come to Me\" entered the top five in Hungary, Scotland and on a composite Eurochart Hot 100, and reached the top ten in Austria, Ireland, Germany, New Zealand, Poland, and Switzerland. A CGI-heavy music video, directed by duo Adam Townley and Simon Atkinson, was filmed at the Asylum Studios in North London in early October 2003. Background. \"If You Come to Me\" was written by British songwriters and record producers Julian Gallagher and Richard \"Biff\" Stannard along with Martin Harrington, Ash Howes, and Sharon Murphy. Specially written with Atomic Kitten in their minds, it was suggested for recording after Gallagher and Stannard had spoken to the band", "text_characters": 2456, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:3863046", "title": "Always (Gabrielle album)", "score": 21.13144007191344, "snippet": "Always is the fifth studio album by English singer Gabrielle. It was released by Systemtactic Limited and Go! Beat Records on 1 October 2007 through Universal Music. Her first release in over three years, Gabrielle reteamed with longtime collaborators Julian Gallagher and The Boilerhouse Boys to work on the album. \"Always\" received positive reviews from music critics and entered the UK Albums Chart at number 11 and the UK R&B Album Chart at number 4. A supporting tour took place in February 2008. Personnel. Adapted from AllMusic. References.", "text_characters": 547, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:5049155", "title": "Julian Cook", "score": 19.052316659487254, "snippet": "United States Army officer Colonel Julian Aaron Cook (October 7, 1916 – June 19, 1990) was an officer of the United States Army who gained fame during World War II for his crossing of the Waal river during Operation Market Garden in September 1944. Biography. Cook was born at Mount Holly, Vermont, on October 7, 1916, to an American father Nelson Pingrey Cook and an English mother of Irish descent, Honora (nee Gallagher). His parents met when Nelson, a travelling salesman in the UK, stopped for the night in a hotel in West Auckland, County Durham, and having enjoyed his evening meal, asked to compliment the cook, Honora Gallagher. Julian Cook attended the United States Military Academy at West Point, and was commissioned as a second lieutenant on graduation in 1940. He volunteered for the airborne forces in 1941, joining the 504th Parachute Infantry Regiment (504th PIR) as a cadre member on May 1, 1942, which became part of the 82nd \"All American\" Airborne Division. Cook started as Regimental Adjutant, as described in detail in \"Birth of a Regiment\". Cook made combat jumps into Sicily, Salerno, and Anzio before taking command of the 3rd Battalion of the 504th PIR in the spring of 1944, just months before Operation Market Garden. The regiment, due to heavy losses in Italy and a lack of airborne replacements, did not participate in the Allied invasion of Normandy. On September 17, 1944, Major Cook jumped into the Netherlands near Overasselt. His battalion was initially involved ", "text_characters": 2518, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4430337", "title": "Imaginary Playmate", "score": 18.189466900472027, "snippet": "Shortly afterwards, the boy sees the swing move as they enter the house, implying Candace is still present. Production and release. Filming for \"Imaginary Playmate\" was planned to take three weeks. Two weeks were filmed in East Sooke, while the remaining week was filmed at places near Victoria. Filming also took place at Shawnigan Lake and at St. John the Baptist Church and Emery Family Hall in Colwood. Scenes were filmed at Milinear Mill in Shawnigan Lake and Western Forest Products mill in Cowichan Bay. \"Imaginary Playmate\" had a production budget of $1.3million. \"Imaginary Playmate\" was directed by William Fruet and produced by Paul Raymond. The film was written by Christine Gallagher, who was inspired by a real-life story that took place in 2002. She had started living in a house in Laurel Canyon, Los Angeles with her family. Julian, her four-year-old son, informed her a boy was staying in his room, and she immediately moved them out of the home. \"Imaginary Playmate\" was released in November 2006. According to \"Emmy\", it was the \"highest-rate original movie\" on Lifetime Movie Network. Michael D. Reid of the \"Times Colonist\" described the film as a \"moody thriller\". VideoHound gave it two stars. References.", "text_characters": 1229, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:581141", "title": "Mary Hopkin", "score": 18.15102930143175, "snippet": "\"What's Love\" proved very popular in South Africa, albeit the only territory where it charted, peaking at number 10 in April 1982. In 2002, Hurst released recordings from this time on the Angel Air label. Hopkin and Visconti divorced in 1981. The following year she provided vocals on \"Rachael's Song\" for the Vangelis soundtrack of \"Blade Runner\". Around 1984, Peter Skellern asked her to join him and Julian Lloyd Webber in a group called Oasis. Their self-titled and only album, \"Oasis\", was released on WEA along with two singles. The album reached number 23 on the UK album chart in 1984 and remained there for 14 weeks. A tour of the UK was planned but was brought to an abrupt end because Hopkin became ill. The group disbanded shortly afterwards. During the 1980s, Hopkin appeared in several charity shows, including an appearance at the London Palladium with Ralph McTell. In 1988, she took part in George Martin's production of Dylan Thomas' \"Under Milk Wood\". She played the character Rosie Probert and performed a piece called \"Love Duet\" with Freddie Jones as Captain Cat. The making of the record was filmed and made into a special edition of \"The South Bank Show\", where Hopkin and Jones were shown rehearsing and recording \"Love Duet\". In 1992, the cast reunited for a performance of the play as a tribute to Thomas in the presence of Prince Charles for The Prince's Trust. Hopkin recorded an album called \"Spirit\" in 1989. This was released on the Trax label and is a collection of l", "text_characters": 2294, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9510393", "title": "The Naked Director", "score": 17.340477378962056, "snippet": "In January 2020, \"The Nikkei\" wrote that the season would follow Muranishi's downfall, mirroring Japan's economic slump of the early 1990s. The second season was released on June 24, 2021. Casting. Alongside the initial series announcement, it was confirmed that Takayuki Yamada, Shinnosuke Mitsushima and Tetsuji Tamayama would star in the series. Take revealed that Yamada was attached to the show from the very beginning, and said that Misato Morita \"totally became Kuroki in her mind. She didn't resemble her, but her voice became exactly the same.\" In July 2019, it was announced that Jade Albany Pietrantonio would star in the series. Filming. Principal photography for the first season took place in 2018. In January 2020, \"The Nikkei\" reported that production for season two would begin in the spring. Release. Marketing. On June 25, 2019, the official trailer for the series was released. Reception. \"HuffPost\" columnist Soichiro Matsutani called the first season of \"The Naked Director\" a \"masterpiece\" and compared it to the acclaimed films \"The People vs. Larry Flynt\" and \"Boogie Nights\". He praised the show's depiction of the early days of Japan's adult video industry, particularly how it showed the connections between the AV industry, the criminal underworld, and the police, something the original book did not. Another difference from the source material that Matsutani noted, is how the porn industry is never portrayed as a bright and glamorous world; it features characters who", "text_characters": 2559, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:929593", "title": "Sandinista!", "score": 17.266618852279226, "snippet": "When recording began in New York, bass guitarist Paul Simonon was busy making a film called \"Ladies and Gentlemen, The Fabulous Stains\", and he was replaced briefly by Ian Dury and the Blockheads bassist Norman Watt-Roy; this later caused some bad feeling when Watt-Roy and keyboard player Mickey Gallagher, a fellow Blockhead, claimed they were responsible for co-composing the song \"The Magnificent Seven\", as the song was based on a tune of theirs. Watt-Roy and Gallagher would subsequently be given a co-writing credit. Dread, too, was upset that he was not credited as the album's producer, although he was credited with \"Version Mix\". Other guests on the album include singer Ellen Foley (Jones' partner at the time), guitarist Ivan Julian formerly of the Voidoids, harmonica player Lew Lewis (formerly of Eddie and the Hot Rods), and Strummer's old friend and musical collaborator Tymon Dogg, who plays violin, sings on and wrote the track \"Lose This Skin\"; he later joined Strummer's band the Mescaleros. Gallagher's children also made appearances: his two sons, Luke and Ben, singing a version of \"Career Opportunities\" from the band's first album, and his daughter Maria singing a snippet of \"The Guns of Brixton\", from \"London Calling\", at the end of the track \"Broadway\". This is also the only Clash album on which all four members have a lead vocal. Drummer Topper Headon made a unique lead vocal contribution on the song \"Ivan Meets G.I. Joe\", and Simonon sings lead on \"The Crooked Bea", "text_characters": 2404, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2302490", "title": "What Took You So Long?", "score": 16.954901649004725, "snippet": "2001 single by Emma Bunton \"What Took You So Long?\" is the debut solo single of English singer Emma Bunton from her debut solo studio album, \"A Girl Like Me\" (2001). The song was written by Bunton, Richard Stannard, Julian Gallagher, Martin Harrington, John Themis and Dave Morgan, and produced by Stannard and Gallagher in Biffco Studios in Dublin, Ireland. It was released as the album's lead single in the United Kingdom on 2 April 2001. A pop rock song, its sound is influenced by the work of AOR artists such as Sheryl Crow, Gabrielle, and the band Texas. For the lyrics, Bunton explained that the song is about men taking longer than women to realise they are in love, a concept inspired by her past romantic relationships. The song received mixed to positive reviews from music critics, with many of them praising the melody and Bunton's vocal delivery, while others were critical of its production. The song topped the UK Singles Chart for two weeks, becoming Bunton's first and only number-one, making her the fourth member of the Spice Girls to top the chart with a solo record. \"What Took You So Long?\" attracted moderate success in Europe and Oceania, topping the chart in New Zealand and peaking inside the top 10 in the charts of Australia, Denmark, Ireland, Italy, Portugal and Romania. An accompanying music video, directed by Gregg Masuak, was shot in mid-February 2001 at the Mojave Desert near Lancaster, California. The song's promotional campaign included a series of appearances", "text_characters": 2502, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10430050", "title": "2022–23 Lincoln City F.C. season", "score": 15.623124596250587, "snippet": "On 7 February, Harvey Jabara and Graham Rossini joined the clubs board. On 15 February, Pablo Webster, Evan Mitz and Brian Anderson made a significant investment in Lincoln City. March. On 15 March, Sean Roughan, Oisin Gallagher and Julian Donnery were called up for Republic of Ireland U21, Republic of Ireland U19 and Scotland U18 teams respectively. On 17 March, Carl Rushworth was called up to the England U21 squad for their upcoming fixture. April. On 20 April, Lasse Sørensen was named the PFA Community Champion for Lincoln City. May. On 10 May, the clubs retained list was published. Competitions. League One. Matches. On Thursday, 23 June 2022, the EFL League One fixtures were revealed. FA Cup. Lincoln City were drawn away to Hendon or Chippenham Town in the first round on 17 October 2022. It was confirmed as Chippenham Town on 18 October. EFL Cup. Lincoln were drawn against Doncaster Rovers in the first round on 23 June 2022. The second round draw took place on 10 August 2022 by Clinton Morrison and Michael Gray in which Lincoln were drawn against Barrow. The third round draw took place on 24 August 2022 and Lincoln City were drawn against Bristol City. A trip to Premier League Southampton was next in the fourth round. EFL Trophy. \"The Imps\" were drawn into Group E of the Northern section alongside Doncaster Rover, Barnsley and a TBC invited club. Newcastle United U21 were later added to the group. In the second round, Lincoln were drawn at home against Morecambe. In the t", "text_characters": 1835, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0282/R002_request.json/messages/4/content`；SHA256：`6a9c7c5b143d0f20236466766609c1711d21a9793a80caaff428a45b9e739789`。
+
+### R2 `/rounds/1/reasoning_content` [0,282)
+
+SHA256：`8b697bfe371e54d92bc92bb20517cb65b1bae01a83a4a41dca68f2ed591d9a0f`；原字段SHA256：`e9d2c5875175cebd0baa3d24dd8ba4f7537d5ea03cbd8c3553e82dc994744ef3`。
+
+````
+The search results show that:
+1. Julian Gallagher co-wrote "Lullaby" for Mel B (Melanie B)
+2. Julian Gallagher co-wrote "What Took You So Long?" for Emma Bunton
+3. "What Took You So Long?" is Emma Bunton's debut solo single from her debut solo studio album "A Girl Like Me" (2001)
+
+
+````
+
+## S002｜查询A Girl Like Me的UK专辑榜峰值
+
+实际搜索歌手、专辑与榜单峰值，取得多份number four支持。
+
+结束状态：专辑排名材料返回。
+
+边界判断：歌手首专定位完成，实际转向具体榜单事实核查。
+
+内部KEEP与反证：一个查询及完整返回保持完整，各个命中文档不虚构为独立核验行为。
+
+### SPLIT原文
+
+````
+The search results show that:
+1. Julian Gallagher co-wrote "Lullaby" for Mel B (Melanie B)
+2. Julian Gallagher co-wrote "What Took You So Long?" for Emma Bunton
+3. "What Took You So Long?" is Emma Bunton's debut solo single from her debut solo studio album "A Girl Like Me" (2001)
+
+
+→ 切点 [1, 0, 282] →
+Now I need to find the peak position on the UK Albums Chart for Emma Bunton's debut solo album "A Girl Like Me".
+
+Let me search for this information.
+
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [282,432)
+
+SHA256：`c345b02379899361ad0c5b1571b2e040c60aa91b583a42469f46f79eb15fc809`；原字段SHA256：`e9d2c5875175cebd0baa3d24dd8ba4f7537d5ea03cbd8c3553e82dc994744ef3`。
+
+````
+Now I need to find the peak position on the UK Albums Chart for Emma Bunton's debut solo album "A Girl Like Me".
+
+Let me search for this information.
+
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Emma Bunton A Girl Like Me UK Albums Chart peak position"
+  },
+  "id": "chatcmpl-tool-935ea2fa9f911f76",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Emma Bunton A Girl Like Me UK Albums Chart peak position\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-935ea2fa9f911f76",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Emma Bunton A Girl Like Me UK Albums Chart peak position"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 0.7744133500382304,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:6880571",
+        "score": 30.941794433221467,
+        "snippet": "The single features Emma Bunton, Chisholm's groupmate from the Spice Girls. Chisholm and Bunton performed the song live on various TV shows such as Loose Women, This Morning, The Alan Titchmarsh Show, and the BBC Children in Need 2012 concert. The single reached #153 in the Official UK Top 200 singles chart. The b-side of the single is a cover of \"You'll Never Walk Alone\" from the musical \"Carousel\". Critical reception. The \"Daily Express\" rated the album three out of five stars. The daily newspaper wrote: \"Melanie C has become a bit of a West End Wendy [..] which makes this album of covers of mainly show tunes more than appropriate [...] It’s a great selection but perhaps the most enjoyable moment is when Emma Bunton joins her on a cover of the Elaine Paige/Barbara Dickson classic \"I Know Him So Well\".\" Chart performance. \"Stages\" debuted and peaked at number 50 on the UK Albums Chart, giving Chisholm her sixth consecutive entry in the Official Albums Chart Top 100. The album also reached the top ten on the Official UK Indie Album Chart, at number seven. Track listing. All tracks produced by Peter-John Vettese. References.",
+        "text_characters": 1141,
+        "title": "Stages (Melanie C album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:551453",
+        "score": 30.842898426776202,
+        "snippet": "The poor sales led to Bunton losing her contract with Virgin in 2002. Bunton performed at Party at the Palace, an event that was held at Buckingham Palace Garden on 3 June 2002 in commemoration of the Golden Jubilee of Elizabeth II. Her solo performances at the event were a cover of The Supremes' 1964 hit \"Baby Love\" and her own \"What Took You So Long?\". After parting ways with Virgin, Bunton signed a new deal with 19 Recordings, run by former Spice Girls' manager Simon Fuller, to release her second album, \"Free Me\", on 9 February 2004. The album was largely produced by Mike Peden and Yak Bondy. Other contributions on the album courtesy of Cathy Dennis, Henry Binns and Puerto Rican singer Luis Fonsi. Inspired by the Motown and the 1960s era, the album was widely acclaimed by critics by its \"charm and grace\". It debuted at number seven on the UK Albums Chart, spending over twelve weeks inside chart, and being certified gold by the British Phonographic Industry (BPI). The album had three top five singles in the United Kingdom – the title track, \"Maybe\" and \"I'll Be There\" – and a top twenty single, \"Crickets Sing for Anamaria\". In the United States, both \"Free Me\" and \"Maybe\" were dance club regulars, reaching numbers four and six on the US \"Billboard\" Hot Dance Club Play chart respectively. In 2005, Bunton appeared in the Bollywood film \"\". 2006–2008: \"Life in Mono\" and Spice Girls reunion. In October 2006, Bunton was a contestant in the BBC programme \"Strictly Come Dancing\", ",
+        "text_characters": 2410,
+        "title": "Emma Bunton"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2305583",
+        "score": 30.665693564617712,
+        "snippet": "2003 single by Emma Bunton \"Free Me\" is a song by English singer Emma Bunton from her second solo studio album of the same name (2003). It was written by Bunton along with Hélène Muddiman and Mike Peden, and produced by the latter. The song was released by 19 Recordings and Universal Records on 26 May 2003 as the album's lead single. \"Free Me\" debuted and peaked at number five on the UK Singles Chart, becoming Bunton's fourth UK top-five single. The single also peaked at number four on the US Hot Dance Club Play chart. Background. In 2001, Bunton released her first solo album, \"A Girl Like Me\", through Virgin Records. It spent over 12 weeks in the UK Albums Chart, peaking at number four and earning a gold certification from the British Phonographic Industry (BPI). It also produced her only solo chart-topper \"What Took You So Long? \", as well as the top-five singles \"What I Am\" and \"Take My Breath Away\", and the top-20 entry \"We're Not Gonna Sleep Tonight\". She then left Virgin, and signed a new deal with 19 Recordings, run by the former Spice Girls' manager Simon Fuller. Commercial performance. Released on 26 May 2003 in the United Kingdom, \"Free Me\" debuted and peaked at number five on the UK Singles Chart in the week ending 7 June 2003, becoming Bunton's fourth non-consecutive UK top-five single. It also reached number five on the Scottish Singles Chart and peaked at number 33 on the Irish Singles Chart. In the United States, \"Free Me\" peaked at number four on \"Billboard\"'s",
+        "text_characters": 1900,
+        "title": "Free Me (Emma Bunton song)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8632445",
+        "score": 30.631197063728237,
+        "snippet": "Emma Bunton's debut solo album, \"A Girl Like Me\", was released in the United Kingdom on 16 April 2001 by Virgin Records. The album debuted and peaked at No. 4 on the UK Albums Chart. It was certified gold by the British Phonographic Industry for sales in excess of 100,000 copies, ultimately becoming the 147th best-selling album in the UK for 2001. The album brought the UK and New Zealand No. 1 single \"What Took You So Long?\" as well as top five hits \"What I Am\" and \"Take My Breath Away\" and the top 20 hit \"We're Not Gonna Sleep Tonight\". Bunton's second album, \"Free Me\", was released in 2004 through 19 Entertainment/Universal Records. Four singles were taken from it: \"Free Me\", \"Maybe\", \"I'll Be There\" and \"Crickets Sing for Anamaria\". In 2006 she released her third album, \"Life in Mono\". A Girl Like Me promotional tour. These were the promotional appearances by Bunton in support of her debut album. The performances served to promote her first solo studio album \"A Girl Like Me\", starting on 24 March and ending on 23 November 2001. Background. Bunton's debut solo album, \"A Girl Like Me\", released in the United Kingdom on 16 April 2001 by Virgin Records. The album debuted and peaked at number four on the UK Albums Chart, with 21,500 copies sold in its first week. Although initial success was promising, \"A Girl Like Me\" fell down the chart quickly. However, singles \"What Took You So Long? \", \"Take My Breath Away\", and \"We're Not Gonna Sleep Tonight\" helped the album stay on the ",
+        "text_characters": 2234,
+        "title": "List of Emma Bunton concert tours"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1633968",
+        "score": 29.090938132519042,
+        "snippet": "2004 album by Emma Bunton Free Me is the second studio album by English singer Emma Bunton (credited mononymously as Emma), released on 9 February 2004 by 19 Recordings. The album peaked at number seven on the UK Albums Chart and spawned three top-10 singles: \"Free Me\", \"Maybe\" and \"I'll Be There\". With this album, Bunton became the only former Spice Girl to have sold more copies of her second album than her first. Background. In 2001, Bunton released her solo debut album \"A Girl Like Me\" through Virgin Records. It spent over 12 weeks inside the UK Albums Chart, peaking at number four and earning a gold certification by the British Phonographic Industry (BPI). It also produced her only solo chart-topper \"What Took You So Long?\" and the top-five single \"Take My Breath Away\". Bunton explained that she left Virgin Records due to a lack of support from the label, citing a desire to work with a label \"where I know people are going to be right behind me and work as hard as I do.'\" Composition. The album was inspired by 1960s sounds, such as bossa nova, Motown and French pop. The album was largely produced by Mike Peden and Yak Bondy, who have produced tracks for acts such as S Club 7 and Lucie Silvas. Other contributions on the album are courtesy of Cathy Dennis, Henry Binns, and Puerto Rican singer Luis Fonsi. The album was released via 19 Recordings, which is a division of 19 Management, the company owned by Simon Fuller. Bunton says of the inspiration behind the album: \"I've bee",
+        "text_characters": 2234,
+        "title": "Free Me (album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1757070",
+        "score": 28.505174594325236,
+        "snippet": "2001 album by Emma Bunton A Girl Like Me is the debut solo studio album by English singer Emma Bunton, released on 16 April 2001 by Virgin Records. Following the release of the Spice Girls' third studio album, \"Forever\" (2000), the group announced that they were beginning an indefinite hiatus and would be concentrating on their solo careers in regards to their foreseeable future. Recording sessions for Bunton's first solo album took place from July 1999 to October 2000 at several recording studios. \"A Girl Like Me\" debuted and peaked at number four on the UK Albums Chart, selling 21,500 copies in its first week. The album spawned three singles: \"What Took You So Long?\" (which topped the charts in the United Kingdom and New Zealand), \"Take My Breath Away\" and \"We're Not Gonna Sleep Tonight\". The album also features Bunton's collaboration with Tin Tin Out, a cover of \"What I Am\" by Edie Brickell & New Bohemians. On 7 September 2001, \"A Girl Like Me\" was certified gold by the British Phonographic Industry (BPI), denoting shipments in excess of 100,000 copies. Promotion. \"A Girl Like Me\" was preceded by lead single \"What Took You So Long?.\" A pop rock song about men taking longer than women to realise they are in love, it was commercially released in the United Kingdom on 2 April 2001, in two single versions. Initial reviews of \"What Took You So Long?\" from critics were mostly positive, many of whom praised the song's melody and Bunton's vocal delivery. It debuted at the top of t",
+        "text_characters": 2419,
+        "title": "A Girl Like Me (Emma Bunton album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1757072",
+        "score": 28.011096937165348,
+        "snippet": "\"A Girl Like Me\" debuted and peaked at number four on the UK Albums Chart in the week ending 28 April 2001, selling 21,500 copies in its first week. On 7 September 2001, the album was certified gold by the British Phonographic Industry (BPI), denoting shipments in excess of 100,000 copies. It became the 147th best-selling album in the United Kingdom for 2001. Lukewarm sales of \"A Girl Like Me\" ultimately led to Bunton losing her contract with Virgin Records in 2002. Personnel. Credits adapted from the liner notes of \"A Girl Like Me\". Musicians. Technical. Charts. References.",
+        "text_characters": 581,
+        "title": "A Girl Like Me (Emma Bunton album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:551452",
+        "score": 27.92880321645547,
+        "snippet": "\"Wannabe\" proved to be a major hit, topping the UK Singles Chart for seven weeks and also topping the charts in a further 34 countries, including Australia, Denmark, France, Germany and the United States. and becoming the all-time biggest-selling single by an all-female group. It was followed by nine further number-one singles from their albums \"Spice\", \"Spiceworld\" and \"Forever\". Each member of the group received a nickname from the media. Bunton was named \"Baby Spice\". Other successful releases followed, including \"Say You'll Be There\", \"2 Become 1\", \"Who Do You Think You Are\" and \"Mama\" from \"Spice\", and \"Spice Up Your Life\", \"Too Much\", \"Stop\" and \"Viva Forever\" from \"Spiceworld\". In 1999, she presented \"Emma\" on VH1. She recorded\" (Hey You) Free Up Your Mind\" for the film \"\" and contributed background vocals to Melanie B's song \"Sophisticated Lady\", which appeared as a B-side to her single \"Word Up\". In November 1999, she released her debut single outside of her work with the Spice Girls, a cover of \"What I Am\" in collaboration with Tin Tin Out. In 2000, after the release of the group's comeback single, a double A-side of \"Holler\"/\"Let Love Lead The Way\" and the third studio album, \"Forever\", which charted at number two in the UK, the Spice Girls stopped recording, concentrating on their solo careers in regards to their foreseeable future. 2001–2005: \"A Girl Like Me\" and \"Free Me\". Bunton's debut solo album, \"A Girl Like Me\", was released in the United Kingdom on 16 Apri",
+        "text_characters": 2249,
+        "title": "Emma Bunton"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:1239149",
+        "score": 27.91428697867567,
+        "snippet": "\"Digital Spy\"'s Miriam Zendle opined that \"there are a whole number of problems with this album, though Emma Bunton's voice is not one of them. It's utterly bland and very repetitive in terms of content. It seems to be geared very much towards the Christmas market and as such is incredibly cheesy and soft-focus. It's hard to find any tracks that really stand out, as they pretty much all sound exactly the same. Bunton's gentle, lovely vocals are the only thing that keeps the album from sinking into forgettability, but at the end of the day, it's just not enough.\" AllMusic editor Sharon Mawer called it \"a safe album, light and fluffy with almost no substance\". Talia Kraines from BBC Music felt that \"there's little on this album that could see Emma bothering [another top 5 hit]. That's not to say little ol' Baby Spice hasn't tried [...] but while she may be continuing the Sixties vibe of \"Free Me\", there's nothing that even flirts with the beehive razzamatazz of \"Maybe\".\" Chart performance. The album was Bunton's first not to reach the UK top 10. \"Life in Mono\" debuted on the UK Albums Chart at number 65 on 10 December 2006 and fell to number 75 in its second week before dropping out of the chart the following week. References.",
+        "text_characters": 1244,
+        "title": "Life in Mono (album)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9381142",
+        "score": 27.824659293165652,
+        "snippet": "Aimee Cliff of \"The Guardian\" gave the album 2 out of five stars, concluding the review by writing: \"It’s heartwarming to hear someone who has been through the mill of pop megastardom emerge so blatantly, straightforwardly happy. Unfortunately, with no drama or risks, it’s also incredibly dull\". \"AllMusic\" gave the album 2.5 out of five stars, praising the originals songs, as well as the covers of \"I Wish I Could Have Loved You More\" and \"Don't Call Me Baby\", but felt that the album as a whole was \"a mixed bag\". Chart performance. \"My Happy Place\" debuted and peaked at number 11 on the UK Albums Chart. This marked Bunton's third non-consecutive top 20 entry on the chart. Elsewhere in the UK, the debuted at number 9 on the UK Album Downloads, and number 6 on both the Physical Albums, and the Albums Sales Chart. The album peaked at number three on Independent Albums Chart, spending eight weeks on that chart. \"My Happy Place\" also debuted at number 7 on the Scottish Albums Chart. Track listing. All songs produced by Metrophonic. References.",
+        "text_characters": 1053,
+        "title": "My Happy Place"
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-935ea2fa9f911f76"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:6880571", "title": "Stages (Melanie C album)", "score": 30.941794433221467, "snippet": "The single features Emma Bunton, Chisholm's groupmate from the Spice Girls. Chisholm and Bunton performed the song live on various TV shows such as Loose Women, This Morning, The Alan Titchmarsh Show, and the BBC Children in Need 2012 concert. The single reached #153 in the Official UK Top 200 singles chart. The b-side of the single is a cover of \"You'll Never Walk Alone\" from the musical \"Carousel\". Critical reception. The \"Daily Express\" rated the album three out of five stars. The daily newspaper wrote: \"Melanie C has become a bit of a West End Wendy [..] which makes this album of covers of mainly show tunes more than appropriate [...] It’s a great selection but perhaps the most enjoyable moment is when Emma Bunton joins her on a cover of the Elaine Paige/Barbara Dickson classic \"I Know Him So Well\".\" Chart performance. \"Stages\" debuted and peaked at number 50 on the UK Albums Chart, giving Chisholm her sixth consecutive entry in the Official Albums Chart Top 100. The album also reached the top ten on the Official UK Indie Album Chart, at number seven. Track listing. All tracks produced by Peter-John Vettese. References.", "text_characters": 1141, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:551453", "title": "Emma Bunton", "score": 30.842898426776202, "snippet": "The poor sales led to Bunton losing her contract with Virgin in 2002. Bunton performed at Party at the Palace, an event that was held at Buckingham Palace Garden on 3 June 2002 in commemoration of the Golden Jubilee of Elizabeth II. Her solo performances at the event were a cover of The Supremes' 1964 hit \"Baby Love\" and her own \"What Took You So Long?\". After parting ways with Virgin, Bunton signed a new deal with 19 Recordings, run by former Spice Girls' manager Simon Fuller, to release her second album, \"Free Me\", on 9 February 2004. The album was largely produced by Mike Peden and Yak Bondy. Other contributions on the album courtesy of Cathy Dennis, Henry Binns and Puerto Rican singer Luis Fonsi. Inspired by the Motown and the 1960s era, the album was widely acclaimed by critics by its \"charm and grace\". It debuted at number seven on the UK Albums Chart, spending over twelve weeks inside chart, and being certified gold by the British Phonographic Industry (BPI). The album had three top five singles in the United Kingdom – the title track, \"Maybe\" and \"I'll Be There\" – and a top twenty single, \"Crickets Sing for Anamaria\". In the United States, both \"Free Me\" and \"Maybe\" were dance club regulars, reaching numbers four and six on the US \"Billboard\" Hot Dance Club Play chart respectively. In 2005, Bunton appeared in the Bollywood film \"\". 2006–2008: \"Life in Mono\" and Spice Girls reunion. In October 2006, Bunton was a contestant in the BBC programme \"Strictly Come Dancing\", ", "text_characters": 2410, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2305583", "title": "Free Me (Emma Bunton song)", "score": 30.665693564617712, "snippet": "2003 single by Emma Bunton \"Free Me\" is a song by English singer Emma Bunton from her second solo studio album of the same name (2003). It was written by Bunton along with Hélène Muddiman and Mike Peden, and produced by the latter. The song was released by 19 Recordings and Universal Records on 26 May 2003 as the album's lead single. \"Free Me\" debuted and peaked at number five on the UK Singles Chart, becoming Bunton's fourth UK top-five single. The single also peaked at number four on the US Hot Dance Club Play chart. Background. In 2001, Bunton released her first solo album, \"A Girl Like Me\", through Virgin Records. It spent over 12 weeks in the UK Albums Chart, peaking at number four and earning a gold certification from the British Phonographic Industry (BPI). It also produced her only solo chart-topper \"What Took You So Long? \", as well as the top-five singles \"What I Am\" and \"Take My Breath Away\", and the top-20 entry \"We're Not Gonna Sleep Tonight\". She then left Virgin, and signed a new deal with 19 Recordings, run by the former Spice Girls' manager Simon Fuller. Commercial performance. Released on 26 May 2003 in the United Kingdom, \"Free Me\" debuted and peaked at number five on the UK Singles Chart in the week ending 7 June 2003, becoming Bunton's fourth non-consecutive UK top-five single. It also reached number five on the Scottish Singles Chart and peaked at number 33 on the Irish Singles Chart. In the United States, \"Free Me\" peaked at number four on \"Billboard\"'s", "text_characters": 1900, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8632445", "title": "List of Emma Bunton concert tours", "score": 30.631197063728237, "snippet": "Emma Bunton's debut solo album, \"A Girl Like Me\", was released in the United Kingdom on 16 April 2001 by Virgin Records. The album debuted and peaked at No. 4 on the UK Albums Chart. It was certified gold by the British Phonographic Industry for sales in excess of 100,000 copies, ultimately becoming the 147th best-selling album in the UK for 2001. The album brought the UK and New Zealand No. 1 single \"What Took You So Long?\" as well as top five hits \"What I Am\" and \"Take My Breath Away\" and the top 20 hit \"We're Not Gonna Sleep Tonight\". Bunton's second album, \"Free Me\", was released in 2004 through 19 Entertainment/Universal Records. Four singles were taken from it: \"Free Me\", \"Maybe\", \"I'll Be There\" and \"Crickets Sing for Anamaria\". In 2006 she released her third album, \"Life in Mono\". A Girl Like Me promotional tour. These were the promotional appearances by Bunton in support of her debut album. The performances served to promote her first solo studio album \"A Girl Like Me\", starting on 24 March and ending on 23 November 2001. Background. Bunton's debut solo album, \"A Girl Like Me\", released in the United Kingdom on 16 April 2001 by Virgin Records. The album debuted and peaked at number four on the UK Albums Chart, with 21,500 copies sold in its first week. Although initial success was promising, \"A Girl Like Me\" fell down the chart quickly. However, singles \"What Took You So Long? \", \"Take My Breath Away\", and \"We're Not Gonna Sleep Tonight\" helped the album stay on the ", "text_characters": 2234, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1633968", "title": "Free Me (album)", "score": 29.090938132519042, "snippet": "2004 album by Emma Bunton Free Me is the second studio album by English singer Emma Bunton (credited mononymously as Emma), released on 9 February 2004 by 19 Recordings. The album peaked at number seven on the UK Albums Chart and spawned three top-10 singles: \"Free Me\", \"Maybe\" and \"I'll Be There\". With this album, Bunton became the only former Spice Girl to have sold more copies of her second album than her first. Background. In 2001, Bunton released her solo debut album \"A Girl Like Me\" through Virgin Records. It spent over 12 weeks inside the UK Albums Chart, peaking at number four and earning a gold certification by the British Phonographic Industry (BPI). It also produced her only solo chart-topper \"What Took You So Long?\" and the top-five single \"Take My Breath Away\". Bunton explained that she left Virgin Records due to a lack of support from the label, citing a desire to work with a label \"where I know people are going to be right behind me and work as hard as I do.'\" Composition. The album was inspired by 1960s sounds, such as bossa nova, Motown and French pop. The album was largely produced by Mike Peden and Yak Bondy, who have produced tracks for acts such as S Club 7 and Lucie Silvas. Other contributions on the album are courtesy of Cathy Dennis, Henry Binns, and Puerto Rican singer Luis Fonsi. The album was released via 19 Recordings, which is a division of 19 Management, the company owned by Simon Fuller. Bunton says of the inspiration behind the album: \"I've bee", "text_characters": 2234, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1757070", "title": "A Girl Like Me (Emma Bunton album)", "score": 28.505174594325236, "snippet": "2001 album by Emma Bunton A Girl Like Me is the debut solo studio album by English singer Emma Bunton, released on 16 April 2001 by Virgin Records. Following the release of the Spice Girls' third studio album, \"Forever\" (2000), the group announced that they were beginning an indefinite hiatus and would be concentrating on their solo careers in regards to their foreseeable future. Recording sessions for Bunton's first solo album took place from July 1999 to October 2000 at several recording studios. \"A Girl Like Me\" debuted and peaked at number four on the UK Albums Chart, selling 21,500 copies in its first week. The album spawned three singles: \"What Took You So Long?\" (which topped the charts in the United Kingdom and New Zealand), \"Take My Breath Away\" and \"We're Not Gonna Sleep Tonight\". The album also features Bunton's collaboration with Tin Tin Out, a cover of \"What I Am\" by Edie Brickell & New Bohemians. On 7 September 2001, \"A Girl Like Me\" was certified gold by the British Phonographic Industry (BPI), denoting shipments in excess of 100,000 copies. Promotion. \"A Girl Like Me\" was preceded by lead single \"What Took You So Long?.\" A pop rock song about men taking longer than women to realise they are in love, it was commercially released in the United Kingdom on 2 April 2001, in two single versions. Initial reviews of \"What Took You So Long?\" from critics were mostly positive, many of whom praised the song's melody and Bunton's vocal delivery. It debuted at the top of t", "text_characters": 2419, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1757072", "title": "A Girl Like Me (Emma Bunton album)", "score": 28.011096937165348, "snippet": "\"A Girl Like Me\" debuted and peaked at number four on the UK Albums Chart in the week ending 28 April 2001, selling 21,500 copies in its first week. On 7 September 2001, the album was certified gold by the British Phonographic Industry (BPI), denoting shipments in excess of 100,000 copies. It became the 147th best-selling album in the United Kingdom for 2001. Lukewarm sales of \"A Girl Like Me\" ultimately led to Bunton losing her contract with Virgin Records in 2002. Personnel. Credits adapted from the liner notes of \"A Girl Like Me\". Musicians. Technical. Charts. References.", "text_characters": 581, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:551452", "title": "Emma Bunton", "score": 27.92880321645547, "snippet": "\"Wannabe\" proved to be a major hit, topping the UK Singles Chart for seven weeks and also topping the charts in a further 34 countries, including Australia, Denmark, France, Germany and the United States. and becoming the all-time biggest-selling single by an all-female group. It was followed by nine further number-one singles from their albums \"Spice\", \"Spiceworld\" and \"Forever\". Each member of the group received a nickname from the media. Bunton was named \"Baby Spice\". Other successful releases followed, including \"Say You'll Be There\", \"2 Become 1\", \"Who Do You Think You Are\" and \"Mama\" from \"Spice\", and \"Spice Up Your Life\", \"Too Much\", \"Stop\" and \"Viva Forever\" from \"Spiceworld\". In 1999, she presented \"Emma\" on VH1. She recorded\" (Hey You) Free Up Your Mind\" for the film \"\" and contributed background vocals to Melanie B's song \"Sophisticated Lady\", which appeared as a B-side to her single \"Word Up\". In November 1999, she released her debut single outside of her work with the Spice Girls, a cover of \"What I Am\" in collaboration with Tin Tin Out. In 2000, after the release of the group's comeback single, a double A-side of \"Holler\"/\"Let Love Lead The Way\" and the third studio album, \"Forever\", which charted at number two in the UK, the Spice Girls stopped recording, concentrating on their solo careers in regards to their foreseeable future. 2001–2005: \"A Girl Like Me\" and \"Free Me\". Bunton's debut solo album, \"A Girl Like Me\", was released in the United Kingdom on 16 Apri", "text_characters": 2249, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:1239149", "title": "Life in Mono (album)", "score": 27.91428697867567, "snippet": "\"Digital Spy\"'s Miriam Zendle opined that \"there are a whole number of problems with this album, though Emma Bunton's voice is not one of them. It's utterly bland and very repetitive in terms of content. It seems to be geared very much towards the Christmas market and as such is incredibly cheesy and soft-focus. It's hard to find any tracks that really stand out, as they pretty much all sound exactly the same. Bunton's gentle, lovely vocals are the only thing that keeps the album from sinking into forgettability, but at the end of the day, it's just not enough.\" AllMusic editor Sharon Mawer called it \"a safe album, light and fluffy with almost no substance\". Talia Kraines from BBC Music felt that \"there's little on this album that could see Emma bothering [another top 5 hit]. That's not to say little ol' Baby Spice hasn't tried [...] but while she may be continuing the Sixties vibe of \"Free Me\", there's nothing that even flirts with the beehive razzamatazz of \"Maybe\".\" Chart performance. The album was Bunton's first not to reach the UK top 10. \"Life in Mono\" debuted on the UK Albums Chart at number 65 on 10 December 2006 and fell to number 75 in its second week before dropping out of the chart the following week. References.", "text_characters": 1244, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9381142", "title": "My Happy Place", "score": 27.824659293165652, "snippet": "Aimee Cliff of \"The Guardian\" gave the album 2 out of five stars, concluding the review by writing: \"It’s heartwarming to hear someone who has been through the mill of pop megastardom emerge so blatantly, straightforwardly happy. Unfortunately, with no drama or risks, it’s also incredibly dull\". \"AllMusic\" gave the album 2.5 out of five stars, praising the originals songs, as well as the covers of \"I Wish I Could Have Loved You More\" and \"Don't Call Me Baby\", but felt that the album as a whole was \"a mixed bag\". Chart performance. \"My Happy Place\" debuted and peaked at number 11 on the UK Albums Chart. This marked Bunton's third non-consecutive top 20 entry on the chart. Elsewhere in the UK, the debuted at number 9 on the UK Album Downloads, and number 6 on both the Physical Albums, and the Albums Sales Chart. The album peaked at number three on Independent Albums Chart, spending eight weeks on that chart. \"My Happy Place\" also debuted at number 7 on the Scottish Albums Chart. Track listing. All songs produced by Metrophonic. References.", "text_characters": 1053, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_EXISTING_BATCH02__SAGEE_0282/R003_request.json/messages/6/content`；SHA256：`5c60dccb3ab1ec7eec8cbe9c422e2dca48e5be87685f16a1f0327dcb311eb1bd`。
+
+## S003｜核对多跳关系和多来源排名一致性，提交4
+
+完整比较作者、歌曲、歌手、首专关系与多来源榜单数据，接受4并submit。
+
+结束状态：VALID_FINAL，MODEL_FINAL_STOP。
+
+边界判断：局部榜单取证结束后，实际完成全题关系接受与多证据比较。
+
+内部KEEP与反证：关系列表、来源一致性与答案提交为一次完整判断，不按列表或submit协议机械切分。
+
+### SPLIT原文
+
+````
+Now I need to find the peak position on the UK Albums Chart for Emma Bunton's debut solo album "A Girl Like Me".
+
+Let me search for this information.
+
+→ 切点 [2, 0, 0] →
+The search results confirm that:
+1. Julian Gallagher co-wrote Melanie B's "Lullaby"
+2. Julian Gallagher co-wrote "What Took You So Long?" for Emma Bunton
+3. Emma Bunton's debut solo album is "A Girl Like Me" (2001)
+4. "A Girl Like Me" debuted and peaked at number 4 on the UK Albums Chart
+
+Multiple sources confirm this peak position:
+- "A Girl Like Me" debute
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R3 `/rounds/2/reasoning_content` [0,604)
+
+SHA256：`95440f9af936bcce3f9edb0ceaea95c1629c835112c7f4e5af837e09819038b1`；原字段SHA256：`95440f9af936bcce3f9edb0ceaea95c1629c835112c7f4e5af837e09819038b1`。
+
+````
+The search results confirm that:
+1. Julian Gallagher co-wrote Melanie B's "Lullaby"
+2. Julian Gallagher co-wrote "What Took You So Long?" for Emma Bunton
+3. Emma Bunton's debut solo album is "A Girl Like Me" (2001)
+4. "A Girl Like Me" debuted and peaked at number 4 on the UK Albums Chart
+
+Multiple sources confirm this peak position:
+- "A Girl Like Me" debuted and peaked at number four on the UK Albums Chart
+- The album spent over 12 weeks in the UK Albums Chart, peaking at number four
+
+The answer is 4.
+
+<tool_call>
+<function=submit_answer>
+<parameter=answer>
+4
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "answer": "4"
+  },
+  "id": "recovered_call_1",
+  "name": "submit_answer",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=submit_answer>\n<parameter=answer>\n4\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "4"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 8.617062121629715e-06,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "4",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    3
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 3
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整读取3轮、3search及1submit和全部返回，R1联合批次如实保存；R2直接首专资料与新榜单查询精确分开；R3完整条件判断独立保留。
+
+R3可备选看作榜单搜索直接反馈，但它明确将全部题目关系与多份排名证据组合后接受，主方案独立为整体判断。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

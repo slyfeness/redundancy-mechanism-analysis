@@ -1,0 +1,1203 @@
+# SAGE_NEW1000_BATCH03__SAGEN_0577｜V1.3.2完整Stage切分
+
+样本序号：15；原件SHA256：`00f7ad0ee9183dc81ebdfa3a6d0ee3c76114eab82600f735ab60c275fecc8c4a`。规则SHA256：`c912aff074a4ccaeace7a0cf0dc3ec331323d7a02c4a9349d88270942966cf72`。
+
+## 原始Question
+
+````
+What specific moral theme is centrally depicted in the iconic painting by the leading French artist of the artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries, whose nationality is the same as the discoverer of a significant cultural artifact found in the same year Captain William Lonsdale, Percy Robertson's maternal grandfather, was born in Den Helder during Britain's failed campaign to restore Prince William of Orange?
+````
+
+## 完整求解过程
+
+模型先把长关系链拆开，搜Percy Robertson与外祖父Lonsdale，得到1799年出生。R2直接采用亲属和年份后，开始用1799找文物，但返回没有明确文物。
+
+R3实际中断文物查找，回去查Lonsdale的Den Helder出生背景。该次返回直接支持1799年及荷兰战役背景。R4重新解析整题的关系和国籍条件，反复阅读题目，凭已有知识识别新古典主义及Jacques-Louis David。它把荷兰战役误连到法国远征埃及，属于原文错误，切分不替其纠正。
+
+识别画家后，它恢复1799文物取证，先重复原查询，再轻微删去cultural重试。R5虽列出David几幅画，但没有展开候选排除或接受，实际仍围绕文物缺口执行同一检索计划。E005终于返回Rosetta Stone于1799年由法国科学家发现的材料。
+
+R6转入完整链条判断：采用Rosetta Stone和法国国籍，把新古典主义连接David，实质比较Horatii与Marat的题旨，接受Horatii更符合题目，并将道德主题解释为公民义务、爱国与个人牺牲。它提交Civic duty，工具接受，正式Final有效。没有真实查询艺术运动、画作或具体发现者姓名，不把推断写成工具核查。
+
+
+## 时间顺序总览
+
+| Stage | 原始起点（Round、字段、Unicode位置） | 具体动作 | 结束状态 | 工具事件 |
+
+|---|---|---|---|---|
+
+| S001 | R1 / 0 / 0 | 定位Robertson外祖父并采用Lonsdale出生年1799 | 获得用于文物检索的年份1799。 | E001 |
+
+| S002 | R2 / 0 / 360 | 首次按1799年查找文物与发现者 | 返回背景材料，未取得明确文物候选。 | E002 |
+
+| S003 | R3 / 0 / 0 | 中断文物查找，回查Lonsdale出生地与战役背景 | 传记直接支持出生年和Den Helder背景。 | E003 |
+
+| S004 | R4 / 0 / 0 | 重读关系链与国籍条件，推断新古典主义画家David | 形成画家候选David，但文物仍未定位；原误连埃及战役保留。 |  |
+
+| S005 | R4 / 0 / 2397 | 恢复1799文物搜索，普通改词后取得Rosetta Stone材料 | 文物与法国发现者群体信息返回。 | E004,E005 |
+
+| S006 | R6 / 0 / 0 | 联结文物国籍与David，比较画作主题并提交Civic duty | VALID_FINAL，MODEL_FINAL_STOP，Civic duty。 | E006 |
+
+## S001｜定位Robertson外祖父并采用Lonsdale出生年1799
+
+拆题并查询亲属链，R2直接提取Lonsdale为外祖父及1799出生。
+
+结束状态：获得用于文物检索的年份1799。
+
+边界判断：轨迹起点，真实查询及直接年份反馈保持完整。
+
+内部KEEP与反证：R1八项任务只是计划，不为未执行任务建立Stage。
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 1,
+    "batch_id": "B001",
+    "call_pointers": [
+      "/rounds/0/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/0"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R1 `/rounds/0/reasoning_content` [0,839)
+
+SHA256：`af6cdba15d72b24e518c8dc88472a66b1b3167886956ed1bd16be1f5d8804063`；原字段SHA256：`af6cdba15d72b24e518c8dc88472a66b1b3167886956ed1bd16be1f5d8804063`。
+
+````
+This is a complex multi-hop question. Let me break it down step by step:
+
+1. First, I need to find out who Percy Robertson's maternal grandfather was.
+2. Then find out when Captain William Lonsdale was born in Den Helder during Britain's failed campaign to restore Prince William of Orange.
+3. Find out what significant cultural artifact was discovered in that same year.
+4. Find out who discovered that artifact.
+5. Confirm that the discoverer's nationality matches the nationality of the person from step 2.
+6. Identify the artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries.
+7. Find the leading French artist of that movement.
+8. Identify their iconic painting and its central moral theme.
+
+Let me start by searching for information about Percy Robertson and Captain William Lonsdale.
+
+````
+
+### R1 Call `/rounds/0/tool_calls/0` → Return `/tool_events/0`
+
+````json
+{
+  "arguments": {
+    "query": "Percy Robertson maternal grandfather Captain William Lonsdale born Den Helder Britain failed campaign restore Prince William of Orange"
+  },
+  "id": "chatcmpl-tool-89358c2a0f7e9b74",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"Percy Robertson maternal grandfather Captain William Lonsdale born Den Helder Britain failed campaign restore Prince William of Orange\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-89358c2a0f7e9b74",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Percy Robertson maternal grandfather Captain William Lonsdale born Den Helder Britain failed campaign restore Prince William of Orange"
+  },
+  "batch_id": "B001",
+  "batch_ordinal": 1,
+  "event_id": "E001",
+  "latency_seconds": 0.6188298421911895,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8357533",
+        "score": 26.02439791793027,
+        "snippet": "British artist (1868–1934) Percy Robertson RE (1868–1934) was an English watercolour landscape painter and etcher. Robertson was born in Bellagio, Lombardy, Italy. His father, also a painter and engraver, was Charles Robertson and his mother was Alice Mary, the daughter of the colonist Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip, later to become the location of Melbourne in Australia. Between 1883 and 1885, he was educated with his brothers at Charterhouse School in England, where he won the Leech Prize for drawing in 1884. In 1887, Robertson was elected to the Society of Painter-Etchers and Engravers, later to become the Royal Society of Painter-Printmakers. He was elected a full Fellow of the Society in 1908. Robertson exhibited 33 artworks at the Royal Academy in London and 166 works at the Society of Painter-Etchers and Engravers. He lived in Godalming and painted and etched in the county of Surrey, including in Guildford from St Catherine's Hill (1891), Shere (1899), and Albury (1905). In 1905, Percy Robertson married Edith Helen Nash (\"Nelly\"). They lived in London, where he produced pictures of street scenes and the River Thames. He also lived in Maidenhead on the Thames west of London. Robertson's artworks are held by Godalming Museum. References.",
+        "text_characters": 1313,
+        "title": "Percy Robertson"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9809130",
+        "score": 24.76738203559075,
+        "snippet": "English painter and engraver (1844–1891) Charles Robertson (1844 in Walton-on-Thames – 10 November 1891 in Godalming) was a British painter and engraver. He focused on landscapes and genre scenes and is best remembered for his Orientalist works. Biography. He studied art in London during the early 1860s, although the details are unknown. The watercolorist, Myles Birket Foster, was a good friend of his and had a noticeable influence on his style, so it is possible that Foster was also his teacher. For some years, he lived in Aix-en-Provence and, hearing about the opportunities available for aspiring artists, made his first trip to North Africa (Algeria) in 1862. The following year, he had his professional debut at the Royal Academy. In 1865, he married Alice Mary Lonsdale (1836–1916), the daughter of Captain William Lonsdale, one of the founders of the town that would later become Melbourne. Buoyed by the success of his first exhibits, he travelled to Turkey (1872), then Egypt and Morocco (1876); journeys which would provide him with inspiration and material for the remainder of his career. Toward the end of his life, in 1889, he made an extended visit to Jerusalem, Damascus and Cairo. After 1884, he worked exclusively in watercolors. He established himself in this medium so quickly that, in 1885, he was elected an associate of the Royal Watercolour Society; becoming a full member shortly before his death. He also served as Vice-President of the Royal Society of Painter-Etcher",
+        "text_characters": 1920,
+        "title": "Charles Robertson (painter)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:959923",
+        "score": 16.188405315101,
+        "snippet": "During the 1920s, the St James's staged Christmas seasons of \"Peter Pan\" with Peter played by Edna Best (1920 and 1922) and Jean Forbes-Robertson (1929), and Captain Hook by Ainley (1920), Ernest Thesiger (1921), Lyn Harding (1922), and Gerald du Maurier (1929). In September 1925 du Maurier and Gladys Cooper took a sub-lease of the theatre to present \"The Last of Mrs Cheyney\" by Frederick Lonsdale (1925), which ran for 514 performances, until the end of 1926. \"Interference\" (1927), a thriller by Roland Pertwee and Harold Dearden, was another big success and ran for 412 performances. It was followed by a flop, \"S.O.S\" (1928), notable only for starring Gracie Fields in her first straight part. In 1929, Alfred Lunt made his London debut, starring with his wife Lynn Fontanne in \"Caprice\", presented by C. B. Cochran, a comedy about a man, his two mistresses, and his son by one of them who falls in love with the other. In the early 1930s there was a succession of failures or minimal successes until 1933, when Emlyn Williams's \"The Late Christopher Bean\" ran from May until September of the following year, with Edith Evans, Louise Hampton and Cedric Hardwicke. In 1936 the centenary of the theatre was marked by a lavishly staged adaptation of \"Pride and Prejudice\", designed by Rex Whistler, which ran for nearly a year. It was presented by Miller in association with Max Gordon and starred Celia Johnson and Hugh Williams. Of the later productions during the 1930s only \"Golden Boy\" (1938",
+        "text_characters": 2346,
+        "title": "St James's Theatre"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:97065",
+        "score": 4.077810651658731,
+        "snippet": "---\ntitle: List of cartoonists - Wikipedia\ndate: 2001-09-13\n---\nThis is a list of cartoonists, visual artists who specialize in drawing cartoons. This list includes only notable cartoonists and is not meant to be exhaustive. Note that the word 'cartoon' only took on its modern sense after its use in Punch magazine in the 1840s - artists working earlier than that are more correctly termed 'caricaturists',\n\nNotable cartoonists\n\n* Scott Adams, Dilbert\n* Charles Addams (1938–1988), macabre cartoons featured in The New Yorker and elsewhere\n* Attila Adorjany\n* Sarah Andersen, known for Sarah's Scribbles\n* Barry Appleby\n* Dan Piraro\n* Sergio Aragonés, known for his contributions to Mad\n* Graciela Aranis (1908–1996), Chilean painter, cartoonist\n*Peter Arno (1904–1968), cartoons featured in The New Yorker and elsewhere\n* Arotxa (Rodolfo Arotxarena)\n* Jim Bamber, cartoonist of Autosport, magazine specialising in motor sports\n* Edgar Henry Banger\n* Carl Barks, inventor of Duckburg and many of its characters like Scrooge McDuck and Gladstone Gander; Fantagraphics Books called him \"the Hans Christian Andersen of comic books.\"A Timeless Classic For All Ages - Fantagraphics Books\n* Sumanta Baruah\n* Aminollah Rezaei\n* Niko Barun\n* Nancy Beiman, \"FurBabies\"\n* Darrin Bell, Candorville and Rudy Park\n* Steve Bell, The Guardian (UK)\n* Stephen Bentley, \"Herb and Jamaal\"\n* Jim Benton, known for his cartoons on reddit, GoComics, and Instagram as well as It's Happy Bunny,Dear Dumb Diary,Franny K Stei",
+        "text_characters": 20389,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:34597",
+        "score": 3.0797605159196806,
+        "snippet": "---\ntitle: Records of members of parliament of the United Kingdom - Wikipedia\ndate: 2007-06-23\n---\nThis article about records of members of parliament of the United Kingdom and of England includes a variety of lists of MPs by age, period and other circumstances of service, familiar sets, ethnic or religious minorities, physical attributes, and circumstances of their deaths.\n\nAge\n\nYoungest\n\nPrior to the Acts of Union, the youngest known person to have sat in the House of Commons of England was Christopher Monck, elected MP for Devon in 1667, \"probably without a contest\", at the age of 13. He sat in the House for three years, before being elevated to the House of Lords upon his father's death. He is said to have been \"moderately active during his short period of membership, sitting on seven committees\".\"MONCK, Christopher, Earl of Torrington (1653–88)\" , in B.D. Henning (ed.), The History of Parliament: the House of Commons 1660–1690, 1983\n\nMonck was one of many members returned underage in the late seventeenth century, with around ten underage members in each of the Parliaments of 1690 and 1695, many aristocrats. In response to this, the Parliamentary Elections Act 1695 established 21 as the minimum age, although this was not reliably enforced. Until the Reform Act 1832, underage MPs were seldom unseated. For example, Charles James Fox became an MP aged 19 in 1768, and Robert Jocelyn, Viscount Jocelyn, became an MP aged 18 in 1806.\n\nBefore the general election of 2015, the you",
+        "text_characters": 227520,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:24024",
+        "score": 2.094204706153858,
+        "snippet": "---\ntitle: THE WATERLOO ROLL CALL. WITH BIOGRAPHICAL NOTES AND ANECDOTES.\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 51143 ***\n\nTranscriber's Note:\n\nMinor errors, attributable to the printer, have been corrected. Please see the transcriber's note at the end of this text for details regarding the handling of any textual issues encountered during its preparation.\n\nThe bulk of this text consists of annotated tables containing names, dates, and ranks achieved of participants in the British Army at the battle of Waterloo. Most entries are accompanied by brief biographical sketches. The notes follow each table, as printed.\n\nThe numbering of the notes for each table has been retained, beginning anew with '1' for each table. Hyperlinks are provided which allow the reader to handily inspect each note.\n\nThe footnotes to the prefatory material, and to the headings of many tables, originally appeared as an asterisk. These have been re-sequenced from A to W and appear after the paragraph where they are referenced.\n\nThe cover image has been modified to include the title and author, and, as amended, is added to the public domain.\n\nTHE\n\nWATERLOO ROLL CALL.\n\nWATERLOO ROLL CALL.\n\nWITH BIOGRAPHICAL NOTES AND ANECDOTES.\n\nBY\n\nCHARLES DALTON, F.R.G.S.,\n\nAUTHOR OF \"HISTORY OF THE WRAYS OF GLENTWORTH,\" \"LIFE OF GENERAL SIR\n\nEDWARD CECIL,\" \"MEMOIR OF CAPTAIN JOHN DALTON, COMMANDANT OF\n\nTRICHINOPOLY, 1752–1753\"; AND EDITOR OF \"ENGLISH ARMY\n\nLISTS AND COMMISSION REGISTERS, 1661–1714,\"\n\n\"THE BLENHEIM ",
+        "text_characters": 630043,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:71596",
+        "score": 1.9000090466942556,
+        "snippet": "---\ntitle: Colonial and post-colonial changes and impact on pastoral women's roles and status\nauthor: Wright State University; Dayton; OH; USA\ndate: 2016-05-22\n---\n- Research\n\n- Open access\n\n- Published:\n\nColonial and post-colonial changes and impact on pastoral women's roles and status\n\nPastoralism volume 7, Article number: 13 (2017)\n\nAbstract\n\nThe colonial experiences of pastoralist women have been largely ignored in the literature on Africa. The paper focuses on pre-colonial, colonial and post-colonial periods to locate the impact of colonization on pastoral women's roles and social status using the example of Borana women of northern Kenya. In this study, it is demonstrated that while the pre-colonial women of the Borana did not enjoy full position of status relative to men, colonialism reinforced the differences between the roles of men and women, contributing further to the waning of Borana women's pre-colonial roles and status. The paper explores the process by which Borana society was brought into contact with the colonial economy and commercialization of their pastoralist activities. It sheds light on the impact of this integration on women's roles. The paper concludes with areas for further research on Borana women's roles in the post-colonial era.\n\nIntroduction\n\nThough the discourse of inequalities and marginalization of pastoralists is well-documented in literature on pastoral societies, case studies of pastoral women's experiences with colonization have received ",
+        "text_characters": 99335,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:775",
+        "score": 1.870005074971886,
+        "snippet": "---\ntitle: Australian Dictionary of Biography\nauthor: R Norris\ndate: 2025-06-10\n---\n- Tip: searches only the name field\n\n- Tip: Use double quotes to search for a phrase\n\nThis article was published:\n\n- in the Australian Dictionary of Biography, Volume 8 , 1981\n\n- online in 2006\n\nAlfred Deakin (1856-1919), barrister, journalist and prime minister, was born on 3 August 1856 at Collingwood, Melbourne, younger child of William Deakin of Towcester, Northamptonshire, England, and his wife Sarah, née Bill, of Llanarth, Monmouthshire, Wales. William and Sarah left England in December 1849 in the Samuel Boddington, bound for Sydney. In March 1850 they disembarked at Adelaide, where William's married sister lived and where their first child, Catherine Sarah, was born in July. William briefly pursued his former occupations of clerk and shopman before, late in 1851, joining the exodus of men to the goldfields of Victoria. The family soon followed; by 1853 William had abandoned the fields and the Deakins settled in Collingwood (later a part of Fitzroy), where they lived as respectable suburbanites of modest means. William undertook a variety of jobs, storekeeping, water-carting and carrying, before becoming a partner in a coaching business and later manager of Cobb & Co. in Victoria.\n\nAlfred Deakin began his formal education aged 4 at a boarding school situated first at Kyneton and later at South Yarra. In 1864 he became a day-boy at the nearby Melbourne Church of England Grammar School. A",
+        "text_characters": 44425,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:45815",
+        "score": 1.558144532391919,
+        "snippet": "---\ntitle: List of musicals: A to L - Wikipedia\ndate: 2003-11-24\n---\nThis is a list of musicals, including Broadway, Off-Broadway, and West End musicals, as well as film and television musicals, whose titles fall into the A–L alphabetic range. This is not a complete list of musicals, and is limited to musicals that have their own articles on the English-language Wikipedia.\n\n0–9\n\n**Table 1**: 0–9\n\n| Production | Year | Venue/type | Music | Lyrics | Book | Notes | Reference |\n|---|---|---|---|---|---|---|---|\n| 8 femmes | 2002 | French film | Various artists | Various artists | | Based on the 1958 play of the same name by Robert Thomas. Directed by François Ozon, written by Ozon and Marina de Van. | |\n| 9 to 5 | 2009 | Broadway | Dolly Parton | Dolly Parton | Patricia Resnick | Based on the 1980 film. | |\n| 13 + film (2022) | 2008 | Broadway | Jason Robert Brown | Brown | Dan Elish and Robert Horn | The only Broadway musical ever with a cast and band entirely made of teenagers. | |\n| 21 Chump Street | 2014 | Off-Broadway | Lin-Manuel Miranda | Miranda | Miranda | 14-minute musical based on a true story told on This American Life. | |\n| The 25th Annual Putnam County Spelling Bee | 2005 | Off-Broadway and Broadway | William Finn | Finn | Rachel Sheinkin | Performances were partially improvised and featured audience participation (during spelling-bee sequences). Tony Awards for Best Performance by a Featured Actor in a Musical for Dan Fogler and Best Book of a Musical for Sheinkin",
+        "text_characters": 136086,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:78862",
+        "score": 1.555659655721251,
+        "snippet": "---\ntitle: 159 British Children's TV Shows From the 1980s You Forgot About\nauthor: Ben Ricketts\ndate: 2022-01-27\n---\nThe 1980s was an innovative and exciting time for British children's television. Technology was slowly starting to make its mark felt, pop music was exploding like never before and the dawn of Channel 4 meant there was even more opportunity for children to be catered for. And all it takes is a quick Google of \"British children's TV in the 1980s\" to see that programmes such as Pigeon Street, Saturday Superstore and Button Moon were, indeed, magnificent.\n\nBut there was much more for children to be tuning into than just these three shows. And much of it, well most of it, is now forgotten. Most of us have moved on and replaced these programmes in our memories with the bureaucracy of adult life. Thankfully, Curious British Telly is here to rectify this lack of recall. And that's why we're going to take a quick (actually... a very long) look at 159 British children's TV shows from the 1980s you forgot about.\n\nN.b. To make this list, a programme's original broadcast had to come solely between 1980 - 89, anything which started or finished a millisecond either side of the decade was not eligible.\n\nP.s. Many of the programmes on this list have little to no footage online, so please get in touch if you have old video tapes with 'unseen' footage on. Hopefully, we can get it online to provide a better representation of the programmes.\n\n1. Bric-a-Brac\n\nBBC1\n\n1980 – 1982\n\nBy ",
+        "text_characters": 194607,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-89358c2a0f7e9b74"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：2；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:8357533", "title": "Percy Robertson", "score": 26.02439791793027, "snippet": "British artist (1868–1934) Percy Robertson RE (1868–1934) was an English watercolour landscape painter and etcher. Robertson was born in Bellagio, Lombardy, Italy. His father, also a painter and engraver, was Charles Robertson and his mother was Alice Mary, the daughter of the colonist Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip, later to become the location of Melbourne in Australia. Between 1883 and 1885, he was educated with his brothers at Charterhouse School in England, where he won the Leech Prize for drawing in 1884. In 1887, Robertson was elected to the Society of Painter-Etchers and Engravers, later to become the Royal Society of Painter-Printmakers. He was elected a full Fellow of the Society in 1908. Robertson exhibited 33 artworks at the Royal Academy in London and 166 works at the Society of Painter-Etchers and Engravers. He lived in Godalming and painted and etched in the county of Surrey, including in Guildford from St Catherine's Hill (1891), Shere (1899), and Albury (1905). In 1905, Percy Robertson married Edith Helen Nash (\"Nelly\"). They lived in London, where he produced pictures of street scenes and the River Thames. He also lived in Maidenhead on the Thames west of London. Robertson's artworks are held by Godalming Museum. References.", "text_characters": 1313, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9809130", "title": "Charles Robertson (painter)", "score": 24.76738203559075, "snippet": "English painter and engraver (1844–1891) Charles Robertson (1844 in Walton-on-Thames – 10 November 1891 in Godalming) was a British painter and engraver. He focused on landscapes and genre scenes and is best remembered for his Orientalist works. Biography. He studied art in London during the early 1860s, although the details are unknown. The watercolorist, Myles Birket Foster, was a good friend of his and had a noticeable influence on his style, so it is possible that Foster was also his teacher. For some years, he lived in Aix-en-Provence and, hearing about the opportunities available for aspiring artists, made his first trip to North Africa (Algeria) in 1862. The following year, he had his professional debut at the Royal Academy. In 1865, he married Alice Mary Lonsdale (1836–1916), the daughter of Captain William Lonsdale, one of the founders of the town that would later become Melbourne. Buoyed by the success of his first exhibits, he travelled to Turkey (1872), then Egypt and Morocco (1876); journeys which would provide him with inspiration and material for the remainder of his career. Toward the end of his life, in 1889, he made an extended visit to Jerusalem, Damascus and Cairo. After 1884, he worked exclusively in watercolors. He established himself in this medium so quickly that, in 1885, he was elected an associate of the Royal Watercolour Society; becoming a full member shortly before his death. He also served as Vice-President of the Royal Society of Painter-Etcher", "text_characters": 1920, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:959923", "title": "St James's Theatre", "score": 16.188405315101, "snippet": "During the 1920s, the St James's staged Christmas seasons of \"Peter Pan\" with Peter played by Edna Best (1920 and 1922) and Jean Forbes-Robertson (1929), and Captain Hook by Ainley (1920), Ernest Thesiger (1921), Lyn Harding (1922), and Gerald du Maurier (1929). In September 1925 du Maurier and Gladys Cooper took a sub-lease of the theatre to present \"The Last of Mrs Cheyney\" by Frederick Lonsdale (1925), which ran for 514 performances, until the end of 1926. \"Interference\" (1927), a thriller by Roland Pertwee and Harold Dearden, was another big success and ran for 412 performances. It was followed by a flop, \"S.O.S\" (1928), notable only for starring Gracie Fields in her first straight part. In 1929, Alfred Lunt made his London debut, starring with his wife Lynn Fontanne in \"Caprice\", presented by C. B. Cochran, a comedy about a man, his two mistresses, and his son by one of them who falls in love with the other. In the early 1930s there was a succession of failures or minimal successes until 1933, when Emlyn Williams's \"The Late Christopher Bean\" ran from May until September of the following year, with Edith Evans, Louise Hampton and Cedric Hardwicke. In 1936 the centenary of the theatre was marked by a lavishly staged adaptation of \"Pride and Prejudice\", designed by Rex Whistler, which ran for nearly a year. It was presented by Miller in association with Max Gordon and starred Celia Johnson and Hugh Williams. Of the later productions during the 1930s only \"Golden Boy\" (1938", "text_characters": 2346, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:97065", "title": "", "score": 4.077810651658731, "snippet": "---\ntitle: List of cartoonists - Wikipedia\ndate: 2001-09-13\n---\nThis is a list of cartoonists, visual artists who specialize in drawing cartoons. This list includes only notable cartoonists and is not meant to be exhaustive. Note that the word 'cartoon' only took on its modern sense after its use in Punch magazine in the 1840s - artists working earlier than that are more correctly termed 'caricaturists',\n\nNotable cartoonists\n\n* Scott Adams, Dilbert\n* Charles Addams (1938–1988), macabre cartoons featured in The New Yorker and elsewhere\n* Attila Adorjany\n* Sarah Andersen, known for Sarah's Scribbles\n* Barry Appleby\n* Dan Piraro\n* Sergio Aragonés, known for his contributions to Mad\n* Graciela Aranis (1908–1996), Chilean painter, cartoonist\n*Peter Arno (1904–1968), cartoons featured in The New Yorker and elsewhere\n* Arotxa (Rodolfo Arotxarena)\n* Jim Bamber, cartoonist of Autosport, magazine specialising in motor sports\n* Edgar Henry Banger\n* Carl Barks, inventor of Duckburg and many of its characters like Scrooge McDuck and Gladstone Gander; Fantagraphics Books called him \"the Hans Christian Andersen of comic books.\"A Timeless Classic For All Ages - Fantagraphics Books\n* Sumanta Baruah\n* Aminollah Rezaei\n* Niko Barun\n* Nancy Beiman, \"FurBabies\"\n* Darrin Bell, Candorville and Rudy Park\n* Steve Bell, The Guardian (UK)\n* Stephen Bentley, \"Herb and Jamaal\"\n* Jim Benton, known for his cartoons on reddit, GoComics, and Instagram as well as It's Happy Bunny,Dear Dumb Diary,Franny K Stei", "text_characters": 20389, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:34597", "title": "", "score": 3.0797605159196806, "snippet": "---\ntitle: Records of members of parliament of the United Kingdom - Wikipedia\ndate: 2007-06-23\n---\nThis article about records of members of parliament of the United Kingdom and of England includes a variety of lists of MPs by age, period and other circumstances of service, familiar sets, ethnic or religious minorities, physical attributes, and circumstances of their deaths.\n\nAge\n\nYoungest\n\nPrior to the Acts of Union, the youngest known person to have sat in the House of Commons of England was Christopher Monck, elected MP for Devon in 1667, \"probably without a contest\", at the age of 13. He sat in the House for three years, before being elevated to the House of Lords upon his father's death. He is said to have been \"moderately active during his short period of membership, sitting on seven committees\".\"MONCK, Christopher, Earl of Torrington (1653–88)\" , in B.D. Henning (ed.), The History of Parliament: the House of Commons 1660–1690, 1983\n\nMonck was one of many members returned underage in the late seventeenth century, with around ten underage members in each of the Parliaments of 1690 and 1695, many aristocrats. In response to this, the Parliamentary Elections Act 1695 established 21 as the minimum age, although this was not reliably enforced. Until the Reform Act 1832, underage MPs were seldom unseated. For example, Charles James Fox became an MP aged 19 in 1768, and Robert Jocelyn, Viscount Jocelyn, became an MP aged 18 in 1806.\n\nBefore the general election of 2015, the you", "text_characters": 227520, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:24024", "title": "", "score": 2.094204706153858, "snippet": "---\ntitle: THE WATERLOO ROLL CALL. WITH BIOGRAPHICAL NOTES AND ANECDOTES.\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 51143 ***\n\nTranscriber's Note:\n\nMinor errors, attributable to the printer, have been corrected. Please see the transcriber's note at the end of this text for details regarding the handling of any textual issues encountered during its preparation.\n\nThe bulk of this text consists of annotated tables containing names, dates, and ranks achieved of participants in the British Army at the battle of Waterloo. Most entries are accompanied by brief biographical sketches. The notes follow each table, as printed.\n\nThe numbering of the notes for each table has been retained, beginning anew with '1' for each table. Hyperlinks are provided which allow the reader to handily inspect each note.\n\nThe footnotes to the prefatory material, and to the headings of many tables, originally appeared as an asterisk. These have been re-sequenced from A to W and appear after the paragraph where they are referenced.\n\nThe cover image has been modified to include the title and author, and, as amended, is added to the public domain.\n\nTHE\n\nWATERLOO ROLL CALL.\n\nWATERLOO ROLL CALL.\n\nWITH BIOGRAPHICAL NOTES AND ANECDOTES.\n\nBY\n\nCHARLES DALTON, F.R.G.S.,\n\nAUTHOR OF \"HISTORY OF THE WRAYS OF GLENTWORTH,\" \"LIFE OF GENERAL SIR\n\nEDWARD CECIL,\" \"MEMOIR OF CAPTAIN JOHN DALTON, COMMANDANT OF\n\nTRICHINOPOLY, 1752–1753\"; AND EDITOR OF \"ENGLISH ARMY\n\nLISTS AND COMMISSION REGISTERS, 1661–1714,\"\n\n\"THE BLENHEIM ", "text_characters": 630043, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:71596", "title": "", "score": 1.9000090466942556, "snippet": "---\ntitle: Colonial and post-colonial changes and impact on pastoral women's roles and status\nauthor: Wright State University; Dayton; OH; USA\ndate: 2016-05-22\n---\n- Research\n\n- Open access\n\n- Published:\n\nColonial and post-colonial changes and impact on pastoral women's roles and status\n\nPastoralism volume 7, Article number: 13 (2017)\n\nAbstract\n\nThe colonial experiences of pastoralist women have been largely ignored in the literature on Africa. The paper focuses on pre-colonial, colonial and post-colonial periods to locate the impact of colonization on pastoral women's roles and social status using the example of Borana women of northern Kenya. In this study, it is demonstrated that while the pre-colonial women of the Borana did not enjoy full position of status relative to men, colonialism reinforced the differences between the roles of men and women, contributing further to the waning of Borana women's pre-colonial roles and status. The paper explores the process by which Borana society was brought into contact with the colonial economy and commercialization of their pastoralist activities. It sheds light on the impact of this integration on women's roles. The paper concludes with areas for further research on Borana women's roles in the post-colonial era.\n\nIntroduction\n\nThough the discourse of inequalities and marginalization of pastoralists is well-documented in literature on pastoral societies, case studies of pastoral women's experiences with colonization have received ", "text_characters": 99335, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:775", "title": "", "score": 1.870005074971886, "snippet": "---\ntitle: Australian Dictionary of Biography\nauthor: R Norris\ndate: 2025-06-10\n---\n- Tip: searches only the name field\n\n- Tip: Use double quotes to search for a phrase\n\nThis article was published:\n\n- in the Australian Dictionary of Biography, Volume 8 , 1981\n\n- online in 2006\n\nAlfred Deakin (1856-1919), barrister, journalist and prime minister, was born on 3 August 1856 at Collingwood, Melbourne, younger child of William Deakin of Towcester, Northamptonshire, England, and his wife Sarah, née Bill, of Llanarth, Monmouthshire, Wales. William and Sarah left England in December 1849 in the Samuel Boddington, bound for Sydney. In March 1850 they disembarked at Adelaide, where William's married sister lived and where their first child, Catherine Sarah, was born in July. William briefly pursued his former occupations of clerk and shopman before, late in 1851, joining the exodus of men to the goldfields of Victoria. The family soon followed; by 1853 William had abandoned the fields and the Deakins settled in Collingwood (later a part of Fitzroy), where they lived as respectable suburbanites of modest means. William undertook a variety of jobs, storekeeping, water-carting and carrying, before becoming a partner in a coaching business and later manager of Cobb & Co. in Victoria.\n\nAlfred Deakin began his formal education aged 4 at a boarding school situated first at Kyneton and later at South Yarra. In 1864 he became a day-boy at the nearby Melbourne Church of England Grammar School. A", "text_characters": 44425, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:45815", "title": "", "score": 1.558144532391919, "snippet": "---\ntitle: List of musicals: A to L - Wikipedia\ndate: 2003-11-24\n---\nThis is a list of musicals, including Broadway, Off-Broadway, and West End musicals, as well as film and television musicals, whose titles fall into the A–L alphabetic range. This is not a complete list of musicals, and is limited to musicals that have their own articles on the English-language Wikipedia.\n\n0–9\n\n**Table 1**: 0–9\n\n| Production | Year | Venue/type | Music | Lyrics | Book | Notes | Reference |\n|---|---|---|---|---|---|---|---|\n| 8 femmes | 2002 | French film | Various artists | Various artists | | Based on the 1958 play of the same name by Robert Thomas. Directed by François Ozon, written by Ozon and Marina de Van. | |\n| 9 to 5 | 2009 | Broadway | Dolly Parton | Dolly Parton | Patricia Resnick | Based on the 1980 film. | |\n| 13 + film (2022) | 2008 | Broadway | Jason Robert Brown | Brown | Dan Elish and Robert Horn | The only Broadway musical ever with a cast and band entirely made of teenagers. | |\n| 21 Chump Street | 2014 | Off-Broadway | Lin-Manuel Miranda | Miranda | Miranda | 14-minute musical based on a true story told on This American Life. | |\n| The 25th Annual Putnam County Spelling Bee | 2005 | Off-Broadway and Broadway | William Finn | Finn | Rachel Sheinkin | Performances were partially improvised and featured audience participation (during spelling-bee sequences). Tony Awards for Best Performance by a Featured Actor in a Musical for Dan Fogler and Best Book of a Musical for Sheinkin", "text_characters": 136086, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:78862", "title": "", "score": 1.555659655721251, "snippet": "---\ntitle: 159 British Children's TV Shows From the 1980s You Forgot About\nauthor: Ben Ricketts\ndate: 2022-01-27\n---\nThe 1980s was an innovative and exciting time for British children's television. Technology was slowly starting to make its mark felt, pop music was exploding like never before and the dawn of Channel 4 meant there was even more opportunity for children to be catered for. And all it takes is a quick Google of \"British children's TV in the 1980s\" to see that programmes such as Pigeon Street, Saturday Superstore and Button Moon were, indeed, magnificent.\n\nBut there was much more for children to be tuning into than just these three shows. And much of it, well most of it, is now forgotten. Most of us have moved on and replaced these programmes in our memories with the bureaucracy of adult life. Thankfully, Curious British Telly is here to rectify this lack of recall. And that's why we're going to take a quick (actually... a very long) look at 159 British children's TV shows from the 1980s you forgot about.\n\nN.b. To make this list, a programme's original broadcast had to come solely between 1980 - 89, anything which started or finished a millisecond either side of the decade was not eligible.\n\nP.s. Many of the programmes on this list have little to no footage online, so please get in touch if you have old video tapes with 'unseen' footage on. Hopefully, we can get it online to provide a better representation of the programmes.\n\n1. Bric-a-Brac\n\nBBC1\n\n1980 – 1982\n\nBy ", "text_characters": 194607, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0577/R002_request.json/messages/3/content`；SHA256：`a95fd577fcd3384c08cc2d47f6809c54bace61581e7112bcab80101b27a20918`。
+
+### R2 `/rounds/1/reasoning_content` [0,360)
+
+SHA256：`f1715e1c664f2981f7c7f4e246d890d7cf736f1ad070bf0becef121f346f172d`；原字段SHA256：`27a46adfbcd64c2cda52b5ba5161157e46f499bff867a32905a92a79eb88a177`。
+
+````
+The search results mention Percy Robertson's maternal grandfather was Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip (Melbourne). The question asks about the year Captain William Lonsdale was born in Den Helder during Britain's failed campaign to restore Prince William of Orange.
+
+Captain William Lonsdale was born in 1799. 
+````
+
+## S002｜首次按1799年查找文物与发现者
+
+根据已采用年份搜索cultural artifact discovered 1799。
+
+结束状态：返回背景材料，未取得明确文物候选。
+
+边界判断：年份已采用，此处实际组织下一项文物与发现者取证。
+
+内部KEEP与反证：查询准备、参数、真实返回属于一次尝试，不按工具字段拆分。
+
+### SPLIT原文
+
+````
+The search results mention Percy Robertson's maternal grandfather was Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip (Melbourne). The question asks about the year Captain William Lonsdale was born in Den Helder during Britain's failed campaign to restore Prince William of Orange.
+
+Captain William Lonsdale was born in 1799. 
+→ 切点 [1, 0, 360] →
+Now I need to find out what significant cultural artifact was discovered in 1799, and who discovered it. The question mentions "the discoverer of a significant cultural artifact found in the same year Captain William Lonsdale... was born".
+
+Let me search for cultural artifacts discovered in 1799.
+
+<tool_call>
+<function=search>
+<parameter=query>
+cultural arti
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 2,
+    "batch_id": "B002",
+    "call_pointers": [
+      "/rounds/1/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/1"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R2 `/rounds/1/reasoning_content` [360,778)
+
+SHA256：`7171e257a7c13ddc75d736696d9b21c73f96691131df32d7d93a26a70de85705`；原字段SHA256：`27a46adfbcd64c2cda52b5ba5161157e46f499bff867a32905a92a79eb88a177`。
+
+````
+Now I need to find out what significant cultural artifact was discovered in 1799, and who discovered it. The question mentions "the discoverer of a significant cultural artifact found in the same year Captain William Lonsdale... was born".
+
+Let me search for cultural artifacts discovered in 1799.
+
+<tool_call>
+<function=search>
+<parameter=query>
+cultural artifact discovered 1799
+</parameter>
+</function>
+</tool_call>
+````
+
+### R2 Call `/rounds/1/tool_calls/0` → Return `/tool_events/1`
+
+````json
+{
+  "arguments": {
+    "query": "cultural artifact discovered 1799"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\ncultural artifact discovered 1799\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "cultural artifact discovered 1799"
+  },
+  "batch_id": "B002",
+  "batch_ordinal": 1,
+  "event_id": "E002",
+  "latency_seconds": 1.05825209710747,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642348",
+        "score": 17.967839136469532,
+        "snippet": "Bilateral relations Egypt–France relations, also known as Egyptian–French relations, are the bilateral relations between Egypt and France. Relations between the two countries have spanned centuries, from the Middle Ages to the present day. Following the French occupation of Egypt (1798-1801), a strong French presence has remained in Egypt. Egyptian influence is also evident in France, in monuments such as the Luxor Obelisk in Paris. The relationship is also marked by conflicts like the Algerian War (1954-1962) and the Suez Crisis (1956). As of 2020, relations are strong and consist of shared cultural activities such as the France-Egypt Cultural Year (2019), tourism, diplomatic missions, trade, and a close political relationship. Institutions like the Institut d’Égypte, the French Institute in Egypt and the French University of Egypt (UFE) also aid in promoting cultural exchange between Egypt and France. History. Sixteenth century. France had signed a first treaty or \"Capitulation\" with the Mamluk Sultanate of Egypt in 1500, during the rules of Louis XII and Sultan Bayezid II, in which the Sultan of Egypt had made concessions to the French and the Catalans, and which would be later extended by Suleiman the Magnificent. French occupation of Egypt. Between 1798 and 1801 Napoleon Bonaparte commanded a French campaign to occupy Egypt. This was possibly due to the unstable political situation in Egypt. The objectives of the campaign were to cut off Britain's trade route to India an",
+        "text_characters": 2659,
+        "title": "Egypt–France relations"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2733284",
+        "score": 17.138099704369427,
+        "snippet": "There Broughton purchased a small schooner, which proved providential when on 16 May 1797 \"Providence\" was wrecked when she struck a coral reef at the northwestern tip of Yabiji, a reef group in the Miyako Islands north of Miyako-jima and south of Okinawa, flooded from the bottom, and sank. The wreck is described by the ship's astronomer John Crosley in a passage copied from the ship's log book. Broughton and his crew continued the mission in the schooner, exploring northeast Asia, and returned home in February 1799. After the wreck, Western nautical charts began to refer to Yabiji as \"Providence Reef.\" Wreck. In 2008, a diving survey conducted by the Okinawa Prefectural Buried Cultural Properties Center found the remains of a foreign ship, believed to those of \"Providence\", in Yabiji. Iron ingots believed to be cargo or belongings of \"Providence\"′s crew, ceramics from China and Europe, glass bottles, and glass beads have been discovered at the shipwreck site. References.",
+        "text_characters": 986,
+        "title": "HMS Providence (1791)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9564119",
+        "score": 15.353712598247279,
+        "snippet": "Hunting Camp Creek, on the northeast, is part of the New River drainage. Both the New River and Tennessee River flow into the Ohio River. Cultural history. According to legend, Burke's Garden was discovered in about 1748 by James Burk while chasing a wounded elk. After eating some potatoes, he covered the peelings with dirt in order to hide his presence from Indians. Later explorers, finding a large patch of potatoes that had sprouted from the peelings, named the place as \"Burk's Garden\". The \"e\" on the end of the name was added at a later time. The area was settled by German Lutherans who were so attached to the area that they refused to sell their land to George Vanderbilt. Vanderbilt, looking for a place to build a home, moved to North Carolina where he built the largest private home in America, the Biltmore Estate. Tazewell, the largest town near the cluster and the seat of Tazewell County, has served as the financial center for the agricultural and coal mining interests in the region. Evidence of prosperity is given by the large homes built on several hills. The town was incorporated in 1866. The county was named for Henry Tazewell, who served from 1794 to 1799 as a United States senator. Other clusters. Other clusters of the Wilderness Society's \"Mountain Treasures\" in the Jefferson National Forest (north to south): References.",
+        "text_characters": 1355,
+        "title": "Garden Mountain Cluster"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8278975",
+        "score": 14.951230857152751,
+        "snippet": "Buddhist temple in South Korea Simwonsa (Korean: ; Hanja: ) is a Buddhist temple of the Jogye Order in Seongju-gun, North Gyeongsan, South Korea. History. Simwonsa is thought to have been established around the 8th century. The above poem written by Yi Sung-in describes it as an ancient temple, so it is thought to have existed long before the Goryeo era. One record says the temple was renovated by Ven. Jiwon during the reign of Joseon's King Jungjong (r. 1506-1544), but Simwonsa was reduced to ashes during the Japanese invasion (1592-1597). Beomugo (Temple Directory of Joseon), published in 1799, describes it as abandoned and so it seems likely to have already been in ruins in the 18th century. It was reconstructed in 2003 as part of Seongju County's project, “Restoration Plan of Cultural Tourism Resources in the Region of Mt. Gayasan National Park.” In preliminary excavation surveys, it was confirmed that Simwonsa had been a typical United Silla era mountain temple. It had three Buddha halls built above four-story terraced retaining walls and its land measured 80 meters (262 feet) north to south and 100 meters (328 feet) east to west. Among the artifacts discovered were a pedestal for a stone Buddha statue, a salutation stone, a nimbus from a Buddha statue, a seated stone Vairocana Buddha statue, and a stone that was part of the base of a stone pagoda. All of these collectively are designated Cultural Heritage Materials of North Gyeongsang Province No. 525. Sinwonsa temple i",
+        "text_characters": 2414,
+        "title": "Simwonsa (Seongju)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10183172",
+        "score": 14.899181859242962,
+        "snippet": "Swiss painter Hieronymus Hess (15 April 1799, Basel – 8 June 1850, Basel) was a Swiss painter and artist from Basel. Early life and education. Hieronymus was on the 15 April 1799 as the youngest of four sons. His father was Johannes Hess, an immigrant to Basel from Maisprach, and his mother Margaretha Roth. His interest for drawing and painting was soon discovered, but as he grew up in a working-class family and a safe income was more important that art, he began as an apprentice at a house painters workshop. But the as Hess adorned the walls with caricatures he suggested Hess' transfer to the workshop of artist Maximilian Neustück where he collaborated with Neustück and his four sons. Besides he attended the drawing school until 1816. At that time he was influenced by Neustück and also the landscape paintings of Peter Birmann. In 1817 he entered into the services of Birmann, through which he got to know several local artists. He was an often seen visitor of the public art collection in the House zur Mücke whose guardian he often portrayed in his caricatures. In 1819 he undertook a journey to Italy. Having been in Florence and Naples he eventually settled in Rome in 1820. In Rome, where his stay was supported by the Association for the Good and the Charitable (GGG) and the Freemasons from Basel, he further developed his paintings style through the works of the landscape painter Josef Anton Koch and the Danish sculptor Bertel Thorvaldsen. By 1823 he returned to Basel for a yea",
+        "text_characters": 2256,
+        "title": "Hieronymus Hess"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:665201",
+        "score": 14.725544942188296,
+        "snippet": "Monastery in Switzerland Wurmsbach Abbey (Kloster Mariazell-Wurmsbach) is a monastery of Cistercian nuns located in Bollingen, a locality of Rapperswil-Jona, in the Canton of St. Gallen, Switzerland. It is located on the north shore of upper Lake Zürich. The house is a part of the Order of Cistercians of the Common Observance (O.Cist.). History. Count Rudolf of Rapperswil gave his castle of Wurmsbach together with a considerable area of land in 1259 for the foundation of a religious house and the abbey was established. It was initially a dependency of the Cistercian monks of Abbey of St. Urban in Wettingen. The abbey church was dedicated in 1281. Bollinger Sandstein was used for the construction of the abbey by dedicated quarries. Elisabeth von Rapperswil died probably on 10 April 1309 in the Rapperswil Castle and may have been buried in the \"Wurmsbach\" nunnery (\"†. Apr. IV. Idus: Elizabeth die Graffin, vnser Stiffterin. Excerpta ex Necromonast. Wurmspacensis\") on \"Obersee\" lake shore. The graves of her younger brother Vinzenz and her mother were excavated in the nunnery, but Elisabeth's grave so far was not discovered. During the first Battle of Villmergen in 1656 and again during the occupation of the region by the French Revolutionary Army in 1799, the nuns were obliged to flee. On both occasions the abbey was completely pillaged, with the consequence that there are few treasures left. As of 2011, there are 15 nuns in the community, led by Abbess Monika Thumm, O.Cist. Sigh",
+        "text_characters": 2046,
+        "title": "Wurmsbach Abbey"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4628336",
+        "score": 14.53367070347603,
+        "snippet": "Executed by the state of Texas (C.S.A.) in 1863 Josefa \"Chipita\" Rodriguez (December 30, 1799 – November 13, 1863) was convicted of murder and hanged in San Patricio County, Texas, at the age of 63. More than a century later, on June 13, 1985, the Texas Legislature passed a resolution noting that Rodriguez did not receive a fair trial. She has been the subject of two operas, numerous books, newspaper articles, and magazine accounts. Trial and execution. Rodriguez was reportedly born December 30, 1799, in what was then the Spanish province of Nuevo Santander within the Viceroyalty of New Spain. She was a woman from the South Texas town of San Patricio who furnished travelers with meals and a cot on the porch of her lean-to on the Nueces River. She was accused of robbing and murdering a trader named John Savage with an axe. However, the $600 of gold stolen from him was found down river, where Savage's body was discovered in a burlap bag. She and Juan Silvera (who was possibly her illegitimate son) were indicted on circumstantial evidence and tried before 14th District Court judge Benjamin F. Neal at San Patricio. Although Rodriguez maintained her innocence, she refused to testify in her defense and remained silent throughout the trial, perhaps, some have speculated, to protect her guilty son. Although the jury recommended mercy, Neal ordered her executed. She was hanged on Friday, November 13, 1863. She was 63 at the time of her death. Her last words were quoted as being, \"No s",
+        "text_characters": 2441,
+        "title": "Chipita Rodriguez"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2236567",
+        "score": 14.392575497155978,
+        "snippet": "Levanidov was dismissed on 9 January 1797, when his corps was disbanded by Paul I, and he left Kharkiv. Paul I decreed that all regimental chapels were to be abolished, which caused Vedel to resign from the army in October 1797. He worked as a musician for the governor of the new province, Aleksey Teplov. Teplov, who as a young man had received an excellent musical education, treated Vedel as well as he could. The tsar's decrees caused the cultural and artistic life of Kharkiv to decline. The city's theatre was closed, and its choirs and orchestras were dissolved. Performances of Vedel's works in churches were banned, as the tsar had prohibited singing in churches of any form of music except during the Divine Liturgy. The loss of Levanidov's support caused Vedel to become deeply depressed. Despite the support he received from Teplov, Vedel decided to leave Kharkiv. He distributed his belongings (including all his manuscripts), and the end of the summer of 1798 he returned to live at his parents' house in Kyiv. There he wrote two choral concertos, \"God, the law-breaker of the rebellion against me\" (11 November 1798) and \"To the Lord we always mourn\". The concertos were performed in the Epiphany Cathedral and St Sophia Cathedral in the city. Life as a novice. Early in 1799, frustrated by the lack of opportunities to compose and teach and possibly suffering from a form of mental illness, Vedel enrolled as a novice monk at the Kyiv Pechersk Lavra. He was an active member of the c",
+        "text_characters": 2488,
+        "title": "Artemy Vedel"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2953692",
+        "score": 13.573233127054074,
+        "snippet": "Species of ape The Bornean orangutan (Pongo pygmaeus) is an orangutan species endemic to the island of Borneo. It belongs to the only genus of great apes native to Asia and is the largest of the three \"Pongo\" species. It has a coarse, reddish coat and up to long arms. It is sexually dimorphic, with females ranging in body length from and males from . The Bornean orangutan inhabits Borneo lowland rain forests and Borneo montane rain forests up to an elevation of . Its diet includes fruits, seeds, flowers, bird eggs, sap and vines. It is highly intelligent, displaying tool use and distinct cultural patterns. It is critically endangered, with deforestation, palm oil plantations, and hunting posing a serious threat to its survival. Taxonomy. The Bornean orangutan and the Sumatran orangutan diverged about 400,000 years ago, with a continued low level of gene flow between them since then. The two orangutan species were considered merely subspecies until 1996; they were elevated to species following sequencing of their mitochondrial DNA. The Bornean orangutan has three subspecies: There is some uncertainty about this, however. The population currently listed as \"P. p. wurmbii\" may be closer to the Sumatran orangutan (\"P. abelii\") than to the Bornean orangutan. If this is confirmed, \"P. abelii\" would be a subspecies of \"P. wurmbii\" (Tiedeman, 1808). In addition, the type locality of \"P. pygmaeus\" has not been established beyond doubt; it may be from the population currently listed as",
+        "text_characters": 2623,
+        "title": "Bornean orangutan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2989439",
+        "score": 12.52511852164228,
+        "snippet": "In 1268, King Conradin was imprisoned here before his trial and execution. Also imprisoned here were children of Manfred, King of Sicily after their father's defeat in the Battle of Benevento from Charles I of Anjou. In 1381, Queen Joanna I of Naples was also imprisoned there for a time after having been forced to surrender to her enemy Charles of Durazzo, the future Charles III of Naples, before her assassination. The castle's present form dates from the periof of the Aragonese domination (15th century) in Naples. However, later repairs occurred when the castle was bombarded both by French and Spanish artillery during the Italian Wars. In the short-lived Neapolitan Republic of 1799 the outbreak of clashes between the new regime's defenders and pro-Bourbon segments of the population led to the use of the artillery of the castle. After a long period of decay, the fortifications of the castle were repaired extensively in renovation project that started in 1975. Present. In the 19th century, a small settlement of fishermen had been established in the immediate eastern vicinity of the castle known as Borgo Marinaro, which today has been shaped in the marina and its restaurants. The castle's plan is rectangular, approximately 200 by 45 metres at its widest, and a high bastion overlooks the causeway that connects it to the shore. The causeway, measuring a little more than 100 metres of length, is a popular location for newlyweds to have their wedding photos taken. The castle's buil",
+        "text_characters": 2335,
+        "title": "Castel dell'Ovo"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：3；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5642348", "title": "Egypt–France relations", "score": 17.967839136469532, "snippet": "Bilateral relations Egypt–France relations, also known as Egyptian–French relations, are the bilateral relations between Egypt and France. Relations between the two countries have spanned centuries, from the Middle Ages to the present day. Following the French occupation of Egypt (1798-1801), a strong French presence has remained in Egypt. Egyptian influence is also evident in France, in monuments such as the Luxor Obelisk in Paris. The relationship is also marked by conflicts like the Algerian War (1954-1962) and the Suez Crisis (1956). As of 2020, relations are strong and consist of shared cultural activities such as the France-Egypt Cultural Year (2019), tourism, diplomatic missions, trade, and a close political relationship. Institutions like the Institut d’Égypte, the French Institute in Egypt and the French University of Egypt (UFE) also aid in promoting cultural exchange between Egypt and France. History. Sixteenth century. France had signed a first treaty or \"Capitulation\" with the Mamluk Sultanate of Egypt in 1500, during the rules of Louis XII and Sultan Bayezid II, in which the Sultan of Egypt had made concessions to the French and the Catalans, and which would be later extended by Suleiman the Magnificent. French occupation of Egypt. Between 1798 and 1801 Napoleon Bonaparte commanded a French campaign to occupy Egypt. This was possibly due to the unstable political situation in Egypt. The objectives of the campaign were to cut off Britain's trade route to India an", "text_characters": 2659, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2733284", "title": "HMS Providence (1791)", "score": 17.138099704369427, "snippet": "There Broughton purchased a small schooner, which proved providential when on 16 May 1797 \"Providence\" was wrecked when she struck a coral reef at the northwestern tip of Yabiji, a reef group in the Miyako Islands north of Miyako-jima and south of Okinawa, flooded from the bottom, and sank. The wreck is described by the ship's astronomer John Crosley in a passage copied from the ship's log book. Broughton and his crew continued the mission in the schooner, exploring northeast Asia, and returned home in February 1799. After the wreck, Western nautical charts began to refer to Yabiji as \"Providence Reef.\" Wreck. In 2008, a diving survey conducted by the Okinawa Prefectural Buried Cultural Properties Center found the remains of a foreign ship, believed to those of \"Providence\", in Yabiji. Iron ingots believed to be cargo or belongings of \"Providence\"′s crew, ceramics from China and Europe, glass bottles, and glass beads have been discovered at the shipwreck site. References.", "text_characters": 986, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9564119", "title": "Garden Mountain Cluster", "score": 15.353712598247279, "snippet": "Hunting Camp Creek, on the northeast, is part of the New River drainage. Both the New River and Tennessee River flow into the Ohio River. Cultural history. According to legend, Burke's Garden was discovered in about 1748 by James Burk while chasing a wounded elk. After eating some potatoes, he covered the peelings with dirt in order to hide his presence from Indians. Later explorers, finding a large patch of potatoes that had sprouted from the peelings, named the place as \"Burk's Garden\". The \"e\" on the end of the name was added at a later time. The area was settled by German Lutherans who were so attached to the area that they refused to sell their land to George Vanderbilt. Vanderbilt, looking for a place to build a home, moved to North Carolina where he built the largest private home in America, the Biltmore Estate. Tazewell, the largest town near the cluster and the seat of Tazewell County, has served as the financial center for the agricultural and coal mining interests in the region. Evidence of prosperity is given by the large homes built on several hills. The town was incorporated in 1866. The county was named for Henry Tazewell, who served from 1794 to 1799 as a United States senator. Other clusters. Other clusters of the Wilderness Society's \"Mountain Treasures\" in the Jefferson National Forest (north to south): References.", "text_characters": 1355, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8278975", "title": "Simwonsa (Seongju)", "score": 14.951230857152751, "snippet": "Buddhist temple in South Korea Simwonsa (Korean: ; Hanja: ) is a Buddhist temple of the Jogye Order in Seongju-gun, North Gyeongsan, South Korea. History. Simwonsa is thought to have been established around the 8th century. The above poem written by Yi Sung-in describes it as an ancient temple, so it is thought to have existed long before the Goryeo era. One record says the temple was renovated by Ven. Jiwon during the reign of Joseon's King Jungjong (r. 1506-1544), but Simwonsa was reduced to ashes during the Japanese invasion (1592-1597). Beomugo (Temple Directory of Joseon), published in 1799, describes it as abandoned and so it seems likely to have already been in ruins in the 18th century. It was reconstructed in 2003 as part of Seongju County's project, “Restoration Plan of Cultural Tourism Resources in the Region of Mt. Gayasan National Park.” In preliminary excavation surveys, it was confirmed that Simwonsa had been a typical United Silla era mountain temple. It had three Buddha halls built above four-story terraced retaining walls and its land measured 80 meters (262 feet) north to south and 100 meters (328 feet) east to west. Among the artifacts discovered were a pedestal for a stone Buddha statue, a salutation stone, a nimbus from a Buddha statue, a seated stone Vairocana Buddha statue, and a stone that was part of the base of a stone pagoda. All of these collectively are designated Cultural Heritage Materials of North Gyeongsang Province No. 525. Sinwonsa temple i", "text_characters": 2414, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10183172", "title": "Hieronymus Hess", "score": 14.899181859242962, "snippet": "Swiss painter Hieronymus Hess (15 April 1799, Basel – 8 June 1850, Basel) was a Swiss painter and artist from Basel. Early life and education. Hieronymus was on the 15 April 1799 as the youngest of four sons. His father was Johannes Hess, an immigrant to Basel from Maisprach, and his mother Margaretha Roth. His interest for drawing and painting was soon discovered, but as he grew up in a working-class family and a safe income was more important that art, he began as an apprentice at a house painters workshop. But the as Hess adorned the walls with caricatures he suggested Hess' transfer to the workshop of artist Maximilian Neustück where he collaborated with Neustück and his four sons. Besides he attended the drawing school until 1816. At that time he was influenced by Neustück and also the landscape paintings of Peter Birmann. In 1817 he entered into the services of Birmann, through which he got to know several local artists. He was an often seen visitor of the public art collection in the House zur Mücke whose guardian he often portrayed in his caricatures. In 1819 he undertook a journey to Italy. Having been in Florence and Naples he eventually settled in Rome in 1820. In Rome, where his stay was supported by the Association for the Good and the Charitable (GGG) and the Freemasons from Basel, he further developed his paintings style through the works of the landscape painter Josef Anton Koch and the Danish sculptor Bertel Thorvaldsen. By 1823 he returned to Basel for a yea", "text_characters": 2256, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:665201", "title": "Wurmsbach Abbey", "score": 14.725544942188296, "snippet": "Monastery in Switzerland Wurmsbach Abbey (Kloster Mariazell-Wurmsbach) is a monastery of Cistercian nuns located in Bollingen, a locality of Rapperswil-Jona, in the Canton of St. Gallen, Switzerland. It is located on the north shore of upper Lake Zürich. The house is a part of the Order of Cistercians of the Common Observance (O.Cist.). History. Count Rudolf of Rapperswil gave his castle of Wurmsbach together with a considerable area of land in 1259 for the foundation of a religious house and the abbey was established. It was initially a dependency of the Cistercian monks of Abbey of St. Urban in Wettingen. The abbey church was dedicated in 1281. Bollinger Sandstein was used for the construction of the abbey by dedicated quarries. Elisabeth von Rapperswil died probably on 10 April 1309 in the Rapperswil Castle and may have been buried in the \"Wurmsbach\" nunnery (\"†. Apr. IV. Idus: Elizabeth die Graffin, vnser Stiffterin. Excerpta ex Necromonast. Wurmspacensis\") on \"Obersee\" lake shore. The graves of her younger brother Vinzenz and her mother were excavated in the nunnery, but Elisabeth's grave so far was not discovered. During the first Battle of Villmergen in 1656 and again during the occupation of the region by the French Revolutionary Army in 1799, the nuns were obliged to flee. On both occasions the abbey was completely pillaged, with the consequence that there are few treasures left. As of 2011, there are 15 nuns in the community, led by Abbess Monika Thumm, O.Cist. Sigh", "text_characters": 2046, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4628336", "title": "Chipita Rodriguez", "score": 14.53367070347603, "snippet": "Executed by the state of Texas (C.S.A.) in 1863 Josefa \"Chipita\" Rodriguez (December 30, 1799 – November 13, 1863) was convicted of murder and hanged in San Patricio County, Texas, at the age of 63. More than a century later, on June 13, 1985, the Texas Legislature passed a resolution noting that Rodriguez did not receive a fair trial. She has been the subject of two operas, numerous books, newspaper articles, and magazine accounts. Trial and execution. Rodriguez was reportedly born December 30, 1799, in what was then the Spanish province of Nuevo Santander within the Viceroyalty of New Spain. She was a woman from the South Texas town of San Patricio who furnished travelers with meals and a cot on the porch of her lean-to on the Nueces River. She was accused of robbing and murdering a trader named John Savage with an axe. However, the $600 of gold stolen from him was found down river, where Savage's body was discovered in a burlap bag. She and Juan Silvera (who was possibly her illegitimate son) were indicted on circumstantial evidence and tried before 14th District Court judge Benjamin F. Neal at San Patricio. Although Rodriguez maintained her innocence, she refused to testify in her defense and remained silent throughout the trial, perhaps, some have speculated, to protect her guilty son. Although the jury recommended mercy, Neal ordered her executed. She was hanged on Friday, November 13, 1863. She was 63 at the time of her death. Her last words were quoted as being, \"No s", "text_characters": 2441, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2236567", "title": "Artemy Vedel", "score": 14.392575497155978, "snippet": "Levanidov was dismissed on 9 January 1797, when his corps was disbanded by Paul I, and he left Kharkiv. Paul I decreed that all regimental chapels were to be abolished, which caused Vedel to resign from the army in October 1797. He worked as a musician for the governor of the new province, Aleksey Teplov. Teplov, who as a young man had received an excellent musical education, treated Vedel as well as he could. The tsar's decrees caused the cultural and artistic life of Kharkiv to decline. The city's theatre was closed, and its choirs and orchestras were dissolved. Performances of Vedel's works in churches were banned, as the tsar had prohibited singing in churches of any form of music except during the Divine Liturgy. The loss of Levanidov's support caused Vedel to become deeply depressed. Despite the support he received from Teplov, Vedel decided to leave Kharkiv. He distributed his belongings (including all his manuscripts), and the end of the summer of 1798 he returned to live at his parents' house in Kyiv. There he wrote two choral concertos, \"God, the law-breaker of the rebellion against me\" (11 November 1798) and \"To the Lord we always mourn\". The concertos were performed in the Epiphany Cathedral and St Sophia Cathedral in the city. Life as a novice. Early in 1799, frustrated by the lack of opportunities to compose and teach and possibly suffering from a form of mental illness, Vedel enrolled as a novice monk at the Kyiv Pechersk Lavra. He was an active member of the c", "text_characters": 2488, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2953692", "title": "Bornean orangutan", "score": 13.573233127054074, "snippet": "Species of ape The Bornean orangutan (Pongo pygmaeus) is an orangutan species endemic to the island of Borneo. It belongs to the only genus of great apes native to Asia and is the largest of the three \"Pongo\" species. It has a coarse, reddish coat and up to long arms. It is sexually dimorphic, with females ranging in body length from and males from . The Bornean orangutan inhabits Borneo lowland rain forests and Borneo montane rain forests up to an elevation of . Its diet includes fruits, seeds, flowers, bird eggs, sap and vines. It is highly intelligent, displaying tool use and distinct cultural patterns. It is critically endangered, with deforestation, palm oil plantations, and hunting posing a serious threat to its survival. Taxonomy. The Bornean orangutan and the Sumatran orangutan diverged about 400,000 years ago, with a continued low level of gene flow between them since then. The two orangutan species were considered merely subspecies until 1996; they were elevated to species following sequencing of their mitochondrial DNA. The Bornean orangutan has three subspecies: There is some uncertainty about this, however. The population currently listed as \"P. p. wurmbii\" may be closer to the Sumatran orangutan (\"P. abelii\") than to the Bornean orangutan. If this is confirmed, \"P. abelii\" would be a subspecies of \"P. wurmbii\" (Tiedeman, 1808). In addition, the type locality of \"P. pygmaeus\" has not been established beyond doubt; it may be from the population currently listed as", "text_characters": 2623, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2989439", "title": "Castel dell'Ovo", "score": 12.52511852164228, "snippet": "In 1268, King Conradin was imprisoned here before his trial and execution. Also imprisoned here were children of Manfred, King of Sicily after their father's defeat in the Battle of Benevento from Charles I of Anjou. In 1381, Queen Joanna I of Naples was also imprisoned there for a time after having been forced to surrender to her enemy Charles of Durazzo, the future Charles III of Naples, before her assassination. The castle's present form dates from the periof of the Aragonese domination (15th century) in Naples. However, later repairs occurred when the castle was bombarded both by French and Spanish artillery during the Italian Wars. In the short-lived Neapolitan Republic of 1799 the outbreak of clashes between the new regime's defenders and pro-Bourbon segments of the population led to the use of the artillery of the castle. After a long period of decay, the fortifications of the castle were repaired extensively in renovation project that started in 1975. Present. In the 19th century, a small settlement of fishermen had been established in the immediate eastern vicinity of the castle known as Borgo Marinaro, which today has been shaped in the marina and its restaurants. The castle's plan is rectangular, approximately 200 by 45 metres at its widest, and a high bastion overlooks the causeway that connects it to the shore. The causeway, measuring a little more than 100 metres of length, is a popular location for newlyweds to have their wedding photos taken. The castle's buil", "text_characters": 2335, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0577/R003_request.json/messages/5/content`；SHA256：`d58681589b7cddafad8becae548139b61d80ab4a2cc4c5f5fdecc77a33b7261e`。
+
+## S003｜中断文物查找，回查Lonsdale出生地与战役背景
+
+重新检索Lonsdale、1799、Den Helder和Orange战役，取得人物传记。
+
+结束状态：传记直接支持出生年和Den Helder背景。
+
+边界判断：本轮实际Call重新核查人物出生背景，非继续查文物；不跨此动作合并前后文物工作。
+
+内部KEEP与反证：围绕同一人物背景的准备和返回保持完整。
+
+### SPLIT原文
+
+````
+was discovered in 1799, and who discovered it. The question mentions "the discoverer of a significant cultural artifact found in the same year Captain William Lonsdale... was born".
+
+Let me search for cultural artifacts discovered in 1799.
+
+<tool_call>
+<function=search>
+<parameter=query>
+cultural artifact discovered 1799
+</parameter>
+</function>
+</tool_call>
+→ 切点 [2, 0, 0] →
+The search results mention Captain William Lonsdale was born in 1799. Let me search for more details about Captain William Lonsdale's birth year and the failed campaign to restore Prince William of Orange.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Captain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange
+</
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 3,
+    "batch_id": "B003",
+    "call_pointers": [
+      "/rounds/2/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/2"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R3 `/rounds/2/reasoning_content` [0,395)
+
+SHA256：`e68f217c5ecddb25a35031e694277d3b0bcc3de22267921a96db48a395df7d62`；原字段SHA256：`e68f217c5ecddb25a35031e694277d3b0bcc3de22267921a96db48a395df7d62`。
+
+````
+The search results mention Captain William Lonsdale was born in 1799. Let me search for more details about Captain William Lonsdale's birth year and the failed campaign to restore Prince William of Orange.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Captain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange
+</parameter>
+</function>
+</tool_call>
+````
+
+### R3 Call `/rounds/2/tool_calls/0` → Return `/tool_events/2`
+
+````json
+{
+  "arguments": {
+    "query": "Captain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\nCaptain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "Captain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange"
+  },
+  "batch_id": "B003",
+  "batch_ordinal": 1,
+  "event_id": "E003",
+  "latency_seconds": 0.6532706557773054,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2551466",
+        "score": 25.7985896384798,
+        "snippet": "Australian politician William Lonsdale (2 or 21 October 1799 – 28 March 1864) supervised the founding of the official settlement at Port Phillip (later named Melbourne) from 1836 and went on to serve under the Superintendent La Trobe from 1839 to 1854. Early life. Lonsdale was born in Den Helder, Batavian Republic, during Britain's failed campaign to restore the deposed Prince William of Orange. His father, Lieutenant James Lonsdale, had been accompanied by his wife Jane (\"née\" Faunce). William at age 20 joined his father's old regiment, the King's Own (4th) Regiment of the Foot, as an ensign on 8 July 1819. He was soon joined by his younger brother, Alured. William and Alured served with their Regiment in the West Indies and on 4 March 1824 William was promoted lieutenant and appointed adjutant. He returned to England and was posted to Portugal. By 1830 he was back in England and by 20 March 1831 his Regiment was posted to the Colony of New South Wales to relieve the 39th Regiment. He was to become a colonial administrator as well as his profession as a soldier. Colonial Australia. Lonsdale arrived in Sydney on 14 December 1831 with a detachment of troops guarding convicts on the \"Bussorah Merchant\". During the next five years he served in the colony of New South Wales, his brother Alured serving in Van Diemen's Land before joining him in New South Wales in 1833. Whilst stationed at Port Macquarie, William was able to purchase his commission as a captain, and married Martha ",
+        "text_characters": 2165,
+        "title": "William Lonsdale (colonist)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8357533",
+        "score": 21.05278878391858,
+        "snippet": "British artist (1868–1934) Percy Robertson RE (1868–1934) was an English watercolour landscape painter and etcher. Robertson was born in Bellagio, Lombardy, Italy. His father, also a painter and engraver, was Charles Robertson and his mother was Alice Mary, the daughter of the colonist Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip, later to become the location of Melbourne in Australia. Between 1883 and 1885, he was educated with his brothers at Charterhouse School in England, where he won the Leech Prize for drawing in 1884. In 1887, Robertson was elected to the Society of Painter-Etchers and Engravers, later to become the Royal Society of Painter-Printmakers. He was elected a full Fellow of the Society in 1908. Robertson exhibited 33 artworks at the Royal Academy in London and 166 works at the Society of Painter-Etchers and Engravers. He lived in Godalming and painted and etched in the county of Surrey, including in Guildford from St Catherine's Hill (1891), Shere (1899), and Albury (1905). In 1905, Percy Robertson married Edith Helen Nash (\"Nelly\"). They lived in London, where he produced pictures of street scenes and the River Thames. He also lived in Maidenhead on the Thames west of London. Robertson's artworks are held by Godalming Museum. References.",
+        "text_characters": 1313,
+        "title": "Percy Robertson"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2052630",
+        "score": 18.710984002754177,
+        "snippet": "British Army general John Fane, 11th Earl of Westmorland (3 February 1784 – 16 October 1859), styled Lord Burghersh until 1841, was a British soldier, politician, diplomat, composer and musician. Background. Styled Lord Burghersh from birth, he was born at Sackville Street, Piccadilly, London, the son of John Fane, 10th Earl of Westmorland, by his wife Sarah Child, daughter and heiress of the wealthy banker Sir Robert Child, builder of Osterley Park. His sister was the social hostess Sarah Villiers, Countess of Jersey, and his uncle was William Lowther, 1st Earl of Lonsdale, a Tory magnate from northern England. He was educated at Cheam School and then at Harrow from 1797 to 1799. Burghersh was admitted to Trinity College, Cambridge on 28 January 1802 and received an M.A. in 1808. He succeeded his father in the earldom in 1841. Military career. On 9 May 1803, Burghersh was appointed a deputy lieutenant of Northamptonshire, and after the breakdown of the Peace of Amiens, he was commissioned a lieutenant in the Northamptonshire Militia on 30 June 1803. He entered the regular army as an ensign in the 11th Foot, without purchase, on 24 December 1803. On 5 January 1804 he transferred to the 7th Foot as a lieutenant and on 3 May 1805 he transferred to the 23rd Foot as a captain. He exchanged on 1 November to the 3rd Dragoon Guards, and served as aide-de-camp to Sir George Don when the latter led reinforcements to Hanover. As early as 1802, his uncle Lord Lonsdale had contemplated p",
+        "text_characters": 2605,
+        "title": "John Fane, 11th Earl of Westmorland"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10251412",
+        "score": 17.299269276192227,
+        "snippet": "English slave trader (1733–1809) Thomas Foxcroft (1733–1809) was an English slave trader. He was responsible for at least 91 slave voyages in the years between 1759 and 1792. A contemporary set of financial accounts for one slave voyage by his slave-ship has been preserved. Captain Robert Bostock, \"Bloom\"'s master, bought 349 enslaved people in Africa; 42 captives died and 307 captives were sold in the West Indies for £9858. The net profit on the voyage to the owners amounted to £8,123 7s 2d, or £26 9s 2d per captive sold. Early life. Foxcroft was born in Thornton in Lonsdale, in Yorkshire. His father was George Foxcroft. Slave trade. Foxcroft was related to the Welch family through his sister Agnes's marriage to Robert Welch in 1752. The Welch family were prominent in the slave trade and it is this link that is the likely reason for Foxcroft to move to Liverpool. From there he began slave trading from the Port of Liverpool. He regularly partnered with the slave traders George Welch and James Welch, and he invested in one slave voyage with John Welch in 1759. Thomas Foxcroft's niece, Mary Foxcroft, married one of his regular slave trading partners, Felix Doran. After Doran died in 1776, Foxcroft became a slaving partner of his son, who was also called Felix Doran. Foxcroft was the owner of the slave ship . A contemporary set of financial accounts for a slave voyage by \"Bloom\" in 1784 exists. The accounts offer insight into the costs, profit, cargo and the purported value of t",
+        "text_characters": 2453,
+        "title": "Thomas Foxcroft (slave trader)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:34597",
+        "score": 3.4641433468780343,
+        "snippet": "---\ntitle: Records of members of parliament of the United Kingdom - Wikipedia\ndate: 2007-06-23\n---\nThis article about records of members of parliament of the United Kingdom and of England includes a variety of lists of MPs by age, period and other circumstances of service, familiar sets, ethnic or religious minorities, physical attributes, and circumstances of their deaths.\n\nAge\n\nYoungest\n\nPrior to the Acts of Union, the youngest known person to have sat in the House of Commons of England was Christopher Monck, elected MP for Devon in 1667, \"probably without a contest\", at the age of 13. He sat in the House for three years, before being elevated to the House of Lords upon his father's death. He is said to have been \"moderately active during his short period of membership, sitting on seven committees\".\"MONCK, Christopher, Earl of Torrington (1653–88)\" , in B.D. Henning (ed.), The History of Parliament: the House of Commons 1660–1690, 1983\n\nMonck was one of many members returned underage in the late seventeenth century, with around ten underage members in each of the Parliaments of 1690 and 1695, many aristocrats. In response to this, the Parliamentary Elections Act 1695 established 21 as the minimum age, although this was not reliably enforced. Until the Reform Act 1832, underage MPs were seldom unseated. For example, Charles James Fox became an MP aged 19 in 1768, and Robert Jocelyn, Viscount Jocelyn, became an MP aged 18 in 1806.\n\nBefore the general election of 2015, the you",
+        "text_characters": 227520,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:24024",
+        "score": 2.6163626302344447,
+        "snippet": "---\ntitle: THE WATERLOO ROLL CALL. WITH BIOGRAPHICAL NOTES AND ANECDOTES.\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 51143 ***\n\nTranscriber's Note:\n\nMinor errors, attributable to the printer, have been corrected. Please see the transcriber's note at the end of this text for details regarding the handling of any textual issues encountered during its preparation.\n\nThe bulk of this text consists of annotated tables containing names, dates, and ranks achieved of participants in the British Army at the battle of Waterloo. Most entries are accompanied by brief biographical sketches. The notes follow each table, as printed.\n\nThe numbering of the notes for each table has been retained, beginning anew with '1' for each table. Hyperlinks are provided which allow the reader to handily inspect each note.\n\nThe footnotes to the prefatory material, and to the headings of many tables, originally appeared as an asterisk. These have been re-sequenced from A to W and appear after the paragraph where they are referenced.\n\nThe cover image has been modified to include the title and author, and, as amended, is added to the public domain.\n\nTHE\n\nWATERLOO ROLL CALL.\n\nWATERLOO ROLL CALL.\n\nWITH BIOGRAPHICAL NOTES AND ANECDOTES.\n\nBY\n\nCHARLES DALTON, F.R.G.S.,\n\nAUTHOR OF \"HISTORY OF THE WRAYS OF GLENTWORTH,\" \"LIFE OF GENERAL SIR\n\nEDWARD CECIL,\" \"MEMOIR OF CAPTAIN JOHN DALTON, COMMANDANT OF\n\nTRICHINOPOLY, 1752–1753\"; AND EDITOR OF \"ENGLISH ARMY\n\nLISTS AND COMMISSION REGISTERS, 1661–1714,\"\n\n\"THE BLENHEIM ",
+        "text_characters": 630043,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:75903",
+        "score": 1.77188399537653,
+        "snippet": "---\ndate: 1996-09-26\n---\nA Guide to\n\nWomen's Diaries\n\nin the Manuscript Collection of the\n\nRhode Island Historical Society Library\n\nEdited by\n\nRick Stattler\n\nOriginally compiled for a University of Rhode Island seminar in women's history with Dr. Sharon Strom, April 1997. Greatly expanded with the help of Rhode Island Historical Society staff and volunteers, June 2004.\n\nSince the publication of Laurel Thatcher Ulrich's award-winning A Midwife's Tale: The Life of Martha Ballard, Based on Her Diary, 1785-1812, there has been increased recognition of the value of women's diaries as an important building block of our nation's history. This guide represents an effort to simplify the work of all researchers who are interested in using this wonderful resource for writing Rhode Island history. Diary research can be frustrating because of the time required to evaluate the source. Who was the author? Where was she writing from? What was her place in society? How old was she? What did she have to say? Now, it should be possible to answer these questions in moments. This guide will certainly not replace the use of the originals, but it will allow researchers to select the diaries best suited to their needs.\n\nFor researchers looking for a particular sort of woman (age, location, class, ethnicity, time period), the numerous lists in the front of this guide may be of use. For researchers looking for a specific sort of content, it might be best to browse through the records for individual di",
+        "text_characters": 1027957,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:78990",
+        "score": 1.4443676953566316,
+        "snippet": "---\ntitle: FOOTNOTE (from the authors of the book)\ndate: 2024-06-03\n---\nHARESNAPE\n\nA FAMILY HISTORY\n\nROBERT HARESNAPE and WILLIAM KENNETH WARHURST\n\nThe following pages contain extracts from the book \"Haresnape A Family History\" written and published in 1995 by Robert Haresnape and William Kenneth Warhurst. The authors have carried out further research since 1995, and have also been supplied with information from other persons, and they include the results here with additions and corrections as necessary. It is hoped that this will be an ongoing process.\n\nUPDATED 24th January 2025\n\nThe original book has a copyright and this copyright applies to the extracts.\n\nNarrative and historical background research: Robert Haresnape\n\nMain U.K. research: William Kenneth Warhurst\n\nAdditional U.K. research: Stephen William Haresnape, Dr. John Norman Haresnape, and Robert Haresnape\n\nNew Zealand research: William Raymond McDonald Haresnape\n\nHairsnape research: Peter Hairsnape, Simon Hairsnape\n\nAcknowledgements:\n\nThanks are given to all others who have provided information for this book including Mrs. Dorothy Haresnape who donated all of her husband's research material, Brian Haresnape and Pat Haresnape for general assistance, Robert E. Haresnape, Debra Sue Knight and Glen Haresnape who provided all of the information on the U.S.A. families, and Helen E. Stone for all of the information on the Haresnapes in South Africa. Finally, it was the initial contacts with Stephen William Haresnape that l",
+        "text_characters": 411882,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:77280",
+        "score": 0.9480548369052286,
+        "snippet": "---\ntitle: A BOOK FOR A RAINY DAY\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 54693 ***\n\nA BOOK\n\nFOR A RAINY DAY\n\nOR RECOLLECTIONS OF THE\n\nEVENTS OF THE YEARS 1766-1833\n\nBY\n\nJOHN THOMAS SMITH\n\nEDITED, WITH AN INTRODUCTION AND NOTES\n\nBY\n\nWILFRED WHITTEN\n\nWITH ILLUSTRATIONS FROM CONTEMPORARY PRINTS\n\nMETHUEN & CO.\n\n36 ESSEX STREET W.C.\n\nLONDON\n\nThis Edition was first Published in 1905\n\nThe highly flattering manner in which my work, entitled Nollekens and his Times, was generally received, induced me to collect numerous scattered biographical papers, which I have considerably augmented with a variety of subjects, arranged chronologically, according to the years of my life.\n\nSome may object to my vanity, in expecting the reader of the following pages to be pleased with so heterogeneous a dish. It is, I own, what ought to be called a salmagundi, or it may be likened to various suits of clothes, made up of remnants of all colours. One promise I can make, that as my pieces are mostly of new cloth, they will last the longer. Dr. Johnson has said:\n\n\"All knowledge is of itself of some value. There is nothing so minute or inconsiderable, that I would not rather know, than not.\"\n\nLord Orrery, in a letter to Dr. Birch, dated November, 1741, makes the following observation:\n\n\"I look upon anecdotes as debts due to the public, which every man, when he has that kind of cash by him, ought to pay.\"\n\nJ. T. Smith.\n\n| JOHN THOMAS SMITH | Frontispiece | |\n\n| From an Engraving by William Skelton of ",
+        "text_characters": 658791,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:1036",
+        "score": 0.6961385263009818,
+        "snippet": "---\ntitle: British Museum - Wikipedia\nauthor: Authority control databases\ndate: 2001-11-27\n---\nname: British Museum\nlogo: British Museum logo.svg\nlogo_upright: .8\nimage_upright: 1.15\npushpin_map: Central London\nestablished: 7 June 1753\ncollection: Approx. 8 million objects Collection size British Museum 22 July 2016 12 August 2017 live\nlocation: Great Russell Street, London, England\nleader_type: Chair\nleader: George Osborne\ndirector: Nicholas Cullinan\nvisitors: 5, 820, 860 (2023, British Museum is the most-visited UK attraction again BBC News 18 March 2024 18 March 2024 18 March 2024 live up 42% from 2022), * Ranked first nationally\npublictransit: london underground london crossrail Tottenham Court Roadlondon underground Goodge Street, Holborn, Russell Square\nembedded: Area in 94 galleries\n\nchild: yes\nlabel1: Area\ndata1: 807000 sqft m2 -2 on in 94 galleries\n\nThe British Museum is a public museum dedicated to human history, art and culture located in the Bloomsbury area of London. Its permanent collection of eight million works is the largest in the world. It documents the story of human culture from its beginnings to the present.Among the national museums in London, sculpture and decorative and applied art are in the Victoria and Albert Museum; the British Museum houses earlier art, non-Western art, prints and drawings. The National Gallery holds the national collection of Western European art to about 1900, while art of the 20th century on is at Tate Modern. Tate Britain hol",
+        "text_characters": 146978,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：4；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:2551466", "title": "William Lonsdale (colonist)", "score": 25.7985896384798, "snippet": "Australian politician William Lonsdale (2 or 21 October 1799 – 28 March 1864) supervised the founding of the official settlement at Port Phillip (later named Melbourne) from 1836 and went on to serve under the Superintendent La Trobe from 1839 to 1854. Early life. Lonsdale was born in Den Helder, Batavian Republic, during Britain's failed campaign to restore the deposed Prince William of Orange. His father, Lieutenant James Lonsdale, had been accompanied by his wife Jane (\"née\" Faunce). William at age 20 joined his father's old regiment, the King's Own (4th) Regiment of the Foot, as an ensign on 8 July 1819. He was soon joined by his younger brother, Alured. William and Alured served with their Regiment in the West Indies and on 4 March 1824 William was promoted lieutenant and appointed adjutant. He returned to England and was posted to Portugal. By 1830 he was back in England and by 20 March 1831 his Regiment was posted to the Colony of New South Wales to relieve the 39th Regiment. He was to become a colonial administrator as well as his profession as a soldier. Colonial Australia. Lonsdale arrived in Sydney on 14 December 1831 with a detachment of troops guarding convicts on the \"Bussorah Merchant\". During the next five years he served in the colony of New South Wales, his brother Alured serving in Van Diemen's Land before joining him in New South Wales in 1833. Whilst stationed at Port Macquarie, William was able to purchase his commission as a captain, and married Martha ", "text_characters": 2165, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8357533", "title": "Percy Robertson", "score": 21.05278878391858, "snippet": "British artist (1868–1934) Percy Robertson RE (1868–1934) was an English watercolour landscape painter and etcher. Robertson was born in Bellagio, Lombardy, Italy. His father, also a painter and engraver, was Charles Robertson and his mother was Alice Mary, the daughter of the colonist Captain William Lonsdale (1799–1864), who supervised the founding of Port Phillip, later to become the location of Melbourne in Australia. Between 1883 and 1885, he was educated with his brothers at Charterhouse School in England, where he won the Leech Prize for drawing in 1884. In 1887, Robertson was elected to the Society of Painter-Etchers and Engravers, later to become the Royal Society of Painter-Printmakers. He was elected a full Fellow of the Society in 1908. Robertson exhibited 33 artworks at the Royal Academy in London and 166 works at the Society of Painter-Etchers and Engravers. He lived in Godalming and painted and etched in the county of Surrey, including in Guildford from St Catherine's Hill (1891), Shere (1899), and Albury (1905). In 1905, Percy Robertson married Edith Helen Nash (\"Nelly\"). They lived in London, where he produced pictures of street scenes and the River Thames. He also lived in Maidenhead on the Thames west of London. Robertson's artworks are held by Godalming Museum. References.", "text_characters": 1313, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2052630", "title": "John Fane, 11th Earl of Westmorland", "score": 18.710984002754177, "snippet": "British Army general John Fane, 11th Earl of Westmorland (3 February 1784 – 16 October 1859), styled Lord Burghersh until 1841, was a British soldier, politician, diplomat, composer and musician. Background. Styled Lord Burghersh from birth, he was born at Sackville Street, Piccadilly, London, the son of John Fane, 10th Earl of Westmorland, by his wife Sarah Child, daughter and heiress of the wealthy banker Sir Robert Child, builder of Osterley Park. His sister was the social hostess Sarah Villiers, Countess of Jersey, and his uncle was William Lowther, 1st Earl of Lonsdale, a Tory magnate from northern England. He was educated at Cheam School and then at Harrow from 1797 to 1799. Burghersh was admitted to Trinity College, Cambridge on 28 January 1802 and received an M.A. in 1808. He succeeded his father in the earldom in 1841. Military career. On 9 May 1803, Burghersh was appointed a deputy lieutenant of Northamptonshire, and after the breakdown of the Peace of Amiens, he was commissioned a lieutenant in the Northamptonshire Militia on 30 June 1803. He entered the regular army as an ensign in the 11th Foot, without purchase, on 24 December 1803. On 5 January 1804 he transferred to the 7th Foot as a lieutenant and on 3 May 1805 he transferred to the 23rd Foot as a captain. He exchanged on 1 November to the 3rd Dragoon Guards, and served as aide-de-camp to Sir George Don when the latter led reinforcements to Hanover. As early as 1802, his uncle Lord Lonsdale had contemplated p", "text_characters": 2605, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10251412", "title": "Thomas Foxcroft (slave trader)", "score": 17.299269276192227, "snippet": "English slave trader (1733–1809) Thomas Foxcroft (1733–1809) was an English slave trader. He was responsible for at least 91 slave voyages in the years between 1759 and 1792. A contemporary set of financial accounts for one slave voyage by his slave-ship has been preserved. Captain Robert Bostock, \"Bloom\"'s master, bought 349 enslaved people in Africa; 42 captives died and 307 captives were sold in the West Indies for £9858. The net profit on the voyage to the owners amounted to £8,123 7s 2d, or £26 9s 2d per captive sold. Early life. Foxcroft was born in Thornton in Lonsdale, in Yorkshire. His father was George Foxcroft. Slave trade. Foxcroft was related to the Welch family through his sister Agnes's marriage to Robert Welch in 1752. The Welch family were prominent in the slave trade and it is this link that is the likely reason for Foxcroft to move to Liverpool. From there he began slave trading from the Port of Liverpool. He regularly partnered with the slave traders George Welch and James Welch, and he invested in one slave voyage with John Welch in 1759. Thomas Foxcroft's niece, Mary Foxcroft, married one of his regular slave trading partners, Felix Doran. After Doran died in 1776, Foxcroft became a slaving partner of his son, who was also called Felix Doran. Foxcroft was the owner of the slave ship . A contemporary set of financial accounts for a slave voyage by \"Bloom\" in 1784 exists. The accounts offer insight into the costs, profit, cargo and the purported value of t", "text_characters": 2453, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:34597", "title": "", "score": 3.4641433468780343, "snippet": "---\ntitle: Records of members of parliament of the United Kingdom - Wikipedia\ndate: 2007-06-23\n---\nThis article about records of members of parliament of the United Kingdom and of England includes a variety of lists of MPs by age, period and other circumstances of service, familiar sets, ethnic or religious minorities, physical attributes, and circumstances of their deaths.\n\nAge\n\nYoungest\n\nPrior to the Acts of Union, the youngest known person to have sat in the House of Commons of England was Christopher Monck, elected MP for Devon in 1667, \"probably without a contest\", at the age of 13. He sat in the House for three years, before being elevated to the House of Lords upon his father's death. He is said to have been \"moderately active during his short period of membership, sitting on seven committees\".\"MONCK, Christopher, Earl of Torrington (1653–88)\" , in B.D. Henning (ed.), The History of Parliament: the House of Commons 1660–1690, 1983\n\nMonck was one of many members returned underage in the late seventeenth century, with around ten underage members in each of the Parliaments of 1690 and 1695, many aristocrats. In response to this, the Parliamentary Elections Act 1695 established 21 as the minimum age, although this was not reliably enforced. Until the Reform Act 1832, underage MPs were seldom unseated. For example, Charles James Fox became an MP aged 19 in 1768, and Robert Jocelyn, Viscount Jocelyn, became an MP aged 18 in 1806.\n\nBefore the general election of 2015, the you", "text_characters": 227520, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:24024", "title": "", "score": 2.6163626302344447, "snippet": "---\ntitle: THE WATERLOO ROLL CALL. WITH BIOGRAPHICAL NOTES AND ANECDOTES.\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 51143 ***\n\nTranscriber's Note:\n\nMinor errors, attributable to the printer, have been corrected. Please see the transcriber's note at the end of this text for details regarding the handling of any textual issues encountered during its preparation.\n\nThe bulk of this text consists of annotated tables containing names, dates, and ranks achieved of participants in the British Army at the battle of Waterloo. Most entries are accompanied by brief biographical sketches. The notes follow each table, as printed.\n\nThe numbering of the notes for each table has been retained, beginning anew with '1' for each table. Hyperlinks are provided which allow the reader to handily inspect each note.\n\nThe footnotes to the prefatory material, and to the headings of many tables, originally appeared as an asterisk. These have been re-sequenced from A to W and appear after the paragraph where they are referenced.\n\nThe cover image has been modified to include the title and author, and, as amended, is added to the public domain.\n\nTHE\n\nWATERLOO ROLL CALL.\n\nWATERLOO ROLL CALL.\n\nWITH BIOGRAPHICAL NOTES AND ANECDOTES.\n\nBY\n\nCHARLES DALTON, F.R.G.S.,\n\nAUTHOR OF \"HISTORY OF THE WRAYS OF GLENTWORTH,\" \"LIFE OF GENERAL SIR\n\nEDWARD CECIL,\" \"MEMOIR OF CAPTAIN JOHN DALTON, COMMANDANT OF\n\nTRICHINOPOLY, 1752–1753\"; AND EDITOR OF \"ENGLISH ARMY\n\nLISTS AND COMMISSION REGISTERS, 1661–1714,\"\n\n\"THE BLENHEIM ", "text_characters": 630043, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:75903", "title": "", "score": 1.77188399537653, "snippet": "---\ndate: 1996-09-26\n---\nA Guide to\n\nWomen's Diaries\n\nin the Manuscript Collection of the\n\nRhode Island Historical Society Library\n\nEdited by\n\nRick Stattler\n\nOriginally compiled for a University of Rhode Island seminar in women's history with Dr. Sharon Strom, April 1997. Greatly expanded with the help of Rhode Island Historical Society staff and volunteers, June 2004.\n\nSince the publication of Laurel Thatcher Ulrich's award-winning A Midwife's Tale: The Life of Martha Ballard, Based on Her Diary, 1785-1812, there has been increased recognition of the value of women's diaries as an important building block of our nation's history. This guide represents an effort to simplify the work of all researchers who are interested in using this wonderful resource for writing Rhode Island history. Diary research can be frustrating because of the time required to evaluate the source. Who was the author? Where was she writing from? What was her place in society? How old was she? What did she have to say? Now, it should be possible to answer these questions in moments. This guide will certainly not replace the use of the originals, but it will allow researchers to select the diaries best suited to their needs.\n\nFor researchers looking for a particular sort of woman (age, location, class, ethnicity, time period), the numerous lists in the front of this guide may be of use. For researchers looking for a specific sort of content, it might be best to browse through the records for individual di", "text_characters": 1027957, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:78990", "title": "", "score": 1.4443676953566316, "snippet": "---\ntitle: FOOTNOTE (from the authors of the book)\ndate: 2024-06-03\n---\nHARESNAPE\n\nA FAMILY HISTORY\n\nROBERT HARESNAPE and WILLIAM KENNETH WARHURST\n\nThe following pages contain extracts from the book \"Haresnape A Family History\" written and published in 1995 by Robert Haresnape and William Kenneth Warhurst. The authors have carried out further research since 1995, and have also been supplied with information from other persons, and they include the results here with additions and corrections as necessary. It is hoped that this will be an ongoing process.\n\nUPDATED 24th January 2025\n\nThe original book has a copyright and this copyright applies to the extracts.\n\nNarrative and historical background research: Robert Haresnape\n\nMain U.K. research: William Kenneth Warhurst\n\nAdditional U.K. research: Stephen William Haresnape, Dr. John Norman Haresnape, and Robert Haresnape\n\nNew Zealand research: William Raymond McDonald Haresnape\n\nHairsnape research: Peter Hairsnape, Simon Hairsnape\n\nAcknowledgements:\n\nThanks are given to all others who have provided information for this book including Mrs. Dorothy Haresnape who donated all of her husband's research material, Brian Haresnape and Pat Haresnape for general assistance, Robert E. Haresnape, Debra Sue Knight and Glen Haresnape who provided all of the information on the U.S.A. families, and Helen E. Stone for all of the information on the Haresnapes in South Africa. Finally, it was the initial contacts with Stephen William Haresnape that l", "text_characters": 411882, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:77280", "title": "", "score": 0.9480548369052286, "snippet": "---\ntitle: A BOOK FOR A RAINY DAY\n---\n*** START OF THE PROJECT GUTENBERG EBOOK 54693 ***\n\nA BOOK\n\nFOR A RAINY DAY\n\nOR RECOLLECTIONS OF THE\n\nEVENTS OF THE YEARS 1766-1833\n\nBY\n\nJOHN THOMAS SMITH\n\nEDITED, WITH AN INTRODUCTION AND NOTES\n\nBY\n\nWILFRED WHITTEN\n\nWITH ILLUSTRATIONS FROM CONTEMPORARY PRINTS\n\nMETHUEN & CO.\n\n36 ESSEX STREET W.C.\n\nLONDON\n\nThis Edition was first Published in 1905\n\nThe highly flattering manner in which my work, entitled Nollekens and his Times, was generally received, induced me to collect numerous scattered biographical papers, which I have considerably augmented with a variety of subjects, arranged chronologically, according to the years of my life.\n\nSome may object to my vanity, in expecting the reader of the following pages to be pleased with so heterogeneous a dish. It is, I own, what ought to be called a salmagundi, or it may be likened to various suits of clothes, made up of remnants of all colours. One promise I can make, that as my pieces are mostly of new cloth, they will last the longer. Dr. Johnson has said:\n\n\"All knowledge is of itself of some value. There is nothing so minute or inconsiderable, that I would not rather know, than not.\"\n\nLord Orrery, in a letter to Dr. Birch, dated November, 1741, makes the following observation:\n\n\"I look upon anecdotes as debts due to the public, which every man, when he has that kind of cash by him, ought to pay.\"\n\nJ. T. Smith.\n\n| JOHN THOMAS SMITH | Frontispiece | |\n\n| From an Engraving by William Skelton of ", "text_characters": 658791, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:1036", "title": "", "score": 0.6961385263009818, "snippet": "---\ntitle: British Museum - Wikipedia\nauthor: Authority control databases\ndate: 2001-11-27\n---\nname: British Museum\nlogo: British Museum logo.svg\nlogo_upright: .8\nimage_upright: 1.15\npushpin_map: Central London\nestablished: 7 June 1753\ncollection: Approx. 8 million objects Collection size British Museum 22 July 2016 12 August 2017 live\nlocation: Great Russell Street, London, England\nleader_type: Chair\nleader: George Osborne\ndirector: Nicholas Cullinan\nvisitors: 5, 820, 860 (2023, British Museum is the most-visited UK attraction again BBC News 18 March 2024 18 March 2024 18 March 2024 live up 42% from 2022), * Ranked first nationally\npublictransit: london underground london crossrail Tottenham Court Roadlondon underground Goodge Street, Holborn, Russell Square\nembedded: Area in 94 galleries\n\nchild: yes\nlabel1: Area\ndata1: 807000 sqft m2 -2 on in 94 galleries\n\nThe British Museum is a public museum dedicated to human history, art and culture located in the Bloomsbury area of London. Its permanent collection of eight million works is the largest in the world. It documents the story of human culture from its beginnings to the present.Among the national museums in London, sculpture and decorative and applied art are in the Victoria and Albert Museum; the British Museum houses earlier art, non-Western art, prints and drawings. The National Gallery holds the national collection of Western European art to about 1900, while art of the 20th century on is at Tate Modern. Tate Britain hol", "text_characters": 146978, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0577/R004_request.json/messages/7/content`；SHA256：`f4b26a33bfe7779dd5ac00e97151dde7319fa36d22fbfa00f99b8a78cf138f37`。
+
+## S004｜重读关系链与国籍条件，推断新古典主义画家David
+
+重列关系链并反复解析题意，实质解释French国籍关系，识别Neoclassicism与Jacques-Louis David。
+
+结束状态：形成画家候选David，但文物仍未定位；原误连埃及战役保留。
+
+边界判断：从回查人物转入整题关系解释与画家推断，R4开头已展开链条分析。
+
+内部KEEP与反证：多次re-read与Actually是同一次连续题意解析，不按转折词分拆；最初的文物搜索意向尚未执行。
+
+### SPLIT原文
+
+````
+William Lonsdale was born in 1799. Let me search for more details about Captain William Lonsdale's birth year and the failed campaign to restore Prince William of Orange.
+
+<tool_call>
+<function=search>
+<parameter=query>
+Captain William Lonsdale born 1799 Den Helder Britain failed campaign restore Prince William of Orange
+</parameter>
+</function>
+</tool_call>
+→ 切点 [3, 0, 0] →
+The user is asking for a specific moral theme in an iconic painting. Let me break down the question step by step:
+
+1. **Percy Robertson's maternal grandfather**: Captain William Lonsdale (1799–1864)
+2. **Captain William Lonsdale was born**: In Den Helder during Britain's failed campaign to restore Prince William of Orange
+3. **The year of Captain William Lon
+````
+
+### R4 `/rounds/3/reasoning_content` [0,2397)
+
+SHA256：`f1adde522f38be5fdf4c817553778ec2ed24f6a1a8067b5128d322c5a13a42d6`；原字段SHA256：`3b2079f8aa67a4d8edd8f24a2edf8a69e4b3adde35ffcbe6cfc09ee3fc88024f`。
+
+````
+The user is asking for a specific moral theme in an iconic painting. Let me break down the question step by step:
+
+1. **Percy Robertson's maternal grandfather**: Captain William Lonsdale (1799–1864)
+2. **Captain William Lonsdale was born**: In Den Helder during Britain's failed campaign to restore Prince William of Orange
+3. **The year of Captain William Lonsdale's birth**: According to the search results, he was born in 1799
+4. **Britain's failed campaign to restore Prince William of Orange**: This was the French occupation of Egypt (1798-1801) - Napoleon's campaign
+5. **The same year Captain William Lonsdale was born**: 1799
+6. **A significant cultural artifact found in the same year (1799)**: I need to find what cultural artifact was discovered in 1799.
+
+Let me search for cultural artifacts discovered in 1799.
+
+Actually, let me re-read the question more carefully:
+
+"whose nationality is the same as the discoverer of a significant cultural artifact found in the same year Captain William Lonsdale, Percy Robertson's maternal grandfather, was born in Den Helder during Britain's failed campaign to restore Prince William of Orange?"
+
+So:
+- Captain William Lonsdale was born in 1799
+- A significant cultural artifact was found in 1799
+- The discoverer of this artifact had a certain nationality
+- The leading French artist of the artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries had the same nationality as this discoverer
+
+Wait, the question says "the leading French artist" - so the artist is French. But it says "whose nationality is the same as the discoverer". This is confusing.
+
+Let me re-read: "the iconic painting by the leading French artist of the artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries, whose nationality is the same as the discoverer of a significant cultural artifact found in the same year..."
+
+So the artist is described as "the leading French artist" - so the artist is French. But then it says "whose nationality is the same as the discoverer" - this seems contradictory unless the discoverer is also French.
+
+Let me think about this differently. The artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries is **Neoclassicism**. The leading French Neoclassical artist would be **Jacques-Louis David**.
+
+
+````
+
+## S005｜恢复1799文物搜索，普通改词后取得Rosetta Stone材料
+
+实际再次选择文物、发现者与国籍缺口，重复原查询；R5沿原计划删去cultural后搜索，得到Rosetta Stone于1799年被法国科学家发现。
+
+结束状态：文物与法国发现者群体信息返回。
+
+边界判断：画家题意解释收束，实际恢复先前中断的文物取证，新建连续实例。
+
+内部KEEP与反证：R5背景清单和画名枚举没有展开独立候选核验；没有改验证对象或证据入口，轻微关键词重试KEEP，两次真实Call完整保留。
+
+### SPLIT原文
+
+````
+says "whose nationality is the same as the discoverer" - this seems contradictory unless the discoverer is also French.
+
+Let me think about this differently. The artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries is **Neoclassicism**. The leading French Neoclassical artist would be **Jacques-Louis David**.
+
+
+→ 切点 [3, 0, 2397] →
+Now, I need to find:
+1. What significant cultural artifact was discovered in 1799?
+2. Who discovered it?
+3. What was the discoverer's nationality?
+
+Let me search for artifacts discovered in 1799.
+
+<tool_call>
+<function=search>
+<parameter=query>
+cultural artifact discovered 1799
+</parameter>
+</function>
+</tool_call>
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 4,
+    "batch_id": "B004",
+    "call_pointers": [
+      "/rounds/3/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/3"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  },
+  {
+    "round": 5,
+    "batch_id": "B005",
+    "call_pointers": [
+      "/rounds/4/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/4"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R4 `/rounds/3/reasoning_content` [2397,2713)
+
+SHA256：`88d536fcd2c685fee3c914c8c4985bb30a45a7259109ebbc6ea158e7df4263cd`；原字段SHA256：`3b2079f8aa67a4d8edd8f24a2edf8a69e4b3adde35ffcbe6cfc09ee3fc88024f`。
+
+````
+Now, I need to find:
+1. What significant cultural artifact was discovered in 1799?
+2. Who discovered it?
+3. What was the discoverer's nationality?
+
+Let me search for artifacts discovered in 1799.
+
+<tool_call>
+<function=search>
+<parameter=query>
+cultural artifact discovered 1799
+</parameter>
+</function>
+</tool_call>
+````
+
+### R4 Call `/rounds/3/tool_calls/0` → Return `/tool_events/3`
+
+````json
+{
+  "arguments": {
+    "query": "cultural artifact discovered 1799"
+  },
+  "id": "recovered_call_1",
+  "name": "search",
+  "parse_source": "reasoning_tag_recovery",
+  "raw": "<tool_call>\n<function=search>\n<parameter=query>\ncultural artifact discovered 1799\n</parameter>\n</function>\n</tool_call>"
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "cultural artifact discovered 1799"
+  },
+  "batch_id": "B004",
+  "batch_ordinal": 1,
+  "event_id": "E004",
+  "latency_seconds": 0.3927254439331591,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:5642348",
+        "score": 17.967839136469532,
+        "snippet": "Bilateral relations Egypt–France relations, also known as Egyptian–French relations, are the bilateral relations between Egypt and France. Relations between the two countries have spanned centuries, from the Middle Ages to the present day. Following the French occupation of Egypt (1798-1801), a strong French presence has remained in Egypt. Egyptian influence is also evident in France, in monuments such as the Luxor Obelisk in Paris. The relationship is also marked by conflicts like the Algerian War (1954-1962) and the Suez Crisis (1956). As of 2020, relations are strong and consist of shared cultural activities such as the France-Egypt Cultural Year (2019), tourism, diplomatic missions, trade, and a close political relationship. Institutions like the Institut d’Égypte, the French Institute in Egypt and the French University of Egypt (UFE) also aid in promoting cultural exchange between Egypt and France. History. Sixteenth century. France had signed a first treaty or \"Capitulation\" with the Mamluk Sultanate of Egypt in 1500, during the rules of Louis XII and Sultan Bayezid II, in which the Sultan of Egypt had made concessions to the French and the Catalans, and which would be later extended by Suleiman the Magnificent. French occupation of Egypt. Between 1798 and 1801 Napoleon Bonaparte commanded a French campaign to occupy Egypt. This was possibly due to the unstable political situation in Egypt. The objectives of the campaign were to cut off Britain's trade route to India an",
+        "text_characters": 2659,
+        "title": "Egypt–France relations"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2733284",
+        "score": 17.138099704369427,
+        "snippet": "There Broughton purchased a small schooner, which proved providential when on 16 May 1797 \"Providence\" was wrecked when she struck a coral reef at the northwestern tip of Yabiji, a reef group in the Miyako Islands north of Miyako-jima and south of Okinawa, flooded from the bottom, and sank. The wreck is described by the ship's astronomer John Crosley in a passage copied from the ship's log book. Broughton and his crew continued the mission in the schooner, exploring northeast Asia, and returned home in February 1799. After the wreck, Western nautical charts began to refer to Yabiji as \"Providence Reef.\" Wreck. In 2008, a diving survey conducted by the Okinawa Prefectural Buried Cultural Properties Center found the remains of a foreign ship, believed to those of \"Providence\", in Yabiji. Iron ingots believed to be cargo or belongings of \"Providence\"′s crew, ceramics from China and Europe, glass bottles, and glass beads have been discovered at the shipwreck site. References.",
+        "text_characters": 986,
+        "title": "HMS Providence (1791)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:9564119",
+        "score": 15.353712598247279,
+        "snippet": "Hunting Camp Creek, on the northeast, is part of the New River drainage. Both the New River and Tennessee River flow into the Ohio River. Cultural history. According to legend, Burke's Garden was discovered in about 1748 by James Burk while chasing a wounded elk. After eating some potatoes, he covered the peelings with dirt in order to hide his presence from Indians. Later explorers, finding a large patch of potatoes that had sprouted from the peelings, named the place as \"Burk's Garden\". The \"e\" on the end of the name was added at a later time. The area was settled by German Lutherans who were so attached to the area that they refused to sell their land to George Vanderbilt. Vanderbilt, looking for a place to build a home, moved to North Carolina where he built the largest private home in America, the Biltmore Estate. Tazewell, the largest town near the cluster and the seat of Tazewell County, has served as the financial center for the agricultural and coal mining interests in the region. Evidence of prosperity is given by the large homes built on several hills. The town was incorporated in 1866. The county was named for Henry Tazewell, who served from 1794 to 1799 as a United States senator. Other clusters. Other clusters of the Wilderness Society's \"Mountain Treasures\" in the Jefferson National Forest (north to south): References.",
+        "text_characters": 1355,
+        "title": "Garden Mountain Cluster"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8278975",
+        "score": 14.951230857152751,
+        "snippet": "Buddhist temple in South Korea Simwonsa (Korean: ; Hanja: ) is a Buddhist temple of the Jogye Order in Seongju-gun, North Gyeongsan, South Korea. History. Simwonsa is thought to have been established around the 8th century. The above poem written by Yi Sung-in describes it as an ancient temple, so it is thought to have existed long before the Goryeo era. One record says the temple was renovated by Ven. Jiwon during the reign of Joseon's King Jungjong (r. 1506-1544), but Simwonsa was reduced to ashes during the Japanese invasion (1592-1597). Beomugo (Temple Directory of Joseon), published in 1799, describes it as abandoned and so it seems likely to have already been in ruins in the 18th century. It was reconstructed in 2003 as part of Seongju County's project, “Restoration Plan of Cultural Tourism Resources in the Region of Mt. Gayasan National Park.” In preliminary excavation surveys, it was confirmed that Simwonsa had been a typical United Silla era mountain temple. It had three Buddha halls built above four-story terraced retaining walls and its land measured 80 meters (262 feet) north to south and 100 meters (328 feet) east to west. Among the artifacts discovered were a pedestal for a stone Buddha statue, a salutation stone, a nimbus from a Buddha statue, a seated stone Vairocana Buddha statue, and a stone that was part of the base of a stone pagoda. All of these collectively are designated Cultural Heritage Materials of North Gyeongsang Province No. 525. Sinwonsa temple i",
+        "text_characters": 2414,
+        "title": "Simwonsa (Seongju)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:10183172",
+        "score": 14.899181859242962,
+        "snippet": "Swiss painter Hieronymus Hess (15 April 1799, Basel – 8 June 1850, Basel) was a Swiss painter and artist from Basel. Early life and education. Hieronymus was on the 15 April 1799 as the youngest of four sons. His father was Johannes Hess, an immigrant to Basel from Maisprach, and his mother Margaretha Roth. His interest for drawing and painting was soon discovered, but as he grew up in a working-class family and a safe income was more important that art, he began as an apprentice at a house painters workshop. But the as Hess adorned the walls with caricatures he suggested Hess' transfer to the workshop of artist Maximilian Neustück where he collaborated with Neustück and his four sons. Besides he attended the drawing school until 1816. At that time he was influenced by Neustück and also the landscape paintings of Peter Birmann. In 1817 he entered into the services of Birmann, through which he got to know several local artists. He was an often seen visitor of the public art collection in the House zur Mücke whose guardian he often portrayed in his caricatures. In 1819 he undertook a journey to Italy. Having been in Florence and Naples he eventually settled in Rome in 1820. In Rome, where his stay was supported by the Association for the Good and the Charitable (GGG) and the Freemasons from Basel, he further developed his paintings style through the works of the landscape painter Josef Anton Koch and the Danish sculptor Bertel Thorvaldsen. By 1823 he returned to Basel for a yea",
+        "text_characters": 2256,
+        "title": "Hieronymus Hess"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:665201",
+        "score": 14.725544942188296,
+        "snippet": "Monastery in Switzerland Wurmsbach Abbey (Kloster Mariazell-Wurmsbach) is a monastery of Cistercian nuns located in Bollingen, a locality of Rapperswil-Jona, in the Canton of St. Gallen, Switzerland. It is located on the north shore of upper Lake Zürich. The house is a part of the Order of Cistercians of the Common Observance (O.Cist.). History. Count Rudolf of Rapperswil gave his castle of Wurmsbach together with a considerable area of land in 1259 for the foundation of a religious house and the abbey was established. It was initially a dependency of the Cistercian monks of Abbey of St. Urban in Wettingen. The abbey church was dedicated in 1281. Bollinger Sandstein was used for the construction of the abbey by dedicated quarries. Elisabeth von Rapperswil died probably on 10 April 1309 in the Rapperswil Castle and may have been buried in the \"Wurmsbach\" nunnery (\"†. Apr. IV. Idus: Elizabeth die Graffin, vnser Stiffterin. Excerpta ex Necromonast. Wurmspacensis\") on \"Obersee\" lake shore. The graves of her younger brother Vinzenz and her mother were excavated in the nunnery, but Elisabeth's grave so far was not discovered. During the first Battle of Villmergen in 1656 and again during the occupation of the region by the French Revolutionary Army in 1799, the nuns were obliged to flee. On both occasions the abbey was completely pillaged, with the consequence that there are few treasures left. As of 2011, there are 15 nuns in the community, led by Abbess Monika Thumm, O.Cist. Sigh",
+        "text_characters": 2046,
+        "title": "Wurmsbach Abbey"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:4628336",
+        "score": 14.53367070347603,
+        "snippet": "Executed by the state of Texas (C.S.A.) in 1863 Josefa \"Chipita\" Rodriguez (December 30, 1799 – November 13, 1863) was convicted of murder and hanged in San Patricio County, Texas, at the age of 63. More than a century later, on June 13, 1985, the Texas Legislature passed a resolution noting that Rodriguez did not receive a fair trial. She has been the subject of two operas, numerous books, newspaper articles, and magazine accounts. Trial and execution. Rodriguez was reportedly born December 30, 1799, in what was then the Spanish province of Nuevo Santander within the Viceroyalty of New Spain. She was a woman from the South Texas town of San Patricio who furnished travelers with meals and a cot on the porch of her lean-to on the Nueces River. She was accused of robbing and murdering a trader named John Savage with an axe. However, the $600 of gold stolen from him was found down river, where Savage's body was discovered in a burlap bag. She and Juan Silvera (who was possibly her illegitimate son) were indicted on circumstantial evidence and tried before 14th District Court judge Benjamin F. Neal at San Patricio. Although Rodriguez maintained her innocence, she refused to testify in her defense and remained silent throughout the trial, perhaps, some have speculated, to protect her guilty son. Although the jury recommended mercy, Neal ordered her executed. She was hanged on Friday, November 13, 1863. She was 63 at the time of her death. Her last words were quoted as being, \"No s",
+        "text_characters": 2441,
+        "title": "Chipita Rodriguez"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2236567",
+        "score": 14.392575497155978,
+        "snippet": "Levanidov was dismissed on 9 January 1797, when his corps was disbanded by Paul I, and he left Kharkiv. Paul I decreed that all regimental chapels were to be abolished, which caused Vedel to resign from the army in October 1797. He worked as a musician for the governor of the new province, Aleksey Teplov. Teplov, who as a young man had received an excellent musical education, treated Vedel as well as he could. The tsar's decrees caused the cultural and artistic life of Kharkiv to decline. The city's theatre was closed, and its choirs and orchestras were dissolved. Performances of Vedel's works in churches were banned, as the tsar had prohibited singing in churches of any form of music except during the Divine Liturgy. The loss of Levanidov's support caused Vedel to become deeply depressed. Despite the support he received from Teplov, Vedel decided to leave Kharkiv. He distributed his belongings (including all his manuscripts), and the end of the summer of 1798 he returned to live at his parents' house in Kyiv. There he wrote two choral concertos, \"God, the law-breaker of the rebellion against me\" (11 November 1798) and \"To the Lord we always mourn\". The concertos were performed in the Epiphany Cathedral and St Sophia Cathedral in the city. Life as a novice. Early in 1799, frustrated by the lack of opportunities to compose and teach and possibly suffering from a form of mental illness, Vedel enrolled as a novice monk at the Kyiv Pechersk Lavra. He was an active member of the c",
+        "text_characters": 2488,
+        "title": "Artemy Vedel"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2953692",
+        "score": 13.573233127054074,
+        "snippet": "Species of ape The Bornean orangutan (Pongo pygmaeus) is an orangutan species endemic to the island of Borneo. It belongs to the only genus of great apes native to Asia and is the largest of the three \"Pongo\" species. It has a coarse, reddish coat and up to long arms. It is sexually dimorphic, with females ranging in body length from and males from . The Bornean orangutan inhabits Borneo lowland rain forests and Borneo montane rain forests up to an elevation of . Its diet includes fruits, seeds, flowers, bird eggs, sap and vines. It is highly intelligent, displaying tool use and distinct cultural patterns. It is critically endangered, with deforestation, palm oil plantations, and hunting posing a serious threat to its survival. Taxonomy. The Bornean orangutan and the Sumatran orangutan diverged about 400,000 years ago, with a continued low level of gene flow between them since then. The two orangutan species were considered merely subspecies until 1996; they were elevated to species following sequencing of their mitochondrial DNA. The Bornean orangutan has three subspecies: There is some uncertainty about this, however. The population currently listed as \"P. p. wurmbii\" may be closer to the Sumatran orangutan (\"P. abelii\") than to the Bornean orangutan. If this is confirmed, \"P. abelii\" would be a subspecies of \"P. wurmbii\" (Tiedeman, 1808). In addition, the type locality of \"P. pygmaeus\" has not been established beyond doubt; it may be from the population currently listed as",
+        "text_characters": 2623,
+        "title": "Bornean orangutan"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:2989439",
+        "score": 12.52511852164228,
+        "snippet": "In 1268, King Conradin was imprisoned here before his trial and execution. Also imprisoned here were children of Manfred, King of Sicily after their father's defeat in the Battle of Benevento from Charles I of Anjou. In 1381, Queen Joanna I of Naples was also imprisoned there for a time after having been forced to surrender to her enemy Charles of Durazzo, the future Charles III of Naples, before her assassination. The castle's present form dates from the periof of the Aragonese domination (15th century) in Naples. However, later repairs occurred when the castle was bombarded both by French and Spanish artillery during the Italian Wars. In the short-lived Neapolitan Republic of 1799 the outbreak of clashes between the new regime's defenders and pro-Bourbon segments of the population led to the use of the artillery of the castle. After a long period of decay, the fortifications of the castle were repaired extensively in renovation project that started in 1975. Present. In the 19th century, a small settlement of fishermen had been established in the immediate eastern vicinity of the castle known as Borgo Marinaro, which today has been shaped in the marina and its restaurants. The castle's plan is rectangular, approximately 200 by 45 metres at its widest, and a high bastion overlooks the causeway that connects it to the shore. The causeway, measuring a little more than 100 metres of length, is a popular location for newlyweds to have their wedding photos taken. The castle's buil",
+        "text_characters": 2335,
+        "title": "Castel dell'Ovo"
+      }
+    ]
+  },
+  "tool_call_id": "recovered_call_1"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：5；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:5642348", "title": "Egypt–France relations", "score": 17.967839136469532, "snippet": "Bilateral relations Egypt–France relations, also known as Egyptian–French relations, are the bilateral relations between Egypt and France. Relations between the two countries have spanned centuries, from the Middle Ages to the present day. Following the French occupation of Egypt (1798-1801), a strong French presence has remained in Egypt. Egyptian influence is also evident in France, in monuments such as the Luxor Obelisk in Paris. The relationship is also marked by conflicts like the Algerian War (1954-1962) and the Suez Crisis (1956). As of 2020, relations are strong and consist of shared cultural activities such as the France-Egypt Cultural Year (2019), tourism, diplomatic missions, trade, and a close political relationship. Institutions like the Institut d’Égypte, the French Institute in Egypt and the French University of Egypt (UFE) also aid in promoting cultural exchange between Egypt and France. History. Sixteenth century. France had signed a first treaty or \"Capitulation\" with the Mamluk Sultanate of Egypt in 1500, during the rules of Louis XII and Sultan Bayezid II, in which the Sultan of Egypt had made concessions to the French and the Catalans, and which would be later extended by Suleiman the Magnificent. French occupation of Egypt. Between 1798 and 1801 Napoleon Bonaparte commanded a French campaign to occupy Egypt. This was possibly due to the unstable political situation in Egypt. The objectives of the campaign were to cut off Britain's trade route to India an", "text_characters": 2659, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2733284", "title": "HMS Providence (1791)", "score": 17.138099704369427, "snippet": "There Broughton purchased a small schooner, which proved providential when on 16 May 1797 \"Providence\" was wrecked when she struck a coral reef at the northwestern tip of Yabiji, a reef group in the Miyako Islands north of Miyako-jima and south of Okinawa, flooded from the bottom, and sank. The wreck is described by the ship's astronomer John Crosley in a passage copied from the ship's log book. Broughton and his crew continued the mission in the schooner, exploring northeast Asia, and returned home in February 1799. After the wreck, Western nautical charts began to refer to Yabiji as \"Providence Reef.\" Wreck. In 2008, a diving survey conducted by the Okinawa Prefectural Buried Cultural Properties Center found the remains of a foreign ship, believed to those of \"Providence\", in Yabiji. Iron ingots believed to be cargo or belongings of \"Providence\"′s crew, ceramics from China and Europe, glass bottles, and glass beads have been discovered at the shipwreck site. References.", "text_characters": 986, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:9564119", "title": "Garden Mountain Cluster", "score": 15.353712598247279, "snippet": "Hunting Camp Creek, on the northeast, is part of the New River drainage. Both the New River and Tennessee River flow into the Ohio River. Cultural history. According to legend, Burke's Garden was discovered in about 1748 by James Burk while chasing a wounded elk. After eating some potatoes, he covered the peelings with dirt in order to hide his presence from Indians. Later explorers, finding a large patch of potatoes that had sprouted from the peelings, named the place as \"Burk's Garden\". The \"e\" on the end of the name was added at a later time. The area was settled by German Lutherans who were so attached to the area that they refused to sell their land to George Vanderbilt. Vanderbilt, looking for a place to build a home, moved to North Carolina where he built the largest private home in America, the Biltmore Estate. Tazewell, the largest town near the cluster and the seat of Tazewell County, has served as the financial center for the agricultural and coal mining interests in the region. Evidence of prosperity is given by the large homes built on several hills. The town was incorporated in 1866. The county was named for Henry Tazewell, who served from 1794 to 1799 as a United States senator. Other clusters. Other clusters of the Wilderness Society's \"Mountain Treasures\" in the Jefferson National Forest (north to south): References.", "text_characters": 1355, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8278975", "title": "Simwonsa (Seongju)", "score": 14.951230857152751, "snippet": "Buddhist temple in South Korea Simwonsa (Korean: ; Hanja: ) is a Buddhist temple of the Jogye Order in Seongju-gun, North Gyeongsan, South Korea. History. Simwonsa is thought to have been established around the 8th century. The above poem written by Yi Sung-in describes it as an ancient temple, so it is thought to have existed long before the Goryeo era. One record says the temple was renovated by Ven. Jiwon during the reign of Joseon's King Jungjong (r. 1506-1544), but Simwonsa was reduced to ashes during the Japanese invasion (1592-1597). Beomugo (Temple Directory of Joseon), published in 1799, describes it as abandoned and so it seems likely to have already been in ruins in the 18th century. It was reconstructed in 2003 as part of Seongju County's project, “Restoration Plan of Cultural Tourism Resources in the Region of Mt. Gayasan National Park.” In preliminary excavation surveys, it was confirmed that Simwonsa had been a typical United Silla era mountain temple. It had three Buddha halls built above four-story terraced retaining walls and its land measured 80 meters (262 feet) north to south and 100 meters (328 feet) east to west. Among the artifacts discovered were a pedestal for a stone Buddha statue, a salutation stone, a nimbus from a Buddha statue, a seated stone Vairocana Buddha statue, and a stone that was part of the base of a stone pagoda. All of these collectively are designated Cultural Heritage Materials of North Gyeongsang Province No. 525. Sinwonsa temple i", "text_characters": 2414, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:10183172", "title": "Hieronymus Hess", "score": 14.899181859242962, "snippet": "Swiss painter Hieronymus Hess (15 April 1799, Basel – 8 June 1850, Basel) was a Swiss painter and artist from Basel. Early life and education. Hieronymus was on the 15 April 1799 as the youngest of four sons. His father was Johannes Hess, an immigrant to Basel from Maisprach, and his mother Margaretha Roth. His interest for drawing and painting was soon discovered, but as he grew up in a working-class family and a safe income was more important that art, he began as an apprentice at a house painters workshop. But the as Hess adorned the walls with caricatures he suggested Hess' transfer to the workshop of artist Maximilian Neustück where he collaborated with Neustück and his four sons. Besides he attended the drawing school until 1816. At that time he was influenced by Neustück and also the landscape paintings of Peter Birmann. In 1817 he entered into the services of Birmann, through which he got to know several local artists. He was an often seen visitor of the public art collection in the House zur Mücke whose guardian he often portrayed in his caricatures. In 1819 he undertook a journey to Italy. Having been in Florence and Naples he eventually settled in Rome in 1820. In Rome, where his stay was supported by the Association for the Good and the Charitable (GGG) and the Freemasons from Basel, he further developed his paintings style through the works of the landscape painter Josef Anton Koch and the Danish sculptor Bertel Thorvaldsen. By 1823 he returned to Basel for a yea", "text_characters": 2256, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:665201", "title": "Wurmsbach Abbey", "score": 14.725544942188296, "snippet": "Monastery in Switzerland Wurmsbach Abbey (Kloster Mariazell-Wurmsbach) is a monastery of Cistercian nuns located in Bollingen, a locality of Rapperswil-Jona, in the Canton of St. Gallen, Switzerland. It is located on the north shore of upper Lake Zürich. The house is a part of the Order of Cistercians of the Common Observance (O.Cist.). History. Count Rudolf of Rapperswil gave his castle of Wurmsbach together with a considerable area of land in 1259 for the foundation of a religious house and the abbey was established. It was initially a dependency of the Cistercian monks of Abbey of St. Urban in Wettingen. The abbey church was dedicated in 1281. Bollinger Sandstein was used for the construction of the abbey by dedicated quarries. Elisabeth von Rapperswil died probably on 10 April 1309 in the Rapperswil Castle and may have been buried in the \"Wurmsbach\" nunnery (\"†. Apr. IV. Idus: Elizabeth die Graffin, vnser Stiffterin. Excerpta ex Necromonast. Wurmspacensis\") on \"Obersee\" lake shore. The graves of her younger brother Vinzenz and her mother were excavated in the nunnery, but Elisabeth's grave so far was not discovered. During the first Battle of Villmergen in 1656 and again during the occupation of the region by the French Revolutionary Army in 1799, the nuns were obliged to flee. On both occasions the abbey was completely pillaged, with the consequence that there are few treasures left. As of 2011, there are 15 nuns in the community, led by Abbess Monika Thumm, O.Cist. Sigh", "text_characters": 2046, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:4628336", "title": "Chipita Rodriguez", "score": 14.53367070347603, "snippet": "Executed by the state of Texas (C.S.A.) in 1863 Josefa \"Chipita\" Rodriguez (December 30, 1799 – November 13, 1863) was convicted of murder and hanged in San Patricio County, Texas, at the age of 63. More than a century later, on June 13, 1985, the Texas Legislature passed a resolution noting that Rodriguez did not receive a fair trial. She has been the subject of two operas, numerous books, newspaper articles, and magazine accounts. Trial and execution. Rodriguez was reportedly born December 30, 1799, in what was then the Spanish province of Nuevo Santander within the Viceroyalty of New Spain. She was a woman from the South Texas town of San Patricio who furnished travelers with meals and a cot on the porch of her lean-to on the Nueces River. She was accused of robbing and murdering a trader named John Savage with an axe. However, the $600 of gold stolen from him was found down river, where Savage's body was discovered in a burlap bag. She and Juan Silvera (who was possibly her illegitimate son) were indicted on circumstantial evidence and tried before 14th District Court judge Benjamin F. Neal at San Patricio. Although Rodriguez maintained her innocence, she refused to testify in her defense and remained silent throughout the trial, perhaps, some have speculated, to protect her guilty son. Although the jury recommended mercy, Neal ordered her executed. She was hanged on Friday, November 13, 1863. She was 63 at the time of her death. Her last words were quoted as being, \"No s", "text_characters": 2441, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2236567", "title": "Artemy Vedel", "score": 14.392575497155978, "snippet": "Levanidov was dismissed on 9 January 1797, when his corps was disbanded by Paul I, and he left Kharkiv. Paul I decreed that all regimental chapels were to be abolished, which caused Vedel to resign from the army in October 1797. He worked as a musician for the governor of the new province, Aleksey Teplov. Teplov, who as a young man had received an excellent musical education, treated Vedel as well as he could. The tsar's decrees caused the cultural and artistic life of Kharkiv to decline. The city's theatre was closed, and its choirs and orchestras were dissolved. Performances of Vedel's works in churches were banned, as the tsar had prohibited singing in churches of any form of music except during the Divine Liturgy. The loss of Levanidov's support caused Vedel to become deeply depressed. Despite the support he received from Teplov, Vedel decided to leave Kharkiv. He distributed his belongings (including all his manuscripts), and the end of the summer of 1798 he returned to live at his parents' house in Kyiv. There he wrote two choral concertos, \"God, the law-breaker of the rebellion against me\" (11 November 1798) and \"To the Lord we always mourn\". The concertos were performed in the Epiphany Cathedral and St Sophia Cathedral in the city. Life as a novice. Early in 1799, frustrated by the lack of opportunities to compose and teach and possibly suffering from a form of mental illness, Vedel enrolled as a novice monk at the Kyiv Pechersk Lavra. He was an active member of the c", "text_characters": 2488, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2953692", "title": "Bornean orangutan", "score": 13.573233127054074, "snippet": "Species of ape The Bornean orangutan (Pongo pygmaeus) is an orangutan species endemic to the island of Borneo. It belongs to the only genus of great apes native to Asia and is the largest of the three \"Pongo\" species. It has a coarse, reddish coat and up to long arms. It is sexually dimorphic, with females ranging in body length from and males from . The Bornean orangutan inhabits Borneo lowland rain forests and Borneo montane rain forests up to an elevation of . Its diet includes fruits, seeds, flowers, bird eggs, sap and vines. It is highly intelligent, displaying tool use and distinct cultural patterns. It is critically endangered, with deforestation, palm oil plantations, and hunting posing a serious threat to its survival. Taxonomy. The Bornean orangutan and the Sumatran orangutan diverged about 400,000 years ago, with a continued low level of gene flow between them since then. The two orangutan species were considered merely subspecies until 1996; they were elevated to species following sequencing of their mitochondrial DNA. The Bornean orangutan has three subspecies: There is some uncertainty about this, however. The population currently listed as \"P. p. wurmbii\" may be closer to the Sumatran orangutan (\"P. abelii\") than to the Bornean orangutan. If this is confirmed, \"P. abelii\" would be a subspecies of \"P. wurmbii\" (Tiedeman, 1808). In addition, the type locality of \"P. pygmaeus\" has not been established beyond doubt; it may be from the population currently listed as", "text_characters": 2623, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:2989439", "title": "Castel dell'Ovo", "score": 12.52511852164228, "snippet": "In 1268, King Conradin was imprisoned here before his trial and execution. Also imprisoned here were children of Manfred, King of Sicily after their father's defeat in the Battle of Benevento from Charles I of Anjou. In 1381, Queen Joanna I of Naples was also imprisoned there for a time after having been forced to surrender to her enemy Charles of Durazzo, the future Charles III of Naples, before her assassination. The castle's present form dates from the periof of the Aragonese domination (15th century) in Naples. However, later repairs occurred when the castle was bombarded both by French and Spanish artillery during the Italian Wars. In the short-lived Neapolitan Republic of 1799 the outbreak of clashes between the new regime's defenders and pro-Bourbon segments of the population led to the use of the artillery of the castle. After a long period of decay, the fortifications of the castle were repaired extensively in renovation project that started in 1975. Present. In the 19th century, a small settlement of fishermen had been established in the immediate eastern vicinity of the castle known as Borgo Marinaro, which today has been shaped in the marina and its restaurants. The castle's plan is rectangular, approximately 200 by 45 metres at its widest, and a high bastion overlooks the causeway that connects it to the shore. The causeway, measuring a little more than 100 metres of length, is a popular location for newlyweds to have their wedding photos taken. The castle's buil", "text_characters": 2335, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0577/R005_request.json/messages/9/content`；SHA256：`d58681589b7cddafad8becae548139b61d80ab4a2cc4c5f5fdecc77a33b7261e`。
+
+### R5 `/rounds/4/reasoning_content` [0,1576)
+
+SHA256：`e1279cc2e435c8c6d87ba00410239919e3507ca3ac0658ae87d7a78c21835242`；原字段SHA256：`e1279cc2e435c8c6d87ba00410239919e3507ca3ac0658ae87d7a78c21835242`。
+
+````
+The user is asking for a specific moral theme in an iconic painting. Let me break down the question step by step:
+
+1. **Percy Robertson's maternal grandfather**: Captain William Lonsdale (1799–1864)
+2. **Captain William Lonsdale was born in Den Helder during Britain's failed campaign to restore Prince William of Orange**: This was in 1799
+3. **The year Captain William Lonsdale was born (1799)**: This is the same year a significant cultural artifact was discovered
+4. **The discoverer of that artifact has the same nationality as the leading French artist**: So I need to find what artifact was discovered in 1799 and who discovered it
+5. **The artistic movement that emphasized order and classical forms in the late 18th and early 19th centuries**: This is Neoclassicism
+6. **The leading French artist of Neoclassicism**: This would be Jacques-Louis David
+7. **His iconic painting and its moral theme**: David's most famous painting is "The Oath of the Horatii" or "The Death of Marat" or "The Lictors Bring to Brutus the Bodies of His Sons"
+
+Let me search for what artifact was discovered in 1799.
+
+Actually, looking at the search results, I see references to 1799 in various contexts. Let me search more specifically for artifacts discovered in 1799.
+
+Wait, I need to reconsider. The question says "the same year Captain William Lonsdale... was born in Den Helder". According to the document, William Lonsdale was born on "2 or 21 October 1799". So the year is 1799.
+
+Now I need to find what significant cultural artifact was discovered in 1799. Let me search for that.
+
+````
+
+### R5 Call `/rounds/4/tool_calls/0` → Return `/tool_events/4`
+
+````json
+{
+  "arguments": {
+    "query": "artifact discovered 1799"
+  },
+  "id": "chatcmpl-tool-818ea2687acf8477",
+  "name": "search",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"query\": \"artifact discovered 1799\"}",
+      "name": "search"
+    },
+    "id": "chatcmpl-tool-818ea2687acf8477",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "query": "artifact discovered 1799"
+  },
+  "batch_id": "B005",
+  "batch_ordinal": 1,
+  "event_id": "E005",
+  "latency_seconds": 0.5339312800206244,
+  "name": "search",
+  "observation": {
+    "results": [
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:3288846",
+        "score": 17.227827163923166,
+        "snippet": "Of the warships captured in the harbour, the French frigates \"Égyptienne\" (48) and \"Régénérée\" (40), and the ex-Venetian frigate \"Léoben\" (26) went to Britain, while the French frigate \"Justice\" (44), the ex-Venetian hospital ship \"Causse\" (64) and frigate \"Mantoue\" (26), and the ex-Turkish corvettes \"Halil Bey\", \"Momgo Balerie\" and \"Salâbetnümâ\" went to the Turks, under Capitan Pacha (sic). Historians relate that the French garrison, feeling abandoned by an uncaring Republic, gradually abandoned the high standards of conduct and service characteristic of the French Revolutionary Army. Many soldiers refused to renew their oath to the Republic, or did so half-heartedly. In his memoirs, the surgeon-in-chief of Napoleon's Grand Army, Baron Dominique-Jean Larrey, remembers how the consumption of the meat of young Arab horses helped the French to curb an epidemic of scurvy. He would so start the 19th-century tradition of horse meat consumption in France. The Rosetta Stone. After the surrender, a dispute arose over the fate of French archaeological and scientific discoveries in Egypt. One of the key artifacts was the Rosetta Stone which had been discovered in mid-July 1799 by French scientists of the Institut d'Égypte. Menou refused to hand them over, claiming they belonged to the institute. How exactly the stone came into British hands is disputed. Colonel Tomkyns Hilgrove Turner, who escorted the stone to Britain, claimed later that he had personally seized it from Menou and carr",
+        "text_characters": 1940,
+        "title": "Siege of Alexandria (1801)"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:8039947",
+        "score": 15.54739470529708,
+        "snippet": "Wildlife park in California Tapo Canyon (Ventureño: Ta’apu, pronounced \\tap’ō\\) is a series of canyons and a wildlife corridor in the western Santa Susana Mountains, north of Simi Valley in Ventura County, Southern California. It's the main filming location of the well-known TV show Little House on the Prairie in the 1970s. Tapo Canyon Regional Park is an open-space park and camping ground administered by the Santa Monica Mountains Conservancy. It is situated in the midst of the many canyons and rolling hills found in this particular region of northern Simi Valley. Today, the park offers recreational activities as mountain biking, horseback-riding, hiking, as well as campgrounds, picnic areas, and sixteen RV camp hook ups. The elevation here goes up as far as 2300 feet, which offers great panoramic views along much of its hiking trails up on the hills. It is a 3.4 mile hike south of the Santa Clara River in Piru, CA, and about 4 miles west of Pico Canyon in Santa Clarita, Los Angeles County. History. Geologists believe that during the Miocene Epoch 7-5 million years ago, the Pacific Ocean extended far inland and covered much of the Simi Valley, leaving only tips of various mountains visible. Among the evidence for this has been the deposit of 1500–3000 feet of marine sediment in northern Simi Valley, in approximate alignment with what is now Tapo Canyon. Tapo Canyon, which name derives from the Chumashan-Ventureño \"Ta’apu\", was the largest amongst the three Chumash villages i",
+        "text_characters": 2377,
+        "title": "Tapo Canyon"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "wiki25:336796",
+        "score": 14.95003808762975,
+        "snippet": "City in Mississippi, US Pass Christian (), nicknamed The Pass, is a city in Harrison County, Mississippi, United States. It is part of the Gulfport–Biloxi Metropolitan Statistical Area. The population was 6,307 at the 2019 census. History. Pre-European history. The exact date when Native Americans first arrived in the Gulf Coast area is not known, but artifacts have been found suggesting that humans have inhabited the area for many thousands of years. Indian mounds can be found throughout the Gulf coast region of southern Mississippi, but many have been destroyed by artifact hunters, farmers, developers, and flooding. A 1768 English map shows one large mound existed on the shore near to Market Street. Others existed at Bayou Portage and the Shelly Plantation on the shore north of the Bay of St. Louis near DeLisle. The mounds and middens in the area containing arrowheads, pottery, and human skeletons were pilfered by amateur archaeologists over the years and many of the items recovered are in private collections. At the border of Pass Christian and Long Beach near where White Harbor Road meets U.S. Route 90 there once existed an Indian village, whose inhabitants were referred to by locals as \"The Pitcher Point Indians\". The approximate location of the Indian Village is just a few hundred yards east of White Harbor Road. There are no ruins at this location but the beach in this area has produced many arrowheads and pottery shards over the years. French explorers. Pass Christian",
+        "text_characters": 2593,
+        "title": "Pass Christian, Mississippi"
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:57733",
+        "score": 6.025699841843103,
+        "snippet": "---\ntitle: Documentaries Exploring the Mysteries of Ancient Artifacts\nauthor: Ijaz Malik\ndate: 2000-01-01\n---\nDocumentaries Exploring the Mysteries of Ancient Artifacts\n\nUnveiling Lost Histories\n\nExploring the mysteries of ancient artifacts through documentaries offers a captivating glimpse into the past. These films unravel the secrets behind the remarkable creations of past civilizations, giving viewers an intimate look at historical relics and the enigmatic societies that crafted them. Enthusiasts and scholars alike can appreciate this journey into human history.\n\nWhat makes these documentaries invaluable is their ability to bring the ancient world to life, bridging the gap between modern viewers and the distant past. They offer insights into not just the artifacts themselves, but also the cultural practices, beliefs, and ingenuity of our ancestors. This exploration fosters a deeper appreciation and understanding of human achievement across millennia.\n\n1) The Mystery of Göbekli Tepe\n\nGöbekli Tepe, located in southeastern Turkey, is one of the most significant archaeological discoveries of the 20th century. Built approximately 11,000 years ago, this site predates Stonehenge by about 6,000 years.\n\nThe site consists of massive stone pillars arranged in circular patterns, some of which feature intricate carvings of animals and abstract symbols.\n\nDespite its age, the purpose of Göbekli Tepe remains unclear. Some scholars suggest it was a ceremonial or religious center, while ot",
+        "text_characters": 20123,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:9946",
+        "score": 3.8877675963482474,
+        "snippet": "---\ntitle: THE NATION'S FIRST MEDICAL SCHOOL TURNS 250\ndate: 2015-04-15\n---\nTHE NATION'S FIRST MEDICAL SCHOOL TURNS 250\n\nChronicles the institution's fascinating history: from its beginning as a few lectures given in borrowed space to the extensive curriculum, research, and multidisciplinary clinical practice within today's University of Pennsylvania Health System. Its colorful prose and images – including many archival documents, paintings and photographs never previously compiled – track the canon of therapies offered to patients, from the 18th century's handful of primitive and sometimes harmful procedures, such as bloodletting, to today's robotic surgery and gene therapy.\n\nPennsylvania Hospital is founded\n\n1751\n\nPennsylvania Hospital, Eighth and Pine streets. William Birch print, c. 1800. Founded in 1751 as the first hospital in the Colonies, it also became the first place to provide clinical instruction to the first medical students in what would become the United States. As of 1767, requirements for a Penn medical degree included one year attending the practice of the hospital. Students purchased tickets for hospital privileges, which included use of the library. In 1997, Penn's long-standing relationship with Pennsylvania Hospital was formalized with the latter's merger into the University of Pennsylvania Health System. Courtesy Pennsylvania Hospital Historic Collections, Philadelphia\n\nWilliam Shippen Jr.'s Anatomical Drawings\n\n1762\n\nFor his anatomy lectures, William S",
+        "text_characters": 32386,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:20241",
+        "score": 3.450621410991748,
+        "snippet": "---\ntitle: Art History 101 – Part 1: Prehistoric Era – 399 CE\ndate: 2025-02-12\n---\nThe following is Part 1 (Prehistoric Era – 399 CE) of my attempt to trace the history of human artistic endeavors by finding the best, most significant, and most highly-regarded works of visual art (primarily painting and sculpture) from all times and places and presenting them in chronological order. The seven Art History 101 meta-lists contain every work of art that was on at least three of the more than 34 'Best Works of Art' lists that I collected from the Internet and books. Although most of the resources available to me focused almost exclusively on the art of Western Civilization, the list does identify some of the most significant artworks produced by the artists of Asia, Africa and South America. Because I believe visuals are essential for discussing the visual arts, I have included images of the art works. (I have tried to use public domain images where possible. In other cases, I believe this is a fair non-commercial use for educational purposes. If there are copyright concerns, please let me know.) Each entry includes the date of the work, the artist's name, the name (or names) of the work, the style or culture associated with the work, and the location where the work was produced. In addition, I have included a brief essay with description (including measurements), artistic materials used, background and interpretation. To see the rest of the Art History 101 series, click on the li",
+        "text_characters": 197583,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:23865",
+        "score": 3.117562796587234,
+        "snippet": "---\ntitle: History of the Ontology of Art\ndate: 2024-01-01\n---\nHistory of the Ontology of Art\n\nQuestions central to the ontology of art include the following: what sort of things are works of art? Do all works of art belong to a single category of entities? Do they have multiple instances? Do works have parts or constituents, and if so, what is their relation to the work as a whole? How are works of art individuated? Are they created or discovered? Can they be destroyed?\n\nExplicit and extensive treatments of these topics written prior to the 19th century have yet to be found. This does not mean, however, that there is nothing relevant to these ontological questions in early writings on beauty, the arts, and related matters. For example, Aristotle's discussion of the functions and elements of tragedy (see Gerald Else 1957) can be mined for ideas about the nature of dramatic and literary works more generally. And what can be made of the hint, in Metaphysics Eta, 6, that the unity of The Iliad is a matter of a set of words made \"one\" by being connected together?\n\nRather than attempting to make conjectures about such difficult exegetical topics, this entry focuses primarily on contributions made by authors who explicitly address themselves at length to some of the aforementioned questions pertaining directly to the ontology of works of art, either in general or with reference to such major fine-art forms as music, literature, painting, architecture, and sculpture.\n\nOne further no",
+        "text_characters": 120114,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:64114",
+        "score": 3.05791052491788,
+        "snippet": "---\ntitle: Exiting nps.gov\ndate: 2023-06-28\n---\nLast updated: June 28, 2023\n\nArticle\n\nNew Philadelphia: A Multiracial Town on the Illinois Frontier (Teaching with Historic Places)\n\nNew Philadelphia looked like a typical west-central Illinois pioneer town to travelers cresting the hill overlooking the place in the mid-1800s. Imagine villagers filling baskets with a bounty of apples, corn, and wheat, while chickens clucked and pigs rooted in nearby pens. Picture farmers hitching mules and oxen to carts filled with vegetables, fruit, and grain to sell at markets. Listen for loud clanging from the blacksmith's shop as hammers shaped hot metal into shoes for mules and horses. As in other frontier towns, smoke from cooking fires swirled from the dwellings that dotted small plots of land.\n\nBut New Philadelphia was not a typical pioneer town. It was the first town platted and registered by an African American before the American Civil War. A formerly enslaved man called \"Free Frank\" McWorter founded New Philadelphia in 1836 as a money-making venture to buy his family out of slavery. Census records and other historical documents tell us that New Philadelphia was a place where black and white villagers lived side by side, but we know that the town's dead lie buried in cemeteries separated by color.\n\nBy 1885, many villagers had moved away in search of jobs and better economic opportunities. Plows buried any material remains left behind, and grazing livestock and crops covered most of th",
+        "text_characters": 49890,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:18258",
+        "score": 2.7331254141716044,
+        "snippet": "---\ntitle: Introduction to Art History I\nauthor: Cerisemyers\ndate: 2021-01-01\n---\n6\n\nDr. Amy Calvert; British Museum; Dr. Naraelle Hohensee; Dr. Beth Harris; Dr. Steven Zucker; Lumen Learning; and Dr. Elizabeth Cummins\n\nIn this chapter\n\nAncient Egypt (Introduction)\n\nPre-Dynastic & Early Dynastic Periods\n\nOld Kingdom\n\n- Great Pyramids of Giza\n\n- Pyramid of Khafre and the Great Sphinx\n\n- King Menkaure (Mycerinus) and Queen\n\n- Seated Scribe\n\nMiddle Kingdom\n\nNew Kingdom\n\n- Temple of Amun-Re and the hypostyle hall at Karnak\n\n- Valley of the Kings\n\n- Mortuary Temple of Hatshepsut\n\n- Paintings from the tomb chapel of Nebamun\n\nAmarna\n\n- House altar depicting Akhenaten, Nefertiti, and three of their daughters\n\n- Portrait head of Queen Tiye\n\n- Model bust of Nefertiti: a conversation\n\nNew Kingdom, resumed\n\nAncient Egypt, an introduction\n\nEgypt's impact on later cultures was immense. You could say that Egypt provided the building blocks for Greek and Roman culture, and, through them, influenced all of the Western tradition. Today, Egyptian imagery, concepts, and perspectives are found everywhere; you will find them in architectural forms, on money, and in our day to day lives. Many cosmetic surgeons, for example, use the silhouette of Queen Nefertiti (whose name means \"the beautiful one has come\") in their advertisements.\n\nAncient Egyptian civilization lasted for more than 3000 years and showed an incredible amount of continuity. That is more than 15 times the age of the United States, a",
+        "text_characters": 101001,
+        "title": ""
+      },
+      {
+        "corpus_id": "wiki25_shared_global_context",
+        "doc_id": "browsecomp_plus:99557",
+        "score": 1.5397597288994493,
+        "snippet": "---\ntitle: Comparing US City Street Orientations\nauthor: Post author this is a placeholder By gboeing\ndate: 2018-07-10\n---\nThis post is adapted from this research paper that you can read/cite for more info. It analyzes and visualizes 100 cities around the world.\n\n\"We say the cows laid out Boston. Well, there are worse surveyors.\" –Ralph Waldo Emerson. In 1960, one hundred years after Emerson's quote, Kevin Lynch published The Image of the City, his treatise on the legibility of urban patterns. How coherent is a city's spatial organization? How do these patterns help or hinder urban navigation? I recently wrote about visualizing street orientations with Python and OSMnx. That is, how is a city's street network oriented in terms of the streets' compass bearings? How well does it adhere to a straightforward north-south-east-west layout? I wanted to revisit this by comparing 25 major US cities' orientations (EDIT: by popular request, see also this follow-up comparing world cities):\n\nEach of the cities above is represented by a polar histogram (aka rose diagram) depicting how its streets orient. Each bar's direction represents the compass bearings of the streets (in that histogram bin) and its length represents the relative frequency of streets with those bearings. For example, in Manhattan we can clearly see the angled, primarily orthogonal street grid in its polar histogram:\n\nSimilar orthogonal grids can be seen in the histograms of Chicago, Denver, Tampa, etc. Detroit is an int",
+        "text_characters": 57680,
+        "title": ""
+      }
+    ]
+  },
+  "tool_call_id": "chatcmpl-tool-818ea2687acf8477"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：6；证据状态：ACTUAL_REQUEST_VERIFIED。
+
+实际Actor输入中的完整Return字符串：
+
+````
+{"results": [{"doc_id": "wiki25:3288846", "title": "Siege of Alexandria (1801)", "score": 17.227827163923166, "snippet": "Of the warships captured in the harbour, the French frigates \"Égyptienne\" (48) and \"Régénérée\" (40), and the ex-Venetian frigate \"Léoben\" (26) went to Britain, while the French frigate \"Justice\" (44), the ex-Venetian hospital ship \"Causse\" (64) and frigate \"Mantoue\" (26), and the ex-Turkish corvettes \"Halil Bey\", \"Momgo Balerie\" and \"Salâbetnümâ\" went to the Turks, under Capitan Pacha (sic). Historians relate that the French garrison, feeling abandoned by an uncaring Republic, gradually abandoned the high standards of conduct and service characteristic of the French Revolutionary Army. Many soldiers refused to renew their oath to the Republic, or did so half-heartedly. In his memoirs, the surgeon-in-chief of Napoleon's Grand Army, Baron Dominique-Jean Larrey, remembers how the consumption of the meat of young Arab horses helped the French to curb an epidemic of scurvy. He would so start the 19th-century tradition of horse meat consumption in France. The Rosetta Stone. After the surrender, a dispute arose over the fate of French archaeological and scientific discoveries in Egypt. One of the key artifacts was the Rosetta Stone which had been discovered in mid-July 1799 by French scientists of the Institut d'Égypte. Menou refused to hand them over, claiming they belonged to the institute. How exactly the stone came into British hands is disputed. Colonel Tomkyns Hilgrove Turner, who escorted the stone to Britain, claimed later that he had personally seized it from Menou and carr", "text_characters": 1940, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:8039947", "title": "Tapo Canyon", "score": 15.54739470529708, "snippet": "Wildlife park in California Tapo Canyon (Ventureño: Ta’apu, pronounced \\tap’ō\\) is a series of canyons and a wildlife corridor in the western Santa Susana Mountains, north of Simi Valley in Ventura County, Southern California. It's the main filming location of the well-known TV show Little House on the Prairie in the 1970s. Tapo Canyon Regional Park is an open-space park and camping ground administered by the Santa Monica Mountains Conservancy. It is situated in the midst of the many canyons and rolling hills found in this particular region of northern Simi Valley. Today, the park offers recreational activities as mountain biking, horseback-riding, hiking, as well as campgrounds, picnic areas, and sixteen RV camp hook ups. The elevation here goes up as far as 2300 feet, which offers great panoramic views along much of its hiking trails up on the hills. It is a 3.4 mile hike south of the Santa Clara River in Piru, CA, and about 4 miles west of Pico Canyon in Santa Clarita, Los Angeles County. History. Geologists believe that during the Miocene Epoch 7-5 million years ago, the Pacific Ocean extended far inland and covered much of the Simi Valley, leaving only tips of various mountains visible. Among the evidence for this has been the deposit of 1500–3000 feet of marine sediment in northern Simi Valley, in approximate alignment with what is now Tapo Canyon. Tapo Canyon, which name derives from the Chumashan-Ventureño \"Ta’apu\", was the largest amongst the three Chumash villages i", "text_characters": 2377, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "wiki25:336796", "title": "Pass Christian, Mississippi", "score": 14.95003808762975, "snippet": "City in Mississippi, US Pass Christian (), nicknamed The Pass, is a city in Harrison County, Mississippi, United States. It is part of the Gulfport–Biloxi Metropolitan Statistical Area. The population was 6,307 at the 2019 census. History. Pre-European history. The exact date when Native Americans first arrived in the Gulf Coast area is not known, but artifacts have been found suggesting that humans have inhabited the area for many thousands of years. Indian mounds can be found throughout the Gulf coast region of southern Mississippi, but many have been destroyed by artifact hunters, farmers, developers, and flooding. A 1768 English map shows one large mound existed on the shore near to Market Street. Others existed at Bayou Portage and the Shelly Plantation on the shore north of the Bay of St. Louis near DeLisle. The mounds and middens in the area containing arrowheads, pottery, and human skeletons were pilfered by amateur archaeologists over the years and many of the items recovered are in private collections. At the border of Pass Christian and Long Beach near where White Harbor Road meets U.S. Route 90 there once existed an Indian village, whose inhabitants were referred to by locals as \"The Pitcher Point Indians\". The approximate location of the Indian Village is just a few hundred yards east of White Harbor Road. There are no ruins at this location but the beach in this area has produced many arrowheads and pottery shards over the years. French explorers. Pass Christian", "text_characters": 2593, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:57733", "title": "", "score": 6.025699841843103, "snippet": "---\ntitle: Documentaries Exploring the Mysteries of Ancient Artifacts\nauthor: Ijaz Malik\ndate: 2000-01-01\n---\nDocumentaries Exploring the Mysteries of Ancient Artifacts\n\nUnveiling Lost Histories\n\nExploring the mysteries of ancient artifacts through documentaries offers a captivating glimpse into the past. These films unravel the secrets behind the remarkable creations of past civilizations, giving viewers an intimate look at historical relics and the enigmatic societies that crafted them. Enthusiasts and scholars alike can appreciate this journey into human history.\n\nWhat makes these documentaries invaluable is their ability to bring the ancient world to life, bridging the gap between modern viewers and the distant past. They offer insights into not just the artifacts themselves, but also the cultural practices, beliefs, and ingenuity of our ancestors. This exploration fosters a deeper appreciation and understanding of human achievement across millennia.\n\n1) The Mystery of Göbekli Tepe\n\nGöbekli Tepe, located in southeastern Turkey, is one of the most significant archaeological discoveries of the 20th century. Built approximately 11,000 years ago, this site predates Stonehenge by about 6,000 years.\n\nThe site consists of massive stone pillars arranged in circular patterns, some of which feature intricate carvings of animals and abstract symbols.\n\nDespite its age, the purpose of Göbekli Tepe remains unclear. Some scholars suggest it was a ceremonial or religious center, while ot", "text_characters": 20123, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:9946", "title": "", "score": 3.8877675963482474, "snippet": "---\ntitle: THE NATION'S FIRST MEDICAL SCHOOL TURNS 250\ndate: 2015-04-15\n---\nTHE NATION'S FIRST MEDICAL SCHOOL TURNS 250\n\nChronicles the institution's fascinating history: from its beginning as a few lectures given in borrowed space to the extensive curriculum, research, and multidisciplinary clinical practice within today's University of Pennsylvania Health System. Its colorful prose and images – including many archival documents, paintings and photographs never previously compiled – track the canon of therapies offered to patients, from the 18th century's handful of primitive and sometimes harmful procedures, such as bloodletting, to today's robotic surgery and gene therapy.\n\nPennsylvania Hospital is founded\n\n1751\n\nPennsylvania Hospital, Eighth and Pine streets. William Birch print, c. 1800. Founded in 1751 as the first hospital in the Colonies, it also became the first place to provide clinical instruction to the first medical students in what would become the United States. As of 1767, requirements for a Penn medical degree included one year attending the practice of the hospital. Students purchased tickets for hospital privileges, which included use of the library. In 1997, Penn's long-standing relationship with Pennsylvania Hospital was formalized with the latter's merger into the University of Pennsylvania Health System. Courtesy Pennsylvania Hospital Historic Collections, Philadelphia\n\nWilliam Shippen Jr.'s Anatomical Drawings\n\n1762\n\nFor his anatomy lectures, William S", "text_characters": 32386, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:20241", "title": "", "score": 3.450621410991748, "snippet": "---\ntitle: Art History 101 – Part 1: Prehistoric Era – 399 CE\ndate: 2025-02-12\n---\nThe following is Part 1 (Prehistoric Era – 399 CE) of my attempt to trace the history of human artistic endeavors by finding the best, most significant, and most highly-regarded works of visual art (primarily painting and sculpture) from all times and places and presenting them in chronological order. The seven Art History 101 meta-lists contain every work of art that was on at least three of the more than 34 'Best Works of Art' lists that I collected from the Internet and books. Although most of the resources available to me focused almost exclusively on the art of Western Civilization, the list does identify some of the most significant artworks produced by the artists of Asia, Africa and South America. Because I believe visuals are essential for discussing the visual arts, I have included images of the art works. (I have tried to use public domain images where possible. In other cases, I believe this is a fair non-commercial use for educational purposes. If there are copyright concerns, please let me know.) Each entry includes the date of the work, the artist's name, the name (or names) of the work, the style or culture associated with the work, and the location where the work was produced. In addition, I have included a brief essay with description (including measurements), artistic materials used, background and interpretation. To see the rest of the Art History 101 series, click on the li", "text_characters": 197583, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:23865", "title": "", "score": 3.117562796587234, "snippet": "---\ntitle: History of the Ontology of Art\ndate: 2024-01-01\n---\nHistory of the Ontology of Art\n\nQuestions central to the ontology of art include the following: what sort of things are works of art? Do all works of art belong to a single category of entities? Do they have multiple instances? Do works have parts or constituents, and if so, what is their relation to the work as a whole? How are works of art individuated? Are they created or discovered? Can they be destroyed?\n\nExplicit and extensive treatments of these topics written prior to the 19th century have yet to be found. This does not mean, however, that there is nothing relevant to these ontological questions in early writings on beauty, the arts, and related matters. For example, Aristotle's discussion of the functions and elements of tragedy (see Gerald Else 1957) can be mined for ideas about the nature of dramatic and literary works more generally. And what can be made of the hint, in Metaphysics Eta, 6, that the unity of The Iliad is a matter of a set of words made \"one\" by being connected together?\n\nRather than attempting to make conjectures about such difficult exegetical topics, this entry focuses primarily on contributions made by authors who explicitly address themselves at length to some of the aforementioned questions pertaining directly to the ontology of works of art, either in general or with reference to such major fine-art forms as music, literature, painting, architecture, and sculpture.\n\nOne further no", "text_characters": 120114, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:64114", "title": "", "score": 3.05791052491788, "snippet": "---\ntitle: Exiting nps.gov\ndate: 2023-06-28\n---\nLast updated: June 28, 2023\n\nArticle\n\nNew Philadelphia: A Multiracial Town on the Illinois Frontier (Teaching with Historic Places)\n\nNew Philadelphia looked like a typical west-central Illinois pioneer town to travelers cresting the hill overlooking the place in the mid-1800s. Imagine villagers filling baskets with a bounty of apples, corn, and wheat, while chickens clucked and pigs rooted in nearby pens. Picture farmers hitching mules and oxen to carts filled with vegetables, fruit, and grain to sell at markets. Listen for loud clanging from the blacksmith's shop as hammers shaped hot metal into shoes for mules and horses. As in other frontier towns, smoke from cooking fires swirled from the dwellings that dotted small plots of land.\n\nBut New Philadelphia was not a typical pioneer town. It was the first town platted and registered by an African American before the American Civil War. A formerly enslaved man called \"Free Frank\" McWorter founded New Philadelphia in 1836 as a money-making venture to buy his family out of slavery. Census records and other historical documents tell us that New Philadelphia was a place where black and white villagers lived side by side, but we know that the town's dead lie buried in cemeteries separated by color.\n\nBy 1885, many villagers had moved away in search of jobs and better economic opportunities. Plows buried any material remains left behind, and grazing livestock and crops covered most of th", "text_characters": 49890, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:18258", "title": "", "score": 2.7331254141716044, "snippet": "---\ntitle: Introduction to Art History I\nauthor: Cerisemyers\ndate: 2021-01-01\n---\n6\n\nDr. Amy Calvert; British Museum; Dr. Naraelle Hohensee; Dr. Beth Harris; Dr. Steven Zucker; Lumen Learning; and Dr. Elizabeth Cummins\n\nIn this chapter\n\nAncient Egypt (Introduction)\n\nPre-Dynastic & Early Dynastic Periods\n\nOld Kingdom\n\n- Great Pyramids of Giza\n\n- Pyramid of Khafre and the Great Sphinx\n\n- King Menkaure (Mycerinus) and Queen\n\n- Seated Scribe\n\nMiddle Kingdom\n\nNew Kingdom\n\n- Temple of Amun-Re and the hypostyle hall at Karnak\n\n- Valley of the Kings\n\n- Mortuary Temple of Hatshepsut\n\n- Paintings from the tomb chapel of Nebamun\n\nAmarna\n\n- House altar depicting Akhenaten, Nefertiti, and three of their daughters\n\n- Portrait head of Queen Tiye\n\n- Model bust of Nefertiti: a conversation\n\nNew Kingdom, resumed\n\nAncient Egypt, an introduction\n\nEgypt's impact on later cultures was immense. You could say that Egypt provided the building blocks for Greek and Roman culture, and, through them, influenced all of the Western tradition. Today, Egyptian imagery, concepts, and perspectives are found everywhere; you will find them in architectural forms, on money, and in our day to day lives. Many cosmetic surgeons, for example, use the silhouette of Queen Nefertiti (whose name means \"the beautiful one has come\") in their advertisements.\n\nAncient Egyptian civilization lasted for more than 3000 years and showed an incredible amount of continuity. That is more than 15 times the age of the United States, a", "text_characters": 101001, "corpus_id": "wiki25_shared_global_context"}, {"doc_id": "browsecomp_plus:99557", "title": "", "score": 1.5397597288994493, "snippet": "---\ntitle: Comparing US City Street Orientations\nauthor: Post author this is a placeholder By gboeing\ndate: 2018-07-10\n---\nThis post is adapted from this research paper that you can read/cite for more info. It analyzes and visualizes 100 cities around the world.\n\n\"We say the cows laid out Boston. Well, there are worse surveyors.\" –Ralph Waldo Emerson. In 1960, one hundred years after Emerson's quote, Kevin Lynch published The Image of the City, his treatise on the legibility of urban patterns. How coherent is a city's spatial organization? How do these patterns help or hinder urban navigation? I recently wrote about visualizing street orientations with Python and OSMnx. That is, how is a city's street network oriented in terms of the streets' compass bearings? How well does it adhere to a straightforward north-south-east-west layout? I wanted to revisit this by comparing 25 major US cities' orientations (EDIT: by popular request, see also this follow-up comparing world cities):\n\nEach of the cities above is represented by a polar histogram (aka rose diagram) depicting how its streets orient. Each bar's direction represents the compass bearings of the streets (in that histogram bin) and its length represents the relative frequency of streets with those bearings. For example, in Manhattan we can clearly see the angled, primarily orthogonal street grid in its polar histogram:\n\nSimilar orthogonal grids can be seen in the histograms of Chicago, Denver, Tampa, etc. Detroit is an int", "text_characters": 57680, "corpus_id": "wiki25_shared_global_context"}]}
+````
+
+来源：`NATIVE/SAGE_NEW1000_BATCH03__SAGEN_0577/R006_request.json/messages/11/content`；SHA256：`366e01cf7a45739e4c67c273b8463d9e32a7e9050b4dfa60a8bda07a201d3e61`。
+
+## S006｜联结文物国籍与David，比较画作主题并提交Civic duty
+
+完整核对多跳链，比较Horatii与Marat主题，接受Horatii的义务与牺牲解释并submit。
+
+结束状态：VALID_FINAL，MODEL_FINAL_STOP，Civic duty。
+
+边界判断：E005返回后实际展开完整链条接受及画作实质比较，独立于直接文物取证。
+
+内部KEEP与反证：证据整合、画作比较、主题推导与提交同属一次完整判断，不能拆成每项条件一个Stage。
+
+### SPLIT原文
+
+````
+ically for artifacts discovered in 1799.
+
+Wait, I need to reconsider. The question says "the same year Captain William Lonsdale... was born in Den Helder". According to the document, William Lonsdale was born on "2 or 21 October 1799". So the year is 1799.
+
+Now I need to find what significant cultural artifact was discovered in 1799. Let me search for that.
+
+→ 切点 [5, 0, 0] →
+Okay, so I've gathered some key pieces of information from the previous searches. Let me break down the question step by step to ensure I follow the chain correctly.
+
+First, the question mentions Percy Robertson's maternal grandfather, Captain William Lonsdale, who was born in Den Helder during Britain's failed campaign to restore Prince William of Orange. F
+````
+
+### 原始联合批次与返回顺序
+
+````json
+[
+  {
+    "round": 6,
+    "batch_id": "B006",
+    "call_pointers": [
+      "/rounds/5/tool_calls/0"
+    ],
+    "return_pointers": [
+      "/tool_events/5"
+    ],
+    "dispatch_relation": "ONE_ASSISTANT_BATCH_NO_INTERMEDIATE_ACTOR_READ",
+    "return_order": "SOURCE_EVENT_ARRAY_ORDER",
+    "physical_dispatch_return_times": "NOT_RECORDED"
+  }
+]
+````
+
+以下Call/Return段落按对应关系展示；同一批所有Call属于同一次Assistant决策，先联合发出，返回按原事件数组次序保存，期间没有Actor读取或新决策。不能把配对展示误读为Call→读返回→决定同批下一Call。
+
+### R6 `/rounds/5/reasoning_content` [0,2608)
+
+SHA256：`62bda5cac35f314dc477f0a0e83698617b582b8f4328415e76afbda384a67935`；原字段SHA256：`62bda5cac35f314dc477f0a0e83698617b582b8f4328415e76afbda384a67935`。
+
+````
+Okay, so I've gathered some key pieces of information from the previous searches. Let me break down the question step by step to ensure I follow the chain correctly.
+
+First, the question mentions Percy Robertson's maternal grandfather, Captain William Lonsdale, who was born in Den Helder during Britain's failed campaign to restore Prince William of Orange. From the search results, I found that Captain William Lonsdale was born in Den Helder in 1799 during the French occupation of Egypt (1798-1801), which was part of Britain's failed attempt to restore Prince William of Orange. This confirms the year 1799.
+
+Next, the question refers to a significant cultural artifact discovered in the same year (1799). From the search results, I found that the Rosetta Stone was discovered in mid-July 1799 by French scientists during their campaign in Egypt. This artifact is indeed significant and matches the criteria.
+
+The question then states that the discoverer of this artifact has the same nationality as the leading French artist of a specific artistic movement. The Rosetta Stone was discovered by French scientists, so the discoverer's nationality is French. Therefore, the leading French artist must also be French.
+
+The artistic movement is described as one that emphasized order and classical forms in the late 18th and early 19th centuries. This description points to Neoclassicism, a movement that focused on classical antiquity, order, and rationality. The leading French artist associated with Neoclassicism is Jacques-Louis David, known for works like "The Oath of the Horatii" and "The Death of Marat."
+
+Now, the question asks for the specific moral theme centrally depicted in the iconic painting by this artist (Jacques-Louis David). One of his most famous paintings is "The Oath of the Horatii," which depicts three brothers swearing an oath to fight for their country. The moral theme here is civic duty, patriotism, and the sacrifice of personal happiness for the greater good of the state. Another iconic painting by David is "The Death of Marat," which portrays the virtue of martyrdom and the revolutionary ideals of the French Revolution. However, "The Oath of the Horatii" is often cited as a quintessential example of Neoclassical moral themes, emphasizing duty and sacrifice.
+
+Putting it all together: Captain William Lonsdale was born in 1799, the Rosetta Stone was discovered in 1799 by French scientists, the leading French Neoclassical artist is Jacques-Louis David, and his iconic painting "The Oath of the Horatii" centrally depicts the moral theme of civic duty or patriotism.
+
+````
+
+### R6 Call `/rounds/5/tool_calls/0` → Return `/tool_events/5`
+
+````json
+{
+  "arguments": {
+    "answer": "Civic duty"
+  },
+  "id": "chatcmpl-tool-8e20a948ead91599",
+  "name": "submit_answer",
+  "parse_source": "vllm_structured",
+  "raw": {
+    "function": {
+      "arguments": "{\"answer\": \"Civic duty\"}",
+      "name": "submit_answer"
+    },
+    "id": "chatcmpl-tool-8e20a948ead91599",
+    "type": "function"
+  }
+}
+````
+
+````json
+{
+  "arguments": {
+    "answer": "Civic duty"
+  },
+  "batch_id": "B006",
+  "batch_ordinal": 1,
+  "event_id": "E006",
+  "latency_seconds": 1.0035932064056396e-05,
+  "name": "submit_answer",
+  "observation": {
+    "accepted": true
+  },
+  "tool_call_id": "chatcmpl-tool-8e20a948ead91599"
+}
+````
+
+批次内Call按原批次联合发出；展示顺序不代表模型在同批中逐次读取并决策。
+
+首次进入Actor：None；证据状态：NO_LATER_ACTOR_REQUEST。
+
+## 原始正式Final与终态
+
+````json
+{
+  "final_answer": "Civic duty",
+  "final_validity_state": "VALID_FINAL",
+  "stop_reason": "MODEL_FINAL_STOP",
+  "submission_event_indices": [
+    5
+  ]
+}
+````
+
+## 机械验收与语义自审
+
+````json
+{
+  "unicode_coverage_sha": "PASS",
+  "call_return_pairing": "PASS",
+  "unique_event_ownership": "PASS",
+  "chronology": "PASS",
+  "formal_final_separate": "PASS",
+  "visibility_status_counts": {
+    "NO_LATER_ACTOR_REQUEST": 1,
+    "ACTUAL_REQUEST_VERIFIED": 5
+  },
+  "physical_dispatch_timestamps": "NOT_RECORDED_IN_SOURCE",
+  "semantic_status": "CODEX_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_GOLD"
+}
+````
+
+完整读取6轮、5search和1submit及全部返回。保留人物背景回查对文物搜索的真实中断、R4独立题意解释与R6画作判断。R4—R5文物普通重试不按Call数拆分。原计划中提及但未真实检索的艺术知识不伪造工具事件。
+
+R4起点兼有刚返回人物背景的复述，但整段以重建题目链为实际动作，主方案从开头切，避免将国籍与画家推断并入人物搜索。R5列举画名可备选另切，主方案KEEP，因为没有实质比较或选择，随后仍执行原文物计划。
+
+原文件逐字段内容保持不变；未知物理时间不补造，未进入后续Actor的Return不记为已读。机械通过不等于独立人工语义验收。

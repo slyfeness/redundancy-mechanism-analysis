@@ -1,0 +1,460 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S007",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "正式数正确，天体链未闭合。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R9@0，主赛事49已有工具证据；已搜Oct18后改March18未得目标，尚无机场243实际返回。",
+    "evidence_states": "主答案稳定；机场频率未知，G将未来数值提前给出。",
+    "evidence": [
+      "O_49",
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/6/items",
+    "ranges": [
+      {
+        "round": 9,
+        "pointer": "/rounds/8/reasoning_content",
+        "start": 0,
+        "end": 373
+      },
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 0,
+        "end": 512
+      }
+    ],
+    "goal": "取得Wausau NDB频率供天体周期核查。",
+    "operations": "机场Search，2256696明确243kHz；R10清单采用该值。",
+    "product": "以243天为后续小行星查询条件。",
+    "judgment_change": "未知频率转成可用数值，后续限定周期。",
+    "evidence": [
+      "O_AIRQUERY",
+      "O_AIR",
+      "O_PERIOD"
+    ]
+  },
+  "original_followup": {
+    "use": "用243和March18六次反复查询未找到目标，最后核心答案足够而Submit49。",
+    "evidence": [
+      "O_PERIOD",
+      "O_ACCEPT"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "为关系等值核验取得中间数值，并将数值投入后续Query。",
+    "state_relation": "四次都重查机场恢复243；两次改为单周期入口找到真实天体，一次不继续天体查，一次仍受限原组合Query。主数相同而证据支持不同。",
+    "evidence": [
+      "N1_AIR",
+      "N2_AIR",
+      "N3_AIR",
+      "N4_AIR"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find an asteroid discovered on March 18 whose orbital period in days equals 243.",
+    "source_position": "O R10[512,606)",
+    "novelty": "新增243数值及已可执行周期筛选；March18来自题面已知。",
+    "risk": "ORACLE_ANCHORED、关键未来数值泄漏。生成首部分别接2/15/6/6，出现243.2/243.15/243.6式拼接或自述，N4实际首Query用243.6；这是真实输入续写敏感性，不能改写G消除。",
+    "evidence": [
+      "I_G",
+      "N4_FIRST"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49直接证据，另真实补全天体。",
+      "outcome_evidence": [
+        "N1_F",
+        "N1_MATCH"
+      ],
+      "work_and_evidence_timeline": "R9先接2kHz文字但实际机场Query重得243；R10March18Query未匹配；R11去掉发现日，仅orbital period243days，真实9085806返回2002FB3发现18March2002/243days。R12完整5810字符采用并区别其他天体，Submit49。",
+      "first_judgment_divergence": "重建机场后不再固定日期周期联合Query，改周期入口得到目标。",
+      "first_actual_tool_divergence": "机场同类Query先恢复；关键R11去掉日期。",
+      "function_correspondence": [
+        {
+          "original_goal": "机场数值",
+          "original_operation": "Search及采用",
+          "original_product": "243用于周期核查",
+          "new_goal": "同数值核验",
+          "new_operation": "R9机场Search，R11用243查",
+          "new_product": "243且匹配天体",
+          "evidence": [
+            "O_AIR",
+            "N1_AIR",
+            "N1_MATCH"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "数值取证和行动使用均恢复。",
+      "chain": "机场恢复→联合入口失败后放松日期→真实天体证据→完整链接受49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "2631生成101113Prompt4Actor3Search0Open；原后段机场+六天体7Search，少4Search，末轮1813生成用于完整比较，不能把全部消耗视重试。P19583/G24分列。",
+      "counterevidence_and_alternatives": "新增有效证据是质量改善，不应因答案未变而当无效工作；G已给243补偿。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "完整天体与机场匹配、49Submit。",
+      "outcome_evidence": [
+        "N2_F",
+        "N2_MATCH"
+      ],
+      "work_and_evidence_timeline": "R9接15kHz后主动机场Search纠正为243；R10原全条件Query同噪声；R11改周期单入口与r1完全同返回；R12采用2002FB3、March18、243全链，Submit。",
+      "first_judgment_divergence": "组合失败后简化验证入口，未继续原同Query。",
+      "first_actual_tool_divergence": "R11单周期Search取得新文档。",
+      "function_correspondence": [
+        {
+          "original_goal": "频率与周期条件",
+          "original_operation": "机场Search后用243",
+          "original_product": "243",
+          "new_goal": "同",
+          "new_operation": "机场Search及单周期Query",
+          "new_product": "243和新天体匹配",
+          "evidence": [
+            "O_AIR",
+            "N2_AIR",
+            "N2_MATCH"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原数值工作完整恢复。",
+      "chain": "机场值核实→失败Query未重复→改入口→完整证据链C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1551生成104407Prompt4Actor3Search；相同工具链比r1少1080生成，差在末轮842vs1813篇幅。",
+      "counterevidence_and_alternatives": "同真实证据也有表达成本波动，不将省值全部归U。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心49有源，天体仍未取得。",
+      "outcome_evidence": [
+        "N3_F",
+        "N3_ACCEPT"
+      ],
+      "work_and_evidence_timeline": "R9接6并计划243.6但实际机场Search，返回243。R10 3964字符比较主链/天体，认为不必找到小行星即可答，真实Submit，无天体Search。",
+      "first_judgment_divergence": "机场恢复后直接将外围缺口降为非阻塞项。",
+      "first_actual_tool_divergence": "机场后Submit，未做原六天体Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "频率取证",
+          "original_operation": "机场查并采用",
+          "original_product": "243",
+          "new_goal": "同",
+          "new_operation": "真实机场Search及引用",
+          "new_product": "243，但没有进入真实天体Query",
+          "evidence": [
+            "O_AIR",
+            "N3_AIR",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "机场取证采用完整；其下游天体查询未做不是机场功能未恢复。",
+      "chain": "频率恢复→核心足够判断→停止派发天体工作→C但外围未证。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1276生成43776Prompt2Actor1Search；取消六天体Search及其输入，1193生成用于无新工具的接受论证。",
+      "counterevidence_and_alternatives": "成本较低但完整链不如r1/2，答案同不能抹去质量差异。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心49有直接支持，天体两查询无匹配。",
+      "outcome_evidence": [
+        "N4_F",
+        "N4_ACCEPT"
+      ],
+      "work_and_evidence_timeline": "R9接6，把243.6投入真实天体Query，得原噪声；R10才机场Search得243；R11全条件243Query仍原噪声；R12 7787字符反复证据链和是否还查，最后不执行新Query而Submit49。",
+      "first_judgment_divergence": "G数值末尾续写形成243.6，并先实际采用；机场返回后纠正回243。",
+      "first_actual_tool_divergence": "先天体243.6而非机场；纠正后仍受原联合入口限制。",
+      "function_correspondence": [
+        {
+          "original_goal": "机场频率",
+          "original_operation": "Search并用于周期",
+          "original_product": "243",
+          "new_goal": "同频率",
+          "new_operation": "R10机场Search，R11用243",
+          "new_product": "243恢复但天体未解",
+          "evidence": [
+            "O_AIR",
+            "N4_AIR",
+            "N4_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "虽后移，实际频率核验和修正完整恢复。",
+      "chain": "引导续写小数→错误周期先查→机场纠正→联合入口仍失败→长接受论证→49C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "3016生成103496Prompt4Actor3Search；与r1/2同Search总数却无匹配，末轮2316生成是成本大头。",
+      "counterevidence_and_alternatives": "高生成部分为反复提交考虑而非新工具，保留G数字续写解释。"
+    }
+  ],
+  "four_rollout_comparison": "4C、4FULL机场功能。两条采用单周期入口有新天体证据，一条无天体取证就提交，一条先243.6再纠正但仍未解。不能用相同C归并机制和证据质量。",
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "相同数值恢复以后，后续查询是否被发现日期与周期联合条件固定，影响能否取得匹配材料；将一项条件留给返回后比较可找到原联合检索未召回的目标。",
+      "support": "r1/2单周期Return9085806且明确采用；原/r4联合Query无目标。",
+      "limits": "本题内部关联，查询选择与采样/G并存，不证明一般检索简化必优。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "G提前243，不能计无泄漏严格可省。",
+    "r3更省且C但缺天体；r1/2更多工作带来证据闭环，应区分。",
+    "字符精确保守成本，独立分支不可加总。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_AIRQUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/8/tool_calls/0/arguments/query",
+      "exact_quote": "Wausau Downtown Airport NDB navaid frequency kHz"
+    },
+    {
+      "evidence_id": "O_AIR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 9,
+      "event_type": "return",
+      "json_pointer": "/tool_events/8/observation/results/0/snippet",
+      "exact_quote": "frequency 243 kHz"
+    },
+    {
+      "evidence_id": "O_PERIOD",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/rounds/9/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 orbital period 243 days"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "I don't see a direct match"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 9,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find an asteroid discovered on March 18 whose orbital period in days equals 243."
+    },
+    {
+      "evidence_id": "N1_AIR",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Wausau Downtown Airport NDB frequency kHz"
+    },
+    {
+      "evidence_id": "N1_MATCH",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Match confirmed."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_AIR",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Wausau Downtown Airport NDB frequency kHz"
+    },
+    {
+      "evidence_id": "N2_MATCH",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The orbital period is exactly 243 days, matching the 243 kHz frequency."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_AIR",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "Wausau Downtown Airport NDB frequency"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Actually, I don't need to find the asteroid if the chain of logic is solid."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_FIRST",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 orbital period days 243.6"
+    },
+    {
+      "evidence_id": "N4_AIR",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Wausau Downtown Airport NDB navaid frequency"
+    },
+    {
+      "evidence_id": "N4_ACCEPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "I can proceed."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "0411e157aeddb35da058fd10db755eb6b43e115f31674356a0f5e0af73efb4c7"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "1515566350f6270eadb7b2c80d11264a510b24ce12f019724a6bb7cc6597bd73"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "7f6740b44cc88c5010d14e063497b6cb86c96e7830006f2454c8421a8a90ae79"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "6954da314caf24a7cbd0635aa61bcebf075e97443313a23554221896acc1a678"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S007__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "7b2abd9cd83745e593617ac894b90dd00f05b517ad7b88355ee13d4f22e0b561"
+    }
+  }
+}

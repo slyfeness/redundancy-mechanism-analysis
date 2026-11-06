@@ -1,0 +1,400 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0145",
+  "stage_id": "S004",
+  "sample_order": 65,
+  "condition": "TERMINAL_DROP_NO_ANCHOR",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0145/trajectory.json",
+      "source_sha256": "45494ca53de2133ec658ce1555355644e25fb64acc45575bb8fc91dbbad69943"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0145.json",
+      "source_sha256": "b8a4bab29403221004b217b6cd3777e54a9fa54342527f256d9e4c75515cf54c"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "48bdda027be9da24bc8dcd482f8cffe70561bc969c2047aec4be2147550c2676"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat01/trajectory.json",
+      "source_sha256": "564a166b8afe51e11f3512dba525900b1c0c998be4de3a3b5ee89cb065285a35"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat02/trajectory.json",
+      "source_sha256": "515d6a79e45c559afaa695f77b416b888d466ff821f17dd00534e0e001071a8d"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat03/trajectory.json",
+      "source_sha256": "b6d103aab54035550baeece5c753e685f08d8a6334a5afe98a7da4b45d2588c6"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/TERMINAL_DROP_NO_ANCHOR/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat04/trajectory.json",
+      "source_sha256": "dc61af89cdbe784fefcd6ad8967587119ce4f902813396f2f926aba3ec25d168"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the birth city of the U.S. President who signed the act admitting the state that formed as a direct result of the conventions attended by delegates from Fairfax County, Virginia, including Ebenezer E. Mason and John Hawxhurst?",
+    "gold": [
+      "Hodgenville, Kentucky"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json#/matches/SAGE_EXISTING_BATCH02__SAGEE_0145/0/answer"
+  },
+  "original_outcome": {
+    "actual_final": "Hodgenville, Kentucky",
+    "adopted_answer": "Hodgenville, Kentucky",
+    "outcome": "C",
+    "reason": "正式城市匹配Gold，资料链和nearcity解释可见。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R7@0，当前空，无G；P20597Token保留原六次Search全部Return，包括直接会议→州、Lincoln签署、两次同出生材料。旧R5/6reasoning未当实际P，但所有需要的关系/城市片段仍可取。",
+    "evidence_states": "原日志已经提取过城市线索，当前实际P至少有完整材料；尚未进行R7正式接受/提交，不能把原Final当P。",
+    "evidence": [
+      "O_SIGN",
+      "O_BIRTH",
+      "I_EMPTY"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/3/items，R7[0,1445)、真实submit_answer及Return。",
+    "ranges": [
+      {
+        "round": 7,
+        "pointer": "/rounds/6/reasoning_content",
+        "start": 0,
+        "end": 1445
+      }
+    ],
+    "goal": "把整条关系证据与出生城市表述对应后正式提交。",
+    "operations": "五项整链比较、明确farmnearHodgenville与birthcity对应，确认答案并Submit。",
+    "product": "正式Hodgenville, Kentucky。",
+    "judgment_change": "城市附近片段→可用于题目回答的城市值，并完成真实提交。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_FINAL"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "U含最后接受与Submit，之后无原reasoning，不伪造未来后继。",
+    "evidence": [
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "从现有证据形成整题答案、解决表述范围并执行提交。",
+    "information_state_dependence": "必要材料全部P可见，三条重新完成接受/提交；一条虽连续认同正确答案，却把提交意向反复转回内部复查而没有执行，问题不是答案/证据缺失。",
+    "first_update": "原Stage首次真实提交；此前城市可猜不等于正式Final。"
+  },
+  "guide_audit": {
+    "text": "",
+    "source": "NO_ANCHOR",
+    "oracle_status": "NO_TEACHER_ANCHOR",
+    "P_comparison": "TERMINAL无引导，不注原Final/答案。四条同P但新计算自由采样；不能直接混入FIRST_SENTENCE的oracle推断。",
+    "evidence": [
+      "I_EMPTY"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat01",
+      "actual_final": null,
+      "terminal": "GENERATION_LENGTH_STOP",
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "没有实际Submit工具或content Final，单轮10000生成长度终止；反复写FinalAnswer/提交意向仍只是reasoning。",
+      "outcome_evidence": [
+        "N1_ENOUGH",
+        "N1_INTENT",
+        "N1_STOP"
+      ],
+      "work_and_evidence_timeline": "R7开头已正确列会议→州→Lincoln及1862/1863关系、出生Hodgenville，并辨Cincinnati是雕像、Bostic弱说法；很早说已有足够信息，随后反复city/farm/county、是否别州/别总统、旧Snippet是否含birth，继续每次‘I will submit’后再开一轮内部复核。完整35832字符直到长度终止，没有真实Call、Search/Open/Submit均0。",
+      "first_judgment_divergence": "起初证据理解/城市接受与原相同，首次重要执行分歧是在宣布足够并准备提交后仍回到同城镇/农场表述核验，而不是发Submit；没有新证据或候选变化解释这些重复。",
+      "first_actual_tool_divergence": "原此处有Submit，本条始终无Call。所有‘check/search’未实际工具执行。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "整链与城市接受并正式Submit。",
+          "new_goal_operation_product": "整链、城市和证据接受都反复真实展开，但正式操作和产物未发生；检查完整单轮无最终答案。",
+          "evidence": [
+            "O_ACCEPT",
+            "O_FINAL",
+            "N1_ENOUGH",
+            "N1_INTENT",
+            "N1_STOP"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "认知比较/正确判断重建，提交环节未完成；N不代表没有找到或认同答案。",
+      "judgment_action_outcome_chain": "P充分→正确链与城市判断恢复→‘可答/将提交’没有转换成真实Call→同一措辞疑问和旧片段检查再启动→没有新信息但持续生成→长度N。日志只能定位执行断裂，不能断言内部心理原因。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR.json#/records/0",
+      "cost_work_locations": "10000生成/20597Prompt/0Search0Open1Actor，原该完整响应380生成，相同Prompt/Actor而生成+9620；全部增加在同轮内部重复接受，非检索成本。未完成不能计节省。",
+      "counterevidence_and_alternatives": "另外三条同P可Submit，材料缺失不是充分解释；采样/原新服务档位改变仍在，不称删末段必然导致失败。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat02",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式城市正确，整链/nearcity判断和真实Submit都存在。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7六项关系重建，准确区分1862签署/1863proclamation/入联，引用两birth片段并解释农场附近城市；数次重复全链和city表述，最终实际Submit，不新Search/Open。",
+      "first_judgment_divergence": "核心关系无变化，接受解释比原更长但完成执行；没有唯一不同事实解释篇幅增。",
+      "first_actual_tool_divergence": "同原直接Submit，无新外部取证。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "完整接受、适配birthcity、提交城市。",
+          "new_goal_operation_product": "同三步都由P真实材料重新完成，实际Submit产物一致。",
+          "evidence": [
+            "O_ACCEPT",
+            "N2_ACCEPT",
+            "N2_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "认知和正式操作均恢复，不把更长说法当新功能。",
+      "judgment_action_outcome_chain": "P材料充分→整链/nearcity判断→多轮内部确认但最终转真实Submit→C；功能没省，表达更长。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR.json#/records/1",
+      "cost_work_locations": "1100生成/20597Prompt/0Search1Actor，原380，同Prompt/工具/Actor，生成+720；增加只在接受解释，不是新证据。",
+      "counterevidence_and_alternatives": "与r1都多次说将提交，差别实际执行是否出现，不能用意向次数代替终态。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat03",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式城市对，短全链保留全部关键关系和nearfarm解释。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7五条直接列P证据链，准确签署/proclamation日期，出生farmnearHodgenville，对题目说明总统/城市，实际Submit结束；无新增核查。",
+      "first_judgment_divergence": "没有实体/关系改变；接受表达压缩且一次转入提交，未像其他条反复表述疑问。",
+      "first_actual_tool_divergence": "与原同Submit；无新的Search/Open。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "整链判断并Submit。",
+          "new_goal_operation_product": "短表述仍覆盖代表、州、总统、出生地及题意，对应实际正式城市。",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_ACCEPT",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "短不等于少必要功能，完整关系与提交全有。",
+      "judgment_action_outcome_chain": "现有证据直接恢复关系链→将near城市对齐题意→不再展开旁支重复→SubmitC；功能保持但表达长度减少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR.json#/records/2",
+      "cost_work_locations": "269生成/20597Prompt/0Search1Actor，原380，同其他成本，生成-111；节省一次接受工作的篇幅，不是取消该功能。",
+      "counterevidence_and_alternatives": "与r2/r4同P相同结果不同长度，不能只把A四结果多数保持解释成认知工作不必要。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR__repeat04",
+      "actual_final": "Hodgenville, Kentucky",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "Hodgenville, Kentucky",
+      "outcome": "C",
+      "outcome_reason": "正式城市正确，直接来源用于选择；一度将公园JamesGentry/WilliamJones附近Vincennes出生混入Lincoln，再依据Kentucky纠回。",
+      "outcome_evidence": [
+        "N4_REPAIR",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": "R7先准确会议/州/签署链，出生资料列LaRue和雕像；读LincolnStatePark片段时带出BorninVincennes，立刻‘Wait,LincolnwasborninKentucky’改回，内部重读两birth段，辨Bostic弱说法、nearcity、farm后实际Submit。没有新Call。",
+      "first_judgment_divergence": "公园他人出生地点一度进入比较但被原有Lincoln资料立即限制，没有成为真实查询对象；其后长复盘才提交。",
+      "first_actual_tool_divergence": "同原仅Submit，无新取证。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "用证据完整接受城市并Submit。",
+          "new_goal_operation_product": "从P重建链、短暂地点混同经对照纠正后采用Hodgenville、真实Submit，功能全恢复。",
+          "evidence": [
+            "O_BIRTH",
+            "O_ACCEPT",
+            "N4_REPAIR",
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "取舍与提交齐全；错误解释已修，不补造外部验证。",
+      "judgment_action_outcome_chain": "P链与birth资料→角色地点混同但马上被已有约束纠正→更多内部对应和city措辞确认→C；增加在纯推理修复/复述，无Search增加。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0145__S004__TERMINAL_DROP_NO_ANCHOR.json#/records/3",
+      "cost_work_locations": "1257生成/20597Prompt/0Search1Actor，原380，生成+877，其他不变。较多解释/自纠而非新证据导致生成增。",
+      "counterevidence_and_alternatives": "‘BorninVincennes’属于公园其他人，不能称原Return关于Lincoln自相矛盾。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "N",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 1,
+    "group": "A",
+    "observed_difference": "同P无G，四条都恢复正确关系和城市判断；三条真实提交，其中一条更短，另外两长。另一条持续认同答案却反复回内部复核直到10K、从未真正Submit。",
+    "costs": "全部同Prompt/Actor和0Search，生成10000/1100/269/1257对原380。差额完全在接受/表达和是否完成提交；无工具节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "证据足够且候选正确时，接受判断到实际提交的转换",
+      "chain": "已有完整P可重建正确答案，但‘已经足够/将提交’不等于执行；若每次又把表述范围/旧证据读回作为新待办，认知判断可以重复而正式操作一直不出现，最后生成上限N。若判断实际转换为Submit，则结果保持，篇幅可短可长。",
+      "limits": "观察到执行差别，不知道为什么某条不能结束；不把‘停止阈值降低/信心不足’当日志证明。无G仍有采样/服务档位混杂。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "完整四55947字符阅读，一次输出小范围截断已回读14000—20000覆盖，不把省略当读完。",
+    "末段无首句，原Final不在P；同档位自由续跑不是单Stage功能完全取消的保证。",
+    "原IDs缺失，R7头整响应成本可比，不声明原生StageToken精确。独立分支差额不加总。",
+    "r1没有正式Final，正确内部答案仅说明判断恢复，不作C或提交Pattern。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_EMPTY",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 7,
+      "event_type": "empty_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": ""
+    },
+    {
+      "evidence_id": "O_SIGN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/3/observation/results/2/snippet",
+      "exact_quote": "On December 31, 1862, an enabling act was approved by President Lincoln",
+      "doc_id": "wiki25:2021715",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_BIRTH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/5/observation/results/7/snippet",
+      "exact_quote": "birth, which occurred a few miles south of Hodgenville on February 12, 1809.",
+      "doc_id": "wiki25:4982729",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Hodgenville is the town/city near where he was born."
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N1_ENOUGH",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I have enough information."
+    },
+    {
+      "evidence_id": "N1_INTENT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "I will submit the answer now."
+    },
+    {
+      "evidence_id": "N1_STOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "GENERATION_LENGTH_STOP"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Both Lincoln."
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The President was Abraham Lincoln, and his birth city is Hodgenville, Kentucky."
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    },
+    {
+      "evidence_id": "N4_REPAIR",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Wait, Lincoln was born in Kentucky, near Hodgenville."
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "Hodgenville, Kentucky"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

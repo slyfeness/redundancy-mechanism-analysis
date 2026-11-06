@@ -1,0 +1,463 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0225",
+  "stage_id": "S007",
+  "sample_order": 87,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference in years between the César Award for Best Director won by the director of 'Quest for Fire', and the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose', a film starring the actor who played Daniel Dravot in the 1975 cinematic adaptation of Rudyard Kipling's 'The Man Who Would Be King'?",
+    "gold": [
+      "5"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "5",
+    "adopted_answer": "5",
+    "outcome": "C",
+    "reason": "正式差值5；身份及上映年有直接资料，典礼年仍推断，不能称全部链条已证。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R6@0当前reasoning空；前五轮工具历史可见，794119早已明确Annaud同时导演两片、首作Black and White in Color(1976)、Quest(1981)获César。Connery/Caine主演信息返回，但未直接给Dravot角色。R5日志已采用上映年差5，不假设所有过去reasoning自动回注。",
+    "evidence_states": "正确导演及其首作已返回并在前文采用；精确奖年缺口仍在。当前U却将首作的所属对象转成演员，而非导演。",
+    "evidence": [
+      "I_BOUNDARY",
+      "O_FACTS",
+      "O_U"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/6/items",
+    "ranges": [
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 685
+      }
+    ],
+    "goal": "先认Sean Connery为Dravot演员，再查询其首部电影和奥斯卡。",
+    "operations": "把题目的导演处女作错改为演员处女作，真实执行Sean Connery debut feature film；完整Return只有演员资料，没有所需首作奥斯卡关系。",
+    "product": "一次对象错置的查询及不解决目标奖年缺口的资料；原R7才恢复Annaud首作。",
+    "judgment_change": "导演的首作→演员的首作，错误所属关系制造额外取证任务。",
+    "evidence": [
+      "O_U",
+      "O_Q",
+      "O_RET"
+    ]
+  },
+  "original_followup": {
+    "use": "R7恢复Annaud首作、重新读定语，再反复接受5；R7/R8共四Search奖年均未直接证实典礼年份，R9提交5。原U错误查询没有被作为计算所需证据。",
+    "evidence": [
+      "O_REPAIR",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "消解多跳题的演员身份及首作所属，并据此取证；本次实际取证对象发生错置。",
+    "state_relation": "四条新路都没有执行Connery首作查询，均保留导演首作与差值计算；减少错误取证不代表全部反复解释消失。",
+    "evidence": [
+      "O_U",
+      "O_Q",
+      "N1_CHOICE",
+      "N2_Q",
+      "N3_Q",
+      "N4_Q"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "I need to find the following information:",
+    "source_position": "R7[0,41)",
+    "oracle_anchored": true,
+    "novelty": "8Token只给重新列任务的方向，不携带实体、年份、5或具体清单；P原题已要求此链。仍为ORACLE_ANCHORED，不能将结果归为无引导纯删除。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，主要以1981/1976上映年作奖年；两边误用相同口径仍差5，不能说奖年已正确验证。",
+      "outcome_evidence": [
+        "N1_CHOICE",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R6单轮9448字符，第一步恢复导演Annaud首作，而非Connery首作。重复读取两上映年与差5，多次重开a film定语，曾错误称Rose不主演Connery，但最终将该描述视为识别导演的附带线索，直接Submit5；没有任何真实Search/Open。",
+      "first_judgment_divergence": "首作归属保留导演，没有原U将它转向演员。",
+      "first_actual_tool_divergence": "R6直接Submit，无Connery首作或后续奖年Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "核验演员首作获奖关系",
+          "original_operation": "Sean Connery debut feature film真实Search",
+          "original_product": "无目标年份的演员Return",
+          "new_goal": "已有导演首作及两年份算差",
+          "new_operation": "直接解释与计算，未查演员首作",
+          "new_product": "5，但关系和典礼证据不齐",
+          "evidence": [
+            "O_U",
+            "O_Q",
+            "N1_CHOICE",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "原U实际执行的演员首作取证未重建；有题目解析与答案计算，不能把广义解题功能也标消失。",
+      "judgment_action_outcome_chain": "P已包含正确导演首作→新列条件仍归导演→不创建演员首作任务→跳过五次原后续Search直接提交5；然而定语反复与同口径错误仍在。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "2517生成22571Prompt0Search0Open1Actor；原切点起6962生成122290Prompt5Search4Actor。少五Search及三Actor、生成少4445为完整响应usage差，不能称native精确；9448字符复盘仍发生。P22563重放与G8单列。",
+      "counterevidence_and_alternatives": "结果正确可以由两边上映年误当奖年但差值抵消解释；非全部条件质量证明。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "最终统一1982与1977算5；实际Return未直接给两个典礼年，惯例推断。",
+      "outcome_evidence": [
+        "N2_CALC",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R6 10419字符先归导演首作及1982/1977，反复定语且错误否认Rose主演Connery；真正执行联合Quest1982及BlackWhite1977 Search，返回与原晚期无关材料完全相同。R7 6491字符再误将定语归BlackWhite、纠回Rose但仍错误否认其主演，最后选择两边次年5并Submit。",
+      "first_judgment_divergence": "保留导演首作，转核奖年，不沿Connery首作。",
+      "first_actual_tool_divergence": "R6两具体奖年Query替代演员首作Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "演员首作核查",
+          "original_operation": "错误对象Search",
+          "original_product": "演员资料",
+          "new_goal": "导演两片奖年核查",
+          "new_operation": "两Search后全链判断",
+          "new_product": "5；奖年未获直接支持",
+          "evidence": [
+            "O_U",
+            "O_Q",
+            "N2_Q",
+            "N2_CALC",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "演员首作没有查，独立转向真实题意奖年；恢复题意不是恢复错误工作。",
+      "judgment_action_outcome_chain": "正确所属对象保住→缺口改为奖年→两Search不增证→用两边次年推断接受5；冗长定语争论仍部分复现。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "4459生成51801Prompt2Search2Actor，比原6962少2503生成、少3Search2Actor；省在错误首作和部分晚期重复，非所有解释消失。G8一次计Prompt。",
+      "counterevidence_and_alternatives": "原来也在R7恢复正确导演首作，删除只让正确对象更早续用；不能说该U永久造成原错误答案。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5；将演员定语误归BlackWhite制造矛盾，最后仍采用两边次年，核心值对但非全链充分。",
+      "outcome_evidence": [
+        "N3_LOOP",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R6 4835字符先用Annaud首作和上映年差5，随后怀疑Dravot角色，真实Search Daniel Dravot actor 1975 Man Who Would Be King，只返回原先Connery/Caine主演材料，未明确角色。R7 26180字符将并列主演误读为角色确认，反复把定语归BlackWhite/怀疑题错/考虑另一导演，反复4和5、上映年与典礼年，写许多search意向却无新真实Search；最终1982−1977=5 Submit。",
+      "first_judgment_divergence": "没有查演员首作，但把角色身份的未闭合部分作为下一项取证。",
+      "first_actual_tool_divergence": "单Dravot演员Query而非Sean首作。",
+      "function_correspondence": [
+        {
+          "original_goal": "演员身份与演员首作核查",
+          "original_operation": "直接认角色后查首作",
+          "original_product": "不相关演员资料",
+          "new_goal": "单独核验演员角色并做导演奖年计算",
+          "new_operation": "1真实角色Query，结果未闭合后长篇重复句法/年份",
+          "new_product": "5，角色及奖年缺口未完整证实",
+          "evidence": [
+            "O_U",
+            "O_Q",
+            "N3_Q",
+            "N3_LOOP",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "核角色身份部分实际重新取证，错误演员首作工作未执行；不是完整恢复。",
+      "judgment_action_outcome_chain": "正确导演首作保留→角色Query未补角色映射→错误定语归属反复生成矛盾→大量无工具重新解释→最终暂置矛盾接受5；少Search仍可能更多生成。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "8196生成46275Prompt1Search2Actor；对原6962生成增加1234，Search少4Actor少2；增加具体在R7 26180字符重读定语/奖年口径，不可把搜索下降等同总计算下降。",
+      "counterevidence_and_alternatives": "没有真实后续日期搜索，许多let me search不是Call；角色不确仍C是反例，不能声称完整角色链必需本题数差。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "最终1981−1976=5，两个上映年都被当奖年；C不等于年份解释正确。",
+      "outcome_evidence": [
+        "N4_CALC",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R6 1377字符保持Annaud导演首作、明确两边可能次年，单Search Quest for Fire César Award Best Director year，得到794119同原资料和其他Quest电影/游戏等，无直接典礼年。R7 6370字符重新用1981/1976作奖年，短暂疑定语归属，最终视其为导演识别附加背景，直接5 Submit。",
+      "first_judgment_divergence": "同导演首作对象，优先查César年份，不查Connery首作。",
+      "first_actual_tool_divergence": "单Quest年查询替代错误演员首作与原后续四查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "演员首作及奥斯卡",
+          "original_operation": "错置对象Search",
+          "original_product": "非所需演员材料",
+          "new_goal": "导演获奖年份",
+          "new_operation": "1Search后用已知两上映年差",
+          "new_product": "5；典礼年依然没证",
+          "evidence": [
+            "O_U",
+            "O_Q",
+            "N4_Q",
+            "N4_CALC",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "演员首作取证未执行；只是改做目标奖年。",
+      "judgment_action_outcome_chain": "正确导演所属关系延续→单查奖年没有新支持→同用上映年推出5→停止；没有重新制造演员首作任务，但错误年份口径未被发现。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "2084生成48641Prompt1Search2Actor，较原少4878生成4Search2Actor；节省在不执行错误入口和不继续原多轮奖年补查，仍有6370字符复盘。",
+      "counterevidence_and_alternatives": "两奖年份共同错置仍差值相同，不能归为每个条件都保持正确的证据。"
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": "C/C/C/C，均未查Sean首作；r3仅核角色部分恢复。",
+    "same_result_different_paths": "r1零检索直接采用上映年，r2两奖年查询采用典礼年，r3角色查询与两万六千字重解析，r4单奖年Query上映年差；不能用4C代替这些差异。",
+    "cost_difference": "三次生成usage下降，一次增加；四次Search均少，但原生IDs缺失，不给native精确值。"
+  },
+  "conditional_mechanism": {
+    "claim": "在正确导演首作已经由P材料支持时，将其错归演员会新建不必要的取证对象；删除后四次均没有恢复该错误对象，仍用已有导演链得核心数差。",
+    "observable_mediator": "首作归谁决定实际查Sean debut还是Quest奖年/Dravot角色/直接算差。",
+    "limits": "只有同题4路径，G给重新列条件方向；原路径也纠回，最终同C不证明该U普遍冗余。数差还会掩盖两侧同样的年份错用。",
+    "counterexample": "r3错误首作未重做但长解释使生成更高，否定不查错误对象就一定更省。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the following information:"
+    },
+    {
+      "evidence_id": "O_FACTS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Annaud's first film, \"Black and White in Color\" (1976), received an Academy Award for Best Foreign Language Film.",
+      "doc_ids": [
+        "wiki25:794119"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "1. The debut feature of Sean Connery"
+    },
+    {
+      "evidence_id": "O_Q",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/9/arguments/query",
+      "exact_quote": "Sean Connery debut feature film",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RET",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/9/observation/results/0/snippet",
+      "exact_quote": "He was voted by \"People\" magazine as the \"Sexiest Man Alive\" in 1989",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:104478"
+      ]
+    },
+    {
+      "evidence_id": "O_REPAIR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "Black and White in Color"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N1_CHOICE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "César Award for Best Director won by Jean-Jacques Annaud for \"Quest for Fire\" = 1981"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire César Award Best Director 1982",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_CALC",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Difference: 1982 - 1977 = 5 years"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N3_Q",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Daniel Dravot actor 1975 Man Who Would Be King",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_LOOP",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "But 'Black and White in Color' doesn't star Sean Connery. So there's a contradiction here."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Quest for Fire César Award Best Director year",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_CALC",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "1981 - 1976 = 5"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0225/trajectory.json",
+      "source_sha256": "dad7c40bf4b24d3bb344e38664adaf8ba508a9f3e53e7354edca180e9e4e181d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0225.json",
+      "source_sha256": "94db9aff7cea271430a33afb2f46e01d04c5e65847880b4c69b1de0cda8bac45"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "4d63cd451a7be404dd166eddf297f12e5d62cab3b3ff6abf81fe7511769104f7"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "ec9ecfefabb74e6dc7df314b13a533af17d0545c662afa89f4c4e7f570e80aab"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9f18bb3fda4dff5b0af1861f7465a626643f0f8550b551993ad80a24e9f8bb91"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "75d5aac8c48731f9bfc4b1d995ce8044440c1cbde050da9e02ba0a22eb179851"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S007__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "52a542d03d69759c41f5a9ffd317aec2a29d26e9fb06711a96f97423ab63b42d"
+    }
+  }
+}

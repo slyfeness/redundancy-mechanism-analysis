@@ -1,0 +1,481 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0986",
+  "stage_id": "S001",
+  "sample_order": 100,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the specific numerical distinction of the prestigious U.S. science award received by the prominent student of the scientist who formulated the boundary layer theory, a concept central to the field of fluid dynamics in which Wilhelm Nusselt made significant contributions?",
+    "gold": [
+      "first"
+    ],
+    "gold_source": "封存离线答案清单；只用于生成后的语义比较。"
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原R12最后38977字符推理截断，真实MISSING_FINAL_STOP，没有正式提交；中间反复想vonKarman/1963不冒充答案。",
+    "evidence": [
+      "O_END"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，仅Question及工具说明，没有历史检索、已确认人物或奖项。",
+    "evidence_states": "原题只给Nusselt和边界层线索，Prandtl/学生/奖项/序数均未知。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 429
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 528
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 249
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 373
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 74
+      }
+    ],
+    "goal": "拆解多跳约束并确认边界层理论提出者。",
+    "operations": "R1泛搜索无直接答案；R2从知识提出Prandtl但与Nusselt/student拼查回词表；R3泛改写仍未解决；R4实际Prandtl+theory查得直接人物/边界层资料，R5前74字符采用Prandtl。",
+    "product": "确认提出者Prandtl，同时返回片段出现Blasius/Boltze学生，另一片段提vonKarman竞争但未证目标奖项。",
+    "judgment_change": "从待识别理论创立者到具体Prandtl，并使学生追查成为下一工作。",
+    "evidence": [
+      "O_KNOW",
+      "O_RETURN",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R5采用片段中Blasius为prominent学生，R5–R11围绕其美国奖项真实查7次无支持。R11开始怀疑但仍查Blasius；R12提vonKarman及可能NationalMedal且大量说Letssearch，实际没有新Call、无Final。U提出者判断使用了，但学生选择过早收窄且后来的替换未执行。",
+    "evidence": [
+      "O_BLASIUS",
+      "O_ALTERNATIVE",
+      "O_END"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "关系链的第一实体辨认与有证据确认，为后续学生选择提供入口。",
+    "state_relation": "四条全部重建Prandtl确认，因此B类三次状态变化不能解释为删掉该知识有益。分歧发生在后续学生选择、奖项证据搜不到后的处理，以及是否用无支持序数提交。",
+    "evidence": [
+      "N1_ADOPT",
+      "N2_ADOPT",
+      "N3_ADOPT",
+      "N4_ADOPT"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find his prominent student who received a prestigious U.S. science award.",
+    "source_position": "原R5[74,161)，I#/anchor_text；18派生Token。",
+    "novelty": "his无姓名；无Prandtl、vonKarman、奖项或first事实。相对原题重述学生奖项任务，但提前给下一工作方向，不能声称无干预自然重启。",
+    "risk": "ORACLE_ANCHORED；首Stage全部探索被删后又重新从Question开始，RESTART_NOT_PROVEN_STAGE_SKIP；没有匹配自然对照，不能以三次状态改变断言U重要或多余。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "fourth",
+      "adopted_answer": "fourth",
+      "outcome": "W",
+      "outcome_reason": "实际提交fourth，与Gold first不同；R17以混乱1959/1963/1964历史推测第四，返回没有支持该序数。",
+      "outcome_evidence": [
+        "N1_WRONG",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R1泛Query杂项，R2PrandtlQuery同原直接包，R3–5继续Blasius奖项/Nobel；R6明确换vonKarman且真实Query，获得1058236学生关系和481582生平片段；R7实际Query带无据1944，R8/9奖项查询、R10猜1964、R11first、R12number、R13AIAA、R14fourth、R15/16猜1964fourth，大量返回其他Theodore或空。R17 5450字符1353Token自编历届次序后submit fourth；未Open481582。",
+      "first_judgment_divergence": "R2就确认Prandtl，比原R4早；真正行为差异R6把vonKarman从备选变为真实查询对象，原只在R12想象查询。",
+      "first_actual_tool_divergence": "R1省fluid dynamics；R2直接有效Prandtl查询，R6实际换人物。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认理论创立者",
+          "original_operation": "检索Prandtl并采用",
+          "original_product": "Prandtl",
+          "new_goal": "同",
+          "new_operation": "R2检索、R3采用",
+          "new_product": "同Prandtl并用于学生查询",
+          "evidence": [
+            "O_RETURN",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原第一实体核查功能完整恢复；最终错在下游奖项序数无证据推断。",
+      "judgment_action_outcome_chain": "Prandtl恢复→Blasius缺奖项促真实换人→学生关系已证但奖项缺口未补→猜年份/序数成为新查询前提→无支持仍接受第四→W。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "4072生成497488Prompt17Actor16Search0Open，相对原11364生成234640Prompt12Actor11Search，记录生成少7292却多5Search/Actor且Prompt高；主要省原R12未执行的10000Token反复假设，改为更多真实查询，不能称所有成本降。P491/G18另列。",
+      "counterevidence_and_alternatives": "B的N→W只是提交状态变化非改善。正确人物恢复并未保证序数正确；G、采样、生产档位和预算差异不能排除。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "He was the first recipient of the National Medal of Science.",
+      "adopted_answer": "first recipient",
+      "outcome": "C",
+      "outcome_reason": "正式采纳first与Gold一致；但R17推理称1966且明确片段没有first，答案正确与年份错误/证据缺失分别记。",
+      "outcome_evidence": [
+        "N2_J",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1Nusselt泛Query回词表，R2确认Prandtl，R3虽见Blasius却直接以知识选vonKarman并真实查询得学生关系。R4NobelQuery空；R5奖项、R6猜1959、R7猜1960、R8猜1963、R9honors、R10biography、R11猜1958、R12猜1966、R13/14相同honors、R15重复biography、R16猜1966numerical，均无奖项/序数支持。R17 2433字符590Token以记忆first/1966接受并提交。没有Open已得481582。",
+      "first_judgment_divergence": "R3直接选择vonKarman而不将Blasius名字等同目标学生，较早实际换查人物。",
+      "first_actual_tool_divergence": "R1NusseltQuery不同，R3已发vonKarman，原R5起只追Blasius。",
+      "function_correspondence": [
+        {
+          "original_goal": "Prandtl身份",
+          "original_operation": "Search核对并采用",
+          "original_product": "提出者确认",
+          "new_goal": "同",
+          "new_operation": "R2查、R3明确确认",
+          "new_product": "同提出者，后选择不同学生",
+          "evidence": [
+            "O_ADOPT",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "第一跳确认完整恢复，下游学生与提交选择另评。",
+      "judgment_action_outcome_chain": "同提出者→较早查正确学生→直接学生证据得到但奖项没有→多轮无效年份/入口重试→以记忆接受first并C，正式答案保持正确不等证据充分。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "2615生成426980Prompt17Actor16Search0Open，相对原生成少8749、真实Search/Actor多5，Prompt增加。避免原10K纯思辨，额外5轮真实取证仍未直接支持序数。",
+      "counterevidence_and_alternatives": "C结果不验证1966，Final仅first故C；未将reasoning错误自动变为Final错误，也不掩盖证据问题。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "ACTOR_CALL_BUDGET_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "真实20次Actor后仍Search，无正式Final；最后返回没有再送下一Actor，不能认定被采用。",
+      "outcome_evidence": [
+        "N3_END"
+      ],
+      "work_and_evidence_timeline": "R1NusseltQuery，R2Prandtl确认；R3泛查学生美国奖得Multhopp beststudent，R4–7将其认作目标追奖项，R8长盘点后Open50只姓名生日；R9查TheodoreWu，R10/12同泛学生Query，R11又Multhopp；R13/14词序改写后同返回，R15才选vonKarman，R15/16/17同奖项Query同其他Theodore包，R18/19查MaxMunk，R20带1980s同包后预算终止。",
+      "first_judgment_divergence": "R3返回的best student被提升为题目那位获美国奖学生，即使奖项条件未证；反复查该对象后才松动。",
+      "first_actual_tool_divergence": "R3泛学生NationalMedalQuery替原指定Blasius，引出不同候选。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认Prandtl",
+          "original_operation": "查证理论归属",
+          "original_product": "Prandtl",
+          "new_goal": "同",
+          "new_operation": "R2相同直接包并R3采用",
+          "new_product": "同第一跳但学生路线不同",
+          "evidence": [
+            "O_RETURN",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "新路径明确核对提出者，未因无Final判所有工作未恢复。",
+      "judgment_action_outcome_chain": "第一实体恢复→局部beststudent替代全部条件确认→Multhopp奖项搜索无支持但继续→换人仍重复泛证据入口→20请求耗尽N；不是简单未想到vonKarman，R15实际查但仍无奖项支持。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "6487生成430429Prompt20Actor19Search1Open，比原生成少4877但多8Search8Actor1Open，Prompt增加。原未执行假设段变为更多候选真实检索及列表；两条都N但计算结构不同。",
+      "counterevidence_and_alternatives": "beststudent是真的返回，不代表获奖身份成立；后期已纠正候选但仍失败，说明早期误认不是唯一解释。原预算/停止机制不同需保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "first",
+      "adopted_answer": "first",
+      "outcome": "C",
+      "outcome_reason": "真实first匹配Gold，但R13反复自称1959多人第一批，错误年/人数与无直接奖项文档支持必须保留。",
+      "outcome_evidence": [
+        "N4_J",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R1NusseltQuery，R2Prandtl，R3泛学生奖项回Multhopp；R4没有将beststudent定为唯一，转WuQuery同时真实回481582。R5整合选vonKarman，R5/6奖项Query未支持；R7/8同1955Query、R9/10猜1959查询；R11 5011字符盘点后终于实际Open481582全文2958，明确没有奖项；R12再带1959first仍无；R13 15891字符4106Token在first/firstclass/1959/15人等假说间反复后submit first。",
+      "first_judgment_divergence": "相同Multhopp beststudent材料未被当全部身份确认；从多个学生关系比较后采用vonKarman。",
+      "first_actual_tool_divergence": "R4 Wu复合Query带回真实vonKarman来源，R11Open已知Doc而非持续只Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "Prandtl确认",
+          "original_operation": "理论与人物资料核对",
+          "original_product": "Prandtl",
+          "new_goal": "同",
+          "new_operation": "R2直接Search后R3确认",
+          "new_product": "同首跳，并用于多学生比较",
+          "evidence": [
+            "O_ADOPT",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原提出者辨认完整发生，后续结局不能算跳过。",
+      "judgment_action_outcome_chain": "首跳恢复→不锁死Multhopp→采用vonKarman→多查询及全文仍缺奖项→以未证记忆和序数解释接受first→C但证据不足，长独立思辨仍大量存在。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "7699生成267394Prompt13Actor11Search1Open，原11364/234640/12Actor11Search0Open，生成少3665但Prompt、Actor、Open增加。省原终段10000Token反复的一部分，新末段仍4106Token；不是完整清除重复或已证质量等价。",
+      "counterevidence_and_alternatives": "同r2C但知识解释相互冲突（1966对1959），二者均非真实返回证明；r1类似无据记忆却W，故不能将提交本身当获证机制。"
+    }
+  ],
+  "four_run_comparison": "原N，新W/C/N/C为B，四条第一跳功能均完整恢复；三个状态变了只有两个语义正确，且两个都缺奖项序数直接证据。r1换对人物仍编fourth；r2较早选对人物但16Search无支持后凭记忆first；r3以beststudent误定Multhopp、后来真实换人仍N；r4比较候选、真实Open后仍缺证却凭猜测first。主要可见差别在学生身份的条件使用、未解决奖项缺口如何触发重试，以及何时把未证记忆接受成提交，不能把B归结被删提出者Stage独有作用。",
+  "conditional_mechanism_proposals": [
+    {
+      "proposal": "已证某人是学生，不等于已证他是题目中获奖学生。把局部身份匹配提升为目标身份会派生一串缺乏支持的奖项核验；不同新路径会较早换人、晚换人或仍追错对象。但正确学生被采用后，若奖项入口持续只返无关材料，仍可能重复搜索、预算耗尽或凭未证记忆提交，序数正确与否是下游独立问题。",
+      "support_evidence": [
+        "O_BLASIUS",
+        "O_ALTERNATIVE",
+        "N1_WRONG",
+        "N2_J",
+        "N3_BEST",
+        "N3_END",
+        "N4_MISSING",
+        "N4_J"
+      ],
+      "limit": "一题内部反例，不能据此称跨题共同机制已成立。r2/r4C也不代表证据闭环。"
+    }
+  ],
+  "counterevidence_and_limits": "原184867字符及新418281字符视图全部顺序阅读；真实Return完整存档，相同字段引用仅代替已读全文。重音字符Query回其他Theodore的现象可直接观察，但未运行检索诊断，不能声称已定位索引或重音归一化故障。原N终态MISSING_FINAL_STOP非新20Actor预算终态；原无nativeIDs，起始完整usage可比较记录数量不宣称原生精确因果节省。G不包含答案但仍ORACLE_ANCHORED。",
+  "evidence": [
+    {
+      "evidence_id": "O_KNOW",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "I know from general knowledge that Ludwig Prandtl formulated the boundary layer theory."
+    },
+    {
+      "evidence_id": "O_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/0/snippet",
+      "exact_quote": "His studies identified the boundary layer, thin-airfoils, and lifting-line theories.",
+      "doc_ids": [
+        "wiki25:1058234"
+      ]
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The scientist who formulated the boundary layer theory is Ludwig Prandtl."
+    },
+    {
+      "evidence_id": "O_BLASIUS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "Now I need to find what prestigious U.S. science award Blasius received"
+    },
+    {
+      "evidence_id": "O_ALTERNATIVE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "Maybe Theodore von Kármán? He was also a student of Prandtl."
+    },
+    {
+      "evidence_id": "O_END",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 12,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "MISSING_FINAL_STOP"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find his prominent student who received a prestigious U.S. science award."
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The scientist who formulated the boundary layer theory is Ludwig Prandtl."
+    },
+    {
+      "evidence_id": "N1_WRONG",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "I don't see explicit information about von Kármán receiving the National Medal of Science in 1964 and it being the fourth award."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "fourth"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "However, I recall that Theodore von Kármán was a prominent student of Prandtl"
+    },
+    {
+      "evidence_id": "N2_J",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/16/reasoning_content",
+      "exact_quote": "didn't explicitly show the text \"first recipient\" in the snippets, but general knowledge confirms this."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 17,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "He was the first recipient of the National Medal of Science."
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The scientist who formulated the boundary layer theory is Ludwig Prandtl."
+    },
+    {
+      "evidence_id": "N3_BEST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/7/reasoning_content",
+      "exact_quote": "So Multhopp is indeed the prominent student."
+    },
+    {
+      "evidence_id": "N3_END",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 20,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "ACTOR_CALL_BUDGET_STOP"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results confirm that Ludwig Prandtl formulated the boundary layer theory."
+    },
+    {
+      "evidence_id": "N4_MISSING",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 12,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/11/reasoning_content",
+      "exact_quote": "The document provided does not contain information about the National Medal of Science or any specific numerical distinction."
+    },
+    {
+      "evidence_id": "N4_J",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/12/reasoning_content",
+      "exact_quote": "Wait, I found a snippet in the search results for \"Theodore von Kármán\" that mentions \"National Medal of Science\"? No."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 13,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "first"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0986/trajectory.json",
+      "source_sha256": "dab2ce6319549f6130886eb8e0ca7a4dc20ddf801d10f88bee35e483138c60fa"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0986.json",
+      "source_sha256": "e437402ff53a36a15aa59bb64ed67dccd6068b1ce610c7433b160704d6e6ea65"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "25930f8655bacc35bbc12a79ff9e969a1bb085e20f1e1e4266c1321637037552"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "cfeeba6ef8c46853846d860d1508bf0ba9cfb4603e870cb396da4e7a92da71c0"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "b16246f99b42fde0bf9f5547c57b32d7c30e6d8db5d35bca805e0ccebef22fb9"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b223614240297b4dd4f855cf232daa95e1e0a9c80212ca853b393b1ecdf57436"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0986__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "743c7ef17a988eca8a858eb501774f3fd8c0cad06e3ad7781ae651603b650ea3"
+    }
+  }
+}

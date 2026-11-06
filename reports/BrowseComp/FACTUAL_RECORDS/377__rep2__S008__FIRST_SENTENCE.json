@@ -1,0 +1,39 @@
+{
+ "case_id":"377__rep2__S008__FIRST_SENTENCE","question_id":"377","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"真实FormalFinal原新均采纳Abosede，研究k0A，旧整段EM原新W保留。新1—3母亲作兄弟仍错，新4真实新增病因证据后纠正，不以姓名状态掩盖质量差异。"},
+ "review_basis":"原12轮11Call/全部Return同源全文已读；四新10轮6Call/Return与全部Reasoning/Final完整阅读，85文档槽无新SHA；新4最后86957/18217完整已读片段按SHA核对。原U全部片段单独重读；P/G与实际Call配对核验保存，无模型新运行。",
+ "pre_state":"P已采用Beko并实际逐条件比较，父辈/Manchester/医院/死亡等可见，但错误把母亲当兄弟；妻子具体名字尚未返回、未采用。此处删除的不是已有名字后确认，而是首次wife获取加一次姓名复核。",
+ "u_work":"U R10@1135起真实wifeQuery，R11消费74712明确AbosedeFolasade，再查legal first，R12前201字符接受Abosede和Folasade中名关系。两次真实Call和名字解释同属U，产物是实际取得并采用所问妻子姓名；原Z再复盘并提交。",
+ "u_state_update":"P未知妻子名→U取得直接妻子关系及姓名→Z据此答。四新都真实再次查wife并采用74712，故主要功能恢复；只有是否需要重复姓名确认、是否把已识别兄弟冲突转实际核查不同。",
+ "original_action_consequence":"原wife两查后提交仍把母亲当兄弟。删后两条一wifeCall即提交，一条仍两次姓名确认，一条把原第二姓名Call替换为Fela病因实查，答案都同但工作与质量不同。",
+ "guidance":{"text":"Let me verify all the clues match Dr. Beko Ransome-Kuti:","source":"原S009 R12[201,257)，17原生Token，冒号完整行不带条件清单；P R10@1135为原生320Token精确。","audit":"ORACLE_ANCHORED；Beko已在P采用，G没有新实体事实/妻子姓名，强调再次核对同候选。不能将G说成提供答案，也不等于纯无引导删除。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/10/reasoning_content","quote":"So the legal first name of his wife is Abosede (or Abosede Folasade, with Folasade being the middle name).","use":"U首次wifeReturn后的实际名字解释；P此前没该产物。"},
+  {"id":"O2","source":"original","pointer":"/rounds/10/tool_calls/0/function/arguments","quote":"Abosede Ransome-Kuti legal first name wife","use":"原E11/chatcmpl-tool-a3211e711043e9d0第二个wife相关Call，不把两次U操作只算一个；初稿引用误写相近Query被实际校验拒绝，按源字段纠正，不修改验证器。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Dr Beko Ransome-Kuti wife","use":"R10/chatcmpl-tool-834d3a6215ed6afa重新取得74712，R11消费后直接提交。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"The legal first name would be \"Abosede\".","use":"R11名字产物由真实Return恢复，无第二名字Call。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/0/tool_calls/0/function/arguments","quote":"Beko Ransome-Kuti wife spouse","use":"R10/chatcmpl-tool-a6c20eca401c73a6完整wifeReturn取得，非G给姓名。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Perfect! I found the answer.","use":"R11消费后接受并提交，一次取证得到名字足以其行动选择。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"His brothers were Fela Kuti and Olikoye Ransome-Kuti, who both lived well past the 21st century.","use":"R10无证错误日期判断；虽要查siblings实际先wife，不将意向计新Call。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Abosede Folasade Ransome-Kuti first name","use":"R11/chatcmpl-tool-8ef8b3a936764d66第二次姓名确认真实发生，病因仍没实际核。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/2/content","quote":"His mother Funmilayo Ransome-Kuti died in 1978","use":"Final仍用母亲充兄弟，生成增并未补关键关系证据。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"not exactly a \"long-term illness\" though","use":"R10识别P母亲关系/病因疑点，先wife但随后确实改变另一核验行动。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/1/tool_calls/0/function/arguments","quote":"Fela Kuti died AIDS complications long-term illness","use":"R11/chatcmpl-tool-83dd5a31d7d0ced4真正查Fela并回86957/18217直接病因。"},
+  {"id":"N43","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"His brother Fela Kuti died on August 2, 1997 from complications from AIDS","use":"R12实际采用新病因证据、纠正母亲关系后提交；不是所有额外核查都无收益。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后简单复述P条件再真实wifeQuery；Return显示姓名后直接解释首名，不恢复第二次姓名确认。","state_chain":"P身份已采用但姓名未知→真实wife取证→74712被采用→省重复确认→C但母亲关系错留。","function_change":"FULL_REBUILT妻子名字获取/采用，原第二次姓名确认未执行；同功能更少操作而非全U未重建。","evidence":["N11","N12"],"semantic_result":"C；Search/Actor各少1、Prompt少，但生成加G多17。"},
+  {"repeat":2,"first_divergence":"一wifeQuery取直接材料，R11立即接受并再次全条件复盘后Final；没有名字再查。","state_chain":"真实wife关系证据→直接名字判断→接受提交C，重复母亲条件未改。","function_change":"FULL_REBUILT核心获取及解释；第二Call省掉，整体判断仍实际发生。","evidence":["N21","N22"],"semantic_result":"C；Search/Actor各少1，Prompt少，生成加G仍多8。"},
+  {"repeat":3,"first_divergence":"先识别兄弟矛盾但无证说两兄弟都活到21世纪，实际先wife；名字已得仍再真查姓名，最后继续母亲错。","state_chain":"候选冲突口头浮现→wife取得→再姓名确认→未解兄弟条件被复述成匹配→C。","function_change":"FULL_REBUILT原两次姓名取证及采用，不见取证功能省略；反思更多但没对应病因Call。","evidence":["N31","N32","N33"],"semantic_result":"C；Search/Actor同，生成+664、Prompt+1075。"},
+  {"repeat":4,"first_divergence":"先识别母亲非兄弟/非长期病，wifeReturn后将这一具体疑点转Fela病因真实Query，取得后采用。","state_chain":"P关系错误识别→wife证据恢复→实际新病因核验→新Return支持FelaAIDS→纠正关系后C。","function_change":"FULL_REBUILT妻子获取/名字解释，原第二名字确认被有信息增益的兄弟核查替代。","evidence":["N41","N42","N43"],"semantic_result":"C姓名且关键条件证据改善；Search/Actor同、生成+569、Prompt+1291，不能仅按成本增叫无价值。"}
+ ],
+ "mechanism_candidate":"当P尚无所问妻子姓名时，删除完整wife取证并未让功能消失，四次都重新取74712、实际采用后才C。减少操作的是其中两次不再把已取得姓名继续当作待确认；但其总推理仍多，因复盘和重组织而非全成本节省。另一次把第二Call改为纠正P未闭合兄弟病因，真实改善证据；同样C不能掩盖这种有益新增工作。",
+ "within_case_support":"四C/k0A，妻子核心功能恢复4/4；省第二名字Call2/4，总Search少2/4，生成加G少0/4。真正将兄弟冲突转实查并用新病因材料修正1/4，而只有口头重读缺口另有实例，分别计数。",
+ "mechanism_chain_checks":[
+  {"chain":"姓名未知→重新真实wife取证并采用→不再姓名确认即C且少Call","observed_repeats":[1,2],"not_observed_repeats":[3,4],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22"]},"limits":"生成仍较原高，原母亲错保持，不称无损省全部功能。"},
+  {"chain":"关系冲突实际识别→第二核验由姓名转Fela病因→真实新Return采用修正关系→C","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N41","N42","N43"]},"limits":"这是成本更高但质量改善的单路径；新3亦口头识别冲突却实际查姓名，为过程反例。"}
+ ],
+ "counterevidence_and_limits":["两条少Call仍生成更多，调用减少、表达长度与Prompt差不能混成单一省耗；四次没有完全绕过妻子取证。","新4额外病因证据真实返回且采用，是反驳所有额外条件核查无益的实例；与新3只反复讨论不可合并。","G已采用人名来自P，非首次实体泄漏，但提供全条件匹配框架，保持ORACLE_ANCHORED。","原及三新Final母亲错仍在；仅新4病因直证，不根据Gold匹配免除证据审核。","同题一个删点四次和其它原运行不得作独立题目支持；不宣称原U全部不可省或完全冗余。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R10@1135原生320；原后缀gen927 Search2 Actor3 Prompt94308。新gen927/918/1574/1479，G17一次净+17/+8/+664/+569；Search1/1/2/2 Actor2/2/3/3；Prompt60561/60588/95383/95599，差−33747/−33720/+1075/+1291。P重放320生成Token另列，G上下文已进Prompt，不重复加；四次独立差值不累加。",
+ "next_cross_case_test":"与P早已取得姓名的重复确认删点区分：此处功能须新取证四次恢复，那里可能直接采用P而无Call。另把关系纠错真正驱动新工具并改证据的路径，与只复述冲突却不行动的路径跨题比较。"
+}

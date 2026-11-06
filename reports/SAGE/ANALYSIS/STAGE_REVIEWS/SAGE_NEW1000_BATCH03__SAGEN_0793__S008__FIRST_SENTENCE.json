@@ -1,0 +1,435 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S008",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "Gold符合，外围天体未解。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R10@512当前清单明确LuXun/1936/赛事49、日期March18、机场243；此前真实工具支持主数及机场，天体未匹配。",
+    "evidence_states": "核心数已返回、提取、采用；天体仅题面关系推定。",
+    "evidence": [
+      "I_P",
+      "O_49"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/7/items",
+    "ranges": [
+      {
+        "round": 10,
+        "pointer": "/rounds/9/reasoning_content",
+        "start": 512,
+        "end": 799
+      },
+      {
+        "round": 11,
+        "pointer": "/rounds/10/reasoning_content",
+        "start": 0,
+        "end": 1302
+      },
+      {
+        "round": 12,
+        "pointer": "/rounds/11/reasoning_content",
+        "start": 0,
+        "end": 636
+      },
+      {
+        "round": 13,
+        "pointer": "/rounds/12/reasoning_content",
+        "start": 0,
+        "end": 2020
+      },
+      {
+        "round": 14,
+        "pointer": "/rounds/13/reasoning_content",
+        "start": 0,
+        "end": 917
+      },
+      {
+        "round": 15,
+        "pointer": "/rounds/14/reasoning_content",
+        "start": 0,
+        "end": 586
+      }
+    ],
+    "goal": "匹配March18发现、周期243天的小行星。",
+    "operations": "六次真实Search，同周期日期Query多次同噪声，去掉周期再恢复，未取到目标。",
+    "product": "无小行星身份或周期支持，主数49未改变。",
+    "judgment_change": "剩余条件持续触发查询，未见失败反馈导致方法改变。",
+    "evidence": [
+      "O_QUERY",
+      "O_LAST",
+      "O_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R16承认没有匹配小行星，认主数直接充分而Submit49。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "已知主答案之后的附加链检索与反复重试。",
+    "state_relation": "四支无真实天体Search，直接综合主证据提交；外围缺口保留而核心答案保持。",
+    "evidence": [
+      "N1_REASON",
+      "N2_REASON",
+      "N3_REASON",
+      "N4_REASON"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "The user wants to find the total number of National Olympic Committees that participated in a specific multi-sport event.",
+    "source_position": "O R16[0,121)",
+    "novelty": "原题目标复述，不含新候选、49或停止明确命令；有将注意力重新置于所问主数的框架提示。",
+    "risk": "ORACLE_ANCHORED；不能把条件结果解释纯无引导删除。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "真实Submit49，外围没有新增支持。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R10引49原句，完整重读题面，判断天体是additional context not needed；无Search直接Submit。",
+      "first_judgment_divergence": "同P缺口从原必须继续查，改为不阻止核心回答。",
+      "first_actual_tool_divergence": "原R10天体Search改为Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "天体日期周期匹配",
+          "original_operation": "六Search",
+          "original_product": "未匹配",
+          "new_goal": "判断主答案可提交否",
+          "new_operation": "复盘已有证据无新取证",
+          "new_product": "49提交，天体仍未匹配",
+          "evidence": [
+            "O_QUERY",
+            "N1_REASON",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有实际重做该天体取证；论述题面不算证据核查。",
+      "chain": "主数已采用→G重申所问→外围不再派发查询→C且6Search取消。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "554生成24366Prompt1Actor0Search/Open；减少原六Search及其Prompt/轮次，仍有较长题面复盘。",
+      "counterevidence_and_alternatives": "答案保持但外围证据原来就缺；不能证明完整题链质量无损。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "Submit49。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R10短列LuXun、死亡年、赛事、天体待配、243，转所问是NOC49提交，无工具核查。",
+      "first_judgment_divergence": "承认天体needs March18却不继续查，未解项不再阻止提交。",
+      "first_actual_tool_divergence": "直接Submit替代Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "匹配小行星",
+          "original_operation": "真实反复查",
+          "original_product": "缺口未闭合",
+          "new_goal": "核心作答",
+          "new_operation": "已有信息摘要后Submit",
+          "new_product": "49、外围仍缺",
+          "evidence": [
+            "O_QUERY",
+            "N2_REASON",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "未执行天体取证。",
+      "chain": "目标数稳定→短复盘→忽略未闭合天体查询→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "196生成24366Prompt1Actor0Search/Open；省原六Search和相伴推理，非只删目标字数。",
+      "counterevidence_and_alternatives": "没有全文证实天体，不将未发生核查说成已足够证明全链。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "Submit49。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R10只列作者、1936、赛事49四点，不展开天体，直接Submit。",
+      "first_judgment_divergence": "选择仅用主链，附加缺口没有进入实际下一步。",
+      "first_actual_tool_divergence": "Search变Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "补天体",
+          "original_operation": "六查询",
+          "original_product": "未补",
+          "new_goal": "回答主数",
+          "new_operation": "四点摘要提交",
+          "new_product": "49，无天体产物",
+          "evidence": [
+            "O_QUERY",
+            "N3_REASON",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "没有重做取证或实质天体核验。",
+      "chain": "已采用答案足够→短主链→C且不派生外围任务。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "137生成24366Prompt1Actor，四次中最短摘要；六Search未再现。",
+      "counterevidence_and_alternatives": "省略外围解释可能损说明完整性，不以C替代证据审查。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "Submit49。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R10列已知链，承认仍需243天小行星，但称distractor or specific detail，重新关注赛事三事实→Submit。",
+      "first_judgment_divergence": "明确降低外围缺口对下一步决策的优先级，未产生新证据。",
+      "first_actual_tool_divergence": "只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "天体取证",
+          "original_operation": "反复Search",
+          "original_product": "未匹配",
+          "new_goal": "接受49",
+          "new_operation": "判断外围无需继续并提交",
+          "new_product": "49",
+          "evidence": [
+            "O_QUERY",
+            "N4_REASON",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "function_recovery_reason": "有核查文字意向，无真实天体Search。",
+      "chain": "知道缺口→将其降为非阻塞项→C、少六Search。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "379生成24366Prompt1Actor0Search/Open；相对N3多外围解释，工具行为相同。",
+      "counterevidence_and_alternatives": "distractor是模型解释，不是已独立证实的题目属性。"
+    }
+  ],
+  "four_rollout_comparison": "4C、四次NOT_OBSERVED天体搜索，主链已有49足以支持该输出；减少的是实际六次失败重试及后续输入，而非所有认知工作消失。",
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "主答案已被直接证据锁定但外围条件尚缺时，改变外围缺口是否继续派发取证，可保持输出而取消不改变主候选的重复尝试。",
+      "support": "同切点四次转Submit；原六Query未找到天体后也Submit49。",
+      "limits": "ORACLE框架与采样不能排除；完整链未证实，不概括辅助条件都可省。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原路径也没有补全天体，差别不是新遗漏已得证据。",
+    "只一题多Stage不能当多题支持。",
+    "字符精确，无原生Token净节省。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 10,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "**Number of NOCs**: 49 National Olympic Committees participated"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 10,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user wants to find the total number of National Olympic Committees that participated in a specific multi-sport event."
+    },
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/rounds/9/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 orbital period 243 days"
+    },
+    {
+      "evidence_id": "O_LAST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 15,
+      "event_type": "call",
+      "json_pointer": "/rounds/14/tool_calls/0/arguments/query",
+      "exact_quote": "asteroid discovered March 18 243 days orbital period"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/15/reasoning_content",
+      "exact_quote": "I don't see a direct match for an asteroid discovered on March 18"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N1_REASON",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "additional context but not needed for the final answer"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_REASON",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The asteroid discovery date needs to be March 18"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_REASON",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The answer should be **49**."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_REASON",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "But this seems like it might be a distractor or a very specific detail."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "b376bcc92e6e9cd3cf5d1523797deef513d29a4bc5fe502329424c31e0720959"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "5ae699b4c05a2af4f48d0dc99f029e6a270818b1e43b6be1ba15acf56e0c2c4b"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "420e5ebad577af7235bb5ccb405db04c17dd43cae212e94d18684128750e3214"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "3de134c7e2d9cb9bf1eb19c11e44ca4afb45ee638e4821fb18570a912d173c45"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S008__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c0e76fb939bbde468458ea8d5f740293796889209a0dff010a67feb4f17d8cb9"
+    }
+  }
+}

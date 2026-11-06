@@ -1,0 +1,486 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0225",
+  "stage_id": "S005",
+  "sample_order": 87,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference in years between the César Award for Best Director won by the director of 'Quest for Fire', and the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose', a film starring the actor who played Daniel Dravot in the 1975 cinematic adaptation of Rudyard Kipling's 'The Man Who Would Be King'?",
+    "gold": [
+      "5"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "5",
+    "adopted_answer": "5",
+    "outcome": "C",
+    "reason": "正式5；同导演首作直接资料支持，典礼年份原路没有直接证实。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@0当前reasoning为空；原前四轮真实检索历史中794119给Annaud导演Quest1981/Rose1986、首作BlackWhite1976及两奖。此前演员查询只给Connery/Caine主演而非Dravot明确扮演关系；Quest奖年查询无直接典礼年。",
+    "evidence_states": "导演及首作证据已返回、早前模型曾据此查询；删除点本轮尚未形成完整5判断，不能把被删987字符中的采用和算差算进P。",
+    "evidence": [
+      "I_BOUNDARY",
+      "O_FACTS"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/4/items",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 987
+      }
+    ],
+    "goal": "将演员、导演、首作、两获奖电影年份整合并算差。",
+    "operations": "从共演推Connery角色，采用Annaud首作及奖项，将两上映年当获奖年，算1981−1976=5。",
+    "product": "当前完整答案判断5；没有新Call。",
+    "judgment_change": "把返回材料落实为本次完整算差与接受，年份口径却未精确区分。",
+    "evidence": [
+      "O_U",
+      "O_CALC"
+    ]
+  },
+  "original_followup": {
+    "use": "S006按刚接受的答案Open794119仅100字符出生头部；R6错转Connery首作；R7纠回导演、反复奖年补查后R9还是5。",
+    "evidence": [
+      "O_OPEN",
+      "O_WRONG",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "从多跳材料形成候选关系和数值答案的整体判断。",
+    "state_relation": "四次全部重新采用同导演首作并算差5，不能说判断功能省掉；重建可伴随更直接证据，也可伴随新错置和更多文字。",
+    "evidence": [
+      "O_CALC",
+      "N1_CALC",
+      "N2_REPAIR",
+      "N3_USE",
+      "N4_USE"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "Let me verify this information by opening the relevant documents.",
+    "source_position": "R5[987,1052)",
+    "oracle_anchored": true,
+    "novelty": "11Token来自原接受判断之后，给Open核验动作、预设有待确认的信息，但不带实体、年份或答案；四次都实际Open。P已有真实材料，G不等同提供5。仍ORACLE_ANCHORED，原先判断→Open次序被干预改写。",
+    "evidence": [
+      "I_G"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "最终1982−1977=5；其关于Rose不主演Connery是错误知识，核心值保持不能说明全链正确。",
+      "outcome_evidence": [
+        "N1_CALC",
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R5直接按G Open794119 limit50仅出生头部；R6 3946字符重新从既有snippet抽双导演/首作，承认无典礼年但推1982/1977算5，再双Search奖年，实际Return没有确切年份。R7 19529字符长期否认Rose主演Connery、反复重读定语和典礼序号，最后暂置信息疑问仍5 Submit。",
+      "first_judgment_divergence": "没有先做原987字整体采用，先Open；下一轮整体判断重新出现。",
+      "first_actual_tool_divergence": "limit50而非原后继100，随后直查两奖年而不是Sean首作。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合电影关系和算差",
+          "original_operation": "987字符无Call形成5",
+          "original_product": "5",
+          "new_goal": "同整合与接受",
+          "new_operation": "Open后两轮重构，2Search未增确切年",
+          "new_product": "5及更长定语争论",
+          "evidence": [
+            "O_U",
+            "O_CALC",
+            "N1_CALC",
+            "N1_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "导演首作、年份口径、差值和接受均实际重做，甚至更长，不是功能绕过。",
+      "judgment_action_outcome_chain": "G促先Open无增证→重新整合原材料得5→奖年不明继续Search→无证后重开定语→最终暂置附属条件提交；四C不证明原整合没用。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE.json#repeat01",
+      "cost_work_locations": "6345生成74437Prompt2Search1Open3Actor；原完整R5–9 7293生成144735Prompt5Search1Open5Actor，生成少948、少3Search2Actor。减少原后续演员首作及部分核查，但新R7长19529字符抵消部分节省。usage并非native精确。",
+      "counterevidence_and_alternatives": "G直接派Open，不能把新先打开行为视完全自主；典礼年仍惯例推。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "最后5，原材料同导演首作恢复；错误演员首作Query也真实重现，但后来纠正。",
+      "outcome_evidence": [
+        "N2_REPAIR",
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R5 2114字符先列双导演首作/1982和1977推断，Open100同原无增证；R6 768字符把首作转Connery，联合Sean debut与Annaud奖年Query，Returns同原演员/Annaud。R7 25013字符先猜Connery首片若干伪名，重新读题恢复Annaud首作、5；反复SeanBean/Connery/Rose与定语否认，最后5 Submit无额外Search。",
+      "first_judgment_divergence": "原U开始先认Dravot；新先导演两影片与典礼年，随后同错转演员首作。",
+      "first_actual_tool_divergence": "R6批次加Annaud奖年Search，原R6仅Sean首作。",
+      "function_correspondence": [
+        {
+          "original_goal": "整体关系与算差接受",
+          "original_operation": "无工具987字符",
+          "original_product": "5",
+          "new_goal": "同判断及纠演员首作错置",
+          "new_operation": "多轮复盘，2Search1Open，最后25013字符纠错",
+          "new_product": "同5、错误关系多次重开",
+          "evidence": [
+            "O_U",
+            "O_CALC",
+            "N2_Q",
+            "N2_REPAIR",
+            "N2_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心整合实际完整重做，并非仅复述Final。",
+      "judgment_action_outcome_chain": "原身份材料仍在→先恢复导演关系→又把首作错移演员并真实查→再次发现题目要导演而纠回→持同5；恢复不是单调稳定，额外生成来自错置后的重解析。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE.json#repeat02",
+      "cost_work_locations": "8210生成75393Prompt2Search1Open3Actor；生成比原7293多917但少3Search2Actor。增耗集中R7 25013字符，不可由工具减少推全资源下降。",
+      "counterevidence_and_alternatives": "即使错误Sean首作重做，最终C仍可通过后续纠回；不能按Query重合判原认知产物已稳定恢复。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "5；真实新3997219支持César典礼1982，Oscar仍依据上映年与惯例。",
+      "outcome_evidence": [
+        "N3_RET",
+        "N3_USE",
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R5 3721字符已正确把演员线索归Rose、恢复导演首作和5，再Open50。R6 17247字符又短暂转Connery首作但无实际相应Call，纠回导演；重开定语，末真正Search César Award Quest for Fire year。Return第4项3997219直接27Feb1982/1981films/QuestBestFilm。R7 7299字符明确采用该典礼年份，可仍把演员定语归BlackWhite并真实查其castSeanConnery，Return无关；R8 10465字符继续利用3997219确证1982，Oscar推1977，反复后5 Submit。",
+      "first_judgment_divergence": "先恢复5并给正确Rose定语，后仍重开；独立获得原无典礼证据。",
+      "first_actual_tool_divergence": "R6更短不夹定名年Query实际找到7thCésar文档；R7错误cast补查。",
+      "function_correspondence": [
+        {
+          "original_goal": "采用导演链与计算",
+          "original_operation": "直接上映年差5",
+          "original_product": "5、无典礼证据",
+          "new_goal": "同判断兼日期验证",
+          "new_operation": "重解析、2Search1Open，采用新典礼Return",
+          "new_product": "5且César年证据更直接",
+          "evidence": [
+            "O_CALC",
+            "N3_RET",
+            "N3_USE",
+            "N3_CAST",
+            "N3_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "整个判断重现且增加部分直接证据，不能视原工作省略。",
+      "judgment_action_outcome_chain": "恢复导演关系→日期缺口驱动新入口→直接典礼证据被采用，稳住1982→但错误演员定语另开无效cast任务→长评估仍5；证据改善和消耗增加可同时成立。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE.json#repeat03",
+      "cost_work_locations": "10491生成102848Prompt2Search1Open4Actor，较原生成+3198、少3Search1Actor；新直接证据不意味着更短，主要增加R6和R8反复解释。",
+      "counterevidence_and_alternatives": "3997219只明写QuestBestFilm；BestDirector由794119/3743702联合，非单文全证；演员角色仍无直接映射。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "5",
+      "adopted_answer": "5",
+      "outcome": "C",
+      "outcome_reason": "正式5，R8实际利用2781999纠清Rose主演Connery；两个奖年仍主要推断。",
+      "outcome_evidence": [
+        "N4_RET",
+        "N4_USE",
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R5 4644字符恢复导演/首作差5又疑Rose关系，Open50。R6 10403字符多次正确将演员定语归Rose、接受1982/1977，但缺角色证据，真正Search Rose castSeanConnery。Return有104464/104473/437048/2782001及2781999明确Connery饰William。R7 3594字符读取该关系，双查Annaud两奖年，结果同旧或同名Jacques未给确切年；R8 7099字符精确引用2781999确认Rose主演，再同口径得5 Submit。",
+      "first_judgment_divergence": "围绕实际Rose主演关系核验，非错查Connery首作或BlackWhite主演。",
+      "first_actual_tool_divergence": "R6实际Rose cast Query取得新的直接关系证据。",
+      "function_correspondence": [
+        {
+          "original_goal": "多跳身份关系与算差",
+          "original_operation": "主演推角色、导演首作上映年差",
+          "original_product": "5",
+          "new_goal": "同整合，额外核Rose演员关系",
+          "new_operation": "3Search1Open，采用2781999新证据",
+          "new_product": "同5，定语关系更稳定",
+          "evidence": [
+            "O_U",
+            "O_CALC",
+            "N4_Q",
+            "N4_RET",
+            "N4_USE",
+            "N4_F"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "核心工作重新形成并用于真实查询和正式答案，额外补关系而非仅省整合。",
+      "judgment_action_outcome_chain": "P导演首作材料→先整合5仍怀疑Rose→对正确电影查演员→直接Return被明确引用、定语归Rose→不再要求BlackWhite出演Connery→继续奖年核验后提交5；这是证据进入关系判断再限制行动的实际链。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE.json#repeat04",
+      "cost_work_locations": "7105生成106322Prompt3Search1Open4Actor，相对原少188生成2Search1Actor；节省很小但补了新关系证据，不是原U功能完全无用。",
+      "counterevidence_and_alternatives": "2781999支持Rose主演而未直接证Dravot演员；两个环节应分开。G和新采样不能排除。"
+    }
+  ],
+  "four_run_comparison": {
+    "outcomes": "C/C/C/C，全部FULL_REBUILT原整体判断；路径和证据质量不同。",
+    "differences": "r1两奖年无增证，r2重现错误演员首作并长自纠，r3新典礼证据真采用但错误cast任务仍有，r4新Rose演员证据真采用解除错定语。",
+    "costs": "两条生成下降、两条上升，四条工具少；不同指标不能混为一个省计算标签。"
+  },
+  "conditional_mechanism": {
+    "claim": "P已经有完整导演首作材料时，删掉一次整合不必丢答案：四路均可重新采用并算同差；关键差别在重建过程中关系是否稳定、是否把缺口转成错误对象，或取得直接关系证据结束该疑问。",
+    "observable_links": "r2首作错归演员→真实Sean debut查询→再纠回；r3定语错归BlackWhite→真实cast查询；r4针对Rose查出演→采用2781999→明确归Rose。",
+    "limits": "同题四路、ORACLE引导Open，不能将差异唯一归该U；差值不敏感还会掩盖年份口径错误。",
+    "counterexample": "r3证据比原更直接却更耗生成，否定取证改善必节省；r2错入口重建仍C，否定有错查必答错。"
+  },
+  "evidence": [
+    {
+      "evidence_id": "I_BOUNDARY",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 5,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 5,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this information by opening the relevant documents."
+    },
+    {
+      "evidence_id": "O_FACTS",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Annaud's first film, \"Black and White in Color\" (1976), received an Academy Award for Best Foreign Language Film.",
+      "doc_ids": [
+        "wiki25:794119"
+      ]
+    },
+    {
+      "evidence_id": "O_U",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Now I need to find the debut feature of the director of \"The Name of the Rose\"."
+    },
+    {
+      "evidence_id": "O_CALC",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "The numerical difference in years between 1981 and 1976 is 5 years."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/8/arguments/doc_id",
+      "exact_quote": "wiki25:794119",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_WRONG",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "1. The debut feature of Sean Connery"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N1_CALC",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The difference is 5 regardless of whether we use film year or ceremony year, as long as both are consistent."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N2_Q",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Sean Connery debut feature film",
+      "call_id": "chatcmpl-tool-b5a453f932faa8c4"
+    },
+    {
+      "evidence_id": "N2_REPAIR",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Wait, the question asks about the Academy Award for Best Foreign Language Film won by the debut feature of the director of 'The Name of the Rose'."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N3_RET",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/3/snippet",
+      "exact_quote": "honoured the best French films of 1981 and took place on 27 February 1982",
+      "call_id": "recovered_call_1",
+      "doc_ids": [
+        "wiki25:3997219"
+      ]
+    },
+    {
+      "evidence_id": "N3_USE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The 7th César Awards ceremony (which honored films of 1981) took place on 27 February 1982 (from `wiki25:3997219`)."
+    },
+    {
+      "evidence_id": "N3_CAST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "call",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Black and White in Color 1976 cast Sean Connery",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    },
+    {
+      "evidence_id": "N4_Q",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "The Name of the Rose cast Sean Connery",
+      "call_id": "chatcmpl-tool-9486a052ad56c55b"
+    },
+    {
+      "evidence_id": "N4_RET",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/5/snippet",
+      "exact_quote": "Sean Connery stars as the Franciscan friar William of Baskerville",
+      "call_id": "chatcmpl-tool-9486a052ad56c55b",
+      "doc_ids": [
+        "wiki25:2781999"
+      ]
+    },
+    {
+      "evidence_id": "N4_USE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "From `wiki25:2781999` titled \"The Name of the Rose (film)\": \"Sean Connery stars as the Franciscan friar William of Baskerville...\""
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "5"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0225/trajectory.json",
+      "source_sha256": "dad7c40bf4b24d3bb344e38664adaf8ba508a9f3e53e7354edca180e9e4e181d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0225.json",
+      "source_sha256": "94db9aff7cea271430a33afb2f46e01d04c5e65847880b4c69b1de0cda8bac45"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "d5f9c8ade89d36706a69dd6ae3a4055b1d02b1cff99b5774ba8bd27e70c0f7ca"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "3112408c792ef77f5938e078ce0bd3eabd69d919e598ed4441ab4dfc7e3e0670"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "38a68f8700930584ed5feeb6c6faa894c4d6651a3f600ab85d6d9d3b3cb4ed27"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "ac1096a6b1cf8ae24375e965af4e308a7ba1f6bd8f67f08073b11604952e6487"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0225__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "bd99905555df847e97747f0ff0eba5a0cd107519253878424237f421e2d9c35f"
+    }
+  }
+}

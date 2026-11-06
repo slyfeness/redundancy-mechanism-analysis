@@ -1,0 +1,21 @@
+{
+ "case_id":"68__rep1__S005__FIRST_SENTENCE","batch_id":"PEER_001","reviewer":"PEER","review_status":"REVIEWED",
+ "function":"姓名/奖项已多次采用而疾病启发仍未证时，形成一次明确双字段答案接受与小草稿；没有取得新事实，也不是首次候选发现。",
+ "prestate":{"returned":"九次真实Search已有姓名、奖项、生平和致敬材料，缺具体疾病及启发关系。","extracted":"姓名与Benjamin Pogrund Medal1998已经提取。","adopted":"人物/奖项已采用；关系缺口仍存在。","action":"当前R10前段仍计划核疾病，尚未正式提交。"},
+ "stage_effect":"U137字符把已有信息组织成Name/Award并称可回答。紧接Z仍真实查病一次，R11才Final；一次接受发生不等于停止决定已经执行。",
+ "four":[
+  {"repeat":1,"state":"C","first_decision_divergence":"R10不先写双字段接受而先按G核病；R11在一次Call后才恢复草稿。","first_actual_call_divergence":"E1将Wankie/病种组合重写，与原E10略异但同未证需求；次数不变。","judgment":"没有新疾病关系，明确说无显式证据仍按已知姓名/奖项接受。","action":"1Search/2Actor后C。","restoration":"U接受/草稿完整恢复但延后；核心关系仍未核齐。","cost_location":"1066生成加12较原724多354，Prompt多337，Search/Actor同原；接受重建没有省工作。","quality":"双字段C，具体疾病保持未知而非补作事实。","evidence":["N1_REBUILD_LATER","N1_STILL_NO_EVIDENCE"]},
+  {"repeat":2,"state":"C","first_decision_divergence":"首Call前恢复足够回答，仍核病；R11再称足够后又发第二Call。","first_actual_call_divergence":"首Call病种组合不同，关键新增E2再次Wankie疾病Query；原只有一次。","judgment":"接受已反复形成，但同缺口还会触发执行；不能用停止阈值变化猜原因。","action":"2Search/3Actor，R12再次接受后正式C。","restoration":"U完整恢复并重复，额外后继核验仍未补关系。","cost_location":"1560加12多848，Search/Actor各多1，Prompt多36286，全部维度增加；落在第二次病种Query和多轮接受解释。","quality":"C，不等于疾病条件已证。","evidence":["N2_REBUILD_BEFORE_CALL","N2_ACCEPT_THEN_NEW_CALL","N2_FINAL_ACCEPT"]},
+  {"repeat":3,"state":"C","first_decision_divergence":"R10先恢复双字段接受再查病，R11末说再查但实际直接Final。","first_actual_call_divergence":"首Call同病种/Wankie范围参数略异；末端没有第二真实Call，不能把意向当费用。","judgment":"一次取证仍未知，再接受并提交；认知重复与真实核查分开。","action":"1Search/2Actor，正式C。","restoration":"U草稿完整恢复，Z取证一次也做过；只是最后计划未执行。","cost_location":"1003加12多291，Search/Actor同原，Prompt多395；不能虚计省一次Search。","quality":"双字段C，关系没有直接证明。","evidence":["N3_REBUILD_BEFORE_CALL","N3_PLAN_NOT_EXECUTED"]},
+  {"repeat":4,"state":"C","first_decision_divergence":"R10用普遍病种推测后直接恢复双字段接受，不实际查G所指疾病。","first_actual_call_divergence":"0Call，原E10实际查病；这是首真实动作差异。","judgment":"已有主体足够给答案，却把未证疟疾启发在Final肯定化。","action":"0Search/1Actor，直接Final。","restoration":"U接受功能恢复；省的是原Z一次关系核验，不是姓名/奖项采用消失。","cost_location":"550加12少162，Search/Actor各少1、Prompt少32184；短表达和不做后继Search共同降低。","quality":"核心C，疟疾启发无依据，不能算完整质量保持。","evidence":["N4_REBUILD_DIRECT","N4_UNSUPPORTED_MALARIA"]}
+ ],
+ "guidance_review":"G只说继续核疾病，无新事实/实体，P已知缺口；却承接原答案已形成的姿态。12原生Token，P切点R10@673原生精确。全部ORACLE_ANCHORED。",
+ "local_chain":"核心判断已采用、疾病关系未知→U再次明确接受并草拟→四新均恢复接受，时点可在工具前后或零工具→未证关系有时驱动一/两次核验，有时被无据说成满足→全C但三条成本增、一条省后继Call且质量受限。",
+ "attribution_limit":"U没有新事实，最接近可替代的答案组织实例，但四次都恢复它，未证明接受动作不需做。原也在接受后查病，不能说U独特触发停止；随机及G因素未分离。",
+ "source_review_sufficiency":"完整阅读已有六类卡、137字符U、原后续一Call和四条新路径全部调用及接受引文；区分新3未执行计划、新4Final断言。按真实切点精确成本复算，G只计一次。",
+ "unresolved":["为何新2多一次核病、新4零次，日志只能定位决定不同，不能唯一解释内部原因。","疾病启发关系原新均未直接证实，不把已知姓名奖项代替全部条件证据。"],
+ "evidence_ids":["O_U_ACCEPT","O_U_PRODUCT","O_Z_STILL_QUERY","N1_REBUILD_LATER","N1_STILL_NO_EVIDENCE","N2_REBUILD_BEFORE_CALL","N2_ACCEPT_THEN_NEW_CALL","N2_FINAL_ACCEPT","N3_REBUILD_BEFORE_CALL","N3_PLAN_NOT_EXECUTED","N4_REBUILD_DIRECT","N4_UNSUPPORTED_MALARIA"],
+ "mechanism_links":[
+  {"local_id":"68S5_A","description":"核心答案接受与剩余关系是否继续派发Search是分离决策；相同接受功能恢复，仍可增加、保持或取消后续取证。","locus":"U R10接受及Z E10；四新R10—R12。","stage_attribution":"U是明确接受实例却非首次采用，也未阻止原继续查；四新没有丢失该判断，差异在后继行动选择。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"uncertain_repeats":[],"excluded_repeats":[],"evidence_by_repeat":{"1":["N1_REBUILD_LATER","N1_STILL_NO_EVIDENCE"],"2":["N2_REBUILD_BEFORE_CALL","N2_ACCEPT_THEN_NEW_CALL","N2_FINAL_ACCEPT"],"3":["N3_REBUILD_BEFORE_CALL","N3_PLAN_NOT_EXECUTED"],"4":["N4_REBUILD_DIRECT","N4_UNSUPPORTED_MALARIA"]},"candidate_registry_id":"P2_R3","counterevidence":"本组都正常结束而非长期N，不能将未证缺口一概视为无法退出；新4省一次Call伴无据肯定，不是更好闭合证据。"}
+ ]
+}

@@ -1,0 +1,692 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0166",
+  "stage_id": "S001",
+  "sample_order": 85,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "How many individual units comprised the environmental art project by the artist couple from the initial document, whose well-known work was publicly exhibited in the year following the donation of Fernando Botero's 23 monumental sculptures to a South American plaza?",
+    "gold": [
+      "7,503"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": null,
+    "adopted_answer": null,
+    "outcome": "N",
+    "reason": "原只得到Botero2004，始终未找到夫妇/项目/数量，contextstop无Final。",
+    "evidence": [
+      "O_STOP"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0仅原Question，P490派生Token，没有文档/年份/候选，原题没有给捐赠年。",
+    "evidence_states": "年份证据未返回，U承担首次取得。",
+    "evidence": [
+      "I_MODE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 585
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 326
+      },
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 0,
+        "end": 560
+      }
+    ],
+    "goal": "定位23雕塑捐赠年份。",
+    "operations": "首长Query无关，缩短Query获得BoteroPlaza7339616，采用23雕塑及2004renovation。",
+    "product": "具体捐赠资料和2004判断，尚无目标夫妇、作品、数量。",
+    "judgment_change": "由未知年到2004，为下游2005筛选设条件。",
+    "evidence": [
+      "O_DONATION",
+      "O_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use": "按2005反复泛查夫妇环境项目，结果无目标；R8又误将initialdocument绑定首条无关文档，仍多次重复查询至contextstop。",
+    "evidence": [
+      "O_REPEAT",
+      "O_STOP"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "多跳问题的首次年份事实取得与采用。",
+    "state_relation": "正确年份必要条件但不充分，原失败位于后续夫妇发现而非2004丢失。删后多数C要检查该入口如何实际改变而非归因初查有害。",
+    "evidence": [
+      "O_ACCEPT",
+      "O_REPEAT"
+    ]
+  },
+  "guide_audit": {
+    "full_guide": "The year following would be 2005.",
+    "source_position": "原R3[560,593)",
+    "novelty": "11Token把P尚未知的关键2005直接前置，2004可反推；属于未来日期事实/筛选条件泄漏，ORACLE_ANCHORED且不能作严格无泄漏删除证据。四条仍实际重查捐赠，不等于G未影响路线。",
+    "oracle_anchored": true,
+    "evidence": [
+      "I_G",
+      "I_MODE"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "7,503",
+      "adopted_answer": "7503",
+      "outcome": "C",
+      "outcome_reason": "R12真实返回夫妇，R13实际TheGates查询取1444393数量与2005，R14采用提交。",
+      "outcome_evidence": [
+        "N1_COUPLE",
+        "N1_GATES",
+        "N1_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "重做与原完全同长Query但返回另一套无关Fernando，实际检索差异单列。",
+          "evidence": [
+            "N1_FIRST"
+          ]
+        },
+        {
+          "round": 2,
+          "work": "改donationyear短Query，7339616支持2004，原U产品恢复。",
+          "evidence": [
+            "N1_DONATION"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "已在推理想到Christo夫妇，却仍执行泛project Query，R5又原2005 Query；候选提到尚未转行动。",
+          "evidence": [
+            "N1_THOUGHT"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "纠结initialdocument需含夫妇，OpenBoteroPlaza仅10字，没补夫妇。",
+          "evidence": [
+            "N1_OPEN"
+          ]
+        },
+        {
+          "round": 12,
+          "work": "多轮2005/project查询同无关Return之后，真正去掉project/2005，查artist couple environmental art，得到1485670夫妇与Gates作品。",
+          "evidence": [
+            "N1_COUPLE"
+          ]
+        },
+        {
+          "round": 13,
+          "work": "采用返回夫妇并以Gates2005作具体查询，取1444393的7503与实际展期；R14整链提交。",
+          "evidence": [
+            "N1_GATES",
+            "N1_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "初查功能恢复，关键后续从反复找initialdocument/泛项目转为真的查询夫妇类别并将返回名字用于Gates。",
+      "first_actual_tool_divergence": "首Query同而Return不同；第二Query变donationyear；后续真正有效新入口为R12减少约束。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "检索捐赠并采用2004。",
+          "new_goal_operation_product": "R1/2实际重查并采用相同2004，原功能全恢复；后续找到夫妇是另外工作改进。",
+          "evidence": [
+            "O_DONATION",
+            "N1_DONATION",
+            "N1_COUPLE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "同目标和事实采用都实际完成，不以B改善否定原取证。",
+      "judgment_action_outcome_chain": "重建2004→多次泛查无夫妇→R12改变查询约束取得明确对象→对象用于Gates查证→7503C；突破发生在后续证据入口与采用，而非省掉年份功能。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "10726生成304861Prompt12Search1Open14Actor；对原5011生成366392Prompt14Search，生成usage+5715但Search少2、Prompt少；增加在多段initialdocument长推理、R13/14决策。",
+      "counterevidence_and_alternatives": "G泄露2005、同Query初Return不同、自然采样/预算差异；R4已提候选却未查说明发现名字不等于采用，不作单链必要性证明。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "R7单轮10K仍反复拟搜索，无真实Submit。",
+      "outcome_evidence": [
+        "N2_LOOP"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "同原长Query得到同r1无关Fernando组。",
+          "evidence": [
+            "N2_FIRST"
+          ]
+        },
+        {
+          "round": 2,
+          "work": "短Query获得同原2004资料，R3采用并2005，之后四次2005泛Query/轻改得到无目标返回。",
+          "evidence": [
+            "N2_DONATION",
+            "N2_SEARCH"
+          ]
+        },
+        {
+          "round": 7,
+          "work": "35707字符纯推理，想到Christo/JeanneClaude但不确定2005作品；反复Olafur不是couple及拟Query，没有后续真实Search，10K lengthstop。",
+          "evidence": [
+            "N2_LOOP"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原持续实际泛查到contextstop，新更早转为无行动的长篇拟查询，尚未从候选猜测转查具体作品。",
+      "first_actual_tool_divergence": "捐赠第二Query稍改，随后2005Query返回另一组无关环境工程资料；R7没有执行所列新计划。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取得并采用捐赠2004。",
+          "new_goal_operation_product": "R2/3明确恢复同年，后续夫妇取得未完成。",
+          "evidence": [
+            "O_ACCEPT",
+            "N2_DONATION",
+            "N2_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "年份资料和判断均恢复，N由后续没落地行动而非缺捐赠。",
+      "judgment_action_outcome_chain": "2004/2005已确认→泛查询失败仍反复提出缺口→想到多个候选却不形成实际验证Call→长度耗尽N；检索计划数量不能计Search。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "11149生成80192Prompt6Search0Open7Actor，生成+6138主要R7单轮10000；检索/Prompt少源于提前length终止，不是任务完成更省。",
+      "counterevidence_and_alternatives": "虽然也提Christo且2005已G给出，没真实取得作品/数量；不能把名字出现当材料已经证实或支持答案。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "7,503",
+      "adopted_answer": "7503",
+      "outcome": "C",
+      "outcome_reason": "R6真实具体ChristoGates查询取1444393，R7正式7503。",
+      "outcome_evidence": [
+        "N3_ACTION",
+        "N3_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "重查与原同长Query，Return同原无关组。",
+          "evidence": [
+            "N3_FIRST"
+          ]
+        },
+        {
+          "round": 2,
+          "work": "另一长Query仍无关。",
+          "evidence": [
+            "N3_CHANGE"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "删23与SouthAmerica等限制查询monumental sculptures plaza，返回SophiaVari/AbuGhraib与Sculpture104510列ChristoJeanneClaude。",
+          "evidence": [
+            "N3_SCULPTURE"
+          ]
+        },
+        {
+          "round": 4,
+          "work": "暂把夫妇当Botero/SophiaVari，Open623057全篇但无捐赠年，不符合目标；随后重新查23雕塑PlazaBotero得到2004。",
+          "evidence": [
+            "N3_WRONG",
+            "N3_DONATION"
+          ]
+        },
+        {
+          "round": 6,
+          "work": "R6用2005且把具体ChristoJeanneClaude加入实际Query，返回Gates展期和7503；R7全约束比对提交。",
+          "evidence": [
+            "N3_ACTION",
+            "N3_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "先误把Botero配偶当目标，后实际转Christo对象；原从未执行这一具体对象检索。",
+      "first_actual_tool_divergence": "R3放宽BoteroQuery得到雕塑条目与具体夫妇名，后R6名字进入Query。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "捐赠2004检索与采用。",
+          "new_goal_operation_product": "经更多初期失败和一错对象Open，R5/6实际恢复2004，再以具体夫妇取证。",
+          "evidence": [
+            "O_ACCEPT",
+            "N3_DONATION",
+            "N3_ACTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整年份获得与使用，未绕开它。",
+      "judgment_action_outcome_chain": "泛长Query失败→更少限制返回候选名称→错对象短暂核验未锁死→恢复捐赠事实并把真实夫妇用于Query→直接证据满足2005/7503→C且少重复泛查。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1332生成67450Prompt5Search1Open7Actor，生成-3679、Search少9；主要省原R3–14无目标泛查与R8initialdocument长议，非首次年份取证消失。",
+      "counterevidence_and_alternatives": "Sculpture返回名字是可见线索，但R6为何选择它未明说，不能唯一归因该片段；G已供2005仍有泄漏，早期关系误绑后能纠正是反例。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "7,503",
+      "adopted_answer": "7503",
+      "outcome": "C",
+      "outcome_reason": "R11自主提出正确夫妇/作品后真实Search，R12用1444393数量与2005正式提交。",
+      "outcome_evidence": [
+        "N4_TURN",
+        "N4_ACTION",
+        "N4_FINAL"
+      ],
+      "work_and_evidence_timeline": [
+        {
+          "round": 1,
+          "work": "重查捐赠，长Query无关，R2短Query同原Return恢复2004。",
+          "evidence": [
+            "N4_DONATION"
+          ]
+        },
+        {
+          "round": 3,
+          "work": "仍纠结initialdocument，泛查project→2005→重复，无夫妇；排除Roswall2008和soloGazit。",
+          "evidence": [
+            "N4_SEARCH"
+          ]
+        },
+        {
+          "round": 8,
+          "work": "OpenBoteroPlaza默认4000完整1293字，只原同信息，没有夫妇。",
+          "evidence": [
+            "N4_OPEN"
+          ]
+        },
+        {
+          "round": 11,
+          "work": "6624字符纠结第一无关doc是否必须含答案，后从自身知识提出Christo/JeanneClaude、Gates2005和7503；随后真正Search具体ChristoGates，不是只想。",
+          "evidence": [
+            "N4_TURN",
+            "N4_ACTION"
+          ]
+        },
+        {
+          "round": 12,
+          "work": "新Return1444393证实展期/数量，采用并提交7503。",
+          "evidence": [
+            "N4_FINAL"
+          ]
+        }
+      ],
+      "first_judgment_divergence": "原始文档绑定一直阻碍对象发现，新R11最终提出具体夫妇并执行查询，允许不从第一无关doc直接抽答案。",
+      "first_actual_tool_divergence": "原无Open，新一次完整BoteroOpen；真正破局为R11具体ChristoGatesQuery。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "首次年份取得2004。",
+          "new_goal_operation_product": "首两Search与原类似完整恢复；后来正确夫妇由新知识假设加真实取证产生。",
+          "evidence": [
+            "O_ACCEPT",
+            "N4_DONATION",
+            "N4_TURN",
+            "N4_ACTION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "真实资料和年判断全恢复，不能说省了原U才答对。",
+      "judgment_action_outcome_chain": "2004确认但反复首文档限制→具体夫妇/作品假设被选作可验证对象→真实查询带回决定资料→C；行动更新比名字瞬间出现重要。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "5601生成238283Prompt10Search1Open12Actor，生成+590但Search少4、Prompt少；长R10/11解释与多次复盘仍在，少检索并非纯文字减少。",
+      "counterevidence_and_alternatives": "7503在R11先于返回由模型提出，R12真实核验支持，不把它说首次来源是Return；G2005和采样因素保留。"
+    }
+  ],
+  "four_run_comparison": "四FULL重建首次年份，三C一N。三C都有具体Christo/Gates进入实际Query并取得1444393，N也在推理提Christo却未执行对应Call。r1候选名字R4即提、直到R12泛入口返回后才落实，r3先错Botero配偶但后换对象仍C，r4凭假设正确后真实核验；不是同一唯一发现路径。生成两条C增加一条减少，N大增，Search/Prompt减少也可能提前失败。",
+  "conditional_mechanism_proposals": [
+    {
+      "chain": "中间年份已知但目标对象未定→反复将全部线索塞入泛Query、或要求首无关文档包含目标不能推进→改证据入口或选具体候选进行真实Query才能取得数量→答案改善/结束，成本节省发生在原后续重复任务；原年事实工作可完全重建。",
+      "support_scope": "本Stage三C皆具体对象查询+直接数量证据，一N只提计划；仅一题不作为跨题统计结论。",
+      "limits": "G泄露2005、同Query返回差异、候选选择来源不总明说、原始initialdocument不充分，保留替代解释。"
+    }
+  ],
+  "counterevidence_and_limits": "原nativeIDs缺失，R1整轮usage差只记录非native；P490/G11预填另列。C意味着同题答案和关键TheGates证据满足，不能抹去G未来年份泄漏。独立分支成本不得相加。",
+  "evidence": [
+    {
+      "evidence_id": "I_MODE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 1,
+      "event_type": "boundary",
+      "json_pointer": "/boundary/mode",
+      "exact_quote": "DERIVED_CHAR_EXACT_NO_ORIGINAL_NATIVE_IDS"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 1,
+      "event_type": "anchor",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The year following would be 2005."
+    },
+    {
+      "evidence_id": "O_DONATION",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/2/snippet",
+      "exact_quote": "for the museum's renovation in 2004."
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the donation year was 2004."
+    },
+    {
+      "evidence_id": "O_REPEAT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "call",
+      "json_pointer": "/tool_events/13/arguments/query",
+      "exact_quote": "artist couple environmental art project exhibited 2005",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_STOP",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "terminal",
+      "json_pointer": "/stop_reason",
+      "exact_quote": "CONTEXT_LIMIT_STOP"
+    },
+    {
+      "evidence_id": "N1_FIRST",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/title",
+      "exact_quote": "Infante Fernando of Portugal",
+      "call_id": "chatcmpl-tool-bc12729e9be49130"
+    },
+    {
+      "evidence_id": "N1_DONATION",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "for the museum's renovation in 2004.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_THOUGHT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Maybe the couple is \"Christo and Jeanne-Claude\"?"
+    },
+    {
+      "evidence_id": "N1_OPEN",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/5/observation/text",
+      "exact_quote": "Park in Me",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_COUPLE",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 12,
+      "event_type": "call",
+      "json_pointer": "/tool_events/11/arguments/query",
+      "exact_quote": "artist couple environmental art",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_GATES",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 13,
+      "event_type": "return",
+      "json_pointer": "/tool_events/12/observation/results/4/snippet",
+      "exact_quote": "The artists installed 7,503 steel",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 14,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "7,503"
+    },
+    {
+      "evidence_id": "N2_FIRST",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fernando Botero 23 monumental sculptures South American plaza donation",
+      "call_id": "chatcmpl-tool-9a80dd6cea087683"
+    },
+    {
+      "evidence_id": "N2_DONATION",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "Botero donated 23 bronze sculptures to Botero Plaza in Medellín in 2004."
+    },
+    {
+      "evidence_id": "N2_SEARCH",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "environmental art project couple 2005 public exhibition",
+      "call_id": "chatcmpl-tool-862ce73b80bfe66b"
+    },
+    {
+      "evidence_id": "N2_LOOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "**Christo and Jeanne-Claude** are the most famous environmental art couple. Did they have a project in 2005?"
+    },
+    {
+      "evidence_id": "N3_FIRST",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Fernando Botero 23 monumental sculptures South American plaza donation",
+      "call_id": "chatcmpl-tool-856fb55be62cbc3f"
+    },
+    {
+      "evidence_id": "N3_CHANGE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Fernando Botero 23 sculptures plaza South America donation year",
+      "call_id": "chatcmpl-tool-aac081ee94a08c16"
+    },
+    {
+      "evidence_id": "N3_SCULPTURE",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/5/snippet",
+      "exact_quote": "Christo and Jeanne-Claude led contemporary abstract sculpture in new directions.",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_WRONG",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Then find the year his couple (Sophia Vari) exhibited a well-known work the following year."
+    },
+    {
+      "evidence_id": "N3_DONATION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Fernando Botero 23 sculptures plaza Plaza Botero donation",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACTION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "environmental art project artist couple exhibited 2005 Christo Jeanne-Claude",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "7,503"
+    },
+    {
+      "evidence_id": "N4_DONATION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The search results confirm that Fernando Botero donated 23 bronze sculptures to the Museum of Antioquia in Medellín, Colombia in 2004"
+    },
+    {
+      "evidence_id": "N4_SEARCH",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 5,
+      "event_type": "call",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "environmental art project artist couple 2005",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 8,
+      "event_type": "call",
+      "json_pointer": "/tool_events/7/arguments/doc_id",
+      "exact_quote": "wiki25:7339616",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_TURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/10/reasoning_content",
+      "exact_quote": "The Gates\" consisted of 7,503 arched gates."
+    },
+    {
+      "evidence_id": "N4_ACTION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "call",
+      "json_pointer": "/tool_events/10/arguments/query",
+      "exact_quote": "Christo Jeanne-Claude Gates 2005",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 12,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "7,503"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0166/trajectory.json",
+      "source_sha256": "c05ece6464673a62d68cae4c46ae1779846e3cb7d43a7b76990ede8865ea3cd6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0166.json",
+      "source_sha256": "e52aa31d83fe4760c41ffdf707291847cd8eaa174b0165c7898e54e9d6f9ff0a"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "8ff6577eab642d6ff7492706aeb1f91d2fa9a93ceb50e41e0fd09038af55b93e"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "f4c0cc56a70394fccb48d39e1dec04f219ba76f6da0a6d4e65a6d3e309b1566f"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "54d1e1c94568b42dfae47fe61ea58d5a364e1d70a8d8fee99be905314806f6e9"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "886f7dd25be8adf6af300ab17673dc110d82c061e5fdf5e34b336ba8e18ff0ea"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0166__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "f1124c9d11058635a088dcd2f766449f06fac1d2b2af9cb678bee4ce9f21802e"
+    }
+  }
+}

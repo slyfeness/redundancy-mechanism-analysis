@@ -1,0 +1,581 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0637",
+  "stage_id": "S004",
+  "sample_order": 31,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0637/trajectory.json",
+      "source_sha256": "1d11196b11cd8205a6084999fd748f303dcd48072de5a64960f3fc898f7d513c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0637.json",
+      "source_sha256": "7fb98905c4d6b4eab55892fab789f55c4cf3350b0bba16b1a3308c24c21b1a39"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "6bf3804a003e50ea3b13519687384881821430db128a6fd0815d854ca1a4933a"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "6c992be2f666505875eb76ed84da040b047b0c91c31ad077cfe2fc3dd4d67bcb"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "762b43c6680b860ea01e9fcf2a983d30fbccc1765173269e69d7783c1adef991"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "fefcd1d4f51d23fd0da26eb92ac19e8521604c5bbecf68103b33aa5020e649da"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "c17ef462ddf83d23202e8cac6223dfe57403a50b2bdf62b47574b362d9739a24"
+    }
+  },
+  "question_and_gold": {
+    "question": "Following the tragic incident involving Willian Thiego, what was the date of the first leg of the subsequent international club competition that his club participated in as a direct result of being declared champions of the tournament they were traveling for?",
+    "offline_gold": [
+      "4 April 2017"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "完整五轮、全部Return已读；R3[1690,2158)含实际Query为U。",
+    "new": "完整四路径67754字符，0—26000—51000—67754全部阅读；全同Return只在canonical比对后引用已读来源。",
+    "semantic_author": "Codex直接逐条分析。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R3@1690，保留当前Chapecoense事故/所赴南美杯及冠军带来后续资格推导，但最后已猜后续赛事为2017Libertadores。",
+    "evidence_state": "P两次Search仅球员/事故材料，尚无Recopa日期及直接授冠/多赛事资格文本。原当前Reasoning的冠军和Libertadores判断尚待核查。",
+    "gap": "冠军何时授予、后续赛事究竟哪项、首回合日期。不能提前把目标U返回8468342日期给P。",
+    "evidence": [
+      "I_LIBERTADORES",
+      "O_PRE_ACCIDENT"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 3,
+        "json_pointer": "/rounds/2/reasoning_content",
+        "start": 1690,
+        "end": 2158
+      },
+      {
+        "round": 3,
+        "json_pointer": "/tool_events/2",
+        "event": "授冠查询及完整Return"
+      }
+    ],
+    "goal": "实际查Chapecoense冠军授予与后续赛事资格/日期。",
+    "operations": [
+      "Query Chapecoense2016CopaSudamericanachampionsdeclared。",
+      "结果直接给5December授冠、多项资格、Recopa首回合4April、Suruga单场15August。"
+    ],
+    "product": "首次有直接Recopa资格和日期支持，可以推翻此前Libertadores唯一后继假设。",
+    "judgment_change": "工具产生关键新证据，原R4明确采用Recopa并接受日期。",
+    "evidence": [
+      "O_QUERY",
+      "O_RECOPA_RETURN",
+      "O_SURUGA_RETURN",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "原R4采用Recopa并再Open100，R5三赛事比较后Submit。",
+    "true_suffix": "生成2240—2760、1Search1Open1Submit、3生成段；未来HTTP Prompt18493，已进入当前R3Prompt5290及新P5684重放分列。",
+    "evidence": [
+      "O_ADOPT",
+      "O_SHORT_OPEN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "检索目标足以纠正前置赛事猜测，但删后可以从另一个实际Query取得相同关键证据。",
+    "四条新首Query都受P旧Libertadores假设影响，却返回正确Recopa材料；错误入口未必锁死，只在返回后实际采用时才能纠正。",
+    "相同完整首返回下，简短采用与继续用额外最早赛事/错误Suruga赛制派发新任务产生很不同消耗。"
+  ],
+  "guide_audit": {
+    "G": "The user is asking for the date of the first leg of the subsequent international club competition that Chapecoense participated in as a direct result of being declared champions of the 2016 Copa Sudamericana.",
+    "origin": "原S005 R4[0,208)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "只是已有Chapecoense/南美杯关系重述，没有Recopa实体、4April日期、5December或新具体搜索方向；因此关键日期并非来自G。仍为教师未来首句，不当无引导。",
+    "evidence": [
+      "I_G",
+      "I_LIBERTADORES"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "R5真实Submit正确；Recopa日期和资格实际新返回并采用，附带Suruga错误由后续真实Search纠回单场15August。",
+      "outcome_evidence": [
+        "N1_RECOPA",
+        "N1_SURUGA_ERROR",
+        "N1_SURUGA_CORRECT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "按P旧假设Search Chapecoense2017CopaLibertadoresfirstlegdate，首结果竟是Recopa，另LuizAntônio给Libertadoresdebut7MarchZulia。",
+        "R4明确采用7March与4April，但新增最早赛事读法，反复误称Suruga两回合/MarchApril，形成待查其是否早于April4的任务。",
+        "真实Search SurugaBankChampionship2017Chapecoensedatefirstleg，结果8563482直接单场15August。",
+        "R5纠正Suruga时间/赛制，仍长篇比较最早与firstleg，最后RecopaSubmit。"
+      ],
+      "first_substantive_judgment_difference": "原查授冠转Recopa，新查旧Libertadores假设却也获Recopa；随后新Suruga错误赛制/时间成为额外核验任务。",
+      "first_actual_tool_difference": "首Query由冠军授予改为Libertadoresdate，后多一SurugaSearch、少原Open100。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得后续资格和首回合日期",
+          "original_operation": "冠军授予Query",
+          "original_product": "直接Recopa日期与多赛资格",
+          "new_goal": "从Libertadores假设查首回合",
+          "new_operation": "不同Query实际取得Recopa/授冠/资格材料，另补Suruga",
+          "new_product": "原关键取证功能完整恢复，额外纠正自己造成的Suruga缺口",
+          "evidence": [
+            "O_RECOPA_RETURN",
+            "N1_QUERY",
+            "N1_RECOPA",
+            "N1_SURUGA_QUERY",
+            "N1_SURUGA_CORRECT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "P猜Libertadores→新Search仍给Recopa且采用→错误Suruga两回合/更早假设增加核验对象→真实补查纠回单场August→C；多生成来自两轮长篇消歧、多Search但少Open。",
+      "costs": {
+        "new_generation": 6787,
+        "new_prompt": 29059,
+        "new_search": 2,
+        "new_open": 0,
+        "new_actor": 3,
+        "P_replay": 5684,
+        "G_prefill": 43,
+        "conservative_new_minus_original_generation_interval": [
+          4027,
+          4547
+        ]
+      },
+      "limits": "不能将全部新增计算归缺失原U：新的Suruga错误和额外最早读法也在中间产生，采样解释未排除。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "真Submit正确，实际新Search提供并被明确采用Recopa资格和日期。",
+      "outcome_evidence": [
+        "N2_ADOPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "首Query查Libertadoresfirstleg，返回完整同r1。",
+        "R4直接引用冠军→Recopa资格与日期，决定Submit，无额外Open或旁支Search。"
+      ],
+      "first_substantive_judgment_difference": "返回后立即用Recopa新材料替换P猜测，不把最早赛事问题重开。",
+      "first_actual_tool_difference": "Query不同但关键证据仍得，之后直接Submit而非原Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "外证资格/日期",
+          "original_operation": "授冠Search",
+          "original_product": "Recopa4April",
+          "new_goal": "同一后续赛事事实",
+          "new_operation": "旧假设日期Query却获得并采用Recopa事实",
+          "new_product": "取证功能完整恢复，后续无需Open/长比较",
+          "evidence": [
+            "O_RECOPA_RETURN",
+            "N2_QUERY",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "错误后继猜测→新返回给实际资格链→立即更新为Recopa→直接C；少原Open和长篇重复，Search关键功能仍执行。",
+      "costs": {
+        "new_generation": 361,
+        "new_prompt": 15307,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 5684,
+        "G_prefill": 43,
+        "conservative_new_minus_original_generation_interval": [
+          -2399,
+          -1879
+        ]
+      },
+      "limits": "支持不同Query替代取证，不支持未取得证据也能正确；不能把原Stage独有事实全说来自P。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "真Submit正确，Recopa事实采用；仍误说Surugafinals两回合，首返回未含该赛事具体赛制，未进行实际纠正取证。",
+      "outcome_evidence": [
+        "N3_ADOPT",
+        "N3_SURUGA_ERROR",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "同r1/r2首Query与完整Return。",
+        "R4引用Recopa、冠军资格和7MarchZulia，再比较firstleg。",
+        "对Suruga赛制仍有错误，但凭Recopa明确首回合日期结束；没有新增工具。"
+      ],
+      "first_substantive_judgment_difference": "关键赛事已纠回，但附带不充分Suruga解释未成为实际补查，也没在正文消解。",
+      "first_actual_tool_difference": "首Search不同于原，后直接Submit，少Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "取得资格与日期",
+          "original_operation": "冠军授予Search",
+          "original_product": "Recopa直接支持",
+          "new_goal": "同一日期确定",
+          "new_operation": "LibertadoresQuery后采用Recopa和多赛材料",
+          "new_product": "原核心取证完整恢复；附带赛制解释质量不同",
+          "evidence": [
+            "O_RECOPA_RETURN",
+            "N3_ADOPT",
+            "N3_SURUGA_ERROR"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "同Return→Recopa更新恢复→较短旁支比较仍有错→C；生成较少且少Open，但不能说所有关系判断准确。",
+      "costs": {
+        "new_generation": 1321,
+        "new_prompt": 15307,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 5684,
+        "G_prefill": 43,
+        "conservative_new_minus_original_generation_interval": [
+          -1439,
+          -919
+        ]
+      },
+      "limits": "同C不等于r2同质量，具体附带误说保留。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0637__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": "4 April 2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "4 April 2017",
+      "outcome": "C",
+      "outcome_reason": "R4真实Submit正确，完整引用Recopa资格/两回合和日期。",
+      "outcome_evidence": [
+        "N4_ADOPT",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "同LibertadoresQuery/Return，R4按实际返回明确改为Recopa。",
+        "简短引用完整日期句，认为confirm并Submit，无新取证。"
+      ],
+      "first_substantive_judgment_difference": "直接采用证据解决P后继赛事假设，无独立旁支重开。",
+      "first_actual_tool_difference": "不同Query后直接Submit，原Open未再执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "事实获取支持后续赛事日期",
+          "original_operation": "Search授冠",
+          "original_product": "Recopa日期",
+          "new_goal": "同一问题",
+          "new_operation": "SearchLibertadores却取Recopa，引用采用",
+          "new_product": "完整恢复关键证据和选择",
+          "evidence": [
+            "O_RECOPA_RETURN",
+            "N4_QUERY",
+            "N4_ADOPT",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "P错误猜测→新返回真实Recopa关系→据返回更新行动至Submit→C；省掉无日期Open和后续长篇，非省掉核心搜索。",
+      "costs": {
+        "new_generation": 477,
+        "new_prompt": 15307,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 5684,
+        "G_prefill": 43,
+        "conservative_new_minus_original_generation_interval": [
+          -2283,
+          -1763
+        ]
+      },
+      "limits": "句中verify只是引用既有材料，不把它登记为真实Open。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "4C、4FULL关键取证恢复；首Query和完整Return四条均全同。",
+    "same_result_different_routes": "r2/r4短篇采用直接提交；r3中篇且Suruga误说未补查；r1长篇将Suruga错误转成额外Search，纠正后又长篇。",
+    "cost_location": "三条少Open/Actor和长篇，r1多Search、少Open但长篇更多；正确率四C无法区分这些工作量。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "P的错误赛事假设可改变Query而不必决定最终答案：若返回仍提供正确关系并被实际采用，路线能纠回；是否又把额外解释变成新的核验任务，决定后续消耗。",
+      "support": "1题4条同Query/Return都从Libertadores回Recopa；r1额外Suruga任务，r2/r4不再派发。",
+      "counterexample": "r3有错误Suruga描述却未追加Call且仍C，错误前提并非总转成任务。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "G没有正确赛事日期，关键事实来自新真实Search，不能误称答案泄漏。",
+    "首Query四条一致/Return全同但行为量不同，不能单靠Query相同或DocID相同确定同机制。",
+    "原U一次返回含Suruga明确单场15August，新首返回没有该页，r1直到补查才获得，差异不只是模型是否忽略同一证据。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_LIBERTADORES",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "which would be the 2017 Copa Libertadores"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "The user is asking for the date of the first leg of the subsequent international club competition that Chapecoense participated in as a direct result of being declared champions of the 2016 Copa Sudamericana."
+    },
+    {
+      "evidence_id": "O_PRE_ACCIDENT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "when Chapecoense were en route to the first leg of the 2016 Copa Sudamericana Finals to play against Atlético Nacional",
+      "doc_id": "wiki25:8595677",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Chapecoense 2016 Copa Sudamericana champions declared",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_RECOPA_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/2/snippet",
+      "exact_quote": "The first leg was hosted by Chapecoense at Arena Condá in Chapecó on 4 April 2017",
+      "doc_id": "wiki25:8468342",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SURUGA_RETURN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/5/snippet",
+      "exact_quote": "The Suruga Bank Championship was played as a single match",
+      "doc_id": "wiki25:8563482",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "So the answer should be 4 April 2017."
+    },
+    {
+      "evidence_id": "O_SHORT_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "South American football competition Football match The 2017 CONMEBOL Recopa was the 25th edition of ",
+      "doc_id": "wiki25:8468342",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Chapecoense 2017 Copa Libertadores first leg date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_RECOPA",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 3,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "The first leg was hosted by Chapecoense at Arena Condá in Chapecó on 4 April 2017",
+      "doc_id": "wiki25:8468342",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_SURUGA_ERROR",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Suruga Bank is a two-legged tie."
+    },
+    {
+      "evidence_id": "N1_SURUGA_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Suruga Bank Championship 2017 Chapecoense date first leg",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_SURUGA_CORRECT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "This is a single match held in August 2017 (**15 August 2017**)."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "chatcmpl-tool-a3762f509d9fa0ac"
+    },
+    {
+      "evidence_id": "N2_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 3,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Chapecoense 2017 Copa Libertadores first leg date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "As a result, Chapecoense earned the right to play against the 2016 Copa Libertadores winners (Atlético Nacional) in the 2017 Recopa Sudamericana."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Therefore, the competition is the 2017 Recopa Sudamericana."
+    },
+    {
+      "evidence_id": "N3_SURUGA_ERROR",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "though the finals of Suruga Bank are two-legged"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 3,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Chapecoense 2017 Copa Libertadores first leg date",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the answer should be 4 April 2017."
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 4,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "4 April 2017",
+      "call_id": "chatcmpl-tool-b2eeb6e807220dcb"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: source SHA, exact evidence, source-side, Round/Call ID/DocID metadata, Stage field ranges and four actual cost ledgers checked. Codex semantic self-review is not independent human gold."
+}

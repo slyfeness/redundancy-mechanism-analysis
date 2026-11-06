@@ -1,0 +1,428 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S002",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "数字与Gold相同，原外围天体无匹配支持。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R2@259保留刚从惨案Return采用LuXun并写他1936去世的当前推理。P只有首轮Search工具历史，不含原E2的奥运49/129/19，不含死亡年查证。1936是此时知识判断，尚非返回证明。",
+    "evidence_states": "人物已返回、已提取采用；死亡年已断言待证；赛事和NOC未知。",
+    "evidence": [
+      "I_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/1/items",
+    "ranges": [
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 259,
+        "end": 705
+      }
+    ],
+    "goal": "按1936与129/19寻找赛事及参赛NOC。",
+    "operations": "组织赛事Query真实Search；十条Return中1148006直接给1936SummerOlympics/49/129/19。",
+    "product": "第一次可见的49直接书面支持和匹配赛事。",
+    "judgment_change": "未定赛事变成有直接数字支持的1936奥运候选。",
+    "evidence": [
+      "O_SEARCH",
+      "O_49"
+    ]
+  },
+  "original_followup": {
+    "use": "随后查死亡年补桥接、三次Open赛事重证49，再进行天体附加验证；最后49。",
+    "evidence": [
+      "O_49",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "把人物年份及赛事规格变成定向检索，取得核心答案直接证据。",
+    "state_relation": "四支均先补死亡年，随后R3重新搜索赛事并取得与原E2完全相同批次，功能均完整恢复。",
+    "evidence": [
+      "N1_EVENT",
+      "N2_EVENT",
+      "N3_EVENT",
+      "N4_EVENT"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "I need to find the year of death of a prominent Chinese writer who described the March 18 Massacre.",
+    "source_position": "O R3[0,99)",
+    "novelty": "没有姓名、1936或49新事实，题面已有死亡年需求；将行动转至原下一步死亡核验，先后顺序发生改变。",
+    "risk": "ORACLE_ANCHORED方向预填；不是无引导功能省略。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "真实49；中间天体身份存在自造和纠正。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R2死亡年Search；R3采用1936并Search Olympics129/19，实际返回原同批49；R4采用49后查机场243。R5将samecalendar错误放宽为任意月份18日，查询只剩18+243，得到NGC/Ida等。R6无支持就声称243Ida在March18且周期243，真实查询Ida周期；Return170309实际September29与4.84years；R7明确换算1767.81days并发现两条件不符，转March18搜索。R8长9338字符反复排除Ida与说49足够，仍Search；R9再长6015字符并日期Search，R10全条件Search实际耗200秒且返回编程Asteroid噪声批次，R11承认天体未证但核心49提交。",
+      "first_judgment_divergence": "先证死亡年再取得赛事；核心功能恢复后在天体日期语义与数字编号上另起错误前提。",
+      "first_actual_tool_divergence": "R2先Search死亡年，原是赛事Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "找1936赛事及NOC",
+          "original_operation": "规格Search",
+          "original_product": "49/129/19支持",
+          "new_goal": "同一核心赛事检索",
+          "new_operation": "R3 Olympics129/19 Search",
+          "new_product": "同一Return49并R4采用",
+          "evidence": [
+            "O_49",
+            "N1_EVENT",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "真实原目标重新取得且使用，不能把同答解读为原取证不必要。",
+      "chain": "年份先证→赛事核心恢复→无效外围反馈被转成错误Ida假设→新Return纠错→仍反复外围/长论证→最终49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "11814gen/231205Prompt/10Actor/9Search/0Open；原后缀gen[3478,3674]，生成多[8140,8336]，集中R4—R11长篇复盘与Ida纠正；Search减2、Open减3不能抵消推理膨胀的事实。R10工具200.11秒为实测延迟不冒称思维导致。",
+      "counterevidence_and_alternatives": "同Query实际Return在R9/R10变为泛Asteroid编程材料，与原不同，检索/服务表现是替代解释；不能把全部分歧归U。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "核心数有直接支持。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R2死亡年；R3规格Search取得同原批49；R4采用49后日期Search实际空结果，R5查机场243；R6/7两次全条件噪声，R8日期Query；R9总体比较后直接Submit，不Open。把题面要求周期243写作已对齐仍无具体天体支持。",
+      "first_judgment_divergence": "核心恢复后很快把直接赛事数字作为可提交依据，未进行原三Open。",
+      "first_actual_tool_divergence": "先死亡Search、后赛事。",
+      "function_correspondence": [
+        {
+          "original_goal": "核心赛事取证",
+          "original_operation": "规格Search",
+          "original_product": "49",
+          "new_goal": "同一需求",
+          "new_operation": "R3相同规格Search",
+          "new_product": "相同49返回并R4采用",
+          "evidence": [
+            "O_49",
+            "N2_EVENT",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "不是仅依据G作答，实际重新查得核心。",
+      "chain": "取证顺序改但核心证据恢复→外围有限未果→以直接数字提交→C且少交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2149gen/132428Prompt/8Actor/7Search/0Open；Search减4且三Open均消失，生成保守少[1329,1525]，省在后续重读及外围次数/表达而非没有找赛事。",
+      "counterevidence_and_alternatives": "R4空Return是实际观察，不当作查遍不存在；天体缺口与原共有，未补足全链。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "实际提交49。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R2死亡Search，R3理解18日发病下一早应19但随后仍有来源分歧措辞；R3赛事Search取得49，R4采用后查机场；R5—R7三次完整天体Query同噪声。R8承认核心已有却Open50，R9扩大500真正看到49，R10再天体Query，R11Submit。",
+      "first_judgment_divergence": "在无新核心信息时仍要求再Open确认，确认后又回附加条件。",
+      "first_actual_tool_divergence": "先死亡再赛事，后机场早于原Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "获取赛事直接数字",
+          "original_operation": "规格Search",
+          "original_product": "49",
+          "new_goal": "同一核心",
+          "new_operation": "R3规格Search并R4采用",
+          "new_product": "49/129/19均恢复，随后Open再证",
+          "evidence": [
+            "O_49",
+            "N3_EVENT",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "核心取得与采用完整重做。",
+      "chain": "核心恢复→缺口持续派工→开窗反馈扩大到有效片段→仍核验一次外围→C。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "4470gen/214614Prompt/10Actor/7Search/2Open；生成较原多[796,992]，虽然Search少4/Open少1，整链反复解释令生成更长。",
+      "counterevidence_and_alternatives": "没有补到具体天体；不能把题面243需求变成已证事实。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "答案49正确；解释另有未经工具支持的冬奥断言。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R2死亡年，R3赛事Query取得同批49，R4采用后为18/19疑点再次查LuXun deathdate1936，获得明确Oct19资料；R5机场243，R6长3459字符直接提交49，未执行天体Search/Open。R6声称1936没有冬奥，不见Return支持，是额外错误/无依据排他断言，不改变直接NOC数。",
+      "first_judgment_divergence": "优先处理具体死亡日疑点而不追天体；最终接受规格/年份直接匹配足够。",
+      "first_actual_tool_divergence": "先死亡年、后赛事，随后重复死亡日核验代替Open。",
+      "function_correspondence": [
+        {
+          "original_goal": "找到赛事及数字",
+          "original_operation": "规格Search",
+          "original_product": "49",
+          "new_goal": "同一核心",
+          "new_operation": "R3相同Query批次并R4采用",
+          "new_product": "49恢复",
+          "evidence": [
+            "O_49",
+            "N4_EVENT",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "U完整重建，未执行的是原后续外围搜索及Open。",
+      "chain": "年份/赛事恢复→日疑点另证→核心匹配接受→不派天体Search便Submit→C少交互。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2635gen/66111Prompt/5Actor/4Search/0Open；Search减7、Open减3，gen保守少[843,1039]。省在不再执行外围与重读，并非缺省核心检索。",
+      "counterevidence_and_alternatives": "原路径本来未解天体，r4也未解；Final数字C不等于其所有解释正确。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "4/4真实规格Search及采用49均恢复。",
+    "first_divergence": "4/4先死亡年；后核心证据相同，但r1错误Ida后纠正且长解释，r2/4停较早，r3再Open。",
+    "cost": "r1/r3生成更多，r2/r4更少；四支Search/Actor更少。",
+    "inference": "不能由四次同答推断原Stage无用，取得49是各支共有工作；差异在取证顺序和核心恢复后对附加条件的处理。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "删除早期核心检索后，同一核心工作可在死亡年确认之后重做，结果维持；后续是否把未解附加关系升级为持续任务，决定多出的Search及长推理。",
+      "support": "四支赛事取得完全恢复但成本两增两减；r1错误Ida被文档冲突推翻后仍反复外围。",
+      "limits": "G把先后顺序改至死亡年；同题四支，检索空/长延迟/返回差异并存，非单一因果证明。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原Stage首取49并非P已具有数字，不能误判为重复确认。",
+    "完整四条原文和真实Return均已阅读；历史有browsecomp_plus:8161混合语料结果，原样记录不修检索。",
+    "切点R2@259无nativeIDs，gen比较区间[3478,3674]；P4531/G23单列，G不重复计费，不加总独立分支节省。",
+    "答案相同与证据质量分开，具体天体全四支未真正证成。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 2,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "So the prominent Chinese writer is Lu Xun, and he died in 1936."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 2,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "I need to find the year of death of a prominent Chinese writer who described the March 18 Massacre."
+    },
+    {
+      "evidence_id": "O_SEARCH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "129"
+    },
+    {
+      "evidence_id": "O_49",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/results/4/snippet",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N1_EVENT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "1936 Olympics 129 events 19 sports"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "4.84 years * 365.25 days/year ≈ 1767.81 days. This doesn't match 243 days."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_EVENT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "1936 multi-sport event 129 events 19 sports"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_EVENT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "1936 multi-sport event 129 events 19 sports"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_EVENT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "1936 Olympics 129 events 19 sports"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "49 National Olympic Committees"
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "5c58bd14e62c9a9a36113851975782495fb6bbc642e68732b3c4c4efb0189e68"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "95fdfd437da6ac0c7db3ec2489ee978c6769b3fc6237888267b5f441f2f8a17e"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "ca8363b23359b19f8a5b42b63843dbef87cf6f6463c396a56f8e87f47b2af074"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "1c1b473e9cf25c23dd5179aff0bf55c3ad128acea5fbb634cd1668c83719e9a4"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S002__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "80fefc30d2bd2318f7e6b4a851b1a863d9a669f36b71c691ba068e6a886fbc3f"
+    }
+  }
+}

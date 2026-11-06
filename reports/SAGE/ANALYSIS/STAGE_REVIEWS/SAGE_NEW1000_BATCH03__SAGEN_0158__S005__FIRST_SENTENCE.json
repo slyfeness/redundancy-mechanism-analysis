@@ -1,0 +1,548 @@
+{
+  "schema_version": "SAGE_STAGE_MECHANISM_MODEL_AUTHORED_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0158",
+  "stage_id": "S005",
+  "sample_order": 30,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0158/trajectory.json",
+      "source_sha256": "00c1a3e889f7c40fec57428c111ff7eb62a22cdbd06f1a6be187d83e43efe01d"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0158.json",
+      "source_sha256": "fea3d50a483e85a7b2ca24e784ea06b52353185f1ec997f82e6e27e93710eeed"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "b56ca3119713bb48c5d34a7760968d3deeeaccae5dd2cd831963c9161fe0e47f"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "1f310035a168d94a62408bb7f9ab14b68fb73a27056631dcec197dd8e848bd83"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "1f8b16bffbbd140c9583716751bcf4b9be39b16f63292f3ba30ffc53cfe52f4e"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "f9d857ff6ee12cadf30fbde0c02884d43c1f2494a70727d56a6883493cb18907"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "ea65148569a7f858fd072464c4ec7c4313ef32afde64ac7bdfc052925e52595e"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the year when the Paraguayan settlement, which became a base for a foreign-owned tannin extraction company known for processing 'axe-breaker' hardwood, was established under the name honoring the Argentine figure associated with that company?",
+    "offline_gold": [
+      "1889"
+    ],
+    "gold_not_in_actor_input": true
+  },
+  "read_scope": {
+    "original": "六轮与全部Call/Return完整阅读，原过程笔记ROOT_030_ORIGINAL_PROCESS.md。当前U为R6开头1094字符，全文在前一组阅读P时已读。",
+    "new": "ROOT_030_S005_FOUR.txt75021字符按0—26000—50000—75021全部阅读；工具完整observation保留，程序逐项确认actor_visible_return序列化一致后不重复显示同文本。",
+    "semantic_author": "Codex直接裁定；非程序关键词生成。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "actual_input": "R6@0，无当前Reasoning前缀；P有四次Search和一次Open、最后人物传记6119231，但历史Assistant reasoning按实际规范化为空。不能将R5的四条件判断当成新输入里已经保留的显式推理。",
+    "evidence_state": "聚落1833884返回明确1889、公司和quebracho；人物返回SpanishArgentine身份；原轨迹早已提出PuertoCasado候选。新输入能从工具文本重建，但这与已把所有条件用于接受不是同一状态。",
+    "gap": "来源没有明确记载旧名AngelCustodio改成PuertoCasado的年份。",
+    "evidence": [
+      "O_DATE",
+      "O_PERSON"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 6,
+        "json_pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 1094
+      }
+    ],
+    "goal": "把聚落、公司、原料、人物身份与成立年整合成答案接受。",
+    "operations": [
+      "列五项证据/关系并判断题目指PuertoCasado1889。",
+      "引用成立旧名和公司别称原句，进一步断言1889即以纪念名成立。"
+    ],
+    "product": "首次在此轮整体接受1889；其中命名年从关联推成确定结论，强于来源。",
+    "judgment_change": "将已返回的各项材料整理为一套可提交的匹配，但原后续并未就此提交，而重新打开命名关系。",
+    "evidence": [
+      "O_U_LIST",
+      "O_U_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use": "S006反复重开成立/改名关系，S007又区分district/town后Submit1889；U的接受没有独自结束求解。",
+    "true_suffix": "整R6响应3758生成、21998Prompt、0Search0Open1Submit、1Actor。切点在Round首，可描述完整响应成本差；仍无原生IDs，不能声称native精确节省。",
+    "evidence": [
+      "O_REOPEN",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "把已有文献事实转成多条件接受，然而把命名关系推得过强。",
+    "首个整体接受被删后，四条都自行重建接受；差别是是否将旧名歧义继续作为真实核验目标。",
+    "相同正确年份可以伴随长篇反复、较短判断、额外Search/Open三种工作路线。"
+  ],
+  "guide_audit": {
+    "G": "Let me verify this is correct by checking if there's any additional information about when the name was changed or if the settlement was established under that name from the beginning.",
+    "origin": "原S006 R6[1094,1278)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "没有加入实体或1889事实，却预设this is correct并明确提醒成立名/改名应核验，是未来行动方向与先前接受的暗示；旧称文字本在P，但该待查任务尚未以当前推理形式出现。不能说无补偿，也不把G当自主发现。",
+    "evidence": [
+      "I_G",
+      "O_DATE"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat01",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "真Submit1889；全文仍不确证命名年。",
+      "outcome_evidence": [
+        "N1_ADOPT",
+        "N1_SUBMIT"
+      ],
+      "work_timeline": [
+        "开始立即重建四项匹配，接受1889。",
+        "继而反复区分district/town、AngelCustodio/LaVictoria/公司名，几次说要搜却都没有执行。",
+        "承认改名时间未知后按成立年作答，只有实际Submit一次。"
+      ],
+      "first_substantive_judgment_difference": "整体接受已恢复，却更早由G指定的改名问题重新打开；最终未获得消解证据。",
+      "first_actual_tool_difference": "原新都仅Submit1889，无新增Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "把材料对应为答案",
+          "original_operation": "多条件盘点和成立年接受",
+          "original_product": "1889",
+          "new_goal": "同一答案匹配",
+          "new_operation": "重建四项关系后多次接受/重开",
+          "new_product": "完整恢复接受功能并伴随重复展开",
+          "evidence": [
+            "O_U_LIST",
+            "N1_ADOPT",
+            "N1_GAP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "材料可见→重新采用1889→命名歧义继续消耗篇幅但未发Search→最后以成立年提交C；减少的是一部分后续反复，不是省去整体接受功能。",
+      "costs": {
+        "new_generation": 3187,
+        "new_prompt": 22031,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 21998,
+        "G_prefill": 33,
+        "recorded_complete_response_completion_difference": -571
+      },
+      "limits": "-571为完整响应计数对比，G33单列，不冒充原生精确干预净节省。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat02",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "正式Submit1889，成立年受文献支持；未证明纪念名最初使用年。",
+      "outcome_evidence": [
+        "N2_ACCEPT",
+        "N2_SUBMIT"
+      ],
+      "work_timeline": [
+        "重新读1889与公司1886、CarlosCasado关系，接受1889。",
+        "简短重读题目列全条件，未展开改名歧义长分支、未执行Search/Open，直接Submit。"
+      ],
+      "first_substantive_judgment_difference": "用整体条件匹配直接接受，不像原后续把旧称解释变成持续疑虑。",
+      "first_actual_tool_difference": "只有Submit，与原同类。",
+      "function_correspondence": [
+        {
+          "original_goal": "多条件答案判断",
+          "original_operation": "整合已有返回",
+          "original_product": "1889接受",
+          "new_goal": "同一判断",
+          "new_operation": "更短的两次条件核对",
+          "new_product": "接受完整恢复，后续长篇命名纠结未重演",
+          "evidence": [
+            "O_U_LIST",
+            "N2_LIST",
+            "N2_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "返回材料→短篇恢复多条件接受→没有把命名缺口持续派发为工作→SubmitC；生成量主要少在原U之后S006/S007的长篇往返。",
+      "costs": {
+        "new_generation": 545,
+        "new_prompt": 22031,
+        "new_search": 0,
+        "new_open": 0,
+        "new_actor": 1,
+        "P_replay": 21998,
+        "G_prefill": 33,
+        "recorded_complete_response_completion_difference": -3213
+      },
+      "limits": "没有新改名证据，较早停止不等于全部条件证据质量更高。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat03",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R8真Submit1889；两次工具重新返回未带来明确改名年份。",
+      "outcome_evidence": [
+        "N3_ACCEPT",
+        "N3_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6重建多项对应但推PuertoCasado可能独立于LaVictoria；认为须核验实体/名称关系。",
+        "真实Search LaVictoria Paraguay founded1889 PuertoCasado namechange；结果仍同聚落及无关人物、足球、更名列表等。",
+        "R7长篇重读并Open1833884 limit4000全文；该全文P本已可见，新增调用未改变它的关键事实。",
+        "R8将成立日期和姓名联系重新当充分依据，Submit1889。"
+      ],
+      "first_substantive_judgment_difference": "不是未找回1889，而是把公司港口、聚落/旧称是否同一对象继续当待证问题。",
+      "first_actual_tool_difference": "R6新增Search，随后R7新增Open；原后缀无这些动作。",
+      "function_correspondence": [
+        {
+          "original_goal": "条件对应并接受",
+          "original_operation": "已有文献整合",
+          "original_product": "1889",
+          "new_goal": "同一接受并核验名称关系",
+          "new_operation": "接受后重开，Search+重Open旧全文再接受",
+          "new_product": "完整恢复，额外补查未闭合改名时间",
+          "evidence": [
+            "O_U_LIST",
+            "N3_ENTITY",
+            "N3_QUERY",
+            "N3_OPEN",
+            "N3_RETURN",
+            "N3_ACCEPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "多条件答案恢复→旧名关系被当未完核验→再Search并重读已见全文→同样没有改名日期→最终仍C；成本增量明确来自2次取证和多轮Prompt。",
+      "costs": {
+        "new_generation": 3830,
+        "new_prompt": 76115,
+        "new_search": 1,
+        "new_open": 1,
+        "new_actor": 3,
+        "P_replay": 21998,
+        "G_prefill": 33,
+        "recorded_complete_response_completion_difference": 72
+      },
+      "limits": "实际完整生成计数+72，更多Search/Open/Actor与Prompt；不能把重复全文自动等同工具回填，事件是新真实执行。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0158__S005__FIRST_SENTENCE__repeat04",
+      "actual_final": "1889",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "1889",
+      "outcome": "C",
+      "outcome_reason": "R7正式Submit1889。新总结把成立旧名与后来纪念名连成叙述，但返回没有提供改名日期。",
+      "outcome_evidence": [
+        "N4_CHOICE",
+        "N4_SUBMIT"
+      ],
+      "work_timeline": [
+        "R6自行恢复成立/公司/原料事实后，顺着G转查改名日期。",
+        "真实Search PuertoCasado AngelCustodio namechange，首条仍1833884旧片段，其余商业目录和词表。",
+        "R7再列条件与旧名/后改名叙述，接受1889并Submit。"
+      ],
+      "first_substantive_judgment_difference": "接受功能恢复，但把命名时间问题外化为Search，而原U后只反复推理。",
+      "first_actual_tool_difference": "新增一次真实Search，随后Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "整合条件接受年份",
+          "original_operation": "原材料盘点",
+          "original_product": "1889",
+          "new_goal": "同一匹配并确认旧名",
+          "new_operation": "先恢复接受框架，再搜改名，短篇重列",
+          "new_product": "完整恢复并增加外部核验，仍沿1889",
+          "evidence": [
+            "O_U_LIST",
+            "N4_QUERY",
+            "N4_RETURN",
+            "N4_CHOICE"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "decision_action_result_chain": "已有材料恢复答案→命名缺口触发真实Search→返回没有新改名年→较短放回成立年提交C；生成少但Search/Actor/Prompt更多，不能说整体更省。",
+      "costs": {
+        "new_generation": 997,
+        "new_prompt": 47508,
+        "new_search": 1,
+        "new_open": 0,
+        "new_actor": 2,
+        "P_replay": 21998,
+        "G_prefill": 33,
+        "recorded_complete_response_completion_difference": -2761
+      },
+      "limits": "不同成本方向分列，不把Token下降盖过工具和输入增长。"
+    }
+  ],
+  "four_run_comparison": {
+    "results": "4C、4条接受功能完整恢复；0/0/1/1次新增Search，r3另Open一次。",
+    "same_result_different_routes": "r2短篇整合后提交；r1没有真实Search但长篇重复；r3补查加重Open；r4补查后短篇提交。终态频率掩盖路径差别。",
+    "cost_location": "r2减少原后续长篇旧名讨论；r4同样缩短但增加真实Search；r3成本增长；不能把被删首次接受统称无作用。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "当明确成立年和人物/公司关系已经在工具历史中，整体接受可被重新完成；真正区分后续工作量的是旧名关系被当作必须外查、继续内推还是不阻止提交。",
+      "support": "本Stage4条、1题，须在跨题表中与其他状态比较后再定共性。",
+      "counterexample": "r3新增工具和生成，r4生成下降但工具上升，反驳A类等于省计算。",
+      "guide_limit": "G本身指定命名复查方向，不能将新路径对此问题的关注全归删除U。"
+    }
+  ],
+  "counterevidence_and_uncertainty": [
+    "P实际不保存完整历史Reasoning，返回可见不等于已保留接受；四条的接受是新自主正文而非直接复制G答案。",
+    "原新共同命名关系证据不足，C不能单独证明必要条件完成。",
+    "同一题多Stage不计多道独立题；独立分支节省不得相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT_AUDIT",
+      "round_id": 6,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this is correct by checking if there's any additional information about when the name was changed or if the settlement was established under that name from the beginning."
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/text",
+      "exact_quote": "Founded in 1889 in time of President Patricio Escobar, formerly known as Angel Custodio.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:1833884"
+    },
+    {
+      "evidence_id": "O_PERSON",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/4/observation/results/0/snippet",
+      "exact_quote": "was a Spanish Argentine businessman.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:6119231"
+    },
+    {
+      "evidence_id": "O_U_LIST",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "4. The company was named after **Carlos Casado del Alisal**, a Spanish-Argentine businessman."
+    },
+    {
+      "evidence_id": "O_U_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "The settlement was established in **1889** under the name Puerto Casado"
+    },
+    {
+      "evidence_id": "O_REOPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "But the text doesn't explicitly state when the name was changed to Puerto Casado."
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/5/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-b5050eb01e33a8d5"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the settlement was established in 1889 under the name \"Puerto Casado\""
+    },
+    {
+      "evidence_id": "N1_GAP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "However, without more information about when the name was changed, I can only provide the year it was founded, which is 1889."
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-b8fc88a2a773c859"
+    },
+    {
+      "evidence_id": "N2_LIST",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "- The settlement is Puerto Casado (formerly La Victoria)"
+    },
+    {
+      "evidence_id": "N2_ACCEPT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "So the settlement was established in 1889 under the name honoring Carlos Casado (Puerto Casado)."
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-af572d00859a53ee"
+    },
+    {
+      "evidence_id": "N3_ENTITY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "Puerto Casado might have been established as a separate entity from La Victoria"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "\"La Victoria\" Paraguay founded 1889 \"Puerto Casado\" name change",
+      "call_id": "chatcmpl-tool-a9fc46cb1d9d4f60"
+    },
+    {
+      "evidence_id": "N3_OPEN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/doc_id",
+      "exact_quote": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_RETURN",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "return",
+      "json_pointer": "/tool_events/1/observation/text",
+      "exact_quote": "Founded in 1889 in time of President Patricio Escobar, formerly known as Angel Custodio.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ACCEPT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The answer to the question is **1889**."
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 8,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/2/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_QUERY",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Puerto Casado Angel Custodio name change",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_RETURN",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/0/snippet",
+      "exact_quote": "Founded in 1889 in time of President Patricio Escobar, formerly known as Angel Custodio.",
+      "doc_id": "wiki25:1833884",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_CHOICE",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The settlement was established in 1889, founded as \"Angel Custodio\" and later renamed Puerto Casado"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 7,
+      "event_type": "query_argument",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "1889",
+      "call_id": "chatcmpl-tool-9f62b604e8ad38f6"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "mechanical_validation_scope": "PASS: 7 source SHA, all exact reference quotes, independent source side, task/final/stop, Round/Call/Doc metadata and four cost rows verified. Original tool Round recovered from frozen mapping and original R4/R5/R6 order. Not independent human semantic acceptance."
+}

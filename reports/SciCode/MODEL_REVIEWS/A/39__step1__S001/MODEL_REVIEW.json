@@ -1,0 +1,118 @@
+{
+  "case_id": "39__step1__S001",
+  "category": "A",
+  "trajectory_id": "39__step1",
+  "stage_id": "S001",
+  "main_problem_id": "39",
+  "official_subproblem_id": "39.1",
+  "intervention": "FIRST_SENTENCE",
+  "review_status": "COMPLETE",
+  "evidence_index": "RESOLVED_EVIDENCE.json",
+  "objective_cost_table": "OBJECTIVE_COSTS.json",
+  "sources": {
+    "original_read": "完整题目、四轮原推理及四次实际Call/Return；U覆盖R1全段及R2[0,23)。",
+    "new_read": "四条全部推理、每个真实工具参数/返回及正式提交；第一轮推理为空也读取实际结构化run_python参数。",
+    "input_read": "四份INPUT中同源P/G核对，原始请求只有system/user，当前draft空、历史0；不将最终快照误当初始状态。"
+  },
+  "original": {
+    "pre_state": "R1@0没有先前推理、候选代码或提交。题面已提供phi、A、B和C/D共轭公式，依赖明确允许numpy；正文说tuple而Required interface明确2x2矩阵，模型按后者。",
+    "U_goal": "将给定Bragg传播公式落实为可保存的2x2复数矩阵函数。",
+    "U_operations": "逐项提取phi与四个元素，写入numpy实现，收到write_code ACCEPTED并在R2承认保存成功。",
+    "U_product": "1060字符正确函数；相位符号、B符号和C/D共轭关系落实。ACCEPTED只是安全/语法检查，不是数值验证。",
+    "judgment_before_after": "由题面公式和空draft变为可调用的具体实现；首次建立可测试/提交对象。不是再次确认已写代码。",
+    "original_suffix_use": "Z试图from matrix_elements导入测试，被root=matrix_elements拒绝；R3误猜numpy有问题，read_code后R4原样提交U的代码。没有一次实际数值运行，正确性来自所提交实现符合公式及封存评分C。",
+    "evidence": ["O1", "O2", "O3", "O4", "O5"]
+  },
+  "guide_audit": {
+    "G": "Let me run a quick test to verify it works correctly.",
+    "P_relation": "P无代码也无前次write，但G以it指代已存在实现，来自原R2@23后继。四条均先执行run_python，工具均提示必须先write_code。",
+    "novelty": "新增测试行动方向及已有可测试实现的承接前提；不提供矩阵具体公式、候选代码、测试答案。公式本已在题面。",
+    "risk": "ORACLE_ANCHORED；G与真实空draft不一致，会诱发先测试后保存的额外交互，不能作为纯无引导删除。",
+    "evidence": ["G1", "N11", "N21", "N31", "N41"],
+    "uncertainty": "日志支持首行为与G方向一致，不能排除无G采样也先测试；未做新的对照实验。"
+  },
+  "rollouts": [
+    {
+      "branch_id": "39__step1__S001__FIRST_SENTENCE__rep1",
+      "official_state": "C",
+      "first_material_divergence": "R1真实run_python包含完整重写公式和两个波长试例，但空draft被拒；原路径先write再测试。",
+      "work_reconstruction": {"goal": "构造相同传播矩阵", "operation": "先在测试参数重写函数，再write同一实现并submit", "product": "892字符实现，省去中间two_i_phi变量但数学一致", "assessment": "FULL_REBUILT；没有跳过公式落实与保存功能"},
+      "judgment_change": "读到write前置条件后明确应先写代码；write成功后不再实际测试就提交。",
+      "action_chain": "run被拒→write→submit；没有成功数值测试，没有原路径的伪模块导入及read。",
+      "result_explanation": "核心公式正确重建并实际提交，C不证明原实现工作可免。",
+      "cost_localization": "原1663生成/7440Prompt/4请求4Call；新1186/5281/3请求3Call，G12另计。减少发生在实现说明更短、未执行原read及导入误诊后续；并非公式功能消失。记录生成差477，含G差465，但非原生Token精确条件。",
+      "evidence": ["N11", "N12", "N13"],
+      "counterevidence": "首个测试虽包含完整函数，工具在执行前拒绝，不能记为两个波长已验证。",
+      "unknowns": "同seed无G路径未在本轮运行。"
+    },
+    {
+      "branch_id": "39__step1__S001__FIRST_SENTENCE__rep2",
+      "official_state": "C",
+      "first_material_divergence": "R1先以完整内联公式发起测试，空draft拒绝。",
+      "work_reconstruction": {"goal": "落实phi及四矩阵元素", "operation": "完整函数进入run参数，被拒后明确write，再submit", "product": "931字符函数，正确共轭关系和2x2返回", "assessment": "FULL_REBUILT"},
+      "judgment_change": "由立即测试转为先保存，保存后改为直接正式提交。",
+      "action_chain": "run拒绝→write→submit，0成功数值测试。",
+      "result_explanation": "公式重建正确，表面执行顺序改变但算法未丢失。",
+      "cost_localization": "新1138生成/5142Prompt/3请求3Call，较原少525生成、2298Prompt、1请求1Call；G12后记录差513。未出现原read与numpy误诊，且解释简化；不把节省归因于免实现。",
+      "evidence": ["N21", "N22", "N23"],
+      "counterevidence": "模型说写成功即可提交，不代表已经检验数值；C为事后评分。",
+      "unknowns": "不能由本条推断任何输入都无需测试。"
+    },
+    {
+      "branch_id": "39__step1__S001__FIRST_SENTENCE__rep3",
+      "official_state": "C",
+      "first_material_divergence": "完整函数与两波长测试先进入run参数，因未write被拒，与前两条相同。",
+      "work_reconstruction": {"goal": "构造正确Bragg矩阵", "operation": "重新解释公式于代码注释，write函数，随后submit", "product": "1111字符实现，把numpy导入置于函数内部；四元素不变", "assessment": "FULL_REBUILT"},
+      "judgment_change": "明确先保存才能测，实际保存后直接提交，没有兑现后续测试意向。",
+      "action_chain": "run拒绝→write→submit；0实际数值反馈。",
+      "result_explanation": "正确实现恢复而C；函数内导入没有造成此分支错误，不能将依赖位置视为关键机制。",
+      "cost_localization": "新1422生成/5330Prompt/3请求3Call；较原记录差241生成、2110Prompt、1请求1Call，G后生成差229。实现重写较长但省原后续read/误诊，非功能删除证据。",
+      "evidence": ["N31", "N32", "N33"],
+      "counterevidence": "代码注释更细，函数比原更长；不能解释为代码篇幅总是缩减。",
+      "unknowns": "仅说明本条测试未执行仍评分C。"
+    },
+    {
+      "branch_id": "39__step1__S001__FIRST_SENTENCE__rep4",
+      "official_state": "C",
+      "first_material_divergence": "R1先列实现与测试并发起run，空draft拒绝；R2写入，R3才真正执行测试。",
+      "work_reconstruction": {"goal": "落实相同公式并检验", "operation": "从题面重写term1/term2实现，write后再run三个波长，最后submit带docstring版本", "product": "正确复数矩阵；真实返回三个波长矩阵及两项共轭True", "assessment": "FULL_REBUILT；还新增原路径没有获得的成功数值反馈"},
+      "judgment_change": "首次拒绝后恢复保存顺序，成功测试后明确采用共轭True作为提交支持。",
+      "action_chain": "run拒绝→write→合法run成功→submit；没有原numpy误诊或read。",
+      "result_explanation": "算法正确恢复，数值运行及共轭条件支持提交C。共轭检查直接对应代码定义，不能当穷尽全部物理条件。",
+      "cost_localization": "新2423生成/8196Prompt/4请求4Call；较原多760生成、756Prompt，G后多772。增加来自首次无效run中的长实现和测试重写，以及write后第二次完整测试；没有节省。",
+      "evidence": ["N41", "N42", "N43", "N44"],
+      "counterevidence": "首次reasoning示例含未声明且未使用scipy.optimize.fsolve，但实际run参数及提交没有它，不能据示例判实际Call违规。",
+      "unknowns": "只读检查，不重新执行额外数值验证；维持封存评分。"
+    }
+  ],
+  "cross_rollout_comparison": {
+    "same_changes": "4/4从空draft重写正确公式、先测试被前置条件拒绝、再write并submit；4/4恢复被删核心功能。刚看前两条时的即时进度描述不是全组统计，本组最终为四条均如此。",
+    "different_paths_same_result": "前三保存后直接提交、没有成功测试；第四保存后真实检验三个波长再提交。四条C但验证工作和成本不同。",
+    "mechanism_strength": "支持：题面公式充分保留时，删除首次实现不阻止功能被完整重建；后继测试引导与空draft失配又引入额外失败动作。结果保持来自算法恢复，不是算法工作没有必要。",
+    "counterexamples": "第4条同样恢复算法却成本增加；前三成本下降不能推广为此类实现Stage都可省。"
+  },
+  "stage_function": "首次将明确科学公式变成可测试和可提交的代码对象。",
+  "candidate_mechanism_chain": "题面公式可见但尚无代码→U首次建立正确函数→原后续围绕该函数测试/提交；删除后G先提示测试→四条均重写正确公式却先因空draft被拒→补write恢复可提交对象→前三直接提交、第四追加成功测试→均C，成本随后续验证组织而变。",
+  "limits": ["R1@0相当于带后继提示重新解当前子题，不能证明实现功能冗余。", "ORACLE_ANCHORED且G带已有实现的前提；没有用原未来代码或Return。", "RECONSTRUCTED_CHAR_EXACT，成本来自请求记录，不提供原生精确切点节省或延迟因果量。", "与39同题其他Stage不是不同主问题的独立支持。"],
+  "evidence_specs": [
+    {"id":"O1","source_key":"ORIGINAL","json_pointer":"/steps/0/prompt","exact_quote":"# Prior model-produced code\n(none)"},
+    {"id":"O2","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/0/reasoning_content","exact_quote":"C = np.conj(B)\n    D = np.conj(A)"},
+    {"id":"O3","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"The code was accepted. Let me run a quick test to verify it works correctly."},
+    {"id":"O4","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/1/model_visible_return/validation/root","exact_quote":"matrix_elements"},
+    {"id":"O5","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The problem might be with the numpy import."},
+    {"id":"G1","source_key":"G1","json_pointer":"/G","exact_quote":"Let me run a quick test to verify it works correctly."},
+    {"id":"N11","source_key":"NEW1","json_pointer":"/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N12","source_key":"NEW1","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"I need to first write the code using write_code, then run it. Let me do that."},
+    {"id":"N13","source_key":"NEW1","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code was successfully written. Now I should submit it for the current subproblem."},
+    {"id":"N21","source_key":"NEW2","json_pointer":"/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N22","source_key":"NEW2","json_pointer":"/tool_events/1/arguments/code","exact_quote":"A = ((n1 + n2)**2) / (4 * n1 * n2) * np.exp(-2j * phi) - ((n1 - n2)**2) / (4 * n1 * n2)"},
+    {"id":"N23","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code was successfully written. Now let me submit it as the final solution for this subproblem."},
+    {"id":"N31","source_key":"NEW3","json_pointer":"/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N32","source_key":"NEW3","json_pointer":"/steps/0/rounds/1/reasoning_content","exact_quote":"I need to first write the code to the file using write_code, then I can test it with run_python. Let me do that."},
+    {"id":"N33","source_key":"NEW3","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code was written successfully. Now I need to submit the final code for this subproblem."},
+    {"id":"N41","source_key":"NEW4","json_pointer":"/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N42","source_key":"NEW4","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The code has been written successfully. Now let me verify the solution is correct by running a test, then submit it."},
+    {"id":"N43","source_key":"NEW4","json_pointer":"/tool_events/2/model_visible_return/stdout","exact_quote":"Verification:\nC == conj(B): True\nD == conj(A): True\n"},
+    {"id":"N44","source_key":"NEW4","json_pointer":"/steps/0/rounds/3/reasoning_content","exact_quote":"This confirms the matrix elements are correctly calculated according to the formulas provided."}
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "case_id":"23__rep2__S001__FIRST_SENTENCE","question_id":"23","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"W","new_by_repeat":{"1":"N","2":"N","3":"N","4":"W"},"basis":"原16轮正式Final明确拒绝识别题名，W；新1/2上下文guard无Final，新3工具文本在Reasoning、0真Call的NONFINAL_PROTOCOL_STOP，新4正式选Money Heist，非Gold12th Fail。三次W→N不等于从正确变错，新4同W也非同答案/同质量。旧结果状态不改。"},
+  "review_basis":"首次完整读原16轮15Call/Return和Final，实际远端SHA1f0b25377e5194724a3fb1b87ab8e5a065b40b9c2b9597fd9b7a5ea884de8398一致。四新53轮51Call/Return及Final完整读完；330槽103份新增全文、19份外国既有索引对应全文另行实际读取并验SHA，81937亦补全文核对。不用其他案例旧标签；新1/2末R18Return仅入未发R19。",
+  "pre_state":"R1@0，P仅原题和工具协议，无候选/返回。题目约束是非虚构书2015—22、作者1960—80、导演1950—60、诚实警察阻止骗局引发效仿、影片≤2023及角色数，不限定财务犯罪、好莱坞或特定国家。",
+  "u_work":"R1—R6完整六轮及六次实际广搜，主按cop/scam/financial crime理解情节、再联合书和年份。U中实质比较The Big Short书2010、Wolf of Wall Street书2007不符，但没找到正确影片。返回是电影列表、警察/财经片和别的现实新闻；没有12th Fail资料。",
+  "u_state_update":"没有正确候选，形成财务诈骗相关查找方向，排除过旧书候选但未使它们永久退出后续查询。原R7/R8Bad Blood→Theranos纪录片，随后再回Big Short；R16明列书2010/导演1968/情节都不符，最后正式拒答。",
+  "original_action_consequence":"原U没有产生正确题名/决定性证据，删除后并不是丢失原本正确采用。原新都恢复大量类似广搜，但剩余工作仍挂靠无法满足约束的财务/抢劫候选。不同失败终态和提交策略要分开，不能由B计数称U因果重要。",
+  "guidance":{"text":"I'm still not getting the specific movie.","source":"原R7开头，9原生Token，R1空P上只注入此句。","audit":"ORACLE_ANCHORED。无人物/影片/答案或具体事实，却提前给了原未来的未找到电影评价，空P没有先前Search历史可支撑这个承接。标记失败反馈语境前置的限制，不虚构其确实造成循环；新轨迹的真实查询仍由模型自行产生。"},
+  "evidence":[
+    {"id":"O_U_FINANCIAL","source":"original","pointer":"/rounds/2/reasoning_content","quote":"This might be a movie about fraud or financial crime.","use":"R3将scam线索具体解释成财务犯罪，原题并未限定，后续实际Query沿此方向。"},
+    {"id":"O_U_EXCLUDE","source":"original","pointer":"/rounds/4/reasoning_content","quote":"the book was published in 2010, not 2015-2022","use":"R5已知Big Short不符书年，仍在后续再次实际查该片。"},
+    {"id":"O_REVISIT","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"The Big Short movie 2015 Michael Lewis director Steven Soderbergh born 1950 1960","use":"chatcmpl-tool-b72beffdf4fa4882，R12仍用被排书候选核人，带无证导演联系。"},
+    {"id":"O_REFUSE","source":"original","pointer":"/rounds/15/content","quote":"I cannot definitively identify the specific movie","use":"真实FormalFinal拒答，W非N，也不把列出的财经电影当采用。"},
+    {"id":"N1_CONFLICT","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"Adam McKay was born in 1968, so this doesn't match either.","use":"R3真实查Big Short后同时识别书年与导演年不符。"},
+    {"id":"N1_AUTHOR_STILL","source":"new1","pointer":"/tool_events/6/exact_arguments","quote":"Michael Lewis born year 1960 1965 journalist author","use":"chatcmpl-tool-81255bb72a8e7ef0，R7仍查已被其他条件排除候选的作者出生；R9—R18持续同需求。"},
+    {"id":"N1_FEEDBACK","source":"new1","pointer":"/rounds/6/reasoning_content","quote":"I'm still not finding the specific movie that matches all these criteria.","use":"R7之后完整相同Reasoning持续，仍将Michael生日当待查任务，没有明确反馈更新查询价值。"},
+    {"id":"N1_LAST_CALL","source":"new1","pointer":"/tool_events/17/exact_arguments","quote":"Michael Lewis journalist born 1960 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980","use":"chatcmpl-tool-a3f74ebd6d81e2f0，R18实际再查、返回只入未发R19，非已提交。"},
+    {"id":"N2_CANDIDATE","source":"new2","pointer":"/rounds/2/reasoning_content","quote":"The Laundromat movie comes up which is about the Panama Papers and money laundering.","use":"R3把财务题材近似作为候选并实际核验，不是从G得到。"},
+    {"id":"N2_UNSOURCED_YEAR","source":"new2","pointer":"/rounds/12/reasoning_content","quote":"Steven Soderbergh was born in 1973, so that doesn't match.","use":"R13未获得此日期的直接返回却据此排除，不能将模型断言视为客观证据。"},
+    {"id":"N2_YEAR_IN_QUERY","source":"new2","pointer":"/tool_events/12/exact_arguments","quote":"Steven Soderbergh born 1973 The Laundromat movie cast","use":"chatcmpl-tool-8461346685def197，R13把自设年份写入真实Query，返回别的影片/表演文章而没有证实此人出生。"},
+    {"id":"N2_REVISIT","source":"new2","pointer":"/tool_events/16/exact_arguments","quote":"Steven Soderbergh born 1973 The Laundromat J.B. Salsburg born","use":"chatcmpl-tool-a8ae94e1bf00b94a，R17已称不符仍回同对象补属性；本次返回其他导演，没有修复年份关系。"},
+    {"id":"N3_PROTOCOL","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"<function=search-server-search>","use":"R1工具标签留在Reasoning、tool_events为空，0真Call，无Final。工程终态不算候选判断机制。"},
+    {"id":"N4_PROPOSE","source":"new4","pointer":"/rounds/2/reasoning_content","quote":"Let me try searching for \"Money Heist\" or \"La Casa de Papel\" since that's a very popular show about a bank heist","use":"R3从熟悉抢劫题材提出对象，未有书籍/影片/警察情节身份支持。"},
+    {"id":"N4_RETURN","source":"new4","pointer":"/tool_events/6/exact_result","quote":"La Casa de Papel","use":"chatcmpl-tool-9e18a8e3dd13185c，R7回68813真实2017/Antena3/Netflix/creatorPina，未提供书源、出生或警察感化情节。"},
+    {"id":"N4_DOUBT_BOOK","source":"new4","pointer":"/rounds/9/reasoning_content","quote":"Money Heist might not be based on a non-fiction book. It's more of an original story.","use":"R10实际识别书源可能不符，仍后续多次查书与Pina。"},
+    {"id":"N4_INVENT_PLOT","source":"new4","pointer":"/rounds/13/reasoning_content","quote":"There's a character (Tokyo) who is inspired by an honest cop to stop a scam","use":"R14首次无支持地把题目情节填给Tokyo，前一Return是其他书改剧列表而无该事实。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/15/reasoning_content","quote":"Actually, I think I should just provide the answer based on the information I have.","use":"R16无新书源/导演出生/情节证据消解，转正式接受错误对象。"},
+    {"id":"N4_FINAL","source":"new4","pointer":"/rounds/15/content","quote":"The show's director/directorial team fits this criterion","use":"Final无名字/出生证据仍宣称导演条件符合，且同轮肯定未查实非虚构书及Tokyo情节，实际W。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"先泛搜后选Big Short，R3实际查证后发现书年/导演两冲突。","state_chain":"候选已因两条件不符→仍将Michael生日设为未解任务→多次真实重查不同年份关键词但返回非所需出生→相同状态描述不改任务→R19guard无Final。","function_change":"原约束理解/广搜/Big Short排除功能重建，未重建原Bad Blood细支路；不是完全没有工作。节省生成但新Search/Prompt更多；已排除候选的另一个属性继续驱动成本，没有可见消解使其重新合格。","evidence":["N1_CONFLICT","N1_AUTHOR_STILL","N1_FEEDBACK","N1_LAST_CALL"],"semantic_result":"W→N，无正式答案，不从财经候选推测补答。"},
+    {"repeat":2,"first_divergence":"沿金融题材实际采用Laundromat作为待核，反复查书源/导演，插入Theranos支路。","state_chain":"局部财务主题相符→补书作者/导演属性但返回不足→无证1973成为排除依据且写Query→仍回同候选查出生/情节→guard无Final。","function_change":"原广搜/条件比较与Bad Blood部分恢复，候选核验对象和次序变；没有发现正确影片返回，不能解释为正确证据已回不采用。后续仍持续围绕未匹配对象核验，不是功能消失。","evidence":["N2_CANDIDATE","N2_UNSOURCED_YEAR","N2_YEAR_IN_QUERY","N2_REVISIT"],"semantic_result":"W→N，出生/电影书源断言均不能当真证据。"},
+    {"repeat":3,"first_divergence":"首轮工具格式生成但未被协议执行。","state_chain":"G未找到语境→打算泛搜→工具文本留在Reasoning→NONFINAL_PROTOCOL_STOP，0Return0Final。","function_change":"仅计划，原六次实际搜索与判断没有恢复；这是协议限制而非可靠的认知删功能结果。","evidence":["N3_PROTOCOL"],"semantic_result":"W→N，不能把极低成本算研究节省。"},
+    {"repeat":4,"first_divergence":"第三轮由熟悉银行抢劫剧选Money Heist，后续围绕其书源/creator补属性。","state_chain":"局部题材猜测→真实返回仅证实剧/creator→已怀疑原作非书仍继续同对象→R14无据填Tokyo情节→R16无新关键证据却正式称所有条件符合。","function_change":"原广搜工作恢复、候选更换；后续没有原Big Short出生/Bad Blood支路，而是书/Pina查询多次，成本更低但错误从保留拒答变成强采用，W标签相同掩盖行为变化。","evidence":["N4_PROPOSE","N4_RETURN","N4_DOUBT_BOOK","N4_INVENT_PLOT","N4_ACCEPT","N4_FINAL"],"semantic_result":"W→W，不同错法；新Final编造条件支持。"}
+  ],
+  "mechanism_candidate":"本B从原拒答W转三N，没有任何原正确答案丢失。原新共有的可核问题是局部题材匹配能建立候选工作队列，而约束冲突/查不到支持未有效将该对象从后续任务移除：新1已判书/导演不符仍花多数调用查作者生日，新2把未证年份写入Query且排除后继续补同对象，新4怀疑无书源仍围绕该剧补属性，最终将题目情节无据填入候选。返回不足不只导致重复次数，而是让尚未关闭的属性任务继续驱动行动；工程失败新3单独处理，不套此链。",
+  "within_case_support":"新1/2的无Final都保留具体错候选及真实查询证据，新4同W却从原最终拒绝变为无证强接受，证明只比C/W/N不足以解释机制。原U排除Big Short的工作在新1恢复，仍未让其关联待办退出，不能把排除判语本身当完成作用。",
+  "mechanism_chain_checks":[
+    {"chain":"实际识别候选约束不符→未有消解证据→候选的其他/相同属性仍驱动真实取证。","observed_repeats":[1,2,4],"not_observed_repeats":[3],"evidence_by_repeat":{"1":["N1_CONFLICT","N1_AUTHOR_STILL","N1_LAST_CALL"],"2":["N2_UNSOURCED_YEAR","N2_YEAR_IN_QUERY","N2_REVISIT"],"4":["N4_DOUBT_BOOK","N4_INVENT_PLOT","N4_ACCEPT"]},"limits":"新2年份断言未被返回证实、新4书源只是怀疑，证据强度不同，不全叫客观冲突；需跨题核验作用链。"},
+    {"chain":"待核书源/情节未获支持→原题属性被填成候选既有事实→正式错误接受。","observed_repeats":[4],"not_observed_repeats":[1,2,3],"evidence_by_repeat":{"4":["N4_RETURN","N4_DOUBT_BOOK","N4_INVENT_PLOT","N4_FINAL"]},"limits":"新1/2没有Final不算正式无证提交；不从G复制实体，它不含影片。"}
+  ],
+  "counterevidence_and_limits":["完整原新返回都未出现目标12th Fail/真实改编书线索，不能把此组当关键答案证据已回但未采用。","原U的金融犯罪解释是推断，原题并未限定；这些查询没有验证该题材限定，不从Gold反推模型应早知。","新1已纠Big Short两条件却重查出生，是实际行动未受排除约束，不等同后来重新接受影片。","新2Laundromat2018/J.B.Salsburg/导演1973是模型话语，返回未支持其准确性，不借外部知识替它纠正或作为反证。","新4真返回只证实剧/creator，不证非虚构书、Tokyo情节、导演年；有DocID不等于这些关系被证明。","新3无工具执行，协议终态不当语义机制正例。","G空P前置未找到评价，无新答案但承接局限保留；不同seed和上下文预算也不能排除。","新4同W但错误接受比原拒答不同；两类归纳不能只汇总终态数量。","同题后续单位不是新独立题目支持；独立分支成本不累加。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R1@0，原6134生成、15Search/16Actor、Prompt437+386906=387343。G9一次，新2871/2984/63/4009加G2880/2993/72/4018，差−3254/−3141/−6062/−2116；Search18/18/0/15、Actor18/18/1/16，Prompt480419/470838/446/344433。新1/2表达少却Search/Prompt增，新3协议停低成本非省略成功，新4少BadBlood等后续路线但改错剧补属性仍W，不当严格可省。首轮P无重放生成；独立分支不累加。",
+  "next_cross_case_test":"跨题分别检查排除判断是否真正移除相应取证任务、无证猜测是否进入Query和Final；与20题钢假设作题意/明确反证未约束接受对照，保留完全没获得目标与已获得未采用的差别，不预设统一Pattern。"
+}

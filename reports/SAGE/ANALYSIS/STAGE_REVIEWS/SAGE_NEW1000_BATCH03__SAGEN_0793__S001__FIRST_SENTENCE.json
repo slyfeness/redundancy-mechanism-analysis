@@ -1,0 +1,436 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0793",
+  "stage_id": "S001",
+  "sample_order": 44,
+  "condition": "FIRST_SENTENCE",
+  "question_and_gold": {
+    "question": "What was the total number of National Olympic Committees that participated in the multi-sport event that featured 129 events and 19 separate sports, which was held in the year of death of a prominent Chinese writer, who famously described the March 18 Massacre, an event that occurred on the same calendar date as the discovery of an asteroid whose orbital period in days is equivalent to the Wausau Downtown Airport's NDB navaid frequency in kHz?",
+    "gold": [
+      "49"
+    ]
+  },
+  "original_outcome": {
+    "actual_final": "49",
+    "adopted_answer": "49",
+    "outcome": "C",
+    "reason": "49正确，原天体缺口保留。",
+    "evidence": [
+      "O_F"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R1@0，无旧推理和工具结果，只含题目/工具协议；INPUT当前前缀空不是缺少Question。题面未给LuXun/1936/49/243。",
+    "evidence_states": "所有连接均待建立。",
+    "evidence": [
+      "I_G",
+      "O_START"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/0/items",
+    "ranges": [
+      {
+        "round": 1,
+        "pointer": "/rounds/0/reasoning_content",
+        "start": 0,
+        "end": 680
+      },
+      {
+        "round": 2,
+        "pointer": "/rounds/1/reasoning_content",
+        "start": 0,
+        "end": 259
+      }
+    ],
+    "goal": "分解链条并先识别描述惨案的作家，确定下一检索年份入口。",
+    "operations": "先真实Search惨案/作家，Return3533685明确LuXun；R2提取采用人物，并用知识断言1936。",
+    "product": "人物从未知转为LuXun，1936成为赛事查询依据但尚无死亡年文档。",
+    "judgment_change": "作家信息被用于缩小赛事年份，而非只返回未使用。",
+    "evidence": [
+      "O_START",
+      "O_WRITER",
+      "O_ADOPT"
+    ]
+  },
+  "original_followup": {
+    "use": "R2按1936/129/19搜索，得49；R3再证死亡年，后Open和天体搜索，最终49。",
+    "evidence": [
+      "O_ADOPT",
+      "O_F"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "初始线索拆解、作家识别与年份假设，给赛事取证设入口。",
+    "state_relation": "四支均实际重查/采用LuXun并确认1936，且先后不同；G提前给年份，故既存在真实重建也存在教师补偿。",
+    "evidence": [
+      "N1_WRITER",
+      "N2_WRITER",
+      "N3_WRITER",
+      "N4_WRITER"
+    ]
+  },
+  "guide_audit": {
+    "full_text": "Now I need to find the multi-sport event that featured 129 events and 19 separate sports, held in 1936.",
+    "source_position": "O R2[259,362)",
+    "novelty": "1936不在完整P题面内，是原U末尾知识假设的产物，G提前将该年份确定化；赛事规格是题面已有，没有LuXun或49。",
+    "risk": "ORACLE_ANCHORED及关键年份事实/方向泄漏，不作严格无泄漏可省证据；没有全后继预填。",
+    "evidence": [
+      "I_G",
+      "O_ADOPT"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat01",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49且新增实际天体支持。",
+      "outcome_evidence": [
+        "N1_F"
+      ],
+      "work_and_evidence_timeline": "R1赛事规格Search空，R2加Olympics/AsianGames得到49片段；R3/4两次夹1936的泛作家Query均无LuXun有效结果。R5用知识提出LuXun并长5248字符重读核心、Open100；R6同批两个Search：惨案作家与机场，实际返回LuXun和243；R7采用并同批查询死亡年与完整天体条件，返回1936和天体噪声。R8同条件重试；R9只按周期243查询实际得到2002FB3；R10采用March18/243全链Submit49。",
+      "first_judgment_divergence": "先靠G及赛事规格找49，再反查人物而不是先人物定年；带1936泛Query无效后去掉年份才恢复原人物证据。",
+      "first_actual_tool_divergence": "R1赛事规格而非惨案作家Search。",
+      "function_correspondence": [
+        {
+          "original_goal": "识别作家并用年份指引赛事",
+          "original_operation": "惨案Search/提取LuXun/知识1936",
+          "original_product": "LuXun与1936入口",
+          "new_goal": "核对赛事背后人物链",
+          "new_operation": "先赛事后R6惨案Search、R7死亡年Search",
+          "new_product": "LuXun采用与1936直接证据均恢复，但非最初的驱动顺序",
+          "evidence": [
+            "O_WRITER",
+            "N1_WRITER",
+            "N1_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "人物识别和年份产物都实际重建，作用顺序不同；1936同时受G补偿。",
+      "chain": "G年指向赛事→泛人物Query未命中→具体惨案Query恢复作家→补年份与机场→改天体入口得匹配→49全链提交。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "4678gen/169462Prompt/10Actor/10Search/1Open，原3863gen/12Search/3Open/16Actor；gen多815来自R5长复盘等，两个双Call批次减少Actor不等于按Call数生成。",
+      "counterevidence_and_alternatives": "开头空Search和两次泛人物噪声是实际工具差异；最终2002FB3补足原无证关系，不是全部质量不变。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat02",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49正确但天体未证明。",
+      "outcome_evidence": [
+        "N2_F"
+      ],
+      "work_and_evidence_timeline": "R1知识认LuXun1936并重新拆链，实际同批查机场/惨案；R2采用两Return得LuXun243，同批查询死亡年和天体条件；R3采用1936并规格Search得49；R4采用49后再次天体Query；R5长10728字符猜测Ida/其他编号与反复说要Search，但没有再真实Search，最终Submit49。",
+      "first_judgment_divergence": "知识识别恢复，先将机场与作家联合查证，随后死亡年和天体联合查；不是G后直接答。",
+      "first_actual_tool_divergence": "首批机场+惨案两个Call，原首批仅惨案。",
+      "function_correspondence": [
+        {
+          "original_goal": "作家识别/年份入口",
+          "original_operation": "惨案Search并采用",
+          "original_product": "LuXun1936",
+          "new_goal": "同一人物链",
+          "new_operation": "R1批次惨案Search，R2采用，再查死亡年",
+          "new_product": "LuXun及1936均明确恢复",
+          "evidence": [
+            "O_WRITER",
+            "N2_WRITER",
+            "N2_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "实际人物证据和使用都重新出现。",
+      "chain": "联合取证恢复人物年份→取得49→外围仍未解→长篇自问但不再真实Search→提交49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "5335gen/74259Prompt/5Actor/6Search/0Open；生成多1472但Search减6、Open减3、Actor减11，R5的3342gen独立长推理是主要消耗，不把未执行查询计划计Search。",
+      "counterevidence_and_alternatives": "短Actor路径仍可很长推理；题面关系被部分直接当确认，没有实际具体天体Return。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat03",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "提交49，附加关系未解。",
+      "outcome_evidence": [
+        "N3_F"
+      ],
+      "work_and_evidence_timeline": "R1仍从惨案作家Query起步，R2采用LuXun并Search死亡年，R3采用1936后Search赛事得49；R4天体Query返回编程Asteroid噪声，R5机场243；R6—R8三次同完整条件Query无有效新证；R9整体接受核心49Submit。不Open。",
+      "first_judgment_divergence": "未遵循G跳过人物，反而按原完整人物—年份—赛事链重新走，并把死亡年核实提前。",
+      "first_actual_tool_divergence": "首Call与原同需求，第二死亡年而原先赛事。",
+      "function_correspondence": [
+        {
+          "original_goal": "作家和年入口",
+          "original_operation": "惨案Search/采用",
+          "original_product": "LuXun/1936",
+          "new_goal": "同一链",
+          "new_operation": "R1惨案Search、R2采用并死亡Search、R3用年份查赛事",
+          "new_product": "人物被真正用于下一行动",
+          "evidence": [
+            "O_ADOPT",
+            "N3_WRITER",
+            "N3_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "从返回到采用到查询的功能全部重新执行。",
+      "chain": "人物年份恢复→数字证据稳定→有限外围无果→停止而答49。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "2475gen/153581Prompt/9Actor/8Search/0Open；gen少1388，省在无三Open、少四Search及较短后续，不能归于U未执行。",
+      "counterevidence_and_alternatives": "天体Search返回与原不同，数字正确仍不意味着题目所有连接直接证成。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat04",
+      "terminal": "MODEL_FINAL_STOP",
+      "actual_final": "49",
+      "adopted_answer": "49",
+      "outcome": "C",
+      "outcome_reason": "49正确，但最终推理把未查证天体说成March18,1926，不能当证据。",
+      "outcome_evidence": [
+        "N4_F"
+      ],
+      "work_and_evidence_timeline": "R1赛事规格Search空；R2转具体作家Search得到原首批，R3采用LuXun并Search死亡年；R4采用1936再Search赛事得49；R5采用49查机场243；R6接受核心直接提交，无任何实际天体Query/Open。末尾把天体发现年1926称为confirm，没有Return依据。",
+      "first_judgment_divergence": "G指向赛事尝试失败后恢复原人物链，核心取得后不再派天体验证。",
+      "first_actual_tool_divergence": "首Call赛事规格，空后才人物。",
+      "function_correspondence": [
+        {
+          "original_goal": "确定人物年份入口",
+          "original_operation": "惨案Search及提取",
+          "original_product": "LuXun1936",
+          "new_goal": "恢复识别链",
+          "new_operation": "R2惨案Search、R3采用、R3死亡Search、R4使用",
+          "new_product": "同一人物/年用于赛事Query",
+          "evidence": [
+            "O_WRITER",
+            "N4_WRITER",
+            "N4_ADOPT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "reason": "原功能完整恢复，只是先多一次空赛事查询。",
+      "chain": "G规格入口空→恢复人物年链→核心49已证→不执行天体查询即提交→C且较少成本，支持范围未齐。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "1956gen/45218Prompt/6Actor/5Search/0Open；gen少1907、Search少7/Open少3，减少的是后续核验与重读而非原人物功能。",
+      "counterevidence_and_alternatives": "该支关于小行星1926的无依据断言是新增质量问题；不能以C为依据说质量完全保持。"
+    }
+  ],
+  "four_rollout_comparison": {
+    "outcomes": "C/C/C/C",
+    "function": "4/4人物/年份识别工作重建，发生时间和是否先查赛事不同。",
+    "G": "1936在P原题不存在，具有未来产物补偿；不能统计严格可省。",
+    "cost": "r1/r2生成增，r3/r4生成减，四支工具/Actor均减；r1还实际补天体，r4却凭空声称发现年。",
+    "inference": "同一答案由共同核心支持维持，质量与成本在下游核验、短窗重读及长篇自问上分化。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "claim": "最早的实体与年份识别即使删除仍可重新执行；当G提前指定年份时，模型可先找赛事再补人物，或无视顺序重建全链。答案保持不区分这些路径，净生成成本由核心恢复后的核验与表达决定。",
+      "support": "四支人物功能均恢复、两增两减；r1新闭合天体与r4新增无依据发现年构成质量反向对照。",
+      "limits": "同题四支、G事实泄漏及检索空结果限制因果归因；此处仅候选过程解释。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "所有四支完整新Reasoning/Call/Return均已读；同批两个Call按联合决定记录，不伪造先读第一返回再决定第二。",
+    "原U1936来自知识并非死亡年Return，但仍是原产物，G提前给P外事实。",
+    "原usage3863整Round可比但无nativeIDs，标DERIVED_CHAR_EXACT；P重放538、G32单列不重复计，独立分支节省不相加。",
+    "A组多数同答只描述终态，不作冗余或必要因果判定。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "INPUT",
+      "round_id": 1,
+      "event_type": "guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find the multi-sport event that featured 129 events and 19 separate sports, held in 1936."
+    },
+    {
+      "evidence_id": "O_START",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/0/reasoning_content",
+      "exact_quote": "March 18 Massacre"
+    },
+    {
+      "evidence_id": "O_WRITER",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 1,
+      "event_type": "return",
+      "json_pointer": "/tool_events/0/observation/results/3/snippet",
+      "exact_quote": "Lu Xun"
+    },
+    {
+      "evidence_id": "O_ADOPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the prominent Chinese writer is Lu Xun, and he died in 1936."
+    },
+    {
+      "evidence_id": "O_F",
+      "source_ref": "O",
+      "source_side": "ORIGINAL",
+      "round_id": 16,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N1_WRITER",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "call",
+      "json_pointer": "/rounds/5/tool_calls/0/arguments/query",
+      "exact_quote": "March 18 Massacre Chinese writer"
+    },
+    {
+      "evidence_id": "N1_ADOPT",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/6/reasoning_content",
+      "exact_quote": "The writer is **Lu Xun**."
+    },
+    {
+      "evidence_id": "N1_F",
+      "source_ref": "N1",
+      "source_side": "NEW",
+      "round_id": 10,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N2_WRITER",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/1/arguments/query",
+      "exact_quote": "March 18 Massacre Chinese writer"
+    },
+    {
+      "evidence_id": "N2_ADOPT",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The writer is Lu Xun."
+    },
+    {
+      "evidence_id": "N2_F",
+      "source_ref": "N2",
+      "source_side": "NEW",
+      "round_id": 5,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N3_WRITER",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 1,
+      "event_type": "call",
+      "json_pointer": "/rounds/0/tool_calls/0/arguments/query",
+      "exact_quote": "March 18 Massacre Chinese writer"
+    },
+    {
+      "evidence_id": "N3_ADOPT",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "So the Chinese writer is Lu Xun."
+    },
+    {
+      "evidence_id": "N3_F",
+      "source_ref": "N3",
+      "source_side": "NEW",
+      "round_id": 9,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    },
+    {
+      "evidence_id": "N4_WRITER",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 2,
+      "event_type": "call",
+      "json_pointer": "/rounds/1/tool_calls/0/arguments/query",
+      "exact_quote": "Chinese writer March 18 Massacre"
+    },
+    {
+      "evidence_id": "N4_ADOPT",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 3,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "So the Chinese writer is Lu Xun."
+    },
+    {
+      "evidence_id": "N4_F",
+      "source_ref": "N4",
+      "source_side": "NEW",
+      "round_id": 6,
+      "event_type": "final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "49"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0793/trajectory.json",
+      "source_sha256": "6dfb1cb882b34b6d649a541f059b70c30ca02cbf3bf4afaf5e8ca21ea0a082cb"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0793.json",
+      "source_sha256": "17d619d75b590d40d6147ea4e2cccb2debfe7a017f9b67c9b048ee86264f09ba"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "88f8e572943d39b82e5998aa817b72e19686f3764321745c08bf72efd6de1100"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "2017c11cd0830b8b2163435411bf56507581c2d05d1eb3216094a2c148f28253"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "a6d1259e2271fb345dbd521cddb4b1de7800a981504fe61b9d674112cb14a9a7"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "63b1b822eebe6e9b9904869d623534d20a13c7a7f2485b3f27f683501dddf6e3"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0793__S001__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "19479f76d5334912864b6010d3e49a1e5817bc30bda9876497470fa2969c8687"
+    }
+  }
+}

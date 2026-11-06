@@ -1,0 +1,521 @@
+{
+  "schema_version": "SAGE100_FUNCTION_MECHANISM_V1",
+  "unit_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE",
+  "trajectory_id": "SAGE_NEW1000_BATCH03__SAGEN_0289",
+  "stage_id": "S003",
+  "sample_order": 61,
+  "condition": "FIRST_SENTENCE",
+  "source_files": {
+    "O": {
+      "source_file": "RAW/SAGE_NEW1000_BATCH03__SAGEN_0289/trajectory.json",
+      "source_sha256": "79fe9a45b937d41313730f9254a8ac4657eb9c0bb501a8ed95937071b200cb5a"
+    },
+    "M": {
+      "source_file": "MAPPINGS/SAGE_NEW1000_BATCH03__SAGEN_0289.json",
+      "source_sha256": "5a69308283c17d91f1982c8a833f4bde5761de1abbf1f58d257d029dc8dce939"
+    },
+    "I": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat01/INPUT_AUDIT.json",
+      "source_sha256": "929bfaa0cf321dd9683cdb0e95f0cbfc94bdd4983a893307f95d395f2fde1c3c"
+    },
+    "N1": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat01/trajectory.json",
+      "source_sha256": "4cf7e27c1c59d0647205c1a71cd7562a1e69be7e8cbd62fb1b4840b164d31cdb"
+    },
+    "N2": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat02/trajectory.json",
+      "source_sha256": "77da81c46a7c128eb43cb2c327218b7f019196d31b176f2c97f36c8ffc06926b"
+    },
+    "N3": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat03/trajectory.json",
+      "source_sha256": "d096d2326481d726e159b8b2dececa39ce02f3e5ab29f6aacd7a28a271d02bcf"
+    },
+    "N4": {
+      "source_file": "POSTGEN_EVIDENCE_EXPORT/branches/FIRST_SENTENCE/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat04/trajectory.json",
+      "source_sha256": "51376953a4788430d39970e8f4f3bb877c8de8ba40e8092fcbe4a28d8da392c4"
+    }
+  },
+  "question_and_gold": {
+    "question": "Moses Schorr ministered a significant religious institution in Warsaw. In what year was the official report, compiled by the SS-Gruppenführer responsible for the destruction of that institution, submitted by Poland to the international organization for culture and heritage, for inclusion in their specific program dedicated to documentary heritage?",
+    "gold": [
+      "2017"
+    ],
+    "gold_reference": "EVALUATION_ONLY/PARQUET_EXACT_MATCHES_100.json"
+  },
+  "original_outcome": {
+    "actual_final": "2017",
+    "adopted_answer": "2017年",
+    "outcome": "C",
+    "reason": "Report提交/列入年份实际返回2017，与正式回答一致。",
+    "evidence": [
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "prestate": {
+    "actual_visible_P": "R5@132，当前仅失败反馈132字符，10条历史消息包括E1履历及E2—4低信息Return；P10285Token。旧R2/R3关于机构采用的Reasoning不在历史模板中。",
+    "evidence_states": "会堂关联和Poznański被Schorr继任的直接句已在E1；多次毁坏Query未取得人名。原U将重新取得/梳理机构关系，不是首次返回那句。",
+    "evidence": [
+      "I_CURRENT",
+      "I_ROLE"
+    ]
+  },
+  "original_U": {
+    "full_text_reference": "M#/stages/2/items，R5[132,351)、E005及R6[0,317)。",
+    "ranges": [
+      {
+        "round": 5,
+        "pointer": "/rounds/4/reasoning_content",
+        "start": 132,
+        "end": 351
+      },
+      {
+        "round": 6,
+        "pointer": "/rounds/5/reasoning_content",
+        "start": 0,
+        "end": 317
+      }
+    ],
+    "goal": "毁坏者搜索失败后，回查Schorr与会堂关联，重新确认具体机构。",
+    "operations": "真实Search Moses Schorr Great Synagogue Warsaw；返回同已有履历/继任句并新增Main Judaic Library片段，R6提取会堂任职、图书馆头衔等，再转毁坏者。",
+    "product": "没有新负责人/报告年份；重新接受会堂关联，但同时引入图书馆等相邻角色。",
+    "judgment_change": "当前失败反馈/对象需确认→再次取履历并接受会堂关系→回到毁坏者缺口。",
+    "evidence": [
+      "O_QUERY",
+      "O_ROLE",
+      "O_ACCEPT"
+    ]
+  },
+  "original_followup": {
+    "actual_use": "R6—12仍以会堂毁坏与SS头衔组合重复查；R7将继任方向说反但未更换总体会堂对象。R13有效1943SS得Stroop，R14报告入口得2017，R15提交。",
+    "evidence": [
+      "O_EFFECTIVE",
+      "O_DATE",
+      "O_FINAL"
+    ]
+  },
+  "function_features": {
+    "neutral_function": "重复核实已有对象关系，试图稳定多跳起始机构后恢复下一跳取证。",
+    "information_state_dependence": "关联证据在P已可见；新增实际Search不等于新增关键事实，效用要看重新采用有没有改变后续查询，而非仅同DocID。",
+    "first_update": "不是第一次证据返回；本次是失败后重新提取采用，后续原Query策略仍多轮未改变。"
+  },
+  "guide_audit": {
+    "text": "Now I need to find:",
+    "source": "O#/rounds/5/reasoning_content[317,336)",
+    "oracle_status": "ORACLE_ANCHORED",
+    "P_comparison": "6Token冒号开头，不含后继清单、机构、人名或年份；仅提示列下一步缺口。没有把原U后续已知关系直接预填。",
+    "evidence": [
+      "I_G",
+      "I_CURRENT",
+      "I_ROLE"
+    ]
+  },
+  "rollouts": [
+    {
+      "repeat_id": 1,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat01",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "有真实2017返回及正式Submit。",
+      "outcome_evidence": [
+        "N1_FINAL",
+        "N1_ACCEPT"
+      ],
+      "work_and_evidence_timeline": "R5从已有E1继任句采用会堂，仍真实查Schorr+会堂+毁坏，回原E5同资料；R6再次接受会堂关联并查SS头衔字表；R7从知识提出Stroop并实际Query人名报告，取得Stroop人物/Report题名但未含2017；R8把未解决问题精确收为Report提交年，题名Query取得2017，R9Submit。",
+      "first_judgment_divergence": "首轮已从P识别关系仍复查，随后R7较原更早由知识提出具体负责人且立即用于真实Query，不再多轮原同组合。",
+      "first_actual_tool_divergence": "首Query给原Schorr会堂词加毁坏SS，Return仍同；第三次新Query已用Stroop人名。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "回查Schorr会堂关系并接受机构。",
+          "new_goal_operation_product": "同需求真实复查、同资料返回与R6采用全部恢复；具体负责人取得是之后新增推进。",
+          "evidence": [
+            "O_QUERY",
+            "O_ACCEPT",
+            "N1_QUERY",
+            "N1_RELATION",
+            "N1_STROOP"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "有实际取证及关系采用，不能以更短后续称原关联功能未做。",
+      "judgment_action_outcome_chain": "旧证据关系已见→重新复查并确认→SS头衔仍无效→具体Stroop假设落实Query→Report存在被验证、下一Query只补年份→C；省主要在毁坏者阶段较早有效入口，而非复查功能消失。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE.json#/records/0",
+      "cost_work_locations": "1261生成/86313Prompt/4Search0Open5Actor，原1787–1869生成/10S0O11段，生成-608至-526、SearchActor各-6；取证链较少，原后续多轮会堂组合被人名入口取代。",
+      "counterevidence_and_alternatives": "文中仍把图书馆建筑与会堂混述，正确年份不代表全部身份桥接准确；G不含实体但采样/配置差异仍在。"
+    },
+    {
+      "repeat_id": 2,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat02",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "Report直接2017实际返回并提交，非假设猜中。",
+      "outcome_evidence": [
+        "N2_FINAL",
+        "N2_STROOP"
+      ],
+      "work_and_evidence_timeline": "R5先做原同类失败会堂SS Query，R6再真实原E5完全同Query/Return，R7采用会堂。接着多轮猜Mackiewicz/Biebow/Himmler等未定、SS头衔/会堂UNESCO查询均旧无关材料；R12改destroyed1943SS取得原E13同Stroop材料，R13实际题名Search2017，R14完整判断Submit。",
+      "first_judgment_divergence": "回查延后一个Round但仍执行；核心关系未丢，后续选负责人入口迟迟未改变，直到带1943Query才推进。",
+      "first_actual_tool_divergence": "首Call从原关系Query变旧毁坏Query，第二Call才完全重做原关系取证。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "Schorr关联真实Search、提取会堂任职。",
+          "new_goal_operation_product": "延后一轮后同原Query和Return、明确采用完整恢复，后来取证顺序变。",
+          "evidence": [
+            "O_QUERY",
+            "O_ACCEPT",
+            "N2_REL_QUERY",
+            "N2_RELATION"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "不依Query相似度 alone，实际Return与后续关系接受均核对。",
+      "judgment_action_outcome_chain": "关系复查恢复→未知负责人反复触发同类头衔Query→前面猜名未变成有效行动→1943SS入口给具体Stroop→报告题名给2017→C；原功能重做仍可多认知篇幅，关系稳定不足确保效率。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE.json#/records/1",
+      "cost_work_locations": "2638生成/231195Prompt/9Search0Open10Actor；原1787–1869/10S0O11段，生成+769至+851、SearchActor各-1，Prompt亦增。少一工具不抵长问题重述与R14接受展开，不能合称资源全降。",
+      "counterevidence_and_alternatives": "同样正确机构与相同已返回证据，取证路线仍长；不能只以FULL重建解释终态和成本，关键动作改变时机需另列。"
+    },
+    {
+      "repeat_id": 3,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat03",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "真实2017Snippet与正式Submit一致。",
+      "outcome_evidence": [
+        "N3_FINAL",
+        "N3_REPORT"
+      ],
+      "work_and_evidence_timeline": "R5 Schorr会堂毁坏Query回原E5同资料，R6采用机构后Query会堂UNESCO无关；R7已经提Stroop但实际Query仍SS头衔字表，R8又同Query同Return；R9才用Stroop Report题名拿2017，R10Submit。",
+      "first_judgment_divergence": "R7首次具体负责人候选提及未立即用在行动，继续两次无效头衔；R9实际题名更新才拿决定信息。",
+      "first_actual_tool_divergence": "首Query比原多destruction但Return完全同；后面有效人名入口在新R9比原R14早。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "机构关系再取证并采用。",
+          "new_goal_operation_product": "同完整Return、关系解释与实际下一毁坏Query对应，原工作全恢复。",
+          "evidence": [
+            "O_QUERY",
+            "O_ROLE",
+            "N3_RELATION",
+            "N3_MENTION",
+            "N3_REPORT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "原关系/采用与行动均有，新文偶称继任方向有问题单列但仍选会堂。",
+      "judgment_action_outcome_chain": "关系材料重获→会堂被接受→负责人候选已说出却仍旧Query→真正切题名Search后2017直接证据改变接受→C；比原减少若干重复Search，但前面存在未落实候选的延迟。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE.json#/records/2",
+      "cost_work_locations": "1502生成/113364Prompt/5Search0Open6Actor；原1787–1869/10S0O11段，生成-367至-285、SearchActor各-5，减少发生在原后续，U本身重做。",
+      "counterevidence_and_alternatives": "有Stroop提名而非马上Query是可见行动差，不推测隐藏信心；Return中其他Stroop心理学无关文档未被误用，模型实际取正确Report。"
+    },
+    {
+      "repeat_id": 4,
+      "task_id": "SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE__repeat04",
+      "actual_final": "2017",
+      "terminal": "MODEL_FINAL_STOP",
+      "adopted_answer": "2017年",
+      "outcome": "C",
+      "outcome_reason": "有实际Report2017和正式提交。",
+      "outcome_evidence": [
+        "N4_FINAL",
+        "N4_REPORT"
+      ],
+      "work_and_evidence_timeline": "R5查SchorrWarsawministered回原E1同资料，R6根据继任句正确采用会堂；R6/R7/R8三次SS头衔变化都同字表，R8长3955字符只是拟多查询、实际仅一次；R9会堂UNESCO无关，R10从知识采用Stroop并实际Report题名得2017，R11Submit。没有Open。",
+      "first_judgment_divergence": "新首Query回更早E1而非原E5，仍能用同已有继任句建立机构，无需新增图书馆资料；之后若干普通重试未改实际目标。",
+      "first_actual_tool_divergence": "Schorr关系Query换词但回初始材料；第五次后才用题名推进。",
+      "function_correspondence": [
+        {
+          "original_goal_operation_product": "取履历关系以稳定会堂对象。",
+          "new_goal_operation_product": "真实再次查询履历、相同关系句被提取采用，目标功能全恢复；原E5新图书馆段并非必须。",
+          "evidence": [
+            "O_ROLE",
+            "O_ACCEPT",
+            "N4_RELATION",
+            "N4_REPORT"
+          ]
+        }
+      ],
+      "function_recovery": "FULL_REBUILT",
+      "function_recovery_reason": "信息关系有直接P/新Return和实际采用，非仅看最终日期。",
+      "judgment_action_outcome_chain": "已有关系又查同资料→正确会堂接受→SS头衔失败后多次仅改词/长拟计划→Stroop题名真正执行拿2017→C；生成增加在R8长准备与后续复述，即使真实Search比原少。",
+      "cost_fact_reference": "ANALYSIS/COST_FACTS/SAGE_NEW1000_BATCH03__SAGEN_0289__S003__FIRST_SENTENCE.json#/records/3",
+      "cost_work_locations": "2391生成/115417Prompt/6Search0Open7Actor；原1787–1869/10S0O11段，生成+522至+604、SearchActor各-4、Prompt下降。成本各轴不同，不能靠Search下降判整段冗余。",
+      "counterevidence_and_alternatives": "拟执行很多search未真实发出，不能用推理里的Query文字累计Search；四C全部恢复关系，不能推关系判断无用。"
+    }
+  ],
+  "four_run_comparison": {
+    "original": "C",
+    "outcomes": [
+      "C",
+      "C",
+      "C",
+      "C"
+    ],
+    "state_changes": 0,
+    "group": "A",
+    "observed_difference": "四条都真实重查/重新采用机构关系，只有查询时间/返回资料路径不同。后续何时把Stroop/Report实际用于Query决定拿提交年时机；提候选但不行动的延迟三条可见。",
+    "costs": "四条SearchActor少，生成只有rep1/3下降、rep2/4上升；初始关系功能未消失，主要省的是原后续低效取证轮次，长准备/接受可抵消生成节省。"
+  },
+  "conditional_mechanism_proposals": [
+    {
+      "scope": "一题关系证据已经在P但下一跳未解决的四条有引导对照",
+      "chain": "已有履历关联证据→原U再次取证以重建机构接受→删后仍同样取证/接受→是否把具体负责人/报告落实查询，而非持续派泛SS头衔任务，改变下游交互长度→均C但Token/工具净变化不同。",
+      "limits": "G普通6Token无事实补偿，也不等无G对照；原后续已有失败Query路径，不能全把少的后续算原U冗余，知识猜测/采样不同保留。"
+    }
+  ],
+  "counterevidence_and_limits": [
+    "原100213、四新99560字符完整阅读，重复工具全文按已读相同SHA定位；未按Call数替代动作判断。",
+    "实际P历史不保留旧reasoning，关联句可见但原明确采用未都在P，需新模型重新判断；证据可见不等于已接受。",
+    "原部分Round后缀1787–1869保守范围，无nativeIDs；G6预填已入实际Prompt，P10285单列；不同分支省量不能相加。",
+    "原新采样/模型服务档位与Actor上限差异保留，教师ORACLE_ANCHORED，不作纯因果删除解释。"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "I_CURRENT",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "retained_reasoning",
+      "json_pointer": "/current_reasoning_prefix",
+      "exact_quote": "The search results are not giving me the specific information about the synagogue destroyed in Warsaw that Moses Schorr ministered."
+    },
+    {
+      "evidence_id": "I_ROLE",
+      "source_ref": "I",
+      "source_side": "ORIGINAL_ACTOR_INPUT",
+      "round_id": 5,
+      "event_type": "historical_actor_visible_return",
+      "json_pointer": "/actual_normalized_history/3/content",
+      "exact_quote": "He was succeeded at the Great Synagogue by Moses Schorr in 1923.",
+      "call_id": "chatcmpl-tool-9d4cd514fe7329e4",
+      "doc_id": "wiki25:3645578"
+    },
+    {
+      "evidence_id": "I_G",
+      "source_ref": "I",
+      "source_side": "GUIDE",
+      "round_id": 5,
+      "event_type": "teacher_guide",
+      "json_pointer": "/anchor_text",
+      "exact_quote": "Now I need to find:"
+    },
+    {
+      "evidence_id": "O_QUERY",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Moses Schorr Great Synagogue Warsaw",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_ROLE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 5,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/4/observation/results/2/snippet",
+      "exact_quote": "He was succeeded at the Great Synagogue by Moses Schorr in 1923.",
+      "call_id": "recovered_call_1",
+      "doc_id": "wiki25:3645578"
+    },
+    {
+      "evidence_id": "O_ACCEPT",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/5/reasoning_content",
+      "exact_quote": "he succeeded Samuel Abraham Poznański at the Great Synagogue in 1923"
+    },
+    {
+      "evidence_id": "O_EFFECTIVE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 13,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/12/arguments/query",
+      "exact_quote": "Great Synagogue Warsaw destruction 1943 SS",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "O_DATE",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 14,
+      "event_type": "actual_return",
+      "json_pointer": "/tool_events/13/observation/results/0/snippet",
+      "exact_quote": "In 2017, the Stroop Report was submitted by Poland and included in UNESCO's Memory of the World Register.",
+      "call_id": "chatcmpl-tool-ae9c3c5708f0b77f",
+      "doc_id": "wiki25:5097291"
+    },
+    {
+      "evidence_id": "O_FINAL",
+      "source_ref": "O",
+      "source_side": "ORIGINAL_LOG",
+      "round_id": 15,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N1_QUERY",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 5,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/0/arguments/query",
+      "exact_quote": "Great Synagogue Warsaw Moses Schorr SS destruction",
+      "call_id": "chatcmpl-tool-9d39e65e6e14d1b7"
+    },
+    {
+      "evidence_id": "N1_RELATION",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "The search results confirm that Moses Schorr was associated with the Great Synagogue in Warsaw."
+    },
+    {
+      "evidence_id": "N1_STROOP",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 7,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/2/arguments/query",
+      "exact_quote": "Jürgen Stroop report Warsaw Ghetto UNESCO Memory of the World",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N1_ACCEPT",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/4/reasoning_content",
+      "exact_quote": "Therefore, the year is 2017."
+    },
+    {
+      "evidence_id": "N1_FINAL",
+      "source_ref": "N1",
+      "source_side": "NEW_REPEAT01",
+      "round_id": 9,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N2_REL_QUERY",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 6,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/1/arguments/query",
+      "exact_quote": "Moses Schorr Great Synagogue Warsaw",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N2_RELATION",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "The institution is the Great Synagogue in Warsaw."
+    },
+    {
+      "evidence_id": "N2_STROOP",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 13,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/8/arguments/query",
+      "exact_quote": "Stroop report UNESCO Memory of the World",
+      "call_id": "chatcmpl-tool-ad36e1026d7ed984"
+    },
+    {
+      "evidence_id": "N2_FINAL",
+      "source_ref": "N2",
+      "source_side": "NEW_REPEAT02",
+      "round_id": 14,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N3_RELATION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "He became the rabbi of the Great Synagogue in Warsaw in 1923, succeeding Samuel Abraham Poznański."
+    },
+    {
+      "evidence_id": "N3_MENTION",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 7,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/2/reasoning_content",
+      "exact_quote": "likely someone like Jürgen Stroop"
+    },
+    {
+      "evidence_id": "N3_REPORT",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 9,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/4/arguments/query",
+      "exact_quote": "Stroop Report UNESCO Memory of the World Register Poland submission year",
+      "call_id": "chatcmpl-tool-82a4ce263aa9f833"
+    },
+    {
+      "evidence_id": "N3_FINAL",
+      "source_ref": "N3",
+      "source_side": "NEW_REPEAT03",
+      "round_id": 10,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    },
+    {
+      "evidence_id": "N4_RELATION",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 6,
+      "event_type": "reasoning",
+      "json_pointer": "/rounds/1/reasoning_content",
+      "exact_quote": "Schorr was the Rabbi of the Great Synagogue in Warsaw"
+    },
+    {
+      "evidence_id": "N4_REPORT",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 10,
+      "event_type": "actual_search",
+      "json_pointer": "/tool_events/5/arguments/query",
+      "exact_quote": "Stroop Report UNESCO Poland Memory of the World",
+      "call_id": "recovered_call_1"
+    },
+    {
+      "evidence_id": "N4_FINAL",
+      "source_ref": "N4",
+      "source_side": "NEW_REPEAT04",
+      "round_id": 11,
+      "event_type": "formal_final",
+      "json_pointer": "/final_answer",
+      "exact_quote": "2017"
+    }
+  ],
+  "review_status": "CODEX_MODEL_REVIEW_COMPLETE"
+}

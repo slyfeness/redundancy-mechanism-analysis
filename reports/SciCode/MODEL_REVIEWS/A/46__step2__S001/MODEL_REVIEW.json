@@ -1,0 +1,164 @@
+{
+  "case_id": "46__step2__S001",
+  "category": "A",
+  "trajectory_id": "46__step2",
+  "stage_id": "S001",
+  "main_problem_id": "46",
+  "official_subproblem_id": "46.2",
+  "intervention": "FIRST_SENTENCE",
+  "review_status": "COMPLETE",
+  "evidence_index": "RESOLVED_EVIDENCE.json",
+  "objective_cost_table": "OBJECTIVE_COSTS.json",
+  "sources": {
+    "original_read": "原两子题7轮Question/Reasoning/每个Call及Return/正式源码完整读。原R3的22391字符以113不同精确段落及155原位置全部读取，并核实际write参数逐字出现于该字段@18361。原修好版本与最后回交旧版分开，没有沿用‘测试通过即正确提交’推断。",
+    "new_read": "四条完整两子题6/9/7/5轮，共27真实Call/Return全读，包括真实广播错误、打印却不assert的假pass、代码修好后正式回退、空稿测试门槛和独立目标势能函数。",
+    "input_read": "完整四INPUT及提取投影均保存，原切46.1R1@0，P无草稿/历史/先前提交；G17来自原R2@40..115，不注入原实现或后题代码。"
+  },
+  "original": {
+    "pre_state": "只有氦原子VMC主问题、Slater四方法题面及显式value/gradient/laplacian公式、numpy依赖，尚无代码或运行证据。最后评分是另一个Hamiltonian势能类46.2。",
+    "U_goal": "首次将指数轨道及导数/动能关系实现为Slater类，处理配置与电子维度和零距离。",
+    "U_operations": "按电子循环实现四方法，write3295字符。梯度错误使用r[:,newaxis,newaxis]，动能把一维kin按二维kin[:,i]写入；核心公式有理解但实际维度实现有缺陷。",
+    "U_product": "5573623a780c914ef88a778c2ac74fcd0c1c0626a0139682c977b25945c1cd73首次草稿。保存接受只证明语法/安全，不证明数学或广播正确。",
+    "judgment_before_after": "题面表达被转为可调用类与实现选择，但正确概念没有完全约束数组操作。U不是已有工作复述，也不是已经验证过的正确实现。",
+    "original_suffix_use": "R2真实gradient广播错误后，R3反复误把输出(10,10,3)当输入/测试维度问题，随后实际向量化write4915...修正gradient及kin；R4形状真通过，R5却submit原5573坏版。46.2直接用坐标算-Z/r及成对1/r，没有调用Slater，write/submit两轮正确C。故原最终C本来就不覆盖前题正式缺陷。",
+    "evidence": ["I_EMPTY", "O_U_GRADIENT", "O_U_KINETIC", "O_REAL_ERROR", "O_WRONG_DIAGNOSIS", "O_FIXED_WRITE", "O_FIXED_SUCCESS", "O_FORMAL_ROLLBACK", "O_TARGET_FORMAL"]
+  },
+  "guide_audit": {
+    "G": "Now let me test it with a simple test case to make sure it works correctly.",
+    "P_relation": "不含新实体、公式、答案，题面已有Slater；给验证方向但预设已存在实现。P空稿，所以NEW1/4首先run被门槛拒，NEW2/3先write。",
+    "novelty": "VERIFICATION_DIRECTION_WITH_IMPLEMENTATION_READY_PRESUPPOSITION; NO_SPECIFIC_FACT_NOVELTY",
+    "risk": "ORACLE_ANCHORED。引导行为与任务阶段不完全对应；没有同seed无G对照，不能证明它单独导致空测或任何公式差异。",
+    "evidence": ["I_EMPTY", "I_G", "N1_EMPTY", "N4_EMPTY", "N2_FIRST_WRITE", "N3_FIRST_WRITE"],
+    "uncertainty": "整轨起点重采样而非已实现功能稳定跳过。所有四新重新做实现，但质量不同。"
+  },
+  "rollouts": [
+    {
+      "branch_id": "46__step2__S001__FIRST_SENTENCE__rep1",
+      "official_state": "C",
+      "first_material_divergence": "首先测试空Slater被拒，随后写向量化value/gradient/laplacian，但将动能误作梯度比的平方和，不是题面需要的laplacian比；read后直接提交，没有任何成功当前测试。",
+      "work_reconstruction": {
+        "goal": "四方法实现重新展开，但动能科学关系没有正确恢复。",
+        "operation": "空测拒→write四方法→read→正式交变体；目标Hamiltonian直接由坐标重写势能，write/submit无run。",
+        "product": "Slater正式33bba...动能=-0.5*sum((grad psi/psi)^2)，对一般配置缺少1/r项；targetffd0...按两电子位置正确势能C。",
+        "assessment": "PARTIAL_REBUILT_WITH_KINETIC_RELATION_ERROR；函数名齐全不是完整功能恢复。"
+      },
+      "judgment_change": "将∇²ψ/ψ误转成(∇ψ/ψ)^2，进而把动能计算派发给gradient而非laplacian；原文有明确错误注释与实际调用，无成功反馈纠正。read只是确认有代码，接着按保存成功交。",
+      "action_chain": "空测→重新实现时错误数学关系被落实→没有有效数值核验而交→后题不调用Slater、按独立势能公式实现→目标C。",
+      "result_explanation": "答案保持是目标势能实现正确，不是Slater原工作无用或新功能全部保留。更少消耗伴随少当前真测/修正，核心错误需保留，不能称同质量节省。",
+      "cost_localization": "原全后缀11868生成/18952Prompt/7Actor工具；新4682生成+G17/13043Prompt/6Actor工具，含G少7169生成、Prompt少5909、Actor工具少1。Slater5→4少1且原22K字符报错争论不再现；目标仍2轮。新增空测与read，取消两次原真实运行及一次修稿，不能将净少量当U功能完全省掉。",
+      "evidence": ["N1_EMPTY", "N1_WRONG_KINETIC_RELATION", "N1_READ", "N1_SLATER_FORMAL", "N1_TARGET_FORMAL"],
+      "counterevidence": "gradient数组在此没有原广播bug，但这不能补偿错误动能公式；两电子势能独立，不需坏动能也可C。",
+      "unknowns": "未重新评分46.1，明确为源码可见关系错误而不是改写旧官方标签。"
+    },
+    {
+      "branch_id": "46__step2__S001__FIRST_SENTENCE__rep2",
+      "official_state": "C",
+      "first_material_divergence": "先写四方法，gradient以(nconf,ndim)/(nconf,)相除真实失败；按反馈具体加newaxis修好并运行，但动能仍用正0.5梯度平方，正式又回退为无newaxis首稿。",
+      "work_reconstruction": {
+        "goal": "Slater四方法重新实现，广播修正曾完成但没有保留进正式交付；动能科学定义始终未正确恢复。",
+        "operation": "首write→真实广播ERROR→局部newaxis write→真实形状/范围输出OK→submit首坏版；目标势能write→prior_code测试拒→说去import却实际write完全同源码→same submit。",
+        "product": "修正版9c6c...真运行形状正确但kin恒4，是正梯度平方而非局部动能；正式7bab...与首次完全相同，再含广播错误。target9a19...正确公式C，无成功targetrun。",
+        "assessment": "PARTIAL_REBUILT_WITH_FORMAL_ROLLBACK_AND_WRONG_KINETIC；实际修复/被测试/正式版不能混同。"
+      },
+      "judgment_change": "真实广播异常被准确定位到r轴并修正，成功打印被当全面通过却没有数值定义断言，未发现恒4缺少1/r；提交又丢修复。后题把测试脚本prior_code问题当需重写候选，候选原无该import，实际SHA未变。",
+      "action_chain": "首次错误实现→具体反馈促成轴修复→形状通过被提升为全部正确→正式回旧版→独立势能实现→入口拒生成无变化重写→目标C。",
+      "result_explanation": "相同目标C不等于Slater质量保持；新增合理广播修复有价值，但后题同稿重写没有修改数学。成本在少长推理与多后题交互间分化，不能统一说更省。",
+      "cost_localization": "6623生成+G17/23470Prompt/9Actor工具，含G少5228生成但Prompt多4518、Actor工具多2。前题仍5轮，后题2→4多2即拒绝测试和同版rewrite；3run有1真广播ERROR、1形状成功、1入口拒。生成下降主要不再原22K字符猜形状，Prompt增加来自后题请求数与保留代码历史。",
+      "evidence": ["N2_FIRST_WRITE", "N2_BROADCAST_ERROR", "N2_FIXED_GRADIENT", "N2_FIXED_SHA", "N2_KINETIC_CONSTANT", "N2_FORMAL_ROLLBACK", "N2_TARGET_REJECT", "N2_TARGET_SAME_FIRST", "N2_TARGET_SAME_REWRITE", "N2_TARGET_FORMAL"],
+      "counterevidence": "真实修复不是虚构，但成功打印不是完整数值正确；target源码重复也不妨碍C，不能据C称重复rewrite必要。",
+      "unknowns": "为何正式选择首稿没有解释；不能把后题多2轮归因于前题删除的唯一效果。"
+    },
+    {
+      "branch_id": "46__step2__S001__FIRST_SENTENCE__rep3",
+      "official_state": "C",
+      "first_material_divergence": "直接重建Slater，gradient产生额外配置轴。测试只打印没有shape断言，stdout同时包含(10,2,10,3)和All tests passed；模型最初发现并write修复，下一轮又将pass总结当优先依据，正式回交坏版。",
+      "work_reconstruction": {
+        "goal": "四方法工作重新执行，value/lap/kin关系恢复，但gradient正式输出形状仍错。",
+        "operation": "首write→真run打印错shape与pass→明确shape不符、write去多余轴→不再run→回看旧输出并将问题说成显示/测试问题→submit首版；目标根据坐标实际write→合法code真势能打印→submit仅去尾换行。",
+        "product": "修正d656...保存后未再验证；正式af73...保留keepdims后再加newaxis的多余轴。targetc3ac...C且真实输出形状(10,)；前题错误不被target函数调用。",
+        "assessment": "PARTIAL_REBUILT_WITH_RECOGNIZED_BUT_REVOKED_SHAPE_REPAIR"
+      },
+      "judgment_change": "R3明确不符并落实去额外轴，R4又说‘test passed，所以实现应正确，shape只是显示混乱’，这条自主接受判断撤销了先前具体约束并选择旧稿提交。不是证据没返回，也不是从未识别冲突，而是已识别/已修正没有约束正式选择。",
+      "action_chain": "真实异常形状可见→具体识别且修复→没有新有效反证却让宽泛pass覆盖具体shape要求→旧代码再次接受并交→独立Hamiltonian真运行/交C。",
+      "result_explanation": "被删首次Slater工作重做而非消失；targetC不能否定前题判断回退。报告只观察明确证据优先级反转，不猜测隐藏信心或以此证明U因果必要。",
+      "cost_localization": "7040生成+G17/19809Prompt/7Actor工具，含G少4811生成、Prompt多857、Actor工具相同。Slater5→4少1、目标2→3多1；原长错误输入假设推理变短，新增目标真测及长保留代码提高Prompt。2run均实际完成，但当前run打印错shape，不能称2次正确数值验证。",
+      "evidence": ["N3_FIRST_WRITE", "N3_CONFLICT_RETURN", "N3_RECOGNIZED_CONFLICT", "N3_FIXED_SHA", "N3_REVERSED_JUDGMENT", "N3_FORMAL_ROLLBACK", "N3_TARGET_TRUE_RETURN", "N3_TARGET_FORMAL"],
+      "counterevidence": "模型不因stdout pass一直无条件相信，它曾认真纠错；target真正测试有效，不把所有打印和执行一概说虚假。",
+      "unknowns": "不能把此冲突处理等同冻结其他Codebook的P02/P03标签，本轮只按实际证据写工作链，未重设计Pattern。"
+    },
+    {
+      "branch_id": "46__step2__S001__FIRST_SENTENCE__rep4",
+      "official_state": "C",
+      "first_material_divergence": "先测试空草稿被拒，随后一次write正确两电子非零坐标Slater关系，立即同版submit，没有更多验证或错误修复。",
+      "work_reconstruction": {
+        "goal": "Slater四方法核心数学/形状重新实现，功能没有被绕过。",
+        "operation": "空测拒→write两电子value/gradient/lap、kin=-半lap之和→same submit；目标Hamiltonian同样直接write/submit，无实际数值测试。",
+        "product": "正式05b8...采用r[:,newaxis]正确维度、lap求和正确；target7bff...旧C。r=0时将半径设1使奇点行为变为有限，不能和原eps策略混为完全等价。",
+        "assessment": "CORE_FUNCTION_REBUILT_WITH_CHANGED_SINGULARITY_POLICY_AND_NO_SUCCESSFUL_TEST"
+      },
+      "judgment_change": "没有经历原梯度bug假设，题面关系直接落实代码，保存成功即提交；两题均不把未执行验证写成获得数值证据。",
+      "action_chain": "空验证阶段错配→正确核心公式一次实现→直接交→后题独立正确势能一次实现→C。",
+      "result_explanation": "原U首次工作确实恢复，答案保持不证明这项功能没用。成本减少来自避免原错误实现/22K字符错误诊断与修正测试，而不是允许省略四方法；其奇点处理与无验证限制保留。",
+      "cost_localization": "4637生成+G17/10163Prompt/5Actor工具，含G少7214生成、Prompt少8789、Actor工具少2。Slater5→3少2，目标仍2；唯一run是空稿门槛拒，无成功验证，核心实现与正式同稿。",
+      "evidence": ["N4_EMPTY", "N4_CORRECT_GRADIENT", "N4_CORRECT_KINETIC", "N4_SINGULARITY", "N4_CURRENT_FORMAL", "N4_TARGET_FORMAL"],
+      "counterevidence": "没有测试也可形成正确普通输入核心，但不意味着所有验证无用；其他路径真实反馈曾定位具体bug。",
+      "unknowns": "没有独立当前官方评分，不将普通坐标可读公式扩大为所有边界条件验证通过。"
+    }
+  ],
+  "cross_rollout_comparison": {
+    "same_changes": "四条都重新实现Slater，三条前题正式仍有明显梯度/动能问题，第四条普通两电子核心正确但奇点策略改变。目标Hamiltonian均不调用Slater，四C不能证明首次功能没作用或全轨质量保持。",
+    "different_paths_same_result": "NEW1把lap误为梯度平方且未真测；NEW2真修广播后回旧稿、动能仍错；NEW3已识别并改shape后又让pass覆写判断、回旧稿；NEW4一次正确关系直接交。原路径自身也修好/测好后回坏版，所以不是删除特有现象。",
+    "mechanism_strength": "可观察‘约束/实际反馈→具体修正→正式选择’连接断裂：NEW2/3及原路径修复未保留，NEW3还有明确用宽泛pass否决具体shape证据的文字。目标结果因评价/调用范围未覆盖Slater保持，不能直接外推Stage冗余；全量时作为A的评价覆盖限制与交付选择过程分别归纳。",
+    "counterexamples": "NEW4没有重放长验证却正确落实核心；NEW1公式错而非验证不足标签能完整解释；NEW2/3都生成少但Prompt增，成本不能压成单一快/慢。"
+  },
+  "stage_function": "首次把Slater解析公式转为四方法数组实现和电子求和；原实现含广播/动能数组缺陷，后续修复及正式回退必须与U区分。",
+  "candidate_mechanism_chain": "P无实现→U首次代码化但概念与数组操作不一致→原后续真实错误促修却正式回旧→四删后同样重新实现、部分修复后仍回旧或科学关系未恢复→目标势能不调用这些错误方法且独立按题面完成，因此评分4C；成本降低集中避免原22K字符错误形状猜测及部分测试/改写，而非Slater功能消失。具体shape证据被宽泛pass覆盖时，已完成修复没有约束最终代码选择，这是可追踪过程但不是纯删除因果证明。",
+  "limits": [
+    "RESTART_NOT_PROVEN_STAGE_SKIP：整轨首点重新生成，四条都做Slater工作；G17/seed没有隔离，不称首次实现可省。",
+    "target46.2评分与前题46.1正式质量分开；不重评或覆盖旧C。Hamiltonian类名不代表调用Slater动能，其接口仅三种势能方法。",
+    "原/新测试的print pass不代替shape或科学定义断言；原/NEW2已运行修正版与旧正式稿、NEW3未重测新稿与旧正式稿逐SHA区分。",
+    "RECONSTRUCTED_CHAR_EXACT/ORACLE_ANCHORED，完整起点记账区间虽无宽度仍非原生精确干预，G17单列、首P1385，Prompt累计请求而非GPU时延，独立分支节省不相加。",
+    "27真实Call/Return全读，Search/Open不存在；未启动GPU/模型、科学执行或重新评分。题46已有B案例，后续不同题目数不得重复计。"
+  ],
+  "evidence_specs": [
+    {"id":"I_EMPTY","source_key":"G1","json_pointer":"/state/draft_sha256","exact_quote":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"id":"I_G","source_key":"G1","json_pointer":"/G","exact_quote":"Now let me test it with a simple test case to make sure it works correctly."},
+    {"id":"O_U_GRADIENT","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/0/tool_calls/0/arguments/code","exact_quote":"unit_vec = configs[:, i, :] / r[:, np.newaxis, np.newaxis]"},
+    {"id":"O_U_KINETIC","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/0/tool_calls/0/arguments/code","exact_quote":"kin[:, i] = -0.5 * (-2 * self.alpha / r + self.alpha**2)"},
+    {"id":"O_REAL_ERROR","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/1/model_visible_return/stderr","exact_quote":"ValueError: could not broadcast input array from shape (10,10,3) into shape (10,3)"},
+    {"id":"O_WRONG_DIAGNOSIS","source_key":"ORIGINAL","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"So configs is (nconf=10, nelec=10, ndim=3). The test is using 10 electrons, not 2."},
+    {"id":"O_FIXED_WRITE","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"4915ca7ce3ea3488be4ed4da92dd92762a809f3f8bdace03c4e152ad46985272"},
+    {"id":"O_FIXED_SUCCESS","source_key":"ORIGINAL","json_pointer":"/steps/0/tool_events/3/model_visible_return/stdout","exact_quote":"Gradient shape: (10, 2, 3), expected: (10, 2, 3)"},
+    {"id":"O_FORMAL_ROLLBACK","source_key":"ORIGINAL","json_pointer":"/steps/0/submitted_code_sha256","exact_quote":"5573623a780c914ef88a778c2ac74fcd0c1c0626a0139682c977b25945c1cd73"},
+    {"id":"O_TARGET_FORMAL","source_key":"ORIGINAL","json_pointer":"/steps/1/submitted_code_sha256","exact_quote":"89fc6f3a97af21082871e710ef020a94bc2261d6b672b9b0eb245e436735f623"},
+    {"id":"N1_EMPTY","source_key":"NEW1","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N1_WRONG_KINETIC_RELATION","source_key":"NEW1","json_pointer":"/steps/0/rounds/3/tool_calls/0/arguments/code","exact_quote":"grad = self.gradient(configs)  # shape: (nconf, nelec, ndim)\n        grad_sq = np.sum(grad**2, axis=-1)"},
+    {"id":"N1_READ","source_key":"NEW1","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"a8f868d3008aa4a52d42c8d45c81ac202f42e6d76c45ea7067a8d1afaec51ee9"},
+    {"id":"N1_SLATER_FORMAL","source_key":"NEW1","json_pointer":"/steps/0/submitted_code_sha256","exact_quote":"33bbaafc1b57e0bf969445c135f38fba9c589e634b526bb1d648b833f2f79637"},
+    {"id":"N1_TARGET_FORMAL","source_key":"NEW1","json_pointer":"/steps/1/submitted_code_sha256","exact_quote":"ffd0a39e68f7f5c7367354748a0bce070bb2884ab372622b0a335582880bdad4"},
+    {"id":"N2_FIRST_WRITE","source_key":"NEW2","json_pointer":"/steps/0/tool_events/0/model_visible_return/code_sha256","exact_quote":"7babbd8dcf4db1b51068e887dac29c3a5ec5cb5b4aa8c0f774b4deb09c7bd865"},
+    {"id":"N2_BROADCAST_ERROR","source_key":"NEW2","json_pointer":"/steps/0/tool_events/1/model_visible_return/stderr","exact_quote":"ValueError: operands could not be broadcast together with shapes (100,3) (100,)"},
+    {"id":"N2_FIXED_GRADIENT","source_key":"NEW2","json_pointer":"/steps/0/rounds/2/tool_calls/0/arguments/code","exact_quote":"grad[:, i, :] = -self.alpha * configs[:, i, :] / r[:, np.newaxis]"},
+    {"id":"N2_FIXED_SHA","source_key":"NEW2","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"9c6c5bb4b1d886fba9ae787a9bd2efb1a060d14b278801d5cf66bf6b233841f1"},
+    {"id":"N2_KINETIC_CONSTANT","source_key":"NEW2","json_pointer":"/steps/0/tool_events/3/model_visible_return/stdout","exact_quote":"Kinetic range: [4.000000, 4.000000]"},
+    {"id":"N2_FORMAL_ROLLBACK","source_key":"NEW2","json_pointer":"/steps/0/submitted_code_sha256","exact_quote":"7babbd8dcf4db1b51068e887dac29c3a5ec5cb5b4aa8c0f774b4deb09c7bd865"},
+    {"id":"N2_TARGET_REJECT","source_key":"NEW2","json_pointer":"/steps/1/tool_events/1/model_visible_return/validation/root","exact_quote":"prior_code"},
+    {"id":"N2_TARGET_SAME_FIRST","source_key":"NEW2","json_pointer":"/steps/1/tool_events/0/model_visible_return/code_sha256","exact_quote":"9a19eaa64bd51abb7bc8f740a313674a4b7500d2aa6f11c651c5ec79d76a0add"},
+    {"id":"N2_TARGET_SAME_REWRITE","source_key":"NEW2","json_pointer":"/steps/1/tool_events/2/model_visible_return/code_sha256","exact_quote":"9a19eaa64bd51abb7bc8f740a313674a4b7500d2aa6f11c651c5ec79d76a0add"},
+    {"id":"N2_TARGET_FORMAL","source_key":"NEW2","json_pointer":"/steps/1/submitted_code_sha256","exact_quote":"9a19eaa64bd51abb7bc8f740a313674a4b7500d2aa6f11c651c5ec79d76a0add"},
+    {"id":"N3_FIRST_WRITE","source_key":"NEW3","json_pointer":"/steps/0/tool_events/0/model_visible_return/code_sha256","exact_quote":"af73a7a6bc1988cf294fe66dcd7f5b80ceadc229b377323bcc910f4680b588bc"},
+    {"id":"N3_CONFLICT_RETURN","source_key":"NEW3","json_pointer":"/steps/0/tool_events/1/model_visible_return/stdout","exact_quote":"Gradient shape: (10, 2, 10, 3)"},
+    {"id":"N3_RECOGNIZED_CONFLICT","source_key":"NEW3","json_pointer":"/steps/0/rounds/2/reasoning_content","exact_quote":"The test output shows an issue with the gradient shape. It shows `(10, 2, 10, 3)` instead of the expected `(10, 2, 3)`."},
+    {"id":"N3_FIXED_SHA","source_key":"NEW3","json_pointer":"/steps/0/tool_events/2/model_visible_return/code_sha256","exact_quote":"d656924631ea8e4c46ee086040fc53c225a5c0cec99b0cd62475c84f92fd2ffc"},
+    {"id":"N3_REVERSED_JUDGMENT","source_key":"NEW3","json_pointer":"/steps/0/rounds/3/reasoning_content","exact_quote":"Actually, the test passed, so the implementation should be correct. The shape display might just be showing it in a confusing way. The important thing is that the test passed."},
+    {"id":"N3_FORMAL_ROLLBACK","source_key":"NEW3","json_pointer":"/steps/0/submitted_code_sha256","exact_quote":"af73a7a6bc1988cf294fe66dcd7f5b80ceadc229b377323bcc910f4680b588bc"},
+    {"id":"N3_TARGET_TRUE_RETURN","source_key":"NEW3","json_pointer":"/steps/1/tool_events/1/model_visible_return/stdout","exact_quote":"v shape: (10,)"},
+    {"id":"N3_TARGET_FORMAL","source_key":"NEW3","json_pointer":"/steps/1/submitted_code_sha256","exact_quote":"c3ac279e0deb2a1d8732c5f19622b0b917e7ae7091ddf68015f414d1c2740f68"},
+    {"id":"N4_EMPTY","source_key":"NEW4","json_pointer":"/steps/0/tool_events/0/model_visible_return/error","exact_quote":"write_code must succeed before run_python"},
+    {"id":"N4_CORRECT_GRADIENT","source_key":"NEW4","json_pointer":"/steps/0/rounds/1/tool_calls/0/arguments/code","exact_quote":"unit_r1 = configs[:, 0, :] / r1_safe[:, np.newaxis]"},
+    {"id":"N4_CORRECT_KINETIC","source_key":"NEW4","json_pointer":"/steps/0/rounds/1/tool_calls/0/arguments/code","exact_quote":"lap = self.laplacian(configs)\n        kin = -0.5 * np.sum(lap, axis=1)"},
+    {"id":"N4_SINGULARITY","source_key":"NEW4","json_pointer":"/steps/0/rounds/1/tool_calls/0/arguments/code","exact_quote":"r1_safe = np.where(r1 > 0, r1, 1.0)"},
+    {"id":"N4_CURRENT_FORMAL","source_key":"NEW4","json_pointer":"/steps/0/submitted_code_sha256","exact_quote":"05b8c5a2d07af948a77dda86027cd8eae24b0dcce7af1ab4636f6f2ae2860064"},
+    {"id":"N4_TARGET_FORMAL","source_key":"NEW4","json_pointer":"/steps/1/submitted_code_sha256","exact_quote":"7bff86ccaabe6a5801e690af1994c182d8259b8e7a57018944eb2790fd99ecda"}
+  ]
+}

