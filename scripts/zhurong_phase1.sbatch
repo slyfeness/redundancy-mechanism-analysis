@@ -18,12 +18,12 @@ BASE=/file_storage01/home/weiyu/lanyi
 STORE="$BASE/projects/redundancy-judge-phase1"
 RUN="$STORE/run-$SLURM_JOB_ID"
 PY="$BASE/envs/successful_phase05_20261007/bin/python"
-mkdir -p "$RUN" "$STORE/cache" "$STORE/tmp" "$STORE/i"
+mkdir -p "$RUN" "$STORE/cache" "$STORE/tmp/$SLURM_JOB_ID" "$STORE/i/$SLURM_JOB_ID"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1
 export HF_HOME="$STORE/cache/hf" XDG_CACHE_HOME="$STORE/cache/xdg"
-export VLLM_CACHE_ROOT="$STORE/cache/vllm" VLLM_RPC_BASE_PATH="$STORE/i"
+export VLLM_CACHE_ROOT="$STORE/cache/vllm" VLLM_RPC_BASE_PATH="$STORE/i/$SLURM_JOB_ID"
 export TRITON_CACHE_DIR="$STORE/cache/triton" CUDA_CACHE_PATH="$STORE/cache/cuda"
-export TIKTOKEN_CACHE_DIR="$STORE/cache/tiktoken" TMPDIR="$STORE/tmp"
+export TIKTOKEN_CACHE_DIR="$STORE/cache/tiktoken" TMPDIR="$STORE/tmp/$SLURM_JOB_ID"
 export PYTHONPYCACHEPREFIX="$STORE/cache/pycache" PYTHONPATH="$SOURCE/src"
 export OMP_NUM_THREADS=4 TOKENIZERS_PARALLELISM=false
 unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY OPENAI_API_KEY DEEPSEEK_API_KEY JUDGE_API_KEY

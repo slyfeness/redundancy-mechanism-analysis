@@ -205,7 +205,8 @@ def consolidate(output, bundles, selected, freeze):
                            "split": bundle["input_index"]["split"], "provenance": bundle["provenance"]}
         write_jsonl(output / f"{name}.jsonl", projected())
     atomic_json(output / "metrics.json", {"splits": split_counts, "input_count": len(selected),
-                "annotation_count": len(bundles), "freeze": freeze})
+                "annotation_count": sum(bool(bundle.get("trajectory_summaries")) for bundle in bundles),
+                "receipt_count": len(bundles), "freeze": freeze})
 
 
 def reference_cost(stages):

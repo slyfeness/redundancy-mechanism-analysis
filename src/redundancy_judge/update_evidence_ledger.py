@@ -30,9 +30,9 @@ def merge_parallel_updates(task, before, branches):
         merged.update(stage_id=after["stage_id"], visibility=after["visibility"])
         merged["attempts"].extend(after["attempts"][len(before["attempts"]):])
         merged["documents"] = sorted(set(merged["documents"]) | set(after["documents"]))
-        for key in {ref["support_key"] for ref in delta["evidence"]}:
+        for key in sorted({ref["support_key"] for ref in delta["evidence"]}):
             alternatives.setdefault(key, []).append(after["support"][key])
-    for key, rows in alternatives.items():
+    for key, rows in sorted(alternatives.items()):
         evidence = {}
         for row in rows:
             for ref in row["evidence"]:

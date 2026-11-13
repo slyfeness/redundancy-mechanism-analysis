@@ -156,6 +156,13 @@ def execute(command, config):
     preview.update(computed_groups=len(groups), computed_trajectories=sum(len(g["trajectories"]) for g in groups),
                    applied_event_debits=sum(event["debit"] > 0 for g in groups for t in g["trajectories"]
                                             for event in t["event_debits"]))
+    pure = build_grpo_inputs(summaries, {**options, "w_g": 0, "prices": {"R1": 0, "R2b": 0, "R2a": 0}},
+                             approved_labels={})
+    pure_groups = pure.pop("groups")
+    write_jsonl(folder / "outcome_only_preview.jsonl", pure_groups)
+    preview["outcome_only_control"] = {"status": pure["status"], "assertions": pure["assertions"],
+                                      "groups": len(pure_groups),
+                                      "trajectories": sum(len(g["trajectories"]) for g in pure_groups)}
     atomic_json(folder / "reward_preview_summary.json", preview)
     print(canonical({key: preview[key] for key in ("status", "computed_groups", "computed_trajectories",
                                                    "applied_event_debits", "optimizer_steps")}))

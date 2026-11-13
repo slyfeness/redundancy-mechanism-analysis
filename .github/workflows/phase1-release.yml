@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   attach:
@@ -34,3 +35,14 @@ jobs:
           gh release create "$RUN_ID" .phase1-private/delivery/*.zip .phase1-private/delivery/*.zip.sha256 \
             --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease --latest=false \
             --title "Redundancy Judge Phase 1 — $RUN_ID" --notes-file "artifacts/$RUN_ID/report.md"
+          mkdir published
+          gh release download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --dir published
+          python scripts/verify_artifacts.py --package "$(find published -name '*.zip' -print)"
+          checksum="$(cat published/*.zip.sha256)"
+          url="$(gh release view "$RUN_ID" --repo "$GITHUB_REPOSITORY" --json url --jq '.url')"
+          pr="$(gh pr list --repo "$GITHUB_REPOSITORY" --head feat/redundancy-judge-phase1 \
+            --base main --state open --limit 2 --json number --jq 'if length == 1 then .[0].number else empty end')"
+          test -n "$pr"
+          printf 'Release assets downloaded and verified.\n\n- %s\n- SHA-256: `%s`\n' \
+            "$url" "$checksum" > release-receipt.md
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body-file release-receipt.md

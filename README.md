@@ -34,4 +34,6 @@ python scripts/verify_artifacts.py --package <zip>
 
 在配置副本内填写索引、输出、精确分词器、模型身份与代码提交。运行前启动本机 loopback 模型服务。在祝融使用 `scripts/zhurong_phase1.sbatch` 通过 Slurm 执行。提供原始数据时可使用 `scripts/index_browsecomp.py` 生成私有索引。工作目录的默认路径直接在配置中给出。
 
+全量模式按开发、校准、审计的顺序运行，开发集成本中位数在审计开始前冻结。完整原始坐标核查以及独立缓存重放用 `scripts/zhurong_verify_phase1.sbatch`。人工任务原文在受控运行目录的 `human_review_packets.jsonl`，空白字段模板和不含原文的样本索引随交付包提供。
+
 参见[数据清点](docs/data_inventory.md)、[接口](docs/interfaces.md)、[标注规程](docs/labeling_guide.md)、[验收](docs/acceptance.md)、[限制](docs/limitations.md)和[复现](REPRODUCE.md)。

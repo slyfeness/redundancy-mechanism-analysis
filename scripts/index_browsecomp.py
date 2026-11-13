@@ -332,6 +332,7 @@ def build(reports, output, seed):
                   "near_duplicate_groups": sum(len(group) > 1 for group in near_groups),
                   "rule": "NFKC/casefold/word normalization; exact or character similarity >=.92 and token Jaccard >=.82; connected components kept together"},
         "trace_coverage": dict(observed), "source_artifacts": inputs, "legacy_assets": old,
+        "inventory_scope": "historical natural traces and read-only retained legacy receipts",
         "legacy_mapping": {"exact_source_hash_matches": len(matches),
                            "criteria": "Historical same-question branches require exact source byte identity and independently checked spans before association."},
         "actor_model_revision": config["model_revision"], "actor_tokenizer_revision": config["tokenizer_revision"],
