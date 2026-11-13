@@ -13,6 +13,8 @@ from zipfile import ZIP_STORED, ZipFile, ZipInfo
 ROOT_FILES = {".env.example", ".gitattributes", ".gitignore", "README.md", "REPRODUCE.md",
               "pyproject.toml", "requirements.lock"}
 SOURCE_DIRS = (".github/", "configs/", "docs/", "prompts/", "scripts/", "src/", "tests/")
+DELIVERY_TOOLS = ("scripts/zhurong_export_phase1.sbatch", "scripts/zhurong_verify_judge_weights.sbatch",
+                  "scripts/render_phase1_report.py")
 PUBLIC_REPORTS = {"run_manifest.json", "metrics.json", "acceptance.json", "report.md",
                   "failure_cases.jsonl", "audit_sampling_manifest.jsonl", "human_review_template.csv",
                   "approved_labels.json", "reward_preview_summary.json", "test_results.xml", "data_access.md",
@@ -49,6 +51,9 @@ def build(commit, run, output):
     with ZipFile(BytesIO(archive)) as source:
         files.update({name: source.read(name) for name in source.namelist() if allowed(name, run)
                       and not name.startswith("artifacts/")})
+    for name in DELIVERY_TOOLS:
+        if name not in files:
+            files[name] = subprocess.check_output(["git", "show", f"HEAD:{name}"])
     for filename in sorted(PUBLIC_REPORTS):
         path = receipt.parent / filename
         if not path.is_file():
@@ -57,7 +62,8 @@ def build(commit, run, output):
     if "REPRODUCE.md" not in files:
         raise ValueError("portable package requires REPRODUCE.md in the frozen source")
     manifest = {"schema_version": 1, "run_id": run, "code_commit": commit, "run": manifest_data,
-               "files": [{"path": name, "purpose": "public result" if name.startswith("artifacts/") else "source",
+               "files": [{"path": name, "purpose": "public result" if name.startswith("artifacts/") else
+                          "delivery utility" if name in DELIVERY_TOOLS else "frozen source",
                           "bytes": len(data), "sha256": digest(data)} for name, data in sorted(files.items())]}
     files["manifest.json"] = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode()
     files["SHA256SUMS"] = "".join(f"{digest(data)}  {name}\n" for name, data in sorted(files.items())).encode()
