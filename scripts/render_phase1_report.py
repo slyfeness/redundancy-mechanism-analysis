@@ -22,6 +22,7 @@ def render(folder):
         totals.update(values)
     judge = acceptance["judge"]
     verification = acceptance["engineering"]
+    inventory_results = inventory["result_counts"]
     lines = [
         "# 冗余 Judge 第一期运行与验收",
         "",
@@ -30,6 +31,8 @@ def render(folder):
         f"清点覆盖 {inventory['expected_questions']} 题、{inventory['expected_trajectories']} 条自然轨迹。"
         f"封存 {metadata['receipt_count']} 份回执，成功解析 {metadata['annotation_count']} 条，"
         f"有 {totals['failed']} 条未产出摘要。",
+        f"独立历史结果为 C {inventory_results['C']}、W {inventory_results['W']}、"
+        f"N {inventory_results['N']}、未定 {inventory_results['UNCERTAIN']}。",
         "",
         "| 数据集划分 | 题数 | 轨迹 | Stage | 工具调用 | 并行组 | 解析异常记录 | 标注异常记录 | 标签弃权 |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -63,6 +66,8 @@ def render(folder):
         "人工精确率、召回率、必要动作误标率及其 95% 区间在独立审核完成后计算。"
         f"本次同源 TOKEN15 轨迹交集为 {inventory['legacy_mapping']['exact_source_hash_matches']}，"
         "B⁺ 被标记率和 B⁺ 污染率无可估分母。保护挑战类别的候选数量见 metrics.json。",
+        "保护任务共 40 个审核单元，来自首次必要取证候选。其余五类在审计集的自动候选池为空，"
+        "当前挑战证据不足以估计这些类别的误标率。",
         "R2a 只输出诊断。自动候选、弃权和异常的脱敏事实见 failure_cases.jsonl。"
         "人工假阳性案例待复核。原始审核包和逐项产物的访问位置见 data_access.md。",
         "",
@@ -73,6 +78,8 @@ def render(folder):
         f"{reward['computed_groups']} 个同题组、{reward['computed_trajectories']} 条轨迹，"
         f"发生 {reward['applied_event_debits']} 个实际扣分。纯结果对照完成 "
         f"{reward['outcome_only_control']['groups']} 个组。",
+        f"有效取证充分度覆盖 {totals['valid_grounding']} 条轨迹。默认预览排除的原因保存在 "
+        "reward_preview_summary.json。纯结果对照用于观察缺少有效取证充分度的情况。",
         f"Python 测试 {test['tests']} 项，失败 {test['failures']}、错误 {test['errors']}。"
         "测试包括合成记录与本地 HTTP 协议夹具。真实 Judge 运行和 Slurm 回执见 execution.log。",
         "运行入口是 `inspect`、`annotate --split dev --limit-questions 5`、"
