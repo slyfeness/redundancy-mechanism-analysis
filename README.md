@@ -39,3 +39,5 @@ python scripts/verify_artifacts.py --package <zip>
 参见[数据清点](docs/data_inventory.md)、[接口](docs/interfaces.md)、[标注规程](docs/labeling_guide.md)、[验收](docs/acceptance.md)、[限制](docs/limitations.md)和[复现](REPRODUCE.md)。
 
 祝融全量离线判别已处理 100 题、400 条历史轨迹。自动标注等待独立人工审计，批准清单为空。
+
+[全量结果和验收](artifacts/phase1_zhurong-184780/report.md) · [受控数据说明](artifacts/phase1_zhurong-184780/data_access.md)
