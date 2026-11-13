@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==70.2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redundancy-judge"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["PyYAML==6.0.2", "jsonschema==4.23.0"]
+
+[project.scripts]
+redundancy-judge = "redundancy_judge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+redundancy_judge = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
