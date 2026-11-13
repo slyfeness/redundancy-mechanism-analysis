@@ -3,7 +3,6 @@
 import argparse
 from collections import Counter
 from hashlib import sha256
-import json
 from pathlib import Path
 import re
 
@@ -11,7 +10,7 @@ from redundancy_judge.cli import jsonl, write_jsonl
 from redundancy_judge.common import atomic_json, canonical, read_json
 
 
-NOTE = """+The cluster files listed in run_manifest.json live in its restricted Phase 1
+NOTE = """The cluster files listed in run_manifest.json live in its restricted Phase 1
 run directory under the Zhurong bulk storage project. Access requires separate
 approval from the project data steward. The inventory describes the immutable
 historical BrowseComp-Plus source and its independent outcome ledger.

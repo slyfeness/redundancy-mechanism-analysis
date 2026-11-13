@@ -18,10 +18,12 @@ BASE=/file_storage01/home/weiyu/lanyi
 STORE="$BASE/projects/redundancy-judge-phase1"
 RUN="$STORE/run-$SLURM_JOB_ID"
 PY="$BASE/envs/successful_phase05_20261007/bin/python"
-mkdir -p "$RUN" "$STORE/cache" "$STORE/tmp/$SLURM_JOB_ID" "$STORE/i/$SLURM_JOB_ID"
+RPC="$BASE/i/phase1/$SLURM_JOB_ID"
+test "$(( ${#RPC} + 37 ))" -le 107
+mkdir -p "$RUN" "$STORE/cache" "$STORE/tmp/$SLURM_JOB_ID" "$RPC"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1
 export HF_HOME="$STORE/cache/hf" XDG_CACHE_HOME="$STORE/cache/xdg"
-export VLLM_CACHE_ROOT="$STORE/cache/vllm" VLLM_RPC_BASE_PATH="$STORE/i/$SLURM_JOB_ID"
+export VLLM_CACHE_ROOT="$STORE/cache/vllm" VLLM_RPC_BASE_PATH="$RPC"
 export TRITON_CACHE_DIR="$STORE/cache/triton" CUDA_CACHE_PATH="$STORE/cache/cuda"
 export TIKTOKEN_CACHE_DIR="$STORE/cache/tiktoken" TMPDIR="$STORE/tmp/$SLURM_JOB_ID"
 export PYTHONPYCACHEPREFIX="$STORE/cache/pycache" PYTHONPATH="$SOURCE/src"
