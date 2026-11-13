@@ -21,7 +21,7 @@ OUTPUT="$STORE/export-$SLURM_JOB_ID"
 PY="$BASE/envs/successful_phase05_20261007/bin/python"
 export PYTHONPYCACHEPREFIX="$STORE/cache/pycache" PYTHONPATH="$SOURCE/src"
 mkdir -p "$OUTPUT"
-sacct -X -j "184746,184754,184768,184770,184778,184779,$ANNOTATION,$VERIFY" -P \
+sacct -X -j "184746,184754,184768,184770,184778,184779,184781,184782,184783,$ANNOTATION,$VERIFY" -P \
     -o JobID,JobName,Elapsed,Start,End,State,ExitCode,AllocTRES > "$OUTPUT/slurm.log"
 for logfile in "pilot-184754" "pilot-184768" "full-$ANNOTATION"; do
     awk '/^20.* (batch_start|judge_ready|annotation_complete|workflow_complete)$/ {print}' \

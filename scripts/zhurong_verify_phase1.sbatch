@@ -20,7 +20,7 @@ export PYTHONPYCACHEPREFIX="$STORE/cache/pycache" PYTHONPATH="$SOURCE/src"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1
 "$PY" "$SOURCE/scripts/check_phase1_run.py" --run "$RUN/real" --receipt "$OUTPUT/mechanical.json"
 if [[ "${3:-pilot}" == pilot ]]; then exit 0; fi
-"$PY" "$SOURCE/scripts/index_browsecomp.py" --reports-root "$BASE/projects/新实验/reports" +    --output "$OUTPUT/inventory-after"
+"$PY" "$SOURCE/scripts/index_browsecomp.py" --reports-root "$BASE/projects/新实验/reports" --output "$OUTPUT/inventory-after"
 mkdir -p "$OUTPUT/replay/real"
 ln -s "$RUN/real/model_cache" "$OUTPUT/replay/real/model_cache"
 "$PY" - "$RUN/config.json" "$OUTPUT" <<'PYTHON'
