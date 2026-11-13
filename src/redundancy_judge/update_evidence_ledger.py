@@ -54,7 +54,8 @@ def update_evidence_ledger(task, before, stage, event, judge):
     delta = {"status": "unavailable", "effective_gain": None, "new_documents": [],
              "new_support": [], "strengthening": [], "conflicts": [], "resolved_conflicts": [],
              "evidence": []}
-    if event.get("error") or not isinstance(text, str) or not event.get("visible_next"):
+    if (event.get("error") or stage.get("parse_status") != "ok"
+            or not isinstance(text, str) or not event.get("visible_next")):
         after["attempts"].append({"stage_id": stage["stage_id"], "event_id": event_id,
                                   "action": stage.get("action"), "content_id": None,
                                   "status": "unavailable", "gain": None, "error": event.get("error")})

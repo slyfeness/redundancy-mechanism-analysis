@@ -1,0 +1,36 @@
+name: Phase 1 acceptance attachment
+
+on:
+  push:
+    tags:
+      - phase1_zhurong-*
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    env:
+      RUN_ID: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package and independently verify receipt
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = slyfeness/redundancy-mechanism-analysis
+          git merge-base --is-ancestor HEAD origin/feat/redundancy-judge-phase1
+          frozen="$(jq -er '.code_commit' "artifacts/$RUN_ID/run_manifest.json")"
+          git merge-base --is-ancestor "$frozen" HEAD
+          python scripts/package_artifacts.py --run-id "$RUN_ID" --code-commit "$frozen"
+          python scripts/verify_artifacts.py --package "$(find .phase1-private/delivery -name '*.zip' -print)"
+      - name: Attach the verified ZIP to the private repository release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "$RUN_ID" .phase1-private/delivery/*.zip .phase1-private/delivery/*.zip.sha256 \
+            --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease --latest=false \
+            --title "Redundancy Judge Phase 1 — $RUN_ID" --notes-file "artifacts/$RUN_ID/report.md"

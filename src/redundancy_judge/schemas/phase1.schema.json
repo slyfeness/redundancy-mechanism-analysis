@@ -47,7 +47,10 @@
         "model": {"$ref": "#/$defs/NullableText"}, "model_revision": {"$ref": "#/$defs/NullableText"},
         "tokenizer_revision": {"$ref": "#/$defs/NullableText"}, "synthetic": {"type": "boolean"},
         "result": {"type": ["object", "null"], "required": ["label", "source"],
-          "properties": {"label": {"enum": ["C", "W", "N"]}, "source": {"type": "string", "minLength": 1}}},
+          "properties": {"label": {"enum": ["C", "W", "N"]}, "source": {"anyOf": [
+            {"type": "string", "minLength": 1}, {"type": "object", "required": ["kind", "sha256", "record_id"],
+              "properties": {"kind": {"type": "string"}, "sha256": {"$ref": "#/$defs/Hash"},
+                "record_id": {"type": "string"}}}]}}},
         "rounds": {"type": "array", "items": {"type": "object"}},
         "tool_events": {"type": "array", "items": {"type": "object"}},
         "guard_attempts": {"type": "array", "items": {"type": "object"}}

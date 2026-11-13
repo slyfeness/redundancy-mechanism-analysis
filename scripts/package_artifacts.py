@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 
 ROOT_FILES = {".env.example", ".gitattributes", ".gitignore", "README.md", "REPRODUCE.md",
@@ -51,8 +51,9 @@ def build(commit, run, output):
                       and not name.startswith("artifacts/")})
     for filename in sorted(PUBLIC_REPORTS):
         path = receipt.parent / filename
-        if path.is_file():
-            files[path.as_posix()] = path.read_bytes()
+        if not path.is_file():
+            raise ValueError(f"acceptance file missing: {filename}")
+        files[path.as_posix()] = path.read_bytes()
     if "REPRODUCE.md" not in files:
         raise ValueError("portable package requires REPRODUCE.md in the frozen source")
     manifest = {"schema_version": 1, "run_id": run, "code_commit": commit, "run": manifest_data,
@@ -62,10 +63,14 @@ def build(commit, run, output):
     files["SHA256SUMS"] = "".join(f"{digest(data)}  {name}\n" for name, data in sorted(files.items())).encode()
     output.mkdir(parents=True, exist_ok=True)
     target = output / f"{run}_{commit[:12]}.zip"
-    with ZipFile(target, "w", ZIP_DEFLATED) as package:
+    with ZipFile(target, "w", ZIP_STORED) as package:
         for name, data in sorted(files.items()):
-            package.writestr(name, data)
-    target.with_suffix(".zip.sha256").write_text(f"{digest(target.read_bytes())}  {target.name}\n", encoding="ascii")
+            entry = ZipInfo(name)
+            entry.create_system = 3
+            entry.external_attr = 0o100644 << 16
+            package.writestr(entry, data)
+    target.with_suffix(".zip.sha256").write_text(f"{digest(target.read_bytes())}  {target.name}\n",
+                                                 encoding="ascii", newline="\n")
     print(target)
 
 

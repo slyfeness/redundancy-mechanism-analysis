@@ -80,6 +80,8 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
                 problems.append(str(exc))
     if protections and r2b == "positive":
         r2b = "negative"
+    if stage.get("parse_status") != "ok":
+        r1 = r2b = "abstain"
 
     similarity, similar = 0.0, []
     previous_targets = previous_targets or {}
@@ -101,7 +103,8 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
                 if score >= 0.6 and other != query:
                     similar.append(row["event_id"])
     r2a = ("positive" if similar and delta["effective_gain"] is False and not protections else "negative"
-           ) if confirmations and has_return and delta["effective_gain"] is not None else "abstain"
+           ) if (confirmations and has_return and stage.get("parse_status") == "ok"
+                 and delta["effective_gain"] is not None) else "abstain"
     eligible_stage = (stage["stage_type"] == "tool" and stage.get("parse_status") == "ok"
                       and not stage.get("parallel_group_id") and bool(spans))
     evidence = fact.get("evidence", [])
@@ -110,6 +113,13 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
         {"label": label, "decision": decision, "protected": bool(protections),
          "reward_eligible": bool(label != "R2a" and decision == "positive" and eligible_stage and not protections),
          "known_at": known_at, "decision_time": "after_return" if known_at is not None else "unavailable",
+         "abstention_reason": (None if decision != "abstain" else
+             "protocol_error" if stage.get("parse_status") != "ok" else
+             "successful_visible_return_missing" if not has_return else
+             "comparison_environment_or_arguments_unverified" if label == "R2b" else
+             "action_target_uncertain" if not confirmations else
+             "evidence_update_unavailable" if delta["effective_gain"] is None else
+             "verification_error" if problems else "low_verification_confidence"),
          "evidence": evidence if label == "R1" else [r["event_id"] for r in exact if r["event_id"] in visible]
          if label == "R2b" else similar}
         for label, decision in (("R2b", r2b), ("R1", r1), ("R2a", r2a))

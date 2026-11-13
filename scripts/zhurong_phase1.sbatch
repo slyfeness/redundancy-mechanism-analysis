@@ -34,6 +34,13 @@ MODEL_DIR="$BASE/models/$MODEL"
     cd "$MODEL_DIR"
     sha256sum config.json generation_config.json tokenizer.json chat_template.jinja model.safetensors.index.json
     stat --format='%n %s %Y' model-*.safetensors
+    for shard in model-*.safetensors; do
+        metadata=".cache/huggingface/download/$shard.metadata"
+        if [[ -f "$metadata" ]]; then
+            printf '%s upstream metadata ' "$shard"
+            head -2 "$metadata" | paste -sd ' ' -
+        fi
+    done
 ) > "$RUN/judge_model_files.txt"
 JUDGE_ID=$(sha256sum "$RUN/judge_model_files.txt" | cut -d ' ' -f 1)
 cat > "$RUN/config.json" <<EOF
@@ -66,8 +73,10 @@ test -s "$RUN/models.json"
 date -u +'%FT%TZ judge_ready'
 "$PY" -m redundancy_judge.cli inspect --config "$RUN/config.json"
 "$PY" -m redundancy_judge.cli annotate --config "$RUN/config.json" "${run[@]}"
+date -u +'%FT%TZ annotation_complete'
 if [[ "$MODE" == all ]]; then
     for command in export-review audit reward-preview; do
         "$PY" -m redundancy_judge.cli "$command" --config "$RUN/config.json"
     done
 fi
+date -u +'%FT%TZ workflow_complete'

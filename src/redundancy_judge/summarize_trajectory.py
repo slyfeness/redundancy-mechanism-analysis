@@ -11,7 +11,9 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     constraints = [item["constraint_id"] for item in task["constraints"]]
     supported = [cid for cid in constraints if candidate and
                  ledger["support"].get(support_key(candidate, cid), {}).get("state") == "supported"]
-    g = len(supported) / len(constraints) if candidate and constraints and not task["uncertain"] else None
+    evidence_incomplete = any(attempt["status"] == "annotation_error" for attempt in ledger["attempts"])
+    g = (len(supported) / len(constraints)
+         if candidate and constraints and not task["uncertain"] and not evidence_incomplete else None)
     stages_by_id = {row["stage_id"]: row for row in stages}
     counts, priced_cost = Counter(), Counter()
     events = []
@@ -40,7 +42,7 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
                 "raw_termination_reason", "recording_complete", "policy_token_count", "policy_token_spans",
                 "token_alignment_status", "synthetic", "provenance", "split") if key in trajectory},
             "counts": dict(counts), "stage_count": len(stages), "tool_stage_count": tools,
-            "judgment_coverage": len(judgments) / tools if tools else None,
+            "judgment_coverage": len({row["stage_id"] for row in judgments}) / tools if tools else None,
             "abstentions": sum(v for k, v in counts.items() if k.endswith(":abstain")),
             "anomalies": len(trajectory.get("anomalies", ())),
             "cost": {k: v if k in known_cost_keys else None for k, v in total_cost.items()},
@@ -48,6 +50,9 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
                               for k, v in total_cost.items()},
             "thought_lengths": trajectory.get("thought_lengths", []),
             "g": g, "grounding_status": "valid" if g is not None else "invalid",
+            "grounding_issue": "missing_or_ambiguous_submitted_candidate" if not candidate else
+            "uncertain_task" if task["uncertain"] or not constraints else
+            "incomplete_evidence_updates" if evidence_incomplete else None,
             "supported_constraints": supported,
             "unresolved_constraints": [cid for cid in constraints if cid not in supported],
             "events": events}

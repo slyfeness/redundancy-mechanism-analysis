@@ -48,6 +48,7 @@ class ModelJudge:
             parsed.password or parsed.query or parsed.fragment):
             raise ValueError("judge URL must be HTTP on a numeric loopback address")
         self.endpoint = url + "/chat/completions"
+        self.models_endpoint = url + "/models"
         self.name = config["model"]
         self.timeout = config.get("timeout", 90)
         self.max_tokens = config.get("max_tokens", 4096)
@@ -57,6 +58,15 @@ class ModelJudge:
         self.freeze = freeze
         self.replay_only = replay_only
         self.opener = build_opener(ProxyHandler({}), NoRedirect())
+
+    def check_service(self):
+        try:
+            with self.opener.open(self.models_endpoint, timeout=min(self.timeout, 10)) as stream:
+                payload = json.loads(stream.read(1_000_000))
+            if self.name not in {entry["id"] for entry in payload["data"]}:
+                raise JudgeFailure("expected local model is not served")
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            raise JudgeFailure(f"local model availability check failed ({type(exc).__name__})") from exc
 
     def ask(self, kind, payload):
         prompt = self.prompts[kind]
@@ -72,7 +82,9 @@ class ModelJudge:
             receipt = read_json(path)
             if receipt["cache_key"] != key:
                 raise JudgeFailure("cache identity mismatch")
-            return receipt["response"]
+            if "response" in receipt:
+                return receipt["response"]
+            raise JudgeFailure(receipt["failure"])
         if self.replay_only:
             raise JudgeFailure("replay cache entry is missing")
         request = Request(self.endpoint, canonical(body).encode(), {"Content-Type": "application/json"})
@@ -93,10 +105,13 @@ class ModelJudge:
             if not isinstance(response, dict):
                 raise JudgeFailure("judge output is not a JSON object")
             canonical(response)
-        except JudgeFailure:
+        except JudgeFailure as exc:
+            atomic_json(path, {"cache_key": key, "failure": str(exc)})
             raise
         except (OSError, ValueError, TypeError, KeyError, IndexError) as exc:
-            raise JudgeFailure(f"judge transport or JSON failure ({type(exc).__name__})") from exc
+            message = f"judge transport or JSON failure ({type(exc).__name__})"
+            atomic_json(path, {"cache_key": key, "failure": message})
+            raise JudgeFailure(message) from exc
         atomic_json(path, {"cache_key": key, "response": response, "usage": envelope.get("usage"),
                            "response_sha256": sha256(raw).hexdigest()})
         return response

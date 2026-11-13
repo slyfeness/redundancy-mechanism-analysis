@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from hashlib import sha256
 import json
 from pathlib import Path
+from statistics import median
 import sys
 
 import yaml
@@ -114,7 +115,9 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
             judgment.update(event_id=unique_event, question_id=row["question_id"], split=row["split"],
                             synthetic=judge.synthetic, provenance=provenance)
             states.append({"stage_id": stage["stage_id"], "event_id": unique_event,
-                           "before": before, "after": after, "delta": delta})
+                           "before": before, "after": after, "delta": delta,
+                           "visible_before": action_stage["visible_return_ids"],
+                           "observation_verified_in_next_prompt": event["visible_next"]})
             judgments.append(judgment)
             for error in [target.get("error"), delta.get("error"), *judgment["errors"]]:
                 if error:
@@ -123,6 +126,9 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
             current_targets[event_id] = {"stage_id": stage["stage_id"], "event_id": unique_event, **target}
         if branches:
             ledger = merge_parallel_updates(task, before, branches) if stage["parallel_group_id"] else branches[0][0]
+            if stage["parallel_group_id"]:
+                states.append({"stage_id": stage["stage_id"], "event_id": None,
+                               "kind": "parallel_merge", "before": before, "after": ledger})
         targets.update(current_targets)
     candidate = None
     finals = [s["final_text"] for s in stages if s["stage_type"] == "final"]
@@ -147,7 +153,8 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                 anomalies=parsed["anomalies"],
                 thought_lengths=[{"round_id": r.get("round_id"),
                                   "source_chars": len(r.get("reasoning_content") or ""),
-                                  "serving_reported_reasoning_tokens": r.get("reasoning_tokens")}
+                                  "serving_reported_reasoning_tokens": r.get("reasoning_tokens"),
+                                  "serving_reported_input_tokens": r.get("prompt_tokens")}
                                  for r in trace["rounds"]],
                 **{k: parsed[k] for k in ("token_alignment_status", "policy_token_spans", "policy_token_count")})
     return {"input_index": row, "provenance": provenance, "task_specs": task,
@@ -168,7 +175,7 @@ def consolidate(output, bundles, selected, freeze):
             if bundle["input_index"]["split"] != split:
                 continue
             summary = bundle.get("trajectory_summaries")
-            count.update(trajectories=1, failed=not bool(summary),
+            count.update(trajectories=1, failed=int(summary is None),
                          stages=len(bundle.get("stages", [])),
                          annotation_errors=len(bundle.get("annotation_failures", [])),
                          parse_anomalies=len(bundle.get("parse_failures", [])))
@@ -176,7 +183,14 @@ def consolidate(output, bundles, selected, freeze):
                 count.update(summary["counts"])
                 count.update(token_verified=int(summary["token_alignment_status"] == "verified"),
                              parallel_groups=sum(bool(s["parallel_group_id"]) for s in bundle["stages"]),
-                             prunable_events=len(summary["events"]))
+                             tool_events=len(bundle["tool_events"]), prunable_events=len(summary["events"]),
+                             tool_stages=summary["tool_stage_count"],
+                             normal_finals=sum(s["stage_type"] == "final" for s in bundle["stages"]),
+                             partial_stages=sum(s["stage_type"] == "partial" for s in bundle["stages"]),
+                             failed_annotation_trajectories=bool(bundle["annotation_failures"]),
+                             fully_recorded=summary["recording_complete"],
+                             valid_grounding=int(summary["grounding_status"] == "valid"))
+        count["label_abstentions"] = sum(v for key, v in count.items() if key.endswith(":abstain"))
         count["questions"] = len({r["question_id"] for r in selected if r["split"] == split})
         split_counts[split] = dict(count)
     for name in PRIVATE_ARTIFACTS:
@@ -194,12 +208,29 @@ def consolidate(output, bundles, selected, freeze):
                 "annotation_count": len(bundles), "freeze": freeze})
 
 
+def reference_cost(stages):
+    costs = []
+    for stage in stages:
+        cost = stage["cost"]
+        if stage["stage_type"] == "tool" and not stage["parallel_group_id"] and all(
+            type(cost.get(key)) is int for key in ("policy_tokens", "return_tokens")
+        ):
+            costs.append((stage["stage_id"], cost["policy_tokens"] + cost["return_tokens"]))
+    if costs and median(value for _, value in costs) > 0:
+        ordered = sorted(costs)
+        return {"median": median(value for _, value in ordered), "split": "dev",
+                "sample_size": len(ordered), "sample_sha256": identity(ordered)}
+    return None
+
+
 def annotate(config, args):
     if args.limit_questions is not None and (args.split != "dev" or args.limit_questions < 1):
         raise ValueError("only a positive development question limit is supported")
     index = jsonl(config["input_index"])
     if not index:
         raise ValueError("BLOCKED_DATA: empty input index")
+    if any(row["split"] not in {"dev", "calibration", "audit"} for row in index):
+        raise ValueError("input index contains an unknown split")
     if config.get("mode") not in {"real", "synthetic"}:
         raise ValueError("set mode to real or synthetic explicitly")
     freeze = freeze_config(config)
@@ -257,7 +288,22 @@ def annotate(config, args):
         return bundles
 
     with ThreadPoolExecutor(max_workers=config.get("workers", 4)) as pool:
-        bundles = [bundle for group in pool.map(process, groups) for bundle in group]
+        if args.split == "all":
+            bundles = []
+            for split in ("dev", "calibration", "audit"):
+                subset = [group for group in groups if group[0]["split"] == split]
+                partition = [bundle for group in pool.map(process, subset) for bundle in group]
+                if split == "dev":
+                    reference = reference_cost(stage for bundle in partition for stage in bundle.get("stages", []))
+                    if reference is None and config.get("cost_weighted"):
+                        raise ValueError("cost weighting requires measured development events")
+                    reference_path = output / "reference_cost.json"
+                    if reference_path.exists() and read_json(reference_path) != reference:
+                        raise ValueError("development cost reference changed after freeze")
+                    atomic_json(reference_path, reference)
+                bundles.extend(partition)
+        else:
+            bundles = [bundle for group in pool.map(process, groups) for bundle in group]
     consolidate(output, bundles, selected, freeze)
     print(canonical(read_json(output / "metrics.json")), flush=True)
     return 0
@@ -269,6 +315,13 @@ def inspect(config):
         print("BLOCKED_DATA: input index missing", file=sys.stderr)
         return 2
     rows = jsonl(path)
+    if rows and config.get("mode") == "real":
+        try:
+            ModelJudge(config["judge"], config["prompt_dir"], Path(config["output_dir"]) / "real" / "model_cache",
+                       freeze_config(config)).check_service()
+        except (JudgeFailure, OSError, KeyError, TypeError, ValueError) as exc:
+            print(f"BLOCKED_MODEL: {exc}", file=sys.stderr)
+            return 2
     print(canonical({"status": "READY" if rows else "BLOCKED_DATA", "input_count": len(rows),
                      "questions": len({row["question_id"] for row in rows}),
                      "freeze": freeze_config(config)}))
