@@ -11,7 +11,8 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     constraints = [item["constraint_id"] for item in task["constraints"]]
     supported = [cid for cid in constraints if candidate and
                  ledger["support"].get(support_key(candidate, cid), {}).get("state") == "supported"]
-    evidence_incomplete = any(attempt["status"] == "annotation_error" for attempt in ledger["attempts"])
+    evidence_incomplete = any(attempt["status"] in {"annotation_error", "partial_annotation"}
+                              for attempt in ledger["attempts"])
     g = (len(supported) / len(constraints)
          if candidate and constraints and not task["uncertain"] and not evidence_incomplete else None)
     stages_by_id = {row["stage_id"]: row for row in stages}

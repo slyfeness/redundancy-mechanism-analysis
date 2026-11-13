@@ -74,6 +74,24 @@ def test_false_quote_cannot_support_claim_and_future_is_not_in_target():
     assert after["support"] == {} and delta["status"] == "unavailable"
 
 
+def test_one_invalid_quote_cannot_remove_an_independent_valid_update():
+    class MixedJudge(FixtureJudge):
+        def ask(self, kind, payload):
+            response = super().ask(kind, payload)
+            if kind == "evidence_update":
+                response["updates"].append({"candidate": "other", "constraint_id": "C1",
+                                            "state": "supported", "quote": "fabrication"})
+            return response
+
+    judge = MixedJudge()
+    task, before = init_task_ledger("Find Ada X", judge)
+    after, delta = update_evidence_ledger(task, before, stage(1), event(1), judge)
+    assert {row["candidate"] for row in after["support"].values()} == {"ada"}
+    assert delta["status"] == "partial_annotation"
+    assert delta["effective_gain"]
+    assert len(delta["rejected_evidence"]) == 1
+
+
 def test_parallel_siblings_cannot_see_each_other_and_conflicts_survive_merge():
     class ConflictJudge(FixtureJudge):
         def ask(self, kind, payload):

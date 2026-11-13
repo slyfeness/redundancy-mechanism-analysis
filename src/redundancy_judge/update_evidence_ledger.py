@@ -53,7 +53,7 @@ def update_evidence_ledger(task, before, stage, event, judge):
     event_id = event["event_id"]
     delta = {"status": "unavailable", "effective_gain": None, "new_documents": [],
              "new_support": [], "strengthening": [], "conflicts": [], "resolved_conflicts": [],
-             "evidence": []}
+             "evidence": [], "rejected_evidence": []}
     if (event.get("error") or stage.get("parse_status") != "ok"
             or not isinstance(text, str) or not event.get("visible_next")):
         after["attempts"].append({"stage_id": stage["stage_id"], "event_id": event_id,
@@ -65,9 +65,10 @@ def update_evidence_ledger(task, before, stage, event, judge):
     seen_documents = set(event.get("document_ids") or [document])
     delta["new_documents"] = sorted(seen_documents - set(after["documents"]))
     after["documents"] = sorted(set(after["documents"]) | seen_documents)
-    duplicate = next((item for item in before["attempts"] if item["content_id"] == content_id), None)
+    duplicate = next((item for item in before["attempts"] if item["content_id"] == content_id
+                      and item["status"] == "ok"), None)
     try:
-        if duplicate and duplicate["status"] == "ok":
+        if duplicate:
             updates = []
         else:
             response = judge.ask("evidence_update", {
@@ -87,10 +88,14 @@ def update_evidence_ledger(task, before, stage, event, judge):
                 key = support_key(candidate, cid)
                 require(key not in seen, "duplicate candidate/constraint update")
                 seen.add(key)
-                ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
-                           reference=event.get("return_ref"), document=document, state=state)
                 resolves = row.get("resolves_conflict", False)
                 require(type(resolves) is bool, "invalid conflict resolution field")
+                try:
+                    ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
+                               reference=event.get("return_ref"), document=document, state=state)
+                except JudgeFailure as exc:
+                    delta["rejected_evidence"].append({"reason": str(exc), "constraint_id": cid})
+                    continue
                 updates.append((key, candidate, cid, state, ref, resolves))
         for key, candidate, cid, state, ref, resolves in updates:
             old = after["support"].get(key)
@@ -118,6 +123,10 @@ def update_evidence_ledger(task, before, stage, event, judge):
                 delta["strengthening"].append(key)
         delta.update(status="ok", effective_gain=any(delta[k] for k in
                      ("new_support", "strengthening", "conflicts", "resolved_conflicts")))
+        if delta["rejected_evidence"]:
+            delta["status"] = "partial_annotation"
+            if not delta["effective_gain"]:
+                delta["effective_gain"] = None
     except (JudgeFailure, AttributeError, TypeError) as exc:
         delta.update(status="annotation_error", error=str(exc))
     after["attempts"].append({"stage_id": stage["stage_id"], "event_id": event_id,

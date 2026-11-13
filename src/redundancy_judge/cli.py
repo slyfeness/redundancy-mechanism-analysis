@@ -119,7 +119,8 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                            "visible_before": action_stage["visible_return_ids"],
                            "observation_verified_in_next_prompt": event["visible_next"]})
             judgments.append(judgment)
-            for error in [target.get("error"), delta.get("error"), *judgment["errors"]]:
+            for error in [target.get("error"), delta.get("error"), *judgment["errors"],
+                          *(item["reason"] for item in delta["rejected_evidence"])]:
                 if error:
                     annotation_errors.append({"event_id": unique_event, "reason": error})
             branches.append((after, delta))

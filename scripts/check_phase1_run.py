@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
-from redundancy_judge.adapters.trace import sha256 as raw_hash
+from redundancy_judge.adapters.trace import load_trajectory, sha256 as raw_hash
 from redundancy_judge.cli import jsonl
 from redundancy_judge.common import atomic_json, identity
 
@@ -45,6 +45,9 @@ def check_bundle(bundle, validators, expected_provenance):
         demand(bool(bundle["parse_failures"]), "missing trajectory and failure receipt")
         return Counter(rejected=1)
     raw = json.loads(raw_bytes)
+    result = {"label": index["result"], "source": index["result_source"]} if index["Y"] is not None else None
+    trajectory = load_trajectory(index["path"], result=result, question=index["question"])
+    validators["TrajectoryRecord"].validate(trajectory)
     stages = bundle["stages"]
     events = bundle["tool_events"]
     demand(len(events) == len(raw["tool_events"]), "lost tool events")
@@ -91,6 +94,13 @@ def check_bundle(bundle, validators, expected_provenance):
         for ref in snap.get("delta", {}).get("evidence", ()):
             quote(ref)
             evidence_checks += 1
+    for event in events:
+        ref = event["return_ref"]
+        if ref is not None:
+            content = dereference(raw, ref["source_pointer"])
+            demand(ref["character_span"] == [0, len(content)]
+                   and (not event["visible_next"] or content == event["return_text"]),
+                   "original tool return reference mismatch")
 
     stage_map = {row["stage_id"]: row for row in stages}
     for judgment in bundle["stage_judgments"]:
