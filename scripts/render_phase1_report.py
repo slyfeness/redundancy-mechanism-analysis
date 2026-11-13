@@ -48,6 +48,8 @@ def render(folder):
         "条工具原文引文。未回注、预算停止、解析异常和标注过错的分母均保留。",
         f"缓存重放比较 {verification['replay']['compared']} 个产物，状态 "
         f"`{verification['replay']['status']}`。原来源和已列旧资产的哈希结果见 acceptance.json。",
+        f"权重校验确认 {manifest['weight_verification']['matched']} 个分片与固定 SHA-256 一致。"
+        "全量作业 184780 完成于 1 小时 24 分 56 秒。此前启动失败和核查入口修复保留在 Slurm 回执里。",
         "",
         "## Judge 质量",
         "",
