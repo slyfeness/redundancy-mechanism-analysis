@@ -18,13 +18,13 @@ from .judge_stage import judge_stage
 from .parse_stages import parse_stages
 from .resolve_action_target import resolve_action_target
 from .summarize_trajectory import summarize_trajectory
-from .update_evidence_ledger import update_evidence_ledger
+from .update_evidence_ledger import merge_parallel_updates, update_evidence_ledger
 
 SCHEMA_VERSION = "phase1.v1"
 BUDGET = {"CONTEXT_LIMIT_STOP", "GENERATION_LENGTH_STOP", "SAFETY_CEILING_STOP"}
 PRIVATE_ARTIFACTS = ("input_index", "stages", "legacy_stage_mapping", "task_specs", "ledger_snapshots",
                  "action_targets", "stage_judgments", "trajectory_summaries",
-                 "parse_failures", "annotation_failures")
+                 "parse_failures", "annotation_failures", "tool_events", "position_map")
 
 
 def config_file(path):
@@ -50,11 +50,12 @@ def freeze_config(config):
     judge_config = {k: config["judge"][k] for k in ("model", "version", "timeout", "max_tokens")
                     if k in config["judge"]}
     tokenizer_sha = sha256(Path(config["tokenizer"]).read_bytes()).hexdigest() if config.get("tokenizer") else None
+    legacy_shas = [sha256(Path(path).read_bytes()).hexdigest() for path in config.get("legacy_stages") or []]
     return {"schema_version": SCHEMA_VERSION, "code_commit": config["code_commit"],
             "model_version": judge_config["version"], "tokenizer_version": config.get("tokenizer_revision"),
             "config_sha256": identity([judge_config, config.get("threshold", 0.8), tokenizer_sha,
                                        config.get("pilot_seed"), config.get("mode"),
-                                       config.get("reward"), config.get("cost_weighted")]),
+                                       config.get("reward"), config.get("cost_weighted"), legacy_shas]),
             "tokenizer_sha256": tokenizer_sha}
 
 
@@ -97,23 +98,32 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
         if stage["stage_type"] != "tool":
             continue
         before = ledger
-        target = resolve_action_target(task, before, stage, judge, threshold=config.get("threshold", 0.8))
+        branches, current_targets = [], {}
         for event_id in stage["event_ids"]:
             event = events[event_id]
-            after, delta = update_evidence_ledger(task, ledger, stage, event, judge)
-            judgment = judge_stage(task, before, after, stage, event, target, delta, judge,
+            action_stage = stage
+            if stage["parallel_group_id"] and stage["parse_status"] == "ok":
+                action = {key: event[key] for key in ("tool_name", "arguments", "call_id", "event_id",
+                                                     "environment", "deterministic", "dispatch_time")}
+                action_stage = {**stage, "action": action}
+            target = resolve_action_target(task, before, action_stage, judge, threshold=config.get("threshold", 0.8))
+            after, delta = update_evidence_ledger(task, before, action_stage, event, judge)
+            judgment = judge_stage(task, before, after, action_stage, event, target, delta, judge,
                                    threshold=config.get("threshold", 0.8), previous_targets=targets)
             unique_event = f"{row['trajectory_id']}:{event_id}"
             judgment.update(event_id=unique_event, question_id=row["question_id"], split=row["split"],
                             synthetic=judge.synthetic, provenance=provenance)
             states.append({"stage_id": stage["stage_id"], "event_id": unique_event,
-                           "before": ledger, "after": after, "delta": delta})
+                           "before": before, "after": after, "delta": delta})
             judgments.append(judgment)
             for error in [target.get("error"), delta.get("error"), *judgment["errors"]]:
                 if error:
                     annotation_errors.append({"event_id": unique_event, "reason": error})
-            ledger = after
-        targets[stage["stage_id"]] = target
+            branches.append((after, delta))
+            current_targets[event_id] = {"stage_id": stage["stage_id"], "event_id": unique_event, **target}
+        if branches:
+            ledger = merge_parallel_updates(task, before, branches) if stage["parallel_group_id"] else branches[0][0]
+        targets.update(current_targets)
     candidate = None
     finals = [s["final_text"] for s in stages if s["stage_type"] == "final"]
     if finals:
@@ -135,13 +145,16 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                 Y=row.get("Y"),
                 recording_complete=viable and parsed["recording_complete"],
                 anomalies=parsed["anomalies"],
-                thought_lengths=[len(r.get("reasoning_content") or "") for r in trace["rounds"]],
+                thought_lengths=[{"round_id": r.get("round_id"),
+                                  "source_chars": len(r.get("reasoning_content") or ""),
+                                  "serving_reported_reasoning_tokens": r.get("reasoning_tokens")}
+                                 for r in trace["rounds"]],
                 **{k: parsed[k] for k in ("token_alignment_status", "policy_token_spans", "policy_token_count")})
     return {"input_index": row, "provenance": provenance, "task_specs": task,
             "stages": stages, "tool_events": parsed["tool_events"], "position_map": parsed["position_map"],
             "legacy_stage_mapping": [{"stage_id": s["stage_id"], "mapping": s["legacy_mapping"],
                                       "status": s["legacy_mapping_status"]} for s in stages],
-            "ledger_snapshots": states, "action_targets": [{"stage_id": k, **v} for k, v in targets.items()],
+            "ledger_snapshots": states, "action_targets": list(targets.values()),
             "stage_judgments": judgments, "trajectory_summaries": summarize_trajectory(
                 info, task, ledger, stages, judgments, submitted_candidate=candidate),
             "parse_failures": parsed["anomalies"], "annotation_failures": annotation_errors}
@@ -217,8 +230,8 @@ def annotate(config, args):
     if real and not args.replay_only:
         probe = make_judge()
         try:
-            answer = probe.ask("task_constraints", {"question": "Which city hosted the 2012 Summer Olympics?"})
-            if not answer.get("constraints"):
+            spec, _ = init_task_ledger("Which city hosted the 2012 Summer Olympics?", probe)
+            if spec["status"] != "ok" or not spec["constraints"]:
                 raise JudgeFailure("model probe returned no constraints")
         except JudgeFailure as exc:
             raise ValueError(f"BLOCKED_MODEL: {exc}") from exc

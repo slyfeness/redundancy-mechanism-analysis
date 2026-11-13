@@ -1,8 +1,18 @@
 import hashlib
 import json
+from pathlib import Path
 
+from jsonschema import Draft202012Validator
 from redundancy_judge.adapters.trace import NativeByteTokenizer, load_trajectory
+from redundancy_judge.adapters.model import SyntheticJudge
+from redundancy_judge.audit_judge import audit_judge
+from redundancy_judge.build_grpo_inputs import build_grpo_inputs
+from redundancy_judge.init_task_ledger import init_task_ledger
+from redundancy_judge.judge_stage import judge_stage
 from redundancy_judge.parse_stages import parse_stages
+from redundancy_judge.resolve_action_target import resolve_action_target
+from redundancy_judge.summarize_trajectory import summarize_trajectory
+from redundancy_judge.update_evidence_ledger import update_evidence_ledger
 
 
 def tool_call(call_id, argument):
@@ -216,3 +226,36 @@ def test_one_original_token_cannot_be_counted_for_two_returns(tmp_path):
                           {"tokenizer": NativeByteTokenizer(tokenizer_path, "rev")})
     assert [event["return_tokens"] for event in parsed["tool_events"]] == [None, None]
     assert all(event["visible_next"] for event in parsed["tool_events"])
+
+
+def test_packaged_draft_schema_validates_nine_runtime_record_kinds(tmp_path):
+    schema_path = Path(__file__).resolve().parents[2] / "src/redundancy_judge/schemas/phase1.schema.json"
+    schema = json.loads(schema_path.read_bytes())
+    Draft202012Validator.check_schema(schema)
+
+    call = tool_call("c1", "city")
+    raw_event = native_event(call, 1)
+    trace = record(tmp_path, [native_round(1, calls=[call]),
+                             native_round(2, text="Paris", history=[visibility(raw_event)])], [raw_event])
+    parsed = parse_stages(trace)
+    tool, final = parsed["stages"]
+    event = parsed["tool_events"][0]
+    judge = SyntheticJudge()
+    task, before = init_task_ledger(trace["question"], judge)
+    target = resolve_action_target(task, before, tool, judge)
+    after, delta = update_evidence_ledger(task, before, tool, event, judge)
+    judgment = judge_stage(task, before, after, tool, event, target, delta, judge)
+    info = {**trace, "result": "C", "provenance": {
+        "schema_version": "phase1.v1", "code_commit": "fixture", "model_version": "synthetic-fixture",
+        "tokenizer_version": "rev", "input_sha256": trace["input_sha256"], "prompt_sha256": "synthetic",
+        "config_sha256": "0" * 64},
+        **{key: parsed[key] for key in ("recording_complete", "policy_token_spans", "policy_token_count",
+                                      "token_alignment_status")}}
+    annotation = summarize_trajectory(info, task, after, [tool, final], [judgment])
+    outputs = {"TrajectoryRecord": trace, "StageRecord": tool, "TaskSpec": task, "LedgerSnapshot": after,
+               "ActionTarget": target, "StageJudgment": judgment, "TrajectoryAnnotation": annotation,
+               "AuditReport": audit_judge([]), "GRPOPreview": build_grpo_inputs([])}
+    for kind, row in outputs.items():
+        Draft202012Validator({**schema, "$ref": f"#/$defs/{kind}"}).validate(row)
+    stage_validator = Draft202012Validator({**schema, "$ref": "#/$defs/StageRecord"})
+    assert not stage_validator.is_valid({**final, "charge_token_spans": [[1, 2]]})

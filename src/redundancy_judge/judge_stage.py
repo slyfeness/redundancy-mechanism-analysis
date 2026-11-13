@@ -84,11 +84,13 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
     similarity, similar = 0.0, []
     previous_targets = previous_targets or {}
     query = (action.get("arguments") or {}).get("query") if isinstance(action.get("arguments"), dict) else None
-    if confirmations and isinstance(query, str):
+    unresolved_gap = fact.get("state") not in {"supported", "refuted"} and target["intent"] in {"fill_gap", "explore"}
+    if confirmations and unresolved_gap and isinstance(query, str):
         query_words = set(query.casefold().split())
         for row in historical:
-            prior = previous_targets.get(row["stage_id"], {})
-            if (prior.get("candidate"), prior.get("constraint_id")) != (target["candidate"], target["constraint_id"]):
+            prior = previous_targets.get(row["event_id"], {})
+            if ((prior.get("candidate"), prior.get("constraint_id")) != (target["candidate"], target["constraint_id"])
+                    or prior.get("intent") not in {"fill_gap", "explore"}):
                 continue
             args = (row.get("action") or {}).get("arguments")
             other = args.get("query") if isinstance(args, dict) else None
@@ -103,7 +105,7 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
     eligible_stage = (stage["stage_type"] == "tool" and stage.get("parse_status") == "ok"
                       and not stage.get("parallel_group_id") and bool(spans))
     evidence = fact.get("evidence", [])
-    known_at = event.get("return_time")
+    known_at = event.get("return_time") if has_return else None
     labels = [
         {"label": label, "decision": decision, "protected": bool(protections),
          "reward_eligible": bool(label != "R2a" and decision == "positive" and eligible_stage and not protections),

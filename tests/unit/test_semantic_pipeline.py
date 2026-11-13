@@ -1,7 +1,7 @@
 import pytest
 from redundancy_judge.init_task_ledger import init_task_ledger
 from redundancy_judge.resolve_action_target import resolve_action_target
-from redundancy_judge.update_evidence_ledger import update_evidence_ledger
+from redundancy_judge.update_evidence_ledger import merge_parallel_updates, update_evidence_ledger
 from redundancy_judge.judge_stage import judge_stage
 from redundancy_judge.summarize_trajectory import summarize_trajectory
 
@@ -72,6 +72,28 @@ def test_false_quote_cannot_support_claim_and_future_is_not_in_target():
     assert "SECRET FUTURE" not in str(model.seen[-1])
     after, delta = update_evidence_ledger(task, before, current, event(1, None), model)
     assert after["support"] == {} and delta["status"] == "unavailable"
+
+
+def test_parallel_siblings_cannot_see_each_other_and_conflicts_survive_merge():
+    class ConflictJudge(FixtureJudge):
+        def ask(self, kind, payload):
+            result = super().ask(kind, payload)
+            if kind == "evidence_update" and "not" in payload["returned_text"]:
+                result["updates"][0]["state"] = "refuted"
+            return result
+
+    model = ConflictJudge()
+    task, before = init_task_ledger("Find Ada X", model)
+    current = stage(1)
+    left = update_evidence_ledger(task, before, current, event(1), model)
+    right = update_evidence_ledger(task, before, current, event(2, "Ada: not X"), model)
+    merged = merge_parallel_updates(task, before, [left, right])
+    swapped = merge_parallel_updates(task, before, [right, left])
+    assert [payload["prior"] for kind, payload in model.seen if kind == "evidence_update"] == [[], []]
+    assert list(merged["support"].values())[0]["state"] == "conflicted"
+    assert list(swapped["support"].values())[0]["state"] == "conflicted"
+    assert merged["open_gaps"] == swapped["open_gaps"] == ["C1"]
+    assert {row["event_id"] for row in merged["attempts"]} == {"1", "2"}
 
 
 def test_hidden_prior_observation_is_protected():

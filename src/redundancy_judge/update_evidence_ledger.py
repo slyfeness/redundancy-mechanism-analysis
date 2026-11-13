@@ -11,6 +11,41 @@ def support_key(candidate, constraint_id):
     return identity([candidate, constraint_id])
 
 
+def refresh_gaps(task, after):
+    after["conflicts"] = [key for key, row in after["support"].items() if row["state"] == "conflicted"]
+    constraints = [c["constraint_id"] for c in task["constraints"]]
+    candidates = sorted({fact["candidate"] for fact in after["support"].values()})
+    after["candidate_gaps"] = {candidate: [cid for cid in constraints
+        if after["support"].get(support_key(candidate, cid), {}).get("state") != "supported"]
+        for candidate in candidates}
+    after["open_gaps"] = [cid for cid in constraints if not any(
+        row["constraint_id"] == cid and row["state"] == "supported" for row in after["support"].values())]
+
+
+def merge_parallel_updates(task, before, branches):
+    """Reconcile independently evaluated siblings at the next action boundary."""
+    merged = deepcopy(before)
+    alternatives = {}
+    for after, delta in branches:
+        merged.update(stage_id=after["stage_id"], visibility=after["visibility"])
+        merged["attempts"].extend(after["attempts"][len(before["attempts"]):])
+        merged["documents"] = sorted(set(merged["documents"]) | set(after["documents"]))
+        for key in {ref["support_key"] for ref in delta["evidence"]}:
+            alternatives.setdefault(key, []).append(after["support"][key])
+    for key, rows in alternatives.items():
+        evidence = {}
+        for row in rows:
+            for ref in row["evidence"]:
+                evidence.setdefault((ref["document"], ref["quote"]), ref)
+        states = {row["state"] for row in rows}
+        state = ("conflicted" if "conflicted" in states or {"supported", "refuted"} <= states
+                 else "supported" if "supported" in states else "refuted" if "refuted" in states
+                 else "partially_supported")
+        merged["support"][key] = {**rows[0], "state": state, "evidence": list(evidence.values())}
+    refresh_gaps(task, merged)
+    return merged
+
+
 def update_evidence_ledger(task, before, stage, event, judge):
     after = deepcopy(before)
     after.update(stage_id=stage["stage_id"], visibility=list(stage.get("visible_return_ids", ())))
@@ -51,7 +86,7 @@ def update_evidence_ledger(task, before, stage, event, judge):
                 key = support_key(candidate, cid)
                 require(key not in seen, "duplicate candidate/constraint update")
                 seen.add(key)
-                ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id,
+                ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
                            reference=event.get("return_ref"), document=document, state=state)
                 resolves = row.get("resolves_conflict", False)
                 require(type(resolves) is bool, "invalid conflict resolution field")
@@ -88,12 +123,5 @@ def update_evidence_ledger(task, before, stage, event, judge):
                               "action": stage.get("action"), "content_id": content_id,
                               "status": delta["status"], "gain": delta["effective_gain"],
                               "error": event.get("error")})
-    after["conflicts"] = [key for key, row in after["support"].items() if row["state"] == "conflicted"]
-    constraints = [c["constraint_id"] for c in task["constraints"]]
-    candidates = sorted({fact["candidate"] for fact in after["support"].values()})
-    after["candidate_gaps"] = {candidate: [cid for cid in constraints
-        if after["support"].get(support_key(candidate, cid), {}).get("state") != "supported"]
-        for candidate in candidates}
-    after["open_gaps"] = [cid for cid in constraints if not any(
-        row["constraint_id"] == cid and row["state"] == "supported" for row in after["support"].values())]
+    refresh_gaps(task, after)
     return after, delta

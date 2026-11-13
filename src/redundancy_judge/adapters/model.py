@@ -10,6 +10,28 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 from ..common import JudgeFailure, atomic_json, canonical, identity, read_json
 
 
+def object_schema(**properties):
+    return {"type": "object", "properties": properties, "required": list(properties),
+            "additionalProperties": False}
+
+
+TEXT = {"type": "string"}
+MAYBE_TEXT = {"type": ["string", "null"]}
+BOOLEAN = {"type": "boolean"}
+NUMBER = {"type": "number"}
+RESPONSE_SCHEMAS = {
+    "task_constraints": object_schema(uncertain=BOOLEAN,
+        constraints={"type": "array", "items": object_schema(quote=TEXT)}),
+    "evidence_update": object_schema(uncertain=BOOLEAN,
+        updates={"type": "array", "items": object_schema(candidate=TEXT, constraint_id=TEXT,
+            state=TEXT, quote=TEXT, resolves_conflict=BOOLEAN)}),
+    "action_target": object_schema(candidate=MAYBE_TEXT, constraint_id=MAYBE_TEXT,
+        intent=TEXT, confidence=NUMBER),
+    "r1_verification": object_schema(confirmed=BOOLEAN, confidence=NUMBER, protection=MAYBE_TEXT),
+    "final_candidate": object_schema(quote=MAYBE_TEXT),
+}
+
+
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
@@ -39,7 +61,9 @@ class ModelJudge:
     def ask(self, kind, payload):
         prompt = self.prompts[kind]
         body = {"model": self.name, "temperature": 0, "max_tokens": self.max_tokens,
-                "response_format": {"type": "json_object"}, "reasoning_effort": "low",
+                "response_format": {"type": "json_schema", "json_schema": {
+                    "name": kind, "strict": True, "schema": RESPONSE_SCHEMAS[kind]}},
+                "reasoning_effort": "low",
                 "messages": [{"role": "system", "content": prompt},
                              {"role": "user", "content": canonical(payload)}]}
         key = identity([self.freeze, self.prompt_sha256, body])

@@ -26,7 +26,8 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
                            "charge_token_spans": judgment["charge_token_spans"],
                            "event_cost": {"generated_tokens": cost.get("policy_tokens"),
                                           "returned_tokens": cost.get("return_tokens"),
-                                          "tool_calls": cost.get("tool_calls", 1)}})
+                                          "tool_calls": cost.get("tool_calls", 1)},
+                           "provenance": judgment.get("provenance", trajectory.get("provenance"))})
             priced_cost.update({key: value for key, value in cost.items() if type(value) is int})
     total_cost = Counter()
     for stage in stages:
