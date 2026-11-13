@@ -37,3 +37,5 @@ python scripts/verify_artifacts.py --package <zip>
 全量模式按开发、校准、审计的顺序运行，开发集成本中位数在审计开始前冻结。完整原始坐标核查以及独立缓存重放用 `scripts/zhurong_verify_phase1.sbatch`。人工任务原文在受控运行目录的 `human_review_packets.jsonl`，空白字段模板和不含原文的样本索引随交付包提供。
 
 参见[数据清点](docs/data_inventory.md)、[接口](docs/interfaces.md)、[标注规程](docs/labeling_guide.md)、[验收](docs/acceptance.md)、[限制](docs/limitations.md)和[复现](REPRODUCE.md)。
+
+祝融全量离线判别已处理 100 题、400 条历史轨迹。自动标注等待独立人工审计，批准清单为空。
