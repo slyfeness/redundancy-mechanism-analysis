@@ -14,7 +14,8 @@ ROOT_FILES = {".env.example", ".gitattributes", ".gitignore", "README.md", "REPR
               "pyproject.toml", "requirements.lock"}
 SOURCE_DIRS = (".github/", "configs/", "docs/", "prompts/", "scripts/", "src/", "tests/")
 DELIVERY_TOOLS = ("scripts/zhurong_export_phase1.sbatch", "scripts/zhurong_verify_judge_weights.sbatch",
-                  "scripts/render_phase1_report.py")
+                  "scripts/zhurong_verify_phase1.sbatch", "scripts/render_phase1_report.py",
+                  "scripts/package_artifacts.py")
 PUBLIC_REPORTS = {"run_manifest.json", "metrics.json", "acceptance.json", "report.md",
                   "failure_cases.jsonl", "audit_sampling_manifest.jsonl", "human_review_template.csv",
                   "approved_labels.json", "reward_preview_summary.json", "test_results.xml", "data_access.md",
@@ -52,8 +53,7 @@ def build(commit, run, output):
         files.update({name: source.read(name) for name in source.namelist() if allowed(name, run)
                       and not name.startswith("artifacts/")})
     for name in DELIVERY_TOOLS:
-        if name not in files:
-            files[name] = subprocess.check_output(["git", "show", f"HEAD:{name}"])
+        files[name] = subprocess.check_output(["git", "show", f"HEAD:{name}"])
     for filename in sorted(PUBLIC_REPORTS):
         path = receipt.parent / filename
         if not path.is_file():
