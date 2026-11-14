@@ -3,6 +3,7 @@
 import argparse
 from collections import Counter, defaultdict
 from pathlib import Path
+import re
 
 from diagnose_phase1_ledger import digest, stat_rows
 from redundancy_judge.cli import jsonl
@@ -40,6 +41,23 @@ def augment(private):
         for flag in flags or ["unexplained"]:
             targets_by_reason[flag].append(event)
     cases = jsonl(private / "real_cases.jsonl")
+    aliases = []
+    for number, row in enumerate(ground, 1):
+        for link in row["possible_candidate_name_links"]:
+            candidate, other = link["final_candidate"], link["other_candidate"]
+            named = re.compile(re.escape(other) + r"\s+was born\s+" + re.escape(candidate), re.I)
+            abbreviation = re.fullmatch(re.escape(other) + r" \(([a-z]+)\)", candidate)
+            acronym = "".join(term[0] for term in other.split())
+            evidence = next((ref for ref in link["evidence"] if named.search(ref["quote"]) or (
+                abbreviation and acronym == abbreviation[1] and candidate in ref["quote"].casefold())), None)
+            if evidence is None:
+                continue
+            aliases.append({"private_grounding_row": number, "split": row["split"],
+                            "constraint_id": link["constraint_id"], "alias_state": link["state"],
+                            "main_state": row["constraint_states"][link["constraint_id"]]["state"],
+                            "same_entity_evidence_sha256": __import__("hashlib").sha256(
+                                evidence["quote"].encode()).hexdigest(),
+                            "frozen_g_valid": row["g"] is not None})
     return {
         "target_unresolved_overlapping_flags": {reason: stat_rows(rows)
                                                 for reason, rows in sorted(targets_by_reason.items())},
@@ -50,6 +68,11 @@ def augment(private):
         "relevant_error_relation": dict(Counter(
             item["relation"] for row in ground if row["candidate"] for item in row["evidence_errors_relation"])),
         "development_cases_by_type": dict(Counter(row["case_kind"] for row in cases if row["split"] == "dev")),
+        "verified_names": aliases,
+        "verified_cross_key_supported_rows": sum(
+            r["alias_state"] == "supported" and r["main_state"] == "unknown" for r in aliases),
+        "verified_alias_affected_grounding_rows": len({r["private_grounding_row"] for r in aliases
+            if r["alias_state"] == "supported" and r["main_state"] == "unknown"}),
     }
 
 
