@@ -20,5 +20,8 @@ def init_task_ledger(question, judge):
         task.update(status="annotation_error", error=str(exc))
     ledger = {"stage_id": None, "support": {}, "documents": [], "attempts": [],
               "visibility": [], "open_gaps": [c["constraint_id"] for c in task["constraints"]],
-              "candidate_gaps": {}, "conflicts": []}
+              "candidate_gaps": {}, "conflicts": [],
+              # A rejected row is not evidence, but it can still make an otherwise
+              # supported fact unsafe to treat as settled.  Keep its scope explicit.
+              "unresolved_evidence_risk": {"global": [], "by_support": {}}}
     return task, ledger

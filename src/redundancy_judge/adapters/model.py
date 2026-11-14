@@ -10,8 +10,8 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 from ..common import JudgeFailure, atomic_json, canonical, identity, read_json
 
 
-def object_schema(**properties):
-    return {"type": "object", "properties": properties, "required": list(properties),
+def object_schema(*, required=None, **properties):
+    return {"type": "object", "properties": properties, "required": list(properties) if required is None else required,
             "additionalProperties": False}
 
 
@@ -19,16 +19,26 @@ TEXT = {"type": "string"}
 MAYBE_TEXT = {"type": ["string", "null"]}
 BOOLEAN = {"type": "boolean"}
 NUMBER = {"type": "number"}
+START = {"type": "integer", "minimum": 0}
+END = {"type": "integer", "minimum": 1}
+NULLABLE_START = {**START, "type": ["integer", "null"]}
+NULLABLE_END = {**END, "type": ["integer", "null"]}
+JUDGE_PROTOCOL_VERSION = "phase1.1.evidence_safety.v2"
 RESPONSE_SCHEMAS = {
     "task_constraints": object_schema(uncertain=BOOLEAN,
-        constraints={"type": "array", "items": object_schema(quote=TEXT)}),
+        constraints={"type": "array", "items": object_schema(quote=TEXT, start={"type": "integer", "minimum": 0},
+            end={"type": "integer", "minimum": 1})}),
     "evidence_update": object_schema(uncertain=BOOLEAN,
+        uncertainty_scope={"anyOf": [{"type": "null"}, object_schema(candidate=TEXT, constraint_id=TEXT,
+            quote=TEXT, start=START, end=END)]},
         updates={"type": "array", "items": object_schema(candidate=TEXT, constraint_id=TEXT,
-            state=TEXT, quote=TEXT, resolves_conflict=BOOLEAN)}),
+            state={"enum": ["partially_supported", "supported", "conflicted", "refuted", "unknown"]},
+            quote=TEXT, start=START, end=END, resolves_conflict=BOOLEAN)}),
     "action_target": object_schema(candidate=MAYBE_TEXT, constraint_id=MAYBE_TEXT,
-        intent=TEXT, confidence=NUMBER),
+        gap_id=MAYBE_TEXT, intent=TEXT, confidence=NUMBER, evidence_basis={"type": "array", "items": TEXT}),
     "r1_verification": object_schema(confirmed=BOOLEAN, confidence=NUMBER, protection=MAYBE_TEXT),
-    "final_candidate": object_schema(quote=MAYBE_TEXT),
+    "final_candidate": object_schema(quote=MAYBE_TEXT, start=NULLABLE_START, end=NULLABLE_END,
+        anchor=MAYBE_TEXT, anchor_start=NULLABLE_START, anchor_end=NULLABLE_END),
 }
 
 
@@ -39,6 +49,17 @@ class NoRedirect(HTTPRedirectHandler):
 
 class ModelJudge:
     synthetic = False
+    protocol_version = JUDGE_PROTOCOL_VERSION
+
+    @staticmethod
+    def _response(kind, response):
+        if not isinstance(response, dict):
+            raise JudgeFailure("judge output is not a JSON object")
+        if not RESPONSE_SCHEMAS[kind]["properties"].keys() >= response.keys():
+            raise JudgeFailure("judge output contains unknown fields")
+        if kind in {"evidence_update", "final_candidate"} and not set(RESPONSE_SCHEMAS[kind]["required"]) <= response.keys():
+            raise JudgeFailure("versioned judge response is missing required fields")
+        return response
 
     def __init__(self, config, prompt_dir, cache_dir, freeze, *, replay_only=False):
         url = config["url"].rstrip("/")
@@ -76,14 +97,14 @@ class ModelJudge:
                 "reasoning_effort": "low",
                 "messages": [{"role": "system", "content": prompt},
                              {"role": "user", "content": canonical(payload)}]}
-        key = identity([self.freeze, self.prompt_sha256, body])
+        key = identity([self.protocol_version, self.freeze, self.prompt_sha256, body])
         path = self.cache / key[:2] / (key + ".json")
         if path.exists():
             receipt = read_json(path)
-            if receipt["cache_key"] != key:
+            if receipt["cache_key"] != key or receipt.get("protocol_version") != self.protocol_version:
                 raise JudgeFailure("cache identity mismatch")
             if "response" in receipt:
-                return receipt["response"]
+                return self._response(kind, receipt["response"])
             raise JudgeFailure(receipt["failure"])
         if self.replay_only:
             raise JudgeFailure("replay cache entry is missing")
@@ -101,18 +122,17 @@ class ModelJudge:
                 raise JudgeFailure("judge generation did not finish")
             if choice["message"].get("tool_calls"):
                 raise JudgeFailure("judge attempted a tool call")
-            response = json.loads(choice["message"]["content"], parse_constant=lambda v: float(v))
-            if not isinstance(response, dict):
-                raise JudgeFailure("judge output is not a JSON object")
+            response = self._response(kind, json.loads(choice["message"]["content"], parse_constant=lambda v: float(v)))
             canonical(response)
         except JudgeFailure as exc:
-            atomic_json(path, {"cache_key": key, "failure": str(exc)})
+            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": str(exc)})
             raise
         except (OSError, ValueError, TypeError, KeyError, IndexError) as exc:
             message = f"judge transport or JSON failure ({type(exc).__name__})"
-            atomic_json(path, {"cache_key": key, "failure": message})
+            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": message})
             raise JudgeFailure(message) from exc
-        atomic_json(path, {"cache_key": key, "response": response, "usage": envelope.get("usage"),
+        atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version,
+                           "response": response, "usage": envelope.get("usage"),
                            "response_sha256": sha256(raw).hexdigest()})
         return response
 
@@ -128,11 +148,12 @@ class SyntheticJudge:
             return {"constraints": [{"quote": question, "start": 0, "end": len(question)}],
                     "uncertain": False}
         if kind == "action_target":
-            return {"intent": "unknown", "confidence": 0, "candidate": None, "constraint_id": None}
+            return {"intent": "unknown", "confidence": 0, "candidate": None, "constraint_id": None,
+                    "gap_id": None, "evidence_basis": []}
         if kind == "evidence_update":
-            return {"updates": [], "uncertain": False}
+            return {"updates": [], "uncertain": False, "uncertainty_scope": None}
         if kind == "r1_verification":
             return {"confirmed": False, "confidence": 1, "protection": None}
         if kind == "final_candidate":
-            return {"quote": None}
+            return dict.fromkeys(RESPONSE_SCHEMAS[kind]["required"])
         raise JudgeFailure("unsupported fixture prompt")

@@ -11,9 +11,10 @@ import sys
 
 import yaml
 
-from .adapters.model import ModelJudge, SyntheticJudge
+from .adapters.model import JUDGE_PROTOCOL_VERSION, ModelJudge, SyntheticJudge
 from .adapters.trace import NativeByteTokenizer, load_trajectory
-from .common import JudgeFailure, atomic_json, canonical, exact_quote, identity, read_json
+from .common import JudgeFailure, atomic_json, canonical, identity, read_json
+from .final_candidate import extract_final_candidate
 from .init_task_ledger import init_task_ledger
 from .judge_stage import judge_stage
 from .parse_stages import parse_stages
@@ -21,7 +22,7 @@ from .resolve_action_target import resolve_action_target
 from .summarize_trajectory import summarize_trajectory
 from .update_evidence_ledger import merge_parallel_updates, update_evidence_ledger
 
-SCHEMA_VERSION = "phase1.v1"
+SCHEMA_VERSION = "phase1.1.v2"
 BUDGET = {"CONTEXT_LIMIT_STOP", "GENERATION_LENGTH_STOP", "SAFETY_CEILING_STOP"}
 PRIVATE_ARTIFACTS = ("input_index", "stages", "legacy_stage_mapping", "task_specs", "ledger_snapshots",
                  "action_targets", "stage_judgments", "trajectory_summaries",
@@ -52,7 +53,8 @@ def freeze_config(config):
                     if k in config["judge"]}
     tokenizer_sha = sha256(Path(config["tokenizer"]).read_bytes()).hexdigest() if config.get("tokenizer") else None
     legacy_shas = [sha256(Path(path).read_bytes()).hexdigest() for path in config.get("legacy_stages") or []]
-    return {"schema_version": SCHEMA_VERSION, "code_commit": config["code_commit"],
+    return {"schema_version": SCHEMA_VERSION, "judge_protocol_version": JUDGE_PROTOCOL_VERSION,
+            "code_commit": config["code_commit"],
             "model_version": judge_config["version"], "tokenizer_version": config.get("tokenizer_revision"),
             "config_sha256": identity([judge_config, config.get("threshold", 0.8), tokenizer_sha,
                                        config.get("pilot_seed"), config.get("mode"),
@@ -132,12 +134,13 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                                "kind": "parallel_merge", "before": before, "after": ledger})
         targets.update(current_targets)
     candidate = None
+    final_candidate = None
     finals = [s["final_text"] for s in stages if s["stage_type"] == "final"]
     if finals:
         try:
-            response = judge.ask("final_candidate", {"question": trace["question"], "final_text": finals[-1]})
-            if response.get("quote"):
-                candidate = exact_quote(finals[-1], response)["quote"]
+            final_candidate = extract_final_candidate(trace["question"], finals[-1], judge)
+            if final_candidate:
+                candidate = final_candidate["candidate"]
         except (JudgeFailure, AttributeError, TypeError) as exc:
             annotation_errors.append({"event_id": None, "reason": str(exc)})
     if task["status"] != "ok":
@@ -160,11 +163,13 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                 **{k: parsed[k] for k in ("token_alignment_status", "policy_token_spans", "policy_token_count")})
     return {"input_index": row, "provenance": provenance, "task_specs": task,
             "stages": stages, "tool_events": parsed["tool_events"], "position_map": parsed["position_map"],
+            "final_candidate": final_candidate,
             "legacy_stage_mapping": [{"stage_id": s["stage_id"], "mapping": s["legacy_mapping"],
                                       "status": s["legacy_mapping_status"]} for s in stages],
             "ledger_snapshots": states, "action_targets": list(targets.values()),
-            "stage_judgments": judgments, "trajectory_summaries": summarize_trajectory(
-                info, task, ledger, stages, judgments, submitted_candidate=candidate),
+            "stage_judgments": judgments, "trajectory_summaries": {
+                **summarize_trajectory(info, task, ledger, stages, judgments, submitted_candidate=candidate),
+                "final_candidate": final_candidate},
             "parse_failures": parsed["anomalies"], "annotation_failures": annotation_errors}
 
 
