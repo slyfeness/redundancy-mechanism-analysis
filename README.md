@@ -41,3 +41,11 @@ python scripts/verify_artifacts.py --package <zip>
 祝融全量离线判别已处理 100 题、400 条历史轨迹。自动标注等待独立人工审计，批准清单为空。
 
 [全量结果和验收](artifacts/phase1_zhurong-184780/report.md) · [受控数据说明](artifacts/phase1_zhurong-184780/data_access.md)
+
+## 长程智能体奖励框架与实验结果
+
+| 内容 | 仓库入口 |
+| --- | --- |
+| Ledger-GRPO 源码、配置、测试与复现说明 | [ledger-grpo](ledger-grpo/README.md) |
+| Ledger-GRPO 工程回放与单步试跑 | [试跑报告和结果](artifacts/ledger_grpo_framework/README.md) |
+| 第一期证据账本只读诊断 | [报告和逐条索引](artifacts/ledger_diagnosis_phase1_zhurong-184780/) |
