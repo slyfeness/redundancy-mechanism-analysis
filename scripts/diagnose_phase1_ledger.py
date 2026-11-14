@@ -573,11 +573,11 @@ def diagnose(args):
     if old != now:
         raise ValueError("original annotation records and replay traces disagree")
     output_files(args, manifest, config, output, before, index, compared, reconciled, grounding,
-                 funnel, impacts, case_candidates, case_refs, judge.calls)
+                 funnel, impacts, case_candidates, case_refs, judge.calls, bundles)
 
 
 def output_files(args, manifest, config, output, before, index, compared, failures, grounding,
-                 funnel, impacts, cases, case_refs, calls):
+                 funnel, impacts, cases, case_refs, calls, bundles):
     quotes = [row for row in failures if row["reason"] == QUOTE_ERROR]
     discounts = [row for row in grounding if row["reward_exclusion_reason"] == "unverified_grounding"]
     valid = [row for row in grounding if row["g"] is not None]
