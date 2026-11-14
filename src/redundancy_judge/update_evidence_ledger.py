@@ -12,14 +12,36 @@ def support_key(candidate, constraint_id):
 
 
 def refresh_gaps(task, after):
+    risks = after.get("unresolved_evidence_risk", {}).get("by_support", {})
+    for key, row in after["support"].items():
+        if risks.get(key):
+            row["unresolved_evidence_risk"] = risks[key]
     after["conflicts"] = [key for key, row in after["support"].items() if row["state"] == "conflicted"]
     constraints = [c["constraint_id"] for c in task["constraints"]]
     candidates = sorted({fact["candidate"] for fact in after["support"].values()})
     after["candidate_gaps"] = {candidate: [cid for cid in constraints
-        if after["support"].get(support_key(candidate, cid), {}).get("state") != "supported"]
+        if (after["support"].get(support_key(candidate, cid), {}).get("state") != "supported"
+            or risks.get(support_key(candidate, cid)))]
         for candidate in candidates}
     after["open_gaps"] = [cid for cid in constraints if not any(
-        row["constraint_id"] == cid and row["state"] == "supported" for row in after["support"].values())]
+        row["constraint_id"] == cid and row["state"] == "supported"
+        and not risks.get(support_key(row["candidate"], cid)) for row in after["support"].values())]
+
+
+def _risk(after, delta, *, candidate, constraint_id, state, reason, event_id):
+    """Record an unvalidated Judge row without promoting it to evidence."""
+    potential_conflict = state in {"refuted", "conflicted"}
+    record = {"candidate": candidate, "constraint_id": constraint_id, "state": state,
+              "reason": reason, "event_id": event_id, "potential_conflict": potential_conflict}
+    delta["rejected_evidence"].append(record)
+    risks = after.setdefault("unresolved_evidence_risk", {"global": [], "by_support": {}})
+    if candidate and constraint_id:
+        key = support_key(candidate, constraint_id)
+        risks["by_support"].setdefault(key, []).append(record)
+        if key in after["support"]:
+            after["support"][key]["unresolved_evidence_risk"] = risks["by_support"][key]
+    else:
+        risks["global"].append(record)
 
 
 def merge_parallel_updates(task, before, branches):
@@ -42,6 +64,19 @@ def merge_parallel_updates(task, before, branches):
                  else "supported" if "supported" in states else "refuted" if "refuted" in states
                  else "partially_supported")
         merged["support"][key] = {**rows[0], "state": state, "evidence": list(evidence.values())}
+    for after, _ in branches:
+        source = after.get("unresolved_evidence_risk", {})
+        merged_risks = merged.setdefault("unresolved_evidence_risk", {"global": [], "by_support": {}})
+        for row in source.get("global", []):
+            if row not in merged_risks["global"]:
+                merged_risks["global"].append(row)
+        for key, rows in source.get("by_support", {}).items():
+            dest = merged_risks["by_support"].setdefault(key, [])
+            for row in rows:
+                if row not in dest:
+                    dest.append(row)
+            if key in merged["support"]:
+                merged["support"][key]["unresolved_evidence_risk"] = dest
     refresh_gaps(task, merged)
     return merged
 
@@ -83,18 +118,29 @@ def update_evidence_ledger(task, before, stage, event, judge):
             seen = set()
             for row in response["updates"]:
                 candidate, cid, state = candidate_name(row.get("candidate")), row.get("constraint_id"), row.get("state")
-                require(candidate and cid in {c["constraint_id"] for c in task["constraints"]}
-                        and state in STATES - {"unknown"}, "invalid support coordinates or state")
+                if not (candidate and cid in {c["constraint_id"] for c in task["constraints"]}
+                        and state in STATES - {"unknown"}):
+                    _risk(after, delta, candidate=candidate, constraint_id=cid if isinstance(cid, str) else None,
+                          state=state if isinstance(state, str) else "unknown",
+                          reason="invalid support coordinates or state", event_id=event_id)
+                    continue
                 key = support_key(candidate, cid)
-                require(key not in seen, "duplicate candidate/constraint update")
+                if key in seen:
+                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
+                          reason="duplicate candidate/constraint update", event_id=event_id)
+                    continue
                 seen.add(key)
                 resolves = row.get("resolves_conflict", False)
-                require(type(resolves) is bool, "invalid conflict resolution field")
+                if type(resolves) is not bool:
+                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
+                          reason="invalid conflict resolution field", event_id=event_id)
+                    continue
                 try:
                     ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
                                reference=event.get("return_ref"), document=document, state=state)
                 except JudgeFailure as exc:
-                    delta["rejected_evidence"].append({"reason": str(exc), "constraint_id": cid})
+                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
+                          reason=str(exc), event_id=event_id)
                     continue
                 updates.append((key, candidate, cid, state, ref, resolves))
         for key, candidate, cid, state, ref, resolves in updates:
@@ -125,7 +171,10 @@ def update_evidence_ledger(task, before, stage, event, judge):
                      ("new_support", "strengthening", "conflicts", "resolved_conflicts")))
         if delta["rejected_evidence"]:
             delta["status"] = "partial_annotation"
-            if not delta["effective_gain"]:
+            # A rejected possible refutation cannot be priced as harmless.
+            # An unrelated malformed support row does not erase a separately
+            # validated update, but remains visible through its scoped risk.
+            if any(row["potential_conflict"] for row in delta["rejected_evidence"]):
                 delta["effective_gain"] = None
     except (JudgeFailure, AttributeError, TypeError) as exc:
         delta.update(status="annotation_error", error=str(exc))

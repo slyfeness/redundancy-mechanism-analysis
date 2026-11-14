@@ -13,7 +13,8 @@ import yaml
 
 from .adapters.model import ModelJudge, SyntheticJudge
 from .adapters.trace import NativeByteTokenizer, load_trajectory
-from .common import JudgeFailure, atomic_json, canonical, exact_quote, identity, read_json
+from .common import JudgeFailure, atomic_json, canonical, identity, read_json
+from .final_candidate import extract_final_candidate
 from .init_task_ledger import init_task_ledger
 from .judge_stage import judge_stage
 from .parse_stages import parse_stages
@@ -132,12 +133,13 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                                "kind": "parallel_merge", "before": before, "after": ledger})
         targets.update(current_targets)
     candidate = None
+    final_candidate = None
     finals = [s["final_text"] for s in stages if s["stage_type"] == "final"]
     if finals:
         try:
-            response = judge.ask("final_candidate", {"question": trace["question"], "final_text": finals[-1]})
-            if response.get("quote"):
-                candidate = exact_quote(finals[-1], response)["quote"]
+            final_candidate = extract_final_candidate(trace["question"], finals[-1], judge)
+            if final_candidate:
+                candidate = final_candidate["candidate"]
         except (JudgeFailure, AttributeError, TypeError) as exc:
             annotation_errors.append({"event_id": None, "reason": str(exc)})
     if task["status"] != "ok":
@@ -160,6 +162,7 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                 **{k: parsed[k] for k in ("token_alignment_status", "policy_token_spans", "policy_token_count")})
     return {"input_index": row, "provenance": provenance, "task_specs": task,
             "stages": stages, "tool_events": parsed["tool_events"], "position_map": parsed["position_map"],
+            "final_candidate": final_candidate,
             "legacy_stage_mapping": [{"stage_id": s["stage_id"], "mapping": s["legacy_mapping"],
                                       "status": s["legacy_mapping_status"]} for s in stages],
             "ledger_snapshots": states, "action_targets": list(targets.values()),

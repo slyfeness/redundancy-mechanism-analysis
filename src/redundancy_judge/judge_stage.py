@@ -52,9 +52,11 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
     r2b = ("positive" if exact and not protections else "negative") if has_return and action_key else "abstain"
     r1 = "abstain"
     verification = None
+    r1_funnel = {"outcome": "not_invoked", "reason": None}
     if has_return and confirmations and delta.get("status") == "ok":
         if not matching or target["intent"] != "verify" or protections:
             r1 = "negative"
+            r1_funnel = {"outcome": "not_invoked", "reason": "precondition_not_met"}
         else:
             try:
                 value = judge.ask("r1_verification", {
@@ -74,10 +76,23 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
                     protections.append(protection)
                 verification = {"confidence": confidence, "confirmed": value["confirmed"],
                                 "protection": protection}
+                if confidence < threshold:
+                    r1_funnel = {"outcome": "low_confidence", "reason": "judge_below_threshold"}
+                elif not value["confirmed"]:
+                    r1_funnel = {"outcome": "negative", "reason": "judge_not_confirmed"}
+                else:
+                    r1_funnel = {"outcome": "positive", "reason": "judge_confirmed"}
                 if confidence >= threshold:
                     r1 = "positive" if value["confirmed"] and not protections else "negative"
             except (JudgeFailure, AttributeError, TypeError) as exc:
                 problems.append(str(exc))
+                r1_funnel = {"outcome": "error", "reason": str(exc)}
+    elif not has_return:
+        r1_funnel = {"outcome": "not_invoked", "reason": "no_visible_return"}
+    elif not confirmations:
+        r1_funnel = {"outcome": "not_invoked", "reason": "action_target_uncertain"}
+    elif delta.get("status") != "ok":
+        r1_funnel = {"outcome": "not_invoked", "reason": "evidence_update_unavailable"}
     if protections and r2b == "positive":
         r2b = "negative"
     if stage.get("parse_status") != "ok":
@@ -119,7 +134,9 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
              "comparison_environment_or_arguments_unverified" if label == "R2b" else
              "action_target_uncertain" if not confirmations else
              "evidence_update_unavailable" if delta["effective_gain"] is None else
-             "verification_error" if problems else "low_verification_confidence"),
+             "verification_error" if problems else
+             "low_verification_confidence" if r1_funnel["outcome"] == "low_confidence" else
+             "r1_not_invoked"),
          "evidence": evidence if label == "R1" else [r["event_id"] for r in exact if r["event_id"] in visible]
          if label == "R2b" else similar}
         for label, decision in (("R2b", r2b), ("R1", r1), ("R2a", r2a))
@@ -131,5 +148,6 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
             "position_strategy": "verified_call_envelope" if price_label else "unpriced",
             "diagnostics": {"r1_check": verification, "r2a_similarity": similarity,
                             "same_gap_attempts": similar, "effective_gain": delta["effective_gain"],
-                            "exact_repeat_ids": [r["event_id"] for r in exact]},
+                            "exact_repeat_ids": [r["event_id"] for r in exact],
+                            "r1_funnel": r1_funnel},
             "errors": problems}

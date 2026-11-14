@@ -113,12 +113,15 @@
     },
     "LedgerSnapshot": {
       "type": "object", "required": ["stage_id", "support", "documents", "attempts", "visibility",
-        "open_gaps", "candidate_gaps", "conflicts"],
+        "open_gaps", "candidate_gaps", "conflicts", "unresolved_evidence_risk"],
       "properties": {
         "stage_id": {"$ref": "#/$defs/NullableText"}, "documents": {"$ref": "#/$defs/Strings"},
         "attempts": {"type": "array", "items": {"type": "object"}}, "visibility": {"$ref": "#/$defs/Strings"},
         "open_gaps": {"$ref": "#/$defs/Strings"}, "conflicts": {"$ref": "#/$defs/Strings"},
         "candidate_gaps": {"type": "object", "additionalProperties": {"$ref": "#/$defs/Strings"}},
+        "unresolved_evidence_risk": {"type": "object", "required": ["global", "by_support"],
+          "properties": {"global": {"type": "array", "items": {"type": "object"}},
+            "by_support": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "object"}}}}},
         "support": {"type": "object", "additionalProperties": {
           "type": "object", "required": ["candidate", "constraint_id", "state", "evidence"],
           "properties": {"candidate": {"type": "string"}, "constraint_id": {"type": "string"},
@@ -127,9 +130,10 @@
       }
     },
     "ActionTarget": {
-      "type": "object", "required": ["state", "candidate", "constraint_id", "intent", "confidence"],
-      "properties": {"state": {"enum": ["resolved", "unknown"]}, "candidate": {"$ref": "#/$defs/NullableText"},
+      "type": "object", "required": ["state", "candidate", "constraint_id", "gap_id", "intent", "confidence", "evidence_basis"],
+      "properties": {"state": {"enum": ["resolved", "gap_resolved", "unknown"]}, "candidate": {"$ref": "#/$defs/NullableText"},
         "constraint_id": {"$ref": "#/$defs/NullableText"},
+        "gap_id": {"$ref": "#/$defs/NullableText"}, "evidence_basis": {"$ref": "#/$defs/Strings"},
         "intent": {"enum": ["explore", "verify", "fill_gap", "resolve_conflict", "strengthen",
           "open_fulltext", "recover", "retry", "unknown"]},
         "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}}
@@ -157,7 +161,7 @@
       "type": "object", "required": ["question_id", "trajectory_id", "result", "recording_complete",
         "token_alignment_status", "policy_token_count", "policy_token_spans", "counts", "stage_count",
         "judgment_coverage", "abstentions", "anomalies", "cost", "unpriced_cost", "g",
-        "grounding_status", "unresolved_constraints", "events", "provenance"],
+        "grounding_status", "unresolved_constraints", "unresolved_evidence_risk", "events", "provenance"],
       "properties": {
         "question_id": {"type": "string"}, "trajectory_id": {"type": "string"},
         "result": {"enum": ["C", "W", "N", "UNCERTAIN", null]}, "recording_complete": {"type": "boolean"},
@@ -169,7 +173,8 @@
         "cost": {"type": "object"}, "unpriced_cost": {"type": "object"},
         "g": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
         "grounding_status": {"enum": ["valid", "invalid"]},
-        "unresolved_constraints": {"$ref": "#/$defs/Strings"}, "events": {"type": "array", "items": {"type": "object"}},
+        "unresolved_constraints": {"$ref": "#/$defs/Strings"},
+        "unresolved_evidence_risk": {"type": "array", "items": {"type": "object"}}, "events": {"type": "array", "items": {"type": "object"}},
         "provenance": {"$ref": "#/$defs/Provenance"}
       }
     },

@@ -11,8 +11,14 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     constraints = [item["constraint_id"] for item in task["constraints"]]
     supported = [cid for cid in constraints if candidate and
                  ledger["support"].get(support_key(candidate, cid), {}).get("state") == "supported"]
-    evidence_incomplete = any(attempt["status"] in {"annotation_error", "partial_annotation"}
-                              for attempt in ledger["attempts"])
+    risks = ledger.get("unresolved_evidence_risk", {})
+    relevant_risks = list(risks.get("global", []))
+    if candidate:
+        for cid in constraints:
+            relevant_risks.extend(risks.get("by_support", {}).get(support_key(candidate, cid), []))
+    # A failed update is local unless its scope cannot be established or it
+    # concerns the submitted candidate and one of its required constraints.
+    evidence_incomplete = bool(relevant_risks)
     g = (len(supported) / len(constraints)
          if candidate and constraints and not task["uncertain"] and not evidence_incomplete else None)
     stages_by_id = {row["stage_id"]: row for row in stages}
@@ -53,7 +59,8 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
             "g": g, "grounding_status": "valid" if g is not None else "invalid",
             "grounding_issue": "missing_or_ambiguous_submitted_candidate" if not candidate else
             "uncertain_task" if task["uncertain"] or not constraints else
-            "incomplete_evidence_updates" if evidence_incomplete else None,
+            "unresolved_evidence_risk" if evidence_incomplete else None,
             "supported_constraints": supported,
             "unresolved_constraints": [cid for cid in constraints if cid not in supported],
+            "unresolved_evidence_risk": relevant_risks,
             "events": events}

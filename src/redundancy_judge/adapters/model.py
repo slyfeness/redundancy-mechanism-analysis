@@ -10,8 +10,8 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 from ..common import JudgeFailure, atomic_json, canonical, identity, read_json
 
 
-def object_schema(**properties):
-    return {"type": "object", "properties": properties, "required": list(properties),
+def object_schema(*, required=None, **properties):
+    return {"type": "object", "properties": properties, "required": list(properties) if required is None else required,
             "additionalProperties": False}
 
 
@@ -21,14 +21,17 @@ BOOLEAN = {"type": "boolean"}
 NUMBER = {"type": "number"}
 RESPONSE_SCHEMAS = {
     "task_constraints": object_schema(uncertain=BOOLEAN,
-        constraints={"type": "array", "items": object_schema(quote=TEXT)}),
+        constraints={"type": "array", "items": object_schema(quote=TEXT, start={"type": "integer", "minimum": 0},
+            end={"type": "integer", "minimum": 1})}),
     "evidence_update": object_schema(uncertain=BOOLEAN,
         updates={"type": "array", "items": object_schema(candidate=TEXT, constraint_id=TEXT,
-            state=TEXT, quote=TEXT, resolves_conflict=BOOLEAN)}),
+            state=TEXT, quote=TEXT, start={"type": "integer", "minimum": 0},
+            end={"type": "integer", "minimum": 1}, resolves_conflict=BOOLEAN)}),
     "action_target": object_schema(candidate=MAYBE_TEXT, constraint_id=MAYBE_TEXT,
-        intent=TEXT, confidence=NUMBER),
+        gap_id=MAYBE_TEXT, intent=TEXT, confidence=NUMBER, evidence_basis={"type": "array", "items": TEXT}),
     "r1_verification": object_schema(confirmed=BOOLEAN, confidence=NUMBER, protection=MAYBE_TEXT),
-    "final_candidate": object_schema(quote=MAYBE_TEXT),
+    "final_candidate": object_schema(quote=MAYBE_TEXT, start={"type": ["integer", "null"], "minimum": 0},
+        end={"type": ["integer", "null"], "minimum": 1}, anchor=MAYBE_TEXT),
 }
 
 
@@ -128,11 +131,12 @@ class SyntheticJudge:
             return {"constraints": [{"quote": question, "start": 0, "end": len(question)}],
                     "uncertain": False}
         if kind == "action_target":
-            return {"intent": "unknown", "confidence": 0, "candidate": None, "constraint_id": None}
+            return {"intent": "unknown", "confidence": 0, "candidate": None, "constraint_id": None,
+                    "gap_id": None, "evidence_basis": []}
         if kind == "evidence_update":
             return {"updates": [], "uncertain": False}
         if kind == "r1_verification":
             return {"confirmed": False, "confidence": 1, "protection": None}
         if kind == "final_candidate":
-            return {"quote": None}
+            return {"quote": None, "start": None, "end": None, "anchor": None}
         raise JudgeFailure("unsupported fixture prompt")

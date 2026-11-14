@@ -46,7 +46,7 @@ def test_quote_hook_preserves_original_failure():
     assert captures[0]["event_id"] == "fixture-1:1"
 
 
-def test_batch_hook_identifies_already_validated_row_lost_to_later_validation():
+def test_batch_hook_confirms_already_validated_row_survives_later_invalid_row():
     class Judge:
         context = {"trajectory_id": "fixture-1", "event_id": "fixture-1:1"}
 
@@ -66,8 +66,12 @@ def test_batch_hook_identifies_already_validated_row_lost_to_later_validation():
     reference = update_evidence_ledger(task, initial, stage, event, judge)
     wrapped = diagnosis.inspect_update(update_evidence_ledger, impacts)
     assert wrapped(task, initial, stage, event, judge) == reference
-    assert reference[0]["support"] == {}
-    assert impacts[0]["buffered_valid_updates"][0]["quote"] == "Ada qualifies"
+    assert {row["candidate"] for row in reference[0]["support"].values()} == {"ada"}
+    assert reference[1]["status"] == "partial_annotation"
+    assert reference[1]["rejected_evidence"][0]["constraint_id"] == "missing"
+    # The original diagnostic hook only emits a lost-row impact for the old
+    # all-or-nothing annotation failure.  A fixed implementation has none.
+    assert impacts == []
 
 
 def test_cache_miss_remains_offline(tmp_path):
