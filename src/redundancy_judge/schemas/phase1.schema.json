@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Redundancy Judge Phase 1 record definitions",
+  "description": "Select a record schema using its $defs name. Validate data-dependent identities, exact text, range ordering, and original token equality in the runtime.",
+  "$defs": {
+    "NonnegativeInteger": {"type": "integer", "minimum": 0},
+    "NullableCount": {"type": ["integer", "null"], "minimum": 0},
+    "NullableText": {"type": ["string", "null"]},
+    "Hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "Span": {
+      "description": "Half-open [start, end) interval. Unit specified by the field and coordinate.",
+      "type": "array", "items": {"$ref": "#/$defs/NonnegativeInteger"}, "minItems": 2, "maxItems": 2
+    },
+    "Spans": {"type": "array", "items": {"$ref": "#/$defs/Span"}},
+    "Strings": {"type": "array", "items": {"type": "string"}},
+    "SourceRef": {
+      "type": "object", "required": ["source_pointer", "character_span"],
+      "properties": {"source_pointer": {"type": "string", "pattern": "^/"}, "character_span": {"$ref": "#/$defs/Span"}}
+    },
+    "Quote": {
+      "type": "object", "required": ["quote", "start", "end", "coordinate"],
+      "properties": {"quote": {"type": "string", "minLength": 1}, "start": {"$ref": "#/$defs/NonnegativeInteger"},
+        "end": {"type": "integer", "minimum": 1}, "coordinate": {"const": "source_char"}}
+    },
+    "Provenance": {
+      "type": "object",
+      "required": ["schema_version", "code_commit", "model_version", "tokenizer_version",
+        "input_sha256", "prompt_sha256", "config_sha256"],
+      "properties": {
+        "schema_version": {"const": "phase1.v1"}, "code_commit": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1}, "tokenizer_version": {"$ref": "#/$defs/NullableText"},
+        "input_sha256": {"$ref": "#/$defs/Hash"}, "prompt_sha256": {"anyOf": [
+          {"$ref": "#/$defs/Hash"}, {"const": "synthetic"}]},
+        "config_sha256": {"$ref": "#/$defs/Hash"}
+      }
+    },
+    "TrajectoryRecord": {
+      "type": "object",
+      "required": ["schema_version", "question_id", "trajectory_id", "question", "question_sha256",
+        "result", "termination_reason", "input_sha256", "source_path", "model", "model_revision",
+        "tokenizer_revision", "rounds", "tool_events", "guard_attempts", "synthetic"],
+      "properties": {
+        "schema_version": {"const": "phase1.v1"}, "question_id": {"type": "string"},
+        "trajectory_id": {"type": "string"}, "question": {"type": "string", "minLength": 1},
+        "question_sha256": {"$ref": "#/$defs/Hash"}, "input_sha256": {"$ref": "#/$defs/Hash"},
+        "source_path": {"type": "string"}, "termination_reason": {"type": "string"},
+        "model": {"$ref": "#/$defs/NullableText"}, "model_revision": {"$ref": "#/$defs/NullableText"},
+        "tokenizer_revision": {"$ref": "#/$defs/NullableText"}, "synthetic": {"type": "boolean"},
+        "result": {"type": ["object", "null"], "required": ["label", "source"],
+          "properties": {"label": {"enum": ["C", "W", "N"]}, "source": {"anyOf": [
+            {"type": "string", "minLength": 1}, {"type": "object", "required": ["kind", "sha256", "record_id"],
+              "properties": {"kind": {"type": "string"}, "sha256": {"$ref": "#/$defs/Hash"},
+                "record_id": {"type": "string"}}}]}}},
+        "rounds": {"type": "array", "items": {"type": "object"}},
+        "tool_events": {"type": "array", "items": {"type": "object"}},
+        "guard_attempts": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "Cost": {
+      "type": "object", "required": ["policy_tokens", "return_tokens", "tool_calls"],
+      "properties": {"policy_tokens": {"$ref": "#/$defs/NullableCount"}, "return_tokens": {"$ref": "#/$defs/NullableCount"},
+        "tool_calls": {"$ref": "#/$defs/NonnegativeInteger"}}
+    },
+    "StageRecord": {
+      "type": "object",
+      "required": ["stage_id", "stage_type", "order", "parallel_group_id", "round_ids", "call_ids",
+        "event_ids", "policy_coordinate", "policy_token_spans", "charge_token_spans", "return_refs",
+        "strategy_refs", "visible_return_ids", "cost", "legacy_mapping", "legacy_mapping_status",
+        "parse_status", "action", "strategy_text", "final_text"],
+      "properties": {
+        "stage_id": {"type": "string"}, "stage_type": {"enum": ["tool", "final", "partial"]},
+        "order": {"type": "integer", "minimum": 1}, "parallel_group_id": {"$ref": "#/$defs/NullableText"},
+        "round_ids": {"type": "array", "items": {"type": ["integer", "null"]}},
+        "call_ids": {"type": "array", "items": {"$ref": "#/$defs/NullableText"}},
+        "event_ids": {"$ref": "#/$defs/Strings"},
+        "policy_coordinate": {"const": "original_generated_tokens_concatenated"},
+        "policy_token_spans": {"$ref": "#/$defs/Spans"}, "charge_token_spans": {"$ref": "#/$defs/Spans"},
+        "return_refs": {"type": "array", "items": {"$ref": "#/$defs/SourceRef"}},
+        "strategy_refs": {"type": "array", "items": {"$ref": "#/$defs/SourceRef"}},
+        "visible_return_ids": {"$ref": "#/$defs/Strings"}, "cost": {"$ref": "#/$defs/Cost"},
+        "legacy_mapping": {"type": "array", "items": {"type": "object",
+          "required": ["legacy_block_id", "overlap_policy_spans", "legacy_character_span", "legacy_round_tokens",
+            "source_sha256", "status"],
+          "properties": {"legacy_block_id": {"type": "string"}, "overlap_policy_spans": {"$ref": "#/$defs/Spans"},
+            "legacy_character_span": {"$ref": "#/$defs/Span"}, "legacy_round_tokens": {"$ref": "#/$defs/Span"},
+            "source_sha256": {"$ref": "#/$defs/Hash"}, "status": {"const": "verified_overlap"}}}},
+        "legacy_mapping_status": {"enum": ["verified_overlap", "unavailable"]},
+        "parse_status": {"enum": ["ok", "incomplete", "protocol_error"]},
+        "action": {"type": ["object", "null"],
+          "required": ["tool_name", "arguments", "call_id", "event_id", "environment", "deterministic"],
+          "properties": {"tool_name": {"$ref": "#/$defs/NullableText"}, "arguments": {"type": ["object", "null"]},
+            "call_id": {"$ref": "#/$defs/NullableText"}, "event_id": {"type": "string"},
+            "environment": {"$ref": "#/$defs/NullableText"}, "deterministic": {"type": "boolean"}}},
+        "strategy_text": {"type": "string"}, "final_text": {"$ref": "#/$defs/NullableText"}
+      },
+      "allOf": [
+        {"if": {"properties": {"stage_type": {"enum": ["final", "partial"]}}},
+          "then": {"properties": {"charge_token_spans": {"maxItems": 0}}}},
+        {"if": {"properties": {"parallel_group_id": {"type": "string"}}},
+          "then": {"properties": {"charge_token_spans": {"maxItems": 0}}}}
+      ]
+    },
+    "TaskSpec": {
+      "type": "object", "required": ["question", "question_sha256", "constraints", "uncertain", "status"],
+      "properties": {
+        "question": {"type": "string"}, "question_sha256": {"$ref": "#/$defs/Hash"},
+        "uncertain": {"type": "boolean"}, "status": {"enum": ["ok", "annotation_error"]},
+        "constraints": {"type": "array", "items": {"type": "object",
+          "required": ["constraint_id", "text", "source"],
+          "properties": {"constraint_id": {"type": "string"}, "text": {"type": "string"},
+            "source": {"$ref": "#/$defs/Quote"}}}}
+      }
+    },
+    "LedgerSnapshot": {
+      "type": "object", "required": ["stage_id", "support", "documents", "attempts", "visibility",
+        "open_gaps", "candidate_gaps", "conflicts"],
+      "properties": {
+        "stage_id": {"$ref": "#/$defs/NullableText"}, "documents": {"$ref": "#/$defs/Strings"},
+        "attempts": {"type": "array", "items": {"type": "object"}}, "visibility": {"$ref": "#/$defs/Strings"},
+        "open_gaps": {"$ref": "#/$defs/Strings"}, "conflicts": {"$ref": "#/$defs/Strings"},
+        "candidate_gaps": {"type": "object", "additionalProperties": {"$ref": "#/$defs/Strings"}},
+        "support": {"type": "object", "additionalProperties": {
+          "type": "object", "required": ["candidate", "constraint_id", "state", "evidence"],
+          "properties": {"candidate": {"type": "string"}, "constraint_id": {"type": "string"},
+            "state": {"enum": ["unknown", "partially_supported", "supported", "conflicted", "refuted"]},
+            "evidence": {"type": "array", "items": {"$ref": "#/$defs/Quote"}}}}}
+      }
+    },
+    "ActionTarget": {
+      "type": "object", "required": ["state", "candidate", "constraint_id", "intent", "confidence"],
+      "properties": {"state": {"enum": ["resolved", "unknown"]}, "candidate": {"$ref": "#/$defs/NullableText"},
+        "constraint_id": {"$ref": "#/$defs/NullableText"},
+        "intent": {"enum": ["explore", "verify", "fill_gap", "resolve_conflict", "strengthen",
+          "open_fulltext", "recover", "retry", "unknown"]},
+        "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}}
+    },
+    "StageJudgment": {
+      "type": "object", "required": ["stage_id", "event_id", "labels", "price_label", "protections",
+        "charge_token_spans", "position_strategy", "diagnostics", "errors"],
+      "properties": {
+        "stage_id": {"type": "string"}, "event_id": {"type": "string"},
+        "price_label": {"enum": ["R1", "R2b", null]}, "protections": {"$ref": "#/$defs/Strings"},
+        "charge_token_spans": {"$ref": "#/$defs/Spans"}, "position_strategy": {"type": "string"},
+        "diagnostics": {"type": "object"}, "errors": {"$ref": "#/$defs/Strings"},
+        "labels": {"type": "array", "minItems": 3, "maxItems": 3, "items": {
+          "type": "object", "required": ["label", "decision", "known_at", "decision_time", "evidence",
+            "protected", "reward_eligible"],
+          "properties": {"label": {"enum": ["R1", "R2b", "R2a"]},
+            "decision": {"enum": ["positive", "negative", "abstain"]},
+            "known_at": {"$ref": "#/$defs/NullableText"}, "decision_time": {"enum": ["after_return", "unavailable"]},
+            "evidence": {"type": "array"}, "protected": {"type": "boolean"}, "reward_eligible": {"type": "boolean"}},
+          "allOf": [{"if": {"properties": {"label": {"const": "R2a"}}},
+            "then": {"properties": {"reward_eligible": {"const": false}}}}]}}
+      }
+    },
+    "TrajectoryAnnotation": {
+      "type": "object", "required": ["question_id", "trajectory_id", "result", "recording_complete",
+        "token_alignment_status", "policy_token_count", "policy_token_spans", "counts", "stage_count",
+        "judgment_coverage", "abstentions", "anomalies", "cost", "unpriced_cost", "g",
+        "grounding_status", "unresolved_constraints", "events", "provenance"],
+      "properties": {
+        "question_id": {"type": "string"}, "trajectory_id": {"type": "string"},
+        "result": {"enum": ["C", "W", "N", "UNCERTAIN", null]}, "recording_complete": {"type": "boolean"},
+        "token_alignment_status": {"enum": ["verified", "unverified"]},
+        "policy_token_count": {"$ref": "#/$defs/NullableCount"}, "policy_token_spans": {"$ref": "#/$defs/Spans"},
+        "counts": {"type": "object", "additionalProperties": {"$ref": "#/$defs/NonnegativeInteger"}},
+        "stage_count": {"$ref": "#/$defs/NonnegativeInteger"}, "abstentions": {"$ref": "#/$defs/NonnegativeInteger"},
+        "anomalies": {"$ref": "#/$defs/NonnegativeInteger"}, "judgment_coverage": {"type": ["number", "null"]},
+        "cost": {"type": "object"}, "unpriced_cost": {"type": "object"},
+        "g": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "grounding_status": {"enum": ["valid", "invalid"]},
+        "unresolved_constraints": {"$ref": "#/$defs/Strings"}, "events": {"type": "array", "items": {"type": "object"}},
+        "provenance": {"$ref": "#/$defs/Provenance"}
+      }
+    },
+    "AuditReport": {
+      "type": "object", "required": ["status", "labels", "approved_labels", "disagreements",
+        "unresolved_reviews", "thresholds", "confidence_interval"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "INSUFFICIENT_EVIDENCE", "BLOCKED", "PENDING_HUMAN_REVIEW"]},
+        "labels": {"type": "object", "required": ["R1", "R2b"],
+          "additionalProperties": {"type": "object", "required": ["status", "events", "questions", "natural",
+            "protection", "legacy", "provenance", "failure_cases"]}},
+        "approved_labels": {"type": "object"}, "disagreements": {"type": "array"},
+        "unresolved_reviews": {"type": "array"}, "thresholds": {"type": "object"}, "confidence_interval": {"type": "object"}
+      }
+    },
+    "GRPOPreview": {
+      "type": "object", "required": ["status", "groups", "excluded", "assertions", "formal_training_usable", "optimizer_steps"],
+      "properties": {
+        "status": {"enum": ["COMPUTED", "NO_VALID_GROUPS", "FAIL"]},
+        "groups": {"type": "array", "items": {"type": "object",
+          "required": ["question_id", "synthetic", "trajectories"],
+          "properties": {"question_id": {"type": "string"}, "synthetic": {"type": "boolean"},
+            "trajectories": {"type": "array", "items": {"type": "object",
+              "required": ["trajectory_id", "Y", "R", "outcome_advantage", "peer_gate", "policy_mask",
+                "token_advantages", "event_debits"],
+              "properties": {"trajectory_id": {"type": "string"}, "Y": {"enum": [0, 1]},
+                "R": {"type": "number"}, "outcome_advantage": {"type": "number"}, "peer_gate": {"enum": [0, 1]},
+                "policy_mask": {"type": "array", "items": {"enum": [0, 1]}},
+                "token_advantages": {"type": "array", "items": {"type": "number"}}, "event_debits": {"type": "array"}}}}}}},
+        "excluded": {"type": "array"}, "assertions": {"type": "object", "additionalProperties": {"type": "boolean"}},
+        "formal_training_usable": {"const": false}, "optimizer_steps": {"const": 0}
+      }
+    }
+  }
+}
