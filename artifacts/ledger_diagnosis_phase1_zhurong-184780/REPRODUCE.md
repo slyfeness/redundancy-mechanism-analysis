@@ -33,9 +33,14 @@ python -u scripts/diagnose_phase1_ledger.py --replay-only \
 
 python -u scripts/export_ledger_diagnosis.py \
   --private "$NEW_PRIVATE_DIRECTORY" --public "$NEW_SANITIZED_DIRECTORY"
+
+python -u scripts/augment_ledger_diagnosis.py \
+  --private "$NEW_PRIVATE_DIRECTORY" --output "$NEW_SANITIZED_DIRECTORY/target_and_grounding_details.json" \
+  --cases-dir "$NEW_SEPARATE_CASE_DIRECTORY"
 ```
 
 模型适配器首先从冻结请求和配置重新计算缓存键。运行中禁用 Python HTTP opener，
 找不到缓存会显式终止。脚本在独立目录使用原流水线写出比对产物。
 不能仅从 GitHub 脱敏数据完整重放；公开逐行索引用 1 起始行号指向受控文件，
 完整路径、范围与 SHA-256 在 `input_manifest.json`。运行日志仅提供无原文的汇总与作业执账记录。
+增强版案例索引和对应清单来自案例目录的 `sanitized/`，回指伴随的 `controlled/real_cases.jsonl`。
