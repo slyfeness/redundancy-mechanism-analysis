@@ -11,7 +11,7 @@ import sys
 
 import yaml
 
-from .adapters.model import ModelJudge, SyntheticJudge
+from .adapters.model import JUDGE_PROTOCOL_VERSION, ModelJudge, SyntheticJudge
 from .adapters.trace import NativeByteTokenizer, load_trajectory
 from .common import JudgeFailure, atomic_json, canonical, identity, read_json
 from .final_candidate import extract_final_candidate
@@ -22,7 +22,7 @@ from .resolve_action_target import resolve_action_target
 from .summarize_trajectory import summarize_trajectory
 from .update_evidence_ledger import merge_parallel_updates, update_evidence_ledger
 
-SCHEMA_VERSION = "phase1.v1"
+SCHEMA_VERSION = "phase1.1.v2"
 BUDGET = {"CONTEXT_LIMIT_STOP", "GENERATION_LENGTH_STOP", "SAFETY_CEILING_STOP"}
 PRIVATE_ARTIFACTS = ("input_index", "stages", "legacy_stage_mapping", "task_specs", "ledger_snapshots",
                  "action_targets", "stage_judgments", "trajectory_summaries",
@@ -53,7 +53,8 @@ def freeze_config(config):
                     if k in config["judge"]}
     tokenizer_sha = sha256(Path(config["tokenizer"]).read_bytes()).hexdigest() if config.get("tokenizer") else None
     legacy_shas = [sha256(Path(path).read_bytes()).hexdigest() for path in config.get("legacy_stages") or []]
-    return {"schema_version": SCHEMA_VERSION, "code_commit": config["code_commit"],
+    return {"schema_version": SCHEMA_VERSION, "judge_protocol_version": JUDGE_PROTOCOL_VERSION,
+            "code_commit": config["code_commit"],
             "model_version": judge_config["version"], "tokenizer_version": config.get("tokenizer_revision"),
             "config_sha256": identity([judge_config, config.get("threshold", 0.8), tokenizer_sha,
                                        config.get("pilot_seed"), config.get("mode"),
@@ -166,8 +167,9 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
             "legacy_stage_mapping": [{"stage_id": s["stage_id"], "mapping": s["legacy_mapping"],
                                       "status": s["legacy_mapping_status"]} for s in stages],
             "ledger_snapshots": states, "action_targets": list(targets.values()),
-            "stage_judgments": judgments, "trajectory_summaries": summarize_trajectory(
-                info, task, ledger, stages, judgments, submitted_candidate=candidate),
+            "stage_judgments": judgments, "trajectory_summaries": {
+                **summarize_trajectory(info, task, ledger, stages, judgments, submitted_candidate=candidate),
+                "final_candidate": final_candidate},
             "parse_failures": parsed["anomalies"], "annotation_failures": annotation_errors}
 
 

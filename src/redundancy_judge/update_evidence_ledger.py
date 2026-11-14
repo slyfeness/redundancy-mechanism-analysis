@@ -1,6 +1,7 @@
 """Apply validated tool evidence without importing actor assertions."""
 
 from copy import deepcopy
+import re
 
 from .common import JudgeFailure, candidate_name, exact_quote, identity, require
 
@@ -28,20 +29,59 @@ def refresh_gaps(task, after):
         and not risks.get(support_key(row["candidate"], cid)) for row in after["support"].values())]
 
 
-def _risk(after, delta, *, candidate, constraint_id, state, reason, event_id):
+def unresolved_risks(ledger, *, candidate=None, constraint_ids=None, event_id=None, content_id=None):
+    """Collect global risk and local risk relevant to the requested scope."""
+    risks = ledger.get("unresolved_evidence_risk", {})
+    selected = list(risks.get("global", []))
+    keys = ({support_key(candidate, cid) for cid in constraint_ids}
+            if candidate and constraint_ids is not None else None)
+    for key, records in risks.get("by_support", {}).items():
+        selected.extend(record for record in records if keys is None or key in keys
+                        or (event_id is not None and record.get("event_id") == event_id)
+                        or (content_id is not None and record.get("content_id") == content_id))
+    return selected
+
+
+def _risk(after, *, candidate, constraint_id, state, reason, source, valid_constraints):
     """Record an unvalidated Judge row without promoting it to evidence."""
-    potential_conflict = state in {"refuted", "conflicted"}
+    local = bool(candidate and isinstance(constraint_id, str) and constraint_id in valid_constraints)
     record = {"candidate": candidate, "constraint_id": constraint_id, "state": state,
-              "reason": reason, "event_id": event_id, "potential_conflict": potential_conflict}
-    delta["rejected_evidence"].append(record)
+              "reason": reason, **source, "scope": "support" if local else "global",
+              "potential_conflict": not local or state not in {"supported", "partially_supported"}}
     risks = after.setdefault("unresolved_evidence_risk", {"global": [], "by_support": {}})
-    if candidate and constraint_id:
+    if local:
         key = support_key(candidate, constraint_id)
         risks["by_support"].setdefault(key, []).append(record)
         if key in after["support"]:
             after["support"][key]["unresolved_evidence_risk"] = risks["by_support"][key]
     else:
         risks["global"].append(record)
+    return record
+
+
+def _mention(text, value):
+    return value and re.search(r"(?<!\w)" + re.escape(value) + r"(?!\w)", text)
+
+
+def _uncertainty_coordinates(text, scope, task, before):
+    """Localize overall uncertainty only when the scope covers the whole observed return."""
+    if not isinstance(scope, dict):
+        return None, None
+    candidate, constraint_id = candidate_name(scope.get("candidate")), scope.get("constraint_id")
+    normalized = candidate_name(text) or ""
+    mentioned = {row["constraint_id"] for row in task["constraints"]
+                 if _mention(normalized, candidate_name(row.get("text")))}
+    known_candidates = {row["candidate"] for row in before["support"].values()}
+    if (candidate not in known_candidates or not isinstance(constraint_id, str) or mentioned != {constraint_id}
+            or not _mention(normalized, candidate)
+            or any(_mention(normalized, other) for other in known_candidates - {candidate})):
+        return None, None
+    start, end = len(text) - len(text.lstrip()), len(text.rstrip())
+    if (type(scope.get("start")) is int and type(scope.get("end")) is int
+            and (scope["start"], scope["end"]) == (start, end) and start < end
+            and text[start:end] == scope.get("quote")):
+        return candidate, constraint_id
+    return None, None
 
 
 def merge_parallel_updates(task, before, branches):
@@ -102,6 +142,14 @@ def update_evidence_ledger(task, before, stage, event, judge):
     after["documents"] = sorted(set(after["documents"]) | seen_documents)
     duplicate = next((item for item in before["attempts"] if item["content_id"] == content_id
                       and item["status"] == "ok"), None)
+    valid_constraints = {c["constraint_id"] for c in task["constraints"]}
+    source = {"event_id": event_id, "content_id": content_id}
+    uncertain_scope = (None, None)
+
+    def reject(candidate, cid, state, reason):
+        delta["rejected_evidence"].append(_risk(after, candidate=candidate, constraint_id=cid, state=state,
+            reason=reason, source=source, valid_constraints=valid_constraints))
+
     try:
         if duplicate:
             updates = []
@@ -111,36 +159,42 @@ def update_evidence_ledger(task, before, stage, event, judge):
                 "prior": [{"candidate": row["candidate"], "constraint_id": row["constraint_id"],
                            "state": row["state"]} for row in before["support"].values()],
             })
-            require(isinstance(response.get("updates"), list) and type(response.get("uncertain")) is bool,
+            require(isinstance(response, dict) and isinstance(response.get("updates"), list)
+                    and type(response.get("uncertain")) is bool,
                     "invalid evidence update")
-            require(not response["uncertain"], "evidence extraction uncertain")
+            if response["uncertain"]:
+                if not response["updates"]:
+                    uncertain_scope = _uncertainty_coordinates(text, response.get("uncertainty_scope"), task, before)
+                raise JudgeFailure("evidence extraction uncertain")
+            if getattr(judge, "protocol_version", None):
+                require("uncertainty_scope" in response, "versioned evidence update is missing uncertainty scope")
+            require(response.get("uncertainty_scope") is None, "inconsistent evidence uncertainty scope")
             updates = []
             seen = set()
             for row in response["updates"]:
+                if not isinstance(row, dict):
+                    reject(None, None, "unknown", "invalid evidence update row")
+                    continue
                 candidate, cid, state = candidate_name(row.get("candidate")), row.get("constraint_id"), row.get("state")
-                if not (candidate and cid in {c["constraint_id"] for c in task["constraints"]}
-                        and state in STATES - {"unknown"}):
-                    _risk(after, delta, candidate=candidate, constraint_id=cid if isinstance(cid, str) else None,
-                          state=state if isinstance(state, str) else "unknown",
-                          reason="invalid support coordinates or state", event_id=event_id)
+                cid = cid if isinstance(cid, str) else None
+                state = state if isinstance(state, str) else "unknown"
+                if not (candidate and cid in valid_constraints and state in STATES - {"unknown"}):
+                    reject(candidate, cid, state, "invalid support coordinates or state")
                     continue
                 key = support_key(candidate, cid)
                 if key in seen:
-                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
-                          reason="duplicate candidate/constraint update", event_id=event_id)
+                    reject(candidate, cid, state, "duplicate candidate/constraint update")
                     continue
                 seen.add(key)
                 resolves = row.get("resolves_conflict", False)
                 if type(resolves) is not bool:
-                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
-                          reason="invalid conflict resolution field", event_id=event_id)
+                    reject(candidate, cid, state, "invalid conflict resolution field")
                     continue
                 try:
                     ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
                                reference=event.get("return_ref"), document=document, state=state)
                 except JudgeFailure as exc:
-                    _risk(after, delta, candidate=candidate, constraint_id=cid, state=state,
-                          reason=str(exc), event_id=event_id)
+                    reject(candidate, cid, state, str(exc))
                     continue
                 updates.append((key, candidate, cid, state, ref, resolves))
         for key, candidate, cid, state, ref, resolves in updates:
@@ -171,13 +225,13 @@ def update_evidence_ledger(task, before, stage, event, judge):
                      ("new_support", "strengthening", "conflicts", "resolved_conflicts")))
         if delta["rejected_evidence"]:
             delta["status"] = "partial_annotation"
-            # A rejected possible refutation cannot be priced as harmless.
-            # An unrelated malformed support row does not erase a separately
-            # validated update, but remains visible through its scoped risk.
-            if any(row["potential_conflict"] for row in delta["rejected_evidence"]):
+            if not delta["effective_gain"] or any(row["potential_conflict"] for row in delta["rejected_evidence"]):
                 delta["effective_gain"] = None
     except (JudgeFailure, AttributeError, TypeError) as exc:
-        delta.update(status="annotation_error", error=str(exc))
+        candidate, cid = uncertain_scope
+        _risk(after, candidate=candidate, constraint_id=cid, state="unknown", reason=str(exc),
+              source=source, valid_constraints=valid_constraints)
+        delta.update(status="annotation_error", effective_gain=None, error=str(exc))
     after["attempts"].append({"stage_id": stage["stage_id"], "event_id": event_id,
                               "action": stage.get("action"), "content_id": content_id,
                               "status": delta["status"], "gain": delta["effective_gain"],

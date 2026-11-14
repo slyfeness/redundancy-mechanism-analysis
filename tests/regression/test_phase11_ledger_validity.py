@@ -57,10 +57,11 @@ def test_explicit_span_disambiguates_repeated_final_candidate_without_first_or_l
 def test_final_candidate_requires_a_submission_anchor_and_never_uses_ambiguous_text_fallback():
     final = "Ada was considered. Final answer: Ada."
     judge = Judge({"final_candidate": {"quote": "Ada", "start": 34, "end": 37,
-                                       "anchor": "Final answer: Ada."}})
+                                       "anchor": "Final answer: Ada.", "anchor_start": 20, "anchor_end": 38}})
     candidate = extract_final_candidate("Find Ada", final, judge)
     assert candidate["candidate"] == "Ada" and candidate["source"]["start"] == 34
-    bad = Judge({"final_candidate": {"quote": "Ada", "start": 34, "end": 37, "anchor": None}})
+    bad = Judge({"final_candidate": {"quote": "Ada", "start": 34, "end": 37, "anchor": None,
+                                     "anchor_start": 20, "anchor_end": 38}})
     try:
         extract_final_candidate("Find Ada", final, bad)
     except ValueError as exc:

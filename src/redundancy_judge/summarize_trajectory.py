@@ -3,7 +3,7 @@
 from collections import Counter
 
 from .common import candidate_name
-from .update_evidence_ledger import support_key
+from .update_evidence_ledger import support_key, unresolved_risks
 
 
 def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitted_candidate=None):
@@ -11,11 +11,7 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     constraints = [item["constraint_id"] for item in task["constraints"]]
     supported = [cid for cid in constraints if candidate and
                  ledger["support"].get(support_key(candidate, cid), {}).get("state") == "supported"]
-    risks = ledger.get("unresolved_evidence_risk", {})
-    relevant_risks = list(risks.get("global", []))
-    if candidate:
-        for cid in constraints:
-            relevant_risks.extend(risks.get("by_support", {}).get(support_key(candidate, cid), []))
+    relevant_risks = unresolved_risks(ledger, candidate=candidate, constraint_ids=constraints)
     # A failed update is local unless its scope cannot be established or it
     # concerns the submitted candidate and one of its required constraints.
     evidence_incomplete = bool(relevant_risks)

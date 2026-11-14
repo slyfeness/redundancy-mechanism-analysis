@@ -27,12 +27,34 @@
       "required": ["schema_version", "code_commit", "model_version", "tokenizer_version",
         "input_sha256", "prompt_sha256", "config_sha256"],
       "properties": {
-        "schema_version": {"const": "phase1.v1"}, "code_commit": {"type": "string", "minLength": 1},
+        "schema_version": {"enum": ["phase1.v1", "phase1.1.v2"]},
+        "judge_protocol_version": {"const": "phase1.1.evidence_safety.v2"}, "code_commit": {"type": "string", "minLength": 1},
         "model_version": {"type": "string", "minLength": 1}, "tokenizer_version": {"$ref": "#/$defs/NullableText"},
         "input_sha256": {"$ref": "#/$defs/Hash"}, "prompt_sha256": {"anyOf": [
           {"$ref": "#/$defs/Hash"}, {"const": "synthetic"}]},
         "config_sha256": {"$ref": "#/$defs/Hash"}
-      }
+      },
+      "if": {"properties": {"schema_version": {"const": "phase1.1.v2"}}},
+      "then": {"required": ["judge_protocol_version"]}
+    },
+    "FinalCandidate": {
+      "type": "object", "required": ["candidate", "source", "anchor", "anchor_source", "protocol"],
+      "properties": {"candidate": {"type": "string", "minLength": 1}, "source": {"$ref": "#/$defs/Quote"},
+        "anchor": {"type": "string", "minLength": 1}, "anchor_source": {"$ref": "#/$defs/Quote"},
+        "protocol": {"enum": ["phase1.1.span_anchor.v2", "legacy.unique_quote"]}}
+    },
+    "EvidenceRisk": {
+      "type": "object", "required": ["candidate", "constraint_id", "state", "reason", "event_id", "potential_conflict"],
+      "properties": {"candidate": {"$ref": "#/$defs/NullableText"}, "constraint_id": {"$ref": "#/$defs/NullableText"},
+        "state": {"type": "string"}, "reason": {"type": "string"}, "event_id": {"type": "string"},
+        "scope": {"enum": ["global", "support"]}, "content_id": {"$ref": "#/$defs/Hash"},
+        "potential_conflict": {"type": "boolean"}},
+      "allOf": [
+        {"if": {"required": ["scope"]}, "then": {"required": ["content_id"]}},
+        {"if": {"required": ["scope"], "properties": {"scope": {"const": "support"}}},
+         "then": {"properties": {"candidate": {"type": "string", "minLength": 1},
+           "constraint_id": {"type": "string", "minLength": 1}}}}
+      ]
     },
     "TrajectoryRecord": {
       "type": "object",
@@ -113,15 +135,15 @@
     },
     "LedgerSnapshot": {
       "type": "object", "required": ["stage_id", "support", "documents", "attempts", "visibility",
-        "open_gaps", "candidate_gaps", "conflicts", "unresolved_evidence_risk"],
+        "open_gaps", "conflicts"],
       "properties": {
         "stage_id": {"$ref": "#/$defs/NullableText"}, "documents": {"$ref": "#/$defs/Strings"},
         "attempts": {"type": "array", "items": {"type": "object"}}, "visibility": {"$ref": "#/$defs/Strings"},
         "open_gaps": {"$ref": "#/$defs/Strings"}, "conflicts": {"$ref": "#/$defs/Strings"},
         "candidate_gaps": {"type": "object", "additionalProperties": {"$ref": "#/$defs/Strings"}},
         "unresolved_evidence_risk": {"type": "object", "required": ["global", "by_support"],
-          "properties": {"global": {"type": "array", "items": {"type": "object"}},
-            "by_support": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "object"}}}}},
+          "properties": {"global": {"type": "array", "items": {"$ref": "#/$defs/EvidenceRisk"}},
+            "by_support": {"type": "object", "additionalProperties": {"type": "array", "items": {"$ref": "#/$defs/EvidenceRisk"}}}}},
         "support": {"type": "object", "additionalProperties": {
           "type": "object", "required": ["candidate", "constraint_id", "state", "evidence"],
           "properties": {"candidate": {"type": "string"}, "constraint_id": {"type": "string"},
@@ -130,7 +152,7 @@
       }
     },
     "ActionTarget": {
-      "type": "object", "required": ["state", "candidate", "constraint_id", "gap_id", "intent", "confidence", "evidence_basis"],
+      "type": "object", "required": ["state", "candidate", "constraint_id", "intent", "confidence"],
       "properties": {"state": {"enum": ["resolved", "gap_resolved", "unknown"]}, "candidate": {"$ref": "#/$defs/NullableText"},
         "constraint_id": {"$ref": "#/$defs/NullableText"},
         "gap_id": {"$ref": "#/$defs/NullableText"}, "evidence_basis": {"$ref": "#/$defs/Strings"},
@@ -144,6 +166,9 @@
       "properties": {
         "stage_id": {"type": "string"}, "event_id": {"type": "string"},
         "price_label": {"enum": ["R1", "R2b", null]}, "protections": {"$ref": "#/$defs/Strings"},
+        "risk_guard_reason": {"enum": [null, "global_unresolved_evidence", "related_unresolved_evidence", "unresolved_evidence_target_unknown"]},
+        "risk_guard_refs": {"type": "array", "items": {"$ref": "#/$defs/EvidenceRisk"}},
+        "pricing_blocked_by_risk": {"type": "boolean"},
         "charge_token_spans": {"$ref": "#/$defs/Spans"}, "position_strategy": {"type": "string"},
         "diagnostics": {"type": "object"}, "errors": {"$ref": "#/$defs/Strings"},
         "labels": {"type": "array", "minItems": 3, "maxItems": 3, "items": {
@@ -152,16 +177,27 @@
           "properties": {"label": {"enum": ["R1", "R2b", "R2a"]},
             "decision": {"enum": ["positive", "negative", "abstain"]},
             "known_at": {"$ref": "#/$defs/NullableText"}, "decision_time": {"enum": ["after_return", "unavailable"]},
+            "abstention_reason": {"$ref": "#/$defs/NullableText"},
             "evidence": {"type": "array"}, "protected": {"type": "boolean"}, "reward_eligible": {"type": "boolean"}},
           "allOf": [{"if": {"properties": {"label": {"const": "R2a"}}},
             "then": {"properties": {"reward_eligible": {"const": false}}}}]}}
-      }
+      },
+      "allOf": [
+        {"if": {"required": ["provenance"], "properties": {"provenance": {"required": ["schema_version"],
+          "properties": {"schema_version": {"const": "phase1.1.v2"}}}}},
+         "then": {"required": ["risk_guard_reason", "risk_guard_refs", "pricing_blocked_by_risk"]}},
+        {"if": {"required": ["pricing_blocked_by_risk"], "properties": {"pricing_blocked_by_risk": {"const": true}}},
+         "then": {"required": ["risk_guard_reason", "risk_guard_refs"], "properties": {
+           "price_label": {"const": null}, "charge_token_spans": {"maxItems": 0},
+           "risk_guard_reason": {"type": "string"}, "risk_guard_refs": {"minItems": 1},
+           "labels": {"items": {"properties": {"decision": {"const": "abstain"}, "reward_eligible": {"const": false}}}}}}}
+      ]
     },
     "TrajectoryAnnotation": {
       "type": "object", "required": ["question_id", "trajectory_id", "result", "recording_complete",
         "token_alignment_status", "policy_token_count", "policy_token_spans", "counts", "stage_count",
         "judgment_coverage", "abstentions", "anomalies", "cost", "unpriced_cost", "g",
-        "grounding_status", "unresolved_constraints", "unresolved_evidence_risk", "events", "provenance"],
+        "grounding_status", "unresolved_constraints", "events", "provenance"],
       "properties": {
         "question_id": {"type": "string"}, "trajectory_id": {"type": "string"},
         "result": {"enum": ["C", "W", "N", "UNCERTAIN", null]}, "recording_complete": {"type": "boolean"},
@@ -174,9 +210,13 @@
         "g": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
         "grounding_status": {"enum": ["valid", "invalid"]},
         "unresolved_constraints": {"$ref": "#/$defs/Strings"},
-        "unresolved_evidence_risk": {"type": "array", "items": {"type": "object"}}, "events": {"type": "array", "items": {"type": "object"}},
+        "unresolved_evidence_risk": {"type": "array", "items": {"$ref": "#/$defs/EvidenceRisk"}},
+        "final_candidate": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/FinalCandidate"}]},
+        "events": {"type": "array", "items": {"type": "object"}},
         "provenance": {"$ref": "#/$defs/Provenance"}
-      }
+      },
+      "if": {"properties": {"provenance": {"properties": {"schema_version": {"const": "phase1.1.v2"}}}}},
+      "then": {"required": ["final_candidate", "unresolved_evidence_risk"]}
     },
     "AuditReport": {
       "type": "object", "required": ["status", "labels", "approved_labels", "disagreements",
