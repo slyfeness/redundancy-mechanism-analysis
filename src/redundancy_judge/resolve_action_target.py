@@ -20,6 +20,9 @@ def resolve_action_target(task, before, stage, judge, *, threshold=0.8):
         value = judge.ask("action_target", {"task": task["constraints"], "facts": facts,
                           "tool_name": action["tool_name"], "arguments": action["arguments"],
                           "strategy": stage.get("strategy_text", "")})
+        if task.get("constraint_source") == "frozen_v4":
+            # Preserve the raw candidate-presence flag before unresolved fields are nulled.
+            unknown["candidate_present_in_response"] = bool(candidate_name(value.get("candidate")))
         confidence, intent = value.get("confidence"), value.get("intent")
         require(type(confidence) in (int, float) and 0 <= confidence <= 1 and intent in INTENTS,
                 "invalid action target")
@@ -33,7 +36,8 @@ def resolve_action_target(task, before, stage, judge, *, threshold=0.8):
         if not candidate or cid not in valid_constraints:
             if intent == "explore" and gap_id in valid_constraints:
                 return {"state": "gap_resolved", "candidate": None, "constraint_id": None, "gap_id": gap_id,
-                        "intent": intent, "confidence": confidence, "evidence_basis": basis}
+                        "intent": intent, "confidence": confidence, "evidence_basis": basis,
+                        **{key: unknown[key] for key in ("candidate_present_in_response",) if key in unknown}}
             return dict(unknown, confidence=confidence, reason="uncertain_target")
         return {"state": "resolved", "candidate": candidate, "constraint_id": cid, "intent": intent,
                 "gap_id": gap_id if gap_id in valid_constraints else None,

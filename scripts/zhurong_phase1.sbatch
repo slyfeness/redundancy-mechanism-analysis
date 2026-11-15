@@ -20,13 +20,20 @@ RUN="$STORE/run-$SLURM_JOB_ID"
 PY="$BASE/envs/successful_phase05_20261007/bin/python"
 RPC="$BASE/i/phase1/$SLURM_JOB_ID"
 test "$(( ${#RPC} + 37 ))" -le 107
-mkdir -p "$RUN" "$STORE/cache" "$STORE/tmp/$SLURM_JOB_ID" "$RPC"
+CACHE="$STORE/cache"
+if [[ "$MODE" == frozen ]]; then
+    FROZEN="${5:?frozen constraint file}"
+    BASELINE="${6:?frozen baseline config}"
+    CACHE="$RUN/runtime_cache"
+    test ! -e "$RUN"
+fi
+mkdir -p "$RUN" "$CACHE" "$STORE/tmp/$SLURM_JOB_ID" "$RPC"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1
-export HF_HOME="$STORE/cache/hf" XDG_CACHE_HOME="$STORE/cache/xdg"
-export VLLM_CACHE_ROOT="$STORE/cache/vllm" VLLM_RPC_BASE_PATH="$RPC"
-export TRITON_CACHE_DIR="$STORE/cache/triton" CUDA_CACHE_PATH="$STORE/cache/cuda"
-export TIKTOKEN_CACHE_DIR="$STORE/cache/tiktoken" TMPDIR="$STORE/tmp/$SLURM_JOB_ID"
-export PYTHONPYCACHEPREFIX="$STORE/cache/pycache" PYTHONPATH="$SOURCE/src"
+export HF_HOME="$CACHE/hf" XDG_CACHE_HOME="$CACHE/xdg"
+export VLLM_CACHE_ROOT="$CACHE/vllm" VLLM_RPC_BASE_PATH="$RPC"
+export TRITON_CACHE_DIR="$CACHE/triton" CUDA_CACHE_PATH="$CACHE/cuda"
+export TIKTOKEN_CACHE_DIR="$CACHE/tiktoken" TMPDIR="$STORE/tmp/$SLURM_JOB_ID"
+export PYTHONPYCACHEPREFIX="$CACHE/pycache" PYTHONPATH="$SOURCE/src"
 export OMP_NUM_THREADS=4 TOKENIZERS_PARALLELISM=false
 unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY OPENAI_API_KEY DEEPSEEK_API_KEY JUDGE_API_KEY
 PORT=$("$PY" -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1",0)); print(s.getsockname()[1])')
@@ -45,14 +52,37 @@ MODEL_DIR="$BASE/models/$MODEL"
     done
 ) > "$RUN/judge_model_files.txt"
 JUDGE_ID=$(sha256sum "$RUN/judge_model_files.txt" | cut -d ' ' -f 1)
+if [[ "$MODE" == frozen ]]; then
+    "$PY" - "$BASELINE" "$RUN" "$SOURCE" "$COMMIT" "$INVENTORY" "$FROZEN" "$PORT" "$MODEL:$JUDGE_ID" <<'PYCODE'
+import json
+from pathlib import Path
+import sys
+
+baseline, run, source, commit, inventory, frozen, port, model = sys.argv[1:]
+config = json.loads(Path(baseline).read_bytes())
+if config["input_index"] != str(Path(inventory) / "input_index.jsonl"):
+    raise SystemExit("frozen input index differs from the baseline")
+if config["judge"]["version"] != model:
+    raise SystemExit("local Judge model fingerprint differs from the baseline")
+config.update(output_dir=run, run_dir=str(Path(run) / "real"), prompt_dir=str(Path(source) / "prompts"),
+              code_commit=commit, frozen_constraints=frozen)
+config["judge"]["url"] = f"http://127.0.0.1:{port}/v1"
+with (Path(run) / "config.json").open("x", encoding="utf-8") as out:
+    json.dump(config, out, indent=2)
+    out.write("\n")
+PYCODE
+else
 cat > "$RUN/config.json" <<EOF
 {"mode":"real","input_index":"$INVENTORY/input_index.jsonl","output_dir":"$RUN","run_dir":"$RUN/real","prompt_dir":"$SOURCE/prompts","tokenizer":"$BASE/models/Qwen3.5-9B/tokenizer.json","tokenizer_revision":"c202236235762e1c871ad0ccb60c8ee5ba337b9a","code_commit":"$COMMIT","judge":{"url":"http://127.0.0.1:$PORT/v1","model":"$MODEL","version":"$MODEL:$JUDGE_ID","timeout":180,"max_tokens":4096},"workers":12,"threshold":0.8,"pilot_seed":20261113,"cost_weighted":true,"reward":{"w_g":0.1,"prices":{"R1":0.05,"R2b":0.10,"R2a":0.0},"trajectory_price_cap":0.5,"group_size":4}}
 EOF
+fi
 date -u +'%FT%TZ batch_start'
 if [[ "$MODE" == pilot ]]; then
     run=(--split dev --limit-questions 5)
 elif [[ "$MODE" == all ]]; then
     run=(--split all --resume)
+elif [[ "$MODE" == frozen ]]; then
+    run=(--split all)
 else
     exit 2
 fi
@@ -76,7 +106,7 @@ date -u +'%FT%TZ judge_ready'
 "$PY" -m redundancy_judge.cli inspect --config "$RUN/config.json"
 "$PY" -m redundancy_judge.cli annotate --config "$RUN/config.json" "${run[@]}"
 date -u +'%FT%TZ annotation_complete'
-if [[ "$MODE" == all ]]; then
+if [[ "$MODE" == all || "$MODE" == frozen ]]; then
     for command in export-review audit reward-preview; do
         "$PY" -m redundancy_judge.cli "$command" --config "$RUN/config.json"
     done

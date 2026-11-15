@@ -85,9 +85,16 @@ def check_bundle(bundle, validators, expected_provenance):
         demand(text[ref["start"]:ref["end"]] == ref["quote"]
                and identity(text) == ref["content_id"], "unbound evidence quotation")
 
-    for constraint in bundle["task_specs"]["constraints"]:
-        ref = constraint["source"]
-        demand(index["question"][ref["start"]:ref["end"]] == ref["quote"], "unbound task quotation")
+    task = bundle["task_specs"]
+    if task.get("constraint_source") == "frozen_v4":
+        demand(task["question_sha256"] == sha256(index["question"].encode("utf-8")).hexdigest()
+               and expected_provenance.get("frozen_constraints_sha256"), "unbound frozen task constraints")
+    for constraint in task["constraints"]:
+        ref = constraint.get("source")
+        if ref is None:
+            demand(task.get("constraint_source") == "frozen_v4", "missing task quotation")
+        else:
+            demand(index["question"][ref["start"]:ref["end"]] == ref["quote"], "unbound task quotation")
     for snap in bundle["ledger_snapshots"]:
         validators["LedgerSnapshot"].validate(snap["before"])
         validators["LedgerSnapshot"].validate(snap["after"])

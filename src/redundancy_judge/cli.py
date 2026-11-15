@@ -15,7 +15,7 @@ from .adapters.model import JUDGE_PROTOCOL_VERSION, ModelJudge, SyntheticJudge
 from .adapters.trace import NativeByteTokenizer, load_trajectory
 from .common import JudgeFailure, atomic_json, canonical, identity, read_json
 from .final_candidate import extract_final_candidate
-from .init_task_ledger import init_task_ledger
+from .init_task_ledger import init_task_ledger, init_task_ledger_frozen
 from .judge_stage import judge_stage
 from .parse_stages import parse_stages
 from .resolve_action_target import resolve_action_target
@@ -48,18 +48,38 @@ def write_jsonl(path, rows):
     temp.replace(path)
 
 
-def freeze_config(config):
+def freeze_config(config, *, frozen_content=None):
     judge_config = {k: config["judge"][k] for k in ("model", "version", "timeout", "max_tokens")
                     if k in config["judge"]}
     tokenizer_sha = sha256(Path(config["tokenizer"]).read_bytes()).hexdigest() if config.get("tokenizer") else None
     legacy_shas = [sha256(Path(path).read_bytes()).hexdigest() for path in config.get("legacy_stages") or []]
-    return {"schema_version": SCHEMA_VERSION, "judge_protocol_version": JUDGE_PROTOCOL_VERSION,
+    freeze = {"schema_version": SCHEMA_VERSION, "judge_protocol_version": JUDGE_PROTOCOL_VERSION,
             "code_commit": config["code_commit"],
             "model_version": judge_config["version"], "tokenizer_version": config.get("tokenizer_revision"),
             "config_sha256": identity([judge_config, config.get("threshold", 0.8), tokenizer_sha,
                                        config.get("pilot_seed"), config.get("mode"),
                                        config.get("reward"), config.get("cost_weighted"), legacy_shas]),
             "tokenizer_sha256": tokenizer_sha}
+    if "frozen_constraints" in config:
+        if frozen_content is None:
+            frozen_content = Path(config["frozen_constraints"]).read_bytes()
+        frozen_hash = sha256(frozen_content).hexdigest()
+        freeze["frozen_constraints_sha256"] = frozen_hash
+        freeze["config_sha256"] = identity([freeze["config_sha256"], frozen_hash])
+    return freeze
+
+
+def frozen_constraint_index(content):
+    by_hash, by_id = {}, {}
+    for line in content.decode("utf-8-sig").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        digest, qid = row["question_sha256"], row["question_id"]
+        if digest in by_hash or qid in by_id:
+            raise ValueError("duplicate question SHA-256 or ID in frozen constraints")
+        by_hash[digest] = by_id[qid] = row
+    return by_hash, by_id
 
 
 def load_legacy(config):
@@ -240,7 +260,9 @@ def annotate(config, args):
         raise ValueError("input index contains an unknown split")
     if config.get("mode") not in {"real", "synthetic"}:
         raise ValueError("set mode to real or synthetic explicitly")
-    freeze = freeze_config(config)
+    frozen_content = Path(config["frozen_constraints"]).read_bytes() if "frozen_constraints" in config else None
+    frozen_rows = frozen_constraint_index(frozen_content) if frozen_content is not None else None
+    freeze = freeze_config(config, frozen_content=frozen_content)
     output = Path(config["output_dir"])
     synthetic = config.get("mode") == "synthetic"
     output = output / ("synthetic" if synthetic else "real")
@@ -276,7 +298,16 @@ def annotate(config, args):
 
     def process(group):
         judge = make_judge()
-        task, initial = init_task_ledger(group[0]["question"], judge)
+        question = group[0]["question"]
+        if frozen_rows is None:
+            task, initial = init_task_ledger(question, judge)
+        else:
+            by_hash, by_id = frozen_rows
+            qid = str(group[0]["question_id"])
+            frozen_row = by_hash.get(sha256(question.encode("utf-8")).hexdigest())
+            if frozen_row is None or frozen_row["question_id"] != qid:
+                frozen_row = by_id.get(qid)
+            task, initial = init_task_ledger_frozen(question, frozen_row)
         bundles = []
         for row in group:
             digest = identity([freeze, row["sha256"], row["trajectory_id"]])
