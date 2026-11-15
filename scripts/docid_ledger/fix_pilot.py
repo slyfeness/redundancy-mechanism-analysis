@@ -222,6 +222,7 @@ def recompute(packet, old, labels, selection, config, out):
             raise RuntimeError("B4 cache receipts do not reconcile")
     result = signal_report(tracks, targets, selection["gates"]["use_intersection"])
     result.update(comparison=selection["comparison"], selected_scheme=selection["selected_scheme"],
+                  human_evaluation=selection["human_evaluation"], passage_support=selection["passage_support"],
                   gates=selection["gates"], query_ids=packet["query_ids"], cost={
                       **selection["b1_cost"], "target_reused": reused, "target_calls": len(changed),
                       "target_failures": sum(targets[event["id"]] is None for event in changed),
