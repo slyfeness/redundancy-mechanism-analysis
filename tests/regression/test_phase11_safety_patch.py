@@ -122,10 +122,10 @@ def test_overall_uncertainty_requires_verifiable_scope(established, scope_candid
     assert delta["effective_gain"] is None and grounding(task, after)["g"] is None
 
 
-def test_old_format_evidence_response_cannot_silently_claim_no_gain(established):
+def test_missing_scope_cannot_silently_claim_no_gain_in_phase11(established):
     task, before = established
     judge = Judge({"evidence_update": {"updates": [], "uncertain": False}})
-    judge.protocol_version = model.JUDGE_PROTOCOL_VERSION
+    judge.protocol_version = model.LEGACY_JUDGE_PROTOCOL_VERSION
     after, delta = update_evidence_ledger(task, before, stage(2), event(2, "Unreadable"), judge)
     assert delta["effective_gain"] is None
     assert after["unresolved_evidence_risk"]["global"]
@@ -271,23 +271,29 @@ def test_old_response_cache_key_cannot_be_reused_in_new_protocol(tmp_path):
                          {"role": "user", "content": model.canonical(payload)}],
             "response_format": {"type": "json_schema", "json_schema": {"name": "final_candidate", "strict": True,
                 "schema": model.RESPONSE_SCHEMAS["final_candidate"]}}}
-    legacy_key = identity([freeze, judge.prompt_sha256, body])
+    old_schema = model.LEGACY_RESPONSE_SCHEMAS["final_candidate"]
+    old_body = {**body, "response_format": {"type": "json_schema", "json_schema": {
+        "name": "final_candidate", "strict": True, "schema": old_schema}}}
+    legacy_key = identity([model.LEGACY_JUDGE_PROTOCOL_VERSION, freeze, judge.prompt_sha256, old_body])
     receipt = tmp_path / legacy_key[:2] / f"{legacy_key}.json"
     atomic_json(receipt, {"cache_key": legacy_key, "response": {"quote": "Ada", "anchor": "Ada"}})
     original = receipt.read_bytes()
     with pytest.raises(JudgeFailure, match="replay cache entry is missing"):
         judge.ask("final_candidate", payload)
     assert receipt.read_bytes() == original and len(list(tmp_path.rglob("*.json"))) == 1
-    assert {"anchor_start", "anchor_end"} <= model.RESPONSE_SCHEMAS["final_candidate"]["properties"].keys()
+    assert model.RESPONSE_SCHEMAS["final_candidate"]["required"] == ["quote"]
     current_key = identity([model.JUDGE_PROTOCOL_VERSION, freeze, judge.prompt_sha256, body])
     invalid_receipt = tmp_path / current_key[:2] / f"{current_key}.json"
     atomic_json(invalid_receipt, {"cache_key": current_key, "response": {"quote": "Ada"}})
     with pytest.raises(JudgeFailure, match="cache identity mismatch"):
         judge.ask("final_candidate", payload)
     atomic_json(invalid_receipt, {"cache_key": current_key, "protocol_version": model.JUDGE_PROTOCOL_VERSION,
-                                 "response": {"quote": "Ada"}})
+                                 "response": {}})
     with pytest.raises(JudgeFailure, match="missing required fields"):
         judge.ask("final_candidate", payload)
+    atomic_json(invalid_receipt, {"cache_key": current_key, "protocol_version": model.JUDGE_PROTOCOL_VERSION,
+                                 "response": {"quote": "Ada"}})
+    assert judge.ask("final_candidate", payload) == {"quote": "Ada"}
 
 
 def test_risk_output_schema_enforces_abstention_and_preserves_legacy_records(established):

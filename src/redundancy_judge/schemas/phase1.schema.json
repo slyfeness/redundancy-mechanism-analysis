@@ -20,7 +20,9 @@
     "Quote": {
       "type": "object", "required": ["quote", "start", "end", "coordinate"],
       "properties": {"quote": {"type": "string", "minLength": 1}, "start": {"$ref": "#/$defs/NonnegativeInteger"},
-        "end": {"type": "integer", "minimum": 1}, "coordinate": {"const": "source_char"}}
+        "end": {"type": "integer", "minimum": 1}, "coordinate": {"const": "source_char"},
+        "location_method": {"enum": ["exact", "normalized", "multi"]},
+        "occurrences": {"type": "integer", "minimum": 1}}
     },
     "Provenance": {
       "type": "object",
@@ -28,7 +30,8 @@
         "input_sha256", "prompt_sha256", "config_sha256"],
       "properties": {
         "schema_version": {"enum": ["phase1.v1", "phase1.1.v2"]},
-        "judge_protocol_version": {"const": "phase1.1.evidence_safety.v2"}, "code_commit": {"type": "string", "minLength": 1},
+        "judge_protocol_version": {"enum": ["phase1.1.evidence_safety.v2", "phase1.2.lenient_quotes.v1"]},
+        "code_commit": {"type": "string", "minLength": 1},
         "model_version": {"type": "string", "minLength": 1}, "tokenizer_version": {"$ref": "#/$defs/NullableText"},
         "input_sha256": {"$ref": "#/$defs/Hash"}, "prompt_sha256": {"anyOf": [
           {"$ref": "#/$defs/Hash"}, {"const": "synthetic"}]},
@@ -39,10 +42,13 @@
       "then": {"required": ["judge_protocol_version"]}
     },
     "FinalCandidate": {
-      "type": "object", "required": ["candidate", "source", "anchor", "anchor_source", "protocol"],
+      "type": "object", "required": ["candidate", "source", "protocol"],
       "properties": {"candidate": {"type": "string", "minLength": 1}, "source": {"$ref": "#/$defs/Quote"},
         "anchor": {"type": "string", "minLength": 1}, "anchor_source": {"$ref": "#/$defs/Quote"},
-        "protocol": {"enum": ["phase1.1.span_anchor.v2", "legacy.unique_quote"]}}
+        "protocol": {"enum": ["phase1.1.span_anchor.v2", "legacy.unique_quote", "phase1.2.located_quote.v1"]}},
+      "if": {"properties": {"protocol": {"const": "phase1.2.located_quote.v1"}}},
+      "then": {"properties": {"source": {"required": ["location_method", "occurrences"]}}},
+      "else": {"required": ["anchor", "anchor_source"]}
     },
     "EvidenceRisk": {
       "type": "object", "required": ["candidate", "constraint_id", "state", "reason", "event_id", "potential_conflict"],
@@ -213,6 +219,7 @@
         "anomalies": {"$ref": "#/$defs/NonnegativeInteger"}, "judgment_coverage": {"type": ["number", "null"]},
         "cost": {"type": "object"}, "unpriced_cost": {"type": "object"},
         "g": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "global_risk_count": {"$ref": "#/$defs/NonnegativeInteger"},
         "grounding_status": {"enum": ["valid", "invalid"]},
         "unresolved_constraints": {"$ref": "#/$defs/Strings"},
         "unresolved_evidence_risk": {"type": "array", "items": {"$ref": "#/$defs/EvidenceRisk"}},

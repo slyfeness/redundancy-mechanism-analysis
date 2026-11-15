@@ -3,7 +3,9 @@
 from copy import deepcopy
 import re
 
+from .adapters.model import uses_lenient_quotes
 from .common import JudgeFailure, candidate_name, exact_quote, identity, require
+from .quote_locator import QuoteLocator
 
 STATES = {"unknown", "partially_supported", "supported", "conflicted", "refuted"}
 
@@ -129,6 +131,10 @@ def update_evidence_ledger(task, before, stage, event, judge):
     delta = {"status": "unavailable", "effective_gain": None, "new_documents": [],
              "new_support": [], "strengthening": [], "conflicts": [], "resolved_conflicts": [],
              "evidence": [], "rejected_evidence": []}
+    lenient = uses_lenient_quotes(judge)
+    if lenient:
+        delta.update(quote_locations=dict.fromkeys(("exact", "normalized", "multi", "absent"), 0),
+                     unknown_dropped=0, uncertain=False, new_candidates=[])
     if (event.get("error") or stage.get("parse_status") != "ok"
             or not isinstance(text, str) or not event.get("visible_next")):
         after["attempts"].append({"stage_id": stage["stage_id"], "event_id": event_id,
@@ -141,10 +147,11 @@ def update_evidence_ledger(task, before, stage, event, judge):
     delta["new_documents"] = sorted(seen_documents - set(after["documents"]))
     after["documents"] = sorted(set(after["documents"]) | seen_documents)
     duplicate = next((item for item in before["attempts"] if item["content_id"] == content_id
-                      and item["status"] == "ok"), None)
+                      and item["status"] == "ok" and not item.get("uncertain")), None)
     valid_constraints = {c["constraint_id"] for c in task["constraints"]}
     source = {"event_id": event_id, "content_id": content_id}
     uncertain_scope = (None, None)
+    locator = QuoteLocator(text) if lenient else None
 
     def reject(candidate, cid, state, reason):
         delta["rejected_evidence"].append(_risk(after, candidate=candidate, constraint_id=cid, state=state,
@@ -162,13 +169,18 @@ def update_evidence_ledger(task, before, stage, event, judge):
             require(isinstance(response, dict) and isinstance(response.get("updates"), list)
                     and type(response.get("uncertain")) is bool,
                     "invalid evidence update")
-            if response["uncertain"]:
+            if lenient and response["uncertain"]:
+                delta["uncertain"] = True
+                _risk(after, candidate=None, constraint_id=None, state="unknown", reason="evidence extraction uncertain",
+                      source=source, valid_constraints=valid_constraints)
+            if not lenient and response["uncertain"]:
                 if not response["updates"]:
                     uncertain_scope = _uncertainty_coordinates(text, response.get("uncertainty_scope"), task, before)
                 raise JudgeFailure("evidence extraction uncertain")
-            if getattr(judge, "protocol_version", None):
-                require("uncertainty_scope" in response, "versioned evidence update is missing uncertainty scope")
-            require(response.get("uncertainty_scope") is None, "inconsistent evidence uncertainty scope")
+            if not lenient:
+                if getattr(judge, "protocol_version", None):
+                    require("uncertainty_scope" in response, "versioned evidence update is missing uncertainty scope")
+                require(response.get("uncertainty_scope") is None, "inconsistent evidence uncertainty scope")
             updates = []
             seen = set()
             for row in response["updates"]:
@@ -176,6 +188,9 @@ def update_evidence_ledger(task, before, stage, event, judge):
                     reject(None, None, "unknown", "invalid evidence update row")
                     continue
                 candidate, cid, state = candidate_name(row.get("candidate")), row.get("constraint_id"), row.get("state")
+                if lenient and state == "unknown":
+                    delta["unknown_dropped"] += 1
+                    continue
                 cid = cid if isinstance(cid, str) else None
                 state = state if isinstance(state, str) else "unknown"
                 if not (candidate and cid in valid_constraints and state in STATES - {"unknown"}):
@@ -191,9 +206,14 @@ def update_evidence_ledger(task, before, stage, event, judge):
                     reject(candidate, cid, state, "invalid conflict resolution field")
                     continue
                 try:
-                    ref = dict(exact_quote(text, row), event_id=event_id, content_id=content_id, support_key=key,
+                    located = locator.locate(row.get("quote")) if locator else exact_quote(text, row)
+                    if lenient:
+                        delta["quote_locations"][located["location_method"]] += 1
+                    ref = dict(located, event_id=event_id, content_id=content_id, support_key=key,
                                reference=event.get("return_ref"), document=document, state=state)
                 except JudgeFailure as exc:
+                    if lenient:
+                        delta["quote_locations"]["absent"] += 1
                     reject(candidate, cid, state, str(exc))
                     continue
                 updates.append((key, candidate, cid, state, ref, resolves))
@@ -223,6 +243,11 @@ def update_evidence_ledger(task, before, stage, event, judge):
                 delta["strengthening"].append(key)
         delta.update(status="ok", effective_gain=any(delta[k] for k in
                      ("new_support", "strengthening", "conflicts", "resolved_conflicts")))
+        if lenient:
+            previous_candidates = {row["candidate"] for row in before["support"].values()}
+            delta["new_candidates"] = sorted({candidate for _, candidate, *_ in updates} - previous_candidates)
+            if delta["uncertain"] and not delta["effective_gain"]:
+                delta["effective_gain"] = None
         if delta["rejected_evidence"]:
             delta["status"] = "partial_annotation"
             if not delta["effective_gain"] or any(row["potential_conflict"] for row in delta["rejected_evidence"]):
@@ -236,5 +261,7 @@ def update_evidence_ledger(task, before, stage, event, judge):
                               "action": stage.get("action"), "content_id": content_id,
                               "status": delta["status"], "gain": delta["effective_gain"],
                               "error": event.get("error")})
+    if lenient and delta["uncertain"]:
+        after["attempts"][-1]["uncertain"] = True
     refresh_gaps(task, after)
     return after, delta

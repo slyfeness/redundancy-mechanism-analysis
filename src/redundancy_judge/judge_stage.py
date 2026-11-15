@@ -1,5 +1,6 @@
 """Label a completed action using only its prefix and observed return."""
 
+from .adapters.model import uses_lenient_quotes
 from .common import JudgeFailure, candidate_name, identity, require
 from .update_evidence_ledger import support_key, unresolved_risks
 
@@ -56,6 +57,11 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
                                      event_id=event["event_id"], content_id=content_id):
             risk_refs[identity(risk)] = risk
     risk_blocked = bool(risk_refs)
+    r1_risk_blocked = risk_blocked
+    if uses_lenient_quotes(judge):
+        r1_risk_blocked = any(risk.get("scope") == "support"
+                              and risk["candidate"] == risk_candidate
+                              and risk["constraint_id"] == target["constraint_id"] for risk in risk_refs.values())
     risk_reason = None
     if risk_refs:
         if any(r.get("scope", "global") == "global" for r in risk_refs.values()):
@@ -68,8 +74,9 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
     verification = None
     r1_funnel = {"outcome": "not_invoked", "reason": None}
     if risk_blocked:
-        r1_funnel = {"outcome": "not_invoked", "reason": "unresolved_evidence_risk"}
         r2b = "abstain"
+    if r1_risk_blocked:
+        r1_funnel = {"outcome": "not_invoked", "reason": "unresolved_evidence_risk"}
     elif has_return and confirmations and delta.get("status") == "ok":
         if not matching or target["intent"] != "verify" or protections:
             r1 = "negative"
@@ -144,12 +151,12 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
     labels = [
         {"label": label, "decision": decision, "protected": bool(protections),
          "reward_eligible": bool(label != "R2a" and decision == "positive" and eligible_stage
-                                 and not protections and not risk_blocked),
+                                 and not protections and not label_risk),
          "known_at": known_at, "decision_time": "after_return" if known_at is not None else "unavailable",
          "abstention_reason": (None if decision != "abstain" else
              "protocol_error" if stage.get("parse_status") != "ok" else
              "successful_visible_return_missing" if not has_return else
-             "unresolved_evidence_risk" if risk_blocked else
+             "unresolved_evidence_risk" if label_risk else
              "comparison_environment_or_arguments_unverified" if label == "R2b" else
              "action_target_uncertain" if not confirmations else
              "evidence_update_unavailable" if delta["effective_gain"] is None else
@@ -159,12 +166,13 @@ def judge_stage(task, before, after, stage, event, target, delta, judge, *, thre
          "evidence": evidence if label == "R1" else [r["event_id"] for r in exact if r["event_id"] in visible]
          if label == "R2b" else similar}
         for label, decision in (("R2b", r2b), ("R1", r1), ("R2a", r2a))
+        for label_risk in (r1_risk_blocked if label == "R1" else risk_blocked,)
     ]
     price_label = next((row["label"] for row in labels if row["reward_eligible"]), None)
     return {"stage_id": stage["stage_id"], "event_id": event["event_id"], "labels": labels,
             "price_label": price_label, "protections": sorted(set(protections)),
             "risk_guard_reason": risk_reason, "risk_guard_refs": list(risk_refs.values()),
-            "pricing_blocked_by_risk": risk_blocked,
+            "pricing_blocked_by_risk": risk_blocked and r1_risk_blocked,
             "charge_token_spans": spans if price_label else [],
             "position_strategy": "verified_call_envelope" if price_label else "unpriced",
             "diagnostics": {"r1_check": verification, "r2a_similarity": similarity,

@@ -21,25 +21,37 @@ BOOLEAN = {"type": "boolean"}
 NUMBER = {"type": "number"}
 START = {"type": "integer", "minimum": 0}
 END = {"type": "integer", "minimum": 1}
-NULLABLE_START = {**START, "type": ["integer", "null"]}
-NULLABLE_END = {**END, "type": ["integer", "null"]}
-JUDGE_PROTOCOL_VERSION = "phase1.1.evidence_safety.v2"
+LEGACY_JUDGE_PROTOCOL_VERSION = "phase1.1.evidence_safety.v2"
+JUDGE_PROTOCOL_VERSION = "phase1.2.lenient_quotes.v1"
 RESPONSE_SCHEMAS = {
     "task_constraints": object_schema(uncertain=BOOLEAN,
         constraints={"type": "array", "items": object_schema(quote=TEXT, start={"type": "integer", "minimum": 0},
             end={"type": "integer", "minimum": 1})}),
+    "evidence_update": object_schema(uncertain=BOOLEAN,
+        updates={"type": "array", "items": object_schema(candidate=TEXT, constraint_id=TEXT,
+            state={"enum": ["partially_supported", "supported", "conflicted", "refuted"]},
+            quote=TEXT, resolves_conflict=BOOLEAN)}),
+    "action_target": object_schema(candidate=MAYBE_TEXT, constraint_id=MAYBE_TEXT,
+        gap_id=MAYBE_TEXT, intent=TEXT, confidence=NUMBER, evidence_basis={"type": "array", "items": TEXT}),
+    "r1_verification": object_schema(confirmed=BOOLEAN, confidence=NUMBER, protection=MAYBE_TEXT),
+    "final_candidate": object_schema(quote=MAYBE_TEXT),
+}
+LEGACY_RESPONSE_SCHEMAS = {
+    **RESPONSE_SCHEMAS,
     "evidence_update": object_schema(uncertain=BOOLEAN,
         uncertainty_scope={"anyOf": [{"type": "null"}, object_schema(candidate=TEXT, constraint_id=TEXT,
             quote=TEXT, start=START, end=END)]},
         updates={"type": "array", "items": object_schema(candidate=TEXT, constraint_id=TEXT,
             state={"enum": ["partially_supported", "supported", "conflicted", "refuted", "unknown"]},
             quote=TEXT, start=START, end=END, resolves_conflict=BOOLEAN)}),
-    "action_target": object_schema(candidate=MAYBE_TEXT, constraint_id=MAYBE_TEXT,
-        gap_id=MAYBE_TEXT, intent=TEXT, confidence=NUMBER, evidence_basis={"type": "array", "items": TEXT}),
-    "r1_verification": object_schema(confirmed=BOOLEAN, confidence=NUMBER, protection=MAYBE_TEXT),
-    "final_candidate": object_schema(quote=MAYBE_TEXT, start=NULLABLE_START, end=NULLABLE_END,
-        anchor=MAYBE_TEXT, anchor_start=NULLABLE_START, anchor_end=NULLABLE_END),
+    "final_candidate": object_schema(quote=MAYBE_TEXT, start={**START, "type": ["integer", "null"]},
+        end={**END, "type": ["integer", "null"]}, anchor=MAYBE_TEXT,
+        anchor_start={**START, "type": ["integer", "null"]}, anchor_end={**END, "type": ["integer", "null"]}),
 }
+
+
+def uses_lenient_quotes(judge):
+    return getattr(judge, "protocol_version", None) == JUDGE_PROTOCOL_VERSION
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -51,13 +63,12 @@ class ModelJudge:
     synthetic = False
     protocol_version = JUDGE_PROTOCOL_VERSION
 
-    @staticmethod
-    def _response(kind, response):
+    def _response(self, kind, response):
         if not isinstance(response, dict):
             raise JudgeFailure("judge output is not a JSON object")
-        if not RESPONSE_SCHEMAS[kind]["properties"].keys() >= response.keys():
+        if not self.response_schemas[kind]["properties"].keys() >= response.keys():
             raise JudgeFailure("judge output contains unknown fields")
-        if kind in {"evidence_update", "final_candidate"} and not set(RESPONSE_SCHEMAS[kind]["required"]) <= response.keys():
+        if kind in {"evidence_update", "final_candidate"} and not set(self.response_schemas[kind]["required"]) <= response.keys():
             raise JudgeFailure("versioned judge response is missing required fields")
         return response
 
@@ -78,6 +89,9 @@ class ModelJudge:
         self.cache = Path(cache_dir)
         self.freeze = freeze
         self.replay_only = replay_only
+        historical = replay_only and freeze.get("judge_protocol_version") == LEGACY_JUDGE_PROTOCOL_VERSION
+        self.protocol_version = LEGACY_JUDGE_PROTOCOL_VERSION if historical else JUDGE_PROTOCOL_VERSION
+        self.response_schemas = LEGACY_RESPONSE_SCHEMAS if historical else RESPONSE_SCHEMAS
         self.opener = build_opener(ProxyHandler({}), NoRedirect())
 
     def check_service(self):
@@ -93,7 +107,7 @@ class ModelJudge:
         prompt = self.prompts[kind]
         body = {"model": self.name, "temperature": 0, "max_tokens": self.max_tokens,
                 "response_format": {"type": "json_schema", "json_schema": {
-                    "name": kind, "strict": True, "schema": RESPONSE_SCHEMAS[kind]}},
+                    "name": kind, "strict": True, "schema": self.response_schemas[kind]}},
                 "reasoning_effort": "low",
                 "messages": [{"role": "system", "content": prompt},
                              {"role": "user", "content": canonical(payload)}]}
@@ -139,6 +153,7 @@ class ModelJudge:
 
 class SyntheticJudge:
     synthetic = True
+    protocol_version = JUDGE_PROTOCOL_VERSION
     name = "synthetic-fixture"
     prompt_sha256 = "synthetic"
 
@@ -151,7 +166,7 @@ class SyntheticJudge:
             return {"intent": "unknown", "confidence": 0, "candidate": None, "constraint_id": None,
                     "gap_id": None, "evidence_basis": []}
         if kind == "evidence_update":
-            return {"updates": [], "uncertain": False, "uncertainty_scope": None}
+            return {"updates": [], "uncertain": False}
         if kind == "r1_verification":
             return {"confirmed": False, "confidence": 1, "protection": None}
         if kind == "final_candidate":

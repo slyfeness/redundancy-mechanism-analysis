@@ -11,6 +11,7 @@ from statistics import median
 from unittest.mock import patch
 
 from redundancy_judge import cli
+from redundancy_judge.adapters.model import LEGACY_JUDGE_PROTOCOL_VERSION
 from redundancy_judge.common import JudgeFailure, candidate_name, canonical, identity, read_json
 from redundancy_judge.init_task_ledger import initial_ledger
 from redundancy_judge.judge_stage import judge_stage
@@ -83,7 +84,7 @@ def sample_receipt(selected, labels):
 class ObservedEvidence:
     """Serve a previously observed M4 response or its cached failure."""
 
-    protocol_version = cli.JUDGE_PROTOCOL_VERSION
+    protocol_version = LEGACY_JUDGE_PROTOCOL_VERSION
 
     def __init__(self, response=None, error=None):
         self.response = response
@@ -500,7 +501,8 @@ def postprocess(run, *, counterfactual):
     index_path = Path(config["input_index"])
     if sha256(index_path.read_bytes()).hexdigest() != freeze["input_index_sha256"]:
         raise RuntimeError("input index identity differs from the archived manifest")
-    if any(freeze[key] != value for key, value in cli.freeze_config(config).items()):
+    expected = {**cli.freeze_config(config), "judge_protocol_version": LEGACY_JUDGE_PROTOCOL_VERSION}
+    if any(freeze[key] != value for key, value in expected.items()):
         raise RuntimeError("config or input dependency identity differs from the archived manifest")
     judge = ReadOnlyJudge(config, real / "model_cache", freeze)
     if judge.prompt_sha256 != freeze["prompt_sha256"]:

@@ -1,8 +1,10 @@
-"""Validated final-answer candidate extraction without a positional fallback."""
+"""Extract a submitted candidate and locate its source quote."""
 
 import re
 
+from .adapters.model import uses_lenient_quotes
 from .common import exact_quote, require
+from .quote_locator import QuoteLocator
 
 
 LABEL = re.compile(r"(?im)(?:^|(?<=[.!?])[ \t]+)[ \t]*(?:\*\*)?(?:final[ \t]+)?answer(?:\*\*)?[ \t]*:(?:\*\*)?[ \t]*")
@@ -57,6 +59,11 @@ def extract_final_candidate(question, final_text, judge):
     """
     response = judge.ask("final_candidate", {"question": question, "final_text": final_text})
     require(isinstance(response, dict) and "quote" in response, "invalid final candidate response")
+    if uses_lenient_quotes(judge):
+        if response["quote"] is None:
+            return None
+        ref = QuoteLocator(final_text).locate(response["quote"], last=True)
+        return {"candidate": ref["quote"], "source": ref, "protocol": "phase1.2.located_quote.v1"}
     if getattr(judge, "protocol_version", None):
         require({"quote", "start", "end", "anchor", "anchor_start", "anchor_end"} <= response.keys(),
                 "versioned final candidate response is missing required fields")

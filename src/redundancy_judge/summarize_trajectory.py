@@ -2,6 +2,7 @@
 
 from collections import Counter
 
+from .adapters.model import JUDGE_PROTOCOL_VERSION
 from .common import candidate_name
 from .update_evidence_ledger import support_key, unresolved_risks
 
@@ -12,9 +13,9 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     supported = [cid for cid in constraints if candidate and
                  ledger["support"].get(support_key(candidate, cid), {}).get("state") == "supported"]
     relevant_risks = unresolved_risks(ledger, candidate=candidate, constraint_ids=constraints)
-    # A failed update is local unless its scope cannot be established or it
-    # concerns the submitted candidate and one of its required constraints.
-    evidence_incomplete = bool(relevant_risks)
+    lenient = trajectory.get("provenance", {}).get("judge_protocol_version") == JUDGE_PROTOCOL_VERSION
+    global_count = len(ledger.get("unresolved_evidence_risk", {}).get("global", []))
+    evidence_incomplete = any(risk.get("scope") == "support" for risk in relevant_risks) if lenient else bool(relevant_risks)
     g = (len(supported) / len(constraints)
          if candidate and constraints and not task["uncertain"] and not evidence_incomplete else None)
     stages_by_id = {row["stage_id"]: row for row in stages}
@@ -53,6 +54,7 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
                               for k, v in total_cost.items()},
             "thought_lengths": trajectory.get("thought_lengths", []),
             "g": g, "grounding_status": "valid" if g is not None else "invalid",
+            **({"global_risk_count": global_count} if lenient else {}),
             "grounding_issue": "missing_or_ambiguous_submitted_candidate" if not candidate else
             "uncertain_task" if task["uncertain"] or not constraints else
             "unresolved_evidence_risk" if evidence_incomplete else None,
