@@ -98,13 +98,14 @@ class LocalJudge:
         self.model = config["model"]
         self.timeout = config["timeout_seconds"]
         self.max_tokens = config["max_tokens"]
+        self.reasoning_effort = config.get("reasoning_effort", "medium")
         self.prompts = prompts
         self.cache = cache
 
     def ask(self, kind, identifier, task, payload, *, schema=None, validate=None):
         ids = [row["constraint_id"] for row in task["constraints"]]
         shape = schema if schema is not None else support_schema(ids) if kind == "supports" else target_schema(ids)
-        request = {"model": self.model, "temperature": 0, "reasoning_effort": "medium",
+        request = {"model": self.model, "temperature": 0, "reasoning_effort": self.reasoning_effort,
                    "max_tokens": self.max_tokens,
                    "response_format": {"type": "json_schema", "json_schema": {
                        "name": kind, "strict": True, "schema": shape}},
