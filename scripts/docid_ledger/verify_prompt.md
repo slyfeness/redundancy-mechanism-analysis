@@ -1,0 +1,1 @@
+Does the passage below explicitly state every specific element of the following constraint, about the entity the constraint refers to? Do not use outside knowledge or the reference answer as evidence. Return {"reason":"one short sentence","verdict":"yes"} or {"reason":"one short sentence","verdict":"no"}.

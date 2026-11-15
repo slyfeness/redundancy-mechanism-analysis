@@ -101,9 +101,9 @@ class LocalJudge:
         self.prompts = prompts
         self.cache = cache
 
-    def ask(self, kind, identifier, task, payload):
+    def ask(self, kind, identifier, task, payload, *, schema=None, validate=None):
         ids = [row["constraint_id"] for row in task["constraints"]]
-        shape = support_schema(ids) if kind == "supports" else target_schema(ids)
+        shape = schema if schema is not None else support_schema(ids) if kind == "supports" else target_schema(ids)
         request = {"model": self.model, "temperature": 0, "reasoning_effort": "medium",
                    "max_tokens": self.max_tokens,
                    "response_format": {"type": "json_schema", "json_schema": {
@@ -130,7 +130,9 @@ class LocalJudge:
                 finish = choice["finish_reason"]
                 if finish != "stop":
                     raise ValueError("model reply did not finish")
-                selected = validate_response(kind, json.loads(choice["message"]["content"]), set(ids))
+                content = json.loads(choice["message"]["content"])
+                selected = (validate(content, set(ids)) if validate is not None
+                            else validate_response(kind, content, set(ids)))
             except (OSError, ValueError, TypeError, IndexError, KeyError) as exc:
                 code = getattr(exc, "code", code)
                 failure = type(exc).__name__
