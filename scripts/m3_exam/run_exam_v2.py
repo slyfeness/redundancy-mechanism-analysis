@@ -199,20 +199,16 @@ def summary(rows, baseline, qids, job_id, run_seconds):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    for name in ("review", "manifest", "v1", "runtime", "output"):
-        parser.add_argument("--" + name, type=Path, required=True)
-    args = parser.parse_args()
+def run_exam(args, prefix="m3v2", prompts=PROMPTS, compare=None, extra_config=None):
     trials, baseline, qids = load_exam(args.review, args.manifest, args.v1)
     root = Path(__file__).parent
-    prompt_paths = {key: root / file for key, file in PROMPTS.items()}
+    prompt_paths = {key: root / file for key, file in prompts.items()}
     config = read(args.runtime)
     judge = TwoStepJudge(config, {key: path.read_text(encoding="utf8") for key, path in prompt_paths.items()})
     rows = []
     print("inputs_verified", len(trials), flush=True)
     begin = perf_counter()
-    with (args.output / "m3v2_calls.jsonl").open("x", encoding="utf-8", newline="\n") as stream:
+    with (args.output / f"{prefix}_calls.jsonl").open("x", encoding="utf-8", newline="\n") as stream:
         with ThreadPoolExecutor(max_workers=config["workers"]) as pool:
             for i, row in enumerate(pool.map(lambda trial: run_event(trial, judge.call), trials), 1):
                 light = row.copy()
@@ -227,16 +223,26 @@ def main():
                     stream.flush()
                     print("events_finished", i, flush=True)
     report = summary(rows, baseline, qids, config["job_id"], perf_counter()-begin)
-    save(args.output / "m3v2_summary.json", report)
+    if compare is not None:
+        report.update(compare(report))
+    save(args.output / f"{prefix}_summary.json", report)
     save(args.output / "config.json", {**config,
          "prompt_sha256": {k: digest(path) for k, path in prompt_paths.items()},
          "review_manifest_sha256": digest(args.manifest),
          "v1_A_summary_sha256": digest(args.v1 / "m3_exam_summary.json"),
          "v1_calls_sha256": digest(args.v1 / "m3_exam_calls.jsonl"),
          "context_selection": "each passage list sequence was compared with the archived 187355 A request",
-         "q1_reasoning_tail_characters": 1500, "timing": "questions run sequentially per event and overlap across events"})
+         "q1_reasoning_tail_characters": 1500, "timing": "questions run sequentially per event and overlap across events",
+         **(extra_config or {})})
     print("exam_complete", len(rows), report["model_calls"], report["first"]["failures"],
           report["second"]["failures"], flush=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ("review", "manifest", "v1", "runtime", "output"):
+        parser.add_argument("--" + name, type=Path, required=True)
+    run_exam(parser.parse_args())
 
 
 if __name__ == "__main__":
