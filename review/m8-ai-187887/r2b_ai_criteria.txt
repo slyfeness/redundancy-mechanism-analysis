@@ -1,0 +1,8 @@
+R2b positive iff ALL hold:
+1. Same query: after NFKC, casefold and whitespace collapse, the query equals a query issued in an EARLIER round of the same trajectory (parallel calls in the same round do not count).
+2. Earlier return was seen: the earlier call's return entered the agent's context.
+3. Earlier call succeeded: the earlier call had no error and a non-empty return.
+4. Nothing new: the two returns have the same docid set, or identical content.
+5. No legitimate reason: not a retry after an error, and not re-fetching a return that was truncated or invisible.
+If any condition fails: negative. If the data is insufficient to decide: abstain, stating what is missing.
+necessary = false for positive; true for negative only when condition 5 fails (legitimate reason).
