@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from redundancy_judge.adapters.model import ModelJudge
-from redundancy_judge.common import atomic_json, read_json
+from redundancy_judge.common import atomic_json, identity, read_json
 from redundancy_judge.judge_stage import judge_stage
 from redundancy_judge.resolve_action_target import resolve_action_target
 
@@ -23,6 +23,14 @@ class CachedJudge(ModelJudge):
 
     def ask_m3(self, step, payload, shape, event_id):
         response = super().ask_m3(step, payload, shape, event_id)
+        if step == "intent":
+            receipt = read_json(self.cache.parent / "m3_call_receipts" / (identity([event_id, step]) + ".json"))
+            # The second request embeds the first response with its original wire field order.
+            envelope = json.loads(receipt["raw_response"])
+            original = json.loads(envelope["choices"][0]["message"]["content"])
+            if original != response:
+                raise ValueError(f"cached M3 intent differs from its raw response: {event_id}")
+            response = original
         self.cache_reads[step] += 1
         return response
 
