@@ -94,6 +94,10 @@ def merge_parallel_updates(task, before, branches):
         merged.update(stage_id=after["stage_id"], visibility=after["visibility"])
         merged["attempts"].extend(after["attempts"][len(before["attempts"]):])
         merged["documents"] = sorted(set(merged["documents"]) | set(after["documents"]))
+        if task.get("phase1_mode") == "docid":
+            passages = merged.setdefault("evidence_passages", {})
+            for docid, passage in after.get("evidence_passages", {}).items():
+                passages.setdefault(docid, passage)
         for key in sorted({ref["support_key"] for ref in delta["evidence"]}):
             alternatives.setdefault(key, []).append(after["support"][key])
     for key, rows in sorted(alternatives.items()):
@@ -124,6 +128,9 @@ def merge_parallel_updates(task, before, branches):
 
 
 def update_evidence_ledger(task, before, stage, event, judge):
+    if task.get("phase1_mode") == "docid":
+        from .docid import docid_update
+        return docid_update(task, before, stage, event)
     after = deepcopy(before)
     after.update(stage_id=stage["stage_id"], visibility=list(stage.get("visible_return_ids", ())))
     text = event.get("return_text")

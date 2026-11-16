@@ -281,6 +281,7 @@ def parse_stages(trajectory, format_config=None, legacy_blocks=None):
         anomalies.append({"code": code, **fields})
 
     tokenizer = (format_config or {}).get("tokenizer")
+    docid = (format_config or {}).get("phase1_mode") == "docid"
     if tokenizer is not None and tokenizer.revision != trajectory["tokenizer_revision"]:
         note("tokenizer_revision_mismatch")
         tokenizer = None
@@ -309,7 +310,11 @@ def parse_stages(trajectory, format_config=None, legacy_blocks=None):
                     event["visibility_basis"] = "native_prompt_verified" if tokenizer else "recorded_prompt_message"
                     event["return_text"] = event["_returned_text"]
                     event["return_tokens"] = visible_by_round[index][event["event_id"]]
-                    event["document_ids"] = event["_documents"]
+                    if docid and event["tool_name"] == "search-server-search":
+                        from .docid import passages_from_return
+                        event["document_ids"] = list(passages_from_return(event["return_text"]))
+                    else:
+                        event["document_ids"] = event["_documents"]
                 elif event["_returned_text"] is not None:
                     note("return_not_visible_in_next_prompt", event_id=event["event_id"], round_id=event["round_id"])
         associated = by_round.pop(row.get("round_id"), [])

@@ -21,7 +21,7 @@ PY="$BASE/envs/successful_phase05_20261007/bin/python"
 RPC="$BASE/i/phase1/$SLURM_JOB_ID"
 test "$(( ${#RPC} + 37 ))" -le 107
 CACHE="$STORE/cache"
-if [[ "$MODE" == frozen ]]; then
+if [[ "$MODE" == frozen || "$MODE" == docid ]]; then
     FROZEN="${5:?frozen constraint file}"
     BASELINE="${6:?frozen baseline config}"
     CACHE="$RUN/runtime_cache"
@@ -52,13 +52,20 @@ MODEL_DIR="$BASE/models/$MODEL"
     done
 ) > "$RUN/judge_model_files.txt"
 JUDGE_ID=$(sha256sum "$RUN/judge_model_files.txt" | cut -d ' ' -f 1)
-if [[ "$MODE" == frozen ]]; then
-    "$PY" - "$BASELINE" "$RUN" "$SOURCE" "$COMMIT" "$INVENTORY" "$FROZEN" "$PORT" "$MODEL:$JUDGE_ID" <<'PYCODE'
+if [[ "$MODE" == docid ]]; then
+    SNAPSHOT="${7:?187299 asset receipt}"
+    RESULTS="${8:?187333 result sequences}"
+    SPOT="${9:?187333 review summary}"
+    "$PY" "$SOURCE/scripts/freeze_docid_labels.py" "$SNAPSHOT" "$RUN/evidence_labels.jsonl"
+fi
+if [[ "$MODE" == frozen || "$MODE" == docid ]]; then
+    "$PY" - "$BASELINE" "$RUN" "$SOURCE" "$COMMIT" "$INVENTORY" "$FROZEN" "$PORT" "$MODEL:$JUDGE_ID" "$MODE" <<'PYCODE'
 import json
+from hashlib import sha256
 from pathlib import Path
 import sys
 
-baseline, run, source, commit, inventory, frozen, port, model = sys.argv[1:]
+baseline, run, source, commit, inventory, frozen, port, model, mode = sys.argv[1:]
 config = json.loads(Path(baseline).read_bytes())
 if config["input_index"] != str(Path(inventory) / "input_index.jsonl"):
     raise SystemExit("frozen input index differs from the baseline")
@@ -67,6 +74,11 @@ if config["judge"]["version"] != model:
 config.update(output_dir=run, run_dir=str(Path(run) / "real"), prompt_dir=str(Path(source) / "prompts"),
               code_commit=commit, frozen_constraints=frozen)
 config["judge"]["url"] = f"http://127.0.0.1:{port}/v1"
+if mode == "docid":
+    labels = Path(run) / "evidence_labels.jsonl"
+    config.update(phase1_mode="docid", evidence_labels=str(labels),
+                  evidence_labels_sha256=sha256(labels.read_bytes()).hexdigest(),
+                  frozen_constraints_sha256=sha256(Path(frozen).read_bytes()).hexdigest())
 with (Path(run) / "config.json").open("x", encoding="utf-8") as out:
     json.dump(config, out, indent=2)
     out.write("\n")
@@ -81,7 +93,7 @@ if [[ "$MODE" == pilot ]]; then
     run=(--split dev --limit-questions 5)
 elif [[ "$MODE" == all ]]; then
     run=(--split all --resume)
-elif [[ "$MODE" == frozen ]]; then
+elif [[ "$MODE" == frozen || "$MODE" == docid ]]; then
     run=(--split all)
 else
     exit 2
@@ -110,5 +122,12 @@ if [[ "$MODE" == all || "$MODE" == frozen ]]; then
     for command in export-review audit reward-preview; do
         "$PY" -m redundancy_judge.cli "$command" --config "$RUN/config.json"
     done
+fi
+if [[ "$MODE" == docid ]]; then
+    for command in export-review audit; do
+        "$PY" -m redundancy_judge.cli "$command" --config "$RUN/config.json"
+    done
+    "$PY" "$SOURCE/scripts/export_docid_phase1.py" "$RUN" "$RESULTS" "$SPOT"
+    "$PY" "$SOURCE/scripts/r2a_price_whatif.py" "$RUN"
 fi
 date -u +'%FT%TZ workflow_complete'

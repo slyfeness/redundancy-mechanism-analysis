@@ -14,6 +14,7 @@ import yaml
 from .adapters.model import JUDGE_PROTOCOL_VERSION, ModelJudge, SyntheticJudge
 from .adapters.trace import NativeByteTokenizer, load_trajectory
 from .common import JudgeFailure, atomic_json, canonical, identity, read_json
+from .docid import bind_labels, evidence_labels
 from .final_candidate import extract_final_candidate
 from .init_task_ledger import init_task_ledger, init_task_ledger_frozen
 from .judge_stage import judge_stage
@@ -48,7 +49,7 @@ def write_jsonl(path, rows):
     temp.replace(path)
 
 
-def freeze_config(config, *, frozen_content=None):
+def freeze_config(config, *, frozen_content=None, evidence_content=None):
     judge_config = {k: config["judge"][k] for k in ("model", "version", "timeout", "max_tokens")
                     if k in config["judge"]}
     tokenizer_sha = sha256(Path(config["tokenizer"]).read_bytes()).hexdigest() if config.get("tokenizer") else None
@@ -66,6 +67,14 @@ def freeze_config(config, *, frozen_content=None):
         frozen_hash = sha256(frozen_content).hexdigest()
         freeze["frozen_constraints_sha256"] = frozen_hash
         freeze["config_sha256"] = identity([freeze["config_sha256"], frozen_hash])
+    if config.get("phase1_mode") == "docid":
+        if not config.get("frozen_constraints"):
+            raise ValueError("docid mode requires frozen constraints")
+        if evidence_content is None:
+            evidence_content = Path(config["evidence_labels"]).read_bytes()
+        digest = sha256(evidence_content).hexdigest()
+        freeze.update(phase1_mode="docid", evidence_labels_sha256=digest)
+        freeze["config_sha256"] = identity([freeze["config_sha256"], "docid", digest])
     return freeze
 
 
@@ -112,7 +121,7 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
         raise ValueError("source result does not match the raw trajectory")
     provenance = {**freeze, "input_sha256": trace["input_sha256"], "actor_model": trace["model"],
                   "actor_revision": trace["model_revision"]}
-    parsed = parse_stages(trace, {"tokenizer": tokenizer}, legacy)
+    parsed = parse_stages(trace, {"tokenizer": tokenizer, "phase1_mode": config.get("phase1_mode")}, legacy)
     events = {event["event_id"]: event for event in parsed["tool_events"]}
     judgments, states, targets, annotation_errors = [], [], {}, []
     ledger = initial
@@ -262,7 +271,9 @@ def annotate(config, args):
         raise ValueError("set mode to real or synthetic explicitly")
     frozen_content = Path(config["frozen_constraints"]).read_bytes() if "frozen_constraints" in config else None
     frozen_rows = frozen_constraint_index(frozen_content) if frozen_content is not None else None
-    freeze = freeze_config(config, frozen_content=frozen_content)
+    evidence_content = Path(config["evidence_labels"]).read_bytes() if config.get("phase1_mode") == "docid" else None
+    labels_by_question = evidence_labels(evidence_content) if evidence_content is not None else None
+    freeze = freeze_config(config, frozen_content=frozen_content, evidence_content=evidence_content)
     output = Path(config["output_dir"])
     synthetic = config.get("mode") == "synthetic"
     output = output / ("synthetic" if synthetic else "real")
@@ -287,7 +298,7 @@ def annotate(config, args):
     if manifest_file.exists() and read_json(manifest_file) != manifest:
         raise ValueError("output was created by another frozen configuration")
     atomic_json(manifest_file, manifest)
-    if real and not args.replay_only:
+    if real and not args.replay_only and labels_by_question is None:
         probe = make_judge()
         try:
             spec, _ = init_task_ledger("Which city hosted the 2012 Summer Olympics?", probe)
@@ -308,6 +319,8 @@ def annotate(config, args):
             if frozen_row is None or frozen_row["question_id"] != qid:
                 frozen_row = by_id.get(qid)
             task, initial = init_task_ledger_frozen(question, frozen_row)
+        if labels_by_question is not None:
+            task = bind_labels(task, labels_by_question.get(str(group[0]["question_id"])))
         bundles = []
         for row in group:
             digest = identity([freeze, row["sha256"], row["trajectory_id"]])

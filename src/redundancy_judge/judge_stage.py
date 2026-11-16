@@ -2,20 +2,25 @@
 
 from .adapters.model import uses_lenient_quotes
 from .common import JudgeFailure, candidate_name, identity, require
+from .docid import judge_docid_stage, normalize_query
 from .update_evidence_ledger import support_key, unresolved_risks
 
 
-def comparable_action(action):
+def comparable_action(action, *, docid=False):
     args = action.get("arguments")
     if not isinstance(args, dict) or not action.get("deterministic") or not action.get("environment"):
         return None
     if "search" in action["tool_name"].casefold():
         if set(args) != {"query"} or not isinstance(args["query"], str) or not args["query"].strip():
             return None
+        if docid:
+            args = {"query": normalize_query(args["query"])}
     return identity([action["tool_name"], action["environment"], args])
 
 
 def judge_stage(task, before, after, stage, event, target, delta, judge, *, threshold=0.8, previous_targets=None):
+    if task.get("phase1_mode") == "docid":
+        return judge_docid_stage(task, before, stage, event, target, delta, comparable_action)
     action = stage.get("action") or {}
     spans = stage.get("charge_token_spans") or []
     visible = set(stage.get("visible_return_ids", ()))

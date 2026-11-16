@@ -28,9 +28,10 @@ def export_review(folder, rows, config):
     if any(r["synthetic"] for r in rows):
         raise ValueError("human quality audit requires real annotation")
     seed = config.get("review_seed", 20261113)
+    labels = ("R2b", "R2a") if config.get("phase1_mode") == "docid" else ("R1", "R2b")
     strata = defaultdict(list)
     for row in rows:
-        if row["split"] == "audit" and row["label"] in ("R1", "R2b"):
+        if row["split"] == "audit" and row["label"] in labels:
             strata[(row["label"], row["decision"])].append(row)
     samples = []
     for (label, decision), pool in sorted(strata.items()):
@@ -55,11 +56,11 @@ def export_review(folder, rows, config):
             samples.extend((row, "natural", count / len(pool), None) for row in ranked[:count])
     challenges = defaultdict(list)
     for row in rows:
-        if row["split"] == "audit" and row["label"] in ("R1", "R2b"):
+        if row["split"] == "audit" and row["label"] in labels:
             for reason in row["protections"]:
                 challenges[(row["label"], reason)].append(row)
     challenge_report = []
-    for label in ("R1", "R2b"):
+    for label in labels:
         selected = {}
         for reason in sorted(PROTECTION_KINDS, key=lambda reason: (len(challenges[label, reason]), reason)):
             pool = challenges[label, reason]

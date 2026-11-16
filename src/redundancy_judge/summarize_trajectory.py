@@ -4,6 +4,7 @@ from collections import Counter
 
 from .adapters.model import JUDGE_PROTOCOL_VERSION
 from .common import candidate_name
+from .docid import grounding_coverage
 from .update_evidence_ledger import support_key, unresolved_risks
 
 
@@ -18,6 +19,10 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
     evidence_incomplete = any(risk.get("scope") == "support" for risk in relevant_risks) if lenient else bool(relevant_risks)
     g = (len(supported) / len(constraints)
          if candidate and constraints and not task["uncertain"] and not evidence_incomplete else None)
+    docid = task.get("phase1_mode") == "docid"
+    docid_issue = None
+    if docid:
+        g, docid_issue = grounding_coverage(task, ledger)
     stages_by_id = {row["stage_id"]: row for row in stages}
     counts, priced_cost = Counter(), Counter()
     events = []
@@ -55,7 +60,8 @@ def summarize_trajectory(trajectory, task, ledger, stages, judgments, *, submitt
             "thought_lengths": trajectory.get("thought_lengths", []),
             "g": g, "grounding_status": "valid" if g is not None else "invalid",
             **({"global_risk_count": global_count} if lenient else {}),
-            "grounding_issue": "missing_or_ambiguous_submitted_candidate" if not candidate else
+            "g_definition": "evidence_coverage" if docid else "constraint_support",
+            "grounding_issue": docid_issue if docid else "missing_or_ambiguous_submitted_candidate" if not candidate else
             "uncertain_task" if task["uncertain"] or not constraints else
             "unresolved_evidence_risk" if evidence_incomplete else None,
             "supported_constraints": supported,
