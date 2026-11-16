@@ -4,6 +4,7 @@ import argparse
 from collections import Counter, defaultdict
 from hashlib import sha256
 import math
+import json
 from pathlib import Path
 
 from redundancy_judge.build_grpo_inputs import build_grpo_inputs, freeze_identity
@@ -94,6 +95,64 @@ def dryrun(run, config, summaries, spot_file):
     })
 
 
+def export_r1(run, judgments, calls, targets):
+    by_event = {}
+    for row in calls:
+        steps = by_event.setdefault(row["event_id"], {})
+        if row["step"] in steps:
+            raise ValueError("duplicate M3 step receipt")
+        steps[row["step"]] = row
+    decisions_by_id = {row["event_id"]: decisions(row)["R1"] for row in judgments}
+    positive = [row for row in judgments if decisions_by_id[row["event_id"]]["decision"] == "positive"]
+    if any(row["price_label"] == "R1" or decisions_by_id[row["event_id"]]["reward_eligible"] for row in judgments):
+        raise ValueError("R1 escaped the record-only guard")
+    source_rows = {row["trajectory_id"]: row for row in jsonl(run / "real/input_index.jsonl")}
+    by_track = defaultdict(list)
+    for row in positive:
+        by_track[row["trajectory_id"]].append(row)
+
+    def review():
+        for tid, rows in by_track.items():
+            source = source_rows[tid]
+            blob = Path(source["path"]).read_bytes()
+            if sha256(blob).hexdigest() != source["sha256"]:
+                raise ValueError(f"source trajectory changed {tid}")
+            original = json.loads(blob)
+            rounds = {row["round_id"]: row for row in original["rounds"]}
+            events = {f"{tid}:{row['event_id']}": row for row in original["tool_events"]}
+            for row in rows:
+                eid = row["event_id"]
+                event = events[eid]
+                refs = decisions_by_id[eid]["evidence"]
+                steps = by_event[eid]
+                user = json.loads(steps["verification"]["request"]["messages"][1]["content"])
+                passages = [p for p in user["previously_seen_passages"] if p["id"] in refs]
+                if set(refs) != {p["id"] for p in passages} or not refs:
+                    raise ValueError(f"R1 passage citation left supplied context {eid}")
+                yield {"event_id": eid, "query": json.loads(event["exact_arguments"])["query"],
+                       "agent_reasoning": rounds[event["round_id"]].get("reasoning_content"),
+                       "m3_calls": steps, "cited_passages": passages}
+    write_jsonl(run / "r1_positive_review.jsonl", review())
+    counts = Counter(r["decision"] for r in decisions_by_id.values())
+    reasons = Counter(r["abstention_reason"] for r in decisions_by_id.values() if r["decision"] == "abstain")
+    steps = Counter(row["step"] for row in calls)
+    seconds = (max(r["finished"] for r in calls) - min(r["started"] for r in calls)) if calls else 0
+    atomic_json(run / "r1_full_summary.json", {
+        "events": len(judgments), "labels": {key: counts[key] for key in ("positive", "negative", "abstain")},
+        "abstention_reasons": reasons, "trajectory_counts": {
+            key: len({row["trajectory_id"] for row in judgments if decisions_by_id[row["event_id"]]["decision"] == key})
+            for key in ("positive", "negative", "abstain")},
+        "positive_event_ids": sorted(row["event_id"] for row in positive),
+        "M3": {"calls": len(calls), "by_step": dict(steps), "failures": sum(bool(row["failure"]) for row in calls),
+               "elapsed_seconds": round(seconds, 3), "sum_request_seconds": round(sum(r["seconds"] for r in calls), 3),
+               "invalid_responses": sum(row.get("skip_reason") in ("first_call_failed", "second_call_failed")
+                                        and not any(c["failure"] for c in by_event.get(row["event_id"], {}).values())
+                                        for row in targets),
+               "format_conflicts": sum(bool(row.get("format_conflict")) for row in targets), "retries": 0},
+        "r1_priced_events": 0, "optimizer_steps": 0,
+    })
+
+
 def export(run, trial_labels, spot):
     config = read_json(run / "config.json")
     phase = run / "real"
@@ -117,6 +176,9 @@ def export(run, trial_labels, spot):
                                                                     for key, val in with_final.items()},
         "model_calls": {"M3": len(m3), "M5": len(model), "M4": 0, "legacy_R1_verification": 0,
                         "M3_failures": sum(bool(r["failure"]) for r in m3),
+                        "M3_sum_request_seconds": round(sum(r["seconds"] for r in m3), 3),
+                        "M3_elapsed_seconds": round(max(r["finished"] for r in m3) - min(r["started"] for r in m3), 3)
+                        if m3 else 0,
                         "M5_failures": sum("failure" in r for r in model),
                         "M5_sum_request_seconds": round(sum(r.get("seconds", 0) for r in model), 3)},
     })
@@ -127,7 +189,7 @@ def export(run, trial_labels, spot):
     reference = [{**row, "main": by_code[row["main"]]} for t in labels for row in t["events"]]
     atomic_json(run / "consistency_vs_187333.json", compare(judgments, reference))
     dryrun(run, config, summaries, spot)
-    return m3, judgments
+    export_r1(run, judgments, m3, jsonl(phase / "action_targets.jsonl"))
 
 
 if __name__ == "__main__":

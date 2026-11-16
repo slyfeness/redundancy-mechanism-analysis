@@ -26,7 +26,7 @@ def fixture(docs, query="Ａ  Search"):
 
 
 def decide(task, before, stage, event):
-    target = resolve_action_target(task, before, stage, NoModel())
+    target = {"intent": "explore", "skip_reason": "no_prior_passages"}
     after, delta = update_evidence_ledger(task, before, stage, event, NoModel())
     j = judge_stage(task, before, after, stage, event, target, delta, NoModel())
     return {row["label"]: row for row in j["labels"]}, j, after, delta
@@ -49,7 +49,7 @@ def test_docid_ledger_tracks_gain_and_prefix_passages_and_omits_model():
     assert delta["new_evidence"] == ["4"] and delta["effective_gain"]
     assert after["support"] == {} and after["evidence_passages"] == {"4": "evidence"}
     assert state.get("evidence_passages", {}) == {}
-    assert labels["R1"]["abstention_reason"] == "fact_level_disabled_phase1"
+    assert labels["R1"]["abstention_reason"] == "no_prior_passages"
     assert j["diagnostics"]["result_label"] == "effective"
     r = summarize_trajectory({}, t, after, [], [])
     assert r["g"] == .5 and r["g_definition"] == "evidence_coverage"

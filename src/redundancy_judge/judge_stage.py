@@ -18,9 +18,10 @@ def comparable_action(action, *, docid=False):
     return identity([action["tool_name"], action["environment"], args])
 
 
-def judge_stage(task, before, after, stage, event, target, delta, judge, *, threshold=0.8, previous_targets=None):
+def judge_stage(task, before, after, stage, event, target, delta, judge, *, threshold=0.8, previous_targets=None,
+                r1_record_only=True):
     if task.get("phase1_mode") == "docid":
-        return judge_docid_stage(task, before, stage, event, target, delta, comparable_action)
+        return judge_docid_stage(task, before, stage, event, target, delta, comparable_action, r1_record_only)
     action = stage.get("action") or {}
     spans = stage.get("charge_token_spans") or []
     visible = set(stage.get("visible_return_ids", ()))

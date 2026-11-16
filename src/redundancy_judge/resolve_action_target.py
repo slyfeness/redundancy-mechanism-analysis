@@ -1,6 +1,7 @@
 """Resolve intent using the information available before dispatch."""
 
 from .common import JudgeFailure, candidate_name, require
+from .m3_docid import resolve_docid_target
 
 INTENTS = {"explore", "verify", "fill_gap", "resolve_conflict", "strengthen",
            "open_fulltext", "recover", "retry", "unknown"}
@@ -10,7 +11,7 @@ def resolve_action_target(task, before, stage, judge, *, threshold=0.8):
     unknown = {"state": "unknown", "candidate": None, "constraint_id": None,
                "gap_id": None, "intent": "unknown", "confidence": None, "evidence_basis": []}
     if task.get("phase1_mode") == "docid":
-        return dict(unknown, reason="fact_level_disabled_phase1")
+        return resolve_docid_target(before, stage, judge, unknown)
     action = stage.get("action")
     if not action or task["uncertain"]:
         return unknown

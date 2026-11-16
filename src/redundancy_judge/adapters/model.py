@@ -4,6 +4,8 @@ from hashlib import sha256
 import ipaddress
 import json
 from pathlib import Path
+from time import perf_counter
+from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
@@ -123,6 +125,10 @@ class ModelJudge:
         if self.replay_only:
             raise JudgeFailure("replay cache entry is missing")
         request = Request(self.endpoint, canonical(body).encode(), {"Content-Type": "application/json"})
+        started = perf_counter()
+
+        def timing():
+            return {"seconds": perf_counter() - started} if self.freeze.get("phase1_mode") == "docid" else {}
         try:
             with self.opener.open(request, timeout=self.timeout) as stream:
                 raw = stream.read(4_000_001)
@@ -139,16 +145,69 @@ class ModelJudge:
             response = self._response(kind, json.loads(choice["message"]["content"], parse_constant=lambda v: float(v)))
             canonical(response)
         except JudgeFailure as exc:
-            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": str(exc)})
+            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": str(exc), **timing()})
             raise
         except (OSError, ValueError, TypeError, KeyError, IndexError) as exc:
             message = f"judge transport or JSON failure ({type(exc).__name__})"
-            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": message})
+            atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version, "failure": message, **timing()})
             raise JudgeFailure(message) from exc
         atomic_json(path, {"cache_key": key, "protocol_version": self.protocol_version,
                            "response": response, "usage": envelope.get("usage"),
-                           "response_sha256": sha256(raw).hexdigest()})
+                           "response_sha256": sha256(raw).hexdigest(), **timing()})
         return response
+
+    def ask_m3(self, step, payload, shape, event_id):
+        kind = "m3v3_" + step
+        body = {"model": self.name, "temperature": 0, "max_tokens": 16000, "reasoning_effort": "medium",
+                "response_format": {"type": "json_schema", "json_schema": {
+                    "name": kind, "strict": True, "schema": shape}},
+                "messages": [{"role": "system", "content": self.prompts[kind]},
+                             {"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]}
+        key = identity([self.freeze, event_id, step, body])
+        path = self.cache.parent / "m3_call_receipts" / (identity([event_id, step]) + ".json")
+        if path.is_file():
+            receipt = read_json(path)
+            if receipt["cache_key"] != key:
+                raise JudgeFailure("M3 cache identity mismatch")
+            if receipt["failure"]:
+                raise JudgeFailure(receipt["failure"])
+            return receipt["parsed"]
+        if self.replay_only:
+            raise JudgeFailure("M3 replay cache entry is missing")
+        raw = parsed = failure = status = None
+        started = perf_counter()
+        try:
+            wire = json.dumps(body, ensure_ascii=False).encode()
+            request = Request(self.endpoint, wire, {"Content-Type": "application/json"})
+            with self.opener.open(request, timeout=900) as stream:
+                status = stream.status
+                raw = stream.read().decode("utf-8")
+            envelope = json.loads(raw)
+            if envelope["model"] != self.name:
+                raise JudgeFailure("M3 model identity mismatch")
+            choice = envelope["choices"][0]
+            if choice["finish_reason"] != "stop" or choice["message"].get("tool_calls"):
+                raise JudgeFailure("M3 response protocol was incomplete")
+            parsed = json.loads(choice["message"]["content"])
+            canonical(parsed)
+        except HTTPError as exc:
+            status, failure = exc.code, "M3 HTTP failure"
+            with exc:
+                try:
+                    raw = exc.read().decode("utf-8")
+                except (OSError, UnicodeError):
+                    raw = None
+        except JudgeFailure as exc:
+            failure = str(exc)
+        except (OSError, ValueError, TypeError, KeyError, IndexError) as exc:
+            failure = "M3 transport or JSON failure (" + type(exc).__name__ + ")"
+        finished = perf_counter()
+        atomic_json(path, {"cache_key": key, "event_id": event_id, "step": step, "request": body,
+                           "raw_response": raw, "parsed": parsed, "http_status": status, "failure": failure,
+                           "seconds": finished - started, "started": started, "finished": finished})
+        if failure:
+            raise JudgeFailure(failure)
+        return parsed
 
 
 class SyntheticJudge:

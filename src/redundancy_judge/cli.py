@@ -73,8 +73,11 @@ def freeze_config(config, *, frozen_content=None, evidence_content=None):
         if evidence_content is None:
             evidence_content = Path(config["evidence_labels"]).read_bytes()
         digest = sha256(evidence_content).hexdigest()
-        freeze.update(phase1_mode="docid", evidence_labels_sha256=digest)
-        freeze["config_sha256"] = identity([freeze["config_sha256"], "docid", digest])
+        record_only = config.get("r1_record_only", True)
+        if type(record_only) is not bool:
+            raise ValueError("r1_record_only must be boolean")
+        freeze.update(phase1_mode="docid", evidence_labels_sha256=digest, r1_record_only=record_only)
+        freeze["config_sha256"] = identity([freeze["config_sha256"], "docid", digest, record_only])
     return freeze
 
 
@@ -123,6 +126,8 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                   "actor_revision": trace["model_revision"]}
     parsed = parse_stages(trace, {"tokenizer": tokenizer, "phase1_mode": config.get("phase1_mode")}, legacy)
     events = {event["event_id"]: event for event in parsed["tool_events"]}
+    docid = config.get("phase1_mode") == "docid"
+    reasoning_by_round = {r["round_id"]: r.get("reasoning_content") for r in trace["rounds"]} if docid else {}
     judgments, states, targets, annotation_errors = [], [], {}, []
     ledger = initial
     stages = parsed["stages"]
@@ -138,10 +143,14 @@ def annotate_one(row, task, initial, judge, tokenizer, legacy, freeze, config):
                 action = {key: event[key] for key in ("tool_name", "arguments", "call_id", "event_id",
                                                      "environment", "deterministic", "dispatch_time")}
                 action_stage = {**stage, "action": action}
+            if docid:
+                action_stage = {**action_stage, "m3_event_id": f"{row['trajectory_id']}:{event['recorded_event_id']}",
+                                "m3_reasoning": reasoning_by_round.get(event["round_id"])}
             target = resolve_action_target(task, before, action_stage, judge, threshold=config.get("threshold", 0.8))
             after, delta = update_evidence_ledger(task, before, action_stage, event, judge)
             judgment = judge_stage(task, before, after, action_stage, event, target, delta, judge,
-                                   threshold=config.get("threshold", 0.8), previous_targets=targets)
+                                   threshold=config.get("threshold", 0.8), previous_targets=targets,
+                                   r1_record_only=config.get("r1_record_only", True))
             unique_event = f"{row['trajectory_id']}:{event_id}"
             judgment.update(event_id=unique_event, question_id=row["question_id"], split=row["split"],
                             synthetic=judge.synthetic, provenance=provenance)

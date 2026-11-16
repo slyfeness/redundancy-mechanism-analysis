@@ -105,7 +105,7 @@ def result_label(task, history, event, action, delta):
     return "ineffective"
 
 
-def judge_docid_stage(task, before, stage, event, target, delta, comparable):
+def judge_docid_stage(task, before, stage, event, target, delta, comparable, record_only):
     action = stage.get("action") or {}
     spans = stage.get("charge_token_spans") or []
     visible_ids = set(stage.get("visible_return_ids", ()))
@@ -138,12 +138,23 @@ def judge_docid_stage(task, before, stage, event, target, delta, comparable):
         elif docs & set(task["evidence_doc_ids"]) and not delta["new_evidence"]:
             subtype = "repeated_evidence"
     r2a = ("positive" if subtype else "negative") if protocol_ok and has_return else "abstain"
+    r1_reason = target.get("skip_reason")
+    cited = target.get("passage_ids", [])
+    allowed = {"P" + docid for docid in before.get("evidence_passages", {})}
+    valid_citation = (target.get("already_stated") is True and bool(cited)
+                      and set(cited) <= allowed and set(cited) <= set(target.get("provided_passage_ids", ()))
+                      and not target.get("format_conflict"))
+    if not protocol_ok:
+        r1_reason = "protocol_error"
+    r1 = ("abstain" if r1_reason else "positive" if valid_citation and r2b != "positive" and not protections
+          else "negative")
     positionable = (stage["stage_type"] == "tool" and protocol_ok and not stage.get("parallel_group_id") and bool(spans))
 
     def label(name, decision, reason=None, evidence=()):
         known_at = event.get("return_time") if has_return else None
         return {"label": name, "decision": decision, "protected": bool(protections),
-                "reward_eligible": name == "R2b" and decision == "positive" and positionable,
+                "reward_eligible": (name == "R2b" or (name == "R1" and not record_only))
+                                   and decision == "positive" and positionable,
                 "known_at": known_at, "decision_time": "after_return" if known_at else "unavailable",
                 "abstention_reason": reason if decision == "abstain" else None, "evidence": list(evidence)}
 
@@ -151,14 +162,15 @@ def judge_docid_stage(task, before, stage, event, target, delta, comparable):
                   else "comparison_environment_or_arguments_unverified")
     exact_ids = [p["event_id"] for p in exact if p["event_id"] in visible_ids]
     labels = [label("R2b", r2b, abstention, exact_ids),
-              label("R1", "abstain", "fact_level_disabled_phase1"),
+              label("R1", r1, r1_reason, cited if valid_citation else ()),
               label("R2a", r2a, abstention)]
     price = next((row["label"] for row in labels if row["reward_eligible"]), None)
     return {"stage_id": stage["stage_id"], "event_id": event["event_id"], "labels": labels,
             "price_label": price, "protections": sorted(set(protections)), "risk_guard_reason": None,
             "risk_guard_refs": [], "pricing_blocked_by_risk": False, "charge_token_spans": spans if price else [],
             "position_strategy": "verified_call_envelope" if price else "unpriced",
-            "diagnostics": {"r1_check": None, "r1_funnel": {"outcome": "not_invoked", "reason": "fact_level_disabled_phase1"},
+            "diagnostics": {"r1_check": target.get("already_stated"),
+                            "r1_funnel": {"outcome": r1, "reason": r1_reason},
                             "r2a_similarity": 0.0, "same_gap_attempts": [], "effective_gain": delta["effective_gain"],
                             "exact_repeat_ids": exact_ids, "r2a_subtype": subtype,
                             "r2a_whatif_token_spans": spans if r2a == "positive" and positionable else [],

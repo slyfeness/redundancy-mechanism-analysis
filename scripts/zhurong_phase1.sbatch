@@ -76,7 +76,7 @@ config.update(output_dir=run, run_dir=str(Path(run) / "real"), prompt_dir=str(Pa
 config["judge"]["url"] = f"http://127.0.0.1:{port}/v1"
 if mode == "docid":
     labels = Path(run) / "evidence_labels.jsonl"
-    config.update(phase1_mode="docid", evidence_labels=str(labels),
+    config.update(phase1_mode="docid", r1_record_only=True, evidence_labels=str(labels),
                   evidence_labels_sha256=sha256(labels.read_bytes()).hexdigest(),
                   frozen_constraints_sha256=sha256(Path(frozen).read_bytes()).hexdigest())
 with (Path(run) / "config.json").open("x", encoding="utf-8") as out:
