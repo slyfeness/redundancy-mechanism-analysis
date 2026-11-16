@@ -29,8 +29,8 @@ def resolve_docid_target(before, stage, judge, base):
         return dict(target, skip_reason="first_call_failed", error=str(exc))
     target.update(first)
     entity = first["entity"]
-    if entity is None:
-        return dict(target, skip_reason="new_candidate")
+    if entity is None or entity.strip().lower() in {"", "null", "none", "n/a", "unknown"}:
+        return dict(target, entity=None, skip_reason="new_candidate")
     target.update(state="resolved", candidate=entity, candidate_present_in_response=bool(entity))
     prior = [{"id": "P" + docid, "text": text} for docid, text in before.get("evidence_passages", {}).items()]
     if not prior:

@@ -2,9 +2,13 @@
 
 from copy import deepcopy
 import json
+import re
 import unicodedata
 
 from .common import identity
+
+
+R1_TRIGGER = re.compile(r"(?i)\b(verify|verifying|confirm|confirming|confirmation|double-check|make sure)\b")
 
 
 def normalize_query(text):
@@ -148,6 +152,9 @@ def judge_docid_stage(task, before, stage, event, target, delta, comparable, rec
         r1_reason = "protocol_error"
     r1 = ("abstain" if r1_reason else "positive" if valid_citation and r2b != "positive" and not protections
           else "negative")
+    r1_terms = ([term.lower() for term in R1_TRIGGER.findall((stage.get("m3_reasoning") or "")[-400:])]
+                if r1 == "positive" else [])
+    r1_confidence = ("high" if r1_terms else "normal") if r1 == "positive" else None
     positionable = (stage["stage_type"] == "tool" and protocol_ok and not stage.get("parallel_group_id") and bool(spans))
 
     def label(name, decision, reason=None, evidence=()):
@@ -171,6 +178,7 @@ def judge_docid_stage(task, before, stage, event, target, delta, comparable, rec
             "position_strategy": "verified_call_envelope" if price else "unpriced",
             "diagnostics": {"r1_check": target.get("already_stated"),
                             "r1_funnel": {"outcome": r1, "reason": r1_reason},
+                            "r1_confidence": r1_confidence, "r1_trigger_terms": r1_terms,
                             "r2a_similarity": 0.0, "same_gap_attempts": [], "effective_gain": delta["effective_gain"],
                             "exact_repeat_ids": exact_ids, "r2a_subtype": subtype,
                             "r2a_whatif_token_spans": spans if r2a == "positive" and positionable else [],

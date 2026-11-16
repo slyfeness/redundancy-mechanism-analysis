@@ -1,6 +1,8 @@
 import pytest
 
 from redundancy_judge.resolve_action_target import resolve_action_target
+from redundancy_judge.judge_stage import judge_stage
+from redundancy_judge.update_evidence_ledger import update_evidence_ledger
 from test_docid_mode import decide, fixture
 
 
@@ -28,6 +30,38 @@ def test_pipeline_m3_skip_is_auditable_and_requests_exclude_question():
                                       "current_search_query": "Ａ  Search"})]
     fake = TwoReplies(entity=None)
     assert make_target(t, state, st, fake)["skip_reason"] == "new_candidate"
+
+
+@pytest.mark.parametrize("entity", ["null", " NULL ", " None ", " N/a ", "UnKnOwN", "", " \t"])
+def test_docid_missing_entity_strings_skip_even_with_prior_passages(entity):
+    task, before, stage, _ = fixture([("8", "other")])
+    before.update(evidence_passages={"4": "evidence"}, documents=["4"])
+    fake = TwoReplies(entity=entity)
+    target = make_target(task, before, stage, fake)
+    assert target["entity"] is None and target["skip_reason"] == "new_candidate"
+    assert [step for step, _ in fake.calls] == ["intent"]
+
+
+@pytest.mark.parametrize("tail,stated,confidence,terms", [
+    ("Verify and DOUBLE-CHECK. make sure; reconfirm; confirming", True, "high",
+     ["verify", "double-check", "make sure", "confirming"]),
+    ("verify " + "x" * 400, True, "normal", []),
+    ("x " + " " * 393 + "verify", True, "high", ["verify"]),
+    ("verification and reaffirm", True, "normal", []),
+    ("confirmation", False, None, []),
+])
+def test_docid_r1_tier_uses_only_last_400_chars_and_stays_unpriced(tail, stated, confidence, terms):
+    task, before, stage, event = fixture([("8", "other")])
+    before.update(evidence_passages={"4": "evidence"}, documents=["4"])
+    fake = TwoReplies(stated=stated, ids=("P4",) if stated else ())
+    target = make_target(task, before, stage, fake)
+    stage["m3_reasoning"] = tail
+    after, delta = update_evidence_ledger(task, before, stage, event, fake)
+    result = judge_stage(task, before, after, stage, event, target, delta, fake, r1_record_only=True)
+    r1 = next(row for row in result["labels"] if row["label"] == "R1")
+    assert result["diagnostics"]["r1_confidence"] == confidence
+    assert result["diagnostics"]["r1_trigger_terms"] == terms
+    assert not r1["reward_eligible"] and result["price_label"] is None
 
 
 @pytest.mark.parametrize("truth,ids,expected", [(True, ("P4",), "positive"), (False, (), "negative"),
