@@ -31,6 +31,16 @@ def label(row, name):
     return next(item for item in row["labels"] if item["label"] == name)
 
 
+def restore_request_order(before, target):
+    passage_ids = target["provided_passage_ids"]
+    if not passage_ids:
+        return before
+    passages = before.get("evidence_passages", {})
+    if len(passage_ids) != len(passages) or set(passage_ids) != {"P" + docid for docid in passages}:
+        raise ValueError("archived request passage membership differs from the frozen ledger")
+    return {**before, "evidence_passages": {pid[1:]: passages[pid[1:]] for pid in passage_ids}}
+
+
 def replay(config):
     root = Path(config["source"])
     original = read_json(root / "config.json")
@@ -69,15 +79,17 @@ def replay(config):
         for old in bundle["stage_judgments"]:
             eid = old["event_id"]
             event, snapshot = events[eid], snapshots[eid]
+            old_target = old_targets[eid]
+            before = restore_request_order(snapshot["before"], old_target)
             stage = {**stages[old["stage_id"]],
                      "m3_event_id": f'{source["trajectory_id"]}:{event["recorded_event_id"]}',
                      "m3_reasoning": reasoning[event["round_id"]]}
             if stage["parallel_group_id"] and stage["parse_status"] == "ok":
                 stage["action"] = {key: event[key] for key in ("tool_name", "arguments", "call_id", "event_id",
                                                               "environment", "deterministic", "dispatch_time")}
-            target = resolve_action_target(task, snapshot["before"], stage, judge,
+            target = resolve_action_target(task, before, stage, judge,
                                            threshold=original.get("threshold", .8))
-            result = judge_stage(task, snapshot["before"], snapshot["after"], stage, event,
+            result = judge_stage(task, before, snapshot["after"], stage, event,
                                  target, snapshot["delta"], judge, r1_record_only=True)
             prior_r1, now_r1 = label(old, "R1"), label(result, "R1")
             prior[prior_r1["decision"]] += 1
@@ -92,7 +104,6 @@ def replay(config):
             diagnostics = result["diagnostics"]
             assert old["diagnostics"]["result_label"] == diagnostics["result_label"], eid
             assert old["diagnostics"]["r2a_subtype"] == diagnostics["r2a_subtype"], eid
-            old_target = old_targets[eid]
             if old_target["entity"] is not None and target["entity"] is None:
                 assert target["skip_reason"] == "new_candidate", eid
                 sentinel.append(eid)
