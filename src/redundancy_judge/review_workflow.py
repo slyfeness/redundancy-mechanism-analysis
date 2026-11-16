@@ -4,7 +4,7 @@ from collections import Counter, defaultdict
 import csv
 from pathlib import Path
 
-from .audit_judge import audit_judge
+from .audit_judge import LABELS, audit_judge
 from .build_grpo_inputs import build_grpo_inputs
 from .cli import jsonl, reference_cost, write_jsonl
 from .common import atomic_json, canonical, identity, read_json
@@ -12,6 +12,10 @@ from .common import atomic_json, canonical, identity, read_json
 
 PROTECTION_KINDS = ("first_evidence", "resolve_conflict", "independent_support",
                     "summary_to_fulltext", "restore_invisible_evidence", "tool_failure_retry")
+
+
+def _review_labels(config):
+    return ("R2b", "R2a") if config.get("phase1_mode") == "docid" else LABELS
 
 
 def quick_rows(folder):
@@ -28,7 +32,7 @@ def export_review(folder, rows, config):
     if any(r["synthetic"] for r in rows):
         raise ValueError("human quality audit requires real annotation")
     seed = config.get("review_seed", 20261113)
-    labels = ("R2b", "R2a") if config.get("phase1_mode") == "docid" else ("R1", "R2b")
+    labels = _review_labels(config)
     strata = defaultdict(list)
     for row in rows:
         if row["split"] == "audit" and row["label"] in labels:
@@ -135,7 +139,8 @@ def execute(command, config):
         write_jsonl(folder / "audit_annotations.jsonl", humans)
         planned_path = folder / "audit_sampling_manifest.jsonl"
         planned = jsonl(planned_path) if planned_path.is_file() else None
-        report = audit_judge(rows, humans, legacy, config=config.get("thresholds"), planned_reviews=planned)
+        report = audit_judge(rows, humans, legacy, config=config.get("thresholds"), planned_reviews=planned,
+                             label_ids=_review_labels(config))
         atomic_json(folder / "acceptance.json", report)
         atomic_json(folder / "approved_labels.json", report["approved_labels"])
         print(report["status"])

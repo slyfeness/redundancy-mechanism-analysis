@@ -1,6 +1,9 @@
 import pytest
 
 from redundancy_judge.audit_judge import audit_judge
+from redundancy_judge.cli import write_jsonl
+from redundancy_judge.common import atomic_json, read_json
+from redundancy_judge.review_workflow import execute
 
 
 FREEZE = {
@@ -36,6 +39,24 @@ def test_empty_human_reviews_do_not_fabricate_precision_or_approvals():
     assert output["approved_labels"] == {}
     for report in output["labels"].values():
         assert report["natural"]["precision"]["estimate"] is None
+
+
+def test_docid_review_plan_is_accepted_without_granting_approval(tmp_path, monkeypatch):
+    monkeypatch.setattr("redundancy_judge.review_workflow.write_blind_packets", lambda *_: None)
+    rows = [judgment("e1", label, reward_eligible=False) for label in ("R1", "R2b", "R2a")]
+    write_jsonl(tmp_path / "stage_judgments.jsonl", [{
+        "event_id": "e1", "question_id": "q1", "trajectory_id": "t1", "stage_id": "s1",
+        "split": "audit", "protections": [], "synthetic": False, "provenance": FREEZE, "labels": rows,
+    }])
+    atomic_json(tmp_path / "run_manifest.json", {"synthetic": False})
+    config = {"run_dir": str(tmp_path), "phase1_mode": "docid"}
+    assert execute("export-review", config) == 0
+    assert execute("audit", config) == 0
+    report = read_json(tmp_path / "acceptance.json")
+    assert report["status"] == "PENDING_HUMAN_REVIEW"
+    assert set(report["labels"]) == {"R2a", "R2b"}
+    assert report["labels"]["R2a"]["review_plan"]["planned"] == 1
+    assert report["approved_labels"] == {}
 
 
 def test_labels_are_separate_and_natural_estimates_use_inverse_probability_weights():

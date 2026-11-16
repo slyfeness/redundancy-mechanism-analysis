@@ -248,7 +248,8 @@ def _status(rows, reviews, natural, protection, legacy, identity, options):
     return "PASS"
 
 
-def audit_judge(judgments, human_annotations=(), legacy_links=(), *, planned_reviews=None, config=None):
+def audit_judge(judgments, human_annotations=(), legacy_links=(), *, planned_reviews=None, config=None,
+                label_ids=LABELS):
     """Measure audit results separately by label. Only a bound human audit can approve prices."""
     options = _settings(config)
     identities = {}
@@ -257,7 +258,7 @@ def audit_judge(judgments, human_annotations=(), legacy_links=(), *, planned_rev
     explicit_split = any("split" in row for row in judged)
     for row in judged:
         label = row.get("label")
-        if label not in LABELS or row.get("synthetic") is not False:
+        if label not in label_ids or row.get("synthetic") is not False:
             continue
         event_id = row.get("event_id")
         key = (event_id, label)
@@ -272,7 +273,7 @@ def audit_judge(judgments, human_annotations=(), legacy_links=(), *, planned_rev
     reviews, disagreements, unresolved = _reviews(human_annotations, identities, outside_audit, plan)
     links = list(legacy_links)
     approved, labels = {}, {}
-    for label in LABELS:
+    for label in label_ids:
         rows = [row for key, row in identities.items() if key[1] == label]
         own = [row for row in reviews if row["label"] == label]
         natural = _human_metrics([row for row in own if row["sample_kind"] == "natural"], options)
