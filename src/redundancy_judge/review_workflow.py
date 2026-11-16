@@ -2,12 +2,15 @@
 
 from collections import Counter, defaultdict
 import csv
+from hashlib import sha256
 from pathlib import Path
 
+from .ai_review import audit_ai_reviews, review_units
 from .audit_judge import LABELS, audit_judge
 from .build_grpo_inputs import build_grpo_inputs
 from .cli import jsonl, reference_cost, write_jsonl
 from .common import atomic_json, canonical, identity, read_json
+from .review_identity import review_identity
 
 
 PROTECTION_KINDS = ("first_evidence", "resolve_conflict", "independent_support",
@@ -127,10 +130,28 @@ def write_blind_packets(folder, blind):
 
 def execute(command, config):
     folder = Path(config["run_dir"])
+    policy = review_identity(config)
     if command in ("export-review", "audit"):
         if read_json(folder / "run_manifest.json")["synthetic"]:
-            raise ValueError("human quality audit requires real annotation")
+            raise ValueError("quality audit requires real annotation")
         rows = quick_rows(folder)
+        if policy:
+            criteria = Path(config["ai_criteria"]).read_bytes()
+            if sha256(criteria).hexdigest() != policy["ai_review"]["criteria_sha256"]:
+                raise ValueError("AI review criteria differ from the frozen SHA-256")
+            plan = jsonl(config["ai_original_plan"]) if config.get("ai_original_plan") else []
+            if command == "export-review":
+                units = review_units(rows, plan)
+                write_jsonl(folder / "ai_review_plan.jsonl",
+                            ({"unit_id": uid, "event_id": eid} for uid, eid in sorted(units.items())))
+                return 0
+            primary = jsonl(config["ai_review_annotations"]) if config.get("ai_review_annotations") else []
+            spot = jsonl(config["ai_spot_check_annotations"]) if config.get("ai_spot_check_annotations") else []
+            report = audit_ai_reviews(rows, plan, primary, spot, config)
+            atomic_json(folder / "acceptance.json", report)
+            atomic_json(folder / "approved_labels.json", report["approved_labels"])
+            print(report["status"])
+            return 0
         if command == "export-review":
             print(f"exported {export_review(folder, rows, config)} independent review units")
             return 0
@@ -149,7 +170,7 @@ def execute(command, config):
     summaries = jsonl(folder / "trajectory_summaries.jsonl")
     price_path = folder / "approved_labels.json"
     approvals = read_json(price_path) if price_path.is_file() else {}
-    options = config["reward"]
+    options = {**config["reward"], "review_mode": config.get("review_mode", "human"), **policy}
     if config.get("cost_weighted"):
         reference = read_json(folder / "reference_cost.json")
         measured = reference_cost(stage for stage in jsonl(folder / "stages.jsonl") if stage["split"] == "dev")

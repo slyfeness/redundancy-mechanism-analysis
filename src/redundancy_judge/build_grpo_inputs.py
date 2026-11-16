@@ -4,6 +4,8 @@ from collections import defaultdict
 import math
 import re
 
+from .review_identity import review_identity
+
 
 PRIORITY = ("R2b", "R1")
 FREEZE_KEYS = ("schema_version", "code_commit", "model_version", "prompt_sha256", "config_sha256")
@@ -21,7 +23,26 @@ def freeze_identity(provenance):
         return None
     if provenance.get("tokenizer_version"):
         values["tokenizer_version"] = provenance["tokenizer_version"]
-    return values
+    try:
+        review = review_identity(provenance)
+    except ValueError:
+        return None
+    if review and "input_index_sha256" in provenance:
+        index_digest = provenance["input_index_sha256"]
+        if not isinstance(index_digest, str) or not re.fullmatch(r"[0-9a-f]{64}", index_digest):
+            return None
+        values["input_index_sha256"] = index_digest
+    return {**values, **review}
+
+
+def bind_ai_review(provenance, policy):
+    """Bind a historic frozen annotation to the explicitly configured review."""
+    if not isinstance(provenance, dict):
+        return None
+    declared = {key: provenance[key] for key in policy.keys() & provenance.keys()}
+    if declared and declared != policy:
+        return None
+    return freeze_identity({**provenance, **policy})
 
 
 def _number(value, low=0.0, high=None):
@@ -100,15 +121,23 @@ def _preflight(row, weight):
     return None, positions
 
 
-def _label_approved(label, event, row, approved):
+def _label_approved(label, event, row, approved, policy):
     approval = approved.get(label)
-    if not isinstance(approval, dict) or approval.get("status") != "PASS":
+    if not isinstance(approval, dict):
         return False
     if approval.get("synthetic") is not row["synthetic"]:
         return False
     row_provenance = row.get("provenance")
     provenance = freeze_identity(row_provenance)
     if event.get("provenance") is not None and freeze_identity(event["provenance"]) != provenance:
+        return False
+    if policy:
+        event_ids = approval.get("event_ids")
+        if (label != "R2b" or approval.get("status") != "ai_approved" or row["synthetic"]
+                or not isinstance(event_ids, list) or event["event_id"] not in event_ids):
+            return False
+        provenance = bind_ai_review(row_provenance, policy)
+    elif approval.get("status") not in ("PASS", "human_approved"):
         return False
     return provenance is not None and provenance == freeze_identity(approval.get("provenance"))
 
@@ -123,7 +152,7 @@ def _event_cost(event):
     return generated + returned
 
 
-def _price_candidates(row, policy, prices, reference, approvals):
+def _price_candidates(row, policy, prices, reference, approvals, review_policy):
     buckets = defaultdict(list)
     rejected = []
     candidates = []
@@ -151,7 +180,7 @@ def _price_candidates(row, policy, prices, reference, approvals):
             continue
         if not prices[label]:
             continue
-        if not _label_approved(label, event, row, approvals):
+        if not _label_approved(label, event, row, approvals, review_policy):
             rejected.append({"event_id": identity, "reason": "unapproved_label_or_mismatched_freeze"})
             continue
         try:
@@ -189,6 +218,7 @@ def build_grpo_inputs(annotations, config=None, approved_labels=None):
     """Build a standalone preview. The caller supplies complete same-question groups."""
     weight, cap, prices, reference, budget_gate, group_size = _settings(config)
     approvals = approved_labels or {}
+    review_policy = review_identity(config or {})
     groups = defaultdict(list)
     identities = set()
     for row in annotations:
@@ -221,7 +251,7 @@ def build_grpo_inputs(annotations, config=None, approved_labels=None):
         for i, (row, (_, policy)) in enumerate(zip(rows, checks)):
             gate = int(any(success for j, success in enumerate(y) if j != i))
             outcome = reward[i] - math.fsum(value for j, value in enumerate(reward) if j != i) / (len(rows) - 1)
-            candidates, rejected = _price_candidates(row, policy, prices, reference, approvals)
+            candidates, rejected = _price_candidates(row, policy, prices, reference, approvals, review_policy)
             total = math.fsum(event["base_price"] for event, _ in candidates)
             scale = min(1.0, cap / total) if total else 1.0
             mask = [int(index in policy) for index in range(row["policy_token_count"])]

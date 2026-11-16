@@ -20,6 +20,7 @@ from .init_task_ledger import init_task_ledger, init_task_ledger_frozen
 from .judge_stage import judge_stage
 from .parse_stages import parse_stages
 from .resolve_action_target import resolve_action_target
+from .review_identity import review_identity
 from .summarize_trajectory import summarize_trajectory
 from .update_evidence_ledger import merge_parallel_updates, update_evidence_ledger
 
@@ -78,6 +79,7 @@ def freeze_config(config, *, frozen_content=None, evidence_content=None):
             raise ValueError("r1_record_only must be boolean")
         freeze.update(phase1_mode="docid", evidence_labels_sha256=digest, r1_record_only=record_only)
         freeze["config_sha256"] = identity([freeze["config_sha256"], "docid", digest, record_only])
+    freeze.update(review_identity(config))
     return freeze
 
 

@@ -232,14 +232,28 @@
     },
     "AuditReport": {
       "type": "object", "required": ["status", "labels", "approved_labels", "disagreements",
-        "unresolved_reviews", "thresholds", "confidence_interval"],
+        "unresolved_reviews", "thresholds"],
       "properties": {
-        "status": {"enum": ["PASS", "FAIL", "INSUFFICIENT_EVIDENCE", "BLOCKED", "PENDING_HUMAN_REVIEW"]},
-        "labels": {"type": "object", "required": ["R1", "R2b"],
-          "additionalProperties": {"type": "object", "required": ["status", "events", "questions", "natural",
-            "protection", "legacy", "provenance", "failure_cases"]}},
+        "status": {"enum": ["PASS", "FAIL", "INSUFFICIENT_EVIDENCE", "BLOCKED", "PENDING_HUMAN_REVIEW", "PENDING_AI_REVIEW"]},
+        "labels": {"type": "object"},
         "approved_labels": {"type": "object"}, "disagreements": {"type": "array"},
         "unresolved_reviews": {"type": "array"}, "thresholds": {"type": "object"}, "confidence_interval": {"type": "object"}
+      },
+      "if": {"required": ["review_mode"], "properties": {"review_mode": {"const": "ai"}}},
+      "then": {
+        "required": ["ai_review", "freeze", "skipped_checks"],
+        "properties": {
+          "labels": {"required": ["R1", "R2a", "R2b"], "properties": {
+            "R1": {"properties": {"status": {"const": "record_only"}}},
+            "R2a": {"properties": {"status": {"const": "record_only"}}}
+          }}
+        }
+      },
+      "else": {
+        "required": ["confidence_interval"],
+        "properties": {"labels": {"required": ["R1", "R2b"],
+          "additionalProperties": {"type": "object", "required": ["status", "events", "questions", "natural",
+            "protection", "legacy", "provenance", "failure_cases"]}}}
       }
     },
     "GRPOPreview": {
