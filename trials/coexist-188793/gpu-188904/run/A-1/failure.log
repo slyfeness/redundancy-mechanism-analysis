@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/qualified-source/ledger-grpo/scripts/coexist_controller.py", line 380, in run_layout
+    generated = run_rollout(batch.rollout, index, batch.rows, config["seed"], actor.servers, actor.port,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/file_storage01/home/weiyu/lanyi/projects/browsecomp-qwen35-9b-grpo-smoke/runs/stability-tenstep-v4/src/stability_rollout.py", line 215, in run_rollout
+    records = [future.result() for future in futures]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/file_storage01/home/weiyu/lanyi/projects/browsecomp-qwen35-9b-grpo-smoke/runs/stability-tenstep-v4/src/stability_rollout.py", line 215, in <listcomp>
+    records = [future.result() for future in futures]
+               ^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/file_storage01/home/weiyu/lanyi/projects/browsecomp-qwen35-9b-grpo-smoke/runs/stability-tenstep-v4/src/stability_rollout.py", line 202, in execute
+    raise RuntimeError('A native rollout worker failed')
+RuntimeError: A native rollout worker failed
