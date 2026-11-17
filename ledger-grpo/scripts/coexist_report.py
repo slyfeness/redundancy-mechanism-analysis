@@ -77,7 +77,10 @@ def summarize(root, baseline):
         if relevant:
             stats["peak_gpu_mib"] = peak(select(samples, relevant[0]["started_epoch"], relevant[-1]["ended_epoch"]))
         for batch in chosen["batches"]:
-            batch["tail_gpu_utilization"] = gpu_use(select(samples, batch["tail_start_epoch"], batch["tail_end_epoch"]))
+            archive = batch.get("generation_archive")
+            tail_samples = telemetry(Path(archive).parents[1] / "gpu-samples.csv") if archive else samples
+            batch["tail_gpu_utilization"] = (None if batch["tail_start_epoch"] is None else
+                                             gpu_use(select(tail_samples, batch["tail_start_epoch"], batch["tail_end_epoch"])))
             batch["generation_change_pct"] = 100 * (batch["generation_tokens_per_second"] /
                                                       reference["generation_tokens_per_second"] - 1)
         rank = [read_json(path) for path in sorted((run/"isolated-update").glob("MEMORY-rank*.json"))]
@@ -95,7 +98,8 @@ def summarize(root, baseline):
                          "three_batches_no_oom": ready, "code_label_exact": consistent,
                          "passes_comparison_gates": approved}
     rank = sorted((row["attempts"][-1]["batches"][-1]["step_seconds_including_update"], name)
-                  for name,row in layouts.items() if row["passes_comparison_gates"])
+                  for name,row in layouts.items() if row["passes_comparison_gates"]
+                  and row["attempts"][-1]["batches"][-1]["step_seconds_including_update"] is not None)
     return {"baseline": reference, "layouts": layouts, "recommended_layout": rank[0][1] if rank else None,
             "limits": {"context_actor": 65536, "context_judge": 131072, "max_judge_sequences": 16,
                        "pressure_batches_per_layout": 3, "trajectories_per_batch": 128,

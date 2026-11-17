@@ -85,26 +85,73 @@ class Batch:
                   "source": "official_verifier_not_run" if has_final else "terminal_without_final"}
         atomic_json(receipt, result)
         future.set_result(result)
+        self.enqueue(entry, timing, future)
+        return future
+
+    def enqueue(self, entry, timing, future):
+        tid = timing["traj_id"]
         core = self.core_pool.submit(self.label_core, entry, timing, future)
         self.core_completed[tid] = core
         if self.layout != "A":
             self.completed[tid] = self.judge_pool.submit(self.label_m3, core)
-        return future
+
+    def ingest_archive(self, archived_batch):
+        source = Path(archived_batch).resolve()
+        prior = read_json(source.parent / "result.json")
+        if prior.get("policy_snapshot_id") != self.snapshot or prior["layout"] != self.layout:
+            raise ValueError("archived batch was produced by a different policy or layout")
+        if source.name != self.path.name:
+            raise ValueError("archived batch number differs from the handoff batch")
+        rollout = source / "rollout"
+        batch_path = rollout / "TRAIN_BATCH.json"
+        batch = read_json(batch_path)
+        rows = batch["trajectories"]
+        if [(str(row["query_id"]), row["id"]) for row in rows] != self.tracks:
+            raise ValueError("archived batch does not match the ordered frozen trajectory roster")
+        if any(row["reward"] != (None if row["terminal"] == "MODEL_FINAL_STOP" else 0) for row in rows):
+            raise ValueError("archived outcomes violate the original ungraded batch contract")
+        self.rollout.symlink_to(rollout, target_is_directory=True)
+        atomic_json(self.path / "archived-generation.json", {
+            "batch": self.index, "source": str(source), "snapshot": self.snapshot,
+            "native_batch_sha256": digest(batch_path), "rollout_result_sha256": digest(rollout / "ROLLOUT_RESULT.json")})
+        for qid, tid in self.tracks:
+            path = rollout / "trajectories" / tid / "trajectory.json"
+            has_final = read_json(path)["metadata"]["terminal_status"] == "MODEL_FINAL_STOP"
+            future = Future()
+            future.set_result({"correct": None if has_final else False})
+            self.enqueue(path, {"traj_id": tid, "task_id": qid, "generated_monotonic": None}, future)
+        return read_json(rollout / "ROLLOUT_RESULT.json")
 
     def label_core(self, path, timing, outcome):
         tid, qid = timing["traj_id"], timing["task_id"]
         outcome = outcome.result()
         result = None if outcome["correct"] is None else int(outcome["correct"])
-        payload = label_trajectory(path, result, self.common["evidence"], self.common["tokenizer"],
-                                   environment=self.common["environment"], question=self.questions[qid])
-        row = payload["score_row"]
-        row.update(policy_snapshot_id=self.snapshot, labeler_versions=self.common["labeler_versions"])
-        if result is None:
-            row["exclusion_reason"] = "independent_outcome_unresolved"
-        elif not row["recording_complete"]:
-            row["exclusion_reason"] = "incomplete_native_recording"
-        elif row["termination_reason"] not in ("normal", "budget_exhausted"):
-            row["exclusion_reason"] = "invalid_terminal"
+        try:
+            payload = label_trajectory(path, result, self.common["evidence"], self.common["tokenizer"],
+                                      environment=self.common["environment"], question=self.questions[qid])
+            row = payload["score_row"]
+        except (KeyError, TypeError, ValueError) as exc:
+            from ledger_grpo.browsecomp_adapter import native_trajectory
+            from ledger_grpo.hf_native import native_turn_layout
+            native = native_trajectory(read_json(path), reward=result)
+            if native["id"] != tid or native["query_id"] != qid:
+                raise ValueError("invalid recorder still requires its original trajectory and task ID") from exc
+            native_layout = native_turn_layout(native)
+            payload = None
+            row = {"traj_id": tid, "task_id": qid, "outcome": result, "termination_reason": "unknown",
+                   "recording_complete": False, "response_mask": native_layout["response_mask"],
+                   "grounding": None, "events": [], "exclusion_reason": "unusable_docid_or_native_recording:" + type(exc).__name__}
+            atomic_json(self.path/"diagnostics"/(tid+"-parse-failure.json"), {
+                "event_or_trajectory": tid, "status": "excluded", "error_type": type(exc).__name__,
+                "error": str(exc), "source_sha256": digest(path)})
+        row = {**row, "policy_snapshot_id": self.snapshot, "labeler_versions": self.common["labeler_versions"]}
+        if not row.get("exclusion_reason"):
+            if result is None:
+                row["exclusion_reason"] = "independent_outcome_unresolved"
+            elif not row["recording_complete"]:
+                row["exclusion_reason"] = "incomplete_native_recording"
+            elif row["termination_reason"] not in ("normal", "budget_exhausted"):
+                row["exclusion_reason"] = "invalid_terminal"
         safe_append(self.core_path, row, self.lock)
         timing["core_completed_monotonic"] = time.monotonic()
         return payload, timing
@@ -114,8 +161,13 @@ class Batch:
         tid, qid = timing["traj_id"], timing["task_id"]
         diagnostic = self.diagnostic_path.parent / (tid + ".json")
         try:
-            record_m3(payload, self.judge, policy_snapshot_sha256=self.snapshot, output=diagnostic)
-            out = read_json(diagnostic)
+            if payload is None:
+                out = {"traj_id": tid, "task_id": qid, "policy_snapshot_id": self.snapshot,
+                       "status": "excluded", "reason": "unusable_docid_or_native_recording"}
+                atomic_json(diagnostic, out)
+            else:
+                record_m3(payload, self.judge, policy_snapshot_sha256=self.snapshot, output=diagnostic)
+                out = read_json(diagnostic)
         except (KeyError, TypeError, ValueError) as exc:
             out = {"traj_id": tid, "task_id": qid, "policy_snapshot_id": self.snapshot,
                    "status": "excluded", "reason": type(exc).__name__}
@@ -282,7 +334,8 @@ def run_layout(config, layout, output, devices, common, monitor):
     from src.resident_controller import fingerprint as read_actor_fingerprint, generated_probe
 
     attempts = 2 if layout == "C" else 1
-    for number in range(attempts):
+    first_attempt = config.get("first_attempt_by_layout", {}).get(layout, 1)
+    for number in range(first_attempt-1, attempts):
         root = output / f"{layout}-{number+1}"
         root.mkdir()
         secret, gate = secrets.token_urlsafe(32), root/"actor-gate"
@@ -316,13 +369,18 @@ def run_layout(config, layout, output, devices, common, monitor):
             for index in range(config.get("first_batch_by_layout", {}).get(layout, 1), 4):
                 step_start = time.monotonic()
                 batch = Batch(root, index, common["rows"], snapshot, common, layout)
-                for i, server in enumerate(actor.servers):
-                    save_prometheus(server.url, batch.path / f"actor-{i}-before.prom")
-                with monitor.phase("generation", layout=layout, batch=index):
-                    generated = run_rollout(batch.rollout, index, batch.rows, config["seed"], actor.servers, actor.port,
-                                             actor.root/"retriever"/"TOOL_TIMING.jsonl", batch)
-                for i, server in enumerate(actor.servers):
-                    save_prometheus(server.url, batch.path / f"actor-{i}-after.prom")
+                archive = config.get("archived_batches", {}).get(layout, {}).get(str(index))
+                if archive:
+                    with monitor.phase("archived_generation_ingest", layout=layout, batch=index):
+                        generated = batch.ingest_archive(archive)
+                else:
+                    for i, server in enumerate(actor.servers):
+                        save_prometheus(server.url, batch.path / f"actor-{i}-before.prom")
+                    with monitor.phase("generation", layout=layout, batch=index):
+                        generated = run_rollout(batch.rollout, index, batch.rows, config["seed"], actor.servers, actor.port,
+                                                 actor.root/"retriever"/"TOOL_TIMING.jsonl", batch)
+                    for i, server in enumerate(actor.servers):
+                        save_prometheus(server.url, batch.path / f"actor-{i}-after.prom")
                 if layout == "A":
                     with monitor.phase("actor_sleep", layout=layout, batch=index):
                         transition_actors(actor.actors, sleeping=True)
@@ -339,16 +397,36 @@ def run_layout(config, layout, output, devices, common, monitor):
                     with monitor.phase("actor_wake", layout=layout, batch=index):
                         actor.search.post("/occam-residency", {"action": "cuda"})
                         transition_actors(actor.actors, sleeping=False)
-                genesis = generated["generation_start"]
-                latest = max(r["m3_completed_monotonic"] for r in receipts)
-                tail_start = sorted(r["generated_monotonic"] for r in receipts)[len(receipts) - math.ceil(len(receipts)*.10) - 1]
                 native = read_json(batch.rollout/"TRAJECTORY_METRICS.json")
+                tail_seconds = tail_start_epoch = tail_end_epoch = judge_tail = step_seconds = None
+                if not archive:
+                    latest = max(r["m3_completed_monotonic"] for r in receipts)
+                    tail_start = sorted(r["generated_monotonic"] for r in receipts)[len(receipts) - math.ceil(len(receipts)*.10) - 1]
+                    tail_seconds = generated["generation_end"] - tail_start
+                    tail_start_epoch = time.time() - (time.monotonic() - tail_start)
+                    tail_end_epoch = time.time() - (time.monotonic() - generated["generation_end"])
+                    judge_tail = max(0, latest - generated["generation_end"])
+                    step_seconds = time.monotonic() - step_start
+                else:
+                    archive_path = Path(archive)
+                    historical = read_json(archive_path / "rollout" / "API_JUDGE.json")
+                    phases = jsonl(archive_path.parents[1] / "phases.jsonl")
+                    old_phase = next(p for p in phases if p["phase"] == "generation"
+                                     and p["layout"] == layout and p["batch"] == index)
+                    completed = sorted(row["queued_at"] for row in historical)
+                    if len(completed) == len(receipts) and all(
+                            generated["generation_start"] <= stamp <= generated["generation_end"] for stamp in completed):
+                        old_tail = completed[len(completed) - math.ceil(len(completed)*.10) - 1]
+                        tail_seconds = generated["generation_end"] - old_tail
+                        tail_end_epoch = old_phase["ended_epoch"]
+                        tail_start_epoch = tail_end_epoch - tail_seconds
                 summary = {"batch": index, "trajectories": len(receipts), "generated_tokens": sum(row["generated_tokens"] for row in native),
-                           "generation_seconds": generated["generation_seconds"], "generation_tail_seconds": generated["generation_end"]-tail_start,
-                           "tail_start_epoch": time.time() - (time.monotonic()-tail_start),
-                           "tail_end_epoch": time.time() - (time.monotonic()-generated["generation_end"]),
-                           "judge_tail_seconds": max(0, latest-generated["generation_end"]),
-                           "generation_start_monotonic": genesis, "step_seconds_to_training": time.monotonic()-step_start,
+                           "generation_seconds": generated["generation_seconds"], "generation_tail_seconds": tail_seconds,
+                           "tail_start_epoch": tail_start_epoch, "tail_end_epoch": tail_end_epoch, "judge_tail_seconds": judge_tail,
+                           "generation_start_monotonic": generated.get("generation_start"), "step_seconds_to_training": step_seconds,
+                           "archived_generation": bool(archive),
+                           "generation_archive": str(archive) if archive else None,
+                           "archived_processing_seconds": time.monotonic()-step_start if archive else None,
                            "max_seen_context": max(row["context_tokens_max"] for row in native),
                            "outcome_verification": generated["api"],
                            "m3": judge_metrics(batch.diagnostic_path.parent/"m3_call_receipts")}
@@ -376,8 +454,11 @@ def run_layout(config, layout, output, devices, common, monitor):
                     probes = actor.actors.all(generated_probe)
                     atomic_json(root/"actor-native-probes.json", {"initial": outputs, "after_wake": probes,
                                                                  "weight_fingerprint": fingerprint})
-                report["batches"][-1]["step_seconds_including_update"] = (
-                    report["batches"][-1]["step_seconds_to_training"] + time.monotonic()-update_started)
+                update_seconds = time.monotonic()-update_started
+                last_batch = report["batches"][-1]
+                last_batch["update_and_switch_seconds"] = update_seconds
+                step_seconds = last_batch["step_seconds_to_training"]
+                last_batch["step_seconds_including_update"] = None if step_seconds is None else step_seconds + update_seconds
             else:
                 report["update"] = {"performed": False, "reason": "B has no requested parameter update"}
             if layout == "A":
