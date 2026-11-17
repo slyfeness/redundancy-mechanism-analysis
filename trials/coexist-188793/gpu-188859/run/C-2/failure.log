@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_controller.py", line 113, in label_m3
+    payload, timing = core.result()
+                      ^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_controller.py", line 333, in run_layout
+    update_inputs = batch.scores(common["credit"])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_controller.py", line 144, in scores
+    core.result()
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_controller.py", line 98, in label_core
+    payload = label_trajectory(path, result, self.common["evidence"], self.common["tokenizer"],
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_labels.py", line 258, in label_trajectory
+    labeled = _docid_labels(trace, parsed, tokenizer, evidence)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/ledger-grpo/scripts/coexist_labels.py", line 216, in _docid_labels
+    after, delta = update_evidence_ledger(task, before, action_stage, event, None)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/src/redundancy_judge/update_evidence_ledger.py", line 133, in update_evidence_ledger
+    return docid_update(task, before, stage, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/src/redundancy_judge/docid.py", line 69, in docid_update
+    passages = passages_from_return(text)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/lanyi/projects/coex-0f50c2e3/test-source/src/redundancy_judge/docid.py", line 19, in passages_from_return
+    value = json.loads(text)
+            ^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

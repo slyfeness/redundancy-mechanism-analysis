@@ -1,0 +1,132 @@
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299] 
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.19.1
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299]   █▄█▀ █     █     █     █  model   /file_storage01/home/weiyu/lanyi/models/gpt-oss-120b
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:299] 
+(APIServer pid=1979477) INFO 11-17 03:02:18 [utils.py:233] non-default args: {'host': '127.0.0.1', 'port': 50215, 'model': '/file_storage01/home/weiyu/lanyi/models/gpt-oss-120b', 'max_model_len': 131072, 'enforce_eager': True, 'served_model_name': ['gpt-oss-120b'], 'generation_config': 'vllm', 'enable_sleep_mode': True, 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.88, 'max_num_seqs': 16}
+(APIServer pid=1979477) INFO 11-17 03:02:52 [model.py:549] Resolved architecture: GptOssForCausalLM
+(APIServer pid=1979477) INFO 11-17 03:02:52 [model.py:1678] Using max model len 131072
+(APIServer pid=1979477) INFO 11-17 03:02:57 [scheduler.py:238] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(APIServer pid=1979477) INFO 11-17 03:02:57 [config.py:131] Overriding max cuda graph capture size to 1024 for performance.
+(APIServer pid=1979477) INFO 11-17 03:02:57 [vllm.py:790] Asynchronous scheduling is enabled.
+(APIServer pid=1979477) WARNING 11-17 03:02:57 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=1979477) WARNING 11-17 03:02:57 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=1979477) INFO 11-17 03:02:57 [vllm.py:1025] Cudagraph is disabled under eager mode
+(APIServer pid=1979477) INFO 11-17 03:02:57 [compilation.py:292] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=1980342) INFO 11-17 03:03:12 [core.py:105] Initializing a V1 LLM engine (v0.19.1) with config: model='/file_storage01/home/weiyu/lanyi/models/gpt-oss-120b', speculative_config=None, tokenizer='/file_storage01/home/weiyu/lanyi/models/gpt-oss-120b', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=mxfp4, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='openai_gptoss', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=gpt-oss-120b, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_images_per_batch': 0, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+(EngineCore pid=1980342) INFO 11-17 03:03:12 [multiproc_executor.py:134] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=172.29.15.41 (local), world_size=4, local_world_size=4
+(Worker pid=1980386) INFO 11-17 03:03:27 [parallel_state.py:1400] world_size=4 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:40821 backend=nccl
+(Worker pid=1980389) INFO 11-17 03:03:28 [parallel_state.py:1400] world_size=4 rank=3 local_rank=3 distributed_init_method=tcp://127.0.0.1:40821 backend=nccl
+(Worker pid=1980388) INFO 11-17 03:03:28 [parallel_state.py:1400] world_size=4 rank=2 local_rank=2 distributed_init_method=tcp://127.0.0.1:40821 backend=nccl
+(Worker pid=1980387) INFO 11-17 03:03:28 [parallel_state.py:1400] world_size=4 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:40821 backend=nccl
+(Worker pid=1980386) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=1980386) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=1980387) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=1980387) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=1980389) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=1980389) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=1980388) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=1980388) <frozen importlib._bootstrap_external>:1241: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=1980386) INFO 11-17 03:03:45 [pynccl.py:111] vLLM is using nccl==2.27.5
+(Worker pid=1980386) WARNING 11-17 03:03:47 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=1980388) WARNING 11-17 03:03:47 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=1980389) WARNING 11-17 03:03:47 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=1980387) WARNING 11-17 03:03:47 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=1980386) INFO 11-17 03:03:47 [parallel_state.py:1716] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+(Worker_TP0 pid=1980386) INFO 11-17 03:03:49 [gpu_model_runner.py:4735] Starting to load model /file_storage01/home/weiyu/lanyi/models/gpt-oss-120b...
+(Worker_TP0 pid=1980386) INFO 11-17 03:03:51 [cuda.py:334] Using TRITON_ATTN attention backend out of potential backends: ['TRITON_ATTN'].
+(Worker_TP0 pid=1980386) INFO 11-17 03:03:51 [mxfp4.py:352] Using 'MARLIN' Mxfp4 MoE backend.
+(Worker_TP1 pid=1980387) INFO 11-17 03:03:52 [weight_utils.py:848] Prefetching checkpoint files into page cache started (in background)
+(Worker_TP3 pid=1980389) INFO 11-17 03:03:52 [weight_utils.py:848] Prefetching checkpoint files into page cache started (in background)
+(Worker_TP0 pid=1980386) INFO 11-17 03:03:52 [weight_utils.py:848] Prefetching checkpoint files into page cache started (in background)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:   0% Completed | 0/15 [00:00<?, ?it/s]
+(Worker_TP2 pid=1980388) INFO 11-17 03:03:52 [weight_utils.py:848] Prefetching checkpoint files into page cache started (in background)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:   7% Completed | 1/15 [00:26<06:06, 26.19s/it]
+(Worker_TP0 pid=1980386) INFO 11-17 03:04:18 [weight_utils.py:825] Prefetching checkpoint files: 10% (1/4)
+(Worker_TP1 pid=1980387) INFO 11-17 03:04:33 [weight_utils.py:825] Prefetching checkpoint files: 10% (1/4)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  13% Completed | 2/15 [00:41<04:17, 19.84s/it]
+(Worker_TP2 pid=1980388) INFO 11-17 03:04:47 [weight_utils.py:825] Prefetching checkpoint files: 10% (1/4)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  20% Completed | 3/15 [00:55<03:25, 17.10s/it]
+(Worker_TP3 pid=1980389) INFO 11-17 03:04:52 [weight_utils.py:825] Prefetching checkpoint files: 10% (1/3)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  27% Completed | 4/15 [00:59<02:13, 12.15s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  33% Completed | 5/15 [01:05<01:35,  9.60s/it]
+(Worker_TP3 pid=1980389) INFO 11-17 03:04:57 [weight_utils.py:825] Prefetching checkpoint files: 20% (2/3)
+(Worker_TP0 pid=1980386) INFO 11-17 03:04:57 [weight_utils.py:825] Prefetching checkpoint files: 20% (2/4)
+(Worker_TP3 pid=1980389) INFO 11-17 03:04:58 [weight_utils.py:825] Prefetching checkpoint files: 30% (3/3)
+(Worker_TP3 pid=1980389) INFO 11-17 03:04:58 [weight_utils.py:843] Prefetching checkpoint files into page cache finished in 66.77s
+(Worker_TP2 pid=1980388) INFO 11-17 03:04:58 [weight_utils.py:825] Prefetching checkpoint files: 20% (2/4)
+(Worker_TP0 pid=1980386) INFO 11-17 03:04:59 [weight_utils.py:825] Prefetching checkpoint files: 30% (3/4)
+(Worker_TP1 pid=1980387) INFO 11-17 03:04:59 [weight_utils.py:825] Prefetching checkpoint files: 20% (2/4)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  40% Completed | 6/15 [01:07<01:04,  7.15s/it]
+(Worker_TP1 pid=1980387) INFO 11-17 03:05:00 [weight_utils.py:825] Prefetching checkpoint files: 30% (3/4)
+(Worker_TP2 pid=1980388) INFO 11-17 03:05:03 [weight_utils.py:825] Prefetching checkpoint files: 30% (3/4)
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  47% Completed | 7/15 [01:11<00:48,  6.06s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  53% Completed | 8/15 [01:12<00:31,  4.44s/it]
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:05 [weight_utils.py:825] Prefetching checkpoint files: 40% (4/4)
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:05 [weight_utils.py:843] Prefetching checkpoint files into page cache finished in 73.14s
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  60% Completed | 9/15 [01:13<00:20,  3.39s/it]
+(Worker_TP2 pid=1980388) INFO 11-17 03:05:05 [weight_utils.py:825] Prefetching checkpoint files: 40% (4/4)
+(Worker_TP2 pid=1980388) INFO 11-17 03:05:05 [weight_utils.py:843] Prefetching checkpoint files into page cache finished in 73.79s
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  67% Completed | 10/15 [01:14<00:13,  2.70s/it]
+(Worker_TP1 pid=1980387) INFO 11-17 03:05:07 [weight_utils.py:825] Prefetching checkpoint files: 40% (4/4)
+(Worker_TP1 pid=1980387) INFO 11-17 03:05:07 [weight_utils.py:843] Prefetching checkpoint files into page cache finished in 75.06s
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  73% Completed | 11/15 [01:15<00:08,  2.13s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  80% Completed | 12/15 [01:16<00:05,  1.76s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  87% Completed | 13/15 [01:16<00:02,  1.46s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards:  93% Completed | 14/15 [01:17<00:01,  1.26s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards: 100% Completed | 15/15 [01:18<00:00,  1.12s/it]
+(Worker_TP0 pid=1980386) Loading safetensors checkpoint shards: 100% Completed | 15/15 [01:18<00:00,  5.24s/it]
+(Worker_TP0 pid=1980386) 
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:11 [default_loader.py:384] Loading weights took 79.05 seconds
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:11 [mxfp4.py:836] Using MoEPrepareAndFinalizeNoDPEPModular
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:14 [gpu_model_runner.py:4820] Model loading took 17.22 GiB memory and 83.106408 seconds
+(Worker_TP0 pid=1980386) INFO 11-17 03:05:46 [gpu_worker.py:436] Available KV cache memory: 52.15 GiB
+(EngineCore pid=1980342) INFO 11-17 03:05:46 [kv_cache_utils.py:1319] GPU KV cache size: 3,037,136 tokens
+(EngineCore pid=1980342) INFO 11-17 03:05:46 [kv_cache_utils.py:1324] Maximum concurrency for 131,072 tokens per request: 43.57x
+(EngineCore pid=1980342) INFO 11-17 03:05:49 [core.py:283] init engine (profile, create kv cache, warmup model) took 35.34 seconds
+(EngineCore pid=1980342) INFO 11-17 03:05:52 [vllm.py:790] Asynchronous scheduling is enabled.
+(EngineCore pid=1980342) WARNING 11-17 03:05:52 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=1980342) WARNING 11-17 03:05:52 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=1980342) INFO 11-17 03:05:52 [vllm.py:1025] Cudagraph is disabled under eager mode
+(EngineCore pid=1980342) INFO 11-17 03:05:52 [compilation.py:292] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=1979477) INFO 11-17 03:05:52 [api_server.py:592] Supported tasks: ['generate']
+(APIServer pid=1979477) WARNING 11-17 03:05:52 [__init__.py:14] SECURITY WARNING: Development endpoints are enabled! This should NOT be used in production!
+(APIServer pid=1979477) WARNING 11-17 03:05:54 [serving.py:233] For gpt-oss, we ignore --enable-auto-tool-choice and always enable tool use.
+(APIServer pid=1979477) INFO 11-17 03:05:58 [hf.py:314] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=1979477) INFO 11-17 03:05:58 [api_server.py:596] Starting vLLM server on http://127.0.0.1:50215
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:37] Available routes are:
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:46] Route: /docs, Methods: HEAD, GET
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:46] Route: /redoc, Methods: HEAD, GET
+(APIServer pid=1979477) INFO 11-17 03:05:58 [launcher.py:46] Route: /metrics, Methods: GET
+(APIServer pid=1979477) INFO:     Started server process [1979477]
+(APIServer pid=1979477) INFO:     Waiting for application startup.
+(APIServer pid=1979477) INFO:     Application startup complete.
+(APIServer pid=1979477) INFO:     127.0.0.1:47666 - "GET /v1/models HTTP/1.1" 200 OK
+(EngineCore pid=1980342) INFO 11-17 03:06:00 [block_pool.py:472] Successfully reset prefix cache
+(Worker_TP3 pid=1980389) INFO 11-17 03:06:13 [cumem.py:216] CuMemAllocator: sleep freed 69.64 GiB memory in total, of which 17.48 GiB is backed up in CPU and the rest 52.16 GiB is discarded directly.
+(Worker_TP3 pid=1980389) INFO 11-17 03:06:14 [gpu_worker.py:175] Sleep mode freed 69.59 GiB memory, 2.08 GiB memory is still in use.
+(Worker_TP2 pid=1980388) INFO 11-17 03:06:14 [cumem.py:216] CuMemAllocator: sleep freed 69.66 GiB memory in total, of which 17.50 GiB is backed up in CPU and the rest 52.16 GiB is discarded directly.
+(Worker_TP2 pid=1980388) INFO 11-17 03:06:15 [gpu_worker.py:175] Sleep mode freed 69.62 GiB memory, 2.08 GiB memory is still in use.
+(Worker_TP1 pid=1980387) INFO 11-17 03:06:15 [cumem.py:216] CuMemAllocator: sleep freed 69.66 GiB memory in total, of which 17.50 GiB is backed up in CPU and the rest 52.16 GiB is discarded directly.
+(Worker_TP0 pid=1980386) INFO 11-17 03:06:15 [cumem.py:216] CuMemAllocator: sleep freed 69.66 GiB memory in total, of which 17.50 GiB is backed up in CPU and the rest 52.16 GiB is discarded directly.
+(Worker_TP1 pid=1980387) INFO 11-17 03:06:15 [gpu_worker.py:175] Sleep mode freed 69.62 GiB memory, 2.08 GiB memory is still in use.
+(Worker_TP0 pid=1980386) INFO 11-17 03:06:16 [gpu_worker.py:175] Sleep mode freed 69.62 GiB memory, 2.08 GiB memory is still in use.
+(EngineCore pid=1980342) INFO 11-17 03:06:16 [abstract.py:320] It took 15.377614 seconds to fall asleep.
+(APIServer pid=1979477) INFO:     127.0.0.1:47672 - "POST /sleep?level=1&mode=wait HTTP/1.1" 200 OK
+(APIServer pid=1979477) INFO:     127.0.0.1:56610 - "GET /is_sleeping HTTP/1.1" 200 OK
+(EngineCore pid=1980342) INFO 11-17 03:15:06 [core.py:1210] Shutdown initiated (timeout=0)
+(EngineCore pid=1980342) INFO 11-17 03:15:06 [core.py:1233] Shutdown complete
+(Worker_TP1 pid=1980387) INFO 11-17 03:15:06 [multiproc_executor.py:859] WorkerProc shutting down.
+(Worker_TP0 pid=1980386) INFO 11-17 03:15:06 [multiproc_executor.py:764] Parent process exited, terminating worker queues
+(Worker_TP0 pid=1980386) INFO 11-17 03:15:06 [multiproc_executor.py:859] WorkerProc shutting down.
+(Worker_TP2 pid=1980388) INFO 11-17 03:15:06 [multiproc_executor.py:859] WorkerProc shutting down.
+(Worker_TP3 pid=1980389) INFO 11-17 03:15:06 [multiproc_executor.py:859] WorkerProc shutting down.
+(APIServer pid=1979477) INFO:     Shutting down
+(APIServer pid=1979477) INFO:     Waiting for application shutdown.
+(APIServer pid=1979477) INFO:     Application shutdown complete.
+(APIServer pid=1979477) INFO:     Finished server process [1979477]
+/persist_data/home/weiyu/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
