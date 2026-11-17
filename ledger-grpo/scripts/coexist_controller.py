@@ -236,7 +236,7 @@ def compare_frozen(config, judge, common, root):
 
 def run_layout(config, layout, output, devices, common, monitor):
     from src.stability_rollout import run_rollout
-    from src.resident_controller import generated_probe
+    from src.resident_controller import fingerprint as read_actor_fingerprint, generated_probe
 
     attempts = 2 if layout == "C" else 1
     for number in range(attempts):
@@ -265,8 +265,7 @@ def run_layout(config, layout, output, devices, common, monitor):
             with monitor.phase("actor_and_retriever_start", layout=layout, attempt=number+1):
                 fingerprint = actor.start()
                 outputs = actor.actors.all(generated_probe)
-                if any(value != outputs[0] for value in outputs[1:]):
-                    raise RuntimeError("loaded Actor replicas disagree under the frozen generation probe")
+                atomic_json(root/"actor-native-probes.json", {"initial": outputs, "weight_fingerprint": fingerprint})
             report["launch_succeeded"] = True
             snapshot = identity([config["actor_revision"], fingerprint, config["base_model"]])
             report["policy_snapshot_id"] = snapshot
@@ -329,9 +328,11 @@ def run_layout(config, layout, output, devices, common, monitor):
                     actor.search.post("/occam-residency", {"action": "cuda"})
                     transition_actors(actor.actors, sleeping=False)
                     # Both Actor and test snapshot remain independent of any experiment arm.
+                    if set(actor.actors.all(read_actor_fingerprint)) != {fingerprint}:
+                        raise RuntimeError("Actor wake failed to restore the original frozen weights")
                     probes = actor.actors.all(generated_probe)
-                    if any(value != outputs[0] for value in probes):
-                        raise RuntimeError("Actor wake failed to restore the original frozen policy")
+                    atomic_json(root/"actor-native-probes.json", {"initial": outputs, "after_wake": probes,
+                                                                 "weight_fingerprint": fingerprint})
                 report["batches"][-1]["step_seconds_including_update"] = (
                     report["batches"][-1]["step_seconds_to_training"] + time.monotonic()-update_started)
             else:
@@ -366,10 +367,13 @@ def main():
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
     config, output = read_json(args.config), args.output.resolve()
+    layouts = config.get("layouts", ["A", "B", "C"])
+    if not layouts or len(set(layouts)) != len(layouts) or any(name not in ("A", "B", "C") for name in layouts):
+        raise ValueError("trial layouts must be unique names among A, B and C")
     devices, uuids, common = load_trial_environment(config, output)
     monitor = Telemetry(output, uuids)
     try:
-        results = [run_layout(config, name, output, devices, common, monitor) for name in ("A", "B", "C")]
+        results = [run_layout(config, name, output, devices, common, monitor) for name in layouts]
         atomic_json(output/"comparison.json", results)
     finally:
         monitor.close()

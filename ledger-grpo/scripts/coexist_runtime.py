@@ -188,7 +188,7 @@ def versions(python):
 
 
 def memory_failure(root):
-    check = re.compile(r"out of memory|OutOfMemoryError|less than desired GPU memory utilization|"
+    check = re.compile(r"out of memory|OutOfMemoryError|less than (desired|requested) GPU memory utilization|"
                        r"insufficient (GPU )?(memory|KV cache)|no available memory for the cache blocks|"
                        r"to serve at least one request|KV cache.*not enough", re.I)
     for path in root.rglob("server.log"):

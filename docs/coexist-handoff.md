@@ -2,7 +2,7 @@
 
 ## 批次身份
 
-一次生成批次包含冻结训练清单的 16 题、每题 8 条轨迹。控制器从四个生成实例验证一致的权重指纹。试跑用该指纹、已冻结的模型 revision 和基础模型路径生成 `policy_snapshot_id`。每条打标记录、原生批次和评分产物都携带同一个 ID。
+一次生成批次包含冻结训练清单的 16 题、每题 8 条轨迹。控制器在所有启用的生成实例上核对权重指纹。试跑用该指纹、已冻结的模型 revision 和基础模型路径生成 `policy_snapshot_id`。每条打标记录、原生批次和评分产物都携带同一个 ID。
 
 `handoff.jsonl` 每条记录对应一条原生轨迹，沿用 `score-events` 的 `traj_id`、`task_id`、`outcome`、`termination_reason`、`recording_complete`、`response_mask`、`grounding` 和 `events`。事件使用原生策略 token 区间。记录另带 `policy_snapshot_id` 与 `labeler_versions`，可追溯 Judge 模型、M3 提示词和代码提交。
 
