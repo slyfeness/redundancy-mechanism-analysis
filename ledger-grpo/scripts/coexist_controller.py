@@ -1,6 +1,6 @@
 """Compare A/B/C while keeping weights, rollout, labeling, and scoring identities fixed."""
 import argparse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import asdict
 from hashlib import sha256
 import json
@@ -18,7 +18,7 @@ from coexist_runtime import (ActorServices, JudgeService, Telemetry, actor_fract
                              save_prometheus, transition_actors)
 from coexist_labels import label_trajectory, load_evidence_snapshot, record_m3
 from ledger_grpo.coexist_handoff import score_coexist_handoff
-from ledger_grpo.event_price import EventPriceConfig
+from ledger_grpo import coexist_test_grade
 from redundancy_judge.adapters.model import ModelJudge
 from redundancy_judge.adapters.trace import NativeByteTokenizer
 from redundancy_judge.cli import jsonl, write_jsonl
@@ -75,18 +75,16 @@ class Batch:
         timing = {"traj_id": tid, "task_id": qid, "generated_monotonic": time.monotonic()}
         raw = read_json(entry)
         reason = raw["metadata"]["terminal_status"]
-        # No answer is sent to the previously configured outcome service when no final was submitted.
-        if reason != "MODEL_FINAL_STOP":
-            from concurrent.futures import Future
-            future = Future()
-            now = time.monotonic()
-            result = {"correct": False, "served_model": None, "queued_at": now, "started_at": now,
-                      "ended_at": now, "latency_seconds": 0, "queue_seconds": 0, "retries": 0,
-                      "attempts": [], "source": "terminal_without_final"}
-            atomic_json(receipt, result)
-            future.set_result(result)
-        else:
-            future = self.common["grader"].submit(question, final, gold, receipt)
+        # The frozen grader is unavailable. Its formal field stays unresolved for submitted answers.
+        future = Future()
+        now = time.monotonic()
+        has_final = reason == "MODEL_FINAL_STOP"
+        result = {"correct": None if has_final else False, "served_model": None, "queued_at": now,
+                  "started_at": now, "ended_at": now, "latency_seconds": 0, "queue_seconds": 0,
+                  "retries": 0, "attempts": [],
+                  "source": "official_verifier_not_run" if has_final else "terminal_without_final"}
+        atomic_json(receipt, result)
+        future.set_result(result)
         core = self.core_pool.submit(self.label_core, entry, timing, future)
         self.core_completed[tid] = core
         if self.layout != "A":
@@ -168,6 +166,51 @@ class Batch:
             "dispositions": result["dispositions"], "metrics": scores["metrics"], "skip_update": scores["skip_update"]})
         return native_path, score_path
 
+    def test_scores(self, native_path, update_root):
+        import torch
+
+        if self.layout not in ("A", "C") or self.index != 3:
+            raise ValueError("strict-match outcomes are allowed only for the third A/C batch's isolated update")
+        native_batch = read_json(native_path)
+        answers = {}
+        for row in native_batch["trajectories"]:
+            if row["terminal"] == "MODEL_FINAL_STOP":
+                raw = read_json(self.rollout/"trajectories"/row["id"]/"trajectory.json")
+                final = next((r for r in reversed(raw["rounds"]) if r["response_received"]), None)
+                if not final or final.get("tool_calls"):
+                    raise ValueError("normal termination lacks an independently recorded final response")
+                answers[row["id"]] = final.get("content") or ""
+        gold = {str(row["query_id"]): row["gold"] for row in self.rows}
+        outcomes, score_rows, scored_native = coexist_test_grade.strict_match_updates(
+            jsonl(self.core_path), native_batch, answers, gold, snapshot=self.snapshot)
+        path = update_root/"test-outcomes.jsonl"
+        write_jsonl(path, outcomes)
+        credit = self.common["credit"]
+        result = score_coexist_handoff(score_rows, credit, native_batch=scored_native,
+                                      expected_policy_snapshot_id=self.snapshot)
+        scores = result["scores"]
+        sha = digest(Path(coexist_test_grade.__file__))
+        scores.update(config=asdict(credit), test_only=True, result_source=coexist_test_grade.RESULT_SOURCE,
+                      strict_rule_sha256=sha,
+                      input_binding={"native_batch_sha256": digest(native_path), "policy_snapshot_sha256": self.snapshot,
+                                     "test_outcomes_sha256": digest(path)})
+        score_path = update_root/"targeted-scores.test-only.pt"
+        torch.save(scores, score_path)
+        correct = sum(row["test_outcome"] for row in outcomes)
+        submitted = sum(row["had_final"] for row in outcomes)
+        all_wrong = len(gold) - len({row["task_id"] for row in outcomes if row["test_outcome"]})
+        atomic_json(update_root/"test-scoring-receipt.json", {
+            "result_source": coexist_test_grade.RESULT_SOURCE, "rule_sha256": sha,
+            "policy_snapshot_id": self.snapshot, "test_outcomes_sha256": digest(path),
+            "original_B_batch_1_http_402": 56, "original_B_batch_2_partial_http_402": 24,
+            "external_requests": 0, "test_correct": correct, "test_wrong": len(outcomes) - correct,
+            "test_submitted_incorrect": submitted-correct, "no_final_counted_zero": len(outcomes)-submitted,
+            "all_wrong_groups": all_wrong,
+            "eligible_groups": scores["metrics"]["valid_row_count"] // credit.group_size,
+            "groups_entering_update": 0 if scores["skip_update"] else scores["metrics"]["valid_row_count"] // credit.group_size,
+            "dispositions": result["dispositions"], "stage": "isolated_test_update"})
+        return score_path
+
     def close(self):
         self.judge_pool.shutdown(wait=True, cancel_futures=True)
         self.core_pool.shutdown(wait=True, cancel_futures=True)
@@ -179,7 +222,6 @@ def load_trial_environment(config, output):
     from isolate_runtime import install_runtime_isolation
     install_runtime_isolation()
     from src.stability_controller import read_hardware
-    from src.stability_judge import FlashJudge
     from coexist_runtime import versions
 
     devices = os.environ["CUDA_VISIBLE_DEVICES"].split(",")
@@ -201,8 +243,7 @@ def load_trial_environment(config, output):
                         "prompt_hashes": {name: digest(prompt_dir / (name + ".md")) for name in prompt_names}}
     atomic_json(output/"hardware.json", {"devices": hardware, "uuid": uuids,
                 "runtime": {"actor": versions(sys.executable), "judge": versions(config["judge_python"])}})
-    grader = FlashJudge(Path(config["outcome_credential_path"]).read_text().strip())
-    common = {"grader": grader, "rows": rows, "credit": credit,
+    common = {"rows": rows, "credit": credit,
               "identity": {"study": "four-a800-coexistence", "versions": labeler_versions},
               "prompt_dir": prompt_dir, "labeler_versions": labeler_versions,
               "evidence": load_evidence_snapshot(config["evidence_snapshot"]),
@@ -211,16 +252,18 @@ def load_trial_environment(config, output):
     return devices, uuids, common
 
 
-def test_update(inputs, root, monitor, layout):
-    native, scores = inputs
+def test_update(batch, inputs, root, monitor, layout):
+    native, _ = inputs
     trainer = Path(__file__).with_name("coexist_train.py")
     output = root / "isolated-update"
     output.mkdir()
+    scores = batch.test_scores(native, output)
     command = [sys.executable, "-u", "-m", "torch.distributed.run", "--standalone", "--nproc_per_node=4",
                str(trainer), "--native-batch", str(native), "--scores", str(scores), "--output-root", str(output),
                "--snapshot-dir", str(output / "test-snapshots"), "--publication-id", "1", "--steps", "1"]
     env = dict(os.environ)
     env.pop("OCCAM_ACTOR_ADMIN", None)
+    env["COEXIST_TEST_OUTCOME_RECEIPT"] = str(output / "test-outcomes.jsonl")
     with monitor.phase("fsdp_test_update", layout=layout, batch=3), (output / "trainer.log").open("wb") as log:
         result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, env=env, check=False)
     receipts = output / "step-0001"
@@ -270,7 +313,7 @@ def run_layout(config, layout, output, devices, common, monitor):
             snapshot = identity([config["actor_revision"], fingerprint, config["base_model"]])
             report["policy_snapshot_id"] = snapshot
             common["judge"] = judge
-            for index in range(1, 4):
+            for index in range(config.get("first_batch_by_layout", {}).get(layout, 1), 4):
                 step_start = time.monotonic()
                 batch = Batch(root, index, common["rows"], snapshot, common, layout)
                 for i, server in enumerate(actor.servers):
@@ -321,7 +364,7 @@ def run_layout(config, layout, output, devices, common, monitor):
                         transition_actors(actor.actors, sleeping=True)
                         actor.search.post("/occam-residency", {"action": "cpu"})
                     judge.transition(True)
-                report["update"] = test_update(update_inputs, root, monitor, layout)
+                report["update"] = test_update(batch, update_inputs, root, monitor, layout)
                 with monitor.phase("post_update_actor_wake", layout=layout):
                     if layout == "C":
                         judge.transition(False)
@@ -377,7 +420,6 @@ def main():
         atomic_json(output/"comparison.json", results)
     finally:
         monitor.close()
-        common["grader"].close()
 
 
 if __name__ == "__main__":
