@@ -8,7 +8,8 @@ import json
 from pathlib import Path
 import re
 
-from ledger_grpo.browsecomp_adapter import native_trajectory
+from ledger_grpo.browsecomp_adapter import _recorded_search_response, native_trajectory
+from ledger_grpo.browsecomp_events import _terminal_guard_matches
 from redundancy_judge.adapters.model import ModelJudge
 from redundancy_judge.adapters.trace import NativeByteTokenizer, load_trajectory
 from redundancy_judge.common import atomic_json, identity, read_json
@@ -155,13 +156,22 @@ def _termination(trace, parsed):
         return "normal", parsed["recording_complete"]
     if stop not in _BUDGET:
         return "unknown", False
-    blocking = {"orphan_tool_event", "round_order_unverified", "call_event_mismatch",
-                "return_not_reinjected_at_termination"}
+    blocking = {"orphan_tool_event", "round_order_unverified", "call_event_mismatch"}
+    last_return_unseen = [row for row in parsed["anomalies"] if row["code"] == "return_not_reinjected_at_termination"]
+    if last_return_unseen:
+        final_round = trace["rounds"][-1]
+        final_events = sorted((event for event in trace["tool_events"] if event["round_id"] == final_round["round_id"]),
+                              key=lambda event: event["tool_ordinal"])
+        guard_raw = {"metadata": {"terminal_status": stop}, "unsent_guard_attempts": trace["guard_attempts"]}
+        if (len(last_return_unseen) != 1 or last_return_unseen[0]["round_id"] != final_round["round_id"]
+                or not final_events or not _terminal_guard_matches(guard_raw, final_round, final_events)):
+            return "budget_exhausted", False
     complete = (bool(trace["rounds"])
                 and all(round_["response_received"] is True or
                         (round_.get("request_sent") is False and round_.get("guard_intercepted") is True)
                         for round_ in trace["rounds"])
                 and not any(event["errors"] for event in parsed["tool_events"])
+                and all(_recorded_search_response(event) for event in trace["tool_events"])
                 and not any(row["code"] in blocking for row in parsed["anomalies"]))
     return "budget_exhausted", complete
 

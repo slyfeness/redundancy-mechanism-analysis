@@ -93,6 +93,33 @@ def test_scores_docid_repeat_on_exact_masked_native_tokens(module, original):
     assert causal["documents"] == ["4", "8"]
 
 
+def test_budget_stop_keeps_a_verified_unsent_return_out_of_evidence(module, original):
+    source, snapshot, _ = original
+    raw = json.loads(source.read_text(encoding="utf-8"))
+    raw["metadata"]["terminal_status"] = "CONTEXT_LIMIT_STOP"
+    blocked = raw["rounds"].pop()
+    raw["unsent_guard_attempts"] = [{**blocked, "request_sent": False, "response_received": False,
+                                    "guard_intercepted": True, "attempted_round_id": 4,
+                                    "stop_classification": "CONTEXT_LIMIT_STOP"}]
+    for event in raw["tool_events"]:
+        event["raw_mcp_response"]["content"] = [{"type": "text", "text": event["exact_result"]}]
+
+    def evaluate():
+        source.write_text(json.dumps(raw), encoding="utf-8")
+        return module.label_trajectory(source, 0, module.load_evidence_snapshot(snapshot), ByteTokenizer(),
+                                       environment={"id": "fixture-corpus", "deterministic_tools": ["search-server-search"]})
+
+    payload = evaluate()
+    assert payload["score_row"]["recording_complete"] is True
+    assert payload["score_row"]["termination_reason"] == "budget_exhausted"
+    assert payload["score_row"]["outcome"] == 0
+    assert payload["score_row"]["grounding"] == 1 / 3
+    assert payload["causal"]["events"][-1]["visible_next"] is False
+    assert payload["causal"]["documents"] == ["4"]
+    raw["unsent_guard_attempts"][0]["actor_visible_messages"][-1]["content"] = "wrong return"
+    assert evaluate()["score_row"]["recording_complete"] is False
+
+
 def test_m3_uses_only_visible_prefix_and_keeps_score_row_unchanged(module, original, tmp_path):
     from redundancy_judge.adapters.model import ModelJudge
 
