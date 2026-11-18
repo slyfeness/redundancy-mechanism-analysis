@@ -1,0 +1,797 @@
+{
+  "status": "[推断] 直接阅读示范；不作金标或 Judge 质量验收",
+  "author": "codex_direct_reading",
+  "additional_model_calls": 0,
+  "scope": "仅累计当前及更早工具返回；没有用后续返回补写首次支持。feature/参考答案不是可见证据。",
+  "binding_policy": "支持按明确候选绑定记录；局部实体属性不等于候选已满足整个问题。角色未定时保留 partial。",
+  "demos": [
+    {
+      "trajectory_id": "4722849095e0f783ccbadc32eca4e1b09b6a7814c577f05b4d24e34bc6f91fc4__rep1",
+      "source_question_id": 351873,
+      "selection_reason": "已有判分答对；2 次调用",
+      "status": "[推断] 示范，不是金标",
+      "candidate_bindings": {
+        "G": "Austracris",
+        "A": "Austracris guttulosa",
+        "S": "候选 Austracris guttulosa，模式种身份未验证",
+        "F": "Acrididae",
+        "E": null,
+        "U": null
+      },
+      "conditions": [
+        {
+          "condition_id": "C1",
+          "first_supported_stage": "R1",
+          "evidence": [
+            {
+              "stage_id": "R1",
+              "docid": "Austracris guttulosa",
+              "field": "caption",
+              "quote": "Austracris includes the spur-throated locust, Austracris guttulosa, which is a significant pest in Australia.",
+              "start": 0,
+              "end": 109,
+              "source_sha256": "403a1951530c2c3552730427b315b1cb8ae8bc95b4264c126b35b14aae3baaad"
+            }
+          ],
+          "partial": [],
+          "note": "明确属包含该农业害虫候选；不等于证明模式种。"
+        },
+        {
+          "condition_id": "C2",
+          "first_supported_stage": "R2",
+          "evidence": [
+            {
+              "stage_id": "R2",
+              "docid": "Spur-throated locust",
+              "field": "text",
+              "quote": "It is an agricultural pest in Queensland, New South Wales, Victoria South Australia and Western Australia.",
+              "start": 112,
+              "end": 218,
+              "source_sha256": "a33380aa704a5a5db2a02b91b16e06f47395cb59a8d1b78018da781a65d96303"
+            }
+          ],
+          "partial": [
+            {
+              "stage_id": "R1",
+              "evidence": [
+                {
+                  "stage_id": "R1",
+                  "docid": "Spur-throated locust",
+                  "field": "caption",
+                  "quote": "Austracris guttulosa, commonly known as the spur-throated locust, is a significant pest in Australia.",
+                  "start": 0,
+                  "end": 101,
+                  "source_sha256": "ce61a67003d72079e369e3bef74c692717c59613b0d4c8fb9c4030bd34d56375"
+                }
+              ],
+              "note": "第一条摘要称澳大利亚 pest，但未明确农业；另一个管理摘要可作间接线索。"
+            }
+          ],
+          "note": "R2 正文明确 agricultural pest，结合此前澳大利亚定位。"
+        },
+        {
+          "condition_id": "C3",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C4",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C5",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C6",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C7",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C8",
+          "first_supported_stage": "R1",
+          "evidence": [
+            {
+              "stage_id": "R1",
+              "docid": "Acrididae",
+              "field": "caption",
+              "quote": "Arcyptera tornosi, the Iberian banded grasshopper, belongs to the family Acrididae, which includes many species of grasshoppers.",
+              "start": 0,
+              "end": 128,
+              "source_sha256": "0580d4f489f9118f799ef2b2bdb9e735bd6d29175b4fb12118fb4af7bd4197dd"
+            }
+          ],
+          "partial": [],
+          "note": "明确科包含 grasshoppers。"
+        },
+        {
+          "condition_id": "C9",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C10",
+          "first_supported_stage": "R1",
+          "evidence": [
+            {
+              "stage_id": "R1",
+              "docid": "Spur-throated locust",
+              "field": "caption",
+              "quote": "Austracris guttulosa, commonly known as the spur-throated locust, is a significant pest in Australia.",
+              "start": 0,
+              "end": 101,
+              "source_sha256": "ce61a67003d72079e369e3bef74c692717c59613b0d4c8fb9c4030bd34d56375"
+            }
+          ],
+          "partial": [],
+          "note": "只对候选 S=guttulosa 的俗名成立；S 的模式种角色 C9 仍未证实。"
+        }
+      ],
+      "stage_review": [
+        {
+          "stage_id": "R1",
+          "new_supported": [
+            "C1",
+            "C8",
+            "C10"
+          ],
+          "partial": [
+            "C2"
+          ],
+          "note": "候选物种、属和俗名可连接，缺少属建立者、亚科与模式种关系。"
+        },
+        {
+          "stage_id": "R2",
+          "new_supported": [
+            "C2"
+          ],
+          "partial": [],
+          "note": "农业危害得到明确支持，正文仍没有 type species 断言。"
+        }
+      ],
+      "misreadings_or_inference_errors": [
+        {
+          "kind": "unsupported_role_not_direct_misquote",
+          "stage_id": "R2",
+          "note": "未发现明确误读返回；答对不代表模式种条件已取证。不能把属包含物种升级为模式种。",
+          "propagated_to_next_query": false,
+          "next_query_stage": null
+        }
+      ],
+      "n_conditions": 10,
+      "n_supported": 4,
+      "n_partial_only": 0
+    },
+    {
+      "trajectory_id": "c78a399821da8966b2aaba4e0ad3023d04244f2bb7110857fcda567153bb1d0b__rep2",
+      "source_question_id": 230779,
+      "selection_reason": "已有判分：提交但答错；6 次调用",
+      "status": "[推断] 示范，不是金标",
+      "candidate_bindings": {
+        "F": "未确定；agent 错把背景实体 Wikimedia Foundation 当作 F",
+        "P": "未确定；agent 候选 Jimmy Wales",
+        "N": "候选 Wikimedia Foundation",
+        "E": "Wikipedia",
+        "B": "尚未明确的众包机制"
+      },
+      "conditions": [
+        {
+          "condition_id": "C1",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C2",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C3",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C4",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C5",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C6",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C7",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C8",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "Wikimedia Foundation",
+                  "field": "text",
+                  "quote": "The Wikimedia Foundation provides the technical and organizational infrastructure to enable members of the public to develop wiki-based content in languages across the world.",
+                  "start": 648,
+                  "end": 822,
+                  "source_sha256": "9bfc10747797d952045a99b9ad487395114b808396367084406aaf6ac5c3bb2f"
+                }
+              ],
+              "note": "公共协作是背景线索；没有把机制 B、创建关系和题述平台完整连接。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C9",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C10",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "Wikimedia Foundation",
+                  "field": "text",
+                  "quote": "The Wikimedia Foundation provides the technical and organizational infrastructure to enable members of the public to develop wiki-based content in languages across the world.",
+                  "start": 648,
+                  "end": 822,
+                  "source_sha256": "9bfc10747797d952045a99b9ad487395114b808396367084406aaf6ac5c3bb2f"
+                }
+              ],
+              "note": "公共协作是背景线索；没有把机制 B、创建关系和题述平台完整连接。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C11",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "Wikimedia Foundation",
+                  "field": "text",
+                  "quote": "The Wikimedia Foundation provides the technical and organizational infrastructure to enable members of the public to develop wiki-based content in languages across the world.",
+                  "start": 648,
+                  "end": 822,
+                  "source_sha256": "9bfc10747797d952045a99b9ad487395114b808396367084406aaf6ac5c3bb2f"
+                }
+              ],
+              "note": "公共协作是背景线索；没有把机制 B、创建关系和题述平台完整连接。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C12",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R1",
+              "evidence": [
+                {
+                  "stage_id": "R1",
+                  "docid": "Wikimedia Foundation",
+                  "field": "caption",
+                  "quote": "The Italian Wikipedia is owned and operated by the Wikimedia Foundation, a non-profit organization dedicated to promoting free knowledge.",
+                  "start": 0,
+                  "end": 137,
+                  "source_sha256": "9f1863a0d501d806d55eab0653c4e5a6f9adfed81225944e08727ae81c099bb5"
+                }
+              ],
+              "note": "明确关联 Wikipedia 与非营利主体，但没有明确 encyclopedia 类型断言；不得用常识补全。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C13",
+          "first_supported_stage": "R2",
+          "evidence": [
+            {
+              "stage_id": "R2",
+              "docid": "Wikimedia Foundation",
+              "field": "text",
+              "quote": "The project was originally funded by Bomis, Wales's for-profit business, and edited by a rapidly growing community of volunteer editors.",
+              "start": 1776,
+              "end": 1912,
+              "source_sha256": "9bfc10747797d952045a99b9ad487395114b808396367084406aaf6ac5c3bb2f"
+            }
+          ],
+          "partial": [],
+          "note": "段落中的 project 明确承接 Wikipedia；这是背景 E 的事实，不能迁移成目标 F 的使命。"
+        },
+        {
+          "condition_id": "C14",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        }
+      ],
+      "stage_review": [
+        {
+          "stage_id": "R1",
+          "new_supported": [],
+          "note": "百科背景与非营利主体被检索到，目标 F 的身份尚未成立。"
+        },
+        {
+          "stage_id": "R2",
+          "new_supported": [
+            "C13"
+          ],
+          "note": "取得背景项目的志愿编辑事实；未连接题述创办者、平台与文化领域。"
+        },
+        {
+          "stage_id": "R3",
+          "new_supported": [],
+          "note": "取得错误候选的使命，新闻来源仍缺。"
+        },
+        {
+          "stage_id": "R4",
+          "new_supported": [],
+          "note": "单词 mission 检索到传教站，agent 后续正确识别其无关。"
+        },
+        {
+          "stage_id": "R5",
+          "new_supported": [],
+          "note": "继续读取同一候选的财务、董事与人员信息，未补足目标身份。"
+        },
+        {
+          "stage_id": "R6",
+          "new_supported": [],
+          "note": "调用不存在的 answer 工具，收到错误；之后有 Final，但已有判分为错。"
+        }
+      ],
+      "misreadings_or_inference_errors": [
+        {
+          "kind": "entity_role_conflation",
+          "stage_id": "R2",
+          "reasoning_excerpt": {
+            "stage_id": "R2",
+            "docid": null,
+            "field": "reasoning",
+            "quote": "Therefore, the foundation is Wikimedia.",
+            "start": 1318,
+            "end": 1357,
+            "source_sha256": "fc645eba6b71bc884bf8c5562f5f76643aeeda8fd3d4d8d2ad80aea09b91489e"
+          },
+          "note": "把题中的背景百科推成待识别基金会。摘要只支持非营利与百科关联，未支持平台创办者链。",
+          "propagated_to_next_query": true,
+          "next_query_stage": "R2",
+          "next_query": "{\"docid\": \"Wikimedia Foundation\", \"start\": 0}"
+        },
+        {
+          "kind": "known_gap_downgraded",
+          "stage_id": "R4",
+          "note": "推理承认使命没有新闻归属，仍认定候选正确；后续返回错误词义后也不重新验证实体。",
+          "propagated_to_next_query": true,
+          "next_query_stage": "R5",
+          "next_query": "{\"docid\": \"Wikimedia Foundation\", \"start\": 16000}"
+        }
+      ],
+      "alternative_candidate_facts": [
+        {
+          "stage_id": "R3",
+          "entity": "Wikimedia Foundation",
+          "evidence": [
+            {
+              "stage_id": "R3",
+              "docid": "Wikimedia Foundation",
+              "field": "text",
+              "quote": "The foundation's mission is collection and distribution of educational knowledge under free licenses or public domain and promised to keep these projects free of charge.",
+              "start": 4144,
+              "end": 4313,
+              "source_sha256": "736917758297399bbc53e34bb98a9e6f1158473c62964f74013d80f6a504ccfb"
+            }
+          ],
+          "note": "该使命在原文真实存在，但未验证这是题述 F，且未满足当地新闻来源条件 C14。"
+        }
+      ],
+      "n_conditions": 14,
+      "n_supported": 1,
+      "n_partial_only": 4
+    },
+    {
+      "trajectory_id": "3b18a3ca83eb046fc51ab4bc31c93663a03f26f8507f561c46a2c79dce268622__rep2",
+      "source_question_id": 437922,
+      "selection_reason": "用满 20 次调用而未提交；重复集中轨迹",
+      "status": "[推断] 示范，不是金标",
+      "candidate_bindings": {
+        "P": null,
+        "Q": "暂议 Rod Langway，未确认题述身份",
+        "R": "agent 候选 Roman Josi",
+        "T": "agent 候选 Norris Trophy，题述奖项身份未建立",
+        "E": "候选 NHL All-Star Game"
+      },
+      "conditions": [
+        {
+          "condition_id": "C1",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C2",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C3",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C4",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R6",
+              "evidence": [
+                {
+                  "stage_id": "R6",
+                  "docid": "2016 NHL All-Star Game",
+                  "field": "caption",
+                  "quote": "Bridgestone Arena was the venue for the 2016 NHL All-Star Game, a showcase of top talent in the National Hockey League.",
+                  "start": 0,
+                  "end": 119,
+                  "source_sha256": "6cc752fac952c6812a2d0f377fbd1f0d3d6faf6a08d074910bd475a174cd7158"
+                }
+              ],
+              "note": "有 showcase 和赛事关系，未明确年度属性或题述 P 的第二次出场。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C5",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C6",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C7",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "Norris Trophy",
+                  "field": "caption",
+                  "quote": "Rod Langway won the Norris Trophy as the top defenseman in the NHL in both 1983 and 1984.",
+                  "start": 0,
+                  "end": 89,
+                  "source_sha256": "3df189c4cb865b461d407a745658994e5293a752a9b9e48e23685f56d399db64"
+                }
+              ],
+              "note": "局部候选 Rod Langway 多次获 Norris 成立，但其是否是题述 Q、奖项是否为 T 未建立。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C8",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C9",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C10",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C11",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "James Norris Memorial Trophy",
+                  "field": "caption",
+                  "quote": "Roman Josi won the James Norris Memorial Trophy in the 2019–20 NHL season, becoming the first Swiss player and the first player in Predators' franchise history to win the award.",
+                  "start": 0,
+                  "end": 177,
+                  "source_sha256": "eadc913831e37b75a9d07fac612fd06f9bec9e474dbe93ed8d94e38a210eb663"
+                }
+              ],
+              "note": "仅支持候选 Roman Josi 的 2019–20 赛季获奖；题述人物/奖项未建立且年份跨年代。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        },
+        {
+          "condition_id": "C12",
+          "first_supported_stage": null,
+          "evidence": [],
+          "partial": [
+            {
+              "stage_id": "R2",
+              "evidence": [
+                {
+                  "stage_id": "R2",
+                  "docid": "Norris Trophy",
+                  "field": "caption",
+                  "quote": "Rod Langway won the Norris Trophy as the top defenseman in the NHL in both 1983 and 1984.",
+                  "start": 0,
+                  "end": 89,
+                  "source_sha256": "3df189c4cb865b461d407a745658994e5293a752a9b9e48e23685f56d399db64"
+                }
+              ],
+              "note": "top defenseman 是位置/综合评价，不足以证明题述具体防守奖项就是 Norris。"
+            }
+          ],
+          "note": "截至轨迹结束未见足够的工具证据。"
+        }
+      ],
+      "stage_review": [
+        {
+          "stage_id": "R1",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "cca6330a32f151a1bfbe46b15c1687e6ae17ea883dfdfba63bcbb72115027411",
+          "note": "泛搜返回含大量曲棍球信息，agent 后续识别运动项目不符。"
+        },
+        {
+          "stage_id": "R2",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "f860df03e01b3cfb54bc99c50a6ad90bf478344d6902584eacbe93f42cda2145",
+          "note": "出现 Norris、Langway 与 Josi 局部事实；题述实体链仍未连接。"
+        },
+        {
+          "stage_id": "R3",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "34cebf8bf299ce2b898e82f7b9c82c70e1c2e7806f20f1f6ae5aef13ccbcf907",
+          "note": "锁定 Josi 多次获奖的猜测，返回只支持一个获奖赛季与队长身份。"
+        },
+        {
+          "stage_id": "R4",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "18b835755f328eff87f4b956e973f0e1a4d3b94be2deb82747d61b9b2a97a374",
+          "note": "加入年份列表，无早期获奖证据。"
+        },
+        {
+          "stage_id": "R5",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "7cfbc6561c40bc36f71e3a7be6a0cda7de071c1b9df4c8165cf8630d84279cc3",
+          "note": "换成 defense awards，夹杂其他运动。"
+        },
+        {
+          "stage_id": "R6",
+          "new_supported": [],
+          "same_return_as": null,
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "首次该固定查询，出现年度展示赛事的弱线索。"
+        },
+        {
+          "stage_id": "R7",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R8",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R9",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R10",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R11",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R12",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R13",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R14",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R15",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R16",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R17",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R18",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R19",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        },
+        {
+          "stage_id": "R20",
+          "new_supported": [],
+          "same_return_as": "R6",
+          "return_sha256": "d33ee2acfa455deed5dc4cf8e7a2d34e198fca2dd84d8e6d3073b27c1577a84a",
+          "note": "与 R6 查询和返回完全相同，没有新的候选链支持。"
+        }
+      ],
+      "misreadings_or_inference_errors": [
+        {
+          "kind": "unsupported_candidate_narrowing",
+          "stage_id": "R3",
+          "reasoning_excerpt": {
+            "stage_id": "R3",
+            "docid": null,
+            "field": "reasoning",
+            "quote": "Roman Josi might have won it multiple times in both periods.",
+            "start": 515,
+            "end": 575,
+            "source_sha256": "6b61770bb3b8d21efa36d1d004d7fb3cf27c9bb0989bbe2884a0771b05f2a64e"
+          },
+          "note": "原摘要只给出一个获奖赛季，推理把未证实的多次获奖假设变为下一步主要方向；不是原文明确说了多次。",
+          "propagated_to_next_query": true,
+          "next_query_stage": "R3",
+          "next_query": "Roman Josi Norris Trophy multiple wins"
+        },
+        {
+          "kind": "unverified_award_identity",
+          "stage_id": "R1",
+          "note": "调用前已假定奖项为 Norris，随后从未建立题述奖项、三位球员的关系；feature 锚点本身也有冲突。",
+          "propagated_to_next_query": true,
+          "next_query_stage": "R2",
+          "next_query": "Norris Trophy Norris MVP defensive player award"
+        }
+      ],
+      "n_conditions": 12,
+      "n_supported": 0,
+      "n_partial_only": 4
+    }
+  ],
+  "annotation_difficulties": [
+    "属包含物种不等于该物种是模式种；答案正确也可能缺少关键关系证据。",
+    "背景实体与待求实体必须分开，不能把另一实体的使命迁移到目标。",
+    "候选局部事实支持与题述身份确认是两层判断；是否把候选属性记为 supported 必须固定口径。",
+    "top defenseman 与 outstanding defensive play 不必等价，赛季也不等同公历年。",
+    "缺少关键链时，反复检索不是明确反证；不能写成模型无视已证明的反证。",
+    "跨 Stage 代词消解应保留依据；模糊修饰词和有冲突的 feature 不适合直接当分母。"
+  ]
+}

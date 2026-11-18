@@ -1,0 +1,40 @@
+2026-11-18 round2 begin; only round2 files may change.
+Read prior selection, stage_stats, dataset sample rows, existing verdict examples, EDA skill, cluster memory, actual DSW TASK_CARD.md and score.py.
+Git status confirmed seven pre-existing unrelated files; previous probe files snapshotted in prior_files_sha256.json.
+Created rule/analysis scripts via apply_patch; AST parse passed; public exclusion: private/ and __pycache__/.
+ssh zhurong-hpc mkdir -p /persist_data/home/weiyu/lanyi/projects/deepsearch-world-pilot/probe_m1m2/round2
+sftp -b probe_m1m2/round2/scripts/put.sftp zhurong-hpc
+sbatch --output=<bulk>/probe_m1m2/round2-%j.log <control>/round2/analyze.sbatch <control>/round2
+190930 FAILED 1s: question SHA guard caught ordering mismatch. Corrected joining to normalized-question SHA (not list order), then reuploaded using put.sftp and submitted same CPU analysis with new job id; 190930 left untouched. Regenerated manual conditions with corrected question_id mapping.
+190945 FAILED 1s: parser expected direct search list but native Search has results wrapper. Verified actual two Search/two Open schemas, corrected wrapper access only, reuploaded and resubmitted. No data/model changes.
+
+190949 COMPLETED 1s, ExitCode=0:0 (terminal status checked during collection); summary and 20 before/after source hashes written.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round2/scripts/get.sftp zhurong-hpc
+Downloaded inspection material only to round2/private/ (gitignored); copied only derived public artifacts to round2 root.
+Local commands used PYTHONIOENCODING=utf-8 and explicit UTF-8 reads throughout.
+git status --short --branch
+Get-Content probe_m1m2/round2/scripts/write_atomic_pilot.py -TotalCount 65
+Get-Content probe_m1m2/round2/scripts/rules.py -TotalCount 65
+Get-Content probe_m1m2/round2/redundancy_summary.json -TotalCount 80
+python - (read private review_events.json; inspect all unique returns and reasoning for 437922/rep2, 230779/rep2 and 351873/rep1; print selected S_exact/S_near/S_allseen query pairs and short purpose sentences)
+python - (read private question_context.json for question/feature alignment; map normalized question hashes rather than row order)
+Codex directly authored condition splits and review decisions; no additional model/API execution. apply_patch created/updated only round2 files.
+python probe_m1m2/round2/scripts/write_atomic_pilot.py
+python probe_m1m2/round2/scripts/write_reviews.py
+python - (read aggregate groups, per-question outcomes, atomic summary, file sizes; check longest feature key = 25 words)
+python probe_m1m2/round2/scripts/validate_round2.py --private
+Result: 9 synthetic rule checks + 25 artifact checks passed, 0 failed; 108 previous probe file hashes unchanged.
+GitHub get_repo slyfeness/redundancy-mechanism-analysis: visibility=public; user's authorized public-output restrictions applied.
+ssh -b 10.1.1.121 -o BatchMode=yes -o ConnectTimeout=8 zhurong-hpc "sacct -j 190930,190945,190949 --format=JobIDRaw,JobName,State,ExitCode,Elapsed,Start,End -P -n"
+Final redundant accounting lookup failed: Slurm accounting database connection refused. No retry, no new computation. Earlier collected terminal states retained, not inferred from this failed lookup.
+python probe_m1m2/round2/scripts/validate_round2.py --private (final rerun: 9 + 25 passed)
+git add --sparse -- probe_m1m2/round2
+git diff --cached --stat
+git diff --cached --check (reported literal CRLF and Markdown line-break whitespace under inherited * -text; no data rewriting)
+git -c core.whitespace=cr-at-eol,-blank-at-eol diff --cached --check (passed)
+python - (assert staged allowlist: exactly 24 files, all under round2, no private files, largest 67,522 bytes)
+Release commands scheduled after this log is staged; their authoritative receipts are Git history and the remote branch:
+git add --sparse -- probe_m1m2/round2/commands.log
+git commit -m "probe: add round2 redundancy, outcomes and atomic-condition analysis"
+git push origin HEAD:refs/heads/probe/m1m2
+git ls-remote origin refs/heads/probe/m1m2
