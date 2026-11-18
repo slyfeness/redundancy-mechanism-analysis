@@ -1,0 +1,37 @@
+2026-11-18: User clarified final scope: 100 distinct questions, each model generates 2 answers (not 4), 400 total.
+Read cluster memory, cluster manual, actual DSW TASK_CARD.md; actual project has no AGENTS.md.
+Read experimental-design, karpathy-guidelines, test-driven-development skills.
+git status --short --branch: probe/m1m2; seven unrelated prior changes preserved.
+Read original actor4b-v1 and recovery-v1 scripts; confirmed paired historical 16 questions x8 for both models.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round3/scripts/get_source.sftp zhurong-hpc
+python probe_m1m2/round3/scripts/test_plan.py: initial RED (missing implementation), then 4 passed.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round3/scripts/put_prepare.sftp zhurong-hpc
+sbatch --output=<bulk>/probe_m1m2/round3/prepare-%j.log <control>/round3/prepare.sbatch <control>/round3
+CPU 191006 COMPLETED, 20s, ExitCode=0:0: 100 ranked questions, original 16 prefix preserved, 32 results per model reusable, 168 new per model.
+python probe_m1m2/round3/scripts/materialize_runtime.py
+9B historical model directory has no SOURCE_RECEIPT.json; use its frozen path and compare loaded fingerprints to historical ACTORS_READY. No provenance file invented.
+python -m unittest discover -s probe_m1m2/round3/scripts -p test_*.py -v: 8 passed before GPU submission.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round3/scripts/put_runtime.sftp zhurong-hpc
+bash -n <control>/round3/run.sbatch: passed.
+sbatch --output=<bulk>/probe_m1m2/round3/gpu-%j.log <control>/round3/run.sbatch <control>/round3 <bulk>/probe_m1m2/round3/selection-191006 9B
+GPU job 191020 submitted; 4 GPUs, 24 CPUs, 384G, gre/professors, 48h, no pinned node.
+sbatch --dependency=afterany:191020 --output=<bulk>/probe_m1m2/round3/gpu-%j.log <control>/round3/run.sbatch <control>/round3 <bulk>/probe_m1m2/round3/selection-191006 4B
+GPU job 191021 submitted with serial dependency; no more than four allocated GPUs for this workflow.
+python probe_m1m2/round3/scripts/test_native_stages.py: initial RED (missing implementation), then 4 new tests passed.
+python -m unittest discover -s probe_m1m2/round3/scripts -p test_*.py -v: 12 passed.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round3/scripts/put_analysis.sftp zhurong-hpc
+sbatch --output=<bulk>/probe_m1m2/round3/check-%j.log <control>/round3/check_native.sbatch <control>/round3
+CPU 191030 COMPLETED, 21s, ExitCode=0:0: all 217 prior Stage token counts equal; native marker IDs equal across 4B/9B tokenizers; no model calls.
+Read-only status checks use scontrol show job 191020 / 191021 and bounded tails of current job logs. Initial squeue partition listing had permission warning; job-specific controller status is available.
+All <control> paths: /persist_data/home/weiyu/lanyi/projects/deepsearch-world-pilot/probe_m1m2
+All <bulk> paths: /file_storage01/home/weiyu/lanyi/projects/deepsearch-world-pilot
+sbatch --dependency=afterany:191020:191021 --output=<bulk>/probe_m1m2/round3/summary-%j.log <control>/round3/summarize.sbatch <control>/round3 <bulk>/probe_m1m2/round3/selection-191006 <bulk>/probe_m1m2/round3/run-9B-191020 <bulk>/probe_m1m2/round3/run-4B-191021
+CPU summary job 191033 queued after both GPU jobs; no model access. Analysis reports shared parallel-generation bounds and missing observation tokens explicitly.
+191020 COMPLETED ExitCode=0:0, 46m54s; 191021 COMPLETED ExitCode=0:0, 33m01s; no controller restarts. 168 new trajectories per model, 32 reused each.
+191033 COMPLETED ExitCode=0:0, 55s. All 400 trajectories and verdicts present; 67 correct per model. Frozen old-source hashes and 217 original Stage counts match.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -b probe_m1m2/round3/scripts/get_analysis.sftp zhurong-hpc
+python probe_m1m2/round3/scripts/write_receipt.py; python probe_m1m2/round3/scripts/write_report.py; python probe_m1m2/round3/scripts/validate_delivery.py: 14 checks passed.
+Final unittest discover: 12/12 passed; rule selftest: 9 passed. Publication scan: no >40-word verbatim tool-return excerpts in final answers. Prior 132 probe files unchanged.
+Public repository confirmed via GitHub metadata before delivery. No visibility change.
+python probe_m1m2/round3/scripts/prepare_public_csv.py: 197 long generated answers abbreviated to first 40 words for public CSV, with original length and SHA-256. Full originals stay private; scores unchanged.
+git add --sparse -- probe_m1m2/round3; git -c core.whitespace=cr-at-eol,-blank-at-eol diff --cached --check; git commit; git push origin probe/m1m2 (stop if push fails).
