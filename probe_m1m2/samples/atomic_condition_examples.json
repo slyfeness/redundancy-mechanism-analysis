@@ -1,0 +1,130 @@
+[
+  {
+    "status": "[推断] exploratory examples, not a frozen constraint list or gold labels",
+    "source": "codex_exploratory_decomposition",
+    "source_dataset": "train.jsonl",
+    "source_id": 28596,
+    "original_row": {
+      "prompt": "In a mountain range located on the northern coast of a southern island, known for its cool and humid climate, a particular method of hunting gained significant popularity due to its efficiency in the rugged terrain. This method involved the use of aircraft to navigate the challenging landscape. During which decade did this hunting technique see its peak in this area?",
+      "answers": [
+        "In the 1970s."
+      ],
+      "entity_list": "[\"Glasgow Range\", \"West Coast, New Zealand\", \"West Coast Region\", \"Greymouth\", \"Westland Milk Products\", \"Fox Glacier\"]",
+      "fuzzed_features": "{\"The Glasgow Range is situated on the northern West Coast of New Zealand, known for its cool, humid, and cloudy climate.\": \"a mountain range located on the northern coast of a southern island, known for its cool and humid climate.\", \"helicopter hunting\": \"a particular method of hunting involving the use of aircraft to navigate the challenging landscape\"}",
+      "id": 28596
+    },
+    "answer_type": "decade",
+    "variables": {
+      "R": "mountain range",
+      "I": "island",
+      "H": "hunting technique"
+    },
+    "conditions": [
+      "R is on the northern coast of I.",
+      "I is described as a southern island.",
+      "R has a cool climate.",
+      "R has a humid climate.",
+      "H became popular in R.",
+      "H was efficient in the rugged terrain of R.",
+      "H uses aircraft to navigate that terrain."
+    ],
+    "answer_relation": "Return the decade when H reached its peak in R.",
+    "ambiguities": [
+      "southern island is not automatically the proper name South Island.",
+      "Aircraft does not uniquely mean helicopter without evidence.",
+      "Peak popularity needs a time comparison; the question does not specify a numerical measure.",
+      "fuzzed_features mixes multiple geographic/weather conditions in one entry."
+    ]
+  },
+  {
+    "status": "[推断] exploratory examples, not a frozen constraint list or gold labels",
+    "source": "codex_exploratory_decomposition",
+    "source_dataset": "train.jsonl",
+    "source_id": 193660,
+    "original_row": {
+      "prompt": "A literary figure, who was born in the capital of a disputed region in the Caucasus in the mid-20th century, is a professor at a major university in the country's largest city and a member of a national writers' organization. This individual translated a memoir about an American-Armenian family's experience during the Armenian Genocide, which was published in the early 2000s in the country's capital. What is the title of this memoir and when was it published?",
+      "answers": [
+        "Black Dog of Fate, published in Yerevan in 2002."
+      ],
+      "entity_list": "[\"Artem Harutyunyan\", \"Stepanakert\", \"Yerevan State University\", \"Writers Union of Armenia\"]",
+      "fuzzed_features": "{\"Artem Harutyunyan was born in Stepanakert, the capital of Nagorno-Karabakh, in 1945.\": \"A literary figure, who was born in the capital of a disputed region in the Caucasus in the mid-20th century\", \"Artem Harutyunyan is a Professor of Foreign Literature and Literary Criticism at Yerevan State University.\": \"a professor at a major university in the country's largest city\", \"Artem Harutyunyan is a member of the Writers Union of Armenia.\": \"a member of a national writers' organization\", \"What novel by Peter Balakian did Artem Harutyunyan translate into Armenian, and when was it published?\": \"translated a memoir about an American-Armenian family's experience during the Armenian Genocide, which was published in the early 2000s in the country's capital\"}",
+      "id": 193660
+    },
+    "answer_type": "memoir title and publication time",
+    "variables": {
+      "P": "literary figure",
+      "B": "birthplace",
+      "R": "region",
+      "U": "university",
+      "C": "country",
+      "M": "memoir"
+    },
+    "conditions": [
+      "P is a literary figure.",
+      "P was born in B.",
+      "B is the capital of R.",
+      "R is disputed.",
+      "R is in the Caucasus.",
+      "P was born in the mid-20th century.",
+      "P is a professor at U.",
+      "U is a major university.",
+      "U is in the largest city of C.",
+      "P belongs to a national writers organization.",
+      "P translated M.",
+      "M concerns an American-Armenian family.",
+      "M concerns that family experience during the Armenian Genocide.",
+      "M was published in the early 2000s.",
+      "M was published in the capital of C."
+    ],
+    "answer_relation": "Return the title and publication time of M, preserving which edition is meant.",
+    "ambiguities": [
+      "The country referred to by the country must be resolved consistently.",
+      "The original memoir and its translated edition have different publication events.",
+      "The fuzzed feature asks about a novel while the question says memoir; do not treat this as adjudicated truth.",
+      "Major and mid-20th century require operational definitions before automated coverage scoring."
+    ]
+  },
+  {
+    "status": "[推断] exploratory examples, not a frozen constraint list or gold labels",
+    "source": "codex_exploratory_decomposition",
+    "source_dataset": "train.jsonl",
+    "source_id": 230779,
+    "original_row": {
+      "prompt": "A foundation, established by a visionary individual, focuses on advancing a particular cultural domain. This foundation's founder also created an online platform that leverages a collaborative funding mechanism, allowing creators in this cultural domain to bypass traditional financial hurdles. This collaborative funding mechanism is part of a broader approach that involves pooling resources from the public to achieve various objectives. This broader approach has been utilized by notable non-profit entities to create shared resources, such as a widely recognized online encyclopedia where volunteers contribute to building a comprehensive knowledge base. What is the primary mission of the foundation according to a prominent local news source?",
+      "answers": [
+        "To promote and support the arts and culture of fashion."
+      ],
+      "entity_list": "[\"Arts of Fashion Foundation\", \"InvestFashion\", \"Crowdfunding\", \"Crowdsourcing\", \"Wikipedia\", \"Amazon Mechanical Turk\"]",
+      "fuzzed_features": "{\"Nathalie Doucet founded the Arts of Fashion Foundation\": \"A foundation, established by a visionary individual\", \"Arts of Fashion Foundation promotes and supports the arts and culture of fashion\": \"advancing a particular cultural domain\", \"Nathalie Doucet also established InvestFashion\": \"This foundation's founder also created an online platform\", \"InvestFashion uses crowdfunding to help fashion designers\": \"leverages a collaborative funding mechanism, allowing creators in this cultural domain to bypass traditional financial hurdles\", \"Crowdfunding is a form of crowdsourcing and alternative finance\": \"This collaborative funding mechanism is part of a broader approach that involves pooling resources from the public to achieve various objectives\", \"Crowdsourcing is used by nonprofits like Wikipedia\": \"This broader approach has been utilized by notable non-profit entities to create shared resources, such as a widely recognized online encyclopedia where volunteers contribute to building a comprehensive knowledge base\"}",
+      "id": 230779
+    },
+    "answer_type": "foundation mission attributed to a local news source",
+    "variables": {
+      "F": "foundation",
+      "P": "founder",
+      "D": "cultural domain",
+      "W": "online platform",
+      "C": "funding mechanism",
+      "A": "broader approach"
+    },
+    "conditions": [
+      "P established F.",
+      "F advances D.",
+      "P created W.",
+      "W uses C.",
+      "C enables creators in D to bypass traditional financial hurdles.",
+      "C is part of A.",
+      "A pools resources from the public.",
+      "A serves multiple objectives.",
+      "Notable nonprofits have used A to create shared resources.",
+      "A widely recognized volunteer-built online encyclopedia is offered as an example of that use."
+    ],
+    "answer_relation": "Return the primary mission of F as attributed to a prominent local news source.",
+    "ambiguities": [
+      "Visionary and prominent are qualitative descriptions rather than reliable binary facts.",
+      "The relation C is part of A must not be lost when splitting clauses.",
+      "The question does not identify the local news source.",
+      "The mission is the output target; do not fill it from fuzzed_features as if already observed in the rollout."
+    ]
+  }
+]
