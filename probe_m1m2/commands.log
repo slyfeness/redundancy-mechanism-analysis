@@ -399,3 +399,52 @@ git -C mechanism_repo_git rev-parse HEAD
 git -C mechanism_repo_git ls-remote --heads origin refs/heads/probe/m1m2
 git -C mechanism_repo_git status --short -- probe_m1m2
 git -C mechanism_repo_git show --format=fuller --stat HEAD
+
+# 2026-11-18 follow-up: generator vs Agent Loop comparison
+# Read-only evidence: git status --short; Get-Content probe_m1m2/source_audit.json; Get-Content probe_m1m2/REPORT.md -Tail 30
+# apply_patch: REPORT.md sections 3 and 9 only; added reference-version comparison and unresolved actual repository/framework decision.
+# GitHub get_repo(repository_full_name=slyfeness/redundancy-mechanism-analysis): verify PRIVATE before push.
+git -c core.whitespace=cr-at-eol diff --check -- probe_m1m2/REPORT.md probe_m1m2/commands.log
+git add -- probe_m1m2/REPORT.md probe_m1m2/commands.log
+git diff --cached --stat
+git commit -m "Clarify generator and Agent Loop reference comparison"
+git push origin probe/m1m2
+git ls-remote --heads origin refs/heads/probe/m1m2
+
+# 2026-11-18 user correction: custom native generator is primary; no other veRL repository.
+# Supersedes the uncommitted reference-comparison draft. No new rollout/model/optimizer.
+# Prior git add failed because probe_m1m2 was outside sparse-checkout; index unchanged. Use git add --sparse for this explicitly authorized directory.
+# Source reads performed (PowerShell):
+Get-Content deepsearch-world-pilot/TASK_CARD.md
+Get-Content browsecomp-qwen35-9b-grpo-smoke/AGENTS.md
+Get-Content browsecomp-qwen35-9b-grpo-smoke/TASK_CARD.md
+Get-Content mechanism_repo_git/ledger-grpo/src/ledger_grpo/hf_native.py
+Get-Content mechanism_repo_git/ledger-grpo/scripts/hf_pilot_train.py
+Get-Content mechanism_repo_git/ledger-grpo/src/ledger_grpo/browsecomp_adapter.py
+Get-Content mechanism_repo_git/ledger-grpo/src/ledger_grpo/native_capture.py
+Get-Content mechanism_repo_git/ledger-grpo/src/ledger_grpo/verl_adapter.py
+rg -n 'verl_adapter|verl_plugin|external_lib|main_ppo' ledger-grpo
+# Remote lightweight reads: deepsearch-world-pilot/TASK_CARD.md; frozen native_spans.py, prepare_training.py, stability_train.py, train_smoke.py; qualified-source hf_native.py metadata. Project-local AGENTS absent; workspace instructions and actual task cards apply.
+# apply_patch created scripts/probe_native_training.py and native_training.sbatch. Local ast.parse passed.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -o ConnectTimeout=8 -b probe_m1m2/scripts/transfer_native_training.sftp zhurong-hpc
+ssh -b 10.1.1.121 -o BatchMode=yes -o ConnectTimeout=8 zhurong-hpc "sbatch --output=/file_storage01/home/weiyu/lanyi/projects/deepsearch-world-pilot/probe_m1m2/native-training-%j.log /persist_data/home/weiyu/lanyi/projects/deepsearch-world-pilot/probe_m1m2/scripts/native_training.sbatch /persist_data/home/weiyu/lanyi/projects/deepsearch-world-pilot/probe_m1m2/scripts"
+# Submitted CPU-only job 190723. Initial squeue: RUNNING on gpu42 (node name does not imply GPU allocation).
+# Polls (read-only): ssh zhurong-hpc "scontrol show job 190723 -o; tail -n 5 .../probe_m1m2/native-training-190723.log"; sstat -j 190723.batch --format=JobID,AveCPU,MaxRSS,MaxDiskRead --noheader.
+# One attempt to inspect our own allocated process via ssh gpu42 was denied; no computation or alternate access attempted.
+# Final scontrol: COMPLETED, 0:0, 00:03:20, AllocTRES=cpu=4,mem=24G,node=1,billing=4; no GPU.
+sftp -o BindAddress=10.1.1.121 -o BatchMode=yes -o ConnectTimeout=8 -b probe_m1m2/scripts/get_native_training.sftp zhurong-hpc
+python probe_m1m2/scripts/reconcile_native_training.py
+python probe_m1m2/scripts/check_delivery.py
+# Read-only Python comparison: three qualified-source files vs local repository, text normalized only for newline comparison, all identical. Native source byte hashes remain in training_source_audit.json.
+# apply_patch updates REPORT.md, samples/README.md, scripts/check_delivery.py and native_training/README.md; original samples retained.
+# stage_stats provenance updated to native_training_mask_CPU_verified; values unchanged. Saved terminal scontrol receipt and script hashes. Seven pre-existing worktree files hash unchanged.
+# Final checks and publication commands:
+python probe_m1m2/scripts/check_delivery.py
+git -c core.whitespace=cr-at-eol diff --check -- probe_m1m2
+# GitHub get_repo(repository_full_name=slyfeness/redundancy-mechanism-analysis) must return private before push.
+git add --sparse -- probe_m1m2
+git diff --cached --stat
+git commit -m "Audit custom-generator native training sequences and masks"
+git push origin probe/m1m2
+git ls-remote --heads origin refs/heads/probe/m1m2
+# Final report-size inspection initially hit Windows default GBK decoding; rerun with explicit UTF-8 succeeded (2365 Han characters, three logical pages). No source/data changed by failed read.

@@ -16,7 +16,13 @@ assert all(n==2 for n in collections.Counter(r['question_id'] for r in checks).v
 assert len(stages)==len(vis)==s['tool_stages']+s['final_stages']==228
 assert {(x['trajectory_id'],x['stage_id']) for x in stages}=={(x['trajectory_id'],x['stage_id']) for x in vis}
 assert all(r['n_tool_calls']=='1' for r in stages if r['unit_type']=='tool_stage')
-assert s['mapping_pass']==0 and v['training_mask_verified'] is False
+native=read(O/'native_training/native_training_summary.json') if (O/'native_training/native_training_summary.json').exists() else None
+if native:
+    assert native['mask_checks_passed']==20 and native['native_training_input_checks_passed']==20
+    assert sum(row['pass']=='True' for row in checks)==native['stage_mapping_complete']==s['mapping_pass']
+    assert all(row['mask_construction_verified']=='True' for row in checks)
+else:
+    assert s['mapping_pass']==0 and v['training_mask_verified'] is False
 assert sum(int(c['native_generated_tokens']) for c in checks)==s['total_native_tokens']==89695
 assert sum(int(c['diagnostic_mapped_tokens']) for c in checks)==s['mapped_native_tokens']==69074
 assert all(int(c['diagnostic_partition_sum'])==int(c['native_generated_tokens']) for c in checks)
@@ -37,7 +43,8 @@ for p in O.rglob('*'):
     files.append({'path':p.relative_to(O).as_posix(),'bytes':p.stat().st_size})
 result={'checks_passed':True,'files':len(files),'max_file_bytes':max(x['bytes'] for x in files),
     'three_sample_pairs':True,'stage_visibility_keys_match':True,'source_trajectory_checks':20,
-    'missing_training_mask_explicit':True,'models_called':0,'training_updates':0,
-    'note':'Delivery consistency only; actual veRL training-mask test remains unavailable.'}
+    'missing_persisted_training_mask_explicit':True,'models_called':0,'training_updates':0,
+    'native_cpu_mask_checks':native['mask_checks_passed'] if native else None,
+    'note':'Delivery consistency; native CPU preparation verified separately. No model forward or actual training on 190085.'}
 (O/'delivery_check.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result))
