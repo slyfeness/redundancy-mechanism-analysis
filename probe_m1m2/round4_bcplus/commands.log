@@ -1,0 +1,45 @@
+2026-11-18 local, LedgerCredit round4_bcplus. All heavy cluster operations submitted through Slurm. The paths below use CONTROL=/persist_data/home/weiyu/lanyi/projects/ledger-grpo-pilot/control/probe_m1m2/round4_bcplus and BULK=/file_storage01/home/weiyu/lanyi/projects/ledger-grpo-pilot/probe_m1m2/round4_bcplus.
+Read cluster memory, operations manual, actual project rules and task cards. Reviewed round3 and the 183352 deletion run's read-only retrieval receipts. The existing q4j 190197 rollout uses a different schedule, seed and memory configuration; the earlier 4B native pilot also used top_p=0.8. No historical trajectories are reused for the sample.
+git status --short --branch; git ls-tree -r --name-only HEAD; verified source commit 91f08c78bb537f2095601960b584361f44ec5364 and left seven pre-existing non-round4 changes intact.
+SFTP prepare.py/prepare.sbatch to CONTROL. bash -n prepare.sbatch.
+sbatch --parsable --output=BULK/prepare-%j.log CONTROL/prepare.sbatch CONTROL <187299 snapshot config> BULK/selection
+191859 COMPLETED 00:00:48 0:0. Six official question shards and card SHA-256 verified. Freeze one 664/166 split using seed 20261118 and sample 50 training IDs with seed 20261119. Only 50 sampled rows decoded. Actor seed uses the round3 base 20261110 with stride 8.
+python probe_m1m2/round4_bcplus/scripts/materialize_runtime.py; SFTP actor.py, score.py, run.sbatch to CONTROL; retrieve split.json and selection.json only. bash -n run.sbatch.
+sbatch --parsable --output=BULK/gpu-%j.log CONTROL/run.sbatch CONTROL BULK/selection BULK
+191862 FAILED 00:04:09 1:0 before any benchmark generation or scoring; the frozen 183352 adapted retriever differs by timing middleware. Compared private generated source to the deletion source with diff -u and compared tool definitions. Restored the inherited instrument_search_timing function, regenerated actor.py and transferred only that file. Preserved the failed run and reused the existing selection unchanged.
+sbatch --parsable --output=BULK/gpu-%j.log CONTROL/run.sbatch CONTROL BULK/selection BULK
+191870 submitted as the replacement 4-GPU offline run. Matching original and adapted source SHA-256 and Search tool schema verified before Actor startup.
+python -m unittest discover -s probe_m1m2/round4_bcplus/scripts -p test_*.py -v
+SFTP read_stages.py, signals.py, native_stages.py, rules.py, check_native.py/.sbatch, summarize.py/.sbatch. bash -n check_native.sbatch and summarize.sbatch.
+sbatch --parsable --output=BULK/native-check-%j.log CONTROL/check_native.sbatch CONTROL BULK/selection BULK
+191871 COMPLETED 00:00:03 0:0. Observed 57 Stage records over 16 engineering-check trajectories whose IDs are in the selected 50, 1 unparsed return, zero held-out IDs or reused outcomes.
+sbatch --parsable --dependency=afterany:191870 --output=BULK/analysis-%j.log CONTROL/summarize.sbatch CONTROL BULK/selection BULK/run-191870 BULK
+191878 submitted for read-only signal analysis. Monitor using scontrol show job, squeue where available, and bounded reads of private job logs. No automation. No external model APIs or optimizer steps.
+191870 stopped by scancel 191870 after the recorder rejected the missing actor.frozen_native_tool_schema key before sending any sample request. Controller CANCELLED, 00:11:52, ExitCode=0:15. Its dependent CPU job 191878 completed with no model responses or scored outcomes. Both outputs remain private.
+Derived the native Search schema from the frozen MCP tool definition and checked equality against 190197's execution-freeze schema. Retained the phase10 recorder's own per-request schema check. Rematerialized and transferred only actor.py and run.sbatch.
+sbatch --parsable --output=BULK/gpu-%j.log CONTROL/run.sbatch CONTROL BULK/selection BULK
+191882 submitted with the original 50 IDs and 400 seeds, and without reconstructing the split.
+sbatch --parsable --dependency=afterany:191882 --output=BULK/analysis-%j.log CONTROL/summarize.sbatch CONTROL BULK/selection BULK/run-191882 BULK
+191883 submitted to analyze only the new run.
+191882 COMPLETED 01:43:06 ExitCode=0:0. 400 sealed trajectories, 165 formal submissions, 400 receipts. Exactly one initial JudgeError without a resolved outcome, no failed Actor workers.
+python -m unittest discover -s probe_m1m2/round4_bcplus/scripts -p test_*.py -v: seven successful tests. Synthetic aggregate smoke used 24 invented trajectories across three outcome groups. No samples entered these tests.
+SFTP recover_score.py/.sbatch to CONTROL. bash -n recover_score.sbatch.
+sbatch --parsable --dependency=afterany:191882 --output=BULK/retry-%j.log CONTROL/recover_score.sbatch CONTROL BULK/selection BULK/run-191882 BULK
+192051 retries unresolved local outcomes once, with exactly the original Judge prompt and parameters and separate receipts. Existing verdicts and all feedback records remain read-only.
+SFTP the final read_stages.py, summarize.py, summarize.sbatch; bash -n summarize.sbatch.
+sbatch --parsable --dependency=afterany:192051 --output=BULK/analysis-%j.log CONTROL/summarize.sbatch CONTROL BULK/selection BULK/run-191882 BULK BULK/retry-192051/verdicts
+192062 recomputes signals with a hash-bound retry result where available.
+192051 COMPLETED 00:03:47. The single unresolved outcome again ended at its 60-second wait while Judge was generating. Initial analyses 191883 and 192062 recorded 399 resolved outcomes and one missing Stage boundary; kept private as intermediate results.
+CPU 192071 diagnosed one native round in 642__rep7 with two start markers, one end marker, and two recorded dispatches. The round4 reader sizes the unambiguous final call to the actual completion boundary. Revalidated with eight unit tests. No generated token IDs or trajectories changed.
+SFTP the isolated retry launcher/client and updated native analysis. Verified the retry transport with a mocked opener: same LocalJudge request and checks, only the socket wait changes.
+sbatch --parsable --output=BULK/retry-%j.log CONTROL/recover_score.sbatch CONTROL BULK/selection BULK/run-191882 BULK 240 2
+192077 uses a 240-second transport wait for the same one request. The offline retry opener preserves loopback and the existing payload, no-redirect and parse checks. Original grading code stays unchanged.
+sbatch --parsable --dependency=afterany:192077 --output=BULK/analysis-%j.log CONTROL/summarize.sbatch CONTROL BULK/selection BULK/run-191882 BULK BULK/retry-192077/verdicts
+192078 is the final analysis job.
+192077 COMPLETED 00:05:47. The longer wait recovered the one unresolved verdict after 71 seconds. 192078 COMPLETED 00:00:56. Final counts 400 outcomes, 4721 stages, disjoint test split, zero optimizer updates.
+SFTP only the three public analysis files to round4_bcplus. The private raw batch log and sacct records were used locally to build execution_receipt.json and are excluded from Git.
+python probe_m1m2/round4_bcplus/scripts/write_receipt.py
+python probe_m1m2/round4_bcplus/scripts/write_report.py
+python probe_m1m2/round4_bcplus/scripts/validate_public.py
+Used the installed data-analysis skill SQL query over the ID/count-only CSVs to independently reconcile 400 trajectories, 109 correct, 50 groups of eight, 23/23/4 groups, 37 nonzero outcome groups, 282 trajectories with progress, 4721 Stages, 1145 strict repeats, 793 strict repeats in signal groups and 4678 comparable Stages.
+git add --sparse -- probe_m1m2/round4_bcplus; git -c core.whitespace=cr-at-eol,-blank-at-eol diff --cached --check; git commit; git push origin probe/m1m2; git ls-remote --heads origin probe/m1m2
