@@ -5,6 +5,7 @@ import math
 import torch
 
 from ..hf_native import native_turn_layout, prepare_native_records
+from .stages import event_fed, observed_texts
 
 
 def validate_stages(parsed):
@@ -38,6 +39,10 @@ def validate_stages(parsed):
                 raise ValueError("unit-to-native Stage ID mismatch")
         if len(stage["call_range"]) != len(stage["tool_events"]):
             raise ValueError("shared tool stage lost a child event")
+        for event in stage["tool_events"]:
+            if (type(event.get("fed_to_model")) is not bool or event_fed(event) !=
+                    (event["obs_tokens_source"] == "next_prompt")):
+                raise ValueError("tool result visibility does not match the native prompt receipt")
     for row, span in zip(spans, layout["spans"], strict=True):
         ids = row["stage_ids"]
         if len(ids) != len(span["completion_ids"]):
@@ -90,8 +95,21 @@ def validate_ledger(stages, ledger_rows, *, expected_rho, cost_median):
             raise ValueError("support regressed or was credited more than once")
         if any(after["conditions"][claim]["first_supported"] != unit for claim in row["C_new"]):
             raise ValueError("new support has the wrong first unit")
+        if row["C_new"] and not any(observed_texts(event) for event in stage["tool_events"]):
+            raise ValueError("a Stage without visible source text was credited")
+        attempts = row["E_t"]["attempts"]
+        for event, attempt in zip(stage["tool_events"], attempts, strict=True):
+            if (event["event_id"] != attempt["event_id"] or attempt["fed_to_model"] is not event_fed(event) or
+                    (not event_fed(event) and (attempt["repeat_flags"] or attempt["strict_repeat"] or
+                                               attempt["new_docids"] or attempt["seen_hash"]))):
+                raise ValueError("unfed return influences evidence or repetition accounting")
         cost = stage["generated_tokens"] + sum(event["obs_tokens"] for event in stage["tool_events"])
+        unfed = sum(event["obs_tokens"] for event in stage["tool_events"] if not event_fed(event))
+        doc_count = row["evidence_doc_count"]
+        doc_seen = sum(doc["evidence_doc"] or doc["answer_doc"] for doc in before["evidence"].values())
         if (row["unit_cost"] != cost or row["b_pre"] != (20 - used) / 20 or
+                row["unfed_return_tokens"] != unfed or
+                row["z_pre_docid"] != (doc_seen / doc_count if doc_count else 0.0) or
                 row["z_pre"] != len(supported) / max(1, len(before["conditions"]))):
             raise ValueError("Stage costs or pre-state ratios disagree")
         strict = any(attempt["strict_repeat"] for attempt in row["E_t"]["attempts"])

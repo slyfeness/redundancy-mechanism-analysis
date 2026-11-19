@@ -16,9 +16,9 @@ from urllib.error import URLError
 
 from .conditions import (EXTRACT_PROMPT, INDEXED_EXTRACT_PROMPT, freeze, freeze_digest,
                          indexed_evidence, resolve_evidence)
-from .evidence_judge import EVIDENCE_PROMPT, PROMPT_VERSION, citations, judge_payload, request_once, settle
+from .evidence_judge import EVIDENCE_PROMPT, PROMPT_VERSION, citations, fed_events, judge_payload, request_once, settle
 from .ledger import build_ledger, dry_run
-from .stages import parse_stages
+from .stages import event_fed, parse_stages
 from .validate import validate_ledger, validate_stages
 
 
@@ -112,8 +112,11 @@ def stage_pass(args):
                     raise ValueError("outcome does not match frozen task")
                 if verdict["correct"] is not None and type(verdict["correct"]) is not bool:
                     raise ValueError("invalid outcome verdict")
+                last_message = (trace["rounds"][-1]["raw_response"]["choices"][0]["message"]
+                                if trace["rounds"] and trace["rounds"][-1]["response_received"] else {})
+                submitted = terminal["status"] == "MODEL_FINAL_STOP" and bool((last_message.get("content") or "").strip())
                 outcome = {"trajectory_id": tid, "question_id": qid, "seed": task["seed"],
-                           "terminal_status": terminal["status"], "submitted": terminal["status"] == "MODEL_FINAL_STOP",
+                           "terminal_status": terminal["status"], "submitted": submitted,
                            "correct": verdict["correct"]}
                 emit(outputs["trajectory_results"], outcome)
                 emit(outputs["rollouts_ref"], {"path": str(trace_path), "sha256": digest, "trajectory_id": tid})
@@ -131,6 +134,8 @@ def stage_pass(args):
             totals.update(f"unit_{stage['unit_type']}" for stage in parsed["stages"])
             totals.update(f"obs_{event['obs_tokens_source']}" for stage in parsed["stages"]
                           for event in stage["tool_events"])
+            unfed = [event for stage in parsed["stages"] for event in stage["tool_events"] if not event_fed(event)]
+            totals.update(unfed_returns=len(unfed), unfed_return_tokens=sum(e["obs_tokens"] for e in unfed))
     summary = dict(totals, expected=len(tasks), failed=len(failures), failures=failures, heldout_read=0)
     dump(args.output / "M1_SUMMARY.json", summary)
     print(json.dumps({k: v for k, v in summary.items() if k != "failures"}), flush=True)
@@ -300,10 +305,15 @@ def ledger_pass(args):
         refs = citations(stages)
         if args.reuse_results:
             saved = archived_judgements[tid]
+            citation_units = {str(ref["citation_id"]): ref["unit_id"] for ref in refs}
+            # Original receipts indexed complete, natively fed JSON returns.
+            # Preserve their IDs, and revalidate every quote against snippet text.
+            recorded_units = (citation_units if saved.get("citation_projection") == "visible_snippets_v1" else
+                              {str(number): unit for number, unit, _ in fed_events(stages)})
             if ((saved["question_id"], saved["model"], saved["model_revision"], saved["prompt_version"],
                  saved["conditions_sha256"], saved["citation_units"]) !=
                     (qid, args.model, args.model_revision, PROMPT_VERSION, conditions[qid]["content_sha256"],
-                     {str(ref["citation_id"]): ref["unit_id"] for ref in refs})):
+                     recorded_units)):
                 raise ValueError("judgement receipt and inputs disagree")
             raw, error = saved["raw_output"], saved["error"]
             parsed = json.loads(raw["choices"][0]["message"]["content"]) if not error else None
@@ -348,6 +358,7 @@ def finish_ledger(args, conditions, documents, all_stages, outcomes, outcome_rec
     counts = Counter(supplemental_outcome_calls=outcome_rechecks,
                      unresolved_outcomes=sum(outcome["correct"] is None for outcome in outcomes))
     by_result = defaultdict(list)
+    by_terminal = defaultdict(Counter)
     sampled_judge_outputs = {}
     scorable = [outcome for outcome in outcomes if outcome["trajectory_id"] in all_stages]
     with ExitStack() as stack, ThreadPoolExecutor(args.workers) as pool:
@@ -363,6 +374,8 @@ def finish_ledger(args, conditions, documents, all_stages, outcomes, outcome_rec
             emit(file["judge_records"], {**identity, "model": args.model, "model_revision": args.model_revision,
                  "prompt_version": PROMPT_VERSION, "conditions_sha256": conditions[qid]["content_sha256"],
                  "citation_units": {ref["citation_id"]: ref["unit_id"] for ref in refs},
+                 "citation_projection": "visible_snippets_v1",
+                 "raw_request_replayed_from_archive": bool(args.reuse_results),
                  "raw_output": raw, "error": error, "checks": audit})
             if counts["judge_calls"] % 20 == 0:
                 print(json.dumps({"evidence_judge_calls_complete": counts["judge_calls"],
@@ -396,9 +409,20 @@ def finish_ledger(args, conditions, documents, all_stages, outcomes, outcome_rec
             category = ("no_submission" if not outcome["submitted"] else "correct" if outcome["correct"] is True
                         else "incorrect" if outcome["correct"] is False else "unresolved_outcome")
             by_result[category].append(number)
+            terminal = by_terminal[outcome["terminal_status"]]
+            total_cost = sum(record["unit_cost"] for record in states)
+            unfed_cost = sum(record["unfed_return_tokens"] for record in states)
+            strict = sum(attempt["strict_repeat"] for record in states for attempt in record["E_t"]["attempts"])
+            docid_gain = sum(len(record["C_new_docid"]) for record in states)
+            terminal.update(trajectories=1, units=len(states), C_new=number, docid_gain=docid_gain,
+                            strict_repeat_events=strict, strict_repeat_units=sum(record["strict_repeat"] for record in states),
+                            total_cost=total_cost, unfed_return_tokens=unfed_cost,
+                            sum_z_pre=sum(record["z_pre"] for record in states),
+                            sum_z_pre_docid=sum(record["z_pre_docid"] for record in states))
             counts.update({f"trajectory_C_new_{number}": 1})
             emit(file["trajectory_results"], {**outcome, "C_new_count": number,
-                 "total_cost": sum(record["unit_cost"] for record in states),
+                 "C_new_docid_count": docid_gain, "unfed_return_tokens": unfed_cost,
+                 "strict_repeat_events": strict, "total_cost": total_cost,
                  "conditions_version": args.conditions_version})
     rng = random.Random(20261119)
     samples = {name: rng.sample(pool, min(20, len(pool))) for name, pool in audit_pool.items()}
@@ -424,6 +448,14 @@ def finish_ledger(args, conditions, documents, all_stages, outcomes, outcome_rec
               "replayed_judge_receipts": counts["judge_calls"] if args.reuse_results else 0,
               "verified_outcome_receipts": len(outcomes) - counts["unresolved_outcomes"],
               "trajectories_excluded_from_m2": len(outcomes) - len(scorable),
+              "by_terminal_status": {
+                  status: {**values, "average_C_new": values["C_new"] / values["trajectories"],
+                           "average_docid_gain": values["docid_gain"] / values["trajectories"],
+                           "average_cost": values["total_cost"] / values["trajectories"],
+                           "mean_z_pre": values["sum_z_pre"] / max(1, values["units"]),
+                           "mean_z_pre_docid": values["sum_z_pre_docid"] / max(1, values["units"])}
+                  for status, values in sorted(by_terminal.items())
+              },
               "result_counts": {key: len(vals) for key, vals in by_result.items()}}
     dump(args.output / "M2_SUMMARY.json", result)
     print(json.dumps({"ledger": result}), flush=True)

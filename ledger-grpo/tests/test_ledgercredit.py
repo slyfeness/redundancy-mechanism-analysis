@@ -10,7 +10,7 @@ from ledger_grpo.ledgercredit.__main__ import ledger_pass
 from ledger_grpo.ledgercredit.conditions import freeze, indexed_evidence, resolve_evidence
 from ledger_grpo.ledgercredit.evidence_judge import citations, judge_payload, request_once, settle
 from ledger_grpo.ledgercredit.ledger import build_ledger, dry_run
-from ledger_grpo.ledgercredit.stages import parse_stages
+from ledger_grpo.ledgercredit.stages import parse_stages, tool_event
 from ledger_grpo.ledgercredit.validate import validate_ledger, validate_stages
 
 
@@ -50,7 +50,7 @@ class StageTest(unittest.TestCase):
         b["actor_visible_messages"] = [{"role": "tool", "tool_call_id": e["tool_call_id"],
                                         "content": e["exact_result"]} for e in events]
         parsed = parse_stages("q", "t", [a, b], events, count_tokens=lambda _: 7,
-                              observation_markers=(20, 21))
+                              observation_markers=(20, 21), terminal_status="MODEL_FINAL_STOP")
         stages = parsed["stages"]
         self.assertEqual([s["unit_type"] for s in stages], ["tool_stage", "final"])
         self.assertEqual([s["generated_tokens"] for s in stages], [8, 3])
@@ -88,7 +88,7 @@ class StageTest(unittest.TestCase):
 
     def test_reserved_markers_in_final_text_preserve_native_targets(self):
         a = row(1, [1], [11, THINK_END, 44, THINK_END, 19], content="Synthetic final")
-        parsed = parse_stages("q", "t", [a], [], count_tokens=len)
+        parsed = parse_stages("q", "t", [a], [], count_tokens=len, terminal_status="MODEL_FINAL_STOP")
         final = parsed["stages"][0]
         self.assertEqual(final["think_range"], [[0, 2]])
         self.assertEqual(final["answer_range"], [[2, 5]])
@@ -116,7 +116,8 @@ class StageTest(unittest.TestCase):
 
 def stage(i,text,visible=True):
     return {"unit_id":i,"generated_tokens":2,"tool_events":[
-        {"event_id":f"c{i}","visible_to_actor":visible,"return_text":text,"status":"ok",
+        {"event_id":f"c{i}","visible_to_actor":visible,"fed_to_model":visible,
+         "return_text":json.dumps([{"docid":"d","snippet":text}]),"status":"ok",
          "tool":"search","query_norm":"example","obs_tokens":1,"return_sha256":text,
          "returned_docids":[{"docid":"d","rank":1}],"opened_docid":None,"open_offset":None}]}
 
@@ -207,7 +208,8 @@ class EvidenceAndLedgerTest(unittest.TestCase):
             label = {"id": "q", "question": "Synthesized prompt", "answers": ["Synthesized answer"],
                      "evidence_docs": ["d"], "gold_docs": ["d"]}
             documents = {"d": "Second date."}
-            outcome = {"trajectory_id": "t", "question_id": "q", "correct": True, "submitted": True}
+            outcome = {"trajectory_id": "t", "question_id": "q", "correct": True, "submitted": True,
+                       "terminal_status": "MODEL_FINAL_STOP"}
             recorded_stage = {**stage(1, "Second date."), "trajectory_id": "t", "question_id": "q"}
             save(prepared / "evidence_docs.json", documents)
             save(folder / "task_manifest.json", {"tasks": [{"query_id": "q"}]})
@@ -261,6 +263,61 @@ class EvidenceAndLedgerTest(unittest.TestCase):
         states = build_ledger(stages, [], [])
         self.assertEqual([row["strict_repeat"] for row in states], [False, False, True])
         self.assertEqual([row["u"] for row in dry_run(states, .5, scale=1)], [0, 0, -.2])
+
+
+def search(unit, fed, snippet="A synthetic fact appears."):
+    raw = {"event_id": f"e{unit}", "tool_name": "search", "exact_arguments": '{"query":"synthetic"}',
+           "exact_result": json.dumps([{"docid": "1", "score": 2.5, "snippet": snippet}])}
+    return {"unit_id": unit, "generated_tokens": 8, "tool_events": [tool_event(raw, 5, fed)]}
+
+
+def decision(support=None, partial=None):
+    return {"id": "a", "first_supported": support, "first_partial": partial}
+
+
+class SupplementTest(unittest.TestCase):
+    def test_unfed_quoted_evidence_never_settles_but_cost_is_counted(self):
+        stage = search(1, False)
+        event = stage["tool_events"][0]
+        self.assertIs(event["fed_to_model"], False)
+        self.assertEqual(citations([stage]), [])
+        state = build_ledger([stage], [{"id": "a"}], [decision(1)], evidence_docs=["1"])[0]
+        self.assertEqual(state["C_new"], [])
+        self.assertEqual(state["L_post"]["evidence"], {})
+        self.assertEqual(state["unit_cost"], 13)
+        self.assertEqual(state["unfed_return_tokens"], 5)
+
+    def test_return_not_fed_is_neither_target_nor_source_for_repetition(self):
+        stages = [search(1, False), search(2, True), search(3, False), search(4, True)]
+        states = build_ledger(stages, [{"id": "a"}], [decision(2)], evidence_docs=["1"])
+        self.assertEqual([s["strict_repeat"] for s in states], [False, False, False, True])
+        self.assertEqual([s["z_pre"] for s in states], [0, 0, 1, 1])
+        self.assertEqual([s["z_pre_docid"] for s in states], [0, 0, 1, 1])
+        self.assertEqual(states[2]["L_pre"], states[1]["L_post"])
+
+    def test_citations_only_contain_visible_snippet_strings(self):
+        refs = citations([search(1, True), search(2, False, "Never entered context.")])
+        self.assertEqual(len(refs), 1)
+        self.assertEqual(refs[0]["text"], "A synthetic fact appears.")
+
+    def test_final_unit_requires_final_stop_and_nonempty_answer(self):
+        tokens = [8]
+        message = {"content": "Synthetic candidate."}
+        row = {"round_id": 1, "response_received": True, "actor_visible_messages": [],
+               "raw_response": {"prompt_token_ids": [1], "usage": {"prompt_tokens": 1, "completion_tokens": 1},
+                                "choices": [{"token_ids": tokens, "message": message, "finish_reason": "stop",
+                                             "logprobs": {"content": [{"logprob": -.1}]}}]},
+               "token_accounting": {"exact_prompt_token_ids_equal": True,
+                                    "prompt_token_ids": [1], "completion_token_ids": tokens}}
+        for status in ("CONTEXT_LIMIT_STOP", "GENERATION_LENGTH_STOP", "SAFETY_CEILING_STOP", "EMPTY_MODEL_STOP"):
+            with self.subTest(status=status):
+                stage = parse_stages("q", "t", [row], [], count_tokens=len, terminal_status=status)
+                self.assertNotEqual(stage["stages"][0]["unit_type"], "final")
+        stage = parse_stages("q", "t", [row], [], count_tokens=len, terminal_status="MODEL_FINAL_STOP")
+        self.assertEqual(stage["stages"][0]["unit_type"], "final")
+        message["content"] = "  "
+        stage = parse_stages("q", "t", [row], [], count_tokens=len, terminal_status="MODEL_FINAL_STOP")
+        self.assertNotEqual(stage["stages"][0]["unit_type"], "final")
 
 
 if __name__ == "__main__":

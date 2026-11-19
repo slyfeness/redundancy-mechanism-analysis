@@ -25,7 +25,7 @@ case "$2" in
     m1)
         "$PY" -m ledger_grpo.ledgercredit stages --selection "$ROUND4/selection" \
             --run "$ROUND4/run-191882" --output "$PRIVATE/m1-$SLURM_JOB_ID" \
-            --outcome-retry "$ROUND4/retry-192051/verdicts" \
+            --outcome-retry "$ROUND4/retry-192077/verdicts" \
             --tokenizer "$BASE/models/Qwen3.5-4B--851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
         ;;
     docs)

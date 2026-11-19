@@ -6,6 +6,7 @@ from urllib.request import Request
 
 from ..client import LocalJudge
 from .conditions import quote_matches
+from .stages import event_fed, observed_texts
 
 PROMPT_VERSION = "ledgercredit-c3-v1"
 EVIDENCE_PROMPT = """For each given evidence claim find the earliest citation at which the required
@@ -25,12 +26,20 @@ If needed, prior_partial can also record earlier explicit partial evidence befor
 independently sufficient citation."""
 
 
+def fed_events(stages):
+    events = ((stage["unit_id"], event) for stage in stages for event in stage["tool_events"]
+              if event_fed(event) and event["return_text"])
+    for number, (unit_id, event) in enumerate(events, 1):
+        yield number, unit_id, event
+
+
 def citations(stages):
-    return [{"citation_id": i, "unit_id": unit_id, "text": text}
-            for i, (unit_id, text) in enumerate(
-                ((stage["unit_id"], event["return_text"])
-                 for stage in stages for event in stage["tool_events"]
-                 if event["visible_to_actor"] and event["return_text"]), 1)]
+    refs = []
+    for number, unit_id, event in fed_events(stages):
+        texts = observed_texts(event)
+        if texts:
+            refs.append({"citation_id": number, "unit_id": unit_id, "text": "\n\n".join(texts), "passages": texts})
+    return refs
 
 
 def judge_payload(claims, refs):
@@ -80,11 +89,13 @@ def settle(claims, refs, verdicts):
         if not isinstance(item, dict) or type(item.get("citation_id")) is not int:
             return None
         ref = ref_index.get(item["citation_id"])
-        return ref if ref and quote_matches(item.get("quote"), ref["text"]) else None
+        return ref if ref and any(quote_matches(item.get("quote"), text)
+                                  for text in ref.get("passages", [ref["text"]])) else None
 
     def rule_first(claim):
         return next((ref["unit_id"] for ref in refs if any(
-            quote_matches(evidence["quote"], ref["text"]) for evidence in claim["evidence"])), None)
+            quote_matches(evidence["quote"], text) for evidence in claim["evidence"]
+            for text in ref.get("passages", [ref["text"]]))), None)
 
     decisions, audit = [], []
     for claim in claims:

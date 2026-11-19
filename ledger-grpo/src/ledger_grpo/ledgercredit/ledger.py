@@ -3,6 +3,8 @@
 from copy import deepcopy
 from statistics import median
 
+from .stages import event_fed, observed_texts
+
 
 def repeat_flags(event, previous, seen):
     flags = []
@@ -46,10 +48,13 @@ def build_ledger(stages, claims, decisions, *, evidence_docs=(), gold_docs=()):
            for row in decisions for unit in (row["first_supported"], row["first_partial"])):
         raise ValueError("unknown support unit")
     evidence_docs, gold_docs = set(evidence_docs), set(gold_docs)
+    evidence_units = {stage["unit_id"] for stage in stages if any(
+        observed_texts(event) for event in stage["tool_events"])}
     ledger = {
         "conditions": {claim["id"]: {"status": "unknown", "first_supported": None} for claim in claims},
         "evidence": {}, "attempts": [],
-        "execution": {"used_calls": 0, "remaining_calls": 20, "generated_tokens": 0, "return_tokens": 0},
+        "execution": {"used_calls": 0, "remaining_calls": 20, "generated_tokens": 0, "return_tokens": 0,
+                      "unfed_return_tokens": 0},
         "visibility": [], "candidates": [], "conflicts": [], "errors": [], "settled_claims": [],
     }
 
@@ -63,22 +68,26 @@ def build_ledger(stages, claims, decisions, *, evidence_docs=(), gold_docs=()):
         unit = stage["unit_id"]
         before = deepcopy(ledger)
         seen = set(before["evidence"])
+        pre_docs = set(seen)
         hashes = {event["return_sha256"] for event in earlier}
         attempts, new, condition_changes = [], [], []
         for event in stage["tool_events"]:
-            flags, strict = repeat_flags(event, earlier, seen)
+            fed = event_fed(event)
+            eligible = fed and event["status"] == "ok"
+            flags, strict = repeat_flags(event, earlier, seen) if eligible else ([], False)
             documents = {row["docid"] for row in event["returned_docids"]}
             if event["opened_docid"] is not None:
                 documents.add(event["opened_docid"])
             attempt = {key: event[key] for key in ("event_id", "tool", "query_norm", "returned_docids",
                                                     "opened_docid", "open_offset", "return_sha256", "status")}
-            attempt.update(new_docids=len(documents - seen), seen_hash=event["return_sha256"] in hashes,
+            attempt.update(fed_to_model=fed, new_docids=len(documents - seen) if eligible else 0,
+                           seen_hash=eligible and event["return_sha256"] in hashes,
                            repeat_flags=flags, strict_repeat=strict)
             attempts.append(attempt)
+            if not eligible:
+                continue
             earlier.append(event)
             hashes.add(event["return_sha256"])
-            if not event["visible_to_actor"]:
-                continue
             seen.update(documents)
             for row in event["returned_docids"]:
                 entry = doc(row["docid"])
@@ -92,19 +101,21 @@ def build_ledger(stages, claims, decisions, *, evidence_docs=(), gold_docs=()):
         for claim in claims:
             cid = claim["id"]
             state, decision = ledger["conditions"][cid], by_id[cid]
-            if decision["first_supported"] == unit:
+            if unit in evidence_units and decision["first_supported"] == unit:
                 state.update(status="supported", first_supported=unit)
                 new.append(cid)
                 condition_changes.append({"id": cid, "status": "supported"})
-            elif state["status"] == "unknown" and decision["first_partial"] == unit:
+            elif unit in evidence_units and state["status"] == "unknown" and decision["first_partial"] == unit:
                 state["status"] = "partial"
                 condition_changes.append({"id": cid, "status": "partial"})
         received = sum(event["obs_tokens"] for event in stage["tool_events"])
+        unfed_cost = sum(event["obs_tokens"] for event in stage["tool_events"] if not event_fed(event))
         execution = ledger["execution"]
         execution["used_calls"] += 1
         execution["remaining_calls"] -= 1
         execution["generated_tokens"] += stage["generated_tokens"]
         execution["return_tokens"] += received
+        execution["unfed_return_tokens"] += unfed_cost
         ledger["attempts"].extend(attempts)
         ledger["visibility"].append(unit)
 
@@ -113,8 +124,12 @@ def build_ledger(stages, claims, decisions, *, evidence_docs=(), gold_docs=()):
                        "L_post": deepcopy(ledger), "C_new": new,
                        "z_pre": (sum(item["status"] == "supported" for item in before["conditions"].values())
                                  / len(claims) if claims else 0.0),
+                       "z_pre_docid": len(pre_docs & (evidence_docs | gold_docs)) / len(evidence_docs) if evidence_docs else 0.0,
+                       "evidence_doc_count": len(evidence_docs),
+                       "C_new_docid": sorted((seen - pre_docs) & (evidence_docs | gold_docs)),
                        "b_pre": before["execution"]["remaining_calls"] / 20,
                        "unit_cost": stage["generated_tokens"] + received,
+                       "unfed_return_tokens": unfed_cost,
                        "strict_repeat": any(attempt["strict_repeat"] for attempt in attempts),
                        "repeat_flags": sorted({flag for attempt in attempts for flag in attempt["repeat_flags"]})})
     return states

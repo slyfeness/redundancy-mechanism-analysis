@@ -35,16 +35,40 @@ def envelopes(ids, markers):
     return result
 
 
-def search_hits(value):
+def search_records(value):
     if isinstance(value, dict):
         value = value.get("results", value.get("result"))
     if isinstance(value, list) and value and all(
             isinstance(row, dict) and row.get("type") == "text" and "text" in row for row in value):
         parts = [json.loads(row["text"]) for row in value]
-        return search_hits(parts[0] if len(parts) == 1 and isinstance(parts[0], list) else parts)
+        return search_records(parts[0] if len(parts) == 1 and isinstance(parts[0], list) else parts)
     if not isinstance(value, list) or any(not isinstance(row, dict) or "docid" not in row for row in value):
         raise ValueError("malformed search hits")
-    return [{"docid": str(row["docid"]), "rank": rank} for rank, row in enumerate(value, 1)]
+    return value
+
+
+def search_hits(value):
+    return [{"docid": str(row["docid"]), "rank": rank} for rank, row in enumerate(search_records(value), 1)]
+
+
+def event_fed(event):
+    # Older M1 receipts used the same prompt-bound visibility field under this alias.
+    return event.get("fed_to_model", event.get("visible_to_actor")) is True
+
+
+def observed_texts(event):
+    if not event_fed(event) or event["status"] != "ok":
+        return []
+    try:
+        value = json.loads(event["return_text"])
+        if event["tool"] == "search":
+            return [row["snippet"] for row in search_records(value)
+                    if isinstance(row.get("snippet"), str) and row["snippet"].strip()]
+        if event["tool"] == "open" and isinstance(value.get("text"), str):
+            return [value["text"]]
+    except (ValueError, TypeError, AttributeError):
+        pass
+    return []
 
 
 def tool_event(event, count, visible):
@@ -89,7 +113,7 @@ def tool_event(event, count, visible):
             "body_sha256": hashlib.sha256(body.encode()).hexdigest() if body is not None else None,
             "return_sha256": hashlib.sha256(text.encode()).hexdigest(),
             "obs_tokens": count, "obs_tokens_source": "next_prompt" if visible else "estimated",
-            "status": status, "visible_to_actor": visible}
+            "status": status, "visible_to_actor": visible, "fed_to_model": visible}
 
 
 def bind_observations(current, following, events, count_tokens, markers):
@@ -175,9 +199,11 @@ def parse_stages(question_id, trajectory_id, rounds, events, *, count_tokens,
                 raise ValueError("tool identity or arguments mismatch")
         content = (message.get("content") or "").strip()
         reasoning = message.get("reasoning") or message.get("reasoning_content")
-        kind = ("tool_stage" if calls else "unfinished" if length_stop else "final" if content else
+        final = (i == len(rounds) - 1 and terminal_status == "MODEL_FINAL_STOP" and bool(content)
+                 and choice.get("finish_reason") == "stop")
+        kind = ("tool_stage" if calls else "unfinished" if length_stop else "final" if final else
                 "empty" if row.get("stop_classification") == "EMPTY_MODEL_STOP" else
-                "unfinished" if reasoning else "empty")
+                "unfinished" if content or reasoning else "empty")
         # Opening think can be in the prompt. Trailing delimiters are generated
         # policy tokens, so keep them in a disjoint region even on an empty stop.
         ends = [p for p, token in enumerate(ids) if token == THINK[1]]
