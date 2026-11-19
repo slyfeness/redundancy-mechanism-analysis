@@ -69,27 +69,29 @@ def export_verdicts(v4, output, grouped, merged, path):
                                "reason": reason, "citations": refs})
 
 
-def run(args, v4):
-    prepared, grouped, outcomes, plan = load_inputs(v4, args.root)
+def run(args, v4, *, version="v5", prompt=PROMPT, validate_claims=validate, input_loader=load_inputs,
+        judge_pass=None):
+    prepared, grouped, outcomes, plan = input_loader(v4, args.root)
+    settle = v4.judge_pass if judge_pass is None else judge_pass
     if plan["max_calls"] > CALL_LIMIT:
         raise ValueError("run exceeds the authorized call count")
     args.out.mkdir(mode=0o700, exist_ok=False)
     v4.dump(args.out / "plan.json", plan)
     print(json.dumps({key: plan[key] for key in ("questions", "judge_blocks", "max_calls")}), flush=True)
     calls = Counter()
-    first = v4.batch(args.url, PROMPT, [(qid, prepared[qid]) for qid in QUESTION_IDS], 8192,
+    first = v4.batch(args.url, prompt, [(qid, prepared[qid]) for qid in QUESTION_IDS], 8192,
                      args.out / "assertion_first.jsonl", "assertions", calls, ceiling=CALL_LIMIT)
-    failures = {qid: validate(qid, prepared[qid]["question"], first[qid]) for qid in QUESTION_IDS}
+    failures = {qid: validate_claims(qid, prepared[qid]["question"], first[qid]) for qid in QUESTION_IDS}
     requests = [(qid, {**prepared[qid], "validation_errors": errors}) for qid, errors in failures.items() if errors]
-    retried = v4.batch(args.url, PROMPT, requests, 8192, args.out / "assertion_retry.jsonl",
+    retried = v4.batch(args.url, prompt, requests, 8192, args.out / "assertion_retry.jsonl",
                        "retry", calls, ceiling=CALL_LIMIT)
     final = first | retried
     frozen = {}
     unresolved = 0
-    with (args.out / "claims_v5.jsonl").open("x", encoding="utf-8") as file:
+    with (args.out / f"claims_{version}.jsonl").open("x", encoding="utf-8") as file:
         for qid in QUESTION_IDS:
             q = prepared[qid]["question"]
-            errors = validate(qid, q, final[qid])
+            errors = validate_claims(qid, q, final[qid])
             if errors:
                 unresolved += 1
                 record = {"query_id": qid, "entities": [], "conditions": [], "answer_relation": None,
@@ -97,13 +99,13 @@ def run(args, v4):
             else:
                 record = final[qid]
             v4.emit(file, {"question": q, **record})
-            frozen[qid] = {"conditions": [{**condition, "text": condition["claim"],
+            frozen[qid] = {"entities": record["entities"], "conditions": [{**condition, "text": condition["claim"],
                                            "support_rule": condition["claim"], "evidence": []}
                                           for condition in record["conditions"]]}
-    merged, tallies = v4.judge_pass(args, grouped, frozen, outcomes, args.out, calls, ceiling=CALL_LIMIT)
+    merged, tallies = settle(args, grouped, frozen, outcomes, args.out, calls, ceiling=CALL_LIMIT)
     if set(merged) != grouped.keys() or calls["judge"] != plan["judge_blocks"]:
         raise ValueError("v4 execution does not match the plan")
-    export_verdicts(v4, args.out, grouped, merged, args.out / "verdicts_v5.jsonl")
+    export_verdicts(v4, args.out, grouped, merged, args.out / f"verdicts_{version}.jsonl")
     summary = {"assertions": sum(len(row["conditions"]) for row in frozen.values()),
                "validation_failures_first": len(requests), "validation_failures_final": unresolved,
                "judge_invalid_verdicts": tallies["malformed_verdicts"], "questions": len(prepared),

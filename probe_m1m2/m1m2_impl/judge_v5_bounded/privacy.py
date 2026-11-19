@@ -30,9 +30,12 @@ def read(path):
     return json.loads(path.read_bytes())
 
 
-def check(manifest, root, results):
+def check(manifest, root, results, *, version="v5", validate_claims=None):
     from bounded import QUESTION_IDS, validate
 
+    if validate_claims is None:
+        validate_claims = validate
+    claims_name, verdicts_name = f"claims_{version}.jsonl", f"verdicts_{version}.jsonl"
     index = read(manifest)
     grams, exact = defaultdict(set), defaultdict(set)
     for path, blob in index.items():
@@ -59,7 +62,7 @@ def check(manifest, root, results):
 
     plan = read(results / "plan.json")
     tids = set(plan["old"]) | set(plan["new"])
-    specs = {r["query_id"]: r for r in rows(results / "claims_v5.jsonl")}
+    specs = {r["query_id"]: r for r in rows(results / claims_name)}
     if len(tids) != 20 or set(specs) != set(QUESTION_IDS):
         raise ValueError("wrong private export scope")
     original = root / "judge-v5-brzogs/inputs/inputs.jsonl"
@@ -71,7 +74,7 @@ def check(manifest, root, results):
         if export["question"] != row["question"]:
             raise ValueError("private export changed the original question")
         if set(export) == CLAIM_FIELDS:
-            if validate(qid, export["question"], {k:v for k,v in export.items() if k != "question"}):
+            if validate_claims(qid, export["question"], {k:v for k,v in export.items() if k != "question"}):
                 raise ValueError("exported assertion failed validation")
         elif (set(export) != CLAIM_FIELDS | {"validation_errors"} or export["conditions"] or
               export["entities"] or export["answer_relation"] is not None):
@@ -99,7 +102,7 @@ def check(manifest, root, results):
             scan("actor_text", turn.get("reasoning"))
 
     exported = set()
-    for verdict in rows(results / "verdicts_v5.jsonl"):
+    for verdict in rows(results / verdicts_name):
         tid, cid = verdict["trajectory_id"], verdict["assertion_id"]
         if tid not in tids or set(verdict) != VERDICT_FIELDS or (tid, cid) in exported:
             raise ValueError("wrong private verdict fields or identity")
@@ -109,14 +112,18 @@ def check(manifest, root, results):
                 raise ValueError("private context exceeds its scope")
             for key in ("text", "before", "after"):
                 scan("private_citation", item[key])
-        scan("judge_reason", verdict["reason"])
+        generated_fallback = (verdict["status"] == "unknown" and not verdict["citations"]
+                              and verdict["reason"] in {"No assertion passed validation.",
+                                                        "No verified citation was returned."})
+        if not generated_fallback:
+            scan("judge_reason", verdict["reason"])
     expected = {(tid, cid) for tid in tids for cid in
                 ([claim["id"] for claim in specs[tid.split("__rep")[0]]["conditions"]] or [None])}
     if exported != expected:
         raise ValueError("private verdict coverage mismatch")
 
     hashes = {}
-    for name in ("claims_v5.jsonl", "verdicts_v5.jsonl"):
+    for name in (claims_name, verdicts_name):
         blob = (results / name).read_bytes()
         if guard.SECRET.search(blob.decode()):
             raise ValueError("credential pattern in private export")

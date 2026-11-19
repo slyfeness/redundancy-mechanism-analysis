@@ -260,11 +260,14 @@ def assertion_pass(args, data, original, plan, counter):
     return releases, summary
 
 
-def judge_pass(args, grouped, frozen, outcomes, folder, counter, *, ceiling=None):
+def judge_pass(args, grouped, frozen, outcomes, folder, counter, *, ceiling=None,
+               prompt=JUDGE_PROMPT, make_payload=None):
+    if make_payload is None:
+        make_payload = lambda question, block: payload(question["conditions"], block)
     chunks={tid:blocks(stages) for tid,stages in grouped.items()}
-    jobs=[((tid,i),payload(frozen[outcomes[tid]["question_id"]]["conditions"],b))
+    jobs=[((tid,i),make_payload(frozen[outcomes[tid]["question_id"]],b))
           for tid,groups in chunks.items() for i,b in enumerate(groups)]
-    raw=batch(args.url,JUDGE_PROMPT,jobs,6144,folder/"judge_raw.jsonl","judge",counter,ceiling=ceiling)
+    raw=batch(args.url,prompt,jobs,6144,folder/"judge_raw.jsonl","judge",counter,ceiling=ceiling)
     merged, counts={},Counter()
     with (folder/"judge_receipts.jsonl").open("x",encoding="utf-8") as receipts, (
             folder/"merged.jsonl").open("x",encoding="utf-8") as result:

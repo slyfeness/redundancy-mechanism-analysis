@@ -12,9 +12,12 @@ set -euo pipefail
 umask 077
 CONTROL="$1"
 PRIOR="$2"
+RUN_NAME="${3:-judge-v5-bounded}"
+ENTRY="${4:-run.py}"
+JUDGE_CONTROL="${5:-$PRIOR}"
 BASE=/file_storage01/home/weiyu/lanyi
 ROOT="$BASE/projects/ledger-grpo-pilot/probe_m1m2/m1m2_impl"
-WORK="$ROOT/judge-v5-bounded-$SLURM_JOB_ID"
+WORK="$ROOT/$RUN_NAME-$SLURM_JOB_ID"
 PY="$BASE/envs/successful_phase05_20261007/bin/python"
 WEIGHTS="$BASE/models/gpt-oss-120b"
 mkdir "$WORK"
@@ -45,5 +48,5 @@ for ((attempt=0; attempt<360; attempt++)); do
 done
 test -s "$WORK/models.json"
 date -u +'%FT%TZ judge_ready'
-"$PY" "$CONTROL/run.py" --root "$ROOT" --v4-control "$PRIOR" --out "$WORK/results" --url "$URL"
+"$PY" "$CONTROL/$ENTRY" --root "$ROOT" --v4-control "$JUDGE_CONTROL" --out "$WORK/results" --url "$URL"
 date -u +'%FT%TZ complete'
