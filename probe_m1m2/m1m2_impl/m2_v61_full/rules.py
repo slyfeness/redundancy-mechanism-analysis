@@ -10,7 +10,7 @@ def normalized(text):
     return " ".join(WORD.findall(unicodedata.normalize("NFKC", text).casefold()))
 
 
-def cleanup(qid, record, answers):
+def cleanup(qid, record, answers, *, drop_answer_subject=True):
     aliases = sorted({normalized(a) for a in answers if isinstance(a, str) and normalized(a)})
     entities = {entity["var"]: entity for entity in record["entities"]}
     names = {var: row["name"] for var, row in entities.items() if var and row["name"]}
@@ -32,7 +32,7 @@ def cleanup(qid, record, answers):
         if not subject:
             log(row, "drop", "unknown_subject", body, None)
             continue
-        if answer_in(subject["name"]):
+        if drop_answer_subject and answer_in(subject["name"]):
             log(row, "drop", "answer_in_subject", body, None)
             continue
         if answer_in(body):

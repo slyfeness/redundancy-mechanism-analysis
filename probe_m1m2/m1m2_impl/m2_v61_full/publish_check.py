@@ -32,28 +32,32 @@ def grams(value, width=10):
     return zip(*(tokens[i:] for i in range(width)))
 
 
-def public_stage(output):
+def public_stage(output, *, allowed=None):
+    if allowed is None:
+        allowed = {PREFIX + child for child in PUBLIC}
     index = {}
     for name in subprocess.check_output(["git", "diff", "--cached", "--name-only", "-z"]).decode().split("\0"):
         if not name:
             continue
-        if name not in {PREFIX + child for child in PUBLIC}:
+        if name not in allowed:
             raise ValueError("unexpected public staged path")
         body = subprocess.check_output(["git", "show", f":{name}"]).decode("utf-8")
         if len(body) > 100_000 or "\0" in body or SECRET.search(body):
             raise ValueError("unexpected public content or credential pattern")
         index[name] = {"text": body, "sha256": sha256(body.encode()).hexdigest()}
-    if set(index) != {PREFIX + child for child in PUBLIC}:
+    if set(index) != allowed:
         raise ValueError("incomplete staged public deliverables")
     output.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
     print(json.dumps({"public_staged_files": len(index), "credential_matches": 0}))
 
 
-def compare(manifest, prep, root):
+def compare(manifest, prep, root, *, allowed=None):
+    if allowed is None:
+        allowed = {PREFIX + child for child in PUBLIC}
     staged = read(manifest)
     index, literals, findings = defaultdict(set), defaultdict(set), defaultdict(set)
     for name, record in staged.items():
-        if name not in {PREFIX + child for child in PUBLIC}:
+        if name not in allowed:
             raise ValueError("unexpected path in presubmit manifest")
         text = record["text"]
         if sha256(text.encode()).hexdigest() != record["sha256"] or SECRET.search(text):
