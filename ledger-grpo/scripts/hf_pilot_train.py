@@ -60,6 +60,15 @@ def load_step_inputs(native_path, score_path):
         if type(denominator) is not int or denominator <= 0:
             raise ValueError('loss_denominator must be a positive fixed integer')
         prepared['loss_denominator'] = denominator
+    if 'training_options' in score:
+        options = score['training_options']
+        if not isinstance(options, dict) or options.keys() != {'ppo_epsilon', 'learning_rate'}:
+            raise ValueError('invalid score training options')
+        eps, lr = options['ppo_epsilon'], options['learning_rate']
+        if (type(eps) not in (int, float) or not math.isfinite(eps) or not 0 <= eps < 1
+                or type(lr) not in (int, float) or not math.isfinite(lr) or lr <= 0):
+            raise ValueError('invalid PPO clipping or learning rate')
+        prepared['training_options'] = options
     if score.get('skip_update') is True:
         prepared['skip_update'] = True
     manifest = {'native_batch_path': str(native_path.resolve()), 'native_batch_sha256': native_digest,
@@ -67,6 +76,8 @@ def load_step_inputs(native_path, score_path):
                 'score_config': score.get('config'), 'control': score.get('control', 'targeted'),
                 'mapping_metrics': prepared['metrics'],
                 'loss_denominator': prepared.get('loss_denominator', prepared['global_token_count'])}
+    if 'training_options' in prepared:
+        manifest['training_options'] = prepared['training_options']
     if 'policy_snapshot_sha256' in binding:
         manifest['policy_snapshot_sha256'] = binding['policy_snapshot_sha256']
     return prepared, manifest
@@ -108,6 +119,26 @@ class TorchCollective:
         return value
 
 
+def record_loss(record, prepared, model, collective):
+    """Shared optimizer-free native forward and PPO loss for the worker and smoke."""
+    device = collective.device
+    ids = torch.tensor([record['prompt_ids'] + record['completion_ids']], dtype=torch.long, device=device)
+    positions = torch.tensor(record['action_offsets'], dtype=torch.long, device=device) + len(record['prompt_ids'])
+    current, entropy = model(ids, positions, observe_entropy=True)
+    if bool(collective.maximum(int(not bool(torch.isfinite(current).all() & torch.isfinite(entropy).all())))):
+        raise RuntimeError('Nonfinite model logprob or entropy; optimizer not executed')
+    sampled = torch.tensor(record['vllm_logprobs'], dtype=current.dtype, device=device)
+    advantage = record['action_advantages'].to(device=device, dtype=current.dtype)
+    mask = record['action_mask'].to(device=device, dtype=torch.bool)
+    result = single_step_token_loss(current, sampled, advantage, mask,
+                                    global_token_count=prepared['global_token_count'], world_size=collective.world,
+                                    loss_denominator=prepared.get('loss_denominator'),
+                                    epsilon=prepared.get('training_options', {}).get('ppo_epsilon', .2))
+    if bool(collective.maximum(int(not bool(torch.isfinite(result['loss']))))):
+        raise RuntimeError('Nonfinite loss; optimizer not executed')
+    return result, entropy, advantage, mask
+
+
 def run_update(prepared, model, optimizer, collective, *, batch_identity, update_index,
                on_optimizer_step=None):
     """Retain model/Adam across future fresh batches; never repeat a consumed batch.
@@ -132,19 +163,7 @@ def run_update(prepared, model, optimizer, collective, *, batch_identity, update
     totals = torch.zeros(9, dtype=torch.float64, device=device)
     error_max = 0.
     for record in rank_records(prepared, rank=collective.rank, world=collective.world):
-        ids = torch.tensor([record['prompt_ids'] + record['completion_ids']], dtype=torch.long, device=device)
-        positions = torch.tensor(record['action_offsets'], dtype=torch.long, device=device) + len(record['prompt_ids'])
-        current, entropy = model(ids, positions, observe_entropy=True)
-        if bool(collective.maximum(int(not bool(torch.isfinite(current).all() & torch.isfinite(entropy).all())))):
-            raise RuntimeError('Nonfinite model logprob or entropy; optimizer not executed')
-        sampled = torch.tensor(record['vllm_logprobs'], dtype=current.dtype, device=device)
-        advantage = record['action_advantages'].to(device=device, dtype=current.dtype)
-        mask = record['action_mask'].to(device=device, dtype=torch.bool)
-        result = single_step_token_loss(current, sampled, advantage, mask,
-                                        global_token_count=prepared['global_token_count'], world_size=collective.world,
-                                        loss_denominator=prepared.get('loss_denominator'))
-        if bool(collective.maximum(int(not bool(torch.isfinite(result['loss']))))):
-            raise RuntimeError('Nonfinite loss; optimizer not executed')
+        result, entropy, advantage, mask = record_loss(record, prepared, model, collective)
         result['loss'].backward()
         with torch.no_grad():
             errors = result['sampling_logprob_difference'].abs().double()
@@ -158,7 +177,7 @@ def run_update(prepared, model, optimizer, collective, *, batch_identity, update
             totals[7] += (advantage[mask] < 0).sum()
             totals[8] += (advantage[mask] == 0).sum()
             error_max = max(error_max, float(errors.max()) if errors.numel() else 0.)
-        del ids, positions, current, entropy, sampled, advantage, mask, result, errors
+        del entropy, advantage, mask, result, errors
     totals = collective.sum(totals)
     count = int(totals[2])
     if count != prepared['global_token_count']:
@@ -194,7 +213,8 @@ def run_update(prepared, model, optimizer, collective, *, batch_identity, update
             'any_rank_parameter_probe_changed': bool(collective.maximum(int(changed))),
             'parameter_probe_is_full_weight_comparison': False,
             'old_probability': 'same_forward_detached', 'ppo_ratio_is_stability_metric': False,
-            'kl_coefficient': 0., 'learning_rate': 1e-6, 'weight_decay': 0.,
+            'kl_coefficient': 0., 'learning_rate': prepared.get('training_options', {}).get('learning_rate', 1e-6),
+            'weight_decay': 0.,
             'compute_seconds': time.monotonic() - started}
 
 
@@ -373,7 +393,8 @@ def main(argv=None):
         if rank == 0:
             write_once(step/'BACKEND.json', backend_receipt)
         model, trainable, kernels, calls = backend.make_model(rank)
-        optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=1e-6, weight_decay=0.)
+        optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=prepared.get('training_options', {}).get('learning_rate', 1e-6),
+                                      weight_decay=0.)
         if parent:
             restore_stage_optimizer(backend,model,optimizer,parent,rank=rank,world=4)
             write_once(step/f'RESUME-rank{rank}.json', {'rank':rank,'restored_step':previous,

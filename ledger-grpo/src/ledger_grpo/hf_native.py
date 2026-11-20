@@ -157,7 +157,7 @@ def prepare_native_records(native_trajectories, score_result):
 
 
 def single_step_token_loss(current_logprobs, sampled_logprobs, advantages, action_mask,
-                           *, global_token_count, world_size, loss_denominator=None):
+                           *, global_token_count, world_size, loss_denominator=None, epsilon=.2):
     """One-batch/one-step PPO objective with the existing detached TIS cap 2.
 
     The old HF policy is this same forward detached. This is valid only while
@@ -185,6 +185,8 @@ def single_step_token_loss(current_logprobs, sampled_logprobs, advantages, actio
     denominator = global_token_count if loss_denominator is None else loss_denominator
     if type(denominator) is not int or denominator <= 0:
         raise ValueError('loss_denominator must be a positive integer')
+    if type(epsilon) not in (int, float) or not math.isfinite(epsilon) or not 0 <= epsilon < 1:
+        raise ValueError('epsilon must be in [0,1)')
     old = current_logprobs.detach()
     difference = old - sampled_logprobs.detach().to(current_logprobs.dtype)
     if not bool(torch.isfinite(difference).all()):
@@ -193,7 +195,7 @@ def single_step_token_loss(current_logprobs, sampled_logprobs, advantages, actio
     clipped = difference > math.log(2.)
     advantage = advantages.detach().to(current_logprobs.dtype)
     ratio = (current_logprobs - old).exp()
-    objective = torch.minimum(ratio * advantage, ratio.clamp(.8, 1.2) * advantage) * importance
+    objective = torch.minimum(ratio * advantage, ratio.clamp(1 - epsilon, 1 + epsilon) * advantage) * importance
     numerator = -objective.masked_fill(~mask, 0).sum()
     count = int(mask.sum())
     observed = difference[mask]
