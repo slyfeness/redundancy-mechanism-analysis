@@ -1,0 +1,11 @@
+--- a/src/ricepo/hf_runtime.py
++++ b/src/ricepo/hf_runtime.py
+@@ -770,7 +770,7 @@
+                         pilot_q.extend(v for v,m in zip(sampled,mask,strict=True) if m)
+                         pilot_p.extend(v for v,m in zip(teacher,mask,strict=True) if m)
+                         pilot_adv.extend(v for v,m in zip(adv,mask,strict=True) if m)
+-                items.append(UpdateItem(t.trajectory_id,old_version,t.token_ids,mask,adv,sampled if sampled is not None else teacher))
++                items.append(UpdateItem(t.trajectory_id,old_version,t.token_ids,mask,adv,teacher))
+         atomic_json(directory/"old-policy-update-items.json",items)
+         if pilot:
+             from .precision_pilot import mismatch_statistics,risk_screen

@@ -1,4 +1,4 @@
-"""Run the frozen SciCode generation profile on the fixed A/B cohort."""
+"""Generate SciCode rollouts with the dated task-pool profile."""
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
@@ -17,7 +17,7 @@ import requests
 import yaml
 
 
-CONFIG_PATH = Path(__file__).resolve().parents[1] / "configs/scicode_gen_frozen_20261121.yaml"
+CONFIG_PATH = Path(__file__).resolve().parents[1] / "configs/scicode_gen_frozen_20261122.yaml"
 
 
 def read(path):
@@ -164,21 +164,27 @@ def monitor_once(sink, actors, states, executor, timing):
     sink.flush()
 
 
-def slots_for(schedule, cohort, workers):
-    if schedule == "A":
-        return [cohort[i:i+workers] for i in range(0, len(cohort), workers)]
-    if schedule == "B":
-        return [cohort]
-    raise ValueError(schedule)
+def card_queues(cohort, card_count):
+    owners = {}
+    queues = [[] for _ in range(card_count)]
+    for row in cohort:
+        target = row["target_id"]
+        if target not in owners:
+            owners[target] = len(owners) % card_count
+        queues[owners[target]].append(row)
+    return queues
 
 
 def run_card(actor, state, base, targets, cohort, gpu_root, workers, timing, start):
     records = []
     groups = {}
+    expected = {}
+    for row in cohort:
+        expected.setdefault(row["target_id"], set()).add(row["rep"])
 
-    def run_one(row, batch):
+    def run_one(row):
         target_id = row["target_id"]
-        run_dir = gpu_root / "trajectories" / f'rep_{row["rep"]}'
+        run_dir = base.OUT / gpu_root.name / "trajectories" / f'rep_{row["rep"]}'
         with state["lock"]:
             state["started"] += 1
             state["active"] += 1
@@ -189,7 +195,7 @@ def run_card(actor, state, base, targets, cohort, gpu_root, workers, timing, sta
             **row, "status": traj["status"], "stop_reason": traj["stop_reason"],
             "actor_calls": traj["actor_calls"], "output_tokens": traj["usage"]["completion_tokens"],
             "trajectory": str(run_dir / target_id / "trajectory.json"),
-            "batch": batch, "dispatched_seconds": dispatched,
+            "dispatched_seconds": dispatched,
             "completed_seconds": time.monotonic() - timing["t0"],
         }
         with state["lock"]:
@@ -197,8 +203,8 @@ def run_card(actor, state, base, targets, cohort, gpu_root, workers, timing, sta
             state["completed"] += 1
             members = groups.setdefault(target_id, [])
             members.append(record)
-            if len(members) == 2:
-                assert {x["rep"] for x in members} == {1, 2}
+            if len(members) == len(expected[target_id]):
+                assert {x["rep"] for x in members} == expected[target_id]
                 write(gpu_root / "groups_ready" / f"{target_id}.json", {
                     "target_id": target_id, "members": sorted(members, key=lambda x: x["rep"]),
                     "handoff_seconds": time.monotonic() - timing["t0"],
@@ -211,14 +217,14 @@ def run_card(actor, state, base, targets, cohort, gpu_root, workers, timing, sta
     if not start.wait(timeout=30):
         raise RuntimeError("common generation start missing")
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        for batch, rows in enumerate(slots_for(state["schedule"], cohort, workers), 1):
-            futures = [pool.submit(run_one, row, batch) for row in rows]
-            records.extend(job.result() for job in as_completed(futures))
+        futures = [pool.submit(run_one, row) for row in cohort]
+        records.extend(job.result() for job in as_completed(futures))
     end = time.monotonic() - timing["t0"]
     with state["lock"]:
         state["finished"] = end
     assert len(records) == len({(r["target_id"], r["rep"]) for r in records}) == len(cohort)
-    assert len(groups) == len(cohort)//2 and all(len(g) == 2 for g in groups.values())
+    assert groups.keys() == expected.keys()
+    assert all({r["rep"] for r in records} == expected[target] for target, records in groups.items())
     result = {"schedule": state["schedule"], "seconds": end, "count": len(records),
               "trajectories_per_hour": 3600*len(records)/end, "rows": records,
               "final_metrics": sample_engine(actor, timing)}
@@ -244,16 +250,18 @@ def main():
     base.EXEC_SEMAPHORE = threading.BoundedSemaphore(conf["tools"]["max_concurrent_code_tests"])
     output = Path(conf["experiment"]["output_parent"]) / f'run_{os.environ["SLURM_JOB_ID"]}'
     output.mkdir(parents=True, exist_ok=False)
-    base.OUT = output
+    base.OUT = output / "raw"
+    base.OUT.mkdir()
     targets_path = Path(conf["experiment"]["targets"])
     targets = {r["target_id"]: r for r in map(json.loads, targets_path.read_bytes().splitlines())}
     cohort = read(Path(conf["experiment"]["cohort_96"]))
-    assert len(cohort) == 96 and len({(r["target_id"], r["rep"]) for r in cohort}) == 96
-    assert len({r["target_id"] for r in cohort}) == 48
-    assert all(sum(r["target_id"] == t for r in cohort) == 2 for t in {r["target_id"] for r in cohort})
+    assert cohort and len({(r["target_id"], r["rep"]) for r in cohort}) == len(cohort)
+    assert all(r["target_id"] in targets for r in cohort)
     gpus = os.environ["CUDA_VISIBLE_DEVICES"].split(",")
     schedules = conf["experiment"]["card_schedule"]
-    assert len(set(gpus)) == conf["server"]["actors"] == len(schedules) == 4
+    assert len(gpus) == len(set(gpus)) == conf["server"]["actors"] == len(schedules) == 4
+    assert schedules == ["B"] * len(gpus)
+    queues = card_queues(cohort, len(gpus))
     assert os.environ["SLURM_CPUS_PER_TASK"] == "24"
     actor_type = make_actor(base, conf)
     actors = []
@@ -271,7 +279,7 @@ def main():
                                     "code_commit": provenance["code_commit"],
                                     "vllm_version": conf["server"]["vllm_version"], "ready_utc": base.utc()})
         with ThreadPoolExecutor(max_workers=4) as work, ThreadPoolExecutor(max_workers=4) as probe:
-            jobs = [work.submit(run_card, actor, states[i], base, targets, cohort, output/f"gpu{i}",
+            jobs = [work.submit(run_card, actor, states[i], base, targets, queues[i], output/f"gpu{i}",
                                 base.CFG["workers_per_actor"], timing, start) for i, actor in enumerate(actors)]
             timing["t0"] = time.monotonic()
             start.set()
@@ -281,6 +289,7 @@ def main():
                     time.sleep(5)
                 monitor_once(sink, actors, states, probe, timing)
             cards = [job.result() for job in jobs]
+        assert sum(c["count"] for c in cards) == len(cohort)
         write(output / "COMPLETE.json", {"cards": [{k:v for k,v in c.items() if k!="rows"} for c in cards],
                                        "count": sum(c["count"] for c in cards), "finished_utc": base.utc()})
     finally:
