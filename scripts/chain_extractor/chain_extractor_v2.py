@@ -70,11 +70,15 @@ def fallback_conditions(question):
     return {"conditions":rows}
 
 def audit_quote(quote, source, fuzzy=False):
-    if not isinstance(quote,str) or not quote.strip() or not source:
+    wanted=normalize_return(quote) if isinstance(quote,str) else ""
+    sources=(source,) if isinstance(source,str) else source
+    if not wanted or not sources:
         return {"status":"reject","match_fraction":0.0}
-    if quote in source:
+    texts=[normalize_return(text) for text in sources]
+    if any(wanted in text for text in texts):
         return {"status":"pass","match_fraction":1.0}
-    rate=SequenceMatcher(None,quote,source,autojunk=False).find_longest_match().size / len(quote) if fuzzy else 0.0
+    rate=max(SequenceMatcher(None,wanted,text,autojunk=False).find_longest_match().size
+             for text in texts)/len(wanted) if fuzzy else 0.0
     return {"status":"flag" if rate>=0.8 else "reject","match_fraction":rate}
 
 def verified_facts(value, ring):
@@ -145,12 +149,14 @@ def state_after(state,candidate_ops,condition_ops,ids):
     return {"candidates":[{"name":k,"status":v} for k,v in candidates.items()],
             "confirmed":[x for x in ids if x in confirmed],"open":[x for x in ids if x not in confirmed]}
 
-def judge(folder,key,prompt,payload,cfg,post=None,max_retries=3):
+def judge(folder,key,prompt,payload,cfg,post=None,max_retries=3,extended_max_tokens=None):
     body=request_body(prompt,payload,cfg)
     folder.mkdir(parents=True,exist_ok=True)
     send=post or (lambda url,b:direct_post(url,b,cfg["timeout_seconds"]))
     attempts=[]
-    for i in range(1,max_retries+2):
+    i=1
+    expanded=False
+    while True:
         path=folder/f"{key}.{i}.json"
         if path.is_file():
             row=load(path)
@@ -172,7 +178,10 @@ def judge(folder,key,prompt,payload,cfg,post=None,max_retries=3):
                     if reason is None:
                         reason=message.get("reasoning_content")
                     content=message.get("content")
-                    parsed=json.loads(content)
+                    if extended_max_tokens is not None and finish=="length":
+                        error="output_length_limit"
+                    else:
+                        parsed=json.loads(content)
                 else:
                     error=f"http_{status}"
             except (OSError,http.client.HTTPException) as exc:
@@ -185,8 +194,12 @@ def judge(folder,key,prompt,payload,cfg,post=None,max_retries=3):
                  "assistant_content":content,"parsed":parsed}
             replace_text(path,encode(row)+"\n")
         attempts.append(row)
-        if row["error"]!="json_parse_failed" or i==max_retries+1:
+        if row["error"]=="output_length_limit" and not expanded:
+            body=request_body(prompt,payload,{**cfg,"max_tokens":extended_max_tokens})
+            expanded=True
+        elif row["error"]!="json_parse_failed" or expanded or i==max_retries+1:
             return row["parsed"],row["error"],attempts
+        i+=1
 
 def extract_conditions(question,prompt,cfg,folder):
     history=[]
@@ -232,7 +245,8 @@ def render_chain(start,steps,end):
             lines.extend([f"- 状态：候选 {names}；已确认 {'、'.join(state['confirmed']) or '—'}；"
                           f"还没确认 {'、'.join(state['open']) or '—'}"])
         if s["errors"]:
-            lines.append("  - 本步请求失败，沿用上一步状态。")
+            message="本步缺少可对应的输出" if "step_missing" in s["errors"] else "本步请求失败"
+            lines.append(f"  - {message}，沿用上一步状态。")
         lines.extend([f"- 计划：{display(s['plan'])}",""])
     lines.extend(["## 终点","",f"- 答案：{display(end.get('final_answer'))}",
                   f"- 依据：{display(end.get('basis'))}",f"- 未决：{display(end.get('unresolved'))}"])
@@ -241,12 +255,13 @@ def render_chain(start,steps,end):
     lines.extend([""," → ".join(display(s["summary"]) for s in steps),""])
     return "\n".join(lines)
 
-def run_chain(data,conditions,prompts,cfg,out,progress=None):
+def run_chain(data,conditions,prompts,cfg,out,progress=None,*,whole=None):
     out.mkdir(parents=True,exist_ok=True)
     cache=out/"checkpoint"
-    cache.mkdir(exist_ok=True)
-    identity(cache/"identity.sha256",{"data":data,"conditions":conditions,"prompts":prompts,
-                                     "config":{k:v for k,v in cfg.items() if k!="url"}})
+    if whole is None:
+        cache.mkdir(exist_ok=True)
+        identity(cache/"identity.sha256",{"data":data,"conditions":conditions,"prompts":prompts,
+                                         "config":{k:v for k,v in cfg.items() if k!="url"}})
     common={"question":data["question"],"conditions":conditions}
     ids=[row["id"] for row in conditions]
     state={"candidates":[],"confirmed":[],"open":ids[:]}
@@ -256,6 +271,10 @@ def run_chain(data,conditions,prompts,cfg,out,progress=None):
     checks=[]
     steps=[]
     def request(phase,stage,payload):
+        if whole is not None:
+            if phase in ("S","F"):
+                return obj(whole["start" if phase=="S" else "final"]),None
+            return whole["steps"].get(stage,{}),None if stage in whole["steps"] else "step_missing"
         v,error,a=judge(cache,f"{stage:03d}-{phase}",prompts[phase],payload,cfg)
         for item in a:
             logs.append({"phase":phase,"stage":stage,**item})
@@ -263,9 +282,9 @@ def run_chain(data,conditions,prompts,cfg,out,progress=None):
             progress(phase,stage,len(a),error)
         return obj(v),error
     start_thought=data["rings"][0]["thinking"]
-    start,start_error=request("S",0,{**common,"state":state,"thinking_before_first_call":start_thought})
-    candidates,checks_s=checked_items(start,"candidates",start_thought,"S")
-    plan,plan_check=checked_text(start,"plan","plan_quote",start_thought,"S")
+    start,start_error=request("S",0,{**common,"thinking_before_first_call":start_thought})
+    candidates,checks_s=checked_items(start,"candidates",start_thought,"S",True)
+    plan,plan_check=checked_text(start,"plan","plan_quote",start_thought,"S",True)
     start={**start,"plan":plan}
     if not start_error:
         state=state_after(state,[{**x,"op":"新增"} for x in candidates],[],ids)
@@ -302,7 +321,8 @@ def run_chain(data,conditions,prompts,cfg,out,progress=None):
     stage=len(data["rings"])-1
     end,f_error=request("F",stage,{**common,"state":state,"verified_facts":facts,**{k:v for k,v in terminal.items() if k!="type"}})
     unsupported,checks_f=checked_items(end,"unsupported",
-        terminal["formal_answer"] if terminal["formal_answer"]!="未交卷" else terminal["thinking"],"F")
+        (terminal["thinking"],terminal["formal_answer"]) if terminal["formal_answer"]!="未交卷"
+        else terminal["thinking"],"F",True)
     end={**end,"unsupported":unsupported}
     if terminal["formal_answer"]=="未交卷":
         end.update(final_answer="未交卷",unresolved=terminal["termination_reason"])
@@ -310,7 +330,8 @@ def run_chain(data,conditions,prompts,cfg,out,progress=None):
         end["final_answer"]=terminal["formal_answer"]
     states.append({"type":"final","stage":stage,"state":state,"state_carried_due_to_failure":bool(f_error)})
     checks.extend({"stage":stage,**x} for x in checks_f)
-    jsonl(out/"RAW.jsonl",logs)
+    if whole is None:
+        jsonl(out/"RAW.jsonl",logs)
     jsonl(out/"VERIFY.jsonl",checks)
     jsonl(out/"STATE.jsonl",states)
     replace_text(out/"CHAIN.md",render_chain(start,steps,end))

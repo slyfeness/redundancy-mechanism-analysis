@@ -30,3 +30,18 @@ The supplied config uses a loopback endpoint, `gpt-oss-120b`, reasoning effort `
 
 Conditions have a 70% coverage threshold, measured as the fraction of non-whitespace question characters covered after case folding and whitespace normalization. A condition request can be retried once before sentence fallback. The other phases retry JSON parse failures up to three times. The runner writes `CHAIN.md`, `STATE.jsonl`, `VERIFY.jsonl` and `RAW.jsonl` under the private output directory, along with condition and resume checkpoints.
 
+## Stepwise and whole-trajectory extraction
+
+Use the same medium-effort configuration and share the question condition list when comparing the two input methods. The default v2 config is still available for standalone runs.
+
+```bash
+python scripts/chain_extractor/chain_extractor_v2.py /path/to/trajectory.json /private/s \
+  --config scripts/chain_extractor/config_v2_sw.json
+python scripts/chain_extractor/chain_extractor_whole.py /path/to/trajectory.json /private/w \
+  --config scripts/chain_extractor/config_v2_sw.json --conditions /private/s/CONDITIONS.jsonl
+```
+
+The whole-trajectory runner sends one ordered payload per run. It uses the same quote verification, state updates and Markdown rendering as the stepwise runner. Its `STEP_CHECK.json` records the returned step count and IDs. Missing or ambiguous step IDs leave the preceding state in place. They do not trigger a retry. A length-truncated response permits one attempt with the expanded token cap. Both runners retain their actual request and response bodies in `RAW.jsonl`.
+
+Use a separate private output directory for each run. The whole-trajectory runner resumes from its recorded request attempts when the source, prompt and config match.
+
