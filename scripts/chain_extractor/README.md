@@ -45,3 +45,22 @@ The whole-trajectory runner sends one ordered payload per run. It uses the same 
 
 Use a separate private output directory for each run. The whole-trajectory runner resumes from its recorded request attempts when the source, prompt and config match.
 
+## Version 3 with sentence IDs
+
+Run either input method with the frozen medium-effort settings. Pass the S run's
+condition file to the W run to compare with the same conditions.
+
+```bash
+python scripts/chain_extractor/chain_extractor_v3.py /path/to/trajectory.json /private/v3-s --group S
+python scripts/chain_extractor/chain_extractor_v3.py /path/to/trajectory.json /private/v3-w --group W --conditions /private/v3-s/CONDITIONS.json
+```
+
+The supplied scripts split text into numbered sentences before sending it to the local Judge.
+Citation IDs are checked against the field's visible text. Narrative text is kept
+when citation IDs fail. Facts and state operations require an allowed sentence ID.
+The claims audit checks numeric terms and capitalized names from the cited sentences
+against the return text available at that point.
+
+Use the same output folder to resume a run with the same input and settings. Outputs
+include `CHAIN.md`, `STATE.jsonl`, `CITES.jsonl`, `CLAIMS.jsonl` and `RAW.jsonl`.
+W also records `STEP_CHECK.json`. Keep all outputs private.
