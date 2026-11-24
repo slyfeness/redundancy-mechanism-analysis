@@ -99,16 +99,16 @@ def fallback(clauses,answer_type):
     return {"conditions":groups,"ignored":[],"answer_type":answer_type or clauses[-1]["text"]}
 
 
-def build_result(question,clauses,value,history,used_fallback):
+def build_result(question,clauses,value,history,used_fallback,check=check_groups):
     positions={row["id"]:i for i,row in enumerate(clauses)}
     groups=[{**row,"text":" ".join(clauses[i]["text"] for i in sorted(positions[c] for c in row["clauses"]))}
             for row in value["conditions"]]
     return {"question_clauses":clauses,"conditions":groups,"ignored":value["ignored"],
             "answer_type":value["answer_type"].strip(),"attempts":history,"retried":len(history)==2,
-            "sentence_fallback":used_fallback,"validation":check_groups(question,clauses,value)}
+            "sentence_fallback":used_fallback,"validation":check(question,clauses,value)}
 
 
-def extract_conditions(question,prompt,cfg,folder):
+def extract_conditions(question,prompt,cfg,folder,*,check=check_groups):
     clauses=split_clauses(question)
     if not clauses:
         raise ValueError("question has no clauses")
@@ -117,7 +117,7 @@ def extract_conditions(question,prompt,cfg,folder):
     saved_type=None
     for attempt in (1,2):
         result,error,raw=judge(folder,f"C{attempt}",prompt,payload,cfg,max_retries=0)
-        validation=check_groups(question,clauses,result)
+        validation=check(question,clauses,result)
         if error:
             validation["reasons"].insert(0,error)
             validation["valid"]=False
@@ -126,9 +126,9 @@ def extract_conditions(question,prompt,cfg,folder):
         if isinstance(kind,str) and kind.strip():
             saved_type=kind.strip()
         if validation["valid"]:
-            return build_result(question,clauses,result,history,False)
+            return build_result(question,clauses,result,history,False,check)
         payload={"question_clauses":clauses,"previous_validation_errors":validation["reasons"]}
-    return build_result(question,clauses,fallback(clauses,saved_type),history,True)
+    return build_result(question,clauses,fallback(clauses,saved_type),history,True,check)
 
 
 def candidate_key(name):

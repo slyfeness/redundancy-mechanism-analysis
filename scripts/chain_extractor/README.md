@@ -145,3 +145,24 @@ with CUDA graphs first, then restore eager mode if the graph variant fails.
 Set the client URL once per chain and round-robin chains across ready servers.
 Run the benchmark and extraction from the allocation that hosts these
 loopback services. Save outputs in private storage.
+
+## Version 7
+
+```bash
+python scripts/chain_extractor/chain_extractor_v7.py /path/to/trajectory.json /private/v7
+python -m unittest discover -s scripts/chain_extractor -v
+```
+
+V7 keeps the v6 stepwise protocol and resident service settings. Condition
+groups have a lower bound tied to the number of applicable source clauses.
+A2 citation records retain valid condition IDs and record rejected IDs.
+Candidate aliases can use the same surname and a shorter set of name tokens.
+The code preserves distinct expanded names if a short form matches more
+than one of them.
+
+The mechanism functions in `mechanisms_v7.py` operate on saved state rows,
+compatible source step metadata and audited claims. They align pairwise
+results by recorded call-round number. Practical sufficiency is retrospective
+and reads only the trajectory's submitted answer sentences. Reference states
+can be compared by passing the externally sealed reference rows. Keep all raw
+trajectories, run results and reference states in private storage.

@@ -275,6 +275,8 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
         if not error:
             state=apply_state(start,state,ids,cite,scope(first),"S",merge=merge)
         save_state("start",0,error)
+        if getattr(protocol,"records_start_claims",False):
+            claims.extend(claim_rows(start,cite,scope(first),data["question"],corpus,"S",0,check_claims))
         text=["# 思维链","","## 起点","",f'- 理解：{display(start.get("understanding"))}',
               "- 假设："+("、".join(display(x) for x in list_field(start,"hypotheses")) or "—"),
               f'- 计划：{citations_line(start.get("plan"),planrefs)}',f'- 状态：{state_line(state)}',""]
@@ -296,6 +298,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
                 item=obj(item)
                 fact=item.get("fact")
                 ref,row=cite_a("new_facts",item.get("ids"),doc_scope,fact)
+                fact_conditions=getattr(protocol,"fact_conditions",None)
+                if fact_conditions:
+                    fact_conditions(item,row,ids)
                 if ref and isinstance(fact,str) and fact.strip():
                     row["applied"]=True
                     docids=list(dict.fromkeys(doc_sentences[r["id"]][0] for r in ref))
