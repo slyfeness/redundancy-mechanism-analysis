@@ -67,6 +67,7 @@ def answer_forms(lines):
 def derive(states, ordinary, doc_counts, strict, plans, facts, unsupported, answer_lines, terminal):
     assert [row["stage"] for row in states]==list(range(len(states)))
     assert states[0]["type"]=="start" and states[-1]["type"]=="final"
+    strict={int(step): ids for step,ids in strict.items()}
     ordinary=set(ordinary)
     kind=states[-1].get("answer_kind")
     answers=answer_forms(answer_lines) if kind=="作答" else []
