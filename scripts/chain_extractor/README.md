@@ -64,3 +64,20 @@ against the return text available at that point.
 Use the same output folder to resume a run with the same input and settings. Outputs
 include `CHAIN.md`, `STATE.jsonl`, `CITES.jsonl`, `CLAIMS.jsonl` and `RAW.jsonl`.
 W also records `STEP_CHECK.json`. Keep all outputs private.
+
+## Version 4 with separate action and return requests
+
+Version 4 takes an existing condition list. Save the selected question's condition
+record as a private JSON file containing a `conditions` array.
+
+```bash
+python scripts/chain_extractor/chain_extractor_v4.py /path/to/trajectory.json /private/v4-s --group S --conditions /private/conditions.json
+python scripts/chain_extractor/chain_extractor_v4.py /path/to/trajectory.json /private/v4-w --group W --conditions /private/conditions.json
+```
+
+S sends the action and return in separate calls. When the B response omits a
+judgment for an open condition, the runner makes one follow-up and merges only
+the missing judgments. W sends each step with the allowed citation ranges.
+The claims audit uses terms from cited source sentences, removes question
+numbers and filters capitalized names. Outputs include the same files as v3.
+All results and request traces belong in private storage.

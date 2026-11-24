@@ -173,14 +173,14 @@ def apply_state(answer, initial, ids, cite, allowed, phase):
     return state_after(initial, candidates, conditions, ids)
 
 
-def claim_rows(answer, cite, allowed, question, corpus, phase, step):
+def claim_rows(answer, cite, allowed, question, corpus, phase, step, auditor=check_claim):
     values = []
     for raw in list_field(answer, "claims"):
         row = obj(raw)
         claim = row.get("claim")
         refs, audit = cite("claims", row.get("ids"), allowed, claim)
         audit["applied"] = bool(refs)
-        values.append({"phase":phase,"step":step, **check_claim(claim, refs, question, corpus)})
+        values.append({"phase":phase,"step":step, **auditor(claim, refs, question, corpus)})
     return values
 
 
@@ -202,7 +202,7 @@ def unsupported_lines(rows):
             for r in rows if r["status"] == "无返回依据"]
 
 
-def run_case(data, conditions, prompts, cfg, out, group, progress=None):
+def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, protocol=None):
     if cfg["reasoning_effort"] != "medium":
         raise ValueError("v3 requires medium reasoning effort")
     out.mkdir(parents=True, exist_ok=True)
@@ -210,7 +210,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
     cache.mkdir(exist_ok=True)
     identity(cache / "identity.sha256", {"input":data,"conditions":conditions,"group":group,"prompts":prompts,
                                        "config":{k:v for k,v in cfg.items() if k!="url"}})
-    first, steps, last, answer, terminal = prepare_numbered(data, group)
+    prepare_case=protocol.prepare_numbered if protocol else prepare_numbered
+    check_claims=protocol.check_claim if protocol else check_claim
+    first, steps, last, answer, terminal = prepare_case(data, group)
     common = {"question": data["question"], "conditions": conditions}
     ids = [row["id"] for row in conditions]
     state = {"candidates": [], "confirmed": [], "open": ids}
@@ -222,8 +224,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
 
     def call(phase, stage, payload):
         extended = cfg["whole_max_tokens"] if phase == "W" else None
-        result, error, attempts = judge(cache, f"{stage}-{phase}", prompts[phase], payload, cfg,
-                                        extended_max_tokens=extended)
+        followup=phase=="B_followup"
+        result, error, attempts = judge(cache, f"{stage}-{phase}", prompts["B" if followup else phase], payload, cfg,
+                                        max_retries=0 if followup else 3, extended_max_tokens=extended)
         raw.extend({"phase":phase,"stage":stage,**r} for r in attempts)
         if progress:
             progress(phase, stage, len(attempts), error)
@@ -238,7 +241,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
         return by_step.get(stage,{}),None if stage in by_step else "step_missing"
 
     if group == "W":
-        result,error=call("W",None,whole_payload(common,first,steps,answer,terminal))
+        payload=protocol.whole_payload(common,first,steps,last,answer,terminal) if protocol else (
+            whole_payload(common,first,steps,answer,terminal))
+        result,error=call("W",None,payload)
         model=obj(result)
         by_step,check=check_steps(result,[row["step"] for row in steps])
         failed=bool(error)
@@ -264,11 +269,15 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
             i=step["step"]
             before=state
             view=state_view(state,conditions)
-            a,a_error=response("A",i,{**common,"state":view,"thinking_before":step["before"],"calls":step["calls"]})
-            cite_a=cites_for(cites,"A",i)
+            if protocol:
+                a,a_error=protocol.step_action(response,i,common,view,step)
+            else:
+                a,a_error=response("A",i,{**common,"state":view,"thinking_before":step["before"],"calls":step["calls"]})
+            cite_plan=cites_for(cites,"A1" if protocol else "A",i)
+            cite_a=cites_for(cites,"A2" if protocol else "A",i)
             doc_sentences=step["document_sentences"]
             doc_scope={sid:item[1] for sid,item in doc_sentences.items()}
-            planrefs,_=cite_a("plan_ids",a.get("plan_ids"),scope(step["before"]))
+            planrefs,_=cite_plan("plan_ids",a.get("plan_ids"),scope(step["before"]))
             new=[]
             for item in list_field(a,"new_facts"):
                 item=obj(item)
@@ -280,20 +289,28 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
                     new.append((fact,docids,ref))
             facts.extend({"step":i,"fact":fact} for fact,_,_ in new)
             corpus.extend(step["snippets"])
-            b,b_error=response("B",i,{**common,"state":view,"verified_facts":facts,
-                                     "thinking_after":step["marker"] or step["after"]})
+            b_payload={**common,"state":view,"verified_facts":facts,
+                       "thinking_after":step["marker"] or step["after"]}
+            b,b_error=response("B",i,b_payload)
+            followup=None
+            if protocol and group=="S":
+                b,followup=protocol.follow_up(call,i,b_payload,b,before["open"],b_error)
             cite_b=cites_for(cites,"B",i)
             following=scope(step["after"])
             resultrefs,_=cite_b("conclusion_ids",b.get("conclusion_ids"),following)
-            rows=claim_rows(b,cite_b,following,data["question"],corpus,"B",i)
+            rows=claim_rows(b,cite_b,following,data["question"],corpus,"B",i,check_claims)
             claims.extend(rows)
             if not (a_error or b_error):
                 state=apply_state(b,state,ids,cite_b,following,"B")
             save_state("call",i,a_error or b_error)
+            if followup is not None:
+                states[-1]["condition_followup"]=followup
             dnew={d["docid"] for c in step["calls"] for d in c["returned"] if "sentences" in d}
             dold={d["docid"] for c in step["calls"] for d in c["returned"] if "sentences" not in d}-dnew
             text.extend([f"## 第 {i} 次调用","",f'- 动作：{display(a.get("looking_for"))}',
                          *(f'  - 查询：{c["query"]}' for c in step["calls"])])
+            if protocol:
+                text.append(f'  - 计划一致性：{citations_line(a.get("plan_match"),planrefs)}')
             if a.get("plan_match")=="不一致":
                 text.append(f'  - 与计划不一致：{citations_line(a.get("plan_note"),planrefs)}')
             text.append(f"- 返回：新文档 {len(dnew)} 篇、旧文档 {len(dold)} 篇")
@@ -313,7 +330,7 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
         cite=cites_for(cites,"F",i)
         basis,_=cite("basis_ids",end.get("basis_ids"),final_scope)
         unresolved,_=cite("unresolved_ids",end.get("unresolved_ids"),final_scope)
-        rows=claim_rows(end,cite,final_scope,data["question"],corpus,"F",i)
+        rows=claim_rows(end,cite,final_scope,data["question"],corpus,"F",i,check_claims)
         claims.extend(rows)
         save_state("final",i,error)
         formal=terminal["formal_answer"]
@@ -329,12 +346,22 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None):
         jsonl(out/f"{name}.jsonl",rows)
     count_candidates={"candidates","main_candidate","other_candidates","excluded"}
     count_conditions={"condition_checks","retracted"}
-    return {"raw":raw,"steps":len(steps),"whole_failed":failed,"step_check":check,
+    result={"raw":raw,"steps":len(steps),"whole_failed":failed,"step_check":check,
             "carried":sum(row["state_carried_due_to_failure"] for row in states),
             "bad_ids":sum(len(row["invalid_ids"]) for row in cites),
             "candidate_checks_unapplied":sum(row["field"] in count_candidates and not row["applied"] for row in cites),
             "condition_checks_unapplied":sum(row["field"] in count_conditions and row.get("change_requested") and not row["applied"] for row in cites),
             "claims":dict(Counter(row["status"] for row in claims))}
+    if protocol:
+        followups=[row["condition_followup"] for row in states if "condition_followup" in row]
+        errors=Counter()
+        for row in cites:
+            errors[row["field"]]+=len(row["invalid_ids"])
+        result.update(condition_followups=sum(r["requested"] for r in followups),
+                      missing_before=sum(len(r["missing_before"]) for r in followups),
+                      missing_after=sum(len(r["missing_after"]) for r in followups),
+                      bad_ids_by_field={field:n for field,n in errors.items() if n})
+    return result
 
 
 def main():
