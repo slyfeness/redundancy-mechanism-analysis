@@ -108,3 +108,40 @@ Leave eager mode disabled. Keep each chain on the same replica.
 The v5 trial reused the resident TP4/DP1 eager service. Its sequence limit
 was 24 and prefix caching was enabled. The four-GPU quota prevented this
 replica layout from starting alongside the resident allocation.
+
+## Version 6
+
+```bash
+python scripts/chain_extractor/chain_extractor_v6.py /path/to/trajectory.json /private/v6
+python -m unittest discover -s scripts/chain_extractor -v
+```
+
+The condition prompt groups source clauses by ID. The runner renders condition
+text from those clauses and renders final answers from the cited answer
+sentences. Candidate names use a shared normalized identity with the longest
+observed spelling for display. A missing condition judgement keeps the prior
+state and is listed as unjudged after the single follow-up.
+
+### Resident Judge configuration
+
+On four A800 devices, run one vLLM 0.19.1 server per device under the same Slurm
+allocation. Assign distinct loopback ports and the native MXFP4 checkpoint.
+Run this command for each replica with its own device and port:
+
+```bash
+CUDA_VISIBLE_DEVICES="$DEVICE" python -m vllm.entrypoints.openai.api_server \
+  --model "$MODEL_PATH" --served-model-name gpt-oss-120b \
+  --host 127.0.0.1 --port "$PORT" --tensor-parallel-size 1 \
+  --generation-config vllm --gpu-memory-utilization 0.92 \
+  --max-model-len 32768 --max-num-seqs 128 --max-num-batched-tokens 8192 \
+  --enable-prefix-caching \
+  --compilation-config '{"cudagraph_mode":"FULL_AND_PIECEWISE","cudagraph_capture_sizes":[1,2,4,8,16,32,64,128]}'
+```
+
+If one device cannot hold a replica, use two disjoint two-device groups with
+tensor parallelism 2. If replica layouts fail, restore TP4 with the historical
+0.88 memory limit, 131072 context, 24 sequences and 16384 batch tokens. Try TP4
+with CUDA graphs first, then restore eager mode if the graph variant fails.
+Set the client URL once per chain and round-robin chains across ready servers.
+Run the benchmark and extraction from the allocation that hosts these
+loopback services. Save outputs in private storage.

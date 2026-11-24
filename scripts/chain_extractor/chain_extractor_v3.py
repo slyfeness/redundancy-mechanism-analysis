@@ -142,7 +142,7 @@ def cites_for(audits, phase, step):
     return add
 
 
-def apply_state(answer, initial, ids, cite, allowed, phase, *, block_main=False):
+def apply_state(answer, initial, ids, cite, allowed, phase, *, block_main=False, merge=None):
     candidates = []
     conditions = []
     groups = (("candidates", "新增"), ("main_candidate", "设为当前")) if phase == "S" else (
@@ -158,7 +158,7 @@ def apply_state(answer, initial, ids, cite, allowed, phase, *, block_main=False)
             if field=="main_candidate" and block_main:
                 audit["blocked_by_checking_object"]=True
                 continue
-            if eligible and (op != "新增" or match_text(name) not in names):
+            if eligible and (merge or op != "新增" or match_text(name) not in names):
                 candidates.append({"name": name, "op": op})
                 names.add(match_text(name))
                 audit["applied"] = True
@@ -173,6 +173,8 @@ def apply_state(answer, initial, ids, cite, allowed, phase, *, block_main=False)
                 if refs and key in eligible_ids and audit["change_requested"]:
                     conditions.append({"op": op, "id": key})
                     audit["applied"] = True
+    if merge:
+        initial,candidates=merge(initial,candidates)
     return state_after(initial, candidates, conditions, ids)
 
 
@@ -217,6 +219,8 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
     if answer_type is not None:
         fingerprint["answer_type"]=answer_type
     identity(cache / "identity.sha256", fingerprint)
+    merge=getattr(protocol,"merge_candidates",None)
+    finish=getattr(protocol,"render_final",None)
     prepare_case=protocol.prepare_numbered if protocol else prepare_numbered
     check_claims=protocol.check_claim if protocol else check_claim
     first, steps, last, answer, terminal = prepare_case(data, group)
@@ -269,7 +273,7 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
         cite=cites_for(cites,"S",0)
         planrefs,_=cite("plan_ids",start.get("plan_ids"),scope(first))
         if not error:
-            state=apply_state(start,state,ids,cite,scope(first),"S")
+            state=apply_state(start,state,ids,cite,scope(first),"S",merge=merge)
         save_state("start",0,error)
         text=["# 思维链","","## 起点","",f'- 理解：{display(start.get("understanding"))}',
               "- 假设："+("、".join(display(x) for x in list_field(start,"hypotheses")) or "—"),
@@ -314,11 +318,13 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
             checking=(protocol.checking_object(b,cite_b,following) if answer_type is not None else {})
             conflict=bool(checking.get("checking_object_candidate_conflict"))
             if not (a_error or b_error):
-                state=apply_state(b,state,ids,cite_b,following,"B",block_main=conflict)
+                state=apply_state(b,state,ids,cite_b,following,"B",block_main=conflict,merge=merge)
             save_state("call",i,a_error or b_error)
             states[-1].update(checking)
             if followup is not None:
                 states[-1]["condition_followup"]=followup
+                if finish:
+                    states[-1]["unjudged_conditions"]=[{"id":key,"status":"未判断"} for key in followup["missing_after"]]
             dnew={d["docid"] for c in step["calls"] for d in c["returned"] if "sentences" in d}
             dold={d["docid"] for c in step["calls"] for d in c["returned"] if "sentences" not in d}-dnew
             text.extend([f"## 第 {i} 次调用","",f'- 动作：{display(a.get("looking_for"))}',
@@ -333,6 +339,8 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
                          else state_line(state) if state!=before else "无变化")
             text.extend([f'- 结论：{citations_line(b.get("conclusion"),resultrefs)}',*unsupported_lines(rows),
                          "- 状态："+shown_state])
+            if states[-1].get("unjudged_conditions"):
+                text.append("  - 未判断："+"、".join(row["id"] for row in states[-1]["unjudged_conditions"]))
             if a_error or b_error:
                 text.append("  - 本步沿用上一步的状态，详见回执。")
             text.extend([f'- 计划：{display(b.get("plan"))}',""])
@@ -351,6 +359,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
         save_state("final",i,error)
         formal=terminal["formal_answer"]
         final_text=formal if formal=="未交卷" or error else end.get("final_answer")
+        if finish:
+            final_text,final_fields=finish(end,terminal,cite,scope(answer),error)
+            states[-1].update(final_fields)
         text.extend(["## 终点","",f"- 答案：{display(final_text)}",
                      f'- 依据：{citations_line(end.get("basis"),basis)}',
                      f'- 未决：{citations_line(end.get("unresolved"),unresolved)}'])
@@ -380,6 +391,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
     if answer_type is not None:
         result.update(candidate_conflicts=sum(bool(row.get("checking_object_candidate_conflict")) for row in states),
                       final_candidates=len(state["candidates"]))
+    if finish:
+        result.update(answer_kind=states[-1]["answer_kind"],
+                      unjudged=sum(len(row.get("unjudged_conditions",[])) for row in states))
     return result
 
 
