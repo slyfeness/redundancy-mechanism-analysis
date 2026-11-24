@@ -81,3 +81,30 @@ the missing judgments. W sends each step with the allowed citation ranges.
 The claims audit uses terms from cited source sentences, removes question
 numbers and filters capitalized names. Outputs include the same files as v3.
 All results and request traces belong in private storage.
+
+## Version 5 with answer type and checking objects
+
+```bash
+python scripts/chain_extractor/chain_extractor_v5.py /path/to/trajectory.json /private/v5
+```
+
+The stepwise runner extracts the answer type and conditions, then includes that
+type in A1, A2, B and F. It records checking objects separately from candidates
+and prevents a matching name from being set as the main candidate. Known visible
+document IDs are filtered from numerical claim keywords.
+
+### Judge replica layout
+
+The proposed four-GPU layout runs one loopback vLLM server per device at TP1
+(four replicas), or two TP2 servers if the single-device memory budget fails.
+Use the existing MXFP4 checkpoint and vLLM 0.19.1. For each replica, select its
+devices with CUDA_VISIBLE_DEVICES, bind a distinct loopback port and pass
+`--tensor-parallel-size 1 --max-num-seqs 128 --max-model-len 32768
+--max-num-batched-tokens 8192 --gpu-memory-utilization 0.96
+--enable-prefix-caching` with the compilation config
+`{"cudagraph_mode":"FULL_AND_PIECEWISE","cudagraph_capture_sizes":[1,2,4,8,16,32]}`.
+Leave eager mode disabled. Keep each chain on the same replica.
+
+The v5 trial reused the resident TP4/DP1 eager service. Its sequence limit
+was 24 and prefix caching was enabled. The four-GPU quota prevented this
+replica layout from starting alongside the resident allocation.

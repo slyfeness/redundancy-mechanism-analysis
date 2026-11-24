@@ -142,7 +142,7 @@ def cites_for(audits, phase, step):
     return add
 
 
-def apply_state(answer, initial, ids, cite, allowed, phase):
+def apply_state(answer, initial, ids, cite, allowed, phase, *, block_main=False):
     candidates = []
     conditions = []
     groups = (("candidates", "新增"), ("main_candidate", "设为当前")) if phase == "S" else (
@@ -155,6 +155,9 @@ def apply_state(answer, initial, ids, cite, allowed, phase):
             name = row.get("name")
             refs, audit = cite(field, row.get("ids"), allowed, name)
             eligible = bool(refs) and isinstance(name, str) and bool(name.strip())
+            if field=="main_candidate" and block_main:
+                audit["blocked_by_checking_object"]=True
+                continue
             if eligible and (op != "新增" or match_text(name) not in names):
                 candidates.append({"name": name, "op": op})
                 names.add(match_text(name))
@@ -208,12 +211,18 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
     out.mkdir(parents=True, exist_ok=True)
     cache = out / "checkpoint"
     cache.mkdir(exist_ok=True)
-    identity(cache / "identity.sha256", {"input":data,"conditions":conditions,"group":group,"prompts":prompts,
-                                       "config":{k:v for k,v in cfg.items() if k!="url"}})
+    answer_type=getattr(protocol,"answer_type",None)
+    fingerprint={"input":data,"conditions":conditions,"group":group,"prompts":prompts,
+                 "config":{k:v for k,v in cfg.items() if k!="url"}}
+    if answer_type is not None:
+        fingerprint["answer_type"]=answer_type
+    identity(cache / "identity.sha256", fingerprint)
     prepare_case=protocol.prepare_numbered if protocol else prepare_numbered
     check_claims=protocol.check_claim if protocol else check_claim
     first, steps, last, answer, terminal = prepare_case(data, group)
     common = {"question": data["question"], "conditions": conditions}
+    if answer_type is not None:
+        common["所问对象类型"]=answer_type
     ids = [row["id"] for row in conditions]
     state = {"candidates": [], "confirmed": [], "open": ids}
     raw, states, cites, claims, facts, corpus, summaries = [], [], [], [], [], [], []
@@ -289,6 +298,8 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
                     new.append((fact,docids,ref))
             facts.extend({"step":i,"fact":fact} for fact,_,_ in new)
             corpus.extend(step["snippets"])
+            if answer_type is not None:
+                protocol.observe(step)
             b_payload={**common,"state":view,"verified_facts":facts,
                        "thinking_after":step["marker"] or step["after"]}
             b,b_error=response("B",i,b_payload)
@@ -300,9 +311,12 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
             resultrefs,_=cite_b("conclusion_ids",b.get("conclusion_ids"),following)
             rows=claim_rows(b,cite_b,following,data["question"],corpus,"B",i,check_claims)
             claims.extend(rows)
+            checking=(protocol.checking_object(b,cite_b,following) if answer_type is not None else {})
+            conflict=bool(checking.get("checking_object_candidate_conflict"))
             if not (a_error or b_error):
-                state=apply_state(b,state,ids,cite_b,following,"B")
+                state=apply_state(b,state,ids,cite_b,following,"B",block_main=conflict)
             save_state("call",i,a_error or b_error)
+            states[-1].update(checking)
             if followup is not None:
                 states[-1]["condition_followup"]=followup
             dnew={d["docid"] for c in step["calls"] for d in c["returned"] if "sentences" in d}
@@ -315,8 +329,10 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
                 text.append(f'  - 与计划不一致：{citations_line(a.get("plan_note"),planrefs)}')
             text.append(f"- 返回：新文档 {len(dnew)} 篇、旧文档 {len(dold)} 篇")
             text.extend(f'  - {display(fact)}（docid {"、".join(docids)}；{show_refs(ref)}）' for fact,docids,ref in new)
+            shown_state=(protocol.state_line(state,checking.get("checking_object")) if answer_type is not None
+                         else state_line(state) if state!=before else "无变化")
             text.extend([f'- 结论：{citations_line(b.get("conclusion"),resultrefs)}',*unsupported_lines(rows),
-                         "- 状态："+(state_line(state) if state!=before else "无变化")])
+                         "- 状态："+shown_state])
             if a_error or b_error:
                 text.append("  - 本步沿用上一步的状态，详见回执。")
             text.extend([f'- 计划：{display(b.get("plan"))}',""])
@@ -361,6 +377,9 @@ def run_case(data, conditions, prompts, cfg, out, group, progress=None, *, proto
                       missing_before=sum(len(r["missing_before"]) for r in followups),
                       missing_after=sum(len(r["missing_after"]) for r in followups),
                       bad_ids_by_field={field:n for field,n in errors.items() if n})
+    if answer_type is not None:
+        result.update(candidate_conflicts=sum(bool(row.get("checking_object_candidate_conflict")) for row in states),
+                      final_candidates=len(state["candidates"]))
     return result
 
 
