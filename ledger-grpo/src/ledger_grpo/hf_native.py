@@ -6,6 +6,8 @@ exact native spans; observed-context gaps stay present with mask zero. A call's
 turn covers only its original completion, including every thinking token.
 """
 from copy import deepcopy
+import hashlib
+import json
 import math
 
 import torch
@@ -210,3 +212,51 @@ def single_step_token_loss(current_logprobs, sampled_logprobs, advantages, actio
             'global_token_count': global_token_count, 'world_scale': world_size / denominator,
             'diagnostics': diagnostic, 'sampling_logprob_difference': observed.detach(),
             'tis_weights': importance[mask].detach(), 'tis_clipped': clipped[mask].detach()}
+
+
+def credit_native_token_loss(current_logprobs, sampled_logprobs, record, prepared, *, world_size):
+    """Credit branch requiring the worker's cached initial-policy probabilities."""
+    from .credit.training import credit_token_loss
+    dtype, device = current_logprobs.dtype, current_logprobs.device
+    config = prepared['credit_config']
+    if bool(record['action_mask'].any()):
+        validate_frozen_native_record(record)
+    old = record.get('old_logprobs', current_logprobs.detach()).to(device=device, dtype=dtype)
+    return credit_token_loss(current_logprobs, old,
+        record['action_advantages'].to(device=device, dtype=dtype), record['action_mask'].to(device=device),
+        loss_denominator=prepared['loss_denominator'], world_size=world_size,
+        sampled_logprobs=sampled_logprobs,
+        baseline_advantages=record['baseline_advantages'].to(device=device, dtype=dtype),
+        ledger_selected=record['ledger_selected'], ledger_sample_q=config['ledger_sample_q'],
+        ledger_sample_correction=config['ledger_sample_correction'],
+        masked_nll_mask=record['masked_nll_mask'].to(device=device), process_tau=config['process_tau'])
+
+
+def native_record_freeze_fingerprint(record):
+    """Bind frozen old probabilities and targets to their precise native axes."""
+    fields = ('prompt_ids', 'completion_ids', 'action_offsets', 'vllm_logprobs', 'old_logprobs',
+              'action_advantages', 'baseline_advantages', 'action_mask', 'masked_nll_mask', 'ledger_selected')
+    value = {}
+    for name in fields:
+        item = record[name]
+        value[name] = item.detach().cpu().tolist() if isinstance(item, torch.Tensor) else item
+    return hashlib.sha256(json.dumps(value, sort_keys=True, allow_nan=False, separators=(',', ':')).encode()).hexdigest()
+
+
+def validate_frozen_native_record(record):
+    if 'old_logprobs' not in record or record.get('freeze_fingerprint') != native_record_freeze_fingerprint(record):
+        raise ValueError('frozen old policy or target fingerprint is absent or changed')
+
+
+def slice_credit_native_record(record, start, stop):
+    """Split action loss work while retaining exact full causal context and targets."""
+    validate_frozen_native_record(record)
+    if not 0 <= start < stop <= len(record['action_offsets']):
+        raise ValueError('invalid native action slice')
+    result = dict(record)
+    for name in ('action_offsets', 'vllm_logprobs', 'old_logprobs', 'action_advantages',
+                 'baseline_advantages', 'action_mask', 'masked_nll_mask'):
+        result[name] = record[name][start:stop]
+    result['parent_freeze_fingerprint'] = record['freeze_fingerprint']
+    result['freeze_fingerprint'] = native_record_freeze_fingerprint(result)
+    return result
