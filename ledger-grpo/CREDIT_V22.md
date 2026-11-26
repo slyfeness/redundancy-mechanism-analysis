@@ -29,6 +29,10 @@ searching under a self-imposed restriction. The default run lengths are
   retains the original adoption verdicts for audit. It loads a matching
   second pass when available. For the v2.1.1 ablation, it uses the original
   v13.4 records and derived rows directly.
+- Recorded v13.5 ledgers use the configured route thresholds. Replay keeps
+  receipts for each pass separate. An incomplete supplied pass triggers
+  outcome-only credit for the group. Saved ledgers sent straight to the
+  trainer must match the preset's uptake method.
 - A route error is charged to the unit that chose the search. Each unit
   takes at most one charge, with successive charges drawn from one
   geometrically decaying error budget. The failure-trajectory waste discount

@@ -67,23 +67,30 @@ def run(record, returns_text=None, gold=None, t_belief=None, question_text=None,
         k_hold=K_HOLD, k_restrict=K_RESTRICT):
     rec = uptake(record, next_text)
     res = L4.run(rec, returns_text, gold, t_belief, question_text)
-    steps = rec["steps"]
+    annotate_routes(rec["steps"], res["steps"], k_hold=k_hold, k_restrict=k_restrict)
+    res["record"] = rec
+    return res
+
+
+def annotate_routes(steps, derived, *, k_hold=K_HOLD, k_restrict=K_RESTRICT):
+    """Apply route thresholds to a ledger without recomputing evidence uptake."""
     exempt_used = set()                   # issues whose one checking step was already used
     hold_run, restrict_run = 0, 0
-    for i, (st, d) in enumerate(zip(steps, res["steps"])):
-        t = st["step"]
+    for i, (st, d) in enumerate(zip(steps, derived, strict=True)):
         labels = d["labels"]
-        diag = []
+        labels[:] = [label for label in labels if label not in ROUTE_LABELS]
+        diag = list(d.get("diagnostic", ()))
         if "冲突不改" in labels:
             labels.remove("冲突不改")
             diag.append("冲突不改")
         if d["unsupported"]:
             if "无据断言" in labels:
                 labels.remove("无据断言")
-            diag.append("无据断言")
+            if "无据断言" not in diag:
+                diag.append("无据断言")
         progress = "有进展" in labels
         ans = d["chain"].get("answer")
-        prev = res["steps"][i - 1] if i else None
+        prev = derived[i - 1] if i else None
         held = bool(prev and ans and prev["chain"].get("answer") and same(prev["chain"]["answer"], ans))
         route = []
         # ---- 知错不改
@@ -121,8 +128,6 @@ def run(record, returns_text=None, gold=None, t_belief=None, question_text=None,
                 labels.append(x)
         d["diagnostic"] = diag
         d["route"] = route
-    res["record"] = rec
-    return res
 
 
 def render(record, result, title):

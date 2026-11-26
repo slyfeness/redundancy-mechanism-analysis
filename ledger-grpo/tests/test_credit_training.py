@@ -182,6 +182,26 @@ class CreditTrainingTests(unittest.TestCase):
                     self.assertTrue(all(a == credit['A_hat'] for a in credit['A'].values()))
         self.assertEqual(trajectories, original)
 
+    def test_native_payload_rejects_prebuilt_ledger_from_other_credit_version(self):
+        from ledger_grpo.credit.config import CreditConfig
+        from ledger_grpo.credit.pipeline import execute
+        from ledger_grpo.credit.training import prepare_credit_native_records
+        from test_credit_providers import fixture, SyntheticJudge
+        case, metadata, prompts = fixture()
+        native = [{'id': 'r', 'query_id': 'q', 'segments': [
+            {'prompt_ids': [1], 'completion_ids': [2, 3], 'vllm_logprobs': [0., 0.]},
+            {'prompt_ids': [1, 2, 3, 10], 'completion_ids': [4, 5], 'vllm_logprobs': [0., 0.]}]}]
+        tr = Trajectory('q', 0, [Unit(1, [(0, 2)], 2, 1), Unit('F', [(3, 5)], 2)],
+                        {'Y': True, 'submitted': True}, response_mask=[1, 1, 0, 1, 1], traj_id='r')
+        tr.conds = ["A"]
+        for legacy, preset in ((True, "C_W"), (False, "C_W_v211")):
+            row = execute(case, metadata, prompts, SyntheticJudge(), use_q3=legacy)[0]
+            tr.records, tr.derived = [row["record"]], [row["derived"]]
+            with self.subTest(preset=preset), self.assertRaisesRegex(ValueError, "ledger version"):
+                prepare_credit_native_records(
+                    native, [tr], config=CreditConfig.from_preset(preset), max_generated_tokens=8
+                )
+
 
 if __name__ == '__main__':
     unittest.main()

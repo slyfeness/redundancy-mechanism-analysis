@@ -5,6 +5,7 @@ Constructing an HTTP client never connects. Replay has no network fallback.
 from collections import defaultdict
 from copy import deepcopy
 from dataclasses import dataclass
+from functools import partial
 from hashlib import sha256
 from pathlib import Path
 from time import monotonic
@@ -50,36 +51,53 @@ class ReplayJudgeClient:
         self.requests = 0
         self.online_requests = 0
         self.missing_requests = []
+        self._has_scoped_receipts = False
         for receipt in receipts:
-            self._receipts[request_key(receipt["request"])].append(deepcopy(receipt))
+            self._remember(receipt)
+
+    def _remember(self, receipt, variant=None):
+        key = request_key(receipt["request"])
+        saved = deepcopy(receipt)
+        self._receipts[(None, key)].append(saved)
+        if variant is not None:
+            self._has_scoped_receipts = True
+            self._receipts[(variant, key)].append(saved)
 
     @classmethod
     def from_state_files(cls, paths):
         from .pipeline import calls_of
-        receipts = []
+        client = cls()
         for path in paths:
-            for line in Path(path).read_text(encoding="utf-8").splitlines():
+            path = Path(path)
+            variant = path.stem if path.stem in ("a", "b") else None
+            for line in path.read_text(encoding="utf-8").splitlines():
                 if not line.strip():
                     continue
                 for _, call in calls_of(json.loads(line)):
-                    receipts.extend(attempt["receipt"] for attempt in call["attempts"])
-        return cls(receipts)
+                    for attempt in call["attempts"]:
+                        client._remember(attempt["receipt"], variant)
+        return client
 
-    def complete(self, request):
-        key = request_key(request)
+    def for_pass(self, variant):
+        """Bind a recorded pass without sharing its request positions with other passes."""
+        return partial(self, receipt_pass=variant) if self._has_scoped_receipts else self
+
+    def complete(self, request, *, receipt_pass=None):
+        identity = request_key(request)
+        key = (receipt_pass, identity)
         position = self._positions[key]
         self.requests += 1
         if key not in self._receipts or position >= len(self._receipts[key]):
             self.missing_requests.append(deepcopy(request))
-            raise ReplayMissError("No unused receipt for exact request " + sha256(key.encode()).hexdigest())
+            raise ReplayMissError("No unused receipt for exact request " + sha256(identity.encode()).hexdigest())
         receipt = deepcopy(self._receipts[key][position])
         self._positions[key] += 1
         return receipt
 
-    def __call__(self, folder, key, prompt, payload, cfg, max_retries=0):
+    def __call__(self, folder, key, prompt, payload, cfg, max_retries=0, *, receipt_pass=None):
         if max_retries != 0:
             raise ValueError("The frozen checked pipeline owns retries")
-        receipt = self.complete(request_body(prompt, payload, cfg))
+        receipt = self.complete(request_body(prompt, payload, cfg), receipt_pass=receipt_pass)
         return receipt.get("parsed"), receipt.get("error"), [receipt]
 
 

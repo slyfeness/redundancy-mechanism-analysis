@@ -131,6 +131,14 @@ def _build_ledgers(group, provider, cfg):
         tr.derived_b = deepcopy(getattr(result, 'derived_b', None))
 
 
+def _check_uptake_version(records, derived, cfg):
+    for record, row in zip(records, derived, strict=True):
+        if 'route' in row and cfg.use_q3:
+            raise ValueError('ledger version v13.5 is incompatible with Q3 credit')
+        if 'unjudged_evidence' in record and 'route' not in row and not cfg.use_q3:
+            raise ValueError('ledger version v13.4 requires behavioural projection by a recorded provider')
+
+
 @torch.no_grad()
 def prepare_credit_native_records(native_trajectories, groups, provider=None, config=None, *,
                                   max_generated_tokens, training_step=0, sampling_seed=0, normalization='fixed'):
@@ -160,14 +168,17 @@ def prepare_credit_native_records(native_trajectories, groups, provider=None, co
                                      for tr in group], baseline_config)
         if selected and cfg.requires_ledger and provider is not None:
             _build_ledgers(group, provider, cfg)
-        fallback = selected and cfg.requires_ledger and not all(ledger_complete(tr.to_credit_dict()) for tr in group)
+        fallback = selected and cfg.requires_ledger and not all(
+            ledger_complete(tr.to_credit_dict(), gate_two_pass=cfg.gate_two_pass) for tr in group)
         for tr in group:
-            if not fallback and tr.records and len(tr.records) == len(tr.derived):
+            if selected and cfg.requires_ledger and not fallback and tr.records and len(tr.records) == len(tr.derived):
                 tr.records, tr.derived, tr.conds = validate_ledger(tr.records, tr.derived, tr.conds)
+                _check_uptake_version(tr.records, tr.derived, cfg)
                 if cfg.gate_two_pass and (tr.records_b is not None or tr.derived_b is not None):
                     if tr.records_b is None or tr.derived_b is None or len(tr.records_b) != len(tr.records):
                         raise ValueError('both passes must cover the same ledger units')
                     tr.records_b, tr.derived_b, _ = validate_ledger(tr.records_b, tr.derived_b, tr.conds)
+                    _check_uptake_version(tr.records_b, tr.derived_b, cfg)
         rows = [tr.to_credit_dict(cfg.c_ref) for tr in group]
         if not cfg.requires_ledger:
             rows = [dict(deepcopy(row), records=[], derived=[], records_b=None, derived_b=None) for row in rows]

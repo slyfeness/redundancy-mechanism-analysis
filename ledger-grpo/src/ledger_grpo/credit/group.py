@@ -9,13 +9,18 @@ from .roles import assign_roles
 from .allocate import allocate_mode, length_tertiles, shuffle_roles
 
 
-def ledger_complete(tr):
-    """A trajectory's ledger is complete when it has one record (and derived row) per tool-call unit."""
+def ledger_complete(tr, *, gate_two_pass=False):
+    """Check that the ledger covers every tool unit in each supplied pass."""
     expected = tr.get("tool_units")
     if expected is None:
         expected = sum(1 for u in tr["tokens"] if u != "F")
     recs, der = tr.get("records") or [], tr.get("derived") or []
-    return len(recs) == len(der) == expected and (expected == 0 or bool(tr.get("conds")))
+    if len(recs) != expected or len(der) != expected or (expected and not tr.get("conds")):
+        return False
+    recs_b, der_b = tr.get("records_b"), tr.get("derived_b")
+    if gate_two_pass and (recs_b is not None or der_b is not None):
+        return recs_b is not None and der_b is not None and len(recs_b) == len(der_b) == expected
+    return True
 
 
 def outcome_only_group(trajs, params=PARAMS):
@@ -45,7 +50,7 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
     if hasattr(trajs, "trajectories"):
         trajs = trajs.trajectories
     trajs = [tr.to_credit_dict() if hasattr(tr, "to_credit_dict") else tr for tr in trajs]
-    if params.requires_ledger and not all(ledger_complete(tr) for tr in trajs):
+    if params.requires_ledger and not all(ledger_complete(tr, gate_two_pass=params.gate_two_pass) for tr in trajs):
         return outcome_only_group(trajs, params)
     if confident is not None and len(confident) != len(trajs):
         raise ValueError("confident must contain one mapping per trajectory")

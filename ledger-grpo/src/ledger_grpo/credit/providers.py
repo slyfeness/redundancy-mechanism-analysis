@@ -69,11 +69,12 @@ class LedgerProvider(Protocol):
 
 def _shared_conditions(results):
     if results:
-        conditions = results[0].conds
-        if any(result.conds != conditions for result in results):
+        conditions = next((result.conds for result in results if result.conds), [])
+        if any(result.conds and result.conds != conditions for result in results):
             raise ValueError("All trajectories in one group must share exactly one condition list")
         for result in results:
-            result.conds = conditions
+            if result.conds or not result.records:
+                result.conds = conditions
     return results
 
 
@@ -96,6 +97,8 @@ class RecordedLedgerProvider:
         already_current = bool(derived and all("route" in row for row in derived))
         if cfg.use_q3 and already_current:
             raise ValueError("C_W_v211 requires saved v13.4 ledgers with Q3 verdicts")
+        if already_current:
+            ledger_v135.annotate_routes(records, derived, k_hold=cfg.k_hold, k_restrict=cfg.k_restrict)
         if cfg.use_q3 or not rows or already_current:
             return records, derived
         header = payload(rows[0]["calls"]["Q1"])
@@ -128,7 +131,7 @@ class RecordedLedgerProvider:
         token_counts["F"] = reference_length(final.get("下一轮思考")) + reference_length(final.get("正式答案"))
         confident = {row["step"]: True for row in rows}
         confidence_path = self.confidence_root / trajectory_id / "CONFIDENCE.jsonl"
-        if confidence_path.is_file():
+        if cfg.use_q3 and confidence_path.is_file():
             for line in confidence_path.read_text(encoding="utf-8").splitlines():
                 if line.strip():
                     value = json.loads(line)
@@ -137,16 +140,18 @@ class RecordedLedgerProvider:
         second_path = self.state_root / trajectory_id / (other + ".jsonl")
         records_b = derived_b = None
         second = []
-        if second_path.is_file() and (cfg.gate_two_pass or self.compare_b):
+        if second_path.is_file() and (cfg.gate_two_pass or cfg.gate_low_conf or self.compare_b):
             second = self._read(trajectory_id, other)
-            if [row["step"] for row in second] != [row["step"] for row in rows]:
-                raise ValueError("Paired ledgers must cover the same steps")
-            other_conditions = [condition["id"] for condition in literal(payload(second[0]["calls"]["Q1"])["条件清单"])]
-            if other_conditions != conditions:
-                raise ValueError("Paired ledgers must share the same conditions")
-            records_b, derived_b = self._project(second, conditions, cfg, gold, t_belief, group)
-            if self.compare_b and not confidence_path.is_file():
-                confident.update(_confidence(derived, derived_b))
+            if [row["step"] for row in second] == [row["step"] for row in rows]:
+                other_conditions = [condition["id"] for condition in literal(
+                    payload(second[0]["calls"]["Q1"])["条件清单"])]
+                if other_conditions != conditions:
+                    raise ValueError("Paired ledgers must share the same conditions")
+                records_b, derived_b = self._project(second, conditions, cfg, gold, t_belief, group)
+                if not cfg.use_q3 or (self.compare_b and not confidence_path.is_file()):
+                    confident.update(_confidence(derived, derived_b))
+            else:
+                records_b, derived_b = [], []
         confident["F"] = confident.get(rows[-1]["step"], True)
         return LedgerResult(records, derived, conditions, confident, token_counts, rows,
                             records_b=records_b, derived_b=derived_b, rows_b=second)
@@ -259,23 +264,25 @@ class LiveJudgeLedgerProvider:
                                                                 rate, seed="q3_audit")
         self.stats["q3_audit_groups"] += audit
 
-        def run_pass(audit_q3):
+        def run_pass(variant, audit_q3):
             # Keep group-level Q2 caching while letting the second pass sample independently.
             cache = {} if self.cache_q2 else None
+            select_receipts = getattr(self.client, "for_pass", None)
+            send = select_receipts(variant) if select_receipts is not None else self.client
             results = []
             for case, metadata in entries:
                 if case.get("conditions") not in (None, conditions):
                     raise ValueError("Frozen conditions disagree within a question group")
                 case["conditions"] = conditions
-                rows = execute(case, metadata, self.prompts, self.client, cfg=self.cfg,
+                rows = execute(case, metadata, self.prompts, send, cfg=self.cfg,
                     q1_early_stop=self.q1_early_stop, q2_cache=cache, conditions_version=self.conditions_version,
                     stats=self.stats, use_q3=credit.use_q3, q3_audit=audit_q3,
                     k_hold=credit.k_hold, k_restrict=credit.k_restrict)
                 results.append(rows)
             return results
 
-        primary = run_pass(audit)
-        secondary = run_pass(False) if credit.gate_two_pass else [[] for _ in primary]
+        primary = run_pass("a", audit)
+        secondary = run_pass("b", False) if credit.gate_two_pass else [[] for _ in primary]
         results = []
         for (case, _), rows, rows_b in zip(entries, primary, secondary, strict=True):
             records, derived = [row["record"] for row in rows], [row["derived"] for row in rows]

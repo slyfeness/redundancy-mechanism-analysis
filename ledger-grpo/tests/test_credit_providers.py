@@ -9,6 +9,7 @@ from ledger_grpo.credit.judge import (ReplayJudgeClient, ReplayMissError, HttpJu
     HttpJudgeConfig, request_body, q2_cache_key)
 from ledger_grpo.credit.pipeline import WIRE, execute
 from ledger_grpo.credit.config import CreditConfig
+from ledger_grpo.credit.group import credit_for_group
 from ledger_grpo.credit.providers import (RecordedLedgerProvider, NullLedgerProvider,
     MockLedgerProvider, LiveJudgeLedgerProvider, blank_skippable_q5, q5_skip_candidates)
 
@@ -180,6 +181,76 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(client.online_requests, 0)
         provider = LiveJudgeLedgerProvider(client, {})
         self.assertEqual(provider.cfg["model"], "synthetic")
+
+    def test_incomplete_recorded_pass_causes_whole_group_fallback(self):
+        case, metadata, prompts = fixture()
+        rows = execute(case, metadata, prompts, SyntheticJudge())
+        frozen = "\n".join(json.dumps(row) for row in rows)
+        for empty_pass in ("a", "b"):
+            with self.subTest(empty_pass=empty_pass), TemporaryDirectory() as temporary:
+                for i in (1, 2):
+                    target = Path(temporary) / f"synthetic__rep{i}"
+                    target.mkdir()
+                    for variant in ("a", "b"):
+                        (target / f"{variant}.jsonl").write_text(
+                            "" if i == 2 and variant == empty_pass else frozen, encoding="utf-8"
+                        )
+                provider = RecordedLedgerProvider(temporary)
+                trajectories = [{"qid": "synthetic", "rollout": i, "gold": metadata["gold"]} for i in (0, 1)]
+                results = [
+                    dict(records=result.records, derived=result.derived, conds=result.conds,
+                         records_b=result.records_b, derived_b=result.derived_b, tokens={1: 4, "F": 2},
+                         outcome={"Y": i == 0, "submitted": True})
+                    for i, result in enumerate(provider.build(trajectories))
+                ]
+                credits = credit_for_group(results)
+                self.assertTrue(all(credit["log"].get("ledger_fallback") for credit in credits))
+
+    def test_replay_uses_secondary_q2_even_when_primary_receipts_repeat(self):
+        case, metadata, prompts = fixture()
+        with TemporaryDirectory() as temporary:
+            paths, group = [], []
+            for i in (1, 2):
+                entry = deepcopy(case)
+                entry["trajectory_id"] = f"synthetic__rep{i}"
+                group.append({"metadata": {"case": entry, "ledger_metadata": metadata}})
+                (Path(temporary) / entry["trajectory_id"]).mkdir()
+            for variant, fact in (("a", "primary observation"), ("b", "secondary observation")):
+                for item in group:
+                    entry = item["metadata"]["case"]
+                    source = SyntheticJudge()
+
+                    def send(*args, **kwargs):
+                        _, key, _, _, _ = args
+                        parsed, error, receipts = source(*args, **kwargs)
+                        if key.startswith("Q2"):
+                            parsed["facts"][0]["fact"] = fact
+                        return parsed, error, receipts
+
+                    rows = execute(entry, metadata, prompts, send)
+                    path = Path(temporary) / entry["trajectory_id"] / f"{variant}.jsonl"
+                    path.write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
+                    paths.append(path)
+            replay = ReplayJudgeClient.from_state_files(paths)
+            results = LiveJudgeLedgerProvider(replay, prompts, q3_audit_rate=0).build(group)
+            for item in results:
+                self.assertEqual(item.records[0]["evidence"][0]["fact"], "primary observation")
+                self.assertEqual(item.records_b[0]["evidence"][0]["fact"], "secondary observation")
+            self.assertEqual(replay.online_requests, 0)
+
+    def test_recorded_behavioural_rows_honor_new_route_threshold(self):
+        case, metadata, prompts = fixture()
+        case["steps"] = [dict(deepcopy(case["steps"][0]), step=i, returns=[], new_docs=0)
+                         for i in range(1, 5)]
+        rows = execute(case, metadata, prompts, SyntheticJudge(), use_q3=False, k_hold=3)
+        holds = [row["step"] for row in rows if "坚持无据候选" in row["derived"]["route"]]
+        self.assertTrue(holds)
+        with TemporaryDirectory() as temporary:
+            target = Path(temporary) / case["trajectory_id"]
+            target.mkdir()
+            (target / "a.jsonl").write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
+            result = RecordedLedgerProvider(temporary).load(case["trajectory_id"], config=CreditConfig(k_hold=9))
+        self.assertFalse(any("坚持无据候选" in row["route"] for row in result.derived))
 
 
 if __name__ == "__main__":
