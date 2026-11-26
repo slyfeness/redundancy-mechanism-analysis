@@ -125,7 +125,7 @@ def prepare_credit_native_records(native_trajectories, groups, provider=None, co
                                   max_generated_tokens, training_step=0, sampling_seed=0, normalization='fixed'):
     """Provider -> group credit -> exact native HF actions, with no model calls."""
     from ..hf_native import prepare_native_records
-    from .group import credit_for_group
+    from .group import credit_for_group, ledger_complete
     from .allocate import length_tertiles
     from .metrics import collect_credit_metrics
     from .process_sup import eligible_group, select_masked_nll_units, zero_sum_for_trajectory
@@ -153,16 +153,20 @@ def prepare_credit_native_records(native_trajectories, groups, provider=None, co
                 raise ValueError('provider must return exactly one ledger per trajectory')
             for tr, result in zip(group, results):
                 tr.records, tr.derived, tr.conds, tr.confident = deepcopy(tuple(result))
+        fallback = selected and cfg.requires_ledger and not all(ledger_complete(tr.to_credit_dict()) for tr in group)
         for tr in group:
-            if tr.records and len(tr.records) == len(tr.derived):
+            if not fallback and tr.records and len(tr.records) == len(tr.derived):
                 tr.records, tr.derived, tr.conds = validate_ledger(tr.records, tr.derived, tr.conds)
         rows = [tr.to_credit_dict(cfg.c_ref) for tr in group]
         if not cfg.requires_ledger:
             rows = [dict(deepcopy(row), records=[], derived=[]) for row in rows]
         full = credit_for_group(rows, cfg, confident=[tr.confident for tr in group], training_step=training_step,
-                                length_cutpoints=length_cutpoints) if selected else deepcopy(baseline)
-        chosen = select_masked_nll_units(group, full, cfg) if selected else [set() for _ in group]
-        if selected and cfg.process_sup == 'zero_sum' and eligible_group(group, full):
+                                length_cutpoints=length_cutpoints) if selected and not fallback else deepcopy(baseline)
+        if fallback:
+            for credit in full:
+                credit['log'].update(mode='ledger_fallback', ledger_fallback=True)
+        chosen = select_masked_nll_units(group, full, cfg) if selected and not fallback else [set() for _ in group]
+        if selected and not fallback and cfg.process_sup == 'zero_sum' and eligible_group(group, full):
             for credit in full:
                 signals, log = zero_sum_for_trajectory(credit, cfg)
                 credit['A'] = {u: value + signals[u] for u,value in credit['A'].items()}
@@ -202,6 +206,9 @@ def prepare_credit_native_records(native_trajectories, groups, provider=None, co
         modules={'process_selected_units': process_units, 'process_selected_tokens': prepared['metrics']['process_selected_tokens'],
                  'ledger_sample_fraction': prepared['metrics']['sampled_groups'] / len(groups),
                  'ledger_correction_weight': 1 / cfg.ledger_sample_q if cfg.ledger_sample_correction else 1.})
+    prepared['metrics'].update(ledger_fallback_groups=prepared['credit_metrics']['groups']['ledger_fallback_count'],
+                               ledger_fallback_trajectories=prepared['credit_metrics']['credit']['ledger_fallback_trajectories'],
+                               no_receiver=prepared['credit_metrics']['credit']['no_receiver_count'])
     return prepared
 
 

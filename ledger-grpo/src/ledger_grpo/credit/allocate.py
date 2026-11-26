@@ -17,9 +17,11 @@ def allocate(units, nu, A_hat, role, e, params=PARAMS):
     S = [u for u in units if role[u] in ("C", "R")]
     recv = [u for u in S if role[u] == ("C" if A_hat > 0 else "R") and e[u] > 0]
     give = [u for u in S if u not in recv]
-    if not recv or not give:
-        log["mode"] = "no_receiver" if not recv else "nothing_to_move"
+    if not give:
+        log["mode"] = "nothing_to_move"
         return A, log
+    if not recv:
+        log["no_receiver"] = True
     B = abs(A_hat) * sum(nu[u] for u in S)
     amax = params["kappa"] * abs(A_hat)
     capacity = sum(nu[u] * amax for u in recv)
@@ -87,9 +89,11 @@ def allocate_mode(units, nu, A_hat, role, e, params=PARAMS, *, step_credit=None)
     S = [u for u in units if role[u] in ("C", "R")]
     recv = [u for u in S if role[u] == ("C" if A_hat > 0 else "R") and e[u] > 0]
     give = [u for u in S if u not in recv]
-    if not recv or not give:
-        log["mode"] = "no_receiver" if not recv else "nothing_to_move"
+    if not give:
+        log["mode"] = "nothing_to_move"
         return A, log
+    if not recv:
+        log["no_receiver"] = True
     for u in give:
         A[u] = 0.0
     log.update(mode="clear_only", receivers=len(recv),
@@ -165,12 +169,14 @@ def shuffle_roles(units, role, e, tokens, *, training_step=0, qid="", rollout=0,
         rng.shuffle(pairs)
         for u, (r, weight) in zip(group, pairs):
             shuffled_role[u], shuffled_e[u] = r, weight
-    ks = {}
+    ks, samples = {}, {}
     for r in ("C", "R"):
         before = [u for u in nonfinal if role[u] == r]
         after = [u for u in nonfinal if shuffled_role[u] == r]
         ks[r + "_length"] = _ks_distance([tokens.get(u, 0) for u in before], [tokens.get(u, 0) for u in after])
         ks[r + "_position"] = _ks_distance([position[u] for u in before], [position[u] for u in after])
-    return shuffled_role, shuffled_e, dict(shuffle_ks=ks, shuffle_seed=seed,
+        samples[r + "_length"] = ([tokens.get(u, 0) for u in before], [tokens.get(u, 0) for u in after])
+        samples[r + "_position"] = ([position[u] for u in before], [position[u] for u in after])
+    return shuffled_role, shuffled_e, dict(shuffle_ks=ks, shuffle_samples=samples, shuffle_seed=seed,
                                           shuffle_strata=groups, shuffle_relaxation=levels,
                                           length_cutpoints=tuple(cuts))

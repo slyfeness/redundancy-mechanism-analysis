@@ -233,19 +233,20 @@ class Trajectory:
 
     def to_credit_dict(self, c_ref=3146):
         tool_units = [u.unit_id for u in self.units if u.unit_id != 'F' and u.kind == 'tool']
-        unmatched = tool_units if len(self.records) != len(tool_units) or len(self.derived) != len(self.records) else []
+        exec_counts = {u.unit_id: max(1, len(u.tool_names)) for u in self.units if u.unit_id in tool_units}
         unfinished = [u.unit_id for u in self.units if u.unit_id != 'F' and u.kind != 'tool']
         explicit = self.metadata.get('unmatched_units', [])
         if any(u not in {unit.unit_id for unit in self.units} for u in explicit):
             raise ValueError('explicit unmatched unit does not belong to trajectory')
-        unmatched = list(dict.fromkeys(list(unmatched) + unfinished + list(explicit)))
+        unmatched = list(dict.fromkeys(unfinished + list(explicit)))
         return dict(qid=self.qid, rollout=self.rollout, records=self.records, derived=self.derived,
-                    conds=self.conds or ['A'], outcome=self.outcome, gold=self.gold,
+                    conds=self.conds, outcome=self.outcome, gold=self.gold,
                     has_final=any(u.unit_id == 'F' for u in self.units),
                     tokens={u.unit_id: u.generated_tokens for u in self.units},
                     costs={u.unit_id: (u.generated_tokens + u.returned_tokens) / c_ref for u in self.units},
                     unit_types={u.unit_id: u.kind for u in self.units}, unmatched_units=unmatched,
-                    confident=self.confident, tool_call_count=len(tool_units), unfinished_units=unfinished)
+                    confident=self.confident, tool_units=len(tool_units), exec_counts=exec_counts,
+                    tool_call_count=sum(exec_counts.values()), unfinished_units=unfinished)
 
 
 @dataclass

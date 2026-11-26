@@ -5,6 +5,7 @@ from copy import deepcopy
 from math import sqrt
 
 from .utility import best_candidate_progress
+from .allocate import _ks_distance
 
 
 def _get(value, name, default=None):
@@ -150,6 +151,8 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
     group_result = {name + "_rate": _mean(group_flags[name]) for name in
                     ("all_correct", "mixed", "all_wrong", "all_unsubmitted", "zero_advantage")}
     group_result["count"] = len(group_indices)
+    group_result["ledger_fallback_count"] = sum(any(credits[i].get("log", {}).get("ledger_fallback", False) for i in indices)
+                                                for indices in group_indices)
     unit_counts = {r: 0 for r in ("C", "R", "K", "F")}
     token_counts = dict(unit_counts)
     events = {name: dict(count=0, amount=0.0) for name in
@@ -158,6 +161,7 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
     ratios, effective, deviations, dropped_fractions = [], [], [], []
     zeroed = zero_base_nonzero = unmatched = 0
     shuffle = defaultdict(list)
+    shuffle_samples = defaultdict(lambda: [[], []])
     for tr, cr, (tokens, _) in zip(trajectories, credits, tokens_and_returns):
         a = cr["A_hat"]
         for u, role in cr["role"].items():
@@ -181,6 +185,9 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
         dropped_fractions.append(log.get("dropped", 0.0) / budget if budget else 0.0)
         for name, value in log.get("shuffle_ks", {}).items():
             shuffle[name].append(value)
+        for name, (before, after) in log.get("shuffle_samples", {}).items():
+            shuffle_samples[name][0].extend(before)
+            shuffle_samples[name][1].extend(after)
         for source in ("P", "R"):
             for event_list in cr.get(source, {}).values():
                 for amount, tag in event_list:
@@ -201,6 +208,8 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
         advantage_ratio_max=max((v for v, count in ratios if count > 0), default=0.0),
         advantage_ratio_p95=_weighted_quantile(ratios, .95),
         nonzero_advantage_with_zero_base_tokens=zero_base_nonzero,
+        no_receiver_count=sum(bool(cr.get("log", {}).get("no_receiver")) for cr in credits),
+        ledger_fallback_trajectories=sum(bool(cr.get("log", {}).get("ledger_fallback")) for cr in credits),
         infeasible_count=sum(bool(cr.get("log", {}).get("infeasible")) for cr in credits),
         infeasible_rate=_mean([bool(cr.get("log", {}).get("infeasible")) for cr in credits]),
         dropped_mass=sum(cr.get("log", {}).get("dropped", 0.0) for cr in credits),
@@ -212,6 +221,7 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
     policy_result.update(deepcopy(policy or {}))
     module_result = dict(process_selected_units=0, process_selected_tokens=0, auxiliary_loss=0.0,
                          ledger_sample_fraction=1.0, ledger_correction_weight=1.0,
+                         shuffle_ks_batch={key: _ks_distance(*values) for key, values in shuffle_samples.items()},
                          shuffle_ks_mean={key: _mean(values) for key, values in shuffle.items()},
                          shuffle_ks_max={key: max(values) for key, values in shuffle.items()})
     module_result.update(deepcopy(modules or {}))

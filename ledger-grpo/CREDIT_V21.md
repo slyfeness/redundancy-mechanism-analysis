@@ -1,4 +1,4 @@
-# Credit v2.1 integration
+# Credit v2.1.1 integration
 
 Credit v2.1 is an optional branch of the existing recorder → `hf_pilot_train.py`
 → native HF/FSDP worker. The legacy scoring path remains available. Importing or
@@ -40,8 +40,11 @@ The recorder's `native_turn_layout` provides the exact probability-ratio axis.
 Each generated position must have exactly one owner. Missing ownership,
 overlaps, or ownership of an observation/prompt token raise an error. Split M1
 stages with the same `model_call_index` merge their ranges and parallel returns.
-If ledger/model-call counts differ, all ambiguous tool units are protected as K
-and counted; they retain the trajectory advantage. Independently detected
+For ledger-required presets, an incomplete ledger in any selected trajectory
+makes the whole group fall back to preset A, without process supervision or
+zero-sum signals. Completeness requires one record and one derived row per
+tool-bearing unit; zero-tool trajectories are complete. Missing ledgers also
+fall back, including null providers. Independently detected
 per-unit mismatches can be supplied in `Trajectory.metadata['unmatched_units']`;
 this protects only those units. An unfinished or empty terminal model call is
 retained as K, counted in generated-token cost, and does not count as a tool call,
@@ -175,3 +178,21 @@ Synthetic verification commands (using an existing environment):
 PYTHONPATH=src:scripts python -m pytest tests
 PYTHONPATH=src:scripts python -m unittest discover -s tests -p 'test_credit*.py'
 ```
+
+## v2.1.1 patch
+
+`H` is the budget in executed tool calls. A model-call unit occupies the number
+of its deduplicated, actually executed tool events; calls not dispatched because
+of the budget do not count. `exec_counts` advances progress-area time, and its
+sum drives A_eff. Without explicit counts, reference records each occupy one
+slot for v2.1 compatibility. Unit/token ownership is unchanged.
+
+When give-up units exist but no receiver exists, allocation has zero capacity:
+default `drop` clears them and records the dropped mass and `no_receiver`.
+`abstain` and `partial` preserve the base advantage; `clear_only` clears them.
+No give-up units still means nothing to move.
+
+D reports `shuffle_ks_batch` from pooled C/R samples over the entire batch;
+per-trajectory KS maximum remains a separate diagnostic. Metrics include
+ledger-fallback groups/trajectories and no-receiver counts. Live ledgers enable
+Q1 early stopping by default; replay tests explicitly control that switch.

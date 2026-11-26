@@ -6,6 +6,30 @@ from .roles import assign_roles
 from .allocate import allocate_mode, length_tertiles, shuffle_roles
 
 
+def ledger_complete(tr):
+    """A trajectory's ledger is complete when it has one record (and derived row) per tool-call unit."""
+    expected = tr.get("tool_units")
+    if expected is None:
+        expected = sum(1 for u in tr["tokens"] if u != "F")
+    recs, der = tr.get("records") or [], tr.get("derived") or []
+    return len(recs) == len(der) == expected and (expected == 0 or bool(tr.get("conds")))
+
+
+def outcome_only_group(trajs, params=PARAMS):
+    """Preset-A credit for a whole group: U = Y - beta_n*N, every unit keeps the LOO advantage."""
+    U = [(1 if tr["outcome"].get("Y") else 0) - params["beta_n"] * (0 if tr["outcome"].get("submitted") else 1)
+         for tr in trajs]
+    out = []
+    for tr, u, a in zip(trajs, U, loo_advantages(U)):
+        has_final = tr["outcome"].get("submitted") or tr["tokens"].get("F", 0) > 0
+        units = [x for x in tr["tokens"] if x != "F"] + (["F"] if has_final else [])
+        role = {x: ("F" if x == "F" else "K") for x in units}
+        out.append(dict(U=u, info=dict(J=0.0, W=0.0, executions=None), A_hat=a, A={x: a for x in units},
+                        role=role, e={x: 0.0 for x in units}, P={}, R={}, diag={},
+                        nu=token_shares(units, tr["tokens"]), log=dict(mode="ledger_fallback", ledger_fallback=True)))
+    return out
+
+
 def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
                      length_cutpoints=None):
     """Return reference dictionaries; accept schema trajectories or mappings.
@@ -18,6 +42,8 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
     if hasattr(trajs, "trajectories"):
         trajs = trajs.trajectories
     trajs = [tr.to_credit_dict() if hasattr(tr, "to_credit_dict") else tr for tr in trajs]
+    if params.requires_ledger and not all(ledger_complete(tr) for tr in trajs):
+        return outcome_only_group(trajs, params)
     if confident is not None and len(confident) != len(trajs):
         raise ValueError("confident must contain one mapping per trajectory")
     if length_cutpoints is None and params.step_credit == "shuffled":
@@ -38,7 +64,8 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
         waste = sum(params["lam"] * (tr.get("costs") or {}).get(u, 1.0)
                     for u in units if any(t.startswith("浪费") for _, t in R.get(u, [])))
         U, info = utility_reward(records, derived, conds, tr["outcome"], waste, params,
-                                 tool_call_count=tr.get("tool_call_count", sum(u != "F" for u in units)))
+                                 tool_call_count=tr.get("tool_call_count", sum(u != "F" for u in units)),
+                                 exec_counts=tr.get("exec_counts"))
         pre.append((units, P, R, D, U, info))
     A_hat = loo_advantages([x[4] for x in pre])
     out = []

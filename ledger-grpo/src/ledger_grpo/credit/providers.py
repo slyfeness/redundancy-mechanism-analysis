@@ -158,7 +158,7 @@ class MockLedgerProvider:
 
 
 class LiveJudgeLedgerProvider:
-    def __init__(self, client, prompts, *, cfg=None, q1_early_stop=False, cache_q2=True, conditions_version="v13.4", case_loader=None, condition_builder=None):
+    def __init__(self, client, prompts, *, cfg=None, q1_early_stop=True, cache_q2=True, conditions_version="v13.4", case_loader=None, condition_builder=None):
         self.client, self.prompts = client, dict(prompts)
         client_config = getattr(client, "config", None)
         client_wire = client_config.wire() if isinstance(client_config, HttpJudgeConfig) else {}

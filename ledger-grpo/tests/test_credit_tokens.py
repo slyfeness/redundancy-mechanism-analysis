@@ -41,11 +41,13 @@ class CreditTokenTests(unittest.TestCase):
                 write_token_advantages(Trajectory('q', 0, units, {'Y': 0, 'submitted': False}, response_mask=mask),
                                        {u.unit_id: 1. for u in units})
 
-    def test_mismatch_marks_all_ambiguous_calls_and_group_enforces_question(self):
+    def test_incomplete_ledger_is_distinct_from_explicit_mismatch(self):
         tr = Trajectory('q', 0, [Unit(1, [(0, 1)], 1), Unit(2, [(2, 3)], 1)],
                         {'Y': False, 'submitted': False}, records=[{'step': 1}], derived=[{'step': 1}],
                         conds=['A'], response_mask=[1, 0, 1])
-        self.assertEqual(tr.to_credit_dict()['unmatched_units'], [1, 2])
+        from ledger_grpo.credit.group import ledger_complete
+        self.assertFalse(ledger_complete(tr.to_credit_dict()))
+        self.assertEqual(tr.to_credit_dict()['unmatched_units'], [])
         tr.records = [{'step': 1}, {'step': 2}]
         tr.derived = [{'step': 1}, {'step': 2}]
         tr.metadata['unmatched_units'] = [2]

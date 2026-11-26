@@ -99,8 +99,9 @@ class CreditCoreTests(unittest.TestCase):
         C = self.module("allocate")
         A, log = C.allocate([1, "F"], {1: .8, "F": .2}, 1.,
                             {1: "R", "F": "F"}, {1: 1., "F": 0.})
-        self.assertEqual(A, {1: 1., "F": 1.})
-        self.assertEqual(log["mode"], "no_receiver")
+        self.assertEqual(A, {1: 0., "F": 1.})
+        self.assertTrue(log["no_receiver"])
+        self.assertEqual(log["mode"], "drop")
 
     def test_loo_hand_values_and_degenerate_groups(self):
         U = self.module("utility")
