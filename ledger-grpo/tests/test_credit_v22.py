@@ -12,8 +12,9 @@ def check(condition, message):
     assert condition, message
 
 
-def step(t, targets, evidence=(), excluded=(), chain=None, restriction=""):
-    return {"step": t, "query": f"q{t}", "targets": [{"object": o, "conditions": cs, "restriction": restriction} for o, cs in targets],
+def step(t, targets, evidence=(), excluded=(), chain=None, restriction="", query=None):
+    return {"step": t, "query": f"q{t}" if query is None else query,
+            "targets": [{"object": o, "conditions": cs, "restriction": restriction} for o, cs in targets],
             "new_docs": 1, "old_docs": 0, "strict": [], "evidence": list(evidence), "verdicts": {}, "earlier_adopted": [],
             "excluded": list(excluded), "answer_chain": chain, "assertions": []}
 
@@ -87,7 +88,8 @@ def test_knowing_error():
 
 def test_hold_and_restrict():
     rec = {"query_id": "s", "group": "N", "conditions": ["c1", "A"], "steps": [
-        step(t, [("未知", ["c1"])], chain=CH("Zed Corp")) for t in range(1, 6)]}
+        step(t, [("未知", ["c1"])], chain=CH("Zed Corp"), query=f"Zed Corp history {t}")
+        for t in range(1, 6)]}
     L = labels_of(rec)
     check(["坚持无据候选" in x for x in L] == [False, False, True, True, True], f"hold without support k=3: {L}")
     rec["steps"][3]["evidence"] = [ev("E1@4", "Zed Corp", ["c1+"])]
@@ -98,6 +100,24 @@ def test_hold_and_restrict():
         step(t, [("未知", ["c1"])], restriction=("1990" if t in (1, 2, 3) else "")) for t in range(1, 5)]}
     L = labels_of(rec)
     check(["沿限定走" in x for x in L] == [False, True, True, False], f"restriction route k=2: {L}")
+
+
+def test_candidate_in_ledger_without_named_queries_is_not_pursued():
+    rec = {"conditions": ["c1", "A"], "steps": [
+        step(t, [("未知", ["c1"])], chain=CH("Vela Foundry"), query=f"workshop clues {t}")
+        for t in range(1, 6)]}
+    assert all("坚持无据候选" not in labels for labels in labels_of(rec))
+
+
+def test_named_object_attribute_checks_reset_restriction_run():
+    rec = {"conditions": ["c1", "A"], "steps": [
+        step(1, [("Vela Foundry", ["c1"])], restriction="1990", query="Vela Foundry opened 1990"),
+        step(2, [("未知", ["c1"])], restriction="1990", query="workshops opened 1990"),
+        step(3, [("未知", ["c1"])], restriction="1990", query="Vela Foundry registry 1990"),
+        step(4, [("未知", ["c1"])], restriction="1990", query="workshops active 1990"),
+        step(5, [("未知", ["c1"])], restriction="1990", query="1990 artisan workshop"),
+    ]}
+    assert ["沿限定走" in labels for labels in labels_of(rec)] == [False, False, False, False, True]
 
 
 def test_credit_route_and_gate():

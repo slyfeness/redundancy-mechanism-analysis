@@ -19,6 +19,11 @@ persisting in a refuted route, holding an unsupported candidate, and repeatedly
 searching under a self-imposed restriction. The default run lengths are
 `k_hold=3` and `k_restrict=2`. Unsupported assertions are diagnostics.
 
+In v13.5.1, an unsupported hold advances only when the query names the
+candidate or an object linked to it. A restriction run advances only when
+the target is still unknown and the query names no object already in the
+ledger. A query that checks a known object's attributes resets that run.
+
 ## Providers and credit
 
 - The online provider runs Q1, Q2, Q4, and Q5 as needed with the frozen

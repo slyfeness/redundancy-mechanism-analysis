@@ -1,4 +1,4 @@
-"""Behavioural uptake and route labels layered on the frozen v13.4 ledger."""
+"""Behavioural uptake and v13.5.1 route labels over the frozen v13.4 ledger."""
 import copy
 import re
 
@@ -76,6 +76,7 @@ def annotate_routes(steps, derived, *, k_hold=K_HOLD, k_restrict=K_RESTRICT):
     """Apply route thresholds to a ledger without recomputing evidence uptake."""
     exempt_used = set()                   # issues whose one checking step was already used
     hold_run, restrict_run = 0, 0
+    known = []
     for i, (st, d) in enumerate(zip(steps, derived, strict=True)):
         labels = d["labels"]
         labels[:] = [label for label in labels if label not in ROUTE_LABELS]
@@ -112,17 +113,29 @@ def annotate_routes(steps, derived, *, k_hold=K_HOLD, k_restrict=K_RESTRICT):
         if open_now and not progress:
             route.append("知错不改")
         # ---- 坚持无据候选
-        if not ans or progress or any(v[0] == "✔" for v in d["view"].values()):
+        query = st.get("query") or ""
+        names_candidate = any(mentioned(name, query) for name in members if name)
+        unsupported_hold = ans and not progress and not any(v[0] == "✔" for v in d["view"].values())
+        if not unsupported_hold or not held:
             hold_run = 0
-        else:
-            hold_run = hold_run + 1 if held else 1
-        if hold_run >= k_hold:
+        if unsupported_hold and names_candidate:
+            hold_run += 1
+        if hold_run >= k_hold and names_candidate:
             route.append("坚持无据候选")
         # ---- 沿限定走
-        restricted = any((x.get("restriction") or "").strip() for x in st.get("targets", []))
-        restrict_run = restrict_run + 1 if (restricted and not progress) else 0
+        targets = st.get("targets", [])
+        named_targets = [target["object"] for target in targets
+                         if (target.get("object") or UNKNOWN) != UNKNOWN]
+        restricted = any((target.get("restriction") or "").strip() for target in targets)
+        names_known = bool(named_targets) or any(mentioned(name, query) for name in known)
+        restrict_run = restrict_run + 1 if (restricted and not progress and not names_known) else 0
         if restrict_run >= k_restrict:
             route.append("沿限定走")
+        new_names = (named_targets + [item.get("about") for item in st.get("evidence", [])]
+                     + members + [item.get("object") for item in st.get("excluded", [])])
+        for name in new_names:
+            if name and not any(same(name, previous) for previous in known):
+                known.append(name)
         for x in route:
             if x not in labels:
                 labels.append(x)

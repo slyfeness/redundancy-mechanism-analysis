@@ -240,7 +240,8 @@ class ProviderTests(unittest.TestCase):
 
     def test_recorded_behavioural_rows_honor_new_route_threshold(self):
         case, metadata, prompts = fixture()
-        case["steps"] = [dict(deepcopy(case["steps"][0]), step=i, returns=[], new_docs=0)
+        case["steps"] = [dict(deepcopy(case["steps"][0]), step=i, returns=[], new_docs=0,
+                              queries=["Candidate Alpha history"])
                          for i in range(1, 5)]
         rows = execute(case, metadata, prompts, SyntheticJudge(), use_q3=False, k_hold=3)
         holds = [row["step"] for row in rows if "坚持无据候选" in row["derived"]["route"]]
