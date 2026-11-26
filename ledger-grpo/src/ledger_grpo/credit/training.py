@@ -120,6 +120,17 @@ def _groups(values):
     return [Group(qid, trajectories) for qid, trajectories in grouped.items()]
 
 
+def _build_ledgers(group, provider, cfg):
+    build_for_credit = getattr(provider, 'build_for_credit', None)
+    results = build_for_credit(group, config=cfg) if build_for_credit is not None else provider.build(group)
+    if len(results) != len(group):
+        raise ValueError('provider must return exactly one ledger per trajectory')
+    for tr, result in zip(group, results, strict=True):
+        tr.records, tr.derived, tr.conds, tr.confident = deepcopy(tuple(result))
+        tr.records_b = deepcopy(getattr(result, 'records_b', None))
+        tr.derived_b = deepcopy(getattr(result, 'derived_b', None))
+
+
 @torch.no_grad()
 def prepare_credit_native_records(native_trajectories, groups, provider=None, config=None, *,
                                   max_generated_tokens, training_step=0, sampling_seed=0, normalization='fixed'):
@@ -148,18 +159,18 @@ def prepare_credit_native_records(native_trajectories, groups, provider=None, co
         baseline = credit_for_group([dict(tr.to_credit_dict(cfg.c_ref), records=[], derived=[])
                                      for tr in group], baseline_config)
         if selected and cfg.requires_ledger and provider is not None:
-            results = provider.build(group)
-            if len(results) != len(group):
-                raise ValueError('provider must return exactly one ledger per trajectory')
-            for tr, result in zip(group, results):
-                tr.records, tr.derived, tr.conds, tr.confident = deepcopy(tuple(result))
+            _build_ledgers(group, provider, cfg)
         fallback = selected and cfg.requires_ledger and not all(ledger_complete(tr.to_credit_dict()) for tr in group)
         for tr in group:
             if not fallback and tr.records and len(tr.records) == len(tr.derived):
                 tr.records, tr.derived, tr.conds = validate_ledger(tr.records, tr.derived, tr.conds)
+                if cfg.gate_two_pass and (tr.records_b is not None or tr.derived_b is not None):
+                    if tr.records_b is None or tr.derived_b is None or len(tr.records_b) != len(tr.records):
+                        raise ValueError('both passes must cover the same ledger units')
+                    tr.records_b, tr.derived_b, _ = validate_ledger(tr.records_b, tr.derived_b, tr.conds)
         rows = [tr.to_credit_dict(cfg.c_ref) for tr in group]
         if not cfg.requires_ledger:
-            rows = [dict(deepcopy(row), records=[], derived=[]) for row in rows]
+            rows = [dict(deepcopy(row), records=[], derived=[], records_b=None, derived_b=None) for row in rows]
         full = credit_for_group(rows, cfg, confident=[tr.confident for tr in group], training_step=training_step,
                                 length_cutpoints=length_cutpoints) if selected and not fallback else deepcopy(baseline)
         if fallback:
@@ -225,11 +236,7 @@ def make_credit_score_payload(native_batch_path, trajectories, config=None, *, m
     for group in groups:
         from .sampling import select_group
         if provider is not None and cfg.requires_ledger and select_group(group.qid, training_step, cfg.ledger_sample_q, sampling_seed):
-            results = provider.build(group)
-            if len(results) != len(group):
-                raise ValueError('provider ledger count differs from group size')
-            for tr, result in zip(group, results):
-                tr.records, tr.derived, tr.conds, tr.confident = deepcopy(tuple(result))
+            _build_ledgers(group, provider, cfg)
     raw = Path(native_batch_path).read_bytes()
     batch = json.loads(raw)
     payload = {'input_binding': {'native_batch_sha256': hashlib.sha256(raw).hexdigest(),

@@ -1,6 +1,9 @@
 """One question group to per-unit advantages; C_W retains reference arithmetic."""
 from .config import PARAMS, CreditConfig
-from .events import extract_events
+from collections import Counter
+
+from .events import extract_events, gate_two_pass
+from .ledger_v135 import ROUTE_LABELS
 from .utility import utility_reward, token_shares, loo_advantages
 from .roles import assign_roles
 from .allocate import allocate_mode, length_tertiles, shuffle_roles
@@ -58,6 +61,24 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
         else:
             units = list(range(1, len(records) + 1)) + (["F"] if has_final else [])
             P, R, D = {}, {}, {}
+        dropped = Counter()
+        records_b, derived_b = tr.get("records_b"), tr.get("derived_b")
+        if params.gate_two_pass and records_b is not None and derived_b is not None and records and derived and conds:
+            _, _, negative_b, _ = extract_events(records_b, derived_b, conds, tr["outcome"], has_final,
+                                                 tr.get("costs"), tr.get("gold"), params)
+            R = gate_two_pass(R, negative_b, dropped=dropped)
+        diagnostics = {}
+        if params.route_errors:
+            diagnostics["route_units"] = {label: sum(label in row.get("labels", ()) for row in derived)
+                                           for label in ROUTE_LABELS}
+        if params.gate_two_pass:
+            diagnostics["gate_dropped"] = dict(dropped)
+        if not params.use_q3:
+            diagnostics["not_taken_up"] = sum(
+                isinstance(verdict, dict) and verdict.get("verdict") == "没理会"
+                for record, row in zip(records, derived) if "route" in row
+                for verdict in (record.get("verdicts") or {}).values()
+            )
         extra = [u for u in tr["tokens"] if u not in units and u != "F"]
         if extra:
             units = [u for u in units if u != "F"] + extra + (["F"] if has_final else [])
@@ -66,10 +87,10 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
         U, info = utility_reward(records, derived, conds, tr["outcome"], waste, params,
                                  tool_call_count=tr.get("tool_call_count", sum(u != "F" for u in units)),
                                  exec_counts=tr.get("exec_counts"))
-        pre.append((units, P, R, D, U, info))
+        pre.append((units, P, R, D, U, info, diagnostics))
     A_hat = loo_advantages([x[4] for x in pre])
     out = []
-    for index, (tr, (units, P, R, D, U, info), a) in enumerate(zip(trajs, pre, A_hat)):
+    for index, (tr, (units, P, R, D, U, info, diagnostics), a) in enumerate(zip(trajs, pre, A_hat)):
         nu = token_shares(units, tr["tokens"])
         conf = confident[index] if confident is not None else tr.get("confident")
         role, e = assign_roles(units, P, R, tr["outcome"].get("Y"), conf, params)
@@ -88,5 +109,8 @@ def credit_for_group(trajs, params=PARAMS, *, confident=None, training_step=0,
         log.update(shuffle_log)
         if unmatched:
             log["unmatched_units"] = sum(u in role and u != "F" for u in unmatched)
-        out.append(dict(U=U, info=info, A_hat=a, A=A, role=role, e=e, P=dict(P), R=dict(R), diag=dict(D), nu=nu, log=log))
+        result = dict(U=U, info=info, A_hat=a, A=A, role=role, e=e, P=dict(P), R=dict(R), diag=dict(D), nu=nu, log=log)
+        if diagnostics:
+            result["v22"] = diagnostics
+        out.append(result)
     return out

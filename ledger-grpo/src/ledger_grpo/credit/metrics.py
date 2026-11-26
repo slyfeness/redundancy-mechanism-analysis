@@ -90,7 +90,7 @@ def _event_family(tag, source):
         if tag.startswith(("采纳", "取到")):
             return "P1"
     else:
-        for prefix, family in (("排除正确答案", "E1"), ("无效排除", "E2"), ("无据断言", "E3"),
+        for prefix, family in (("排除正确答案", "E1"), ("无效排除", "E2"), ("无据断言", "E3"), ("错误路线", "E_route"),
                                ("没用", "O1"), ("冲突不改", "O3"), ("有证据不交卷", "O4"), ("浪费", "W")):
             if tag.startswith(prefix):
                 return family
@@ -156,8 +156,10 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
     unit_counts = {r: 0 for r in ("C", "R", "K", "F")}
     token_counts = dict(unit_counts)
     events = {name: dict(count=0, amount=0.0) for name in
-              ("P1", "P2", "P3", "E1", "E2", "E3", "O1", "O3", "O4", "W", "P_other", "R_other")}
+              ("P1", "P2", "P3", "E1", "E2", "E3", "E_route", "O1", "O3", "O4", "W", "P_other", "R_other")}
     waste_labels = {}
+    route_units, gate_dropped = defaultdict(int), defaultdict(int)
+    not_taken_up = 0
     ratios, effective, deviations, dropped_fractions = [], [], [], []
     zeroed = zero_base_nonzero = unmatched = 0
     shuffle = defaultdict(list)
@@ -179,6 +181,12 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
         second = sum(cr["nu"][u] * value ** 2 for u, value in cr["A"].items())
         effective.append(absolute ** 2 / second if second else 0.0)
         deviations.append(abs(sum(cr["nu"][u] * value for u, value in cr["A"].items()) - a))
+        diagnostics = cr.get("v22", {})
+        for label, count in diagnostics.get("route_units", {}).items():
+            route_units[label] += count
+        for family, count in diagnostics.get("gate_dropped", {}).items():
+            gate_dropped[family] += count
+        not_taken_up += diagnostics.get("not_taken_up", 0)
         log = cr.get("log", {})
         unmatched += log.get("unmatched_units", len(_get(tr, "unmatched_units", []) or []))
         budget = abs(a) * sum(cr["nu"][u] for u, role in cr["role"].items() if role in ("C", "R"))
@@ -203,7 +211,8 @@ def collect_credit_metrics(trajectories, credits, *, groups=None, policy=None,
     credit_result = dict(role_unit_counts=unit_counts, role_token_counts=token_counts,
         role_unit_fractions={r: count / total_units if total_units else 0.0 for r, count in unit_counts.items()},
         role_token_fractions={r: count / generated if generated else 0.0 for r, count in token_counts.items()},
-        events=events, waste_labels=waste_labels,
+        events=events, waste_labels=waste_labels, route_units=dict(route_units),
+        gate_dropped=dict(gate_dropped), not_taken_up=not_taken_up,
         A_hat_distribution=_distribution([cr["A_hat"] for cr in credits]),
         advantage_ratio_max=max((v for v, count in ratios if count > 0), default=0.0),
         advantage_ratio_p95=_weighted_quantile(ratios, .95),

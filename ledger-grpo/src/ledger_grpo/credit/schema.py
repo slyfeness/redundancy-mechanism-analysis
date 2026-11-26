@@ -64,9 +64,10 @@ def _exclusion(value):
 
 RECORD_FIELDS = {'step', 'targets', 'plan_match', 'query', 'new_docs', 'old_docs', 'strict',
                  'evidence', 'verdicts', 'earlier_adopted', 'excluded', 'answer_chain', 'assertions',
-                 'unjudged_evidence'}
+                 'unjudged_evidence', 'q3_audit'}
 DERIVED_FIELDS = {'step', 'targets', 'adopted_now', 'ignored_now', 'excluded_now', 'excluded_role_only',
-                  'chain', 'view', 'labels', 'position', 'tier', 'missed', 'missed_gold', 'unused', 'unsupported'}
+                  'chain', 'view', 'labels', 'position', 'tier', 'missed', 'missed_gold', 'unused', 'unsupported',
+                  'route', 'diagnostic'}
 
 
 def validate_record(raw):
@@ -109,6 +110,11 @@ def validate_record(raw):
             _enum(cond.get('effect'), ('支持', '冲突'), 'condition effect')
     if not isinstance(row.get('verdicts', {}), dict):
         raise ValueError('verdicts must be an object')
+    if 'q3_audit' in row:
+        audit = _object(row['q3_audit'], ('verdicts', 'earlier_adopted'), 'Q3 audit')
+        if not isinstance(audit.get('verdicts', {}), dict):
+            raise ValueError('Q3 audit verdicts must be an object')
+        _strings(audit.get('earlier_adopted', []), 'Q3 audit earlier_adopted')
     for key, value in row.get('verdicts', {}).items():
         _string(key, 'verdict key')
         if isinstance(value, dict):
@@ -132,7 +138,8 @@ def validate_derived(raw):
     row = {key: literal(value) for key, value in row.items()}
     if type(row.get('step')) is not int or row['step'] < 1:
         raise ValueError('derived.step must be a positive integer')
-    for key in ('adopted_now', 'ignored_now', 'labels', 'position', 'missed', 'missed_gold', 'unused', 'excluded_role_only'):
+    for key in ('adopted_now', 'ignored_now', 'labels', 'position', 'missed', 'missed_gold', 'unused',
+                'excluded_role_only', 'route', 'diagnostic'):
         if key in row:
             _strings(row[key], key)
     if 'tier' in row:
@@ -214,6 +221,8 @@ class Trajectory:
     traj_id: str = None
     confident: object = None
     metadata: dict = field(default_factory=dict)
+    records_b: list | None = None
+    derived_b: list | None = None
 
     def __post_init__(self):
         if not isinstance(self.qid, str) or not self.qid or type(self.rollout) is not int or self.rollout < 0:
@@ -240,6 +249,7 @@ class Trajectory:
             raise ValueError('explicit unmatched unit does not belong to trajectory')
         unmatched = list(dict.fromkeys(unfinished + list(explicit)))
         return dict(qid=self.qid, rollout=self.rollout, records=self.records, derived=self.derived,
+                    records_b=self.records_b, derived_b=self.derived_b,
                     conds=self.conds, outcome=self.outcome, gold=self.gold,
                     has_final=any(u.unit_id == 'F' for u in self.units),
                     tokens={u.unit_id: u.generated_tokens for u in self.units},

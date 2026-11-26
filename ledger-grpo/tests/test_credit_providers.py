@@ -8,6 +8,7 @@ import unittest
 from ledger_grpo.credit.judge import (ReplayJudgeClient, ReplayMissError, HttpJudgeClient,
     HttpJudgeConfig, request_body, q2_cache_key)
 from ledger_grpo.credit.pipeline import WIRE, execute
+from ledger_grpo.credit.config import CreditConfig
 from ledger_grpo.credit.providers import (RecordedLedgerProvider, NullLedgerProvider,
     MockLedgerProvider, LiveJudgeLedgerProvider, blank_skippable_q5, q5_skip_candidates)
 
@@ -97,14 +98,27 @@ class ProviderTests(unittest.TestCase):
         case, metadata, prompts = fixture()
         group = [{"metadata": {"case": case, "ledger_metadata": metadata}} for _ in range(8)]
         fake = SyntheticJudge()
-        provider = LiveJudgeLedgerProvider(fake, prompts, q1_early_stop=True)
+        provider = LiveJudgeLedgerProvider(fake, prompts, q1_early_stop=True, q3_audit_rate=0)
         results = provider.build(group)
         self.assertEqual(len(results), 8)
         self.assertTrue(all(result.conds is results[0].conds for result in results))
-        self.assertEqual(provider.stats["q2_cache_hits"], 7)
-        self.assertEqual(provider.stats["q2_cache_misses"], 1)
+        self.assertEqual(provider.stats["q2_cache_hits"], 14)
+        self.assertEqual(provider.stats["q2_cache_misses"], 2)
         self.assertTrue(all(result.records == results[0].records for result in results))
         self.assertTrue(all("gold" not in json.loads(row["request"]["messages"][1]["content"]) for row in fake.receipts))
+        self.assertTrue(all(result.records_b and result.derived_b for result in results))
+        self.assertFalse(any(row["request"]["messages"][0]["content"] == prompts["Q3"] for row in fake.receipts))
+
+    def test_q3_audit_cannot_change_live_credit_inputs(self):
+        case, metadata, prompts = fixture()
+        group = [{"metadata": {"case": case, "ledger_metadata": metadata}}]
+        audited = LiveJudgeLedgerProvider(SyntheticJudge(), prompts, q3_audit_rate=1).build(group)[0]
+        plain = LiveJudgeLedgerProvider(SyntheticJudge(), prompts, q3_audit_rate=0).build(group)[0]
+        self.assertTrue(audited.rows[0]["q3_audit"])
+        self.assertEqual(audited.derived, plain.derived)
+        self.assertEqual(audited.derived_b, plain.derived_b)
+        self.assertEqual(audited.records[0]["verdicts"], plain.records[0]["verdicts"])
+        self.assertNotIn("Q3", audited.rows[0]["calls"])
 
     def test_q0_once_per_group_without_gold(self):
         case, metadata, prompts = fixture()
@@ -142,10 +156,18 @@ class ProviderTests(unittest.TestCase):
             path = Path(temporary) / "synthetic__rep1"
             path.mkdir()
             (path / "a.jsonl").write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
-            result = RecordedLedgerProvider(temporary).build([{"qid": "synthetic", "rollout": 0}])[0]
+            (path / "b.jsonl").write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
+            provider = RecordedLedgerProvider(temporary)
+            group = [{"qid": "synthetic", "rollout": 0, "gold": metadata["gold"]}]
+            result = provider.build(group, config=CreditConfig.from_preset("C_W_v211"))[0]
             self.assertEqual(result.records, [row["record"] for row in rows])
             self.assertEqual(result.conds, ["A"])
             self.assertGreater(result.tokens["F"], 0)
+            current = provider.build(group)[0]
+            self.assertIn("q3_audit", current.records[0])
+            self.assertIn("程序", current.records[0]["verdicts"]["E1@1"]["reason"])
+            self.assertEqual(current.records_b, current.records)
+            self.assertEqual(current.derived_b, current.derived)
         self.assertEqual(NullLedgerProvider().build([{}])[0].records, [])
         mocked = MockLedgerProvider().build([{"units": [{"unit_id": 1}, {"unit_id": "F"}]}])[0]
         self.assertEqual(len(mocked.records), 1)

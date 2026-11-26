@@ -3,6 +3,7 @@
 from collections import defaultdict
 from .config import PARAMS
 from .ledger import canon, same
+from .ledger_v135 import ROUTE_LABELS
 
 WASTE_LABELS = {"重复核实", "原地打转", "严格重复", "追已排除"}
 
@@ -53,7 +54,7 @@ def extract_events(records, derived, conds, outcome, has_final, costs=None, gold
             names += [x.get("object") for x in rec.get("targets", []) if (x.get("object") or "未知") != "未知"]
             names.append(_qtext(rec))
         future_targets.append(names)
-    run_conflict = run_ready = run_restrict = 0
+    run_conflict = run_ready = run_restrict = route_count = 0
 
     def give_x(unit, tag):
         nonlocal x_count
@@ -143,7 +144,11 @@ def extract_events(records, derived, conds, outcome, has_final, costs=None, gold
             if isinstance(x, str) and x.startswith("返回:"):
                 DIAG[t].append("（诊断）返回原文出现正确答案字符串")
         # ---------- O3: a known conflict on the current answer, not handled
-        if "冲突不改" in labels:
+        route = [label for label in ROUTE_LABELS if label in labels] if pr.get("route_errors", True) else []
+        if route:
+            R[t].append((pr["psi"] * eta * wA * (1 - g_) * g_ ** route_count, "错误路线:" + "、".join(route)))
+            route_count += 1
+        if "冲突不改" in labels and not pr.get("route_errors", True):
             ans = ch.get("answer")
             verifying = bool(ans) and any(isinstance(n, str) and n and (same(ans, n) or ans in n) for n in nxt_names)
             if not verifying:
@@ -158,7 +163,10 @@ def extract_events(records, derived, conds, outcome, has_final, costs=None, gold
         for a in d.get("unsupported") or []:
             toks = [str(x) for x in a.get("tokens", []) if str(x).strip()]
             if toks and any(tk in used_text for tk in toks) and n_e3 < 2:
-                R[up].append((pr["psi"] * eta * wmin * 0.5, "无据断言(被用于决策)"))
+                if pr.get("e3_diagnostic", True):
+                    DIAG[up].append("（诊断）无据断言被用于决策")
+                else:
+                    R[up].append((pr["psi"] * eta * wmin * 0.5, "无据断言(被用于决策)"))
                 n_e3 += 1
         # ---------- O4 (ready but keeps searching): general uses all-conditions-supported; belief point is privileged
         ready_general = "已够还查" in pos
@@ -178,7 +186,7 @@ def extract_events(records, derived, conds, outcome, has_final, costs=None, gold
             wl.add("查没问的")
         restricted = any((x.get("restriction") or "").strip() for x in rec.get("targets", []))
         run_restrict = run_restrict + 1 if (restricted and "有进展" not in labels) else 0
-        if run_restrict >= 2:
+        if run_restrict >= 2 and not pr.get("route_errors", True):
             wl.add("自加限定(连续)")
         if wl:
             R[t].append((pr["lam"] * costs.get(t, 1.0), "浪费:" + "、".join(sorted(wl))))
@@ -189,3 +197,25 @@ def extract_events(records, derived, conds, outcome, has_final, costs=None, gold
         if any(tag.startswith("取到") for _, tag in P.get(u, [])):
             R[u] = [(m, tag) for m, tag in R.get(u, []) if not tag.startswith("浪费")]
     return units, P, R, DIAG
+
+
+def event_family(tag):
+    """The same family on the same unit confirms a negative event."""
+    for prefix, family in (("浪费", "W"), ("错误路线", "route"), ("无效排除", "excl"), ("排除正确答案", "excl"),
+                           ("没用", "O1"), ("冲突不改", "O3"), ("有证据不交卷", "O4"), ("无据断言", "E3")):
+        if tag.startswith(prefix):
+            return family
+    return tag
+
+
+def gate_two_pass(R_a, R_b, *, dropped=None):
+    kept = {}
+    for unit, events in R_a.items():
+        confirmed = {event_family(tag) for _, tag in R_b.get(unit, ())}
+        for amount, tag in events:
+            family = event_family(tag)
+            if family in confirmed:
+                kept.setdefault(unit, []).append((amount, tag))
+            elif dropped is not None:
+                dropped[family] += 1
+    return kept

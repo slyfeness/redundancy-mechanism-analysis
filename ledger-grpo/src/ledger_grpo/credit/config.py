@@ -16,6 +16,9 @@ PARAMS = dict(
     privileged=False,   # gold-dependent events (excluded the gold answer; belief-point positions)
     gate_low_conf=False,
     infeasible="drop",
+    route_errors=True,
+    e3_diagnostic=True,
+    gate_two_pass=True,
 )
 
 PRESETS = {
@@ -25,6 +28,7 @@ PRESETS = {
     "B_W": ("progress_waste", "none"),
     "C": ("progress", "transfer"),
     "C_W": ("progress_waste", "transfer"),
+    "C_W_v211": ("progress_waste", "transfer"),
     "C_uniform": ("progress_waste", "transfer_uniform"),
     "clear_only": ("progress_waste", "clear_only"),
     "D": ("progress_waste", "shuffled"),
@@ -62,6 +66,13 @@ class CreditConfig(Mapping):
     ledger_sample_q: float = 1.0
     ledger_sample_correction: bool = True
     c_ref: float = 3146.0
+    route_errors: bool = True
+    e3_diagnostic: bool = True
+    gate_two_pass: bool = True
+    use_q3: bool = False
+    q3_audit_rate: float = 0.1
+    k_hold: int = 3
+    k_restrict: int = 2
 
     def __post_init__(self):
         if not self.g * self.eta_p < self.beta_n:
@@ -84,6 +95,10 @@ class CreditConfig(Mapping):
             raise ValueError("kappa must be >= 1 and c_ref must be positive")
         if not 0.05 <= self.process_tau <= 0.1:
             raise ValueError("process_tau must be in [0.05, 0.1]")
+        if not 0 <= self.q3_audit_rate <= 1:
+            raise ValueError("q3_audit_rate must be in [0, 1]")
+        if any(type(k) is not int or k < 1 for k in (self.k_hold, self.k_restrict)):
+            raise ValueError("route thresholds must be positive integers")
         if self.alpha_zs < 0:
             raise ValueError("alpha_zs must be nonnegative")
 
@@ -92,7 +107,10 @@ class CreditConfig(Mapping):
         if name not in PRESETS:
             raise ValueError("Unknown credit preset: " + str(name))
         utility, step_credit = PRESETS[name]
-        return cls(**dict({"utility": utility, "step_credit": step_credit}, **overrides))
+        settings = {"utility": utility, "step_credit": step_credit}
+        if name == "C_W_v211":
+            settings.update(route_errors=False, e3_diagnostic=False, gate_two_pass=False, use_q3=True)
+        return cls(**{**settings, **overrides})
 
     @classmethod
     def from_params(cls, params):

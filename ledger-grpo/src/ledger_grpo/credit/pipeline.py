@@ -1,7 +1,7 @@
 """Frozen v13.4 request rendering and ledger construction, with injectable I/O."""
 from pathlib import Path
 from copy import deepcopy
-from . import ledger
+from . import ledger, ledger_v135
 from .pipeline_checked import checked, checked_q3
 from .pipeline_rules import (ground_answer, select_all_new, prior_candidates,
     Q1_CONFIGS, combine_votes, check_document_facts, facts_with_broad,
@@ -59,6 +59,16 @@ def calls_of(row):
             yield from ((phase, c) for c in call)
         elif phase != "Q1":
             yield phase, call
+    if row.get("q3_audit"):
+        yield "Q3", row["q3_audit"]
+
+
+def next_behaviour(thinking, queries=(), final=None):
+    if isinstance(thinking, list):
+        thinking = " ".join(str(value.get("text", "")) if isinstance(value, dict) else str(value)
+                            for value in thinking)
+    return " ".join((str(thinking or ""), " ".join(map(str, queries or ())), str(final or "")))
+
 
 def extract_document(folder, index, doc, prompt, payload, cfg, ids, send):
     call = checked(folder, f"Q2-{index}", prompt, {**payload, "返回句子": [doc]}, cfg,
@@ -67,17 +77,21 @@ def extract_document(folder, index, doc, prompt, payload, cfg, ids, send):
     facts, rejected = facts_with_broad(call["parsed"] or {"facts": []}, ids, shown)
     return {**call, "docid": str(doc["docid"])}, facts, rejected
 
-def finish_ledger(record, returns, metadata):
+def finish_ledger(record, returns, metadata, *, next_text=None, k_hold=3, k_restrict=2):
     projected = record
     if metadata["gold"]:
         for step in projected["steps"]:
             for ev in step["evidence"]:
                 if ev.get("text") and not ledger.norm(ev["text"]):
                     ev["text"] = ""
+    if next_text is not None:
+        return ledger_v135.run(projected, returns, metadata["gold"], metadata["t_belief"],
+                               metadata["question"], next_text, k_hold=k_hold, k_restrict=k_restrict)
     return ledger.run(projected, returns, metadata["gold"], metadata["t_belief"],
                       question_text=metadata["question"])
 
-def execute(case, metadata, prompts, send, *, cfg=None, q1_early_stop=False, q2_cache=None, conditions_version="v13.4", stats=None):
+def execute(case, metadata, prompts, send, *, cfg=None, q1_early_stop=False, q2_cache=None,
+            conditions_version="v13.4", stats=None, use_q3=True, q3_audit=False, k_hold=3, k_restrict=2):
     conditions = case["conditions"]
     ids = {x["id"] for x in conditions}
     tid = case["trajectory_id"]
@@ -91,6 +105,7 @@ def execute(case, metadata, prompts, send, *, cfg=None, q1_early_stop=False, q2_
     stats.setdefault("q2_cache_misses", 0)
     rows, known, evidence_registry, adopted, excluded = [], {}, {}, set(), {}
     steps = case["steps"]
+    next_text = {}
     returns, returns_text = prepare_returns(steps)
     for i, given in enumerate(steps):
         t = given["step"]
@@ -144,18 +159,23 @@ def execute(case, metadata, prompts, send, *, cfg=None, q1_early_stop=False, q2_
             response_material["下一次查询"] = steps[i+1]["queries"]
         else:
             response_material["正式答案"] = given["final_sentences"]
-        q3 = checked_q3(folder, prompts["Q3"],
-                        {**response_material,"事实清单":[{"id":k,"about":v["about"],"fact":v["fact"]}
-                                                         for k,v in available.items()]},
-                        cfg, set(available), send)
-        conclusions = q3["parsed"]
-        words_to_verdict = {"用了":"采纳","不信":"不信","没提":"没理会"}
-        verdicts = {k:{"verdict":words_to_verdict[v],"reason":""}
-                    for k,v in conclusions["verdicts"].items() if k in fresh_ids}
-        earlier = [k for k,v in conclusions["verdicts"].items() if k not in fresh_ids and v=="用了"]
-        adopted.update(k for k,v in conclusions["verdicts"].items() if v=="用了")
-        claim_rows = [{"claim":claim,"tokens":tokens_for_claim(claim),"conditions":[]}
-                      for claim in conclusions["claims"]]
+        next_text[t] = next_behaviour(response_material["下一轮思考"],
+                                      response_material.get("下一次查询"), response_material.get("正式答案"))
+        q3 = None
+        verdicts, earlier, claim_rows = {}, [], []
+        if use_q3 or q3_audit:
+            q3 = checked_q3(folder, prompts["Q3"],
+                            {**response_material,"事实清单":[{"id":k,"about":v["about"],"fact":v["fact"]}
+                                                             for k,v in available.items()]},
+                            cfg, set(available), send)
+            conclusions = q3["parsed"]
+            words_to_verdict = {"用了":"采纳","不信":"不信","没提":"没理会"}
+            verdicts = {k:{"verdict":words_to_verdict[v],"reason":""}
+                        for k,v in conclusions["verdicts"].items() if k in fresh_ids}
+            earlier = [k for k,v in conclusions["verdicts"].items() if k not in fresh_ids and v=="用了"]
+            adopted.update(k for k,v in conclusions["verdicts"].items() if v=="用了")
+            claim_rows = [{"claim":claim,"tokens":tokens_for_claim(claim),"conditions":[]}
+                          for claim in conclusions["claims"]]
         q4_prompt = (prompts["Q4"].replace("{上一步答案}", chain["answer"] or "无")
                                   .replace("{所问对象类型}", metadata["answer_type"]))
         q4 = checked(folder, "Q4", q4_prompt, response_material, cfg, lambda x:validate_q4(x,ids), send)
@@ -193,24 +213,37 @@ def execute(case, metadata, prompts, send, *, cfg=None, q1_early_stop=False, q2_
         excluded.update(dict.fromkeys(r["object"] for r in exclusions))
         record = {"step":t,"query":" | ".join(given["queries"]),"targets":targets,
                   "new_docs":given["new_docs"],"old_docs":given["old_docs"],"strict":given["strict"],
-                  "evidence":fresh,"verdicts":verdicts,"earlier_adopted":earlier,"excluded":exclusions,
-                  "answer_chain":answer_chain,"assertions":[r for r in claim_rows if r["tokens"]],
-                  "unjudged_evidence":q3["unjudged_evidence"]}
+                  "evidence":fresh,"verdicts":verdicts if use_q3 else {},
+                  "earlier_adopted":earlier if use_q3 else [],"excluded":exclusions,
+                  "answer_chain":answer_chain,"assertions":[r for r in claim_rows if r["tokens"]] if use_q3 else [],
+                  "unjudged_evidence":q3["unjudged_evidence"] if use_q3 else []}
         records["steps"].append(record)
-        row = {"step":t,"calls":{"Q1":q1,"Q2":q2,"Q3":q3,"Q4":q4,"Q5":q5},"record":record,
+        calls = {"Q1": q1, "Q2": q2}
+        if use_q3:
+            calls["Q3"] = q3
+        calls.update(Q4=q4, Q5=q5)
+        row = {"step":t,"calls":calls,"record":record,
                "before":{"chain":chain,"excluded":list(dict.fromkeys(
                    e["object"] for rec in records["steps"][:-1] for e in rec["excluded"]))},
                "selection":{"Q1_discarded_restrictions":q1_votes["ballots"][0]["rejected"],"Q2_selected":selection,
-                            "Q2_discarded_facts":rejected_facts,
-                            "Q3_claims_without_tokens":[r["claim"] for r in claim_rows if not r["tokens"]]}}
+                            "Q2_discarded_facts":rejected_facts}}
+        if use_q3:
+            row["selection"]["Q3_claims_without_tokens"] = [r["claim"] for r in claim_rows if not r["tokens"]]
+            row["q3_stray_keys"] = q3["q3_stray_keys"]
+        elif q3_audit:
+            row["q3_audit"] = q3
+        if not use_q3:
+            row["next_text"] = next_text[t]
         row["q1_votes"] = q1_votes
         row["unjudged_q2_documents"] = [call["docid"] for call in q2 if not call["passed"]]
-        row["q3_stray_keys"] = q3["q3_stray_keys"]
         row["prior_candidates_q2"] = candidates
-        row["truncation_retry"] = any(call["truncation_retry"] for _,call in calls_of(row))
-        row["未判"] = [p for p, call in calls_of(row) if not call["passed"]]
+        row["truncation_retry"] = any(call["truncation_retry"] for p, call in calls_of(row)
+                                      if use_q3 or p != "Q3")
+        row["未判"] = [p for p, call in calls_of(row) if not call["passed"] and (use_q3 or p != "Q3")]
         rows.append(row)
-    result = finish_ledger(records, returns_text, metadata)
-    for row, derived in zip(rows,result["steps"],strict=True):
-        row["derived"] = derived
+    result = finish_ledger(records, returns_text, metadata, next_text=None if use_q3 else next_text,
+                           k_hold=k_hold, k_restrict=k_restrict)
+    scored_records = result.get("record", records)["steps"]
+    for row, record, derived in zip(rows, scored_records, result["steps"], strict=True):
+        row["record"], row["derived"] = record, derived
     return rows
